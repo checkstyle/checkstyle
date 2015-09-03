@@ -33,40 +33,6 @@ import com.puppycrawl.tools.checkstyle.DefaultContext;
 
 public class AutomaticBeanTest {
 
-    public class TestBean extends AutomaticBean {
-
-        private String privateField;
-
-        private String wrong;
-
-        private int val;
-
-        public void setWrong(String wrong) {
-            this.wrong = wrong;
-        }
-
-        public void setIntVal(int val) {
-            this.val = val;
-        }
-
-        public void setExceptionalMethod(String val) {
-            throw new IllegalStateException("for UT");
-        }
-
-        public void setName(String name) {
-        }
-
-        /**
-         * just for code coverage
-         * @param childConf a child of this component's Configuration
-         * @throws CheckstyleException
-         */
-        @Override
-        protected void setupChild(Configuration childConf) throws CheckstyleException {
-            super.setupChild(childConf);
-        }
-    }
-
     @Test
     public void testConfigure_NoSuchAttribute() {
         final TestBean testBean = new TestBean();
@@ -105,7 +71,7 @@ public class AutomaticBeanTest {
     public void testContextualize_InvocationTargetException() {
         final TestBean testBean = new TestBean();
         DefaultContext context = new DefaultContext();
-        context.add("exceptionalMethod", 123f);
+        context.add("exceptionalMethod", 123.0f);
         try {
             testBean.contextualize(context);
             fail();
@@ -120,7 +86,7 @@ public class AutomaticBeanTest {
     public void testContextualize_ConversionException() {
         final TestBean testBean = new TestBean();
         DefaultContext context = new DefaultContext();
-        context.add("intVal", "some string");
+        context.add("val", "some string");
         try {
             testBean.contextualize(context);
             fail();
@@ -131,4 +97,33 @@ public class AutomaticBeanTest {
         }
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void testTestBean() {
+        final TestBean testBean = new TestBean();
+        testBean.setVal(0);
+        testBean.setWrong("wrongVal");
+        testBean.setExceptionalMethod("someValue");
+    }
+
+    private static class TestBean extends AutomaticBean {
+
+        private String privateField;
+
+        private String wrong;
+
+        private int val;
+
+        public void setWrong(String wrong) {
+            this.wrong = wrong;
+        }
+
+        public void setVal(int val) {
+            this.val = val;
+        }
+
+        public void setExceptionalMethod(String value) {
+            throw new IllegalStateException(privateField + "," + wrong + "," + val + "," + value);
+        }
+
+    }
 }

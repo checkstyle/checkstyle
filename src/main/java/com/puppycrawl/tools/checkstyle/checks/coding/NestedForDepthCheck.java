@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check the number of nested <code>for</code> -statements. The maximum
+ * Check the number of nested {@code for} -statements. The maximum
  * number of nested layers can be configured. The default value is 1. Most of
  * the logic is implemented in the parent class. The code for the class is
  * copied from the NestedIfDepthCheck-class. The only difference is the
@@ -38,8 +38,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  &lt;/module&gt;
  * </pre>
  * @author Alexander Jesse
- * @see com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck
- * @see com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck
+ * @see AbstractNestedDepthCheck
+ * @see NestedIfDepthCheck
  */
 public final class NestedForDepthCheck extends AbstractNestedDepthCheck {
 
@@ -49,7 +49,7 @@ public final class NestedForDepthCheck extends AbstractNestedDepthCheck {
      */
     public static final String MSG_KEY = "nested.for.depth";
 
-    /** default allowed nesting depth. */
+    /** Default allowed nesting depth. */
     private static final int DEFAULT_MAX = 1;
 
     /** Creates new check instance with default allowed nesting depth. */

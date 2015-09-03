@@ -21,11 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Checks for long lines.
@@ -83,17 +83,17 @@ public class LineLengthCheck extends Check {
      */
     public static final String MSG_KEY = "maxLineLen";
 
-    /** default maximum number of columns in a line */
+    /** Default maximum number of columns in a line. */
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
-    /** the maximum number of columns in a line */
+    /** The maximum number of columns in a line. */
     private int max = DEFAULT_MAX_COLUMNS;
 
-    /** the regexp when long lines are ignored */
+    /** The regexp when long lines are ignored. */
     private Pattern ignorePattern;
 
     /**
-     * Creates a new <code>LineLengthCheck</code> instance.
+     * Creates a new {@code LineLengthCheck} instance.
      */
     public LineLengthCheck() {
         setIgnorePattern("^$");
@@ -101,7 +101,17 @@ public class LineLengthCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -110,9 +120,8 @@ public class LineLengthCheck extends Check {
         for (int i = 0; i < lines.length; i++) {
 
             final String line = lines[i];
-            final int realLength = Utils.lengthExpandedTabs(
+            final int realLength = CommonUtils.lengthExpandedTabs(
                 line, line.length(), getTabWidth());
-
 
             if (realLength > max
                 && !ignorePattern.matcher(line).find()) {
@@ -122,6 +131,7 @@ public class LineLengthCheck extends Check {
     }
 
     /**
+     * Sets the maximum length of a line.
      * @param length the maximum length of a line
      */
     public void setMax(int length) {
@@ -130,11 +140,9 @@ public class LineLengthCheck extends Check {
 
     /**
      * Set the ignore pattern.
-     * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
+     * @param format a {@code String} value
      */
-    public void setIgnorePattern(String format)
-        throws ConversionException {
-        ignorePattern = Utils.createPattern(format);
+    public final void setIgnorePattern(String format) {
+        ignorePattern = CommonUtils.createPattern(format);
     }
 }

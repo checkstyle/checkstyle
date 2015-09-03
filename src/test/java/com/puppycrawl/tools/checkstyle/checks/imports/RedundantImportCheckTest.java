@@ -34,6 +34,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class RedundantImportCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        RedundantImportCheck checkObj = new RedundantImportCheck();
+        int[] expected = {
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.PACKAGE_DEF,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testWithChecker()
         throws Exception {
@@ -69,7 +81,7 @@ public class RedundantImportCheckTest
         RedundantImportCheck testCheckObject =
                 new RedundantImportCheck();
         int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,

@@ -30,6 +30,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class DesignForExtensionCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        DesignForExtensionCheck checkObj = new DesignForExtensionCheck();
+        int[] expected = {TokenTypes.METHOD_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =

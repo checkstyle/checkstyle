@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck.M
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -62,8 +63,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     }
 
     /**
-     * Test to validate the IllegalThrowsCheck with ignoredMethodNames attribute
-     * @throws Exception
+     * Test to validate the IllegalThrowsCheck with ignoredMethodNames attribute.
      */
     @Test
     public void testIgnoreMethodNames() throws Exception {
@@ -79,8 +79,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     }
 
     /**
-     * Test to validate the IllegalThrowsCheck with both the attributes specified
-     * @throws Exception
+     * Test to validate the IllegalThrowsCheck with both the attributes specified.
      */
     @Test
     public void testIllegalClassNamesWithIgnoreMethodNames() throws Exception {
@@ -100,16 +99,13 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     /**
      * Test to validate the IllegalThrowsCheck with <b>ignoreOverriddenMethods</b>
      * property.
-     * @throws Exception
      */
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
-        String[] expected = {
-
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("coding" + File.separator
                 + "InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
@@ -118,7 +114,6 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     /**
      * Test to validate the IllegalThrowsCheck without <b>ignoreOverriddenMethods</b>
      * property.
-     * @throws Exception
      */
     @Test
     public void testNotIgnoreOverriddenMethods() throws Exception {

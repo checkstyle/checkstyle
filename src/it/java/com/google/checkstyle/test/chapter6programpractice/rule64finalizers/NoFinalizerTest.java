@@ -1,28 +1,26 @@
 package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
 
 public class NoFinalizerTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void noFinalizerBasicTest() throws IOException, Exception {
+    public void noFinalizerBasicTest() throws Exception {
         
         String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
@@ -38,7 +36,7 @@ public class NoFinalizerTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void noFinalizerExtendedTest() throws IOException, Exception {
+    public void noFinalizerExtendedTest() throws Exception {
         
         String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
@@ -61,5 +59,3 @@ public class NoFinalizerTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

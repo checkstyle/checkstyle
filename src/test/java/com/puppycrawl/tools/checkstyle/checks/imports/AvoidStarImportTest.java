@@ -58,7 +58,7 @@ public class AvoidStarImportTest
         checkConfig.addAttribute("excludes",
             "java.io,java.lang,javax.swing.WindowConstants.*, javax.swing.WindowConstants");
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
-        final String[] expected2 = new String[] {
+        final String[] expected2 = {
             "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
@@ -71,7 +71,7 @@ public class AvoidStarImportTest
         final DefaultConfiguration checkConfig = createCheckConfig(AvoidStarImportCheck.class);
         checkConfig.addAttribute("allowClassImports", "true");
         // allow all class star imports
-        final String[] expected2 = new String[] {
+        final String[] expected2 = {
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
@@ -84,7 +84,7 @@ public class AvoidStarImportTest
         final DefaultConfiguration checkConfig = createCheckConfig(AvoidStarImportCheck.class);
         checkConfig.addAttribute("allowStaticMemberImports", "true");
         // allow all static star imports
-        final String[] expected2 = new String[] {
+        final String[] expected2 = {
             "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
             "9: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "10: " + getCheckMessage(MSG_KEY, "java.lang.*"),
@@ -98,7 +98,7 @@ public class AvoidStarImportTest
         AvoidStarImportCheck testCheckObject =
                 new AvoidStarImportCheck();
         int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = new int[]{TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
         assertArrayEquals(expected, actual);
     }
 
@@ -107,7 +107,7 @@ public class AvoidStarImportTest
         AvoidStarImportCheck testCheckObject =
                 new AvoidStarImportCheck();
         int[] actual = testCheckObject.getRequiredTokens();
-        int[] expected = new int[]{TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
 
         assertArrayEquals(expected, actual);
     }

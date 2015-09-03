@@ -22,10 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>
@@ -54,12 +54,17 @@ public class FinalClassCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[]{TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -71,7 +76,8 @@ public class FinalClassCheck
             final boolean isAbstract = modifiers.branchContains(TokenTypes.ABSTRACT);
             classes.push(new ClassDesc(isFinal, isAbstract));
         }
-        else if (!ScopeUtils.inEnumBlock(ast)) { //ctors in enums don't matter
+        // ctors in enums don't matter
+        else if (!ScopeUtils.isInEnumBlock(ast)) {
             final ClassDesc desc = classes.peek();
             if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)) {
                 desc.reportPrivateCtor();
@@ -99,22 +105,22 @@ public class FinalClassCheck
         }
     }
 
-    /** maintains information about class' ctors */
+    /** Maintains information about class' ctors. */
     private static final class ClassDesc {
-        /** is class declared as final */
+        /** Is class declared as final. */
         private final boolean declaredAsFinal;
 
-        /** is class declared as abstract */
+        /** Is class declared as abstract. */
         private final boolean declaredAsAbstract;
 
-        /** does class have non-provate ctors */
+        /** Does class have non-provate ctors. */
         private boolean withNonPrivateCtor;
 
-        /** does class have private ctors */
+        /** Does class have private ctors. */
         private boolean withPrivateCtor;
 
         /**
-         *  create a new ClassDesc instance.
+         *  Create a new ClassDesc instance.
          *  @param declaredAsFinal indicates if the
          *         class declared as final
          *  @param declaredAsAbstract indicates if the
@@ -125,18 +131,18 @@ public class FinalClassCheck
             this.declaredAsAbstract = declaredAsAbstract;
         }
 
-        /** adds private ctor. */
+        /** Adds private ctor. */
         void reportPrivateCtor() {
             withPrivateCtor = true;
         }
 
-        /** adds non-private ctor. */
+        /** Adds non-private ctor. */
         void reportNonPrivateCtor() {
             withNonPrivateCtor = true;
         }
 
         /**
-         *  does class have private ctors.
+         *  Does class have private ctors.
          *  @return true if class has private ctors
          */
         boolean isWithPrivateCtor() {
@@ -144,7 +150,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  does class have non-private ctors.
+         *  Does class have non-private ctors.
          *  @return true if class has non-private ctors
          */
         boolean isWithNonPrivateCtor() {
@@ -152,7 +158,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  is class declared as final.
+         *  Is class declared as final.
          *  @return true if class is declared as final
          */
         boolean isDeclaredAsFinal() {
@@ -160,7 +166,7 @@ public class FinalClassCheck
         }
 
         /**
-         *  is class declared as abstract.
+         *  Is class declared as abstract.
          *  @return true if class is declared as final
          */
         boolean isDeclaredAsAbstract() {

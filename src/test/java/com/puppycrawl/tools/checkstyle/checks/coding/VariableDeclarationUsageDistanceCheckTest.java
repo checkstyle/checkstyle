@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck.MSG_KEY_EXT;
-import static org.junit.Assert.fail;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,6 +67,9 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "505: " + getCheckMessage(MSG_KEY, "files", 2, 1),
             "540: " + getCheckMessage(MSG_KEY, "id", 2, 1),
             "542: " + getCheckMessage(MSG_KEY, "parentId", 3, 1),
+            "891: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "901: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "967: " + getCheckMessage(MSG_KEY, "a", 4, 1),
         };
         verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
     }
@@ -85,6 +87,9 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "479: " + getCheckMessage(MSG_KEY, "myOption", 7, 3),
             "491: " + getCheckMessage(MSG_KEY, "myOption", 6, 3),
             "504: " + getCheckMessage(MSG_KEY, "count", 4, 3),
+            "891: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "901: " + getCheckMessage(MSG_KEY, "a", 4, 3),
+            "967: " + getCheckMessage(MSG_KEY, "a", 4, 3),
         };
         verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
     }
@@ -196,6 +201,9 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "505: " + getCheckMessage(MSG_KEY_EXT, "files", 2, 1),
             "540: " + getCheckMessage(MSG_KEY_EXT, "id", 2, 1),
             "542: " + getCheckMessage(MSG_KEY_EXT, "parentId", 3, 1),
+            "891: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+            "901: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
+            "967: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
         };
         verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
     }
@@ -219,13 +227,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "542: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
         };
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("coding/InputVariableDeclarationUsageDistanceCheck.java"), expected);
     }
 }

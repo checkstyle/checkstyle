@@ -52,11 +52,11 @@
     <!-- Checks that property files contain the same keys.         -->
     <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
     <module name="Translation"/>
-    
+
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
     <module name="FileLength"/>
-    
+
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
     <module name="FileTabCharacter"/>
@@ -86,7 +86,6 @@
         <module name="JavadocVariable"/>
         <module name="JavadocStyle"/>
 
-
         <!-- Checks for Naming Conventions.                  -->
         <!-- See http://checkstyle.sf.net/config_naming.html -->
         <module name="ConstantName"/>
@@ -99,7 +98,6 @@
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
 
-
         <!-- Checks for imports                              -->
         <!-- See http://checkstyle.sf.net/config_import.html -->
         <module name="AvoidStarImport"/>
@@ -107,13 +105,11 @@
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
 
-
         <!-- Checks for Size Violations.                    -->
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
         <module name="LineLength"/>
         <module name="MethodLength"/>
         <module name="ParameterNumber"/>
-
 
         <!-- Checks for whitespace                               -->
         <!-- See http://checkstyle.sf.net/config_whitespace.html -->
@@ -128,12 +124,10 @@
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
 
-
         <!-- Modifier Checks                                    -->
         <!-- See http://checkstyle.sf.net/config_modifiers.html -->
         <module name="ModifierOrder"/>
         <module name="RedundantModifier"/>
-
 
         <!-- Checks for blocks. You know, those {}'s         -->
         <!-- See http://checkstyle.sf.net/config_blocks.html -->
@@ -142,7 +136,6 @@
         <module name="LeftCurly"/>
         <module name="NeedBraces"/>
         <module name="RightCurly"/>
-
 
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
@@ -164,7 +157,6 @@
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
         <module name="VisibilityModifier"/>
-
 
         <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->

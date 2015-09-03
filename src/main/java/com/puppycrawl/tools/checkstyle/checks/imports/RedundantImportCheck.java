@@ -35,8 +35,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *<ul>
  *  <li>It is a duplicate of another import. This is, when a class is imported
  *  more than once.</li>
- *  <li>The class non-statically imported is from the <code>java.lang</code>
- *  package. For example importing <code>java.lang.String</code>.</li>
+ *  <li>The class non-statically imported is from the {@code java.lang}
+ *  package. For example importing {@code java.lang.String}.</li>
  *  <li>The class non-statically imported is from the same package as the
  *  current package.</li>
  *</ul>
@@ -46,7 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="RedundantImport"/&gt;
  * </pre>
- *
  * Compatible with Java 1.5 source.
  *
  * @author Oliver Burn
@@ -72,11 +71,11 @@ public class RedundantImportCheck
      */
     public static final String MSG_DUPLICATE = "import.duplicate";
 
-    /** name of package in file */
+    /** Name of package in file. */
     private String pkgName;
-    /** set of the imports */
+    /** Set of the imports. */
     private final Set<FullIdent> imports = Sets.newHashSet();
-    /** set of static imports */
+    /** Set of static imports. */
     private final Set<FullIdent> staticImports = Sets.newHashSet();
 
     @Override
@@ -88,10 +87,7 @@ public class RedundantImportCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]
-        {TokenTypes.IMPORT,
-         TokenTypes.STATIC_IMPORT,
-         TokenTypes.PACKAGE_DEF, };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -103,6 +99,11 @@ public class RedundantImportCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
             pkgName = FullIdent.createFullIdent(
@@ -110,13 +111,13 @@ public class RedundantImportCheck
         }
         else if (ast.getType() == TokenTypes.IMPORT) {
             final FullIdent imp = FullIdent.createFullIdentBelow(ast);
-            if (fromPackage(imp.getText(), "java.lang")) {
+            if (isFromPackage(imp.getText(), "java.lang")) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_LANG,
                     imp.getText());
             }
             // imports from unnamed package are not allowed,
             // so we are checking SAME rule only for named packages
-            else if (pkgName != null && fromPackage(imp.getText(), pkgName)) {
+            else if (pkgName != null && isFromPackage(imp.getText(), pkgName)) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_SAME,
                     imp.getText());
             }
@@ -153,14 +154,12 @@ public class RedundantImportCheck
      * @param pkg the package name
      * @return whether from the package
      */
-    private static boolean fromPackage(String importName, String pkg) {
-        boolean retVal = false;
+    private static boolean isFromPackage(String importName, String pkg) {
         // imports from unnamed package are not allowed:
         // http://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.5
         // So '.' must be present in member name and we are not checking for it
         final int index = importName.lastIndexOf('.');
         final String front = importName.substring(0, index);
-        retVal = front.equals(pkg);
-        return retVal;
+        return front.equals(pkg);
     }
 }

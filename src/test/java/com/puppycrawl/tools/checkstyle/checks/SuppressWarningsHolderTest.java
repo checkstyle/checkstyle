@@ -19,20 +19,31 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
+        int[] expected = {TokenTypes.ANNOTATION};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testOnComplexAnnotations() throws Exception {
         Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
     }
@@ -41,8 +52,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testCustomAnnotation() throws Exception {
         Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/InputSuppressWarningsHolder.java").getCanonicalPath(), expected);

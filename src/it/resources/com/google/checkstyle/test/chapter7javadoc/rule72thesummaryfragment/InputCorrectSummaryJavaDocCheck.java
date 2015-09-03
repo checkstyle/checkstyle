@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 /**
  * Some Javadoc A {@code Foo} is a simple Javadoc.
  */
-class InputCorrectJavaDocParagraphCheck {
+class InputCorrectSummaryJavaDocCheck {
 
     /**
      * Some Javadoc This method returns.

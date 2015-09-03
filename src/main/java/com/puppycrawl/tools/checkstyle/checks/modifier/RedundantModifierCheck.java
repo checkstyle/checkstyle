@@ -22,18 +22,60 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-
 /**
  * Checks for redundant modifiers in interface and annotation definitions.
- * Also checks for redundant final modifiers on methods of final classes
- * and redundant enum constructor modifier.
+ * Checks for non public class constructor and enum constructor redundant modifier.
+ * Checks for redundant final modifiers on methods of final classes.
+ * Checks for redundant static modifiers on nested enums.
+ *
+ * <p>Examples:</p>
+ *
+ * <pre>
+ * {@code
+ * public class PublicClass {
+ *     public PublicClass() {} // OK
+ * }
+ *
+ * class PackagePrivateClass {
+ *     public PackagePrivateClass() {} // violation expected
+ * }
+ * }
+ * </pre>
+ *
+ * <pre>
+ * {@code
+ * package a;
+ * public class ClassWithProtectedInnerClass {
+ *     protected class ProtectedClass {
+ *         public ProtectedClass () {} // OK
+ *     }
+ * }
+ * }
+ * </pre>
+ * <p>
+ * in this example is no violation because removing public from
+ * ProtectedClass constructor modifier will make this example
+ * not compiling:
+ * </p>
+ * <pre>
+ * {@code
+ * package b;
+ * import a.ClassWithProtectedInnerClass;
+ * public class ClassExtending extends ClassWithProtectedInnerClass {
+ *     ProtectedClass pc = new ProtectedClass();
+ * }
+ * }
+ * </pre>
  *
  * @author lkuehne
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
+ * @author Vladislav Lisetskiy
  */
 public class RedundantModifierCheck
     extends Check {
@@ -47,7 +89,7 @@ public class RedundantModifierCheck
     /**
      * An array of tokens for interface modifiers.
      */
-    private static final int[] TOKENS_FOR_INTERFACE_MODIFIERS = new int[] {
+    private static final int[] TOKENS_FOR_INTERFACE_MODIFIERS = {
         TokenTypes.LITERAL_STATIC,
         TokenTypes.ABSTRACT,
     };
@@ -59,7 +101,7 @@ public class RedundantModifierCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {};
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -77,12 +119,19 @@ public class RedundantModifierCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (TokenTypes.INTERFACE_DEF == ast.getType()) {
+        if (ast.getType() == TokenTypes.INTERFACE_DEF) {
             checkInterfaceModifiers(ast);
         }
-        else if (TokenTypes.CTOR_DEF == ast.getType()
-                && isEnumMember(ast)) {
-            checkEnumConstructorModifiers(ast);
+        else if (ast.getType() == TokenTypes.CTOR_DEF) {
+            if (isEnumMember(ast)) {
+                checkEnumConstructorModifiers(ast);
+            }
+            else {
+                checkClassConstructorModifiers(ast);
+            }
+        }
+        else if (ast.getType() == TokenTypes.ENUM_DEF) {
+            checkEnumDef(ast);
         }
         else if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
@@ -93,7 +142,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if interface has proper modifiers
+     * Checks if interface has proper modifiers.
      * @param ast interface to check
      */
     private void checkInterfaceModifiers(DetailAST ast) {
@@ -111,7 +160,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Check if enum constructor has proper modifiers
+     * Check if enum constructor has proper modifiers.
      * @param ast constructor of enum
      */
     private void checkEnumConstructorModifiers(DetailAST ast) {
@@ -124,7 +173,25 @@ public class RedundantModifierCheck
     }
 
     /**
-     * do validation of interface of annotation
+     * Checks whether enum has proper modifiers.
+     * @param ast enum definition.
+     */
+    private void checkEnumDef(DetailAST ast) {
+        if (isInterfaceOrAnnotationMember(ast)) {
+            processInterfaceOrAnnotation(ast);
+        }
+        else if (ast.getParent() != null) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            final DetailAST staticModifier = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC);
+            if (staticModifier != null) {
+                log(staticModifier.getLineNo(), staticModifier.getColumnNo(),
+                        MSG_KEY, staticModifier.getText());
+            }
+        }
+    }
+
+    /**
+     * Do validation of interface of annotation.
      * @param ast token AST
      */
     private void processInterfaceOrAnnotation(DetailAST ast) {
@@ -152,7 +219,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * process validation ofMethods
+     * Process validation ofMethods.
      * @param ast method AST
      */
     private void processMethods(DetailAST ast) {
@@ -188,11 +255,61 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if current AST node is member of Enum
+     * Check if class constructor has proper modifiers.
+     * @param classCtorAst class constructor ast
+     */
+    private void checkClassConstructorModifiers(DetailAST classCtorAst) {
+        final DetailAST classDef = classCtorAst.getParent().getParent();
+        if (!isClassPublic(classDef) && !isClassProtected(classDef)) {
+            checkForRedundantPublicModifier(classCtorAst);
+        }
+    }
+
+    /**
+     * Checks if given ast has redundant public modifier.
+     * @param ast ast
+     */
+    private void checkForRedundantPublicModifier(DetailAST ast) {
+        final DetailAST astModifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST astModifier = astModifiers.getFirstChild();
+        while (astModifier != null) {
+            if (astModifier.getType() == TokenTypes.LITERAL_PUBLIC) {
+                log(astModifier.getLineNo(), astModifier.getColumnNo(),
+                        MSG_KEY, astModifier.getText());
+            }
+
+            astModifier = astModifier.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks if given class ast has protected modifier.
+     * @param classDef class ast
+     * @return true if class is protected, false otherwise
+     */
+    private static boolean isClassProtected(DetailAST classDef) {
+        final DetailAST classModifiers =
+                classDef.findFirstToken(TokenTypes.MODIFIERS);
+        return classModifiers.branchContains(TokenTypes.LITERAL_PROTECTED);
+    }
+
+    /**
+     * Checks if given class ast has public modifier.
+     * @param classDef class ast
+     * @return true if class is public, false otherwise
+     */
+    private static boolean isClassPublic(DetailAST classDef) {
+        final DetailAST classModifiers =
+                classDef.findFirstToken(TokenTypes.MODIFIERS);
+        return classModifiers.branchContains(TokenTypes.LITERAL_PUBLIC);
+    }
+
+    /**
+     * Checks if current AST node is member of Enum.
      * @param ast AST node
      * @return true if it is an enum member
      */
-    private boolean isEnumMember(DetailAST ast) {
+    private static boolean isEnumMember(DetailAST ast) {
         final DetailAST parentTypeDef = ast.getParent().getParent();
         return parentTypeDef.getType() == TokenTypes.ENUM_DEF;
     }
@@ -203,8 +320,11 @@ public class RedundantModifierCheck
      * @return true or false
      */
     private static boolean isInterfaceOrAnnotationMember(DetailAST ast) {
-        final DetailAST parentTypeDef =
-                ast.getParent() != null ? ast.getParent().getParent() : null;
+        DetailAST parentTypeDef = ast.getParent();
+
+        if (parentTypeDef != null) {
+            parentTypeDef = parentTypeDef.getParent();
+        }
         return parentTypeDef != null
                 && (parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
                     || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF);
@@ -230,7 +350,7 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Gets the list of annotations on method definition
+     * Gets the list of annotations on method definition.
      * @param methodDef method definition node
      * @return List of annotations
      */

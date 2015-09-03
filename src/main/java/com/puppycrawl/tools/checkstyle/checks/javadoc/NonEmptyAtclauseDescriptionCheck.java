@@ -21,17 +21,19 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * Checks that the at-clause tag is followed by description .
- * Default configuration that will check <code>@param</code>, <code>@return</code>,
- * <code>@throws</code>, <code>@deprecated</code> to:
+ * Default configuration that will check {@code @param}, {@code @return},
+ * {@code @throws}, {@code @deprecated} to:
  * <pre>
  * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
  * </pre>
  * <p>
- * To check non-empty at-clause description for tags <code>@throws</code>,
- * <code>@deprecated</code>, use following configuration:
+ * To check non-empty at-clause description for tags {@code @throws},
+ * {@code @deprecated}, use following configuration:
  * </p>
  * <pre>
  * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
@@ -59,6 +61,16 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
             JavadocTokenTypes.THROWS_LITERAL,
             JavadocTokenTypes.DEPRECATED_LITERAL,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

@@ -19,13 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
 /**
  * Resolves properties in module configurations.
  *
- * The {@link ConfigurationLoader} uses a PropertyResolver to
- * resolve the values of external properties like <code>${basename}</code>
+ * <p>The {@link ConfigurationLoader} uses a PropertyResolver to
+ * resolve the values of external properties like {@code ${basename}}
  * that occur in the configuration file.
  *
  * @author lkuehne
@@ -35,9 +33,7 @@ public interface PropertyResolver {
     /**
      * Resolves a property name to it's value.
      * @param name the name of the property.
-     * @return the value that is associated with <code>propertyName</code>.
-     * @throws CheckstyleException if the propertyName cannot be reolved
+     * @return the value that is associated with {@code propertyName}.
      */
-    String resolve(String name)
-        throws CheckstyleException;
+    String resolve(String name);
 }

@@ -90,12 +90,17 @@ public class ModifierOrderCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.MODIFIERS};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.MODIFIERS};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -125,14 +130,13 @@ public class ModifierOrderCheck
         }
     }
 
-
     /**
      * Checks if the modifiers were added in the order suggested
      * in the Java language specification.
      *
      * @param modifiers list of modifier AST tokens
      * @return null if the order is correct, otherwise returns the offending
-     * *       modifier AST.
+     *     modifier AST.
      */
     static DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
         final Iterator<DetailAST> it = modifiers.iterator();
@@ -144,36 +148,38 @@ public class ModifierOrderCheck
         }
         while (it.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
 
+        DetailAST offendingModifier = null;
+
         //All modifiers are annotations, no problem
-        if (modifier.getType() == TokenTypes.ANNOTATION) {
-            return null;
+        if (modifier.getType() != TokenTypes.ANNOTATION) {
+            int i = 0;
+
+            while (modifier != null) {
+                if (modifier.getType() == TokenTypes.ANNOTATION) {
+                    //Annotation not at start of modifiers, bad
+                    offendingModifier = modifier;
+                    break;
+                }
+
+                while (i < JLS_ORDER.length
+                       && !JLS_ORDER[i].equals(modifier.getText())) {
+                    i++;
+                }
+
+                if (i == JLS_ORDER.length) {
+                    //Current modifier is out of JLS order
+                    offendingModifier = modifier;
+                    break;
+                }
+                else if (it.hasNext()) {
+                    modifier = it.next();
+                }
+                else {
+                    //Reached end of modifiers without problem
+                    modifier = null;
+                }
+            }
         }
-
-        int i = 0;
-        while (modifier != null) {
-            if (modifier.getType() == TokenTypes.ANNOTATION) {
-                //Annotation not at start of modifiers, bad
-                return modifier;
-            }
-
-            while (i < JLS_ORDER.length
-                   && !JLS_ORDER[i].equals(modifier.getText())) {
-                i++;
-            }
-
-            if (i == JLS_ORDER.length) {
-                //Current modifier is out of JLS order
-                return modifier;
-            }
-            else if (it.hasNext()) {
-                modifier = it.next();
-            }
-            else {
-                //Reached end of modifiers without problem
-                modifier = null;
-            }
-        }
-
-        return modifier;
+        return offendingModifier;
     }
 }

@@ -56,76 +56,20 @@ public class SuppressWarningsHolder
      */
     public static final String CHECKSTYLE_PREFIX = "checkstyle:";
 
-    /** java.lang namespace prefix, which is stripped from SuppressWarnings */
+    /** Java.lang namespace prefix, which is stripped from SuppressWarnings */
     private static final String JAVA_LANG_PREFIX = "java.lang.";
 
-    /** suffix to be removed from subclasses of Check */
+    /** Suffix to be removed from subclasses of Check. */
     private static final String CHECK_SUFFIX = "Check";
 
-    /** a map from check source names to suppression aliases */
+    /** A map from check source names to suppression aliases. */
     private static final Map<String, String> CHECK_ALIAS_MAP = new HashMap<>();
 
     /**
-     * a thread-local holder for the list of suppression entries for the last
-     * file parsed
+     * A thread-local holder for the list of suppression entries for the last
+     * file parsed.
      */
     private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<>();
-
-    /** records a particular suppression for a region of a file */
-    private static class Entry {
-        /** the source name of the suppressed check */
-        private final String checkName;
-        /** the suppression region for the check - first line */
-        private final int firstLine;
-        /** the suppression region for the check - first column */
-        private final int firstColumn;
-        /** the suppression region for the check - last line */
-        private final int lastLine;
-        /** the suppression region for the check - last column */
-        private final int lastColumn;
-
-        /**
-         * Constructs a new suppression region entry.
-         * @param checkName the source name of the suppressed check
-         * @param firstLine the first line of the suppression region
-         * @param firstColumn the first column of the suppression region
-         * @param lastLine the last line of the suppression region
-         * @param lastColumn the last column of the suppression region
-         */
-        public Entry(String checkName, int firstLine, int firstColumn,
-            int lastLine, int lastColumn) {
-            this.checkName = checkName;
-            this.firstLine = firstLine;
-            this.firstColumn = firstColumn;
-            this.lastLine = lastLine;
-            this.lastColumn = lastColumn;
-        }
-
-        /** @return the source name of the suppressed check */
-        public String getCheckName() {
-            return checkName;
-        }
-
-        /** @return the first line of the suppression region */
-        public int getFirstLine() {
-            return firstLine;
-        }
-
-        /** @return the first column of the suppression region */
-        public int getFirstColumn() {
-            return firstColumn;
-        }
-
-        /** @return the last line of the suppression region */
-        public int getLastLine() {
-            return lastLine;
-        }
-
-        /** @return the last column of the suppression region */
-        public int getLastColumn() {
-            return lastColumn;
-        }
-    }
 
     /**
      * Returns the default alias for the source name of a check, which is the
@@ -175,7 +119,7 @@ public class SuppressWarningsHolder
      * of {@code source=alias} items, such as {@code
      * com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=
      * paramnum}.
-     * @param aliasList the list of comma-separated alias assigments
+     * @param aliasList the list of comma-separated alias assignments
      */
     public void setAliasList(String aliasList) {
         for (String sourceAlias : aliasList.split(",")) {
@@ -184,7 +128,7 @@ public class SuppressWarningsHolder
                 registerAlias(sourceAlias.substring(0, index), sourceAlias
                     .substring(index + 1));
             }
-            else if (sourceAlias.length() > 0) {
+            else if (!sourceAlias.isEmpty()) {
                 throw new ConversionException(
                     "'=' expected in alias list item: " + sourceAlias);
             }
@@ -224,7 +168,17 @@ public class SuppressWarningsHolder
 
     @Override
     public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.ANNOTATION};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -248,7 +202,6 @@ public class SuppressWarningsHolder
             }
 
             final DetailAST targetAST = getAnnotationTarget(ast);
-
 
             if (targetAST == null) {
                 log(ast.getLineNo(), MSG_KEY);
@@ -274,11 +227,10 @@ public class SuppressWarningsHolder
             final List<Entry> entries = ENTRIES.get();
             if (entries != null) {
                 for (String value : values) {
+                    String checkName = value;
                     // strip off the checkstyle-only prefix if present
-                    if (value.startsWith(CHECKSTYLE_PREFIX)) {
-                        value = value.substring(CHECKSTYLE_PREFIX.length());
-                    }
-                    entries.add(new Entry(value, firstLine, firstColumn,
+                    checkName = removeChecktylePrefixIfExests(checkName);
+                    entries.add(new Entry(checkName, firstLine, firstColumn,
                         lastLine, lastColumn));
                 }
             }
@@ -286,7 +238,22 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * get all annotation values
+     * Method removes checkstyle prefix (checkstyle:) from check name if exists.
+     *
+     * @param checkName
+     *            - name of the check
+     * @return check name without prefix
+     */
+    private static String removeChecktylePrefixIfExests(String checkName) {
+        String result = checkName;
+        if (checkName.startsWith(CHECKSTYLE_PREFIX)) {
+            result = checkName.substring(CHECKSTYLE_PREFIX.length());
+        }
+        return result;
+    }
+
+    /**
+     * Get all annotation values.
      * @param ast annotation token
      * @return list values
      */
@@ -323,6 +290,7 @@ public class SuppressWarningsHolder
     }
 
     /**
+     * Checks that annotation is empty.
      * @param values list of values in the annotation
      * @return whether annotation is empty or contains some values
      */
@@ -331,7 +299,7 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * get target of annotation
+     * Get target of annotation.
      * @param ast the AST node to get the child of
      * @return get target of annotation
      */
@@ -423,19 +391,24 @@ public class SuppressWarningsHolder
     private static String getStringExpr(DetailAST ast) {
         if (ast != null && ast.getType() == TokenTypes.EXPR) {
             final DetailAST firstChild = ast.getFirstChild();
+            String expr = "";
+
             switch (firstChild.getType()) {
                 case TokenTypes.STRING_LITERAL:
                     // NOTE: escaped characters are not unescaped
                     final String quotedText = firstChild.getText();
-                    return quotedText.substring(1, quotedText.length() - 1);
+                    expr = quotedText.substring(1, quotedText.length() - 1);
+                    break;
                 case TokenTypes.IDENT:
-                    return firstChild.getText();
+                    expr = firstChild.getText();
+                    break;
                 case TokenTypes.DOT:
-                    return firstChild.getLastChild().getText();
+                    expr = firstChild.getLastChild().getText();
+                    break;
                 default:
                     // annotations with complex expressions cannot suppress warnings
-                    return "";
             }
+            return expr;
         }
         throw new IllegalArgumentException("Expression AST expected: " + ast);
     }
@@ -467,5 +440,76 @@ public class SuppressWarningsHolder
         }
         throw new IllegalArgumentException(
             "Expression or annotation array initializer AST expected: " + ast);
+    }
+
+    /** Records a particular suppression for a region of a file. */
+    private static class Entry {
+        /** The source name of the suppressed check. */
+        private final String checkName;
+        /** The suppression region for the check - first line. */
+        private final int firstLine;
+        /** The suppression region for the check - first column. */
+        private final int firstColumn;
+        /** The suppression region for the check - last line. */
+        private final int lastLine;
+        /** The suppression region for the check - last column. */
+        private final int lastColumn;
+
+        /**
+         * Constructs a new suppression region entry.
+         * @param checkName the source name of the suppressed check
+         * @param firstLine the first line of the suppression region
+         * @param firstColumn the first column of the suppression region
+         * @param lastLine the last line of the suppression region
+         * @param lastColumn the last column of the suppression region
+         */
+        Entry(String checkName, int firstLine, int firstColumn,
+            int lastLine, int lastColumn) {
+            this.checkName = checkName;
+            this.firstLine = firstLine;
+            this.firstColumn = firstColumn;
+            this.lastLine = lastLine;
+            this.lastColumn = lastColumn;
+        }
+
+        /**
+         * Gets he source name of the suppressed check.
+         * @return the source name of the suppressed check
+         */
+        public String getCheckName() {
+            return checkName;
+        }
+
+        /**
+         * Gets the first line of the suppression region.
+         * @return the first line of the suppression region
+         */
+        public int getFirstLine() {
+            return firstLine;
+        }
+
+        /**
+         * Gets the first column of the suppression region.
+         * @return the first column of the suppression region
+         */
+        public int getFirstColumn() {
+            return firstColumn;
+        }
+
+        /**
+         * Gets the last line of the suppression region.
+         * @return the last line of the suppression region
+         */
+        public int getLastLine() {
+            return lastLine;
+        }
+
+        /**
+         * Gets the last column of the suppression region.
+         * @return the last column of the suppression region
+         */
+        public int getLastColumn() {
+            return lastColumn;
+        }
     }
 }

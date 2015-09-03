@@ -73,3 +73,10 @@ class ForEach {
 
 class Bar<T> {
 }
+
+class Chars {
+    char a;
+    char b = a;
+    byte c = 1;
+    short d = 1;
+}

@@ -23,5 +23,3 @@ enum
 
 interface
     InterFoo {}
-
-

@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
- *
  * Implementation of DetailNode interface that is mutable.
  *
  * @author Baratali Izmailov
@@ -32,37 +32,37 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
  */
 public class JavadocNodeImpl implements DetailNode {
     /**
-     * Node index among parent's children
+     * Node index among parent's children.
      */
     private int index;
 
     /**
-     * Node type
+     * Node type.
      */
     private int type;
 
     /**
-     * Node's text content
+     * Node's text content.
      */
     private String text;
 
     /**
-     * Line number
+     * Line number.
      */
     private int lineNumber;
 
     /**
-     * Column number
+     * Column number.
      */
     private int columnNumber;
 
     /**
-     * Array of child nodes
+     * Array of child nodes.
      */
     private DetailNode[] children;
 
     /**
-     * Parent node
+     * Parent node.
      */
     private DetailNode parent;
 
@@ -89,7 +89,7 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public DetailNode[] getChildren() {
         if (children == null) {
-            return new DetailNode[0];
+            return JavadocUtils.EMPTY_DETAIL_NODE_ARRAY;
         }
         else {
             return Arrays.copyOf(children, children.length);
@@ -106,38 +106,65 @@ public class JavadocNodeImpl implements DetailNode {
         return index;
     }
 
+    /**
+     * Sets node's type.
+     * @param type Node's type.
+     */
     public void setType(int type) {
         this.type = type;
     }
 
+    /**
+     * Sets node's text content.
+     * @param text Node's text content.
+     */
     public void setText(String text) {
         this.text = text;
     }
 
+    /**
+     * Sets line number.
+     * @param lineNumber Line number.
+     */
     public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
     }
 
+    /**
+     * Sets column number.
+     * @param columnNumber Column number.
+     */
     public void setColumnNumber(int columnNumber) {
         this.columnNumber = columnNumber;
     }
 
+    /**
+     * Sets array of child nodes.
+     * @param children Array of child nodes.
+     */
     public void setChildren(DetailNode... children) {
         this.children = Arrays.copyOf(children, children.length);
     }
 
+    /**
+     * Sets parent node.
+     * @param parent Parent node.
+     */
     public void setParent(DetailNode parent) {
         this.parent = parent;
     }
 
+    /**
+     * Sets node's index among parent's children.
+     * @param index Node's index among parent's children.
+     */
     public void setIndex(int index) {
         this.index = index;
     }
 
     @Override
     public String toString() {
-        return JavadocUtils.getTokenName(getType())
-                + "[" + getLineNumber() + "x" + getColumnNumber() + "]";
+        return JavadocUtils.getTokenName(type)
+                + "[" + lineNumber + "x" + columnNumber + "]";
     }
-
 }

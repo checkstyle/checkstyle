@@ -46,27 +46,29 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  */
 public final class SuppressionsLoader
     extends AbstractLoader {
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Suppressions 1.0//EN";
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_0.dtd";
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Suppressions 1.1//EN";
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/suppressions_1_1.dtd";
+    /** File search error message. **/
+    private static final String UNABLE_TO_FIND_ERROR_MESSAGE = "Unable to find: ";
 
     /**
-     * the filter chain to return in getAFilterChain(),
-     * configured during parsing
+     * The filter chain to return in getAFilterChain(),
+     * configured during parsing.
      */
     private final FilterSet filterChain = new FilterSet();
 
     /**
-     * Creates a new <code>SuppressionsLoader</code> instance.
+     * Creates a new {@code SuppressionsLoader} instance.
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
@@ -75,33 +77,22 @@ public final class SuppressionsLoader
         super(createIdToResourceNameMap());
     }
 
-    /**
-     * Returns the loaded filter chain.
-     * @return the loaded filter chain.
-     */
-    public FilterSet getFilterChain() {
-        return filterChain;
-    }
-
     @Override
     public void startElement(String namespaceURI,
                              String localName,
                              String qName,
-                             Attributes atts)
+                             Attributes attributes)
         throws SAXException {
         if ("suppress".equals(qName)) {
             //add SuppressElement filter to the filter chain
-            final String files = atts.getValue("files");
-            if (files == null) {
-                throw new SAXException("missing files attribute");
-            }
-            final String checks = atts.getValue("checks");
-            final String modId = atts.getValue("id");
+            final String checks = attributes.getValue("checks");
+            final String modId = attributes.getValue("id");
             if (checks == null && modId == null) {
                 throw new SAXException("missing checks and id attribute");
             }
             final SuppressElement suppress;
             try {
+                final String files = attributes.getValue("files");
                 suppress = new SuppressElement(files);
                 if (modId != null) {
                     suppress.setModuleId(modId);
@@ -110,14 +101,14 @@ public final class SuppressionsLoader
                     suppress.setChecks(checks);
                 }
             }
-            catch (final PatternSyntaxException e) {
+            catch (final PatternSyntaxException ignored) {
                 throw new SAXException("invalid files or checks format");
             }
-            final String lines = atts.getValue("lines");
+            final String lines = attributes.getValue("lines");
             if (lines != null) {
                 suppress.setLines(lines);
             }
-            final String columns = atts.getValue("columns");
+            final String columns = attributes.getValue("columns");
             if (columns != null) {
                 suppress.setColumns(columns);
             }
@@ -127,7 +118,7 @@ public final class SuppressionsLoader
 
     /**
      * Returns the suppression filters in a specified file.
-     * @param filename name of the suppresssions file.
+     * @param filename name of the suppressions file.
      * @return the filter chain of suppression elements specified in the file.
      * @throws CheckstyleException if an error occurs.
      */
@@ -139,10 +130,7 @@ public final class SuppressionsLoader
             final URL url = new URL(filename);
             uri = url.toURI();
         }
-        catch (final MalformedURLException ex) {
-            uri = null;
-        }
-        catch (final URISyntaxException ex) {
+        catch (final MalformedURLException | URISyntaxException ignored) {
             // URL violating RFC 2396
             uri = null;
         }
@@ -157,12 +145,12 @@ public final class SuppressionsLoader
                     final URL configUrl = SuppressionsLoader.class
                             .getResource(filename);
                     if (configUrl == null) {
-                        throw new CheckstyleException("unable to find " + filename);
+                        throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + filename);
                     }
                     uri = configUrl.toURI();
                 }
                 catch (final URISyntaxException e) {
-                    throw new CheckstyleException("unable to find " + filename);
+                    throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + filename, e);
                 }
             }
         }
@@ -184,24 +172,23 @@ public final class SuppressionsLoader
             final SuppressionsLoader suppressionsLoader =
                 new SuppressionsLoader();
             suppressionsLoader.parseInputSource(source);
-            return suppressionsLoader.getFilterChain();
+            return suppressionsLoader.filterChain;
         }
         catch (final FileNotFoundException e) {
-            throw new CheckstyleException("unable to find " + sourceName, e);
+            throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, e);
         }
-        catch (final ParserConfigurationException e) {
-            throw new CheckstyleException("unable to parse " + sourceName, e);
-        }
-        catch (final SAXException e) {
-            throw new CheckstyleException("unable to parse "
-                    + sourceName + " - " + e.getMessage(), e);
+        catch (final ParserConfigurationException | SAXException e) {
+            final String message = String.format("Unable to parse %s - %s",
+                    sourceName, e.getMessage());
+            throw new CheckstyleException(message, e);
         }
         catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + sourceName, e);
+            throw new CheckstyleException("Unable to read " + sourceName, e);
         }
         catch (final NumberFormatException e) {
-            throw new CheckstyleException("number format exception "
-                + sourceName + " - " + e.getMessage(), e);
+            final String message = String.format("Number format exception %s - %s",
+                    sourceName, e.getMessage());
+            throw new CheckstyleException(message, e);
         }
     }
 

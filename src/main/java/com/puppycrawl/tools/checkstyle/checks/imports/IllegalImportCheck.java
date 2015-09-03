@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for imports from a set of illegal packages.
- * By default, the check rejects all <code>sun.*</code> packages
- * since programs that contain direct calls to the <code>sun.*</code> packages
+ * By default, the check rejects all {@code sun.*} packages
+ * since programs that contain direct calls to the {@code sun.*} packages
  * are <a href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">
  * not 100% Pure Java</a>.
  * </p>
@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check so that it rejects packages
- * <code>java.io.*</code> and <code>java.sql.*</code> is
+ * {@code java.io.*} and {@code java.sql.*} is
  * </p>
  * <pre>
  * &lt;module name="IllegalImport"&gt;
@@ -66,11 +66,11 @@ public class IllegalImportCheck
      */
     public static final String MSG_KEY = "import.illegal";
 
-    /** list of illegal packages */
+    /** List of illegal packages. */
     private String[] illegalPkgs;
 
     /**
-     * Creates a new <code>IllegalImportCheck</code> instance.
+     * Creates a new {@code IllegalImportCheck} instance.
      */
     public IllegalImportCheck() {
         setIllegalPkgs("sun");
@@ -80,18 +80,23 @@ public class IllegalImportCheck
      * Set the list of illegal packages.
      * @param from array of illegal packages
      */
-    public void setIllegalPkgs(String... from) {
+    public final void setIllegalPkgs(String... from) {
         illegalPkgs = from.clone();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -115,7 +120,7 @@ public class IllegalImportCheck
     /**
      * Checks if an import is from a package that must not be used.
      * @param importText the argument of the import keyword
-     * @return if <code>importText</code> contains an illegal package prefix
+     * @return if {@code importText} contains an illegal package prefix
      */
     private boolean isIllegalImport(String importText) {
         for (String element : illegalPkgs) {

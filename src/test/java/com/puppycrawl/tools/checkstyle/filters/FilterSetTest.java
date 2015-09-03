@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -28,8 +30,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-
-/** Tests SuppressElementFilter */
+/** Tests SuppressElementFilter. */
 public class FilterSetTest {
     private CSVFilter filter;
 
@@ -40,24 +41,24 @@ public class FilterSetTest {
 
     @Test
     public void testEmptyChain() {
-        assertFalse("0", filter.accept(Integer.valueOf(0)));
+        assertFalse("0", filter.accept(0));
     }
 
     @Test
     public void testOneFilter() {
         filter.addFilter(new IntMatchFilter(0));
-        assertTrue("0", filter.accept(Integer.valueOf(0)));
-        assertFalse("1", filter.accept(Integer.valueOf(1)));
+        assertTrue("0", filter.accept(0));
+        assertFalse("1", filter.accept(1));
     }
 
     @Test
     public void testMultipleFilter() {
         filter.addFilter(new IntMatchFilter(0));
         filter.addFilter(new IntRangeFilter(0, 2));
-        assertTrue("0", filter.accept(Integer.valueOf(0)));
-        assertTrue("1", filter.accept(Integer.valueOf(1)));
+        assertTrue("0", filter.accept(0));
+        assertTrue("1", filter.accept(1));
         filter.addFilter(new IntRangeFilter(3, 4));
-        assertTrue("0 is in [3,4]", filter.accept(Integer.valueOf(0)));
+        assertTrue("0 is in [3,4]", filter.accept(0));
     }
 
     @Test
@@ -68,26 +69,20 @@ public class FilterSetTest {
     @Test
     public void testGetFilters() {
         filter.addFilter(new IntMatchFilter(0));
-        assertTrue("size is the same", filter.getFilters().size() == 1);
-    }
-
-    @Test
-    public void testToString() {
-        filter.addFilter(new IntMatchFilter(0));
-        assertTrue("toString works", filter.toString() != null);
+        assertEquals("size is the same", 1, filter.getFilters().size());
     }
 
     @Test
     public void testGetFilters2() {
         FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
-        assertTrue("size is the same", filterSet.getFilters().size() == 1);
+        assertEquals("size is the same", 1, filterSet.getFilters().size());
     }
 
     @Test
     public void testToString2() {
         FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
-        assertTrue("size is the same", filterSet.toString() != null);
+        assertNotNull("size is the same", filterSet.toString());
     }
 }

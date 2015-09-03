@@ -21,23 +21,43 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.regex.PatternSyntaxException;
 
 import org.junit.Assume;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.xml.sax.InputSource;
 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
 /**
  * Tests SuppressionsLoader.
  * @author Rick Giles
+ * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
-public class SuppressionsLoaderTest {
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ SuppressionsLoader.class, SuppressionsLoaderTest.class })
+public class SuppressionsLoaderTest extends BaseCheckTestSupport {
+
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+
     @Test
     public void testNoSuppressions()
         throws CheckstyleException {
@@ -49,8 +69,7 @@ public class SuppressionsLoaderTest {
     }
 
     @Test
-    public void testLoadFromURL()
-        throws CheckstyleException, InterruptedException {
+    public void testLoadFromURL() throws Exception {
         boolean online = isInternetReachable();
 
         Assume.assumeTrue(online);
@@ -70,7 +89,7 @@ public class SuppressionsLoaderTest {
             catch (CheckstyleException ex) {
                 // for some reason Travis CI failed some times(unstable) on reading this file
                 if (attemptCount < attemptLimit
-                        && ex.getMessage().contains("unable to read")) {
+                        && ex.getMessage().contains("Unable to read")) {
                     attemptCount++;
                     // wait for bad/disconnection time to pass
                     Thread.sleep(1000);
@@ -97,7 +116,7 @@ public class SuppressionsLoaderTest {
 
     @Test
     public void testMultipleSuppression()
-        throws CheckstyleException, PatternSyntaxException {
+        throws CheckstyleException {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(
                     "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_multiple.xml");
@@ -129,7 +148,7 @@ public class SuppressionsLoaderTest {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse " + fn + " - Attribute \"files\" is required and must be specified for element type \"suppress\".",
+                "Unable to parse " + fn + " - Attribute \"files\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -142,7 +161,7 @@ public class SuppressionsLoaderTest {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "unable to parse " + fn + " - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
+                "Unable to parse " + fn + " - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -156,7 +175,7 @@ public class SuppressionsLoaderTest {
         catch (CheckstyleException ex) {
             assertTrue(
                 ex.getMessage(),
-                ex.getMessage().startsWith("number format exception " + fn + " - "));
+                ex.getMessage().startsWith("Number format exception " + fn + " - "));
         }
     }
 
@@ -164,12 +183,105 @@ public class SuppressionsLoaderTest {
         try {
             URL url = new URL("http://checkstyle.sourceforge.net/");
             HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
-            @SuppressWarnings("unused")
-            Object objData = urlConnect.getContent();
+            urlConnect.getContent();
         }
         catch (IOException e) {
             return false;
         }
         return true;
+    }
+
+    @Test
+    public void testUnableToFindSuppressions() throws Exception {
+        Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
+        Method loadSuppressions =
+            loaderClass.getDeclaredMethod("loadSuppressions", InputSource.class, String.class);
+        loadSuppressions.setAccessible(true);
+
+        String sourceName = "suppressions_none.xml";
+        InputSource inputSource = new InputSource(sourceName);
+
+        thrown.expect(CheckstyleException.class);
+        thrown.expectMessage("Unable to find: " + sourceName);
+
+        loadSuppressions.invoke(loaderClass, inputSource, sourceName);
+    }
+
+    @Test
+    public void testUnableToReadSuppressions() throws Exception {
+        Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
+        Method loadSuppressions =
+            loaderClass.getDeclaredMethod("loadSuppressions", InputSource.class, String.class);
+        loadSuppressions.setAccessible(true);
+
+        InputSource inputSource = new InputSource();
+
+        thrown.expect(CheckstyleException.class);
+        String sourceName = "suppressions_none.xml";
+        thrown.expectMessage("Unable to read " + sourceName);
+
+        loadSuppressions.invoke(loaderClass, inputSource, sourceName);
+    }
+
+    @Test
+    public void testNoCheckNoId() {
+        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_no_check_and_id.xml";
+        try {
+            SuppressionsLoader.loadSuppressions(fn);
+        }
+        catch (CheckstyleException ex) {
+            assertEquals(
+                "Unable to parse " + fn + " - missing checks and id attribute",
+                ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testNoCheckYesId() throws Exception {
+        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_id.xml";
+        SuppressionsLoader.loadSuppressions(fn);
+    }
+
+    @Test
+    public void testInvalidFileFormat() {
+        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_invalid_file.xml";
+        try {
+            SuppressionsLoader.loadSuppressions(fn);
+        }
+        catch (CheckstyleException ex) {
+            assertEquals(
+                "Unable to parse " + fn + " - invalid files or checks format",
+                ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testLoadFromClasspath()
+        throws CheckstyleException {
+        final FilterSet fc =
+            SuppressionsLoader.loadSuppressions(
+                    "/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
+        final FilterSet fc2 = new FilterSet();
+        assertEquals(fc, fc2);
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testLoadSuppressionsURISyntaxException() throws Exception {
+        URL configUrl = mock(URL.class);
+
+        when(configUrl.toURI()).thenThrow(URISyntaxException.class);
+        mockStatic(SuppressionsLoader.class, Mockito.CALLS_REAL_METHODS);
+        String fileName = "suppressions_none.xml";
+        when(SuppressionsLoader.class.getResource(fileName)).thenReturn(configUrl);
+
+        try {
+            SuppressionsLoader.loadSuppressions(fileName);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof  URISyntaxException);
+            assertEquals("Unable to find: " + fileName, ex.getMessage());
+        }
     }
 }

@@ -1,12 +1,10 @@
 'use strict';
 
-window.addEventListener('load', main);
-
 function main() {
     var url = window.location.href;
     var anchors = document.getElementsByTagName('h2');
     var mass = [];
-    for(var i = 0; i < anchors.length; i++) {
+    for (var i = 0; i < anchors.length; i++) {
         mass.push(anchors[i].childNodes[0].name);
     }
     var links = [];
@@ -21,3 +19,5 @@ function main() {
     }
 
 }
+
+window.addEventListener('load', main);

@@ -28,51 +28,48 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
  * <p> Abstract class for checks that verify strings using a
- * {@link java.util.regex.Pattern regular expression}.  It
+ * {@link Pattern regular expression}.  It
  * provides support for setting the regular
- * expression using the property name <code>format</code>.  </p>
+ * expression using the property name {@code format}.  </p>
  *
  * @author Oliver Burn
  */
 public abstract class AbstractFormatCheck
     extends Check {
-    /** the flags to create the regular expression with */
+    /** The flags to create the regular expression with. */
     private int compileFlags;
-    /** the regexp to match against */
+    /** The regexp to match against. */
     private Pattern regexp;
-    /** the format string of the regexp */
+    /** The format string of the regexp. */
     private String format;
 
     /**
-     * Creates a new <code>AbstractFormatCheck</code> instance. Defaults the
+     * Creates a new {@code AbstractFormatCheck} instance. Defaults the
      * compile flag to 0 (the default).
      * @param defaultFormat default format
      * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String defaultFormat)
-        throws ConversionException {
+    protected AbstractFormatCheck(String defaultFormat) {
         this(defaultFormat, 0);
     }
 
     /**
-     * Creates a new <code>AbstractFormatCheck</code> instance.
+     * Creates a new {@code AbstractFormatCheck} instance.
      * @param defaultFormat default format
      * @param compileFlags the Pattern flags to compile the regexp with.
-     * See {@link Pattern#compile(java.lang.String, int)}
+     *     See {@link Pattern#compile(String, int)}
      * @throws ConversionException unable to parse defaultFormat
      */
-    public AbstractFormatCheck(String defaultFormat, int compileFlags)
-        throws ConversionException {
+    protected AbstractFormatCheck(String defaultFormat, int compileFlags) {
         updateRegexp(defaultFormat, compileFlags);
     }
 
     /**
      * Set the format to the specified regular expression.
-     * @param format a <code>String</code> value
+     * @param format a {@code String} value
      * @throws ConversionException unable to parse format
      */
-    public final void setFormat(String format)
-        throws ConversionException {
+    public final void setFormat(String format) {
         updateRegexp(format, compileFlags);
     }
 
@@ -84,12 +81,18 @@ public abstract class AbstractFormatCheck
         updateRegexp(format, compileFlags);
     }
 
-    /** @return the regexp to match against */
+    /**
+     * Gets the regexp.
+     * @return the regexp to match against
+     */
     public final Pattern getRegexp() {
         return regexp;
     }
 
-    /** @return the regexp format */
+    /**
+     * Gets the regexp format.
+     * @return the regexp format
+     */
     public final String getFormat() {
         return format;
     }
@@ -97,17 +100,17 @@ public abstract class AbstractFormatCheck
     /**
      * Updates the regular expression using the supplied format and compiler
      * flags. Will also update the member variables.
-     * @param format the format of the regular expression.
+     * @param regexpFormat the format of the regular expression.
      * @param compileFlagsParam the compiler flags to use.
      */
-    private void updateRegexp(String format, int compileFlagsParam) {
+    private void updateRegexp(String regexpFormat, int compileFlagsParam) {
         try {
-            regexp = Pattern.compile(format, compileFlagsParam);
-            this.format = format;
+            regexp = Pattern.compile(regexpFormat, compileFlagsParam);
+            format = regexpFormat;
             compileFlags |= compileFlagsParam;
         }
         catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + format, e);
+            throw new ConversionException("unable to parse " + regexpFormat, e);
         }
     }
 }

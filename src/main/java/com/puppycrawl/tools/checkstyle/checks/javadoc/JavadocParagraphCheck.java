@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * Checks that:
@@ -31,29 +34,25 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * before the first word, with no space after.</li>
  * </ul>
  *
- * <p>
- * The check can be specified by option tagImmediatelyBeforeFirstWord,
+ * <p>The check can be specified by option allowNewlineParagraph,
  * which says whether the &lt;p&gt; tag should be placed immediately before
  * the first word.
  *
- * <p>
- * Default configuration:
+ * <p>Default configuration:
  * </p>
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;/&gt;
  * </pre>
  *
- * <p>
- * To allow newlines and spaces immediately after the &lt;p&gt; tag:
+ * <p>To allow newlines and spaces immediately after the &lt;p&gt; tag:
  * <pre>
  * &lt;module name=&quot;JavadocParagraph&quot;&gt;
- *      &lt;property name=&quot;tagImmediatelyBeforeFirstWord&quot;
+ *      &lt;property name=&quot;allowNewlineParagraph&quot;
  *                   value==&quot;false&quot;/&gt;
  * &lt;/module&quot;&gt;
  * </pre>
  *
- * <p>
- * In case of tagImmediatelyBeforeFirstWord set to false
+ * <p>In case of allowNewlineParagraph set to false
  * the following example will not have any violations:
  * <pre>
  *   /**
@@ -102,14 +101,14 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     /**
      * Whether the &lt;p&gt; tag should be placed immediately before the first word.
      */
-    private boolean tagImmediatelyBeforeFirstWord = true;
+    private boolean allowNewlineParagraph = true;
 
     /**
-     * Sets tagImmediatelyBeforeFirstWord.
+     * Sets allowNewlineParagraph.
      * @param value value to set.
      */
     public void setAllowNewlineParagraph(boolean value) {
-        this.tagImmediatelyBeforeFirstWord = value;
+        allowNewlineParagraph = value;
     }
 
     @Override
@@ -118,6 +117,16 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             JavadocTokenTypes.NEWLINE,
             JavadocTokenTypes.HTML_ELEMENT,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -154,7 +163,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
             log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
-        if (tagImmediatelyBeforeFirstWord && isImmediatelyFollowedByText(tag)) {
+        if (allowNewlineParagraph && isImmediatelyFollowedByText(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
         }
     }
@@ -256,6 +265,6 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         final DetailNode nextSibling = JavadocUtils.getNextSibling(tag);
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE
                 || nextSibling.getType() == JavadocTokenTypes.EOF
-                || nextSibling.getText().startsWith(" ");
+                || CommonUtils.startsWithChar(nextSibling.getText(), ' ');
     }
 }

@@ -176,4 +176,9 @@ enum InputDeclarationOrderEnum
 
     // error member variables should be before methods or ctors
     private int mFoo = 0;
+
+    class AsyncProcess {
+        private final int startLogErrorsCnt = 0;
+        protected final int maxTotalConcurrentTasks = 0;
+    }
 }

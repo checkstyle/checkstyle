@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -32,6 +32,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MemberNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        MemberNameCheck checkObj = new MemberNameCheck();
+        int[] expected = {TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testSpecified()
         throws Exception {
@@ -244,11 +252,9 @@ public class MemberNameCheckTest
     public void testGetAcceptableTokens() {
         MemberNameCheck memberNameCheckObj = new MemberNameCheck();
         int[] actual = memberNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }
-

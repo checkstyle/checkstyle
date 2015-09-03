@@ -51,10 +51,11 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
@@ -68,7 +69,7 @@ public final class TreeWalker
      * State of AST.
      * Indicates whether tree contains certain nodes.
      */
-    private static enum AstState {
+    private enum AstState {
         /**
          * Ordinary tree.
          */
@@ -80,67 +81,71 @@ public final class TreeWalker
         WITH_COMMENTS
     }
 
-    /** default distance between tab stops */
+    /** Default distance between tab stops. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
-    /** logger for debug purpose */
+    /** Logger for debug purpose. */
     private static final Log LOG = LogFactory.getLog(TreeWalker.class);
 
-    /** maps from token name to ordinary checks */
+    /** Maps from token name to ordinary checks. */
     private final Multimap<String, Check> tokenToOrdinaryChecks =
         HashMultimap.create();
 
-    /** maps from token name to comment checks */
+    /** Maps from token name to comment checks. */
     private final Multimap<String, Check> tokenToCommentChecks =
             HashMultimap.create();
 
-    /** registered ordinary checks, that don't use comment nodes */
+    /** Registered ordinary checks, that don't use comment nodes. */
     private final Set<Check> ordinaryChecks = Sets.newHashSet();
 
-    /** registered comment checks */
+    /** Registered comment checks. */
     private final Set<Check> commentChecks = Sets.newHashSet();
 
-    /** the distance between tab stops */
+    /** The distance between tab stops. */
     private int tabWidth = DEFAULT_TAB_WIDTH;
 
-    /** cache file **/
+    /** Cache file. **/
     private PropertyCacheFile cache;
 
-    /** class loader to resolve classes with. **/
+    /** Class loader to resolve classes with. **/
     private ClassLoader classLoader;
 
-    /** context of child components */
+    /** Context of child components. */
     private Context childContext;
 
-    /** a factory for creating submodules (i.e. the Checks) */
+    /** A factory for creating submodules (i.e. the Checks) */
     private ModuleFactory moduleFactory;
 
     /**
-     * Creates a new <code>TreeWalker</code> instance.
+     * Creates a new {@code TreeWalker} instance.
      */
     public TreeWalker() {
         setFileExtensions("java");
     }
 
-    /** @param tabWidth the distance between tab stops */
+    /**
+     * Sets tab width.
+     * @param tabWidth the distance between tab stops
+     */
     public void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;
     }
 
-    /** @param fileName the cache file */
-    public void setCacheFile(String fileName) {
+    /**
+     * Sets cache file.
+     * @param fileName the cache file
+     * @throws IOException if there are some problems with file loading
+     */
+    public void setCacheFile(String fileName) throws IOException {
         final Configuration configuration = getConfiguration();
         cache = new PropertyCacheFile(configuration, fileName);
 
-        try {
-            cache.load();
-        }
-        catch (IOException e) {
-            throw new IllegalStateException("cache file load is failed", e);
-        }
+        cache.load();
     }
 
-    /** @param classLoader class loader to resolve classes with. */
+    /**
+     * @param classLoader class loader to resolve classes with.
+     */
     public void setClassLoader(ClassLoader classLoader) {
         this.classLoader = classLoader;
     }
@@ -173,22 +178,22 @@ public final class TreeWalker
             throw new CheckstyleException(
                 "TreeWalker is not allowed as a parent of " + name);
         }
-        final Check c = (Check) module;
-        c.contextualize(childContext);
-        c.configure(childConf);
-        c.init();
+        final Check check = (Check) module;
+        check.contextualize(childContext);
+        check.configure(childConf);
+        check.init();
 
-        registerCheck(c);
+        registerCheck(check);
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
         // check if already checked and passed the file
         final String fileName = file.getPath();
         final long timestamp = file.lastModified();
         if (cache != null
-                && (cache.inCache(fileName, timestamp)
-                    || !Utils.fileExtensionMatches(file, getFileExtensions()))) {
+                && (cache.isInCache(fileName, timestamp)
+                    || !CommonUtils.matchesFileExtension(file, getFileExtensions()))) {
             return;
         }
 
@@ -197,7 +202,7 @@ public final class TreeWalker
         try {
             final FileText text = FileText.fromLines(file, lines);
             final FileContents contents = new FileContents(text);
-            final DetailAST rootAST = TreeWalker.parse(contents);
+            final DetailAST rootAST = parse(contents);
 
             getMessageCollector().reset();
 
@@ -210,40 +215,16 @@ public final class TreeWalker
         catch (final TokenStreamRecognitionException tre) {
             final String exceptionMsg = String.format(msg, "TokenStreamRecognitionException",
                      fileName);
-            LOG.error(exceptionMsg);
-            final RecognitionException re = tre.recog;
-            String message = "TokenStreamRecognitionException occured";
-            if (re != null) {
-                message = re.getMessage();
-            }
-            getMessageCollector().add(createLocalizedMessage(message));
+            throw new CheckstyleException(exceptionMsg, tre);
         }
-        // RecognitionException and any other (need to check if needed)
-        catch (Throwable ex) {
+        catch (RecognitionException | TokenStreamException ex) {
             final String exceptionMsg = String.format(msg, ex.getClass().getSimpleName(), fileName);
-            LOG.error(exceptionMsg, ex);
-            getMessageCollector().add(createLocalizedMessage(ex.getMessage()));
+            throw new CheckstyleException(exceptionMsg, ex);
         }
 
         if (cache != null && getMessageCollector().size() == 0) {
             cache.put(fileName, timestamp);
         }
-    }
-
-    /**
-     * Creates {@link LocalizedMessage} object using default attributes.
-     * @param message
-     *        message that will be used for created object
-     * @return instance of created object
-     */
-    private LocalizedMessage createLocalizedMessage(String message) {
-        return new LocalizedMessage(
-                0,
-                Definitions.CHECKSTYLE_BUNDLE,
-                "general.exception",
-                new String[] {message },
-                getId(),
-                this.getClass(), null);
     }
 
     /**
@@ -253,28 +234,30 @@ public final class TreeWalker
      */
     private void registerCheck(Check check)
         throws CheckstyleException {
+        validateDefaultTokens(check);
         final int[] tokens;
         final Set<String> checkTokens = check.getTokenNames();
-        if (!checkTokens.isEmpty()) {
+        if (checkTokens.isEmpty()) {
+            tokens = check.getDefaultTokens();
+        }
+        else {
             tokens = check.getRequiredTokens();
 
             //register configured tokens
             final int[] acceptableTokens = check.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             for (String token : checkTokens) {
-                final int tokenId = Utils.getTokenId(token);
+                final int tokenId = TokenUtils.getTokenId(token);
                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                     registerCheck(token, check);
                 }
                 else {
-                    throw new CheckstyleException("Token \""
-                        + token + "\" was not found in Acceptable tokens list"
-                                + " in check " + check);
+                    final String message = String.format("Token \"%s\" was not found in "
+                            + "Acceptable tokens list in check %s",
+                            token, check.getClass().getName());
+                    throw new CheckstyleException(message);
                 }
             }
-        }
-        else {
-            tokens = check.getDefaultTokens();
         }
         for (int element : tokens) {
             registerCheck(element, check);
@@ -293,11 +276,11 @@ public final class TreeWalker
      * @param check the check to register
      */
     private void registerCheck(int tokenID, Check check) {
-        registerCheck(Utils.getTokenName(tokenID), check);
+        registerCheck(TokenUtils.getTokenName(tokenID), check);
     }
 
     /**
-     * Register a check for a specified token name
+     * Register a check for a specified token name.
      * @param token the name of the token
      * @param check the check to register
      */
@@ -305,7 +288,7 @@ public final class TreeWalker
         if (check.isCommentNodesRequired()) {
             tokenToCommentChecks.put(token, check);
         }
-        else if (Utils.isCommentType(token)) {
+        else if (TokenUtils.isCommentType(token)) {
             final String message = String.format("Check '%s' waits for comment type "
                     + "token ('%s') and should override 'isCommentNodesRequred()' "
                     + "method to return 'true'", check.getClass().getName(), token);
@@ -313,6 +296,26 @@ public final class TreeWalker
         }
         else {
             tokenToOrdinaryChecks.put(token, check);
+        }
+    }
+
+    /**
+     * Validates that check's required tokens are subset of default tokens.
+     * @param check to validate
+     * @throws CheckstyleException when validation of default tokens fails
+     */
+    private static void validateDefaultTokens(Check check) throws CheckstyleException {
+        if (check.getRequiredTokens().length != 0) {
+            final int[] defaultTokens = check.getDefaultTokens();
+            Arrays.sort(defaultTokens);
+            for (final int token : check.getRequiredTokens()) {
+                if (Arrays.binarySearch(defaultTokens, token) < 0) {
+                    final String message = String.format("Token \"%s\" from required tokens was"
+                            + " not found in default tokens list in check %s",
+                            token, check.getClass().getName());
+                    throw new CheckstyleException(message);
+                }
+            }
         }
     }
 
@@ -350,9 +353,9 @@ public final class TreeWalker
             checks = ordinaryChecks;
         }
 
-        for (Check ch : checks) {
-            ch.setFileContents(contents);
-            ch.beginTree(rootAST);
+        for (Check check : checks) {
+            check.setFileContents(contents);
+            check.beginTree(rootAST);
         }
     }
 
@@ -371,8 +374,8 @@ public final class TreeWalker
             checks = ordinaryChecks;
         }
 
-        for (Check ch : checks) {
-            ch.finishTree(rootAST);
+        for (Check check : checks) {
+            check.finishTree(rootAST);
         }
     }
 
@@ -382,24 +385,12 @@ public final class TreeWalker
      * @param astState state of AST.
      */
     private void notifyVisit(DetailAST ast, AstState astState) {
-        Collection<Check> visitors;
-        final String tokenType = Utils.getTokenName(ast.getType());
+        final Collection<Check> visitors = getListOfChecks(ast, astState);
 
-        if (astState == AstState.WITH_COMMENTS) {
-            if (!tokenToCommentChecks.containsKey(tokenType)) {
-                return;
+        if (visitors != null) {
+            for (Check check : visitors) {
+                check.visitToken(ast);
             }
-            visitors = tokenToCommentChecks.get(tokenType);
-        }
-        else {
-            if (!tokenToOrdinaryChecks.containsKey(tokenType)) {
-                return;
-            }
-            visitors = tokenToOrdinaryChecks.get(tokenType);
-        }
-
-        for (Check c : visitors) {
-            c.visitToken(ast);
         }
     }
 
@@ -410,25 +401,39 @@ public final class TreeWalker
      * @param astState state of AST.
      */
     private void notifyLeave(DetailAST ast, AstState astState) {
-        Collection<Check> visitors;
-        final String tokenType = Utils.getTokenName(ast.getType());
+        final Collection<Check> visitors = getListOfChecks(ast, astState);
+
+        if (visitors != null) {
+            for (Check check : visitors) {
+                check.leaveToken(ast);
+            }
+        }
+    }
+
+    /**
+     * Method returns list of checks
+     *
+     * @param ast
+     *            the node to notify for
+     * @param astState
+     *            state of AST.
+     * @return list of visitors
+     */
+    private Collection<Check> getListOfChecks(DetailAST ast, AstState astState) {
+        Collection<Check> visitors = null;
+        final String tokenType = TokenUtils.getTokenName(ast.getType());
 
         if (astState == AstState.WITH_COMMENTS) {
-            if (!tokenToCommentChecks.containsKey(tokenType)) {
-                return;
+            if (tokenToCommentChecks.containsKey(tokenType)) {
+                visitors = tokenToCommentChecks.get(tokenType);
             }
-            visitors = tokenToCommentChecks.get(tokenType);
         }
         else {
-            if (!tokenToOrdinaryChecks.containsKey(tokenType)) {
-                return;
+            if (tokenToOrdinaryChecks.containsKey(tokenType)) {
+                visitors = tokenToOrdinaryChecks.get(tokenType);
             }
-            visitors = tokenToOrdinaryChecks.get(tokenType);
         }
-
-        for (Check ch : visitors) {
-            ch.leaveToken(ast);
-        }
+        return visitors;
     }
 
     /**
@@ -469,11 +474,11 @@ public final class TreeWalker
 
     @Override
     public void destroy() {
-        for (Check c : ordinaryChecks) {
-            c.destroy();
+        for (Check check : ordinaryChecks) {
+            check.destroy();
         }
-        for (Check c : commentChecks) {
-            c.destroy();
+        for (Check check : commentChecks) {
+            check.destroy();
         }
         if (cache != null) {
             try {
@@ -528,7 +533,7 @@ public final class TreeWalker
 
             CommonHiddenStreamToken tokenBefore = curNode.getHiddenBefore();
             DetailAST currentSibling = curNode;
-            while (tokenBefore != null) { // threat multiple comments
+            while (tokenBefore != null) {
                 final DetailAST newCommentNode =
                          createCommentAstFromToken(tokenBefore);
 
@@ -578,18 +583,12 @@ public final class TreeWalker
      * @return true if position of ast1 is greater than position of ast2.
      */
     private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2) {
-        if (ast1.getLineNo() > ast2.getLineNo()) {
-            return true;
-        }
-        else if (ast1.getLineNo() < ast2.getLineNo()) {
-            return false;
+        if (ast1.getLineNo() == ast2.getLineNo()) {
+            return ast1.getColumnNo() > ast2.getColumnNo();
         }
         else {
-            if (ast1.getColumnNo() > ast2.getColumnNo()) {
-                return true;
-            }
+            return ast1.getLineNo() > ast2.getLineNo();
         }
-        return false;
     }
 
     /**

@@ -33,15 +33,15 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 public class SeverityMatchFilter
     extends AutomaticBean
     implements Filter {
-    /** the severity level to accept */
+    /** The severity level to accept. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
-    /** whether to accept or reject on severity matches */
+    /** Whether to accept or reject on severity matches. */
     private boolean acceptOnMatch = true;
 
     /**
      * Sets the severity level.  The string should be one of the names
-     * defined in the <code>SeverityLevel</code> class.
+     * defined in the {@code SeverityLevel} class.
      *
      * @param severity  The new severity level
      * @see SeverityLevel
@@ -53,13 +53,12 @@ public class SeverityMatchFilter
     /**
      * Sets whether to accept or reject on matching severity level.
      * @param acceptOnMatch if true, accept on matches; if
-     * false, reject on matches.
+     *     false, reject on matches.
      */
     public final void setAcceptOnMatch(boolean acceptOnMatch) {
         this.acceptOnMatch = acceptOnMatch;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         final boolean result = severityLevel == event.getSeverityLevel();

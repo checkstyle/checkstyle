@@ -76,3 +76,9 @@ class TestTopLevelNestedClass {
         }
     }
 }
+
+class Input0 {
+    static { }
+    { }
+    public Input0() { }
+}

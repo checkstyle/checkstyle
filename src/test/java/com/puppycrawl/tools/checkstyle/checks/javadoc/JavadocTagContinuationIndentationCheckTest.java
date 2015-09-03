@@ -20,20 +20,31 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocTagContinuationIndentationCheckTest
         extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        JavadocTagContinuationIndentationCheck checkObj =
+            new JavadocTagContinuationIndentationCheck();
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testFP() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocTagContinuationIndentationCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("javadoc/GuavaFP.java"), expected);
     }
 

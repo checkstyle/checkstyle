@@ -20,10 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,6 +36,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ConstantNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ConstantNameCheck checkObj = new ConstantNameCheck();
+        int[] expected = {TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testIllegalRegexp()
         throws Exception {
@@ -101,8 +111,7 @@ public class ConstantNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("naming" + File.separator + "InputConstantNames.java"), expected);
     }
 
@@ -131,8 +140,7 @@ public class ConstantNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),
@@ -143,10 +151,10 @@ public class ConstantNameCheckTest
     public void testGetAcceptableTokens() {
         ConstantNameCheck constantNameCheckObj = new ConstantNameCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
         Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

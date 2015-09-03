@@ -38,6 +38,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.io.Closeables;
 
 /**
@@ -71,13 +73,13 @@ public final class FileText extends AbstractList<String> {
 
     /**
      * The name of the file.
-     * <code>null</code> if no file name is available for whatever reason.
+     * {@code null} if no file name is available for whatever reason.
      */
     private final File file;
 
     /**
      * The charset used to read the file.
-     * <code>null</code> if the file was reconstructed from a list of lines.
+     * {@code null} if the file was reconstructed from a list of lines.
      */
     private final Charset charset;
 
@@ -99,7 +101,7 @@ public final class FileText extends AbstractList<String> {
     /**
      * Creates a new file text representation.
      *
-     * The file will be read using the specified encoding, replacing
+     * <p>The file will be read using the specified encoding, replacing
      * malformed input and unmappable characters with the default
      * replacement character.
      *
@@ -122,51 +124,33 @@ public final class FileText extends AbstractList<String> {
         }
         catch (final UnsupportedCharsetException ex) {
             final String message = "Unsupported charset: " + charsetName;
-            final UnsupportedEncodingException ex2;
-            ex2 = new UnsupportedEncodingException(message);
+            final UnsupportedEncodingException ex2 = new UnsupportedEncodingException(message);
             ex2.initCause(ex);
             throw ex2;
         }
 
-        final char[] chars = new char[READ_BUFFER_SIZE];
-        final StringBuilder buf = new StringBuilder();
-        final FileInputStream stream = new FileInputStream(file);
-        final Reader reader = new InputStreamReader(stream, decoder);
-        try {
-            while (true) {
-                final int len = reader.read(chars);
-                if (len < 0) {
-                    break;
-                }
-                buf.append(chars, 0, len);
-            }
-        }
-        finally {
-            Closeables.closeQuietly(reader);
-        }
-        // buf.trimToSize(); // could be used instead of toString().
-        fullText = buf.toString();
+        fullText = readFile(file, decoder);
 
         // Use the BufferedReader to break down the lines as this
         // is about 30% faster than using the
         // LINE_TERMINATOR.split(fullText, -1) method
-        final ArrayList<String> lines = new ArrayList<>();
+        final ArrayList<String> textLines = new ArrayList<>();
         final BufferedReader br =
             new BufferedReader(new StringReader(fullText));
-        for (;;) {
-            final String l = br.readLine();
-            if (null == l) {
+        while (true) {
+            final String line = br.readLine();
+            if (line == null) {
                 break;
             }
-            lines.add(l);
+            textLines.add(line);
         }
-        this.lines = lines.toArray(new String[lines.size()]);
+        lines = textLines.toArray(new String[textLines.size()]);
     }
 
     /**
      * Compatibility constructor.
      *
-     * This constructor reconstructs the text of the file by joining
+     * <p>This constructor reconstructs the text of the file by joining
      * lines with linefeed characters. This process does not restore
      * the original line terminators and should therefore be avoided.
      *
@@ -188,9 +172,49 @@ public final class FileText extends AbstractList<String> {
     }
 
     /**
+     * Copy constructor.
+     * @param fileText to make copy of
+     */
+    public FileText(FileText fileText) {
+        file = fileText.file;
+        charset = fileText.charset;
+        fullText = fileText.fullText;
+        lines = fileText.lines.clone();
+        lineBreaks = ArrayUtils.clone(fileText.lineBreaks);
+    }
+
+    /**
+     * Reads file using specific decoder and returns all its content as a String.
+     * @param inputFile File to read
+     * @param decoder Charset decoder
+     * @return File's text
+     * @throws IOException Unable to open or read the file
+     */
+    private static String readFile(final File inputFile, final CharsetDecoder decoder)
+            throws IOException {
+        final StringBuilder buf = new StringBuilder();
+        final FileInputStream stream = new FileInputStream(inputFile);
+        final Reader reader = new InputStreamReader(stream, decoder);
+        try {
+            final char[] chars = new char[READ_BUFFER_SIZE];
+            while (true) {
+                final int len = reader.read(chars);
+                if (len < 0) {
+                    break;
+                }
+                buf.append(chars, 0, len);
+            }
+        }
+        finally {
+            Closeables.closeQuietly(reader);
+        }
+        return buf.toString();
+    }
+
+    /**
      * Compatibility conversion.
      *
-     * This method can be used to convert the arguments passed to
+     * <p>This method can be used to convert the arguments passed to
      * {@link FileSetCheck#process(File,List)} to a FileText
      * object. If the list of lines already is a FileText, it is
      * returned as is. Otherwise, a new FileText is constructed by
@@ -201,9 +225,12 @@ public final class FileText extends AbstractList<String> {
      * @return an object representing the denoted text file
      */
     public static FileText fromLines(File file, List<String> lines) {
-        return lines instanceof FileText
-            ? (FileText) lines
-            : new FileText(file, lines);
+        if (lines instanceof FileText) {
+            return (FileText) lines;
+        }
+        else {
+            return new FileText(file, lines);
+        }
     }
 
     /**
@@ -216,7 +243,7 @@ public final class FileText extends AbstractList<String> {
 
     /**
      * Get the character set which was used to read the file.
-     * Will be <code>null</code> for a file reconstructed from its lines.
+     * Will be {@code null} for a file reconstructed from its lines.
      * @return the charset used when the file was read
      */
     public Charset getCharset() {
@@ -247,17 +274,18 @@ public final class FileText extends AbstractList<String> {
      */
     private int[] findLineBreaks() {
         if (lineBreaks == null) {
-            final int[] lineBreaks = new int[size() + 1];
-            lineBreaks[0] = 0;
+            final int[] lineBreakPositions = new int[size() + 1];
+            lineBreakPositions[0] = 0;
             int lineNo = 1;
             final Matcher matcher = LINE_TERMINATOR.matcher(fullText);
             while (matcher.find()) {
-                lineBreaks[lineNo++] = matcher.end();
+                lineBreakPositions[lineNo] = matcher.end();
+                lineNo++;
             }
-            if (lineNo < lineBreaks.length) {
-                lineBreaks[lineNo] = fullText.length();
+            if (lineNo < lineBreakPositions.length) {
+                lineBreakPositions[lineNo] = fullText.length();
             }
-            this.lineBreaks = lineBreaks;
+            lineBreaks = lineBreakPositions;
         }
         return lineBreaks;
     }
@@ -268,14 +296,14 @@ public final class FileText extends AbstractList<String> {
      * @return the line and column numbers of this character
      */
     public LineColumn lineColumn(int pos) {
-        final int[] lineBreaks = findLineBreaks();
-        int lineNo = Arrays.binarySearch(lineBreaks, pos);
+        final int[] lineBreakPositions = findLineBreaks();
+        int lineNo = Arrays.binarySearch(lineBreakPositions, pos);
         if (lineNo < 0) {
             // we have: lineNo = -(insertion point) - 1
             // we want: lineNo =  (insertion point) - 1
             lineNo = -lineNo - 2;
         }
-        final int startOfLine = lineBreaks[lineNo];
+        final int startOfLine = lineBreakPositions[lineNo];
         final int columnNo = pos - startOfLine;
         // now we have lineNo and columnNo, both starting at zero.
         return new LineColumn(lineNo + 1, columnNo);

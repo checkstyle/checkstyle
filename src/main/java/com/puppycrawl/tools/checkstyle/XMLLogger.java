@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Simple XML logger.
@@ -42,24 +43,24 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 public class XMLLogger
     extends AutomaticBean
     implements AuditListener {
-    /** decimal radix */
+    /** Decimal radix. */
     private static final int BASE_10 = 10;
 
-    /** hex radix */
+    /** Hex radix. */
     private static final int BASE_16 = 16;
 
-    /** some known entities to detect */
+    /** Some known entities to detect. */
     private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
                                               "quot", };
 
-    /** close output stream in auditFinished */
-    private boolean closeStream;
+    /** Close output stream in auditFinished. */
+    private final boolean closeStream;
 
-    /** helper writer that allows easy encoding and printing */
+    /** Helper writer that allows easy encoding and printing. */
     private PrintWriter writer;
 
     /**
-     * Creates a new <code>XMLLogger</code> instance.
+     * Creates a new {@code XMLLogger} instance.
      * Sets the output to a defined stream.
      * @param os the stream to write logs to.
      * @param closeStream close oS in auditFinished
@@ -71,7 +72,7 @@ public class XMLLogger
     }
 
     /**
-     * sets the OutputStream
+     * Sets the OutputStream.
      * @param oS the OutputStream to use
      * @throws UnsupportedEncodingException is UTF-8 is not supported
      **/
@@ -80,7 +81,6 @@ public class XMLLogger
         writer = new PrintWriter(osw);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditStarted(AuditEvent evt) {
         writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -93,7 +93,6 @@ public class XMLLogger
         writer.println("<checkstyle version=\"" + version + "\">");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditFinished(AuditEvent evt) {
         writer.println("</checkstyle>");
@@ -105,22 +104,19 @@ public class XMLLogger
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileStarted(AuditEvent evt) {
         writer.println("<file name=\"" + encode(evt.getFileName()) + "\">");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileFinished(AuditEvent evt) {
         writer.println("</file>");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void addError(AuditEvent evt) {
-        if (SeverityLevel.IGNORE != evt.getSeverityLevel()) {
+        if (evt.getSeverityLevel() != SeverityLevel.IGNORE) {
             writer.print("<error" + " line=\"" + evt.getLine() + "\"");
             if (evt.getColumn() > 0) {
                 writer.print(" column=\"" + evt.getColumn() + "\"");
@@ -137,7 +133,6 @@ public class XMLLogger
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void addException(AuditEvent evt, Throwable throwable) {
         final StringWriter sw = new StringWriter();
@@ -196,12 +191,15 @@ public class XMLLogger
      * @return whether the given argument a character or entity reference
      */
     public static boolean isReference(String ent) {
-        if (ent.charAt(0) != '&' || !Utils.endsWithChar(ent, ';')) {
-            return false;
-        }
+        boolean reference = false;
 
-        if (ent.charAt(1) == '#') {
-            int prefixLength = 2; // "&#"
+        if (ent.charAt(0) != '&' || !CommonUtils.endsWithChar(ent, ';')) {
+            reference = false;
+        }
+        else if (ent.charAt(1) == '#') {
+            // prefix is "&#"
+            int prefixLength = 2;
+
             int radix = BASE_10;
             if (ent.charAt(2) == 'x') {
                 prefixLength++;
@@ -210,19 +208,21 @@ public class XMLLogger
             try {
                 Integer.parseInt(
                     ent.substring(prefixLength, ent.length() - 1), radix);
-                return true;
+                reference = true;
             }
-            catch (final NumberFormatException nfe) {
-                return false;
-            }
-        }
-
-        final String name = ent.substring(1, ent.length() - 1);
-        for (String element : ENTITIES) {
-            if (name.equals(element)) {
-                return true;
+            catch (final NumberFormatException ignored) {
+                reference = false;
             }
         }
-        return false;
+        else {
+            final String name = ent.substring(1, ent.length() - 1);
+            for (String element : ENTITIES) {
+                if (name.equals(element)) {
+                    reference = true;
+                    break;
+                }
+            }
+        }
+        return reference;
     }
 }

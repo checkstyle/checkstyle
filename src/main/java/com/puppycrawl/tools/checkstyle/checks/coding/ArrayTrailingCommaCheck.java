@@ -49,7 +49,7 @@ public class ArrayTrailingCommaCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.ARRAY_INIT};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -58,10 +58,15 @@ public class ArrayTrailingCommaCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST arrayInit) {
         final DetailAST rcurly = arrayInit.findFirstToken(TokenTypes.RCURLY);
 
-        // if curlys are on the same line
+        // if curlies are on the same line
         // or array is empty then check nothing
         if (arrayInit.getLineNo() == rcurly.getLineNo()
             || arrayInit.getChildCount() == 1) {

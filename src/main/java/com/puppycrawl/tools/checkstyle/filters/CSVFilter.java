@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -34,20 +35,19 @@ import com.google.common.collect.Sets;
  * @author o_sukhodolsky
  */
 class CSVFilter implements IntFilter {
-    /** filter set */
+    /** Filter set. */
     private final Set<IntFilter> filters = Sets.newHashSet();
 
     /**
-     * Constructs a <code>CSVFilter</code> from a CSV, Comma-Separated Values,
+     * Constructs a {@code CSVFilter} from a CSV, Comma-Separated Values,
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
      * Note: integers must be non-negative.
      * @param pattern the CSV string.
      * @throws NumberFormatException if a component substring does not
-     * contain a parsable integer.
+     *     contain a parsable integer.
      */
-    public CSVFilter(String pattern)
-        throws NumberFormatException {
+    CSVFilter(String pattern) {
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();
@@ -70,7 +70,7 @@ class CSVFilter implements IntFilter {
      * Adds a IntFilter to the set.
      * @param filter the IntFilter to add.
      */
-    public void addFilter(IntFilter filter) {
+    public final void addFilter(IntFilter filter) {
         filters.add(filter);
     }
 
@@ -79,7 +79,7 @@ class CSVFilter implements IntFilter {
      * @return the IntFilters of the filter set.
      */
     protected Set<IntFilter> getFilters() {
-        return filters;
+        return Collections.unmodifiableSet(filters);
     }
 
     /**

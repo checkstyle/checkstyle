@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,30 +8,29 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 
 public class FileTabCharacterTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
     
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig)
+        Configuration aConfig)
     {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
+        dc.addChild(aConfig);
         return dc;
     }
 
     @Test
-    public void fileTabTest() throws IOException, Exception {
+    public void fileTabTest() throws Exception {
 
         final DefaultConfiguration checkConfig = createConfig(true);
         final String[] expected = {
@@ -56,7 +54,7 @@ public class FileTabCharacterTest extends BaseCheckTestSupport{
     /**
      * Creates a configuration that is functionally close to that in the docs.
      */
-    private DefaultConfiguration createConfig(boolean verbose)
+    private static DefaultConfiguration createConfig(boolean verbose)
     {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileTabCharacterCheck.class);
@@ -64,5 +62,3 @@ public class FileTabCharacterTest extends BaseCheckTestSupport{
         return checkConfig;
     }
 }
-
-

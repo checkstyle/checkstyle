@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -30,6 +30,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ArrayTypeStyleCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
+        int[] expected = {TokenTypes.ARRAY_DECLARATOR};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testJavaStyle()
         throws Exception {
@@ -58,11 +66,11 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void testGetAcceptableTockens() {
+    public void testGetAcceptableTokens() {
         int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
         int[] actual = check.getAcceptableTokens();
-        assertTrue(actual.length == 1);
+        assertEquals(1, actual.length);
         assertArrayEquals(expected, actual);
     }
 }

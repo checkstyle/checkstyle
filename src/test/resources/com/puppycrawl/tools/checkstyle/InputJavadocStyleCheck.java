@@ -225,7 +225,7 @@ public class InputJavadocStyleCheck
     /** 
      */
     private static int ASDF = 0;
-    // should report empty javdoc
+    // should report empty javadoc
 
     /** @see java.lang.Object */
     public void method19()

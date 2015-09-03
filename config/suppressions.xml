@@ -36,7 +36,9 @@
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="MethodCount" files="[\\/]IndentationCheckTest.java$"/>
+    <suppress checks="MethodCount" files="[\\/]MainTest.java$"/>
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
+    <suppress checks="WriteTag" files=".*[\\/]src[\\/]test[\\/]"/>
 
     <!-- suppressions to remove over time -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]test[\\/]"/>
@@ -49,15 +51,59 @@
       -->
     <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
     <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
-    <suppress checks="." files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
+
+    <!--Classes FileDrop, Main, ParseTreeInfoPanel from gui-package contain Magic Numbers.
+    The Check generates too many violations, fixing them will make code unmanageable.-->
+    <suppress checks="MagicNumber" files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
 
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
-
-    <!-- False-positive while using @see -->
-    <suppress checks="UnusedImports" files="api[\\/]DetailNode\.java"/>
-    <suppress checks="UnusedImports" files="checks[\\/]javadoc[\\/]AbstractJavadocCheck\.java"/>
+    <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
+    <suppress checks="JavaNCSS" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
 
     <suppress checks="." files=".*JavadocTokenTypes\.java"/>
     <suppress checks="." files=".*ParseTreeBuilder\.java"/>
+
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
+    <suppress checks="TrailingComment" files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|XMLLoggerTest\.java|AbbreviationAsWordInNameCheckTest\.java)"/>
+
+    <!-- Fixing these cases will decrease code readability -->
+    <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
+    <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/]test[\\/]"/>
+
+    <!-- There are a lot of setters/getters in the Check. A small number of methods is left for Check's logics -->
+    <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
+
+    <!-- getDetails() method - huge Switch, it has to be monolithic -->
+    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="304"/>
+    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="304"/>
+    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="304"/>
+
+    <!-- we need that set of converters -->
+    <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
+    <!-- they are agregators of logic, usage a several of classes are ok -->
+    <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|AbstractJavadocCheck)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest)\.java"/>
+    <!-- a lot of GUI elements is OK -->
+    <suppress checks="ClassDataAbstractionCoupling" files="ParseTreeInfoPanel\.java"/>
+
+    <!-- Should be fixed after moving https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo -->
+    <suppress checks="ReturnCount" files="(ClassResolver|ConfigurationLoader|IndentationCheckTest)\.java"/>
+    
+    <!-- Just big SWITCHes. Cannot be splitted to several methods. Till https://github.com/checkstyle/checkstyle/issues/2029 -->
+    <suppress checks="CyclomaticComplexity" files="(AbstractDeclarationCollector|SuppressWarningsHolder|LeftCurlyCheck|FallThroughCheck|FinalLocalVariableCheck|ModifiedControlVariableCheck)\.java"/>
+    <suppress checks="CyclomaticComplexity" files="(ParameterAssignmentCheck|VariableDeclarationUsageDistanceCheck|BooleanExpressionComplexityCheck|NPathComplexityCheck|CheckUtils)\.java"/>
+
+    <!-- Suppressions from PMD configuration-->
+    <!-- validateCli is not reasonable to split as encapsulation of logic will be damaged -->
+    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="171"/>
+    <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
+    <suppress checks="CyclomaticComplexity" files="JavadocMethodCheck\.java"/>
+    <suppress checks="CyclomaticComplexity" files="JavadocStyleCheck\.java"/>
+    <suppress checks="CyclomaticComplexity" files="CustomImportOrderCheck\.java"/>
+    
+    <!-- equals() - a lot of fields to check -->
+    <suppress checks="CyclomaticComplexity" files="LocalizedMessage\.java" lines="211"/>
+    <!-- SWITCH was transformed into IF-ELSE -->
+    <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="331"/>
 </suppressions>

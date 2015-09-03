@@ -21,9 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,7 +37,6 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests that classes not extending anything explicitly will be correctly
      * flagged for only including the inheritDoc tag.
-     * @throws Exception
      */
     @Test
     public void testBadOverrideFromObject() throws Exception {
@@ -55,7 +56,6 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests that classes not extending anything explicitly will be correctly
      * flagged for only including the inheritDoc tag even in Java 5 compatibility mode.
-     * @throws Exception
      */
     @Test
     public void testBadOverrideFromObjectJ5Compat() throws Exception {
@@ -75,7 +75,6 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests classes that are extending things explicitly will be correctly
      * flagged for only including the inheritDoc tag.
-     * @throws Exception
      */
     @Test
     public void testBadOverrideFromOther() throws Exception {
@@ -96,15 +95,13 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests classes that are extending things explicitly will NOT be flagged while in
      * Java 5 compatibility mode.
-     * @throws Exception
      */
     @Test
     public void testBadOverrideFromOtherJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadOverrideFromOther.java"), expected);
     }
@@ -112,7 +109,6 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests anonymous inner classes that are overriding methods are correctly flagged
      * for only including the inheritDoc tag.
-     * @throws Exception
      */
     @Test
     public void testBadAnnonOverride() throws Exception {
@@ -130,21 +126,18 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests anonymous inner classes that are overriding methods are NOT flagged while in
      * Java 5 compatibility mode.
-     * @throws Exception
      */
     @Test
     public void testBadAnnonOverrideJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "BadAnnonOverride.java"), expected);
     }
 
     /**
      * Tests that inheritDoc misuse is properly flagged or missing Javadocs do not cause a problem.
-     * @throws Exception
      */
     @Test
     public void testNotOverride() throws Exception {
@@ -160,15 +153,13 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests that classes not extending anything explicitly will be correctly
      * flagged for only including the inheritDoc tag.
-     * @throws Exception
      */
     @Test
     public void testGoodOverrideFromObject() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromObject.java"), expected);
     }
@@ -176,15 +167,13 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests that classes not extending anything explicitly will be correctly
      * flagged for only including the inheritDoc tag even in Java 5 compatibility mode.
-     * @throws Exception
      */
     @Test
     public void testGoodOverrideFromObjectJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromObject.java"), expected);
     }
@@ -192,13 +181,11 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests classes that are extending things explicitly will be correctly
      * flagged for only including the inheritDoc tag.
-     * @throws Exception
      */
     @Test
     public void testGoodOverrideFromOther() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromOther.java"), expected);
     }
@@ -206,15 +193,13 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests classes that are extending things explicitly will NOT be flagged while in
      * Java 5 compatibility mode.
-     * @throws Exception
      */
     @Test
     public void testGoodOverrideFromOtherJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodOverrideFromOther.java"), expected);
     }
@@ -222,13 +207,11 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests anonymous inner classes that are overriding methods are correctly flagged
      * for only including the inheritDoc tag.
-     * @throws Exception
      */
     @Test
     public void testGoodAnnonOverride() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodAnnonOverride.java"), expected);
     }
@@ -236,25 +219,22 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     /**
      * This tests anonymous inner classes that are overriding methods are NOT flagged while in
      * Java 5 compatibility mode.
-     * @throws Exception
      */
     @Test
     public void testGoodAnnonOverrideJ5Compat() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodAnnonOverride.java"), expected);
     }
 
     @Test
-    public void testGetAcceptableTockens() throws Exception {
+    public void testGetAcceptableTokens() throws Exception {
         int[] expectedTokens = {TokenTypes.METHOD_DEF };
         MissingOverrideCheck check = new MissingOverrideCheck();
         int[] actual = check.getAcceptableTokens();
-        Assert.assertTrue(actual.length == 1);
+        assertEquals(1, actual.length);
         Assert.assertArrayEquals(expectedTokens, actual);
     }
 }
-

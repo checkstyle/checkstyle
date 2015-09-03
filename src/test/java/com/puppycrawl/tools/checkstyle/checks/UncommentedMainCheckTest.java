@@ -20,11 +20,18 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
+import static org.junit.Assert.assertEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assert;
 import org.junit.Test;
+
+import antlr.CommonHiddenStreamToken;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UncommentedMainCheckTest
     extends BaseCheckTestSupport {
@@ -52,5 +59,50 @@ public class UncommentedMainCheckTest
             "32: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
+    }
+
+    @Test
+    public void testTokens() throws Exception {
+        UncommentedMainCheck check = new UncommentedMainCheck();
+        Assert.assertNotNull(check.getRequiredTokens());
+        Assert.assertNotNull(check.getAcceptableTokens());
+        Assert.assertArrayEquals(check.getDefaultTokens(), check.getAcceptableTokens());
+        Assert.assertArrayEquals(check.getDefaultTokens(), check.getRequiredTokens());
+    }
+
+    @Test
+    public void testDeepDepth() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputUncommentedMain2.java"), expected);
+    }
+
+    @Test
+    public void testWrongName() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputUncommentedMain3.java"), expected);
+    }
+
+    @Test
+    public void testWrongArrayType() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputUncommentedMain4.java"), expected);
+    }
+
+    @Test
+    public void testIllegalStateException() throws Exception {
+        UncommentedMainCheck check = new UncommentedMainCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
+        try {
+            check.visitToken(ast);
+            Assert.fail();
+        }
+        catch (IllegalStateException ex) {
+            assertEquals(ast.toString(), ex.getMessage());
+        }
+
     }
 }

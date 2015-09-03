@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check for comments that contain
- * <code>TODO</code> or <code>FIXME</code>is:
+ * {@code TODO} or {@code FIXME}is:
  * </p>
  *
  * <pre>
@@ -84,17 +84,22 @@ public class TodoCommentCheck
      */
     public void setFormat(String format) {
         this.format = format;
-        regexp = Utils.createPattern(format);
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.COMMENT_CONTENT };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.COMMENT_CONTENT };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

@@ -43,12 +43,17 @@ public class HideUtilityClassConstructorCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.CLASS_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -73,7 +78,7 @@ public class HideUtilityClassConstructorCheck extends Check {
 
         // figure out if class extends java.lang.object directly
         // keep it simple for now and get a 99% solution
-        final boolean extendsJLO = // J.Lo even made it into in our sources :-)
+        final boolean extendsJLO =
             ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
         final boolean isUtilClass = extendsJLO && hasMethodOrField
@@ -103,31 +108,32 @@ public class HideUtilityClassConstructorCheck extends Check {
     }
 
     /**
-     * Details of class that are required for validation
+     * Details of class that are required for validation.
      */
     private static class Details {
-        /** class ast */
-        private DetailAST ast;
-        /** result of details gathering */
+        /** Class ast. */
+        private final DetailAST ast;
+        /** Result of details gathering. */
         private boolean hasMethodOrField;
-        /** result of details gathering */
+        /** Result of details gathering. */
         private boolean hasNonStaticMethodOrField;
-        /** result of details gathering */
+        /** Result of details gathering. */
         private boolean hasNonPrivateStaticMethodOrField;
-        /** result of details gathering */
+        /** Result of details gathering. */
         private boolean hasDefaultCtor;
-        /** result of details gathering */
+        /** Result of details gathering. */
         private boolean hasPublicCtor;
 
-        /** c-tor
+        /**
+         * C-tor.
          * @param ast class ast
          * */
-        public Details(DetailAST ast) {
+        Details(DetailAST ast) {
             this.ast = ast;
         }
 
         /**
-         * getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasMethodOrField() {
@@ -135,7 +141,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasNonStaticMethodOrField() {
@@ -143,7 +149,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasNonPrivateStaticMethodOrField() {
@@ -151,7 +157,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasDefaultCtor() {
@@ -159,7 +165,7 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         * getter
+         * Getter.
          * @return boolean
          */
         public boolean isHasPublicCtor() {
@@ -167,16 +173,16 @@ public class HideUtilityClassConstructorCheck extends Check {
         }
 
         /**
-         *  main method to gather statistics
+         * Main method to gather statistics.
          */
         public void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-            DetailAST child = objBlock.getFirstChild();
             hasMethodOrField = false;
             hasNonStaticMethodOrField = false;
             hasNonPrivateStaticMethodOrField = false;
             hasDefaultCtor = true;
             hasPublicCtor = false;
+            DetailAST child = objBlock.getFirstChild();
 
             while (child != null) {
                 final int type = child.getType();

@@ -34,6 +34,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.StringUtils;
@@ -50,15 +51,16 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author o_sukhosolsky
  */
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
+    /** Pattern to detect occurrences of '\n' in text. */
+    private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
     /** The file that contains the header to check against. */
     private String filename;
 
     /** Name of a charset to use for loading the header from a file. */
     private String charset = System.getProperty("file.encoding", "UTF-8");
 
-    /** the lines of the header file. */
+    /** The lines of the header file. */
     private final List<String> readerLines = Lists.newArrayList();
-
 
     /**
      * Return the header lines to check against.
@@ -130,10 +132,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
             final URL url = new URL(filename);
             uri = url.toURI();
         }
-        catch (final MalformedURLException ex) {
-            uri = null;
-        }
-        catch (final URISyntaxException ex) {
+        catch (final MalformedURLException | URISyntaxException ignored) {
             // URL violating RFC 2396
             uri = null;
         }
@@ -152,7 +151,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
                     }
                     uri = configUrl.toURI();
                 }
-                catch (final URISyntaxException e) {
+                catch (final URISyntaxException ignored) {
                     throw new FileNotFoundException(filename);
                 }
             }
@@ -185,7 +184,8 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
 
         checkHeaderNotInitialized();
 
-        final String headerExpandedNewLines = header.replaceAll("\\\\n", "\n");
+        final String headerExpandedNewLines = ESCAPED_LINE_FEED_PATTERN
+                .matcher(header).replaceAll("\n");
 
         final Reader headerReader = new StringReader(headerExpandedNewLines);
         try {
@@ -208,20 +208,20 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
         final LineNumberReader lnr = new LineNumberReader(headerReader);
         readerLines.clear();
         while (true) {
-            final String l = lnr.readLine();
-            if (l == null) {
+            final String line = lnr.readLine();
+            if (line == null) {
                 break;
             }
-            readerLines.add(l);
+            readerLines.add(line);
         }
-        postprocessHeaderLines();
+        postProcessHeaderLines();
     }
 
     /**
      * Hook method for post processing header lines.
      * This implementation does nothing.
      */
-    protected void postprocessHeaderLines() {
+    protected void postProcessHeaderLines() {
         // No code by default
     }
 

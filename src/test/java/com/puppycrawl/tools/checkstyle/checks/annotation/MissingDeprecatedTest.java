@@ -22,17 +22,38 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_ANNOTATION_MISSING_DEPRECATED;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_DUPLICATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_MISSING;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MissingDeprecatedTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        MissingDeprecatedCheck checkObj = new  MissingDeprecatedCheck();
+        int[] expected = {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     /**
-     * Tests that memebers that are only deprecated via javadoc are flagged.
+     * Tests that members that are only deprecated via javadoc are flagged.
      */
     @Test
     public void testBadDeprecatedAnnotation() throws Exception {
@@ -54,7 +75,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     }
 
     /**
-     * Tests that memebers that are only deprecated via the annotation are flagged.
+     * Tests that members that are only deprecated via the annotation are flagged.
      */
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {
@@ -111,8 +132,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
 
         DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "GoodDeprecated.java"), expected);
     }

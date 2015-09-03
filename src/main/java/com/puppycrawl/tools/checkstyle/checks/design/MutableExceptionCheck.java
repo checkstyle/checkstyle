@@ -49,7 +49,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
 
     /** Default value for format and extendedClassNameFormat properties. */
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$|^.*Throwable$";
-    /** Pattern for class name that is being extended */
+    /** Pattern for class name that is being extended. */
     private String extendedClassNameFormat;
     /** Stack of checking information for classes. */
     private final Deque<Boolean> checkingStack = new ArrayDeque<>();
@@ -59,12 +59,12 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     /** Creates new instance of the check. */
     public MutableExceptionCheck() {
         super(DEFAULT_FORMAT);
-        setExtendedClassNameFormat(DEFAULT_FORMAT);
+        extendedClassNameFormat = DEFAULT_FORMAT;
     }
 
     /**
      * Sets the format of extended class name to the specified regular expression.
-     * @param extendedClassNameFormat a <code>String</code> value
+     * @param extendedClassNameFormat a {@code String} value
      */
     public void setExtendedClassNameFormat(String extendedClassNameFormat) {
         this.extendedClassNameFormat = extendedClassNameFormat;
@@ -111,7 +111,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
      * @param ast class definition node
      */
     private void visitClassDef(DetailAST ast) {
-        checkingStack.push(checking ? Boolean.TRUE : Boolean.FALSE);
+        checkingStack.push(checking);
         checking = isNamedAsException(ast) && isExtendedClassNamedAsException(ast);
     }
 
@@ -137,6 +137,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     }
 
     /**
+     * Checks that a class name conforms to specified format.
      * @param ast class definition node
      * @return true if a class name conforms to specified format
      */
@@ -146,6 +147,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     }
 
     /**
+     * Checks that if extended class name conforms to specified format.
      * @param ast class definition node
      * @return true if extended class name conforms to specified format
      */
@@ -153,7 +155,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
         final DetailAST extendsClause = ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (extendsClause != null) {
             DetailAST currentNode = extendsClause;
-            while (currentNode.getType() != TokenTypes.IDENT) {
+            while (currentNode.getLastChild() != null) {
                 currentNode = currentNode.getLastChild();
             }
             final String extendedClassName = currentNode.getText();

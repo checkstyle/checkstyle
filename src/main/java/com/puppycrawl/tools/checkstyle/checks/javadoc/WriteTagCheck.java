@@ -22,15 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -86,43 +86,39 @@ public class WriteTagCheck
      */
     public static final String TAG_FORMAT = "type.tagFormat";
 
-    /** compiled regexp to match tag **/
+    /** Compiled regexp to match tag. **/
     private Pattern tagRE;
-    /** compiled regexp to match tag content **/
+    /** Compiled regexp to match tag content. **/
     private Pattern tagFormatRE;
 
-    /** regexp to match tag */
+    /** Regexp to match tag. */
     private String tag;
-    /** regexp to match tag content */
+    /** Regexp to match tag content. */
     private String tagFormat;
-    /** the severity level of found tag reports */
+    /** The severity level of found tag reports. */
     private SeverityLevel tagSeverityLevel = SeverityLevel.INFO;
 
     /**
      * Sets the tag to check.
      * @param tag tag to check
-     * @throws ConversionException if unable to create Pattern object.
      */
-    public void setTag(String tag)
-        throws ConversionException {
+    public void setTag(String tag) {
         this.tag = tag;
-        tagRE = Utils.createPattern(tag + "\\s*(.*$)");
+        tagRE = CommonUtils.createPattern(tag + "\\s*(.*$)");
     }
 
     /**
      * Set the tag format.
-     * @param format a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
+     * @param format a {@code String} value
      */
-    public void setTagFormat(String format)
-        throws ConversionException {
+    public void setTagFormat(String format) {
         tagFormat = format;
-        tagFormatRE = Utils.createPattern(format);
+        tagFormatRE = CommonUtils.createPattern(format);
     }
 
     /**
      * Sets the tag severity level.  The string should be one of the names
-     * defined in the <code>SeverityLevel</code> class.
+     * defined in the {@code SeverityLevel} class.
      *
      * @param severity  The new severity level
      * @see SeverityLevel
@@ -154,6 +150,11 @@ public class WriteTagCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
@@ -163,8 +164,7 @@ public class WriteTagCheck
             log(lineNo, MISSING_TAG, tag);
         }
         else {
-            checkTag(lineNo, cmt.getText(), tag, tagRE, tagFormatRE,
-                tagFormat);
+            checkTag(lineNo, cmt.getText());
         }
     }
 
@@ -172,18 +172,8 @@ public class WriteTagCheck
      * Verifies that a type definition has a required tag.
      * @param lineNo the line number for the type definition.
      * @param comment the Javadoc comment for the type definition.
-     * @param tag the required tag name.
-     * @param tagRE regexp for the full tag.
-     * @param formatRE regexp for the tag value.
-     * @param format pattern for the tag value.
      */
-    private void checkTag(
-            int lineNo,
-            String[] comment,
-            String tag,
-            Pattern tagRE,
-            Pattern formatRE,
-            String format) {
+    private void checkTag(int lineNo, String... comment) {
         if (tagRE == null) {
             return;
         }
@@ -196,14 +186,12 @@ public class WriteTagCheck
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = s.substring(contentStart);
-                if (formatRE != null && !formatRE.matcher(content).find()) {
-                    log(lineNo + i - comment.length, TAG_FORMAT, tag,
-                        format);
+                if (tagFormatRE != null && !tagFormatRE.matcher(content).find()) {
+                    log(lineNo + i - comment.length, TAG_FORMAT, tag, tagFormat);
                 }
                 else {
                     logTag(lineNo + i - comment.length, tag, content);
                 }
-
             }
         }
         if (tagCount == 0) {
@@ -212,21 +200,20 @@ public class WriteTagCheck
 
     }
 
-
     /**
      * Log a message.
      *
      * @param line the line number where the error was found
-     * @param tag the javadoc tag to be logged
+     * @param tagName the javadoc tag to be logged
      * @param tagValue the contents of the tag
      *
      * @see java.text.MessageFormat
      */
-    protected final void logTag(int line, String tag, String tagValue) {
+    protected final void logTag(int line, String tagName, String tagValue) {
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverityLevel.getName());
 
-        log(line, WRITE_TAG, tag, tagValue);
+        log(line, WRITE_TAG, tagName, tagValue);
 
         setSeverity(originalSeverity);
     }

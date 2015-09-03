@@ -23,10 +23,14 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ReturnCountCheckTest extends BaseCheckTestSupport {
     @Test
@@ -97,9 +101,32 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
     public void testWithReturnOnlyAsTokens() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_RETURN");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
             + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+    }
+
+    @Test
+    public void testImproperToken() throws Exception {
+        ReturnCountCheck check = new ReturnCountCheck();
+
+        DetailAST classDefAst = new DetailAST();
+        classDefAst.setType(TokenTypes.CLASS_DEF);
+
+        try {
+            check.visitToken(classDefAst);
+            Assert.fail();
+        }
+        catch (IllegalStateException e) {
+            // it is OK
+        }
+
+        try {
+            check.leaveToken(classDefAst);
+            Assert.fail();
+        }
+        catch (IllegalStateException e) {
+            // it is OK
+        }
     }
 }

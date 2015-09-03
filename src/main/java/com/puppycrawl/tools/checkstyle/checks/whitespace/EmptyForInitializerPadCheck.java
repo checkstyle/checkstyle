@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>Checks the padding of an empty for initializer; that is whether a
@@ -62,7 +62,7 @@ public class EmptyForInitializerPadCheck
     public static final String MSG_NOT_PRECEDED = "ws.notPreceded";
 
     /**
-     * Sets the paren pad otion to nospace.
+     * Sets the paren pad option to nospace.
      */
     public EmptyForInitializerPadCheck() {
         super(PadOption.NOSPACE, PadOption.class);
@@ -70,14 +70,17 @@ public class EmptyForInitializerPadCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.FOR_INIT,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.FOR_INIT,
-        };
+        return new int[] {TokenTypes.FOR_INIT};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -89,15 +92,15 @@ public class EmptyForInitializerPadCheck
             final String line = getLines()[semiLineIdx];
             final int before = semi.getColumnNo() - 1;
             //don't check if semi at beginning of line
-            if (!Utils.whitespaceBefore(before, line)) {
+            if (!CommonUtils.hasWhitespaceBefore(before, line)) {
                 final PadOption option = getAbstractOption();
-                if (PadOption.NOSPACE == option
+                if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {
-                    log(semi.getLineNo(), before, MSG_PRECEDED, ";");
+                    log(semi.getLineNo(), before, MSG_PRECEDED, SEMICOLON);
                 }
-                else if (PadOption.SPACE == option
+                else if (option == PadOption.SPACE
                          && !Character.isWhitespace(line.charAt(before))) {
-                    log(semi.getLineNo(), before, MSG_NOT_PRECEDED, ";");
+                    log(semi.getLineNo(), before, MSG_NOT_PRECEDED, SEMICOLON);
                 }
             }
         }

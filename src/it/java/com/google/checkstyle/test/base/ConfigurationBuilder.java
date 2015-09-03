@@ -2,43 +2,42 @@ package com.google.checkstyle.test.base;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ConfigurationBuilder extends BaseCheckTestSupport {
 
-	private File ROOT;
+	private static final String XML_NAME = "/google_checks.xml";
 
-	private List<File> files = new ArrayList<File>();
+	private final File root;
 
-	Configuration config;
-	
-	URL url;
-	
-	String xmlName = "/google_checks.xml";
-	
-	Pattern warnPattern = Utils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
+	private final List<File> files = new ArrayList<>();
 
-	public ConfigurationBuilder(File aROOT)
-			throws CheckstyleException, IOException {
-		this.ROOT = aROOT;
-		config = getConfigurationFromXML(xmlName, System.getProperties());
-		listFiles(files, ROOT, "java");
+	private final Configuration configuration;
+
+    private final Pattern warnPattern = CommonUtils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
+
+	public ConfigurationBuilder(File aROOT) {
+		root = aROOT;
+		configuration = getConfigurationFromXML(XML_NAME, System.getProperties());
+		listFiles(files, root, "java");
 	}
 
-	private Configuration getConfigurationFromXML(String aConfigName,
-			Properties aProps) throws CheckstyleException {
+	private static Configuration getConfigurationFromXML(String aConfigName,
+			Properties aProps) {
 		try {
 			return ConfigurationLoader.loadConfiguration(aConfigName,
 					new PropertiesExpander(aProps));
@@ -50,8 +49,12 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 		}
 	}
 
+	Configuration getConfiguration() {
+		return configuration;
+	}
+
 	public Configuration getCheckConfig(String aCheckName) {
-		for (Configuration currentConfig : config.getChildren()) {
+		for (Configuration currentConfig : configuration.getChildren()) {
 			if ("TreeWalker".equals(currentConfig.getName())) {
 				for (Configuration checkConfig : currentConfig.getChildren()) {
 					if (aCheckName.equals(checkConfig.getName())) {
@@ -66,12 +69,12 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 	}
 
 	public String getFilePath(String aFileName) {
-		String absoluteRootPath = ROOT.getAbsolutePath();
+		String absoluteRootPath = root.getAbsolutePath();
 		String rootPath = absoluteRootPath.substring(0,
 				absoluteRootPath.lastIndexOf("src"));
 		for (File file : files) {
 			if (file.toString().endsWith(aFileName+".java")) {
-				return rootPath + file.toString();
+				return rootPath + file;
 			}
 		}
 		return null;
@@ -81,8 +84,8 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 			final String extension) {
 		if (folder.canRead()) {
 			if (folder.isDirectory()) {
-				for (final File f : folder.listFiles()) {
-					listFiles(files, f, extension);
+				for (final File file : folder.listFiles()) {
+					listFiles(files, file, extension);
 				}
 			} else if (folder.toString().endsWith("." + extension)) {
 				files.add(folder);
@@ -90,19 +93,24 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 		}
 	}
 
-	public File getROOT() {
-		return ROOT;
+	public File getRoot() {
+		return root;
 	}
 
 	public List<File> getFiles() {
-            return files;
+            return Collections.unmodifiableList(files);
 	}
 
 	public Integer[] getLinesWithWarn(String aFileName) throws IOException {
-		int lineNumber = 1;
-	    List<Integer> result = new ArrayList<Integer>();
-	    try(BufferedReader br = new BufferedReader(new FileReader(aFileName))) {
-	        for(String line; (line = br.readLine()) != null; ) {
+		List<Integer> result = new ArrayList<>();
+	    try(BufferedReader br = new BufferedReader(new InputStreamReader(
+				new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
+			int lineNumber = 1;
+			while (true) {
+	            String line = br.readLine();
+	            if (line == null) {
+	                break;
+	            }
 	            if (warnPattern.matcher(line).find()) {
 	            	result.add(lineNumber);
 	            }

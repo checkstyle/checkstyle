@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -31,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TodoCommentCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        TodoCommentCheck checkObj = new TodoCommentCheck();
+        int[] expected = {TokenTypes.COMMENT_CONTENT};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -50,7 +58,7 @@ public class TodoCommentCheckTest
         int[] expected = {TokenTypes.COMMENT_CONTENT };
         TodoCommentCheck check = new TodoCommentCheck();
         int[] actual = check.getAcceptableTokens();
-        assertTrue(actual.length == 1);
+        assertEquals(1, actual.length);
         assertArrayEquals(expected, actual);
     }
 }

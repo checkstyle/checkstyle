@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.MSG_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,8 +29,8 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
- * The unit-test for the <code>NestedForDepthCheck</code>-checkstyle enhancement.
- * @see com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck
+ * The unit-test for the {@code NestedForDepthCheck}-checkstyle enhancement.
+ * @see NestedForDepthCheck
  */
 public class NestedForDepthCheckTest extends BaseCheckTestSupport {
     /**
@@ -39,7 +40,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
      * the top-level for statement, this must cause 2 error-messages.
      *
      * @throws Exception necessary to fulfill JUnit's
-     * interface-requirements for test-methods
+     *     interface-requirements for test-methods.
      */
     @Test
     public void testNestedTooDeep() throws Exception {
@@ -64,7 +65,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
      * error-message.
      *
      * @throws Exception necessary to fulfill JUnit's
-     * interface-requirements for test-methods
+     *     interface-requirements for test-methods.
      */
     @Test
     public void testNestedOk() throws Exception {
@@ -72,8 +73,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
             createCheckConfig(NestedForDepthCheck.class);
         checkConfig.addAttribute("max", "4");
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("coding/InputNestedForDepth.java"),
                expected);

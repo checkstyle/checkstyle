@@ -21,8 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -31,6 +32,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        MethodNameCheck checkObj = new MethodNameCheck();
+        int[] expected = {TokenTypes.METHOD_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -74,7 +83,9 @@ public class MethodNameCheckTest
     public void testMethodEqClassAllow() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
-        checkConfig.addAttribute("allowClassName", "true"); //allow method names and class names to equal
+
+        // allow method names and class names to equal
+        checkConfig.addAttribute("allowClassName", "true");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -95,8 +106,12 @@ public class MethodNameCheckTest
     public void testAccessTuning() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
-        checkConfig.addAttribute("allowClassName", "true"); //allow method names and class names to equal
-        checkConfig.addAttribute("applyToPrivate", "false"); //allow method names and class names to equal
+
+        // allow method names and class names to equal
+        checkConfig.addAttribute("allowClassName", "true");
+
+        // allow method names and class names to equal
+        checkConfig.addAttribute("applyToPrivate", "false");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -117,14 +132,13 @@ public class MethodNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("naming/InputMethodNameExtra.java"), expected);
     }
 
     @Test
-    public void testOverridenMethods() throws Exception {
+    public void testOverriddenMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodNameCheck.class);
 
@@ -142,10 +156,9 @@ public class MethodNameCheckTest
     public void testGetAcceptableTokens() {
         MethodNameCheck methodNameCheckObj = new MethodNameCheck();
         int[] actual = methodNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.METHOD_DEF,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

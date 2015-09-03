@@ -30,10 +30,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for assignments in subexpressions, such as in
- * <code>String s = Integer.toString(i = 2);</code>.
+ * {@code String s = Integer.toString(i = 2);}.
  * </p>
  * <p>
- * Rationale: With the exception of <code>for</code> iterators, all assignments
+ * Rationale: With the exception of {@code for} iterators, all assignments
  * should occur in their own toplevel statement to increase readability.
  * With inner assignments like the above it is difficult to see all places
  * where a variable is set.
@@ -51,7 +51,7 @@ public class InnerAssignmentCheck
     public static final String MSG_KEY = "assignment.inner.avoid";
 
     /**
-     * list of allowed AST types from an assignement AST node
+     * List of allowed AST types from an assignement AST node
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGMENT_CONTEXT = {
@@ -68,7 +68,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * list of allowed AST types from an assignement AST node
+     * List of allowed AST types from an assignement AST node
      * towards the root.
      */
     private static final int[][] CONTROL_CONTEXT = {
@@ -80,7 +80,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * list of allowed AST types from a comparison node (above an assignement)
+     * List of allowed AST types from a comparison node (above an assignement)
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT = {
@@ -105,20 +105,7 @@ public class InnerAssignmentCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.ASSIGN,            // '='
-            TokenTypes.DIV_ASSIGN,        // "/="
-            TokenTypes.PLUS_ASSIGN,       // "+="
-            TokenTypes.MINUS_ASSIGN,      //"-="
-            TokenTypes.STAR_ASSIGN,       // "*="
-            TokenTypes.MOD_ASSIGN,        // "%="
-            TokenTypes.SR_ASSIGN,         // ">>="
-            TokenTypes.BSR_ASSIGN,        // ">>>="
-            TokenTypes.SL_ASSIGN,         // "<<="
-            TokenTypes.BXOR_ASSIGN,       // "^="
-            TokenTypes.BOR_ASSIGN,        // "|="
-            TokenTypes.BAND_ASSIGN,       // "&="
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -140,20 +127,17 @@ public class InnerAssignmentCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        if (isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)) {
-            return;
+        if (!isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)
+                && !isInNoBraceControlStatement(ast)
+                && !isInWhileIdiom(ast)) {
+            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
         }
-
-        if (isInNoBraceControlStatement(ast)) {
-            return;
-        }
-
-        if (isInWhileIdiom(ast)) {
-            return;
-        }
-
-        log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
     }
 
     /**
@@ -233,23 +217,20 @@ public class InnerAssignmentCheck
      * @param ast the AST from which to start walking towards root
      * @param contextSet the contexts to test against.
      *
-     * @return whether the parents nodes of ast match
-     * one of the allowed type paths
+     * @return whether the parents nodes of ast match one of the allowed type paths.
      */
     private static boolean isInContext(DetailAST ast, int[]... contextSet) {
         boolean found = false;
         for (int[] element : contextSet) {
             DetailAST current = ast;
-            final int len = element.length;
-            for (int j = 0; j < len; j++) {
+            for (int anElement : element) {
                 current = current.getParent();
-                final int expectedType = element[j];
-                if (current.getType() != expectedType) {
-                    found = false;
-                    break;
+                if (current.getType() == anElement) {
+                    found = true;
                 }
                 else {
-                    found = true;
+                    found = false;
+                    break;
                 }
             }
 

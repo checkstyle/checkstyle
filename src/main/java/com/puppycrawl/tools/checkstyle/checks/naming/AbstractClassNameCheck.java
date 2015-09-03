@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 /**
  * <p>
  * Ensures that the names of abstract classes conforming to some
- * regular expression and check that <code>abstract</code> modifier exists.
+ * regular expression and check that {@code abstract} modifier exists.
  * </p>
  * <p>
  * Rationale: Abstract classes are convenience base class
@@ -53,13 +53,13 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
      */
     public static final String NO_ABSTRACT_CLASS_MODIFIER = "no.abstract.class.modifier";
 
-    /** Default format for abstract class names */
+    /** Default format for abstract class names. */
     private static final String DEFAULT_FORMAT = "^Abstract.+$";
 
-    /** whether to ignore checking the modifier */
+    /** Whether to ignore checking the modifier. */
     private boolean ignoreModifier;
 
-    /** whether to ignore checking the name */
+    /** Whether to ignore checking the name. */
     private boolean ignoreName;
 
     /** Creates new instance of the check. */
@@ -68,7 +68,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
     }
 
     /**
-     * Whether to ignore checking for the <code>abstract</code> modifier.
+     * Whether to ignore checking for the {@code abstract} modifier.
      * @param value new value
      */
     public void setIgnoreModifier(boolean value) {

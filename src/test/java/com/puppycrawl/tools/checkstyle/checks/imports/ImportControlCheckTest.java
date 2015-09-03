@@ -27,6 +27,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -35,6 +36,18 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ImportControlCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ImportControlCheck checkObj = new ImportControlCheck();
+        int[] expected = {
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testOne() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
@@ -92,14 +105,14 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testUnknown() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", "unknown-file");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("imports" + File.separator
                     + "InputImportControl.java"), expected);
             fail("should fail");
         }
         catch (CheckstyleException ex) {
-            //donothng
+            //do nothng
         }
     }
 
@@ -108,14 +121,14 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_broken.xml");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("imports" + File.separator
                     + "InputImportControl.java"), expected);
             fail("should fail");
         }
         catch (CheckstyleException ex) {
-            //donothing
+            //do nothing
         }
     }
 
@@ -150,7 +163,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         ImportControlCheck testCheckObject =
                 new ImportControlCheck();
         int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
@@ -164,7 +177,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file",
                 "aaa://src");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImportControl.java"), expected);
     }

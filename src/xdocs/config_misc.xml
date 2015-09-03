@@ -11,9 +11,9 @@
 
   <head>
     <title>Miscellaneous</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -166,6 +166,58 @@
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="CommentsIndentation">
+      <subsection name="Description">
+        <p>
+          Controls the indentation between comments and surrounding code.
+          Comments are indented at the same level as the surrounding code.
+          Detailed info about such convention can be found <a href=
+          "http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.6.1-block-comment-style">
+          here</a>
+        </p>
+      </subsection>
+
+      <subsection name="Example">
+        <p>
+          To configure the Check:
+        </p>
+        <source>
+&lt;module name=&quot;CommentsIndentation&quot;/module&gt;
+        </source>
+        <source>
+/*
+ * comment
+ * some comment
+ */
+boolean bool = true; - such comment indentation is ok
+
+   /*
+   * comment
+   * some comment
+   */
+double d = 3.14; - Block Comment has incorrect indentation level 3, expected 0.
+
+// some comment - comment is ok
+String str = "";
+
+    // some comment Comment has incorrect indentation level 4, expected 0.
+String str1 = "";
+        </source>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
         </p>
       </subsection>
 
@@ -343,7 +395,7 @@ messages.properties: Key 'ok' missing.
           Checks that long constants are defined with an upper ell. That
           is <code>' L'</code> and not <code>'l'</code>. This is in accordance with the Java
           Language Specification, <a
-          href="http://java.sun.com/docs/books/jls/second_edition/html/lexical.doc.html#48282">
+          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
           Section 3.10.1</a>.
         </p>
 
@@ -1149,7 +1201,7 @@ d = e / f;        // Another comment for this line
           Restrict using <a href = "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
           Unicode escapes</a> (e.g. \u221e).
           It is possible to allow using escapes for
-          <a href="http://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
+          <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
           Also, this check can be configured to allow using escapes
           if trail comment is present. By the option it is possible to
           allow using escapes if literal contains only them.

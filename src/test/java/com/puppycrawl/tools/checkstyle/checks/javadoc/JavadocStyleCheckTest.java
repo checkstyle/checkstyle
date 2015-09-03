@@ -29,6 +29,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -37,12 +38,32 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocStyleCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
+        int[] actual = javadocStyleCheck.getRequiredTokens();
+        int[] expected = {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.PACKAGE_DEF,
+        };
+        assertArrayEquals(expected, actual);
+    }
+
     @Test
     public void testGetAcceptableTokens() {
         JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
 
         int[] actual = javadocStyleCheck.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,
@@ -170,8 +191,7 @@ public class JavadocStyleCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "false");
         checkConfig.addAttribute("checkHtml", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputJavadocStyleCheckHtmlComment.java"), expected);
     }
@@ -338,8 +358,7 @@ public class JavadocStyleCheckTest
     public void packageInfoAnnotation() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         String basePath = "javadoc" + File.separator
             + "pkginfo" + File.separator + "annotation" + File.separator;
@@ -369,7 +388,7 @@ public class JavadocStyleCheckTest
     public void packageInfoValid() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         String basePath = "javadoc" + File.separator
             + "pkginfo" + File.separator + "valid" + File.separator;

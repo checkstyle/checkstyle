@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import com.puppycrawl.tools.checkstyle.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 
 /**
  * This check makes sure that all package annotations are in the
@@ -46,13 +46,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class PackageAnnotationCheck extends Check {
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -60,22 +58,20 @@ public class PackageAnnotationCheck extends Check {
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
         final boolean containsAnnotation =
             AnnotationUtility.containsAnnotation(ast);
         final boolean inPackageInfo =
-            this.getFileContents().inPackageInfo();
+            getFileContents().inPackageInfo();
 
         if (containsAnnotation && !inPackageInfo) {
-            this.log(ast.getLine(), "annotation.package.location");
+            log(ast.getLine(), "annotation.package.location");
         }
     }
 }

@@ -28,41 +28,48 @@ import java.util.Objects;
  */
 public class LineColumn implements Comparable<LineColumn> {
 
-    /** The one-based line number */
+    /** The one-based line number. */
     private final int line;
 
-    /** The zero-based column number */
-    private final int col;
+    /** The zero-based column number. */
+    private final int column;
 
     /**
      * Constructs a new pair of line and column numbers.
      * @param line the one-based line number
-     * @param col the zero-based column number
+     * @param column the zero-based column number
      */
-    public LineColumn(int line, int col) {
+    public LineColumn(int line, int column) {
         this.line = line;
-        this.col = col;
+        this.column = column;
     }
 
-    /** @return the one-based line number */
+    /**
+     * Gets the one-based line number.
+     * @return the one-based line number
+     */
     public int getLine() {
         return line;
     }
 
-    /** @return the zero-based column number */
+    /**
+     * Gets the zero-based column number.
+     * @return the zero-based column number
+     */
     public int getColumn() {
-        return col;
+        return column;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int compareTo(LineColumn lineColumn) {
-        return this.getLine() != lineColumn.getLine()
-            ? this.getLine() - lineColumn.getLine()
-            : this.getColumn() - lineColumn.getColumn();
+        if (line == lineColumn.line) {
+            return Integer.compare(column, lineColumn.column);
+        }
+        else {
+            return Integer.compare(line, lineColumn.line);
+        }
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -71,14 +78,13 @@ public class LineColumn implements Comparable<LineColumn> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final LineColumn that = (LineColumn) o;
-        return Objects.equals(line, that.line)
-                && Objects.equals(col, that.col);
+        final LineColumn lineColumn = (LineColumn) o;
+        return Objects.equals(line, lineColumn.line)
+                && Objects.equals(column, lineColumn.column);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(line, col);
+        return Objects.hash(line, column);
     }
 }

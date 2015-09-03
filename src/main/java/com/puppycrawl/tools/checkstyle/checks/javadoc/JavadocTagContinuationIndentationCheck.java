@@ -24,6 +24,8 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * <p>
@@ -49,7 +51,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     public static final String MSG_KEY = "tag.continuation.indent";
 
-    /** Default tag continuation indentation */
+    /** Default tag continuation indentation. */
     private static final int DEFAULT_INDENTATION = 4;
 
     /**
@@ -68,6 +70,16 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {JavadocTokenTypes.DESCRIPTION };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

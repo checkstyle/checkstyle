@@ -1,28 +1,26 @@
 package com.google.checkstyle.test.chapter4formatting.rule411bracesareused;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck;
 
 public class NeedBracesTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void needBracesTest() throws IOException, Exception {
+    public void needBracesTest() throws Exception {
         
         Class<NeedBracesCheck> clazz = NeedBracesCheck.class;
         String messageKey = "needBraces";

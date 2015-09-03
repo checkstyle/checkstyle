@@ -29,16 +29,25 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * Unit test for AnonInnerLengthCheck.
  * @author Rob Worth
  * @author Lars Kühne
  */
 public class AnonInnerLengthCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
+        int[] expected = {TokenTypes.LITERAL_NEW};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testGetAcceptableTokens() {
         AnonInnerLengthCheck anonInnerLengthCheckObj =
                 new AnonInnerLengthCheck();
         int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
-        int[] expected = new int[]{TokenTypes.LITERAL_NEW};
+        int[] expected = {TokenTypes.LITERAL_NEW};
 
         assertArrayEquals(expected, actual);
     }

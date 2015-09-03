@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -43,7 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *       value="java.lang.System.out,java.lang.Math.*"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * The optional "excludes" property allows for certain classes via a star
  * notation to be excluded such as java.lang.Math.* or specific
  * static members to be excluded like java.lang.System.out for a variable
@@ -71,12 +72,12 @@ public class AvoidStaticImportCheck
      */
     public static final String MSG_KEY = "import.avoidStatic";
 
-    /** the classes/static members to exempt from this check. */
-    private String[] excludes = new String[0];
+    /** The classes/static members to exempt from this check. */
+    private String[] excludes = ArrayUtils.EMPTY_STRING_ARRAY;
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.STATIC_IMPORT};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -84,10 +85,15 @@ public class AvoidStaticImportCheck
         return new int[] {TokenTypes.STATIC_IMPORT};
     }
 
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
     /**
      * Sets the list of classes or static members to be exempt from the check.
      * @param excludes a list of fully-qualified class names/specific
-     * static members where static imports are ok
+     *     static members where static imports are ok
      */
     public void setExcludes(String... excludes) {
         this.excludes = excludes.clone();
@@ -112,28 +118,43 @@ public class AvoidStaticImportCheck
      * @return true if except false if not
      */
     private boolean isExempt(String classOrStaticMember) {
+        boolean exempt = false;
+
         for (String exclude : excludes) {
-            if (classOrStaticMember.equals(exclude)) {
-                return true;
+            if (classOrStaticMember.equals(exclude)
+                    || isStarImportOfPackage(classOrStaticMember, exclude)) {
+                exempt = true;
+                break;
             }
-            else if (exclude.endsWith(".*")) {
-                //this section allows explicit imports
-                //to be exempt when configured using
-                //a starred import
-                final String excludeMinusDotStar =
-                    exclude.substring(0, exclude.length() - 2);
-                if (classOrStaticMember.startsWith(excludeMinusDotStar)
-                        && !classOrStaticMember.equals(excludeMinusDotStar)) {
-                    final String member =
-                        classOrStaticMember.substring(
-                            excludeMinusDotStar.length() + 1);
-                    //if it contains a dot then it is not a member but a package
-                    if (member.indexOf('.') == -1) {
-                        return true;
-                    }
+        }
+        return exempt;
+    }
+
+    /**
+     * Returns true if classOrStaticMember is a starred name of package,
+     *  not just member name.
+     * @param classOrStaticMember - full name of member
+     * @param exclude - current exclusion
+     * @return true if member in exclusion list
+     */
+    private static boolean isStarImportOfPackage(String classOrStaticMember, String exclude) {
+        boolean result = false;
+        if (exclude.endsWith(".*")) {
+            //this section allows explicit imports
+            //to be exempt when configured using
+            //a starred import
+            final String excludeMinusDotStar =
+                exclude.substring(0, exclude.length() - 2);
+            if (classOrStaticMember.startsWith(excludeMinusDotStar)
+                    && !classOrStaticMember.equals(excludeMinusDotStar)) {
+                final String member = classOrStaticMember.substring(
+                        excludeMinusDotStar.length() + 1);
+                //if it contains a dot then it is not a member but a package
+                if (member.indexOf('.') == -1) {
+                    result = true;
                 }
             }
         }
-        return false;
+        return result;
     }
 }

@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.FILE_CONTAINS_TAB;
 
 import java.io.File;
+import java.util.Locale;
 
 import org.junit.Test;
 
@@ -34,9 +35,9 @@ public class FileTabCharacterCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration checkConfig) {
+        Configuration config) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(checkConfig);
+        dc.addChild(config);
         return dc;
     }
 
@@ -77,8 +78,14 @@ public class FileTabCharacterCheckTest
     public void testBadFile() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(false);
         final String path = getPath("Claira");
+        String exceptionMessage = " (No such file or directory)";
+        if (System.getProperty("os.name")
+                .toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+            exceptionMessage = " (The system cannot find the file specified)";
+        }
+
         final String[] expected = {
-            "0: File not found!",
+            "0: Got an exception - " + path + exceptionMessage,
         };
         final File[] files = {
             new File(path),
@@ -90,7 +97,7 @@ public class FileTabCharacterCheckTest
      * Creates a configuration that is functionally close to that in the docs.
      * @param verbose verbose mode
      */
-    private DefaultConfiguration createConfig(boolean verbose) {
+    private static DefaultConfiguration createConfig(boolean verbose) {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileTabCharacterCheck.class);
         checkConfig.addAttribute("eachLine", Boolean.toString(verbose));

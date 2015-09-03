@@ -10,10 +10,10 @@
   </properties>
 
   <head>
-    <title>Importing and debugging in IntellIJ IDE</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <title>Importing and debugging in IntelliJ IDE</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -64,6 +64,16 @@
         Then in the tree go to: Editor->Code Style->Java, open Import tab (follow numbers on a
         picture) and apply settings highlighted:<br/><br/>
         <img alt="Organize Imports settings in IDEA" src="images/gui_screenshot_organize_imports_idea.jpg"/>
+        <br/>
+      </p>
+    </section>
+
+    <section name="Inspections">
+      <p>
+        Checkstyle has its own very strict set of inspections. To import and enable them go to
+        Settings -> Editor -> Inspections -> Manage -> Import... and locate file
+        <code>config/intellij-idea-inspections.xml</code>.<br/><br/>
+        <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
         <br/>
       </p>
     </section>

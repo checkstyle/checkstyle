@@ -1,30 +1,29 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 import java.io.File;
-import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.google.checkstyle.test.base.IndentationConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class IndentationTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new IndentationConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void correctClassTest() throws IOException, Exception {
+    public void correctClassTest() throws Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("Indentation");
         String filePath = builder.getFilePath("IndentationCorrectClassInput");
@@ -34,9 +33,9 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctFieldTest() throws IOException, Exception {
+    public void correctFieldTest() throws Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("Indentation");
         String filePath = builder.getFilePath("IndentationCorrectFieldAndParameterInput");
@@ -46,9 +45,9 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctForTest() throws IOException, Exception {
+    public void correctForTest() throws Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("Indentation");
         String filePath = builder.getFilePath("IndentationCorrectForAndParameterInput");
@@ -58,9 +57,9 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctIfTest() throws IOException, Exception {
+    public void correctIfTest() throws Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("Indentation");
         String filePath = builder.getFilePath("IndentationCorrectIfAndParameterInput");
@@ -70,9 +69,9 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctTest() throws IOException, Exception {
+    public void correctTest() throws Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("Indentation");
         String filePath = builder.getFilePath("IndentationCorrectInput");
@@ -82,9 +81,9 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctReturnTest() throws IOException, Exception {
+    public void correctReturnTest() throws Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("Indentation");
         String filePath = builder.getFilePath("IndentationCorrectReturnAndParameterInput");
@@ -94,9 +93,9 @@ public class IndentationTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void correctWhileTest() throws IOException, Exception {
+    public void correctWhileTest() throws Exception {
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("Indentation");
         String filePath = builder.getFilePath("IndentationCorrectWhileDoWhileAndParameterInput");
@@ -105,5 +104,3 @@ public class IndentationTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

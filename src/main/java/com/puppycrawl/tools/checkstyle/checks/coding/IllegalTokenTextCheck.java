@@ -21,16 +21,18 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.Utils;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
  * Checks for illegal token text.
  * </p>
  * <p> An example of how to configure the check to forbid String literals
- * containing <code>"a href"</code> is:
+ * containing {@code "a href"} is:
  * </p>
  * <pre>
  * &lt;module name="IllegalTokenText"&gt;
@@ -69,36 +71,37 @@ public class IllegalTokenTextCheck
      * Instantiates a new instance.
      */
     public IllegalTokenTextCheck() {
-        super("$^"); // the empty language
+        // the empty language
+        super("$^");
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return Utils.getAllTokenIds();
+        return TokenUtils.getAllTokenIds();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
         if (getRegexp().matcher(text).find()) {
-            String message = getMessage();
-            if ("".equals(message)) {
-                message = MSG_KEY;
+            String customMessage = message;
+            if (customMessage.isEmpty()) {
+                customMessage = MSG_KEY;
             }
             log(
                 ast.getLineNo(),
                 ast.getColumnNo(),
-                message,
+                customMessage,
                 getFormat());
         }
     }
@@ -109,16 +112,12 @@ public class IllegalTokenTextCheck
      *                 to report about violations.
      */
     public void setMessage(String message) {
-        this.message = null == message ? "" : message;
-    }
-
-    /**
-     * Getter for message property.
-     * @return custom message which should be used
-     * to report about violations.
-     */
-    public String getMessage() {
-        return message;
+        if (message == null) {
+            this.message = "";
+        }
+        else {
+            this.message = message;
+        }
     }
 
     /**

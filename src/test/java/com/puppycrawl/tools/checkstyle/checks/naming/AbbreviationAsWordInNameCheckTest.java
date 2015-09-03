@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck.MSG_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -28,11 +29,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
-    /** Warning message*/
+    /** Warning message. */
     private String warningMessage;
 
     @Test
-    public void testTypeNamesForThreePermitedCapitalLetters() throws Exception {
+    public void testTypeNamesForThreePermittedCapitalLetters() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
@@ -53,7 +54,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForFourPermitedCapitalLetters() throws Exception {
+    public void testTypeNamesForFourPermittedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 4;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -71,7 +72,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForFivePermitedCapitalLetters() throws Exception {
+    public void testTypeNamesForFivePermittedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
@@ -224,7 +225,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForThreePermitedCapitalLettersWithOverridenMethod() throws Exception {
+    public void testTypeNamesForThreePermitedCapitalLettersWithOverriddenMethod() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
@@ -243,7 +244,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForZeroPermitedCapitalLetter() throws Exception {
+    public void testTypeNamesForZeroPermittedCapitalLetter() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 0;
@@ -298,8 +299,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreFinal", "false");
         checkConfig.addAttribute("allowedAbbreviations", null);
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("naming/AbstractMultisetSetCountTester.java"), expected);
     }

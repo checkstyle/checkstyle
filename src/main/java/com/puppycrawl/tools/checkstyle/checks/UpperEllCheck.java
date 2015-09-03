@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>Checks that long constants are defined with an upper ell.
@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * like the number <span class="code">1</span>.
  * </p>
  *
- * Examples
+ * <p>Examples
  * <p class="body">
  * To configure the check:
  *
@@ -57,7 +57,7 @@ public class UpperEllCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.NUM_LONG};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -66,8 +66,13 @@ public class UpperEllCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        if (Utils.endsWithChar(ast.getText(), 'l')) {
+        if (CommonUtils.endsWithChar(ast.getText(), 'l')) {
             log(ast.getLineNo(),
                 ast.getColumnNo() + ast.getText().length() - 1,
                 MSG_KEY);

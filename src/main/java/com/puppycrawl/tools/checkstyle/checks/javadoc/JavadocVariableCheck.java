@@ -21,14 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * Checks that a variable has Javadoc comment.
@@ -44,13 +44,13 @@ public class JavadocVariableCheck
      */
     public static final String JAVADOC_MISSING = "javadoc.missing";
 
-    /** the scope to check */
+    /** The scope to check. */
     private Scope scope = Scope.PRIVATE;
 
-    /** the visibility scope where Javadoc comments shouldn't be checked **/
+    /** The visibility scope where Javadoc comments shouldn't be checked. **/
     private Scope excludeScope;
 
-    /** the pattern to ignore variable name */
+    /** The pattern to ignore variable name. */
     private Pattern ignoreNamePattern;
 
     /**
@@ -63,10 +63,10 @@ public class JavadocVariableCheck
 
     /**
      * Set the excludeScope.
-     * @param scope a <code>String</code> value
+     * @param excludeScope a {@code String} value
      */
-    public void setExcludeScope(String scope) {
-        excludeScope = Scope.getInstance(scope);
+    public void setExcludeScope(String excludeScope) {
+        this.excludeScope = Scope.getInstance(excludeScope);
     }
 
     /**
@@ -75,15 +75,12 @@ public class JavadocVariableCheck
      * @throws org.apache.commons.beanutils.ConversionException if unable to create Pattern object.
      */
     public void setIgnoreNamePattern(String regexp) {
-        ignoreNamePattern = Utils.createPattern(regexp);
+        ignoreNamePattern = CommonUtils.createPattern(regexp);
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -91,6 +88,17 @@ public class JavadocVariableCheck
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
+        };
+    }
+
+    /*
+     * Skipping enum values is requested.
+     * Checkstyle's issue #1669: https://github.com/checkstyle/checkstyle/issues/1669
+     */
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[] {
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -124,27 +132,31 @@ public class JavadocVariableCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        if (ScopeUtils.inCodeBlock(ast) || isIgnored(ast)) {
+        if (ScopeUtils.isInCodeBlock(ast) || isIgnored(ast)) {
             return false;
         }
 
-        final Scope scope;
+        final Scope customScope;
         if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            scope = Scope.PUBLIC;
+            customScope = Scope.PUBLIC;
         }
         else {
             final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
             final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-            scope =
-                ScopeUtils.inInterfaceOrAnnotationBlock(ast)
-                    ? Scope.PUBLIC : declaredScope;
+
+            if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+                customScope = Scope.PUBLIC;
+            }
+            else {
+                customScope = declaredScope;
+            }
         }
 
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return scope.isIn(this.scope) && surroundingScope.isIn(this.scope)
+        return customScope.isIn(scope) && surroundingScope.isIn(scope)
             && (excludeScope == null
-                || !scope.isIn(excludeScope)
+                || !customScope.isIn(excludeScope)
                 || !surroundingScope.isIn(excludeScope));
     }
 }

@@ -40,20 +40,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Oliver Burn
  * @deprecated Checkstyle is not type aware tool and all Checks derived from this
- * class are potentially unstable.
+ *     class are potentially unstable.
  */
 @Deprecated
 public abstract class AbstractTypeAwareCheck extends Check {
-    /** imports details **/
+    /** Imports details. **/
     private final Set<String> imports = Sets.newHashSet();
 
-    /** full identifier for package of the method **/
+    /** Full identifier for package of the method. **/
     private FullIdent packageFullIdent;
 
     /** Name of current class. */
-    private String currentClass;
+    private String currentClassName;
 
-    /** <code>ClassResolver</code> instance for current tree. */
+    /** {@code ClassResolver} instance for current tree. */
     private ClassResolver classResolver;
 
     /** Stack of maps for type params. */
@@ -63,13 +63,13 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * Whether to log class loading errors to the checkstyle report
      * instead of throwing a RTE.
      *
-     * Logging errors will avoid stopping checkstyle completely
+     * <p>Logging errors will avoid stopping checkstyle completely
      * because of a typo in javadoc. However, with modern IDEs that
      * support automated refactoring and generate javadoc this will
      * occur rarely, so by default we assume a configuration problem
-     * in the checkstyle classpath and throw an execption.
+     * in the checkstyle classpath and throw an exception.
      *
-     * This configuration option was triggered by bug 1422462.
+     * <p>This configuration option was triggered by bug 1422462.
      */
     private boolean logLoadErrors = true;
 
@@ -123,7 +123,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         // add java.lang.* since it's always imported
         imports.add("java.lang.*");
         classResolver = null;
-        currentClass = "";
+        currentClassName = "";
         typeParams.clear();
     }
 
@@ -153,17 +153,17 @@ public abstract class AbstractTypeAwareCheck extends Check {
         if (ast.getType() == TokenTypes.CLASS_DEF
             || ast.getType() == TokenTypes.ENUM_DEF) {
             // perhaps it was inner class
-            int dotIdx = currentClass.lastIndexOf('$');
+            int dotIdx = currentClassName.lastIndexOf('$');
             if (dotIdx == -1) {
                 // perhaps just a class
-                dotIdx = currentClass.lastIndexOf('.');
+                dotIdx = currentClassName.lastIndexOf('.');
             }
             if (dotIdx == -1) {
                 // looks like a topmost class
-                currentClass = "";
+                currentClassName = "";
             }
             else {
-                currentClass = currentClass.substring(0, dotIdx);
+                currentClassName = currentClassName.substring(0, dotIdx);
             }
             typeParams.pop();
         }
@@ -173,10 +173,10 @@ public abstract class AbstractTypeAwareCheck extends Check {
     }
 
     /**
-     * Is exception is unchecked (subclass of <code>RuntimeException</code>
-     * or <code>Error</code>
+     * Is exception is unchecked (subclass of {@code RuntimeException}
+     * or {@code Error}.
      *
-     * @param exception <code>Class</code> of exception to check
+     * @param exception {@code Class} of exception to check
      * @return true  if exception is unchecked
      *         false if exception is checked
      */
@@ -186,11 +186,11 @@ public abstract class AbstractTypeAwareCheck extends Check {
     }
 
     /**
-     * Checks if one class is subclass of another
+     * Checks if one class is subclass of another.
      *
-     * @param child <code>Class</code> of class
+     * @param child {@code Class} of class
      *               which should be child
-     * @param parent <code>Class</code> of class
+     * @param parent {@code Class} of class
      *                which should be parent
      * @return true  if aChild is subclass of aParent
      *         false otherwise
@@ -200,7 +200,9 @@ public abstract class AbstractTypeAwareCheck extends Check {
             &&  parent.isAssignableFrom(child);
     }
 
-    /** @return <code>ClassResolver</code> for current tree. */
+    /**
+     * @return {@code ClassResolver} for current tree.
+     */
     private ClassResolver getClassResolver() {
         if (classResolver == null) {
             classResolver =
@@ -213,17 +215,17 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
     /**
      * Attempts to resolve the Class for a specified name.
-     * @param className name of the class to resolve
-     * @param currentClass name of surrounding class.
-     * @return the resolved class or <code>null</code>
+     * @param resolvableClassName name of the class to resolve
+     * @param className name of surrounding class.
+     * @return the resolved class or {@code null}
      *          if unable to resolve the class.
      */
-    protected final Class<?> resolveClass(String className,
-            String currentClass) {
+    protected final Class<?> resolveClass(String resolvableClassName,
+            String className) {
         try {
-            return getClassResolver().resolve(className, currentClass);
+            return getClassResolver().resolve(resolvableClassName, className);
         }
-        catch (final ClassNotFoundException e) {
+        catch (final ClassNotFoundException ignored) {
             return null;
         }
     }
@@ -231,11 +233,11 @@ public abstract class AbstractTypeAwareCheck extends Check {
     /**
      * Tries to load class. Logs error if unable.
      * @param ident name of class which we try to load.
-     * @param currentClass name of surrounding class.
-     * @return <code>Class</code> for a ident.
+     * @param className name of surrounding class.
+     * @return {@code Class} for a ident.
      */
-    protected final Class<?> tryLoadClass(Token ident, String currentClass) {
-        final Class<?> clazz = resolveClass(ident.getText(), currentClass);
+    protected final Class<?> tryLoadClass(Token ident, String className) {
+        final Class<?> clazz = resolveClass(ident.getText(), className);
         if (clazz == null) {
             logLoadError(ident);
         }
@@ -244,7 +246,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
     /**
      * Logs error if unable to load class information.
-     * Abstract, should be overrided in subclasses.
+     * Abstract, should be overridden in subclasses.
      * @param ident class name for which we can no load class.
      */
     protected abstract void logLoadError(Token ident);
@@ -266,9 +268,9 @@ public abstract class AbstractTypeAwareCheck extends Check {
                                                     values,
                                                     getSeverityLevel(),
                                                     getId(),
-                                                    this.getClass(),
+                                                    getClass(),
                                                     null);
-            throw new RuntimeException(msg.getMessage());
+            throw new IllegalStateException(msg.getMessage());
         }
 
         if (!suppressLoadErrors) {
@@ -313,16 +315,15 @@ public abstract class AbstractTypeAwareCheck extends Check {
              child != null;
              child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.TYPE_PARAMETER) {
-                final DetailAST param = child;
                 final String alias =
-                    param.findFirstToken(TokenTypes.IDENT).getText();
+                    child.findFirstToken(TokenTypes.IDENT).getText();
                 final DetailAST bounds =
-                    param.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
+                    child.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
                 if (bounds != null) {
                     final FullIdent name =
                         FullIdent.createFullIdentBelow(bounds);
                     final AbstractClassInfo ci =
-                        createClassInfo(new Token(name), getCurrentClassName());
+                        createClassInfo(new Token(name), currentClassName);
                     paramsMap.put(alias, ci);
                 }
             }
@@ -335,9 +336,12 @@ public abstract class AbstractTypeAwareCheck extends Check {
      */
     private void processClass(DetailAST ast) {
         final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
-        currentClass += ("".equals(currentClass) ? "" : "$")
-            + ident.getText();
+        String innerClass = ident.getText();
 
+        if (!currentClassName.isEmpty()) {
+            innerClass = "$" + innerClass;
+        }
+        currentClassName += innerClass;
         processTypeParams(ast);
     }
 
@@ -346,14 +350,14 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * @return name of current class.
      */
     protected final String getCurrentClassName() {
-        return currentClass;
+        return currentClassName;
     }
 
     /**
      * Creates class info for given name.
      * @param name name of type.
      * @param surroundingClass name of surrounding class.
-     * @return class infor for given name.
+     * @return class info for given name.
      */
     protected final AbstractClassInfo createClassInfo(final Token name,
                                               final String surroundingClass) {
@@ -383,14 +387,14 @@ public abstract class AbstractTypeAwareCheck extends Check {
     }
 
     /**
-     * Contains class's <code>Token</code>.
+     * Contains class's {@code Token}.
      */
     protected abstract static class AbstractClassInfo {
-        /** <code>FullIdent</code> associated with this class. */
+        /** {@code FullIdent} associated with this class. */
         private final Token name;
 
         /**
-         * Creates new instance of class inforamtion object.
+         * Creates new instance of class information object.
          * @param className token which represents class name.
          */
         protected AbstractClassInfo(final Token className) {
@@ -401,59 +405,60 @@ public abstract class AbstractTypeAwareCheck extends Check {
             name = className;
         }
 
-        /** @return class name */
+        /**
+         * Gets class name.
+         * @return class name
+         */
         public final Token getName() {
             return name;
         }
 
-        /** @return <code>Class</code> associated with an object. */
+        /**
+         * @return {@code Class} associated with an object.
+         */
         public abstract Class<?> getClazz();
     }
 
-    /** Represents regular classes/enumes. */
+    /** Represents regular classes/enums. */
     private static final class RegularClass extends AbstractClassInfo {
-        /** name of surrounding class. */
+        /** Name of surrounding class. */
         private final String surroundingClass;
-        /** is class loadable. */
+        /** Is class loadable. */
         private boolean loadable = true;
-        /** <code>Class</code> object of this class if it's loadable. */
+        /** {@code Class} object of this class if it's loadable. */
         private Class<?> classObj;
-        /** the check we use to resolve classes. */
+        /** The check we use to resolve classes. */
         private final AbstractTypeAwareCheck check;
 
         /**
          * Creates new instance of of class information object.
-         * @param name <code>FullIdent</code> associated with new object.
+         * @param name {@code FullIdent} associated with new object.
          * @param surroundingClass name of current surrounding class.
          * @param check the check we use to load class.
          */
-        public RegularClass(final Token name,
+        RegularClass(final Token name,
                              final String surroundingClass,
                              final AbstractTypeAwareCheck check) {
             super(name);
             this.surroundingClass = surroundingClass;
             this.check = check;
         }
-        /** @return if class is loadable ot not. */
-        private boolean isLoadable() {
-            return loadable;
-        }
 
         @Override
         public Class<?> getClazz() {
-            if (isLoadable() && classObj == null) {
+            if (loadable && classObj == null) {
                 setClazz(check.tryLoadClass(getName(), surroundingClass));
             }
             return classObj;
         }
 
         /**
-         * Associates <code> Class</code> with an object.
-         * @param classObj <code>Class</code> to associate with.
+         * Associates {@code Class} with an object.
+         * @param clazz {@code Class} to associate with.
          */
-        private void setClazz(Class<?> classObj) {
-            this.classObj = classObj;
-            loadable = classObj != null;
+        private void setClazz(Class<?> clazz) {
+            classObj = clazz;
+            loadable = clazz != null;
         }
 
         @Override
@@ -471,7 +476,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
         private final AbstractClassInfo classInfo;
 
         /**
-         * Creates nnew instance of the class.
+         * Creates new instance of the class.
          * @param name token which represents name of class alias.
          * @param classInfo class information associated with the alias.
          */
@@ -487,8 +492,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
         @Override
         public String toString() {
-            return "ClassAlias[alias " + getName()
-                + " for " + classInfo + "]";
+            return "ClassAlias[alias " + getName() + " for " + classInfo.getName() + "]";
         }
     }
 
@@ -496,23 +500,23 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * Represents text element with location in the text.
      */
     protected static class Token {
-        /** token's column number. */
-        private final int column;
-        /** token's line number. */
-        private final int line;
-        /** token's text. */
+        /** Token's column number. */
+        private final int columnNo;
+        /** Token's line number. */
+        private final int lineNo;
+        /** Token's text. */
         private final String text;
 
         /**
          * Creates token.
          * @param text token's text
-         * @param line token's line number
-         * @param column token's column number
+         * @param lineNo token's line number
+         * @param columnNo token's column number
          */
-        public Token(String text, int line, int column) {
+        public Token(String text, int lineNo, int columnNo) {
             this.text = text;
-            this.line = line;
-            this.column = column;
+            this.lineNo = lineNo;
+            this.columnNo = columnNo;
         }
 
         /**
@@ -521,29 +525,38 @@ public abstract class AbstractTypeAwareCheck extends Check {
          */
         public Token(FullIdent fullIdent) {
             text = fullIdent.getText();
-            line = fullIdent.getLineNo();
-            column = fullIdent.getColumnNo();
+            lineNo = fullIdent.getLineNo();
+            columnNo = fullIdent.getColumnNo();
         }
 
-        /** @return line number of the token */
+        /**
+         * Gets line number of the token.
+         * @return line number of the token
+         */
         public int getLineNo() {
-            return line;
+            return lineNo;
         }
 
-        /** @return column number of the token */
+        /**
+         * Gets column number of the token.
+         * @return column number of the token
+         */
         public int getColumnNo() {
-            return column;
+            return columnNo;
         }
 
-        /** @return text of the token */
+        /**
+         * Gets text of the token.
+         * @return text of the token
+         */
         public String getText() {
             return text;
         }
 
         @Override
         public String toString() {
-            return "Token[" + getText() + "(" + getLineNo()
-                + "x" + getColumnNo() + ")]";
+            return "Token[" + text + "(" + lineNo
+                + "x" + columnNo + ")]";
         }
     }
 }

@@ -19,12 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.Assertion;
@@ -33,9 +43,11 @@ import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
 public class MainTest {
     @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
     @Rule
@@ -44,10 +56,16 @@ public class MainTest {
     public final SystemOutRule systemOut = new SystemOutRule().enableLog().mute();
 
     @Test
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+        assertUtilsClassHasPrivateConstructor(Main.class);
+    }
+
+    @Test
     public void testVersionPrint()
             throws Exception {
-        exit.expectSystemExitWithStatus(0);
+
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Checkstyle version: null" + System.lineSeparator(),
                         systemOut.getLog());
@@ -62,6 +80,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 String usage = String.format("Unrecognized option: -w%n"
                     + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>%n"
@@ -84,6 +103,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Must specify a config XML file." + System.lineSeparator(),
                         systemOut.getLog());
@@ -98,6 +118,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Must specify files to process, found 0." + System.lineSeparator(),
                         systemOut.getLog());
@@ -112,6 +133,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("unable to find src/main/resources/non_existing_config.xml%n"
                                 + "Checkstyle ends with 1 errors.%n"),
@@ -124,10 +146,10 @@ public class MainTest {
     }
 
     @Test
-    public void testNonExistingOutputFormat()
-            throws Exception {
+    public void testNonExistingOutputFormat() throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Invalid output format. "
                         + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), systemOut.getLog());
@@ -139,10 +161,10 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFile()
-            throws Exception {
-        exit.expectSystemExitWithStatus(0);
+    public void testExistingTargetFile() throws Exception {
+
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
@@ -154,10 +176,10 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFileXmlOutput()
-            throws Exception {
-        exit.expectSystemExitWithStatus(0);
+    public void testExistingTargetFileXmlOutput() throws Exception {
+
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
@@ -167,12 +189,10 @@ public class MainTest {
                         ResourceBundle.getBundle("checkstylecompilation");
                 String version = compilationProperties.getString("checkstyle.compile.version");
                 assertEquals(String.format("<?xml version=\"1.0\" encoding=\"UTF-8\"?>%n"
-                        + "<checkstyle version=\"" + version + "\">%n"
-                        + "<file name=\""
-                        + expectedPath
-                        + "\">%n"
+                        + "<checkstyle version=\"%s\">%n"
+                        + "<file name=\"%s\">%n"
                         + "</file>%n"
-                        + "</checkstyle>%n"), systemOut.getLog());
+                        + "</checkstyle>%n", version, expectedPath), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
         });
@@ -182,10 +202,10 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFilePlainOutput()
-            throws Exception {
-        exit.expectSystemExitWithStatus(0);
+    public void testExistingTargetFilePlainOutput() throws Exception {
+
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
@@ -198,21 +218,21 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFileWithViolations()
-            throws Exception {
-        exit.expectSystemExitWithStatus(0);
+    public void testExistingTargetFileWithViolations() throws Exception {
+
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
                 assertEquals(String.format("Starting audit...%n"
-                                + expectedPath + ":3:14: "
+                                + "%1$s:3:14: "
                                 + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
-                                + expectedPath + ":5:7: "
+                                + "%1$s:5:7: "
                                 + "warning: Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
-                                + "Audit done.%n"),
+                                + "Audit done.%n", expectedPath),
                         systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -226,18 +246,19 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(2);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
                 assertEquals(String.format("Starting audit...%n"
-                        + expectedPath + ":3:14: "
+                        + "%1$s:3:14: "
                         + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
-                        + expectedPath + ":5:7: "
+                        + "%1$s:5:7: "
                         + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
                         + "Audit done.%n"
-                        + "Checkstyle ends with 2 errors.%n"), systemOut.getLog());
+                        + "Checkstyle ends with 2 errors.%n", expectedPath), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
         });
@@ -249,8 +270,9 @@ public class MainTest {
     @Test
     public void testExistingTargetFilePlainOutputToNonExistingFile()
             throws Exception {
-        exit.expectSystemExitWithStatus(0);
+
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("", systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -266,12 +288,9 @@ public class MainTest {
     public void testExistingTargetFilePlainOutputToFile()
             throws Exception {
         final File file = temporaryFolder.newFile("file.output");
-        //Assert.assertTrue(file.getTotalSpace() == 0);
-
-        exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
-                //Assert.assertTrue(file.getTotalSpace() > 0);
                 assertEquals("", systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -286,10 +305,36 @@ public class MainTest {
     public void testExistingTargetFilePlainOutputToFileWithoutRwPermissions()
             throws Exception {
         final File file = temporaryFolder.newFile("file.output");
-        file.setReadable(false, false);
-        file.setWritable(false, false);
+        assertTrue(file.setReadable(true, true));
+        assertTrue(file.setWritable(false, false));
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() throws IOException {
+                assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
+                        + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+                "-f", "plain",
+                "-o", file.getCanonicalPath(),
+                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+    }
+
+    @Test
+    public void testExistingTargetFilePlainOutputToFileWithoutReadAndRwPermissions()
+            throws Exception {
+        final File file = temporaryFolder.newFile("file.output");
+        // That works fine on Linux/Unix, but ....
+        // It's not possible to make a file unreadable in Windows NTFS for owner.
+        // http://stackoverflow.com/a/4354686
+        // https://github.com/google/google-oauth-java-client/issues/55#issuecomment-69403681
+        //assertTrue(file.setReadable(false, false));
+        assertTrue(file.setWritable(false, false));
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() throws IOException {
                 assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
                         + System.lineSeparator(), systemOut.getLog());
@@ -305,8 +350,9 @@ public class MainTest {
     @Test
     public void testExistingTargetFilePlainOutputProperties()
             throws Exception {
-        exit.expectSystemExitWithStatus(0);
+        //exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
@@ -324,6 +370,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals("Could not find file 'nonexisting.properties'."
                         + System.lineSeparator(), systemOut.getLog());
@@ -341,6 +388,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(new Assertion() {
+            @Override
             public void checkAssertion() {
                 assertEquals(String.format("unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
                         + "Checkstyle ends with 1 errors.%n"), systemOut.getLog());
@@ -350,5 +398,132 @@ public class MainTest {
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
                 + "config-Incorrect.xml",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+    }
+
+    @Test
+    public void testLoadProperties_IOException() throws Exception {
+        Class<?>[] param = new Class<?>[1];
+        param[0] = File.class;
+        Method method = Main.class.getDeclaredMethod("loadProperties", param);
+        method.setAccessible(true);
+        try {
+            if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+                // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
+                // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
+                File file = new File(File.separator + ":invalid");
+                if (file.exists()) {
+                    file.delete();
+                }
+                method.invoke(null, new File(file.getAbsolutePath()));
+            }
+            else {
+                method.invoke(null, new File(File.separator + ":invalid"));
+            }
+            fail("Exception was expected");
+        }
+        catch (InvocationTargetException e) {
+            assertTrue(e.getCause() instanceof CheckstyleException);
+            // We do separate validation for message as in Windows
+            // disk drive letter appear in message,
+            // so we skip that drive letter for compatibility issues
+            assertTrue(e.getCause().getMessage().startsWith("Unable to load properties from file '"));
+            assertTrue(e.getCause().getMessage().endsWith(":invalid'."));
+        }
+    }
+
+    @Test
+    public void testCreateListener_IllegalStateException() throws Exception {
+        Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
+        method.setAccessible(true);
+        try {
+            method.invoke(null, "myformat", null);
+            fail();
+        }
+        catch (InvocationTargetException e) {
+            assertTrue(e.getCause() instanceof IllegalStateException);
+            assertTrue(e.getCause().getMessage().startsWith("Invalid output format. Found"));
+        }
+    }
+
+    @Test
+    public void testCreateListenerWithLocation_IllegalStateException() throws Exception {
+        Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
+        method.setAccessible(true);
+        String outDir = "myfolder123";
+        try {
+            method.invoke(null, "myformat", outDir);
+            fail();
+        }
+        catch (InvocationTargetException e) {
+            assertTrue(e.getCause() instanceof IllegalStateException);
+            assertTrue(e.getCause().getMessage().startsWith("Invalid output format. Found"));
+        }
+        finally {
+            // method creates output folder
+            FileUtils.deleteQuietly(new File(outDir));
+        }
+    }
+
+    @Test
+    public void testExistingDirectoryWithViolations() throws Exception {
+
+        // we just reference there all violations
+        final String[][] outputValues = {
+            {"JavaNCSSCheckTestInput", "1", "84"},
+        };
+
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override public void checkAssertion() throws IOException {
+                String currentPath = new File(".").getCanonicalPath();
+                String expectedPath = currentPath
+                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/metrics/"
+                        .replace("/", File.separator);
+                StringBuilder sb = new StringBuilder();
+                sb.append("Starting audit...").append(System.getProperty("line.separator"));
+                String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
+                for (String[] outputValue : outputValues) {
+                    String line = String.format(format,
+                            expectedPath + outputValue[0], outputValue[1],
+                            outputValue[2]);
+                    sb.append(line).append(System.getProperty("line.separator"));
+                }
+                sb.append("Audit done.").append(System.getProperty("line.separator"));
+                assertEquals(sb.toString(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-filelength.xml",
+                "src/test/resources/com/puppycrawl/tools/checkstyle/metrics/");
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testListFiles_notFile() throws Exception {
+        Method method = Main.class.getDeclaredMethod("listFiles", File.class);
+        method.setAccessible(true);
+
+        File fileMock = mock(File.class);
+        when(fileMock.canRead()).thenReturn(true);
+        when(fileMock.isDirectory()).thenReturn(false);
+        when(fileMock.isFile()).thenReturn(false);
+
+        List<File> result = (List<File>) method.invoke(null, fileMock);
+        assertEquals(0, result.size());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testListFiles_DirectoryWithNull() throws Exception {
+        Method method = Main.class.getDeclaredMethod("listFiles", File.class);
+        method.setAccessible(true);
+
+        File fileMock = mock(File.class);
+        when(fileMock.canRead()).thenReturn(true);
+        when(fileMock.isDirectory()).thenReturn(true);
+        when(fileMock.listFiles()).thenReturn(null);
+
+        List<File> result = (List<File>) method.invoke(null, fileMock);
+        assertEquals(0, result.size());
     }
 }

@@ -25,7 +25,6 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import org.junit.Test;
 import org.xml.sax.Attributes;
@@ -44,7 +43,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test(expected = CheckstyleException.class)
-    public void testWrongFormatURI() throws CheckstyleException, URISyntaxException {
+    public void testWrongFormatURI() throws Exception {
         final PkgControl root =
                 ImportControlLoader.load(
                         new URI("aaa://src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml"));
@@ -52,7 +51,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void testExtraElementInConfig() throws CheckstyleException, URISyntaxException {
+    public void testExtraElementInConfig() throws Exception {
         final PkgControl root =
                 ImportControlLoader.load(new File(
                         "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_WithNewElement.xml").toURI());
@@ -69,9 +68,9 @@ public class ImportControlLoaderTest {
                 }
             };
         try {
-            Class<?> c = Class.forName(
+            Class<?> clazz = Class.forName(
                     "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader");
-            Method privateMethod = c.getDeclaredMethod("safeGet", Attributes.class, String.class);
+            Method privateMethod = clazz.getDeclaredMethod("safeGet", Attributes.class, String.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, attr, "you_cannot_find_me");
         }
@@ -89,9 +88,9 @@ public class ImportControlLoaderTest {
     public void testLoadThrowsException() throws InvocationTargetException {
         InputSource source = new InputSource();
         try {
-            Class<?> c = Class.forName(
+            Class<?> clazz = Class.forName(
                     "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader");
-            Method privateMethod = c.getDeclaredMethod("load", InputSource.class, URI.class);
+            Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class, URI.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, source, new File(
                     "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml").toURI());

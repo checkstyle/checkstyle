@@ -36,7 +36,7 @@ class SinglelineDetector {
      * Creates an instance.
      * @param options the options to use.
      */
-    public SinglelineDetector(DetectorOptions options) {
+    SinglelineDetector(DetectorOptions options) {
         this.options = options;
     }
 
@@ -46,10 +46,10 @@ class SinglelineDetector {
      */
     public void processLines(List<String> lines) {
         resetState();
-        int lineno = 0;
+        int lineNo = 0;
         for (String line : lines) {
-            lineno++;
-            checkLine(lineno, line, options.getPattern().matcher(line), 0);
+            lineNo++;
+            checkLine(lineNo, line, options.getPattern().matcher(line), 0);
         }
         finish();
     }
@@ -57,7 +57,7 @@ class SinglelineDetector {
     /** Perform processing at the end of a set of lines. */
     private void finish() {
         if (currentMatches < options.getMinimum()) {
-            if ("".equals(options.getMessage())) {
+            if (options.getMessage().isEmpty()) {
                 options.getReporter().log(0, "regexp.minimum",
                         options.getMinimum(), options.getFormat());
             }
@@ -101,12 +101,12 @@ class SinglelineDetector {
                 // check if the expression is on the rest of the line
                 checkLine(lineno, line, matcher, endCol);
             }
-            return; // end processing here
+            return;
         }
 
         currentMatches++;
         if (currentMatches > options.getMaximum()) {
-            if ("".equals(options.getMessage())) {
+            if (options.getMessage().isEmpty()) {
                 options.getReporter().log(lineno, "regexp.exceeded",
                         matcher.pattern().toString());
             }

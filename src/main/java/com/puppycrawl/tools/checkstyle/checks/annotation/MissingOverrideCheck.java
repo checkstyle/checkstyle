@@ -22,25 +22,25 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
- * This class is used to verify that the {@link java.lang.Override Override}
+ * This class is used to verify that the {@link Override Override}
  * annotation is present when the inheritDoc javadoc tag is present.
  * </p>
  *
  * <p>
- * Rationale: The {@link java.lang.Override Override} annotation helps
+ * Rationale: The {@link Override Override} annotation helps
  * compiler tools ensure that an override is actually occurring.  It is
  * quite easy to accidentally overload a method or hide a static method
- * and using the {@link java.lang.Override Override} annotation points
+ * and using the {@link Override Override} annotation points
  * out these problems.
  * </p>
  *
@@ -57,10 +57,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * As a result of the aforementioned difference between Java 5 and Java 6, a
- * property called <code> javaFiveCompatibility </code> is available. This
+ * property called {@code javaFiveCompatibility } is available. This
  * property will only check classes, interfaces, etc. that do not contain the
  * extends or implements keyword or are not anonymous classes. This means it
- * only checks methods overridden from <code>java.lang.Object</code>
+ * only checks methods overridden from {@code java.lang.Object}
  *
  * <b>Java 5 Compatibility mode severely limits this check. It is recommended to
  * only use it on Java 5 source</b>
@@ -89,17 +89,20 @@ public final class MissingOverrideCheck extends Check {
     public static final String MSG_KEY_ANNOTATION_MISSING_OVERRIDE =
         "annotation.missing.override";
 
-    /** {@link Override Override} annotation name */
+    /** {@link Override Override} annotation name. */
     private static final String OVERRIDE = "Override";
 
-    /** fully-qualified {@link Override Override} annotation name */
+    /** Fully-qualified {@link Override Override} annotation name. */
     private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
 
-    /** compiled regexp to match Javadoc tags with no argument and {} * */
-    private static final Pattern MATCH_INHERITDOC =
-        Utils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
+    /** Compiled regexp to match Javadoc tags with no argument and {}. */
+    private static final Pattern MATCH_INHERIT_DOC =
+            CommonUtils.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
-    /** @see #setJavaFiveCompatibility(boolean) */
+    /**
+     * Java 5 compatibility option.
+     * @see #setJavaFiveCompatibility(boolean)
+     */
     private boolean javaFiveCompatibility;
 
     /**
@@ -119,43 +122,38 @@ public final class MissingOverrideCheck extends Check {
      * @param compatibility compatibility or not
      */
     public void setJavaFiveCompatibility(final boolean compatibility) {
-        this.javaFiveCompatibility = compatibility;
+        javaFiveCompatibility = compatibility;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens() {
         return new int[]
         {TokenTypes.METHOD_DEF, };
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =
-            this.getFileContents().getJavadocBefore(ast.getLineNo());
+            getFileContents().getJavadocBefore(ast.getLineNo());
 
-
-        final boolean containastag = containsJavadocTag(javadoc);
-        if (containastag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
-            this.log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
+        final boolean containsTag = containsJavadocTag(javadoc);
+        if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
+            log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
             return;
         }
 
-        if (this.javaFiveCompatibility) {
+        if (javaFiveCompatibility) {
             final DetailAST defOrNew = ast.getParent().getParent();
 
             if (defOrNew.branchContains(TokenTypes.EXTENDS_CLAUSE)
@@ -165,10 +163,10 @@ public final class MissingOverrideCheck extends Check {
             }
         }
 
-        if (containastag
+        if (containsTag
             && !AnnotationUtility.containsAnnotation(ast, OVERRIDE)
             && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)) {
-            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
+            log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
         }
     }
 
@@ -179,20 +177,21 @@ public final class MissingOverrideCheck extends Check {
      * @return true if contains the tag
      */
     private static boolean containsJavadocTag(final TextBlock javadoc) {
-        if (javadoc == null) {
-            return false;
-        }
+        boolean javadocTag = false;
 
-        final String[] lines = javadoc.getText();
+        if (javadoc != null) {
+            final String[] lines = javadoc.getText();
 
-        for (final String line : lines) {
-            final Matcher matchInheritDoc =
-                MissingOverrideCheck.MATCH_INHERITDOC.matcher(line);
+            for (final String line : lines) {
+                final Matcher matchInheritDoc =
+                    MATCH_INHERIT_DOC.matcher(line);
 
-            if (matchInheritDoc.find()) {
-                return true;
+                if (matchInheritDoc.find()) {
+                    javadocTag = true;
+                    break;
+                }
             }
         }
-        return false;
+        return javadocTag;
     }
 }

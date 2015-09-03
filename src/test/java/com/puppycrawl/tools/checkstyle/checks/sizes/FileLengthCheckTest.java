@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_K
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -34,9 +35,9 @@ public class FileLengthCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aCheckConfig) {
+        Configuration config) {
         DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aCheckConfig);
+        dc.addChild(config);
         return dc;
     }
 
@@ -58,8 +59,7 @@ public class FileLengthCheckTest
         DefaultConfiguration checkConfig =
             createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", "2000");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
                 getPath("InputSimple.java"),
                 getPath("InputSimple.java"), expected);
@@ -84,7 +84,7 @@ public class FileLengthCheckTest
         DefaultConfiguration checkConfig =
                 createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("fileExtensions", "txt");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(createChecker(checkConfig),
                 getPath("InputSimple.java"),
@@ -99,7 +99,7 @@ public class FileLengthCheckTest
         check.setFileExtensions(".java");
         assertEquals("extension should be the same", ".java", check.getFileExtensions()[0]);
         try {
-            check.setFileExtensions(null);
+            check.setFileExtensions((String[]) null);
             fail();
         }
         catch (IllegalArgumentException ex) {

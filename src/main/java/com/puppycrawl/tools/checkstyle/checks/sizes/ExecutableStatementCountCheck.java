@@ -40,10 +40,10 @@ public final class ExecutableStatementCountCheck
      */
     public static final String MSG_KEY = "executableStatementCount";
 
-    /** default threshold */
+    /** Default threshold. */
     private static final int DEFAULT_MAX = 30;
 
-    /** threshold to report error for */
+    /** Threshold to report error for. */
     private int max;
 
     /** Stack of method contexts. */
@@ -52,9 +52,9 @@ public final class ExecutableStatementCountCheck
     /** Current method context. */
     private Context context;
 
-    /** Constructs a <code>ExecutableStatementCountCheck</code>. */
+    /** Constructs a {@code ExecutableStatementCountCheck}. */
     public ExecutableStatementCountCheck() {
-        setMax(DEFAULT_MAX);
+        max = DEFAULT_MAX;
     }
 
     @Override
@@ -82,14 +82,6 @@ public final class ExecutableStatementCountCheck
             TokenTypes.STATIC_INIT,
             TokenTypes.SLIST,
         };
-    }
-
-    /**
-     * Gets the maximum threshold.
-     * @return the maximum threshold.
-     */
-    public int getMax() {
-        return max;
     }
 
     /**
@@ -156,9 +148,9 @@ public final class ExecutableStatementCountCheck
      */
     private void leaveMemberDef(DetailAST ast) {
         final int count = context.getCount();
-        if (count > getMax()) {
+        if (count > max) {
             log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_KEY, count, getMax());
+                    MSG_KEY, count, max);
         }
         context = contextStack.pop();
     }
@@ -203,17 +195,17 @@ public final class ExecutableStatementCountCheck
          * Creates new member context.
          * @param ast member AST node.
          */
-        public Context(DetailAST ast) {
+        Context(DetailAST ast) {
             this.ast = ast;
             count = 0;
         }
 
         /**
          * Increase count.
-         * @param count the count increment.
+         * @param addition the count increment.
          */
-        public void addCount(int count) {
-            this.count += count;
+        public void addCount(int addition) {
+            count += addition;
         }
 
         /**

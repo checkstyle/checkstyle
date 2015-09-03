@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,10 +42,28 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testValidateAbstractClassNamesSetToTrue() throws Exception {
+        checkConfig.addAttribute("validateAbstractClassNames", "true");
+        String[] expected = {
+            "27:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "29:37: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+            "33:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
+        };
+
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalTypeAbstractClassNames.java"), expected);
+    }
+
+    @Test
+    public void testValidateAbstractClassNamesSetToFalse() throws Exception {
+        checkConfig.addAttribute("validateAbstractClassNames", "false");
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalTypeAbstractClassNames.java"), expected);
+    }
+
+    @Test
     public void testDefaults() throws Exception {
         String[] expected = {
-            "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
@@ -55,7 +74,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     @Test
     public void testIgnoreMethodNames() throws Exception {
         checkConfig.addAttribute("ignoredMethodNames", "table2");
-
+        checkConfig.addAttribute("validateAbstractClassNames", "true");
         String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass"),
@@ -79,6 +98,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testLegalAbstractClassNames() throws Exception {
+        checkConfig.addAttribute("validateAbstractClassNames", "true");
         checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
         String[] expected = {
@@ -147,6 +167,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMemberModifiers() throws Exception {
+        checkConfig.addAttribute("validateAbstractClassNames", "true");
         checkConfig.addAttribute("memberModifiers", "LITERAL_PRIVATE, LITERAL_PROTECTED,"
                 + " LITERAL_STATIC");
         String[] expected = {

@@ -24,10 +24,10 @@ import java.util.Deque;
 import antlr.collections.AST;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>
@@ -45,63 +45,8 @@ public abstract class AbstractSuperCheck
      */
     public static final String MSG_KEY = "missing.super.call";
 
-    /**
-     * Stack node for a method definition and a record of
-     * whether the method has a call to the super method.
-     * @author Rick Giles
-     */
-    private static class MethodNode {
-        /** method definition */
-        private final DetailAST method;
-
-        /** true if the overriding method calls the super method */
-        private boolean callingSuper;
-
-        /**
-         * Constructs a stack node for a method definition.
-         * @param ast AST for the method definition.
-         */
-        public MethodNode(DetailAST ast) {
-            method = ast;
-            callingSuper = false;
-        }
-
-        /**
-         * Records that the overriding method has a call to the super method.
-         */
-        public void setCallingSuper() {
-            callingSuper = true;
-        }
-
-        /**
-         * Determines whether the overriding method has a call to the super
-         * method.
-         * @return true if the overriding method has a call to the super
-         * method.
-         */
-        public boolean isCallingSuper() {
-            return callingSuper;
-        }
-
-        /**
-         * Returns the overriding method definition AST.
-         * @return the overriding method definition AST.
-         */
-        public DetailAST getMethod() {
-            return method;
-        }
-    }
-
-    /** stack of methods */
+    /** Stack of methods. */
     private final Deque<MethodNode> methodStack = Lists.newLinkedList();
-
-    @Override
-    public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.LITERAL_SUPER,
-        };
-    }
 
     @Override
     public int[] getAcceptableTokens() {
@@ -109,6 +54,16 @@ public abstract class AbstractSuperCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.LITERAL_SUPER,
         };
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getDefaultTokens();
     }
 
     /**
@@ -134,56 +89,63 @@ public abstract class AbstractSuperCheck
     }
 
     /**
-     *  Determines whether a 'super' literal is a call to the super method
+     * Determines whether a 'super' literal is a call to the super method
      * for this check.
-     * @param ast the AST node of a 'super' literal.
-     * @return true if ast is a call to the super method
-     * for this check.
+     * @param literalSuperAst the AST node of a 'super' literal.
+     * @return true if ast is a call to the super method for this check.
      */
-    private boolean isSuperCall(DetailAST ast) {
-        if (ast.getType() != TokenTypes.LITERAL_SUPER) {
-            return false;
-        }
-        // dot operator?
-        DetailAST parent = ast.getParent();
-        if (parent == null || parent.getType() != TokenTypes.DOT) {
-            return false;
-        }
+    private boolean isSuperCall(DetailAST literalSuperAst) {
+        boolean superCall = false;
 
-        if (isSameNameMethod(ast)) {
-            return false;
-        }
-        if (isZeroParameters(parent)) {
-            return false;
-        }
+        if (literalSuperAst.getType() == TokenTypes.LITERAL_SUPER) {
+            // dot operator?
+            final DetailAST dotAst = literalSuperAst.getParent();
 
-        // in an overriding method for this check?
-        while (parent != null) {
-            if (parent.getType() == TokenTypes.METHOD_DEF) {
-                return isOverridingMethod(parent);
+            if (dotAst.getType() == TokenTypes.DOT
+                && !isSameNameMethod(literalSuperAst)
+                && !hasArguments(dotAst)) {
+                superCall = isSuperCallInOverridingMethod(dotAst);
             }
-            else if (parent.getType() == TokenTypes.CTOR_DEF
-                || parent.getType() == TokenTypes.INSTANCE_INIT) {
-                return false;
-            }
-            parent = parent.getParent();
         }
-        return false;
+        return superCall;
     }
 
     /**
-     * is 0 parameters?
-     * @param parent parent AST
-     * @return tru if no parameters found
+     * Determines whether a super call in overriding method.
+     *
+     * @param ast The AST node of a 'dot operator' in 'super' call.
+     * @return true if super call in overriding method.
      */
-    private static boolean isZeroParameters(DetailAST parent) {
+    private boolean isSuperCallInOverridingMethod(DetailAST ast) {
+        boolean inOverridingMethod = false;
+        DetailAST dotAst = ast;
 
-        final DetailAST args = parent.getNextSibling();
-        return args == null || args.getType() != TokenTypes.ELIST || args.getChildCount() != 0;
+        while (dotAst != null
+                && dotAst.getType() != TokenTypes.CTOR_DEF
+                && dotAst.getType() != TokenTypes.INSTANCE_INIT) {
+
+            if (dotAst.getType() == TokenTypes.METHOD_DEF) {
+                inOverridingMethod = isOverridingMethod(dotAst);
+                break;
+            }
+            dotAst = dotAst.getParent();
+
+        }
+        return inOverridingMethod;
     }
 
     /**
-     * is same name of method
+     * Does method have any arguments.
+     * @param methodCallDotAst DOT DetailAST
+     * @return true if any parameters found
+     */
+    private static boolean hasArguments(DetailAST methodCallDotAst) {
+        final DetailAST argumentsList = methodCallDotAst.getNextSibling();
+        return argumentsList.getChildCount() > 0;
+    }
+
+    /**
+     * Is same name of method.
      * @param ast method AST
      * @return true if method name is the same
      */
@@ -224,18 +186,66 @@ public abstract class AbstractSuperCheck
      * @return true if the method of ast is a method for this check.
      */
     private boolean isOverridingMethod(DetailAST ast) {
-        if (ast.getType() != TokenTypes.METHOD_DEF
-            || ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
-            return false;
+        boolean overridingMethod = false;
+
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
+            final String name = nameAST.getText();
+            final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
+
+            if (getMethodName().equals(name)
+                    && !modifiersAST.branchContains(TokenTypes.LITERAL_NATIVE)) {
+                final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+                overridingMethod = params.getChildCount() == 0;
+            }
         }
-        final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-        final String name = nameAST.getText();
-        final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (!getMethodName().equals(name)
-                || modifiersAST.branchContains(TokenTypes.LITERAL_NATIVE)) {
-            return false;
+        return overridingMethod;
+    }
+
+    /**
+     * Stack node for a method definition and a record of
+     * whether the method has a call to the super method.
+     * @author Rick Giles
+     */
+    private static class MethodNode {
+        /** Method definition. */
+        private final DetailAST method;
+
+        /** True if the overriding method calls the super method. */
+        private boolean callingSuper;
+
+        /**
+         * Constructs a stack node for a method definition.
+         * @param ast AST for the method definition.
+         */
+        MethodNode(DetailAST ast) {
+            method = ast;
+            callingSuper = false;
         }
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        return params.getChildCount() == 0;
+
+        /**
+         * Records that the overriding method has a call to the super method.
+         */
+        public void setCallingSuper() {
+            callingSuper = true;
+        }
+
+        /**
+         * Determines whether the overriding method has a call to the super
+         * method.
+         * @return true if the overriding method has a call to the super method.
+         */
+        public boolean isCallingSuper() {
+            return callingSuper;
+        }
+
+        /**
+         * Returns the overriding method definition AST.
+         * @return the overriding method definition AST.
+         */
+        public DetailAST getMethod() {
+            return method;
+        }
     }
 }

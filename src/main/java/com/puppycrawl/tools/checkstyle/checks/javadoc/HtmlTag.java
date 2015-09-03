@@ -40,11 +40,11 @@ class HtmlTag {
     /** The comment line of text where this tag appears. */
     private final String text;
 
-    /** if this tag is self-closed. */
+    /** If this tag is self-closed. */
     private final boolean closedTag;
 
-    /** if the tag is incomplete. */
-    private final boolean incomplete;
+    /** If the tag is incomplete. */
+    private final boolean incompleteTag;
 
     /**
      * Construct the HtmlTag.
@@ -62,7 +62,7 @@ class HtmlTag {
         this.position = position;
         this.text = text;
         this.closedTag = closedTag;
-        this.incomplete = incomplete;
+        incompleteTag = incomplete;
     }
 
     /**
@@ -75,18 +75,15 @@ class HtmlTag {
 
     /**
      * Indicates if this tag is a close (end) tag.
-     * @return <code>true</code> is this is a close tag.
+     * @return {@code true} is this is a close tag.
      */
     public boolean isCloseTag() {
-        if (position == text.length() - 1) {
-            return false;
-        }
-        return text.charAt(position + 1) == '/';
+        return position != text.length() - 1 && text.charAt(position + 1) == '/';
     }
 
     /**
      * Indicates if this tag is a self-closed XHTML style.
-     * @return <code>true</code> is this is a self-closed tag.
+     * @return {@code true} is this is a self-closed tag.
      */
     public boolean isClosedTag() {
         return closedTag;
@@ -94,10 +91,10 @@ class HtmlTag {
 
     /**
      * Indicates if this tag is incomplete (has no close &gt;).
-     * @return <code>true</code> if the tag is incomplete.
+     * @return {@code true} if the tag is incomplete.
      */
     public boolean isIncompleteTag() {
-        return incomplete;
+        return incompleteTag;
     }
 
     /**
@@ -122,7 +119,7 @@ class HtmlTag {
     public String toString() {
         final int startOfText = position;
         final int endOfText =
-            Math.min(startOfText + HtmlTag.MAX_TEXT_LEN, text.length());
+            Math.min(startOfText + MAX_TEXT_LEN, text.length());
         return text.substring(startOfText, endOfText);
     }
 }

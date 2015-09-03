@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,8 +46,7 @@ public class EqualsHashCodeCheckTest
     public void testBooleanMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("coding/InputEqualsHashCodeCheck.java"), expected);
     }
 

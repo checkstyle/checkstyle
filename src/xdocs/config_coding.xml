@@ -11,9 +11,9 @@
 
   <head>
     <title>Coding</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -181,16 +181,16 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
     <section name="EqualsAvoidNull">
       <subsection name="Description">
         <p>
-          Checks that any combination of String literals with optional
-          assignment is on the left side of an <code>equals()</code> comparison.
-          The check also processes <code>String.equalsIgnoreCase()</code>
-          invocations (which can be suppressed).
+          Checks that any combination of String literals
+          is on the left side of an equals() comparison.
+          Also checks for String literals assigned to some field
+          (such as <code>someString.equals(anotherString = "text")</code>).
         </p>
 
         <p>
           Rationale: Calling the <code>equals()</code>
           method on String literals will avoid a potential
-          NullPointerException.  Also, it is pretty common to see null
+          NullPointerException. Also, it is pretty common to see null
           checks right before equals comparisons, which is not necessary
           in the example below.
         </p>
@@ -209,40 +209,6 @@ nullString.equals(&quot;My_Sweet_String&quot;);
 String nullString = null;
 &quot;My_Sweet_String&quot;.equals(nullString);
         </source>
-
-        <p>
-          Limitations: If the equals method is overridden or a covariant
-          equals method is defined and the implementation is incorrect
-          (where <code>s.equals(t)</code> does not return
-          the same result as <code>t.equals(s)</code>) then
-          rearranging the called on object and parameter may have
-          unexpected results.
-        </p>
-
-        <p>
-          Java's autoboxing feature affects how this check is
-          implemented. Before Java 5, concatenations of two objects by name would not cause a NullPointerException
-          even if either object is null.  Those situations could have been included in this
-          check.  They would simply act as if they were surrounded by <code>String.valueOf()</code>
-          which would concatenate
-          the String null.
-        </p>
-        <p>
-          The following example will cause a NullPointerException as a
-          result of what autoboxing does.
-        </p>
-
-        <source>
-Integer i = null, j = null;
-String number = "5"
-number.equals(i + j);
-        </source>
-
-        <p>
-          Since it is difficult to determine what kind of Object is
-          being concatenated, all concatenations of two objects by name are considered
-          unsafe.
-        </p>
       </subsection>
 
       <subsection name="Properties">
@@ -935,7 +901,7 @@ class SomeClass
     <section name="MagicNumber">
       <subsection name="Description">
         <p>
-          Checks that there are no <a href="http://en.wikipedia.org/wiki/Magic_number_%28programming%29">
+          Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
           &quot;magic numbers&quot;</a> where a magic
           number is a numeric literal that is not defined as a constant.
           By default, -1, 0, 1, and 2 are not considered to be magic numbers.
@@ -991,6 +957,13 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><span class="default">false</span></td>
           </tr>
+          <tr>
+              <td>constantWaiverParentToken</td>
+              <td>Token that are allowed in the AST path from the number literal to the enclosing constant definition.</td>
+              <td>subset of tokens</td>
+              <td><span class="default">ASSIGN, ARRAY_INIT, EXPR, UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, STAR, DIV, PLUS,
+              MINUS, LITERAL_NEW, METHOD_CALL</span></td>
+          </tr>
         </table>
       </subsection>
 
@@ -1042,8 +1015,35 @@ class MyClass {
     }
 }
         </source>
+        <p>
+        Config Example for constantWaiverParentToken Option:
+        </p>
+        <source>
+        &lt;module name=&quot;MagicNumber&quot;&gt;
+            &lt;property name=&quot;constantWaiverParentToken&quot; value=&quot;ASSIGN,ARRAY_INIT,EXPR,
+            UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS &quot;/&gt;
+        &lt;/module&gt;
+        </source>
+        <p>result is following violation:</p>
+       <source>
+   class TestMethodCall {
+      public void method2() {
+           final TestMethodCall dummyObject = new TestMethodCall(62);    //violation
+           final int a = 3;        // ok as waiver is ASSIGN
+           final int [] b = {4, 5} // ok as waiver is ARRAY_INIT
+           final int c = -3;       // ok as waiver is UNARY_MINUS
+           final int d = +4;       // ok as waiver is UNARY_PLUS
+           final int e = method(1, 2) // ELIST is there but violation due to METHOD_CALL
+           final int x = 3 * 4;    // violation
+           final int y = 3 / 4;    // ok as waiver is DIV
+           final int z = 3 + 4;    // ok as waiver is PLUS
+           final int w = 3 - 4;    // violation
+           final int x = (int)(3.4);    //ok as waiver is TYPECAST
+      }
+   }
+       </source>
 
-      </subsection>
+  </subsection>
 
       <subsection name="Package">
         <p>
@@ -1112,7 +1112,7 @@ class MyClass {
             See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">FOR statement</a> specification for more details.
           </p>
         <p>
-            Such loop would be supressed:
+            Such loop would be suppressed:
         </p>
         <source>
             for (int i = 0; i &lt; 10;) {
@@ -1485,7 +1485,6 @@ if (&quot;something&quot;.equals(x))
         </p>
       </subsection>
     </section>
-
 
     <section name="NoClone">
       <subsection name="Description">
@@ -1925,14 +1924,11 @@ if (&quot;something&quot;.equals(x))
       <subsection name="Description">
         <p>
           Checks that particular classes are never used as types in variable
-          declarations, return values or parameters. Includes a pattern check
-          that by default disallows abstract classes.
+          declarations, return values or parameters.
         </p>
 
         <p>
-          Rationale: Helps reduce coupling on concrete classes. In addition
-          abstract classes should be thought of as convenient base class
-          implementations of interfaces, and as such, are not types themselves.
+          Rationale: Helps reduce coupling on concrete classes.
         </p>
       </subsection>
 
@@ -1964,6 +1960,12 @@ if (&quot;something&quot;.equals(x))
             </td>
           </tr>
           <tr>
+            <td>validateAbstractClassNames</td>
+            <td>Whether to validate abstract class names</td>
+            <td>boolean</td>
+            <td>false</td>
+          </tr>
+          <tr>
             <td>illegalClassNames</td>
             <td>Classes that should not be used as types in variable
             declarations, return values or parameters</td>
@@ -1976,7 +1978,7 @@ if (&quot;something&quot;.equals(x))
           <td>legalAbstractClassNames</td>
           <td>Abstract classes that may be used as types. </td>
           <td><a href="property_types.html#stringSet">String Set</a></td>
-          <td></td>
+          <td/>
         </tr>
         <tr>
             <td>ignoredMethodNames</td>
@@ -2057,6 +2059,10 @@ if (&quot;something&quot;.equals(x))
           <li> Constructors </li>
           <li> Methods </li>
         </ol>
+
+        <p>
+          Purpose of <b>ignore*</b> option is to ignore related violations, however it still impacts on other class members.
+        </p>
       </subsection>
 
       <subsection name="Properties">
@@ -2070,12 +2076,6 @@ if (&quot;something&quot;.equals(x))
           <tr>
             <td>ignoreConstructors</td>
             <td>whether to ignore constructors</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>ignoreMethods</td>
-            <td>whether to ignore methods</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
@@ -2095,6 +2095,39 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;DeclarationOrder&quot;/&gt;
         </source>
+
+        <p>
+        For example:
+        <source>
+            class K {
+                int a;
+                void m(){}
+                K(){}  &lt;-- "Constructor definition in wrong order"
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
+        <p>
+        With <b>ignoreConstructors</b> option:
+        <source>
+            class K {
+                int a;
+                void m(){}
+                K(){}
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
+        <p>
+        With <b>ignoreConstructors</b> option and without a method definition in a source class:
+        <source>
+            class K {
+                int a;
+                K(){}
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -2475,7 +2508,7 @@ case 5:
 
         <p>
           Rationale: <a
-          href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc5.html#2991">
+          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141270.html#2992">
           the Java code conventions chapter 6.1</a> recommends that
           declarations should be one per line/statement.
         </p>

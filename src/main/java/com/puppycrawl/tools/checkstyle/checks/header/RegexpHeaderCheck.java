@@ -29,11 +29,11 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Checks the header of the source against a header file that contains a
- * {@link java.util.regex.Pattern regular expression}
+ * {@link Pattern regular expression}
  * for each line of the source header. In default configuration,
  * if header is not specified, the default value of header is set to null
  * and the check does not rise any violations.
@@ -42,13 +42,25 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * @author o_sukhodolsky
  */
 public class RegexpHeaderCheck extends AbstractHeaderCheck {
-    /** empty array to avoid instantiations. */
+    /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
-    /** the compiled regular expressions */
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    private static final String MSG_HEADER_MISSING = "header.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    private static final String MSG_HEADER_MISMATCH = "header.mismatch";
+
+    /** The compiled regular expressions. */
     private final List<Pattern> headerRegexps = Lists.newArrayList();
 
-    /** the header lines to repeat (0 or more) in the check, sorted. */
+    /** The header lines to repeat (0 or more) in the check, sorted. */
     private int[] multiLines = EMPTY_INT_ARRAY;
 
     /**
@@ -56,7 +68,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      * @param list comma separated list of line numbers to repeat in header.
      */
     public void setMultiLines(int... list) {
-        if (list == null || list.length == 0) {
+        if (list.length == 0) {
             multiLines = EMPTY_INT_ARRAY;
             return;
         }
@@ -72,7 +84,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         final int fileSize = lines.size();
 
         if (headerSize - multiLines.length > fileSize) {
-            log(1, "header.missing");
+            log(1, MSG_HEADER_MISSING);
         }
         else {
             int headerLineNo = 0;
@@ -86,9 +98,9 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                             || isMatch(line, headerLineNo);
                 }
                 if (!isMatch) {
-                    log(i + 1, "header.mismatch", getHeaderLines().get(
+                    log(i + 1, MSG_HEADER_MISMATCH, getHeaderLines().get(
                             headerLineNo));
-                    break; // stop checking
+                    break;
                 }
                 if (!isMultiLine(headerLineNo)) {
                     headerLineNo++;
@@ -97,12 +109,21 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
             if (i == fileSize) {
                 // if file finished, but we have at least one non-multi-line
                 // header isn't completed
-                for (; headerLineNo < headerSize; headerLineNo++) {
-                    if (!isMultiLine(headerLineNo)) {
-                        log(1, "header.missing");
-                        break;
-                    }
-                }
+                logFirstSinglelineLine(headerLineNo, headerSize);
+            }
+        }
+    }
+
+    /**
+     * Logs warning if any non-multiline lines left in header regexp.
+     * @param startHeaderLine header line number to start from
+     * @param headerSize whole header size
+     */
+    private void logFirstSinglelineLine(int startHeaderLine, int headerSize) {
+        for (int lineNum = startHeaderLine; lineNum < headerSize; lineNum++) {
+            if (!isMultiLine(lineNum)) {
+                log(1, MSG_HEADER_MISSING);
+                break;
             }
         }
     }
@@ -119,21 +140,21 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
      * @param lineNo a line number
-     * @return if <code>lineNo</code> is one of the repeat header lines.
+     * @return if {@code lineNo} is one of the repeat header lines.
      */
     private boolean isMultiLine(int lineNo) {
         return Arrays.binarySearch(multiLines, lineNo + 1) >= 0;
     }
 
     @Override
-    protected void postprocessHeaderLines() {
+    protected void postProcessHeaderLines() {
         final List<String> headerLines = getHeaderLines();
         headerRegexps.clear();
         for (String line : headerLines) {
             try {
                 headerRegexps.add(Pattern.compile(line));
             }
-            catch (final PatternSyntaxException ex) {
+            catch (final PatternSyntaxException ignored) {
                 throw new ConversionException("line "
                         + (headerRegexps.size() + 1)
                         + " in header specification"
@@ -144,7 +165,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
      * Validates the {@code header} by compiling it with
-     * {@link Pattern#compile(java.lang.String) } and throws
+     * {@link Pattern#compile(String) } and throws
      * {@link PatternSyntaxException} if {@code header} isn't a valid pattern.
      * @param header the header value to validate and set (in that order)
      */
@@ -153,7 +174,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         if (StringUtils.isBlank(header)) {
             return;
         }
-        if (!Utils.isPatternValid(header)) {
+        if (!CommonUtils.isPatternValid(header)) {
             throw new ConversionException("Unable to parse format: " + header);
         }
         super.setHeader(header);

@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -56,7 +57,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSigleLineStatements() throws Exception {
+    public void testSingleLineStatements() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("allowSingleLineStatement", "true");
@@ -74,7 +75,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSigleLineLambda() throws Exception {
+    public void testSingleLineLambda() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LAMBDA");
@@ -88,7 +89,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSigleLineCaseDefault() throws Exception {
+    public void testSingleLineCaseDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
@@ -105,8 +106,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_WHILE, LITERAL_DO, LITERAL_FOR");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNeedBracesCheckTest.java"), expected);
     }
 

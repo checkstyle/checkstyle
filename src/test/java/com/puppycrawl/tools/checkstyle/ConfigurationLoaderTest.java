@@ -22,39 +22,55 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.xml.sax.Attributes;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
+ * Unit test for ConfigurationLoader.
  * @author Rick Giles
  * @author lkuehne
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ ConfigurationLoader.class, ConfigurationLoaderTest.class })
 public class ConfigurationLoaderTest {
-    private Configuration loadConfiguration(String name)
+
+    private static Configuration loadConfiguration(String name)
         throws CheckstyleException {
         return loadConfiguration(name, new Properties());
     }
 
-    private Configuration loadConfiguration(
+    private static Configuration loadConfiguration(
         String name, Properties props) throws CheckstyleException {
         final String fName =
             "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + name;
 
         return ConfigurationLoader.loadConfiguration(
-            fName, new PropertiesExpander(props));
+                fName, new PropertiesExpander(props));
     }
-
 
     @Test
     public void testResourceLoadConfiguration() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         // load config that's only found in the classpath
         final DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
@@ -62,8 +78,8 @@ public class ConfigurationLoaderTest {
 
         //verify the root, and property substitution
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 3, atts);
     }
 
@@ -126,14 +142,14 @@ public class ConfigurationLoaderTest {
             assertTrue(
                 ex.getMessage().endsWith(
                     "Document root element \"property\", must match DOCTYPE "
-                        + "root \"module\".:7:38"));
+                        + "root \"module\".:8:38"));
         }
     }
 
     @Test
     public void testCheckstyleChecks() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
@@ -141,8 +157,8 @@ public class ConfigurationLoaderTest {
 
         //verify the root, and property substitution
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 3, atts);
 
         //verify children
@@ -152,7 +168,7 @@ public class ConfigurationLoaderTest {
             (DefaultConfiguration) children[1], "JavadocPackage", 0, atts);
         verifyConfigNode(
             (DefaultConfiguration) children[2], "Translation", 0, atts);
-        atts.put("testName", "testValue");
+        atts.setProperty("testName", "testValue");
         verifyConfigNode(
             (DefaultConfiguration) children[0],
             "TreeWalker",
@@ -167,15 +183,15 @@ public class ConfigurationLoaderTest {
             "AvoidStarImport",
             0,
             atts);
-        atts.put("format", "System.out.println");
+        atts.setProperty("format", "System.out.println");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[grandchildren.length - 1],
             "GenericIllegalRegexp",
             0,
             atts);
         atts.clear();
-        atts.put("tokens", "DOT");
-        atts.put("allowLineBreaks", "true");
+        atts.setProperty("tokens", "DOT");
+        atts.setProperty("allowLineBreaks", "true");
         verifyConfigNode(
             (DefaultConfiguration) grandchildren[6],
             "NoWhitespaceAfter",
@@ -186,7 +202,7 @@ public class ConfigurationLoaderTest {
     @Test
     public void testCustomMessages() throws CheckstyleException {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
@@ -195,12 +211,11 @@ public class ConfigurationLoaderTest {
         final Configuration[] children = config.getChildren();
         final Configuration[] grandchildren = children[0].getChildren();
 
-        assertTrue(((DefaultConfiguration) grandchildren[0]).getMessages()
+        assertTrue(grandchildren[0].getMessages()
             .containsKey("name.invalidPattern"));
     }
 
-
-    private void verifyConfigNode(
+    private static void verifyConfigNode(
         DefaultConfiguration config, String name, int childrenLength,
         Properties atts) throws Exception {
         assertEquals("name.", name, config.getName());
@@ -212,11 +227,11 @@ public class ConfigurationLoaderTest {
         final String[] attNames = config.getAttributeNames();
         assertEquals("attributes.length", atts.size(), attNames.length);
 
-        for (int i = 0; i < attNames.length; i++) {
+        for (String attName : attNames) {
             assertEquals(
-                "attribute[" + attNames[i] + "]",
-                atts.get(attNames[i]),
-                config.getAttribute(attNames[i]));
+                "attribute[" + attName + "]",
+                atts.getProperty(attName),
+                config.getAttribute(attName));
         }
     }
 
@@ -226,10 +241,10 @@ public class ConfigurationLoaderTest {
         final String[] testValues = {null, "", "a", "$a", "{a",
                                      "{a}", "a}", "$a}", "$", "a$b", };
         final Properties props = initProperties();
-        for (int i = 0; i < testValues.length; i++) {
+        for (String testValue : testValues) {
             final String value = ConfigurationLoader.replaceProperties(
-                testValues[i], new PropertiesExpander(props), null);
-            assertEquals("\"" + testValues[i] + "\"", value, testValues[i]);
+                testValue, new PropertiesExpander(props), null);
+            assertEquals("\"" + testValue + "\"", value, testValue);
         }
     }
 
@@ -277,66 +292,229 @@ public class ConfigurationLoaderTest {
             {"$$", "$"},
         };
         final Properties props = initProperties();
-        for (int i = 0; i < testValues.length; i++) {
+        for (String[] testValue : testValues) {
             final String value = ConfigurationLoader.replaceProperties(
-                testValues[i][0], new PropertiesExpander(props), null);
-            assertEquals("\"" + testValues[i][0] + "\"",
-                testValues[i][1], value);
+                testValue[0], new PropertiesExpander(props), null);
+            assertEquals("\"" + testValue[0] + "\"",
+                testValue[1], value);
         }
     }
 
-    private Properties initProperties() {
+    private static Properties initProperties() {
         final Properties props = new Properties();
-        props.put("a", "A");
-        props.put("b", "B");
+        props.setProperty("a", "A");
+        props.setProperty("b", "B");
         return props;
     }
 
     @Test
     public void testExternalEntity() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
                 "including.xml", props);
 
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 2, atts);
     }
 
     @Test
     public void testExternalEntitySubdir() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration(
                 "subdir/including.xml", props);
 
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 2, atts);
     }
 
     @Test
     public void testExternalEntityFromURI() throws Exception {
         final Properties props = new Properties();
-        props.put("checkstyle.basedir", "basedir");
+        props.setProperty("checkstyle.basedir", "basedir");
 
         final File file = new File(
                 "src/test/resources/com/puppycrawl/tools/checkstyle/configs/subdir/including.xml");
         final DefaultConfiguration config =
             (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                file.toURI().toString(), new PropertiesExpander(props));
+                    file.toURI().toString(), new PropertiesExpander(props));
 
         final Properties atts = new Properties();
-        atts.put("tabWidth", "4");
-        atts.put("basedir", "basedir");
+        atts.setProperty("tabWidth", "4");
+        atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 2, atts);
     }
 
+    @Test
+    public void testIncorrectTag() throws Exception {
+        try {
+            Class<?> aClassParent = ConfigurationLoader.class;
+            Constructor<?> ctorParent = null;
+            Constructor<?>[] parentConstructors = aClassParent.getDeclaredConstructors();
+            for (Constructor<?> constr: parentConstructors) {
+                constr.setAccessible(true);
+                ctorParent = constr;
+            }
+            Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
+                    + "ConfigurationLoader$InternalLoader");
+            Constructor<?> constructor = null;
+            Constructor<?>[] constructors = aClass.getDeclaredConstructors();
+            for (Constructor<?> constr: constructors) {
+                constr.setAccessible(true);
+                constructor = constr;
+            }
+
+            Class<?>[] param = new Class<?>[4];
+            param[0] = String.class;
+            param[1] = String.class;
+            param[2] = String.class;
+            param[3] = Attributes.class;
+            Method method = aClass.getDeclaredMethod("startElement", param);
+            Object objParent = ctorParent.newInstance(null, true);
+            Object obj = constructor.newInstance(objParent);
+
+            method.invoke(obj, "", "", "hello", null);
+
+            fail("Exception is expected");
+
+        }
+        catch (InvocationTargetException e) {
+            assertTrue(e.getCause() instanceof IllegalStateException);
+            assertEquals("Unknown name:" + "hello" + ".", e.getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testNonExistingPropertyName() {
+        try {
+            loadConfiguration("config_nonexisting_property.xml");
+            fail("exception in expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("unable to parse configuration stream", ex.getMessage());
+            assertEquals("Property ${nonexisting} has not been set",
+                    ex.getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testConfigWithIgnore() throws CheckstyleException {
+
+        final DefaultConfiguration config =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                        "src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
+                                + "config_with_ignore.xml",
+                        new PropertiesExpander(new Properties()), true);
+
+        final Configuration[] children = config.getChildren();
+        assertEquals(0, children[0].getChildren().length);
+    }
+
+    @Test
+    public void testConfigCheckerWithIgnore() throws CheckstyleException {
+
+        final DefaultConfiguration config =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                        "src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
+                                + "config_with_checker_ignore.xml",
+                        new PropertiesExpander(new Properties()), true);
+
+        final Configuration[] children = config.getChildren();
+        assertEquals(0, children.length);
+    }
+
+    @Test
+    public void testLoadConfiguration_WrongURL() throws CheckstyleException {
+        try {
+            final DefaultConfiguration config =
+                    (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                            ";config_with_ignore.xml",
+                            new PropertiesExpander(new Properties()), true);
+
+            final Configuration[] children = config.getChildren();
+            assertEquals(0, children[0].getChildren().length);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("unable to find ;config_with_ignore.xml", ex.getMessage());
+        }
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testLoadConfiguration_URISyntaxException() throws CheckstyleException {
+        mockStatic(ConfigurationLoader.class, Mockito.CALLS_REAL_METHODS);
+
+        PropertiesExpander expander = new PropertiesExpander(new Properties());
+
+        when(ConfigurationLoader.class.getResource("config_with_ignore.xml"))
+                .thenThrow(URISyntaxException.class);
+
+        try {
+            ConfigurationLoader.loadConfiguration(
+                    "config_with_ignore.xml", expander, true);
+
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof  URISyntaxException);
+            assertEquals("unable to find config_with_ignore.xml", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testLoadConfiguration_Deprecated() throws CheckstyleException {
+        try {
+            @SuppressWarnings("deprecation")
+            final DefaultConfiguration config =
+                    (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                            new FileInputStream(
+                                    "src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
+                                    + "config_with_ignore.xml"),
+                            new PropertiesExpander(new Properties()), true);
+
+            final Configuration[] children = config.getChildren();
+            assertEquals(0, children[0].getChildren().length);
+        }
+        catch (CheckstyleException | FileNotFoundException ex) {
+            fail("unexpected exception");
+        }
+    }
+
+    @Test
+    public void testReplacePropertiesDefault() throws Exception {
+        final Properties props = new Properties();
+        String defaultValue = "defaultValue";
+
+        String value = ConfigurationLoader.replaceProperties("${checkstyle.basedir}",
+                new PropertiesExpander(props), defaultValue);
+
+        assertEquals(defaultValue, value);
+    }
+
+    @Test
+    public void testLoadConfigurationFromClassPath() throws CheckstyleException {
+        try {
+            final DefaultConfiguration config =
+                    (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                            "/com/puppycrawl/tools/checkstyle/configs/"
+                                    + "config_with_ignore.xml",
+                            new PropertiesExpander(new Properties()), true);
+
+            final Configuration[] children = config.getChildren();
+            assertEquals(0, children[0].getChildren().length);
+        }
+        catch (CheckstyleException ex) {
+            fail("unexpected exception");
+        }
+    }
 }

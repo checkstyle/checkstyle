@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
@@ -60,46 +61,49 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
  * @author Oliver Burn
  */
 public class CheckstyleAntTask extends Task {
-    /** poor man's enum for an xml formatter */
+    /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
-    /** poor man's enum for an plain formatter */
+    /** Poor man's enum for an plain formatter. */
     private static final String E_PLAIN = "plain";
 
-    /** class path to locate class files */
+    /** Suffix for time string. */
+    private static final String TIME_SUFFIX = " ms.";
+
+    /** Class path to locate class files. */
     private Path classpath;
 
-    /** name of file to check */
+    /** Name of file to check. */
     private String fileName;
 
-    /** config file containing configuration */
+    /** Config file containing configuration. */
     private String configLocation;
 
-    /** whether to fail build on violations */
+    /** Whether to fail build on violations. */
     private boolean failOnViolation = true;
 
-    /** property to set on violations */
+    /** Property to set on violations. */
     private String failureProperty;
 
-    /** contains the filesets to process */
+    /** Contains the filesets to process. */
     private final List<FileSet> fileSets = Lists.newArrayList();
 
-    /** contains the formatters to log to */
+    /** Contains the formatters to log to. */
     private final List<Formatter> formatters = Lists.newArrayList();
 
-    /** contains the Properties to override */
+    /** Contains the Properties to override. */
     private final List<Property> overrideProps = Lists.newArrayList();
 
-    /** the name of the properties file */
-    private File propertiesFile;
+    /** The name of the properties file. */
+    private File properties;
 
-    /** the maximum number of errors that are tolerated. */
+    /** The maximum number of errors that are tolerated. */
     private int maxErrors;
 
-    /** the maximum number of warnings that are tolerated. */
+    /** The maximum number of warnings that are tolerated. */
     private int maxWarnings = Integer.MAX_VALUE;
 
     /**
-     * whether to omit ignored modules - some modules may log tove
+     * Whether to omit ignored modules - some modules may log tove
      * their severity depending on their configuration (e.g. WriteTag) so
      * need to be included
      */
@@ -119,7 +123,10 @@ public class CheckstyleAntTask extends Task {
         failureProperty = propertyName;
     }
 
-    /** @param fail whether to fail if a violation is found */
+    /**
+     * Sets flag - whether to fail if a violation is found.
+     * @param fail whether to fail if a violation is found
+     */
     public void setFailOnViolation(boolean fail) {
         failOnViolation = fail;
     }
@@ -133,7 +140,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Sets the maximum number of warings allowed. Default is
+     * Sets the maximum number of warnings allowed. Default is
      * {@link Integer#MAX_VALUE}.
      * @param maxWarnings the maximum number of warnings allowed.
      */
@@ -142,7 +149,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Adds uset of files (nested fileset attribute).
+     * Adds set of files (nested fileset attribute).
      * @param fS the file set to add
      */
     public void addFileset(FileSet fS) {
@@ -167,7 +174,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Set the class path.
-     * @param classpath the path to locate cluses
+     * @param classpath the path to locate classes
      */
     public void setClasspath(Path classpath) {
         if (this.classpath == null) {
@@ -186,7 +193,10 @@ public class CheckstyleAntTask extends Task {
         createClasspath().setRefid(classpathRef);
     }
 
-    /** @return a created path for locating cluses */
+    /**
+     * Creates classpath.
+     * @return a created path for locating classes
+     */
     public Path createClasspath() {
         if (classpath == null) {
             classpath = new Path(getProject());
@@ -194,17 +204,26 @@ public class CheckstyleAntTask extends Task {
         return classpath.createPath();
     }
 
-    /** @param file the file to be checked */
+    /**
+     * Sets file to be checked.
+     * @param file the file to be checked
+     */
     public void setFile(File file) {
         fileName = file.getAbsolutePath();
     }
 
-    /** @param file the configuration file to use */
+    /**
+     * Sets configuration file.
+     * @param file the configuration file to use
+     */
     public void setConfig(File file) {
         setConfigLocation(file.getAbsolutePath());
     }
 
-    /** @param url the URL of the configuration to use */
+    /**
+     * Sets URL to the configuration.
+     * @param url the URL of the configuration to use
+     */
     public void setConfigURL(URL url) {
         setConfigLocation(url.toExternalForm());
     }
@@ -221,7 +240,10 @@ public class CheckstyleAntTask extends Task {
         configLocation = location;
     }
 
-    /** @param omit whether to omit ignored modules */
+    /**
+     * Sets flag - whether to omit ignored modules.
+     * @param omit whether to omit ignored modules
+     */
     public void setOmitIgnoredModules(boolean omit) {
         omitIgnoredModules = omit;
     }
@@ -236,7 +258,7 @@ public class CheckstyleAntTask extends Task {
      * @param props the properties File to use
      */
     public void setProperties(File props) {
-        propertiesFile = props;
+        properties = props;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -244,100 +266,120 @@ public class CheckstyleAntTask extends Task {
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void execute() throws BuildException {
+    public void execute() {
         final long startTime = System.currentTimeMillis();
 
         try {
-            realExecute();
+            // output version info in debug mode
+            final ResourceBundle compilationProperties = ResourceBundle
+                    .getBundle("checkstylecompilation");
+            final String version = compilationProperties
+                    .getString("checkstyle.compile.version");
+            final String compileTimestamp = compilationProperties
+                    .getString("checkstyle.compile.timestamp");
+            log("checkstyle version " + version, Project.MSG_VERBOSE);
+            log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
+
+            // Check for no arguments
+            if (fileName == null && fileSets.isEmpty()) {
+                throw new BuildException(
+                        "Must specify at least one of 'file' or nested 'fileset'.",
+                        getLocation());
+            }
+            if (configLocation == null) {
+                throw new BuildException("Must specify 'config'.", getLocation());
+            }
+            realExecute(version);
         }
         finally {
             final long endTime = System.currentTimeMillis();
-            log("Total execution took " + (endTime - startTime) + " ms.",
+            log("Total execution took " + (endTime - startTime) + TIME_SUFFIX,
                 Project.MSG_VERBOSE);
         }
     }
 
     /**
      * Helper implementation to perform execution.
+     * @param checkstyleVersion Checkstyle compile version.
      */
-    private void realExecute() {
-        // output version info in debug mode
-        final ResourceBundle compilationProperties = ResourceBundle
-                .getBundle("checkstylecompilation");
-        final String version = compilationProperties
-                .getString("checkstyle.compile.version");
-        final String compileTimestamp = compilationProperties
-                .getString("checkstyle.compile.timestamp");
-        log("checkstyle version " + version, Project.MSG_VERBOSE);
-        log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
-
-        // Check for no arguments
-        if (fileName == null && fileSets.isEmpty()) {
-            throw new BuildException(
-                    "Must specify at least one of 'file' or nested 'fileset'.",
-                    getLocation());
-        }
-
-        if (configLocation == null) {
-            throw new BuildException("Must specify 'config'.", getLocation());
-        }
-
+    private void realExecute(String checkstyleVersion) {
         // Create the checker
-        Checker c = null;
+        Checker checker = null;
         try {
-            c = createChecker();
+            checker = createChecker();
 
+            // setup the listeners
+            final AuditListener[] listeners = getListeners();
+            for (AuditListener element : listeners) {
+                checker.addListener(element);
+            }
             final SeverityLevelCounter warningCounter =
                 new SeverityLevelCounter(SeverityLevel.WARNING);
-            c.addListener(warningCounter);
+            checker.addListener(warningCounter);
 
-            // Process the files
-            long startTime = System.currentTimeMillis();
-            final List<File> files = scanFileSets();
-            long endTime = System.currentTimeMillis();
-            log("To locate the files took " + (endTime - startTime) + " ms.",
-                Project.MSG_VERBOSE);
-
-            log("Running Checkstyle " + version + " on " + files.size()
-                    + " files", Project.MSG_INFO);
-            log("Using configuration " + configLocation, Project.MSG_VERBOSE);
-
-            startTime = System.currentTimeMillis();
-            final int numErrs = c.process(files);
-            endTime = System.currentTimeMillis();
-            log("To process the files took " + (endTime - startTime) + " ms.",
-                Project.MSG_VERBOSE);
-            final int numWarnings = warningCounter.getCount();
-            final boolean ok = numErrs <= maxErrors
-                    && numWarnings <= maxWarnings;
-
-            // Handle the return status
-            if (!ok) {
-                final String failureMsg =
-                        "Got " + numErrs + " errors and " + numWarnings
-                                + " warnings.";
-                if (failureProperty != null) {
-                    getProject().setProperty(failureProperty, failureMsg);
-                }
-
-                if (failOnViolation) {
-                    throw new BuildException(failureMsg, getLocation());
-                }
-            }
+            processFiles(checker, warningCounter, checkstyleVersion);
         }
         finally {
-            if (c != null) {
-                c.destroy();
+            if (checker != null) {
+                checker.destroy();
             }
         }
     }
 
     /**
-     * Creates new instance of <code>Checker</code>.
-     * @return new instance of <code>Checker</code>
+     * Scans and processes files by means given checker.
+     * @param checker Checker to process files
+     * @param warningCounter Checker's counter of warnings
+     * @param checkstyleVersion Checkstyle compile version
+     */
+    private void processFiles(Checker checker, final SeverityLevelCounter warningCounter,
+            final String checkstyleVersion) {
+        final long startTime = System.currentTimeMillis();
+        final List<File> files = scanFileSets();
+        final long endTime = System.currentTimeMillis();
+        log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
+            Project.MSG_VERBOSE);
+
+        log("Running Checkstyle " + checkstyleVersion + " on " + files.size()
+                + " files", Project.MSG_INFO);
+        log("Using configuration " + configLocation, Project.MSG_VERBOSE);
+
+        int numErrs;
+
+        try {
+            final long processingStartTime = System.currentTimeMillis();
+            numErrs = checker.process(files);
+            final long processingEndTime = System.currentTimeMillis();
+            log("To process the files took " + (processingEndTime - processingStartTime)
+                + TIME_SUFFIX, Project.MSG_VERBOSE);
+        }
+        catch (CheckstyleException e) {
+            throw new BuildException("Unable to process files: " + files, e);
+        }
+        final int numWarnings = warningCounter.getCount();
+        final boolean ok = numErrs <= maxErrors && numWarnings <= maxWarnings;
+
+        // Handle the return status
+        if (!ok) {
+            final String failureMsg =
+                    "Got " + numErrs + " errors and " + numWarnings
+                            + " warnings.";
+            if (failureProperty != null) {
+                getProject().setProperty(failureProperty, failureMsg);
+            }
+
+            if (failOnViolation) {
+                throw new BuildException(failureMsg, getLocation());
+            }
+        }
+    }
+
+    /**
+     * Creates new instance of {@code Checker}.
+     * @return new instance of {@code Checker}
      */
     private Checker createChecker() {
-        Checker c = null;
+        Checker checker;
         try {
             final Properties props = createOverridingProperties();
             final Configuration config =
@@ -355,23 +397,15 @@ public class CheckstyleAntTask extends Task {
                 Checker.class.getClassLoader();
             context.add("moduleClassLoader", moduleClassLoader);
 
-            c = new Checker();
-
-            c.contextualize(context);
-            c.configure(config);
-
-            // setup the listeners
-            final AuditListener[] listeners = getListeners();
-            for (AuditListener element : listeners) {
-                c.addListener(element);
-            }
+            checker = new Checker();
+            checker.contextualize(context);
+            checker.configure(config);
         }
-        catch (final Exception e) {
-            throw new BuildException("Unable to create a Checker: "
-                    + e.getMessage(), e);
+        catch (final CheckstyleException e) {
+            throw new BuildException(String.format("Unable to create a Checker: "
+                    + "configLocation {%s}, classpath {%s}.", configLocation, classpath), e);
         }
-
-        return c;
+        return checker;
     }
 
     /**
@@ -384,15 +418,15 @@ public class CheckstyleAntTask extends Task {
         final Properties retVal = new Properties();
 
         // Load the properties file if specified
-        if (propertiesFile != null) {
+        if (properties != null) {
             FileInputStream inStream = null;
             try {
-                inStream = new FileInputStream(propertiesFile);
+                inStream = new FileInputStream(properties);
                 retVal.load(inStream);
             }
             catch (final IOException e) {
                 throw new BuildException("Error loading Properties file '"
-                        + propertiesFile + "'", e, getLocation());
+                        + properties + "'", e, getLocation());
             }
             finally {
                 Closeables.closeQuietly(inStream);
@@ -400,15 +434,15 @@ public class CheckstyleAntTask extends Task {
         }
 
         // override with Ant properties like ${basedir}
-        final Map<String, Object> antProps = this.getProject().getProperties();
+        final Map<String, Object> antProps = getProject().getProperties();
         for (Map.Entry<String, Object> entry : antProps.entrySet()) {
             final String value = String.valueOf(entry.getValue());
-            retVal.put(entry.getKey(), value);
+            retVal.setProperty(entry.getKey(), value);
         }
 
         // override with properties specified in subelements
         for (Property p : overrideProps) {
-            retVal.put(p.getKey(), p.getValue());
+            retVal.setProperty(p.getKey(), p.getValue());
         }
 
         return retVal;
@@ -417,35 +451,35 @@ public class CheckstyleAntTask extends Task {
     /**
      * Return the list of listeners set in this task.
      * @return the list of listeners.
-     * @throws ClassNotFoundException if an error occurs
-     * @throws InstantiationException if an error occurs
-     * @throws IllegalAccessException if an error occurs
-     * @throws IOException if an error occurs
      */
-    private AuditListener[] getListeners() throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException, IOException {
+    private AuditListener[] getListeners() {
         final int formatterCount = Math.max(1, formatters.size());
 
         final AuditListener[] listeners = new AuditListener[formatterCount];
 
         // formatters
-        if (formatters.isEmpty()) {
-            final OutputStream debug = new LogOutputStream(this,
-                    Project.MSG_DEBUG);
-            final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
-            listeners[0] = new DefaultLogger(debug, true, err, true);
-        }
-        else {
-            for (int i = 0; i < formatterCount; i++) {
-                final Formatter f = formatters.get(i);
-                listeners[i] = f.createListener(this);
+        try {
+            if (formatters.isEmpty()) {
+                final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
+                final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
+                listeners[0] = new DefaultLogger(debug, true, err, true);
             }
+            else {
+                for (int i = 0; i < formatterCount; i++) {
+                    final Formatter formatter = formatters.get(i);
+                    listeners[i] = formatter.createListener(this);
+                }
+            }
+        }
+        catch (IOException e) {
+            throw new BuildException(String.format("Unable to create listeners: "
+                    + "formatters {%s}.", formatters), e);
         }
         return listeners;
     }
 
     /**
-     * returns the list of files (full path name) to process.
+     * Returns the list of files (full path name) to process.
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
@@ -480,7 +514,7 @@ public class CheckstyleAntTask extends Task {
      * @author Oliver Burn
      */
     public static class FormatterType extends EnumeratedAttribute {
-        /** my possible values */
+        /** My possible values. */
         private static final String[] VALUES = {E_XML, E_PLAIN};
 
         @Override
@@ -494,9 +528,9 @@ public class CheckstyleAntTask extends Task {
      * @author Oliver Burn
      */
     public static class Formatter {
-        /** the formatter type */
+        /** The formatter type. */
         private FormatterType formatterType;
-        /** the file to output to */
+        /** The file to output to. */
         private File toFile;
         /** Whether or not the write to the named file. */
         private boolean useFile = true;
@@ -545,6 +579,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Creates default logger.
          * @param task the task to possibly log to
          * @return a DefaultLogger instance
          * @throws IOException if an error occurs
@@ -560,6 +595,7 @@ public class CheckstyleAntTask extends Task {
         }
 
         /**
+         * Creates XML logger.
          * @param task the task to possibly log to
          * @return an XMLLogger instance
          * @throws IOException if an error occurs
@@ -577,50 +613,71 @@ public class CheckstyleAntTask extends Task {
      * Represents a property that consists of a key and value.
      */
     public static class Property {
-        /** the property key */
+        /** The property key. */
         private String key;
-        /** the property value */
+        /** The property value. */
         private String value;
 
-        /** @return the property key */
+        /**
+         * Gets key.
+         * @return the property key
+         */
         public String getKey() {
             return key;
         }
 
-        /** @param key sets the property key */
+        /**
+         * Sets key.
+         * @param key sets the property key
+         */
         public void setKey(String key) {
             this.key = key;
         }
 
-        /** @return the property value */
+        /**
+         * Gets value.
+         * @return the property value
+         */
         public String getValue() {
             return value;
         }
 
-        /** @param value set the property value */
+        /**
+         * Sets value.
+         * @param value set the property value
+         */
         public void setValue(String value) {
             this.value = value;
         }
 
-        /** @param value set the property value from a File */
-        public void setFile(File value) {
-            setValue(value.getAbsolutePath());
+        /**
+         * Sets the property value from a File.
+         * @param file set the property value from a File
+         */
+        public void setFile(File file) {
+            value = file.getAbsolutePath();
         }
     }
 
     /** Represents a custom listener. */
     public static class Listener {
-        /** classname of the listener class */
-        private String classname;
+        /** Class name of the listener class. */
+        private String className;
 
-        /** @return the classname */
+        /**
+         * Gets class name.
+         * @return the class name
+         */
         public String getClassname() {
-            return classname;
+            return className;
         }
 
-        /** @param classname set the classname */
-        public void setClassname(String classname) {
-            this.classname = classname;
+        /**
+         * Sets class name.
+         * @param name set the class name
+         */
+        public void setClassname(String name) {
+            className = name;
         }
     }
 }

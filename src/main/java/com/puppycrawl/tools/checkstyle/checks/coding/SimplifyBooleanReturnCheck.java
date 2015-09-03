@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-
 /**
  * <p>
  * Checks for overly complicated boolean return statements.
@@ -46,16 +45,21 @@ public class SimplifyBooleanReturnCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_KEY = "simplify.boolreturn";
-
-    @Override
-    public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.LITERAL_IF};
-    }
+    public static final String MSG_KEY = "simplify.boolReturn";
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_IF};
+    }
+
+    @Override
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -79,8 +83,8 @@ public class SimplifyBooleanReturnCheck
         final AST condition = ast.getFirstChild().getNextSibling();
         final AST thenStatement = condition.getNextSibling().getNextSibling();
 
-        if (returnsOnlyBooleanLiteral(thenStatement)
-            && returnsOnlyBooleanLiteral(elseStatement)) {
+        if (canReturnOnlyBooleanLiteral(thenStatement)
+            && canReturnOnlyBooleanLiteral(elseStatement)) {
             log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
         }
     }
@@ -89,7 +93,7 @@ public class SimplifyBooleanReturnCheck
      * Returns if an AST is a return statment with a boolean literal
      * or a compound statement that contains only such a return statement.
      *
-     * Returns <code>true</code> iff ast represents
+     * <p>Returns {@code true} iff ast represents
      * <br/>
      * <pre>
      * return true/false;
@@ -105,7 +109,7 @@ public class SimplifyBooleanReturnCheck
      * @param ast the sytax tree to check
      * @return if ast is a return statment with a boolean literal.
      */
-    private static boolean returnsOnlyBooleanLiteral(AST ast) {
+    private static boolean canReturnOnlyBooleanLiteral(AST ast) {
         if (isBooleanLiteralReturnStatement(ast)) {
             return true;
         }
@@ -115,30 +119,29 @@ public class SimplifyBooleanReturnCheck
     }
 
     /**
-     * Returns if an AST is a return statment with a boolean literal.
+     * Returns if an AST is a return statement with a boolean literal.
      *
-     * Returns <code>true</code> iff ast represents
+     * <p>Returns {@code true} iff ast represents
      * <br/>
      * <pre>
      * return true/false;
      * </pre>
      *
-     * @param ast the sytax tree to check
-     * @return if ast is a return statment with a boolean literal.
+     * @param ast the syntax tree to check
+     * @return if ast is a return statement with a boolean literal.
      */
     private static boolean isBooleanLiteralReturnStatement(AST ast) {
-        if (ast == null || ast.getType() != TokenTypes.LITERAL_RETURN) {
-            return false;
+        boolean booleanReturnStatement = false;
+
+        if (ast != null && ast.getType() == TokenTypes.LITERAL_RETURN) {
+            final AST expr = ast.getFirstChild();
+
+            if (expr.getType() != TokenTypes.SEMI) {
+                final AST value = expr.getFirstChild();
+                booleanReturnStatement = isBooleanLiteralType(value.getType());
+            }
         }
-
-        final AST expr = ast.getFirstChild();
-
-        if (expr == null || expr.getType() == TokenTypes.SEMI) {
-            return false;
-        }
-
-        final AST value = expr.getFirstChild();
-        return isBooleanLiteralType(value.getType());
+        return booleanReturnStatement;
     }
 
     /**

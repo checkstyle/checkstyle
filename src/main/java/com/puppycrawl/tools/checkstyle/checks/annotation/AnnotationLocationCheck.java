@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -57,7 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * to be located on the same line as target element. Default value is false.
  * </li>
  * </ul>
- * <br/>
+ * <br>
  * <p>
  * Example to allow single parameterless annotation on the same line:
  * </p>
@@ -75,7 +77,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    /&gt;
  * &lt;/module&gt;
  * </pre>
- * <br/>
+ * <br>
  * <p>
  * Example to allow multiple parameterized annotations on the same line:
  * </p>
@@ -93,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    /&gt;
  * &lt;/module&gt;
  * </pre>
- * <br/>
+ * <br>
  * <p>
  * Example to allow multiple parameterless annotations on the same line:
  * </p>
@@ -200,6 +202,11 @@ public class AnnotationLocationCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final DetailAST modifiersNode = ast.findFirstToken(TokenTypes.MODIFIERS);
 
@@ -238,8 +245,14 @@ public class AnnotationLocationCheck extends Check {
      * @return Some javadoc.
      */
     private boolean isCorrectLocation(DetailAST annotation, boolean hasParams) {
-        final boolean allowingCondition = hasParams ? allowSamelineParameterizedAnnotation
-            : allowSamelineSingleParameterlessAnnotation;
+        final boolean allowingCondition;
+
+        if (hasParams) {
+            allowingCondition = allowSamelineParameterizedAnnotation;
+        }
+        else {
+            allowingCondition = allowSamelineSingleParameterlessAnnotation;
+        }
         return allowingCondition && !hasNodeBefore(annotation)
             || !allowingCondition && !hasNodeBeside(annotation)
             || allowSamelineMultipleAnnotations;
@@ -251,11 +264,11 @@ public class AnnotationLocationCheck extends Check {
      * @return Some javadoc.
      */
     private static String getAnnotationName(DetailAST annotation) {
-        DetailAST idenNode = annotation.findFirstToken(TokenTypes.IDENT);
-        if (idenNode == null) {
-            idenNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
+        DetailAST identNode = annotation.findFirstToken(TokenTypes.IDENT);
+        if (identNode == null) {
+            identNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
         }
-        return idenNode.getText();
+        return identNode.getText();
     }
 
     /**

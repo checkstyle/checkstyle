@@ -38,7 +38,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class LineWrappingHandler {
 
     /**
-     * The current instance of <code>IndentationCheck</code> class using this
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    private static final String MSG_INDENTATION_ERROR = "indentation.error";
+
+    /**
+     * The current instance of {@code IndentationCheck} class using this
      * handler. This field used to get access to private fields of
      * IndentationCheck instance.
      */
@@ -47,22 +53,22 @@ public class LineWrappingHandler {
     /**
      * Root node for current expression.
      */
-    private DetailAST firstNode;
+    private final DetailAST firstNode;
 
     /**
      * Last node for current expression.
      */
-    private DetailAST lastNode;
+    private final DetailAST lastNode;
 
     /**
      * User's value of line wrapping indentation.
      */
-    private int indentLevel;
+    private final int indentLevel;
 
     /**
      * Force strict condition in line wrapping case.
      */
-    private boolean forceStrictCondition;
+    private final boolean forceStrictCondition;
 
     /**
      * Sets values of class field, finds last node and calculates indentation level.
@@ -83,7 +89,7 @@ public class LineWrappingHandler {
     }
 
     /**
-     *  Getter for lastNode field
+     *  Getter for lastNode field.
      *  @return lastNode field
      */
     protected final DetailAST getLastNode() {
@@ -96,14 +102,14 @@ public class LineWrappingHandler {
     public void checkIndentation() {
         final NavigableMap<Integer, DetailAST> firstNodesOnLines = collectFirstNodes();
 
-        final DetailAST firstNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
-        if (firstNode.getType() == TokenTypes.AT) {
-            checkAnnotationIndentation(firstNode, firstNodesOnLines);
+        final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
+        if (firstLineNode.getType() == TokenTypes.AT) {
+            checkAnnotationIndentation(firstLineNode, firstNodesOnLines);
         }
 
         // First node should be removed because it was already checked before.
         firstNodesOnLines.remove(firstNodesOnLines.firstKey());
-        final int firstNodeIndent = getFirstNodeIndent(firstNode);
+        final int firstNodeIndent = getFirstNodeIndent(firstLineNode);
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
@@ -259,14 +265,14 @@ public class LineWrappingHandler {
         if (forceStrictCondition) {
             if (currentNode.getColumnNo() != currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),
-                        "indentation.error", currentNode.getText(),
+                        MSG_INDENTATION_ERROR, currentNode.getText(),
                         currentNode.getColumnNo(), currentIndent);
             }
         }
         else {
             if (currentNode.getColumnNo() < currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),
-                        "indentation.error", currentNode.getText(),
+                        MSG_INDENTATION_ERROR, currentNode.getText(),
                         currentNode.getColumnNo(), currentIndent);
             }
         }

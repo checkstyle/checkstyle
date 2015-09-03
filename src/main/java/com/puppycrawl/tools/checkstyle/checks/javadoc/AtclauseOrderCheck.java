@@ -23,11 +23,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -69,6 +70,8 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_KEY = "at.clause.order";
 
+    /** Comma literal. */
+    private static final String COMMA_SEPARATOR = ",";
     /**
      * Default order of atclauses.
      */
@@ -104,9 +107,9 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     public void setTarget(String target) {
         final List<Integer> customTarget = new ArrayList<>();
-        final String[] sTarget = target.split(",");
-        for (int i = 0; i < sTarget.length; i++) {
-            customTarget.add(Utils.getTokenId(sTarget[i].trim()));
+        final String[] sTarget = target.split(COMMA_SEPARATOR);
+        for (String aSTarget : sTarget) {
+            customTarget.add(TokenUtils.getTokenId(aSTarget.trim()));
         }
         this.target = customTarget;
     }
@@ -117,11 +120,11 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     public void setTagOrder(String order) {
         final List<String> customOrder = new ArrayList<>();
-        final String[] sOrder = order.split(",");
-        for (int i = 0; i < sOrder.length; i++) {
-            customOrder.add(sOrder[i].trim());
+        final String[] sOrder = order.split(COMMA_SEPARATOR);
+        for (String aSOrder : sOrder) {
+            customOrder.add(aSOrder.trim());
         }
-        this.tagOrder = customOrder;
+        tagOrder = customOrder;
     }
 
     @Override
@@ -129,6 +132,16 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -146,12 +159,11 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     private void checkOrderInTagSection(DetailNode javadoc) {
         int indexOrderOfPreviousTag = 0;
-        int indexOrderOfCurrentTag = 0;
 
         for (DetailNode node : javadoc.getChildren()) {
             if (node.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                 final String tagText = JavadocUtils.getFirstChild(node).getText();
-                indexOrderOfCurrentTag = tagOrder.indexOf(tagText);
+                final int indexOrderOfCurrentTag = tagOrder.indexOf(tagText);
 
                 if (tagOrder.contains(tagText)
                         && indexOrderOfCurrentTag < indexOrderOfPreviousTag) {

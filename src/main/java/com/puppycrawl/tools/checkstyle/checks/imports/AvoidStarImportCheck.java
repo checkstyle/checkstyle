@@ -47,16 +47,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="allowStaticMemberImports" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * The optional "excludes" property allows for certain packages like
  * java.io or java.net to be exempted from the rule. It also is used to
  * allow certain classes like java.lang.Math or java.io.File to be
  * excluded in order to support static member imports.
  *
- * The optional "allowClassImports" when set to true, will allow starred
+ * <p>The optional "allowClassImports" when set to true, will allow starred
  * class imports but will not affect static member imports.
  *
- * The optional "allowStaticMemberImports" when set to true will allow
+ * <p>The optional "allowStaticMemberImports" when set to true will allow
  * starred static member imports but will not affect class imports.
  *
  * @author Oliver Burn
@@ -72,13 +71,16 @@ public class AvoidStarImportCheck
      */
     public static final String MSG_KEY = "import.avoidStar";
 
-    /** the packages/classes to exempt from this check. */
+    /** Suffix for the star import. */
+    private static final String STAR_IMPORT_SUFFIX = ".*";
+
+    /** The packages/classes to exempt from this check. */
     private final List<String> excludes = Lists.newArrayList();
 
-    /** whether to allow all class imports */
+    /** Whether to allow all class imports. */
     private boolean allowClassImports;
 
-    /** whether to allow all static member imports */
+    /** Whether to allow all static member imports. */
     private boolean allowStaticMemberImports;
 
     @Override
@@ -109,12 +111,18 @@ public class AvoidStarImportCheck
      * Sets the list of packages or classes to be exempt from the check.
      * The excludes can contain a .* or not.
      * @param excludesParam a list of package names/fully-qualifies class names
-     * where star imports are ok
+     *     where star imports are ok.
      */
     public void setExcludes(String... excludesParam) {
         excludes.clear();
+
         for (final String exclude : excludesParam) {
-            excludes.add(exclude.endsWith(".*") ? exclude : exclude + ".*");
+            if (exclude.endsWith(STAR_IMPORT_SUFFIX)) {
+                excludes.add(exclude);
+            }
+            else {
+                excludes.add(exclude + STAR_IMPORT_SUFFIX);
+            }
         }
     }
 
@@ -136,12 +144,12 @@ public class AvoidStarImportCheck
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (!allowClassImports && TokenTypes.IMPORT == ast.getType()) {
+        if (!allowClassImports && ast.getType() == TokenTypes.IMPORT) {
             final DetailAST startingDot = ast.getFirstChild();
             logsStarredImportViolation(startingDot);
         }
         else if (!allowStaticMemberImports
-            && TokenTypes.STATIC_IMPORT == ast.getType()) {
+            && ast.getType() == TokenTypes.STATIC_IMPORT) {
             // must navigate past the static keyword
             final DetailAST startingDot = ast.getFirstChild().getNextSibling();
             logsStarredImportViolation(startingDot);
@@ -156,7 +164,7 @@ public class AvoidStarImportCheck
     private void logsStarredImportViolation(DetailAST startingDot) {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
-        if (importText.endsWith(".*") && !excludes.contains(importText)) {
+        if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
             log(startingDot.getLineNo(), MSG_KEY, importText);
         }
     }

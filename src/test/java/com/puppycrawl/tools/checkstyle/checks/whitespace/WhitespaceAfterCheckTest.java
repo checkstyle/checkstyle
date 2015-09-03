@@ -21,7 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_TYPECAST;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +37,12 @@ public class WhitespaceAfterCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAfterCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -85,8 +93,7 @@ public class WhitespaceAfterCheckTest
 
     @Test
     public void test1322879() throws Exception {
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }

@@ -199,7 +199,7 @@ public final class ParameterAssignmentCheck extends Check {
      * @param ast ident to check.
      */
     private void checkIdent(DetailAST ast) {
-        if (parameterNames != null && !parameterNames.isEmpty()) {
+        if (!parameterNames.isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
             if (identAST != null
@@ -235,13 +235,13 @@ public final class ParameterAssignmentCheck extends Check {
         DetailAST parameterDefAST =
             ast.findFirstToken(TokenTypes.PARAMETER_DEF);
 
-        for (; parameterDefAST != null;
-             parameterDefAST = parameterDefAST.getNextSibling()) {
+        while (parameterDefAST != null) {
             if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);
                 parameterNames.add(param.getText());
             }
+            parameterDefAST = parameterDefAST.getNextSibling();
         }
     }
 }

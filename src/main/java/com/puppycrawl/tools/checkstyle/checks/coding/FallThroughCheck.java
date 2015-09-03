@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * The recognized relief comment can be configured with the property
- * <code>reliefPattern</code>. Default value of this regular expression
+ * {@code reliefPattern}. Default value of this regular expression
  * is "fallthru|fall through|fallthrough|falls through".
  * </p>
  * <p>
@@ -82,9 +82,9 @@ public class FallThroughCheck extends Check {
     public static final String MSG_FALL_THROUGH_LAST = "fall.through.last";
 
     /** Do we need to check last case group. */
-    private boolean checkLastGroup;
+    private boolean checkLastCaseGroup;
 
-    /** Relief pattern to allow fall throught to the next case branch. */
+    /** Relief pattern to allow fall through to the next case branch. */
     private String reliefPattern = "fallthru|falls? ?through";
 
     /** Relief regexp. */
@@ -120,7 +120,7 @@ public class FallThroughCheck extends Check {
      * @param value new value of the property.
      */
     public void setCheckLastCaseGroup(boolean value) {
-        checkLastGroup = value;
+        checkLastCaseGroup = value;
     }
 
     @Override
@@ -133,7 +133,7 @@ public class FallThroughCheck extends Check {
     public void visitToken(DetailAST ast) {
         final DetailAST nextGroup = ast.getNextSibling();
         final boolean isLastGroup = nextGroup.getType() != TokenTypes.CASE_GROUP;
-        if (isLastGroup && !checkLastGroup) {
+        if (isLastGroup && !checkLastCaseGroup) {
             // we do not need to check last group
             return;
         }
@@ -141,12 +141,12 @@ public class FallThroughCheck extends Check {
         final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
         if (slist != null && !isTerminated(slist, true, true)
-            && !hasFallTruComment(ast, nextGroup)) {
-            if (!isLastGroup) {
-                log(nextGroup, MSG_FALL_THROUGH);
+            && !hasFallThroughComment(ast, nextGroup)) {
+            if (isLastGroup) {
+                log(ast, MSG_FALL_THROUGH_LAST);
             }
             else {
-                log(ast, MSG_FALL_THROUGH_LAST);
+                log(nextGroup, MSG_FALL_THROUGH);
             }
         }
     }
@@ -161,29 +161,40 @@ public class FallThroughCheck extends Check {
      */
     private boolean isTerminated(final DetailAST ast, boolean useBreak,
                                  boolean useContinue) {
+        boolean terminated;
+
         switch (ast.getType()) {
             case TokenTypes.LITERAL_RETURN:
             case TokenTypes.LITERAL_THROW:
-                return true;
+                terminated = true;
+                break;
             case TokenTypes.LITERAL_BREAK:
-                return useBreak;
+                terminated = useBreak;
+                break;
             case TokenTypes.LITERAL_CONTINUE:
-                return useContinue;
+                terminated = useContinue;
+                break;
             case TokenTypes.SLIST:
-                return checkSlist(ast, useBreak, useContinue);
+                terminated = checkSlist(ast, useBreak, useContinue);
+                break;
             case TokenTypes.LITERAL_IF:
-                return checkIf(ast, useBreak, useContinue);
+                terminated = checkIf(ast, useBreak, useContinue);
+                break;
             case TokenTypes.LITERAL_FOR:
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_DO:
-                return checkLoop(ast);
+                terminated = checkLoop(ast);
+                break;
             case TokenTypes.LITERAL_TRY:
-                return checkTry(ast, useBreak, useContinue);
+                terminated = checkTry(ast, useBreak, useContinue);
+                break;
             case TokenTypes.LITERAL_SWITCH:
-                return checkSwitch(ast, useContinue);
+                terminated = checkSwitch(ast, useContinue);
+                break;
             default:
-                return false;
+                terminated = false;
         }
+        return terminated;
     }
 
     /**
@@ -238,7 +249,7 @@ public class FallThroughCheck extends Check {
      * @return true if loop is terminated.
      */
     private boolean checkLoop(final DetailAST ast) {
-        DetailAST loopBody = null;
+        DetailAST loopBody;
         if (ast.getType() == TokenTypes.LITERAL_DO) {
             final DetailAST lparen = ast.findFirstToken(TokenTypes.DO_WHILE);
             loopBody = lparen.getPreviousSibling();
@@ -256,7 +267,7 @@ public class FallThroughCheck extends Check {
      * @param ast loop to check
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
-     * @return true if try/cath/finally block is terminated.
+     * @return true if try/catch/finally block is terminated.
      */
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
@@ -299,16 +310,15 @@ public class FallThroughCheck extends Check {
     }
 
     /**
-     * Determines if the fall through case between <code>currentCase</code> and
-     * <code>nextCase</code> is reliefed by a appropriate comment.
+     * Determines if the fall through case between {@code currentCase} and
+     * {@code nextCase} is relieved by a appropriate comment.
      *
      * @param currentCase AST of the case that falls through to the next case.
      * @param nextCase AST of the next case.
      * @return True if a relief comment was found
      */
-    private boolean hasFallTruComment(DetailAST currentCase,
-            DetailAST nextCase) {
-
+    private boolean hasFallThroughComment(DetailAST currentCase, DetailAST nextCase) {
+        boolean allThroughComment = false;
         final int endLineNo = nextCase.getLineNo();
         final int endColNo = nextCase.getColumnNo();
 
@@ -329,33 +339,33 @@ public class FallThroughCheck extends Check {
          *    default:
          *    /+ FALLTHRU +/}
          */
-        final String linepart = lines[endLineNo - 1].substring(0, endColNo);
-        if (commentMatch(regExp, linepart, endLineNo)) {
-            return true;
+        final String linePart = lines[endLineNo - 1].substring(0, endColNo);
+        if (matchesComment(regExp, linePart, endLineNo)) {
+            allThroughComment = true;
         }
-
-        /*
-         * Handle:
-         *    case 1:
-         *    .....
-         *    // FALLTHRU
-         *    case 2:
-         *    ....
-         * and
-         *    switch(i) {
-         *    default:
-         *    // FALLTHRU
-         *    }
-         */
-        final int startLineNo = currentCase.getLineNo();
-        for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-            if (lines[i].trim().length() != 0) {
-                return commentMatch(regExp, lines[i], i + 1);
+        else {
+            /*
+             * Handle:
+             *    case 1:
+             *    .....
+             *    // FALLTHRU
+             *    case 2:
+             *    ....
+             * and
+             *    switch(i) {
+             *    default:
+             *    // FALLTHRU
+             *    }
+             */
+            final int startLineNo = currentCase.getLineNo();
+            for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
+                if (!lines[i].trim().isEmpty()) {
+                    allThroughComment = matchesComment(regExp, lines[i], i + 1);
+                    break;
+                }
             }
         }
-
-        // Well -- no relief comment found.
-        return false;
+        return allThroughComment;
     }
 
     /**
@@ -366,7 +376,7 @@ public class FallThroughCheck extends Check {
      * @param lineNo The line number in the file.
      * @return True if a match was found inside a comment.
      */
-    private boolean commentMatch(Pattern pattern, String line, int lineNo
+    private boolean matchesComment(Pattern pattern, String line, int lineNo
     ) {
         final Matcher matcher = pattern.matcher(line);
 

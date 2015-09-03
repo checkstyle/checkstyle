@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- *
  * Checks for empty line separators after header, package, all import declarations,
  * fields, constructors, methods, nested classes,
  * static initializers and instance initializers.
@@ -159,7 +160,7 @@ public class EmptyLineSeparatorCheck extends Check {
      */
     public static final String MSG_MULTIPLE_LINES = "empty.line.separator.multiple.lines";
 
-    /** */
+    /** Allows no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
     /** Allows multiple empty lines between class members. */
@@ -184,18 +185,7 @@ public class EmptyLineSeparatorCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.IMPORT,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -212,6 +202,11 @@ public class EmptyLineSeparatorCheck extends Check {
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -242,7 +237,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * process Package
+     * Process Package.
      * @param ast token
      * @param nextToken next token
      */
@@ -259,7 +254,7 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * process Import
+     * Process Import.
      * @param ast token
      * @param nextToken next token
      * @param astType token Type
@@ -274,23 +269,15 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * process Variable
+     * Process Variable.
      * @param ast token
      * @param nextToken next Token
      */
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
-        if (isTypeField(ast) && !hasEmptyLineAfter(ast)) {
-            if (allowNoEmptyLineBetweenFields
-                && nextToken.getType() != TokenTypes.VARIABLE_DEF
-                && nextToken.getType() != TokenTypes.RCURLY) {
-                log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                     nextToken.getText());
-            }
-            else if (!allowNoEmptyLineBetweenFields
-                     && nextToken.getType() != TokenTypes.RCURLY) {
-                log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                     nextToken.getText());
-            }
+        if (isTypeField(ast) && !hasEmptyLineAfter(ast)
+                && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
+            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                    nextToken.getText());
         }
         if (isTypeField(ast) && hasNotAllowedTwoEmptyLinesBefore(ast)) {
             log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
@@ -298,7 +285,20 @@ public class EmptyLineSeparatorCheck extends Check {
     }
 
     /**
-     * Checks if a token has empty two previous lines and multiple empty lines is not allowed
+     * Checks whether token placement violates policy of empty line between fields.
+     * @param detailAST token to be analyzed
+     * @return true if policy is violated and warning should be raised; false otherwise
+     */
+    private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
+        return allowNoEmptyLineBetweenFields
+                    && detailAST.getType() != TokenTypes.VARIABLE_DEF
+                    && detailAST.getType() != TokenTypes.RCURLY
+                || !allowNoEmptyLineBetweenFields
+                    && detailAST.getType() != TokenTypes.RCURLY;
+    }
+
+    /**
+     * Checks if a token has empty two previous lines and multiple empty lines is not allowed.
      * @param token DetailAST token
      * @return true, if token has empty two lines before and allowMultipleEmptyLines is false
      */
@@ -331,7 +331,7 @@ public class EmptyLineSeparatorCheck extends Check {
      */
     private static boolean hasEmptyLineAfter(DetailAST token) {
         DetailAST lastToken = token.getLastChild().getLastChild();
-        if (null == lastToken) {
+        if (lastToken == null) {
             lastToken = token.getLastChild();
         }
         return token.getNextSibling().getLineNo() - lastToken.getLineNo() > 1;

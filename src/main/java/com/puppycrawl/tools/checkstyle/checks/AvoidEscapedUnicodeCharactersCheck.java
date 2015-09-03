@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * "http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
  * Unicode escapes</a> (e.g. \u221e).
  * It is possible to allow using escapes for
- * <a href="http://en.wiktionary.org/wiki/Appendix:Control_characters">
+ * <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
  * non-printable(control) characters</a>.
  * Also, this check can be configured to allow using escapes
  * if trail comment is present. By the option it is possible to
@@ -106,26 +106,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class AvoidEscapedUnicodeCharactersCheck
     extends Check {
-    /** Regular expression for Unicode chars */
-    private static Pattern sUnicodeRegexp = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
+    /** Regular expression for Unicode chars. */
+    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
 
-    /** Regular expression Unicode control characters */
-    private static Pattern sUnicodeControl = Pattern.compile("\\\\(u|U)"
+    /** Regular expression Unicode control characters. */
+    private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\(u|U)"
             + "(00[0-1][0-1A-Fa-f]|00[8-9][0-9A-Fa-f]|034(f|F)|070(f|F)"
             + "|180(e|E)|200[b-fB-F]|202[b-eB-E]|206[0-4a-fA-F]"
             + "|[fF]{3}[9a-bA-B]|[fF][eE][fF]{2})");
 
-    /** Regular expression for trail comment */
-    private static Pattern sCommentRegexp = Pattern.compile(";[ ]*//+"
-            + "[a-zA-Z0-9 ]*|;[ ]*/[*]{1}+[a-zA-Z0-9 ]*");
+    /** Regular expression for trail comment. */
+    private static final Pattern COMMENT_REGEXP = Pattern.compile(";[ ]*//+"
+            + "[a-zA-Z0-9 ]*|;[ ]*/[*]+[a-zA-Z0-9 ]*");
 
-    /** Regular expression for all escaped chars */
-    private static Pattern sAllEscapedChars =
+    /** Regular expression for all escaped chars. */
+    private static final Pattern ALL_ESCAPED_CHARS =
             Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
-                    + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\\\"|\\\')+$");
+                    + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\"|\')+$");
 
-    /** Regular expression for non-printable unicode chars */
-    private static Pattern sNonPrintableChars = Pattern.compile("\\\\u1680|\\\\u2028"
+    /** Regular expression for non-printable unicode chars. */
+    private static final Pattern NON_PRINTABLE_CHARS = Pattern.compile("\\\\u1680|\\\\u2028"
             + "|\\\\u2029|\\\\u205(f|F)|\\\\u3000|\\\\u2007|\\\\u2000|\\\\u200(a|A)"
             + "|\\\\u007(F|f)|\\\\u009(f|F)|\\\\u(f|F){4}|\\\\u007(F|f)|\\\\u00(a|A)(d|D)"
             + "|\\\\u0600|\\\\u061(c|C)|\\\\u06(d|D){2}|\\\\u070(f|F)|\\\\u1680|\\\\u180(e|E)"
@@ -149,13 +149,13 @@ public class AvoidEscapedUnicodeCharactersCheck
     /** Allow use escapes for non-printable(control) characters.  */
     private boolean allowEscapesForControlCharacters;
 
-    /** Allow use escapes if trail comment is present*/
+    /** Allow use escapes if trail comment is present. */
     private boolean allowByTailComment;
 
-    /** Allow if all characters in literal are excaped*/
+    /** Allow if all characters in literal are escaped. */
     private boolean allowIfAllCharactersEscaped;
 
-    /** Allow escapes for space literals*/
+    /** Allow escapes for space literals. */
     private boolean allowNonPrintableEscapes;
 
     /**
@@ -192,12 +192,17 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -208,9 +213,9 @@ public class AvoidEscapedUnicodeCharactersCheck
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
                 || isAllCharactersEscaped(literal)
                 || allowEscapesForControlCharacters
-                        && isOnlyUnicodeValidChars(literal, sUnicodeControl)
+                        && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
                 || allowNonPrintableEscapes
-                        && isOnlyUnicodeValidChars(literal, sNonPrintableChars))) {
+                        && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
             log(ast.getLineNo(), "forbid.escaped.unicode.char");
         }
     }
@@ -221,21 +226,21 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true if literal has Unicode chars.
      */
     private static boolean hasUnicodeChar(String literal) {
-        return sUnicodeRegexp.matcher(literal).find();
+        return UNICODE_REGEXP.matcher(literal).find();
     }
 
     /**
      * Check if String literal contains Unicode control chars.
-     * @param literal String llteral.
+     * @param literal String literal.
      * @param pattern RegExp for valid characters.
      * @return true, if String literal contains Unicode control chars.
      */
     private static boolean isOnlyUnicodeValidChars(String literal, Pattern pattern) {
         final int unicodeMatchesCounter =
-                countMatches(sUnicodeRegexp, literal);
-        final int unicodeValidMatchesCouter =
+                countMatches(UNICODE_REGEXP, literal);
+        final int unicodeValidMatchesCounter =
                 countMatches(pattern, literal);
-        return unicodeMatchesCounter - unicodeValidMatchesCouter == 0;
+        return unicodeMatchesCounter - unicodeValidMatchesCounter == 0;
     }
 
     /**
@@ -244,7 +249,6 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true if trail comment is present after ast token.
      */
     private boolean hasTrailComment(DetailAST ast) {
-        boolean result = false;
         final DetailAST variableDef = getVariableDef(ast);
         DetailAST semi;
 
@@ -260,11 +264,12 @@ public class AvoidEscapedUnicodeCharactersCheck
             semi = getSemi(ast);
         }
 
+        boolean result = false;
         if (semi != null) {
             final int lineNo = semi.getLineNo();
             final String currentLine = getLine(lineNo - 1);
 
-            if (currentLine != null && sCommentRegexp.matcher(currentLine).find()) {
+            if (COMMENT_REGEXP.matcher(currentLine).find()) {
                 result = true;
             }
         }
@@ -273,10 +278,10 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     /**
-     * Count regexp matchers into String literal.
+     * Count regexp matches into String literal.
      * @param pattern pattern.
      * @param target String literal.
-     * @return count of regexp matchers.
+     * @return count of regexp matches.
      */
     private static int countMatches(Pattern pattern, String target) {
         int matcherCounter = 0;
@@ -325,7 +330,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
-                && sAllEscapedChars.matcher(literal.substring(1,
+                && ALL_ESCAPED_CHARS.matcher(literal.substring(1,
                         literal.length() - 1)).find();
     }
 }

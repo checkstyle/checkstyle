@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -49,25 +51,20 @@ public class TypeNameCheck
     extends AbstractAccessControlNameCheck {
 
     /**
-     * default pattern for type name.
+     * Default pattern for type name.
      */
     public static final String DEFAULT_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
 
     /**
-     * Creates a new <code>TypeNameCheck</code> instance.
+     * Creates a new {@code TypeNameCheck} instance.
      */
     public TypeNameCheck() {
         super(DEFAULT_PATTERN);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF,
-                          TokenTypes.INTERFACE_DEF,
-                          TokenTypes.ENUM_DEF,
-                          TokenTypes.ANNOTATION_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -77,5 +74,10 @@ public class TypeNameCheck
                           TokenTypes.ENUM_DEF,
                           TokenTypes.ANNOTATION_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 }

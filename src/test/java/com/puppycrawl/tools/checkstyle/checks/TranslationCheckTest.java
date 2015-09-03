@@ -22,10 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -33,9 +37,9 @@ public class TranslationCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration checkConfig) {
+        Configuration config) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(checkConfig);
+        dc.addChild(config);
         return dc;
     }
 
@@ -45,7 +49,7 @@ public class TranslationCheckTest
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY, "only.english"),
         };
-        final File[] propertyFiles = new File[] {
+        final File[] propertyFiles = {
             new File(getPath("messages_test_de.properties")),
             new File(getPath("messages_test.properties")),
         };
@@ -63,7 +67,7 @@ public class TranslationCheckTest
         final String[] expected = {
             "0: " + getCheckMessage(MSG_KEY, "only.english"),
         };
-        final File[] propertyFiles = new File[] {
+        final File[] propertyFiles = {
             new File(getPath("app-dev.properties")),
             new File(getPath("app-stage.properties")),
         };
@@ -72,6 +76,54 @@ public class TranslationCheckTest
             propertyFiles,
             getPath("app-dev.properties"),
             expected);
+    }
+
+    @Test
+    public void testOnePropertyFileSet() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final File[] propertyFiles = {
+            new File(getPath("app-dev.properties")),
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("app-dev.properties"),
+            expected);
+    }
+
+    @Test
+    public void testLogIOExceptionFileNotFound() throws Exception {
+        //I can't put wrong file here. Checkstyle fails before check started.
+        //I saw some usage of file or handling of wrong file in Checker, or somewhere
+        //in checks running part. So I had to do it with reflection to improve coverage.
+        TranslationCheck check = new TranslationCheck();
+        DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        check.configure(checkConfig);
+        Checker checker = createChecker(checkConfig);
+        check.setMessageDispatcher(checker);
+
+        Method loadKeys = check.getClass().getDeclaredMethod("loadKeys", File.class);
+        loadKeys.setAccessible(true);
+        loadKeys.invoke(check, new File(""));
+
+    }
+
+    @Test
+    public void testLogIOException() throws Exception {
+        //I can't put wrong file here. Checkstyle fails before check started.
+        //I saw some usage of file or handling of wrong file in Checker, or somewhere
+        //in checks running part. So I had to do it with reflection to improve coverage.
+        TranslationCheck check = new TranslationCheck();
+        DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        check.configure(checkConfig);
+        check.setMessageDispatcher(createChecker(checkConfig));
+
+        Method logIOException = check.getClass().getDeclaredMethod("logIOException",
+                IOException.class,
+                File.class);
+        logIOException.setAccessible(true);
+        logIOException.invoke(check, new IOException(), new File(""));
     }
 
 }

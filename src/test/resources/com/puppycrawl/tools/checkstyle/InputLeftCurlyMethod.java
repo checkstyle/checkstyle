@@ -87,4 +87,3 @@ enum InputLeftCurlyMethodEnum
                  String aTwo) {
     }
 }
-

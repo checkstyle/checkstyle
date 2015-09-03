@@ -19,79 +19,93 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport {
 
-    private final String MSG = getCheckMessage("forbid.escaped.unicode.char");
+    private final String msg = getCheckMessage("forbid.escaped.unicode.char");
+
+    @Test
+    public void testGetRequiredTokens() {
+        AvoidEscapedUnicodeCharactersCheck checkObj =
+            new AvoidEscapedUnicodeCharactersCheck();
+        int[] expected = {
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.CHAR_LITERAL,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
 
     @Test
     public void testDefault() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         final String[] expected = {
-            "7: " + MSG,
-            "9: " + MSG,
-            "11: " + MSG,
-            "15: " + MSG,
-            "16: " + MSG,
-            "20: " + MSG,
-            "24: " + MSG,
-            "25: " + MSG,
-            "27: " + MSG,
-            "31: " + MSG,
-            "32: " + MSG,
-            "33: " + MSG,
-            "34: " + MSG,
-            "42: " + MSG,
-            "59: " + MSG,
-            "60: " + MSG,
-            "61: " + MSG,
-            "62: " + MSG,
-            "72: " + MSG,
-            "73: " + MSG,
-            "74: " + MSG,
-            "75: " + MSG,
-            "76: " + MSG,
-            "77: " + MSG,
-            "79: " + MSG,
-            "82: " + MSG,
+            "7: " + msg,
+            "9: " + msg,
+            "11: " + msg,
+            "15: " + msg,
+            "16: " + msg,
+            "20: " + msg,
+            "24: " + msg,
+            "25: " + msg,
+            "27: " + msg,
+            "31: " + msg,
+            "32: " + msg,
+            "33: " + msg,
+            "34: " + msg,
+            "42: " + msg,
+            "59: " + msg,
+            "60: " + msg,
+            "61: " + msg,
+            "62: " + msg,
+            "72: " + msg,
+            "73: " + msg,
+            "74: " + msg,
+            "75: " + msg,
+            "76: " + msg,
+            "77: " + msg,
+            "79: " + msg,
+            "82: " + msg,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
 
     @Test
-    public void testAllowEscapesForControlCharacterst() throws Exception {
+    public void testAllowEscapesForControlCharacterSet() throws Exception {
         DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowEscapesForControlCharacters", "true");
         final String[] expected = {
-            "7: " + MSG,
-            "9: " + MSG,
-            "11: " + MSG,
-            "15: " + MSG,
-            "16: " + MSG,
-            "24: " + MSG,
-            "25: " + MSG,
-            "31: " + MSG,
-            "32: " + MSG,
-            "33: " + MSG,
-            "34: " + MSG,
-            "42: " + MSG,
-            "59: " + MSG,
-            "60: " + MSG,
-            "61: " + MSG,
-            "62: " + MSG,
-            "73: " + MSG,
-            "74: " + MSG,
-            "75: " + MSG,
-            "76: " + MSG,
-            "77: " + MSG,
-            "79: " + MSG,
-            "82: " + MSG,
+            "7: " + msg,
+            "9: " + msg,
+            "11: " + msg,
+            "15: " + msg,
+            "16: " + msg,
+            "24: " + msg,
+            "25: " + msg,
+            "31: " + msg,
+            "32: " + msg,
+            "33: " + msg,
+            "34: " + msg,
+            "42: " + msg,
+            "59: " + msg,
+            "60: " + msg,
+            "61: " + msg,
+            "62: " + msg,
+            "73: " + msg,
+            "74: " + msg,
+            "75: " + msg,
+            "76: " + msg,
+            "77: " + msg,
+            "79: " + msg,
+            "82: " + msg,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
@@ -102,24 +116,24 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowByTailComment", "true");
         final String[] expected = {
-            "7: " + MSG,
-            "15: " + MSG,
-            "24: " + MSG,
-            "31: " + MSG,
-            "33: " + MSG,
-            "34: " + MSG,
-            "59: " + MSG,
-            "60: " + MSG,
-            "61: " + MSG,
-            "62: " + MSG,
-            "72: " + MSG,
-            "73: " + MSG,
-            "74: " + MSG,
-            "75: " + MSG,
-            "76: " + MSG,
-            "77: " + MSG,
-            "79: " + MSG,
-            "82: " + MSG,
+            "7: " + msg,
+            "15: " + msg,
+            "24: " + msg,
+            "31: " + msg,
+            "33: " + msg,
+            "34: " + msg,
+            "59: " + msg,
+            "60: " + msg,
+            "61: " + msg,
+            "62: " + msg,
+            "72: " + msg,
+            "73: " + msg,
+            "74: " + msg,
+            "75: " + msg,
+            "76: " + msg,
+            "77: " + msg,
+            "79: " + msg,
+            "82: " + msg,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
@@ -130,15 +144,15 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowIfAllCharactersEscaped", "true");
         final String[] expected = {
-            "7: " + MSG,
-            "9: " + MSG,
-            "11: " + MSG,
-            "15: " + MSG,
-            "16: " + MSG,
-            "31: " + MSG,
-            "32: " + MSG,
-            "33: " + MSG,
-            "42: " + MSG,
+            "7: " + msg,
+            "9: " + msg,
+            "11: " + msg,
+            "15: " + msg,
+            "16: " + msg,
+            "31: " + msg,
+            "32: " + msg,
+            "33: " + msg,
+            "42: " + msg,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
@@ -149,19 +163,28 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowNonPrintableEscapes", "true");
         final String[] expected = {
-            "7: " + MSG,
-            "9: " + MSG,
-            "11: " + MSG,
-            "15: " + MSG,
-            "16: " + MSG,
-            "24: " + MSG,
-            "25: " + MSG,
-            "31: " + MSG,
-            "32: " + MSG,
-            "33: " + MSG,
-            "34: " + MSG,
-            "42: " + MSG,
+            "7: " + msg,
+            "9: " + msg,
+            "11: " + msg,
+            "15: " + msg,
+            "16: " + msg,
+            "24: " + msg,
+            "25: " + msg,
+            "31: " + msg,
+            "32: " + msg,
+            "33: " + msg,
+            "34: " + msg,
+            "42: " + msg,
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
     }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        int[] actual = check.getAcceptableTokens();
+        int[] expected = {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
+        assertArrayEquals(expected, actual);
+    }
+
 }

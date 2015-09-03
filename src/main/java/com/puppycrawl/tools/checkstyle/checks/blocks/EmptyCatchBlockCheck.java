@@ -21,22 +21,22 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
  * Checks for empty catch blocks. There are two options to make validation more precise:
  * </p>
- * <p>
- * <b>exceptionVariableName</b> - the name of variable associated with exception,
+ *
+ * <p><b>exceptionVariableName</b> - the name of variable associated with exception,
  * if Check meets variable name matching specified value - empty block is suppressed.<br>
  *  default value: &quot;^$&quot;
  * </p>
- * <p>
- * <b>commentFormat</b> - the format of the first comment inside empty catch
+ *
+ * <p><b>commentFormat</b> - the format of the first comment inside empty catch
  * block, if Check meets comment inside empty catch block matching specified format
  *  - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.<br>
  * default value: &quot;.*&quot;<br>
@@ -55,22 +55,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;ignore|expected;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * Such empty blocks would be both suppressed:<br>
+ *
+ * <p>Such empty blocks would be both suppressed:<br>
  * </p>
  * <pre>
- * <code>
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException expected) {
  * }
- * </code>
- * <code>
+ * }
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException ignore) {
  * }
- * </code>
+ * }
  * </pre>
  * <p>
  * To configure the Check to suppress empty catch block if single-line comment inside
@@ -81,17 +81,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * Such empty block would be suppressed:<br>
+ *
+ * <p>Such empty block would be suppressed:<br>
  * </p>
  * <pre>
- * <code>
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException e) {
  *     //This is expected
  * }
- * </code>
+ * }
  * </pre>
  * <p>
  * To configure the Check to suppress empty catch block if single-line comment inside
@@ -103,24 +103,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * Such empty blocks would be both suppressed:<br>
+ *
+ * <p>Such empty blocks would be both suppressed:<br>
  * </p>
  * <pre>
- * <code>
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException e) {
  *     //This is expected
  * }
- * </code>
- * <code>
+ * }
+ * {@code
  * try {
  *     throw new RuntimeException();
  * } catch (RuntimeException myException) {
  *
  * }
- * </code>
+ * }
  * </pre>
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
@@ -157,7 +157,7 @@ public class EmptyCatchBlockCheck extends Check {
      */
     public void setExceptionVariableName(String exceptionVariableName) {
         this.exceptionVariableName = exceptionVariableName;
-        variableNameRegexp = Utils.createPattern(exceptionVariableName);
+        variableNameRegexp = CommonUtils.createPattern(exceptionVariableName);
     }
 
     /**
@@ -169,14 +169,12 @@ public class EmptyCatchBlockCheck extends Check {
      */
     public void setCommentFormat(String commentFormat) {
         this.commentFormat = commentFormat;
-        commentRegexp = Utils.createPattern(commentFormat);
+        commentRegexp = CommonUtils.createPattern(commentFormat);
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.LITERAL_CATCH,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -184,6 +182,11 @@ public class EmptyCatchBlockCheck extends Check {
         return new int[] {
             TokenTypes.LITERAL_CATCH,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -227,9 +230,9 @@ public class EmptyCatchBlockCheck extends Check {
         else if (firstElementInBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             commentContent = firstElementInBlock.getFirstChild().getText();
             final String[] lines = commentContent.split(System.getProperty("line.separator"));
-            for (int i = 0; i < lines.length; i++) {
-                if (!lines[i].isEmpty()) {
-                    commentContent = lines[i];
+            for (String line : lines) {
+                if (!line.isEmpty()) {
+                    commentContent = line;
                     break;
                 }
             }
@@ -245,14 +248,13 @@ public class EmptyCatchBlockCheck extends Check {
      * @return true if empty catch block is verifiable by Check.
      */
     private boolean isVerifiable(DetailAST emptyCatchAst, String commentContent) {
-        final String exceptionVariableName = getExceptionVariableName(emptyCatchAst);
+        final String variableName = getExceptionVariableName(emptyCatchAst);
         final boolean isMatchingVariableName = variableNameRegexp
-                .matcher(exceptionVariableName).find();
+                .matcher(variableName).find();
         final boolean isMatchingCommentContent = !commentContent.isEmpty()
                  && commentRegexp.matcher(commentContent).find();
         return !isMatchingVariableName && !isMatchingCommentContent;
     }
-
 
     /**
      * Checks if catch block is empty or contains only comments.

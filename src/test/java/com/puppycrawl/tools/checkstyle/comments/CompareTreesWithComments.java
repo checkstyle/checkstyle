@@ -1,12 +1,13 @@
 package com.puppycrawl.tools.checkstyle.comments;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-public class CompareTreesWithComments extends Check {
-    protected static DetailAST expectedTree;
+class CompareTreesWithComments extends Check {
+    static DetailAST expectedTree;
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -15,15 +16,25 @@ public class CompareTreesWithComments extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{};
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
-    public void beginTree(DetailAST aRootAST) {
-        Assert.assertTrue(isAstEquals(expectedTree, aRootAST));
+    public int[] getAcceptableTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
-    private boolean isAstEquals(DetailAST expected, DetailAST actual) {
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        Assert.assertTrue(isAstEquals(expectedTree, rootAST));
+    }
+
+    private static boolean isAstEquals(DetailAST expected, DetailAST actual) {
         boolean result = false;
         if (expected == actual) {
             result = true;

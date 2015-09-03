@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Arrays;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -98,12 +100,17 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return makeAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return makeAcceptableTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -147,17 +154,17 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
-     * Checks parens in {@link TokenTypes#FOR_LITERAL}.
+     * Checks parens in {@link TokenTypes#LITERAL_FOR}.
      * @param ast the token to check.
      */
     private void visitLiteralFor(DetailAST ast) {
-        DetailAST parenAst = ast.findFirstToken(TokenTypes.LPAREN);
-        if (!isPreceedsEmptyForInit(parenAst)) {
-            processLeft(parenAst);
+        final DetailAST lparen = ast.findFirstToken(TokenTypes.LPAREN);
+        if (!isPrecedingEmptyForInit(lparen)) {
+            processLeft(lparen);
         }
-        parenAst = ast.findFirstToken(TokenTypes.RPAREN);
-        if (!isFollowsEmptyForIterator(parenAst)) {
-            processRight(parenAst);
+        final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
+        if (!isFollowsEmptyForIterator(rparen)) {
+            processRight(rparen);
         }
     }
 
@@ -245,6 +252,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
+     * Checks that a token follows an empty for iterator.
      * @param ast the token to check
      * @return whether a token follows an empty for iterator
      */
@@ -261,10 +269,11 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
+     * Checks that a token precedes an empty for initializer.
      * @param ast the token to check
-     * @return whether a token preceeds an empty for initializer
+     * @return whether a token precedes an empty for initializer
      */
-    private static boolean isPreceedsEmptyForInit(DetailAST ast) {
+    private static boolean isPrecedingEmptyForInit(DetailAST ast) {
         boolean result = false;
         final DetailAST parent = ast.getParent();
         //Only traditional for statements are examined, not for-each statements

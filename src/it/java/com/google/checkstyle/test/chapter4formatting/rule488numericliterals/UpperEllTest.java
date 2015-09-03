@@ -1,27 +1,25 @@
 package com.google.checkstyle.test.chapter4formatting.rule488numericliterals;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class UpperEllTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void upperEllTest() throws IOException, Exception {
+    public void upperEllTest() throws Exception {
         
         final String[] expected = {
             "6:36: Should use uppercase 'L'.",
@@ -57,5 +55,3 @@ public class UpperEllTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

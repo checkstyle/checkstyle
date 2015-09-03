@@ -1,29 +1,27 @@
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.File;
-import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck;
 
 public class EmptyCatchBlockTest extends BaseCheckTestSupport
 {
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException
-    {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void emptyBlockTestCatch() throws IOException, Exception
+    public void emptyBlockTestCatch() throws Exception
     {
         
         final String[] expected = {
@@ -40,11 +38,10 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testNoViolations() throws IOException, Exception
+    public void testNoViolations() throws Exception
     {
         
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("EmptyCatchBlock");
         String filePath = builder.getFilePath("EmptyCatchBlockNoViolationsInput");
@@ -54,7 +51,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testViolationsByComment() throws IOException, Exception
+    public void testViolationsByComment() throws Exception
     {
         
         final String[] expected = {
@@ -70,7 +67,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport
     }
 
     @Test
-    public void testViolationsByVariableName() throws IOException, Exception
+    public void testViolationsByVariableName() throws Exception
     {
         final String[] expected = {
             "19: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),

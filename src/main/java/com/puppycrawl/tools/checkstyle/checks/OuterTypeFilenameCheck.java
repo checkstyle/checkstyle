@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -31,27 +32,27 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class OuterTypeFilenameCheck extends Check {
-    /** indicates whether the first token has been seen in the file. */
+    /** Pattern matching any file extension with dot included. */
+    private static final Pattern FILE_EXTENSION_PATTERN = Pattern.compile("\\.[^\\.]*$");
+
+    /** Indicates whether the first token has been seen in the file. */
     private boolean seenFirstToken;
 
-    /** Current file name*/
+    /** Current file name. */
     private String fileName;
 
-    /** If file has public type*/
+    /** If file has public type. */
     private boolean hasPublic;
 
-    /** If first type has has same name as file*/
+    /** If first type has has same name as file. */
     private boolean validFirst;
 
-    /** Outer type with mismatched file name*/
+    /** Outer type with mismatched file name. */
     private DetailAST wrongType;
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -63,7 +64,12 @@ public class OuterTypeFilenameCheck extends Check {
     }
 
     @Override
-    public void beginTree(DetailAST ast) {
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
         fileName = getFileName();
         seenFirstToken = false;
         validFirst = false;
@@ -74,7 +80,14 @@ public class OuterTypeFilenameCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
-        if (!seenFirstToken) {
+        if (seenFirstToken) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+                    && ast.getParent() == null) {
+                hasPublic = true;
+            }
+        }
+        else {
 
             if (fileName.equals(outerTypeName)) {
                 validFirst = true;
@@ -83,19 +96,12 @@ public class OuterTypeFilenameCheck extends Check {
                 wrongType = ast;
             }
         }
-        else {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && ast.getParent() == null) {
-                hasPublic = true;
-            }
-        }
         seenFirstToken = true;
     }
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        if (!(validFirst || hasPublic) && wrongType != null) {
+        if (!validFirst && !hasPublic && wrongType != null) {
             log(wrongType.getLineNo(), "type.file.mismatch");
         }
     }
@@ -105,9 +111,9 @@ public class OuterTypeFilenameCheck extends Check {
      * @return source file name.
      */
     private String getFileName() {
-        String fname = getFileContents().getFileName();
-        fname = fname.substring(fname.lastIndexOf(File.separatorChar) + 1);
-        fname = fname.replaceAll("\\.[^\\.]*$", "");
-        return fname;
+        String name = getFileContents().getFileName();
+        name = name.substring(name.lastIndexOf(File.separatorChar) + 1);
+        name = FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
+        return name;
     }
 }

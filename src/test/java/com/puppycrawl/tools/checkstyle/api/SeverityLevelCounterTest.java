@@ -19,31 +19,32 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 public class SeverityLevelCounterTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCtorException() {
-        final SeverityLevelCounter o = new SeverityLevelCounter(null);
+        new SeverityLevelCounter(null);
     }
 
     @Test
     public void testAddException() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
-        Assert.assertTrue(counter.getCount() == 0);
-        counter.addException(event, new IllegalStateException());
-        Assert.assertTrue(counter.getCount() == 1);
+        assertEquals(0, counter.getCount());
+        counter.addException(event, new IllegalStateException("Test IllegalStateException"));
+        assertEquals(1, counter.getCount());
     }
 
     @Test
     public void testAddExceptionWarning() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.WARNING);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
-        Assert.assertTrue(counter.getCount() == 0);
-        counter.addException(event, new IllegalStateException());
-        Assert.assertTrue(counter.getCount() == 0);
+        assertEquals(0, counter.getCount());
+        counter.addException(event, new IllegalStateException("Test IllegalStateException"));
+        assertEquals(0, counter.getCount());
     }
 }

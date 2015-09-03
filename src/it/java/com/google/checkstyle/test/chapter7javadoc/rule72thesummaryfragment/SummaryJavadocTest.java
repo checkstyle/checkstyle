@@ -1,65 +1,57 @@
 package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck;
 
 public class SummaryJavadocTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void noFinalizerBasicTest() throws IOException, Exception {
+    public void testCorrect() throws Exception {
         
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
-
         final String[] expected = {
-            "5: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizerInput");
+        Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
+        String filePath = builder.getFilePath("InputCorrectSummaryJavaDocCheck");
         
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
-    public void noFinalizerExtendedTest() throws IOException, Exception {
+    public void testIncorrect() throws Exception {
         
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
+        String msg_first_sentence = getCheckMessage(SummaryJavadocCheck.class, "summary.first.sentence");
+        String msg_forbidden_fragment = getCheckMessage(SummaryJavadocCheck.class, "summary.javaDoc");
 
         final String[] expected = {
-            "9: " + msg,
-            "21: " + msg,
-            "33: " + msg,
-            "45: " + msg,
-            "57: " + msg,
-            "69: " + msg,
-            "79: " + msg,
-            "119: " + msg,
-            "136: " + msg,
+            "14: " + msg_first_sentence,
+            "37: " + msg_first_sentence,
+            "47: " + msg_forbidden_fragment,
+            "58: " + msg_forbidden_fragment,
+            "69: " + msg_first_sentence,
+            "83: " + msg_forbidden_fragment,
+            "103: " + msg_first_sentence,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizeExtendInput");
+        Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
+        String filePath = builder.getFilePath("InputIncorrectSummaryJavaDocCheck");
         
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

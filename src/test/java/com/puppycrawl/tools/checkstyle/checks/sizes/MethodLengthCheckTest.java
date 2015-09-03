@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -29,6 +30,13 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodLengthCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        MethodLengthCheck checkObj = new MethodLengthCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testGetAcceptableTokens() {
         MethodLengthCheck methodLengthCheckObj =
@@ -54,13 +62,12 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testcountEmpty() throws Exception {
+    public void testCountEmpty() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         checkConfig.addAttribute("countEmpty", "false");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -68,8 +75,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     public void testAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
 }

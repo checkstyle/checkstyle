@@ -81,21 +81,21 @@ public class TranslationCheck
      */
     public static final String MSG_KEY = "translation.missingKey";
 
-    /** Logger for TranslationCheck */
+    /** Logger for TranslationCheck. */
     private static final Log LOG = LogFactory.getLog(TranslationCheck.class);
 
     /** The property files to process. */
     private final List<File> propertyFiles = Lists.newArrayList();
 
-    /** The separator string used to separate translation files */
+    /** The separator string used to separate translation files. */
     private String basenameSeparator;
 
     /**
-     * Creates a new <code>TranslationCheck</code> instance.
+     * Creates a new {@code TranslationCheck} instance.
      */
     public TranslationCheck() {
         setFileExtensions("properties");
-        setBasenameSeparator("_");
+        basenameSeparator = "_";
     }
 
     @Override
@@ -134,17 +134,24 @@ public class TranslationCheck
         final int underscoreIdx = filePath.indexOf(basenameSeparator,
             baseNameStart);
         final int dotIdx = filePath.indexOf('.', baseNameStart);
-        final int cutoffIdx = underscoreIdx != -1 ? underscoreIdx : dotIdx;
+        final int cutoffIdx;
+
+        if (underscoreIdx == -1) {
+            cutoffIdx = dotIdx;
+        }
+        else {
+            cutoffIdx = underscoreIdx;
+        }
         return filePath.substring(0, cutoffIdx);
     }
 
-   /**
-    * Sets the separator used to determine the basename of a property file.
-    * This defaults to "_"
-    *
-    * @param basenameSeparator the basename separator
-    */
-    public void setBasenameSeparator(String basenameSeparator) {
+    /**
+     * Sets the separator used to determine the basename of a property file.
+     * This defaults to "_"
+     *
+     * @param basenameSeparator the basename separator
+     */
+    public final void setBasenameSeparator(String basenameSeparator) {
         this.basenameSeparator = basenameSeparator;
     }
 
@@ -160,8 +167,8 @@ public class TranslationCheck
         List<File> propFiles, String basenameSeparator) {
         final Map<String, Set<File>> propFileMap = Maps.newHashMap();
 
-        for (final File f : propFiles) {
-            final String identifier = extractPropertyIdentifier(f,
+        for (final File file : propFiles) {
+            final String identifier = extractPropertyIdentifier(file,
                 basenameSeparator);
 
             Set<File> fileSet = propFileMap.get(identifier);
@@ -169,7 +176,7 @@ public class TranslationCheck
                 fileSet = Sets.newHashSet();
                 propFileMap.put(identifier, fileSet);
             }
-            fileSet.add(f);
+            fileSet.add(file);
         }
         return propFileMap;
     }
@@ -205,7 +212,7 @@ public class TranslationCheck
     }
 
     /**
-     * helper method to log an io exception.
+     * Helper method to log an io exception.
      * @param ex the exception that occured
      * @param file the file that could not be processed
      */
@@ -223,13 +230,12 @@ public class TranslationCheck
                 key,
                 args,
                 getId(),
-                this.getClass(), null);
+                getClass(), null);
         final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
         LOG.debug("IOException occured.", ex);
     }
-
 
     /**
      * Compares the key sets of the given property files (arranged in a map)
@@ -263,12 +269,11 @@ public class TranslationCheck
         }
     }
 
-
     /**
      * Tests whether the given property files (arranged by their prefixes
      * in a Map) contain the proper keys.
      *
-     * Each group of files must have the same keys. If this is not the case
+     * <p>Each group of files must have the same keys. If this is not the case
      * an error message is posted giving information which key misses in
      * which file.
      *

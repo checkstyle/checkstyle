@@ -39,8 +39,7 @@ public class MethodDefHandler extends BlockParentHandler {
      */
     public MethodDefHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, ast.getType() == TokenTypes.CTOR_DEF
-            ? "ctor def" : "method def", ast, parent);
+        super(indentCheck, getHandlerName(ast), ast, parent);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class MethodDefHandler extends BlockParentHandler {
     protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (startsLine(modifier)
-            && !getLevel().accept(expandedTabsColumnNo(modifier))) {
+            && !getLevel().isAcceptable(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
     }
@@ -81,5 +80,23 @@ public class MethodDefHandler extends BlockParentHandler {
      */
     private static DetailAST getMethodDefParamRightParen(DetailAST methodDefAst) {
         return methodDefAst.findFirstToken(TokenTypes.RPAREN);
+    }
+
+    /**
+     * Creates a handler name for this class according to ast type.
+     *
+     * @param ast the abstract syntax tree.
+     * @return handler name for this class.
+     */
+    private static String getHandlerName(DetailAST ast) {
+        final String name;
+
+        if (ast.getType() == TokenTypes.CTOR_DEF) {
+            name = "ctor def";
+        }
+        else {
+            name = "method def";
+        }
+        return name;
     }
 }

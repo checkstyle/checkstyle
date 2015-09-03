@@ -64,20 +64,25 @@ public class AnonInnerLengthCheck extends Check {
      */
     public static final String MSG_KEY = "maxLen.anonInner";
 
-    /** default maximum number of lines */
+    /** Default maximum number of lines. */
     private static final int DEFAULT_MAX = 20;
 
-    /** maximum number of lines */
+    /** Maximum number of lines. */
     private int max = DEFAULT_MAX;
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.LITERAL_NEW};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.LITERAL_NEW};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -94,7 +99,6 @@ public class AnonInnerLengthCheck extends Check {
             }
         }
     }
-
 
     /**
      * @param length the maximum length of an anonymous inner class.

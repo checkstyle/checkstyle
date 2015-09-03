@@ -37,16 +37,16 @@ public final class DefaultConfiguration implements Configuration {
     /** Required for serialization. */
     private static final long serialVersionUID = 1157875385356127169L;
 
-    /** The name of this configuration */
+    /** The name of this configuration. */
     private final String name;
 
-    /** the list of child Configurations */
+    /** The list of child Configurations. */
     private final List<Configuration> children = Lists.newArrayList();
 
-    /** the map from attribute names to attribute values */
+    /** The map from attribute names to attribute values. */
     private final Map<String, String> attributeMap = Maps.newHashMap();
 
-    /** the map containing custom messages. */
+    /** The map containing custom messages. */
     private final Map<String, String> messages = Maps.newHashMap();
 
     /**
@@ -57,31 +57,27 @@ public final class DefaultConfiguration implements Configuration {
         this.name = name;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String[] getAttributeNames() {
         final Set<String> keySet = attributeMap.keySet();
         return keySet.toArray(new String[keySet.size()]);
     }
 
-    /** {@inheritDoc} */
     @Override
-    public String getAttribute(String name) throws CheckstyleException {
-        if (!attributeMap.containsKey(name)) {
+    public String getAttribute(String attributeName) throws CheckstyleException {
+        if (!attributeMap.containsKey(attributeName)) {
             throw new CheckstyleException(
-                    "missing key '" + name + "' in " + getName());
+                    "missing key '" + attributeName + "' in " + name);
         }
-        return attributeMap.get(name);
+        return attributeMap.get(attributeName);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Configuration[] getChildren() {
         return children.toArray(
             new Configuration[children.size()]);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String getName() {
         return name;
@@ -105,16 +101,16 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Adds an attribute to this configuration.
-     * @param name the name of the attribute.
+     * @param attributeName the name of the attribute.
      * @param value the value of the attribute.
      */
-    public void addAttribute(String name, String value) {
-        final String current = attributeMap.put(name, value);
-        if (null == current) {
-            attributeMap.put(name, value);
+    public void addAttribute(String attributeName, String value) {
+        final String current = attributeMap.put(attributeName, value);
+        if (current == null) {
+            attributeMap.put(attributeName, value);
         }
         else {
-            attributeMap.put(name, current + "," + value);
+            attributeMap.put(attributeName, current + "," + value);
         }
     }
 

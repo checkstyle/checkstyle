@@ -19,18 +19,36 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
+
+import java.io.File;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        OuterTypeFilenameCheck checkObj = new OuterTypeFilenameCheck();
+        int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
 
     @Test
     public void testGood1() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
 
@@ -38,7 +56,59 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     public void testGood2() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        OuterTypeFilenameCheck check = new OuterTypeFilenameCheck();
+        int[] actual = check.getAcceptableTokens();
+        int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testNestedClass() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputOuterTypeFilenameCheck1.java"), expected);
+    }
+
+    @Test
+    public void testFinePublic() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputOuterTypeFilenameCheck2.java"), expected);
+    }
+
+    @Test
+    public void testFineDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputOuterTypeFilenameCheck3.java"), expected);
+    }
+
+    @Test
+    public void testWrongDefault() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage("type.file.mismatch"),
+        };
+        verify(checkConfig, getPath("InputOuterTypeFilenameCheck5.java"), expected);
+    }
+
+    @Test
+    public void testPackageAnnotation() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("annotation" + File.separator + "package-info.java"), expected);
     }
 }

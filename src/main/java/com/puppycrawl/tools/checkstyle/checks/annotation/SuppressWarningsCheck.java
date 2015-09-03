@@ -21,10 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.regex.Matcher;
 
-import com.puppycrawl.tools.checkstyle.AnnotationUtility;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 
 /**
  * <p>
@@ -53,23 +55,21 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * the format property these defaults no longer apply.
  * </p>
  *
- * <p>
- * Limitations:  This check does not consider conditionals
+ * <p>Limitations:  This check does not consider conditionals
  * inside the SuppressWarnings annotation. <br>
  * For example:
- * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}
+ * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
  * According to the above example, the "unused" warning is being suppressed
  * not the "unchecked" or "foo" warnings.  All of these warnings will be
  * considered and matched against regardless of what the conditional
  * evaluates to.
- * <br/>
+ * <br>
  * The check also does not support code like {@code @SuppressWarnings("un" + "used")},
  * {@code @SuppressWarnings((String) "unused")} or
  * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
  * </p>
  *
- * <p>
- * This check can be configured so that the "unchecked"
+ * <p>This check can be configured so that the "unchecked"
  * and "unused" warnings cannot be suppressed on
  * anything but variable and parameter declarations.
  * See below of an example.
@@ -97,12 +97,12 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     public static final String MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED =
         "suppressed.warning.not.allowed";
 
-    /** {@link SuppressWarnings SuppressWarnings} annotation name */
+    /** {@link SuppressWarnings SuppressWarnings} annotation name. */
     private static final String SUPPRESS_WARNINGS = "SuppressWarnings";
 
     /**
-     * fully-qualified {@link SuppressWarnings SuppressWarnings}
-     * annotation name
+     * Fully-qualified {@link SuppressWarnings SuppressWarnings}
+     * annotation name.
      */
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;
@@ -115,13 +115,11 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         super("^$|^\\s+$");
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getDefaultTokens() {
-        return this.getAcceptableTokens();
+        return getAcceptableTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public final int[] getAcceptableTokens() {
         return new int[] {
@@ -138,7 +136,11 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         };
     }
 
-    /** {@inheritDoc} */
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST annotation = getSuppressWarnings(ast);
@@ -165,7 +167,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         //rare case with empty array ex: @SuppressWarnings({})
         if (warning == null) {
             //check to see if empty warnings are forbidden -- are by default
-            this.logMatch(warningHolder.getLineNo(),
+            logMatch(warningHolder.getLineNo(),
                 warningHolder.getColumnNo(), "");
             return;
         }
@@ -178,17 +180,17 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
                     case TokenTypes.STRING_LITERAL:
                         final String warningText =
                             removeQuotes(warning.getFirstChild().getText());
-                        this.logMatch(warning.getLineNo(),
+                        logMatch(warning.getLineNo(),
                                 warning.getColumnNo(), warningText);
                         break;
-                        //conditional case
-                        //ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+                    // conditional case
+                    // ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
                     case TokenTypes.QUESTION:
-                        this.walkConditional(fChild);
+                        walkConditional(fChild);
                         break;
-                        //param in constant case
-                        //ex: public static final String UNCHECKED = "unchecked";
-                        //@SuppressWarnings(UNCHECKED) or @SuppressWarnings(SomeClass.UNCHECKED)
+                    // param in constant case
+                    // ex: public static final String UNCHECKED = "unchecked";
+                    // @SuppressWarnings(UNCHECKED) or @SuppressWarnings(SomeClass.UNCHECKED)
                     case TokenTypes.IDENT:
                     case TokenTypes.DOT:
                         break;
@@ -212,11 +214,14 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      */
     private static DetailAST getSuppressWarnings(DetailAST ast) {
         final DetailAST annotation = AnnotationUtility.getAnnotation(
-            ast, SuppressWarningsCheck.SUPPRESS_WARNINGS);
+            ast, SUPPRESS_WARNINGS);
 
-        return annotation != null ? annotation
-            : AnnotationUtility.getAnnotation(
-                ast, SuppressWarningsCheck.FQ_SUPPRESS_WARNINGS);
+        if (annotation == null) {
+            return AnnotationUtility.getAnnotation(ast, FQ_SUPPRESS_WARNINGS);
+        }
+        else {
+            return annotation;
+        }
     }
 
     /**
@@ -229,9 +234,9 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      */
     private void logMatch(final int lineNo,
         final int colNum, final String warningText) {
-        final Matcher matcher = this.getRegexp().matcher(warningText);
+        final Matcher matcher = getRegexp().matcher(warningText);
         if (matcher.matches()) {
-            this.log(lineNo, colNum,
+            log(lineNo, colNum,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
         }
     }
@@ -266,7 +271,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     /**
      * Strips a single double quote from the front and back of a string.
      *
-     * For example:
+     * <p>For example:
      * <br/>
      * Input String = "unchecked"
      * <br/>
@@ -291,12 +296,12 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
         if (cond.getType() != TokenTypes.QUESTION) {
             final String warningText =
                 removeQuotes(cond.getText());
-            this.logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
+            logMatch(cond.getLineNo(), cond.getColumnNo(), warningText);
             return;
         }
 
-        this.walkConditional(getCondLeft(cond));
-        this.walkConditional(getCondRight(cond));
+        walkConditional(getCondLeft(cond));
+        walkConditional(getCondRight(cond));
     }
 
     /**
@@ -305,7 +310,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @param cond cond a conditional type
      * {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
-     * or another conditional
+     *     or another conditional
      */
     private static DetailAST getCondLeft(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);
@@ -318,7 +323,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      * @param cond a conditional type
      * {@link TokenTypes#QUESTION QUESTION}
      * @return either the value
-     * or another conditional
+     *     or another conditional
      */
     private static DetailAST getCondRight(final DetailAST cond) {
         final DetailAST colon = cond.findFirstToken(TokenTypes.COLON);

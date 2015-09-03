@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import com.puppycrawl.tools.checkstyle.Utils;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -93,13 +95,10 @@ public class LeftCurlyCheck
      */
     public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
 
-    /** default maximum line length */
-    private static final int DEFAULT_MAX_LINE_LENGTH = 80;
+    /** Open curly brace literal. */
+    private static final String OPEN_CURLY_BRACE = "{";
 
-    /** maxLineLength **/
-    private int maxLineLength = DEFAULT_MAX_LINE_LENGTH;
-
-    /** If true, Check will ignore enums*/
+    /** If true, Check will ignore enums. */
     private boolean ignoreEnums = true;
 
     /**
@@ -113,9 +112,11 @@ public class LeftCurlyCheck
      * Sets the maximum line length used in calculating the placement of the
      * left curly brace.
      * @param maxLineLength the max allowed line length
+     * @deprecated since 6.10 release, option is not required for the Check.
      */
+    @Deprecated
     public void setMaxLineLength(int maxLineLength) {
-        this.maxLineLength = maxLineLength;
+        // do nothing, option is deprecated
     }
 
     /**
@@ -128,26 +129,7 @@ public class LeftCurlyCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_TRY,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.LITERAL_SYNCHRONIZED,
-            TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.STATIC_INIT,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -175,9 +157,14 @@ public class LeftCurlyCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        DetailAST startToken = null;
-        DetailAST brace = null;
+        DetailAST startToken;
+        DetailAST brace;
 
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
@@ -192,9 +179,11 @@ public class LeftCurlyCheck
             case TokenTypes.ENUM_CONSTANT_DEF:
                 startToken = skipAnnotationOnlyLines(ast);
                 final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-                brace = objBlock == null
-                        ? null
-                        : objBlock.getFirstChild();
+                brace = objBlock;
+
+                if (objBlock != null) {
+                    brace = objBlock.getFirstChild();
+                }
                 break;
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_CATCH:
@@ -211,15 +200,17 @@ public class LeftCurlyCheck
             case TokenTypes.LITERAL_ELSE:
                 startToken = ast;
                 final DetailAST candidate = ast.getFirstChild();
-                brace = candidate.getType() == TokenTypes.SLIST
-                        ? candidate
-                        : null; // silently ignore
+                brace = null;
+
+                if (candidate.getType() == TokenTypes.SLIST) {
+                    brace = candidate;
+                }
                 break;
             default:
-//                ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
-//                TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
-//                It has been done to improve coverage to 100%. I couldn't replace it with
-//                if-else-if block because code was ugly and didn't pass pmd check.
+                // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
+                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
+                // It has been done to improve coverage to 100%. I couldn't replace it with
+                // if-else-if block because code was ugly and didn't pass pmd check.
 
                 startToken = ast;
                 brace = ast.findFirstToken(TokenTypes.LCURLY);
@@ -232,45 +223,66 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Skip lines that only contain <code>TokenTypes.ANNOTATION</code>s.
-     * If the received <code>DetailAST</code>
+     * Skip lines that only contain {@code TokenTypes.ANNOTATION}s.
+     * If the received {@code DetailAST}
      * has annotations within its modifiers then first token on the line
-     * of the first token afer all annotations is return. This might be
+     * of the first token after all annotations is return. This might be
      * an annotation.
-     * Otherwise, the received <code>DetailAST</code> is returned.
-     * @param ast <code>DetailAST</code>.
-     * @return <code>DetailAST</code>.
+     * Otherwise, the received {@code DetailAST} is returned.
+     * @param ast {@code DetailAST}.
+     * @return {@code DetailAST}.
      */
     private static DetailAST skipAnnotationOnlyLines(DetailAST ast) {
+        DetailAST resultNode = ast;
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers == null) {
-            return ast;
+
+        if (modifiers != null) {
+            final DetailAST lastAnnotation = findLastAnnotation(modifiers);
+
+            if (lastAnnotation != null) {
+                final DetailAST tokenAfterLast;
+
+                if (lastAnnotation.getNextSibling() == null) {
+                    tokenAfterLast = modifiers.getNextSibling();
+                }
+                else {
+                    tokenAfterLast = lastAnnotation.getNextSibling();
+                }
+
+                if (tokenAfterLast.getLineNo() > lastAnnotation.getLineNo()) {
+                    resultNode = tokenAfterLast;
+                }
+                else {
+                    resultNode = getFirstAnnotationOnSameLine(lastAnnotation);
+                }
+            }
         }
-        DetailAST lastAnnot = findLastAnnotation(modifiers);
-        if (lastAnnot == null) {
-            // There are no annotations.
-            return ast;
-        }
-        final DetailAST tokenAfterLast = lastAnnot.getNextSibling() != null
-                                       ? lastAnnot.getNextSibling()
-                                       : modifiers.getNextSibling();
-        if (tokenAfterLast.getLineNo() > lastAnnot.getLineNo()) {
-            return tokenAfterLast;
-        }
-        final int lastAnnotLineNumber = lastAnnot.getLineNo();
-        while (lastAnnot.getPreviousSibling() != null
-               && lastAnnot.getPreviousSibling().getLineNo()
-                    == lastAnnotLineNumber) {
-            lastAnnot = lastAnnot.getPreviousSibling();
-        }
-        return lastAnnot;
+        return resultNode;
     }
 
     /**
-     * Find the last token of type <code>TokenTypes.ANNOTATION</code>
+     * Returns first annotation on same line.
+     * @param annotation
+     *            last annotation on the line
+     * @return first annotation on same line.
+     */
+    private static DetailAST getFirstAnnotationOnSameLine(DetailAST annotation) {
+        DetailAST previousAnnotation = annotation;
+        final int lastAnnotationLineNumber = previousAnnotation.getLineNo();
+        while (previousAnnotation.getPreviousSibling() != null
+                && previousAnnotation.getPreviousSibling().getLineNo()
+                    == lastAnnotationLineNumber) {
+
+            previousAnnotation = previousAnnotation.getPreviousSibling();
+        }
+        return previousAnnotation;
+    }
+
+    /**
+     * Find the last token of type {@code TokenTypes.ANNOTATION}
      * under the given set of modifiers.
-     * @param modifiers <code>DetailAST</code>.
-     * @return <code>DetailAST</code> or null if there are no annotations.
+     * @param modifiers {@code DetailAST}.
+     * @return {@code DetailAST} or null if there are no annotations.
      */
     private static DetailAST findLastAnnotation(DetailAST modifiers) {
         DetailAST annot = modifiers.findFirstToken(TokenTypes.ANNOTATION);
@@ -291,74 +303,58 @@ public class LeftCurlyCheck
                              final DetailAST startToken) {
         final String braceLine = getLine(brace.getLineNo() - 1);
 
-        // calculate the previous line length without trailing whitespace. Need
-        // to handle the case where there is no previous line, cause the line
-        // being check is the first line in the file.
-        final int prevLineLen = brace.getLineNo() == 1
-            ? maxLineLength
-            : Utils.lengthMinusTrailingWhitespace(getLine(brace.getLineNo() - 2));
-
         // Check for being told to ignore, or have '{}' which is a special case
         if (braceLine.length() <= brace.getColumnNo() + 1
                 || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
             if (getAbstractOption() == LeftCurlyOption.NL) {
-                if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                    log(brace.getLineNo(), brace.getColumnNo(),
-                        MSG_KEY_LINE_NEW, "{");
+                if (!CommonUtils.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+                    log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
                 }
             }
             else if (getAbstractOption() == LeftCurlyOption.EOL) {
 
-                validateEol(brace, braceLine, prevLineLen);
+                validateEol(brace, braceLine);
             }
             else if (startToken.getLineNo() != brace.getLineNo()) {
 
-                validateNewLinePosion(brace, startToken, braceLine, prevLineLen);
+                validateNewLinePosition(brace, startToken, braceLine);
 
             }
         }
     }
 
     /**
-     * validate EOL case
-     * @param brace brase AST
+     * Validate EOL case.
+     * @param brace brace AST
      * @param braceLine line content
-     * @param prevLineLen previous line length
      */
-    private void validateEol(DetailAST brace, String braceLine, int prevLineLen) {
-        if (Utils.whitespaceBefore(brace.getColumnNo(), braceLine)
-            && prevLineLen + 2 <= maxLineLength) {
-            log(brace.getLineNo(), brace.getColumnNo(),
-                MSG_KEY_LINE_PREVIOUS, "{");
+    private void validateEol(DetailAST brace, String braceLine) {
+        if (CommonUtils.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+            log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
-            log(brace.getLineNo(), brace.getColumnNo(), MSG_KEY_LINE_BREAK_AFTER);
+            log(brace, MSG_KEY_LINE_BREAK_AFTER, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
 
     /**
-     * validate token on new Line position
+     * Validate token on new Line position.
      * @param brace brace AST
      * @param startToken start Token
      * @param braceLine content of line with Brace
-     * @param prevLineLen previous Line length
      */
-    private void validateNewLinePosion(DetailAST brace, DetailAST startToken,
-                                       String braceLine, int prevLineLen) {
+    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, String braceLine) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-            if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                        MSG_KEY_LINE_NEW, "{");
+            if (CommonUtils.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+                log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
-            else if (prevLineLen + 2 <= maxLineLength) {
-                log(brace.getLineNo(), brace.getColumnNo(),
-                        MSG_KEY_LINE_PREVIOUS, "{");
+            else {
+                log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
         }
-        else if (!Utils.whitespaceBefore(brace.getColumnNo(), braceLine)) {
-            log(brace.getLineNo(), brace.getColumnNo(),
-                    MSG_KEY_LINE_NEW, "{");
+        else if (!CommonUtils.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+            log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
 

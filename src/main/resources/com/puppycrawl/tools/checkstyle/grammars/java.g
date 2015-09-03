@@ -387,6 +387,8 @@ type
 
 /** A declaration is the creation of a reference or primitive-type variable
  *  Create a separate Type/Var tree for each var in the var list.
+    @throws RecognitionException if recognition problem occurs.
+    @throws TokenStreamException if problem occurs while generating a stream of tokens.
  */
 declaration!
 	:	m:modifiers t:typeSpec[false] v:variableDefinitions[#m,#t]
@@ -866,7 +868,11 @@ variableDefinitions[AST mods, AST t]
 	;
 
 /** Declaration of a variable.  This can be a class/instance variable,
- *   or a local variable in a method
+ *   or a local variable in a method.
+    @param mods declaration mods.
+    @param t variable declaration type.
+    @throws RecognitionException if recognition problem occurs.
+    @throws TokenStreamException if problem occurs while generating a stream of tokens.
  * It can also include possible initialization.
  */
 variableDeclarator![AST mods, AST t]
@@ -1519,6 +1525,9 @@ primaryExpression
  *               |
  *               2
  *
+ *
+ * @throws RecognitionException if recognition problem occurs.
+ * @throws TokenStreamException if problem occurs while generating a stream of tokens.
  */
 newExpression
 	:	"new"^ (typeArguments[false])? type

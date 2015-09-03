@@ -24,6 +24,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -88,7 +89,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     @Test
     public void testAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("imports" + File.separator
                 + "package-info.java"), expected);
     }
@@ -96,7 +97,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     @Test
     public void testBug() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImportBug.java"), expected);
     }
@@ -106,7 +107,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         UnusedImportsCheck testCheckObject =
                 new UnusedImportsCheck();
         int[] actual = testCheckObject.getRequiredTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
@@ -131,7 +132,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         UnusedImportsCheck testCheckObject =
                 new UnusedImportsCheck();
         int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,

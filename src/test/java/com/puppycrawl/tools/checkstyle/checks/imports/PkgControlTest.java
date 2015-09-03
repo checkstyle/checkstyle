@@ -30,7 +30,7 @@ public class PkgControlTest {
     private final PkgControl pcCommon = new PkgControl(pcRoot, "common");
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         pcRoot.addGuard(new Guard(false, false, "org.springframework", false, false));
         pcRoot.addGuard(new Guard(false, false, "org.hibernate", false, false));
         pcRoot.addGuard(new Guard(true, false, "org.apache.commons", false, false));

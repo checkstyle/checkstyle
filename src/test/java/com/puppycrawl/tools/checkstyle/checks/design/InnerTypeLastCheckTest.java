@@ -31,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        InnerTypeLastCheck checkObj = new InnerTypeLastCheck();
+        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testMembersBeforeInner() throws Exception {
         final DefaultConfiguration checkConfig =

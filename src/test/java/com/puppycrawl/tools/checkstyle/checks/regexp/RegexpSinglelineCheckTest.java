@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,8 +51,8 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
     public void testMessageProperty()
         throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
-        final String message = "Bad line :(";
         checkConfig.addAttribute("format", illegal);
+        final String message = "Bad line :(";
         checkConfig.addAttribute("message", message);
         final String[] expected = {
             "69: " + message,
@@ -63,6 +65,8 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
+        checkConfig.addAttribute("maximum", "0");
+
         final String[] expected = {
             "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
         };
@@ -74,7 +78,33 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "false");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
+
+    @Test
+    public void testMinimum() throws Exception {
+        final String illegal = "\\r";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("minimum", "500");
+        final String[] expected = {
+            "0: " + getCheckMessage(REGEXP_MINIMUM, "500", illegal),
+        };
+
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testSetMessage() throws Exception {
+        final String illegal = "\\r";
+        checkConfig.addAttribute("format", illegal);
+        checkConfig.addAttribute("minimum", "500");
+        checkConfig.addAttribute("message", "someMessage");
+        final String[] expected = {
+            "0: someMessage",
+        };
+
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
 }

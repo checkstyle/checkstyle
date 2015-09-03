@@ -31,12 +31,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that overload methods are grouped together. Example:
  * </p>
  * <pre>
- * <code>
+ * {@code
  * public void foo(int i) {}
  * public void foo(String s) {}
  * public void notFoo() {} // Have to be after foo(int i, String s)
  * public void foo(int i, String s) {}
- * </code>
+ * }
  * </pre>
  * <p>
  * An example of how to configure the check is:
@@ -55,12 +55,9 @@ public class OverloadMethodsDeclarationOrderCheck extends Check {
      */
     public static final String MSG_KEY = "overload.methods.declaration";
 
-
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.OBJBLOCK,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -68,6 +65,11 @@ public class OverloadMethodsDeclarationOrderCheck extends Check {
         return new int[] {
             TokenTypes.OBJBLOCK,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

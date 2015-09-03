@@ -78,7 +78,9 @@ class Guard {
         this.regExp = regExp;
         pkgName = null;
         this.className = className;
-        exactMatch = true; // not used.
+
+        // not used
+        exactMatch = true;
     }
 
     /**
@@ -88,9 +90,14 @@ class Guard {
      */
     AccessResult verifyImport(final String forImport) {
         if (className != null) {
-            final boolean classMatch = regExp
-                ? forImport.matches(className)
-                : forImport.equals(className);
+            final boolean classMatch;
+
+            if (regExp) {
+                classMatch = forImport.matches(className);
+            }
+            else {
+                classMatch = forImport.equals(className);
+            }
             return calculateResult(classMatch);
         }
 
@@ -129,9 +136,16 @@ class Guard {
      * @return An appropriate {@link AccessResult}.
      */
     private AccessResult calculateResult(final boolean matched) {
+        AccessResult result = AccessResult.UNKNOWN;
+
         if (matched) {
-            return allowed ? AccessResult.ALLOWED : AccessResult.DISALLOWED;
+            if (allowed) {
+                result = AccessResult.ALLOWED;
+            }
+            else {
+                result = AccessResult.DISALLOWED;
+            }
         }
-        return AccessResult.UNKNOWN;
+        return result;
     }
 }

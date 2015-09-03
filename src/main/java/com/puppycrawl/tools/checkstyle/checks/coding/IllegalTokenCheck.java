@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.Utils;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -69,12 +71,12 @@ public class IllegalTokenCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return Utils.getAllTokenIds();
+        return TokenUtils.getAllTokenIds();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

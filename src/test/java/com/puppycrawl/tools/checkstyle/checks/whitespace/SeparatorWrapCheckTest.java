@@ -64,11 +64,10 @@ public class SeparatorWrapCheckTest
     public void testGetDefaultTokens() {
         SeparatorWrapCheck separatorWrapCheckObj = new SeparatorWrapCheck();
         int[] actual = separatorWrapCheckObj.getDefaultTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.DOT,
             TokenTypes.COMMA,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

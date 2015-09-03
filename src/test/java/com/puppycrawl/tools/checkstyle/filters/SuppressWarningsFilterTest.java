@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -39,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 
 public class SuppressWarningsFilterTest
     extends BaseCheckTestSupport {
-    private static String[] sAllMessages = {
+    private static final String[] ALL_MESSAGES = {
         "22:45: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "24:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "25:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -55,7 +56,7 @@ public class SuppressWarningsFilterTest
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = {};
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -73,19 +74,19 @@ public class SuppressWarningsFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    public static DefaultConfiguration createFilterConfig(Class<?> classObj) {
+    private static DefaultConfiguration createFilterConfig(Class<?> classObj) {
         return new DefaultConfiguration(classObj.getName());
     }
 
-    protected void verifySuppressed(Configuration aFilterConfig,
-        String[] aSuppressed) throws Exception {
+    private void verifySuppressed(Configuration aFilterConfig,
+            String... aSuppressed) throws Exception {
         verify(createChecker(aFilterConfig),
             getPath("filters/InputSuppressWarningsFilter.java"),
-            removeSuppressed(sAllMessages, aSuppressed));
+            removeSuppressed(ALL_MESSAGES, aSuppressed));
     }
 
     @Override
-    protected Checker createChecker(Configuration filterConfig)
+    protected Checker createChecker(Configuration checkConfig)
         throws Exception {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
@@ -102,8 +103,8 @@ public class SuppressWarningsFilterTest
         checksConfig.addChild(createCheckConfig(ParameterNumberCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (filterConfig != null) {
-            checkerConfig.addChild(filterConfig);
+        if (checkConfig != null) {
+            checkerConfig.addChild(checkConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
@@ -116,7 +117,7 @@ public class SuppressWarningsFilterTest
         return checker;
     }
 
-    private String[] removeSuppressed(String[] from, String[] remove) {
+    private static String[] removeSuppressed(String[] from, String... remove) {
         final Collection<String> coll =
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));

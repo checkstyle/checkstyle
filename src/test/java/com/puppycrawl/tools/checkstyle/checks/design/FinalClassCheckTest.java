@@ -30,8 +30,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class FinalClassCheckTest
     extends BaseCheckTestSupport {
+
     @Test
-    public void testFianlClass() throws Exception {
+    public void testGetRequiredTokens() {
+        FinalClassCheck checkObj = new FinalClassCheck();
+        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testFinalClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalClassCheck.class);
         final String[] expected = {

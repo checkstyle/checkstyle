@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -39,13 +41,57 @@ public class FileSetCheckLifecycleTest
     extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration checkConfig) {
+        Configuration config) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(checkConfig);
+        dc.addChild(config);
         return dc;
     }
 
-    public static class TestFileSetCheck extends AbstractFileSetCheck {
+    @Test
+    public void testGetRequiredTokens() {
+        FileContentsHolder checkObj = new FileContentsHolder();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testTranslation() throws Exception {
+        final Configuration checkConfig =
+            createCheckConfig(TestFileSetCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+
+        assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
+    }
+
+    @Test
+    public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
+
+        DefaultConfiguration dc = new DefaultConfiguration("configuration");
+        DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        dc.addAttribute("charset", "UTF-8");
+        dc.addChild(twConf);
+        twConf.addChild(new DefaultConfiguration(FileContentsHolder.class.getName()));
+        twConf.addChild(new DefaultConfiguration(AvoidStarImportCheck.class.getName()));
+
+        final Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(dc);
+        checker.addListener(new BriefLogger(stream));
+
+        checker.addFileSetCheck(new TestFileSetCheck());
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, getPath("InputScopeAnonInner.java"), expected);
+
+        assertTrue("FileContent should be available during finishProcessing() call",
+                TestFileSetCheck.isFileContentAvailable());
+    }
+
+    private static class TestFileSetCheck extends AbstractFileSetCheck {
         private static boolean destroyed;
         private static boolean fileContentAvailable;
 
@@ -70,46 +116,5 @@ public class FileSetCheckLifecycleTest
         public void finishProcessing() {
             fileContentAvailable = FileContentsHolder.getContents() != null;
         }
-    }
-
-    @Test
-    public void testTranslation() throws Exception {
-        final Configuration checkConfig =
-            createCheckConfig(TestFileSetCheck.class);
-        final String[] expected = {
-        };
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
-
-        assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
-    }
-
-    @Test
-    public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
-
-        DefaultConfiguration dc = new DefaultConfiguration("configuration");
-        DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
-        dc.addAttribute("charset", "UTF-8");
-        dc.addChild(twConf);
-        twConf.addChild(new DefaultConfiguration(FileContentsHolder.class.getName()));
-        twConf.addChild(new DefaultConfiguration(AvoidStarImportCheck.class.getName()));
-
-        final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(dc);
-        checker.addListener(new BriefLogger(stream));
-
-
-        checker.addFileSetCheck(new TestFileSetCheck());
-
-        final String[] expected = {
-        };
-
-        verify(checker, getPath("InputScopeAnonInner.java"), expected);
-
-        assertTrue("FileContent should be available during finishProcessing() call",
-                TestFileSetCheck.isFileContentAvailable());
     }
 }

@@ -23,11 +23,12 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespac
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_ILLEGAL_FOLLOW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_PRECEDED;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 import java.util.Map;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -51,6 +52,16 @@ public class GenericWhitespaceCheckTest
             entry.getValue();
         }
         //for (final Entry<Class<?>, Integer> entry : entrySet())
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        GenericWhitespaceCheck checkObj = new GenericWhitespaceCheck();
+        int[] expected = {
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -90,22 +101,20 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testGh47() throws Exception {
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/Gh47.java"), expected);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/"
                 + "InputGenericWhitespaceInnerClassCheck.java"), expected);
     }
 
     @Test
     public void testMethodReferences() throws Exception {
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/grammars/java8/"
                 + "InputMethodReferencesTest3.java").getCanonicalPath(), expected);
@@ -125,12 +134,11 @@ public class GenericWhitespaceCheckTest
     public void testGetAcceptableTokens() {
         GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
         int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -20,12 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
-import static org.junit.Assert.fail;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -123,7 +122,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test(expected = IllegalStateException.class)
-    public void testVisitTokenWhithWrongTokenType() {
+    public void testVisitTokenWithWrongTokenType() {
         ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
         DetailAST ast = new DetailAST();
@@ -146,16 +145,9 @@ public class ExecutableStatementCountCheckTest
     public void testDefaultConfiguration() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
     }
 }

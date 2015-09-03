@@ -35,7 +35,7 @@ public enum PadOption {
 
     /**
      * Represents mandatory spacing following a left parenthesis
-     * and preceeing a right one.
+     * and preceding a right one.
      */
     SPACE
 }

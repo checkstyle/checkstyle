@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED;
+import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -30,6 +30,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidNestedBlocksCheckTest
         extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        AvoidNestedBlocksCheck checkObj = new AvoidNestedBlocksCheck();
+        int[] expected = {TokenTypes.SLIST};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testStrictSettings()
         throws Exception {
@@ -49,7 +57,7 @@ public class AvoidNestedBlocksCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidNestedBlocksCheck.class);
-        checkConfig.addAttribute("allowInSwitchCase", Boolean.TRUE.toString());
+        checkConfig.addAttribute("allowInSwitchCase", "true");
 
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
@@ -63,9 +71,8 @@ public class AvoidNestedBlocksCheckTest
     public void testGetAcceptableTokens() {
         AvoidNestedBlocksCheck constantNameCheckObj = new AvoidNestedBlocksCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {TokenTypes.SLIST };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        int[] expected = {TokenTypes.SLIST };
+        assertArrayEquals(expected, actual);
     }
 
 }

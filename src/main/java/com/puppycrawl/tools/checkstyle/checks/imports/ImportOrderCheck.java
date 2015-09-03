@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <ul>
@@ -141,8 +141,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * {@code *} character.
  * </p>
  *
- * <p>
- * Check also has on option making it more flexible:
+ * <p>Check also has on option making it more flexible:
  * <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped by
  * <b>top</b> or <b>bottom</b> option should be sorted alphabetically or
  * not, default value is <b>false</b>. It is applied to static imports grouped
@@ -154,9 +153,9 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * To configure the Check allows static imports grouped to the <b>top</b>
  * being sorted alphabetically:
  * </p>
- * <p>
+ *
  * <pre>
- * <code>
+ * {@code
  * import static java.lang.Math.abs;
  * import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
  *
@@ -165,9 +164,9 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * import java.util.Set;
  *
  * public class SomeClass { ... }
- * </code>
+ * }
  * </pre>
- * </p>
+ *
  *
  * @author Bill Schneider
  * @author o_sukhodolsky
@@ -190,11 +189,14 @@ public class ImportOrderCheck
      */
     public static final String MSG_ORDERING = "import.ordering";
 
-    /** the special wildcard that catches all remaining groups. */
+    /** The special wildcard that catches all remaining groups. */
     private static final String WILDCARD_GROUP_NAME = "*";
 
+    /** Empty array of pattern type needed to initlialize check. */
+    private static final Pattern[] EMPTY_PATTERN_ARRAY = new Pattern[0];
+
     /** List of import groups specified by the user. */
-    private Pattern[] groups = new Pattern[0];
+    private Pattern[] groups = EMPTY_PATTERN_ARRAY;
     /** Require imports in group be separated. */
     private boolean separated;
     /** Require imports in group. */
@@ -233,25 +235,27 @@ public class ImportOrderCheck
 
         for (int i = 0; i < packageGroups.length; i++) {
             String pkg = packageGroups[i];
+            final StringBuilder pkgBuilder = new StringBuilder(pkg);
             Pattern grp;
 
             // if the pkg name is the wildcard, make it match zero chars
             // from any name, so it will always be used as last resort.
             if (WILDCARD_GROUP_NAME.equals(pkg)) {
-                grp = Pattern.compile(""); // matches any package
+                // matches any package
+                grp = Pattern.compile("");
             }
-            else if (Utils.startsWithChar(pkg, '/')) {
-                if (!Utils.endsWithChar(pkg, '/')) {
+            else if (CommonUtils.startsWithChar(pkg, '/')) {
+                if (!CommonUtils.endsWithChar(pkg, '/')) {
                     throw new IllegalArgumentException("Invalid group");
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
                 grp = Pattern.compile(pkg);
             }
             else {
-                if (!Utils.endsWithChar(pkg, '.')) {
-                    pkg = pkg + ".";
+                if (!CommonUtils.endsWithChar(pkg, '.')) {
+                    pkgBuilder.append('.');
                 }
-                grp = Pattern.compile("^" + Pattern.quote(pkg));
+                grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));
             }
 
             groups[i] = grp;
@@ -297,17 +301,22 @@ public class ImportOrderCheck
      * @param sortAlphabetically true or false.
      */
     public void setSortStaticImportsAlphabetically(boolean sortAlphabetically) {
-        this.sortStaticImportsAlphabetically = sortAlphabetically;
+        sortStaticImportsAlphabetically = sortAlphabetically;
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[] {TokenTypes.IMPORT};
     }
 
     @Override
@@ -335,14 +344,14 @@ public class ImportOrderCheck
         }
 
         final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
-        final boolean isNotStaticAndLastImport = !isStatic && lastImportStatic;
+        final boolean isLastImportAndNonStatic = lastImportStatic && !isStatic;
         final ImportOrderOption abstractOption = getAbstractOption();
 
         // using set of IF instead of SWITCH to analyze Enum options to satisfy coverage.
         // https://github.com/checkstyle/checkstyle/issues/1387
         if (abstractOption == ImportOrderOption.TOP) {
 
-            if (isNotStaticAndLastImport) {
+            if (isLastImportAndNonStatic) {
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
             }
@@ -355,7 +364,7 @@ public class ImportOrderCheck
                 lastGroup = Integer.MIN_VALUE;
                 lastImport = "";
             }
-            doVisitToken(ident, isStatic, isNotStaticAndLastImport);
+            doVisitToken(ident, isStatic, isLastImportAndNonStatic);
 
         }
         else if (abstractOption == ImportOrderOption.ABOVE) {
@@ -364,7 +373,7 @@ public class ImportOrderCheck
 
         }
         else if (abstractOption == ImportOrderOption.UNDER) {
-            doVisitToken(ident, isStatic, isNotStaticAndLastImport);
+            doVisitToken(ident, isStatic, isLastImportAndNonStatic);
 
         }
         else if (abstractOption == ImportOrderOption.INFLOW) {
@@ -374,7 +383,7 @@ public class ImportOrderCheck
         }
         else {
             throw new IllegalStateException(
-                    "Unexpected option for static imports: " + abstractOption.toString());
+                    "Unexpected option for static imports: " + abstractOption);
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
@@ -430,7 +439,7 @@ public class ImportOrderCheck
      *
      * @param isStatic whether the token is static or not.
      * @param previous previous non-static but current is static (above), or
-     *    previous static but current is non-static (under).
+     *     previous static but current is non-static (under).
      * @param name the name of the current import.
      * @param line the line of the current import.
      */
@@ -452,7 +461,7 @@ public class ImportOrderCheck
                 // previous non-static
                 !(lastImportStatic ^ isStatic)
                 &&
-                // and out of lexicographic order
+                        // and out of lexicographic order
                         compare(lastImport, name, caseSensitive) > 0
                 ||
                 // previous non-static but current is static (above)
@@ -504,9 +513,9 @@ public class ImportOrderCheck
      *            the second string.
      * @param caseSensitive
      *            whether the comparison is case sensitive.
-     * @return the value <code>0</code> if string1 is equal to string2; a value
-     *         less than <code>0</code> if string1 is lexicographically less
-     *         than the string2; and a value greater than <code>0</code> if
+     * @return the value {@code 0} if string1 is equal to string2; a value
+     *         less than {@code 0} if string1 is lexicographically less
+     *         than the string2; and a value greater than {@code 0} if
      *         string1 is lexicographically greater than string2.
      */
     private static int compare(String string1, String string2,

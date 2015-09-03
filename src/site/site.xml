@@ -24,11 +24,11 @@
           />
     <logo name="SourceForge"
           img="images/sflogo.gif"
-          href="http://sourceforge.net/projects/checkstyle"
+          href="http://sourceforge.net/projects/checkstyle/"
           />
     <logo name="Twitter"
           img="images/twitter_button.png"
-          href="https://twitter.com/checkstyle_java"
+          href="https://twitter.com/checkstyle_java/"
           />
     <logo name="Stackoverflow"
           img="images/stackoverflow.jpeg"
@@ -44,7 +44,7 @@
           />
     <logo name="Google+"
           img="images/Google-Plus-Logo-120x38.png"
-          href="https://plus.google.com/u/0/108692338295483568100/posts"
+          href="https://plus.google.com/108692338295483568100/posts"
           />
   </poweredBy>
   
@@ -97,7 +97,7 @@
       <item name="Contributing" href="contributing.html"/>
       <item name="Beginning Development" href="beginning_development.html">
         <item name="Eclipse IDE" href="eclipse.html"/>
-        <item name="Netbeans IDE" href="netbeans.html"/>
+        <item name="NetBeans IDE" href="netbeans.html"/>
         <item name="IntelliJ IDE" href="idea.html"/>
       </item>
       <item name="Javadoc" href="apidocs/index.html"/>

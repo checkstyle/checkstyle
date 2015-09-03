@@ -63,10 +63,10 @@ public final class IllegalCatchCheck extends AbstractIllegalCheck {
 
     @Override
     public void visitToken(DetailAST detailAST) {
-        final DetailAST paradef =
+        final DetailAST parameterDef =
             detailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
         final DetailAST excTypeParent =
-                paradef.findFirstToken(TokenTypes.TYPE);
+                parameterDef.findFirstToken(TokenTypes.TYPE);
         final List<DetailAST> excTypes = getAllExceptionTypes(excTypeParent);
 
         for (DetailAST excType : excTypes) {

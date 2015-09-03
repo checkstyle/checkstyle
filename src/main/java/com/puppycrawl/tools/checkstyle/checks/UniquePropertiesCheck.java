@@ -28,6 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.common.collect.HashMultiset;
+import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -43,17 +44,22 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     /**
      * Localization key for check violation.
      */
-    public static final String MSG_KEY = "properties.duplicateproperty";
+    public static final String MSG_KEY = "properties.duplicate.property";
     /**
      * Localization key for IO exception occurred on file open.
      */
     public static final String IO_EXCEPTION_KEY = "unable.open.cause";
 
     /**
+     * Pattern matching single space.
+     */
+    private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
+
+    /**
      * Construct the check with default values.
      */
     public UniquePropertiesCheck() {
-        super.setFileExtensions("properties");
+        setFileExtensions("properties");
     }
 
     @Override
@@ -76,7 +82,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         }
 
         for (Entry<String> duplication : properties
-                .getDuplicatedStrings().entrySet()) {
+                .getDuplicatedKeys().entrySet()) {
             final String keyName = duplication.getElement();
             final int lineNumber = getLineNumber(lines, keyName);
             // Number of occurrences is number of duplications + 1
@@ -96,8 +102,8 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      *         file, 0 is returned
      */
     protected static int getLineNumber(List<String> lines, String keyName) {
-        final String keyPatternString =
-                "^" + keyName.replace(" ", "\\\\ ") + "[\\s:=].*$";
+        final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
+                        .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
         final Pattern keyPattern = Pattern.compile(keyPatternString);
         int lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");
@@ -128,23 +134,26 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
          * Multiset, holding duplicated keys. Keys are added here only if they
          * already exist in Properties' inner map.
          */
-        private final Multiset<String> duplicatedStrings = HashMultiset
+        private final Multiset<String> duplicatedKeys = HashMultiset
                 .create();
 
         @Override
         public Object put(Object key, Object value) {
-            synchronized (this) {
-                final Object oldValue = super.put(key, value);
-                if (oldValue != null && key instanceof String) {
-                    final String keyString = (String) key;
-                    duplicatedStrings.add(keyString);
-                }
-                return oldValue;
+            final Object oldValue = super.put(key, value);
+            if (oldValue != null && key instanceof String) {
+                final String keyString = (String) key;
+                duplicatedKeys.add(keyString);
             }
+            return oldValue;
         }
 
-        public Multiset<String> getDuplicatedStrings() {
-            return duplicatedStrings;
+        /**
+         * Retrieves a collections of duplicated properties keys.
+         *
+         * @return A collection of duplicated keys.
+         */
+        public Multiset<String> getDuplicatedKeys() {
+            return ImmutableMultiset.copyOf(duplicatedKeys);
         }
     }
 }

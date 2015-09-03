@@ -11,9 +11,9 @@
 
   <head>
     <title>Standard Checks</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -119,6 +119,10 @@
         <td>Checks that constant names conform to a format specified by the format property.</td>
       </tr>
       <tr>
+        <td><a href="config_misc.html#CommentsIndentation">CommentsIndentation</a></td>
+        <td>Controls the indentation between comments and surrounding code.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#CovariantEquals">CovariantEquals</a></td>
         <td>
           Checks that if a class defines a covariant method equals, then
@@ -141,7 +145,7 @@
         <td>
           Checks that the parts of a class or interface declaration
           appear in the order suggested by the <a
-          href="http://java.sun.com/docs/codeconv/html/CodeConventions.doc2.html#1852"
+          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852"
           >Code Conventions for the Java Programming Language</a>.
         </td>
       </tr>
@@ -192,8 +196,8 @@
       <tr>
         <td><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></td>
         <td>
-          Checks that any combination of String literals with optional
-        assignment is on the left side of an equals() comparison.</td>
+          Checks that any combination of String literals
+          is on the left side of an equals() comparison.</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#EqualsHashCode">EqualsHashCode</a></td>
@@ -234,7 +238,7 @@
       <tr>
         <td><a href="config_design.html#FinalClass">FinalClass</a></td>
         <td>
-          Checks that class which has only private ctors
+          Checks that class which has only private constructors
         is declared as final.</td>
       </tr>
       <tr>
@@ -467,7 +471,7 @@
         <td>
           Checks that the order of modifiers conforms to the suggestions in the
           <a
-              href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">
+              href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">
         Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>.</td>
       </tr>
       <tr>

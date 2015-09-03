@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierC
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -60,8 +61,7 @@ public class RedundantModifierTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),
@@ -104,10 +104,21 @@ public class RedundantModifierTest
     }
 
     @Test
+    public void testNotPublicClassConstructorHasNotPublicModifier() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verify(checkConfig, getPath("InputRedundantPublicModifierInNotPublicClass.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         int[] actual = redundantModifierCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.METHOD_DEF,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
@@ -116,7 +127,6 @@ public class RedundantModifierTest
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 
@@ -124,8 +134,20 @@ public class RedundantModifierTest
     public void testGetRequiredTokens() {
         RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         int[] actual = redundantModifierCheckObj.getRequiredTokens();
-        int[] expected = new int[] {};
-        Assert.assertNotNull(actual);
+        int[] expected = ArrayUtils.EMPTY_INT_ARRAY;
         Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testNestedStaticEnum() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_KEY, "static"),
+            "8:9: " + getCheckMessage(MSG_KEY, "static"),
+            "12:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verify(checkConfig, getPath("InputRedundantStatic"
+            + "ModifierInNestedEnum.java"), expected);
     }
 }

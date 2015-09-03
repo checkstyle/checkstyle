@@ -27,7 +27,7 @@ h4 {
 #bannerLeft img {
   float:left;
   position: relative;
-  top: 0px;
+  top: 0;
   left: 40px;
 
 }
@@ -37,11 +37,7 @@ h4 {
   background: url("../images/header-background.png") repeat scroll 0 0 transparent;
 }
 
-.section {
-
-}
-
-a.dl-link {
+.dl-link {
   position: relative;
   float: right;
 }

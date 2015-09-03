@@ -62,7 +62,7 @@ public class EmptyForIteratorPadCheck
     public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /**
-     * Sets the paren pad otion to nospace.
+     * Sets the paren pad option to nospace.
      */
     public EmptyForIteratorPadCheck() {
         super(PadOption.NOSPACE, PadOption.class);
@@ -70,14 +70,17 @@ public class EmptyForIteratorPadCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.FOR_ITERATOR,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.FOR_ITERATOR,
-        };
+        return new int[] {TokenTypes.FOR_ITERATOR};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -89,13 +92,13 @@ public class EmptyForIteratorPadCheck
             final int after = semi.getColumnNo() + 1;
             //don't check if at end of line
             if (after < line.length()) {
-                if (PadOption.NOSPACE == getAbstractOption()
+                if (getAbstractOption() == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, WS_FOLLOWED, ";");
+                    log(semi.getLineNo(), after, WS_FOLLOWED, SEMICOLON);
                 }
-                else if (PadOption.SPACE == getAbstractOption()
+                else if (getAbstractOption() == PadOption.SPACE
                          && !Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, WS_NOT_FOLLOWED, ";");
+                    log(semi.getLineNo(), after, WS_NOT_FOLLOWED, SEMICOLON);
                 }
             }
         }

@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -32,6 +32,31 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TypeParameterNameTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetInterfaceRequiredTokens() {
+        InterfaceTypeParameterNameCheck checkObj =
+            new InterfaceTypeParameterNameCheck();
+        int[] expected = {TokenTypes.TYPE_PARAMETER};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testGetMethodRequiredTokens() {
+        MethodTypeParameterNameCheck checkObj =
+            new MethodTypeParameterNameCheck();
+        int[] expected = {TokenTypes.TYPE_PARAMETER};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testGetClassRequiredTokens() {
+        ClassTypeParameterNameCheck checkObj =
+            new ClassTypeParameterNameCheck();
+        int[] expected = {TokenTypes.TYPE_PARAMETER};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testClassDefault()
         throws Exception {
@@ -137,10 +162,9 @@ public class TypeParameterNameTest
     public void testGetAcceptableTokens() {
         AbstractTypeParameterNameCheck typeParameterNameCheckObj = new ClassTypeParameterNameCheck();
         int[] actual = typeParameterNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.TYPE_PARAMETER,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

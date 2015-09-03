@@ -24,33 +24,42 @@ import static org.junit.Assert.fail;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
 public class TreeWalkerTest extends BaseCheckTestSupport {
-    @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @Rule public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Test
     public void testProperFileExtension() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
-        final String content = "public class Main { public static final int k = 5 + 4; }";
         final File file = temporaryFolder.newFile("file.java");
-        final Writer writer = new BufferedWriter(new FileWriter(file));
-        writer.write(content);
-        writer.close();
+        try (final Writer writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+            final String content = "public class Main { public static final int k = 5 + 4; }";
+            writer.write(content);
+        }
         final String[] expected1 = {
             "1:45: Name 'k' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
         };
@@ -62,15 +71,14 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
-        final String content = "public class Main { public static final int k = 5 + 4; }";
-        final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        writer.write(content);
-        writer.close();
-        final String[] expected = {
-        };
+        try (final BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+            final String content = "public class Main { public static final int k = 5 + 4; }";
+            writer.write(content);
+        }
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
     }
-
 
     @Test
     public void testAcceptableTokens()
@@ -79,16 +87,14 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("InputHiddenField.java"), expected);
-            Assert.fail();
+            fail();
         }
         catch (CheckstyleException e) {
             String errorMsg = e.getMessage();
-            Assert.assertTrue(errorMsg.contains("cannot initialize module"
+            assertTrue(errorMsg.contains("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - Token \"IMPORT\""
                     + " was not found in Acceptable tokens list in check"
                     + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
@@ -99,8 +105,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testOnEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, pathToEmptyFile, expected);
     }
@@ -108,8 +113,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     @Test
     public void testWithCheckNotHavingTreeWalkerAsParent() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, temporaryFolder.newFile().getPath(), expected);
@@ -132,13 +136,19 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testDestroyNonExistingCache() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(new DefaultConfiguration("default config"));
-        treeWalker.setCacheFile("/invalid");
+        if (System.getProperty("os.name")
+                        .toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+            // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
+            // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
+            File file = new File("C\\:invalid");
+            treeWalker.setCacheFile(file.getAbsolutePath());
+        }
+        else {
+            treeWalker.setCacheFile(File.separator + ":invalid");
+        }
         try {
             treeWalker.destroy();
-            // till
-            if (!System.getProperty("os.name").startsWith("Windows")) {
-                fail();
-            }
+            fail("Exception did not happen");
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getCause() instanceof IOException);
@@ -166,8 +176,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
         // one more time to reuse cache
@@ -195,8 +204,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
 
@@ -204,17 +212,179 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         //checker.destroy();
         //checker.configure(checkerConfig);
 
-        checker = new Checker();
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(stream));
+        Checker otherChecker = new Checker();
+        otherChecker.setLocaleCountry(locale.getCountry());
+        otherChecker.setLocaleLanguage(locale.getLanguage());
+        otherChecker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        otherChecker.configure(checkerConfig);
+        otherChecker.addListener(new BriefLogger(stream));
         // here is diff with previous checker
         checkerConfig.addAttribute("fileExtensions", "java,javax");
 
         // one more time on updated config
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        verify(otherChecker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testForInvalidCheckImplementation() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(BadJavaDocCheck.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        // nothing is expected
+        verify(checkConfig, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testProcessNonJavaFiles() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setTabWidth(1);
+        treeWalker.configure(new DefaultConfiguration("default config"));
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        File file = new File("src/main/resources/checkstyle_packages.xml");
+        treeWalker.processFiltered(file, new ArrayList<String>());
+    }
+
+    @Test
+    public void testWithCacheWithNoViolation() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(createCheckConfig(TypeNameCheck.class));
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
+        final File file = temporaryFolder.newFile("file.java");
+        List<String> lines = new ArrayList<>();
+        lines.add(" class a {} ");
+        treeWalker.processFiltered(file, lines);
+    }
+
+    @Test
+    public void testProcessWithParserTrowable() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(createCheckConfig(TypeNameCheck.class));
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
+        final File file = temporaryFolder.newFile("file.java");
+        List<String> lines = new ArrayList<>();
+        lines.add(" classD a {} ");
+
+        try {
+            treeWalker.processFiltered(file, lines);
+        }
+        catch (CheckstyleException exception) {
+            assertTrue(exception.getMessage().contains(
+                    "occurred during the analysis of file"));
+        }
+    }
+
+    @Test
+    public void testProcessWithRecognitionException() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(createCheckConfig(TypeNameCheck.class));
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+        treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
+        final File file = temporaryFolder.newFile("file.java");
+        List<String> lines = new ArrayList<>();
+        lines.add(" class a%$# {} ");
+
+        try {
+            treeWalker.processFiltered(file, lines);
+        }
+        catch (CheckstyleException exception) {
+            assertTrue(exception.getMessage().contains(
+                    "TokenStreamRecognitionException occurred during the analysis of file"));
+        }
+    }
+
+    @Test
+    public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RequiredTokenIsNotInDefaultsCheck.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        try {
+            verify(checkConfig, pathToEmptyFile, expected);
+            fail();
+        }
+        catch (CheckstyleException ignored) {
+            //expected
+        }
+    }
+
+    @Test
+    public void testRequiredTokenIsEmptyIntArray() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RequiredTokenIsEmptyIntArray.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        try {
+            verify(checkConfig, pathToEmptyFile, expected);
+        }
+        catch (CheckstyleException ignored) {
+            // unexpected
+            fail();
+        }
+    }
+
+    private static class BadJavaDocCheck extends Check {
+        @Override
+        public int[] getDefaultTokens() {
+            return getAcceptableTokens();
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[]{TokenTypes.SINGLE_LINE_COMMENT};
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return getAcceptableTokens();
+        }
+    }
+
+    private static class RequiredTokenIsNotInDefaultsCheck extends Check {
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.ASSIGN};
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.ANNOTATION};
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+    }
+
+    private static class RequiredTokenIsEmptyIntArray extends Check {
+        @Override
+        public int[] getRequiredTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.ANNOTATION};
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return ArrayUtils.EMPTY_INT_ARRAY;
+        }
     }
 
 }

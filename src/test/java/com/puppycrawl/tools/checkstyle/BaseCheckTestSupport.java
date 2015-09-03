@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public abstract class BaseCheckTestSupport {
     /**
-     * a brief logger that only display info about errors
+     * A brief logger that only display info about errors.
      */
     protected static class BriefLogger
             extends DefaultLogger {
@@ -35,38 +35,27 @@ public abstract class BaseCheckTestSupport {
         public void auditStarted(AuditEvent evt) {
         }
 
-        @Override
-        public void fileFinished(AuditEvent evt) {
-        }
-
-        @Override
-        public void fileStarted(AuditEvent evt) {
-        }
     }
 
-    protected final ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
-    protected final PrintStream stream = new PrintStream(BAOS);
-    protected final Properties props = new Properties();
+    protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-    public static DefaultConfiguration createCheckConfig(Class<?> clazz) {
-        final DefaultConfiguration checkConfig =
-                new DefaultConfiguration(clazz.getName());
-        return checkConfig;
+    protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
+        return new DefaultConfiguration(clazz.getName());
     }
 
     protected Checker createChecker(Configuration checkConfig)
             throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(checkConfig);
-        final Checker c = new Checker();
+        final Checker checker = new Checker();
         // make sure the tests always run with default error messages (language-invariant)
         // so the tests don't fail in supported locales like German
         final Locale locale = Locale.ROOT;
-        c.setLocaleCountry(locale.getCountry());
-        c.setLocaleLanguage(locale.getLanguage());
-        c.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        c.configure(dc);
-        c.addListener(new BriefLogger(stream));
-        return c;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(dc);
+        checker.addListener(new BriefLogger(stream));
+        return checker;
     }
 
     protected DefaultConfiguration createCheckerConfig(Configuration config) {
@@ -90,51 +79,52 @@ public abstract class BaseCheckTestSupport {
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
     }
 
-    protected void verify(Configuration aConfig, String fileName, String[] expected)
+    protected void verify(Configuration aConfig, String fileName, String... expected)
             throws Exception {
         verify(createChecker(aConfig), fileName, fileName, expected);
     }
 
-    protected void verify(Checker c, String fileName, String[] expected)
+    protected void verify(Checker checker, String fileName, String... expected)
             throws Exception {
-        verify(c, fileName, fileName, expected);
+        verify(checker, fileName, fileName, expected);
     }
 
-    protected void verify(Checker c,
+    protected void verify(Checker checker,
                           String processedFilename,
                           String messageFileName,
-                          String[] expected)
+                          String... expected)
             throws Exception {
-        verify(c,
+        verify(checker,
                 new File[]{new File(processedFilename)},
                 messageFileName, expected);
     }
 
-    protected void verify(Checker c,
+    protected void verify(Checker checker,
                           File[] processedFiles,
                           String messageFileName,
-                          String[] expected)
+                          String... expected)
             throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = c.process(theFiles);
+        final int errs = checker.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream bais =
-                new ByteArrayInputStream(BAOS.toByteArray());
-        final LineNumberReader lnr =
-                new LineNumberReader(new InputStreamReader(bais));
+                new ByteArrayInputStream(stream.toByteArray());
+        try (final LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(bais, StandardCharsets.UTF_8))) {
 
-        for (int i = 0; i < expected.length; i++) {
-            final String expectedResult = messageFileName + ":" + expected[i];
-            final String actual = lnr.readLine();
-            assertEquals("error message " + i, expectedResult, actual);
+            for (int i = 0; i < expected.length; i++) {
+                final String expectedResult = messageFileName + ":" + expected[i];
+                final String actual = lnr.readLine();
+                assertEquals("error message " + i, expectedResult, actual);
+            }
+
+            assertEquals("unexpected output: " + lnr.readLine(),
+                    expected.length, errs);
         }
-
-        assertEquals("unexpected output: " + lnr.readLine(),
-                expected.length, errs);
-        c.destroy();
+        checker.destroy();
     }
 
     /**
@@ -144,7 +134,7 @@ public abstract class BaseCheckTestSupport {
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      */
-    public String getCheckMessage(String messageKey, Object... arguments) {
+    protected String getCheckMessage(String messageKey, Object... arguments) {
         Properties pr = new Properties();
         try {
             pr.load(getClass().getResourceAsStream("messages.properties"));

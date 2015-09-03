@@ -45,15 +45,15 @@ public class HeaderCheck extends AbstractHeaderCheck {
      */
     public static final String MSG_MISMATCH = "header.mismatch";
 
-    /** empty array to avoid instantiations. */
+    /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
-    /** the header lines to ignore in the check, sorted. */
+    /** The header lines to ignore in the check, sorted. */
     private int[] ignoreLines = EMPTY_INT_ARRAY;
 
     /**
      * @param lineNo a line number
-     * @return if <code>lineNo</code> is one of the ignored header lines.
+     * @return if {@code lineNo} is one of the ignored header lines.
      */
     private boolean isIgnoreLine(int lineNo) {
         return Arrays.binarySearch(ignoreLines, lineNo) >= 0;
@@ -76,7 +76,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * @param list comma separated list of line numbers to ignore in header.
      */
     public void setIgnoreLines(int... list) {
-        if (list == null || list.length == 0) {
+        if (list.length == 0) {
             ignoreLines = EMPTY_INT_ARRAY;
             return;
         }
@@ -95,7 +95,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
             for (int i = 0; i < getHeaderLines().size(); i++) {
                 if (!isMatch(i, lines.get(i))) {
                     log(i + 1, MSG_MISMATCH, getHeaderLines().get(i));
-                    break; // stop checking
+                    break;
                 }
             }
         }

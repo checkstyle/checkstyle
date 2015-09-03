@@ -25,6 +25,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -33,31 +35,31 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * The Check validate abbreviations(consecutive capital letters) length in
  * identifier name, it also allows to enforce camel case naming. Please read more at
- * <a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.3-camel-case">
+ * <a href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
  * <p>
- * Option <code>allowedAbbreviationLength</code> indicates on the allowed amount of capital
+ * Option {@code allowedAbbreviationLength} indicates on the allowed amount of capital
  * letters in abbreviations in the classes, interfaces,
  * variables and methods names. Default value is '3'.
  * </p>
  * <p>
- * Option <code>allowedAbbreviations</code> - list of abbreviations that
+ * Option {@code allowedAbbreviations} - list of abbreviations that
  * must be skipped for checking. Abbreviations should be separated by comma,
  * no spaces are allowed.
  * </p>
  * <p>
- * Option <code>ignoreFinal</code> allow to skip variables with <code>final</code> modifier.
- * Default value is <code>true</code>.
+ * Option {@code ignoreFinal} allow to skip variables with {@code final} modifier.
+ * Default value is {@code true}.
  * </p>
  * <p>
- * Option <code>ignoreStatic</code> allow to skip variables with <code>static</code> modifier.
- * Default value is <code>true</code>.
+ * Option {@code ignoreStatic} allow to skip variables with {@code static} modifier.
+ * Default value is {@code true}.
  * </p>
  * <p>
- * Option <code>ignoreOverriddenMethod</code> - Allows to
- * ignore methods tagged with <code>@Override</code> annotation
- * (that usually mean inherited name). Default value is <code>true</code>.
+ * Option {@code ignoreOverriddenMethod} - Allows to
+ * ignore methods tagged with {@code @Override} annotation
+ * (that usually mean inherited name). Default value is {@code true}.
  * </p>
  * Default configuration
  * <pre>
@@ -192,6 +194,11 @@ public class AbbreviationAsWordInNameCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
 
         if (!isIgnoreSituation(ast)) {
@@ -240,7 +247,7 @@ public class AbbreviationAsWordInNameCheck extends Check {
      * Check that variable definition in interface definition.
      * @param variableDefAst variable definition.
      * @return true if variable definition(variableDefAst) is in interface
-     * definition.
+     *     definition.
      */
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
         boolean result = false;
@@ -296,18 +303,16 @@ public class AbbreviationAsWordInNameCheck extends Check {
                     beginIndex = index;
                 }
             }
-            else {
-                if (abbrStarted) {
-                    abbrStarted = false;
+            else if (abbrStarted) {
+                abbrStarted = false;
 
-                    final int endIndex = index - 1;
-                    // -1 as a first capital is usually beginning of next word
-                    result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
-                    if (result != null) {
-                        break;
-                    }
-                    beginIndex = -1;
+                final int endIndex = index - 1;
+                // -1 as a first capital is usually beginning of next word
+                result = getAbbreviationIfIllegal(str, beginIndex, endIndex);
+                if (result != null) {
+                    break;
                 }
+                beginIndex = -1;
             }
         }
         // if abbreviation at the end of name and it is not single character (example: scaleX)
@@ -319,11 +324,11 @@ public class AbbreviationAsWordInNameCheck extends Check {
     }
 
     /**
-     * get Abbreviation if it is illegal
+     * Get Abbreviation if it is illegal.
      * @param str name
      * @param beginIndex begin index
      * @param endIndex end index
-     * @return true is abbreviation is bigger that requierd and not in ignore list
+     * @return true is abbreviation is bigger that required and not in ignore list
      */
     private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex) {
         String result = null;

@@ -24,6 +24,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -35,11 +36,21 @@ public class JavadocVariableCheckTest
     extends BaseCheckTestSupport {
 
     @Test
+    public void testGetRequiredTokens() {
+        JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
+        int[] actual = javadocVariableCheck.getRequiredTokens();
+        int[] expected = {
+            TokenTypes.VARIABLE_DEF,
+        };
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
 
         int[] actual = javadocVariableCheck.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
         };
@@ -80,8 +91,7 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 

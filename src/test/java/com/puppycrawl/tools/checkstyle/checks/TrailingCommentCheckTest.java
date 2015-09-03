@@ -20,12 +20,17 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public class TrailingCommentCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -33,6 +38,18 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(TrailingCommentCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        TrailingCommentCheck checkObj = new TrailingCommentCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        TrailingCommentCheck checkObj = new TrailingCommentCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 
     @Test
@@ -59,5 +76,17 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
             "19: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    @Test
+    public void testCallVisitToken() throws Exception {
+        TrailingCommentCheck check = new TrailingCommentCheck();
+        try {
+            check.visitToken(new DetailAST());
+            Assert.fail();
+        }
+        catch (IllegalStateException ex) {
+            assertEquals("visitToken() shouldn't be called.", ex.getMessage());
+        }
     }
 }

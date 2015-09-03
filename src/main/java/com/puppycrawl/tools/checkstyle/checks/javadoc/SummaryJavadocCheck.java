@@ -22,22 +22,25 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.regex.Pattern;
 
 import com.google.common.base.CharMatcher;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * <p>
- * Checks that <a href="
- * http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
+ * Checks that <a href=
+ * "http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
  * Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
- * By default Check validate that first sentence is not empty:</p><br/>
+ * By default Check validate that first sentence is not empty:</p><br>
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
  * </pre>
- * <p>
- * To ensure that summary do not contain phrase like "This method returns" , use following config:
- * <p>
+ *
+ * <p>To ensure that summary do not contain phrase like "This method returns",
+ *  use following config:
+ *
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
  *     &lt;property name=&quot;forbiddenSummaryFragments&quot;
@@ -46,13 +49,14 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * </pre>
  * <p>
  * To specify period symbol at the end of first javadoc sentence - use following config:
+ * </p>
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
  *     &lt;property name=&quot;period&quot;
  *     value=&quot;period&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
+ *
  *
  * @author max
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
@@ -70,23 +74,31 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String SUMMARY_JAVADOC = "summary.javaDoc";
+    /**
+     * This regexp is used to convert multiline javadoc to single line without stars.
+     */
+    private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
+            Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
+
+    /** Period literal. */
+    private static final String PERIOD = ".";
 
     /**
      * Regular expression for forbidden summary fragments.
      */
-    private Pattern forbiddenSummaryFragments = Utils.createPattern("^$");
+    private Pattern forbiddenSummaryFragments = CommonUtils.createPattern("^$");
 
     /**
      * Period symbol at the end of first javadoc sentence.
      */
-    private String period = ".";
+    private String period = PERIOD;
 
     /**
      * Sets custom value of regular expression for forbidden summary fragments.
      * @param pattern user's value.
      */
     public void setForbiddenSummaryFragments(String pattern) {
-        forbiddenSummaryFragments = Utils.createPattern(pattern);
+        forbiddenSummaryFragments = CommonUtils.createPattern(pattern);
     }
 
     /**
@@ -102,6 +114,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -126,9 +148,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder();
+        final String periodSuffix = PERIOD + ' ';
         for (DetailNode child : ast.getChildren()) {
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
-                && child.getText().contains(". ")) {
+                && child.getText().contains(periodSuffix)) {
                 result.append(getCharsTillDot(child));
                 break;
             }
@@ -148,7 +171,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final StringBuilder result = new StringBuilder();
         for (DetailNode child : textNode.getChildren()) {
             result.append(child.getText());
-            if (".".equals(child.getText())
+            if (PERIOD.equals(child.getText())
                 && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS) {
                 break;
             }
@@ -162,8 +185,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return true, if first sentence contains forbidden summary fragment.
      */
     private boolean containsForbiddenFragment(String firstSentence) {
-        // This regexp is used to convert multiline javdoc to single line without stars.
-        String javadocText = firstSentence.replaceAll("\n[ ]+(\\*)|^[ ]+(\\*)", " ");
+        String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
+                .matcher(firstSentence).replaceAll(" ");
         javadocText = CharMatcher.WHITESPACE.trimAndCollapseFrom(javadocText, ' ');
         return forbiddenSummaryFragments.matcher(javadocText).find();
     }

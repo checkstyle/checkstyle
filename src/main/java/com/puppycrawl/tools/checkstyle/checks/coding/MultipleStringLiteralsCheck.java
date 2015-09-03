@@ -26,11 +26,11 @@ import java.util.regex.Pattern;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Checks for multiple occurrences of the same string literal within a
@@ -92,10 +92,10 @@ public class MultipleStringLiteralsCheck extends Check {
      * @throws org.apache.commons.beanutils.ConversionException
      *         if unable to create Pattern object
      */
-    public void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
+    public final void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
         if (ignoreStringsRegexp != null
-            && ignoreStringsRegexp.length() > 0) {
-            pattern = Utils.createPattern(ignoreStringsRegexp);
+            && !ignoreStringsRegexp.isEmpty()) {
+            pattern = CommonUtils.createPattern(ignoreStringsRegexp);
         }
         else {
             pattern = null;
@@ -109,19 +109,24 @@ public class MultipleStringLiteralsCheck extends Check {
     public final void setIgnoreOccurrenceContext(String... strRep) {
         ignoreOccurrenceContext.clear();
         for (final String s : strRep) {
-            final int type = Utils.getTokenId(s);
+            final int type = TokenUtils.getTokenId(s);
             ignoreOccurrenceContext.set(type);
         }
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.STRING_LITERAL};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.STRING_LITERAL};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -148,7 +153,7 @@ public class MultipleStringLiteralsCheck extends Check {
      *
      * @param ast the node from where to start searching towards the root node
      * @return whether the path from the root node to ast contains one of the
-     * token type in {@link #ignoreOccurrenceContext}.
+     *     token type in {@link #ignoreOccurrenceContext}.
      */
     private boolean isInIgnoreOccurrenceContext(DetailAST ast) {
         for (DetailAST token = ast;
@@ -186,11 +191,11 @@ public class MultipleStringLiteralsCheck extends Check {
      */
     private static final class StringInfo {
         /**
-         * Line of finding
+         * Line of finding.
          */
         private final int line;
         /**
-         * Column of finding
+         * Column of finding.
          */
         private final int col;
         /**
@@ -198,7 +203,7 @@ public class MultipleStringLiteralsCheck extends Check {
          * @param line int
          * @param col int
          */
-        public StringInfo(int line, int col) {
+        StringInfo(int line, int col) {
             this.line = line;
             this.col = col;
         }

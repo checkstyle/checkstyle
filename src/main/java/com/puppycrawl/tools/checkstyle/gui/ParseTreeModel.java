@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2002  Oliver Burn
+// Copyright (C) 2001-2015 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,9 +24,9 @@ import javax.swing.tree.TreePath;
 import antlr.ASTFactory;
 import antlr.collections.AST;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * The model that backs the parse tree in the GUI.
@@ -34,28 +34,40 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Lars Kühne
  */
 public class ParseTreeModel extends AbstractTreeTableModel {
-    private static final String[] COLUMN_NAMES = new String[]{
-        "Tree", "Type", "Line", "Column", "Text"
+    /** Column names. */
+    private static final String[] COLUMN_NAMES = {
+        "Tree", "Type", "Line", "Column", "Text",
     };
 
+    /**
+     * @param parseTree DetailAST parse tree.
+     */
     public ParseTreeModel(DetailAST parseTree) {
         super(createArtificialTreeRoot());
         setParseTree(parseTree);
     }
 
+    /**
+     * Creates artificial tree root.
+     * @return Artificial tree root.
+     */
     private static DetailAST createArtificialTreeRoot() {
         final ASTFactory factory = new ASTFactory();
         factory.setASTNodeClass(DetailAST.class.getName());
         return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 
-    void setParseTree(DetailAST parseTree) {
+    /**
+     * Sets parse tree.
+     * @param parseTree DetailAST parse tree.
+     */
+    final void setParseTree(DetailAST parseTree) {
         final DetailAST root = (DetailAST) getRoot();
         root.setFirstChild(parseTree);
         final Object[] path = {root};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
-        fireTreeStructureChanged(this, path, null, (Object[])null);
+        fireTreeStructureChanged(this, path, null, (Object[]) null);
     }
 
     @Override
@@ -70,44 +82,52 @@ public class ParseTreeModel extends AbstractTreeTableModel {
 
     @Override
     public Class<?> getColumnClass(int column) {
+        Class<?> columnClass;
+
         switch (column) {
             case 0:
-                return TreeTableModel.class;
+                columnClass = TreeTableModel.class;
+                break;
             case 1:
-                return String.class;
+                columnClass = String.class;
+                break;
             case 2:
-                return Integer.class;
+                columnClass = Integer.class;
+                break;
             case 3:
-                return Integer.class;
+                columnClass = Integer.class;
+                break;
             case 4:
-                return String.class;
+                columnClass = String.class;
+                break;
             default:
-                return Object.class;
+                columnClass = Object.class;
         }
+        return columnClass;
     }
 
     @Override
     public Object getValueAt(Object node, int column) {
         final DetailAST ast = (DetailAST) node;
-        switch (column) {
-            case 0:
-                return null;
-            case 1:
-                return Utils.getTokenName(ast.getType());
-            case 2:
-                return ast.getLineNo();
-            case 3:
-                return ast.getColumnNo();
-            case 4:
-                return ast.getText();
-            default:
-                return null;
-        }
-    }
+        Object value;
 
-    @Override
-    public void setValueAt(Object aValue, Object node, int column) {
-        // No code, tree is read-only
+        switch (column) {
+            case 1:
+                value = TokenUtils.getTokenName(ast.getType());
+                break;
+            case 2:
+                value = ast.getLineNo();
+                break;
+            case 3:
+                value = ast.getColumnNo();
+                break;
+            case 4:
+                value = ast.getText();
+                break;
+            default:
+                value = null;
+        }
+        return value;
     }
 
     @Override

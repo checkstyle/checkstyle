@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -27,8 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks that there is no whitespace after a token.
  * More specifically, it checks that it is not followed by whitespace,
- * or (if linebreaks are allowed) all characters on the line after are
- * whitespace. To forbid linebreaks afer a token, set property
+ * or (if line breaks are allowed) all characters on the line after are
+ * whitespace. To forbid line breaks after a token, set property
  * allowLineBreaks to false.
  * </p>
   * <p> By default the check will check the following operators:
@@ -49,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="NoWhitespaceAfter"/&gt;
  * </pre>
- * <p> An example of how to configure the check to forbid linebreaks after
+ * <p> An example of how to configure the check to forbid line breaks after
  * a {@link TokenTypes#DOT DOT} token is:
  * </p>
  * <pre>
@@ -70,7 +72,7 @@ public class NoWhitespaceAfterCheck extends Check {
      */
     public static final String MSG_KEY = "ws.followed";
 
-    /** Whether whitespace is allowed if the AST is at a linebreak */
+    /** Whether whitespace is allowed if the AST is at a linebreak. */
     private boolean allowLineBreaks = true;
 
     @Override
@@ -102,6 +104,11 @@ public class NoWhitespaceAfterCheck extends Check {
             TokenTypes.TYPECAST,
             TokenTypes.ARRAY_DECLARATOR,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -171,7 +178,7 @@ public class NoWhitespaceAfterCheck extends Check {
             typeOrIdent = arrayDeclarator.getParent().getFirstChild();
         }
         else if (isMultiDimensionalArray(arrayDeclarator)) {
-            if (isCstyleMultiDimensionalArrayDeclaration(arrayDeclarator)) {
+            if (isCStyleMultiDimensionalArrayDeclaration(arrayDeclarator)) {
                 if (arrayDeclarator.getParent().getType() != TokenTypes.ARRAY_DECLARATOR) {
                     typeOrIdent = getArrayIdentifier(arrayDeclarator);
                 }
@@ -185,7 +192,7 @@ public class NoWhitespaceAfterCheck extends Check {
             }
         }
         else {
-            if (isCstyleArrayDeclaration(arrayDeclarator)) {
+            if (isCStyleArrayDeclaration(arrayDeclarator)) {
                 typeOrIdent = getArrayIdentifier(arrayDeclarator);
             }
             else {
@@ -203,9 +210,9 @@ public class NoWhitespaceAfterCheck extends Check {
     /**
      * Gets array identifier, e.g.:
      * <p>
-     * <code>
+     * {@code
      * int[] someArray;
-     * </code>
+     * }
      * </p>
      * <p>
      * someArray is identifier.
@@ -251,9 +258,9 @@ public class NoWhitespaceAfterCheck extends Check {
     }
 
     /**
-     * Control whether whitespace is flagged at linebreaks.
+     * Control whether whitespace is flagged at line breaks.
      * @param allowLineBreaks whether whitespace should be
-     * flagged at linebreaks.
+     *     flagged at line breaks.
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
@@ -262,19 +269,19 @@ public class NoWhitespaceAfterCheck extends Check {
     /**
      * Checks if current array is declared in C style, e.g.:
      * <p>
-     * <code>
+     * {@code
      * int array[] = { ... }; //C style
-     * </code>
+     * }
      * </p>
      * <p>
-     * <code>
+     * {@code
      * int[] array = { ... }; //Java style
-     * </code>
+     * }
      * </p>
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if array is declared in C style
      */
-    private static boolean isCstyleArrayDeclaration(DetailAST arrayDeclaration) {
+    private static boolean isCStyleArrayDeclaration(DetailAST arrayDeclaration) {
         boolean result = false;
         final DetailAST identifier = getArrayIdentifier(arrayDeclaration);
         if (identifier != null) {
@@ -291,13 +298,13 @@ public class NoWhitespaceAfterCheck extends Check {
      * @param arrayDeclaration {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}
      * @return true if multidimensional array is declared in C style.
      */
-    private static boolean isCstyleMultiDimensionalArrayDeclaration(DetailAST arrayDeclaration) {
+    private static boolean isCStyleMultiDimensionalArrayDeclaration(DetailAST arrayDeclaration) {
         boolean result = false;
         DetailAST parentArrayDeclaration = arrayDeclaration;
         while (parentArrayDeclaration != null) {
             if (parentArrayDeclaration.getParent() != null
                     && parentArrayDeclaration.getParent().getType() == TokenTypes.TYPE) {
-                result = isCstyleArrayDeclaration(parentArrayDeclaration);
+                result = isCStyleArrayDeclaration(parentArrayDeclaration);
             }
             parentArrayDeclaration = parentArrayDeclaration.getParent();
         }

@@ -1,27 +1,26 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
 import java.io.File;
-import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class WhitespaceAroundTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void whitespaceAroundBasicTest() throws IOException, Exception {
+    public void whitespaceAroundBasicTest() throws Exception {
         
         Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
         String msgPreceded = "ws.notPreceded";
@@ -57,7 +56,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void whitespaceAroundGenericsTest() throws IOException, Exception {
+    public void whitespaceAroundGenericsTest() throws Exception {
         
         String msgPreceded = "ws.preceded";
         String msgFollowed = "ws.followed";
@@ -88,9 +87,9 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
     @Test
-    public void whitespaceAroundEmptyTypesCyclesTest() throws IOException, Exception {
+    public void whitespaceAroundEmptyTypesCyclesTest() throws Exception {
         
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
         String filePath = builder.getFilePath("WhitespaceAroundnput_EmptyTypesAndCycles");
@@ -100,8 +99,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void genericWhitespaceTest() throws IOException, Exception
-    {
+    public void genericWhitespaceTest() throws Exception {
         String msgPreceded = "ws.preceded";
         String msgFollowed = "ws.followed";
         String msgNotPreceded = "ws.notPreceded";
@@ -144,5 +142,3 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

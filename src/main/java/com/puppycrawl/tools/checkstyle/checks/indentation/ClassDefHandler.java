@@ -39,11 +39,7 @@ public class ClassDefHandler extends BlockParentHandler {
     public ClassDefHandler(IndentationCheck indentCheck,
                            DetailAST ast,
                            AbstractExpressionHandler parent) {
-        super(indentCheck,
-              ast.getType() == TokenTypes.CLASS_DEF
-              ? "class def" : ast.getType() == TokenTypes.ENUM_DEF
-                  ? "enum def" : "interface def",
-              ast, parent);
+        super(indentCheck, getHandlerName(ast), ast, parent);
     }
 
     @Override
@@ -75,7 +71,7 @@ public class ClassDefHandler extends BlockParentHandler {
         if (modifiers.getChildCount() == 0) {
             final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
             final int lineStart = getLineStart(ident);
-            if (!getLevel().accept(lineStart)) {
+            if (!getLevel().isAcceptable(lineStart)) {
                 logError(ident, "ident", lineStart);
             }
 
@@ -102,4 +98,24 @@ public class ClassDefHandler extends BlockParentHandler {
         };
     }
 
+    /**
+     * Creates a handler name for this class according to ast type.
+     *
+     * @param ast the abstract syntax tree.
+     * @return handler name for this class.
+     */
+    private static String getHandlerName(DetailAST ast) {
+        final String name;
+
+        if (ast.getType() == TokenTypes.CLASS_DEF) {
+            name = "class def";
+        }
+        else if (ast.getType() == TokenTypes.ENUM_DEF) {
+            name = "enum def";
+        }
+        else {
+            name = "interface def";
+        }
+        return name;
+    }
 }

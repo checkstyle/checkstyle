@@ -54,4 +54,3 @@ public class AnnotationUseWithTrailingComma
     Class<?>[] tokens();
     int[] other();
 }
-

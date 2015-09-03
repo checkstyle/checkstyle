@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.apache.commons.lang3.ArrayUtils.EMPTY_BYTE_ARRAY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -35,10 +36,8 @@ import java.net.URLConnection;
 import java.net.URLStreamHandler;
 import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.xml.sax.Attributes;
@@ -62,7 +61,7 @@ public class PackageNamesLoaderTest {
         validatePackageNames(packageNames);
     }
 
-    private void validatePackageNames(Set<String> pkgNames) {
+    private static void validatePackageNames(Set<String> pkgNames) {
         final String[] checkstylePackages = {
             "com.puppycrawl.tools.checkstyle.",
             "com.puppycrawl.tools.checkstyle.checks.",
@@ -92,11 +91,10 @@ public class PackageNamesLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithDots() throws Exception {
 
-        Constructor<PackageNamesLoader> constructor =
-                (Constructor<PackageNamesLoader>) PackageNamesLoader.class
-                        .getDeclaredConstructors()[0];
+        Constructor<PackageNamesLoader> constructor = PackageNamesLoader.class.getDeclaredConstructor();
         constructor.setAccessible(true);
         PackageNamesLoader loader = constructor.newInstance();
 
@@ -107,16 +105,17 @@ public class PackageNamesLoaderTest {
 
         Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
         field.setAccessible(true);
-        LinkedHashSet<String> list = (LinkedHashSet<String>) field.get(loader);
-        Assert.assertEquals("coding.", list.iterator().next());
+        Set<String> list = (Set<String>) field.get(loader);
+        assertEquals("coding.", list.iterator().next());
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithSaxException() throws Exception {
 
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
-                new ByteArrayInputStream(new byte[]{}));
+                new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
 
         URL url = getMockUrl(mockConnection);
 
@@ -128,8 +127,7 @@ public class PackageNamesLoaderTest {
         when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
 
         try {
-            final Set<String> packageNames = PackageNamesLoader
-                    .getPackageNames(classLoader);
+            PackageNamesLoader.getPackageNames(classLoader);
             fail();
         }
         catch (CheckstyleException ex) {
@@ -138,6 +136,7 @@ public class PackageNamesLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithIoException() throws Exception {
 
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
@@ -153,8 +152,7 @@ public class PackageNamesLoaderTest {
         when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
 
         try {
-            final Set<String> packageNames = PackageNamesLoader
-                    .getPackageNames(classLoader);
+            PackageNamesLoader.getPackageNames(classLoader);
             fail();
         }
         catch (CheckstyleException ex) {
@@ -164,6 +162,7 @@ public class PackageNamesLoaderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testPackagesWithIoException_getResources() throws Exception {
 
         ClassLoader classLoader = mock(ClassLoader.class);
@@ -179,16 +178,14 @@ public class PackageNamesLoaderTest {
         }
     }
 
-    public static URL getMockUrl(final URLConnection connection) throws IOException {
+    private static URL getMockUrl(final URLConnection connection) throws IOException {
         final URLStreamHandler handler = new URLStreamHandler() {
             @Override
-            protected URLConnection openConnection(final URL arg0) throws IOException {
+            protected URLConnection openConnection(final URL u) {
                 return connection;
             }
         };
-        final URL url = new URL("http://foo.bar", "foo.bar", 80, "", handler);
-        return url;
+        return new URL("http://foo.bar", "foo.bar", 80, "", handler);
     }
-
 
 }

@@ -22,157 +22,252 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.TreeSet;
+import java.util.SortedSet;
 
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class CheckerTest {
     @Test
     public void testDestroy() throws Exception {
-        final DebugChecker c = new DebugChecker();
-        final DebugAuditAdapter aa = new DebugAuditAdapter();
-        c.addListener(aa);
-        final DebugFilter f = new DebugFilter();
-        c.addFilter(f);
+        final DebugChecker checker = new DebugChecker();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.addListener(auditAdapter);
+        final DebugFilter filter = new DebugFilter();
+        checker.addFilter(filter);
 
-        c.destroy(); // should remove al listeners and filters
+        // should remove al listeners and filters
+        checker.destroy();
 
         // Let's try fire some events
-        c.fireAuditStarted();
-        c.fireAuditFinished();
-        c.fireFileStarted("Some File Name");
-        c.fireFileFinished("Some File Name");
+        checker.fireAuditStarted();
+        checker.fireAuditFinished();
+        checker.fireFileStarted("Some File Name");
+        checker.fireFileFinished("Some File Name");
 
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        c.fireErrors("Some File Name", msgs);
+        checker.fireErrors("Some File Name", msgs);
 
-        assertFalse("Checker.destroy() doesn't remove listeners.", aa.wasCalled());
-        assertFalse("Checker.destroy() doesn't remove filters.", f.wasCalled());
+        assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
+        assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
     }
 
     @Test
     public void testAddListener() throws Exception {
-        final DebugChecker c = new DebugChecker();
-        final DebugAuditAdapter aa = new DebugAuditAdapter();
-        c.addListener(aa);
+        final DebugChecker checker = new DebugChecker();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.addListener(auditAdapter);
 
         // Let's try fire some events
-        c.fireAuditStarted();
-        assertTrue("Checker.fireAuditStarted() doesn't call listener", aa.wasCalled());
+        checker.fireAuditStarted();
+        assertTrue("Checker.fireAuditStarted() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
-        c.fireAuditFinished();
-        assertTrue("Checker.fireAuditFinished() doesn't call listener", aa.wasCalled());
+        auditAdapter.resetListener();
+        checker.fireAuditFinished();
+        assertTrue("Checker.fireAuditFinished() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
-        c.fireFileStarted("Some File Name");
-        assertTrue("Checker.fireFileStarted() doesn't call listener", aa.wasCalled());
+        auditAdapter.resetListener();
+        checker.fireFileStarted("Some File Name");
+        assertTrue("Checker.fireFileStarted() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
-        c.fireFileFinished("Some File Name");
-        assertTrue("Checker.fireFileFinished() doesn't call listener", aa.wasCalled());
+        auditAdapter.resetListener();
+        checker.fireFileFinished("Some File Name");
+        assertTrue("Checker.fireFileFinished() doesn't call listener", auditAdapter.wasCalled());
 
-        aa.resetListener();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        auditAdapter.resetListener();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        c.fireErrors("Some File Name", msgs);
-        assertTrue("Checker.fireErrors() doesn't call listener", aa.wasCalled());
+        checker.fireErrors("Some File Name", msgs);
+        assertTrue("Checker.fireErrors() doesn't call listener", auditAdapter.wasCalled());
     }
 
     @Test
     public void testRemoveListener() throws Exception {
-        final DebugChecker c = new DebugChecker();
-        final DebugAuditAdapter aa = new DebugAuditAdapter();
+        final DebugChecker checker = new DebugChecker();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
-        c.addListener(aa);
-        c.addListener(aa2);
-        c.removeListener(aa);
+        checker.addListener(auditAdapter);
+        checker.addListener(aa2);
+        checker.removeListener(auditAdapter);
 
         // Let's try fire some events
-        c.fireAuditStarted();
+        checker.fireAuditStarted();
         assertTrue("Checker.fireAuditStarted() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireAuditStarted() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireAuditStarted() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
-        c.fireAuditFinished();
+        checker.fireAuditFinished();
         assertTrue("Checker.fireAuditFinished() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireAuditFinished() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireAuditFinished() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
-        c.fireFileStarted("Some File Name");
+        checker.fireFileStarted("Some File Name");
         assertTrue("Checker.fireFileStarted() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireFileStarted() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireFileStarted() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
-        c.fireFileFinished("Some File Name");
+        checker.fireFileFinished("Some File Name");
         assertTrue("Checker.fireFileFinished() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireFileFinished() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireFileFinished() does call removed listener", auditAdapter.wasCalled());
 
         aa2.resetListener();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        c.fireErrors("Some File Name", msgs);
+        checker.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireErrors() does call removed listener", aa.wasCalled());
+        assertFalse("Checker.fireErrors() does call removed listener", auditAdapter.wasCalled());
 
     }
 
     @Test
     public void testAddFilter() throws Exception {
-        final DebugChecker c = new DebugChecker();
-        final DebugFilter f = new DebugFilter();
+        final DebugChecker checker = new DebugChecker();
+        final DebugFilter filter = new DebugFilter();
 
-        c.addFilter(f);
+        checker.addFilter(filter);
 
-        f.resetFilter();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        filter.resetFilter();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        c.fireErrors("Some File Name", msgs);
-        assertTrue("Checker.fireErrors() doesn't call filter", f.wasCalled());
+        checker.fireErrors("Some File Name", msgs);
+        assertTrue("Checker.fireErrors() doesn't call filter", filter.wasCalled());
     }
 
     @Test
     public void testRemoveFilter() throws Exception {
-        final DebugChecker c = new DebugChecker();
-        final DebugFilter f = new DebugFilter();
+        final DebugChecker checker = new DebugChecker();
+        final DebugFilter filter = new DebugFilter();
         final DebugFilter f2 = new DebugFilter();
-        c.addFilter(f);
-        c.addFilter(f2);
-        c.removeFilter(f);
+        checker.addFilter(filter);
+        checker.addFilter(f2);
+        checker.removeFilter(filter);
 
         f2.resetFilter();
-        final TreeSet<LocalizedMessage> msgs = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
         msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        c.fireErrors("Some File Name", msgs);
+        checker.fireErrors("Some File Name", msgs);
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
-        assertFalse("Checker.fireErrors() does call removed filter", f.wasCalled());
+        assertFalse("Checker.fireErrors() does call removed filter", filter.wasCalled());
 
     }
 
     @Test
     public void testFileExtensions() throws Exception {
-        final Checker c = new Checker();
+        final Checker checker = new Checker();
         final List<File> files = new ArrayList<>();
-        File f = new File("file.pdf");
-        files.add(f);
-        f = new File("file.java");
-        files.add(f);
+        File file = new File("file.pdf");
+        files.add(file);
+        File otherFile = new File("file.java");
+        files.add(otherFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
-        c.setFileExtensions(fileExtensions);
-        final int counter = c.process(files);
-        assertEquals(counter, 1); // comparing to 1 as there is only one legal file in input
+        checker.setFileExtensions(fileExtensions);
+        final int counter = checker.process(files);
+
+        // comparing to 1 as there is only one legal file in input
+        assertEquals(1, counter);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Test
+    public void testSetters() throws Exception {
+        // all  that is set by reflection, so just make code coverage be happy
+        final Checker checker = new Checker();
+        checker.setClassLoader(getClass().getClassLoader());
+        checker.setClassloader(getClass().getClassLoader());
+        checker.setBasedir("some");
+        checker.setSeverity("ignore");
+
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        checker.setModuleFactory(factory);
+
+        checker.setFileExtensions((String[]) null);
+        checker.setFileExtensions(".java", "xml");
+
+        try {
+            checker.setCharset("UNKNOW-CHARSET");
+            fail("Exception is expected");
+        }
+        catch (UnsupportedEncodingException ex) {
+            assertEquals("unsupported charset: 'UNKNOW-CHARSET'", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testNoClassLoaderNoModuleFactory() throws Exception {
+        final Checker checker = new Checker();
+
+        try {
+            checker.finishLocalSetup();
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("if no custom moduleFactory is set, "
+                            + "moduleClassLoader must be specified", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testNoModuleFactory() throws Exception {
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+
+        checker.finishLocalSetup();
+    }
+
+    @Test
+    public void testFinishLocalSetupFullyInitialized() throws Exception {
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        checker.setModuleFactory(factory);
+
+        checker.finishLocalSetup();
+    }
+
+    @Test
+    public void testSetupChildExceptions() throws Exception {
+        final Checker checker = new Checker();
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        checker.setModuleFactory(factory);
+
+        Configuration config = new DefaultConfiguration("java.lang.String");
+        try {
+            checker.setupChild(config);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("java.lang.String is not allowed as a child in Checker", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testSetupChildListener() throws Exception {
+        final Checker checker = new Checker();
+        PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        checker.setModuleFactory(factory);
+
+        Configuration config = new DefaultConfiguration(DebugAuditAdapter.class.getCanonicalName());
+        checker.setupChild(config);
     }
 }

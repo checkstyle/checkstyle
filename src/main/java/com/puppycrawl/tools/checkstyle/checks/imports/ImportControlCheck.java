@@ -76,14 +76,18 @@ public class ImportControlCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
-                          TokenTypes.STATIC_IMPORT, };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
                           TokenTypes.STATIC_IMPORT, };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -119,14 +123,14 @@ public class ImportControlCheck extends Check {
             }
             final AccessResult access = currentLeaf.checkAccess(imp.getText(),
                     inPkg);
-            if (AccessResult.ALLOWED != access) {
+            if (access != AccessResult.ALLOWED) {
                 log(ast, MSG_DISALLOWED, imp.getText());
             }
         }
     }
 
     /**
-     * Set the pnameter for the file containing the import control
+     * Set the name for the file containing the import control
      * configuration. It will cause the file to be loaded.
      * @param name the name of the file to load.
      * @throws ConversionException on error loading the file.

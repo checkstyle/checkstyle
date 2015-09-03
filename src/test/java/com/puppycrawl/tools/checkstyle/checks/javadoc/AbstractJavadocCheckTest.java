@@ -19,28 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.JAVADOC_MISSED_HTML_CLOSE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
-    public static class TempCheck extends AbstractJavadocCheck {
-
-        @Override
-        public int[] getDefaultJavadocTokens() {
-            return null;
-        }
-
-        @Override
-        public void visitJavadocToken(DetailNode ast) {
-            // do nothing
-        }
-
-    }
 
     @Test
     public void testNumberFormatException() throws Exception {
@@ -51,5 +45,62 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
                 + "while parsing HTML_TAG"),
         };
         verify(checkConfig, getPath("javadoc/InputTestNumberFomatException.java"), expected);
+    }
+
+    @Test
+    public void testCustomTag() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage(UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY, 4, "null"),
+        };
+        verify(checkConfig, getPath("javadoc/InputCustomTag.java"), expected);
+    }
+
+    @Test
+    public void testParsingErrors() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "8: " + getCheckMessage(JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
+        };
+        verify(checkConfig, getPath("javadoc/InputParsingErrors.java"), expected);
+    }
+
+    @Test
+    public void testWithMultipleChecks() throws Exception {
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
+        checksConfig.addChild(createCheckConfig(AtclauseOrderCheck.class));
+        checksConfig.addChild(createCheckConfig(JavadocParagraphCheck.class));
+        checkerConfig.addChild(checksConfig);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checker, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
+    }
+
+    private static class TempCheck extends AbstractJavadocCheck {
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return null;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            // do nothing
+        }
     }
 }

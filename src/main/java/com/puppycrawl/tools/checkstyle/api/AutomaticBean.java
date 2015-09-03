@@ -50,9 +50,8 @@ import com.google.common.collect.Lists;
  */
 public class AutomaticBean
     implements Configurable, Contextualizable {
-    /** the configuration of this bean */
+    /** The configuration of this bean. */
     private Configuration configuration;
-
 
     /**
      * Creates a BeanUtilsBean that is configured to use
@@ -108,41 +107,39 @@ public class AutomaticBean
     /**
      * Implements the Configurable interface using bean introspection.
      *
-     * Subclasses are allowed to add behaviour. After the bean
+     * <p>Subclasses are allowed to add behaviour. After the bean
      * based setup has completed first the method
      * {@link #finishLocalSetup finishLocalSetup}
      * is called to allow completion of the bean's local setup,
      * after that the method {@link #setupChild setupChild}
      * is called for each {@link Configuration#getChildren child Configuration}
-     * of <code>configuration</code>.
+     * of {@code configuration}.
      *
-     * @param configuration {@inheritDoc}
-     * @throws CheckstyleException {@inheritDoc}
      * @see Configurable
      */
     @Override
-    public final void configure(Configuration configuration)
+    public final void configure(Configuration config)
         throws CheckstyleException {
-        this.configuration = configuration;
+        configuration = config;
 
-        final String[] attributes = configuration.getAttributeNames();
+        final String[] attributes = config.getAttributeNames();
 
         for (final String key : attributes) {
-            final String value = configuration.getAttribute(key);
+            final String value = config.getAttribute(key);
 
-            tryCopyProperty(configuration.getName(), key, value, true);
+            tryCopyProperty(config.getName(), key, value, true);
         }
 
         finishLocalSetup();
 
-        final Configuration[] childConfigs = configuration.getChildren();
+        final Configuration[] childConfigs = config.getChildren();
         for (final Configuration childConfig : childConfigs) {
             setupChild(childConfig);
         }
     }
 
     /**
-     * recheck property and try to copy it
+     * Recheck property and try to copy it.
      * @param moduleName name of the module/class
      * @param key key of value
      * @param value value
@@ -162,10 +159,9 @@ public class AutomaticBean
                 final PropertyDescriptor pd =
                         PropertyUtils.getPropertyDescriptor(this, key);
                 if (pd == null) {
-                    throw new CheckstyleException(
-                            "Property '" + key + "' in module "
-                             + moduleName
-                             + " does not exist, please check the documentation");
+                    final String message = String.format("Property '%s' in module %s does not "
+                            + "exist, please check the documentation", key, moduleName);
+                    throw new CheckstyleException(message);
                 }
             }
             // finally we can set the bean property
@@ -177,21 +173,19 @@ public class AutomaticBean
             // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
-            throw new CheckstyleException(
-                "Cannot set property '" + key + "' to '" + value
-                + "' in module "  + moduleName, e);
+            final String message = String.format("Cannot set property '%s' to '%s' in module %s",
+                    key, value, moduleName);
+            throw new CheckstyleException(message, e);
         }
         catch (final IllegalArgumentException | ConversionException e) {
-            throw new CheckstyleException(
-                "illegal value '" + value + "' for property '" + key
-                + "' of module " + moduleName, e);
+            final String message = String.format("illegal value '%s' for property '%s' of "
+                    + "module %s", value, key, moduleName);
+            throw new CheckstyleException(message, e);
         }
     }
 
     /**
      * Implements the Contextualizable interface using bean introspection.
-     * @param context {@inheritDoc}
-     * @throws CheckstyleException {@inheritDoc}
      * @see Contextualizable
      */
     @Override
@@ -203,7 +197,7 @@ public class AutomaticBean
         for (final String key : attributes) {
             final Object value = context.get(key);
 
-            tryCopyProperty(this.getClass().getName(), key, value, false);
+            tryCopyProperty(getClass().getName(), key, value, false);
         }
     }
 
@@ -247,9 +241,9 @@ public class AutomaticBean
      * with this characters.
      */
     private static class RelaxedStringArrayConverter implements Converter {
-        /** {@inheritDoc} */
+        @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
-        public Object convert(@SuppressWarnings("rawtypes") Class type, Object value) {
+        public Object convert(Class type, Object value) {
             // Convert to a String and trim it for the tokenizer.
             final StringTokenizer st = new StringTokenizer(
                 value.toString().trim(), ",");

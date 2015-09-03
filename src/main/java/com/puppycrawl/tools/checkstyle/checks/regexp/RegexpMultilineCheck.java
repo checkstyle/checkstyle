@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  */
 public class RegexpMultilineCheck extends AbstractFileSetCheck {
     /** The detection options to use. */
-    private DetectorOptions options = new DetectorOptions(Pattern.MULTILINE,
+    private final DetectorOptions options = new DetectorOptions(Pattern.MULTILINE,
             this);
     /** The detector to use. */
     private MultilineDetector detector;

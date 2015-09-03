@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Factory for handlers. Looks up constructor via reflection.
@@ -40,7 +40,7 @@ public class HandlerFactory {
     private final Map<Integer, Constructor<?>> typeHandlers =
         Maps.newHashMap();
 
-    /** cache for created method call handlers */
+    /** Cache for created method call handlers. */
     private final Map<DetailAST, AbstractExpressionHandler> createdHandlers =
         Maps.newHashMap();
 
@@ -78,7 +78,7 @@ public class HandlerFactory {
     }
 
     /**
-     * registers a handler
+     * Registers a handler.
      *
      * @param type
      *                type from TokenTypes
@@ -86,10 +86,12 @@ public class HandlerFactory {
      *                the handler to register
      */
     private void register(int type, Class<?> handlerClass) {
-        final Constructor<?> ctor = Utils.getConstructor(handlerClass,
+        final Constructor<?> ctor = CommonUtils.getConstructor(handlerClass,
                 IndentationCheck.class,
-                DetailAST.class, // current AST
-                AbstractExpressionHandler.class // parent
+                // current AST
+                DetailAST.class,
+                // parent
+                AbstractExpressionHandler.class
         );
         typeHandlers.put(type, ctor);
     }
@@ -115,7 +117,8 @@ public class HandlerFactory {
         final int[] types = new int[typeSet.size()];
         int index = 0;
         for (final Integer val : typeSet) {
-            types[index++] = val;
+            types[index] = val;
+            index++;
         }
 
         return types;
@@ -132,22 +135,21 @@ public class HandlerFactory {
      */
     public AbstractExpressionHandler getHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
+        AbstractExpressionHandler resultHandler;
         final AbstractExpressionHandler handler =
             createdHandlers.get(ast);
         if (handler != null) {
-            return handler;
+            resultHandler = handler;
         }
-
-        if (ast.getType() == TokenTypes.METHOD_CALL) {
-            return createMethodCallHandler(indentCheck, ast, parent);
+        else if (ast.getType() == TokenTypes.METHOD_CALL) {
+            resultHandler = createMethodCallHandler(indentCheck, ast, parent);
         }
-
-        AbstractExpressionHandler expHandler = null;
-        final Constructor<?> handlerCtor =
-            typeHandlers.get(ast.getType());
-        expHandler = (AbstractExpressionHandler) Utils.invokeConstructor(
+        else {
+            final Constructor<?> handlerCtor = typeHandlers.get(ast.getType());
+            resultHandler = (AbstractExpressionHandler) CommonUtils.invokeConstructor(
                 handlerCtor, indentCheck, ast, parent);
-        return expHandler;
+        }
+        return resultHandler;
     }
 
     /**

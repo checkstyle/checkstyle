@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -27,8 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks that there is no whitespace before a token.
  * More specifically, it checks that it is not preceded with whitespace,
- * or (if linebreaks are allowed) all characters on the line before are
- * whitespace. To allow linebreaks before a token, set property
+ * or (if line breaks are allowed) all characters on the line before are
+ * whitespace. To allow line breaks before a token, set property
  * allowLineBreaks to true.
  * </p>
  * <p> By default the check will check the following operators:
@@ -45,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="NoWhitespaceBefore"/&gt;
  * </pre>
- * <p> An example of how to configure the check to allow linebreaks before
+ * <p> An example of how to configure the check to allow line breaks before
  * a {@link TokenTypes#DOT DOT} token is:
  * </p>
  * <pre>
@@ -66,7 +68,7 @@ public class NoWhitespaceBeforeCheck
      */
     public static final String MSG_KEY = "ws.preceded";
 
-    /** Whether whitespace is allowed if the AST is at a linebreak */
+    /** Whether whitespace is allowed if the AST is at a linebreak. */
     private boolean allowLineBreaks;
 
     @Override
@@ -89,21 +91,17 @@ public class NoWhitespaceBeforeCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
 
-        if (before < 0 || Character.isWhitespace(line.charAt(before))) {
-
-            // empty FOR initializer?
-            if (ast.getType() == TokenTypes.SEMI) {
-                final DetailAST sibling = ast.getPreviousSibling();
-                if (sibling != null
-                        && sibling.getType() == TokenTypes.FOR_INIT
-                        && sibling.getChildCount() == 0) {
-                    return;
-                }
-            }
+        if ((before < 0 || Character.isWhitespace(line.charAt(before)))
+                && !isInEmptyForInitializer(ast)) {
 
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
@@ -119,9 +117,27 @@ public class NoWhitespaceBeforeCheck
     }
 
     /**
+     * Checks that semicolon is in empty for initializer.
+     * @param semicolonAst DetailAST of semicolon.
+     * @return true if semicolon is in empty for initializer.
+     */
+    private static boolean isInEmptyForInitializer(DetailAST semicolonAst) {
+        boolean result = false;
+        if (semicolonAst.getType() == TokenTypes.SEMI) {
+            final DetailAST sibling = semicolonAst.getPreviousSibling();
+            if (sibling != null
+                    && sibling.getType() == TokenTypes.FOR_INIT
+                    && sibling.getChildCount() == 0) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Control whether whitespace is flagged at linebreaks.
      * @param allowLineBreaks whether whitespace should be
-     * flagged at linebreaks.
+     *     flagged at line breaks.
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;

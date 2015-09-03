@@ -23,12 +23,13 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- *
  * Checks that each top-level class, interface
  * or enum resides in a source file of its own.
  * <p>
@@ -40,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * An example of code with violations:
  * </p>
- * <pre><code>
+ * <pre>{@code
  * public class Foo{
  *     //methods
  * }
@@ -48,11 +49,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class Foo2{
  *     //methods
  * }
- * </code></pre>
+ * }</pre>
  * <p>
  * An example of code without top-level public type:
  * </p>
- * <pre><code>
+ * <pre>{@code
  * class Foo{ //top-level class
  *     //methods
  * }
@@ -60,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class Foo2{
  *     //methods
  * }
- * </code></pre>
+ * }</pre>
  * <p>
  * An example of check's configuration:
  * </p>
@@ -71,11 +72,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * An example of code without violations:
  * </p>
- * <pre><code>
+ * <pre>{@code
  * public class Foo{
  *     //methods
  * }
- * </code></pre>
+ * }</pre>
  *
  * <p> ATTENTION: This Check does not support customization of validated tokens,
  *  so do not use the "tokens" property.
@@ -98,7 +99,7 @@ public class OneTopLevelClassCheck extends Check {
     private boolean publicTypeFound;
 
     /** Mapping between type names and line numbers of the type declarations.*/
-    private SortedMap<Integer, String> lineNumberTypeMap = new TreeMap<>();
+    private final SortedMap<Integer, String> lineNumberTypeMap = new TreeMap<>();
 
     @Override
     public int[] getDefaultTokens() {
@@ -108,7 +109,12 @@ public class OneTopLevelClassCheck extends Check {
     // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to Tokens
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {};
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

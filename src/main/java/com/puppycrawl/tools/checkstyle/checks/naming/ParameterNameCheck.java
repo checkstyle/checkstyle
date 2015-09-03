@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ParameterNameCheck
     extends AbstractNameCheck {
     /**
-     * Creates a new <code>ParameterNameCheck</code> instance.
+     * Creates a new {@code ParameterNameCheck} instance.
      */
     public ParameterNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
@@ -59,12 +59,17 @@ public class ParameterNameCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.PARAMETER_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.PARAMETER_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ import com.google.common.collect.Sets;
  */
 public class FilterSet
     implements Filter {
-    /** filter set */
+    /** Filter set. */
     private final Set<Filter> filters = Sets.newHashSet();
 
     /**
@@ -56,7 +57,7 @@ public class FilterSet
      * @return the Filters of the filter set.
      */
     public Set<Filter> getFilters() {
-        return filters;
+        return Collections.unmodifiableSet(filters);
     }
 
     @Override
@@ -81,7 +82,6 @@ public class FilterSet
         return Objects.hash(filters);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         for (Filter filter : filters) {

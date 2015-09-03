@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -50,7 +51,7 @@ public class LocalVariableNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalVariableNameCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInner.java"), expected);
     }
 
@@ -87,4 +88,3 @@ public class LocalVariableNameCheckTest
         verify(checkConfig, getPath("InputOneCharInintVarName.java"), expected);
     }
 }
-

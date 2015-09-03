@@ -21,8 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE;
+import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -30,11 +31,17 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testCorrect() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation/InputCorrectAnnotationLocation.java"), expected);
     }
@@ -70,7 +77,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         AnnotationLocationCheck constantNameCheckObj = new AnnotationLocationCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -87,15 +94,13 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             TokenTypes.DOT,
             TokenTypes.ANNOTATION_FIELD_DEF,
             };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     public void testWithoutAnnotations() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
-        final String[] expected = {
-            };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("annotation/InputAnnotationLocationCheckTest1.java"), expected);
     }
 
@@ -134,6 +139,5 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             };
         verify(checkConfig, getPath("annotation/InputAnnotationLocationCheckTest2.java"), expected);
     }
-
 
 }

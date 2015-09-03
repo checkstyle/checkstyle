@@ -1,28 +1,26 @@
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
 
 public class EmptyBlockTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void emptyBlockTest() throws IOException, Exception {
+    public void emptyBlockTest() throws Exception {
         
         final String[] expected = {
             "19:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "if"),
@@ -68,7 +66,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void emptyBlockTestCatch() throws IOException, Exception {
+    public void emptyBlockTestCatch() throws Exception {
         
         final String[] expected = {
             "29:17: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
@@ -83,5 +81,3 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

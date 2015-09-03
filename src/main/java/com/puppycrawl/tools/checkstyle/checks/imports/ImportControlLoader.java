@@ -42,29 +42,37 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author Oliver Burn
  */
 final class ImportControlLoader extends AbstractLoader {
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Import Control 1.0//EN";
 
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Import Control 1.1//EN";
 
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
 
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd";
 
-    /** the map to lookup the resource name by the id */
+    /** The map to lookup the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
+
+    /** Name for attribute 'pkg'. */
+    private static final String PKG_ATTRIBUTE_NAME = "pkg";
+
+    /** Qualified name for element 'subpackage'. */
+    private static final String SUBPACKAGE_ELEMENT_NAME = "subpackage";
+
+    /** Qualified name for element 'allow'. */
+    private static final String ALLOW_ELEMENT_NAME = "allow";
 
     /** Used to hold the {@link PkgControl} objects. */
     private final Deque<PkgControl> stack = new ArrayDeque<>();
 
-    /** Initialise the map */
     static {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
@@ -83,34 +91,34 @@ final class ImportControlLoader extends AbstractLoader {
     public void startElement(final String namespaceURI,
                              final String locqName,
                              final String qName,
-                             final Attributes atts)
+                             final Attributes attributes)
         throws SAXException {
         if ("import-control".equals(qName)) {
-            final String pkg = safeGet(atts, "pkg");
+            final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             stack.push(new PkgControl(pkg));
         }
-        else if ("subpackage".equals(qName)) {
-            final String name = safeGet(atts, "name");
+        else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
+            final String name = safeGet(attributes, "name");
             stack.push(new PkgControl(stack.peek(), name));
         }
-        else if ("allow".equals(qName) || "disallow".equals(qName)) {
+        else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
             // Need to handle either "pkg" or "class" attribute.
             // May have "exact-match" for "pkg"
             // May have "local-only"
-            final boolean isAllow = "allow".equals(qName);
-            final boolean isLocalOnly = atts.getValue("local-only") != null;
-            final String pkg = atts.getValue("pkg");
-            final boolean regex = atts.getValue("regex") != null;
+            final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
+            final boolean isLocalOnly = attributes.getValue("local-only") != null;
+            final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
+            final boolean regex = attributes.getValue("regex") != null;
             final Guard g;
             if (pkg != null) {
                 final boolean exactMatch =
-                        atts.getValue("exact-match") != null;
+                        attributes.getValue("exact-match") != null;
                 g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
             else {
                 // handle class names which can be normal class names or regular
                 // expressions
-                final String clazz = safeGet(atts, "class");
+                final String clazz = safeGet(attributes, "class");
                 g = new Guard(isAllow, isLocalOnly, clazz, regex);
             }
 
@@ -122,7 +130,7 @@ final class ImportControlLoader extends AbstractLoader {
     @Override
     public void endElement(final String namespaceURI, final String localName,
         final String qName) {
-        if ("subpackage".equals(qName)) {
+        if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             stack.pop();
         }
     }
@@ -134,7 +142,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @throws CheckstyleException if an error occurs.
      */
     static PkgControl load(final URI uri) throws CheckstyleException {
-        InputStream is = null;
+        InputStream is;
         try {
             is = uri.toURL().openStream();
         }
@@ -181,14 +189,14 @@ final class ImportControlLoader extends AbstractLoader {
     /**
      * Utility to safely get an attribute. If it does not exist an exception
      * is thrown.
-     * @param atts collect to get attribute from.
+     * @param attributes collect to get attribute from.
      * @param name name of the attribute to get.
      * @return the value of the attribute.
      * @throws SAXException if the attribute does not exist.
      */
-    private static String safeGet(final Attributes atts, final String name)
+    private static String safeGet(final Attributes attributes, final String name)
         throws SAXException {
-        final String retVal = atts.getValue(name);
+        final String retVal = attributes.getValue(name);
         if (retVal == null) {
             throw new SAXException("missing attribute " + name);
         }

@@ -39,6 +39,7 @@ import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Loads a list of package names from a package name XML file.
@@ -46,11 +47,11 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 public final class PackageNamesLoader
     extends AbstractLoader {
-    /** the public ID for the configuration dtd */
+    /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID =
         "-//Puppy Crawl//DTD Package Names 1.0//EN";
 
-    /** the resource for the configuration dtd */
+    /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME =
         "com/puppycrawl/tools/checkstyle/packages_1_0.dtd";
 
@@ -60,14 +61,17 @@ public final class PackageNamesLoader
     private static final String CHECKSTYLE_PACKAGES =
         "checkstyle_packages.xml";
 
-    /** The temporary stack of package name parts */
+    /** Qualified name for element 'package'. */
+    private static final String PACKAGE_ELEMENT_NAME = "package";
+
+    /** The temporary stack of package name parts. */
     private final Deque<String> packageStack = new ArrayDeque<>();
 
     /** The fully qualified package names. */
     private final Set<String> packageNames = Sets.newLinkedHashSet();
 
     /**
-     * Creates a new <code>PackageNamesLoader</code> instance.
+     * Creates a new {@code PackageNamesLoader} instance.
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
@@ -76,24 +80,14 @@ public final class PackageNamesLoader
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
 
-    /**
-     * Returns the set of fully qualified package names this
-     * this loader processed.
-     * @return the set of package names
-     */
-    private Set<String> getPackageNames() {
-        return packageNames;
-    }
-
     @Override
-    public void startElement(String namespaceURI,
+    public void startElement(String uri,
                              String localName,
                              String qName,
-                             Attributes atts)
-        throws SAXException {
-        if ("package".equals(qName)) {
+                             Attributes attributes) {
+        if (PACKAGE_ELEMENT_NAME.equals(qName)) {
             //push package name, name is mandatory attribute with not empty value by DTD
-            final String name = atts.getValue("name");
+            final String name = attributes.getValue("name");
             packageStack.push(name);
         }
     }
@@ -108,7 +102,7 @@ public final class PackageNamesLoader
         while (iterator.hasNext()) {
             final String subPackage = iterator.next();
             buf.append(subPackage);
-            if (!Utils.endsWithChar(subPackage, '.')) {
+            if (!CommonUtils.endsWithChar(subPackage, '.')) {
                 buf.append('.');
             }
         }
@@ -116,10 +110,10 @@ public final class PackageNamesLoader
     }
 
     @Override
-    public void endElement(String namespaceURI,
+    public void endElement(String uri,
                            String localName,
                            String qName) {
-        if ("package".equals(qName)) {
+        if (PACKAGE_ELEMENT_NAME.equals(qName)) {
 
             packageNames.add(getPackageName());
             packageStack.pop();
@@ -163,7 +157,7 @@ public final class PackageNamesLoader
                 }
             }
 
-            result = namesLoader.getPackageNames();
+            result = namesLoader.packageNames;
 
         }
         catch (IOException e) {

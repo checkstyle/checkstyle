@@ -20,14 +20,17 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
+import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport {
     @Test
@@ -53,18 +56,19 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
     public void testDefaultConfiguration() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig,
-                getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
-                expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig,
+            getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
+            expected);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWrongToken() {
+        ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj = new ClassDataAbstractionCouplingCheck();
+        DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
+        classDataAbstractionCouplingCheckObj.visitToken(ast);
     }
 }

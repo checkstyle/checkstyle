@@ -19,18 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>
  * Checks if any class or object member explicitly initialized
- * to default for its type value (<code>null</code> for object
- * references, zero for numeric types and <code>char</code>
- * and <code>false</code> for <code>boolean</code>.
+ * to default for its type value ({@code null} for object
+ * references, zero for numeric types and {@code char}
+ * and {@code false} for {@code boolean}.
  * </p>
  * <p>
  * Rationale: each instance variable gets
@@ -102,8 +102,8 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * examin Char literal for initializing to default value
-     * @param exprStart exprssion
+     * Examine char literal for initializing to default value.
+     * @param exprStart expression
      * @return true is literal is initialized by zero symbol
      */
     private static boolean isZeroChar(DetailAST exprStart) {
@@ -113,30 +113,29 @@ public class ExplicitInitializationCheck extends Check {
     }
 
     /**
-     * chekc for cases that should be skipped: no assignment, local variable, final variables
+     * Checks for cases that should be skipped: no assignment, local variable, final variables
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */
     private static boolean isSkipCase(DetailAST ast) {
+        boolean skipCase = true;
+
         // do not check local variables and
         // fields declared in interface/annotations
-        if (ScopeUtils.isLocalVariableDef(ast)
-            || ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
-            return true;
-        }
+        if (!ScopeUtils.isLocalVariableDef(ast)
+                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+            final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
 
-        final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
-        if (assign == null) {
-            // no assign - no check
-            return true;
+            if (assign != null) {
+                final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+                skipCase = modifiers.branchContains(TokenTypes.FINAL);
+            }
         }
-
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers != null && modifiers.branchContains(TokenTypes.FINAL);
+        return skipCase;
     }
 
     /**
-     * Determines if a giiven type is an object type.
+     * Determines if a given type is an object type.
      * @param type type to check.
      * @return true if it is an object type.
      */
@@ -173,7 +172,8 @@ public class ExplicitInitializationCheck extends Check {
             case TokenTypes.NUM_INT:
             case TokenTypes.NUM_LONG:
                 final String text = expr.getText();
-                return 0 == CheckUtils.parseFloat(text, type);
+                return Double.compare(
+                    CheckUtils.parseDouble(text, type), 0.0) == 0;
             default:
                 return false;
         }

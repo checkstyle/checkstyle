@@ -26,10 +26,6 @@
     <property name="allowLegacy" value="false"/>
   </module>
 
-  <module name="Translation">
-    <property name="severity" value="ignore"/>
-  </module>
-
   <module name="FileTabCharacter">
     <property name="eachLine" value="false"/>
   </module>
@@ -53,6 +49,23 @@
   </module>
 
   <module name="RegexpMultiline"/>
+  <module name="RegexpMultiline">
+    <property name="format" value="\r?\n[\t ]*\r?\n[\t ]*\r?\n"/>
+    <property name="fileExtensions" value="java,xml,properties"/>
+    <property name="message" value="Unnecessary consecutive lines"/>
+  </module>
+
+  <module name="RegexpSingleline">
+      <property name="format" value="/\*\* +\p{javaLowerCase}"/>
+      <property name="fileExtensions" value="java"/>
+      <property name="message" value="First sentence in a comment should start with a capital letter"/>
+  </module>
+  <module name="RegexpMultiline">
+      <property name="format" value="/\*\*\W+\* +\p{javaLowerCase}"/>
+      <property name="fileExtensions" value="java"/>
+      <property name="message" value="First sentence in a comment should start with a capital letter"/>
+  </module>
+
   <module name="RegexpHeader">
     <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
     <property name="fileExtensions" value="java"/>
@@ -72,7 +85,7 @@
     <module name="EqualsHashCode"/>
     <module name="OneStatementPerLine"/>
 
-    <!-- module name="IllegalCatch"/ -->
+    <module name="IllegalCatch"/>
     <module name="ImportControl">
       <property name="file" value="${checkstyle.importcontrol.file}"/>
     </module>
@@ -180,10 +193,12 @@
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
     <module name="StaticVariableName">
-      <property name="format" value="^s[A-Z][a-zA-Z0-9]*$"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
     </module>
     <module name="TypeName"/>
-    <module name="UnusedImports"/>
+    <module name="UnusedImports">
+        <property name="processJavadoc" value="true"/>
+    </module>
     <module name="UpperEll"/>
     <module name="VisibilityModifier"/>
     <module name="WhitespaceAfter"/>
@@ -202,10 +217,7 @@
     <module name="EqualsAvoidNull"/>
     <module name="ParameterAssignment"/>
 
-    <!-- Generates quite a few errors -->
-    <module name="CyclomaticComplexity">
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="CyclomaticComplexity"/>
 
     <module name="NestedForDepth">
       <property name="max" value="2"/>
@@ -253,6 +265,7 @@
     <module name="NoClone"/>
     <module name="NoFinalizer"/>
     <module name="NoLineWrap"/>
+    <module name="NonEmptyAtclauseDescription"/>
     <module name="Regexp"/>
     <module name="RegexpSinglelineJava"/>
     <module name="RegexpSinglelineJava">
@@ -283,36 +296,92 @@
     <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="AbstractClassName"/>
 
-<!--
-    <module name="AvoidInlineConditionals"/>
-    <module name="BooleanExpressionComplexity"/>
-    <module name="ClassDataAbstractionCoupling"/>
-    <module name="ClassFanOutComplexity"/>
-    <module name="DesignForExtension"/>
-    <module name="ExecutableStatementCount"/>
-    <module name="FinalParameters"/>
-    <module name="HiddenField"/>
-    <module name="IllegalToken"/>
-    <module name="IllegalType"/>
+    <module name="BooleanExpressionComplexity">
+      <property name="max" value="7"/>
+    </module>
+
+    <module name="CommentsIndentation"/>
+    <module name="HiddenField">
+        <property name="ignoreConstructorParameter" value="true"/>
+        <property name="ignoreSetter" value="true"/>
+        <property name="setterCanReturnItsClass" value="true"/>
+    </module>
     <module name="InnerTypeLast"/>
-    <module name="JavadocParagraph"/>
-    <module name="JavadocTagContinuationIndentation"/>
-    <module name="JavaNCSS"/>
-    <module name="MissingCtor"/>
+
     <module name="ModifiedControlVariable"/>
-    <module name="MultipleStringLiterals"/>
-    <module name="NonEmptyAtclauseDescription"/>
-    <module name="NPathComplexity"/>
-    <module name="OneTopLevelClass"/>
-    <module name="OverloadMethodsDeclarationOrder"/>
-    <module name="PackageDeclaration"/>
+    <module name="AvoidInlineConditionals"/>
+    <module name="IllegalType"/>
     <module name="TrailingComment"/>
-    <module name="RequireThis"/>
+    <module name="MultipleStringLiterals"/>
+
+    <module name="ExecutableStatementCount">
+        <property name="max" value="30"/>
+    </module>
+
+    <module name="NPathComplexity"/>
+    <module name="JavaNCSS"/>
+
+    <module name="ClassDataAbstractionCoupling">
+        <!-- Default classes are also listed-->
+        <property name="excludedClasses" value="boolean, byte, char, double, float, int, long, short, void, Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void, Object, Class, String, StringBuffer, StringBuilder, ArrayIndexOutOfBoundsException, Exception, RuntimeException, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, NullPointerException, Throwable, SecurityException, UnsupportedOperationException, List, ArrayList, Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map, HashMap, SortedMap, TreeMap,
+            DetailsAST, CheckstyleException, UnsupportedEncodingException, BuildException, ConversionException, FileNotFoundException, TestException"/>
+    </module>
+
     <module name="ReturnCount"/>
-    <module name="SingleLineJavadoc"/>
-    <module name="SummaryJavadoc"/>
+    <module name="OneTopLevelClass"/>
+    <module name="IllegalToken"/>
+    <module name="PackageDeclaration"/>
     <module name="VariableDeclarationUsageDistance"/>
+    <module name="OverloadMethodsDeclarationOrder"/>
+    <module name="ClassFanOutComplexity">
+        <property name="max" value="25"/>
+        <!-- Default classes are also listed-->
+        <property name="excludedClasses" value="boolean, byte, char, double, float, int, long, short,  void, Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void, Object, Class, String, StringBuffer, StringBuilder, ArrayIndexOutOfBoundsException, Exception, RuntimeException, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, NullPointerException, Throwable, SecurityException, UnsupportedOperationException, List, ArrayList, Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map, HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException, UnsupportedEncodingException, BuildException, ConversionException, FileNotFoundException, TestException, Log, Sets, Multimap, TokenStreamRecognitionException, RecognitionException, TokenStreamException, IOException"/>
+    </module>
+
+    <module name="SingleLineJavadoc"/>
+    <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocParagraph"/>
     <module name="WriteTag"/>
--->
+    <module name="SummaryJavadoc"/>
+
+    <module name="MissingCtor">
+      <!--
+        we will not uset that fanatic validation, extra code is not good
+        But this Check will exists as it was created by community demand.
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="RequireThis">
+      <!--
+        we will not uset that fanatic validation, extra modifiers polute a code
+        it is better to use different names for arguments, or expect IDE to highlight field.
+        But this Check will exists as it was created by community demand.
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="FinalParameters">
+      <!--
+        we will not uset that fanatic validation, extra modifiers polute a code
+        it is better to use extra validation(Check) that argument is reassigned
+        But this Check will exists as it was created by community demand.
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="DesignForExtension">
+      <!--
+        We should postpone DesignForExtension Check enforcement till next major release
+        as it will seriously brake backward compatibility with existing usage of our library
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="Translation">
+      <!--
+        One day we will find time to do full internationalization for atleast current janguages
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
+
+
   </module>
 </module>

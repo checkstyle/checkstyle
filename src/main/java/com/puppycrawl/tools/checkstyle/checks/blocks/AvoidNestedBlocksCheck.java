@@ -39,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     System.out.println("value = " + whichIsWhich);
  * }
  * </pre>
- *
  * and debugging / refactoring leftovers such as
  *
  * <pre>
@@ -100,12 +99,17 @@ public class AvoidNestedBlocksCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.SLIST};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.SLIST};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

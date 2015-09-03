@@ -29,7 +29,7 @@ import org.apache.commons.lang3.StringUtils;
  * position information.
  *
  * <p>
- * Identifiers such as <code>java.util.HashMap</code> are spread across
+ * Identifiers such as {@code java.util.HashMap} are spread across
  * multiple AST nodes in the syntax tree (three IDENT nodes, two DOT nodes).
  * A FullIdent represents the whole String (excluding any intermediate
  * whitespace), which is often easier to work with in Checks.
@@ -40,30 +40,39 @@ import org.apache.commons.lang3.StringUtils;
  * @see TokenTypes#IDENT
  **/
 public final class FullIdent {
-    /** the list holding subsequent elements of identifier **/
+    /** The list holding subsequent elements of identifier. **/
     private final List<String> elements = new ArrayList<>();
-    /** the line number **/
+    /** The line number. **/
     private int lineNo;
-    /** the column number **/
-    private int colNo;
+    /** The column number. **/
+    private int columnNo;
 
-    /** hide default constructor */
+    /** Hide default constructor. */
     private FullIdent() {
     }
 
-    /** @return the text **/
+    /**
+     * Gets the text.
+     * @return the text
+     */
     public String getText() {
         return StringUtils.join(elements, "");
     }
 
-    /** @return the line number **/
+    /**
+     * Gets the line number.
+     * @return the line number
+     */
     public int getLineNo() {
         return lineNo;
     }
 
-    /** @return the column number **/
+    /**
+     * Gets the column number.
+     * @return the column number
+     */
     public int getColumnNo() {
-        return colNo;
+        return columnNo;
     }
 
     /**
@@ -87,18 +96,18 @@ public final class FullIdent {
         else if (ast.getLineNo() > 0) {
             lineNo = Math.min(lineNo, ast.getLineNo());
         }
-        if (colNo == 0) {
-            colNo = ast.getColumnNo();
+        if (columnNo == 0) {
+            columnNo = ast.getColumnNo();
         }
         else if (ast.getColumnNo() > 0) {
-            colNo = Math.min(colNo, ast.getColumnNo());
+            columnNo = Math.min(columnNo, ast.getColumnNo());
         }
     }
 
     /**
      * Creates a new FullIdent starting from the specified node.
      * @param ast the node to start from
-     * @return a <code>FullIdent</code> value
+     * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdent(DetailAST ast) {
         final FullIdent fi = new FullIdent();
@@ -109,7 +118,7 @@ public final class FullIdent {
     /**
      * Creates a new FullIdent starting from the child of the specified node.
      * @param ast the parent node from where to start from
-     * @return a <code>FullIdent</code> value
+     * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdentBelow(DetailAST ast) {
         return createFullIdent(ast.getFirstChild());
@@ -139,7 +148,7 @@ public final class FullIdent {
 
     @Override
     public String toString() {
-        return getText() + "[" + getLineNo() + "x" + getColumnNo() + "]";
+        return getText() + "[" + lineNo + "x" + columnNo + "]";
     }
 
 }

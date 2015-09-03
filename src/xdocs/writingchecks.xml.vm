@@ -11,9 +11,9 @@
 
   <head>
     <title>Writing Checks</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -171,11 +171,11 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       <p>
         Ready for a bit more theory? The last bit
         that is missing before you can start writing Checks is understanding
-        the <a href="http://en.wikipedia.org/wiki/Visitor_pattern">Visitor pattern</a>.
+        the <a href="https://en.wikipedia.org/wiki/Visitor_pattern">Visitor pattern</a>.
       </p>
 
       <p>
-        When working with <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree">
+        When working with <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">
         Abstract Syntax Tree (AST)</a>, a simple approach to define check operations
         on them would be to add a <code>check()</code> method to the Class that defines
         the AST nodes. For example, our AST type could have a method
@@ -202,7 +202,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       Instead, the TreeWalker initiates
       a recursive descend from the root of the AST to the leaf nodes and calls
       the Check methods. The traversal is done using a <a
-      href="http://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
+      href="https://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
       algorithm.  </p>
 
       <p> Before any visitor method is called, the TreeWalker
@@ -376,7 +376,7 @@ public class MethodLimitCheck extends Check
         methods to provide the dynamic part of the message (mMax in this
         case): <code>log(&quot;too.many.methods&quot;,
         mMax);</code>. Please consult the documentation of Java&#39;s <a
-        href="http://java.sun.com/j2se/1.4.1/docs/api/java/text/MessageFormat.html">MessageFormat</a>
+        href="http://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a>
         to learn about the syntax of format strings (especially about
         those funny numbers in the translated text).
       </p>
@@ -472,7 +472,7 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
         There are basically only few of them:
       </p>
       <ul>
-        <li>Java code should be written with <a href="http://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8 support.</li>
+        <li>Java code should be written with <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8 support.</li>
         <li>To get valid violations, code have to be compilable, in other case you can get not easy to understand parse errors.</li>
         <li>You cannot determine the type of an expression. Example: "getValue() + getValue2()"</li>
         <li>You cannot determine the full inheritance hierarchy of type.</li>
@@ -481,8 +481,8 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
       <p>
         This means that you cannot implement some of the code inspection
         features that are available in advanced IDEs like <a
-        href="http://www.intellij.com/idea/">IntelliJ IDEA</a>,
-        <a href="http://findbugs.sourceforge.net/">Findbug</a>,
+        href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
+        <a href="http://findbugs.sourceforge.net/">FindBugs</a>,
         <a href="http://pmd.sourceforge.net/">PMD</a>,
         <a href="http://www.sonarqube.org/">Sonarqube</a>. 
       </p>
@@ -560,7 +560,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
       </p>
       <p>
         There are virtually no limits what you can do in
-        FileSetChecks, but please do not be creazy.
+        FileSetChecks, but please do not be crazy.
       </p>
 
     </section>
@@ -594,7 +594,6 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
 
       </p>
     </section>
-
 
   </body>
 </document>

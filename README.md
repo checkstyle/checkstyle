@@ -5,7 +5,6 @@
 [![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
 
-
 Members chat: [![][gitter img]][gitter]
 Contributors chat: [![https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -14,7 +13,7 @@ Contributors chat: [![https://gitter.im/checkstyle/checkstyle](https://badges.gi
 Checkstyle is a tool for
 checking Java source code for adherence to a Code Standard or set of validation rules (best practices).
 
-The latest version can be found at [SourceForge downloads](https://sourceforge.net/projects/checkstyle/files/checkstyle/) or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
+The latest version can be found at [SourceForge downloads](http://sourceforge.net/projects/checkstyle/files/checkstyle/) or at [Maven repo](http://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
 
 Documentation is available in HTML format, see http://checkstyle.sourceforge.net/checks.html.
 
@@ -58,7 +57,6 @@ The software uses the Google Guava Libraries
 these packages are in the file named "LICENSE.apache20" in this
 directory.
 
-
 [travis]:http://travis-ci.org/checkstyle/checkstyle
 [travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
 
@@ -70,7 +68,6 @@ directory.
 
 [coverage]:http://codecov.io/github/checkstyle/checkstyle?branch=master
 [coverage img]:http://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
-
 
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg

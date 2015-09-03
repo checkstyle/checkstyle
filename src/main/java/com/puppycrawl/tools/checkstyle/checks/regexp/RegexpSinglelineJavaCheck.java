@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.Arrays;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
@@ -31,15 +33,25 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  */
 public class RegexpSinglelineJavaCheck extends Check {
     /** The detection options to use. */
-    private DetectorOptions options = new DetectorOptions(0, this);
+    private final DetectorOptions options = new DetectorOptions(0, this);
     /** The detector to use. */
     private SinglelineDetector detector;
-    /** The suppressor to use. */
-    private final CommentSuppressor suppressor = new CommentSuppressor();
+    /** Suppress comments. **/
+    private boolean ignoreComments;
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[0];
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -50,7 +62,14 @@ public class RegexpSinglelineJavaCheck extends Check {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        suppressor.setCurrentContents(getFileContents());
+
+        if (ignoreComments) {
+            options.setSuppressor(new CommentSuppressor(getFileContents()));
+        }
+        else {
+            options.setSuppressor(NeverSuppress.INSTANCE);
+        }
+
         detector.processLines(Arrays.asList(getLines()));
     }
 
@@ -99,11 +118,6 @@ public class RegexpSinglelineJavaCheck extends Check {
      * @param ignore whether to ignore comments when matching.
      */
     public void setIgnoreComments(boolean ignore) {
-        if (ignore) {
-            options.setSuppressor(suppressor);
-        }
-        else {
-            options.setSuppressor(NeverSuppress.INSTANCE);
-        }
+        ignoreComments = ignore;
     }
 }

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -82,6 +84,11 @@ public class WhitespaceAfterCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         if (ast.getType() == TokenTypes.TYPECAST) {
@@ -94,7 +101,7 @@ public class WhitespaceAfterCheck
         }
         else {
             if (!isFollowedByWhitespace(ast, line)) {
-                final Object[] message = new Object[]{ast.getText()};
+                final Object[] message = {ast.getText()};
                 log(ast.getLineNo(),
                     ast.getColumnNo() + ast.getText().length(),
                     WS_NOT_FOLLOWED,
@@ -104,7 +111,7 @@ public class WhitespaceAfterCheck
     }
 
     /**
-     * checks whether token is followed by a whitespace.
+     * Checks whether token is followed by a whitespace.
      * @param targetAST Ast token.
      * @param line The line associated with the ast token.
      * @return true if ast token is followed by a whitespace.

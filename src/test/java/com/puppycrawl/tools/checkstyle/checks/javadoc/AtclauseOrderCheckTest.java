@@ -20,18 +20,35 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
 
     @Test
+    public void testGetAcceptableTokens() {
+        AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        assertArrayEquals(expected, checkObj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
     public void testCorrect() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("javadoc/InputCorrectAtClauseOrderCheck.java"), expected);
     }
@@ -84,15 +101,15 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIncorrectCustom() throws Exception {
-        final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
-                + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
-        final String customOrder = " @since,  @version, @param,@return,@throws, @exception,"
-                + "@deprecated, @see,@serial,   @serialField,  @serialData,@author";
 
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF");
+        final String customOrder = " @since,  @version, @param,@return,@throws, @exception,"
+                + "@deprecated, @see,@serial,   @serialField,  @serialData,@author";
         checkConfig.addAttribute("tagOrder", customOrder);
 
+        final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
+                + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
             "113: " + getCheckMessage(MSG_KEY, tagOrder),
         };

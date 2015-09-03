@@ -21,21 +21,21 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
+ * Unit test for IndentationCheck.
  * @author Ilja Dubinin
  */
 public class NewHandlerTest extends BaseCheckTestSupport {
     @Test
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
                 + "checkstyle/indentation/NewHandlerTestInput.java").getCanonicalPath(), expected);
     }

@@ -19,9 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>
@@ -51,17 +53,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class LocalFinalVariableNameCheck
     extends AbstractNameCheck {
-    /** Creates a new <code>LocalFinalVariableNameCheck</code> instance. */
+    /** Creates a new {@code LocalFinalVariableNameCheck} instance. */
     public LocalFinalVariableNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.PARAMETER_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -70,6 +69,11 @@ public class LocalFinalVariableNameCheck
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

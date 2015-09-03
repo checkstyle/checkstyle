@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import com.puppycrawl.tools.checkstyle.AnnotationUtility;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 
 /**
  * <p>
@@ -30,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The default allowable number of parameters is 7.
  * To change the number of allowable parameters, set property max.
  * Allows to ignore number of parameters for methods with
- * &#064;{@link java.lang.Override} annotation.
+ * &#064;{@link Override} annotation.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -40,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * An example of how to configure the check to allow 10 parameters
- * and ignoring parameters for methods with &#064;{@link java.lang.Override}
+ * and ignoring parameters for methods with &#064;{@link Override}
  * annotation is:
  * </p>
  * <pre>
@@ -51,14 +53,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * Java code that will be ignored:
  * <pre>
- * <code>
+ * {@code
  *
  *  &#064;Override
  *  public void needsLotsOfParameters(int a,
  *      int b, int c, int d, int e, int f, int g, int h) {
  *      ...
  *  }
- * </code>
+ * }
  * </pre>
  * @author Oliver Burn
  */
@@ -71,19 +73,19 @@ public class ParameterNumberCheck
      */
     public static final String MSG_KEY = "maxParam";
 
-    /** {@link Override Override} annotation name */
+    /** {@link Override Override} annotation name. */
     private static final String OVERRIDE = "Override";
 
-    /** canonical {@link Override Override} annotation name */
+    /** Canonical {@link Override Override} annotation name. */
     private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
 
-    /** default maximum number of allowed parameters */
+    /** Default maximum number of allowed parameters. */
     private static final int DEFAULT_MAX_PARAMETERS = 7;
 
-    /** the maximum number of allowed parameters */
+    /** The maximum number of allowed parameters. */
     private int max = DEFAULT_MAX_PARAMETERS;
 
-    /** ignore overridden methods */
+    /** Ignore overridden methods. */
     private boolean ignoreOverriddenMethods;
 
     /**
@@ -96,7 +98,7 @@ public class ParameterNumberCheck
 
     /**
      * Ignore number of parameters for methods with
-     * &#064;{@link java.lang.Override} annotation.
+     * &#064;{@link Override} annotation.
      * @param ignoreOverriddenMethods set ignore overridden methods
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
@@ -105,7 +107,7 @@ public class ParameterNumberCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -114,10 +116,15 @@ public class ParameterNumberCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
         final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
-        if (count > max && !ignoreNumberOfParameters(ast)) {
+        if (count > max && !shouldIgnoreNumberOfParameters(ast)) {
             final DetailAST name = ast.findFirstToken(TokenTypes.IDENT);
             log(name.getLineNo(), name.getColumnNo(), MSG_KEY, max, count);
         }
@@ -129,7 +136,7 @@ public class ParameterNumberCheck
      * @return true if this is overridden method and number of parameters should be ignored
      *         false otherwise
      */
-    private boolean ignoreNumberOfParameters(DetailAST ast) {
+    private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
         //if you override a method, you have no power over the number of parameters
         return ignoreOverriddenMethods
                 && (AnnotationUtility.containsAnnotation(ast, OVERRIDE)

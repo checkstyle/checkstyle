@@ -20,8 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -30,14 +31,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ParameterNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ParameterNameCheck checkObj = new ParameterNameCheck();
+        int[] expected = {TokenTypes.PARAMETER_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testCatch()
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
     }
 
@@ -63,8 +71,7 @@ public class ParameterNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -72,10 +79,9 @@ public class ParameterNameCheckTest
     public void testGetAcceptableTokens() {
         ParameterNameCheck parameterNameCheckObj = new ParameterNameCheck();
         int[] actual = parameterNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.PARAMETER_DEF,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

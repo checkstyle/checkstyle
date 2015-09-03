@@ -56,7 +56,7 @@ class DetectorOptions {
      * @param compileFlags the flags to create the regular expression with.
      * @param reporter used to report violations.
      */
-    public DetectorOptions(int compileFlags,
+    DetectorOptions(int compileFlags,
             AbstractViolationReporter reporter) {
         this.compileFlags = compileFlags;
         this.reporter = reporter;
@@ -171,20 +171,15 @@ class DetectorOptions {
     }
 
     /**
-     * Whether to ignore case when matching.
-     * @return whether to ignore case when matching.
-     */
-    public boolean isIgnoreCase() {
-        return ignoreCase;
-    }
-
-    /**
      * The pattern to use when matching.
      * @return the pattern to use when matching.
      */
     public Pattern getPattern() {
-        final int options = ignoreCase ? compileFlags
-                | Pattern.CASE_INSENSITIVE : compileFlags;
+        int options = compileFlags;
+
+        if (ignoreCase) {
+            options |= Pattern.CASE_INSENSITIVE;
+        }
         return Pattern.compile(format, options);
     }
 }

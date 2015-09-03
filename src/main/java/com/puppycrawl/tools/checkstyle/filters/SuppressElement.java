@@ -22,14 +22,12 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
- * This filter processes {@link com.puppycrawl.tools.checkstyle.api.AuditEvent}
+ * This filter processes {@link AuditEvent}
  * objects based on the criteria of file, check, module id, line, and
  * column. It rejects an AuditEvent if the following match:
  * <ul>
@@ -43,42 +41,40 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  */
 public class SuppressElement
     implements Filter {
-    /** the regexp to match file names against */
-    private final transient Pattern fileRegexp;
+    /** The regexp to match file names against. */
+    private final Pattern fileRegexp;
 
-    /** the pattern for file names*/
+    /** The pattern for file names. */
     private final String filePattern;
 
-    /** the regexp to match check names against */
-    private transient Pattern checkRegexp;
+    /** The regexp to match check names against. */
+    private Pattern checkRegexp;
 
-    /** the pattern for check class names*/
+    /** The pattern for check class names. */
     private String checkPattern;
 
-    /** module id filter. */
+    /** Module id filter. */
     private String moduleId;
 
-    /** line number filter */
-    private transient CSVFilter lineFilter;
+    /** Line number filter. */
+    private CSVFilter lineFilter;
 
-    /** CSV for line number filter */
+    /** CSV for line number filter. */
     private String linesCSV;
 
-    /** column number filter */
-    private transient CSVFilter columnFilter;
+    /** Column number filter. */
+    private CSVFilter columnFilter;
 
-    /** CSV for column number filter */
+    /** CSV for column number filter. */
     private String columnsCSV;
 
     /**
-     * Constructs a <code>SuppressElement</code> for a
+     * Constructs a {@code SuppressElement} for a
      * file name pattern. Must either call {@link #setColumns(String)} or
      * {@link #setModuleId(String)} before using this object.
      * @param files regular expression for names of filtered files.
-     * @throws ConversionException if unable to create Pattern object.
      */
-    public SuppressElement(String files)
-        throws ConversionException {
+    public SuppressElement(String files) {
         filePattern = files;
         fileRegexp = Pattern.compile(files);
     }
@@ -86,12 +82,10 @@ public class SuppressElement
     /**
      * Set the check class pattern.
      * @param checks regular expression for filtered check classes.
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setChecks(final String checks)
-        throws ConversionException {
+    public void setChecks(final String checks) {
         checkPattern = checks;
-        checkRegexp = Utils.createPattern(checks);
+        checkRegexp = CommonUtils.createPattern(checks);
     }
 
     /**
@@ -131,7 +125,6 @@ public class SuppressElement
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(AuditEvent event) {
         // reject if file or check module mismatch?
@@ -146,7 +139,7 @@ public class SuppressElement
     }
 
     /**
-     * is matching by file name and Check name
+     * Is matching by file name and Check name.
      * @param event event
      * @return true is matching
      */
@@ -171,11 +164,11 @@ public class SuppressElement
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final SuppressElement that = (SuppressElement) o;
-        return Objects.equals(filePattern, that.filePattern)
-                && Objects.equals(checkPattern, that.checkPattern)
-                && Objects.equals(moduleId, that.moduleId)
-                && Objects.equals(linesCSV, that.linesCSV)
-                && Objects.equals(columnsCSV, that.columnsCSV);
+        final SuppressElement suppressElement = (SuppressElement) o;
+        return Objects.equals(filePattern, suppressElement.filePattern)
+                && Objects.equals(checkPattern, suppressElement.checkPattern)
+                && Objects.equals(moduleId, suppressElement.moduleId)
+                && Objects.equals(linesCSV, suppressElement.linesCSV)
+                && Objects.equals(columnsCSV, suppressElement.columnsCSV);
     }
 }

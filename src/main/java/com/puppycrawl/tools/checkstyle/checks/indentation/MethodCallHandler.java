@@ -43,38 +43,41 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     @Override
     protected IndentLevel getLevelImpl() {
+        IndentLevel indentLevel;
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
         if (getParent() instanceof MethodCallHandler) {
             final MethodCallHandler container =
                     (MethodCallHandler) getParent();
-            if (areOnSameLine(container.getMainAst(), getMainAst())) {
-                return container.getLevel();
+            if (areOnSameLine(container.getMainAst(), getMainAst())
+                    || isChainedMethodCallWrapped()) {
+                indentLevel = container.getLevel();
             }
             // we should increase indentation only if this is the first
             // chained method call which was moved to the next line
-            if (isChainedMethodCallWrapped()) {
-                return container.getLevel();
+            else {
+                indentLevel = new IndentLevel(container.getLevel(), getBasicOffset());
+            }
+        }
+        else {
+            // if our expression isn't first on the line, just use the start
+            // of the line
+            final LineSet lines = new LineSet();
+            findSubtreeLines(lines, getMainAst().getFirstChild(), true);
+            final int firstCol = lines.firstLineCol();
+            final int lineStart = getLineStart(getFirstAst(getMainAst()));
+            if (lineStart == firstCol) {
+                indentLevel = super.getLevelImpl();
             }
             else {
-                return new IndentLevel(container.getLevel(), getBasicOffset());
+                indentLevel = new IndentLevel(lineStart);
             }
         }
-
-        // if our expression isn't first on the line, just use the start
-        // of the line
-        final LineSet lines = new LineSet();
-        findSubtreeLines(lines, getMainAst().getFirstChild(), true);
-        final int firstCol = lines.firstLineCol();
-        final int lineStart = getLineStart(getFirstAst(getMainAst()));
-        if (lineStart != firstCol) {
-            return new IndentLevel(lineStart);
-        }
-        return super.getLevelImpl();
+        return indentLevel;
     }
 
     /**
-     * if this is the first chained method call which was moved to the next line
+     * If this is the first chained method call which was moved to the next line.
      * @return true if chained class are wrapped
      */
     private boolean isChainedMethodCallWrapped() {
@@ -168,7 +171,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * @param firstNode
      *          method call ast(TokenTypes.METHOD_CALL)
      * @return ast node containing right paren for specified method call. If
-     * method calls are chained returns right paren for last call.
+     *     method calls are chained returns right paren for last call.
      */
     private static DetailAST getMethodCallLastNode(DetailAST firstNode) {
         return firstNode.getLastChild();

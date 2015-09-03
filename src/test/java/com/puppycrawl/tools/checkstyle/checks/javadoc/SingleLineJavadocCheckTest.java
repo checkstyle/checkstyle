@@ -20,13 +20,30 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testAcceptableTokens() {
+        SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
+        assertArrayEquals(expected, checkObj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void simpleTest() throws Exception {
         final DefaultConfiguration checkConfig =

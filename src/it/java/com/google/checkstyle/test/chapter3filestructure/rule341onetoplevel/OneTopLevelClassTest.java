@@ -1,28 +1,27 @@
 package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
 
 import java.io.File;
-import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 
 public class OneTopLevelClassTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void badTest() throws IOException, Exception {
+    public void badTest() throws Exception {
         
         Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         String messageKey = "one.top.level.class";
@@ -44,9 +43,9 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void goodTest() throws IOException, Exception {
+    public void goodTest() throws Exception {
         
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         
         Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
         String filePath = builder.getFilePath("OneTopLevelClassInputGood");
@@ -56,7 +55,7 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void bad2Test() throws IOException, Exception {
+    public void bad2Test() throws Exception {
     	
     	Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         String messageKey = "one.top.level.class";
@@ -73,7 +72,7 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
     }
     
     @Test
-    public void bad3Test() throws IOException, Exception {
+    public void bad3Test() throws Exception {
         
     	Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         String messageKey = "one.top.level.class";
@@ -90,5 +89,3 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

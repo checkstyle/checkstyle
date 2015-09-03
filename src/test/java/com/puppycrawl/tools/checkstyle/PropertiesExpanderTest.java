@@ -27,7 +27,7 @@ public class PropertiesExpanderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCtorException()  throws CheckstyleException {
-        PropertiesExpander object = new PropertiesExpander(null);
+        new PropertiesExpander(null);
     }
 
 }

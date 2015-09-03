@@ -30,10 +30,10 @@ import java.util.Map;
  */
 public abstract class AbstractViolationReporter
     extends AutomaticBean {
-    /** the severity level of any violations found */
+    /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;
 
-    /** the identifier of the reporter */
+    /** The identifier of the reporter. */
     private String id;
 
     /**
@@ -48,7 +48,7 @@ public abstract class AbstractViolationReporter
 
     /**
      * Sets the severity level.  The string should be one of the names
-     * defined in the <code>SeverityLevel</code> class.
+     * defined in the {@code SeverityLevel} class.
      *
      * @param severity  The new severity level
      * @see SeverityLevel
@@ -83,18 +83,6 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param ast a node to get line id column numbers associated
-     *             with the message
-     * @param key key to locale message format
-     * @param args arguments to format
-     */
-    protected final void log(DetailAST ast, String key, Object... args) {
-        log(ast.getLineNo(), ast.getColumnNo(), key, args);
-    }
-
-    /**
      * Returns the message bundle name resourcebundle that contains the messages
      * used by this module.
      * <p>
@@ -108,11 +96,27 @@ public abstract class AbstractViolationReporter
      * </p>
      *
      * @return name of a resource bundle that contains the messages
-     * used by this module.
+     *     used by this module.
      */
     protected String getMessageBundle() {
-        final String className = this.getClass().getName();
+        final String className = getClass().getName();
         return getMessageBundle(className);
+    }
+
+    /**
+     * For unit tests, especially with a class with no package name.
+     * @param className class name of the module.
+     * @return name of a resource bundle that contains the messages
+     *     used by the module.
+     */
+    static String getMessageBundle(final String className) {
+        final int endIndex = className.lastIndexOf('.');
+        final String messages = "messages";
+        if (endIndex < 0) {
+            return messages;
+        }
+        final String packageName = className.substring(0, endIndex);
+        return packageName + "." + messages;
     }
 
     /**
@@ -125,19 +129,15 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * for unit tests, especially with a class with no package name.
-     * @param className class name of the module.
-     * @return name of a resource bundle that contains the messages
-     * used by the module.
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param ast a node to get line id column numbers associated
+     *             with the message
+     * @param key key to locale message format
+     * @param args arguments to format
      */
-    static String getMessageBundle(final String className) {
-        final int endIndex = className.lastIndexOf('.');
-        final String messages = "messages";
-        if (endIndex < 0) {
-            return messages;
-        }
-        final String packageName = className.substring(0, endIndex);
-        return packageName + "." + messages;
+    protected final void log(DetailAST ast, String key, Object... args) {
+        log(ast.getLineNo(), ast.getColumnNo(), key, args);
     }
 
     /**

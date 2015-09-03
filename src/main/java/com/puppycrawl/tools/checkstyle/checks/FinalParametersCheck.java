@@ -21,10 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * Check that method/constructor/catch/foreach parameters are final.
@@ -36,13 +39,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Check has an option <b>ignorePrimitiveTypes</b> which allows ignoring lack of
  * final modifier at
  * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
- *  primitive datatype</a> parameter. Default value <b>false</b>.
+ *  primitive data type</a> parameter. Default value <b>false</b>.
  * </p>
  * E.g.:
  * <p>
- * <code>
+ * {@code
  * private void foo(int x) { ... } //parameter is of primitive type
- * </code>
+ * }
  * </p>
  *
  * @author lkuehne
@@ -105,6 +108,11 @@ public class FinalParametersCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         // don't flag interfaces
         final DetailAST container = ast.getParent().getParent();
@@ -145,7 +153,7 @@ public class FinalParametersCheck extends Check {
             method.findFirstToken(TokenTypes.PARAMETERS);
         DetailAST child = parameters.getFirstChild();
         while (child != null) {
-            // childs are PARAMETER_DEF and COMMA
+            // children are PARAMETER_DEF and COMMA
             if (child.getType() == TokenTypes.PARAMETER_DEF) {
                 checkParam(child);
             }

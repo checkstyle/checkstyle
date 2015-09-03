@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-
 /**
  * <p>
  * Checks that an overriding finalize() method invokes super.finalize().

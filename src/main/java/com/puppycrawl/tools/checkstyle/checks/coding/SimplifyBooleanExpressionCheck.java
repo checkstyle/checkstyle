@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for overly complicated boolean expressions. Currently finds code like
- * <code>if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
+ * {@code if (b == true)}, {@code b || true}, {@code !false},
  * etc.
  * </p>
  * <p>
@@ -51,19 +51,17 @@ public class SimplifyBooleanExpressionCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        // Return empty list to prevent user changing tokens in the
-        // configuration.
-        return new int[] {};
+        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
+        return getAcceptableTokens();
     }
 
     @Override

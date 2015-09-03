@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,15 +32,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class PackageAnnotationTest extends BaseCheckTestSupport {
     /**
      * This tests a package annotation that is in the package-info.java file.
-     *
-     * @throws Exception
      */
     @Test
     public void testGoodPackageAnnotation() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "package-info.java"), expected);
     }
@@ -48,16 +46,15 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
         int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {TokenTypes.PACKAGE_DEF };
-        Assert.assertNotNull(actual);
+        int[] expected = {TokenTypes.PACKAGE_DEF };
         Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void testAnnotationnotInPackageInfo() throws Exception {
+    public void testAnnotationNotInPackageInfo() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("annotation" + File.separator + "InputPackageAnnotationCheckTest.java"), expected);
     }

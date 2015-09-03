@@ -21,13 +21,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_FIRST_SENTENCE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -38,11 +40,17 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testGetRequiredTokens() {
+        SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
+        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
+    @Test
     public void testCorrect() throws Exception {
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("javadoc/InputCorrectSummaryJavaDocCheck.java"), expected);
     }
@@ -77,8 +85,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     @Test
     public void testNoPeriod() throws Exception {
         checkConfig.addAttribute("period", "");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("javadoc/InputSummaryJavadocCheckNoPeriod.java"), expected);
     }
@@ -92,13 +99,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             "103: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
         };
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
     }
 }

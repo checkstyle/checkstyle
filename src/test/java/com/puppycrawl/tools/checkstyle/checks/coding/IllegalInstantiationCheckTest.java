@@ -23,11 +23,17 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiation
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class IllegalInstantiationCheckTest
     extends BaseCheckTestSupport {
@@ -56,11 +62,99 @@ public class IllegalInstantiationCheckTest
     public void testJava8() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(IllegalInstantiationCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
                           + "coding/InputIllegalInstantiationCheckTest2.java").getCanonicalPath(),
                 expected);
+    }
+
+    @Test
+    public void testNoPackage() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalInstantiationCheck.class);
+        checkConfig.addAttribute(
+                "classes",
+                "java.lang.Boolean");
+        final String[] expected = {
+            "3:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+        };
+        verify(checkConfig,
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                          + "coding/InputIllegalInstantiationCheckNoPackage.java").getCanonicalPath(),
+                expected);
+    }
+
+    @Test
+    public void testJavaLangPackage() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalInstantiationCheck.class);
+        checkConfig.addAttribute(
+                "classes",
+                "java.lang.Boolean,java.lang.String");
+        final String[] expected = {
+            "4:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "11:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+        };
+        verify(checkConfig,
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                          + "coding/InputIllegalInstantiationCheckLang.java").getCanonicalPath(),
+                expected);
+    }
+
+    @Test
+    public void testWrongPackage() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalInstantiationCheck.class);
+        checkConfig.addAttribute(
+                "classes",
+                "jjva.lang.Boolean,java.lang*Boolean");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                          + "coding/InputIllegalInstantiationCheckLang.java").getCanonicalPath(),
+                expected);
+    }
+
+    @Test
+    public void testNullClassLoader() throws Exception {
+        DetailAST exprAst = new DetailAST();
+        exprAst.setType(TokenTypes.EXPR);
+
+        DetailAST newAst = new DetailAST();
+        newAst.setType(TokenTypes.LITERAL_NEW);
+        newAst.setLineNo(1);
+        newAst.setColumnNo(1);
+
+        DetailAST identAst = new DetailAST();
+        identAst.setType(TokenTypes.IDENT);
+        identAst.setText("Boolean");
+
+        DetailAST lparenAst = new DetailAST();
+        lparenAst.setType(TokenTypes.LPAREN);
+
+        DetailAST elistAst = new DetailAST();
+        elistAst.setType(TokenTypes.ELIST);
+
+        DetailAST rparenAst = new DetailAST();
+        rparenAst.setType(TokenTypes.RPAREN);
+
+        exprAst.addChild(newAst);
+        newAst.addChild(identAst);
+        identAst.setNextSibling(lparenAst);
+        lparenAst.setNextSibling(elistAst);
+        elistAst.setNextSibling(rparenAst);
+
+        IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        File inputFile = new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                + "coding/InputIllegalInstantiationCheckLang.java");
+        check.setFileContents(new FileContents(new FileText(inputFile, "UTF-8")));
+        check.configure(createCheckConfig(IllegalInstantiationCheck.class));
+        check.setMessages(new LocalizedMessages());
+
+        check.setClasses("java.lang.Boolean");
+        check.visitToken(newAst);
+        check.finishTree(newAst);
     }
 
     @Test
@@ -69,5 +163,21 @@ public class IllegalInstantiationCheckTest
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
+    }
+
+    @Test
+    public void testImproperToken() throws Exception {
+        IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+
+        DetailAST lambdaAst = new DetailAST();
+        lambdaAst.setType(TokenTypes.LAMBDA);
+
+        try {
+            check.visitToken(lambdaAst);
+            Assert.fail();
+        }
+        catch (IllegalArgumentException e) {
+            // it is OK
+        }
     }
 }

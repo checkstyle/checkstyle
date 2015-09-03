@@ -24,18 +24,17 @@ package com.puppycrawl.tools.checkstyle.filters;
  * @author Rick Giles
  */
 class IntMatchFilter implements IntFilter {
-    /** the matching Integer */
+    /** The matching Integer. */
     private final int matchValue;
 
     /**
      * Constructs a MatchFilter for an int.
      * @param matchValue the matching int.
      */
-    public IntMatchFilter(int matchValue) {
+    IntMatchFilter(int matchValue) {
         this.matchValue = matchValue;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean accept(int intValue) {
         return matchValue == intValue;
@@ -47,15 +46,15 @@ class IntMatchFilter implements IntFilter {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return Integer.valueOf(matchValue).hashCode();
     }
 
     @Override
-    public boolean equals(Object object) {
+    public final boolean equals(Object object) {
         if (object instanceof IntMatchFilter) {
             final IntMatchFilter other = (IntMatchFilter) object;
-            return this.matchValue == other.matchValue;
+            return matchValue == other.matchValue;
         }
         return false;
     }

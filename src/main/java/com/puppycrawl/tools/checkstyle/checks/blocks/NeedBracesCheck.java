@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import org.apache.commons.lang3.ArrayUtils;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -41,8 +42,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="NeedBraces"/&gt;
  * </pre>
- * <p> An example of how to configure the check for <code>if</code> and
- * <code>else</code> blocks is:
+ * <p> An example of how to configure the check for {@code if} and
+ * {@code else} blocks is:
  * </p>
  * <pre>
  * &lt;module name="NeedBraces"&gt;
@@ -52,51 +53,51 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Check has an option <b>allowSingleLineStatement</b> which allows single-line
  * statements without braces, e.g.:
  * <p>
- * <code>
+ * {@code
  * if (obj.isValid()) return true;
- * </code>
+ * }
  * </p>
  * <p>
- * <code>
+ * {@code
  * while (obj.isValid()) return true;
- * </code>
+ * }
  * </p>
  * <p>
- * <code>
+ * {@code
  * do this.notify(); while (o != null);
- * </code>
+ * }
  * </p>
  * <p>
- * <code>
+ * {@code
  * for (int i = 0; ; ) this.notify();
- * </code>
+ * }
  * </p>
  * <p>
- * To configure the Check to allow <code>case, default</code> single-line statements
+ * To configure the Check to allow {@code case, default} single-line statements
  * without braces:
  * </p>
- * <p>
+ *
  * <pre>
  * &lt;module name=&quot;NeedBraces&quot;&gt;
  *     &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
  *     &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
+ *
  * <p>
  * Such statements would be allowed:
  * </p>
- * <p>
+ *
  * <pre>
- * <code>
+ * {@code
  * switch (num) {
  *     case 1: counter++; break; // OK
  *     case 6: counter += 10; break; // OK
  *     default: counter = 100; break; // OK
  * }
- * </code>
+ * }
  * </pre>
- * </p>
+ *
  *
  * @author Rick Giles
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
@@ -147,6 +148,11 @@ public class NeedBracesCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
         boolean isElseIf = false;
@@ -174,45 +180,46 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * if (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * <p>
-     * <code>
+     * {@code
      * while (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * @param statement if, for, while, do-while, lambda, else, case, default statements.
      * @return true if current statement is single-line statement.
      */
     private static boolean isSingleLineStatement(DetailAST statement) {
-        boolean result = false;
-        final int type = statement.getType();
+        boolean result;
 
-        if (type == TokenTypes.LITERAL_IF) {
-            result = isSingleLineIf(statement);
-        }
-        else if (type == TokenTypes.LITERAL_FOR) {
-            result = isSingleLineFor(statement);
-        }
-        else if (type == TokenTypes.LITERAL_DO) {
-            result = isSingleLineDoWhile(statement);
-        }
-        else if (type == TokenTypes.LITERAL_WHILE) {
-            result = isSingleLineWhile(statement);
-        }
-        else if (type == TokenTypes.LAMBDA) {
-            result = isSingleLineLambda(statement);
-        }
-        else if (type == TokenTypes.LITERAL_CASE) {
-            result = isSingleLineCase(statement);
-        }
-        else if (type == TokenTypes.LITERAL_DEFAULT) {
-            result = isSingleLineDefault(statement);
-        }
-        else {
-            result = isSingleLineElse(statement);
+        switch (statement.getType()) {
+            case TokenTypes.LITERAL_IF:
+                result = isSingleLineIf(statement);
+                break;
+            case TokenTypes.LITERAL_FOR:
+                result = isSingleLineFor(statement);
+                break;
+            case TokenTypes.LITERAL_DO:
+                result = isSingleLineDoWhile(statement);
+                break;
+            case TokenTypes.LITERAL_WHILE:
+                result = isSingleLineWhile(statement);
+                break;
+            case TokenTypes.LAMBDA:
+                result = isSingleLineLambda(statement);
+                break;
+            case TokenTypes.LITERAL_CASE:
+                result = isSingleLineCase(statement);
+                break;
+            case TokenTypes.LITERAL_DEFAULT:
+                result = isSingleLineDefault(statement);
+                break;
+            default:
+                result = isSingleLineElse(statement);
+                break;
         }
 
         return result;
@@ -221,9 +228,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current while statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * while (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * @param literalWhile {@link TokenTypes#LITERAL_WHILE while statement}.
      * @return true if current while statement is single-line statement.
@@ -241,9 +248,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current do-while statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * do this.notify(); while (o != null);
-     * </code>
+     * }
      * </p>
      * @param literalDo {@link TokenTypes#LITERAL_DO do-while statement}.
      * @return true if current do-while statement is single-line statement.
@@ -261,9 +268,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current for statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * for (int i = 0; ; ) this.notify();
-     * </code>
+     * }
      * </p>
      * @param literalFor {@link TokenTypes#LITERAL_FOR for statement}.
      * @return true if current for statement is single-line statement.
@@ -284,9 +291,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current if statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * if (obj.isValid()) return true;
-     * </code>
+     * }
      * </p>
      * @param literalIf {@link TokenTypes#LITERAL_IF if statement}.
      * @return true if current if statement is single-line statement.
@@ -311,9 +318,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current lambda statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * Runnable r = () -> System.out.println("Hello, world!");
-     * </code>
+     * }
      * </p>
      * @param lambda {@link TokenTypes#LAMBDA lambda statement}.
      * @return true if current lambda statement is single-line statement.
@@ -330,10 +337,10 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current case statement is single-line statement, e.g.:
      * <p>
-     * <code>
-     * case 1: dosomeStuff(); break;
-     * case 2: dosomeStuff(); break;
-     * </code>
+     * {@code
+     * case 1: doSomeStuff(); break;
+     * case 2: doSomeStuff(); break;
+     * }
      * </p>
      * @param literalCase {@link TokenTypes#LITERAL_CASE case statement}.
      * @return true if current case statement is single-line statement.
@@ -355,9 +362,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current default statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * default: doSomeStuff();
-     * </code>
+     * }
      * </p>
      * @param literalDefault {@link TokenTypes#LITERAL_DEFAULT default statement}.
      * @return true if current default statement is single-line statement.
@@ -375,9 +382,9 @@ public class NeedBracesCheck extends Check {
     /**
      * Checks if current else statement is single-line statement, e.g.:
      * <p>
-     * <code>
+     * {@code
      * else doSomeStuff();
-     * </code>
+     * }
      * </p>
      * @param literalElse {@link TokenTypes#LITERAL_ELSE else statement}.
      * @return true if current else statement is single-line statement.

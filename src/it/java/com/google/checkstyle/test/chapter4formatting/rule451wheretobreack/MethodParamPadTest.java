@@ -1,28 +1,26 @@
 package com.google.checkstyle.test.chapter4formatting.rule451wheretobreack;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
 public class MethodParamPadTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void operatorWrapTest() throws IOException, Exception {
+    public void operatorWrapTest() throws Exception {
         
         Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
         String messageKey = "line.previous";

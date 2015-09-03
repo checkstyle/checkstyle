@@ -45,7 +45,7 @@ public class JavadocParseTreeTest {
     private JavadocParser parser;
     private final BaseErrorListener errorListener = new FailOnErrorListener();
 
-    public ParseTree parseJavadoc(String aBlockComment)
+    private ParseTree parseJavadoc(String aBlockComment)
         throws IOException {
         final Charset utf8Charset = Charset.forName("UTF-8");
         final InputStream in = new ByteArrayInputStream(aBlockComment.getBytes(utf8Charset));
@@ -64,7 +64,7 @@ public class JavadocParseTreeTest {
         return parser.javadoc();
     }
 
-    public static String getFileContent(File filename)
+    private static String getFileContent(File filename)
         throws IOException {
         return Files.toString(filename, Charsets.UTF_8);
     }
@@ -271,13 +271,13 @@ public class JavadocParseTreeTest {
         Assert.assertEquals(t1.toStringTree(parser), t2.toStringTree(parser));
     }
 
-    public static class FailOnErrorListener extends BaseErrorListener {
+    private static class FailOnErrorListener extends BaseErrorListener {
         @Override
         public void syntaxError(
-                Recognizer<?, ?> aRecognizer, Object aOffendingSymbol,
-                int aLine, int aCharPositionInLine,
-                String aMsg, RecognitionException aEx) {
-            Assert.fail("[" + aLine + ", " + aCharPositionInLine + "] " + aMsg);
+                Recognizer<?, ?> recognizer, Object offendingSymbol,
+                int line, int charPositionInLine,
+                String msg, RecognitionException e) {
+            Assert.fail("[" + line + ", " + charPositionInLine + "] " + msg);
         }
     }
 

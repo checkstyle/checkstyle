@@ -21,9 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,6 +35,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ModifierOrderCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ModifierOrderCheck checkObj = new ModifierOrderCheck();
+        int[] expected = {TokenTypes.MODIFIERS};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -53,8 +63,7 @@ public class ModifierOrderCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools"
                   + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
     }
@@ -63,13 +72,13 @@ public class ModifierOrderCheckTest
     public void testGetDefaultTokens() {
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         int[] actual = modifierOrderCheckObj.getDefaultTokens();
-        int[] expected = new int[] {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = new int[] {};
-        int[] unexpectedArray = new int[] {
+        int[] expected = {TokenTypes.MODIFIERS};
+        int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
+        int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
         Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);
         Assert.assertNotNull(actual);
@@ -79,13 +88,13 @@ public class ModifierOrderCheckTest
     public void testGetAcceptableTokens() {
         ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         int[] actual = modifierOrderCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = new int[] {};
-        int[] unexpectedArray = new int[] {
+        int[] expected = {TokenTypes.MODIFIERS};
+        int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
+        int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
         Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);
         Assert.assertNotNull(actual);

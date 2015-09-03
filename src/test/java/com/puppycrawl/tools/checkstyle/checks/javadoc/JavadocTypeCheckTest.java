@@ -28,6 +28,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -36,21 +37,32 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * @author Oliver.Burn
- *
  * To change this generated comment edit the template variable "typecomment":
  * Window>Preferences>Java>Templates.
  * To enable and disable the creation of type comments go to
  * Window>Preferences>Java>Code Generation.
+ * @author Oliver.Burn
  */
 public class JavadocTypeCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
+        int[] expected = {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
+        assertArrayEquals(expected, javadocTypeCheck.getRequiredTokens());
+    }
 
     @Test
     public void testGetAcceptableTokens() {
         JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
 
         int[] actual = javadocTypeCheck.getAcceptableTokens();
-        int[] expected = new int[]{
+        int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
@@ -354,8 +366,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowUnknownTags", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("javadoc" + File.separator + "InputBadTag.java"),
                 expected);

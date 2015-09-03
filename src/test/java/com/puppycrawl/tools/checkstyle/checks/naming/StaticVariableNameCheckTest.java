@@ -20,10 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -32,6 +33,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class StaticVariableNameCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
+        int[] expected = {TokenTypes.VARIABLE_DEF};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testSpecified()
         throws Exception {
@@ -53,9 +62,11 @@ public class StaticVariableNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(StaticVariableNameCheck.class);
         checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
-        checkConfig.addAttribute("applyToPrivate", "false"); // allow method names and class names to equal
-        final String[] expected = {
-        };
+
+        // allow method names and class names to equal
+        checkConfig.addAttribute("applyToPrivate", "false");
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -64,8 +75,7 @@ public class StaticVariableNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(StaticVariableNameCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 new File("src/test/resources/com/puppycrawl/tools/"
                         + "checkstyle/naming/InputStaticVariableName.java").getCanonicalPath(),
@@ -76,11 +86,9 @@ public class StaticVariableNameCheckTest
     public void testGetAcceptableTokens() {
         StaticVariableNameCheck staticVariableNameCheckObj = new StaticVariableNameCheck();
         int[] actual = staticVariableNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }
-

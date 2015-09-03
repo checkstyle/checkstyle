@@ -5,12 +5,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
 class DebugChecker extends Checker {
-    public DebugChecker() throws CheckstyleException {
-    }
-
     @Override
     public void fireAuditFinished() {
         super.fireAuditFinished();

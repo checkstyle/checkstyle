@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -35,14 +37,26 @@ public class FileContentsHolder
     /** The current file contents. */
     private static final ThreadLocal<FileContents> FILE_CONTENTS = new ThreadLocal<>();
 
-    /** @return the current file contents. */
+    /**
+     * @return the current file contents.
+     */
     public static FileContents getContents() {
         return FILE_CONTENTS.get();
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[0];
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2002  Oliver Burn
+// Copyright (C) 2001-2015 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -59,113 +59,91 @@ public class ParseTreeInfoPanel extends JPanel {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -4243405131202059043L;
 
+    /** Parse tree model. */
     private final transient ParseTreeModel parseTreeModel;
-    private final JTextArea jTextArea;
+    /** JTextArea component. */
+    private final JTextArea textArea;
+    /** Last directory. */
     private File lastDirectory;
+    /** Current file. */
     private File currentFile;
-    private final Action reloadAction;
-    private final List<Integer>   lines2position  = new ArrayList<>();
+    /** Reload action. */
+    private final ReloadAction reloadAction;
+    /** Lines to position map. */
+    private final List<Integer> linesToPosition = new ArrayList<>();
 
-    private static class JavaFileFilter extends FileFilter {
-        @Override
-        public boolean accept(File f) {
-            if (f == null) {
-                return false;
-            }
-            return f.isDirectory() || f.getName().endsWith(".java");
+    /**
+     * Create a new ParseTreeInfoPanel instance.
+     */
+    public ParseTreeInfoPanel() {
+        setLayout(new BorderLayout());
+
+        parseTreeModel = new ParseTreeModel(null);
+        final JTreeTable treeTable = new JTreeTable(parseTreeModel);
+        final JScrollPane sp = new JScrollPane(treeTable);
+        add(sp, BorderLayout.PAGE_START);
+
+        final JButton fileSelectionButton =
+            new JButton(new FileSelectionAction());
+
+        reloadAction = new ReloadAction();
+        reloadAction.setEnabled(false);
+        final JButton reloadButton = new JButton(reloadAction);
+
+        textArea = new JTextArea(20, 15);
+        textArea.setEditable(false);
+        treeTable.setEditor(textArea);
+        treeTable.setLinePositionMap(linesToPosition);
+
+        final JScrollPane sp2 = new JScrollPane(textArea);
+        add(sp2, BorderLayout.CENTER);
+
+        final JPanel p = new JPanel(new GridLayout(1, 2));
+        add(p, BorderLayout.PAGE_END);
+        p.add(fileSelectionButton);
+        p.add(reloadButton);
+
+        try {
+            new FileDrop(sp, new FileDropListener(sp));
+        }
+        catch (final TooManyListenersException ignored) {
+            showErrorDialog(null, "Cannot initialize Drag and Drop support");
         }
 
-        @Override
-        public String getDescription() {
-            return "Java Source Code";
-        }
     }
 
-    public void openAst(DetailAST parseTree, final Component parent) {
+    /**
+     * Opens the input parse tree ast.
+     * @param parseTree DetailAST tree.
+     */
+    public void openAst(DetailAST parseTree) {
         parseTreeModel.setParseTree(parseTree);
         reloadAction.setEnabled(true);
 
         // clear for each new file
-        getLines2position().clear();
+        clearLinesToPosition();
         // starts line counting at 1
-        getLines2position().add(0);
+        addLineToPosition(0);
         // insert the contents of the file to the text area
 
         // clean the text area before inserting the lines of the new file
-        if (jTextArea.getText().length() != 0) {
-            jTextArea.replaceRange("", 0, jTextArea.getText().length());
+        if (!textArea.getText().isEmpty()) {
+            textArea.replaceRange("", 0, textArea.getText().length());
         }
 
         // move back to the top of the file
-        jTextArea.moveCaretPosition(0);
+        textArea.moveCaretPosition(0);
     }
 
-    private class FileSelectionAction extends AbstractAction {
-        /**
-         *
-         */
-        private static final long serialVersionUID = -1926935338069418119L;
-
-        public FileSelectionAction() {
-            super("Select Java File");
-            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            final JFileChooser fc = new JFileChooser( lastDirectory );
-            final FileFilter filter = new JavaFileFilter();
-            fc.setFileFilter(filter);
-            final Component parent =
-                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
-            fc.showDialog(parent, "Open");
-            final File file = fc.getSelectedFile();
-            openFile(file, parent);
-
-        }
-    }
-
-    private class ReloadAction extends AbstractAction {
-        /**
-         *
-         */
-        private static final long serialVersionUID = -1021880396046355863L;
-
-        public ReloadAction() {
-            super("Reload Java File");
-            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            final Component parent =
-                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
-            openFile(currentFile, parent);
-        }
-    }
-
-
-    private class FileDropListener implements FileDrop.Listener {
-        private final JScrollPane mSp;
-
-        @Override
-        public void filesDropped(File... files) {
-            if (files != null && files.length > 0) {
-                final File file = files[0];
-                openFile(file, mSp);
-            }
-        }
-
-        public FileDropListener(JScrollPane aSp) {
-            mSp = aSp;
-        }
-    }
-
-
+    /**
+     * Opens file and loads it into text area.
+     * @param file File to open.
+     * @param parent Component for displaying errors if file can't be open.
+     */
     public void openFile(File file, final Component parent) {
         if (file != null) {
             try {
-                Main.frame.setTitle("Checkstyle : " + file.getName());
+                Main.getFrame().setTitle("Checkstyle : " + file.getName());
                 final FileText text = new FileText(file.getAbsoluteFile(),
                                                    getEncoding());
                 final DetailAST parseTree = parseFile(text);
@@ -177,28 +155,24 @@ public class ParseTreeInfoPanel extends JPanel {
                 final String[] sourceLines = text.toLinesArray();
 
                 // clear for each new file
-                 getLines2position().clear();
-                 // starts line counting at 1
-                 getLines2position().add(0);
-                 // insert the contents of the file to the text area
-                 for (String element : sourceLines) {
-                   getLines2position().add(jTextArea.getText().length());
-                   jTextArea.append(element + "\n");
-                 }
+                clearLinesToPosition();
+                // starts line counting at 1
+                addLineToPosition(0);
 
                 //clean the text area before inserting the lines of the new file
-                if (jTextArea.getText().length() != 0) {
-                    jTextArea.replaceRange("", 0, jTextArea.getText()
+                if (!textArea.getText().isEmpty()) {
+                    textArea.replaceRange("", 0, textArea.getText()
                             .length());
                 }
 
                 // insert the contents of the file to the text area
                 for (final String element : sourceLines) {
-                    jTextArea.append(element + "\n");
+                    addLineToPosition(textArea.getText().length());
+                    textArea.append(element + System.lineSeparator());
                 }
 
                 // move back to the top of the file
-                jTextArea.moveCaretPosition(0);
+                textArea.moveCaretPosition(0);
             }
             catch (final IOException | ANTLRException ex) {
                 showErrorDialog(
@@ -210,25 +184,11 @@ public class ParseTreeInfoPanel extends JPanel {
 
     /**
      * Parses a file and returns the parse tree.
-     * @param fileName the file to parse
-     * @return the root node of the parse tree
-     * @throws IOException if the file cannot be opened
-     * @throws ANTLRException if the file is not a Java source
-     * @deprecated Use {@link #parseFile(FileText)} instead
-     */
-    @Deprecated
-    public static DetailAST parseFile(String fileName)
-        throws IOException, ANTLRException {
-        return parseFile(new FileText(new File(fileName), getEncoding()));
-    }
-
-    /**
-     * Parses a file and returns the parse tree.
      * @param text the file to parse
      * @return the root node of the parse tree
      * @throws ANTLRException if the file is not a Java source
      */
-    public static DetailAST parseFile(FileText text)
+    private static DetailAST parseFile(FileText text)
         throws ANTLRException {
         final FileContents contents = new FileContents(text);
         return TreeWalker.parse(contents);
@@ -245,82 +205,150 @@ public class ParseTreeInfoPanel extends JPanel {
     }
 
     /**
-     * Create a new ParseTreeInfoPanel instance.
+     * Opens dialog with error.
+     * @param parent Component for displaying errors.
+     * @param msg Error message to display.
      */
-    public ParseTreeInfoPanel() {
-        setLayout(new BorderLayout());
-
-        parseTreeModel = new ParseTreeModel(null);
-        JTreeTable treeTable = new JTreeTable(parseTreeModel);
-        final JScrollPane sp = new JScrollPane(treeTable);
-        this.add(sp, BorderLayout.NORTH);
-
-        final JButton fileSelectionButton =
-            new JButton(new FileSelectionAction());
-
-        reloadAction = new ReloadAction();
-        reloadAction.setEnabled(false);
-        final JButton reloadButton = new JButton(reloadAction);
-
-        jTextArea = new JTextArea(20, 15);
-        jTextArea.setEditable(false);
-        treeTable.setEditor(jTextArea);
-        treeTable.setLinePositionMap(lines2position);
-
-        final JScrollPane sp2 = new JScrollPane(jTextArea);
-        this.add(sp2, BorderLayout.CENTER);
-
-        final JPanel p = new JPanel(new GridLayout(1,2));
-        this.add(p, BorderLayout.SOUTH);
-        p.add(fileSelectionButton);
-        p.add(reloadButton);
-
-        try {
-            new FileDrop(sp, new FileDropListener(sp));
-        }
-        catch (final TooManyListenersException ex) {
-           showErrorDialog(null, "Cannot initialize Drag and Drop support");
-        }
-
-    }
-
     private static void showErrorDialog(final Component parent, final String msg) {
         final Runnable showError = new FrameShower(parent, msg);
         SwingUtilities.invokeLater(showError);
     }
 
-    public List<Integer> getLines2position() {
-      return lines2position;
+    /**
+     * Adds a new value into lines to position map.
+     * @param value Value to be added into position map.
+     */
+    private void addLineToPosition(int value) {
+        linesToPosition.add(value);
+    }
+
+    /** Clears lines to position map. */
+    private void clearLinesToPosition() {
+        linesToPosition.clear();
     }
 
     /**
-     * http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
+     * Http://findbugs.sourceforge.net/bugDescriptions.html#SW_SWING_METHODS_INVOKED_IN_SWING_THREAD
      */
     private static class FrameShower implements Runnable {
         /**
-         * frame
+         * Frame.
          */
-        final Component parent;
+        private final Component parent;
 
         /**
-         * frame
+         * Frame.
          */
-        final String msg;
+        private final String msg;
 
         /**
-         * contstructor
+         * @param parent Frame's component.
+         * @param msg Message to show.
          */
-        public FrameShower(Component parent, final String msg) {
+        FrameShower(Component parent, final String msg) {
             this.parent = parent;
             this.msg = msg;
         }
 
         /**
-         * display a frame
+         * Display a frame.
          */
+        @Override
         public void run() {
             JOptionPane.showMessageDialog(parent, msg);
         }
     }
-}
 
+    /**
+     * Filter for Java files.
+     */
+    private static class JavaFileFilter extends FileFilter {
+        @Override
+        public boolean accept(File file) {
+            if (file == null) {
+                return false;
+            }
+            return file.isDirectory() || file.getName().endsWith(".java");
+        }
+
+        @Override
+        public String getDescription() {
+            return "Java Source Code";
+        }
+    }
+
+    /**
+     * Handler for file selection action events.
+     */
+    private class FileSelectionAction extends AbstractAction {
+        /**
+         * Serial ID.
+         */
+        private static final long serialVersionUID = -1926935338069418119L;
+
+        /** Defalut constructor to setup current action. */
+        FileSelectionAction() {
+            super("Select Java File");
+            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            final JFileChooser fc = new JFileChooser(lastDirectory);
+            final FileFilter filter = new JavaFileFilter();
+            fc.setFileFilter(filter);
+            final Component parent =
+                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
+            fc.showDialog(parent, "Open");
+            final File file = fc.getSelectedFile();
+            openFile(file, parent);
+
+        }
+    }
+
+    /**
+     * Handler for reload action events.
+     */
+    private class ReloadAction extends AbstractAction {
+        /**
+         * Serial UID.
+         */
+        private static final long serialVersionUID = -1021880396046355863L;
+
+        /** Defalut constructor to setup current action. */
+        ReloadAction() {
+            super("Reload Java File");
+            putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            final Component parent =
+                SwingUtilities.getRoot(ParseTreeInfoPanel.this);
+            openFile(currentFile, parent);
+        }
+    }
+
+    /**
+     * Listener and handler for file dropped events.
+     */
+    private class FileDropListener implements Listener {
+        /** Scroll pane. */
+        private final JScrollPane scrollPane;
+
+        /**
+         * @param scrollPane Scroll pane.
+         */
+        FileDropListener(JScrollPane scrollPane) {
+            this.scrollPane = scrollPane;
+        }
+
+        @Override
+        public void filesDropped(File... files) {
+            if (files != null && files.length > 0) {
+                final File file = files[0];
+                openFile(file, scrollPane);
+            }
+        }
+    }
+}

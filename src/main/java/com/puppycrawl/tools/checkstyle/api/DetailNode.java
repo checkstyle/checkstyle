@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.api;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 
 /**
- *
  * DetailNode is used to construct tree during parsing Javadoc comments.
  * Contains array of children, parent node and other useful fields.
  *

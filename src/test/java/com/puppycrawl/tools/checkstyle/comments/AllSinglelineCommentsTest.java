@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.comments;
 import java.io.File;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,11 +34,20 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
-    protected static final Set<String> allComments = Sets.newLinkedHashSet();
+    private static final Set<String> ALL_COMMENTS = Sets.newLinkedHashSet();
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    public static class SinglelineCommentListenerCheck extends Check {
+    @Test
+    public void testAllBlockComments() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(SinglelineCommentListenerCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("comments" + File.separator
+                + "InputFullOfSinglelineComments.java"), expected);
+        Assert.assertTrue(ALL_COMMENTS.isEmpty());
+    }
+
+    private static class SinglelineCommentListenerCheck extends Check {
         @Override
         public boolean isCommentNodesRequired() {
             return true;
@@ -45,7 +55,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.SINGLE_LINE_COMMENT};
+            return getAcceptableTokens();
         }
 
         @Override
@@ -54,30 +64,25 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
         }
 
         @Override
-        public void init() {
-            int lines = 63;
-            for (int i = 0; i < lines; i++) {
-                allComments.add(i + LINE_SEPARATOR);
-            }
-            allComments.add(String.valueOf(lines));
+        public int[] getRequiredTokens() {
+            return getAcceptableTokens();
         }
 
         @Override
-        public void visitToken(DetailAST aAST) {
-            String commentContent = aAST.getFirstChild().getText();
-            if (!allComments.remove(commentContent)) {
+        public void init() {
+            int lines = 63;
+            for (int i = 0; i < lines; i++) {
+                ALL_COMMENTS.add(i + LINE_SEPARATOR);
+            }
+            ALL_COMMENTS.add(String.valueOf(lines));
+        }
+
+        @Override
+        public void visitToken(DetailAST ast) {
+            String commentContent = ast.getFirstChild().getText();
+            if (!ALL_COMMENTS.remove(commentContent)) {
                 Assert.fail("Unexpected comment: " + commentContent);
             }
         }
-
-    }
-
-    @Test
-    public void testAllBlockComments() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(SinglelineCommentListenerCheck.class);
-        final String[] expected = {};
-        verify(checkConfig, getPath("comments" + File.separator
-                + "InputFullOfSinglelineComments.java"), expected);
-        Assert.assertTrue(allComments.isEmpty());
     }
 }

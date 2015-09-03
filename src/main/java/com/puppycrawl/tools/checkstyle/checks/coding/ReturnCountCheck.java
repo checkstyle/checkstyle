@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 /**
  * <p>
  * Restricts the number of return statements in methods, constructors and lambda expressions
- * (2 by default). Ignores specified methods (<code>equals()</code> by default).
+ * (2 by default). Ignores specified methods ({@code equals()} by default).
  * </p>
  * <p>
  * Rationale: Too many return points can be indication that code is
@@ -59,7 +59,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
     /** Creates new instance of the checks. */
     public ReturnCountCheck() {
         super("^equals$");
-        setMax(DEFAULT_MAX);
+        max = DEFAULT_MAX;
     }
 
     @Override
@@ -152,8 +152,8 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
     private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
         final DetailAST methodNameAST = ast.findFirstToken(TokenTypes.IDENT);
-        context =
-            new Context(!getRegexp().matcher(methodNameAST.getText()).find());
+        final boolean check = !getRegexp().matcher(methodNameAST.getText()).find();
+        context = new Context(check);
     }
 
     /**
@@ -187,7 +187,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
          * Creates new method context.
          * @param checking should we check this method or not.
          */
-        public Context(boolean checking) {
+        Context(boolean checking) {
             this.checking = checking;
             count = 0;
         }

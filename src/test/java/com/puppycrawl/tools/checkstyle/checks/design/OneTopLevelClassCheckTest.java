@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,6 +32,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
 
     @Test
     public void testAcceptableTokens() throws Exception {
@@ -43,7 +51,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     public void testFileWithOneTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelClass.java"), expected);
     }
 
@@ -51,7 +59,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     public void testFileWithOneTopLevelInterface() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelInterface.java"), expected);
     }
 
@@ -59,7 +67,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     public void testFileWithOneTopLevelEnum() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("design" + File.separator + "InputOneTopLevelEnum.java"), expected);
     }
 
@@ -124,8 +132,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     @Test
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("design" + File.separator + "package-info.java"), expected);
     }
 }

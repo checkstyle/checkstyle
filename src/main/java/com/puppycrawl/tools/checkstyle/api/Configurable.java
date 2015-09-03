@@ -26,7 +26,7 @@ package com.puppycrawl.tools.checkstyle.api;
  * to parent object or created by parent object.
  * The general idea of
  * Configuration/Configurable was taken from <a target="_top"
- * href="http://jakarta.apache.org/avalon/">Jakarta's Avalon framework</a>.
+ * href="http://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
  * @author lkuehne
  */
 public interface Configurable {

@@ -24,12 +24,13 @@ import java.util.BitSet;
 import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
-import com.puppycrawl.tools.checkstyle.Utils;
+
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * An extension of the CommonAST that records the line and column
  * number.  The idea was taken from <a target="_top"
- * href="http://www.jguru.com/jguru/faq/view.jsp?EID=62654">Java Guru
+ * href="http://www.jguru.com/faq/view.jsp?EID=62654">Java Guru
  * FAQ: How can I include line numbers in automatically generated
  * ASTs?</a>.
  * @author Oliver Burn
@@ -40,19 +41,19 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -2580884815577559874L;
 
-    /** constant to indicate if not calculated the child count */
+    /** Constant to indicate if not calculated the child count. */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
-    /** the line number **/
+    /** The line number. **/
     private int lineNo = NOT_INITIALIZED;
-    /** the column number **/
+    /** The column number. **/
     private int columnNo = NOT_INITIALIZED;
 
-    /** number of children */
+    /** Number of children. */
     private int childCount = NOT_INITIALIZED;
-    /** the parent token */
+    /** The parent token. */
     private DetailAST parent;
-    /** previous sibling */
+    /** Previous sibling. */
     private DetailAST previousSibling;
 
     /**
@@ -66,7 +67,9 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     public void initialize(Token tok) {
         super.initialize(tok);
         lineNo = tok.getLine();
-        columnNo = tok.getColumn() - 1; // expect columns to start @ 0
+
+        // expect columns to start @ 0
+        columnNo = tok.getColumn() - 1;
     }
 
     @Override
@@ -96,7 +99,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             ((DetailAST) ast).setParent(parent);
         }
         if (ast != null) {
-            ((DetailAST) ast).setPreviousSibling(this);
+            ((DetailAST) ast).previousSibling = this;
         }
     }
 
@@ -108,18 +111,18 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     public void addPreviousSibling(DetailAST ast) {
         if (ast != null) {
             ast.setParent(parent);
-            final DetailAST previousSibling = this.getPreviousSibling();
+            final DetailAST previousSiblingNode = previousSibling;
 
-            if (previousSibling != null) {
-                ast.setPreviousSibling(previousSibling);
-                previousSibling.setNextSibling(ast);
+            if (previousSiblingNode != null) {
+                ast.previousSibling = previousSiblingNode;
+                previousSiblingNode.setNextSibling(ast);
             }
             else if (parent != null) {
                 parent.setFirstChild(ast);
             }
 
             ast.setNextSibling(this);
-            this.setPreviousSibling(ast);
+            previousSibling = ast;
         }
     }
 
@@ -131,24 +134,16 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     public void addNextSibling(DetailAST ast) {
         if (ast != null) {
             ast.setParent(parent);
-            final DetailAST nextSibling = this.getNextSibling();
+            final DetailAST nextSibling = getNextSibling();
 
             if (nextSibling != null) {
                 ast.setNextSibling(nextSibling);
-                nextSibling.setPreviousSibling(ast);
+                nextSibling.previousSibling = ast;
             }
 
-            ast.setPreviousSibling(this);
-            this.setNextSibling(ast);
+            ast.previousSibling = this;
+            setNextSibling(ast);
         }
-    }
-
-    /**
-     * Sets previous sibling.
-     * @param ast a previous sibling
-     */
-    void setPreviousSibling(DetailAST ast) {
-        previousSibling = ast;
     }
 
     @Override
@@ -180,6 +175,21 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     }
 
     /**
+     * Returns the number of direct child tokens that have the specified type.
+     * @param type the token type to match
+     * @return the number of matching token
+     */
+    public int getChildCount(int type) {
+        int count = 0;
+        for (AST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == type) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
      * Set the parent token.
      * @param parent the parent token
      */
@@ -188,7 +198,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         final DetailAST nextSibling = getNextSibling();
         if (nextSibling != null) {
             nextSibling.setParent(parent);
-            nextSibling.setPreviousSibling(this);
+            nextSibling.previousSibling = this;
         }
     }
 
@@ -200,34 +210,26 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         return parent;
     }
 
-    /** @return the line number **/
+    /**
+     * Gets line number.
+     * @return the line number
+     */
     public int getLineNo() {
+        int resultNo = -1;
+
         if (lineNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            DetailAST child = getFirstChild();
-            while (child != null) {
-                // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(child.getType())) {
-                    child = child.getNextSibling();
-                }
-                else {
-                    return child.getLineNo();
-                }
-            }
+            resultNo = findLineNo(getFirstChild());
 
-            DetailAST sibling = getNextSibling();
-            while (sibling != null) {
-                // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(sibling.getType())) {
-                    sibling = sibling.getNextSibling();
-                }
-                else {
-                    return sibling.getLineNo();
-                }
+            if (resultNo < 0) {
+                resultNo = findLineNo(getNextSibling());
             }
         }
-        return lineNo;
+        if (resultNo < 0) {
+            resultNo = lineNo;
+        }
+        return resultNo;
     }
 
     /**
@@ -239,34 +241,26 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         this.lineNo = lineNo;
     }
 
-    /** @return the column number **/
+    /**
+     * Gets column number.
+     * @return the column number
+     */
     public int getColumnNo() {
+        int resultNo = -1;
+
         if (columnNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            DetailAST child = getFirstChild();
-            while (child != null) {
-                // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(child.getType())) {
-                    child = child.getNextSibling();
-                }
-                else {
-                    return child.getColumnNo();
-                }
-            }
+            resultNo = findColumnNo(getFirstChild());
 
-            DetailAST sibling = getNextSibling();
-            while (sibling != null) {
-                // comment node can't be start of any java statement/definition
-                if (Utils.isCommentType(sibling.getType())) {
-                    sibling = sibling.getNextSibling();
-                }
-                else {
-                    return sibling.getColumnNo();
-                }
+            if (resultNo < 0) {
+                resultNo = findColumnNo(getNextSibling());
             }
         }
-        return columnNo;
+        if (resultNo < 0) {
+            resultNo = columnNo;
+        }
+        return resultNo;
     }
 
     /**
@@ -278,13 +272,60 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         this.columnNo = columnNo;
     }
 
-    /** @return the last child node */
+    /**
+     * Gets the last child node.
+     * @return the last child node
+     */
     public DetailAST getLastChild() {
         DetailAST ast = getFirstChild();
         while (ast != null && ast.getNextSibling() != null) {
             ast = ast.getNextSibling();
         }
         return ast;
+    }
+
+    /**
+     * Finds column number in the first non-comment node.
+     *
+     * @param ast DetailAST node.
+     * @return Column number if non-comment node exists, -1 otherwise.
+     */
+    private static int findColumnNo(DetailAST ast) {
+        int resultNo = -1;
+        DetailAST node = ast;
+        while (node != null) {
+            // comment node can't be start of any java statement/definition
+            if (TokenUtils.isCommentType(node.getType())) {
+                node = node.getNextSibling();
+            }
+            else {
+                resultNo = node.getColumnNo();
+                break;
+            }
+        }
+        return resultNo;
+    }
+
+    /**
+     * Finds line number in the first non-comment node.
+     *
+     * @param ast DetailAST node.
+     * @return Line number if non-comment node exists, -1 otherwise.
+     */
+    private static int findLineNo(DetailAST ast) {
+        int resultNo = -1;
+        DetailAST node = ast;
+        while (node != null) {
+            // comment node can't be start of any java statement/definition
+            if (TokenUtils.isCommentType(node.getType())) {
+                node = node.getNextSibling();
+            }
+            else {
+                resultNo = node.getLineNo();
+                break;
+            }
+        }
+        return resultNo;
     }
 
     /**
@@ -314,25 +355,10 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * of the provided type.
      * @param type a TokenType
      * @return true if and only if this branch (including this node)
-     * contains a token of type <code>type</code>.
+     *     contains a token of type {@code type}.
      */
     public boolean branchContains(int type) {
         return getBranchTokenTypes().get(type);
-    }
-
-    /**
-     * Returns the number of direct child tokens that have the specified type.
-     * @param type the token type to match
-     * @return the number of matching token
-     */
-    public int getChildCount(int type) {
-        int count = 0;
-        for (AST i = getFirstChild(); i != null; i = i.getNextSibling()) {
-            if (i.getType() == type) {
-                count++;
-            }
-        }
-        return count;
     }
 
     /**
@@ -350,9 +376,9 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      */
     public DetailAST findFirstToken(int type) {
         DetailAST retVal = null;
-        for (DetailAST i = getFirstChild(); i != null; i = i.getNextSibling()) {
-            if (i.getType() == type) {
-                retVal = i;
+        for (DetailAST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == type) {
+                retVal = ast;
                 break;
             }
         }

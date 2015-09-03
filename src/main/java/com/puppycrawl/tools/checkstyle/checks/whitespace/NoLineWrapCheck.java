@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -29,16 +31,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * but it's possible to check any statement.
  * </p>
  *
- * Examples
- * <p class="body">
- *
- * Examples of line-wrapped statements (bad case):
- * <pre><code> package com.puppycrawl.
+ * <p>Examples of line-wrapped statements (bad case):
+ * <pre>{@code package com.puppycrawl.
  *    tools.checkstyle.checks;
  *
  * import com.puppycrawl.tools.
  *    checkstyle.api.Check;
- * </code></pre>
+ * }</pre>
  *
  * <p>
  * To configure the check to force no line-wrapping
@@ -58,9 +57,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * Examples of not line-wrapped statements (good case):
- * <pre><code> import com.puppycrawl.tools.checkstyle.api.Check;
- * </code></pre>
+ * <p>Examples of not line-wrapped statements (good case):
+ * <pre>{@code import com.puppycrawl.tools.checkstyle.api.Check;
+ * }</pre>
  *
  * @author maxvetrenko
  */
@@ -88,6 +87,11 @@ public class NoLineWrapCheck extends Check {
             TokenTypes.ENUM_DEF,
             TokenTypes.INTERFACE_DEF,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

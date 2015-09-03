@@ -11,9 +11,9 @@
 
   <head>
     <title>Metrics</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -42,7 +42,7 @@
         <p>
           Note that the operators <code>&#x26;</code> and
           <code>|</code> are not only integer bitwise operators, they are also the
-          <a href="http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.22.2">
+          <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.2">
           non-shortcut versions</a> of the boolean operators.
           <code>&#x26;&#x26;</code> and <code>||</code>.
         </p>
@@ -142,12 +142,10 @@
           This metric measures the number of instantiations of other
           classes within the given class. This type of coupling is not
           caused by inheritance or the object oriented
-          paradigm. Generally speaking, any abstract data type with
-          other abstract data types as members has data abstraction
-          coupling; therefore, if a class has a local variable that is
-          an instantiation (object) of another class, there is data
-          abstraction coupling. The higher the DAC, the more complex the
-          data structure (classes) of the system.
+          paradigm. Generally speaking, any data type with other data
+          types as members or local variable that is an instantiation
+          (object) of another class has data abstraction coupling (DAC).
+          The higher the DAC, the more complex the structure of the class.
         </p>
       </subsection>
 
@@ -316,7 +314,7 @@
             Do not be ashamed to have complexity level 15 or even higher,
             but keep it below 20 to catch really bad designed code automatically.
             <br/>Please use Suppression to avoid violations on cases that could not be split in few
-            methods without damanging readability of code or incapsulation.
+            methods without damaging readability of code or encapsulation.
             <br/>
         </p>
       </subsection>
@@ -334,6 +332,12 @@
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">integer</a></td>
             <td><code>10</code></td>
+          </tr>
+          <tr>
+            <td>switchBlockAsSingleDecisionPoint</td>
+            <td>whether to treat the whole switch block as a single decision point</td>
+            <td><a href="property_types.html#integer">boolean</a></td>
+            <td><code>false</code></td>
           </tr>
         </table>
       </subsection>
@@ -355,11 +359,11 @@
 &lt;/module&gt;
         </source>
         <p>
-          Explanation on how complexity is calculated:
+          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to false):
         </p>
         <source>
 class CC {
-   // Cyclomatic Complexity = 13
+   // Cyclomatic Complexity = 12
    public void doSmth()  {               // 1
        if (a == b)  {                    // 2
             if (a1 == b1                 // 3
@@ -393,12 +397,33 @@ class CC {
               case 2:                    // 12
                     fiddle();
                     break;
-              default:                   // 13
+              default:
                     fiddle();
                     break;
             }
         }
     }
+}        </source>
+        <p>
+          Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to true):
+        </p>
+        <source>
+class SwitchExample {
+   // Cyclomatic Complexity = 2
+   public void doSmth()  {            // 1
+       int z = 1;
+       switch (z) {                   // 2
+           case 1:
+               foo1();
+               break;
+           case 2:
+               foo2();
+               break;
+           default:
+               fooDefault();
+               break;
+       }
+   }
 }        </source>
       </subsection>
 
@@ -427,7 +452,7 @@ class CC {
           avoid problem of Cyclomatic complexity metric like nesting level within a function.
         </p>
         <p>
-          Metic wsa described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
+          Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
           it is well written and have number of examples and details.
         </p>
 

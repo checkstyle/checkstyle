@@ -21,8 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_PRECEDED;
+import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Assert;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,6 +38,12 @@ public class WhitespaceAroundTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
+    }
+
+    @Test
+    public void testGetRequiredTokens() {
+        WhitespaceAroundCheck checkObj = new WhitespaceAroundCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -137,8 +144,7 @@ public class WhitespaceAroundTest
 
     @Test
     public void test1322879And1649038() throws Exception {
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
                expected);
     }
@@ -210,7 +216,7 @@ public class WhitespaceAroundTest
     @Test
     public void allowEmptyMethods() throws Exception {
         checkConfig.addAttribute("allowEmptyMethods", "true");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                getPath("whitespace/InputWhitespaceAround.java"),
                expected);
@@ -220,7 +226,7 @@ public class WhitespaceAroundTest
     public void testGetAcceptableTokens() {
         WhitespaceAroundCheck whitespaceAroundCheckObj = new WhitespaceAroundCheck();
         int[] actual = whitespaceAroundCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.ASSIGN,
             TokenTypes.BAND,
             TokenTypes.BAND_ASSIGN,
@@ -273,7 +279,6 @@ public class WhitespaceAroundTest
             TokenTypes.TYPE_EXTENSION_AND,
             TokenTypes.WILDCARD_TYPE,
         };
-        Assert.assertNotNull(actual);
-        Assert.assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 }

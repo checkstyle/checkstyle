@@ -29,8 +29,8 @@ import com.google.common.collect.Lists;
  * from a single line of text. Just the beginning of the HTML tag
  * is located.  No attempt is made to parse out the complete tag,
  * particularly since some of the tag parameters could be located
- * on the following line of text.  The <code>hasNextTag</code> and
- * <code>nextTag</code> methods are used to iterate through the HTML
+ * on the following line of text.  The {@code hasNextTag} and
+ * {@code nextTag} methods are used to iterate through the HTML
  * tags or generic type identifiers that were found on the line of text.
  * </p>
  *
@@ -54,13 +54,13 @@ class TagParser {
      * @param text the line of text to parse.
      * @param lineNo the source line number.
      */
-    public TagParser(String[] text, int lineNo) {
+    TagParser(String[] text, int lineNo) {
         parseTags(text, lineNo);
     }
 
     /**
      * Returns the next available HtmlTag.
-     * @return a HtmlTag or <code>null</code> if none available.
+     * @return a HtmlTag or {@code null} if none available.
      * @throws IndexOutOfBoundsException if there are no HtmlTags
      *         left to return.
      */
@@ -70,7 +70,7 @@ class TagParser {
 
     /**
      * Indicates if there are any more HtmlTag to retrieve.
-     * @return <code>true</code> if there are more tags.
+     * @return {@code true} if there are more tags.
      */
     public boolean hasNextTag() {
         return !tags.isEmpty();
@@ -109,8 +109,14 @@ class TagParser {
                 final Point endTag = findChar(text, '>', position);
                 final boolean incompleteTag = endTag.getLineNo() >= nLines;
                 // get tag id (one word)
-                final String tagId =
-                        incompleteTag ? "" : getTagId(text, position);
+                final String tagId;
+
+                if (incompleteTag) {
+                    tagId = "";
+                }
+                else {
+                    tagId = getTagId(text, position);
+                }
                 // is this closed tag
                 final boolean closedTag =
                         endTag.getLineNo() < nLines
@@ -133,13 +139,13 @@ class TagParser {
      * Checks if the given position is start one for HTML tag.
      * @param javadocText text of javadoc comments.
      * @param pos position to check.
-     * @return <code>true</code> some HTML tag starts from given position.
+     * @return {@code true} some HTML tag starts from given position.
      */
     private static boolean isTag(String[] javadocText, Point pos) {
         final int column = pos.getColumnNo() + 1;
         final String text = javadocText[pos.getLineNo()];
 
-        //Character.isJavidentifier... may not be a valid HTML
+        //Character.isJavaIdentifier... may not be a valid HTML
         //identifier but is valid for generics
         return column < text.length()
                 && (Character.isJavaIdentifierStart(text.charAt(column))
@@ -165,24 +171,24 @@ class TagParser {
         }
 
         text = text.substring(column).trim();
-        column = 0;
+        int position = 0;
 
-        //Character.isJavidentifier... may not be a valid HTML
+        //Character.isJavaIdentifier... may not be a valid HTML
         //identifier but is valid for generics
-        while (column < text.length()
-            && (Character.isJavaIdentifierStart(text.charAt(column))
-                || Character.isJavaIdentifierPart(text.charAt(column)))) {
-            column++;
+        while (position < text.length()
+            && (Character.isJavaIdentifierStart(text.charAt(position))
+                || Character.isJavaIdentifierPart(text.charAt(position)))) {
+            position++;
         }
 
-        return text.substring(0, column);
+        return text.substring(0, position);
     }
 
     /**
      * If this is a HTML-comments.
      * @param text text of javadoc comments
      * @param pos position to check
-     * @return <code>true</code> if HTML-comments
+     * @return {@code true} if HTML-comments
      *         starts form given position.
      */
     private static boolean isCommentTag(String[] text, Point pos) {
@@ -261,19 +267,19 @@ class TagParser {
      * @author o_sukholsky
      */
     private static final class Point {
-        /** line number. */
-        private final int line;
-        /** column number.*/
-        private final int column;
+        /** Line number. */
+        private final int lineNo;
+        /** Column number.*/
+        private final int columnNo;
 
         /**
-         * Creates new <code>Point</code> instance.
+         * Creates new {@code Point} instance.
          * @param lineNo line number
          * @param columnNo column number
          */
-        public Point(int lineNo, int columnNo) {
-            line = lineNo;
-            column = columnNo;
+        Point(int lineNo, int columnNo) {
+            this.lineNo = lineNo;
+            this.columnNo = columnNo;
         }
 
         /**
@@ -281,7 +287,7 @@ class TagParser {
          * @return line number of the position.
          */
         public int getLineNo() {
-            return line;
+            return lineNo;
         }
 
         /**
@@ -289,7 +295,7 @@ class TagParser {
          * @return column number of the position.
          */
         public int getColumnNo() {
-            return column;
+            return columnNo;
         }
     }
 }

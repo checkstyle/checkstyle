@@ -99,4 +99,3 @@ public class IllegalTokenTextCheckTest
         Assert.assertNotNull(check.getRequiredTokens());
     }
 }
-

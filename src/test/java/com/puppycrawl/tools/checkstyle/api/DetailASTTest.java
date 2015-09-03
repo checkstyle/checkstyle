@@ -68,8 +68,6 @@ public class DetailASTTest {
     public void testSetSiblingNull() {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
-        final DetailAST firstLevelB = new DetailAST();
-        final DetailAST secondLevelA = new DetailAST();
 
         root.setFirstChild(firstLevelA);
 
@@ -112,26 +110,26 @@ public class DetailASTTest {
         checkDir(new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
     }
 
-    private void checkDir(File dir) throws Exception {
+    private static void checkDir(File dir) throws Exception {
         File[] files = dir.listFiles(new FileFilter() {
                 @Override
-                public boolean accept(File file) {
-                    return (file.getName().endsWith(".java")
-                            || file.isDirectory())
-                        && !file.getName().endsWith("InputGrammar.java");
+                public boolean accept(File pathname) {
+                    return (pathname.getName().endsWith(".java")
+                            || pathname.isDirectory())
+                        && !pathname.getName().endsWith("InputGrammar.java");
                 }
             });
-        for (int i = 0; i < files.length; i++) {
-            if (files[i].isFile()) {
-                checkFile(files[i].getCanonicalPath());
+        for (File file : files) {
+            if (file.isFile()) {
+                checkFile(file.getCanonicalPath());
             }
-            else if (files[i].isDirectory()) {
-                checkDir(files[i]);
+            else if (file.isDirectory()) {
+                checkDir(file);
             }
         }
     }
 
-    private void checkFile(String filename) throws Exception {
+    private static void checkFile(String filename) throws Exception {
         final FileText text = new FileText(new File(filename),
                            System.getProperty("file.encoding", "UTF-8"));
         final FileContents contents = new FileContents(text);
@@ -141,22 +139,22 @@ public class DetailASTTest {
         }
     }
 
-    private void checkTree(final DetailAST node,
+    private static void checkTree(final DetailAST node,
                            final DetailAST parent,
                            final DetailAST prev,
                            final String filename,
                            final DetailAST root) {
-        Object[] params = new Object[] {
+        Object[] params = {
             node, parent, prev, filename, root,
         };
-        String msg = MessageFormat.format(
+        String badParentMsg = MessageFormat.format(
             "Bad parent node={0} parent={1} filename={3} root={4}",
             params);
-        assertEquals(msg, parent, node.getParent());
-        msg = MessageFormat.format(
+        assertEquals(badParentMsg, parent, node.getParent());
+        String badPrevMsg = MessageFormat.format(
             "Bad prev node={0} prev={2} parent={1} filename={3} root={4}",
             params);
-        assertEquals(msg, prev, node.getPreviousSibling());
+        assertEquals(badPrevMsg, prev, node.getPreviousSibling());
 
         if (node.getFirstChild() != null) {
             checkTree(node.getFirstChild(), node, null,

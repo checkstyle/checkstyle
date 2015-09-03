@@ -59,20 +59,25 @@ public class EqualsHashCodeCheck
      */
     public static final String MSG_KEY = "equals.noHashCode";
 
-    /** maps OBJ_BLOCK to the method definition of equals() */
+    /** Maps OBJ_BLOCK to the method definition of equals(). */
     private final Map<DetailAST, DetailAST> objBlockEquals = Maps.newHashMap();
 
-    /** the set of OBJ_BLOCKs that contain a definition of hashCode() */
+    /** The set of OBJ_BLOCKs that contain a definition of hashCode(). */
     private final Set<DetailAST> objBlockWithHashCode = Sets.newHashSet();
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
@@ -99,7 +104,7 @@ public class EqualsHashCodeCheck
         else if (type.getFirstChild().getType() == TokenTypes.LITERAL_INT
                 && "hashCode".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
-                && parameters.getFirstChild() == null) { // no params
+                && parameters.getFirstChild() == null) {
             objBlockWithHashCode.add(ast.getParent());
         }
     }

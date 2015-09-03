@@ -25,7 +25,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.support.membermodification.MemberMatcher.method;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class PropertyCacheFileTest {
 
     @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Test
     public void testNonAccessibleFile() throws IOException {
@@ -58,20 +57,20 @@ public class PropertyCacheFileTest {
         file.setReadable(true, false);
         file.setWritable(false, false);
 
-        PropertyCacheFile cache = new PropertyCacheFile(config, file.getAbsolutePath());
+        new PropertyCacheFile(config, file.getAbsolutePath());
     }
 
     @Test
     public void testCtor() throws IOException {
         try {
-            PropertyCacheFile cache = new PropertyCacheFile(null, "");
+            new PropertyCacheFile(null, "");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("config can not be null", ex.getMessage());
         }
         try {
             Configuration config = new DefaultConfiguration("myname");
-            PropertyCacheFile cache = new PropertyCacheFile(config, null);
+            new PropertyCacheFile(config, null);
         }
         catch (IllegalArgumentException ex) {
             assertEquals("fileName can not be null", ex.getMessage());
@@ -84,12 +83,13 @@ public class PropertyCacheFileTest {
         final String filePath = temporaryFolder.newFile().getPath();
         PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
-        assertTrue(cache.inCache("myFile", 1));
-        assertFalse(cache.inCache("myFile", 2));
-        assertFalse(cache.inCache("myFile1", 1));
+        assertTrue(cache.isInCache("myFile", 1));
+        assertFalse(cache.isInCache("myFile", 2));
+        assertFalse(cache.isInCache("myFile1", 1));
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testException_NoSuchAlgorithmException() throws Exception {
 
         Configuration config = new DefaultConfiguration("myname");
@@ -101,7 +101,7 @@ public class PropertyCacheFileTest {
         when(MessageDigest.getInstance("SHA-1"))
                 .thenThrow(NoSuchAlgorithmException.class);
 
-        Class[] param = new Class[1];
+        Class<?>[] param = new Class<?>[1];
         param[0] = Serializable.class;
         Method method = PropertyCacheFile.class.getDeclaredMethod("getConfigHashCode", param);
         method.setAccessible(true);
@@ -112,9 +112,6 @@ public class PropertyCacheFileTest {
         catch (InvocationTargetException e) {
             assertTrue(e.getCause().getCause() instanceof NoSuchAlgorithmException);
             assertEquals("Unable to calculate hashcode.", e.getCause().getMessage());
-        }
-        catch (Exception e) {
-            fail();
         }
     }
 }

@@ -163,3 +163,11 @@ class class1
 
     }
 }
+
+class A {
+    {
+        int y = 0;
+        y = 9;
+    }
+}
+

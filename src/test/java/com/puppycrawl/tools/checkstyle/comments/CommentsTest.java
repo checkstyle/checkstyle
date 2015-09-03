@@ -48,6 +48,7 @@ import static com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -59,28 +60,28 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class CommentsTest extends BaseCheckTestSupport {
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-   /*
-    * +--CLASS_DEF [1,0]
-    *     |
-    *     +--MODIFIERS [1,0]
-    *         |
-    *         +--LITERAL_PUBLIC [1,0]
-    *     +--LITERAL_CLASS [1,7]
-    *     +--BLOCK_COMMENT_BEGIN [1,13]
-    *         |
-    *         +--COMMENT_CONTENT [1,15]
-    *         +--BLOCK_COMMENT_END [3,4]
-    *     +--IDENT [4,0]
-    *     +--OBJBLOCK [5,0]
-    *         |
-    *         +--LCURLY [5,0]
-    *             |
-    *             +--SINGLE_LINE_COMMENT [5,2]
-    *                 |
-    *                 +--COMMENT_CONTENT [5,4]
-    *         +--RCURLY [6,0]
-    */
-    private static DetailAST buildInput_1() {
+    /*
+     * +--CLASS_DEF [1,0]
+     *     |
+     *     +--MODIFIERS [1,0]
+     *         |
+     *         +--LITERAL_PUBLIC [1,0]
+     *     +--LITERAL_CLASS [1,7]
+     *     +--BLOCK_COMMENT_BEGIN [1,13]
+     *         |
+     *         +--COMMENT_CONTENT [1,15]
+     *         +--BLOCK_COMMENT_END [3,4]
+     *     +--IDENT [4,0]
+     *     +--OBJBLOCK [5,0]
+     *         |
+     *         +--LCURLY [5,0]
+     *             |
+     *             +--SINGLE_LINE_COMMENT [5,2]
+     *                 |
+     *                 +--COMMENT_CONTENT [5,4]
+     *         +--RCURLY [6,0]
+     */
+    private static DetailAST buildInput1() {
         DetailAST packageDef = new DetailAST();
         packageDef.setType(PACKAGE_DEF);
         packageDef.setText("package");
@@ -296,7 +297,7 @@ public class CommentsTest extends BaseCheckTestSupport {
      *                     +--RCURLY [11,4]
      *         +--RCURLY [12,0]
      */
-    private static DetailAST buildInput_2() {
+    private static DetailAST buildInput2() {
         DetailAST packageDef = new DetailAST();
         packageDef.setType(PACKAGE_DEF);
         packageDef.setText("package");
@@ -598,8 +599,8 @@ public class CommentsTest extends BaseCheckTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput_1() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
-        CompareTreesWithComments.expectedTree = buildInput_1();
-        final String[] expected = {};
+        CompareTreesWithComments.expectedTree = buildInput1();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputCommentsTest_1.java"), expected);
     }
@@ -607,8 +608,8 @@ public class CommentsTest extends BaseCheckTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput_2() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
-        CompareTreesWithComments.expectedTree = buildInput_2();
-        final String[] expected = {};
+        CompareTreesWithComments.expectedTree = buildInput2();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("comments" + File.separator
                 + "InputCommentsTest_2.java"), expected);
     }

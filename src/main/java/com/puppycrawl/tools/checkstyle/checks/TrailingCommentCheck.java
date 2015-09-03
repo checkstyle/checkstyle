@@ -24,12 +24,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -38,11 +38,11 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
  * precede it is whitespace.
  * It doesn't check comments if they do not end line, i.e. it accept
  * the following:
- * <code>Thread.sleep( 10 &lt;some comment here&gt; );</code>
+ * {@code Thread.sleep( 10 &lt;some comment here&gt; );}
  * Format property is intended to deal with the "} // while" example.
  * </p>
- * <p>
- * Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that endline
+ *
+ * <p>Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that endline
  * comments are a bad practice. An end line comment would
  * be one that is on the same line as actual code. For example:
  * <pre>
@@ -89,8 +89,7 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
  * the line changes are even more important in the age of
  * automated refactorings.
  *
- * <p>
- * To configure the check so it enforces only comment on a line:
+ * <p>To configure the check so it enforces only comment on a line:
  * <pre>
  * &lt;module name=&quot;TrailingComment&quot;&gt;
  *    &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
@@ -107,33 +106,40 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
      */
     public static final String MSG_KEY = "trailing.comments";
 
-    /** default format for allowed blank line. */
+    /** Default format for allowed blank line. */
     private static final String DEFAULT_FORMAT = "^[\\s\\}\\);]*$";
 
-    /** pattern for legal trailing comment. */
+    /** Pattern for legal trailing comment. */
     private Pattern legalComment;
 
     /**
      * Creates new instance of the check.
-     * @throws ConversionException unable to parse DEFAULT_FORMAT.
      */
-    public TrailingCommentCheck() throws ConversionException {
+    public TrailingCommentCheck() {
         super(DEFAULT_FORMAT);
     }
 
     /**
      * Sets patter for legal trailing comments.
      * @param format format to set.
-     * @throws ConversionException if unable to create Pattern object
      */
-    public void setLegalComment(final String format)
-        throws ConversionException {
-        legalComment = Utils.createPattern(format);
+    public void setLegalComment(final String format) {
+        legalComment = CommonUtils.createPattern(format);
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[0];
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -153,30 +159,27 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
         lines.addAll(cComments.keySet());
 
         for (Integer lineNo : lines) {
-            final String line = getLines()[lineNo.intValue() - 1];
-            String lineBefore = "";
-            TextBlock comment = null;
+            final String line = getLines()[lineNo - 1];
+            String lineBefore;
+            TextBlock comment;
             if (cppComments.containsKey(lineNo)) {
                 comment = cppComments.get(lineNo);
                 lineBefore = line.substring(0, comment.getStartColNo());
             }
-            else if (cComments.containsKey(lineNo)) {
+            else {
                 final List<TextBlock> commentList = cComments.get(lineNo);
                 comment = commentList.get(commentList.size() - 1);
                 lineBefore = line.substring(0, comment.getStartColNo());
-                if (comment.getText().length == 1) {
-                    final String lineAfter =
-                        line.substring(comment.getEndColNo() + 1).trim();
-                    if (!"".equals(lineAfter)) {
-                        // do not check comment which doesn't end line
-                        continue;
-                    }
+
+                // do not check comment which doesn't end line
+                if (comment.getText().length == 1
+                        && !line.substring(comment.getEndColNo() + 1).trim().isEmpty()) {
+                    continue;
                 }
             }
-            if (comment != null
-                && !blankLinePattern.matcher(lineBefore).find()
+            if (!blankLinePattern.matcher(lineBefore).find()
                 && !isLegalComment(comment)) {
-                log(lineNo.intValue(), MSG_KEY);
+                log(lineNo, MSG_KEY);
             }
         }
     }
@@ -188,21 +191,23 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
      * @return true if the comment if legal.
      */
     private boolean isLegalComment(final TextBlock comment) {
-        if (legalComment == null) {
-            return false;
-        }
+        boolean legal;
+
         // multi-line comment can not be legal
-        if (comment.getStartLineNo() != comment.getEndLineNo()) {
-            return false;
+        if (legalComment == null || comment.getStartLineNo() != comment.getEndLineNo()) {
+            legal = false;
         }
-        String commentText = comment.getText()[0];
-        // remove chars which start comment
-        commentText = commentText.substring(2);
-        // if this is a C-style comment we need to remove its end
-        if (commentText.endsWith("*/")) {
-            commentText = commentText.substring(0, commentText.length() - 2);
+        else {
+            String commentText = comment.getText()[0];
+            // remove chars which start comment
+            commentText = commentText.substring(2);
+            // if this is a C-style comment we need to remove its end
+            if (commentText.endsWith("*/")) {
+                commentText = commentText.substring(0, commentText.length() - 2);
+            }
+            commentText = commentText.trim();
+            legal = legalComment.matcher(commentText).find();
         }
-        commentText = commentText.trim();
-        return legalComment.matcher(commentText).find();
+        return legal;
     }
 }

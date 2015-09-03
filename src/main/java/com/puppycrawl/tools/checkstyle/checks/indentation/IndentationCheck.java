@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * <p>
  * The basic idea behind this is that while
- * pretty printers are sometimes convenient for bulk reformats of
+ * pretty printers are sometimes convenient for.  reformats of
  * legacy code, they often either aren't configurable enough or
  * just can't anticipate how format should be done.  Sometimes this is
  * personal preference, other times it is practical experience.  In any
@@ -80,25 +80,25 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author maxvetrenko
  */
 public class IndentationCheck extends Check {
-    /** Default indentation amount - based on Sun */
+    /** Default indentation amount - based on Sun. */
     private static final int DEFAULT_INDENTATION = 4;
 
-    /** how many tabs or spaces to use */
+    /** How many tabs or spaces to use. */
     private int basicOffset = DEFAULT_INDENTATION;
 
-    /** how much to indent a case label */
-    private int caseIndentationAmount = DEFAULT_INDENTATION;
+    /** How much to indent a case label. */
+    private int caseIndent = DEFAULT_INDENTATION;
 
-    /** how far brace should be indented when on next line */
+    /** How far brace should be indented when on next line. */
     private int braceAdjustment;
 
-    /** how far throws should be indented when on next line */
-    private int throwsIndentationAmount = DEFAULT_INDENTATION;
+    /** How far throws should be indented when on next line. */
+    private int throwsIndent = DEFAULT_INDENTATION;
 
-    /** how much to indent an array initialization when on next line */
-    private int arrayInitIndentationAmount = DEFAULT_INDENTATION;
+    /** How much to indent an array initialization when on next line. */
+    private int arrayInitIndent = DEFAULT_INDENTATION;
 
-    /** how far continuation line should be indented when line-wrapping is present */
+    /** How far continuation line should be indented when line-wrapping is present. */
     private int lineWrappingIndentation = DEFAULT_INDENTATION;
 
     /**
@@ -108,10 +108,10 @@ public class IndentationCheck extends Check {
      */
     private boolean forceStrictCondition;
 
-    /** handlers currently in use */
+    /** Handlers currently in use. */
     private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
 
-    /** factory from which handlers are distributed */
+    /** Factory from which handlers are distributed. */
     private final HandlerFactory handlerFactory = new HandlerFactory();
 
     /**
@@ -172,7 +172,7 @@ public class IndentationCheck extends Check {
      * @param amount   the case indentation level
      */
     public void setCaseIndent(int amount) {
-        caseIndentationAmount = amount;
+        caseIndent = amount;
     }
 
     /**
@@ -181,7 +181,7 @@ public class IndentationCheck extends Check {
      * @return the case indentation level
      */
     public int getCaseIndent() {
-        return caseIndentationAmount;
+        return caseIndent;
     }
 
     /**
@@ -190,7 +190,7 @@ public class IndentationCheck extends Check {
      * @param throwsIndent the throws indentation level
      */
     public void setThrowsIndent(int throwsIndent) {
-        throwsIndentationAmount = throwsIndent;
+        this.throwsIndent = throwsIndent;
     }
 
     /**
@@ -199,7 +199,7 @@ public class IndentationCheck extends Check {
      * @return the throws indentation level
      */
     public int getThrowsIndent() {
-        return this.throwsIndentationAmount;
+        return throwsIndent;
     }
 
     /**
@@ -208,7 +208,7 @@ public class IndentationCheck extends Check {
      * @param arrayInitIndent the array initialisation indentation level
      */
     public void setArrayInitIndent(int arrayInitIndent) {
-        arrayInitIndentationAmount = arrayInitIndent;
+        this.arrayInitIndent = arrayInitIndent;
     }
 
     /**
@@ -217,7 +217,7 @@ public class IndentationCheck extends Check {
      * @return the initialisation indentation level
      */
     public int getArrayInitIndent() {
-        return this.arrayInitIndentationAmount;
+        return arrayInitIndent;
     }
 
     /**
@@ -228,7 +228,6 @@ public class IndentationCheck extends Check {
     public int getLineWrappingIndentation() {
         return lineWrappingIndentation;
     }
-
 
     /**
      * Set the line-wrapping indentation level.
@@ -249,7 +248,7 @@ public class IndentationCheck extends Check {
      * @see java.text.MessageFormat
      */
     public void indentationLog(int line, String key, Object... args) {
-        super.log(line, key, args);
+        log(line, key, args);
     }
 
     /**
@@ -263,7 +262,17 @@ public class IndentationCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
         return handlerFactory.getHandledTypes();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

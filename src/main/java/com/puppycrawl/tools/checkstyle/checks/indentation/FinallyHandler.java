@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class FinallyHandler extends BlockParentHandler {
     /**
      * Construct an instance of this handler with the given indentation check,
-     * astract syntax tree, and parent handler.
+     * abstract syntax tree, and parent handler.
      *
      * @param indentCheck   the indentation check
-     * @param ast           the astract syntax tree
+     * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
     public FinallyHandler(IndentationCheck indentCheck,
@@ -41,7 +41,7 @@ public class FinallyHandler extends BlockParentHandler {
     }
 
     @Override
-    protected boolean toplevelMustStartLine() {
+    protected boolean shouldTopLevelStartLine() {
         return false;
     }
 }

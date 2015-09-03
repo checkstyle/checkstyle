@@ -86,8 +86,6 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
     @Test
     public void testFalsePositive() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
-//        checkConfig.addAttribute("ignoreName", "false");
-//        checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
             "9:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
@@ -101,10 +99,9 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
         int[] actual = classNameCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 
@@ -112,10 +109,9 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
         int[] actual = classNameCheckObj.getRequiredTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CLASS_DEF,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

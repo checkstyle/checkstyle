@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * Checks that classes are designed for inheritance.
@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * implemented by subclasses.
  * </p>
  *
- * <p>
- * The exact rule is that nonprivate, nonstatic methods in
+ * <p>The exact rule is that nonprivate, nonstatic methods in
  * nonfinal classes (or classes that do not
  * only have private constructors) must either be
  * <ul>
@@ -66,7 +65,7 @@ public class DesignForExtensionCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -75,48 +74,41 @@ public class DesignForExtensionCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         // nothing to do for Interfaces
-        if (ScopeUtils.inInterfaceOrAnnotationBlock(ast)) {
-            return;
-        }
-        if (isPrivateOrFinalOrAbstract(ast)) {
-            return;
-        }
+        if (!ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
+                && !isPrivateOrFinalOrAbstract(ast)
+                && ScopeUtils.getSurroundingScope(ast).isIn(Scope.PROTECTED)) {
 
-        // method is ok if containing class is not visible in API and
-        // cannot be extended by 3rd parties (bug #884035)
-        if (!ScopeUtils.getSurroundingScope(ast).isIn(Scope.PROTECTED)) {
-            return;
-        }
+            // method is ok if it is implementation can verified to be empty
+            // Note: native methods don't have impl in java code, so
+            // implementation can be null even if method not abstract
+            final DetailAST implementation = ast.findFirstToken(TokenTypes.SLIST);
+            final boolean nonEmptyImplementation = implementation == null
+                    || implementation.getFirstChild().getType() != TokenTypes.RCURLY;
 
-        // method is ok if it is implementation can verified to be empty
-        // Note: native methods don't have impl in java code, so
-        // implementation can be null even if method not abstract
-        final DetailAST implementation = ast.findFirstToken(TokenTypes.SLIST);
-        if (implementation != null
-            && implementation.getFirstChild().getType() == TokenTypes.RCURLY) {
-            return;
-        }
+            final DetailAST classDef = findContainingClass(ast);
+            final DetailAST classMods = classDef.findFirstToken(TokenTypes.MODIFIERS);
+            // check if the containing class can be subclassed
+            final boolean classCanBeSubclassed = classDef.getType() != TokenTypes.ENUM_DEF
+                    && !classMods.branchContains(TokenTypes.FINAL);
 
-        // check if the containing class can be subclassed
-        final DetailAST classDef = findContainingClass(ast);
-        final DetailAST classMods =
-            classDef.findFirstToken(TokenTypes.MODIFIERS);
-        if (classDef.getType() == TokenTypes.ENUM_DEF
-            || classMods.branchContains(TokenTypes.FINAL)) {
-            return;
-        }
+            if (nonEmptyImplementation && classCanBeSubclassed
+                    && hasDefaultOrExplNonPrivateCtor(classDef)) {
 
-        if (hasDefaultOrExplNonPrivateCtor(classDef)) {
-            final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
-            log(ast.getLineNo(), ast.getColumnNo(),
-                MSG_KEY, name);
+                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY, name);
+            }
         }
     }
 
     /**
-     * check for modifiers
+     * Check for modifiers.
      * @param ast modifier ast
      * @return tru in modifier is in checked ones
      */
@@ -130,7 +122,7 @@ public class DesignForExtensionCheck extends Check {
     }
 
     /**
-     * has Default Or Expl Non Private Ctor
+     * Has Default Or Expl Non Private Ctor.
      * @param classDef class ast
      * @return true if Check should make a violation
      */

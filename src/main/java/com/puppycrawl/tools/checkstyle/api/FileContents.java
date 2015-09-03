@@ -38,66 +38,64 @@ import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
  */
 public final class FileContents implements CommentListener {
     /**
-     * the pattern to match a single line comment containing only the comment
+     * The pattern to match a single line comment containing only the comment
      * itself -- no code.
      */
     private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
-    /** compiled regexp to match a single-line comment line */
+    /** Compiled regexp to match a single-line comment line. */
     private static final Pattern MATCH_SINGLELINE_COMMENT = Pattern
             .compile(MATCH_SINGLELINE_COMMENT_PAT);
 
-    /** the file name */
+    /** The file name. */
     private final String fileName;
 
-    /** the text */
+    /** The text. */
     private final FileText text;
 
-    /** map of the Javadoc comments indexed on the last line of the comment.
+    /** Map of the Javadoc comments indexed on the last line of the comment.
      * The hack is it assumes that there is only one Javadoc comment per line.
      */
     private final Map<Integer, TextBlock> javadocComments = Maps.newHashMap();
-    /** map of the C++ comments indexed on the first line of the comment. */
+    /** Map of the C++ comments indexed on the first line of the comment. */
     private final Map<Integer, TextBlock> cppComments =
         Maps.newHashMap();
 
     /**
-     * map of the C comments indexed on the first line of the comment to a list
-     * of comments on that line
+     * Map of the C comments indexed on the first line of the comment to a list
+     * of comments on that line.
      */
     private final Map<Integer, List<TextBlock>> clangComments = Maps.newHashMap();
 
     /**
-     * Creates a new <code>FileContents</code> instance.
+     * Creates a new {@code FileContents} instance.
      *
      * @param filename name of the file
      * @param lines the contents of the file
      * @deprecated Use {@link #FileContents(FileText)} instead
-     *   in order to preserve the original line breaks where possible.
+     *     in order to preserve the original line breaks where possible.
      */
     @Deprecated
     public FileContents(String filename, String... lines) {
-        this.fileName = filename;
+        fileName = filename;
         text = FileText.fromLines(new File(filename), Arrays.asList(lines));
     }
 
     /**
-     * Creates a new <code>FileContents</code> instance.
+     * Creates a new {@code FileContents} instance.
      *
      * @param text the contents of the file
      */
     public FileContents(FileText text) {
         fileName = text.getFile().toString();
-        this.text = text;
+        this.text = new FileText(text);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void reportSingleLineComment(String type, int startLineNo,
             int startColNo) {
         reportCppComment(startLineNo, startColNo);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void reportBlockComment(String type, int startLineNo,
             int startColNo, int endLineNo, int endColNo) {
@@ -111,7 +109,7 @@ public final class FileContents implements CommentListener {
      **/
     public void reportCppComment(int startLineNo, int startColNo) {
         final String line = line(startLineNo - 1);
-        final String[] txt = new String[] {line.substring(startColNo)};
+        final String[] txt = {line.substring(startColNo)};
         final Comment comment = new Comment(txt, startColNo, startLineNo,
                 line.length() - 1);
         cppComments.put(startLineNo, comment);
@@ -135,9 +133,9 @@ public final class FileContents implements CommentListener {
      **/
     public void reportCComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        final String[] cc = extractCComment(startLineNo, startColNo,
+        final String[] cComment = extractCComment(startLineNo, startColNo,
                 endLineNo, endColNo);
-        final Comment comment = new Comment(cc, startColNo, endLineNo,
+        final Comment comment = new Comment(cComment, startColNo, endLineNo,
                 endColNo);
 
         // save the comment
@@ -197,9 +195,9 @@ public final class FileContents implements CommentListener {
 
     /**
      * Returns the Javadoc comment before the specified line.
-     * A return value of <code>null</code> means there is no such comment.
+     * A return value of {@code null} means there is no such comment.
      * @param lineNoBefore the line number to check before
-     * @return the Javadoc comment, or <code>null</code> if none
+     * @return the Javadoc comment, or {@code null} if none
      **/
     public TextBlock getJavadocBefore(int lineNoBefore) {
         // Lines start at 1 to the callers perspective, so need to take off 2
@@ -230,10 +228,13 @@ public final class FileContents implements CommentListener {
      * @return an object containing the full text of the file
      */
     public FileText getText() {
-        return text;
+        return new FileText(text);
     }
 
-    /** @return the lines in the file */
+    /**
+     * Gets the lines in the file.
+     * @return the lines in the file
+     */
     public String[] getLines() {
         return text.toLinesArray();
     }
@@ -247,7 +248,10 @@ public final class FileContents implements CommentListener {
         return text.get(index);
     }
 
-    /** @return the name of the file */
+    /**
+     * Gets the name of the file.
+     * @return the name of the file
+     */
     public String getFileName() {
         return fileName;
     }
@@ -259,7 +263,7 @@ public final class FileContents implements CommentListener {
      */
     @Deprecated
     public String getFilename() {
-        return getFileName();
+        return fileName;
     }
 
     /**
@@ -269,7 +273,7 @@ public final class FileContents implements CommentListener {
      **/
     public boolean lineIsBlank(int lineNo) {
         // possible improvement: avoid garbage creation in trim()
-        return "".equals(line(lineNo).trim());
+        return line(lineNo).trim().isEmpty();
     }
 
     /**
@@ -292,28 +296,8 @@ public final class FileContents implements CommentListener {
      **/
     public boolean hasIntersectionWithComment(int startLineNo,
             int startColNo, int endLineNo, int endColNo) {
-        // Check C comments (all comments should be checked)
-        final Collection<List<TextBlock>> values = clangComments.values();
-        for (final List<TextBlock> row : values) {
-            for (final TextBlock comment : row) {
-                if (comment.intersects(startLineNo, startColNo, endLineNo,
-                        endColNo)) {
-                    return true;
-                }
-            }
-        }
-
-        // Check CPP comments (line searching is possible)
-        for (int lineNumber = startLineNo; lineNumber <= endLineNo;
-             lineNumber++) {
-            final TextBlock comment = cppComments.get(lineNumber);
-            if (comment != null
-                    && comment.intersects(startLineNo, startColNo,
-                            endLineNo, endColNo)) {
-                return true;
-            }
-        }
-        return false;
+        return hasIntersectionWithCComment(startLineNo, startColNo, endLineNo, endColNo)
+                || hasIntersectionWithCppComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
     /**
@@ -321,6 +305,50 @@ public final class FileContents implements CommentListener {
      * @return true if the package file.
      */
     public boolean inPackageInfo() {
-        return this.getFileName().endsWith("package-info.java");
+        return fileName.endsWith("package-info.java");
+    }
+
+    /**
+     * Checks if the specified position intersects with a C comment.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     * @return true if the positions intersects with a C comment.
+     */
+    private boolean hasIntersectionWithCComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo) {
+        // Check C comments (all comments should be checked)
+        final Collection<List<TextBlock>> values = clangComments.values();
+        for (final List<TextBlock> row : values) {
+            for (final TextBlock comment : row) {
+                if (comment.intersects(startLineNo, startColNo, endLineNo, endColNo)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the specified position intersects with a CPP comment.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     * @return true if the positions intersects with a CPP comment.
+     */
+    private boolean hasIntersectionWithCppComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo) {
+        // Check CPP comments (line searching is possible)
+        for (int lineNumber = startLineNo; lineNumber <= endLineNo;
+             lineNumber++) {
+            final TextBlock comment = cppComments.get(lineNumber);
+            if (comment != null && comment.intersects(startLineNo, startColNo,
+                    endLineNo, endColNo)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

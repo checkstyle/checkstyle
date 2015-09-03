@@ -34,5 +34,3 @@ interface TestRequireThisEnum
         SATURDAY
     }
 }
-
-

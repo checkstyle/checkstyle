@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   <LI>template method to get the rcurly</LI>
  *   <LI>if curlys aren't present, then template method to get expressions
  *       is called</LI>
- *   <LI>now all the repetitous code which checks for BOL, if curlys are on
+ *   <LI>now all the repetitious code which checks for BOL, if curlys are on
  *       same line, etc. can be collapsed into the superclass</LI>
  * </UL>
  *
@@ -45,7 +45,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Children checked by parent handlers.
      */
-    private static final int[] CHECKED_CHILDREN = new int[] {
+    private static final int[] CHECKED_CHILDREN = {
         TokenTypes.VARIABLE_DEF,
         TokenTypes.EXPR,
         TokenTypes.OBJBLOCK,
@@ -70,7 +70,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * Returns array of token types which should be checked among childrens.
+     * Returns array of token types which should be checked among children.
      * @return array of token types to check.
      */
     protected int[] getCheckedChildren() {
@@ -93,10 +93,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST toplevel = getToplevelAST();
 
         if (toplevel == null
-            || getLevel().accept(expandedTabsColumnNo(toplevel)) || hasLabelBefore()) {
+            || getLevel().isAcceptable(expandedTabsColumnNo(toplevel)) || hasLabelBefore()) {
             return;
         }
-        if (!toplevelMustStartLine() && !startsLine(toplevel)) {
+        if (!shouldTopLevelStartLine() && !startsLine(toplevel)) {
             return;
         }
         logError(toplevel, "", expandedTabsColumnNo(toplevel));
@@ -117,7 +117,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return true
      */
-    protected boolean toplevelMustStartLine() {
+    protected boolean shouldTopLevelStartLine() {
         return true;
     }
 
@@ -158,7 +158,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST lcurly = getLCurly();
         final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
-        if (curlyLevel().accept(lcurlyPos) || !startsLine(lcurly)) {
+        if (curlyLevel().isAcceptable(lcurlyPos) || !startsLine(lcurly)) {
             return;
         }
 
@@ -179,7 +179,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return true
      */
-    protected boolean rcurlyMustStart() {
+    protected boolean shouldStartWithRCurly() {
         return true;
     }
 
@@ -188,7 +188,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return false
      */
-    protected boolean childrenMayNest() {
+    protected boolean canChildrenBeNested() {
         return false;
     }
 
@@ -202,8 +202,8 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
-        if (curlyLevel().accept(rcurlyPos)
-            || !rcurlyMustStart() && !startsLine(rcurly)
+        if (curlyLevel().isAcceptable(rcurlyPos)
+            || !shouldStartWithRCurly() && !startsLine(rcurly)
             || areOnSameLine(rcurly, lcurly)) {
             return;
         }
@@ -244,7 +244,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Get the right parenthesis portion of the expression we are handling.
      *
-     * @return the right parenthis expression
+     * @return the right parenthesis expression
      */
     protected DetailAST getRParen() {
         return getMainAst().findFirstToken(TokenTypes.RPAREN);
@@ -253,7 +253,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Get the left parenthesis portion of the expression we are handling.
      *
-     * @return the left parenthis expression
+     * @return the left parenthesis expression
      */
     protected DetailAST getLParen() {
         return getMainAst().findFirstToken(TokenTypes.LPAREN);
@@ -262,7 +262,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         checkToplevelToken();
-        // seperate to allow for eventual configuration
+        // separate to allow for eventual configuration
         checkLParen(getLParen());
         checkRParen(getLParen(), getRParen());
         if (hasCurlys()) {
@@ -277,7 +277,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
                               getCheckedChildren(),
                               getChildrenExpectedLevel(),
                               true,
-                              childrenMayNest());
+                              canChildrenBeNested());
             }
         }
         else {
@@ -286,23 +286,25 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
+     * Gets indentation level expected for children.
      * @return indentation level expected for children
      */
     protected IndentLevel getChildrenExpectedLevel() {
+        IndentLevel indentLevel = new IndentLevel(getLevel(), getBasicOffset());
         // if we have multileveled expected level then we should
         // try to suggest single level to children using curlies'
         // levels.
         if (getLevel().isMultiLevel() && hasCurlys()) {
             if (startsLine(getLCurly())) {
-                return new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
+                indentLevel = new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
             }
             else if (startsLine(getRCurly())) {
                 final IndentLevel level = new IndentLevel(curlyLevel(), getBasicOffset());
                 level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
-                return level;
+                indentLevel = level;
             }
         }
-        return new IndentLevel(getLevel(), getBasicOffset());
+        return indentLevel;
     }
 
     @Override
@@ -311,9 +313,9 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * A shortcut for <code>IndentationCheck</code> property.
+     * A shortcut for {@code IndentationCheck} property.
      * @return value of lineWrappingIndentation property
-     *         of <code>IndentationCheck</code>
+     *         of {@code IndentationCheck}
      */
     private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();

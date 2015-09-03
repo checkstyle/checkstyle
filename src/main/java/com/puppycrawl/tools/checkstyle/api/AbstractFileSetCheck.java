@@ -24,7 +24,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.SortedSet;
 
-import com.puppycrawl.tools.checkstyle.Utils;
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -36,61 +38,57 @@ public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
     implements FileSetCheck {
     /** The dispatcher errors are fired to. */
-    private MessageDispatcher dispatcher;
+    private MessageDispatcher messageDispatcher;
 
-    /** the file extensions that are accepted by this filter */
-    private String[] fileExtensions = {};
+    /** The file extensions that are accepted by this filter. */
+    private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;
 
-    /** collects the error messages */
-    private final LocalizedMessages messages = new LocalizedMessages();
+    /** Collects the error messages. */
+    private final LocalizedMessages messageCollector = new LocalizedMessages();
 
     /**
      * Called to process a file that matches the specified file extensions.
      * @param file the file to be processed
      * @param lines an immutable list of the contents of the file.
+     * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
-    protected abstract void processFiltered(File file, List<String> lines);
+    protected abstract void processFiltered(File file, List<String> lines)
+            throws CheckstyleException;
 
-    /** {@inheritDoc} */
     @Override
     public void init() {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
     public void destroy() {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
     public void beginProcessing(String charset) {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
-    public final SortedSet<LocalizedMessage> process(File file,
-                                                   List<String> lines) {
-        getMessageCollector().reset();
+    public final SortedSet<LocalizedMessage> process(File file, List<String> lines)
+            throws CheckstyleException {
+        messageCollector.reset();
         // Process only what interested in
-        if (Utils.fileExtensionMatches(file, fileExtensions)) {
+        if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, lines);
         }
-        return getMessageCollector().getMessages();
+        return messageCollector.getMessages();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void finishProcessing() {
         // No code by default, should be overridden only by demand at subclasses
     }
 
-    /** {@inheritDoc} */
     @Override
-    public final void setMessageDispatcher(MessageDispatcher dispatcher) {
-        this.dispatcher = dispatcher;
+    public final void setMessageDispatcher(MessageDispatcher messageDispatcher) {
+        this.messageDispatcher = messageDispatcher;
     }
 
     /**
@@ -100,12 +98,12 @@ public abstract class AbstractFileSetCheck
      * @return the current MessageDispatcher.
      */
     protected final MessageDispatcher getMessageDispatcher() {
-        return dispatcher;
+        return messageDispatcher;
     }
 
     /**
      * @return file extensions that identify the files that pass the
-     * filter of this FileSetCheck.
+     *     filter of this FileSetCheck.
      */
     public String[] getFileExtensions() {
         return Arrays.copyOf(fileExtensions, fileExtensions.length);
@@ -126,7 +124,7 @@ public abstract class AbstractFileSetCheck
         fileExtensions = new String[extensions.length];
         for (int i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
-            if (Utils.startsWithChar(extension, '.')) {
+            if (CommonUtils.startsWithChar(extension, '.')) {
                 fileExtensions[i] = extension;
             }
             else {
@@ -143,7 +141,7 @@ public abstract class AbstractFileSetCheck
      * @return the collector for localized messages.
      */
     protected final LocalizedMessages getMessageCollector() {
-        return messages;
+        return messageCollector;
     }
 
     @Override
@@ -154,28 +152,28 @@ public abstract class AbstractFileSetCheck
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        getMessageCollector().add(
-            new LocalizedMessage(lineNo,
-                                 colNo,
-                                 getMessageBundle(),
-                                 key,
-                                 args,
-                                 getSeverityLevel(),
-                                 getId(),
-                                 this.getClass(),
-                                 this.getCustomMessages().get(key)));
+        messageCollector.add(
+                new LocalizedMessage(lineNo,
+                        colNo,
+                        getMessageBundle(),
+                        key,
+                        args,
+                        getSeverityLevel(),
+                        getId(),
+                        getClass(),
+                        getCustomMessages().get(key)));
     }
 
     /**
      * Notify all listeners about the errors in a file.
-     * Calls <code>MessageDispatcher.fireErrors()</code> with
+     * Calls {@code MessageDispatcher.fireErrors()} with
      * all logged errors and than clears errors' list.
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = getMessageCollector()
+        final SortedSet<LocalizedMessage> errors = messageCollector
                 .getMessages();
-        getMessageCollector().reset();
+        messageCollector.reset();
         getMessageDispatcher().fireErrors(fileName, errors);
     }
 }

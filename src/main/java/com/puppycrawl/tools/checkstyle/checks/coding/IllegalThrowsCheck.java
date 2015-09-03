@@ -23,10 +23,10 @@ import java.util.Collections;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 
 /**
  * <p>
@@ -62,10 +62,10 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck {
         "finalize",
     };
 
-    /** property for ignoring overridden methods. */
+    /** Property for ignoring overridden methods. */
     private boolean ignoreOverriddenMethods = true;
 
-    /** methods which should be ignored. */
+    /** Methods which should be ignored. */
     private final Set<String> ignoredMethodNames = Sets.newHashSet();
 
     /** Creates new instance of the check. */
@@ -121,7 +121,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck {
     }
 
     /**
-     * Check if the method is specified in the ignore method list
+     * Check if the method is specified in the ignore method list.
      * @param name the name to check
      * @return whether the method with the passed name should be ignored
      */

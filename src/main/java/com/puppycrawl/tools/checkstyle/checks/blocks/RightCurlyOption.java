@@ -20,32 +20,103 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
- * Represents the options for placing the right curly brace <code>'}'</code>.
+ * Represents the options for placing the right curly brace {@code '}'}.
  *
  * @author Oliver Burn
  */
 public enum RightCurlyOption {
+
     /**
-     * Represents the policy that the brace must be alone on the line. For
-     * example:
+     * Represents the policy that the brace must be alone on the line,
+     * yet allows single-line format of block.
+     * For example:
+     *
+     * <pre>
+     * // Brace is alone on the line
+     * try {
+     *     ...
+     * <b>}</b>
+     * finally {
+     *     ...
+     * <b>}</b>
+     *
+     * // Single-line format of block
+     * public long getId() { return id; <b>}</b>
+     * </pre>
+     **/
+    ALONE_OR_SINGLELINE,
+
+    /**
+     * Represents the policy that the brace must be alone on the line.
+     * For example:
      *
      * <pre>
      * try {
      *     ...
-     * }
+     * <b>}</b>
      * finally {
+     *     ...
+     * <b>}</b>
      * </pre>
      **/
     ALONE,
 
     /**
-     * Represents the policy that the brace must be on the same line as the
-     * next statement. For example:
+     * Represents the policy that the brace should be on the same line as the
+     * the next part of a multi-block statement (one that directly contains
+     * multiple blocks: if/else-if/else or try/catch/finally).
+     *
+     * <p>Examples:</p>
      *
      * <pre>
+     * // try-catch-finally blocks
      * try {
      *     ...
-     * } finally {
+     * <b>}</b> catch (Exception ex) { // this is OK
+     *     ...
+     * <b>}</b> finally { // this is OK
+     *     ...
+     * }
+     *
+     * try {
+     *     ...
+     * <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+     * catch (Exception ex) {
+     *     ...
+     * <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+     * finally {
+     *     ...
+     * }
+     *
+     * // if-else blocks
+     * if (a &#62; 0) {
+     *     ...
+     * <b>}</b> else { // this is OK
+     *     ...
+     * }
+     *
+     * if (a &#62; 0) {
+     *     ...
+     * <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+     * else {
+     *     ...
+     * }
+     *
+     * if (a &#62; 0) {
+     *     ...
+     * <b>}</b> int i = 5; // this is NOT OK, next part of a multi-block statement is absent
+     *
+     * // Single line blocks will rise violations, because right curly
+     * // brace is not on the same line as the next part of a multi-block
+     * // statement, it just ends the line.
+     * public long getId() {return id;<b>}</b> // this is NOT OK
+     *
+     * Thread t = new Thread(new Runnable() {
+     *  &#64;Override
+     *  public void run() {
+     *                ...
+     *  <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
+     * <b>}</b>); // this is OK, allowed for better code readability
      * </pre>
      **/
     SAME

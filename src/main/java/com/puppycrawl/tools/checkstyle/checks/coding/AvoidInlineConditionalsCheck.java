@@ -26,12 +26,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Detects inline conditionals.
  *
- * An example inline conditional is this:
+ * <p>An example inline conditional is this:
  * <pre>
  * String a = getParameter("a");
  * String b = (a==null || a.length&lt;1) ? null : a.substring(1);
  * </pre>
- *
  * Rationale: Some developers find inline conditionals hard to read,
  * so their company's coding standards forbids them.
  *

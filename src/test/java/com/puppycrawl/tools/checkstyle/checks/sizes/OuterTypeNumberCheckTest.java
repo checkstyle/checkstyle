@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -29,6 +30,19 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        OuterTypeNumberCheck checkObj = new OuterTypeNumberCheck();
+        int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ANNOTATION_DEF,
+        };
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testGetAcceptableTokens() {
         OuterTypeNumberCheck outerTypeNumberObj =
@@ -58,8 +72,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeNumberCheck.class);
         checkConfig.addAttribute("max", "30");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -68,8 +81,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeNumberCheck.class);
         checkConfig.addAttribute("max", "1");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("OuterTypeNumberCheckInput.java"), expected);
     }
 }

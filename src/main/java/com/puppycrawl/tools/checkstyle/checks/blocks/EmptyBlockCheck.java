@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -76,7 +77,7 @@ public class EmptyBlockCheck
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
     /**
-     * Creates a new <code>EmptyBlockCheck</code> instance.
+     * Creates a new {@code EmptyBlockCheck} instance.
      */
     public EmptyBlockCheck() {
         super(BlockOption.STMT, BlockOption.class);
@@ -121,10 +122,22 @@ public class EmptyBlockCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final DetailAST slistToken = ast.findFirstToken(TokenTypes.SLIST);
-        final DetailAST leftCurly = slistToken != null
-                ? slistToken : ast.findFirstToken(TokenTypes.LCURLY);
+        final DetailAST leftCurly;
+
+        if (slistToken == null) {
+            leftCurly = ast.findFirstToken(TokenTypes.LCURLY);
+        }
+        else {
+            leftCurly = slistToken;
+        }
+
         if (leftCurly != null) {
             if (getAbstractOption() == BlockOption.STMT) {
                 boolean emptyBlock;
@@ -151,20 +164,25 @@ public class EmptyBlockCheck
     }
 
     /**
-     * @param slistAST a <code>DetailAST</code> value
+     * @param slistAST a {@code DetailAST} value
      * @return whether the SLIST token contains any text.
      */
     protected boolean hasText(final DetailAST slistAST) {
-        boolean retVal = false;
-
         final DetailAST rightCurly = slistAST.findFirstToken(TokenTypes.RCURLY);
-        final DetailAST rcurlyAST = rightCurly != null
-                ? rightCurly : slistAST.getParent().findFirstToken(TokenTypes.RCURLY);
+        final DetailAST rcurlyAST;
+
+        if (rightCurly == null) {
+            rcurlyAST = slistAST.getParent().findFirstToken(TokenTypes.RCURLY);
+        }
+        else {
+            rcurlyAST = rightCurly;
+        }
         final int slistLineNo = slistAST.getLineNo();
         final int slistColNo = slistAST.getColumnNo();
         final int rcurlyLineNo = rcurlyAST.getLineNo();
         final int rcurlyColNo = rcurlyAST.getColumnNo();
         final String[] lines = getLines();
+        boolean retVal = false;
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
             final String txt = lines[slistLineNo - 1]
@@ -175,22 +193,39 @@ public class EmptyBlockCheck
         }
         else {
             // check only whitespace of first & last lines
-            if (lines[slistLineNo - 1]
-                    .substring(slistColNo + 1).trim().length() != 0
-                    || lines[rcurlyLineNo - 1]
-                            .substring(0, rcurlyColNo).trim().length() != 0) {
+            if (!lines[slistLineNo - 1]
+                .substring(slistColNo + 1).trim().isEmpty()
+                    || !lines[rcurlyLineNo - 1]
+                .substring(0, rcurlyColNo).trim().isEmpty()) {
                 retVal = true;
             }
             else {
                 // check if all lines are also only whitespace
-                for (int i = slistLineNo; i < rcurlyLineNo - 1; i++) {
-                    if (lines[i].trim().length() > 0) {
-                        retVal = true;
-                        break;
-                    }
-                }
+                retVal = !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
             }
         }
         return retVal;
+    }
+
+    /**
+     * Checks is all lines in array contain whitespaces only.
+     *
+     * @param lines
+     *            array of lines
+     * @param lineFrom
+     *            check from this line number
+     * @param lineTo
+     *            check to this line numbers
+     * @return true if lines contain only whitespaces
+     */
+    private static boolean checkIsAllLinesAreWhitespace(String[] lines, int lineFrom, int lineTo) {
+        boolean result = true;
+        for (int i = lineFrom; i < lineTo - 1; i++) {
+            if (!lines[i].trim().isEmpty()) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }

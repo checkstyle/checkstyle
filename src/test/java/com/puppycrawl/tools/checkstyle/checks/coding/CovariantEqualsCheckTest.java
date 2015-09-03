@@ -53,4 +53,3 @@ public class CovariantEqualsCheckTest
         Assert.assertNotNull(check.getRequiredTokens());
     }
 }
-

@@ -25,19 +25,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks the style of array type definitions.
- * Some like Java-style: <code>public static void main(String[] args)</code>
+ * Some like Java-style: {@code public static void main(String[] args)}
  * and some like C-style: public static void main(String args[])
  *
- * By default the Check enforces Java style.
+ * <p>By default the Check enforces Java style.
  * @author lkuehne
  */
 public class ArrayTypeStyleCheck extends Check {
-    /** controls whether to use Java or C style */
+    /** Controls whether to use Java or C style. */
     private boolean javaStyle = true;
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.ARRAY_DECLARATOR};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -46,13 +46,18 @@ public class ArrayTypeStyleCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final DetailAST typeAST = ast.getParent();
         if (typeAST.getType() != TokenTypes.TYPE) {
             return;
         }
-        final DetailAST declAST = typeAST.getParent();
-        if (declAST.getType() == TokenTypes.METHOD_DEF) {
+        final DetailAST parentAst = typeAST.getParent();
+        if (parentAst.getType() == TokenTypes.METHOD_DEF) {
             // Do not check method's return type.
             // We have no alternatives here.
             return;

@@ -35,13 +35,6 @@ public final class TokenTypes {
     // The following three types are never part of an AST,
     // left here as a reminder so nobody will read them accidentally
 
-    /* * token representing a NULL_TREE_LOOKAHEAD */
-    // public static final int NULL_TREE_LOOKAHEAD = 3;
-    /* * token representing a BLOCK */
-    // public static final int BLOCK = 4;
-    /* * token representing a VOCAB */
-    // public static final int VOCAB = 149;
-
     // These are the types that can actually occur in an AST
     // it makes sense to register Checks for these types
 
@@ -702,6 +695,7 @@ public final class TokenTypes {
      * <pre>
      * Math.random()
      * </pre>
+     *
      * <p>parses as:
      * <pre>
      * +--METHOD_CALL (()
@@ -1091,13 +1085,6 @@ public final class TokenTypes {
      * @see #SUPER_CTOR_CALL
      **/
     public static final int CTOR_CALL = GeneratedJavaTokenTypes.CTOR_CALL;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #PACKAGE_DEF
-     **/
-    //public static final int LITERAL_PACKAGE =
-    //    GeneratedJavaTokenTypes.LITERAL_package;
 
     /**
      * The statement terminator (<code>;</code>).  Depending on the
@@ -1110,21 +1097,7 @@ public final class TokenTypes {
      * @see #LITERAL_FOR
      **/
     public static final int SEMI = GeneratedJavaTokenTypes.SEMI;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #IMPORT
-     **/
-    // public static final int LITERAL_IMPORT =
-    //     GeneratedJavaTokenTypes.LITERAL_import;
 
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #INDEX_OP
-     * @see #ARRAY_DECLARATOR
-     **/
-    //public static final int LBRACK = GeneratedJavaTokenTypes.LBRACK;
     /**
      * The <code>]</code> symbol.
      *
@@ -1356,14 +1329,6 @@ public final class TokenTypes {
     public static final int LITERAL_CLASS =
         GeneratedJavaTokenTypes.LITERAL_class;
 
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #EXTENDS_CLAUSE
-     **/
-    //public static final int LITERAL_EXTENDS =
-    //    GeneratedJavaTokenTypes.LITERAL_extends;
-
     /**
      * The <code>interface</code> keyword. This token appears in
      * interface definition.
@@ -1399,13 +1364,6 @@ public final class TokenTypes {
      * @see #IMPLEMENTS_CLAUSE
      **/
     public static final int COMMA = GeneratedJavaTokenTypes.COMMA;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #IMPLEMENTS_CLAUSE
-     **/
-    // public static final int LITERAL_IMPLEMENTS =
-    //     GeneratedJavaTokenTypes.LITERAL_implements;
 
     /**
      * A left parenthesis (<code>(</code>).
@@ -2685,65 +2643,6 @@ public final class TokenTypes {
      * @see #NUM_FLOAT
      **/
     public static final int NUM_DOUBLE = GeneratedJavaTokenTypes.NUM_DOUBLE;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see <a
-     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.6">Java
-     * Language Specification, &sect;3.6</a>
-     * @see FileContents
-     **/
-    //public static final int WS = GeneratedJavaTokenTypes.WS;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see <a
-     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.7">Java
-     * Language Specification, &sect;3.7</a>
-     * @see FileContents
-     **/
-    //public static final int SL_COMMENT = GeneratedJavaTokenTypes.SL_COMMENT;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see <a
-     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.7">Java
-     * Language Specification, &sect;3.7</a>
-     * @see FileContents
-     **/
-    //public static final int ML_COMMENT = GeneratedJavaTokenTypes.ML_COMMENT;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see <a
-     * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6">Java
-     * Language Specification, &sect;3.10.6</a>
-     * @see #CHAR_LITERAL
-     * @see #STRING_LITERAL
-     **/
-    //public static final int ESC = GeneratedJavaTokenTypes.ESC;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #NUM_INT
-     * @see #NUM_LONG
-     **/
-    //public static final int HEX_DIGIT = GeneratedJavaTokenTypes.HEX_DIGIT;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #NUM_FLOAT
-     * @see #NUM_DOUBLE
-     **/
-    //public static final int EXPONENT = GeneratedJavaTokenTypes.EXPONENT;
-    /* *
-     * This token does not appear in the tree.
-     *
-     * @see #NUM_FLOAT
-     * @see #NUM_DOUBLE
-     **/
-    // public static final int FLOAT_SUFFIX =
-    //     GeneratedJavaTokenTypes.FLOAT_SUFFIX;
 
     /**
      * The <code>assert</code> keyword.  This is only for Java 1.4 and
@@ -2797,7 +2696,7 @@ public final class TokenTypes {
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #LITERAL_STATIC
      * @see #DOT
@@ -2869,7 +2768,7 @@ public final class TokenTypes {
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #ENUM
@@ -2939,7 +2838,7 @@ public final class TokenTypes {
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATIONS
      * @see #MODIFIERS
@@ -2999,7 +2898,7 @@ public final class TokenTypes {
      *         +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #LITERAL_INTERFACE
@@ -3009,7 +2908,6 @@ public final class TokenTypes {
      **/
     public static final int ANNOTATION_DEF =
         GeneratedJavaTokenTypes.ANNOTATION_DEF;
-
 
     /**
      * An annotation field declaration.  The notable children are modifiers,
@@ -3040,7 +2938,7 @@ public final class TokenTypes {
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #TYPE
@@ -3079,7 +2977,7 @@ public final class TokenTypes {
      *     +--SEMI (;)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #AT
@@ -3129,7 +3027,7 @@ public final class TokenTypes {
      *     +--RPAREN ())
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #MODIFIERS
      * @see #IDENT
@@ -3143,7 +3041,7 @@ public final class TokenTypes {
      * Its children are the name of the member, the assignment literal
      * and the (compile-time constant conditional expression) value.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
@@ -3176,7 +3074,7 @@ public final class TokenTypes {
      *     +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
      * @see #IDENT
@@ -3229,7 +3127,7 @@ public final class TokenTypes {
      *     +--RCURLY (})
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #GENERIC_START
      * @see #GENERIC_END
@@ -3260,7 +3158,7 @@ public final class TokenTypes {
      *         +--IDENT (Collection)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #IDENT
      * @see #WILDCARD_TYPE
@@ -3334,7 +3232,7 @@ public final class TokenTypes {
      *         +--IDENT (List)
      * </pre>
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #WILDCARD_TYPE
      * @see #TYPE_UPPER_BOUNDS
@@ -3346,7 +3244,7 @@ public final class TokenTypes {
     /**
      * The type that refers to all types. This node has no children.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_ARGUMENT
      * @see #TYPE_UPPER_BOUNDS
@@ -3360,7 +3258,7 @@ public final class TokenTypes {
      * This node has one child - the type that is being used for
      * the bounding.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_PARAMETER
      * @see #TYPE_ARGUMENT
@@ -3373,7 +3271,7 @@ public final class TokenTypes {
      * A lower bounds on a wildcard type argument. This node has one child
      *  - the type that is being used for the bounding.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=14">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_ARGUMENT
      * @see #WILDCARD_TYPE
@@ -3386,7 +3284,7 @@ public final class TokenTypes {
      * to the interface literal signifying the definition of an annotation
      * declaration.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
     public static final int AT = GeneratedJavaTokenTypes.AT;
@@ -3395,7 +3293,7 @@ public final class TokenTypes {
      * A triple dot for variable-length parameters. This token only ever occurs
      * in a parameter declaration immediately after the type of the parameter.
      *
-     * @see <a href="http://www.jcp.org/en/jsr/detail?id=201">
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
     public static final int ELLIPSIS = GeneratedJavaTokenTypes.ELLIPSIS;
@@ -3481,7 +3379,7 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
-    /** prevent instantiation */
+    /** Prevent instantiation. */
     private TokenTypes() {
     }
 

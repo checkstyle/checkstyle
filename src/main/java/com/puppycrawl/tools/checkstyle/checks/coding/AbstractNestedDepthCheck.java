@@ -28,17 +28,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
 public abstract class AbstractNestedDepthCheck extends Check {
-    /** maximum allowed nesting depth */
+    /** Maximum allowed nesting depth. */
     private int max;
-    /** current nesting depth */
+    /** Current nesting depth. */
     private int depth;
 
     /**
      * Creates new instance of checks.
      * @param max default allowed nesting depth.
      */
-    public AbstractNestedDepthCheck(int max) {
-        setMax(max);
+    protected AbstractNestedDepthCheck(int max) {
+        this.max = max;
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class AbstractNestedDepthCheck extends Check {
         ++depth;
     }
 
-    /** Decreasing current nesting depth */
+    /** Decreasing current nesting depth. */
     protected final void nestOut() {
         --depth;
     }

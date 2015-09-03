@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * This check controls the style with the usage of annotations.
  *
- * <p>
- * Annotations have three element styles starting with the least verbose.
+ * <p>Annotations have three element styles starting with the least verbose.
  * <ul>
  * <li>{@link ElementStyle#COMPACT_NO_ARRAY COMPACT_NO_ARRAY}</li>
  * <li>{@link ElementStyle#COMPACT COMPACT}</li>
@@ -39,55 +38,41 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ul>
  * To not enforce an element style
  * a {@link ElementStyle#IGNORE IGNORE} type is provided.  The desired style
- * can be set through the <code>elementStyle</code> property.
+ * can be set through the {@code elementStyle} property.
  *
- *
- * <p>
- * Using the EXPANDED style is more verbose. The expanded version
+ * <p>Using the EXPANDED style is more verbose. The expanded version
  * is sometimes referred to as "named parameters" in other languages.
  *
- *
- * <p>
- * Using the COMPACT style is less verbose. This style can only
+ * <p>Using the COMPACT style is less verbose. This style can only
  * be used when there is an element called 'value' which is either
- * the sole element or all other elements have default valuess.
+ * the sole element or all other elements have default values.
  *
- *
- * <p>
- * Using the COMPACT_NO_ARRAY style is less verbose. It is similar
+ * <p>Using the COMPACT_NO_ARRAY style is less verbose. It is similar
  * to the COMPACT style but single value arrays are flagged. With
  * annotations a single value array does not need to be placed in an
  * array initializer. This style can only be used when there is an
  * element called 'value' which is either the sole element or all other
  * elements have default values.
  *
- *
- * <p>
- * The ending parenthesis are optional when using annotations with no elements.
+ * <p>The ending parenthesis are optional when using annotations with no elements.
  * To always require ending parenthesis use the
  * {@link ClosingParens#ALWAYS ALWAYS} type.  To never have ending parenthesis
  * use the {@link ClosingParens#NEVER NEVER} type. To not enforce a
  * closing parenthesis preference a {@link ClosingParens#IGNORE IGNORE} type is
- * provided. Set this through the <code>closingParens</code> property.
+ * provided. Set this through the {@code closingParens} property.
  *
- *
- * <p>
- * Annotations also allow you to specify arrays of elements in a standard
+ * <p>Annotations also allow you to specify arrays of elements in a standard
  * format.  As with normal arrays, a trailing comma is optional. To always
  * require a trailing comma use the {@link TrailingArrayComma#ALWAYS ALWAYS}
  * type. To never have a trailing comma use the
  * {@link TrailingArrayComma#NEVER NEVER} type. To not enforce a trailing
  * array comma preference a {@link TrailingArrayComma#IGNORE IGNORE} type
- * is provided.  Set this through the <code>trailingArrayComma</code> property.
+ * is provided.  Set this through the {@code trailingArrayComma} property.
  *
+ * <p>By default the ElementStyle is set to EXPANDED, the TrailingArrayComma
+ * is set to NEVER, and the ClosingParens is set to ALWAYS.
  *
- * <p>
- * By default the ElementStyle is set to EXPANDED, the TrailingArrayComma
- * is set to NEVER, and the ClosingParans is set to ALWAYS.
- *
- *
- * <p>
- * According to the JLS, it is legal to include a trailing comma
+ * <p>According to the JLS, it is legal to include a trailing comma
  * in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
  * compile with this syntax. This may in be a bug in Sun's compilers
  * since eclipse 3.4's built-in compiler does allow this syntax as
@@ -95,16 +80,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * JDK versions 1.5.0.17 and 1.6.0.11 and the compiler included with eclipse
  * 3.4.1.
  *
- * See <a
+ * <p>See <a
  * href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html#jls-9.7">
  * Java Language specification, &sect;9.7</a>.
  *
- *
- * <p>
- * An example shown below is set to enforce an EXPANDED style, with a
+ * <p>An example shown below is set to enforce an EXPANDED style, with a
  * trailing array comma set to NEVER and always including the closing
  * parenthesis.
- *
  *
  * <pre>
  * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
@@ -156,7 +138,7 @@ public final class AnnotationUseStyleCheck extends Check {
         "annotation.trailing.comma.present";
 
     /**
-     * the element name used to receive special linguistic support
+     * The element name used to receive special linguistic support
      * for annotation use.
      */
     private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
@@ -165,15 +147,24 @@ public final class AnnotationUseStyleCheck extends Check {
     //not extending AbstractOptionCheck because check
     //has more than one option type.
 
-    /** @see #setElementStyle(String) */
-    private ElementStyle style = ElementStyle.COMPACT_NO_ARRAY;
+    /**
+     * ElementStyle option.
+     * @see #setElementStyle(String)
+     */
+    private ElementStyle elementStyle = ElementStyle.COMPACT_NO_ARRAY;
 
     //defaulting to NEVER because of the strange compiler behavior
-    /** @see #setTrailingArrayComma(String) */
-    private TrailingArrayComma comma = TrailingArrayComma.NEVER;
+    /**
+     * Trailing array comma option.
+     * @see #setTrailingArrayComma(String)
+     */
+    private TrailingArrayComma trailingArrayComma = TrailingArrayComma.NEVER;
 
-    /** @see #setClosingParens(String) */
-    private ClosingParens parens = ClosingParens.NEVER;
+    /**
+     * Closing parens option.
+     * @see #setClosingParens(String)
+     */
+    private ClosingParens closingParens = ClosingParens.NEVER;
 
     /**
      * Sets the ElementStyle from a string.
@@ -182,7 +173,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setElementStyle(final String style) {
-        this.style = getOption(ElementStyle.class, style);
+        elementStyle = getOption(ElementStyle.class, style);
     }
 
     /**
@@ -192,7 +183,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setTrailingArrayComma(final String comma) {
-        this.comma = getOption(TrailingArrayComma.class, comma);
+        trailingArrayComma = getOption(TrailingArrayComma.class, comma);
     }
 
     /**
@@ -202,33 +193,31 @@ public final class AnnotationUseStyleCheck extends Check {
      * @throws ConversionException if cannot convert string.
      */
     public void setClosingParens(final String parens) {
-        this.parens = getOption(ClosingParens.class, parens);
+        closingParens = getOption(ClosingParens.class, parens);
     }
 
     /**
      * Retrieves an {@link Enum Enum} type from a @{link String String}.
      * @param <T> the enum type
-     * @param enuclass the enum class
-     * @param string the string representing the enum
+     * @param enumClass the enum class
+     * @param value the string representing the enum
      * @return the enum type
      */
-    private static <T extends Enum<T>> T getOption(final Class<T> enuclass,
-        final String string) {
+    private static <T extends Enum<T>> T getOption(final Class<T> enumClass,
+        final String value) {
         try {
-            return Enum.valueOf(enuclass, string.trim().toUpperCase(Locale.ENGLISH));
+            return Enum.valueOf(enumClass, value.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (final IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + string, iae);
+            throw new ConversionException("unable to parse " + value, iae);
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getDefaultTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -236,18 +225,16 @@ public final class AnnotationUseStyleCheck extends Check {
         };
     }
 
-    /** {@inheritDoc} */
     @Override
     public int[] getAcceptableTokens() {
-        return this.getRequiredTokens();
+        return getRequiredTokens();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void visitToken(final DetailAST ast) {
-        this.checkStyleType(ast);
-        this.checkCheckClosingParens(ast);
-        this.checkTrailingComma(ast);
+        checkStyleType(ast);
+        checkCheckClosingParens(ast);
+        checkTrailingComma(ast);
     }
 
     /**
@@ -259,22 +246,17 @@ public final class AnnotationUseStyleCheck extends Check {
      */
     private void checkStyleType(final DetailAST annotation) {
 
-        switch (this.style) {
-
-            case COMPACT_NO_ARRAY: {
+        switch (elementStyle) {
+            case COMPACT_NO_ARRAY:
                 checkCompactNoArrayStyle(annotation);
                 break;
-            }
-
-            case COMPACT: {
+            case COMPACT:
                 checkCompactStyle(annotation);
                 break;
-            }
-
-            case EXPANDED: {
+            case EXPANDED:
                 checkExpandedStyle(annotation);
                 break;
-            }
+            case IGNORE:
             default:
                 break;
         }
@@ -291,7 +273,7 @@ public final class AnnotationUseStyleCheck extends Check {
 
         if (valuePairCount == 0
             && annotation.branchContains(TokenTypes.EXPR)) {
-            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.EXPANDED);
         }
     }
@@ -311,9 +293,9 @@ public final class AnnotationUseStyleCheck extends Check {
                 TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
         if (valuePairCount == 1
-            && AnnotationUseStyleCheck.ANNOTATION_ELEMENT_SINGLE_NAME.equals(
+            && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                 valuePair.getFirstChild().getText())) {
-            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT);
         }
     }
@@ -336,7 +318,7 @@ public final class AnnotationUseStyleCheck extends Check {
         //in compact style with one value
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-            this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT_NO_ARRAY);
         }
         //in expanded style with one value and the correct element name
@@ -345,11 +327,10 @@ public final class AnnotationUseStyleCheck extends Check {
                 valuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
 
             if (nestedArrayInit != null
-                && AnnotationUseStyleCheck
-                    .ANNOTATION_ELEMENT_SINGLE_NAME.equals(
+                && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                     valuePair.getFirstChild().getText())
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-                this.log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+                log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                     ElementStyle.COMPACT_NO_ARRAY);
             }
         }
@@ -362,7 +343,7 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param annotation the annotation token
      */
     private void checkTrailingComma(final DetailAST annotation) {
-        if (TrailingArrayComma.IGNORE == this.comma) {
+        if (trailingArrayComma == TrailingArrayComma.IGNORE) {
             return;
         }
 
@@ -371,24 +352,22 @@ public final class AnnotationUseStyleCheck extends Check {
         while (child != null) {
             DetailAST arrayInit = null;
 
-            if (child.getType()
-                == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-                arrayInit =
-                    child.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+            if (child.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+                arrayInit = child.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
             }
             else if (child.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
                 arrayInit = child;
             }
 
             if (arrayInit != null) {
-                this.logCommaViolation(arrayInit);
+                logCommaViolation(arrayInit);
             }
             child = child.getNextSibling();
         }
     }
 
     /**
-     * logs a trailing array comma violation if one exists.
+     * Logs a trailing array comma violation if one exists.
      *
      * @param ast the array init
      * {@link TokenTypes#ANNOTATION_ARRAY_INIT ANNOTATION_ARRAY_INIT}.
@@ -399,14 +378,14 @@ public final class AnnotationUseStyleCheck extends Check {
         //comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
-        if (TrailingArrayComma.ALWAYS == this.comma
+        if (trailingArrayComma == TrailingArrayComma.ALWAYS
             && (comma == null || comma.getType() != TokenTypes.COMMA)) {
-            this.log(rCurly.getLineNo(),
+            log(rCurly.getLineNo(),
                 rCurly.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
-        else if (TrailingArrayComma.NEVER == this.comma
+        else if (trailingArrayComma == TrailingArrayComma.NEVER
             && comma != null && comma.getType() == TokenTypes.COMMA) {
-            this.log(comma.getLineNo(),
+            log(comma.getLineNo(),
                 comma.getColumnNo(), MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
         }
     }
@@ -418,23 +397,23 @@ public final class AnnotationUseStyleCheck extends Check {
      * @param ast the annotation token
      */
     private void checkCheckClosingParens(final DetailAST ast) {
-        if (ClosingParens.IGNORE == this.parens) {
+        if (closingParens == ClosingParens.IGNORE) {
             return;
         }
 
         final DetailAST paren = ast.getLastChild();
         final boolean parenExists = paren.getType() == TokenTypes.RPAREN;
 
-        if (ClosingParens.ALWAYS == this.parens
+        if (closingParens == ClosingParens.ALWAYS
             && !parenExists) {
-            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
+            log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
         }
-        else if (ClosingParens.NEVER == this.parens
+        else if (closingParens == ClosingParens.NEVER
             && !ast.branchContains(TokenTypes.EXPR)
             && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
             && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)
             && parenExists) {
-            this.log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
+            log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
         }
     }
 
@@ -442,17 +421,17 @@ public final class AnnotationUseStyleCheck extends Check {
      * Defines the styles for defining elements in an annotation.
      * @author Travis Schneeberger
      */
-    public static enum ElementStyle {
+    public enum ElementStyle {
 
         /**
-         * expanded example
+         * Expanded example
          *
          * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
          */
         EXPANDED,
 
         /**
-         * compact example
+         * Compact example
          *
          * <pre>@SuppressWarnings({"unchecked","unused",})</pre>
          * <br>or<br>
@@ -461,14 +440,14 @@ public final class AnnotationUseStyleCheck extends Check {
         COMPACT,
 
         /**
-         * compact example.]
+         * Compact example.]
          *
          * <pre>@SuppressWarnings("unchecked")</pre>.
          */
         COMPACT_NO_ARRAY,
 
         /**
-         * mixed styles.
+         * Mixed styles.
          */
         IGNORE,
     }
@@ -479,24 +458,24 @@ public final class AnnotationUseStyleCheck extends Check {
      *
      * @author Travis Schneeberger
      */
-    public static enum TrailingArrayComma {
+    public enum TrailingArrayComma {
 
         /**
-         * with comma example
+         * With comma example
          *
          * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
          */
         ALWAYS,
 
         /**
-         * without comma example
+         * Without comma example
          *
          * <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>.
          */
         NEVER,
 
         /**
-         * mixed styles.
+         * Mixed styles.
          */
         IGNORE,
     }
@@ -507,24 +486,24 @@ public final class AnnotationUseStyleCheck extends Check {
      *
      * @author Travis Schneeberger
      */
-    public static enum ClosingParens {
+    public enum ClosingParens {
 
         /**
-         * with parens example
+         * With parens example
          *
          * <pre>@Deprecated()</pre>.
          */
         ALWAYS,
 
         /**
-         * without parens example
+         * Without parens example
          *
          * <pre>@Deprecated</pre>.
          */
         NEVER,
 
         /**
-         * mixed styles.
+         * Mixed styles.
          */
         IGNORE,
     }

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.apache.commons.lang3.ArrayUtils.EMPTY_BYTE_ARRAY;
+import static org.apache.commons.lang3.ArrayUtils.EMPTY_OBJECT_ARRAY;
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -72,13 +74,12 @@ public class LocalizedMessageTest {
     public void testBundleReload_UrlNotNull() throws IOException {
 
         ClassLoader classloader = mock(ClassLoader.class);
-        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
-        String urlPath = "file:com/puppycrawl/tools/checkstyle/checks/coding/messages.properties";
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
-                new ByteArrayInputStream(new byte[]{}));
+                new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
 
         URL url = getMockUrl(mockConnection);
+        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
         when(classloader.getResource(resource)).thenReturn(url);
 
         LocalizedMessage.UTF8Control cntrl = new LocalizedMessage.UTF8Control();
@@ -92,7 +93,6 @@ public class LocalizedMessageTest {
 
         ClassLoader classloader = mock(ClassLoader.class);
         String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
-        String urlPath = "file:com/puppycrawl/tools/checkstyle/checks/coding/messages.properties";
 
         URL url = getMockUrl(null);
         when(classloader.getResource(resource)).thenReturn(url);
@@ -103,15 +103,14 @@ public class LocalizedMessageTest {
                 classloader, true);
     }
 
-    public static URL getMockUrl(final URLConnection connection) throws IOException {
+    private static URL getMockUrl(final URLConnection connection) throws IOException {
         final URLStreamHandler handler = new URLStreamHandler() {
             @Override
-            protected URLConnection openConnection(final URL arg0) throws IOException {
+            protected URLConnection openConnection(final URL u) {
                 return connection;
             }
         };
-        final URL url = new URL("http://foo.bar", "foo.bar", 80, "", handler);
-        return url;
+        return new URL("http://foo.bar", "foo.bar", 80, "", handler);
     }
 
     @Test
@@ -142,7 +141,7 @@ public class LocalizedMessageTest {
 
     private static LocalizedMessage createSampleLocalizedMessage() {
         return new LocalizedMessage(0, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", new Object[]{}, "module", LocalizedMessage.class, null);
+                "empty.statement", EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
     }
 
     @After

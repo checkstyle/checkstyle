@@ -11,9 +11,9 @@
 
   <head>
     <title>Command Line</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -98,7 +98,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
     <section name="Download and Run">
       <p>
           It is possible to run Checkstyle directly from the JAR file using
-          the <code>-jar</code> option. Download latest <a href="http://sourceforge.net/projects/checkstyle/files/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar/download">
+          the <code>-jar</code> option. Download latest <a href="http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar">
           checkstyle-${projectVersion}-all.jar</a>.
           An example of run would be:
         <source>
@@ -111,7 +111,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.jav
       </p>
       <p>
           To run Checkstyle UI viewer for AST tree directly from the JAR file using
-          the <code>-jar</code> option. Download latest <a href="http://sourceforge.net/projects/checkstyle/files/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar/download">
+          the <code>-jar</code> option. Download latest <a href="http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar">
           checkstyle-${projectVersion}-all.jar</a>.
           An example of run would be (path to java file is optional):
         <source>
@@ -150,7 +150,7 @@ java -jar target/checkstyle-X.X-SNAPSHOT-all.jar -c /sun_checks.xml MyClass.java
     <section name="Usage by Classpath update">
       <p>
         The easiest way is to include
-        <a href="http://sourceforge.net/projects/checkstyle/files/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar/download">checkstyle-${projectVersion}-all.jar</a> in the
+        <a href="http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar">checkstyle-${projectVersion}-all.jar</a> in the
         <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html#sthref10">classpath</a>. Alternatively, you must include the
         <code>compile</code> third party dependencies listed in
 

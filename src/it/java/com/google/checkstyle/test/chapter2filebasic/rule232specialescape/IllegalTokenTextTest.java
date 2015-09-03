@@ -1,29 +1,25 @@
 package com.google.checkstyle.test.chapter2filebasic.rule232specialescape;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class IllegalTokenTextTest extends BaseCheckTestSupport{
     
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder()
-    		throws CheckstyleException, MalformedURLException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void illegalTokensTest() throws IOException, Exception {
+    public void illegalTokensTest() throws Exception {
         
         final String[] expected = {
             "17:27: Avoid using corresponding octal or Unicode escape.",
@@ -101,5 +97,3 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

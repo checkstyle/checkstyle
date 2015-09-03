@@ -22,8 +22,10 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.Collections;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.Utils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * The base class for checks.
@@ -33,27 +35,31 @@ import com.puppycrawl.tools.checkstyle.Utils;
  * your own checks</a>
  */
 public abstract class Check extends AbstractViolationReporter {
-    /** default tab width for column reporting */
+    /** Default tab width for column reporting. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
-    /** the current file contents */
+    /** The current file contents. */
     private FileContents fileContents;
 
-    /** the tokens the check is interested in */
+    /** The tokens the check is interested in. */
     private final Set<String> tokens = Sets.newHashSet();
 
-    /** the object for collecting messages. */
+    /** The object for collecting messages. */
     private LocalizedMessages messages;
 
-    /** the tab width for column reporting */
-    private int tabWidth = DEFAULT_TAB_WIDTH; // meaningful default
+    /** The tab width for column reporting. */
+    private int tabWidth = DEFAULT_TAB_WIDTH;
 
     /**
-     * The class loader to load external classes. Not initialised as this must
+     * The class loader to load external classes. Not initialized as this must
      * be set by my creator.
      */
-    private ClassLoader loader;
+    private ClassLoader classLoader;
 
+    /**
+     * Whether comment nodes are required or not.
+     * @return false as a default value.
+     */
     public boolean isCommentNodesRequired() {
         return false;
     }
@@ -87,7 +93,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @see TokenTypes
      */
     public int[] getRequiredTokens() {
-        return new int[] {};
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     /**
@@ -103,7 +109,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the set of token names
      */
     public final Set<String> getTokenNames() {
-        return tokens;
+        return Collections.unmodifiableSet(tokens);
     }
 
     /**
@@ -115,7 +121,7 @@ public abstract class Check extends AbstractViolationReporter {
     }
 
     /**
-     * Initialise the check. This is the time to verify that the check has
+     * Initialize the check. This is the time to verify that the check has
      * everything required to perform it job.
      */
     public void init() {
@@ -130,7 +136,7 @@ public abstract class Check extends AbstractViolationReporter {
     }
 
     /**
-     * Called before the starting to process a tree. Ideal place to initialise
+     * Called before the starting to process a tree. Ideal place to initialize
      * information that is to be collected whilst processing a tree.
      * @param rootAST the root of the tree
      */
@@ -168,7 +174,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the file contents
      */
     public final String[] getLines() {
-        return getFileContents().getLines();
+        return fileContents.getLines();
     }
 
     /**
@@ -177,7 +183,7 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the line from the file contents
      */
     public final String getLine(int index) {
-        return getFileContents().getLine(index);
+        return fileContents.getLine(index);
     }
 
     /**
@@ -198,10 +204,10 @@ public abstract class Check extends AbstractViolationReporter {
 
     /**
      * Set the class loader associated with the tree.
-     * @param loader the class loader
+     * @param classLoader the class loader
      */
-    public final void setClassLoader(ClassLoader loader) {
-        this.loader = loader;
+    public final void setClassLoader(ClassLoader classLoader) {
+        this.classLoader = classLoader;
     }
 
     /**
@@ -209,17 +215,20 @@ public abstract class Check extends AbstractViolationReporter {
      * @return the class loader
      */
     public final ClassLoader getClassLoader() {
-        return loader;
+        return classLoader;
     }
 
-    /** @return the tab width to report errors with */
+    /**
+     * Get tab width to report errors with.
+     * @return the tab width to report errors with
+     */
     protected final int getTabWidth() {
         return tabWidth;
     }
 
     /**
      * Set the tab width to report errors with.
-     * @param tabWidth an <code>int</code> value
+     * @param tabWidth an {@code int} value
      */
     public final void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;
@@ -235,16 +244,15 @@ public abstract class Check extends AbstractViolationReporter {
                 args,
                 getSeverityLevel(),
                 getId(),
-                this.getClass(),
-                this.getCustomMessages().get(key)));
+                getClass(),
+                getCustomMessages().get(key)));
     }
-
 
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        final int col = 1 + Utils.lengthExpandedTabs(
-            getLines()[lineNo - 1], colNo, getTabWidth());
+        final int col = 1 + CommonUtils.lengthExpandedTabs(
+            getLines()[lineNo - 1], colNo, tabWidth);
         messages.add(
             new LocalizedMessage(
                 lineNo,
@@ -254,7 +262,7 @@ public abstract class Check extends AbstractViolationReporter {
                 args,
                 getSeverityLevel(),
                 getId(),
-                this.getClass(),
-                this.getCustomMessages().get(key)));
+                getClass(),
+                getCustomMessages().get(key)));
     }
 }

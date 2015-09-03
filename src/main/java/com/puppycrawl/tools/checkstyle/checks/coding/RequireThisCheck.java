@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>Checks that code doesn't rely on the &quot;this&quot; default.
@@ -30,11 +31,12 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector;
  * object are explicitly of the form &quot;this.varName&quot; or
  * &quot;this.methodName(args)&quot;.
  *</p>
+ *
  * <p>Examples of use:
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;/&gt;
  * </pre>
- * An example of how to configure to check <code>this</code> qualifier for
+ * An example of how to configure to check {@code this} qualifier for
  * methods only:
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;&gt;
@@ -49,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector;
  * Non-static methods invoked on either this or a variable name seem to be
  * OK, likewise.</p>
  * <p>Much of the code for this check was cribbed from Rick Giles's
- * <code>HiddenFieldCheck</code>.</p>
+ * {@code HiddenFieldCheck}.</p>
  *
  * @author Stephen Bloch
  * @author o_sukhodolsky
@@ -68,9 +70,23 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
      */
     public static final String MSG_VARIABLE = "require.this.variable";
 
-    /** whether we should check fields usage. */
+    /**
+     * Set of all declaration tokens.
+     */
+    private static final ImmutableSet<Integer> DECLARATION_TOKENS = ImmutableSet.of(
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.PARAMETER_DEF,
+            TokenTypes.TYPE_ARGUMENT
+    );
+
+    /** Whether we should check fields usage. */
     private boolean checkFields = true;
-    /** whether we should check methods usage. */
+    /** Whether we should check methods usage. */
     private boolean checkMethods = true;
 
     /**
@@ -91,27 +107,23 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.IDENT,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.PARAMETER_DEF,
-            TokenTypes.SLIST,
-            TokenTypes.VARIABLE_DEF,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.SLIST,
             TokenTypes.IDENT,
         };
     }
@@ -126,7 +138,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
 
     /**
      * Checks if a given IDENT is method call or field name which
-     * require explicit <code>this</code> qualifier.
+     * require explicit {@code this} qualifier.
      *
      * @param ast IDENT to check.
      */
@@ -138,69 +150,51 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
             case TokenTypes.ANNOTATION_FIELD_DEF:
                 // no need to check annotations content
                 break;
-            case TokenTypes.METHOD_CALL: {
+            case TokenTypes.METHOD_CALL:
                 // let's check method calls
                 if (checkMethods && isClassMethod(ast.getText())) {
-                    log(ast, "require.this.method", ast.getText());
+                    log(ast, MSG_METHOD, ast.getText());
                 }
                 break;
-            }
-            default: {
+            default:
                 if (checkFields) {
                     processField(ast, parentType);
                 }
                 break;
+        }
+    }
+
+    /**
+     * Process validation of Field.
+     * @param ast field definition ast token
+     * @param parentType type of the parrent
+     */
+    private void processField(DetailAST ast, int parentType) {
+        final boolean importOrPackage = ScopeUtils.getSurroundingScope(ast) == null;
+        final boolean methodNameInMethodCall = parentType == TokenTypes.DOT
+                && ast.getPreviousSibling() != null;
+        final boolean typeName = parentType == TokenTypes.TYPE
+                || parentType == TokenTypes.LITERAL_NEW;
+
+        if (!importOrPackage
+                && !methodNameInMethodCall
+                && !typeName
+                && !isDeclarationToken(parentType)) {
+
+            final String name = ast.getText();
+
+            if (isClassField(name)) {
+                log(ast, MSG_VARIABLE, name);
             }
         }
     }
 
     /**
-     * process validation of Field
-     * @param ast field definition ast token
-     * @param parentType type of the parrent
-     */
-    private void processField(DetailAST ast, int parentType) {
-        if (ScopeUtils.getSurroundingScope(ast) == null) {
-            // it is not a class or interface it's
-            // either import or package
-            // we shouldn't checks this
-            return;
-        }
-
-        if (parentType == TokenTypes.DOT
-                && ast.getPreviousSibling() != null) {
-            // it's the method name in a method call; no problem
-            return;
-        }
-        if (parentType == TokenTypes.TYPE
-                || parentType == TokenTypes.LITERAL_NEW) {
-            // it's a type name; no problem
-            return;
-        }
-        if (isDeclarationToken(parentType)) {
-            // it's being declared; no problem
-            return;
-        }
-
-        final String name = ast.getText();
-        if (isClassField(name)) {
-            log(ast, "require.this.variable", name);
-        }
-    }
-
-    /**
-     * check that token is related to Definition tokens
+     * Check that token is related to Definition tokens.
      * @param parentType token Type
      * @return true if token is related to Definition Tokens
      */
     private static boolean isDeclarationToken(int parentType) {
-        return parentType == TokenTypes.VARIABLE_DEF
-            || parentType == TokenTypes.CTOR_DEF
-            || parentType == TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.CLASS_DEF
-            || parentType == TokenTypes.ENUM_DEF
-            || parentType == TokenTypes.INTERFACE_DEF
-            || parentType == TokenTypes.PARAMETER_DEF
-            || parentType == TokenTypes.TYPE_ARGUMENT;
+        return DECLARATION_TOKENS.contains(parentType);
     }
 }

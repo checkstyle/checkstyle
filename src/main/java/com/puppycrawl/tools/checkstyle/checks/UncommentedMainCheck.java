@@ -21,13 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Detects uncommented main methods. Basically detects
@@ -50,27 +48,25 @@ public class UncommentedMainCheck
      */
     public static final String MSG_KEY = "uncommented.main";
 
-    /** the pattern to exclude classes from the check */
+    /** The pattern to exclude classes from the check. */
     private String excludedClasses = "^$";
-    /** compiled regexp to exclude classes from check */
+    /** Compiled regexp to exclude classes from check. */
     private Pattern excludedClassesPattern =
-        Utils.createPattern(excludedClasses);
-    /** current class name */
+            CommonUtils.createPattern(excludedClasses);
+    /** Current class name. */
     private String currentClass;
-    /** current package */
+    /** Current package. */
     private FullIdent packageName;
-    /** class definition depth */
+    /** Class definition depth. */
     private int classDepth;
 
     /**
      * Set the excluded classes pattern.
-     * @param excludedClasses a <code>String</code> value
-     * @throws ConversionException if unable to create Pattern object
+     * @param excludedClasses a {@code String} value
      */
-    public void setExcludedClasses(String excludedClasses)
-        throws ConversionException {
+    public void setExcludedClasses(String excludedClasses) {
         this.excludedClasses = excludedClasses;
-        excludedClassesPattern = Utils.createPattern(excludedClasses);
+        excludedClassesPattern = CommonUtils.createPattern(excludedClasses);
     }
 
     @Override
@@ -115,6 +111,7 @@ public class UncommentedMainCheck
 
     @Override
     public void visitToken(DetailAST ast) {
+
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
@@ -155,7 +152,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks method definition if this is
-     * <code>public static void main(String[])</code>.
+     * {@code public static void main(String[])}.
      * @param method method definition node
      */
     private void visitMethodDef(DetailAST method) {
@@ -174,7 +171,7 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that current class is not excluded
+     * Checks that current class is not excluded.
      * @return true if check passed, false otherwise
      */
     private boolean checkClassName() {
@@ -205,7 +202,7 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that return type is <code>void</code>.
+     * Checks that return type is {@code void}.
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -216,32 +213,25 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that method has only <code>String[]</code> param
+     * Checks that method has only {@code String[]} param.
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
     private static boolean checkParams(DetailAST method) {
+        boolean checkPassed = false;
         final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
-        if (params.getChildCount() != 1) {
-            return false;
-        }
-        final DetailAST paratype = params.getFirstChild()
-            .findFirstToken(TokenTypes.TYPE);
-        final DetailAST arrayDecl =
-            paratype.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
-        if (arrayDecl == null) {
-            return false;
-        }
 
-        final DetailAST arrayType = arrayDecl.getFirstChild();
+        if (params.getChildCount() == 1) {
+            final DetailAST paratype = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
+            final DetailAST arrayDecl = paratype.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
 
-        if (arrayType.getType() == TokenTypes.IDENT
-            || arrayType.getType() == TokenTypes.DOT) {
-            final FullIdent type = FullIdent.createFullIdent(arrayType);
-            return "String".equals(type.getText())
-                    || "java.lang.String".equals(type.getText());
+            if (arrayDecl != null) {
+                final DetailAST arrayType = arrayDecl.getFirstChild();
+                final FullIdent type = FullIdent.createFullIdent(arrayType);
+                checkPassed = "String".equals(type.getText())
+                        || "java.lang.String".equals(type.getText());
+            }
         }
-
-        return false;
+        return checkPassed;
     }
 }

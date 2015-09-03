@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * Restricts nested if-else blocks to a specified depth (default = 1).
@@ -36,7 +36,7 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck {
      */
     public static final String MSG_KEY = "nested.if.depth";
 
-    /** default allowed nesting depth. */
+    /** Default allowed nesting depth. */
     private static final int DEFAULT_MAX = 1;
 
     /** Creates new check instance with default allowed nesting depth. */

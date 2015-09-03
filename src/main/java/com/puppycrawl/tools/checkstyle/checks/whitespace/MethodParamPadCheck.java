@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.Utils;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -83,8 +85,10 @@ public class MethodParamPadCheck
      */
     public static final String WS_NOT_PRECEDED = "ws.notPreceded";
 
-    /** Whether whitespace is allowed if the method identifier is at a
-     * linebreak */
+    /**
+     * Whether whitespace is allowed if the method identifier is at a
+     * linebreak.
+     */
     private boolean allowLineBreaks;
 
     /**
@@ -96,13 +100,7 @@ public class MethodParamPadCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.CTOR_DEF,
-            TokenTypes.LITERAL_NEW,
-            TokenTypes.METHOD_CALL,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.SUPER_CTOR_CALL,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -114,6 +112,11 @@ public class MethodParamPadCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.SUPER_CTOR_CALL,
         };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -131,18 +134,18 @@ public class MethodParamPadCheck
         }
 
         final String line = getLines()[parenAST.getLineNo() - 1];
-        if (Utils.whitespaceBefore(parenAST.getColumnNo(), line)) {
+        if (CommonUtils.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
             if (!allowLineBreaks) {
                 log(parenAST, LINE_PREVIOUS, parenAST.getText());
             }
         }
         else {
             final int before = parenAST.getColumnNo() - 1;
-            if (PadOption.NOSPACE == getAbstractOption()
+            if (getAbstractOption() == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))) {
                 log(parenAST , WS_PRECEDED, parenAST.getText());
             }
-            else if (PadOption.SPACE == getAbstractOption()
+            else if (getAbstractOption() == PadOption.SPACE
                      && !Character.isWhitespace(line.charAt(before))) {
                 log(parenAST, WS_NOT_PRECEDED, parenAST.getText());
             }
@@ -150,9 +153,9 @@ public class MethodParamPadCheck
     }
 
     /**
-     * Control whether whitespace is flagged at linebreaks.
+     * Control whether whitespace is flagged at line breaks.
      * @param allowLineBreaks whether whitespace should be
-     * flagged at linebreaks.
+     *     flagged at line breaks.
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;

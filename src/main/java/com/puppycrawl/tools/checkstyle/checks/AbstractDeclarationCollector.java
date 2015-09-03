@@ -27,10 +27,10 @@ import java.util.Set;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * Abstract class for checks which need to collect information about
@@ -40,12 +40,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public abstract class AbstractDeclarationCollector extends Check {
     /**
-     * Tree of all the parsed frames
+     * Tree of all the parsed frames.
      */
     private Map<DetailAST, LexicalFrame> frames;
 
     /**
-     * Frame for the currently processed AST
+     * Frame for the currently processed AST.
      */
     private LexicalFrame current;
 
@@ -81,7 +81,7 @@ public abstract class AbstractDeclarationCollector extends Check {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
-                this.current = this.frames.get(ast);
+                current = frames.get(ast);
                 break;
             default :
                 // do nothing
@@ -89,7 +89,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     }
 
     /**
-     * Parse the next AST for declarations
+     * Parse the next AST for declarations.
      *
      * @param frameStack Stack containing the FrameTree being built
      * @param ast AST to parse
@@ -98,24 +98,21 @@ public abstract class AbstractDeclarationCollector extends Check {
         DetailAST ast) {
         final LexicalFrame frame = frameStack.peek();
         switch (ast.getType()) {
-            case TokenTypes.VARIABLE_DEF :  {
+            case TokenTypes.VARIABLE_DEF :
                 collectVariableDeclarations(ast, frame);
                 break;
-            }
-            case TokenTypes.PARAMETER_DEF : {
-                final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addName(nameAST.getText());
+            case TokenTypes.PARAMETER_DEF :
+                final DetailAST parameterAST = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addName(parameterAST.getText());
                 break;
-            }
             case TokenTypes.CLASS_DEF :
             case TokenTypes.INTERFACE_DEF :
             case TokenTypes.ENUM_DEF :
-            case TokenTypes.ANNOTATION_DEF : {
-                final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addName(nameAST.getText());
+            case TokenTypes.ANNOTATION_DEF :
+                final DetailAST classAST = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addName(classAST.getText());
                 frameStack.addFirst(new ClassFrame(frame));
                 break;
-            }
             case TokenTypes.SLIST :
                 frameStack.addFirst(new BlockFrame(frame));
                 break;
@@ -142,7 +139,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     }
 
     /**
-     * collect Variable Declarations
+     * Collect Variable Declarations.
      * @param ast variable token
      * @param frame current frame
      */
@@ -152,7 +149,7 @@ public abstract class AbstractDeclarationCollector extends Check {
         if (frame instanceof ClassFrame) {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (ScopeUtils.inInterfaceBlock(ast)
+            if (ScopeUtils.isInInterfaceBlock(ast)
                     || mods.branchContains(TokenTypes.LITERAL_STATIC)) {
                 ((ClassFrame) frame).addStaticMember(name);
             }
@@ -164,7 +161,6 @@ public abstract class AbstractDeclarationCollector extends Check {
             frame.addName(name);
         }
     }
-
 
     /**
      * End parsing of the AST for declarations.
@@ -182,7 +178,7 @@ public abstract class AbstractDeclarationCollector extends Check {
             case TokenTypes.SLIST :
             case TokenTypes.METHOD_DEF :
             case TokenTypes.CTOR_DEF :
-                this.frames.put(ast, frameStack.poll());
+                frames.put(ast, frameStack.poll());
                 break;
             default :
                 // do nothing
@@ -212,7 +208,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     }
 
     /**
-     * Find frame containing declaration
+     * Find frame containing declaration.
      * @param name name of the declaration to find
      * @return LexicalFrame containing declaration or null
      */
@@ -228,7 +224,6 @@ public abstract class AbstractDeclarationCollector extends Check {
     /**
      * A declaration frame.
      * @author Stephen Bloch
-     * June 19, 2003
      */
     private static class LexicalFrame {
         /** Set of name of variables declared in this frame. */
@@ -239,7 +234,7 @@ public abstract class AbstractDeclarationCollector extends Check {
         private final LexicalFrame parent;
 
         /**
-         * constructor -- invokable only via super() from subclasses
+         * Constructor -- invokable only via super() from subclasses.
          *
          * @param parent parent frame
          */
@@ -248,14 +243,14 @@ public abstract class AbstractDeclarationCollector extends Check {
             varNames = Sets.newHashSet();
         }
 
-        /** add a name to the frame.
+        /** Add a name to the frame.
          * @param nameToAdd the name we're adding
          */
         void addName(String nameToAdd) {
             varNames.add(nameToAdd);
         }
 
-        /** check whether the frame contains a given name.
+        /** Check whether the frame contains a given name.
          * @param nameToFind the name we're looking for
          * @return whether it was found
          */
@@ -263,20 +258,20 @@ public abstract class AbstractDeclarationCollector extends Check {
             return varNames.contains(nameToFind);
         }
 
-        /** check whether the frame contains a given name.
+        /** Check whether the frame contains a given name.
          * @param nameToFind the name we're looking for
          * @return whether it was found
          */
         LexicalFrame getIfContains(String nameToFind) {
+            LexicalFrame frame = null;
+
             if (contains(nameToFind)) {
-                return this;
+                frame = this;
             }
             else if (parent != null) {
-                return parent.getIfContains(nameToFind);
+                frame = parent.getIfContains(nameToFind);
             }
-            else {
-                return null;
-            }
+            return frame;
         }
     }
 
@@ -287,7 +282,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     private static class GlobalFrame extends LexicalFrame {
 
         /**
-         * Constructor for the root of the FrameTree
+         * Constructor for the root of the FrameTree.
          */
         protected GlobalFrame() {
             super(null);
@@ -300,6 +295,7 @@ public abstract class AbstractDeclarationCollector extends Check {
      */
     private static class MethodFrame extends LexicalFrame {
         /**
+         * Creates method frame.
          * @param parent parent frame
          */
         protected MethodFrame(LexicalFrame parent) {
@@ -324,10 +320,10 @@ public abstract class AbstractDeclarationCollector extends Check {
         private final Set<String> staticMethods;
 
         /**
-         * Creates new instance of ClassFrame
+         * Creates new instance of ClassFrame.
          * @param parent parent frame
          */
-        public ClassFrame(LexicalFrame parent) {
+        ClassFrame(LexicalFrame parent) {
             super(parent);
             instanceMembers = Sets.newHashSet();
             instanceMethods = Sets.newHashSet();
@@ -406,6 +402,7 @@ public abstract class AbstractDeclarationCollector extends Check {
     private static class BlockFrame extends LexicalFrame {
 
         /**
+         * Creates block frame.
          * @param parent parent frame
          */
         protected BlockFrame(LexicalFrame parent) {

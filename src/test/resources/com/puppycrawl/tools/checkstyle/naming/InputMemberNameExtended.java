@@ -81,4 +81,3 @@ enum Direction {
           return null;
     }
 }
-

@@ -20,15 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
-import static org.junit.Assert.fail;
 
-import java.text.NumberFormat;
-
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -65,8 +62,6 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("max", "0");
 
         final long largerThanMaxInt = 3486784401L;
-        // use i18n for number formatting so test wont fail in non-english environments
-        final String expectedComplexity = NumberFormat.getInstance().format(largerThanMaxInt);
 
         String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
@@ -79,24 +74,17 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(NPathComplexityCheck.class);
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
-        }
-        catch (Exception ex) {
-            // Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
     }
 
     @Test
     public void testGetAcceptableTokens() {
         NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         int[] actual = npathComplexityCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.STATIC_INIT,
@@ -120,7 +108,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         int[] actual = npathComplexityCheckObj.getRequiredTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.INSTANCE_INIT,

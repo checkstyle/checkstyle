@@ -55,3 +55,14 @@ class MyClassWithGenericSuperMethod1
 class TestNative {
     public native void finalize();
 }
+
+class OneMore {
+    
+    public void doSmt() throws Throwable {
+        {
+            {
+                super.finalize();
+            }
+        }
+    }
+}

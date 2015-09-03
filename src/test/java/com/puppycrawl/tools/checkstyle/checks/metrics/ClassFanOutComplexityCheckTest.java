@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -40,6 +40,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, 3, 0),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig,
@@ -53,8 +54,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         checkConfig.addAttribute("max", "0");
 
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
@@ -63,26 +63,19 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         DefaultConfiguration checkConfig =
             createCheckConfig(ClassFanOutComplexityCheck.class);
-        String[] expected = {
-        };
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        try {
-            createChecker(checkConfig);
-            verify(checkConfig,
-                getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
-                expected);
-        }
-        catch (Exception ex) {
-            //Exception is not expected
-            fail();
-        }
+        createChecker(checkConfig);
+        verify(checkConfig,
+            getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
+            expected);
     }
 
     @Test
     public void testGetAcceptableTokens() {
         ClassFanOutComplexityCheck classFanOutComplexityCheckObj = new ClassFanOutComplexityCheck();
         int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
-        int[] expected = new int[] {
+        int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,

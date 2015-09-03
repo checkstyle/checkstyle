@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -30,6 +31,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ParameterNumberCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        ParameterNumberCheck checkObj = new ParameterNumberCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testGetAcceptableTokens() {
         ParameterNumberCheck paramNumberCheckObj =

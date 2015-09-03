@@ -26,6 +26,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 
+import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -33,17 +36,21 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressionCommentFilterTest
     extends BaseCheckTestSupport {
-    private static String[] sAllMessages = {
+    private static final String[] ALL_MESSAGES = {
         "13:17: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "19:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -60,13 +67,13 @@ public class SuppressionCommentFilterTest
         "71:11: Catching 'Exception' is not allowed.",
         "77:11: Catching 'RuntimeException' is not allowed.",
         "78:11: Catching 'Exception' is not allowed.",
+        "86:31: Catching 'Exception' is not allowed.",
     };
 
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = {
-        };
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -80,6 +87,7 @@ public class SuppressionCommentFilterTest
             "43:17: Name 'T' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "64:23: Catching 'Exception' is not allowed.",
             "71:11: Catching 'Exception' is not allowed.",
+            "86:31: Catching 'Exception' is not allowed.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -104,6 +112,7 @@ public class SuppressionCommentFilterTest
         filterConfig.addAttribute("checkCPP", "false");
         final String[] suppressed = {
             "16:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "86:31: Catching 'Exception' is not allowed.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -182,20 +191,20 @@ public class SuppressionCommentFilterTest
         verifySuppressed(filterConfig, suppressed);
     }
 
-    public static DefaultConfiguration createFilterConfig(Class<?> aClass) {
+    private static DefaultConfiguration createFilterConfig(Class<?> aClass) {
         return new DefaultConfiguration(aClass.getName());
     }
 
-    protected void verifySuppressed(Configuration aFilterConfig,
-                                    String[] aSuppressed)
+    private void verifySuppressed(Configuration aFilterConfig,
+            String... aSuppressed)
         throws Exception {
         verify(createChecker(aFilterConfig),
                getPath("filters/InputSuppressionCommentFilter.java"),
-               removeSuppressed(sAllMessages, aSuppressed));
+               removeSuppressed(ALL_MESSAGES, aSuppressed));
     }
 
     @Override
-    protected Checker createChecker(Configuration aFilterConfig)
+    protected Checker createChecker(Configuration checkConfig)
             throws CheckstyleException, UnsupportedEncodingException {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
@@ -205,8 +214,8 @@ public class SuppressionCommentFilterTest
         checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (aFilterConfig != null) {
-            checkerConfig.addChild(aFilterConfig);
+        if (checkConfig != null) {
+            checkerConfig.addChild(checkConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
@@ -218,7 +227,7 @@ public class SuppressionCommentFilterTest
         return checker;
     }
 
-    private String[] removeSuppressed(String[] from, String[] remove) {
+    private static String[] removeSuppressed(String[] from, String... remove) {
         final Collection<String> coll =
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));
@@ -237,5 +246,41 @@ public class SuppressionCommentFilterTest
         );
 
         assertEquals("Tag[line=0; col=1; on=false; text='text']", tag.toString());
+    }
+
+    @Test(expected = ConversionException.class)
+    public void testInvalidCheckFormat() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("checkFormat", "e[l");
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        verifySuppressed(filterConfig, suppressed);
+    }
+
+    @Test(expected = ConversionException.class)
+    public void testInvalidMessageFormat() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("messageFormat", "e[l");
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        verifySuppressed(filterConfig, suppressed);
+    }
+
+    @Test
+    public void testAcceptNullLocalizedMessage() {
+        final SuppressionCommentFilter filter = new SuppressionCommentFilter();
+        final AuditEvent auditEvent = new AuditEvent(this);
+        Assert.assertTrue(filter.accept(auditEvent));
+    }
+
+    @Test
+    public void testAcceptNullFileContents() {
+        final LocalizedMessage message =
+            new LocalizedMessage(1, 1,
+                "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                    getClass(), null);
+        final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
+        SuppressionCommentFilter filter = new SuppressionCommentFilter();
+        Assert.assertTrue(filter.accept(auditEvent));
     }
 }

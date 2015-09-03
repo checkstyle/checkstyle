@@ -1,14 +1,12 @@
 package com.google.checkstyle.test.chapter5naming.rule523methodnames;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MethodNameTest extends BaseCheckTestSupport{
@@ -16,12 +14,12 @@ public class MethodNameTest extends BaseCheckTestSupport{
 	private static ConfigurationBuilder builder;
     
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void methodNameTest() throws IOException, Exception {
+    public void methodNameTest() throws Exception {
         
         Configuration checkConfig = builder.getCheckConfig("MethodName");
         String msgKey = "name.invalidPattern";
@@ -60,5 +58,3 @@ public class MethodNameTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

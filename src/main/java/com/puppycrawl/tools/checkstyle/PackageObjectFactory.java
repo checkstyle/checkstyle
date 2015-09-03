@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.lang.reflect.Constructor;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -36,19 +37,25 @@ class PackageObjectFactory implements ModuleFactory {
     /** Logger for PackageObjectFactory. */
     private static final Log LOG = LogFactory.getLog(PackageObjectFactory.class);
 
-    /** a list of package names to prepend to class names */
+    /** Log message when ignoring exception. */
+    private static final String IGNORING_EXCEPTION_MESSAGE = "Keep looking, ignoring exception";
+
+    /** Exception message when it is unable to create a class instance. */
+    private static final String UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE = "Unable to instantiate ";
+
+    /** A list of package names to prepend to class names. */
     private final Set<String> packages;
 
-    /** the class loader used to load Checkstyle core and custom modules. */
+    /** The class loader used to load Checkstyle core and custom modules. */
     private final ClassLoader moduleClassLoader;
 
     /**
-     * Creates a new <code>PackageObjectFactory</code> instance.
+     * Creates a new {@code PackageObjectFactory} instance.
      * @param packageNames the list of package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
      */
-    public PackageObjectFactory(Set<String> packageNames,
+    PackageObjectFactory(Set<String> packageNames,
             ClassLoader moduleClassLoader) {
         if (moduleClassLoader == null) {
             throw new IllegalArgumentException(
@@ -74,7 +81,7 @@ class PackageObjectFactory implements ModuleFactory {
      * an instance of a classname obtained by concatenating the given
      * to a package name from a given list of package names.
      * @param name the name of a class.
-     * @return the <code>Object</code>
+     * @return the {@code Object}
      * @throws CheckstyleException if an error occurs.
      */
     private Object doMakeObject(String name)
@@ -84,7 +91,7 @@ class PackageObjectFactory implements ModuleFactory {
             return createObject(name);
         }
         catch (final CheckstyleException ex) {
-            LOG.debug("Keep looking, ignoring exception", ex);
+            LOG.debug(IGNORING_EXCEPTION_MESSAGE, ex);
         }
 
         //now try packages
@@ -95,27 +102,29 @@ class PackageObjectFactory implements ModuleFactory {
                 return createObject(className);
             }
             catch (final CheckstyleException ex) {
-                LOG.debug("Keep looking, ignoring exception", ex);
+                LOG.debug(IGNORING_EXCEPTION_MESSAGE, ex);
             }
         }
 
-        throw new CheckstyleException("Unable to instantiate " + name);
+        throw new CheckstyleException(UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE + name);
     }
 
     /**
      * Creates a new instance of a named class.
      * @param className the name of the class to instantiate.
-     * @return the <code>Object</code> created by loader.
+     * @return the {@code Object} created by loader.
      * @throws CheckstyleException if an error occurs.
      */
     private Object createObject(String className)
         throws CheckstyleException {
         try {
             final Class<?> clazz = Class.forName(className, true, moduleClassLoader);
-            return clazz.newInstance();
+            final Constructor<?> declaredConstructor = clazz.getDeclaredConstructor();
+            declaredConstructor.setAccessible(true);
+            return declaredConstructor.newInstance();
         }
-        catch (final ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            throw new CheckstyleException("Unable to find class for " + className, e);
+        catch (final ReflectiveOperationException exception) {
+            throw new CheckstyleException("Unable to find class for " + className, exception);
         }
     }
 
@@ -126,7 +135,7 @@ class PackageObjectFactory implements ModuleFactory {
      * an instance of a classname obtained by concatenating the given name
      * to a package name from a given list of package names.
      * @param name the name of a class.
-     * @return the <code>Object</code> created by loader.
+     * @return the {@code Object} created by loader.
      * @throws CheckstyleException if an error occurs.
      */
     @Override
@@ -135,14 +144,14 @@ class PackageObjectFactory implements ModuleFactory {
         try {
             return doMakeObject(name);
         }
-        catch (final CheckstyleException ex) {
+        catch (final CheckstyleException ignored) {
             //try again with suffix "Check"
             try {
                 return doMakeObject(name + "Check");
             }
             catch (final CheckstyleException ex2) {
                 throw new CheckstyleException(
-                    "Unable to instantiate " + name, ex2);
+                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE + name, ex2);
             }
         }
     }

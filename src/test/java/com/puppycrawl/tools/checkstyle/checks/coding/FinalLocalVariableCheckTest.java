@@ -23,10 +23,14 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCh
 
 import java.io.File;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class FinalLocalVariableCheckTest
     extends BaseCheckTestSupport {
@@ -78,9 +82,7 @@ public class FinalLocalVariableCheckTest
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
 
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("coding/InputFinalLocalVariableNativeMethods.java"), expected);
     }
 
@@ -90,9 +92,7 @@ public class FinalLocalVariableCheckTest
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
 
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("coding/InputFinalLocalVariableCheckFalsePositive.java"), expected);
     }
 
@@ -126,7 +126,7 @@ public class FinalLocalVariableCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
-        final String[] expected = {};
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
                 + "tools/checkstyle/naming/InputFinalLocalVariableNameLambda.java")
                 .getCanonicalPath(), expected);
@@ -144,5 +144,21 @@ public class FinalLocalVariableCheckTest
             "17:13: " + "Variable 'x' should be declared final.",
         };
         verify(checkConfig, getPath("coding/InputFinalLocalVariableNameShadowing.java"), expected);
+    }
+
+    @Test
+    public void testImproperToken() throws Exception {
+        FinalLocalVariableCheck check = new FinalLocalVariableCheck();
+
+        DetailAST lambdaAst = new DetailAST();
+        lambdaAst.setType(TokenTypes.LAMBDA);
+
+        try {
+            check.visitToken(lambdaAst);
+            Assert.fail();
+        }
+        catch (IllegalStateException e) {
+            // it is OK
+        }
     }
 }

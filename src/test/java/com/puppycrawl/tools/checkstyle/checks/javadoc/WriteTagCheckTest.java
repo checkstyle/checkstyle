@@ -29,9 +29,11 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
+ * Unit test for WriteTagCheck.
  * @author Daniel Grenner
  */
 public class WriteTagCheckTest extends BaseCheckTestSupport {
@@ -53,8 +56,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultSettings() throws Exception {
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
@@ -109,7 +111,6 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
-
     @Test
     public void testMissingTag() throws Exception {
         checkConfig.addAttribute("tag", "@missingtag");
@@ -149,8 +150,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tag", "@todo2");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("severity", "ignore");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
@@ -159,8 +159,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "0*");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
@@ -193,31 +192,31 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
     }
 
     @Override
-    protected void verify(Checker c,
+    protected void verify(Checker checker,
                           File[] processedFiles,
                           String messageFileName,
-                          String[] expected)
+                          String... expected)
         throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = c.process(theFiles);
+        final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final ByteArrayInputStream bais =
-            new ByteArrayInputStream(BAOS.toByteArray());
-        final LineNumberReader lnr =
-            new LineNumberReader(new InputStreamReader(bais));
+        final ByteArrayInputStream localStream =
+            new ByteArrayInputStream(stream.toByteArray());
+        try (final LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
 
-        for (int i = 0; i < expected.length; i++) {
-            final String expectedResult = messageFileName + ":" + expected[i];
-            final String actual = lnr.readLine();
-            assertEquals("error message " + i, expectedResult, actual);
+            for (int i = 0; i < expected.length; i++) {
+                final String expectedResult = messageFileName + ":" + expected[i];
+                final String actual = lnr.readLine();
+                assertEquals("error message " + i, expectedResult, actual);
+            }
+
+            assertTrue("unexpected output: " + lnr.readLine(),
+                    expected.length >= errs);
         }
-
-        assertTrue("unexpected output: " + lnr.readLine(),
-                   expected.length >= errs);
-
-        c.destroy();
+        checker.destroy();
     }
 }

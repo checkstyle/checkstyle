@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -182,6 +183,11 @@ public class OperatorWrapCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.COLON) {
             final DetailAST parent = ast.getParent();
@@ -207,7 +213,7 @@ public class OperatorWrapCheck
             log(lineNo, colNo, LINE_NEW, text);
         }
         else if (wOp == WrapOption.EOL
-                  && Utils.whitespaceBefore(colNo - 1, currentLine)) {
+                && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
     }

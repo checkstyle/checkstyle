@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * <p>Checks that if a class defines a covariant method equals,
@@ -50,7 +50,7 @@ public class CovariantEqualsCheck extends Check {
      */
     public static final String MSG_KEY = "covariant.equals";
 
-    /** Set of equals method definitions */
+    /** Set of equals method definitions. */
     private final Set<DetailAST> equalsMethods = Sets.newHashSet();
 
     @Override
@@ -71,12 +71,12 @@ public class CovariantEqualsCheck extends Check {
     @Override
     public void visitToken(DetailAST ast) {
         equalsMethods.clear();
-        boolean hasEqualsObject = false;
 
         // examine method definitions for equals methods
         final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
         if (objBlock != null) {
             DetailAST child = objBlock.getFirstChild();
+            boolean hasEqualsObject = false;
             while (child != null) {
                 if (child.getType() == TokenTypes.METHOD_DEF
                         && CheckUtils.isEqualsMethod(child)) {
@@ -105,7 +105,7 @@ public class CovariantEqualsCheck extends Check {
     /**
      * Tests whether a method's first parameter is an Object.
      * @param methodDefAst the method definition AST to test.
-     * Precondition: ast is a TokenTypes.METHOD_DEF node.
+     *     Precondition: ast is a TokenTypes.METHOD_DEF node.
      * @return true if ast has first parameter of type Object.
      */
     private static boolean isFirstParameterObject(DetailAST methodDefAst) {

@@ -38,9 +38,11 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import com.google.common.collect.Lists;
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Wrapper command line program for the Checker.
@@ -48,6 +50,30 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  *
  **/
 public final class Main {
+    /** Exit code returned when execution finishes with {@link CheckstyleException}. */
+    private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
+
+    /** Name for the option 'v'. */
+    private static final String OPTION_V_NAME = "v";
+
+    /** Name for the option 'c'. */
+    private static final String OPTION_C_NAME = "c";
+
+    /** Name for the option 'f'. */
+    private static final String OPTION_F_NAME = "f";
+
+    /** Name for the option 'p'. */
+    private static final String OPTION_P_NAME = "p";
+
+    /** Name for the option 'o'. */
+    private static final String OPTION_O_NAME = "o";
+
+    /** Name for 'xml' format. */
+    private static final String XML_FORMAT_NAME = "xml";
+
+    /** Name for 'plain' format. */
+    private static final String PLAIN_FORMAT_NAME = "plain";
+
     /** Don't create instance of this class, use {@link #main(String[])} method instead. */
     private Main() {
     }
@@ -55,9 +81,8 @@ public final class Main {
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
-     * @param args the command line arguments
+     * @param args the command line arguments.
      * @throws UnsupportedEncodingException if there is a problem to use UTF-8
-     * @throws CheckstyleException if there is a problem with parsing a property file
      * @throws FileNotFoundException if there is a problem with files access
      **/
     public static void main(String... args) throws UnsupportedEncodingException,
@@ -66,7 +91,6 @@ public final class Main {
         boolean cliViolations = false;
         // provide proper exit code based on results.
         final int exitWithCliViolation = -1;
-        final int exitWithCheckstyleException = -2;
         int exitStatus = 0;
 
         try {
@@ -74,7 +98,7 @@ public final class Main {
             final CommandLine commandLine = parseCli(args);
 
             // show version and exit if it is requested
-            if (commandLine.hasOption("v")) {
+            if (commandLine.hasOption(OPTION_V_NAME)) {
                 System.out.println("Checkstyle version: "
                         + Main.class.getPackage().getImplementationVersion());
                 exitStatus = 0;
@@ -83,19 +107,19 @@ public final class Main {
                 // return error is smth is wrong in arguments
                 final List<String> messages = validateCli(commandLine);
                 cliViolations = !messages.isEmpty();
-                if (!cliViolations) {
-                    // create config helper object
-                    final CliOptions config = convertCliToPojo(commandLine);
-                    // run Checker
-                    errorCounter = runCheckstyle(config);
-                    exitStatus = errorCounter;
-                }
-                else {
+                if (cliViolations) {
                     exitStatus = exitWithCliViolation;
                     errorCounter = 1;
                     for (String message : messages) {
                         System.out.println(message);
                     }
+                }
+                else {
+                    // create config helper object
+                    final CliOptions config = convertCliToPojo(commandLine);
+                    // run Checker
+                    errorCounter = runCheckstyle(config);
+                    exitStatus = errorCounter;
                 }
             }
         }
@@ -108,7 +132,7 @@ public final class Main {
             printUsage();
         }
         catch (CheckstyleException e) {
-            exitStatus = exitWithCheckstyleException;
+            exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
             errorCounter = 1;
             System.out.println(e.getMessage());
         }
@@ -117,7 +141,9 @@ public final class Main {
             if (errorCounter != 0 && !cliViolations) {
                 System.out.println(String.format("Checkstyle ends with %d errors.", errorCounter));
             }
-            System.exit(exitStatus);
+            if (exitStatus != 0) {
+                System.exit(exitStatus);
+            }
         }
     }
 
@@ -138,36 +164,34 @@ public final class Main {
     }
 
     /**
-     * Do validation of Command line options
+     * Do validation of Command line options.
      * @param cmdLine command line object
      * @return list of violations
      */
     private static List<String> validateCli(CommandLine cmdLine) {
         final List<String> result = new ArrayList<>();
         // ensure a configuration file is specified
-        if (!cmdLine.hasOption("c")) {
-            result.add("Must specify a config XML file.");
-        }
-        else {
+        if (cmdLine.hasOption(OPTION_C_NAME)) {
             // validate optional parameters
-            if (cmdLine.hasOption("f")) {
-                final String format = cmdLine.getOptionValue("f");
-                if (!"plain".equals(format) && !"xml".equals(format)) {
+            if (cmdLine.hasOption(OPTION_F_NAME)) {
+                final String format = cmdLine.getOptionValue(OPTION_F_NAME);
+                if (!PLAIN_FORMAT_NAME.equals(format) && !XML_FORMAT_NAME.equals(format)) {
                     result.add(String.format("Invalid output format."
-                            + " Found '%s' but expected 'plain' or 'xml'.", format));
+                            + " Found '%s' but expected '%s' or '%s'.",
+                            format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME));
                 }
             }
-            if (cmdLine.hasOption("p")) {
-                final String propertiesLocation = cmdLine.getOptionValue("p");
+            if (cmdLine.hasOption(OPTION_P_NAME)) {
+                final String propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
                 final File file = new File(propertiesLocation);
                 if (!file.exists()) {
                     result.add(String.format("Could not find file '%s'.", propertiesLocation));
                 }
             }
-            if (cmdLine.hasOption("o")) {
-                final String outputLocation = cmdLine.getOptionValue("o");
+            if (cmdLine.hasOption(OPTION_O_NAME)) {
+                final String outputLocation = cmdLine.getOptionValue(OPTION_O_NAME);
                 final File file = new File(outputLocation);
-                if (file.exists() && !(file.canRead() && file.canWrite())) {
+                if (file.exists() && !file.canWrite()) {
                     result.add(String.format("Permission denied : '%s'.", outputLocation));
                 }
             }
@@ -176,24 +200,27 @@ public final class Main {
                 result.add("Must specify files to process, found 0.");
             }
         }
+        else {
+            result.add("Must specify a config XML file.");
+        }
 
         return result;
     }
 
     /**
-     * Util method to convert ComandLine type to POJO object
+     * Util method to convert ComandLine type to POJO object.
      * @param cmdLine command line object
      * @return command line option as POJO object
      */
     private static CliOptions convertCliToPojo(CommandLine cmdLine) {
         final CliOptions conf = new CliOptions();
-        conf.format = cmdLine.getOptionValue("f");
+        conf.format = cmdLine.getOptionValue(OPTION_F_NAME);
         if (conf.format == null) {
-            conf.format = "plain";
+            conf.format = PLAIN_FORMAT_NAME;
         }
-        conf.outputLocation = cmdLine.getOptionValue("o");
-        conf.configLocation = cmdLine.getOptionValue("c");
-        conf.propertiesLocation = cmdLine.getOptionValue("p");
+        conf.outputLocation = cmdLine.getOptionValue(OPTION_O_NAME);
+        conf.configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
+        conf.propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
         conf.files = getFilesToProcess(cmdLine.getArgs());
         return conf;
     }
@@ -213,10 +240,14 @@ public final class Main {
     private static int runCheckstyle(CliOptions cliOptions)
             throws CheckstyleException, UnsupportedEncodingException, FileNotFoundException {
         // setup the properties
-        final Properties props =
-                cliOptions.propertiesLocation != null
-                        ? loadProperties(new File(cliOptions.propertiesLocation))
-                        : System.getProperties();
+        final Properties props;
+
+        if (cliOptions.propertiesLocation == null) {
+            props = System.getProperties();
+        }
+        else {
+            props = loadProperties(new File(cliOptions.propertiesLocation));
+        }
 
         // create a configuration
         final Configuration config = ConfigurationLoader.loadConfiguration(
@@ -259,12 +290,17 @@ public final class Main {
             throws CheckstyleException {
         final Properties properties = new Properties();
 
-        try (FileInputStream fis = new FileInputStream(file)) {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
             properties.load(fis);
         }
         catch (final IOException e) {
             throw new CheckstyleException(String.format(
                     "Unable to load properties from file '%s'.", file.getAbsolutePath()), e);
+        }
+        finally {
+            Closeables.closeQuietly(fis);
         }
 
         return properties;
@@ -275,7 +311,7 @@ public final class Main {
      *
      * @param format format of the audit listener
      * @param outputLocation the location of output
-     * @return a fresh new <code>AuditListener</code>
+     * @return a fresh new {@code AuditListener}
      * @exception UnsupportedEncodingException if there is problem to use UTf-8
      * @exception FileNotFoundException when provided output location is not found
      */
@@ -284,31 +320,34 @@ public final class Main {
             throws UnsupportedEncodingException, FileNotFoundException {
 
         // setup the output stream
-        OutputStream out = null;
-        boolean closeOut = false;
+        OutputStream out;
+        boolean closeOutputStream;
         if (outputLocation != null) {
             out = new FileOutputStream(outputLocation);
-            closeOut = true;
+            closeOutputStream = true;
         }
         else {
             out = System.out;
-            closeOut = false;
+            closeOutputStream = false;
         }
 
         // setup a listener
-        AuditListener listener = null;
-        switch (format) {
-            case "xml":
-                listener = new XMLLogger(out, closeOut);
-                break;
+        AuditListener listener;
+        if (XML_FORMAT_NAME.equals(format)) {
+            listener = new XMLLogger(out, closeOutputStream);
 
-            case "plain":
-                listener = new DefaultLogger(out, closeOut);
-                break;
+        }
+        else if (PLAIN_FORMAT_NAME.equals(format)) {
+            listener = new DefaultLogger(out, closeOutputStream);
 
-            default:
-                throw new IllegalStateException("Invalid output format. Found '" + format
-                        + "' but expected 'plain' or 'xml'.");
+        }
+        else {
+            if (closeOutputStream) {
+                CommonUtils.close(out);
+            }
+            throw new IllegalStateException(String.format(
+                    "Invalid output format. Found '%s' but expected '%s' or '%s'.",
+                    format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME));
         }
 
         return listener;
@@ -371,25 +410,27 @@ public final class Main {
      */
     private static Options buildOptions() {
         final Options options = new Options();
-        options.addOption("c", true, "Sets the check configuration file to use.");
-        options.addOption("o", true, "Sets the output file. Defaults to stdout");
-        options.addOption("p", true, "Loads the properties file");
-        options.addOption("f", true, "Sets the output format. (plain|xml). Defaults to plain");
-        options.addOption("v", false, "Print product version and exit");
+        options.addOption(OPTION_C_NAME, true, "Sets the check configuration file to use.");
+        options.addOption(OPTION_O_NAME, true, "Sets the output file. Defaults to stdout");
+        options.addOption(OPTION_P_NAME, true, "Loads the properties file");
+        options.addOption(OPTION_F_NAME, true, String.format(
+                "Sets the output format. (%s|%s). Defaults to %s",
+                PLAIN_FORMAT_NAME, XML_FORMAT_NAME, PLAIN_FORMAT_NAME));
+        options.addOption(OPTION_V_NAME, false, "Print product version and exit");
         return options;
     }
 
     /** Helper structure to clear show what is required for Checker to run. **/
     private static class CliOptions {
-        /** properties file location */
+        /** Properties file location. */
         private String propertiesLocation;
-        /** config file location */
+        /** Config file location. */
         private String configLocation;
-        /** output format */
+        /** Output format. */
         private String format;
-        /** output file location */
+        /** Output file location. */
         private String outputLocation;
-        /** list of file to validate */
+        /** List of file to validate. */
         private List<File> files;
     }
 }

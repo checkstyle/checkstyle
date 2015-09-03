@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>Abstract class for checking the padding of parentheses. That is whether a
@@ -57,6 +57,12 @@ abstract class AbstractParenPadCheck
      */
     public static final String WS_NOT_PRECEDED = "ws.notPreceded";
 
+    /** Open parenthesis literal. */
+    private static final char OPEN_PARENTHESIS = '(';
+
+    /** Close parenthesis literal. */
+    private static final char CLOSE_PARENTHESIS = ')';
+
     /**
      * Sets the paren pad option to nospace.
      */
@@ -72,14 +78,14 @@ abstract class AbstractParenPadCheck
         final String line = getLines()[ast.getLineNo() - 1];
         final int after = ast.getColumnNo() + 1;
         if (after < line.length()) {
-            if (PadOption.NOSPACE == getAbstractOption()
+            if (getAbstractOption() == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(after))) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, "(");
+                log(ast.getLineNo(), after, WS_FOLLOWED, OPEN_PARENTHESIS);
             }
-            else if (PadOption.SPACE == getAbstractOption()
+            else if (getAbstractOption() == PadOption.SPACE
                      && !Character.isWhitespace(line.charAt(after))
-                     && line.charAt(after) != ')') {
-                log(ast.getLineNo(), after, WS_NOT_FOLLOWED, "(");
+                     && line.charAt(after) != CLOSE_PARENTHESIS) {
+                log(ast.getLineNo(), after, WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
             }
         }
     }
@@ -92,16 +98,16 @@ abstract class AbstractParenPadCheck
         final String line = getLines()[ast.getLineNo() - 1];
         final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
-            if (PadOption.NOSPACE == getAbstractOption()
+            if (getAbstractOption() == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line)) {
-                log(ast.getLineNo(), before, WS_PRECEDED, ")");
+                && !CommonUtils.hasWhitespaceBefore(before, line)) {
+                log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_PARENTHESIS);
             }
-            else if (PadOption.SPACE == getAbstractOption()
+            else if (getAbstractOption() == PadOption.SPACE
                 && !Character.isWhitespace(line.charAt(before))
-                && line.charAt(before) != '(') {
+                && line.charAt(before) != OPEN_PARENTHESIS) {
                 log(ast.getLineNo(), ast.getColumnNo(),
-                    WS_NOT_PRECEDED, ")");
+                    WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
         }
     }

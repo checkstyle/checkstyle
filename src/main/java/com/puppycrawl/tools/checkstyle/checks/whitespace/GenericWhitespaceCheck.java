@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.puppycrawl.tools.checkstyle.Utils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -93,12 +93,18 @@ public class GenericWhitespaceCheck extends Check {
      */
     public static final String WS_ILLEGAL_FOLLOW = "ws.illegalFollow";
 
+    /** Open angle bracket literal. */
+    private static final String OPEN_ANGLE_BRACKET = "<";
+
+    /** Close angle bracket literal. */
+    private static final String CLOSE_ANGLE_BRACKET = ">";
+
     /** Used to count the depth of a Generic expression. */
     private int depth;
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -107,8 +113,13 @@ public class GenericWhitespaceCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
-        // Reset for each tree, just incase there are errors in preceeding
+        // Reset for each tree, just increase there are errors in preceding
         // trees.
         depth = 0;
     }
@@ -139,15 +150,15 @@ public class GenericWhitespaceCheck extends Check {
         final int after = ast.getColumnNo() + 1;
 
         if (before >= 0 && Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line)) {
-            log(ast.getLineNo(), before, WS_PRECEDED, ">");
+                && !CommonUtils.hasWhitespaceBefore(before, line)) {
+            log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
         if (after < line.length()) {
 
             // Check if the last Generic, in which case must be a whitespace
             // or a '(),[.'.
-            if (1 == depth) {
+            if (depth == 1) {
                 processSingleGeneric(ast, line, after);
             }
             else {
@@ -157,7 +168,7 @@ public class GenericWhitespaceCheck extends Check {
     }
 
     /**
-     * process Nested generics
+     * Process Nested generics.
      * @param ast token
      * @param line line content
      * @param after position after
@@ -173,21 +184,21 @@ public class GenericWhitespaceCheck extends Check {
         //
         final int indexOfAmp = line.indexOf('&', after);
         if (indexOfAmp >= 0
-            && whitespaceBetween(after, indexOfAmp, line)) {
+            && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
                 log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
             }
             else if (indexOfAmp - after != 1) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+                log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (line.charAt(after) == ' ') {
-            log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+            log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
         }
     }
 
     /**
-     * process Single-generic
+     * Process Single-generic.
      * @param ast token
      * @param line line content
      * @param after position after
@@ -201,28 +212,26 @@ public class GenericWhitespaceCheck extends Check {
         //                        +--- whitespace not allowed
         if (isGenericBeforeMethod(ast)) {
             if (Character.isWhitespace(charAfter)) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, ">");
+                log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (!Character.isWhitespace(charAfter)
             && charAfter != '(' && charAfter != ')'
             && charAfter != ',' && charAfter != '['
             && charAfter != '.' && charAfter != ':') {
-            log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, ">");
+            log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
     }
 
     /**
-     * is generic before method reference
+     * Is generic before method reference.
      * @param ast ast
      * @return true if generic before a method ref
      */
     private static boolean isGenericBeforeMethod(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.TYPE_ARGUMENTS
-                && ast.getParent().getParent().getType()
-                    == TokenTypes.DOT
-                && ast.getParent().getParent().getParent().getType()
-                    == TokenTypes.METHOD_CALL
+                && ast.getParent().getParent().getType() == TokenTypes.DOT
+                && ast.getParent().getParent().getParent().getType() == TokenTypes.METHOD_CALL
                 || isAfterMethodReference(ast);
     }
 
@@ -255,24 +264,24 @@ public class GenericWhitespaceCheck extends Check {
             // Detect if the first case
             final DetailAST parent = ast.getParent();
             final DetailAST grandparent = parent.getParent();
-            if (TokenTypes.TYPE_PARAMETERS == parent.getType()
-                && (TokenTypes.CTOR_DEF == grandparent.getType()
-                    || TokenTypes.METHOD_DEF == grandparent.getType())) {
+            if (parent.getType() == TokenTypes.TYPE_PARAMETERS
+                && (grandparent.getType() == TokenTypes.CTOR_DEF
+                    || grandparent.getType() == TokenTypes.METHOD_DEF)) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
-                    log(ast.getLineNo(), before, WS_NOT_PRECEDED, "<");
+                    log(ast.getLineNo(), before, WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
-                && !Utils.whitespaceBefore(before, line)) {
-                log(ast.getLineNo(), before, WS_PRECEDED, "<");
+                && !CommonUtils.hasWhitespaceBefore(before, line)) {
+                log(ast.getLineNo(), before, WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }
 
         if (after < line.length()
                 && Character.isWhitespace(line.charAt(after))) {
-            log(ast.getLineNo(), after, WS_FOLLOWED, "<");
+            log(ast.getLineNo(), after, WS_FOLLOWED, OPEN_ANGLE_BRACKET);
         }
     }
 
@@ -285,8 +294,8 @@ public class GenericWhitespaceCheck extends Check {
      * @param line the line to check
      * @return whether there are only whitespaces (or nothing)
      */
-    private static boolean whitespaceBetween(
-        int fromIndex, int toIndex, String line) {
+    private static boolean containsWhitespaceBetween(
+            int fromIndex, int toIndex, String line) {
         for (int i = fromIndex; i < toIndex; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 return false;

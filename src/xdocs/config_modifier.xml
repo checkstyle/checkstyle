@@ -11,9 +11,9 @@
 
   <head>
     <title>Modifiers</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/anchors.js"></script>
-    <script type="text/javascript" src="js/google-analytics.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -31,7 +31,7 @@
         <p>
           Checks that the order of modifiers conforms to the suggestions in
           the <a
-          href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">Java
+          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
           Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The
           correct order is:
         </p>
@@ -98,10 +98,15 @@
           Checks for redundant modifiers in:
         </p>
         <ol>
-          <li>interface and annotation definitions,</li>
-          <li>the final modifier on methods of final classes, and </li>
+          <li>Interface and annotation definitions.</li>
+          <li>Final modifier on methods of final classes.</li>
           <li>
-            inner <code>interface</code> declarations that are declared
+            Inner <code>interface</code> declarations that are declared
+            as <code>static</code>.
+          </li>
+          <li>Class constructors.</li>
+          <li>
+            Nested <code>enum</code> definitions that are declared
             as <code>static</code>.
           </li>
         </ol>
@@ -132,6 +137,44 @@
           Final classes by definition cannot be extended so the <code>final</code>
           modifier on the method of a final class is redundant.
         </p>
+
+        <p>
+          Nested <code>enum</code> types are always static by default.
+        </p>
+
+        <p>
+          Public modifier for constructors in non-public non-protected classes
+          is always obsolete:
+        </p>
+
+        <source>
+          public class PublicClass {
+            public PublicClass() {} // OK
+          }
+
+          class PackagePrivateClass {
+            public PackagePrivateClass() {} // violation expected
+          }
+        </source>
+
+        <p>For non-public protected classes public modifier is not obsolete,
+          removing public from this example will make code not compiling:
+        </p>
+
+        <source>
+          package a;
+          public class ClassWithProtectedInnerClass {
+            protected class ProtectedClass {
+              public ProtectedClass () {}
+            }
+          }
+
+          package b;
+          import a.ClassWithProtectedInnerClass;
+          public class ClassExtending extends ClassWithProtectedInnerClass {
+            ProtectedClass pc = new ProtectedClass();
+          }
+        </source>
       </subsection>
 
       <subsection name="Properties">

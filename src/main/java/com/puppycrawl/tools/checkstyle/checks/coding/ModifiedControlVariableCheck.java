@@ -31,42 +31,38 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-
 /**
- * <p>
  * Check for ensuring that for loop control variables are not modified
  * inside the for block. An example is:
- * <p>
+ *
  * <pre>
- * <code>
+ * {@code
  * for (int i = 0; i &lt; 1; i++) {
  *     i++;//violation
  * }
- * </code>
+ * }
  * </pre>
- * </p>
  * Rationale: If the control variable is modified inside the loop
- * body, the program flow becomes more difficult to follow.<br/>
+ * body, the program flow becomes more difficult to follow.<br>
  * See <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14">
  * FOR statement</a> specification for more details.
- * </p>
- * Examples:
- * <p>
+ * <p>Examples:</p>
+ *
  * <pre>
  * &lt;module name=&quot;ModifiedControlVariable&quot;&gt;
  * &lt;/module&gt;
  * </pre>
- * </p>
- * Such loop would be supressed:
- * <p>
+ *
+ * <p>Such loop would be supressed:
+ *
  * <pre>
- * <code>
- * for(int i=0;i < 10;) {
+ * {@code
+ * for(int i=0; i &lt; 10;) {
  *     i++;
  * }
- * </code>
+ * }
  * </pre>
- * </p>
+ *
  * <p>
  * By default, This Check validates
  *  <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
@@ -85,15 +81,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
- * <p>
+ *
  * <pre>
- * <code>
+ * {@code
  * for (String line: lines) {
  *     line = line.trim();   // it will skip this violation
  * }
- * </code>
+ * }
  * </pre>
- * </p>
+ *
  *
  * @author Daniel Grenner
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
@@ -107,11 +103,11 @@ public final class ModifiedControlVariableCheck extends Check {
     public static final String MSG_KEY = "modified.control.variable";
 
     /**
-     * Message thrown with IllegalStateException
+     * Message thrown with IllegalStateException.
      */
     private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
 
-    /** Operations which can change control variable in update part of the loop*/
+    /** Operations which can change control variable in update part of the loop. */
     private static final Set<Integer> MUTATION_OPERATIONS =
             Sets.newHashSet(TokenTypes.POST_INC, TokenTypes.POST_DEC, TokenTypes.DEC,
                     TokenTypes.INC, TokenTypes.ASSIGN);
@@ -203,7 +199,7 @@ public final class ModifiedControlVariableCheck extends Check {
                 checkIdent(ast);
                 break;
             default:
-                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast.toString());
+                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);
         }
     }
 
@@ -214,9 +210,8 @@ public final class ModifiedControlVariableCheck extends Check {
                 leaveForIter(ast.getParent());
                 break;
             case TokenTypes.FOR_EACH_CLAUSE:
-                final DetailAST paramDef =
-                    ast.findFirstToken(TokenTypes.VARIABLE_DEF);
-                if (shouldCheckEnhancedForLoopVariable(paramDef)) {
+                if (!skipEnhancedForLoopVariable) {
+                    final DetailAST paramDef = ast.findFirstToken(TokenTypes.VARIABLE_DEF);
                     leaveForEach(paramDef);
                 }
                 break;
@@ -247,7 +242,7 @@ public final class ModifiedControlVariableCheck extends Check {
                 //we need that Tokens only at visitToken()
                 break;
             default:
-                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast.toString());
+                throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);
         }
     }
 
@@ -265,7 +260,7 @@ public final class ModifiedControlVariableCheck extends Check {
     }
 
     /**
-     * Get current variable stack
+     * Get current variable stack.
      * @return current variable stack
      */
     private Deque<String> getCurrentVariables() {
@@ -280,8 +275,7 @@ public final class ModifiedControlVariableCheck extends Check {
         if (!getCurrentVariables().isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
-            if (identAST != null
-                && identAST.getType() == TokenTypes.IDENT
+            if (identAST.getType() == TokenTypes.IDENT
                 && getCurrentVariables().contains(identAST.getText())) {
                 log(ast.getLineNo(), ast.getColumnNo(),
                     MSG_KEY, identAST.getText());
@@ -314,16 +308,6 @@ public final class ModifiedControlVariableCheck extends Check {
     }
 
     /**
-     * Determines whether enhanced for-loop variable should be checked or not.
-     * @param ast The ast to compare.
-     * @return true if enhanced for-loop variable should be checked.
-     */
-    private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
-        return !skipEnhancedForLoopVariable
-                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
-    }
-
-    /**
      * Push current variables to the stack.
      * @param paramDef a for-each clause variable
      */
@@ -349,7 +333,7 @@ public final class ModifiedControlVariableCheck extends Check {
     }
 
     /**
-     * Pops given number of variables from currentVariables
+     * Pops given number of variables from currentVariables.
      * @param count Count of variables to be popped from currentVariables
      */
     private void popCurrentVariables(int count) {

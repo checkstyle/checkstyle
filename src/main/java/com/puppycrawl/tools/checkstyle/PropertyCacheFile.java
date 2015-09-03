@@ -57,29 +57,29 @@ final class PropertyCacheFile {
      */
     private static final String CONFIG_HASH_KEY = "configuration*?";
 
-    /** hex digits */
+    /** Hex digits. */
     private static final char[] HEX_CHARS = {
         '0', '1', '2', '3', '4', '5', '6', '7',
         '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
     };
 
-    /** mask for last byte */
+    /** Mask for last byte. */
     private static final int MASK_0X0F = 0x0F;
 
-    /** bit shift */
+    /** Bit shift. */
     private static final int SHIFT_4 = 4;
 
-    /** the details on files **/
+    /** The details on files. **/
     private final Properties details = new Properties();
 
-    /** configuration object **/
-    private Configuration config;
+    /** Configuration object. **/
+    private final Configuration config;
 
-    /** file name of cache **/
-    private String fileName;
+    /** File name of cache. **/
+    private final String fileName;
 
     /**
-     * Creates a new <code>PropertyCacheFile</code> instance.
+     * Creates a new {@code PropertyCacheFile} instance.
      *
      * @param config the current configuration, not null
      * @param fileName the cache file
@@ -96,15 +96,15 @@ final class PropertyCacheFile {
     }
 
     /**
-     * load cached values from file
+     * Load cached values from file.
      * @throws IOException when there is a problems with file read
      */
     void load() throws IOException {
-        FileInputStream inStream = null;
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
         final String currentConfigHash = getConfigHashCode(config);
         if (new File(fileName).exists()) {
+            FileInputStream inStream = null;
             try {
                 inStream = new FileInputStream(fileName);
                 details.load(inStream);
@@ -112,7 +112,7 @@ final class PropertyCacheFile {
                 if (!currentConfigHash.equals(cachedConfigHash)) {
                     // Detected configuration change - clear cache
                     details.clear();
-                    details.put(CONFIG_HASH_KEY, currentConfigHash);
+                    details.setProperty(CONFIG_HASH_KEY, currentConfigHash);
                 }
             }
             finally {
@@ -121,7 +121,7 @@ final class PropertyCacheFile {
         }
         else {
             // put the hash in the file if the file is going to be created
-            details.put(CONFIG_HASH_KEY, currentConfigHash);
+            details.setProperty(CONFIG_HASH_KEY, currentConfigHash);
         }
     }
 
@@ -153,30 +153,31 @@ final class PropertyCacheFile {
     }
 
     /**
-     * @param fileName the file to check
+     * Checks that file is in cache.
+     * @param uncheckedFileName the file to check
      * @param timestamp the timestamp of the file to check
      * @return whether the specified file has already been checked ok
      */
-    boolean inCache(String fileName, long timestamp) {
-        final String lastChecked = details.getProperty(fileName);
+    boolean isInCache(String uncheckedFileName, long timestamp) {
+        final String lastChecked = details.getProperty(uncheckedFileName);
         return lastChecked != null
             && lastChecked.equals(Long.toString(timestamp));
     }
 
     /**
      * Records that a file checked ok.
-     * @param fileName name of the file that checked ok
+     * @param checkedFileName name of the file that checked ok
      * @param timestamp the timestamp of the file
      */
-    void put(String fileName, long timestamp) {
-        details.put(fileName, Long.toString(timestamp));
+    void put(String checkedFileName, long timestamp) {
+        details.setProperty(checkedFileName, Long.toString(timestamp));
     }
 
     /**
      * Calculates the hashcode for a GlobalProperties.
      *
      * @param object the GlobalProperties
-     * @return the hashcode for <code>object</code>
+     * @return the hashcode for {@code object}
      */
     private static String getConfigHashCode(Serializable object) {
         try {
@@ -210,7 +211,7 @@ final class PropertyCacheFile {
     /**
      * Hex-encodes a byte array.
      * @param byteArray the byte array
-     * @return hex encoding of <code>byteArray</code>
+     * @return hex encoding of {@code byteArray}
      */
     private static String hexEncode(byte... byteArray) {
         final StringBuilder buf = new StringBuilder(2 * byteArray.length);

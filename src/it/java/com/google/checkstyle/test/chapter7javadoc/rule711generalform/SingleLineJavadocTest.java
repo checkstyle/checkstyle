@@ -1,7 +1,6 @@
 package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,21 +8,20 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
 
 public class SingleLineJavadocTest extends BaseCheckTestSupport{
 
-    static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException, IOException {
+    public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 
     @Test
-    public void singleLineJavadocTest() throws IOException, Exception {
+    public void singleLineJavadocTest() throws Exception {
         
         String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
@@ -46,7 +44,7 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport{
     }
 
     @Test(expected = Exception.class)
-    public void customInlineTagTest() throws IOException, Exception{
+    public void customInlineTagTest() throws Exception{
         String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
         
         Configuration checkConfig = builder.getCheckConfig("SingleLineJavadocCheck");
@@ -60,5 +58,3 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport{
         verify(checkConfig, filePath, expected, warnList);
     }
 }
-
-

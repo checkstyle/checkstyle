@@ -25,6 +25,8 @@ import java.util.List;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * Checks that a JavaDoc block can fit on a single line and doesn't
@@ -32,14 +34,13 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * should be formatted in a few lines.<br>
  * All inline at-clauses are ignored by default.
  *
- * <p>
- * The Check has the following properties:
+ * <p>The Check has the following properties:
  * <br><b>ignoredTags</b> - allows to specify a list of at-clauses
  * (including custom at-clauses) to be ignored by the check.
  * <br><b>ignoreInlineTags</b> - whether inline at-clauses must be ignored.
  * </p>
  *
- * Default configuration:
+ * <p>Default configuration:
  * <pre>
  * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
  * </pre>
@@ -65,11 +66,11 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     public static final String MSG_KEY = "singleline.javadoc";
 
     /**
-     * allows to specify a list of tags to be ignored by check.
+     * Allows to specify a list of tags to be ignored by check.
      */
     private List<String> ignoredTags = new ArrayList<>();
 
-    /** whether inline tags must be ignored **/
+    /** Whether inline tags must be ignored. **/
     private boolean ignoreInlineTags = true;
 
     /**
@@ -78,12 +79,12 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @param tags to be ignored by check.
      */
     public void setIgnoredTags(String tags) {
-        final List<String> ignoredTags = new ArrayList<>();
+        final List<String> tagList = new ArrayList<>();
         final String[] sTags = tags.split(",");
-        for (int i = 0; i < sTags.length; i++) {
-            ignoredTags.add(sTags[i].trim());
+        for (String sTag : sTags) {
+            tagList.add(sTag.trim());
         }
-        this.ignoredTags = ignoredTags;
+        ignoredTags = tagList;
     }
 
     /**
@@ -103,10 +104,20 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitJavadocToken(DetailNode ast) {
         if (isSingleLineJavadoc(getBlockCommentAst())
                 && (hasJavadocTags(ast) || !ignoreInlineTags && hasJavadocInlineTags(ast))) {
-            log(ast.getLineNumber(), "singleline.javadoc");
+            log(ast.getLineNumber(), MSG_KEY);
         }
     }
 

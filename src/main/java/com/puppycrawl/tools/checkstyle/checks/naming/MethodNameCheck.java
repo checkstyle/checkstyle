@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.puppycrawl.tools.checkstyle.AnnotationUtility;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 
 /**
  * <p>
@@ -32,14 +32,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
  *
- * <p>
- * Also, checks if a method name has the same name as the residing class.
+ * <p>Also, checks if a method name has the same name as the residing class.
  * The default is false (it is not allowed).  It is legal in Java to have
  * method with the same name as a class.  As long as a return type is specified
  * it is a method and not a constructor which it could be easily confused as.
- * <h3>Does not check-style the name of an overriden methods</h3> because the developer does not
+ * <h3>Does not check-style the name of an overridden methods</h3> because the developer does not
  * have a choice in renaming such methods.
- * </p>
  *
  * <p>
  * An example of how to configure the check is:
@@ -90,18 +88,18 @@ public class MethodNameCheck
     private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
 
     /**
-     * for allowing method name to be the same as the class name.
+     * For allowing method name to be the same as the class name.
      */
     private boolean allowClassName;
 
-    /** Creates a new <code>MethodNameCheck</code> instance. */
+    /** Creates a new {@code MethodNameCheck} instance. */
     public MethodNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.METHOD_DEF, };
+        return getAcceptableTokens();
     }
 
     @Override
@@ -110,10 +108,16 @@ public class MethodNameCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         if (!AnnotationUtility.containsAnnotation(ast, OVERRIDE)
             && !AnnotationUtility.containsAnnotation(ast, CANONICAL_OVERRIDE)) {
-            super.visitToken(ast); // Will check the name against the format.
+            // Will check the name against the format.
+            super.visitToken(ast);
         }
 
         if (!allowClassName) {
@@ -130,7 +134,7 @@ public class MethodNameCheck
             // new Outclass.InnerInterface(x) { ... }
             // Such a rare case, will not have the logic to handle parsing
             // down the tree looking for the first ident.
-            if (null != classIdent
+            if (classIdent != null
                 && method.getText().equals(classIdent.getText())) {
                 log(method.getLineNo(), method.getColumnNo(),
                     MSG_KEY, method.getText());

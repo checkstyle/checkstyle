@@ -20,13 +20,28 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+import static org.junit.Assert.assertArrayEquals;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class LineLengthCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        LineLengthCheck checkObj = new LineLengthCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        LineLengthCheck checkObj = new LineLengthCheck();
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
+    }
+
     @Test
     public void testSimple()
         throws Exception {

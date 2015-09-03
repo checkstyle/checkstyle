@@ -35,27 +35,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public abstract class AbstractComplexityCheck
     extends Check {
-    /** the initial current value */
+    /** The initial current value. */
     private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
-    /** stack of values - all but the current value */
+    /** Stack of values - all but the current value. */
     private final Deque<BigInteger> valueStack = new ArrayDeque<>();
 
-    /** the current value */
+    /** The current value. */
     private BigInteger currentValue = BigInteger.ZERO;
 
-    /** threshold to report error for */
+    /** Threshold to report error for. */
     private int max;
 
     /**
      * Creates an instance.
      * @param max the threshold of when to report an error
      */
-    public AbstractComplexityCheck(int max) {
+    protected AbstractComplexityCheck(int max) {
         this.max = max;
     }
 
     /**
+     * Gets the message ID to log violations with.
      * @return the message ID to log violations with
      */
     protected abstract String getMessageID();
@@ -68,11 +69,6 @@ public abstract class AbstractComplexityCheck
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
         };
-    }
-
-    /** @return the maximum threshold allowed */
-    public final int getMax() {
-        return max;
     }
 
     /**
@@ -133,6 +129,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /**
+     * Gets the current value.
      * @return the current value
      */
     protected final BigInteger getCurrentValue() {
@@ -140,7 +137,7 @@ public abstract class AbstractComplexityCheck
     }
 
     /**
-     * Set the current value
+     * Set the current value.
      * @param value the new value
      */
     protected final void setCurrentValue(BigInteger value) {
@@ -153,16 +150,17 @@ public abstract class AbstractComplexityCheck
      * @param by the amount to increment by
      */
     protected final void incrementCurrentValue(BigInteger by) {
-        setCurrentValue(getCurrentValue().add(by));
+        currentValue = currentValue.add(by);
     }
 
-    /** Push the current value on the stack */
+    /** Push the current value on the stack. */
     protected final void pushValue() {
         valueStack.push(currentValue);
         currentValue = INITIAL_VALUE;
     }
 
     /**
+     * Pops a value off the stack and makes it the current value.
      * @return pop a value off the stack and make it the current value
      */
     protected final BigInteger popValue() {
@@ -170,7 +168,7 @@ public abstract class AbstractComplexityCheck
         return currentValue;
     }
 
-    /** Process the start of the method definition */
+    /** Process the start of the method definition. */
     private void visitMethodDef() {
         pushValue();
     }
@@ -181,7 +179,7 @@ public abstract class AbstractComplexityCheck
      * @param ast the token representing the method definition
      */
     private void leaveMethodDef(DetailAST ast) {
-        final BigInteger bigIntegerMax = BigInteger.valueOf(getMax());
+        final BigInteger bigIntegerMax = BigInteger.valueOf(max);
         if (currentValue.compareTo(bigIntegerMax) > 0) {
             log(ast, getMessageID(), currentValue, bigIntegerMax);
         }

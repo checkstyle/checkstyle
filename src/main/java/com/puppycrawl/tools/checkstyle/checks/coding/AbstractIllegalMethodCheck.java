@@ -39,19 +39,24 @@ public abstract class AbstractIllegalMethodCheck extends Check {
      * @param methodName name of the method to disallow.
      * @param errorKey the error key to report with.
      */
-    public AbstractIllegalMethodCheck(String methodName, String errorKey) {
+    protected AbstractIllegalMethodCheck(String methodName, String errorKey) {
         this.methodName = methodName;
         this.errorKey = errorKey;
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.METHOD_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
     }
 
     @Override

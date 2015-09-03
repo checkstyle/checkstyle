@@ -19,11 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 
+import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -31,17 +36,21 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressWithNearbyCommentFilterTest
     extends BaseCheckTestSupport {
-    private static String[] sAllMessages = {
+    private static final String[] ALL_MESSAGES = {
         "14:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "15:17: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "16:59: Name 'A3' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -66,13 +75,14 @@ public class SuppressWithNearbyCommentFilterTest
         "64:23: Catching 'Exception' is not allowed.",
         "66:23: Catching 'Throwable' is not allowed.",
         "73:11: Catching 'Exception' is not allowed.",
+        "80:59: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        "81:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
     };
 
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = {
-        };
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -87,6 +97,7 @@ public class SuppressWithNearbyCommentFilterTest
             "18:17: Name 'B1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "19:17: Name 'B2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "20:59: Name 'B3' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "80:59: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -113,6 +124,7 @@ public class SuppressWithNearbyCommentFilterTest
             "16:59: Name 'A3' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "19:17: Name 'B2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "20:59: Name 'B3' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "80:59: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -179,20 +191,20 @@ public class SuppressWithNearbyCommentFilterTest
         EqualsVerifier.forClass(SuppressWithNearbyCommentFilter.Tag.class).usingGetClass().verify();
     }
 
-    public static DefaultConfiguration createFilterConfig(Class<?> classObj) {
+    private static DefaultConfiguration createFilterConfig(Class<?> classObj) {
         return new DefaultConfiguration(classObj.getName());
     }
 
-    protected void verifySuppressed(Configuration filterConfig,
-                                    String[] suppressed)
+    private void verifySuppressed(Configuration filterConfig,
+            String... suppressed)
         throws Exception {
         verify(createChecker(filterConfig),
                getPath("filters/InputSuppressWithNearbyCommentFilter.java"),
-               removeSuppressed(sAllMessages, suppressed));
+               removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
     @Override
-    protected Checker createChecker(Configuration filterConfig)
+    protected Checker createChecker(Configuration checkConfig)
             throws CheckstyleException, UnsupportedEncodingException {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
@@ -202,8 +214,8 @@ public class SuppressWithNearbyCommentFilterTest
         checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
-        if (filterConfig != null) {
-            checkerConfig.addChild(filterConfig);
+        if (checkConfig != null) {
+            checkerConfig.addChild(checkConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
@@ -215,10 +227,64 @@ public class SuppressWithNearbyCommentFilterTest
         return checker;
     }
 
-    private String[] removeSuppressed(String[] from, String[] remove) {
+    private static String[] removeSuppressed(String[] from, String... remove) {
         final Collection<String> coll =
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));
         return coll.toArray(new String[coll.size()]);
+    }
+
+    @Test(expected = ConversionException.class)
+    public void testInvalidInfluenceFormat() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+        filterConfig.addAttribute("influenceFormat", "a");
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        verifySuppressed(filterConfig, suppressed);
+    }
+
+    @Test(expected = ConversionException.class)
+    public void testInvalidCheckFormat() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+        filterConfig.addAttribute("checkFormat", "a[l");
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        verifySuppressed(filterConfig, suppressed);
+    }
+
+    @Test
+    public void testAcceptNullLocalizedMessage() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final AuditEvent auditEvent = new AuditEvent(this);
+        Assert.assertTrue(filter.accept(auditEvent));
+    }
+
+    @Test
+    public void testAcceptNullFileContents() {
+        final LocalizedMessage message =
+            new LocalizedMessage(1, 1, "messages.properties", "key", null, SeverityLevel.ERROR,
+                    null, getClass(), null);
+        final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
+        SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        Assert.assertTrue(filter.accept(auditEvent));
+    }
+
+    @Test
+    public void testToStringOfTagClass() {
+        SuppressWithNearbyCommentFilter.Tag tag = new SuppressWithNearbyCommentFilter.Tag(
+                "text", 7, new SuppressWithNearbyCommentFilter()
+        );
+        assertEquals("Tag[lines=[7 to 7]; text='text']", tag.toString());
+    }
+
+    @Test
+    public void testUsingTagMessageRegexp() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+        filterConfig.addAttribute("commentFormat", "SUPPRESS CHECKSTYLE (\\w+)");
+        filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
+        filterConfig.addAttribute("messageFormat", "^$1 ololo*$");
+        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        verifySuppressed(filterConfig, suppressed);
     }
 }

@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * <p>
@@ -88,7 +88,8 @@ public class MultipleVariableDeclarationsCheck extends Check {
             nextNode = nextNode.getNextSibling();
         }
 
-        if (nextNode.getType() == TokenTypes.VARIABLE_DEF) {
+        if (nextNode != null
+                && nextNode.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST firstNode = CheckUtils.getFirstNode(ast);
             if (isCommaSeparated) {
                 // Check if the multiple variable declarations are in a
@@ -98,7 +99,7 @@ public class MultipleVariableDeclarationsCheck extends Check {
                 // variable scope. Refer Feature Request Id - 2895985
                 // for more details
                 if (ast.getParent().getType() != TokenTypes.FOR_INIT) {
-                    log(firstNode, "multiple.variable.declarations.comma");
+                    log(firstNode, MSG_MULTIPLE_COMMA);
                 }
                 return;
             }
@@ -107,7 +108,7 @@ public class MultipleVariableDeclarationsCheck extends Check {
             final DetailAST firstNextNode = CheckUtils.getFirstNode(nextNode);
 
             if (firstNextNode.getLineNo() == lastNode.getLineNo()) {
-                log(firstNode, "multiple.variable.declarations");
+                log(firstNode, MSG_MULTIPLE);
             }
         }
 

@@ -73,15 +73,14 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_NO_NEWLINE_EOF = "noNewlineAtEOF";
 
-    /** the line separator to check against. */
+    /** The line separator to check against. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.SYSTEM;
 
     @Override
     protected void processFiltered(File file, List<String> lines) {
         // Cannot use lines as the line separators have been removed!
-        RandomAccessFile randomAccessFile = null;
         try {
-            randomAccessFile = new RandomAccessFile(file, "r");
+            final RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
             boolean threw = true;
             try {
                 if (!endsWithNewline(randomAccessFile)) {
@@ -93,7 +92,7 @@ public class NewlineAtEndOfFileCheck
                 Closeables.close(randomAccessFile, threw);
             }
         }
-        catch (final IOException e) {
+        catch (final IOException ignored) {
             log(0, MSG_KEY_UNABLE_OPEN, file.getPath());
         }
     }

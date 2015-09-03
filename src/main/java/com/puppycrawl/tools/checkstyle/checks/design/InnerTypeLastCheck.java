@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
  * <p>
@@ -45,7 +45,7 @@ public class InnerTypeLastCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -54,15 +54,20 @@ public class InnerTypeLastCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        /** First root class */
+        // First root class
         if (rootClass) {
             rootClass = false;
         }
         else {
             DetailAST nextSibling = ast.getNextSibling();
-            while (null != nextSibling) {
-                if (!ScopeUtils.inCodeBlock(ast)
+            while (nextSibling != null) {
+                if (!ScopeUtils.isInCodeBlock(ast)
                     && (nextSibling.getType() == TokenTypes.VARIABLE_DEF
                         || nextSibling.getType() == TokenTypes.METHOD_DEF)) {
                     log(nextSibling.getLineNo(), nextSibling.getColumnNo(),
@@ -75,8 +80,8 @@ public class InnerTypeLastCheck extends Check {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        /** Is this a root class */
-        if (null == ast.getParent()) {
+        // Is this a root class
+        if (ast.getParent() == null) {
             rootClass = true;
         }
     }

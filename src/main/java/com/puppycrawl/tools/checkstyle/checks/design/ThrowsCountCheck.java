@@ -60,18 +60,18 @@ public final class ThrowsCountCheck extends Check {
      */
     public static final String MSG_KEY = "throws.count";
 
-    /** default value of max property */
+    /** Default value of max property. */
     private static final int DEFAULT_MAX = 4;
 
-    /** whether private methods must be ignored **/
+    /** Whether private methods must be ignored. **/
     private boolean ignorePrivateMethods = true;
 
-    /** maximum allowed throws statements */
+    /** Maximum allowed throws statements. */
     private int max;
 
     /** Creates new instance of the check. */
     public ThrowsCountCheck() {
-        setMax(DEFAULT_MAX);
+        max = DEFAULT_MAX;
     }
 
     @Override
@@ -91,14 +91,6 @@ public final class ThrowsCountCheck extends Check {
         return new int[] {
             TokenTypes.LITERAL_THROWS,
         };
-    }
-
-    /**
-     * Getter for max property.
-     * @return maximum allowed throws statements.
-     */
-    public int getMax() {
-        return max;
     }
 
     /**
@@ -136,9 +128,9 @@ public final class ThrowsCountCheck extends Check {
                 && !isOverriding(ast)) {
             // Account for all the commas!
             final int count = (ast.getChildCount() + 1) / 2;
-            if (count > getMax()) {
+            if (count > max) {
                 log(ast.getLineNo(),  ast.getColumnNo(), MSG_KEY,
-                    count, getMax());
+                    count, max);
             }
         }
     }

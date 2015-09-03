@@ -43,21 +43,24 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 public class DefaultLogger
     extends AutomaticBean
     implements AuditListener {
-    /** cushion for avoiding StringBuffer.expandCapacity */
+    /** Cushion for avoiding StringBuffer.expandCapacity */
     private static final int BUFFER_CUSHION = 12;
 
-    /** where to write info messages **/
+    /** Encoding name. */
+    private static final String UTF8_CHARSET_NAME = "UTF-8";
+
+    /** Where to write info messages. **/
     private final PrintWriter infoWriter;
-    /** close info stream after use */
+    /** Close info stream after use. */
     private final boolean closeInfo;
 
-    /** where to write error messages **/
+    /** Where to write error messages. **/
     private final PrintWriter errorWriter;
-    /** close error stream after use */
+    /** Close error stream after use. */
     private final boolean closeError;
 
     /**
-     * Creates a new <code>DefaultLogger</code> instance.
+     * Creates a new {@code DefaultLogger} instance.
      * @param os where to log infos and errors
      * @param closeStreamsAfterUse if oS should be closed in auditFinished()
      * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding
@@ -69,11 +72,11 @@ public class DefaultLogger
     }
 
     /**
-     * Creates a new <code>DefaultLogger</code> instance.
+     * Creates a new {@code DefaultLogger} instance.
      *
-     * @param infoStream the <code>OutputStream</code> for info messages
+     * @param infoStream the {@code OutputStream} for info messages
      * @param closeInfoAfterUse auditFinished should close infoStream
-     * @param errorStream the <code>OutputStream</code> for error messages
+     * @param errorStream the {@code OutputStream} for error messages
      * @param closeErrorAfterUse auditFinished should close errorStream
      * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding
      */
@@ -83,24 +86,27 @@ public class DefaultLogger
                          boolean closeErrorAfterUse) throws UnsupportedEncodingException {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
-        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, "UTF-8");
-        final Writer errorStreamWriter = new OutputStreamWriter(errorStream, "UTF-8");
+        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, UTF8_CHARSET_NAME);
+        final Writer errorStreamWriter = new OutputStreamWriter(errorStream, UTF8_CHARSET_NAME);
         infoWriter = new PrintWriter(infoStreamWriter);
-        errorWriter = infoStream == errorStream
-            ? infoWriter
-            : new PrintWriter(errorStreamWriter);
+
+        if (infoStream == errorStream) {
+            errorWriter = infoWriter;
+        }
+        else {
+            errorWriter = new PrintWriter(errorStreamWriter);
+        }
     }
 
     /**
      * Print an Emacs compliant line on the error stream.
      * If the column number is non zero, then also display it.
-     * @param evt {@inheritDoc}
      * @see AuditListener
      **/
     @Override
     public void addError(AuditEvent evt) {
         final SeverityLevel severityLevel = evt.getSeverityLevel();
-        if (SeverityLevel.IGNORE != severityLevel) {
+        if (severityLevel != SeverityLevel.IGNORE) {
 
             final String fileName = evt.getFileName();
             final String message = evt.getMessage();
@@ -114,15 +120,14 @@ public class DefaultLogger
             if (evt.getColumn() > 0) {
                 sb.append(':').append(evt.getColumn());
             }
-            if (SeverityLevel.WARNING == severityLevel) {
+            if (severityLevel == SeverityLevel.WARNING) {
                 sb.append(": warning");
             }
             sb.append(": ").append(message);
-            errorWriter.println(sb.toString());
+            errorWriter.println(sb);
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void addException(AuditEvent evt, Throwable throwable) {
         synchronized (errorWriter) {
@@ -131,25 +136,21 @@ public class DefaultLogger
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditStarted(AuditEvent evt) {
         infoWriter.println("Starting audit...");
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileFinished(AuditEvent evt) {
         // No need to implement this method in this class
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fileStarted(AuditEvent evt) {
         // No need to implement this method in this class
     }
 
-    /** {@inheritDoc} */
     @Override
     public void auditFinished(AuditEvent evt) {
         infoWriter.println("Audit done.");
@@ -159,7 +160,7 @@ public class DefaultLogger
     /**
      * Flushes the output streams and closes them if needed.
      */
-    protected void closeStreams() {
+    private void closeStreams() {
         infoWriter.flush();
         if (closeInfo) {
             infoWriter.close();

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
@@ -123,6 +125,11 @@ public class SeparatorWrapCheck
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return ArrayUtils.EMPTY_INT_ARRAY;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
         final int colNo = ast.getColumnNo();
@@ -135,11 +142,11 @@ public class SeparatorWrapCheck
         final WrapOption wSp = getAbstractOption();
 
         if (wSp == WrapOption.EOL
-                && substringBeforeToken.length() == 0) {
+                && substringBeforeToken.isEmpty()) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
         else if (wSp == WrapOption.NL
-                 && substringAfterToken.length() == 0) {
+                 && substringAfterToken.isEmpty()) {
             log(lineNo, colNo, LINE_NEW, text);
         }
     }

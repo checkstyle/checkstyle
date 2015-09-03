@@ -38,17 +38,20 @@ public enum LineSeparatorOption {
     /** Unix-style line separators. **/
     LF("\n"),
 
-    /** Matches CR, LF and CRLF line separators. **/
-    LF_CR_CRLF("##"), // only the length is used - the actual value is ignored
+    /**
+     * Matches CR, LF and CRLF line separators.
+     * Only the length is used - the actual value is ignored.
+     */
+    LF_CR_CRLF("##"),
 
     /** System default line separators. **/
     SYSTEM(System.getProperty("line.separator"));
 
-    /** the line separator representation */
+    /** The line separator representation. */
     private final byte[] lineSeparator;
 
     /**
-     * Creates a new <code>LineSeparatorOption</code> instance.
+     * Creates a new {@code LineSeparatorOption} instance.
      * @param sep the line separator, e.g. "\r\n"
      */
     LineSeparatorOption(String sep) {
@@ -56,9 +59,10 @@ public enum LineSeparatorOption {
     }
 
     /**
+     * Checks that bytes is equal to the byte representation of this line separator.
      * @param bytes a bytes array to check
      * @return if bytes is equal to the byte representation
-     * of this line separator
+     *     of this line separator
      */
     public boolean matches(byte... bytes) {
         if (this == LF_CR_CRLF) {
@@ -75,7 +79,7 @@ public enum LineSeparatorOption {
 
     /**
      * @return the length of the file separator in bytes,
-     * e.g. 1 for CR, 2 for CRLF, ...
+     *     e.g. 1 for CR, 2 for CRLF, ...
      */
     public int length() {
         return lineSeparator.length;

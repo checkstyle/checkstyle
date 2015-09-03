@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.UpperEllCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -31,6 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UpperEllCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testGetRequiredTokens() {
+        UpperEllCheck checkObj = new UpperEllCheck();
+        int[] expected = {TokenTypes.NUM_LONG};
+        assertArrayEquals(expected, checkObj.getRequiredTokens());
+    }
+
     @Test
     public void testWithChecker()
         throws Exception {
@@ -47,7 +55,7 @@ public class UpperEllCheckTest
         int[] expected = {TokenTypes.NUM_LONG };
         UpperEllCheck check = new UpperEllCheck();
         int[] actual = check.getAcceptableTokens();
-        assertTrue(actual.length == 1);
+        assertEquals(1, actual.length);
         assertArrayEquals(expected, actual);
     }
 }

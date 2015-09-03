@@ -70,8 +70,9 @@ public interface FileSetCheck
      * @param file the file to be processed
      * @param lines an immutable list of the contents of the file.
      * @return the sorted set of messages to be logged.
+     * @throws CheckstyleException if error condition within Checkstyle occurs
      */
-    SortedSet<LocalizedMessage> process(File file, List<String> lines);
+    SortedSet<LocalizedMessage> process(File file, List<String> lines) throws CheckstyleException;
 
     /**
      * Called when all the files have been processed. This is the time to

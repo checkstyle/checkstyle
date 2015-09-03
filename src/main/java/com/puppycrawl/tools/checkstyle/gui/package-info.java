@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
-// Copyright (C) 2001-2008  Oliver Burn
+// Copyright (C) 2001-2015 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,8 +20,8 @@
 /**
  * User interface classes for CheckStyle. Currently this is mainly a gui to aid
  * Check developers.
- * <p>
- * This is definitely work in progress. Here are some ideas where
+ *
+ * <p>This is definitely work in progress. Here are some ideas where
  * <strong>you</strong> could help:
  * <ul>
  *   <li>

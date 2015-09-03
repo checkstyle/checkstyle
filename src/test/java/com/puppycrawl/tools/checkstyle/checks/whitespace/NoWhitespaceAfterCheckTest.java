@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck.MSG_KEY;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -104,9 +105,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testNpe() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("whitespace/InputNoWhiteSpaceAfterCheckFormerNpe.java"),
                  expected);
     }
