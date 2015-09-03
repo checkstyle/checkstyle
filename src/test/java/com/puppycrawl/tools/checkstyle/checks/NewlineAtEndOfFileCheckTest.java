@@ -163,9 +163,9 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testWrongFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
-        File impossibleFile = new File("");
         NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         check.configure(checkConfig);
+        File impossibleFile = new File("");
         Set<LocalizedMessage> messages = check.process(impossibleFile, Lists.newArrayList("txt"));
         assertTrue(messages.size() == 1);
         Iterator<LocalizedMessage> iter = messages.iterator();
