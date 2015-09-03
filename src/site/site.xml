@@ -20,7 +20,7 @@
 
   <poweredBy>
     <logo name="GitHub" href="https://github.com/checkstyle/checkstyle" 
-    	img="images/github_logo_social_coding_outlined.png" 
+        img="images/github_logo_social_coding_outlined.png" 
           />
     <logo name="SourceForge"
           img="images/sflogo.gif"

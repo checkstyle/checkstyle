@@ -1630,7 +1630,7 @@
     <inspection_tool class="PrimitiveArrayArgumentToVariableArgMethod" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PrivateMemberAccessBetweenOuterAndInnerClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ProblematicVarargsMethodOverride" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ProblematicWhitespace" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ProblematicWhitespace" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PropertyValueSetToItself" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ProtectedField" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ProtectedInnerClass" enabled="false" level="ERROR" enabled_by_default="false">

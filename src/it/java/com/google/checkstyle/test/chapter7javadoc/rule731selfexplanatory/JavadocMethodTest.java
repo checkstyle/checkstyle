@@ -25,7 +25,7 @@ public class JavadocMethodTest extends BaseCheckTestSupport{
         String msg = getCheckMessage(JavadocMethodCheck.class, "javadoc.missing");
 
         final String[] expected = {
-        	"57:5: " + msg,
+            "57:5: " + msg,
         };
 
         Configuration checkConfig = builder.getCheckConfig("JavadocMethod");
