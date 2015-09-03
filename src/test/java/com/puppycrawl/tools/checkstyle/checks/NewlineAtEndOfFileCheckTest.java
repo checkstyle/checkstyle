@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -188,7 +189,7 @@ public class NewlineAtEndOfFileCheckTest
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IOException);
-            if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+            if (System.getProperty("os.name").toLowerCase(ENGLISH).startsWith("windows")) {
                 assertEquals(ex.getCause().getMessage(), "Unable to read 2 bytes, got 0");
             }
             else {
