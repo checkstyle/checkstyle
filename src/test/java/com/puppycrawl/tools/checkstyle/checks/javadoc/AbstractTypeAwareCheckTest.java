@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_CLASS_INFO;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Constructor;
@@ -104,7 +105,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
 
         Method getClazz = regularClass.getClass().getDeclaredMethod("getClazz");
         getClazz.setAccessible(true);
-        assertTrue(getClazz.invoke(regularClass) == null);
+        assertNull(getClazz.invoke(regularClass));
     }
 
     @Test

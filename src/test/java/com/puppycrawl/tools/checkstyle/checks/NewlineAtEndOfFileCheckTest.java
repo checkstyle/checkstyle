@@ -168,7 +168,7 @@ public class NewlineAtEndOfFileCheckTest
         check.configure(checkConfig);
         File impossibleFile = new File("");
         Set<LocalizedMessage> messages = check.process(impossibleFile, Lists.newArrayList("txt"));
-        assertTrue(messages.size() == 1);
+        assertEquals(1, messages.size());
         Iterator<LocalizedMessage> iter = messages.iterator();
         assertEquals("Unable to open ''.", iter.next().getMessage());
     }
