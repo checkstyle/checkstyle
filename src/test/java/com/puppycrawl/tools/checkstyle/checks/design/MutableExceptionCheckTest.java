@@ -35,6 +35,18 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MutableExceptionCheckTest extends BaseCheckTestSupport {
+
+    @Test
+    public void testClassExtendsGenericClass() throws Exception {
+        DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
+
+        String[] expected = {
+        };
+
+        verify(checkConfig, getPath("design" + File.separator
+            + "InputMutableExceptionClassExtendsGenericClass.java"), expected);
+    }
+
     @Test
     public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);

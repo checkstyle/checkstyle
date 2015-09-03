@@ -155,7 +155,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
         final DetailAST extendsClause = ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (extendsClause != null) {
             DetailAST currentNode = extendsClause;
-            while (currentNode.getType() != TokenTypes.IDENT) {
+            while (currentNode.getLastChild() != null) {
                 currentNode = currentNode.getLastChild();
             }
             final String extendedClassName = currentNode.getText();
