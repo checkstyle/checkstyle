@@ -170,7 +170,7 @@ public class NewlineAtEndOfFileCheckTest
         Set<LocalizedMessage> messages = check.process(impossibleFile, Lists.newArrayList("txt"));
         assertTrue(messages.size() == 1);
         Iterator<LocalizedMessage> iter = messages.iterator();
-        assertEquals(iter.next().getMessage(), "Unable to open ''.");
+        assertEquals("Unable to open ''.", iter.next().getMessage());
     }
 
     @Test
@@ -190,10 +190,10 @@ public class NewlineAtEndOfFileCheckTest
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IOException);
             if (System.getProperty("os.name").toLowerCase(ENGLISH).startsWith("windows")) {
-                assertEquals(ex.getCause().getMessage(), "Unable to read 2 bytes, got 0");
+                assertEquals("Unable to read 2 bytes, got 0", ex.getCause().getMessage());
             }
             else {
-                assertEquals(ex.getCause().getMessage(), "Unable to read 1 bytes, got 0");
+                assertEquals("Unable to read 1 bytes, got 0", ex.getCause().getMessage());
             }
         }
     }
