@@ -13,10 +13,10 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class PackageNameTest extends BaseCheckTestSupport{
 
-	private static final String MSG_KEY = "name.invalidPattern";
-	private static ConfigurationBuilder builder;
-	private static Configuration checkConfig;
-	private static String format;
+    private static final String MSG_KEY = "name.invalidPattern";
+    private static ConfigurationBuilder builder;
+    private static Configuration checkConfig;
+    private static String format;
 
 
     @BeforeClass

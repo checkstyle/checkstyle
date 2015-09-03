@@ -56,8 +56,8 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
     
     @Test
     public void bad2Test() throws Exception {
-    	
-    	Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
+
+        Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         String messageKey = "one.top.level.class";
         
         final String[] expected = {
@@ -74,11 +74,11 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport{
     @Test
     public void bad3Test() throws Exception {
         
-    	Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
+        Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         String messageKey = "one.top.level.class";
         
         final String[] expected = {
-        	"5: " + getCheckMessage(clazz, messageKey, "FooIn"),
+            "5: " + getCheckMessage(clazz, messageKey, "FooIn"),
             "7: " + getCheckMessage(clazz, messageKey, "FooClass"),
         };
         

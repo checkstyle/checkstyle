@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class TypeNameTest extends BaseCheckTestSupport{
 
-	private static ConfigurationBuilder builder;
+    private static ConfigurationBuilder builder;
 
     @BeforeClass
     public static void setConfigurationBuilder() {
