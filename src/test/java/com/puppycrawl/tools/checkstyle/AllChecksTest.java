@@ -37,6 +37,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
@@ -206,7 +207,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
      * @throws SAXException if any parse errors occur.
      */
     private static Set<String> getCheckStyleChecksReferencedInConfig(String configFilePath)
-        throws ParserConfigurationException, IOException, org.xml.sax.SAXException {
+        throws ParserConfigurationException, IOException, SAXException {
 
         final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
