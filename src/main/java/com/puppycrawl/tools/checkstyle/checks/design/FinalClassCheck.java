@@ -30,7 +30,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * <p>
  * Checks that class which has only private ctors
- * is declared as final.
+ * is declared as final. Doesn't check for classes nested in interfaces
+ * or annotations, as they are always <code>final</code> there.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -98,7 +99,8 @@ public class FinalClassCheck
         if (!desc.isDeclaredAsFinal()
             && !desc.isDeclaredAsAbstract()
             && desc.isWithPrivateCtor()
-            && !desc.isWithNonPrivateCtor()) {
+            && !desc.isWithNonPrivateCtor()
+            && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
             final String className =
                 ast.findFirstToken(TokenTypes.IDENT).getText();
             log(ast.getLineNo(), MSG_KEY, className);
