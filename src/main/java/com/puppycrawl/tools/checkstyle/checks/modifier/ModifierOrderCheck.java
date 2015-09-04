@@ -142,11 +142,7 @@ public class ModifierOrderCheck
         final Iterator<DetailAST> it = modifiers.iterator();
 
         //Speed past all initial annotations
-        DetailAST modifier;
-        do {
-            modifier = it.next();
-        }
-        while (it.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
+        DetailAST modifier = skipAnnotations(it);
 
         DetailAST offendingModifier = null;
 
@@ -154,7 +150,9 @@ public class ModifierOrderCheck
         if (modifier.getType() != TokenTypes.ANNOTATION) {
             int i = 0;
 
-            while (modifier != null) {
+            while (modifier != null
+                    && offendingModifier == null) {
+
                 if (modifier.getType() == TokenTypes.ANNOTATION) {
                     //Annotation not at start of modifiers, bad
                     offendingModifier = modifier;
@@ -169,7 +167,6 @@ public class ModifierOrderCheck
                 if (i == JLS_ORDER.length) {
                     //Current modifier is out of JLS order
                     offendingModifier = modifier;
-                    break;
                 }
                 else if (it.hasNext()) {
                     modifier = it.next();
@@ -181,5 +178,19 @@ public class ModifierOrderCheck
             }
         }
         return offendingModifier;
+    }
+
+    /**
+     * Skip all annotations in modifier block.
+     * @param modifierIterator iterator for collection of modifiers
+     * @return modifier next to last annotation
+     */
+    private static DetailAST skipAnnotations(Iterator<DetailAST> modifierIterator) {
+        DetailAST modifier;
+        do {
+            modifier = modifierIterator.next();
+        }
+        while (modifierIterator.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
+        return modifier;
     }
 }
