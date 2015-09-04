@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
  * are unnecessary based on the types in an expression.  It also doesn't know
- * about operator precedence and associatvity; therefore it won't catch
+ * about operator precedence and associativity; therefore it won't catch
  * something like
  * </p>
  * <pre>

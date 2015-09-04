@@ -775,7 +775,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
      */
     private static boolean isVariableInOperatorExpr(
             DetailAST operator, DetailAST variable) {
-        boolean isVarInOperatorDeclr = false;
+        boolean isVarInOperatorDeclaration = false;
         final DetailAST openingBracket =
                 operator.findFirstToken(TokenTypes.LPAREN);
 
@@ -786,7 +786,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
         while (exprBetweenBrackets.getType() != TokenTypes.RPAREN) {
 
             if (isChild(exprBetweenBrackets, variable)) {
-                isVarInOperatorDeclr = true;
+                isVarInOperatorDeclaration = true;
                 break;
             }
             exprBetweenBrackets = exprBetweenBrackets.getNextSibling();
@@ -794,7 +794,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
 
         // Variable may be met in ELSE declaration
         // So, check variable usage in these declarations.
-        if (!isVarInOperatorDeclr && operator.getType() == TokenTypes.LITERAL_IF) {
+        if (!isVarInOperatorDeclaration && operator.getType() == TokenTypes.LITERAL_IF) {
             final DetailAST elseBlock = operator.getLastChild();
 
             if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {
@@ -802,13 +802,13 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
                 final DetailAST firstNodeInsideElseBlock = elseBlock.getFirstChild();
 
                 if (firstNodeInsideElseBlock.getType() == TokenTypes.LITERAL_IF) {
-                    isVarInOperatorDeclr =
+                    isVarInOperatorDeclaration =
                         isVariableInOperatorExpr(firstNodeInsideElseBlock, variable);
                 }
             }
         }
 
-        return isVarInOperatorDeclr;
+        return isVarInOperatorDeclaration;
     }
 
     /**

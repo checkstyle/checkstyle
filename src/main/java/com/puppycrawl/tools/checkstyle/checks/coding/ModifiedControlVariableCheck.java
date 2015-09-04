@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  *
- * <p>Such loop would be supressed:
+ * <p>Such loop would be suppressed:
  *
  * <pre>
  * {@code
@@ -327,7 +327,7 @@ public final class ModifiedControlVariableCheck extends Check {
             popCurrentVariables(variablesManagedByForLoop.size());
         }
         else {
-            // this is for-each loop, just pop veriables
+            // this is for-each loop, just pop variables
             getCurrentVariables().pop();
         }
     }
@@ -344,7 +344,7 @@ public final class ModifiedControlVariableCheck extends Check {
 
     /**
      * Get all variables initialized In init part of for loop.
-     * @param ast for loop iteral
+     * @param ast for loop token
      * @return set of variables initialized in for loop
      */
     private static Set<String> getForInitVariables(DetailAST ast) {

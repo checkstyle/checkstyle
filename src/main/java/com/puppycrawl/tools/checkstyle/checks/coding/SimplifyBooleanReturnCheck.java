@@ -90,7 +90,7 @@ public class SimplifyBooleanReturnCheck
     }
 
     /**
-     * Returns if an AST is a return statment with a boolean literal
+     * Returns if an AST is a return statement with a boolean literal
      * or a compound statement that contains only such a return statement.
      *
      * <p>Returns {@code true} iff ast represents
@@ -106,16 +106,16 @@ public class SimplifyBooleanReturnCheck
      * }
      * </pre>
      *
-     * @param ast the sytax tree to check
-     * @return if ast is a return statment with a boolean literal.
+     * @param ast the syntax tree to check
+     * @return if ast is a return statement with a boolean literal.
      */
     private static boolean canReturnOnlyBooleanLiteral(AST ast) {
         if (isBooleanLiteralReturnStatement(ast)) {
             return true;
         }
 
-        final AST firstStmnt = ast.getFirstChild();
-        return isBooleanLiteralReturnStatement(firstStmnt);
+        final AST firstStatement = ast.getFirstChild();
+        return isBooleanLiteralReturnStatement(firstStatement);
     }
 
     /**
@@ -150,8 +150,8 @@ public class SimplifyBooleanReturnCheck
      * @return true iff tokenType is LITERAL_TRUE or LITERAL_FALSE
      */
     private static boolean isBooleanLiteralType(final int tokenType) {
-        final boolean iastrue = tokenType == TokenTypes.LITERAL_TRUE;
+        final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
         final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
-        return iastrue || isFalse;
+        return isTrue || isFalse;
     }
 }

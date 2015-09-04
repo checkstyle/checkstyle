@@ -101,8 +101,8 @@ public class OverloadMethodsDeclarationOrderCheck extends Check {
                 final String methodName =
                         currentToken.findFirstToken(TokenTypes.IDENT).getText();
                 if (methodIndexMap.containsKey(methodName)) {
-                    final int priviousIndex = methodIndexMap.get(methodName);
-                    if (currentIndex - priviousIndex > allowedDistance) {
+                    final int previousIndex = methodIndexMap.get(methodName);
+                    if (currentIndex - previousIndex > allowedDistance) {
                         final int previousLineWithOverloadMethod =
                                 methodLineNumberMap.get(methodName);
                         log(currentToken.getLineNo(), MSG_KEY,
