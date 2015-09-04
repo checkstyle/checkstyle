@@ -617,7 +617,11 @@
       </tr>
       <tr>
         <td><a href="config_modifier.html#RedundantModifier">RedundantModifier</a></td>
-        <td>Checks for redundant modifiers in interface and annotation definitions.</td>
+        <td>Checks for redundant modifiers in interface and annotation definitions,
+          final modifier on methods of final classes, inner <code>interface</code>
+          declarations that are declared as <code>static</code>, non public class
+          constructors and enum constructors, nested enum definitions that are declared
+          as <code>static</code>.</td>
       </tr>
       <tr>
         <td><a href="config_regexp.html#Regexp">Regexp</a></td>

@@ -51,32 +51,32 @@ strictfp final class InputModifier // illegal order of modifiers for class
     }
 
     /** holder for redundant 'public' modifier check. */
-    public static interface InputRedundantPublicModifier
+    public static interface InputRedundantPublicModifier // violation
     {
         /** redundant 'public' modifier */
-        public void a();
+        public void a(); // violation
 
         /** all OK */
         void b();
 
         /** redundant abstract modifier */
-        abstract void c();
+        abstract void c(); // violation
 
         /** redundant 'public' modifier */
-        public float PI_PUBLIC = (float) 3.14;
+        public float PI_PUBLIC = (float) 3.14; // violation
 
         /** redundant 'abstract' modifier (field can not be abstract) */
 //        abstract float PI_ABSTRACT = (float) 3.14;
 
         /** redundant 'final' modifier */
-        final float PI_FINAL = (float) 3.14;
+        final float PI_FINAL = (float) 3.14; // violation
 
         /** all OK */
         float PI_OK = (float) 3.14;
     }
 
     /** redundant 'final' modifier */
-    private final void method()
+    private final void method() // violation
     {
     }
 }
@@ -85,7 +85,7 @@ strictfp final class InputModifier // illegal order of modifiers for class
 final class RedundantFinalClass
 {
     /** redundant 'final' modifier */
-    public final void finalMethod()
+    public final void finalMethod() // violation
     {
     }
 
@@ -96,7 +96,7 @@ final class RedundantFinalClass
 }
 
 /** Holder for redundant modifiers of inner implementation */
-abstract interface InnerImplementation
+abstract interface InnerImplementation // violation
 {
     InnerImplementation inner =
         new InnerImplementation()
@@ -113,12 +113,12 @@ abstract interface InnerImplementation
 /** Holder for redundant modifiers of annotation fields/variables */
 @interface Annotation
 {
-    public String s1 = "";
-    final String s2 = "";
-    static String s3 = "";
+    public String s1 = ""; // violation
+    final String s2 = ""; // violation
+    static String s3 = ""; // violation
     String s4 = "";
-    public String blah();
-    abstract String blah2();
+    public String blah(); // violation
+    abstract String blah2(); // violation
 }
 
 @interface MyAnnotation2 {

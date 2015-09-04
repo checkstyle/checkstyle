@@ -1,6 +1,6 @@
 //Compilable with Java8
 public interface MyInterface {
-	final int k = 5; //WARNING
+	final int k = 5; // violation
 	
     default int defaultMethod(final int x) {
     	if (k == 5) {

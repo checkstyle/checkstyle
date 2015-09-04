@@ -33,6 +33,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class RedundantModifierTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testClassesInsideOfInterfaces() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY, "static"),
+            "17:5: " + getCheckMessage(MSG_KEY, "public"),
+            "20:5: " + getCheckMessage(MSG_KEY, "public"),
+            "26:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verify(checkConfig, getPath("InputModifierClassesInsideOfInterfaces.java"), expected);
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
