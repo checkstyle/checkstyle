@@ -122,7 +122,15 @@
         </p>
 
         <p>
-          Variables in interfaces and annotations are automatically
+          Classes inside of interfaces by definition are public and static,
+          so the <code>public</code> and <code>static</code> modifiers
+          on the inner classes are redundant. On the other hand, classes
+          inside of interfaces can be abstract or non abstract.
+          So, <code>abstract</code> modifier is allowed.
+        </p>
+
+        <p>
+          Fields in interfaces and annotations are automatically
           public, static and final, so these modifiers are redundant as
           well.
         </p>
@@ -134,12 +142,18 @@
         </p>
 
         <p>
-          Final classes by definition cannot be extended so the <code>final</code>
-          modifier on the method of a final class is redundant.
+          Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
+          So, the <code>static</code> modifier on the enums is redundant. In addition,
+          if enum is inside of interface, <code>public</code> modifier is also redundant.
         </p>
 
         <p>
           Nested <code>enum</code> types are always static by default.
+        </p>
+
+        <p>
+          Final classes by definition cannot be extended so the <code>final</code>
+          modifier on the method of a final class is redundant.
         </p>
 
         <p>
@@ -157,22 +171,23 @@
           }
         </source>
 
-        <p>For non-public protected classes public modifier is not obsolete,
-          removing public from this example will make code not compiling:
+        <p>There is no violation in the following example,
+          because removing public modifier from ProtectedInnerClass
+          constructor will make this code not compiling:
         </p>
 
         <source>
           package a;
-          public class ClassWithProtectedInnerClass {
-            protected class ProtectedClass {
-              public ProtectedClass () {}
+          public class ClassExample {
+            protected class ProtectedInnerClass {
+              public ProtectedInnerClass () {}
             }
           }
 
           package b;
-          import a.ClassWithProtectedInnerClass;
-          public class ClassExtending extends ClassWithProtectedInnerClass {
-            ProtectedClass pc = new ProtectedClass();
+          import a.ClassExample;
+          public class ClassExtending extends ClassExample {
+            ProtectedInnerClass pc = new ProtectedInnerClass();
           }
         </source>
       </subsection>

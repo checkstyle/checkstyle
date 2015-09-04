@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle;
 public enum InputRedundantConstructorModifier {
     VAL1, VAL2;
 
-    private InputRedundantConstructorModifier() { }
+    private InputRedundantConstructorModifier() { } // violation
 
     InputRedundantConstructorModifier(int i) { }
 
