@@ -170,14 +170,12 @@ public class CommonUtilsTest {
 
     @Test
     public void testClose() {
+        TestCloseable closeable = new TestCloseable();
+
         CommonUtils.close(null);
+        CommonUtils.close(closeable);
 
-        CommonUtils.close(new Closeable() {
-
-            @Override
-            public void close() {
-            }
-        });
+        assertTrue(closeable.closed);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -189,5 +187,14 @@ public class CommonUtilsTest {
                 throw new IOException("Test IOException");
             }
         });
+    }
+
+    private static class TestCloseable implements Closeable {
+        private boolean closed;
+
+        @Override
+        public void close() {
+            closed = true;
+        }
     }
 }
