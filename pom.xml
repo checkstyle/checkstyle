@@ -809,6 +809,12 @@
           <source>1.7</source>
           <failOnError>true</failOnError>
           <linksource>true</linksource>
+          <tags>
+            <tag>
+              <name>noinspection</name>
+              <placement>X</placement>
+            </tag>
+          </tags>
         </configuration>
         <reportSets>
           <reportSet>

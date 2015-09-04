@@ -35,7 +35,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="site"
-        - CMD1="mvn clean site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs "
+        - CMD1="mvn clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
         - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true -Dcheckstyle.ant.skip=true"
         - CMD=$CMD1$CMD2
         - COVERAGE_CMD=""
