@@ -51,6 +51,7 @@ public class TokenUtilsTest {
 
         try {
             TokenUtils.getIntFromField(field, 0);
+            fail();
         }
         catch (IllegalStateException expected) {
             // expected
