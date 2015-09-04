@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_CLASS_INFO;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_DUPLICATE_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXCPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_INVALID_INHERIT_DOC;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
@@ -117,27 +117,27 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "18:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
             "24: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "33: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "40:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "49:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
+            "40:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "49:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
             "53:9: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "WrongException"),
-            "55:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "55:27: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "NullPointerException"),
-            "60:22: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "68:22: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
+            "55:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "55:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
+            "60:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "68:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
             "72:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
-            "73:23: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "73:33: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aTwo"),
+            "73:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "73:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
             "78:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
             "79: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "87:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "109:23: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "109:55: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aFour"),
-            "109:66: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aFive"),
+            "109:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "109:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFour"),
+            "109:66: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFive"),
             "178:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ThreadDeath"),
             "179:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ArrayStoreException"),
             "236:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
             "254:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
-            "256:28: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "IOException"),
+            "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -156,24 +156,24 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "18:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
             "24: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "33: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "40:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "49:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "55:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "55:27: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "NullPointerException"),
-            "60:22: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "68:22: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
+            "40:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "49:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "55:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "55:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
+            "60:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "68:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
             "72:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
-            "73:23: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "73:33: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aTwo"),
+            "73:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "73:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
             "78:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
             "79: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "87:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "109:23: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "109:55: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aFour"),
-            "109:66: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aFive"),
+            "109:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "109:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFour"),
+            "109:66: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFive"),
             "236:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
             "254:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "java.io.FileNotFoundException"),
-            "256:28: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "IOException"),
+            "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -196,7 +196,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "74:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "79:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "84:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "94:32: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aA"),
+            "94:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
         };
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
@@ -264,24 +264,24 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "18:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
             "24: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "33: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "40:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "49:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "55:16: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "Exception"),
-            "55:27: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "NullPointerException"),
-            "60:22: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "68:22: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
+            "40:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "49:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "55:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "55:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
+            "60:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "68:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
             "72:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "WrongParam"),
-            "73:23: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "73:33: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aTwo"),
+            "73:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "73:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aTwo"),
             "78:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
             "79: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "87:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
-            "109:23: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aOne"),
-            "109:55: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aFour"),
-            "109:66: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "aFive"),
+            "109:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aOne"),
+            "109:55: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFour"),
+            "109:66: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aFive"),
             "178:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ThreadDeath"),
             "179:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "ArrayStoreException"),
-            "256:28: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "IOException"),
+            "256:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -407,8 +407,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     public void testDoAllowMissingJavadocTagsByDefault() throws Exception {
         final String[] expected = {
             "10: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "20:26: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "number"),
-            "30:42: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "ThreadDeath"),
+            "20:26: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "number"),
+            "30:42: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "ThreadDeath"),
             "51: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "61: " + getCheckMessage(MSG_RETURN_EXPECTED),
         };
@@ -468,9 +468,9 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     public void testTypeParamsTags() throws Exception {
         final String[] expected = {
             "26:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BB>"),
-            "28:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "<Z>"),
+            "28:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
             "53:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<Z"),
-            "55:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "<Z>"),
+            "55:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
@@ -501,11 +501,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         checkConfig.addAttribute("validateThrows", "true");
         final String[] expected = {
-            "17:34: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "RE"),
-            "33:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "<NPE>"),
+            "17:34: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RE"),
+            "33:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<NPE>"),
             "40:12: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "E"),
-            "43:38: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "RuntimeException"),
-            "44:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "java.lang.RuntimeException"),
+            "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
+            "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
         verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
@@ -515,11 +515,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("validateThrows", "true");
         final String[] expected = {
-            "17:34: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "RE"),
-            "33:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "<NPE>"),
+            "17:34: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RE"),
+            "33:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<NPE>"),
             "40:12: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "E"),
-            "43:38: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "RuntimeException"),
-            "44:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "java.lang.RuntimeException"),
+            "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
+            "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
         verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
@@ -529,11 +529,11 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateThrows", "true");
         final String[] expected = {
             "8:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "RE"),
-            "17:34: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "RE"),
-            "33:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@param", "<NPE>"),
+            "17:34: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RE"),
+            "33:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<NPE>"),
             "40:12: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "E"),
-            "43:38: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "RuntimeException"),
-            "44:13: " + getCheckMessage(MSG_EXCPECTED_TAG, "@throws", "java.lang.RuntimeException"),
+            "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
+            "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
         verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
     }
