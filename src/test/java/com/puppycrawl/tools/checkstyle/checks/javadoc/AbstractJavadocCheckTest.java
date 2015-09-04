@@ -44,7 +44,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
                 + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;' "
                 + "while parsing HTML_TAG"),
         };
-        verify(checkConfig, getPath("javadoc/InputTestNumberFomatException.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputTestNumberFormatException.java"), expected);
     }
 
     @Test

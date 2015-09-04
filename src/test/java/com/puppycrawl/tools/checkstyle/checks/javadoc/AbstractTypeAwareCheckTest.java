@@ -48,10 +48,10 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     @Test
     public void testIsSubclassWithNulls() throws Exception {
         JavadocMethodCheck check = new JavadocMethodCheck();
-        Method isSublclass = check.getClass().getSuperclass()
+        Method isSubclass = check.getClass().getSuperclass()
                 .getDeclaredMethod("isSubclass", Class.class, Class.class);
-        isSublclass.setAccessible(true);
-        assertFalse((boolean) isSublclass.invoke(check, null, null));
+        isSubclass.setAccessible(true);
+        assertFalse((boolean) isSubclass.invoke(check, null, null));
     }
 
     @Test

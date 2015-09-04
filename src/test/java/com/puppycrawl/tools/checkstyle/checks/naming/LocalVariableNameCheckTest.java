@@ -85,6 +85,6 @@ public class LocalVariableNameCheckTest
             "19:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
             "25:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
         };
-        verify(checkConfig, getPath("InputOneCharInintVarName.java"), expected);
+        verify(checkConfig, getPath("InputOneCharInitVarName.java"), expected);
     }
 }

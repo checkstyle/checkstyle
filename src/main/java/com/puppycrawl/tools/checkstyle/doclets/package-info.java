@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Contains the doclets used during the build of Checktyle. REally
+ * Contains the doclets used during the build of Checkstyle.
  * <p>
  * You should <strong>not be</strong> referring to this package.
  * </p>
