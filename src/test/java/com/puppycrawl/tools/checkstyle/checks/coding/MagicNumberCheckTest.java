@@ -375,7 +375,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testwaiverParentToken()
+    public void testWaiverParentToken()
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MagicNumberCheck.class);

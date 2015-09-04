@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * Rationale: With the exception of {@code for} iterators, all assignments
- * should occur in their own toplevel statement to increase readability.
+ * should occur in their own top-level statement to increase readability.
  * With inner assignments like the above it is difficult to see all places
  * where a variable is set.
  * </p>
@@ -51,10 +51,10 @@ public class InnerAssignmentCheck
     public static final String MSG_KEY = "assignment.inner.avoid";
 
     /**
-     * List of allowed AST types from an assignement AST node
+     * List of allowed AST types from an assignment AST node
      * towards the root.
      */
-    private static final int[][] ALLOWED_ASSIGMENT_CONTEXT = {
+    private static final int[][] ALLOWED_ASSIGNMENT_CONTEXT = {
         {TokenTypes.EXPR, TokenTypes.SLIST},
         {TokenTypes.VARIABLE_DEF},
         {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_INIT},
@@ -68,7 +68,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * List of allowed AST types from an assignement AST node
+     * List of allowed AST types from an assignment AST node
      * towards the root.
      */
     private static final int[][] CONTROL_CONTEXT = {
@@ -80,10 +80,10 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * List of allowed AST types from a comparison node (above an assignement)
+     * List of allowed AST types from a comparison node (above an assignment)
      * towards the root.
      */
-    private static final int[][] ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT = {
+    private static final int[][] ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT = {
         {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE, },
     };
 
@@ -133,7 +133,7 @@ public class InnerAssignmentCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)
+        if (!isInContext(ast, ALLOWED_ASSIGNMENT_CONTEXT)
                 && !isInNoBraceControlStatement(ast)
                 && !isInWhileIdiom(ast)) {
             log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
@@ -190,14 +190,14 @@ public class InnerAssignmentCheck
      * </p>
      *
      * @param ast assignment AST
-     * @return whether the context of the assignemt AST indicates the idiom
+     * @return whether the context of the assignment AST indicates the idiom
      */
     private static boolean isInWhileIdiom(DetailAST ast) {
         if (!isComparison(ast.getParent())) {
             return false;
         }
         return isInContext(
-                ast.getParent(), ALLOWED_ASSIGMENT_IN_COMPARISON_CONTEXT);
+                ast.getParent(), ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT);
     }
 
     /**

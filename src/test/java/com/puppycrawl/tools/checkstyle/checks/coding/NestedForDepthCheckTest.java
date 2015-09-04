@@ -36,7 +36,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
     /**
      * Call the check allowing 2 layers of nested for-statements. This
      * means the top-level for can contain up to 2 levels of nested for
-     * statements. As the testinput has 4 layers of for-statements below
+     * statements. As the test input has 4 layers of for-statements below
      * the top-level for statement, this must cause 2 error-messages.
      *
      * @throws Exception necessary to fulfill JUnit's
@@ -60,7 +60,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
     /**
      * Call the check allowing 4 layers of nested for-statements. This
      * means the top-level for can contain up to 4 levels of nested for
-     * statements. As the testinput has 4 layers of for-statements below
+     * statements. As the test input has 4 layers of for-statements below
      * the top-level for statement, this must not cause an
      * error-message.
      *

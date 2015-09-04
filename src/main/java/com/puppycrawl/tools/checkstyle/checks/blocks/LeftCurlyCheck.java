@@ -285,12 +285,12 @@ public class LeftCurlyCheck
      * @return {@code DetailAST} or null if there are no annotations.
      */
     private static DetailAST findLastAnnotation(DetailAST modifiers) {
-        DetailAST annot = modifiers.findFirstToken(TokenTypes.ANNOTATION);
-        while (annot != null && annot.getNextSibling() != null
-               && annot.getNextSibling().getType() == TokenTypes.ANNOTATION) {
-            annot = annot.getNextSibling();
+        DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
+        while (annotation != null && annotation.getNextSibling() != null
+               && annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {
+            annotation = annotation.getNextSibling();
         }
-        return annot;
+        return annotation;
     }
 
     /**

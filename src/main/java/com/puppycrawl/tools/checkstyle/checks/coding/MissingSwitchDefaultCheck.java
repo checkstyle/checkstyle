@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * the developer is sure that all currently possible
  * cases are covered, this should be expressed in the
  * default branch, e.g. by using an assertion. This way
- * the code is protected aginst later changes, e.g.
+ * the code is protected against later changes, e.g.
  * introduction of new types in an enumeration type.
  * </p>
  * <p>
