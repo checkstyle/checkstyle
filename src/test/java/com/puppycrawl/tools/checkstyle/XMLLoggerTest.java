@@ -260,8 +260,8 @@ public class XMLLoggerTest {
         private static final long serialVersionUID = 1L;
 
         @Override
-        public void printStackTrace(PrintWriter s) {
-            s.print("stackTrace");
+        public void printStackTrace(PrintWriter printWriter) {
+            printWriter.print("stackTrace");
         }
     }
 
