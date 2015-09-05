@@ -375,13 +375,6 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="Translation">
-      <!--
-        One day we will find time to do full internationalization for atleast current janguages
-      -->
-      <property name="severity" value="ignore"/>
-    </module>
-
-
   </module>
+  <module name="Translation"/>
 </module>
