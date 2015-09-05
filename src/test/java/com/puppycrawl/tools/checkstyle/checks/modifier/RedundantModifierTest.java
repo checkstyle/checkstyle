@@ -123,9 +123,26 @@ public class RedundantModifierTest
                 createCheckConfig(RedundantModifierCheck.class);
 
         final String[] expected = {
-            "15:5: " + getCheckMessage(MSG_KEY, "public"),
+            "18:5: "  + getCheckMessage(MSG_KEY, "public"),
         };
         verify(checkConfig, getPath("InputRedundantPublicModifierInNotPublicClass.java"), expected);
+    }
+
+    @Test
+    public void testNestedClassConsInPublicInterfaceHasValidPublicModifier() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+
+        final String[] expected = {
+            "18:33: " + getCheckMessage(MSG_KEY, "public"),
+            "22:41: " + getCheckMessage(MSG_KEY, "public"),
+            "33:33: " + getCheckMessage(MSG_KEY, "public"),
+            "41:33: " + getCheckMessage(MSG_KEY, "public"),
+        };
+
+        verify(checkConfig,
+                getPath("InputNestedClassInPublicInterfaceRedundantModifiers.java"),
+                expected);
     }
 
     @Test
