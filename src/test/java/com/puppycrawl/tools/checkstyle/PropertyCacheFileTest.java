@@ -52,7 +52,7 @@ public class PropertyCacheFileTest {
 
     @Test
     public void testNonAccessibleFile() throws IOException {
-        Configuration config = new DefaultConfiguration("myname");
+        Configuration config = new DefaultConfiguration("myName");
         final File file = temporaryFolder.newFile("file.output");
         file.setReadable(true, false);
         file.setWritable(false, false);
@@ -69,7 +69,7 @@ public class PropertyCacheFileTest {
             assertEquals("config can not be null", ex.getMessage());
         }
         try {
-            Configuration config = new DefaultConfiguration("myname");
+            Configuration config = new DefaultConfiguration("myName");
             new PropertyCacheFile(config, null);
         }
         catch (IllegalArgumentException ex) {
@@ -79,7 +79,7 @@ public class PropertyCacheFileTest {
 
     @Test
     public void testInCache() throws IOException {
-        Configuration config = new DefaultConfiguration("myname");
+        Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
         PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
@@ -92,7 +92,7 @@ public class PropertyCacheFileTest {
     @SuppressWarnings("unchecked")
     public void testException_NoSuchAlgorithmException() throws Exception {
 
-        Configuration config = new DefaultConfiguration("myname");
+        Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
         PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);

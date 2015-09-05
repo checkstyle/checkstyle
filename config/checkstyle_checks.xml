@@ -347,14 +347,14 @@
 
     <module name="MissingCtor">
       <!--
-        we will not uset that fanatic validation, extra code is not good
+        we will not use that fanatic validation, extra code is not good
         But this Check will exists as it was created by community demand.
       -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="RequireThis">
       <!--
-        we will not uset that fanatic validation, extra modifiers polute a code
+        we will not use that fanatic validation, extra modifiers pollute a code
         it is better to use different names for arguments, or expect IDE to highlight field.
         But this Check will exists as it was created by community demand.
       -->
@@ -362,7 +362,7 @@
     </module>
     <module name="FinalParameters">
       <!--
-        we will not uset that fanatic validation, extra modifiers polute a code
+        we will not use that fanatic validation, extra modifiers pollute a code
         it is better to use extra validation(Check) that argument is reassigned
         But this Check will exists as it was created by community demand.
       -->

@@ -34,8 +34,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * implemented by subclasses.
  * </p>
  *
- * <p>The exact rule is that nonprivate, nonstatic methods in
- * nonfinal classes (or classes that do not
+ * <p>The exact rule is that non-private, non-static methods in
+ * non-final classes (or classes that do not
  * only have private constructors) must either be
  * <ul>
  * <li>abstract or</li>

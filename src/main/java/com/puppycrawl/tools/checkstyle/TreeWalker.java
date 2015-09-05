@@ -290,7 +290,7 @@ public final class TreeWalker
         }
         else if (TokenUtils.isCommentType(token)) {
             final String message = String.format("Check '%s' waits for comment type "
-                    + "token ('%s') and should override 'isCommentNodesRequred()' "
+                    + "token ('%s') and should override 'isCommentNodesRequired()' "
                     + "method to return 'true'", check.getClass().getName(), token);
             LOG.warn(message);
         }

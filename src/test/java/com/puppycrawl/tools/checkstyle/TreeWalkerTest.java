@@ -261,7 +261,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testProcessWithParserTrowable() throws Exception {
+    public void testProcessWithParserThrowable() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createCheckConfig(TypeNameCheck.class));
         PackageObjectFactory factory = new PackageObjectFactory(

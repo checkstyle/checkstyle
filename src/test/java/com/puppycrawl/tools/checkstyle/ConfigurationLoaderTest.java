@@ -77,10 +77,10 @@ public class ConfigurationLoaderTest {
             "src/test/resources/com/puppycrawl/tools/checkstyle/configs/checkstyle_checks.xml", new PropertiesExpander(props));
 
         //verify the root, and property substitution
-        final Properties atts = new Properties();
-        atts.setProperty("tabWidth", "4");
-        atts.setProperty("basedir", "basedir");
-        verifyConfigNode(config, "Checker", 3, atts);
+        final Properties attributes = new Properties();
+        attributes.setProperty("tabWidth", "4");
+        attributes.setProperty("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 3, attributes);
     }
 
     @Test
@@ -323,7 +323,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testExternalEntitySubdir() throws Exception {
+    public void testExternalEntitySubdirectory() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 
@@ -331,10 +331,10 @@ public class ConfigurationLoaderTest {
             (DefaultConfiguration) loadConfiguration(
                 "subdir/including.xml", props);
 
-        final Properties atts = new Properties();
-        atts.setProperty("tabWidth", "4");
-        atts.setProperty("basedir", "basedir");
-        verifyConfigNode(config, "Checker", 2, atts);
+        final Properties attributes = new Properties();
+        attributes.setProperty("tabWidth", "4");
+        attributes.setProperty("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 2, attributes);
     }
 
     @Test
@@ -360,9 +360,9 @@ public class ConfigurationLoaderTest {
             Class<?> aClassParent = ConfigurationLoader.class;
             Constructor<?> ctorParent = null;
             Constructor<?>[] parentConstructors = aClassParent.getDeclaredConstructors();
-            for (Constructor<?> constr: parentConstructors) {
-                constr.setAccessible(true);
-                ctorParent = constr;
+            for (Constructor<?> parentConstructor: parentConstructors) {
+                parentConstructor.setAccessible(true);
+                ctorParent = parentConstructor;
             }
             Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                     + "ConfigurationLoader$InternalLoader");

@@ -119,12 +119,12 @@ public class PackageNamesLoaderTest {
 
         URL url = getMockUrl(mockConnection);
 
-        Enumeration<URL> enumer = (Enumeration<URL>) mock(Enumeration.class);
-        when(enumer.hasMoreElements()).thenReturn(true);
-        when(enumer.nextElement()).thenReturn(url);
+        Enumeration<URL> enumeration = (Enumeration<URL>) mock(Enumeration.class);
+        when(enumeration.hasMoreElements()).thenReturn(true);
+        when(enumeration.nextElement()).thenReturn(url);
 
         ClassLoader classLoader = mock(ClassLoader.class);
-        when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
+        when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumeration);
 
         try {
             PackageNamesLoader.getPackageNames(classLoader);
