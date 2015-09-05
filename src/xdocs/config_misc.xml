@@ -356,7 +356,7 @@ messages.properties: Key 'ok' missing.
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L378-L383">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L379">
             Checkstyle Style</a>
           </li>
         </ul>
