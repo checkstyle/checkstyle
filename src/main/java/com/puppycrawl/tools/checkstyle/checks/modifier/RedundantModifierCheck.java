@@ -314,14 +314,28 @@ public class RedundantModifierCheck
     }
 
     /**
-     * Checks if given class ast has public modifier.
-     * @param classDef class ast
-     * @return true if class is public, false otherwise
+     * Checks if given class is accessible from "public" scope.
+     * @param ast class def to check
+     * @return true if class is accessible from public scope,false otherwise
      */
-    private static boolean isClassPublic(DetailAST classDef) {
-        final DetailAST classModifiers =
-                classDef.findFirstToken(TokenTypes.MODIFIERS);
-        return classModifiers.branchContains(TokenTypes.LITERAL_PUBLIC);
+    private static boolean isClassPublic(DetailAST ast) {
+        boolean isAccessibleFromPublic = false;
+        final boolean isMostOuterScope = ast.getParent() == null;
+        final DetailAST modifiersAst = ast.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean hasPublicModifier = modifiersAst.branchContains(TokenTypes.LITERAL_PUBLIC);
+
+        if (isMostOuterScope) {
+            isAccessibleFromPublic = hasPublicModifier;
+        }
+        else {
+            final DetailAST parentClassAst = ast.getParent().getParent();
+
+            if (parentClassAst.getType() == TokenTypes.INTERFACE_DEF || hasPublicModifier) {
+                isAccessibleFromPublic = isClassPublic(parentClassAst);
+            }
+        }
+
+        return isAccessibleFromPublic;
     }
 
     /**
