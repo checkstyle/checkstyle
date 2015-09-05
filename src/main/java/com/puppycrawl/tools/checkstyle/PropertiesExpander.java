@@ -37,7 +37,6 @@ public final class PropertiesExpander
      * @param properties the underlying properties to use for
      *     property resolution.
      * @throws IllegalArgumentException indicates null was passed
-     * @noinspection CollectionDeclaredAsConcreteClass
      */
     public PropertiesExpander(Properties properties) {
         if (properties == null) {
