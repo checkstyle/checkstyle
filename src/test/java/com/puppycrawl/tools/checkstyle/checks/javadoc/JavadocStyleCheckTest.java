@@ -108,6 +108,7 @@ public class JavadocStyleCheckTest
             "382: " + getCheckMessage(NO_PERIOD),
             "386: " + getCheckMessage(NO_PERIOD),
             "393: " + getCheckMessage(NO_PERIOD),
+            "405: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -131,6 +132,7 @@ public class JavadocStyleCheckTest
             "382: " + getCheckMessage(NO_PERIOD),
             "386: " + getCheckMessage(NO_PERIOD),
             "393: " + getCheckMessage(NO_PERIOD),
+            "405: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -158,6 +160,7 @@ public class JavadocStyleCheckTest
             "382: " + getCheckMessage(NO_PERIOD),
             "386: " + getCheckMessage(NO_PERIOD),
             "393: " + getCheckMessage(NO_PERIOD),
+            "405: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -273,6 +276,7 @@ public class JavadocStyleCheckTest
             "382: " + getCheckMessage(NO_PERIOD),
             "386: " + getCheckMessage(NO_PERIOD),
             "393: " + getCheckMessage(NO_PERIOD),
+            "405: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
@@ -317,6 +321,7 @@ public class JavadocStyleCheckTest
             "372: " + getCheckMessage(NO_PERIOD),
             "378:15: " + getCheckMessage(UNCLOSED_HTML, "<b>Note:<b> it's unterminated tag.</p>"),
             "393: " + getCheckMessage(NO_PERIOD),
+            "405: " + getCheckMessage(NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
