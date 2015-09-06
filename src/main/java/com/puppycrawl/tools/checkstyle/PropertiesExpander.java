@@ -39,7 +39,6 @@ public final class PropertiesExpander
      * @throws IllegalArgumentException indicates null was passed
      * @noinspection CollectionDeclaredAsConcreteClass
      */
-    @SuppressWarnings("CollectionDeclaredAsConcreteClass")
     public PropertiesExpander(Properties properties) {
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
