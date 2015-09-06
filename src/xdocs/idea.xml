@@ -74,7 +74,12 @@
         Settings -> Editor -> Inspections -> Manage -> Import... and locate file
         <code>config/intellij-idea-inspections.xml</code>.<br/><br/>
         <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
-        <br/>
+        <br/><br/>
+        Not all files in repository should be analyzed. For example test input files contain numerous
+        violations on purpose. Our shared inspection scope can be used to exclude such files.<br/>
+        To add custom scope copy file <code>config/intellij-idea-inspection-scope.xml</code>
+        to <code>.idea/scopes</code> directory. Now it should be ready to use in inspect code window:<br/><br/>
+        <img alt="Scope for inspections" src="images/gui_screenshot_scope_idea.png"/>
       </p>
     </section>
 
