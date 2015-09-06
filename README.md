@@ -1,6 +1,8 @@
 [![][travis img]][travis]
 [![][appveyor img]][appveyor]
+[![][teamcity img]][teamcity]
 [![][coverage img]][coverage]
+
 [![][mavenbadge img]][mavenbadge]
 [![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
@@ -91,4 +93,7 @@ directory.
 
 [stackoverflow]:http://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
+
+[teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
+[teamcity img]:https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/Checkstyle_IdeaInspectionsMaster.svg?label=TeamCity
 
