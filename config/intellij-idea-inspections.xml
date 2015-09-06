@@ -484,7 +484,7 @@
     <inspection_tool class="DataProviderReturnType" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DateToString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DebuggerStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="DeclareCollectionAsInterface" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="DeclareCollectionAsInterface" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreLocalVariables" value="false" />
         <option name="ignorePrivateMethodsAndFields" value="false" />
     </inspection_tool>
