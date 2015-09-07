@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.FILE_CONTAINS_TAB;
 
 import java.io.File;
-import java.util.Locale;
 
 import org.junit.Test;
 
@@ -78,11 +77,7 @@ public class FileTabCharacterCheckTest
     public void testBadFile() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(false);
         final String path = getPath("Claira");
-        String exceptionMessage = " (No such file or directory)";
-        if (System.getProperty("os.name")
-                .toLowerCase(Locale.ENGLISH).startsWith("windows")) {
-            exceptionMessage = " (The system cannot find the file specified)";
-        }
+        final String exceptionMessage = " (No such file or directory)";
 
         final String[] expected = {
             "0: Got an exception - " + path + exceptionMessage,
