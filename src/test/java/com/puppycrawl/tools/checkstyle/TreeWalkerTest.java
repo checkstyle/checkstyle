@@ -184,7 +184,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testCacheFile_changeInConfig() throws Exception {
+    public void testCacheFileChangeInConfig() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
 
         final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);

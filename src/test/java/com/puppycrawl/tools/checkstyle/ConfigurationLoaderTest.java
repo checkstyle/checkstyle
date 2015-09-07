@@ -433,7 +433,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfiguration_WrongURL() throws CheckstyleException {
+    public void testLoadConfigurationWrongURL() throws CheckstyleException {
         try {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
@@ -451,7 +451,7 @@ public class ConfigurationLoaderTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testLoadConfiguration_URISyntaxException() throws CheckstyleException {
+    public void testLoadConfigurationURISyntaxException() throws CheckstyleException {
         mockStatic(ConfigurationLoader.class, Mockito.CALLS_REAL_METHODS);
 
         PropertiesExpander expander = new PropertiesExpander(new Properties());
@@ -472,7 +472,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfiguration_Deprecated() throws CheckstyleException {
+    public void testLoadConfigurationDeprecated() throws CheckstyleException {
         try {
             @SuppressWarnings("deprecation")
             final DefaultConfiguration config =

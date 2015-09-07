@@ -85,7 +85,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNLOW() throws Exception {
+    public void testNlow() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),

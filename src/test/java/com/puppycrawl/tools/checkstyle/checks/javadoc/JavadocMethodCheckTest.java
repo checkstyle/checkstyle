@@ -476,19 +476,19 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void test_1168408_1() throws Exception {
+    public void test11684081() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("checks/javadoc/Input_01.java"), expected);
     }
 
     @Test
-    public void test_1168408_2() throws Exception {
+    public void test11684082() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("checks/javadoc/Input_02.java"), expected);
     }
 
     @Test
-    public void test_1168408_3() throws Exception {
+    public void test11684083() throws Exception {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -496,7 +496,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void test_generics_1() throws Exception {
+    public void testGenerics1() throws Exception {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         checkConfig.addAttribute("validateThrows", "true");
@@ -511,7 +511,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void test_generics_2() throws Exception {
+    public void testGenerics2() throws Exception {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("validateThrows", "true");
         final String[] expected = {
@@ -525,7 +525,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void test_generics_3() throws Exception {
+    public void testGenerics3() throws Exception {
         checkConfig.addAttribute("validateThrows", "true");
         final String[] expected = {
             "8:8: " + getCheckMessage(MSG_UNUSED_TAG, "@throws", "RE"),
@@ -539,7 +539,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void test_1379666() throws Exception {
+    public void test1379666() throws Exception {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;

@@ -323,7 +323,7 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFilePlainOutputToFileWithoutReadAndRwPermissions()
+    public void testExistingFilePlainOutputToFileWithoutReadAndRwPermissions()
             throws Exception {
         final File file = temporaryFolder.newFile("file.output");
         // That works fine on Linux/Unix, but ....
@@ -401,7 +401,7 @@ public class MainTest {
     }
 
     @Test
-    public void testLoadProperties_IOException() throws Exception {
+    public void testLoadPropertiesIOException() throws Exception {
         Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
         Method method = Main.class.getDeclaredMethod("loadProperties", param);
@@ -432,7 +432,7 @@ public class MainTest {
     }
 
     @Test
-    public void testCreateListener_IllegalStateException() throws Exception {
+    public void testCreateListenerIllegalStateException() throws Exception {
         Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
         method.setAccessible(true);
         try {
@@ -446,7 +446,7 @@ public class MainTest {
     }
 
     @Test
-    public void testCreateListenerWithLocation_IllegalStateException() throws Exception {
+    public void testCreateListenerWithLocationIllegalStateException() throws Exception {
         Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
         method.setAccessible(true);
         String outDir = "myfolder123";
@@ -499,7 +499,7 @@ public class MainTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testListFiles_notFile() throws Exception {
+    public void testListFilesNotFile() throws Exception {
         Method method = Main.class.getDeclaredMethod("listFiles", File.class);
         method.setAccessible(true);
 
@@ -514,7 +514,7 @@ public class MainTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testListFiles_DirectoryWithNull() throws Exception {
+    public void testListFilesDirectoryWithNull() throws Exception {
         Method method = Main.class.getDeclaredMethod("listFiles", File.class);
         method.setAccessible(true);
 

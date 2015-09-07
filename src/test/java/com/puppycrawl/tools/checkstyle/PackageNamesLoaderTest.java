@@ -163,7 +163,7 @@ public class PackageNamesLoaderTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testPackagesWithIoException_getResources() throws Exception {
+    public void testPackagesWithIoExceptionGetResources() throws Exception {
 
         ClassLoader classLoader = mock(ClassLoader.class);
         when(classLoader.getResources("checkstyle_packages.xml")).thenThrow(IOException.class);

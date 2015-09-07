@@ -63,7 +63,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReload_UrlNull() throws IOException {
+    public void testBundleReloadUrlNull() throws IOException {
         LocalizedMessage.UTF8Control cntrl = new LocalizedMessage.UTF8Control();
         cntrl.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
@@ -71,7 +71,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReload_UrlNotNull() throws IOException {
+    public void testBundleReloadUrlNotNull() throws IOException {
 
         ClassLoader classloader = mock(ClassLoader.class);
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
@@ -89,7 +89,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReload_UrlNotNullStreamNull() throws IOException {
+    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
 
         ClassLoader classloader = mock(ClassLoader.class);
         String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";

@@ -90,7 +90,7 @@ public class PropertyCacheFileTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testException_NoSuchAlgorithmException() throws Exception {
+    public void testExceptionNoSuchAlgorithmException() throws Exception {
 
         Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
