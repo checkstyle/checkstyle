@@ -2286,6 +2286,8 @@
     <inspection_tool class="VoidMethodAnnotatedWithGET" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="VolatileArrayField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="VolatileLongOrDoubleField" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- VtlReferencesInspection produce a lot false-positives on ${projectVersion} -->
+    <inspection_tool class="VtlReferencesInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="W3CssValidation" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="myCssVersion" value="css3" />
         <option name="myIgnoreVendorSpecificProperties" value="false" />
