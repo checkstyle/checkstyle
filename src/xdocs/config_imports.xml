@@ -825,7 +825,49 @@ import java.util.regex.Matcher; //#8
         <p>
           Use the separator '###' between rules.
         </p>
-      </subsection>
+        <p>
+          To set Regexps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+          thirdPartyPackageRegExp and standardPackageRegExp options.
+        </p>
+        <p>
+          Pretty often one import can match more than one group. For example, static import from standard
+          package or regular expressions are configured to allow one import match multiple groups.
+          In this case, group will be assigned according to priorities:
+        </p>
+        <ol>
+          <li>STATIC has top priority</li>
+          <li>SAME_PACKAGE has second priority</li>
+          <li>STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS will compete using "best match" rule: longer
+          matching substring wins; in case of the same length, lower position of matching substring
+          wins; if position is the same, order of rules in configuration solves the puzzle.</li>
+          <li>THIRD_PARTY has the least priority</li>
+        </ol>
+        <p>
+          Few examples to illustrate "best match":
+        </p>
+        <p>
+          1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
+        </p>
+        <source>
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+        </source>
+        <p>
+          Result: imports will be assigned to SPECIAL_IMPORTS, because matching substring length is 16. Matching
+          substring for STANDARD_JAVA_PACKAGE is 5.
+        </p>
+        <p>
+          2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
+        </p>
+        <source>
+import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+        </source>
+        <p>
+          Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for both
+          patterns. However, "Avoid" position is lower then "Check" position.
+        </p>
+
+    </subsection>
 
       <subsection name="Properties">
         <table>
