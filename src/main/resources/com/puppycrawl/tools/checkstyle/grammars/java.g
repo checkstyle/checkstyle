@@ -1796,7 +1796,7 @@ ESC
             (options { generateAmbigWarnings=false; }
             :    '0' '0' '5' ('c'|'C')
                 (options { generateAmbigWarnings=false; }
-                :    '\\' ('u')+ '0' '0' '5' ('c'|'C')
+                :    '\\' ('u')+ HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
                 |    STD_ESC
                 )
             |    HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
