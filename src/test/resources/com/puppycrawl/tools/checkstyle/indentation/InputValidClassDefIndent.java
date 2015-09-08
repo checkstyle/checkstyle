@@ -139,7 +139,7 @@ final class InputValidClassDefIndent6 extends java.awt.event.MouseAdapter implem
                     return (value1 <= value2); //indent:20 exp:20
                 } //indent:16 exp:16
 
-                public boolean compare(Comparable obj1, Comparable obj2) //indent:16 exp:16
+                public boolean compare(Comparable<Object> obj1, Comparable<Object> obj2) //indent:16 exp:16
                 { //indent:16 exp:16
                     return (obj1.compareTo(obj2) <= 0); //indent:20 exp:20
                 } //indent:16 exp:16

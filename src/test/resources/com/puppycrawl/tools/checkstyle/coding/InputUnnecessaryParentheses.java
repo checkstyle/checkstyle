@@ -79,7 +79,7 @@ public class InputUnnecessaryParentheses {
         TypeC c = ((TypeC) a);
         int r = 12345;
         r <<= (3);
-        TypeD<String> d = ((TypeD<String>) a);
+        TypeParameterized<String> d = ((TypeParameterized<String>) a);
     }
 
     private void print(int arg)
@@ -87,8 +87,8 @@ public class InputUnnecessaryParentheses {
         System.out.println("arg = " + arg);
     }
 
-    static class TypeA {}
+    static class TypeParameterized<T> {}
+    static class TypeA extends TypeParameterized<String> {}
     static class TypeB extends TypeA {}
     static class TypeC extends TypeA {}
-    static class TypeD<T> extends TypeA {}
 }
