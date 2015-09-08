@@ -141,7 +141,6 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "333: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
         };
 
         verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
@@ -177,7 +176,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "333: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL), };
+        };
         verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
     }
 
@@ -285,7 +284,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "262:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "333: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL), };
+        };
         verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
     }
 
@@ -576,4 +575,5 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("javadoc/InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
+
 }

@@ -482,7 +482,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         final Iterator<JavadocTag> it = tags.iterator();
-        if (ast.getType() != TokenTypes.ANNOTATION_FIELD_DEF) {
+        if (ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
+            checkReturnTag(tags, ast.getLineNo(), true);
+        }
+        else {
             // Check for inheritDoc
             boolean hasInheritDocTag = false;
             while (it.hasNext() && !hasInheritDocTag) {
