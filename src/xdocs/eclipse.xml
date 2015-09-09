@@ -93,6 +93,19 @@
       </p>
     </section>
 
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code require certain order of import
+        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
+        To change settings of "Organize Imports" feature (Kepler, Luna &amp; Mars, other versions
+        are likely to work the same way), please go to Window -> Preferences in menu.<br/>
+        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a picture).<br/>
+        Default configuration should look as following (you can also try Restore Defaults button):<br/><br/>
+        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.jpg"/>
+        <br/>
+      </p>
+    </section>
+
     <section name="Debug">
       <p>
         Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
@@ -108,19 +121,6 @@
         <br/><br/>
         Then manage you debug operations by F6 (Step Over), F5 (Step Into), F7 (Step Return)
         and F8 (Resume)
-      </p>
-    </section>
-
-    <section name="Organize Imports">
-      <p>
-        One of the Checkstyle checks we run on our own code require certain order of import
-        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
-        To change settings of "Organize Imports" feature (Kepler, Luna &amp; Mars, other versions
-        are likely to work the same way), please go to Window -> Preferences in menu.<br/>
-        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a picture).<br/>
-        Default configuration should look as following (you can also try Restore Defaults button):<br/><br/>
-        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.jpg"/>
-        <br/>
       </p>
     </section>
 
