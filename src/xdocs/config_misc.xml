@@ -774,6 +774,28 @@ messages.properties: Key 'ok' missing.
       </subsection>
 
       <subsection name="Examples">
+
+        <p>Switch with no default:</p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+    &lt;property name="maximumDepth" value="2"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+    &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          The condition in <code>for</code> performs no check:
+        </p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="FOR_CONDITION"/&gt;
+    &lt;property name="limitedTokens" value="EXPR"/&gt;
+    &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+        </source>
+
         <p>
           Comparing <code>this</code> with <code>null</code> (i.e. <code>this ==
           null</code> and <code>this != null</code>):
@@ -798,16 +820,6 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
 
-        <p>Switch with no default:</p>
-        <source>
-&lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
-    &lt;property name="maximumDepth" value="2"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
-    &lt;property name="minimumNumber" value="1"/&gt;
-&lt;/module&gt;
-        </source>
-
         <p>
           Assert statement may have side effects (formatted for browser
           display):
@@ -829,17 +841,6 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name="DescendantToken"&gt;
     &lt;property name="tokens" value="FOR_INIT"/&gt;
-    &lt;property name="limitedTokens" value="EXPR"/&gt;
-    &lt;property name="minimumNumber" value="1"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          The condition in <code>for</code> performs no check:
-        </p>
-        <source>
-&lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="FOR_CONDITION"/&gt;
     &lt;property name="limitedTokens" value="EXPR"/&gt;
     &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
