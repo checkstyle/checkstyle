@@ -26,10 +26,51 @@
       </macro>
     </section>
 
+    <section name="Download Eclipse">
+      <p>
+        Please visit Eclipse IDE <a href="https://eclipse.org/"> official web site</a>,
+        download and install the latest version of Eclipse IDE for Java Developers.
+      </p>
+    </section>
+
     <section name="Import Checkstyle Project">
       <p>
         Select File > Import > Maven > Existing Maven Projects<br/><br/>
         <img alt="screenshot" src="images/gui_screenshot_importing_eclipse.png"/>
+      </p>
+    </section>
+
+    <section name="Setup Maven plugin connectors">
+      <p>When you import Checkstyle Project, "Setup maven plugin connectors" window will appear.</p>
+      <p>
+        Left click on "Finish".<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_setup_maven_plugin_connectors_eclipse.png"/>
+        <br/><br/>
+      </p>
+      <p>
+        Then plugin "Install" window will appear.
+        <br/><br/>
+        Left click on Next > Next.
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_eclipse.png"/>
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_details_eclipse.png"/>
+        <br/><br/>
+        Set "I accept the terms of the license agreement" > Finish.
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_license_eclipse.png"/>
+      </p>
+      <p>
+        <br/><br/>
+        Then "Security Warning" window will appear.
+        <br/><br/>
+        Left click on "OK", and then restart Eclipse.<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_security_warning_eclipse.png"/>
+      </p>
+      <p>
+        <br/><br/>
+        Then target/generated-sources/antlr folder will appear in Package Explorer.<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_package_explorer_eclipse.png"/>
       </p>
     </section>
 
