@@ -179,10 +179,10 @@
     <module name="ParameterName">
       <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
     </module>
-    <module name="ParameterNumber">
-      <property name="max" value="9"/>
-      <property name="id" value="paramNum"/>
-    </module>
+    <module name="ParameterNumber"/>
+
+
+
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
     <module name="RedundantImport"/>
