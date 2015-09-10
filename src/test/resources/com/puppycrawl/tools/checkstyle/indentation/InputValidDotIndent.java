@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle.indentation; //indent:0 exp:0
 
 import javax.swing.border.BevelBorder; //indent:0 exp:0
+import javax.swing.plaf.metal.MetalButtonUI; //indent:0 exp:0
 
 /**                                                                           //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:   //indent:1 exp:1
@@ -60,21 +61,21 @@ public class InputValidDotIndent { //indent:0 exp:0
                         .BevelBorder(BevelBorder. //indent:24 exp:24
                             LOWERED); //indent:28 exp:28
 
-        Class c = javax.swing. //indent:8 exp:8
+        Class<MetalButtonUI> c = javax.swing. //indent:8 exp:8
             plaf.metal.MetalButtonUI.class; //indent:12 exp:12
 
-        Class c1 = javax.swing //indent:8 exp:8
+        Class<MetalButtonUI> c1 = javax.swing //indent:8 exp:8
             .plaf.metal.MetalButtonUI.class; //indent:12 exp:12
 
-        Class c2 = javax.swing //indent:8 exp:8
+        Class<MetalButtonUI> c2 = javax.swing //indent:8 exp:8
             .plaf.metal. //indent:12 exp:12
                 MetalButtonUI.class; //indent:16 exp:16
 
-        Class c3 = javax.swing //indent:8 exp:8
+        Class<MetalButtonUI> c3 = javax.swing //indent:8 exp:8
             .plaf.metal //indent:12 exp:12
                 .MetalButtonUI.class; //indent:16 exp:16
 
-        Class c4 = javax. //indent:8 exp:8
+        Class<MetalButtonUI> c4 = javax. //indent:8 exp:8
             swing.plaf.metal. //indent:12 exp:12
                 MetalButtonUI.class; //indent:16 exp:16
 

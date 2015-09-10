@@ -163,8 +163,8 @@ public class InputRightCurlyAloneOrSingleline {
     void foo27() {
         for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} //violation
 
-    private java.util.ArrayList foo28(int delta) {
-        return new java.util.ArrayList() {
+    private java.util.ArrayList<Integer> foo28(int delta) {
+        return new java.util.ArrayList<Integer>() {
             @Override public int size() { return Math.max(0, super.size() + 1);};
         };
     }
