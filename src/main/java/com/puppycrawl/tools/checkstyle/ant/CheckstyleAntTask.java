@@ -462,7 +462,7 @@ public class CheckstyleAntTask extends Task {
             if (formatters.isEmpty()) {
                 final OutputStream debug = new LogOutputStream(this, Project.MSG_DEBUG);
                 final OutputStream err = new LogOutputStream(this, Project.MSG_ERR);
-                listeners[0] = new DefaultLogger(debug, true, err, true);
+                listeners[0] = new DefaultLogger(debug, true, err, true, true);
             }
             else {
                 for (int i = 0; i < formatterCount; i++) {
@@ -591,7 +591,8 @@ public class CheckstyleAntTask extends Task {
                     new LogOutputStream(task, Project.MSG_DEBUG),
                     true, new LogOutputStream(task, Project.MSG_ERR), true);
             }
-            return new DefaultLogger(new FileOutputStream(toFile), true);
+            final FileOutputStream infoStream = new FileOutputStream(toFile);
+            return new DefaultLogger(infoStream, true, infoStream, false, true);
         }
 
         /**

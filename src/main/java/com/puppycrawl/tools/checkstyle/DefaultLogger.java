@@ -59,6 +59,9 @@ public class DefaultLogger
     /** Close error stream after use. */
     private final boolean closeError;
 
+    /** Print severity level. */
+    private boolean printSeverity = true;
+
     /**
      * Creates a new {@code DefaultLogger} instance.
      * @param os where to log infos and errors
@@ -69,6 +72,24 @@ public class DefaultLogger
             throws UnsupportedEncodingException {
         // no need to close oS twice
         this(os, closeStreamsAfterUse, os, false);
+    }
+
+    /**
+     * Creates a new <code>DefaultLogger</code> instance.
+     * @param infoStream the {@code OutputStream} for info messages.
+     * @param closeInfoAfterUse auditFinished should close infoStream.
+     * @param errorStream the {@code OutputStream} for error messages.
+     * @param closeErrorAfterUse auditFinished should close errorStream
+     * @param printSeverity if severity level should be printed.
+     * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding.
+     */
+    public DefaultLogger(OutputStream infoStream,
+                         boolean closeInfoAfterUse,
+                         OutputStream errorStream,
+                         boolean closeErrorAfterUse,
+                         boolean printSeverity) throws UnsupportedEncodingException {
+        this(infoStream, closeInfoAfterUse, errorStream, closeErrorAfterUse);
+        this.printSeverity = printSeverity;
     }
 
     /**
@@ -120,10 +141,11 @@ public class DefaultLogger
             if (evt.getColumn() > 0) {
                 sb.append(':').append(evt.getColumn());
             }
-            if (severityLevel == SeverityLevel.WARNING) {
-                sb.append(": warning");
+            final String errorMessageSeparator = ": ";
+            if (printSeverity) {
+                sb.append(errorMessageSeparator).append(severityLevel.getName());
             }
-            sb.append(": ").append(message);
+            sb.append(errorMessageSeparator).append(message);
             errorWriter.println(sb);
         }
     }

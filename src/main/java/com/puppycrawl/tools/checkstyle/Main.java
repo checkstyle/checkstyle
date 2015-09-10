@@ -338,7 +338,7 @@ public final class Main {
 
         }
         else if (PLAIN_FORMAT_NAME.equals(format)) {
-            listener = new DefaultLogger(out, closeOutputStream);
+            listener = new DefaultLogger(out, closeOutputStream, out, false, true);
 
         }
         else {

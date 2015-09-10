@@ -28,7 +28,11 @@ public abstract class BaseCheckTestSupport {
     protected static class BriefLogger
             extends DefaultLogger {
         public BriefLogger(OutputStream out) throws UnsupportedEncodingException {
-            super(out, true);
+            super(out, true, out, false, false);
+        }
+
+        public BriefLogger(OutputStream out, boolean printSeverity) throws UnsupportedEncodingException {
+            super(out, true, out, false, printSeverity);
         }
 
         @Override
@@ -58,6 +62,22 @@ public abstract class BaseCheckTestSupport {
         return checker;
     }
 
+    protected Checker createChecker(Configuration checkConfig, boolean printSeverity)
+        throws Exception {
+
+        final DefaultConfiguration dc = createCheckerConfig(checkConfig);
+        final Checker checker = new Checker();
+        // make sure the tests always run with english error messages
+        // so the tests don't fail in supported locales like german
+        final Locale locale = Locale.ENGLISH;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(dc);
+        checker.addListener(new BriefLogger(stream, printSeverity));
+        return checker;
+    }
+
     protected DefaultConfiguration createCheckerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
@@ -82,6 +102,11 @@ public abstract class BaseCheckTestSupport {
     protected void verify(Configuration aConfig, String fileName, String... expected)
             throws Exception {
         verify(createChecker(aConfig), fileName, fileName, expected);
+    }
+
+    protected void verify(Configuration aConfig, boolean printSeveriy,
+                          String filename, String... expected) throws Exception {
+        verify(createChecker(aConfig, printSeveriy), filename, filename, expected);
     }
 
     protected void verify(Checker checker, String fileName, String... expected)

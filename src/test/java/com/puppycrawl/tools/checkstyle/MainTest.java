@@ -253,9 +253,9 @@ public class MainTest {
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
                 assertEquals(String.format("Starting audit...%n"
-                        + "%1$s:3:14: "
+                        + "%1$s:3:14: error: "
                         + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
-                        + "%1$s:5:7: "
+                        + "%1$s:5:7: error: "
                         + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
                         + "Audit done.%n"
                         + "Checkstyle ends with 2 errors.%n", expectedPath), systemOut.getLog());

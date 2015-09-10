@@ -11,7 +11,7 @@ class BriefLogger extends DefaultLogger
 {
     BriefLogger(OutputStream out) throws UnsupportedEncodingException
     {
-        super(out, true);
+        super(out, true, out, false, false);
     }
     @Override
     public void auditStarted(AuditEvent evt) {}

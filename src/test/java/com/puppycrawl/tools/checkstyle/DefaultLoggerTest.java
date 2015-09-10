@@ -37,4 +37,12 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
     }
+
+    @Test
+    public void testCtorWithTwoParameters() throws UnsupportedEncodingException {
+        OutputStream infoStream = new ByteArrayOutputStream();
+        DefaultLogger dl = new DefaultLogger(infoStream, true);
+        dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
+        dl.auditFinished(new AuditEvent(6000, "myfile"));
+    }
 }
