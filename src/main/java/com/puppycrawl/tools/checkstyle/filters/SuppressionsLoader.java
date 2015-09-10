@@ -19,13 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
@@ -39,6 +35,7 @@ import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Loads a filter chain of suppressions.
@@ -125,35 +122,7 @@ public final class SuppressionsLoader
     public static FilterSet loadSuppressions(String filename)
         throws CheckstyleException {
         // figure out if this is a File or a URL
-        URI uri;
-        try {
-            final URL url = new URL(filename);
-            uri = url.toURI();
-        }
-        catch (final MalformedURLException | URISyntaxException ignored) {
-            // URL violating RFC 2396
-            uri = null;
-        }
-        if (uri == null) {
-            final File file = new File(filename);
-            if (file.exists()) {
-                uri = file.toURI();
-            }
-            else {
-                // check to see if the file is in the classpath
-                try {
-                    final URL configUrl = SuppressionsLoader.class
-                            .getResource(filename);
-                    if (configUrl == null) {
-                        throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + filename);
-                    }
-                    uri = configUrl.toURI();
-                }
-                catch (final URISyntaxException e) {
-                    throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + filename, e);
-                }
-            }
-        }
+        final URI uri = CommonUtils.getUriByFilename(filename);
         final InputSource source = new InputSource(uri.toString());
         return loadSuppressions(source, filename);
     }

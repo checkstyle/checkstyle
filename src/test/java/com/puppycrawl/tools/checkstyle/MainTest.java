@@ -135,7 +135,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format("unable to find src/main/resources/non_existing_config.xml%n"
+                assertEquals(
+                        String.format("Unable to find: src/main/resources/non_existing_config.xml%n"
                                 + "Checkstyle ends with 1 errors.%n"),
                         systemOut.getLog());
                 assertEquals("", systemErr.getLog());

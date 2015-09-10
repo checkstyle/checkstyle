@@ -20,18 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -44,6 +39,7 @@ import com.google.common.collect.Lists;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Abstract super class for header checks.
@@ -106,7 +102,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
         checkHeaderNotInitialized();
         Reader headerReader = null;
         try {
-            final URI uri = resolveHeaderFile();
+            final URI uri = CommonUtils.getUriByFilename(filename);
             headerReader = new InputStreamReader(new BufferedInputStream(
                     uri.toURL().openStream()), charset);
             loadHeader(headerReader);
@@ -118,45 +114,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
         finally {
             Closeables.closeQuietly(headerReader);
         }
-    }
-
-    /**
-     * Resolve the specified filename param to a URI.
-     * @return resolved header file URI
-     * @throws IOException on failure
-     */
-    private URI resolveHeaderFile() throws IOException {
-        // figure out if this is a File or a URL
-        URI uri;
-        try {
-            final URL url = new URL(filename);
-            uri = url.toURI();
-        }
-        catch (final MalformedURLException | URISyntaxException ignored) {
-            // URL violating RFC 2396
-            uri = null;
-        }
-        if (uri == null) {
-            final File file = new File(filename);
-            if (file.exists()) {
-                uri = file.toURI();
-            }
-            else {
-                // check to see if the file is in the classpath
-                try {
-                    final URL configUrl = AbstractHeaderCheck.class
-                            .getResource(filename);
-                    if (configUrl == null) {
-                        throw new FileNotFoundException(filename);
-                    }
-                    uri = configUrl.toURI();
-                }
-                catch (final URISyntaxException ignored) {
-                    throw new FileNotFoundException(filename);
-                }
-            }
-        }
-        return uri;
     }
 
     /**
