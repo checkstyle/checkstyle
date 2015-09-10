@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @since Some javadoc.
  *     Some javadoc.
  * @version 1.0
- * @deprecated Some javadoc.
+ * @see Some javadoc.
  *     Some javadoc.
  * @see Some javadoc.
  * @author max
@@ -43,7 +43,7 @@ class JavaDocTagContinuationIndentation implements Serializable
      *     Some javadoc.
      * @return Some text.
      * @serialData Some javadoc.
-     * @deprecated Some text.
+     * @see Some text.
      *    Some javadoc. // warn
      * @throws Exception Some text.
      */
@@ -75,7 +75,7 @@ class JavaDocTagContinuationIndentation implements Serializable
     
     /**
      * Some text.
-     * @deprecated Some text.
+     * @see Some text.
      * @throws Exception Some text.
      *     Some javadoc.
      */
@@ -93,7 +93,7 @@ class JavaDocTagContinuationIndentation implements Serializable
 
     /**
      * Some text.
-     * @deprecated Some text.
+     * @see Some text.
      * @return Some text.
      * @param aString Some text.
      */
@@ -112,7 +112,7 @@ class JavaDocTagContinuationIndentation implements Serializable
      *    Some javadoc. // warn
      * @throws Exception Some text.
      * @param aBoolean Some text.
-     * @deprecated Some text.
+     * @see Some text.
      */
     String method6(String aString, int aInt, boolean aBoolean) throws Exception
     {
@@ -132,7 +132,7 @@ class JavaDocTagContinuationIndentation implements Serializable
         /**
          * Some text.
          * @return Some text.
-         * @deprecated Some text.
+         * @see Some text.
          *     Some javadoc.
          * @param aString Some text.
          * @throws Exception Some text.
@@ -168,7 +168,7 @@ class JavaDocTagContinuationIndentation implements Serializable
         
         /**
          * Some text.
-         * @deprecated Some text.
+         * @see Some text.
          * @throws Exception Some text.
          */
         void method3() throws Exception {}
@@ -187,7 +187,7 @@ class JavaDocTagContinuationIndentation implements Serializable
         /**
          * Some text.
          * @param aString Some text.
-         * @deprecated Some text.
+         * @see Some text.
          * @return Some text.
          */
         String method5(String aString)
@@ -204,7 +204,7 @@ class JavaDocTagContinuationIndentation implements Serializable
          * @throws Exception Some text.
          * @param aBoolean Some text.
          *    Some javadoc. // warn
-         * @deprecated Some text.
+         * @see Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
         {
@@ -221,7 +221,7 @@ class JavaDocTagContinuationIndentation implements Serializable
          *   Some javadoc. // warn
          * @serialData Some javadoc.
          *    Some javadoc. // warn
-         * @deprecated Some text.
+         * @see Some text.
          * @return Some text.
          */
         String method(String aString) throws Exception
@@ -251,7 +251,7 @@ class JavaDocTagContinuationIndentation implements Serializable
         
         /**
          * Some text.
-         * @deprecated Some text.
+         * @see Some text.
          *     Some javadoc.
          * @throws Exception Some text.
          */
@@ -269,7 +269,7 @@ class JavaDocTagContinuationIndentation implements Serializable
 
         /**
          * Some text.
-         * @deprecated Some text.
+         * @see Some text.
          * @return Some text.
          * @param aString Some text.
          */
@@ -289,7 +289,7 @@ class JavaDocTagContinuationIndentation implements Serializable
          * @throws Exception Some text.
          *    Some javadoc. // warn
          * @param aBoolean Some text.
-         * @deprecated Some text.
+         * @see Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
         {
@@ -303,7 +303,7 @@ class JavaDocTagContinuationIndentation implements Serializable
  * 
  * @since Some javadoc.
  * @version 1.0
- * @deprecated Some javadoc.
+ * @see Some javadoc.
  *     Some javadoc.
  *     Some javadoc.
  * @see Some javadoc.
