@@ -19,13 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
@@ -47,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Loads a configuration from a standard configuration XML file.
@@ -88,9 +85,6 @@ public final class ConfigurationLoader {
     /** The resource for version 1_3 of the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
-
-    /** Prefix for the exception when unable to find resource. */
-    private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "unable to find ";
 
     /** Prefix for the exception when unable to parse resource. */
     private static final String UNABLE_TO_PARSE_EXCEPTION_PREFIX = "unable to parse"
@@ -182,35 +176,7 @@ public final class ConfigurationLoader {
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
         throws CheckstyleException {
         // figure out if this is a File or a URL
-        URI uri;
-        try {
-            final URL url = new URL(config);
-            uri = url.toURI();
-        }
-        catch (final URISyntaxException | MalformedURLException ignored) {
-            uri = null;
-        }
-
-        if (uri == null) {
-            final File file = new File(config);
-            if (file.exists()) {
-                uri = file.toURI();
-            }
-            else {
-                // check to see if the file is in the classpath
-                try {
-                    final URL configUrl = ConfigurationLoader.class
-                            .getResource(config);
-                    if (configUrl == null) {
-                        throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + config);
-                    }
-                    uri = configUrl.toURI();
-                }
-                catch (final URISyntaxException e) {
-                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + config, e);
-                }
-            }
-        }
+        final URI uri = CommonUtils.getUriByFilename(config);
         final InputSource source = new InputSource(uri.toString());
         return loadConfiguration(source, overridePropsResolver,
                 omitIgnoredModules);
