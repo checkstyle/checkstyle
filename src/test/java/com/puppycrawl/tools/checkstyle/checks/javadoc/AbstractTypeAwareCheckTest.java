@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 
+@SuppressWarnings("deprecation")
 public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
