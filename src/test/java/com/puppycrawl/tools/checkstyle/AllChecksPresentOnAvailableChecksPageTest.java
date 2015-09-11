@@ -39,8 +39,6 @@ public class AllChecksPresentOnAvailableChecksPageTest {
     private static final String CHECK_SUFFIX = "Check.java";
     private static final String LINK_TEMPLATE =
             "(?s).*<a href=\"config_\\w+\\.html#%1$s\">%1$s</a>.*";
-    private static final String NAMING_LINK_TEMPLATE =
-            "(?s).*<a href=\"config_naming\\.html#Modules\">%s</a>.*";
 
     private static final List<String> IGNORE_LIST = Arrays.asList(
             "AbstractAccessControlNameCheck.java",
@@ -79,8 +77,6 @@ public class AllChecksPresentOnAvailableChecksPageTest {
 
     private static boolean isPresent(String availableChecks, String checkName) {
         final String linkPattern = String.format(LINK_TEMPLATE, checkName);
-        final String namingLinkPattern = String.format(NAMING_LINK_TEMPLATE, checkName);
-        return availableChecks.matches(linkPattern)
-                || checkName.endsWith("Name") && availableChecks.matches(namingLinkPattern);
+        return availableChecks.matches(linkPattern);
     }
 }
