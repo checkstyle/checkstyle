@@ -193,6 +193,15 @@
     <java.version>1.7</java.version>
   </properties>
 
+  <!-- that repositories are required for testing plugin's snapshot version -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus-snapshot</id>
+      <name>Official Maven Apache Repo</name>
+      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -1657,14 +1666,4 @@
     </profile>
 
   </profiles>
-
-  <!-- that repositories are required for testing plugin's snapshot version -->
-  <pluginRepositories>
-    <pluginRepository>
-      <id>nexus-snapshot</id>
-      <name>Official Maven Apache Repo</name>
-      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
 </project>
