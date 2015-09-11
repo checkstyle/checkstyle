@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule488numericliterals;
 
-class UpperEllInput
+class InputUpperEll
 {
     /** test **/
     private final long IGNORE = 666l + 666L; //warn

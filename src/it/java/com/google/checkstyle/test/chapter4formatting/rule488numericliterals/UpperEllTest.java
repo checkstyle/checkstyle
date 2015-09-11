@@ -49,7 +49,7 @@ public class UpperEllTest extends BaseCheckTestSupport{
         };
         
         Configuration checkConfig = builder.getCheckConfig("UpperEll");
-        String filePath = builder.getFilePath("UpperEllInput");
+        String filePath = builder.getFilePath("InputUpperEll");
         
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

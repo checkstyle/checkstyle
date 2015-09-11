@@ -4,12 +4,12 @@ package com.puppycrawl.tools.checkstyle.annotation;
  * @deprecated
  *  stuff
  */
-public class BadDeprecatedAnnotation
+public class InputBadDeprecatedAnnotation
 {
     /**
      * @deprecated        stuff
      */
-    protected BadDeprecatedAnnotation() {
+    protected InputBadDeprecatedAnnotation() {
 
     }
 
