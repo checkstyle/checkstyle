@@ -88,10 +88,10 @@ public class CheckerTest {
         assertTrue("Checker.fireFileFinished() doesn't call listener", auditAdapter.wasCalled());
 
         auditAdapter.resetListener();
-        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
-        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", msgs);
+        checker.fireErrors("Some File Name", messages);
         assertTrue("Checker.fireErrors() doesn't call listener", auditAdapter.wasCalled());
     }
 

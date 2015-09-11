@@ -37,8 +37,8 @@ public interface Context {
     Object get(String key);
 
     /**
-     * Returns the names of all atttributes of this context.
-     * @return the names of all atttributes of this context.
+     * Returns the names of all attributes of this context.
+     * @return the names of all attributes of this context.
      */
     ImmutableCollection<String> getAttributeNames();
 }

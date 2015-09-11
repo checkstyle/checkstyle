@@ -104,7 +104,7 @@ public final class Main {
                 exitStatus = 0;
             }
             else {
-                // return error is smth is wrong in arguments
+                // return error if something is wrong in arguments
                 final List<String> messages = validateCli(commandLine);
                 cliViolations = !messages.isEmpty();
                 if (cliViolations) {
@@ -124,7 +124,7 @@ public final class Main {
             }
         }
         catch (ParseException pex) {
-            // smth wrong with arguments - print error and manual
+            // something wrong with arguments - print error and manual
             cliViolations = true;
             exitStatus = exitWithCliViolation;
             errorCounter = 1;
