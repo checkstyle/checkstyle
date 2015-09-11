@@ -162,6 +162,46 @@ public class MainTest {
     }
 
     @Test
+    public void testNonExistingClass() throws Exception {
+        exit.expectSystemExitWithStatus(-2);
+        final String expectedExceptionMessage =
+            String.format("cannot initialize module TreeWalker - "
+                + "Unable to instantiate 'NonExistingClass' class,"
+                + " it is also not possible to instantiate it as"
+                + " com.puppycrawl.tools.checkstyle.checks.annotation.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.blocks.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.coding.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.design.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.header.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.imports.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.indentation.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.javadoc.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.metrics.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.modifier.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.naming.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.regexp.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.sizes.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.whitespace.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.checks.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.filters.NonExistingClass,"
+                + " com.puppycrawl.tools.checkstyle.NonExistingClass."
+                + " Please recheck that class name is specified as canonical name or read"
+                + " how to configure short name usage http://checkstyle.sourceforge.net/config.html#Packages."
+                + " Please also recheck that provided ClassLoader to Checker is configured correctly.%n"
+                + "Checkstyle ends with 1 errors.%n");
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals(expectedExceptionMessage, systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-non-existing-classname.xml",
+            "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+    }
+
+    @Test
     public void testExistingTargetFile() throws Exception {
 
         exit.checkAssertionAfterwards(new Assertion() {
@@ -398,7 +438,7 @@ public class MainTest {
         });
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
                 + "config-Incorrect.xml",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+            "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
     @Test
@@ -495,7 +535,7 @@ public class MainTest {
         });
 
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-filelength.xml",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/metrics/");
+            "src/test/resources/com/puppycrawl/tools/checkstyle/metrics/");
     }
 
     @Test
