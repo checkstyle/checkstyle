@@ -83,7 +83,7 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Returns the message bundle name resourcebundle that contains the messages
+     * Returns the message bundle name resource bundle that contains the messages
      * used by this module.
      * <p>
      * The default implementation expects the resource files to be named

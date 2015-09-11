@@ -104,9 +104,9 @@ public abstract class BaseCheckTestSupport {
         verify(createChecker(aConfig), fileName, fileName, expected);
     }
 
-    protected void verify(Configuration aConfig, boolean printSeveriy,
+    protected void verify(Configuration aConfig, boolean printSeverity,
                           String filename, String... expected) throws Exception {
-        verify(createChecker(aConfig, printSeveriy), filename, filename, expected);
+        verify(createChecker(aConfig, printSeverity), filename, filename, expected);
     }
 
     protected void verify(Checker checker, String fileName, String... expected)

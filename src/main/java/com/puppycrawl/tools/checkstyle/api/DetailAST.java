@@ -338,7 +338,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             branchTokenTypes = new BitSet();
             branchTokenTypes.set(getType());
 
-            // add union of all childs
+            // add union of all children
             DetailAST child = getFirstChild();
             while (child != null) {
                 final BitSet childTypes = child.getBranchTokenTypes();
