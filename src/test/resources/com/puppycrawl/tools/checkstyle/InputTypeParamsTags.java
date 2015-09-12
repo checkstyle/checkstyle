@@ -56,3 +56,6 @@ public class InputTypeParamsTags<A,B1,C456 extends Comparable>
     {
     }
 }
+
+/** @param x */
+class Test {}
