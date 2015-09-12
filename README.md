@@ -26,7 +26,16 @@ Appveyor (Windows build): [![][appveyor img]][appveyor]
 
 Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 
-JavaScript and CSS file analysis on Codacy: [![][codacy img]][codacy]
+We practice what we preach by using our own
+[Checkstyle profile](https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml)
+with almost all rules enabled. For static analysis of every new commit and pull request we also use full-blown
+configurations of [PMD](https://github.com/checkstyle/checkstyle/blob/master/config/pmd.xml),
+[FindBugs](https://github.com/checkstyle/checkstyle/blob/master/config/findbugs-exclude.xml),
+[Error Prone](https://github.com/checkstyle/checkstyle/search?q=errorprone) and 1200+
+[IntelliJ IDEA inspections](https://github.com/checkstyle/checkstyle/blob/master/config/intellij-idea-inspections.xml)
+being validated on [TeamCity](https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsPullRequest).
+
+JavaScript and CSS file analysis is on Codacy: [![][codacy img]][codacy]
 
 Feedback/Support
 ========
