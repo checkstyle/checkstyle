@@ -174,6 +174,7 @@ public class HiddenFieldCheck
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -199,9 +200,37 @@ public class HiddenFieldCheck
             case TokenTypes.PARAMETER_DEF:
                 processVariable(ast);
                 break;
-
+            case TokenTypes.LAMBDA:
+                processLambda(ast);
+                break;
             default:
                 visitOtherTokens(ast, type);
+        }
+    }
+
+    /**
+     * Process a lambda token.
+     * Checks whether a lambda parameter shadows a field.
+     * @param ast the lambda token.
+     */
+    private void processLambda(DetailAST ast) {
+        final DetailAST firstChild = ast.getFirstChild();
+        if (firstChild.getType() == TokenTypes.IDENT) {
+            // Parameter type of lambda expression is omitted.
+            // ANTLR parces parameter of lambda expression
+            // which type is omitted as an identifier.
+            // Does it shadow a field?
+            final String name = firstChild.getText();
+
+            if (isStaticOrInstanceField(firstChild, name)) {
+                log(firstChild, MSG_KEY, name);
+            }
+        }
+        else {
+            // Parameter type of lambda expression is not omitted,
+            // that is why ast token is a parameter of lamda expression.
+            // We should check whether a parameter shadows a field.
+            processVariable(ast);
         }
     }
 

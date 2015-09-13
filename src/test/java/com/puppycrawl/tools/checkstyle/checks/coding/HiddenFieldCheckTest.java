@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,6 +31,21 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class HiddenFieldCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testStaticVisibilityFromLambdas() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HiddenFieldCheck.class);
+        final String[] expected = {
+            "16:34: " + getCheckMessage(MSG_KEY, "value"),
+            "48:23: " + getCheckMessage(MSG_KEY, "languageCode"),
+            "57:35: " + getCheckMessage(MSG_KEY, "num1"),
+            "70:35: " + getCheckMessage(MSG_KEY, "num2"),
+            "98:23: " + getCheckMessage(MSG_KEY, "lc1"),
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+            + "checkstyle/coding/InputHiddenFieldLambdas.java").getCanonicalPath(), expected);
+    }
 
     @Test
     public void testStaticVisibilityFromAnonymousClasses() throws Exception {
