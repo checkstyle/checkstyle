@@ -43,10 +43,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
  * @author Lyle Hanson
  */
 public final class JavadocUtils {
-    /**
-     * Empty array of {@link DetailNode} type.
-     */
-    public static final DetailNode[] EMPTY_DETAIL_NODE_ARRAY = new DetailNode[0];
     /** Maps from a token name to value. */
     private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
     /** Maps from a token value to name. */
