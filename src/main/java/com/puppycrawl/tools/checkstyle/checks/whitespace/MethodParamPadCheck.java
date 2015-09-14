@@ -143,7 +143,7 @@ public class MethodParamPadCheck
             final int before = parenAST.getColumnNo() - 1;
             if (getAbstractOption() == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))) {
-                log(parenAST , WS_PRECEDED, parenAST.getText());
+                log(parenAST, WS_PRECEDED, parenAST.getText());
             }
             else if (getAbstractOption() == PadOption.SPACE
                      && !Character.isWhitespace(line.charAt(before))) {

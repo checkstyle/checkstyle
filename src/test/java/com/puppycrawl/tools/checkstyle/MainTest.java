@@ -157,7 +157,7 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "/google_checks.xml", "-f" , "xmlp",
+        Main.main("-c", "/google_checks.xml", "-f", "xmlp",
                 "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
     }
 
