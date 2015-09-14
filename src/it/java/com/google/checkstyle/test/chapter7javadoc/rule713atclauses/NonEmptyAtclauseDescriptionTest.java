@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
+
 import java.io.File;
 
 import org.junit.BeforeClass;
@@ -8,7 +9,7 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
 
 public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
 
@@ -20,42 +21,62 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void noFinalizerBasicTest() throws Exception {
-        
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
+    public void testDefaultConfiguration() throws Exception {
+        String msg = getCheckMessage(NonEmptyAtclauseDescriptionCheck.class, "non.empty.atclause");
 
         final String[] expected = {
-            "5: " + msg,
+            "34: " + msg,
+            "35: " + msg,
+            "36: " + msg,
+            "37: " + msg,
+            "38: " + msg,
+            "39: " + msg,
+            "48: " + msg,
+            "49: " + msg,
+            "50: " + msg,
+            "51: " + msg,
+            "52: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizerInput");
+        Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
+        String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheck");
         
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
-    public void noFinalizerExtendedTest() throws Exception {
-        
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
+    public void testSpaceSequence() throws Exception {
+        String msg = getCheckMessage(NonEmptyAtclauseDescriptionCheck.class, "non.empty.atclause");
 
         final String[] expected = {
-            "9: " + msg,
-            "21: " + msg,
-            "33: " + msg,
-            "45: " + msg,
-            "57: " + msg,
-            "69: " + msg,
-            "79: " + msg,
-            "119: " + msg,
-            "136: " + msg,
+            "27: " + msg,
+            "28: " + msg,
+            "29: " + msg,
+            "38: " + msg,
+            "39: " + msg,
+            "40: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizeExtendInput");
+        Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
+        String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq");
         
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);
+    }
+
+    /**
+     * Gets line numbers with violations from an array with expected messages.
+     * This is used as using "warn" comments in input files would affects the work
+     * of the Check.
+     * @param expected an array with expected messages.
+     * @return Integer array with numbers of lines with violations.
+     */
+    private static Integer[] getLineNumbersFromExpected(String[] expected) {
+        Integer[] result = new Integer[expected.length];
+        for (int i = 0; i < expected.length; i++) {
+            result[i] = Integer.valueOf(expected[i].substring(0, expected[i].indexOf(':')));
+        }
+        return result;
     }
 }
