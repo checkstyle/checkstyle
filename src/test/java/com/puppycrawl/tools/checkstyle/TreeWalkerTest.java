@@ -231,8 +231,12 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        // nothing is expected
-        verify(checkConfig, pathToEmptyFile, expected);
+        try {
+            verify(checkConfig, pathToEmptyFile, expected);
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getMessage().contains("isCommentNodesRequired"));
+        }
     }
 
     @Test
