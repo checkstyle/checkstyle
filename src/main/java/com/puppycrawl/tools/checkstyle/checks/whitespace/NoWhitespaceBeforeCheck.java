@@ -74,6 +74,7 @@ public class NoWhitespaceBeforeCheck
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
+            TokenTypes.COMMA,
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
@@ -83,6 +84,7 @@ public class NoWhitespaceBeforeCheck
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
+            TokenTypes.COMMA,
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
