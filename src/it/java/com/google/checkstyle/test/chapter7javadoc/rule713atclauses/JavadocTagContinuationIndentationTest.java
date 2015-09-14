@@ -2,58 +2,38 @@ package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 import java.io.File;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
 
 public class JavadocTagContinuationIndentationTest extends BaseCheckTestSupport{
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-    }
-
     @Test
-    public void noFinalizerBasicTest() throws Exception {
-        
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
+    public void testWithDefaultConfiguration() throws Exception {
+        ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
+        String msg = getCheckMessage(JavadocTagContinuationIndentationCheck.class,
+                "tag.continuation.indent", 4);
 
         final String[] expected = {
-            "5: " + msg,
+            "47: " + msg,
+            "109: " + msg,
+            "112: " + msg,
+            "203: " + msg,
+            "206: " + msg,
+            "221: " + msg,
+            "223: " + msg,
+            "285: " + msg,
+            "288: " + msg,
+            "290: " + msg,
+            "310: " + msg,
+            "322: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizerInput");
-        
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
-    }
-    
-    @Test
-    public void noFinalizerExtendedTest() throws Exception {
-        
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
-
-        final String[] expected = {
-            "9: " + msg,
-            "21: " + msg,
-            "33: " + msg,
-            "45: " + msg,
-            "57: " + msg,
-            "69: " + msg,
-            "79: " + msg,
-            "119: " + msg,
-            "136: " + msg,
-        };
-
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizeExtendInput");
+        Configuration checkConfig = builder.getCheckConfig("JavadocTagContinuationIndentation");
+        String filePath = builder.getFilePath("InputJavaDocTagContinuationIndentation");
         
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
