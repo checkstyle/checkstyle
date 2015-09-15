@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 class WithAnnotations12 implements Serializable
 {
-	/**
+    /**
      * The client's first name.
      * @serial
      */
@@ -30,7 +30,7 @@ class WithAnnotations12 implements Serializable
      * @serialField
      */
     private String tThirdName;
-	
+        
     /**
      * Some text.
      * @param aString Some text.
@@ -90,13 +90,13 @@ class WithAnnotations12 implements Serializable
     {
         return "null";
     }
-    
+
     /**
      * Some text.
      * @param aString Some text.
      * @return Some text.
      * @serialData Some javadoc.
-     * @param aInt Some text.
+     * @param aInt Some text. //warn
      * @throws Exception Some text.
      * @param aBoolean Some text. //warn
      * @deprecated Some text.
@@ -121,7 +121,7 @@ class WithAnnotations12 implements Serializable
          * @return Some text.
          * @deprecated Some text.
          * @param aString Some text. //warn
-         * @throws Exception Some text.
+         * @throws Exception Some text. //warn
          */
         String method(String aString) throws Exception
         {
@@ -158,7 +158,7 @@ class WithAnnotations12 implements Serializable
          * Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
-         * @return Some text.
+         * @return Some text. //warn
          */
         String method4() throws Exception
         {
