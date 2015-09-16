@@ -22,8 +22,8 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -46,9 +46,6 @@ public class DefaultLogger
     /** Cushion for avoiding StringBuffer.expandCapacity */
     private static final int BUFFER_CUSHION = 12;
 
-    /** Encoding name. */
-    private static final String UTF8_CHARSET_NAME = "UTF-8";
-
     /** Where to write info messages. **/
     private final PrintWriter infoWriter;
     /** Close info stream after use. */
@@ -66,10 +63,8 @@ public class DefaultLogger
      * Creates a new {@code DefaultLogger} instance.
      * @param os where to log infos and errors
      * @param closeStreamsAfterUse if oS should be closed in auditFinished()
-     * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding
      */
-    public DefaultLogger(OutputStream os, boolean closeStreamsAfterUse)
-            throws UnsupportedEncodingException {
+    public DefaultLogger(OutputStream os, boolean closeStreamsAfterUse) {
         // no need to close oS twice
         this(os, closeStreamsAfterUse, os, false);
     }
@@ -81,13 +76,12 @@ public class DefaultLogger
      * @param errorStream the {@code OutputStream} for error messages.
      * @param closeErrorAfterUse auditFinished should close errorStream
      * @param printSeverity if severity level should be printed.
-     * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding.
      */
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
                          boolean closeErrorAfterUse,
-                         boolean printSeverity) throws UnsupportedEncodingException {
+                         boolean printSeverity) {
         this(infoStream, closeInfoAfterUse, errorStream, closeErrorAfterUse);
         this.printSeverity = printSeverity;
     }
@@ -99,16 +93,16 @@ public class DefaultLogger
      * @param closeInfoAfterUse auditFinished should close infoStream
      * @param errorStream the {@code OutputStream} for error messages
      * @param closeErrorAfterUse auditFinished should close errorStream
-     * @exception UnsupportedEncodingException if there is a problem to use UTF-8 encoding
      */
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
-                         boolean closeErrorAfterUse) throws UnsupportedEncodingException {
+                         boolean closeErrorAfterUse) {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
-        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, UTF8_CHARSET_NAME);
-        final Writer errorStreamWriter = new OutputStreamWriter(errorStream, UTF8_CHARSET_NAME);
+        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
+        final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
+            StandardCharsets.UTF_8);
         infoWriter = new PrintWriter(infoStreamWriter);
 
         if (infoStream == errorStream) {

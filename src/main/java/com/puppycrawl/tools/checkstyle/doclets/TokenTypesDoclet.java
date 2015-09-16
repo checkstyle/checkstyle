@@ -21,8 +21,10 @@ package com.puppycrawl.tools.checkstyle.doclets;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.DocErrorReporter;
@@ -52,16 +54,15 @@ public final class TokenTypesDoclet {
      * @return true if the given {@code RootDoc} is processed.
      * @exception FileNotFoundException will be thrown if the doclet
      *            will be unable to write to the specified file.
-     * @exception UnsupportedEncodingException will be thrown if the doclet
-     *            will be unable to use UTF-8 encoding.
      */
     public static boolean start(RootDoc root)
-            throws FileNotFoundException, UnsupportedEncodingException {
+            throws FileNotFoundException {
         final String fileName = getDestFileName(root.options());
         final FileOutputStream fos = new FileOutputStream(fileName);
-        PrintStream ps = null;
+        final Writer osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
+        final PrintWriter pw = new PrintWriter(osw, false);
+
         try {
-            ps = new PrintStream(fos, false, "UTF-8");
             final ClassDoc[] classes = root.classes();
             final FieldDoc[] fields = classes[0].fields();
             for (final FieldDoc field : fields) {
@@ -71,15 +72,13 @@ public final class TokenTypesDoclet {
                         final String message = "Should be only one tag.";
                         throw new IllegalArgumentException(message);
                     }
-                    ps.println(field.name() + "="
+                    pw.println(field.name() + "="
                         + field.firstSentenceTags()[0].text());
                 }
             }
         }
         finally {
-            if (ps != null) {
-                ps.close();
-            }
+            pw.close();
         }
 
         return true;

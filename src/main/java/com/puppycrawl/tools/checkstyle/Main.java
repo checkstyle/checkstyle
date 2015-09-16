@@ -25,7 +25,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -82,11 +81,9 @@ public final class Main {
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
      * @param args the command line arguments.
-     * @throws UnsupportedEncodingException if there is a problem to use UTF-8
      * @throws FileNotFoundException if there is a problem with files access
      **/
-    public static void main(String... args) throws UnsupportedEncodingException,
-            FileNotFoundException {
+    public static void main(String... args) throws FileNotFoundException {
         int errorCounter = 0;
         boolean cliViolations = false;
         // provide proper exit code based on results.
@@ -234,11 +231,9 @@ public final class Main {
      *         when output file could not be found
      * @throws CheckstyleException
      *         when properties file could not be loaded
-     * @throws UnsupportedEncodingException
-     *         if there is problem to use UTf-8
      */
     private static int runCheckstyle(CliOptions cliOptions)
-            throws CheckstyleException, UnsupportedEncodingException, FileNotFoundException {
+            throws CheckstyleException, FileNotFoundException {
         // setup the properties
         final Properties props;
 
@@ -312,12 +307,11 @@ public final class Main {
      * @param format format of the audit listener
      * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
-     * @exception UnsupportedEncodingException if there is problem to use UTf-8
      * @exception FileNotFoundException when provided output location is not found
      */
     private static AuditListener createListener(String format,
                                                 String outputLocation)
-            throws UnsupportedEncodingException, FileNotFoundException {
+            throws FileNotFoundException {
 
         // setup the output stream
         OutputStream out;
