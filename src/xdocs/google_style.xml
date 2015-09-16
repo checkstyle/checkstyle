@@ -1000,7 +1000,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_naming.html">PackageName</a>
+                                <a href="config_naming.html#PackageName">PackageName</a>
                             </td>
                             <td>
                                 <a
@@ -1019,7 +1019,7 @@
                                 <img
                                     src="images/ok_blue.png"
                                     alt="" />
-                                <a href="config_naming.html">TypeName</a>
+                                <a href="config_naming.html#TypeName">TypeName</a>
                             </td>
                             <td>
                                 <a
@@ -1038,7 +1038,7 @@
                                 <img
                                     src="images/ok_blue.png"
                                     alt="" />
-                                <a href="config_naming.html">MethodName</a>
+                                <a href="config_naming.html#MethodName">MethodName</a>
                                 <br/> No ability to distinguish verb at the beginning of name, no way distinguish Test method from others so "_" is allowed in names
                             </td>
                             <td>
@@ -1071,7 +1071,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_naming.html">MemberName</a>
+                                <a href="config_naming.html#MemberName">MemberName</a>
                             </td>
                             <td>
                                 <a
@@ -1090,7 +1090,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_naming.html">ParameterName</a>
+                                <a href="config_naming.html#ParameterName">ParameterName</a>
                             </td>
                             <td>
                                 <a
@@ -1128,12 +1128,12 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_naming.html">MethodTypeParameterName</a>
+                                <a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a>
                                 <br/>
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_naming.html">ClassTypeParameterName</a>
+                                <a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a>
                             </td>
                             <td>
                                 <a
