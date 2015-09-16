@@ -326,13 +326,14 @@ public class JavadocTypeCheck
             if (tag.isParamTag()) {
 
                 final Matcher matcher = pattern.matcher(tag.getFirstArg());
-                matcher.find();
-                final String typeParamName = matcher.group(1).trim();
-                if (!typeParamNames.contains(typeParamName)) {
-                    log(tag.getLineNo(), tag.getColumnNo(),
-                        UNUSED_TAG,
-                        JavadocTagInfo.PARAM.getText(),
-                        OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
+                if (matcher.find()) {
+                    final String typeParamName = matcher.group(1).trim();
+                    if (!typeParamNames.contains(typeParamName)) {
+                        log(tag.getLineNo(), tag.getColumnNo(),
+                            UNUSED_TAG,
+                            JavadocTagInfo.PARAM.getText(),
+                            OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
+                    }
                 }
             }
         }

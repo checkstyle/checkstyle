@@ -1,4 +1,5 @@
 #!/usr/bin/env bash 
+set -e
 
 if [ $# -eq 0 ]
   then
@@ -28,7 +29,7 @@ git rebase master
 
 echo "merge to master ..."
 git checkout master
-git merge ${LOCAL_USER_BRANCH}
+git merge ${LOCAL_USER_BRANCH} --ff-only
 
 echo "removing local branch ..."
 git branch -D ${LOCAL_USER_BRANCH}

@@ -95,6 +95,19 @@
           </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L50">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L37">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -163,6 +176,19 @@
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L165">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L290-L292">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -213,6 +239,19 @@ String str = "";
     // some comment Comment has incorrect indentation level 4, expected 0.
 String str1 = "";
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L204">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L303">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -310,6 +349,19 @@ messages.properties: Key 'ok' missing.
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L54">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L379">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -376,6 +428,15 @@ messages.properties: Key 'ok' missing.
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L293">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -411,6 +472,23 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;UpperEll&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L83">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L166">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L202">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -470,6 +548,23 @@ messages.properties: Key 'ok' missing.
     &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L80">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L163">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L241">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -564,6 +659,19 @@ messages.properties: Key 'ok' missing.
     &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L164">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L363-L370">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -666,6 +774,28 @@ messages.properties: Key 'ok' missing.
       </subsection>
 
       <subsection name="Examples">
+
+        <p>Switch with no default:</p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+    &lt;property name="maximumDepth" value="2"/&gt;
+    &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+    &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          The condition in <code>for</code> performs no check:
+        </p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="FOR_CONDITION"/&gt;
+    &lt;property name="limitedTokens" value="EXPR"/&gt;
+    &lt;property name="minimumNumber" value="1"/&gt;
+&lt;/module&gt;
+        </source>
+
         <p>
           Comparing <code>this</code> with <code>null</code> (i.e. <code>this ==
           null</code> and <code>this != null</code>):
@@ -690,16 +820,6 @@ messages.properties: Key 'ok' missing.
 &lt;/module&gt;
         </source>
 
-        <p>Switch with no default:</p>
-        <source>
-&lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
-    &lt;property name="maximumDepth" value="2"/&gt;
-    &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
-    &lt;property name="minimumNumber" value="1"/&gt;
-&lt;/module&gt;
-        </source>
-
         <p>
           Assert statement may have side effects (formatted for browser
           display):
@@ -721,17 +841,6 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name="DescendantToken"&gt;
     &lt;property name="tokens" value="FOR_INIT"/&gt;
-    &lt;property name="limitedTokens" value="EXPR"/&gt;
-    &lt;property name="minimumNumber" value="1"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          The condition in <code>for</code> performs no check:
-        </p>
-        <source>
-&lt;module name="DescendantToken"&gt;
-    &lt;property name="tokens" value="FOR_CONDITION"/&gt;
     &lt;property name="limitedTokens" value="EXPR"/&gt;
     &lt;property name="minimumNumber" value="1"/&gt;
 &lt;/module&gt;
@@ -845,6 +954,15 @@ messages.properties: Key 'ok' missing.
     &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L251">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -972,6 +1090,19 @@ void foo(String aFooString,
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L143-L150">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L210-L214">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
@@ -1092,6 +1223,15 @@ d = e / f;        // Another comment for this line
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L314">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
@@ -1125,6 +1265,19 @@ d = e / f;        // Another comment for this line
         <source>
 &lt;module name=&quot;OuterTypeFilename&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L37">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L237">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1180,6 +1333,15 @@ d = e / f;        // Another comment for this line
     &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot; /&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L74">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1310,6 +1472,19 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L43-L47">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L296">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">

@@ -25,16 +25,28 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Dictionary;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
+@RunWith(PowerMockRunner.class)
 public class CommonUtilsTest {
 
     /** After appending to path produces equivalent, but denormalized path. */
@@ -170,14 +182,12 @@ public class CommonUtilsTest {
 
     @Test
     public void testClose() {
+        TestCloseable closeable = new TestCloseable();
+
         CommonUtils.close(null);
+        CommonUtils.close(closeable);
 
-        CommonUtils.close(new Closeable() {
-
-            @Override
-            public void close() {
-            }
-        });
+        assertTrue(closeable.closed);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -189,5 +199,35 @@ public class CommonUtilsTest {
                 throw new IOException("Test IOException");
             }
         });
+    }
+
+    @Test
+    @PrepareForTest({ CommonUtils.class, CommonUtilsTest.class })
+    @SuppressWarnings("unchecked")
+    public void testLoadSuppressionsURISyntaxException() throws Exception {
+        URL configUrl = mock(URL.class);
+
+        when(configUrl.toURI()).thenThrow(URISyntaxException.class);
+        mockStatic(CommonUtils.class, Mockito.CALLS_REAL_METHODS);
+        String fileName = "suppressions_none.xml";
+        when(CommonUtils.class.getResource(fileName)).thenReturn(configUrl);
+
+        try {
+            CommonUtils.getUriByFilename(fileName);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getCause() instanceof URISyntaxException);
+            assertEquals("Unable to find: " + fileName, ex.getMessage());
+        }
+    }
+
+    private static class TestCloseable implements Closeable {
+        private boolean closed;
+
+        @Override
+        public void close() {
+            closed = true;
+        }
     }
 }

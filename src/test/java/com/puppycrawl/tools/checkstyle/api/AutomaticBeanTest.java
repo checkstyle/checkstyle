@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.DefaultContext;
 public class AutomaticBeanTest {
 
     @Test
-    public void testConfigure_NoSuchAttribute() {
+    public void testConfigureNoSuchAttribute() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration conf = new DefaultConfiguration("testConf");
         conf.addAttribute("NonExisting", "doesn't matter");
@@ -48,7 +48,7 @@ public class AutomaticBeanTest {
     }
 
     @Test
-    public void testConfigure_NoSuchAttribute2() {
+    public void testConfigureNoSuchAttribute2() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration conf = new DefaultConfiguration("testConf");
         conf.addAttribute("privateField", "doesn't matter");
@@ -68,7 +68,7 @@ public class AutomaticBeanTest {
     }
 
     @Test
-    public void testContextualize_InvocationTargetException() {
+    public void testContextualizeInvocationTargetException() {
         final TestBean testBean = new TestBean();
         DefaultContext context = new DefaultContext();
         context.add("exceptionalMethod", 123.0f);
@@ -83,7 +83,7 @@ public class AutomaticBeanTest {
     }
 
     @Test
-    public void testContextualize_ConversionException() {
+    public void testContextualizeConversionException() {
         final TestBean testBean = new TestBean();
         DefaultContext context = new DefaultContext();
         context.add("val", "some string");

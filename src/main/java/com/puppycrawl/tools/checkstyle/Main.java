@@ -104,7 +104,7 @@ public final class Main {
                 exitStatus = 0;
             }
             else {
-                // return error is smth is wrong in arguments
+                // return error if something is wrong in arguments
                 final List<String> messages = validateCli(commandLine);
                 cliViolations = !messages.isEmpty();
                 if (cliViolations) {
@@ -124,7 +124,7 @@ public final class Main {
             }
         }
         catch (ParseException pex) {
-            // smth wrong with arguments - print error and manual
+            // something wrong with arguments - print error and manual
             cliViolations = true;
             exitStatus = exitWithCliViolation;
             errorCounter = 1;
@@ -208,7 +208,7 @@ public final class Main {
     }
 
     /**
-     * Util method to convert ComandLine type to POJO object.
+     * Util method to convert CommandLine type to POJO object.
      * @param cmdLine command line object
      * @return command line option as POJO object
      */
@@ -338,7 +338,7 @@ public final class Main {
 
         }
         else if (PLAIN_FORMAT_NAME.equals(format)) {
-            listener = new DefaultLogger(out, closeOutputStream);
+            listener = new DefaultLogger(out, closeOutputStream, out, false, true);
 
         }
         else {

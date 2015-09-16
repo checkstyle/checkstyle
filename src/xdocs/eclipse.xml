@@ -26,10 +26,51 @@
       </macro>
     </section>
 
+    <section name="Download Eclipse">
+      <p>
+        Please visit Eclipse IDE <a href="https://eclipse.org/"> official web site</a>,
+        download and install the latest version of Eclipse IDE for Java Developers.
+      </p>
+    </section>
+
     <section name="Import Checkstyle Project">
       <p>
         Select File > Import > Maven > Existing Maven Projects<br/><br/>
         <img alt="screenshot" src="images/gui_screenshot_importing_eclipse.png"/>
+      </p>
+    </section>
+
+    <section name="Setup Maven plugin connectors">
+      <p>When you import Checkstyle Project, "Setup maven plugin connectors" window will appear.</p>
+      <p>
+        Left click on "Finish".<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_setup_maven_plugin_connectors_eclipse.png"/>
+        <br/><br/>
+      </p>
+      <p>
+        Then plugin "Install" window will appear.
+        <br/><br/>
+        Left click on Next > Next.
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_eclipse.png"/>
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_details_eclipse.png"/>
+        <br/><br/>
+        Set "I accept the terms of the license agreement" > Finish.
+        <br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_license_eclipse.png"/>
+      </p>
+      <p>
+        <br/><br/>
+        Then "Security Warning" window will appear.
+        <br/><br/>
+        Left click on "OK", and then restart Eclipse.<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_install_connector_security_warning_eclipse.png"/>
+      </p>
+      <p>
+        <br/><br/>
+        Then target/generated-sources/antlr folder will appear in Package Explorer.<br/><br/>
+        <img alt="screenshot" src="images/gui_screenshot_package_explorer_eclipse.png"/>
       </p>
     </section>
 
@@ -52,6 +93,19 @@
       </p>
     </section>
 
+    <section name="Organize Imports">
+      <p>
+        One of the Checkstyle checks we run on our own code require certain order of import
+        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
+        To change settings of "Organize Imports" feature (Kepler, Luna &amp; Mars, other versions
+        are likely to work the same way), please go to Window -> Preferences in menu.<br/>
+        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a picture).<br/>
+        Default configuration should look as following (you can also try Restore Defaults button):<br/><br/>
+        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.jpg"/>
+        <br/>
+      </p>
+    </section>
+
     <section name="Debug">
       <p>
         Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
@@ -67,19 +121,6 @@
         <br/><br/>
         Then manage you debug operations by F6 (Step Over), F5 (Step Into), F7 (Step Return)
         and F8 (Resume)
-      </p>
-    </section>
-
-    <section name="Organize Imports">
-      <p>
-        One of the Checkstyle checks we run on our own code require certain order of import
-        statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
-        To change settings of "Organize Imports" feature (Kepler, Luna &amp; Mars, other versions
-        are likely to work the same way), please go to Window -> Preferences in menu.<br/>
-        In Preferences window select Java->Code Style->Organize Imports (follow numbers on a picture).<br/>
-        Default configuration should look as following (you can also try Restore Defaults button):<br/><br/>
-        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.jpg"/>
-        <br/>
       </p>
     </section>
 

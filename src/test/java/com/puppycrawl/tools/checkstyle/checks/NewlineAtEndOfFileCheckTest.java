@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -163,13 +164,13 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testWrongFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
-        File impossibleFile = new File("");
         NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         check.configure(checkConfig);
+        File impossibleFile = new File("");
         Set<LocalizedMessage> messages = check.process(impossibleFile, Lists.newArrayList("txt"));
-        assertTrue(messages.size() == 1);
+        assertEquals(1, messages.size());
         Iterator<LocalizedMessage> iter = messages.iterator();
-        assertEquals(iter.next().getMessage(), "Unable to open ''.");
+        assertEquals("Unable to open ''.", iter.next().getMessage());
     }
 
     @Test
@@ -188,11 +189,11 @@ public class NewlineAtEndOfFileCheckTest
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IOException);
-            if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
-                assertEquals(ex.getCause().getMessage(), "Unable to read 2 bytes, got 0");
+            if (System.getProperty("os.name").toLowerCase(ENGLISH).startsWith("windows")) {
+                assertEquals("Unable to read 2 bytes, got 0", ex.getCause().getMessage());
             }
             else {
-                assertEquals(ex.getCause().getMessage(), "Unable to read 1 bytes, got 0");
+                assertEquals("Unable to read 1 bytes, got 0", ex.getCause().getMessage());
             }
         }
     }

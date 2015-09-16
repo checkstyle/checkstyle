@@ -184,7 +184,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testCacheFile_changeInConfig() throws Exception {
+    public void testCacheFileChangeInConfig() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
 
         final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
@@ -231,8 +231,12 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        // nothing is expected
-        verify(checkConfig, pathToEmptyFile, expected);
+        try {
+            verify(checkConfig, pathToEmptyFile, expected);
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getMessage().contains("isCommentNodesRequired"));
+        }
     }
 
     @Test
@@ -261,7 +265,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testProcessWithParserTrowable() throws Exception {
+    public void testProcessWithParserThrowable() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createCheckConfig(TypeNameCheck.class));
         PackageObjectFactory factory = new PackageObjectFactory(

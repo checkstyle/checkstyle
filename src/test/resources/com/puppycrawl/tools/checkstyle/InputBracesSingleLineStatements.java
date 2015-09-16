@@ -92,4 +92,17 @@ public class InputBracesSingleLineStatements
         } else
             return 2;
     }
+
+    void enhancedForLoop(int[] array) {
+        for (int value: array) return;
+    }
+
+    int[] sourceLocators;
+
+    private class StateInfo {
+        public boolean isInitial() {
+            for (int locator: sourceLocators) if (locator != 0) return false;
+            return true;
+        }
+    }
 }

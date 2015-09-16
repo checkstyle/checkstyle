@@ -265,4 +265,15 @@ public final class ScopeUtils {
         }
         return localVariableDef;
     }
+
+    /**
+     * Checks whether ast node is in a specific scope.
+     * @param ast the node to check.
+     * @param scope a {@code Scope} value.
+     * @return true if the ast node is in the scope.
+     */
+    public static boolean isInScope(DetailAST ast, Scope scope) {
+        final Scope surroundingScopeOfAstToken = getSurroundingScope(ast);
+        return surroundingScopeOfAstToken == scope;
+    }
 }

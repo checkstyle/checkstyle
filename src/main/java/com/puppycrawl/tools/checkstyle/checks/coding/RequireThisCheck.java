@@ -167,7 +167,7 @@ public class RequireThisCheck extends AbstractDeclarationCollector {
     /**
      * Process validation of Field.
      * @param ast field definition ast token
-     * @param parentType type of the parrent
+     * @param parentType type of the parent
      */
     private void processField(DetailAST ast, int parentType) {
         final boolean importOrPackage = ScopeUtils.getSurroundingScope(ast) == null;

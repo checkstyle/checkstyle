@@ -85,7 +85,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_EXCPECTED_TAG = "javadoc.expectedTag";
+    public static final String MSG_EXPECTED_TAG = "javadoc.expectedTag";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -482,7 +482,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         }
 
         final Iterator<JavadocTag> it = tags.iterator();
-        if (ast.getType() != TokenTypes.ANNOTATION_FIELD_DEF) {
+        if (ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
+            checkReturnTag(tags, ast.getLineNo(), true);
+        }
+        else {
             // Check for inheritDoc
             boolean hasInheritDocTag = false;
             while (it.hasNext() && !hasInheritDocTag) {
@@ -766,12 +769,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         // the user has chosen to suppress these problems
         if (!allowMissingParamTags && reportExpectedTags) {
             for (DetailAST param : params) {
-                log(param, MSG_EXCPECTED_TAG,
+                log(param, MSG_EXPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(), param.getText());
             }
 
             for (DetailAST typeParam : typeParams) {
-                log(typeParam, MSG_EXCPECTED_TAG,
+                log(typeParam, MSG_EXPECTED_TAG,
                     JavadocTagInfo.PARAM.getText(),
                     "<" + typeParam.findFirstToken(TokenTypes.IDENT).getText()
                     + ">");
@@ -912,7 +915,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 if (!ei.isFound()) {
                     final Token fi = ei.getName();
                     log(fi.getLineNo(), fi.getColumnNo(),
-                        MSG_EXCPECTED_TAG,
+                            MSG_EXPECTED_TAG,
                         JavadocTagInfo.THROWS.getText(), fi.getText());
                 }
             }
@@ -976,7 +979,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         /**
          * Creates new instance for {@code FullIdent}.
          *
-         * @param classInfo clas info
+         * @param classInfo class info
          */
         ExceptionInfo(AbstractClassInfo classInfo) {
             this.classInfo = classInfo;

@@ -27,7 +27,7 @@ enum SON {
     ETHAN
 }
 
-@Deprecated()
+@MyAnnotation13()
 enum DOGS {
     
     @Deprecated()

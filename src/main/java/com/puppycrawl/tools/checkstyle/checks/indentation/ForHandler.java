@@ -56,9 +56,9 @@ public class ForHandler extends BlockParentHandler {
                 getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
             checkExpressionSubtree(cond, expected, false, false);
 
-            final DetailAST iter =
+            final DetailAST forIterator =
                 getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
-            checkExpressionSubtree(iter, expected, false, false);
+            checkExpressionSubtree(forIterator, expected, false, false);
         }
         // for each
         else {

@@ -30,7 +30,7 @@ class InputFinalParameters
     }
 
     /** final param constructor with annotation */
-    InputFinalParameters(final @MyAnnotation3 Class i)
+    InputFinalParameters(final @MyAnnotation3 Class<Object> i)
     {
     }
 
@@ -66,7 +66,7 @@ class InputFinalParameters
     }
 
     /** non-final param method with annotation **/
-    void method(@MyAnnotation3 Class s)
+    void method(@MyAnnotation3 Class<Object> s)
     {
 
     }

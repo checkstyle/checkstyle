@@ -12,10 +12,10 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class LocalVariableNameTest extends BaseCheckTestSupport{
 
-	private static final String MSG_KEY = "name.invalidPattern";
-	private static ConfigurationBuilder builder;
-	private static Configuration checkConfig;
-	private static String format;
+    private static final String MSG_KEY = "name.invalidPattern";
+    private static ConfigurationBuilder builder;
+    private static Configuration checkConfig;
+    private static String format;
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {

@@ -53,7 +53,7 @@ public final class ParameterAssignmentCheck extends Check {
 
     /** Stack of methods' parameters. */
     private final Deque<Set<String>> parameterNamesStack = new ArrayDeque<>();
-    /** Current set of perameters. */
+    /** Current set of parameters. */
     private Set<String> parameterNames;
 
     @Override
@@ -179,7 +179,7 @@ public final class ParameterAssignmentCheck extends Check {
     }
 
     /**
-     * Ckecks if this is assignments of parameter.
+     * Checks if this is assignments of parameter.
      * @param ast assignment to check.
      */
     private void visitAssign(DetailAST ast) {

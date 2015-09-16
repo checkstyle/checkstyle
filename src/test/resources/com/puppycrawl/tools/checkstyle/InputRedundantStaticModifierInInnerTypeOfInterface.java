@@ -5,11 +5,11 @@
 package com.puppycrawl.tools.checkstyle;
 
 public interface InputRedundantStaticModifierInInnerTypeOfInterface {
-    static class MyInnerClass { }
+    static class MyInnerClass { } // violation
 
     class MyInnerClass2 { }
 
-    static enum MyInnerEnum { }
+    static enum MyInnerEnum { } // violation
 
     enum MyInnerEnum2 { }
 }

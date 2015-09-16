@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Simple XML logger.
  * It outputs everything in UTF-8 (default XML encoding is UTF-8) in case
- * we want to localize error messages or simply that filenames are
+ * we want to localize error messages or simply that file names are
  * localized and takes care about escaping as well.
 
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>

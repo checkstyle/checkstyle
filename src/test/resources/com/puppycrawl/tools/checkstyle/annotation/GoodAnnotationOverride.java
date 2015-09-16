@@ -1,18 +1,16 @@
 package com.puppycrawl.tools.checkstyle.annotation;
 
-public class BadAnnonOverride
+public class GoodAnnotationOverride
 {
     Runnable r = new Runnable() {
 
-        /**
-         * {@inheritDoc}
-         */
         public void run() {
             Throwable t = new Throwable() {
 
                 /**
                  * {@inheritDoc}
                  */
+                @Override
                 public String toString() {
                     return "junk";
                 }
@@ -23,15 +21,31 @@ public class BadAnnonOverride
     void doFoo(Runnable r) {
         doFoo(new Runnable() {
 
-            /**
-             * {@inheritDoc}
-             */
             public void run() {
                 Throwable t = new Throwable() {
 
                     /**
                      * {@inheritDoc}
                      */
+                    @Override
+                    public String toString() {
+                        return "junk";
+                    }
+                };
+            }
+        });
+    }
+    
+    void doFoo2(Runnable r) {
+        doFoo(new Runnable() {
+
+            public void run() {
+                Throwable t = new Throwable() {
+
+                    /**
+                     * {@inheritDoc}
+                     */
+                    @java.lang.Override
                     public String toString() {
                         return "junk";
                     }

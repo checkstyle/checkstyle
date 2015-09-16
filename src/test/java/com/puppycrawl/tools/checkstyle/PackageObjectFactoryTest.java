@@ -19,9 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import java.util.HashSet;
 
@@ -70,18 +68,5 @@ public class PackageObjectFactoryTest {
                 (Checker) factory.createModule(
                         "puppycrawl.tools.checkstyle.Checker");
         assertNotNull(checker);
-    }
-
-    @Test
-    public void testMakeObjectNoClass() {
-        try {
-            factory.createModule("NoClass");
-            fail("Instantiated non-existent class");
-        }
-        catch (CheckstyleException ex) {
-            assertEquals("CheckstyleException.message",
-                "Unable to instantiate NoClass",
-                ex.getMessage());
-        }
     }
 }

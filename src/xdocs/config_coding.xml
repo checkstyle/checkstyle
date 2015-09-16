@@ -63,6 +63,15 @@ return new int[] { 0 };
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L215">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -101,6 +110,15 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L312">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -136,6 +154,15 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L248">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -163,6 +190,19 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
         <source>
 &lt;module name=&quot;EmptyStatement&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L143">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L257">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -237,6 +277,15 @@ String nullString = null;
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L217">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -273,6 +322,19 @@ String nullString = null;
         <source>
 &lt;module name=&quot;EqualsHashCode&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L144">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L85">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -385,6 +447,15 @@ String nullString = null;
          }
          </source>
          </p>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L216">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -577,6 +648,19 @@ class SomeClass
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L145">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L304-L308">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -653,6 +737,19 @@ class SomeClass
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L146">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L107">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -716,6 +813,15 @@ class SomeClass
     &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L332">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -798,6 +904,19 @@ class SomeClass
     &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L38-L42">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L259">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -883,6 +1002,19 @@ class SomeClass
     &lt;property name=&quot;tokens&quot; value=&quot;ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L147">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L109">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1045,6 +1177,19 @@ class MyClass {
 
   </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L148">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L209">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1081,6 +1226,23 @@ class MyClass {
         <source>
 &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L81">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L149">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L208">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1181,6 +1343,15 @@ class MyClass {
          </p>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L311">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1215,6 +1386,19 @@ class MyClass {
         <source>
 &lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L150">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L193">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1265,6 +1449,19 @@ return !valid();
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L151">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L194">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1305,6 +1502,15 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L283">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1363,6 +1569,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L222-L224">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1416,6 +1631,15 @@ if (&quot;something&quot;.equals(x))
     &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L225-L227">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1473,6 +1697,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L228">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1517,6 +1750,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L265">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1545,6 +1787,19 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;NoFinalizer&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L132">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L266">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1583,6 +1838,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L284">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1618,6 +1882,15 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;SuperFinalize&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L285">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1674,6 +1947,15 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;IllegalCatch&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L88">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1764,6 +2046,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L108">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -1797,6 +2088,15 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;PackageDeclaration&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L333">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -1905,6 +2205,15 @@ if (&quot;something&quot;.equals(x))
     &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L330">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -2022,6 +2331,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L313">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -2130,6 +2448,15 @@ if (&quot;something&quot;.equals(x))
         </p>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L249">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -2161,6 +2488,15 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;ParameterAssignment&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L218">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -2206,6 +2542,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L229">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -2242,6 +2587,15 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L250">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -2270,6 +2624,15 @@ if (&quot;something&quot;.equals(x))
         <source>
 &lt;module name=&quot;MissingCtor&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L348-L354">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -2374,6 +2737,19 @@ case 5:
     &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
 &lt;module name=&quot;FallThrough&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L82">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L258">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -2486,6 +2862,15 @@ case 5:
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L315">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -2521,6 +2906,19 @@ case 5:
         <source>
 &lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L79">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L263">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -2587,6 +2985,15 @@ case 5:
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L355-L362">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -2614,6 +3021,15 @@ case 5:
         <source>
 &lt;module name=&quot;UnnecessaryParentheses&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L294">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -2677,6 +3093,19 @@ r = 5; int t; //violation here
         <source>
 &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L78">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L86">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -2870,6 +3299,19 @@ cal.set(Calendar.MINUTE, minutes);
          </p>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L156">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L334">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
@@ -2907,6 +3349,19 @@ public void foo(int i, String s) {}
 &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
         </source>
         </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L155">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L335">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
 
       <subsection name="Package">
         <p>

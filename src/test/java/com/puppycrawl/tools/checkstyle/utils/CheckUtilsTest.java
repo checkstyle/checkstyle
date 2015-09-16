@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,8 +36,9 @@ public class CheckUtilsTest {
     }
 
     @Test
-    public void testParseDouble() throws Exception {
-        CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
+    public void testParseDoubleWithIncorrectToken() throws Exception {
+        double parsedDouble = CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
+        assertEquals(0.0, parsedDouble, 0.0);
     }
 
     @Test

@@ -13,6 +13,10 @@
     <suppress checks="AbbreviationAsWordInName"
               files="JavaNCSSCheck.java"
               lines="41"/>
+    <!-- test should be named as their main class -->
+    <suppress checks="AbbreviationAsWordInName"
+              files="JavaNCSSCheckTest.java"
+              lines="41"/>
 
     <!-- illegal words are part of Javadoc -->
     <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
@@ -28,6 +32,9 @@
     <!-- 'Abstract' pattern is used to show it is checking for abstract class name -->
     <suppress checks="AbstractClassNameCheck"
               files="AbstractClassNameCheck.java"/>
+    <!-- test should be named as their main class -->
+    <suppress checks="AbstractClassNameCheck"
+              files="AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java"/>
 
     <!-- Tone down the checking for test code -->
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
@@ -43,7 +50,6 @@
     <!-- suppressions to remove over time -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="LineLength" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress checks="Name" files=".*[\\/]src[\\/]test[\\/]"/>    
 
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using
@@ -106,4 +112,9 @@
     <suppress checks="CyclomaticComplexity" files="LocalizedMessage\.java" lines="211"/>
     <!-- SWITCH was transformed into IF-ELSE -->
     <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="331"/>
+
+    <!-- LocalizedMessage class is immutable, we need that amount of arguments. -->
+    <suppress checks="ParameterNumber"
+              files="LocalizedMessage.java"
+              lines="106, 144, 175"/>
 </suppressions>

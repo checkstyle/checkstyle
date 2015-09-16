@@ -93,7 +93,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
             "79:19: " + getCheckMessage(MSG_ASSIGN),
             "81:11: " + getCheckMessage(MSG_ASSIGN),
             "81:16: " + getCheckMessage(MSG_LITERAL, "3"),
-            "82:27: " + getCheckMessage(MSG_ASSIGN),
+            "82:39: " + getCheckMessage(MSG_ASSIGN),
         };
 
         verify(checkConfig, getPath(TEST_FILE), expected);

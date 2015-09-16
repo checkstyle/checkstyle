@@ -21,15 +21,10 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.junit.Assume;
@@ -37,7 +32,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.xml.sax.InputSource;
@@ -265,23 +259,4 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         assertEquals(fc, fc2);
     }
 
-    @Test
-    @SuppressWarnings("unchecked")
-    public void testLoadSuppressionsURISyntaxException() throws Exception {
-        URL configUrl = mock(URL.class);
-
-        when(configUrl.toURI()).thenThrow(URISyntaxException.class);
-        mockStatic(SuppressionsLoader.class, Mockito.CALLS_REAL_METHODS);
-        String fileName = "suppressions_none.xml";
-        when(SuppressionsLoader.class.getResource(fileName)).thenReturn(configUrl);
-
-        try {
-            SuppressionsLoader.loadSuppressions(fileName);
-            fail("Exception is expected");
-        }
-        catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof  URISyntaxException);
-            assertEquals("Unable to find: " + fileName, ex.getMessage());
-        }
-    }
 }

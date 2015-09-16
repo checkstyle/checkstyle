@@ -24,6 +24,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Pattern;
@@ -31,12 +35,17 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
 /**
  * Contains utility methods.
  *
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public final class CommonUtils {
+
+    /** Prefix for the exception when unable to find resource. */
+    private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
     /** Stop instances being created. **/
     private CommonUtils() {
@@ -311,5 +320,46 @@ public final class CommonUtils {
         catch (IOException e) {
             throw new IllegalStateException("Cannot close the stream", e);
         }
+    }
+
+    /**
+     * Resolve the specified filename to a URI.
+     * @param filename name os the file
+     * @return resolved header file URI
+     * @throws CheckstyleException on failure
+     */
+    public static URI getUriByFilename(String filename) throws CheckstyleException {
+        // figure out if this is a File or a URL
+        URI uri;
+        try {
+            final URL url = new URL(filename);
+            uri = url.toURI();
+        }
+        catch (final URISyntaxException | MalformedURLException ignored) {
+            uri = null;
+        }
+
+        if (uri == null) {
+            final File file = new File(filename);
+            if (file.exists()) {
+                uri = file.toURI();
+            }
+            else {
+                // check to see if the file is in the classpath
+                try {
+                    final URL configUrl = CommonUtils.class
+                            .getResource(filename);
+                    if (configUrl == null) {
+                        throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);
+                    }
+                    uri = configUrl.toURI();
+                }
+                catch (final URISyntaxException e) {
+                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, e);
+                }
+            }
+        }
+
+        return uri;
     }
 }

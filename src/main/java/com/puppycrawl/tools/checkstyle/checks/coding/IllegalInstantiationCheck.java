@@ -23,6 +23,7 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 import antlr.collections.AST;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -258,29 +259,21 @@ public class IllegalInstantiationCheck
      * Check import statements.
      * @param className name of the class
      * @return value of illegal instantiated type
+     * @noinspection StringContatenationInLoop
      */
     private String checkImportStatements(String className) {
         String illegalType = null;
         // import statements
         for (FullIdent importLineText : imports) {
-            final String importArg = importLineText.getText();
+            String importArg = importLineText.getText();
             if (importArg.endsWith(".*")) {
-                final String fqClass =
-                    importArg.substring(0, importArg.length() - 1)
-                    + className;
-                // assume that illegalInstances only contain existing classes
-                // or else we might create a false alarm here
-                if (illegalClasses.contains(fqClass)) {
-                    illegalType = fqClass;
-                    break;
-                }
+                importArg = importArg.substring(0, importArg.length() - 1)
+                        + className;
             }
-            else {
-                if (CommonUtils.baseClassName(importArg).equals(className)
+            if (CommonUtils.baseClassName(importArg).equals(className)
                     && illegalClasses.contains(importArg)) {
-                    illegalType = importArg;
-                    break;
-                }
+                illegalType = importArg;
+                break;
             }
         }
         return illegalType;

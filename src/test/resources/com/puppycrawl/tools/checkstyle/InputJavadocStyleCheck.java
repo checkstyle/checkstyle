@@ -395,4 +395,16 @@ public class InputJavadocStyleCheck
              */
             public int field;
         }
+
+        /**
+         * .
+         * @throws Exception if an error occurs
+         */
+        void foo() throws Exception {}
+        
+        /**
+         * text /
+         * @throws Exception if an error occurs
+         */
+        void bar() throws Exception {}
 }

@@ -61,7 +61,7 @@ public class InputPublicOnly // ignore - need javadoc
     }
 
     // ignore - always need javadoc
-    public InputPublicOnly(Class aA)
+    public InputPublicOnly(Class<Object> aA)
     {
     }
 
@@ -76,7 +76,7 @@ public class InputPublicOnly // ignore - need javadoc
     }
 
     // ignore - need javadoc
-    protected void method(Class aA)
+    protected void method(Class<Object> aA)
     {
     }
 

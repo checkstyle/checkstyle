@@ -123,6 +123,15 @@
 
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L299-L301">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
@@ -201,6 +210,15 @@
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L324-L328">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
@@ -274,6 +292,15 @@
     &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L336-L340">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -427,6 +454,15 @@ class SwitchExample {
 }        </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L220">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
@@ -482,13 +518,13 @@ class SwitchExample {
 
         <table>
         <thead><tr><th>Structure</th><th> Complexity expression </th></tr></thead>
-        <tr><td>if</td><td>NP((if-range))+NP((expr))+1</td></tr>
-        <tr><td>if-else</td><td>NP((if-range))+NP((else-range))+NP((expr))</td></tr>
-        <tr><td>while</td><td>NP((while-range))+NP((expr))+1</td></tr>
-        <tr><td>do while</td><td>NP((do-range))+NP((expr))+1</td></tr>
-        <tr><td>for</td><td>NP((for-range))+NP((exprl))+NP((expr2))+NP((expr3))+1</td></tr>
-        <tr><td>switch</td><td>NP((expr))+ S(i=1:i=n)NP((case-range(i)))+ NP((default-range))</td></tr>
-        <tr><td>?</td><td>NP((exprl))+NP((expr2))+NP((expr3))+2</td></tr>
+        <tr><td>if</td><td>NP(if-range) + NP(expr) + 1</td></tr>
+        <tr><td>if-else</td><td>NP(if-range) + NP(else-range) + NP(expr)</td></tr>
+        <tr><td>while</td><td>NP(while-range) + NP(expr) + 1</td></tr>
+        <tr><td>do while</td><td>NP(do-range) + NP(expr) + 1</td></tr>
+        <tr><td>for</td><td>NP(for-range) + NP(exprl) + NP(expr2) + NP(expr3) + 1</td></tr>
+        <tr><td>switch</td><td>NP(expr) + S(i=1:i=n)NP(case-range(i)) + NP(default-range)</td></tr>
+        <tr><td>?</td><td>NP(expr1) + NP(expr2) + NP(expr3) + 2</td></tr>
         <tr><td>goto label</td><td>1</td></tr>
         <tr><td>break</td><td>1</td></tr>
         <tr><td>Expressions</td><td>Number of &amp;&amp; and || operators in expression</td></tr>
@@ -496,7 +532,7 @@ class SwitchExample {
         <tr><td>return</td><td>1</td></tr>
         <tr><td>sequential</td><td>1</td></tr>
         <tr><td>Function call</td><td>1</td></tr>
-        <tr><td>C function</td><td>P(i=1:i=N) NP(Statement(i))</td></tr>
+        <tr><td>C function</td><td>P(i=1:i=N)NP(Statement(i))</td></tr>
         </table>
 
         <p>
@@ -544,6 +580,15 @@ class SwitchExample {
     &lt;property name=&quot;max&quot; value=&quot;1000&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L321">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
@@ -642,6 +687,15 @@ class SwitchExample {
     &lt;property name=&quot;methodMaximum&quot; value=&quot;40&quot;/&gt;
 &lt;/module&gt;
         </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L322">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">

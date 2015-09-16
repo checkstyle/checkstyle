@@ -122,7 +122,7 @@ public final class PackageNamesLoader
 
     /**
      * Returns the set of package names, compiled from all
-     * checkstyle_packages.xml files found on the given classloaders
+     * checkstyle_packages.xml files found on the given class loaders
      * classpath.
      * @param classLoader the class loader for loading the
      *          checkstyle_packages.xml files.

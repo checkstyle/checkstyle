@@ -47,7 +47,7 @@ class InnerClone
 
 // This could not pass as valid semantically but tests that
 // type arguments are ignored when checking super calls
-class CloneWithTypeArguments<T>
+class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 {
     public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException
     {
@@ -57,7 +57,7 @@ class CloneWithTypeArguments<T>
 
 class CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArgumentsAndNoSuper<T> clone()
+    public CloneWithTypeArgumentsAndNoSuper<T> clone() throws CloneNotSupportedException
     {
         return null;
     }
@@ -66,7 +66,7 @@ class CloneWithTypeArgumentsAndNoSuper<T>
 //Check that super keword isn't snagged here
 class MyClassWithGenericSuperMethod
 {
-    void someMethod(java.util.List<? super java.util.Map> l)
+    void someMethod(java.util.List<? super java.util.Map<Object, Object>> l)
     {
 
     }

@@ -221,10 +221,7 @@
     <!--not configurable, decreases readability-->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
-  <rule ref="rulesets/java/strictexception.xml">
-    <!-- till #961 -->
-    <exclude name="AvoidThrowingRawExceptionTypes"/>
-  </rule>
+  <rule ref="rulesets/java/strictexception.xml"/>
   <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException">
     <properties>
         <!-- till #1244 and #1245 -->
@@ -245,7 +242,12 @@
   </rule>
 
   <rule ref="rulesets/java/strings.xml"/>
-  <rule ref="rulesets/java/sunsecure.xml"/>
+  <rule ref="rulesets/java/sunsecure.xml/MethodReturnsInternalArray">
+    <properties>
+      <!--It's not imoprtant when array is empty-->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocNodeImpl']"/>
+    </properties>
+  </rule>
   <rule ref="rulesets/java/typeresolution.xml"/>
   <rule ref="rulesets/java/unnecessary.xml"/>
   <rule ref="rulesets/java/unusedcode.xml"/>

@@ -47,7 +47,7 @@
       </roles>
     </developer>
     <developer>
-      <id>romanivanov</id>
+      <id>romani</id>
       <name>Roman Ivanov</name>
       <roles>
         <role>lead developer</role>
@@ -193,6 +193,15 @@
     <java.version>1.7</java.version>
   </properties>
 
+  <!-- that repositories are required for testing plugin's snapshot version -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus-snapshot</id>
+      <name>Official Maven Apache Repo</name>
+      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -262,7 +271,18 @@
       <version>1.6.2</version>
       <scope>test</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>4.0.1.201506240215-r</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.12</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.jacoco</groupId>
       <artifactId>org.jacoco.agent</artifactId>
@@ -429,6 +449,44 @@
           <source>${java.version}</source>
           <target>${java.version}</target>
         </configuration>
+        <executions>
+          <execution>
+            <id>compile-without-error-prone</id>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+            <configuration>
+              <testIncludes>
+                <testInclude>**/Input*.java</testInclude>
+              </testIncludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>compile-with-error-prone</id>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+            <configuration>
+              <compilerId>javac-with-errorprone</compilerId>
+              <forceJavacCompilerUse>true</forceJavacCompilerUse>
+              <testExcludes>
+                <testExclude>**/Input*.java</testExclude>
+              </testExcludes>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-compiler-javac-errorprone</artifactId>
+            <version>2.5</version>
+          </dependency>
+          <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_core</artifactId>
+            <version>2.0.4</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
@@ -456,7 +514,7 @@
           <dependency>
             <groupId>org.apache.maven.wagon</groupId>
             <artifactId>wagon-ssh</artifactId>
-            <version>2.9</version>
+            <version>2.10</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -798,7 +856,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.8</version>
+        <version>2.8.1</version>
       </plugin>
 
       <plugin>
@@ -809,6 +867,12 @@
           <source>1.7</source>
           <failOnError>true</failOnError>
           <linksource>true</linksource>
+          <tags>
+            <tag>
+              <name>noinspection</name>
+              <placement>X</placement>
+            </tag>
+          </tags>
         </configuration>
         <reportSets>
           <reportSet>
@@ -863,7 +927,6 @@
           <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
           <excludes>
             <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
-            <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
             <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
             <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
             <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
@@ -1170,7 +1233,6 @@
                   <dataFile>${project.build.directory}/jacoco/jacoco.exec</dataFile>
                   <excludes>
                     <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
-                    <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
                     <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
                     <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
                     <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
@@ -1567,6 +1629,24 @@
                         </limit>
                       </limits>
                     </rule>
+                    <rule>
+                      <element>CLASS</element>
+                      <includes>
+                        <include>com.puppycrawl.tools.checkstyle.doclets.TokenTypesDoclet</include>
+                      </includes>
+                      <limits>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.86</minimum>
+                        </limit>
+                        <limit>
+                          <counter>BRANCH</counter>
+                          <value>COVEREDRATIO</value>
+                          <minimum>0.85</minimum>
+                        </limit>
+                      </limits>
+                    </rule>
                   </rules>
                 </configuration>
               </execution>
@@ -1600,11 +1680,6 @@
                 <totalLineRate>95</totalLineRate>
                 <regexes>
                   <regex>
-                    <pattern>.*.checks.AbstractOptionCheck</pattern>
-                    <branchRate>100</branchRate>
-                    <lineRate>80</lineRate>
-                  </regex>
-                  <regex>
                     <pattern>.*.checks.ClassResolver</pattern>
                     <branchRate>85</branchRate>
                     <lineRate>93</lineRate>
@@ -1619,18 +1694,16 @@
                     <branchRate>75</branchRate>
                     <lineRate>93</lineRate>
                   </regex>
-
                   <regex>
-                    <pattern>.*.checks.header.AbstractHeaderCheck</pattern>
-                    <branchRate>90</branchRate>
-                    <lineRate>87</lineRate>
+                    <pattern>.*.doclets.TokenTypesDoclet</pattern>
+                    <branchRate>85</branchRate>
+                    <lineRate>92</lineRate>
                   </regex>
                 </regexes>
               </check>
               <instrumentation>
                 <excludes>
                   <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/doclets/*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
@@ -1650,14 +1723,4 @@
     </profile>
 
   </profiles>
-
-  <!-- that repositories are required for testing plugin's snapshot version -->
-  <pluginRepositories>
-    <pluginRepository>
-      <id>nexus-snapshot</id>
-      <name>Official Maven Apache Repo</name>
-      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
 </project>

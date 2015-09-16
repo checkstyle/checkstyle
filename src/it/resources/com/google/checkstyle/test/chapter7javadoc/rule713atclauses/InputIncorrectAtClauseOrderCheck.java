@@ -47,7 +47,7 @@ class WithAnnotations12 implements Serializable
     /**
      * Some text.
      * @serialData Some javadoc.
-     * @return Some text. //warn
+     * @return Some text.
      * @param aString Some text. //warn
      * @throws Exception Some text.
      */
@@ -96,7 +96,7 @@ class WithAnnotations12 implements Serializable
      * @param aString Some text.
      * @return Some text.
      * @serialData Some javadoc.
-     * @param aInt Some text. //warn
+     * @param aInt Some text.
      * @throws Exception Some text.
      * @param aBoolean Some text. //warn
      * @deprecated Some text.
@@ -112,7 +112,7 @@ class WithAnnotations12 implements Serializable
      * @version 1.0
      * @since Some javadoc.
      * @serialData Some javadoc.
-     * @author max //warn
+     * @author max
      */
     class InnerClassWithAnnotations
     {
@@ -142,7 +142,7 @@ class WithAnnotations12 implements Serializable
         /**
          * Some text.
          * @serialData Some javadoc.
-         * @param aString Some text. //warn
+         * @param aString Some text.
          * @throws Exception Some text.
          */
         void method2(String aString) throws Exception {}
@@ -158,7 +158,7 @@ class WithAnnotations12 implements Serializable
          * Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
-         * @return Some text. //warn
+         * @return Some text.
          */
         String method4() throws Exception
         {
@@ -272,10 +272,10 @@ class WithAnnotations12 implements Serializable
  * Some javadoc.
  * 
  * @since Some javadoc.
- * @version 1.0 //warn //warn
+ * @version 1.0
  * @deprecated Some javadoc.
- * @see Some javadoc. //warn
- * @author max //warn
+ * @see Some javadoc.
+ * @author max
  */
 enum Foo5 {}
 
@@ -285,6 +285,6 @@ enum Foo5 {}
  * @version 1.0
  * @since Some javadoc.
  * @serialData Some javadoc.
- * @author max //warn
+ * @author max
  */
 interface FooIn1 {}

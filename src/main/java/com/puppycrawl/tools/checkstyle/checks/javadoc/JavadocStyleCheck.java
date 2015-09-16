@@ -177,7 +177,7 @@ public class JavadocStyleCheck
                     && (excludeScope == null
                         || !customScope.isIn(excludeScope)
                         || surroundingScope != null
-                        && !surroundingScope.isIn(excludeScope));
+                            && !surroundingScope.isIn(excludeScope));
         }
         return check;
     }
@@ -195,7 +195,7 @@ public class JavadocStyleCheck
         if (comment == null) {
             /*checking for missing docs in JavadocStyleCheck is not consistent
             with the rest of CheckStyle...  Even though, I didn't think it
-            made sense to make another csheck just to ensure that the
+            made sense to make another check just to ensure that the
             package-info.java file actually contains package Javadocs.*/
             if (getFileContents().inPackageInfo()) {
                 log(ast.getLineNo(), JAVADOC_MISSING);
@@ -312,7 +312,8 @@ public class JavadocStyleCheck
             if (Character.isWhitespace(builder.charAt(i))) {
                 builder.deleteCharAt(i);
             }
-            else if (builder.charAt(i - 1) == '*') {
+            else if (builder.charAt(i) == '/'
+                    && builder.charAt(i - 1) == '*') {
                 builder.deleteCharAt(i);
                 builder.deleteCharAt(i - 1);
                 i--;

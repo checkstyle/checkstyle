@@ -22,12 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_CLASS_INFO;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 
+@SuppressWarnings("deprecation")
 public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
@@ -46,10 +49,10 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     @Test
     public void testIsSubclassWithNulls() throws Exception {
         JavadocMethodCheck check = new JavadocMethodCheck();
-        Method isSublclass = check.getClass().getSuperclass()
+        Method isSubclass = check.getClass().getSuperclass()
                 .getDeclaredMethod("isSubclass", Class.class, Class.class);
-        isSublclass.setAccessible(true);
-        assertFalse((boolean) isSublclass.invoke(check, null, null));
+        isSubclass.setAccessible(true);
+        assertFalse((boolean) isSubclass.invoke(check, null, null));
     }
 
     @Test
@@ -81,7 +84,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IllegalArgumentException);
-            assertEquals(ex.getCause().getMessage(), "ClassInfo's name should be non-null");
+            assertEquals("ClassInfo's name should be non-null", ex.getCause().getMessage());
         }
 
         Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class, int.class,
@@ -104,7 +107,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
 
         Method getClazz = regularClass.getClass().getDeclaredMethod("getClazz");
         getClazz.setAccessible(true);
-        assertTrue(getClazz.invoke(regularClass) == null);
+        assertNull(getClazz.invoke(regularClass));
     }
 
     @Test
@@ -164,8 +167,8 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     public void testWithSuppressLoadErrors() throws Exception {
         checkConfig.addAttribute("suppressLoadErrors", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = {
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
         verify(checkConfig, getPath("javadoc/InputLoadErrors.java"), expected);
     }
 }

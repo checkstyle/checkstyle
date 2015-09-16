@@ -74,6 +74,7 @@ public class NoWhitespaceBeforeCheck
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
+            TokenTypes.COMMA,
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
@@ -83,6 +84,7 @@ public class NoWhitespaceBeforeCheck
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
+            TokenTypes.COMMA,
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
@@ -135,7 +137,7 @@ public class NoWhitespaceBeforeCheck
     }
 
     /**
-     * Control whether whitespace is flagged at linebreaks.
+     * Control whether whitespace is flagged at line breaks.
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
      */

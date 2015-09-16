@@ -13,8 +13,8 @@ public class InputIllegalTypeMemberModifiers {
 
     private class NotAnAbstractClass {}
 
-    private java.util.TreeSet table1() { return null; } //WARNING
-    private TreeSet table2() { return null; } //WARNING
+    private java.util.TreeSet<Object> table1() { return null; } //WARNING
+    private TreeSet<Object> table2() { return null; } //WARNING
     static class SomeStaticClass {
         
     }
@@ -22,12 +22,12 @@ public class InputIllegalTypeMemberModifiers {
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
     protected com.puppycrawl.tools.checkstyle.coding.InputIllegalTypeMemberModifiers.AbstractClass c1 = null;
     //NO WARNING if memberModifiers is set and does not contain TokenTypes.LITERAL_PUBLIC
-    public final static java.util.TreeSet table3() { return null; }
+    public final static java.util.TreeSet<Object> table3() { return null; }
     
-    java.util.TreeSet table4() { java.util.TreeSet treeSet = null; return null; }
+    java.util.TreeSet<Object> table4() { java.util.TreeSet<Object> treeSet = null; return null; }
     
     private class Some {
-        java.util.TreeSet treeSet = null;
+        java.util.TreeSet<Object> treeSet = null;
     }
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
     protected AbstractClass a1 = null;

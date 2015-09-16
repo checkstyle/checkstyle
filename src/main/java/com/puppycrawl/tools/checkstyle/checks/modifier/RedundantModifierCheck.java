@@ -29,15 +29,40 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks for redundant modifiers in interface and annotation definitions.
- * Checks for non public class constructor and enum constructor redundant modifier.
- * Checks for redundant final modifiers on methods of final classes.
- * Checks for redundant static modifiers on nested enums.
+ * Checks for redundant modifiers in interface and annotation definitions,
+ * final modifier on methods of final classes, inner <code>interface</code>
+ * declarations that are declared as <code>static</code>, non public class
+ * constructors and enum constructors, nested enum definitions that are declared
+ * as <code>static</code>.
  *
- * <p>Examples:</p>
+ * <p>Interfaces by definition are abstract so the <code>abstract</code>
+ * modifier on the interface is redundant.
+ *
+ * <p>Classes inside of interfaces by definition are public and static,
+ * so the <code>public</code> and <code>static</code> modifiers
+ * on the inner classes are redundant. On the other hand, classes
+ * inside of interfaces can be abstract or non abstract.
+ * So, <code>abstract</code> modifier is allowed.
+ *
+ * <p>Fields in interfaces and annotations are automatically
+ * public, static and final, so these modifiers are redundant as
+ * well.</p>
+ *
+ * <p>As annotations are a form of interface, their fields are also
+ * automatically public, static and final just as their
+ * annotation fields are automatically public and abstract.</p>
+ *
+ * <p>Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
+ * So, the <code>static</code> modifier on the enums is redundant. In addition,
+ * if enum is inside of interface, <code>public</code> modifier is also redundant.
+ *
+ * <p>Final classes by definition cannot be extended so the <code>final</code>
+ * modifier on the method of a final class is redundant.
+ *
+ * <p>Public modifier for constructors in non-public non-protected classes
+ * is always obsolete: </p>
  *
  * <pre>
- * {@code
  * public class PublicClass {
  *     public PublicClass() {} // OK
  * }
@@ -45,36 +70,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class PackagePrivateClass {
  *     public PackagePrivateClass() {} // violation expected
  * }
- * }
  * </pre>
  *
+ * <p>There is no violation in the following example,
+ * because removing public modifier from ProtectedInnerClass
+ * constructor will make this code not compiling: </p>
+ *
  * <pre>
- * {@code
  * package a;
- * public class ClassWithProtectedInnerClass {
- *     protected class ProtectedClass {
- *         public ProtectedClass () {} // OK
+ * public class ClassExample {
+ *     protected class ProtectedInnerClass {
+ *         public ProtectedInnerClass () {}
  *     }
  * }
- * }
- * </pre>
- * <p>
- * in this example is no violation because removing public from
- * ProtectedClass constructor modifier will make this example
- * not compiling:
- * </p>
- * <pre>
- * {@code
+ *
  * package b;
- * import a.ClassWithProtectedInnerClass;
- * public class ClassExtending extends ClassWithProtectedInnerClass {
- *     ProtectedClass pc = new ProtectedClass();
- * }
+ * import a.ClassExample;
+ * public class ClassExtending extends ClassExample {
+ *     ProtectedInnerClass pc = new ProtectedInnerClass();
  * }
  * </pre>
  *
  * @author lkuehne
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
+ * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  * @author Vladislav Lisetskiy
  */
 public class RedundantModifierCheck
@@ -208,6 +227,7 @@ public class RedundantModifierCheck
                 || type == TokenTypes.LITERAL_STATIC
                         && ast.getType() != TokenTypes.METHOD_DEF
                 || type == TokenTypes.ABSTRACT
+                        && ast.getType() != TokenTypes.CLASS_DEF
                 || type == TokenTypes.FINAL) {
                 log(modifier.getLineNo(), modifier.getColumnNo(),
                         MSG_KEY, modifier.getText());

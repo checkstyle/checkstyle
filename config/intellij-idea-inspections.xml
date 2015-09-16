@@ -4,8 +4,9 @@
     <inspection_tool class="AbsoluteAlignmentInUserInterface" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractBeanReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AbstractClassExtendsConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="AbstractClassNamingConvention" enabled="false" level="WARNING" enabled_by_default="false">
+    <inspection_tool class="AbstractClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_regex" value="[A-Z][A-Za-z\d]*|Check" />
+        <option name="m_minLength" value="5" />
     </inspection_tool>
     <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -366,7 +367,7 @@
     <inspection_tool class="ComparisonOfShortAndChar" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ComparisonToNaN" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConditionSignal" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="ConditionalExpression" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="ConditionalExpression" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreSimpleAssignmentsAndReturns" value="false" />
     </inspection_tool>
     <inspection_tool class="ConditionalExpressionJS" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1574,10 +1575,10 @@
     <inspection_tool class="ParameterNameDiffersFromOverriddenParameter" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Production" level="WARNING" enabled="false">
             <option name="m_ignoreSingleCharacterNames" value="false" />
-            <option name="m_ignoreOverridesOfLibraryMethods" value="false" />
+            <option name="m_ignoreOverridesOfLibraryMethods" value="true" />
         </scope>
         <option name="m_ignoreSingleCharacterNames" value="false" />
-        <option name="m_ignoreOverridesOfLibraryMethods" value="false" />
+        <option name="m_ignoreOverridesOfLibraryMethods" value="true" />
     </inspection_tool>
     <inspection_tool class="ParameterNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_regex" value="[a-z][A-Za-z\d]*" />
@@ -1630,7 +1631,7 @@
     <inspection_tool class="PrimitiveArrayArgumentToVariableArgMethod" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PrivateMemberAccessBetweenOuterAndInnerClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ProblematicVarargsMethodOverride" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ProblematicWhitespace" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ProblematicWhitespace" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PropertyValueSetToItself" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ProtectedField" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ProtectedInnerClass" enabled="false" level="ERROR" enabled_by_default="false">
@@ -1972,7 +1973,6 @@
                 <option value="deprecation" />
                 <option value="unchecked" />
                 <option value="rawtypes" />
-                <option value="idea: CollectionDeclaredAsConcreteClass" />
             </list>
         </option>
     </inspection_tool>
@@ -2286,6 +2286,8 @@
     <inspection_tool class="VoidMethodAnnotatedWithGET" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="VolatileArrayField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="VolatileLongOrDoubleField" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- VtlReferencesInspection produce a lot false-positives on ${projectVersion} -->
+    <inspection_tool class="VtlReferencesInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="W3CssValidation" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="myCssVersion" value="css3" />
         <option name="myIgnoreVendorSpecificProperties" value="false" />

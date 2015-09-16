@@ -108,14 +108,14 @@
         <td>The number of other classes a given class relies on.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">ClassTypeParameterName</a></td>
+        <td><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></td>
         <td>
           Checks that class type parameter names conform to a format
           specified by the format property.
         </td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">ConstantName</a></td>
+        <td><a href="config_naming.html#ConstantName">ConstantName</a></td>
         <td>Checks that constant names conform to a format specified by the format property.</td>
       </tr>
       <tr>
@@ -336,7 +336,7 @@
         Use Interfaces only to define types.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">InterfaceTypeParameterName</a></td>
+        <td><a href="config_naming.html#InterfaceTypeParameterName">InterfaceTypeParameterName</a></td>
         <td>
           Checks that interface type parameter names conform to a format specified
         by the format property.</td>
@@ -386,7 +386,7 @@
         <td>Checks for long lines.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">LocalFinalVariableName</a></td>
+        <td><a href="config_naming.html#LocalFinalVariableName">LocalFinalVariableName</a></td>
         <td>
           Checks that local final variable names conform to a format specified
         by the format property.</td>
@@ -403,7 +403,7 @@
         Checks for magic numbers.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">MemberName</a></td>
+        <td><a href="config_naming.html#MemberName">MemberName</a></td>
         <td>
           Checks that instance variable names conform to a format specified
         by the format property.</td>
@@ -431,7 +431,7 @@
         and the left parenthesis of the parameter list.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">MethodTypeParameterName</a></td>
+        <td><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></td>
         <td>
           Checks that class type parameter names conform to a format specified
         by the format property.</td>
@@ -582,7 +582,7 @@
         <td>Ensures there is a package declaration and (optionally) in the correct directory.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">PackageName</a></td>
+        <td><a href="config_naming.html#PackageName">PackageName</a></td>
         <td>
           Checks that package names conform to a format specified
         by the format property.</td>
@@ -593,7 +593,7 @@
         Disallow assignment of parameters.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">ParameterName</a></td>
+        <td><a href="config_naming.html#ParameterName">ParameterName</a></td>
         <td>
           Checks that parameter names conform to a format specified
         by the format property.</td>
@@ -617,7 +617,11 @@
       </tr>
       <tr>
         <td><a href="config_modifier.html#RedundantModifier">RedundantModifier</a></td>
-        <td>Checks for redundant modifiers in interface and annotation definitions.</td>
+        <td>Checks for redundant modifiers in interface and annotation definitions,
+          final modifier on methods of final classes, inner <code>interface</code>
+          declarations that are declared as <code>static</code>, non public class
+          constructors and enum constructors, nested enum definitions that are declared
+          as <code>static</code>.</td>
       </tr>
       <tr>
         <td><a href="config_regexp.html#Regexp">Regexp</a></td>
@@ -677,7 +681,7 @@
         Checks for overly complicated boolean return statements.</td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#Modules">StaticVariableName</a></td>
+        <td><a href="config_naming.html#StaticVariableName">StaticVariableName</a></td>
         <td>
           Checks that static, non-final variable names conform to a format specified
         by the format property.</td>

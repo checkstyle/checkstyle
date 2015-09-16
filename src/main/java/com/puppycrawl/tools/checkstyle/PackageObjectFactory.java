@@ -25,8 +25,10 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 /**
  * A factory for creating objects from package names and names.
@@ -41,7 +43,8 @@ class PackageObjectFactory implements ModuleFactory {
     private static final String IGNORING_EXCEPTION_MESSAGE = "Keep looking, ignoring exception";
 
     /** Exception message when it is unable to create a class instance. */
-    private static final String UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE = "Unable to instantiate ";
+    private static final String UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE =
+        "PackageObjectFactory.unableToInstantiateExceptionMessage";
 
     /** A list of package names to prepend to class names. */
     private final Set<String> packages;
@@ -77,8 +80,8 @@ class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a new instance of a class from a given name. If the name is
-     * a classname, creates an instance of the named class. Otherwise, creates
-     * an instance of a classname obtained by concatenating the given
+     * a class name, creates an instance of the named class. Otherwise, creates
+     * an instance of a class name obtained by concatenating the given
      * to a package name from a given list of package names.
      * @param name the name of a class.
      * @return the {@code Object}
@@ -105,8 +108,11 @@ class PackageObjectFactory implements ModuleFactory {
                 LOG.debug(IGNORING_EXCEPTION_MESSAGE, ex);
             }
         }
-
-        throw new CheckstyleException(UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE + name);
+        final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+            Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
+            new String[] {name, joinPackageNamesWithClassName(name)},
+            null, getClass(), null);
+        throw new CheckstyleException(exceptionMessage.getMessage());
     }
 
     /**
@@ -131,8 +137,8 @@ class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a new instance of a class from a given name, or that name
      * concatenated with &quot;Check&quot;. If the name is
-     * a classname, creates an instance of the named class. Otherwise, creates
-     * an instance of a classname obtained by concatenating the given name
+     * a class name, creates an instance of the named class. Otherwise, creates
+     * an instance of a class name obtained by concatenating the given name
      * to a package name from a given list of package names.
      * @param name the name of a class.
      * @return the {@code Object} created by loader.
@@ -150,9 +156,22 @@ class PackageObjectFactory implements ModuleFactory {
                 return doMakeObject(name + "Check");
             }
             catch (final CheckstyleException ex2) {
-                throw new CheckstyleException(
-                    UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE + name, ex2);
+                final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
+                    new String[] {name, joinPackageNamesWithClassName(name)},
+                    null, getClass(), null);
+                throw new CheckstyleException(exceptionMessage.getMessage(), ex2);
             }
         }
+    }
+
+    /**
+     * Creates a string by joining package names with a class name.
+     * @param className name of the class for joining.
+     * @return a string which is obtained by joining package names with a class name.
+     */
+    private String joinPackageNamesWithClassName(String className) {
+        final Joiner joiner = Joiner.on(className + ", ").skipNulls();
+        return joiner.join(packages) + className;
     }
 }

@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,14 +29,9 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.xml.sax.Attributes;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -49,8 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  * @author Rick Giles
  * @author lkuehne
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ ConfigurationLoader.class, ConfigurationLoaderTest.class })
 public class ConfigurationLoaderTest {
 
     private static Configuration loadConfiguration(String name)
@@ -77,10 +68,10 @@ public class ConfigurationLoaderTest {
             "src/test/resources/com/puppycrawl/tools/checkstyle/configs/checkstyle_checks.xml", new PropertiesExpander(props));
 
         //verify the root, and property substitution
-        final Properties atts = new Properties();
-        atts.setProperty("tabWidth", "4");
-        atts.setProperty("basedir", "basedir");
-        verifyConfigNode(config, "Checker", 3, atts);
+        final Properties attributes = new Properties();
+        attributes.setProperty("tabWidth", "4");
+        attributes.setProperty("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 3, attributes);
     }
 
     @Test
@@ -323,7 +314,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testExternalEntitySubdir() throws Exception {
+    public void testExternalEntitySubdirectory() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 
@@ -331,10 +322,10 @@ public class ConfigurationLoaderTest {
             (DefaultConfiguration) loadConfiguration(
                 "subdir/including.xml", props);
 
-        final Properties atts = new Properties();
-        atts.setProperty("tabWidth", "4");
-        atts.setProperty("basedir", "basedir");
-        verifyConfigNode(config, "Checker", 2, atts);
+        final Properties attributes = new Properties();
+        attributes.setProperty("tabWidth", "4");
+        attributes.setProperty("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 2, attributes);
     }
 
     @Test
@@ -360,9 +351,9 @@ public class ConfigurationLoaderTest {
             Class<?> aClassParent = ConfigurationLoader.class;
             Constructor<?> ctorParent = null;
             Constructor<?>[] parentConstructors = aClassParent.getDeclaredConstructors();
-            for (Constructor<?> constr: parentConstructors) {
-                constr.setAccessible(true);
-                ctorParent = constr;
+            for (Constructor<?> parentConstructor: parentConstructors) {
+                parentConstructor.setAccessible(true);
+                ctorParent = parentConstructor;
             }
             Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                     + "ConfigurationLoader$InternalLoader");
@@ -433,7 +424,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfiguration_WrongURL() throws CheckstyleException {
+    public void testLoadConfigurationWrongURL() throws CheckstyleException {
         try {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
@@ -445,34 +436,12 @@ public class ConfigurationLoaderTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("unable to find ;config_with_ignore.xml", ex.getMessage());
+            assertEquals("Unable to find: ;config_with_ignore.xml", ex.getMessage());
         }
     }
 
     @Test
-    @SuppressWarnings("unchecked")
-    public void testLoadConfiguration_URISyntaxException() throws CheckstyleException {
-        mockStatic(ConfigurationLoader.class, Mockito.CALLS_REAL_METHODS);
-
-        PropertiesExpander expander = new PropertiesExpander(new Properties());
-
-        when(ConfigurationLoader.class.getResource("config_with_ignore.xml"))
-                .thenThrow(URISyntaxException.class);
-
-        try {
-            ConfigurationLoader.loadConfiguration(
-                    "config_with_ignore.xml", expander, true);
-
-            fail("Exception is expected");
-        }
-        catch (CheckstyleException ex) {
-            assertTrue(ex.getCause() instanceof  URISyntaxException);
-            assertEquals("unable to find config_with_ignore.xml", ex.getMessage());
-        }
-    }
-
-    @Test
-    public void testLoadConfiguration_Deprecated() throws CheckstyleException {
+    public void testLoadConfigurationDeprecated() throws CheckstyleException {
         try {
             @SuppressWarnings("deprecation")
             final DefaultConfiguration config =

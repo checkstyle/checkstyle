@@ -5,7 +5,7 @@ package com.puppycrawl.tools.checkstyle.annotation;
  * @deprecated boo
  */
 @Deprecated
-public class SpecialCaseDeprecated
+public class InputSpecialCaseDeprecated
 {
     /**
      * @deprecated bleh

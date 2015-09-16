@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
- * Tests to ensure that default messagebundle is determined correctly.
+ * Tests to ensure that default message bundle is determined correctly.
  *
  * @author lkuehne
  */

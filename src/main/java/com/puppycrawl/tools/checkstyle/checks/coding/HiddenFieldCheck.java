@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
@@ -280,14 +281,36 @@ public class HiddenFieldCheck
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
 
-            if (isStaticOrInstanceField(ast, name)
-                && !isMatchingRegexp(name)
-                && !isIgnoredSetterParam(ast, name)
-                && !isIgnoredConstructorParam(ast)
-                && !isIgnoredParamOfAbstractMethod(ast)) {
+            if ((isStaticFieldHiddenFromAnonymousClass(ast, name)
+                        || isStaticOrInstanceField(ast, name))
+                    && !isMatchingRegexp(name)
+                    && !isIgnoredParam(ast, name)) {
                 log(nameAST, MSG_KEY, name);
             }
         }
+    }
+
+    /**
+     * Checks whether a static field is hidden from closure.
+     * @param nameAST local variable or parameter.
+     * @param name field name.
+     * @return true if static field is hidden from closure.
+     */
+    private boolean isStaticFieldHiddenFromAnonymousClass(DetailAST nameAST, String name) {
+        return isInStatic(nameAST)
+            && frame.containsStaticField(name);
+    }
+
+    /**
+     * Checks whether method or constructor parameter is ignored.
+     * @param ast the parameter token.
+     * @param name the parameter name.
+     * @return true if parameter is ignored.
+     */
+    private boolean isIgnoredParam(DetailAST ast, String name) {
+        return isIgnoredSetterParam(ast, name)
+            || isIgnoredConstructorParam(ast)
+            || isIgnoredParamOfAbstractMethod(ast);
     }
 
     /**
@@ -324,7 +347,9 @@ public class HiddenFieldCheck
             if (parent.getType() == TokenTypes.STATIC_INIT) {
                 inStatic = true;
             }
-            else if (parent.getType() == TokenTypes.METHOD_DEF) {
+            else if (parent.getType() == TokenTypes.METHOD_DEF
+                        && !ScopeUtils.isInScope(parent, Scope.ANONINNER)
+                        || parent.getType() == TokenTypes.VARIABLE_DEF) {
                 final DetailAST mods =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
                 inStatic = mods.branchContains(TokenTypes.LITERAL_STATIC);

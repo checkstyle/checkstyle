@@ -55,7 +55,7 @@ public final class LocalizedMessage
     private static Locale sLocale = Locale.getDefault();
 
     /**
-     * A cache that maps bundle names to RessourceBundles.
+     * A cache that maps bundle names to ResourceBundles.
      * Avoids repetitive calls to ResourceBundle.getBundle().
      */
     private static final Map<String, ResourceBundle> BUNDLE_CACHE =

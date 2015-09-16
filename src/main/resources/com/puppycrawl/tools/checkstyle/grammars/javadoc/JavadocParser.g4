@@ -3,33 +3,33 @@ parser grammar JavadocParser;
 options { tokenVocab=JavadocLexer; }
 
 @parser::members {
-	boolean isNextJavadocTag() {
-		int token1 = _input.LA(2);
-		int token2 = _input.LA(3);
-		return isJavadocTag(token1)
-			|| (token1 == WS && isJavadocTag(token2));
-	}
+    boolean isNextJavadocTag() {
+        int token1 = _input.LA(2);
+        int token2 = _input.LA(3);
+        return isJavadocTag(token1)
+            || (token1 == WS && isJavadocTag(token2));
+    }
 
-	boolean isJavadocTag(int type) {
-		switch(type) {
-			case AUTHOR_LITERAL:
-			case DEPRECATED_LITERAL:
-			case EXCEPTION_LITERAL: 
-			case PARAM_LITERAL:
-			case RETURN_LITERAL:
-			case SEE_LITERAL:
-			case SERIAL_LITERAL:
-			case SERIAL_FIELD_LITERAL:
-			case SERIAL_DATA_LITERAL:
-			case SINCE_LITERAL:
-			case THROWS_LITERAL:
-			case VERSION_LITERAL:
-			case CUSTOM_NAME:
-				return true;
-			default:
-				return false;
-		}
-	}
+    boolean isJavadocTag(int type) {
+        switch(type) {
+            case AUTHOR_LITERAL:
+            case DEPRECATED_LITERAL:
+            case EXCEPTION_LITERAL:
+            case PARAM_LITERAL:
+            case RETURN_LITERAL:
+            case SEE_LITERAL:
+            case SERIAL_LITERAL:
+            case SERIAL_FIELD_LITERAL:
+            case SERIAL_DATA_LITERAL:
+            case SINCE_LITERAL:
+            case THROWS_LITERAL:
+            case VERSION_LITERAL:
+            case CUSTOM_NAME:
+                return true;
+            default:
+                return false;
+        }
+    }
 
       boolean isSameTagNames(ParserRuleContext htmlTagOpen, ParserRuleContext htmlTagClose) {
             String openTag = htmlTagOpen.getToken(HTML_TAG_NAME, 0).getText().toLowerCase();
@@ -52,9 +52,9 @@ javadoc: (
          EOF;
 
 htmlElement: htmlTag
-		| singletonElement
-		| paragraph
-		| li
+        | singletonElement
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -130,9 +130,9 @@ htmlTag: htmlElementOpen (htmlElement
 pTagOpen: OPEN P_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 pTagClose: OPEN SLASH P_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 paragraph: pTagOpen
-		(htmlTag
-		| singletonTag
-		| li
+        (htmlTag
+        | singletonTag
+        | li
             | tr
             | td
             | th
@@ -166,15 +166,15 @@ paragraph: pTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-		pTagClose
-		;
+        pTagClose
+        ;
 
 liTagOpen: OPEN LI_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 liTagClose: OPEN SLASH LI_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 li: liTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
+    (htmlTag
+        | singletonTag
+        | paragraph
             | tr
             | td
             | th
@@ -202,22 +202,22 @@ li: liTagOpen
             | tbodyTagOpen
             | theadTagOpen
             | tfootTagOpen
-		| ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
             | htmlComment
             | CDATA
             | NEWLINE
             | text
             | javadocInlineTag)*
-	liTagClose
-	;
+    liTagClose
+    ;
 
 trTagOpen: OPEN TR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 trTagClose: OPEN SLASH TR_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 tr: trTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | td
             | th
             | body
@@ -250,16 +250,16 @@ tr: trTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	trTagClose
-	;
+    trTagClose
+    ;
 
 tdTagOpen: OPEN TD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 tdTagClose: OPEN SLASH TD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 td: tdTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | th
             | body
@@ -292,16 +292,16 @@ td: tdTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	tdTagClose
-	;
+    tdTagClose
+    ;
 
 thTagOpen: OPEN TH_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 thTagClose: OPEN SLASH TH_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 th: thTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | body
@@ -334,16 +334,16 @@ th: thTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	thTagClose
-	;
+    thTagClose
+    ;
 
 bodyTagOpen: OPEN BODY_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 bodyTagClose: OPEN SLASH BODY_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 body: bodyTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -376,16 +376,16 @@ body: bodyTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	bodyTagClose
-	;
+    bodyTagClose
+    ;
 
 colgroupTagOpen: OPEN COLGROUP_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 colgroupTagClose: OPEN SLASH COLGROUP_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 colgroup: colgroupTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -418,16 +418,16 @@ colgroup: colgroupTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	colgroupTagClose
-	;
+    colgroupTagClose
+    ;
 
 ddTagOpen: OPEN DD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 ddTagClose: OPEN SLASH DD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 dd: ddTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -460,16 +460,16 @@ dd: ddTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	ddTagClose
-	;
+    ddTagClose
+    ;
 
 dtTagOpen: OPEN DT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 dtTagClose: OPEN SLASH DT_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 dt: dtTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -502,16 +502,16 @@ dt: dtTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	dtTagClose
-	;
+    dtTagClose
+    ;
 
 headTagOpen: OPEN HEAD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 headTagClose: OPEN SLASH HEAD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 head: headTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -544,16 +544,16 @@ head: headTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	headTagClose
-	;
+    headTagClose
+    ;
 
 htmlTagOpen: OPEN HTML_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 htmlTagClose: OPEN SLASH HTML_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 html: htmlTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -586,16 +586,16 @@ html: htmlTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	htmlTagClose
-	;
+    htmlTagClose
+    ;
 
 optionTagOpen: OPEN OPTION_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 optionTagClose: OPEN SLASH OPTION_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 option: optionTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -628,16 +628,16 @@ option: optionTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	optionTagClose
-	;
+    optionTagClose
+    ;
 
 tbodyTagOpen: OPEN TBODY_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 tbodyTagClose: OPEN SLASH TBODY_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 tbody: tbodyTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -670,16 +670,16 @@ tbody: tbodyTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	tbodyTagClose
-	;
+    tbodyTagClose
+    ;
 
 tfootTagOpen: OPEN TFOOT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 tfootTagClose: OPEN SLASH TFOOT_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 tfoot: tfootTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -712,16 +712,16 @@ tfoot: tfootTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	tfootTagClose
-	;
+    tfootTagClose
+    ;
 
 theadTagOpen: OPEN THEAD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 theadTagClose: OPEN SLASH THEAD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 thead: theadTagOpen
-	(htmlTag
-		| singletonTag
-		| paragraph
-		| li
+    (htmlTag
+        | singletonTag
+        | paragraph
+        | li
             | tr
             | td
             | th
@@ -754,29 +754,29 @@ thead: theadTagOpen
             | NEWLINE
             | text
             | javadocInlineTag)*
-	theadTagClose
-	;
+    theadTagClose
+    ;
 
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////  SINLETON HTML TAGS  //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 singletonElement: singletonTag
-			| areaTag
-			| baseTag
-			| basefrontTag
-			| brTag
-			| colTag
-			| frameTag
-			| hrTag
-			| imgTag
-			| inputTag
-			| isindexTag
-			| linkTag
-			| metaTag
-			| paramTag
+            | areaTag
+            | baseTag
+            | basefrontTag
+            | brTag
+            | colTag
+            | frameTag
+            | hrTag
+            | imgTag
+            | inputTag
+            | isindexTag
+            | linkTag
+            | metaTag
+            | paramTag
 
                   | wrongSinletonTag
-			;
+            ;
 
 singletonTag: OPEN
                   (
@@ -856,30 +856,30 @@ parameters: LEFT_BRACE (ARGUMENT | COMMA | WS | NEWLINE | LEADING_ASTERISK)* RIG
 
 javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* description?
 
-	| DEPRECATED_LITERAL (WS | NEWLINE)* description?
+    | DEPRECATED_LITERAL (WS | NEWLINE)* description?
 
-  	| EXCEPTION_LITERAL (WS | NEWLINE)* CLASS_NAME? (WS | NEWLINE)* description?
+      | EXCEPTION_LITERAL (WS | NEWLINE)* CLASS_NAME? (WS | NEWLINE)* description?
 
-  	| PARAM_LITERAL (WS | NEWLINE)* PARAMETER_NAME? (WS | NEWLINE)* description?
+      | PARAM_LITERAL (WS | NEWLINE)* PARAMETER_NAME? (WS | NEWLINE)* description?
 
-  	| RETURN_LITERAL (WS | NEWLINE)* description?
+      | RETURN_LITERAL (WS | NEWLINE)* description?
 
-  	| SEE_LITERAL (WS | NEWLINE)* reference? (STRING | htmlElement)* (WS | NEWLINE)* description?
+      | SEE_LITERAL (WS | NEWLINE)* reference? (STRING | htmlElement)* (WS | NEWLINE)* description?
 
-  	| SERIAL_LITERAL (WS | NEWLINE)* (LITERAL_INCLUDE | LITERAL_EXCLUDE)? description?
+      | SERIAL_LITERAL (WS | NEWLINE)* (LITERAL_INCLUDE | LITERAL_EXCLUDE)? description?
 
-  	| SERIAL_DATA_LITERAL (WS | NEWLINE)* description?
+      | SERIAL_DATA_LITERAL (WS | NEWLINE)* description?
 
-  	| SERIAL_FIELD_LITERAL (WS | NEWLINE)* FIELD_NAME? (WS | NEWLINE)* FIELD_TYPE? (WS | NEWLINE)* description?
+      | SERIAL_FIELD_LITERAL (WS | NEWLINE)* FIELD_NAME? (WS | NEWLINE)* FIELD_TYPE? (WS | NEWLINE)* description?
 
-  	| SINCE_LITERAL (WS | NEWLINE)* description?
+      | SINCE_LITERAL (WS | NEWLINE)* description?
 
-  	| THROWS_LITERAL (WS | NEWLINE)* CLASS_NAME? (WS | NEWLINE)* description?
+      | THROWS_LITERAL (WS | NEWLINE)* CLASS_NAME? (WS | NEWLINE)* description?
 
-  	| VERSION_LITERAL (WS | NEWLINE)* description?
+      | VERSION_LITERAL (WS | NEWLINE)* description?
 
-  	| CUSTOM_NAME (WS | NEWLINE)* description?
-	;
+      | CUSTOM_NAME (WS | NEWLINE)* description?
+    ;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////  JAVADOC INLINE TAGS  /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////

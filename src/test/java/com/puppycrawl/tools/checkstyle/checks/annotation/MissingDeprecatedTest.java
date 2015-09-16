@@ -71,7 +71,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "56: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "BadDeprecatedAnnotation.java"), expected);
+        verify(checkConfig, getPath("annotation" + File.separator + "InputBadDeprecatedAnnotation.java"), expected);
     }
 
     /**
@@ -121,7 +121,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "51: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SpecialCaseDeprecated.java"), expected);
+        verify(checkConfig, getPath("annotation" + File.separator + "InputSpecialCaseDeprecated.java"), expected);
     }
 
     /**

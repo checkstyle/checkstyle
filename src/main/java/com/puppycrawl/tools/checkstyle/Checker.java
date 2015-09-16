@@ -74,7 +74,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     private ClassLoader classLoader = Thread.currentThread()
             .getContextClassLoader();
 
-    /** The basedir to strip off in filenames. */
+    /** The basedir to strip off in file names. */
     private String basedir;
 
     /** Locale country to report messages . **/
@@ -266,7 +266,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                 }
             }
             catch (final IOException ioe) {
-                LOG.debug("IOException occured.", ioe);
+                LOG.debug("IOException occurred.", ioe);
                 fileMessages.add(new LocalizedMessage(0,
                         Definitions.CHECKSTYLE_BUNDLE, "general.exception",
                         new String[] {ioe.getMessage()}, null, getClass(),
@@ -294,7 +294,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
     /**
      * Sets base directory.
-     * @param basedir the base directory to strip off in filenames
+     * @param basedir the base directory to strip off in file names
      */
     public void setBasedir(String basedir) {
         this.basedir = basedir;
@@ -426,7 +426,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /**
-     * Sets the classloader that is used to contextualize filesetchecks.
+     * Sets the classloader that is used to contextualize fileset checks.
      * Some Check implementations will use that classloader to improve the
      * quality of their reports, e.g. to load a class and then analyze it via
      * reflection.
@@ -437,7 +437,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /**
-     * Sets the classloader that is used to contextualize filesetchecks.
+     * Sets the classloader that is used to contextualize fileset checks.
      * Some Check implementations will use that classloader to improve the
      * quality of their reports, e.g. to load a class and then analyze it via
      * reflection.

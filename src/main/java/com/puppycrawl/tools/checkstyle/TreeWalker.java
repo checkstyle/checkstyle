@@ -30,9 +30,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import antlr.CommonHiddenStreamToken;
 import antlr.RecognitionException;
 import antlr.Token;
@@ -83,9 +80,6 @@ public final class TreeWalker
 
     /** Default distance between tab stops. */
     private static final int DEFAULT_TAB_WIDTH = 8;
-
-    /** Logger for debug purpose. */
-    private static final Log LOG = LogFactory.getLog(TreeWalker.class);
 
     /** Maps from token name to ordinary checks. */
     private final Multimap<String, Check> tokenToOrdinaryChecks =
@@ -274,8 +268,9 @@ public final class TreeWalker
      * Register a check for a specified token id.
      * @param tokenID the id of the token
      * @param check the check to register
+     * @throws CheckstyleException if Check is misconfigured
      */
-    private void registerCheck(int tokenID, Check check) {
+    private void registerCheck(int tokenID, Check check) throws CheckstyleException {
         registerCheck(TokenUtils.getTokenName(tokenID), check);
     }
 
@@ -283,16 +278,17 @@ public final class TreeWalker
      * Register a check for a specified token name.
      * @param token the name of the token
      * @param check the check to register
+     * @throws CheckstyleException if Check is misconfigured
      */
-    private void registerCheck(String token, Check check) {
+    private void registerCheck(String token, Check check) throws CheckstyleException {
         if (check.isCommentNodesRequired()) {
             tokenToCommentChecks.put(token, check);
         }
         else if (TokenUtils.isCommentType(token)) {
             final String message = String.format("Check '%s' waits for comment type "
-                    + "token ('%s') and should override 'isCommentNodesRequred()' "
+                    + "token ('%s') and should override 'isCommentNodesRequired()' "
                     + "method to return 'true'", check.getClass().getName(), token);
-            LOG.warn(message);
+            throw new CheckstyleException(message);
         }
         else {
             tokenToOrdinaryChecks.put(token, check);

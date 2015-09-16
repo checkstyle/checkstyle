@@ -32,343 +32,8 @@
         elements. Valid identifiers for a naming module are specified by its
         <code> format</code> property. The value of <code>format</code> is a <a
         href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">
-        regular expression</a> for valid identifiers.  This is an example of a
-        configuration of the <code>MemberName</code> module to
-        ensure that member identifiers begin with
-        <code>&#39;m&#39;</code>, followed
-        by an upper case letter, and then letters and digits:
+        regular expression</a> for valid identifiers.
       </p>
-
-      <source>
-&lt;module name=&quot;MemberName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
-&lt;/module&gt;
-      </source>
-
-      <p>
-        All naming modules belong to package <code>com.puppycrawl.tools.checkstyle.checks.naming</code> and
-        are submodules of <a href="config.html#TreeWalker"><code>TreeWalker</code></a>.
-      </p>
-    </section>
-
-    <section name="Modules">
-      <table>
-        <tr>
-          <th>module</th>
-          <th>validates identifiers for</th>
-          <th>default value of <code>format</code></th>
-        </tr>
-        <tr>
-          <td><code>AbstractClassName</code></td>
-          <td><code>abstract</code> classes</td>
-          <td><code>^Abstract.+$|^.*Factory$</code></td>
-        </tr>
-        <tr>
-          <td><code>ClassTypeParameterName</code></td>
-          <td>class type parameters</td>
-          <td><code>^[A-Z]$</code></td>
-        </tr>
-        <tr>
-          <td><code>ConstantName</code></td>
-          <td>
-            constants (<code>static</code>, <code>
-            final</code> fields)
-          </td>
-          <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
-        </tr>
-        <tr>
-          <td><code>LocalFinalVariableName</code></td>
-          <td>local, <code>final</code> variables, including
-              <code>catch</code> parameters</td>
-          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
-        </tr>
-        <tr>
-          <td><code>LocalVariableName</code></td>
-          <td>
-            local, non-<code>final</code> variables, including
-            <code>catch</code> parameters
-          </td>
-          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
-        </tr>
-        <tr>
-          <td><code>MemberName</code></td>
-          <td>non-<code>static</code> fields</td>
-          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
-        </tr>
-        <tr>
-          <td><code>MethodName</code></td>
-          <td>methods</td>
-          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
-        </tr>
-        <tr>
-          <td><code>MethodTypeParameterName</code></td>
-          <td>method type parameters</td>
-          <td><code>^[A-Z]$</code></td>
-        </tr>
-        <tr>
-          <td><code>InterfaceTypeParameterName</code></td>
-          <td>interface type parameters</td>
-          <td><code>^[A-Z]$</code></td>
-        </tr>
-        <tr>
-          <td><code>PackageName</code></td>
-          <td>packages</td>
-          <td>
-            <code>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>ParameterName</code></td>
-          <td>parameters</td>
-          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
-        </tr>
-        <tr>
-          <td><code>StaticVariableName</code></td>
-          <td>
-            <code>static</code>, non-<code>final</code> fields
-          </td>
-          <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
-        </tr>
-        <tr>
-          <td><code>TypeName</code></td>
-          <td>classes, interfaces, enums, and annotations</td>
-          <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
-        </tr>
-      </table>
-    </section>
-
-    <section name="Enhancements">
-      <subsection name="LocalVariableName">
-        <p>
-          Module <code>LocalVariableName</code> also has property
-          <code>tokens</code> which can be used to control whether the
-          check applies to variable declarations or <code>catch</code>
-          clause parameters through tokens <code>VARIABLE_DEF</code> and
-          <code>PARAMETER_DEF</code>.  For example, the following
-          configuration element ensures that <code>catch</code> clause
-          parameters begin with <code>"e"</code>, followed by letters
-          and digits:
-        </p>
-
-        <source>
-&lt;module name=&quot;LocalVariableName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          The check provides the following properties:
-        </p>
-      </subsection>
-
-      <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>allowOneCharVarInForLoop</td>
-            <td>
-            Allow one character variable name in <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"> initialization expressions</a> in FOR loop. For example:
-              <pre>
-for (int i = 1; i &lt; 10; i++) {}
-              </pre>
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-        </table>
-        <p>
-          An example of how to configure the check to allow one character variable name in
-          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
-          initialization expressions</a> in FOR loop:
-        </p>
-        <source>
-&lt;module name="LocalVariableName"&gt;
-    &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-      <subsection name="TypeName">
-        <p>
-          Module <code>TypeName</code> also has property
-          <code>tokens</code>, which can be used to control the kind of type
-          that the check applies to. The value of the <code>tokens</code>
-          property is a comma-separated list of one or more of the following
-          tokens: <code>CLASS_DEF</code>, <code>INTERFACE_DEF</code>,
-          <code>ENUM_DEF</code>, <code>ANNOTATION_DEF</code>.<br/>
-          For example, the following configuration element ensures that
-          interface names begin with <code>"I_"</code>, followed by
-          letters and digits:
-        </p>
-
-        <source>
-&lt;module name=&quot;TypeName&quot;&gt;
-    &lt;property name=&quot;format&quot;
-              value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;property name=&quot;tokens&quot;
-              value=&quot;INTERFACE_DEF&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="MethodName">
-        <p>
-          Module <code>MethodName</code> also has the following
-          properties:
-        </p>
-
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>allowClassName</td>
-            <td>
-              Controls whether to allow a method name to have the same
-              name as the residing class name.  This is not to be confused
-              with a constructor.  An easy mistake is to place a return
-              type on a constructor declaration which turns it into a
-              method. For example:
-              <pre>
-class MyClass {
-    public void MyClass() {} //this is a method
-    public MyClass() {} //this is a constructor
-}
-              </pre>
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="AbstractClassName">
-        <p>
-          Module <code>AbstractClassName</code> also has the following
-          properties:
-        </p>
-
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>ignoreModifier</td>
-            <td>
-              Controls whether to ignore checking for the
-              <code>abstract</code> modifier on classes that match the
-              name.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>ignoreName</td>
-            <td>
-              Controls whether to ignore checking the name. Realistically
-              only useful if using the check to identify that match name
-              and do not have the <code>abstract</code> modifier.  name.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-        </table>
-
-        <p>
-          The following example shows how to configure the
-          <code>AbstractClassName</code> to checks names, but ignore
-          missing <code>abstract</code> modifiers:
-        </p>
-        <source>
-&lt;module name=&quot;AbstractClassName&quot;&gt;
-  &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-      <subsection name="ConstantName">
-        <p>
-          Property <code>format</code> in module <code>ConstantName</code>
-          is used to specify names to be allowed. The following configuration
-          apart from names allowed by default allows <code>log</code> or
-          <code>logger</code>:
-        </p>
-
-        <source>
-&lt;module name=&quot;ConstantName&quot;&gt;
-    &lt;property name=&quot;format&quot;
-              value=&quot;^log(ger)?|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="...">
-        <p>
-          The modules <code>ConstantName</code>,
-          <code>MemberName</code>, <code>StaticVariableName</code> and
-          <code>TypeName</code> also have the following properties:
-        </p>
-
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>applyToPublic</td>
-            <td>Controls whether to apply the check to public member.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-          <tr>
-            <td>applyToProtected</td>
-            <td>Controls whether to apply the check to protected member.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-          <tr>
-            <td>applyToPackage</td>
-            <td>
-              Controls whether to apply the check to package-private member.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-          <tr>
-            <td>applyToPrivate</td>
-            <td>Controls whether to apply the check to private member.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-        </table>
-      </subsection>
-    </section>
-
-    <section name="Notes">
-      <p>
-        The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
-        requirements in the <a
-        href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
-        Language specification</a> and the Sun coding conventions. However
-        both underscores and uppercase letters are rather uncommon, so most
-        configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to <code>format</code> for module <code>PackageName</code>, as in
-      </p>
-
-      <source>
-&lt;module name=&quot;PackageName&quot;&gt;
-    &lt;property name=&quot;format&quot;
-              value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
-&lt;/module&gt;
-      </source>
     </section>
 
     <section name="AbbreviationAsWordInName">
@@ -392,7 +57,7 @@ class MyClass {
           </tr>
           <tr>
             <td>allowedAbbreviationLength</td>
-            <td> indicates on the allowed amount of capital letters in targeted identifiers
+            <td>indicates on the allowed amount of capital letters in targeted identifiers
              (abbreviations in the classes, interfaces, variables and methods names, ... ).</td>
             <td><a href="property_types.html#integer">3</a></td>
             <td>true</td>
@@ -449,16 +114,987 @@ class MyClass {
         </source>
       </subsection>
 
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L151-L154">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L295">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
       <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.naming
-        </p>
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
       </subsection>
 
       <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="AbstractClassName">
+      <subsection name="Description">
+        <p>Validates identifiers for <code>abstract</code> classes.</p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^Abstract.+$|^.*Factory$</code></td>
+          </tr>
+          <tr>
+            <td>ignoreModifier</td>
+            <td>
+              Controls whether to ignore checking for the
+              <code>abstract</code> modifier on classes that match the
+              name.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>ignoreName</td>
+            <td>
+              Controls whether to ignore checking the name. Realistically
+              only useful if using the check to identify that match name
+              and do not have the <code>abstract</code> modifier.  name.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
         <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
+          The following example shows how to configure the
+          <code>AbstractClassName</code> to checks names, but ignore
+          missing <code>abstract</code> modifiers:
         </p>
+        <source>
+&lt;module name=&quot;AbstractClassName&quot;&gt;
+  &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L297">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="ClassTypeParameterName">
+      <subsection name="Description">
+        <p>Validates identifiers for class type parameters.</p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[A-Z]$</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;ClassTypeParameterName&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L122-L126">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L247">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="ConstantName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for constants (<code>static</code>, <code>
+          final</code> fields).
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
+          </tr>
+          <tr>
+            <td>applyToPublic</td>
+            <td>Controls whether to apply the check to public member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToProtected</td>
+            <td>Controls whether to apply the check to protected member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPackage</td>
+            <td>
+              Controls whether to apply the check to package-private member.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPrivate</td>
+            <td>Controls whether to apply the check to private member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Property <code>format</code> in module <code>ConstantName</code>
+          is used to specify names to be allowed. The following configuration
+          apart from names allowed by default allows <code>log</code> or
+          <code>logger</code>:
+        </p>
+
+        <source>
+&lt;module name=&quot;ConstantName&quot;&gt;
+    &lt;property name=&quot;format&quot;
+              value=&quot;^log(ger)?|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L91">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L80">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="InterfaceTypeParameterName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for interface type parameters.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[A-Z]$</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;InterfaceTypeParameterName&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L261">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="LocalFinalVariableName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for local, <code>final</code> variables, including
+          <code>catch</code> parameters.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;LocalFinalVariableName&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L92">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L134">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="LocalVariableName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for local, non-<code>final</code> variables, including
+          <code>catch</code> parameters.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+          </tr>
+          <tr>
+            <td>allowOneCharVarInForLoop</td>
+            <td>
+            Allow one character variable name in <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"> initialization expressions</a> in FOR loop. For example:
+              <pre>
+for (int i = 1; i &lt; 10; i++) {}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          The following
+          configuration element ensures that <code>catch</code> clause
+          parameters begin with <code>"e"</code>, followed by letters
+          and digits:
+        </p>
+
+        <source>
+&lt;module name=&quot;LocalVariableName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          An example of how to configure the check to allow one character variable name in
+          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+          initialization expressions</a> in FOR loop:
+        </p>
+        <source>
+&lt;module name="LocalVariableName"&gt;
+    &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L115-L121">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L93">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L135">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="MemberName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for non-<code>static</code> fields.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+          </tr>
+          <tr>
+            <td>applyToPublic</td>
+            <td>Controls whether to apply the check to public member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToProtected</td>
+            <td>Controls whether to apply the check to protected member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPackage</td>
+            <td>
+              Controls whether to apply the check to package-private member.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPrivate</td>
+            <td>Controls whether to apply the check to private member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          This is an example of a
+          configuration of the <code>MemberName</code> module to
+          ensure that member identifiers begin with
+          <code>&#39;m&#39;</code>, followed
+          by an upper case letter, and then letters and digits:
+        </p>
+
+        <source>
+&lt;module name=&quot;MemberName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L105-L109">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L94">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L136-L138">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="MethodName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for methods.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+          </tr>
+          <tr>
+            <td>allowClassName</td>
+            <td>
+              Controls whether to allow a method name to have the same
+              name as the residing class name.  This is not to be confused
+              with a constructor.  An easy mistake is to place a return
+              type on a constructor declaration which turns it into a
+              method. For example:
+              <pre>
+class MyClass {
+    public void MyClass() {} //this is a method
+    public MyClass() {} //this is a constructor
+}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;MethodName&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L193-L197">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L95">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L140">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="MethodTypeParameterName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for method type parameters.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[A-Z]$</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L127-L131">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L262">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="PackageName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for packages.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          The default value of <code>format</code> for module <code>PackageName</code> has been chosen to match the
+          requirements in the <a
+          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
+          Language specification</a> and the Sun coding conventions. However
+          both underscores and uppercase letters are rather uncommon, so most
+          configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to <code>format</code> for module <code>PackageName</code>, as in
+        </p>
+
+        <source>
+&lt;module name=&quot;PackageName&quot;&gt;
+    &lt;property name=&quot;format&quot;
+              value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L96-L100">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L96">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L178">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="ParameterName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for parameters.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;ParameterName&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L110-L114">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L97">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L179-L181">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="StaticVariableName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for <code>static</code>, non-<code>final</code> fields.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+          </tr>
+          <tr>
+            <td>applyToPublic</td>
+            <td>Controls whether to apply the check to public member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToProtected</td>
+            <td>Controls whether to apply the check to protected member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPackage</td>
+            <td>
+              Controls whether to apply the check to package-private member.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPrivate</td>
+            <td>Controls whether to apply the check to private member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;StaticVariableName&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L98">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L195-L197">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+      </subsection>
+    </section>
+
+    <section name="TypeName">
+      <subsection name="Description">
+        <p>
+          Validates identifiers for classes, interfaces, enums, and annotations.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td><a href="property_types.html#boolean">String</a></td>
+            <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
+          </tr>
+          <tr>
+            <td>applyToPublic</td>
+            <td>Controls whether to apply the check to public member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToProtected</td>
+            <td>Controls whether to apply the check to protected member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPackage</td>
+            <td>
+              Controls whether to apply the check to package-private member.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPrivate</td>
+            <td>Controls whether to apply the check to private member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>Controls the kind of type that the check applies to.</td>
+            <td>
+              A comma-separated list of one or more of the following
+              tokens:
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          The following configuration element ensures that
+          interface names begin with <code>"I_"</code>, followed by
+          letters and digits:
+        </p>
+
+        <source>
+&lt;module name=&quot;TypeName&quot;&gt;
+    &lt;property name=&quot;format&quot;
+              value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+    &lt;property name=&quot;tokens&quot;
+              value=&quot;INTERFACE_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Examples of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L101-L104">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L99">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L198">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
       </subsection>
     </section>
 

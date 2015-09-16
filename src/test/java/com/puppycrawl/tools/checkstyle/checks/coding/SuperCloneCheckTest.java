@@ -44,7 +44,7 @@ public class SuperCloneCheckTest
     }
 
     @Test
-    public void testAntoherInputFile() throws Exception {
+    public void testAnotherInputFile() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(SuperCloneCheck.class);
         final String[] expected = {

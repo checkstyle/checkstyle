@@ -59,7 +59,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void testLambdexpression() throws Exception {
+    public void testLambdaExpression() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;

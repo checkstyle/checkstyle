@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -192,6 +193,9 @@ public final class FileText extends AbstractList<String> {
      */
     private static String readFile(final File inputFile, final CharsetDecoder decoder)
             throws IOException {
+        if (!inputFile.exists()) {
+            throw new FileNotFoundException(inputFile.getPath() + " (No such file or directory)");
+        }
         final StringBuilder buf = new StringBuilder();
         final FileInputStream stream = new FileInputStream(inputFile);
         final Reader reader = new InputStreamReader(stream, decoder);

@@ -218,7 +218,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      *
      * @param modifiers
      *            parent node for all modifiers
-     * @return true if mathod or variable can be verified
+     * @return true if method or variable can be verified
      */
     private boolean isContainVerifiableType(DetailAST modifiers) {
         boolean result = false;

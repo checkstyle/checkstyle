@@ -330,7 +330,7 @@ enum InputTagsEnum
     int A_CONSTANT = 0;
     /** Some javadoc. */
     int B_CONSTANT = 1;
-    /** @return This tag is not valid here */
+    /** @return This tag is valid here and expected with Java 8 */
     String someField2();
 }
 

@@ -83,7 +83,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_FileNameNull() {
+    public void testDecideByFileNameAndModuleMatchingFileNameNull() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
@@ -91,13 +91,13 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_MessageNull() {
+    public void testDecideByFileNameAndModuleMatchingMessageNull() {
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
         assertTrue(filter.accept(ev));
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_ModuleNull() {
+    public void testDecideByFileNameAndModuleMatchingModuleNull() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -106,7 +106,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_ModuleEqual() {
+    public void testDecideByFileNameAndModuleMatchingModuleEqual() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -115,7 +115,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_ModuleNotEqual() {
+    public void testDecideByFileNameAndModuleMatchingModuleNotEqual() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, "TheirModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -124,7 +124,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_RegExpNotMatch() {
+    public void testDecideByFileNameAndModuleMatchingRegExpNotMatch() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "T1est", message);
@@ -132,7 +132,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_RegExpMatch() {
+    public void testDecideByFileNameAndModuleMatchingRegExpMatch() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "TestSUFFIX", message);
@@ -141,7 +141,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_CheckRegExpNotMatch() {
+    public void testDecideByFileNameAndModuleMatchingCheckRegExpNotMatch() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -150,7 +150,7 @@ public class SuppressElementTest {
     }
 
     @Test
-    public void testDecideByFileNameAndModuleMatching_CheckRegExpMatch() {
+    public void testDecideByFileNameAndModuleMatchingCheckRegExpMatch() {
         LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
