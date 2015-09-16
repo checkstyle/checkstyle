@@ -102,7 +102,7 @@
 
     <!-- Suppressions from PMD configuration-->
     <!-- validateCli is not reasonable to split as encapsulation of logic will be damaged -->
-    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="171"/>
+    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="168"/>
     <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
     <suppress checks="CyclomaticComplexity" files="JavadocMethodCheck\.java"/>
     <suppress checks="CyclomaticComplexity" files="JavadocStyleCheck\.java"/>

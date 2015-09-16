@@ -23,7 +23,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -64,9 +64,8 @@ public class XMLLogger
      * Sets the output to a defined stream.
      * @param os the stream to write logs to.
      * @param closeStream close oS in auditFinished
-     * @throws UnsupportedEncodingException is UTF-8 is not supported
      */
-    public XMLLogger(OutputStream os, boolean closeStream) throws UnsupportedEncodingException {
+    public XMLLogger(OutputStream os, boolean closeStream) {
         setOutputStream(os);
         this.closeStream = closeStream;
     }
@@ -74,10 +73,9 @@ public class XMLLogger
     /**
      * Sets the OutputStream.
      * @param oS the OutputStream to use
-     * @throws UnsupportedEncodingException is UTF-8 is not supported
      **/
-    private void setOutputStream(OutputStream oS) throws UnsupportedEncodingException {
-        final OutputStreamWriter osw = new OutputStreamWriter(oS, "UTF-8");
+    private void setOutputStream(OutputStream oS) {
+        final OutputStreamWriter osw = new OutputStreamWriter(oS, StandardCharsets.UTF_8);
         writer = new PrintWriter(osw);
     }
 

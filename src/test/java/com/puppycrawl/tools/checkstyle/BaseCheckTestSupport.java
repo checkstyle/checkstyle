@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
@@ -27,11 +26,11 @@ public abstract class BaseCheckTestSupport {
      */
     protected static class BriefLogger
             extends DefaultLogger {
-        public BriefLogger(OutputStream out) throws UnsupportedEncodingException {
+        public BriefLogger(OutputStream out) {
             super(out, true, out, false, false);
         }
 
-        public BriefLogger(OutputStream out, boolean printSeverity) throws UnsupportedEncodingException {
+        public BriefLogger(OutputStream out, boolean printSeverity) {
             super(out, true, out, false, printSeverity);
         }
 

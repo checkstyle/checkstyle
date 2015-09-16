@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
@@ -205,7 +204,7 @@ public class SuppressionCommentFilterTest
 
     @Override
     protected Checker createChecker(Configuration checkConfig)
-            throws CheckstyleException, UnsupportedEncodingException {
+            throws CheckstyleException {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
