@@ -63,13 +63,6 @@ public final class TokenTypesDoclet {
         try {
             ps = new PrintStream(fos, false, "UTF-8");
             final ClassDoc[] classes = root.classes();
-            if (classes.length != 1
-                || !"TokenTypes".equals(classes[0].name())) {
-                final String message =
-                    "The doclet should be used for TokenTypes only";
-                throw new IllegalArgumentException(message);
-            }
-
             final FieldDoc[] fields = classes[0].fields();
             for (final FieldDoc field : fields) {
                 if (field.isStatic() && field.isPublic() && field.isFinal()
