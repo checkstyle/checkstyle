@@ -508,7 +508,26 @@ public class CustomImportOrderCheck extends Check {
         String currentGroup = getNextImportGroup(0);
         int currentGroupNumber = customImportOrderRules.indexOf(currentGroup);
         String previousImportFromCurrentGroup = null;
+        
+        ImportDetails firstImportObject = importToGroupList.get(0);
+        final String firstImportGroup = firstImportObject.getImportGroup();
+        final String firstImportFullIdent = firstImportObject.getImportFullPath();
+        if( firstImportGroup == NON_GROUP_RULE_GROUP ) {
+            logWrongImportGroupOrder(firstImportObject.getLineNumber(),
+                    firstImportGroup, currentGroup, firstImportFullIdent);
+        }
+        else {
+            currentGroup = firstImportGroup;
+            currentGroupNumber = customImportOrderRules.indexOf(firstImportGroup);
+            previousImportFromCurrentGroup = firstImportFullIdent;
+        }
+//        if (separateLineBetweenGroups
+//                && !hasEmptyLineBefore(firstImportObject.getLineNumber())) {
+//            log(firstImportObject.getLineNumber(), MSG_LINE_SEPARATOR, firstImportFullIdent);
+//        }
+        importToGroupList.remove(0);
 
+        
         for (ImportDetails importObject : importToGroupList) {
             final String importGroup = importObject.getImportGroup();
             final String fullImportIdent = importObject.getImportFullPath();
@@ -528,7 +547,7 @@ public class CustomImportOrderCheck extends Check {
                 if (customImportOrderRules.size() > currentGroupNumber + 1) {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     // if import is from next group
-                    if (importGroup.equals(nextGroup) && previousImportFromCurrentGroup != null) {
+                    if (importGroup.equals(nextGroup) /*&& previousImportFromCurrentGroup != null*/) {
                         if (separateLineBetweenGroups
                                 && !hasEmptyLineBefore(importObject.getLineNumber())) {
                             log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);

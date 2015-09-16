@@ -3,6 +3,7 @@ package java.util.concurrent.locks;
 // SAME_PACKAGE(3) should include #4-6
 // SAME_PACKAGE(4) should include only #6
 // SAME_PACKAGE(5) should include no imports because actual package has only 4 domains 
+import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import java.util.*; //#1
 import java.util.List; //#2
 import java.util.StringTokenizer; //#3
@@ -21,7 +22,7 @@ configuration:
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
         checkConfig.addAttribute("separateLineBetweenGroups", "false");
         checkConfig.addAttribute("customImportOrderRules",
-                "SAME_PACKAGE(2)");
+                "SAME_PACKAGE(2)###THIRD_PARTY_PACKAGE");
 */
 
 /*
@@ -30,7 +31,7 @@ configuration:
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
         checkConfig.addAttribute("separateLineBetweenGroups", "false");
         checkConfig.addAttribute("customImportOrderRules",
-                "SAME_PACKAGE(3)");
+                "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE");
 */
 
 /*
@@ -39,7 +40,7 @@ configuration:
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
         checkConfig.addAttribute("separateLineBetweenGroups", "false");
         checkConfig.addAttribute("customImportOrderRules",
-                "SAME_PACKAGE(3)");
+                "SAME_PACKAGE(4)###THIRD_PARTY_PACKAGE");
 */
 
 /*
@@ -48,5 +49,5 @@ configuration:
         checkConfig.addAttribute("sortImportsInGroupAlphabetically", "false");
         checkConfig.addAttribute("separateLineBetweenGroups", "false");
         checkConfig.addAttribute("customImportOrderRules",
-                "SAME_PACKAGE(3)");
+                "SAME_PACKAGE(5)###THIRD_PARTY_PACKAGE");
 */
