@@ -26,9 +26,12 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.tools.JavaFileObject;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.sun.javadoc.RootDoc;
@@ -57,19 +60,26 @@ public class TokenTypesDocletTest {
     @Test
     public void testCheckOptions() {
         Context context = new Context();
-        Messager.preRegister(context, "");
+        TestMessager testMessanger = new TestMessager(context);
 
         //pass invalid options - empty array
         String[][] options = new String[3][1];
-        assertFalse(TokenTypesDoclet.checkOptions(options, Messager.instance0(context)));
+        assertFalse(TokenTypesDoclet.checkOptions(options, testMessanger));
 
         //pass valid options - array with one "-destfile" option
         options[0][0] = "-destfile";
-        assertTrue(TokenTypesDoclet.checkOptions(options, Messager.instance0(context)));
+        assertTrue(TokenTypesDoclet.checkOptions(options, testMessanger));
 
         //pass invalid options - array with more than one "-destfile" option
         options[1][0] = "-destfile";
-        assertFalse(TokenTypesDoclet.checkOptions(options, Messager.instance0(context)));
+        assertFalse(TokenTypesDoclet.checkOptions(options, testMessanger));
+
+        String[] expected = {
+            "Usage: javadoc -destfile file -doclet TokenTypesDoclet ...",
+            "Only one -destfile option allowed.",
+        };
+
+        Assert.assertArrayEquals(expected, testMessanger.messages.toArray());
     }
 
     @Test
@@ -156,5 +166,19 @@ public class TokenTypesDocletTest {
             }
         }
         return result;
+    }
+
+    private static class TestMessager extends Messager {
+
+        private final List<String> messages = new ArrayList<>();
+
+        TestMessager(Context context) {
+            super(context, "");
+        }
+
+        @Override
+        public void printError(String message) {
+            messages.add(message);
+        }
     }
 }
