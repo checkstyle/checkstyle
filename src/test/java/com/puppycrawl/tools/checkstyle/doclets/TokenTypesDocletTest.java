@@ -89,14 +89,15 @@ public class TokenTypesDocletTest {
         // a lot of different places, must not be changed and an int value is used to encrypt
         // a token type.
         ListBuffer<String[]> options = new ListBuffer<>();
-        options.add(new String[]{"-doclet", "file.java"});
-        options.add(new String[]{"-destfile", "target/file.java"});
+        options.add(new String[]{"-doclet", "TokenTypesDoclet"});
+        options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
         ListBuffer<String> names = new ListBuffer<>();
-        names.add("com.puppycrawl.tools.checkstyle.doclets.InputTokenTypesDocletNotConstants");
+        names.add("src/test/resources/com/puppycrawl/tools/"
+                + "checkstyle/doclets/InputTokenTypesDocletNotConstants.java");
 
         Context context = new Context();
-        Messager.preRegister(context, "");
+        new TestMessager(context);
         JavadocTool javadocTool = JavadocTool.make0(context);
         RootDoc rootDoc = getRootDoc(javadocTool, options, names);
 
@@ -106,14 +107,14 @@ public class TokenTypesDocletTest {
     @Test
     public void testEmptyJavadoc() throws Exception {
         ListBuffer<String[]> options = new ListBuffer<>();
-        options.add(new String[]{"-doclet", "file.java"});
-        options.add(new String[]{"-destfile", "target/file.java"});
+        options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
         ListBuffer<String> names = new ListBuffer<>();
-        names.add("com.puppycrawl.tools.checkstyle.doclets.InputTokenTypesDocletEmptyJavadoc");
+        names.add("src/test/resources/com/puppycrawl/tools/"
+                + "checkstyle/doclets/InputTokenTypesDocletEmptyJavadoc.java");
 
         Context context = new Context();
-        Messager.preRegister(context, "");
+        new TestMessager(context);
         JavadocTool javadocTool = JavadocTool.make0(context);
         RootDoc rootDoc = getRootDoc(javadocTool, options, names);
 
@@ -128,6 +129,23 @@ public class TokenTypesDocletTest {
         }
     }
 
+    @Test
+    public void testCorrect() throws Exception {
+        ListBuffer<String[]> options = new ListBuffer<>();
+        options.add(new String[]{"-destfile", "target/tokentypes.properties"});
+
+        ListBuffer<String> names = new ListBuffer<>();
+        names.add("src/test/resources/com/puppycrawl/tools/"
+                + "checkstyle/doclets/InputTokenTypesDocletCorrect.java");
+
+        Context context = new Context();
+        new TestMessager(context);
+        JavadocTool javadocTool = JavadocTool.make0(context);
+        RootDoc rootDoc = getRootDoc(javadocTool, options, names);
+
+        assertTrue(TokenTypesDoclet.start(rootDoc));
+    }
+
     private static RootDoc getRootDoc(JavadocTool javadocTool, ListBuffer<String[]> options,
             ListBuffer<String> names) throws Exception {
         Method getRootDocImpl = getMethodGetRootDocImplByReflection();
@@ -140,7 +158,7 @@ public class TokenTypesDocletTest {
                     false,
                     new ListBuffer<String>().toList(),
                     new ListBuffer<String>().toList(),
-                    true, false, false);
+                    false, false, false);
         }
         else {
             rootDoc = (RootDoc) getRootDocImpl.invoke(javadocTool, "", "UTF-8",
@@ -151,7 +169,7 @@ public class TokenTypesDocletTest {
                     false,
                     new ListBuffer<String>().toList(),
                     new ListBuffer<String>().toList(),
-                    true, false, false);
+                    false, false, false);
         }
         return rootDoc;
     }
@@ -180,5 +198,8 @@ public class TokenTypesDocletTest {
         public void printError(String message) {
             messages.add(message);
         }
+
+        @Override
+        public void printNotice(String message) { }
     }
 }
