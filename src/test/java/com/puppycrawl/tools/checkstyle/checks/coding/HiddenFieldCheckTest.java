@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,6 +31,32 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class HiddenFieldCheckTest
     extends BaseCheckTestSupport {
+
+    @Test
+    public void testStaticVisibilityFromLambdas() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(HiddenFieldCheck.class);
+        final String[] expected = {
+            "16:34: " + getCheckMessage(MSG_KEY, "value"),
+            "48:31: " + getCheckMessage(MSG_KEY, "languageCode"),
+            "57:35: " + getCheckMessage(MSG_KEY, "number"),
+            "70:35: " + getCheckMessage(MSG_KEY, "id"),
+            "98:33: " + getCheckMessage(MSG_KEY, "note"),
+            "123:57: " + getCheckMessage(MSG_KEY, "stringValue"),
+            "123:78: " + getCheckMessage(MSG_KEY, "intValue"),
+            "134:74: " + getCheckMessage(MSG_KEY, "doubleValue"),
+            "146:51: " + getCheckMessage(MSG_KEY, "firstString"),
+            "146:64: " + getCheckMessage(MSG_KEY, "secondString"),
+            "162:49: " + getCheckMessage(MSG_KEY, "first"),
+            "188:62: " + getCheckMessage(MSG_KEY, "mPi"),
+            "204:27: " + getCheckMessage(MSG_KEY, "justSomeList"),
+            "204:61: " + getCheckMessage(MSG_KEY, "justSomeMap"),
+            "216:55: " + getCheckMessage(MSG_KEY, "someObject"),
+            "224:52: " + getCheckMessage(MSG_KEY, "someObject"),
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+            + "checkstyle/coding/InputHiddenFieldLambdas.java").getCanonicalPath(), expected);
+    }
 
     @Test
     public void testStaticVisibilityFromAnonymousClasses() throws Exception {
