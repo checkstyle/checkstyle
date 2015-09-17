@@ -194,7 +194,7 @@ public class JTreeTable extends JTable {
      * TreeTableCellEditor implementation. Component returned is the
      * JTree.
      */
-    private class TreeTableCellEditor extends AbstractCellEditor implements
+    private class TreeTableCellEditor extends BaseCellEditor implements
             TableCellEditor {
         @Override
         public Component getTableCellEditorComponent(JTable table,

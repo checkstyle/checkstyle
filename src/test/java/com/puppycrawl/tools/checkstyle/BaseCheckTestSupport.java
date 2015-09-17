@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public abstract class BaseCheckTestSupport {
+public class BaseCheckTestSupport {
     /**
      * A brief logger that only display info about errors.
      */
