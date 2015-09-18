@@ -56,7 +56,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getToplevelAST() {
+    protected DetailAST getTopLevelAst() {
         return null;
     }
 

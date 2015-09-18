@@ -2,36 +2,36 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.Comparator;
 
-public class InputHidenFieldStaticVisibility {
+public class InputHiddenFieldStaticVisibility {
     static int someField;
-    static InputHidenFieldStaticVisibility other = null;
-    InputHidenFieldStaticVisibility field = null;
+    static InputHiddenFieldStaticVisibility other = null;
+    InputHiddenFieldStaticVisibility field = null;
 
-    static void method(InputHidenFieldStaticVisibility field, InputHidenFieldStaticVisibility other) {
+    static void method(InputHiddenFieldStaticVisibility field, InputHiddenFieldStaticVisibility other) {
         // field 'field' can not be referenced form a static context
         // static field 'other' can be referenced from a static context
     }
 
     static class B {
-        void method(InputHidenFieldStaticVisibility field, InputHidenFieldStaticVisibility other) {
+        void method(InputHiddenFieldStaticVisibility field, InputHiddenFieldStaticVisibility other) {
             // field 'field' can not be referenced form a static context
             // static field 'other' can be referenced from a static context
         }
     }
 
-    static Comparator<InputHidenFieldStaticVisibility> COMP = new Comparator<InputHidenFieldStaticVisibility>() {
+    static Comparator<InputHiddenFieldStaticVisibility> COMP = new Comparator<InputHiddenFieldStaticVisibility>() {
         @Override
-        public int compare(InputHidenFieldStaticVisibility field, InputHidenFieldStaticVisibility other) {
+        public int compare(InputHiddenFieldStaticVisibility field, InputHiddenFieldStaticVisibility other) {
             // field 'field' can not be referenced form a static context
             // static field 'other' can be referenced from a static context
             return 0;
         }
     };
 
-    static Comparator<InputHidenFieldStaticVisibility> createComp() {
-        return new Comparator<InputHidenFieldStaticVisibility>() {
+    static Comparator<InputHiddenFieldStaticVisibility> createComp() {
+        return new Comparator<InputHiddenFieldStaticVisibility>() {
             @Override
-            public int compare(InputHidenFieldStaticVisibility field, InputHidenFieldStaticVisibility other) {
+            public int compare(InputHiddenFieldStaticVisibility field, InputHiddenFieldStaticVisibility other) {
                 // field 'field' can not be referenced form a static context
                 // static field 'other' can be referenced from a static context
                 return 0;

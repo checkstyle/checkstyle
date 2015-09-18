@@ -55,7 +55,7 @@ public class ClassDefHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getToplevelAST() {
+    protected DetailAST getTopLevelAst() {
         return null;
         // note: ident checked by hand in check indentation;
     }

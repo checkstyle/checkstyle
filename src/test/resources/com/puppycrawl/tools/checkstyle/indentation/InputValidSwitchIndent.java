@@ -46,7 +46,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
         } //indent:8 exp:8
 
 
-        // some people like to add curlys to their cases: //indent:8 exp:8
+        // some people like to add curlies to their cases: //indent:8 exp:8
         switch (s) { //indent:8 exp:8
 
             case 4: { //indent:12 exp:12

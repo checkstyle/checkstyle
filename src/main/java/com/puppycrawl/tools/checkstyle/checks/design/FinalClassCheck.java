@@ -115,7 +115,7 @@ public class FinalClassCheck
         /** Is class declared as abstract. */
         private final boolean declaredAsAbstract;
 
-        /** Does class have non-provate ctors. */
+        /** Does class have non-private ctors. */
         private boolean withNonPrivateCtor;
 
         /** Does class have private ctors. */

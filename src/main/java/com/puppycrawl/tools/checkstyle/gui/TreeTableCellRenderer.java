@@ -68,13 +68,13 @@ class TreeTableCellRenderer extends JTree implements
         // colors.
         final TreeCellRenderer tcr = getCellRenderer();
         if (tcr instanceof DefaultTreeCellRenderer) {
-            final DefaultTreeCellRenderer dtcr = (DefaultTreeCellRenderer) tcr;
+            final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tcr;
             // For 1.1 uncomment this, 1.2 has a bug that will cause an
             // exception to be thrown if the border selection color is
             // null.
-            // dtcr.setBorderSelectionColor(null);
-            dtcr.setTextSelectionColor(UIManager.getColor("Table.selectionForeground"));
-            dtcr.setBackgroundSelectionColor(UIManager.getColor("Table.selectionBackground"));
+            // renderer.setBorderSelectionColor(null);
+            renderer.setTextSelectionColor(UIManager.getColor("Table.selectionForeground"));
+            renderer.setBackgroundSelectionColor(UIManager.getColor("Table.selectionBackground"));
         }
     }
 

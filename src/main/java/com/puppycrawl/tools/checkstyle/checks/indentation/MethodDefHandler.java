@@ -43,7 +43,7 @@ public class MethodDefHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getToplevelAST() {
+    protected DetailAST getTopLevelAst() {
         // we check this stuff ourselves below
         return null;
     }

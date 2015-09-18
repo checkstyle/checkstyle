@@ -35,13 +35,13 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         final String[] expected = {
-            "10:95: " + getCheckMessage(MSG_KEY, "other"),
-            "16:92: " + getCheckMessage(MSG_KEY, "other"),
-            "24:99: " + getCheckMessage(MSG_KEY, "other"),
-            "34:103: " + getCheckMessage(MSG_KEY, "other"),
+            "10:97: " + getCheckMessage(MSG_KEY, "other"),
+            "16:94: " + getCheckMessage(MSG_KEY, "other"),
+            "24:101: " + getCheckMessage(MSG_KEY, "other"),
+            "34:105: " + getCheckMessage(MSG_KEY, "other"),
             "46:26: " + getCheckMessage(MSG_KEY, "someField"),
         };
-        verify(checkConfig, getPath("InputHidenFieldStaticVisibility.java"), expected);
+        verify(checkConfig, getPath("InputHiddenFieldStaticVisibility.java"), expected);
     }
 
     @Test
