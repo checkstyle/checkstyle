@@ -61,7 +61,7 @@ public class SwitchHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getNonlistChild() {
+    protected DetailAST getNonListChild() {
         return null;
     }
 

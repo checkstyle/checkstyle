@@ -79,7 +79,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     public void testSameOmitOneLiners() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRightCurlySameForOneLiners.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyNameForOneLiners.java"), expected);
     }
 
     @Test

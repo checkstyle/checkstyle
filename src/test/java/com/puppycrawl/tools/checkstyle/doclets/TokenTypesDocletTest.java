@@ -60,26 +60,26 @@ public class TokenTypesDocletTest {
     @Test
     public void testCheckOptions() {
         Context context = new Context();
-        TestMessager testMessanger = new TestMessager(context);
+        TestMessager testMessager = new TestMessager(context);
 
         //pass invalid options - empty array
         String[][] options = new String[3][1];
-        assertFalse(TokenTypesDoclet.checkOptions(options, testMessanger));
+        assertFalse(TokenTypesDoclet.checkOptions(options, testMessager));
 
         //pass valid options - array with one "-destfile" option
         options[0][0] = "-destfile";
-        assertTrue(TokenTypesDoclet.checkOptions(options, testMessanger));
+        assertTrue(TokenTypesDoclet.checkOptions(options, testMessager));
 
         //pass invalid options - array with more than one "-destfile" option
         options[1][0] = "-destfile";
-        assertFalse(TokenTypesDoclet.checkOptions(options, testMessanger));
+        assertFalse(TokenTypesDoclet.checkOptions(options, testMessager));
 
         String[] expected = {
             "Usage: javadoc -destfile file -doclet TokenTypesDoclet ...",
             "Only one -destfile option allowed.",
         };
 
-        Assert.assertArrayEquals(expected, testMessanger.messages.toArray());
+        Assert.assertArrayEquals(expected, testMessager.messages.toArray());
     }
 
     @Test

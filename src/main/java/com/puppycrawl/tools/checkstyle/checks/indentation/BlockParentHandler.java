@@ -32,9 +32,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <UL>
  *   <LI>template method to get the lcurly</LI>
  *   <LI>template method to get the rcurly</LI>
- *   <LI>if curlys aren't present, then template method to get expressions
+ *   <LI>if curlies aren't present, then template method to get expressions
  *       is called</LI>
- *   <LI>now all the repetitious code which checks for BOL, if curlys are on
+ *   <LI>now all the repetitious code which checks for BOL, if curlies are on
  *       same line, etc. can be collapsed into the superclass</LI>
  * </UL>
  *
@@ -82,24 +82,24 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the top level expression
      */
-    protected DetailAST getToplevelAST() {
+    protected DetailAST getTopLevelAst() {
         return getMainAst();
     }
 
     /**
      * Check the indent of the top level token.
      */
-    protected void checkToplevelToken() {
-        final DetailAST toplevel = getToplevelAST();
+    protected void checkTopLevelToken() {
+        final DetailAST topLevel = getTopLevelAst();
 
-        if (toplevel == null
-            || getLevel().isAcceptable(expandedTabsColumnNo(toplevel)) || hasLabelBefore()) {
+        if (topLevel == null
+            || getLevel().isAcceptable(expandedTabsColumnNo(topLevel)) || hasLabelBefore()) {
             return;
         }
-        if (!shouldTopLevelStartLine() && !startsLine(toplevel)) {
+        if (!shouldTopLevelStartLine() && !startsLine(topLevel)) {
             return;
         }
-        logError(toplevel, "", expandedTabsColumnNo(toplevel));
+        logError(topLevel, "", expandedTabsColumnNo(topLevel));
     }
 
     /**
@@ -107,9 +107,9 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return true if the top level token has label before.
      */
     protected boolean hasLabelBefore() {
-        final DetailAST parent = getToplevelAST().getParent();
+        final DetailAST parent = getTopLevelAst().getParent();
         return parent.getType() == TokenTypes.LABELED_STAT
-            && parent.getLineNo() == getToplevelAST().getLineNo();
+            && parent.getLineNo() == getTopLevelAst().getLineNo();
     }
 
     /**
@@ -126,7 +126,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return true if curly braces are present, false otherwise
      */
-    protected boolean hasCurlys() {
+    protected boolean hasCurlies() {
         return getLCurly() != null && getRCurly() != null;
     }
 
@@ -215,21 +215,21 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the non-list child element
      */
-    protected DetailAST getNonlistChild() {
+    protected DetailAST getNonListChild() {
         return getMainAst().findFirstToken(TokenTypes.RPAREN).getNextSibling();
     }
 
     /**
      * Check the indentation level of a child that is not a list of statements.
      */
-    private void checkNonlistChild() {
-        final DetailAST nonlist = getNonlistChild();
-        if (nonlist == null) {
+    private void checkNonListChild() {
+        final DetailAST nonList = getNonListChild();
+        if (nonList == null) {
             return;
         }
 
         final IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
-        checkExpressionSubtree(nonlist, expected, false, false);
+        checkExpressionSubtree(nonList, expected, false, false);
     }
 
     /**
@@ -261,18 +261,18 @@ public class BlockParentHandler extends AbstractExpressionHandler {
 
     @Override
     public void checkIndentation() {
-        checkToplevelToken();
+        checkTopLevelToken();
         // separate to allow for eventual configuration
         checkLParen(getLParen());
         checkRParen(getLParen(), getRParen());
-        if (hasCurlys()) {
+        if (hasCurlies()) {
             checkLCurly();
             checkRCurly();
         }
         final DetailAST listChild = getListChild();
         if (listChild != null) {
-            // NOTE: switch statements usually don't have curlys
-            if (!hasCurlys() || !areOnSameLine(getLCurly(), getRCurly())) {
+            // NOTE: switch statements usually don't have curlies
+            if (!hasCurlies() || !areOnSameLine(getLCurly(), getRCurly())) {
                 checkChildren(listChild,
                               getCheckedChildren(),
                               getChildrenExpectedLevel(),
@@ -281,7 +281,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             }
         }
         else {
-            checkNonlistChild();
+            checkNonListChild();
         }
     }
 
@@ -294,7 +294,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // if we have multileveled expected level then we should
         // try to suggest single level to children using curlies'
         // levels.
-        if (getLevel().isMultiLevel() && hasCurlys()) {
+        if (getLevel().isMultiLevel() && hasCurlies()) {
             if (startsLine(getLCurly())) {
                 indentLevel = new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
             }

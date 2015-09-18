@@ -149,7 +149,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testIoExceptionWhenLoadingHeader() throws Exception {
         HeaderCheck check = PowerMockito.spy(new HeaderCheck());
-        PowerMockito.doThrow(new IOException("excpected exception")).when(check, "loadHeader",
+        PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
                 anyObject());
 
         try {

@@ -42,7 +42,7 @@ public class ElseHandler extends BlockParentHandler {
     }
 
     @Override
-    protected void checkToplevelToken() {
+    protected void checkTopLevelToken() {
         // check if else is nested with rcurly of if:
         //
         //  } else ...
@@ -56,11 +56,11 @@ public class ElseHandler extends BlockParentHandler {
                 return;
             }
         }
-        super.checkToplevelToken();
+        super.checkTopLevelToken();
     }
 
     @Override
-    protected DetailAST getNonlistChild() {
+    protected DetailAST getNonListChild() {
         return getMainAst().getFirstChild();
     }
 }

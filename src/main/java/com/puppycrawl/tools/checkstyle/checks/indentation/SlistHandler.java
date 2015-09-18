@@ -104,7 +104,7 @@ public class SlistHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getToplevelAST() {
+    protected DetailAST getTopLevelAst() {
         return null;
     }
 

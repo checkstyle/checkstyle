@@ -169,7 +169,7 @@ class FileDrop {
 
     /**
      * Determine if the dragged data is a file list.
-     * @param evt Drop target drap event.
+     * @param evt Drop target drop event.
      * @return True if the drag was ok
      */
     private static boolean isDragOk(final DropTargetDragEvent evt) {

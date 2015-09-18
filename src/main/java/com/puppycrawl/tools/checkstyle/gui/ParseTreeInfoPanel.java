@@ -286,7 +286,7 @@ public class ParseTreeInfoPanel extends JPanel {
          */
         private static final long serialVersionUID = -1926935338069418119L;
 
-        /** Defalut constructor to setup current action. */
+        /** Default constructor to setup current action. */
         FileSelectionAction() {
             super("Select Java File");
             putValue(Action.MNEMONIC_KEY, KeyEvent.VK_S);
@@ -315,7 +315,7 @@ public class ParseTreeInfoPanel extends JPanel {
          */
         private static final long serialVersionUID = -1021880396046355863L;
 
-        /** Defalut constructor to setup current action. */
+        /** Default constructor to setup current action. */
         ReloadAction() {
             super("Reload Java File");
             putValue(Action.MNEMONIC_KEY, KeyEvent.VK_R);
