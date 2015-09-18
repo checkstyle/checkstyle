@@ -196,9 +196,9 @@
   <!-- that repositories are required for testing plugin's snapshot version -->
   <pluginRepositories>
     <pluginRepository>
-      <id>nexus-snapshot</id>
-      <name>Official Maven Apache Repo</name>
-      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
+      <id>nexus-codehaus-snapshot</id>
+      <name>Codehaus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/codehaus-snapshots/</url>
     </pluginRepository>
   </pluginRepositories>
 
