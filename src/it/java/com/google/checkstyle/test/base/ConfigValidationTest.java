@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.ArrayUtils.EMPTY_STRING_ARRAY;
 
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Test;
 
@@ -17,6 +18,9 @@ public class ConfigValidationTest extends BaseCheckTestSupport {
         ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
         final Configuration checkerConfig = builder.getConfiguration();
         final Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         checker.addListener(new BriefLogger(stream));
