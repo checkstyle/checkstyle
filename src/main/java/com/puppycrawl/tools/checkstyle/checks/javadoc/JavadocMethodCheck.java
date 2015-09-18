@@ -464,8 +464,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
         return nodeScope.isIn(scope)
                 && surroundingScope.isIn(scope)
-                && (excludeScope == null || !nodeScope.isIn(excludeScope)
-                    || !surroundingScope.isIn(excludeScope));
+                && (excludeScope == null || nodeScope != excludeScope
+                    && surroundingScope != excludeScope);
     }
 
     /**
