@@ -11,6 +11,10 @@ matrix:
     - jdk: oraclejdk8
       env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
 
+    # unit tests in German locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE'" COVERAGE_CMD=""
+
     # checkstyle (oraclejdk8)
     - jdk: oraclejdk8
       env:
