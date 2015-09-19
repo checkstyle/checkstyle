@@ -206,7 +206,10 @@ matrix:
         - DESC="checkstyle"
         - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
         - COVERAGE_CMD=""
-
+    # MacOS verify
+    - os: osx
+      env: DESC="MacOS verify" CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn clean verify" COVERAGE_CMD=""
+      
 script: eval $CMD
 
 after_success:
