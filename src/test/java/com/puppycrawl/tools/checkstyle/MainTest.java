@@ -164,31 +164,32 @@ public class MainTest {
     @Test
     public void testNonExistingClass() throws Exception {
         exit.expectSystemExitWithStatus(-2);
+        final String cause = "Unable to instantiate 'NonExistingClass' class,"
+            + " it is also not possible to instantiate it as"
+            + " com.puppycrawl.tools.checkstyle.checks.annotation.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.blocks.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.coding.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.design.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.header.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.imports.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.indentation.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.javadoc.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.metrics.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.modifier.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.naming.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.regexp.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.sizes.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.whitespace.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.checks.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.filters.NonExistingClass,"
+            + " com.puppycrawl.tools.checkstyle.NonExistingClass."
+            + " Please recheck that class name is specified as canonical name or read"
+            + " how to configure short name usage http://checkstyle.sourceforge.net/config.html#Packages."
+            + " Please also recheck that provided ClassLoader to Checker is configured correctly.";
         final String expectedExceptionMessage =
-            String.format("cannot initialize module TreeWalker - "
-                + "Unable to instantiate 'NonExistingClass' class,"
-                + " it is also not possible to instantiate it as"
-                + " com.puppycrawl.tools.checkstyle.checks.annotation.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.blocks.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.coding.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.design.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.header.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.imports.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.indentation.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.javadoc.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.metrics.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.modifier.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.naming.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.regexp.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.sizes.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.whitespace.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.checks.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.filters.NonExistingClass,"
-                + " com.puppycrawl.tools.checkstyle.NonExistingClass."
-                + " Please recheck that class name is specified as canonical name or read"
-                + " how to configure short name usage http://checkstyle.sourceforge.net/config.html#Packages."
-                + " Please also recheck that provided ClassLoader to Checker is configured correctly.%n"
-                + "Checkstyle ends with 1 errors.%n");
+            String.format("cannot initialize module TreeWalker - %1$s%n"
+                + "Cause: com.puppycrawl.tools.checkstyle.api.CheckstyleException: %1$s%n"
+                + "Checkstyle ends with 1 errors.%n", cause);
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
@@ -431,8 +432,13 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format("unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
-                        + "Checkstyle ends with 1 errors.%n"), systemOut.getLog());
+                assertTrue(systemOut.getLog().startsWith(String.format(
+                      "unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
+                      + "Cause: org.xml.sax.SAXParseException; systemId: file:")));
+                assertTrue(systemOut.getLog().endsWith(String.format(
+                      "com/puppycrawl/tools/checkstyle/config-Incorrect.xml; lineNumber: 7; columnNumber: 1; "
+                      + "Content is not allowed in prolog.%n"
+                      + "Checkstyle ends with 1 errors.%n")));
                 assertEquals("", systemErr.getLog());
             }
         });
