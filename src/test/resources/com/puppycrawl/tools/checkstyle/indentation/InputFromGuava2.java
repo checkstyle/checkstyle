@@ -3,7 +3,6 @@ package com.puppycrawl.tools.checkstyle.indentation; //indent:0 exp:0
 import java.util.Map; //indent:0 exp:0
 import java.util.Map.Entry; //indent:0 exp:0
 
-import com.google.common.collect.ImmutableList; //indent:0 exp:0
 import com.google.common.collect.Range; //indent:0 exp:0
 import com.google.common.collect.RangeMap; //indent:0 exp:0
 
@@ -21,9 +20,9 @@ import com.google.common.collect.RangeMap; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-public class FromGuava2<K extends Comparable<?>, V> implements RangeMap<K, V> { //indent:0 exp:0
+public class InputFromGuava2<K extends Comparable<?>, V> implements RangeMap<K, V> { //indent:0 exp:0
 
-  public FromGuava2<K, V> subRangeMap1(final Range<K> range) { //indent:2 exp:2
+  public InputFromGuava2<K, V> subRangeMap1(final Range<K> range) { //indent:2 exp:2
     Range<K> ranges = null; //indent:4 exp:4
     if (checkNotNull(range).isEmpty()) { //indent:4 exp:4
     } else if (ranges.isEmpty() || range.encloses(span())) { //indent:4 exp:4
@@ -36,7 +35,7 @@ public class FromGuava2<K extends Comparable<?>, V> implements RangeMap<K, V> { 
     } //indent:4 exp:4
     final int off = lowerIndex; //indent:4 exp:4
     final int len = upperIndex - lowerIndex; //indent:4 exp:4
-    FromGuava2<K, V> outer = null; //indent:4 exp:4
+    InputFromGuava2<K, V> outer = null; //indent:4 exp:4
     return outer; //indent:4 exp:4
   } //indent:2 exp:2
 

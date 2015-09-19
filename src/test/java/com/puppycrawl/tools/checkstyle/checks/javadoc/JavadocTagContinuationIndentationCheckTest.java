@@ -45,7 +45,7 @@ public class JavadocTagContinuationIndentationCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("javadoc/GuavaFP.java"), expected);
+        verify(checkConfig, getPath("javadoc/InputGuavaFalsePositive.java"), expected);
     }
 
     @Test
