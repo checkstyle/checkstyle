@@ -228,7 +228,8 @@ public class RedundantModifierCheck
                         && ast.getType() != TokenTypes.METHOD_DEF
                 || type == TokenTypes.ABSTRACT
                         && ast.getType() != TokenTypes.CLASS_DEF
-                || type == TokenTypes.FINAL) {
+                || type == TokenTypes.FINAL
+                        && ast.getType() != TokenTypes.CLASS_DEF) {
                 log(modifier.getLineNo(), modifier.getColumnNo(),
                         MSG_KEY, modifier.getText());
                 break;
