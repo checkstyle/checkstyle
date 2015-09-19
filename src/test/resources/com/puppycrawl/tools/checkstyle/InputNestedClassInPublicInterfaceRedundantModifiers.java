@@ -42,4 +42,9 @@ public interface InputNestedClassInPublicInterfaceRedundantModifiers {
                         }
                 }
         }
+        final class FinalNestedClassInInterface {
+                interface InnerInterface {
+                        final class FinalNestedClassInNestedInterface {}
+                }
+        }
 }
