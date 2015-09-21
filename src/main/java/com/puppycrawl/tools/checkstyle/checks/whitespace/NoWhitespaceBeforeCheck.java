@@ -89,6 +89,8 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.DOT,
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
         };
     }
 

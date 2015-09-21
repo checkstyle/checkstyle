@@ -278,6 +278,8 @@ public class WhitespaceAroundTest
             TokenTypes.LITERAL_ASSERT,
             TokenTypes.TYPE_EXTENSION_AND,
             TokenTypes.WILDCARD_TYPE,
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
         };
         assertArrayEquals(expected, actual);
     }

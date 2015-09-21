@@ -275,6 +275,8 @@ public class WhitespaceAroundCheck extends Check {
             TokenTypes.LITERAL_ASSERT,
             TokenTypes.TYPE_EXTENSION_AND,
             TokenTypes.WILDCARD_TYPE,
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
         };
     }
 

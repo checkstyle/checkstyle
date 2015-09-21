@@ -103,6 +103,8 @@ public class NoWhitespaceAfterCheck extends Check {
             TokenTypes.DOT,
             TokenTypes.TYPECAST,
             TokenTypes.ARRAY_DECLARATOR,
+            TokenTypes.GENERIC_START,
+            TokenTypes.GENERIC_END,
         };
     }
 
