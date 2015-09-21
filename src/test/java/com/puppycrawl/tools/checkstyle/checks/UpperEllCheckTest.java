@@ -51,7 +51,7 @@ public class UpperEllCheckTest
     }
 
     @Test
-    public void testAcceptableTockens() {
+    public void testAcceptableTokens() {
         int[] expected = {TokenTypes.NUM_LONG };
         UpperEllCheck check = new UpperEllCheck();
         int[] actual = check.getAcceptableTokens();

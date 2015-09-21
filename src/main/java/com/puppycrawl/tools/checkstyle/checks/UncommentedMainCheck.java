@@ -222,8 +222,8 @@ public class UncommentedMainCheck
         final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
 
         if (params.getChildCount() == 1) {
-            final DetailAST paratype = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
-            final DetailAST arrayDecl = paratype.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+            final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
+            final DetailAST arrayDecl = parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
 
             if (arrayDecl != null) {
                 final DetailAST arrayType = arrayDecl.getFirstChild();

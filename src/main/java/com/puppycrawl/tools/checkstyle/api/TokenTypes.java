@@ -2798,7 +2798,7 @@ public final class TokenTypes {
      * <pre>
      * SOME_CONSTANT(1)
      * {
-     *     public void someMethodOverridenFromMainBody()
+     *     public void someMethodOverriddenFromMainBody()
      *     {
      *     }
      * }
@@ -2828,7 +2828,7 @@ public final class TokenTypes {
      *             +--TYPE
      *                 |
      *                 +--LITERAL_void (void)
-     *             +--IDENT (someMethodOverridenFromMainBody)
+     *             +--IDENT (someMethodOverriddenFromMainBody)
      *             +--LPAREN (()
      *             +--PARAMETERS
      *             +--RPAREN ())
@@ -3323,10 +3323,10 @@ public final class TokenTypes {
     public static final int LAMBDA = GeneratedJavaTokenTypes.LAMBDA;
 
     /**
-     * Begining of single line comment: '//'.
+     * Beginning of single line comment: '//'.
      *
      * <pre>
-     * +--SINLE_LINE_COMMENT
+     * +--SINGLE_LINE_COMMENT
      *         |
      *         +--COMMENT_CONTENT
      * </pre>
@@ -3335,7 +3335,7 @@ public final class TokenTypes {
             GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT;
 
     /**
-     * Begining of block comment: '/*'.
+     * Beginning of block comment: '/*'.
      *
      * <pre>
      * +--BLOCK_COMMENT_BEGIN
@@ -3364,7 +3364,7 @@ public final class TokenTypes {
      * Text of single-line or block comment.
      *
      *<pre>
-     * +--SINLE_LINE_COMMENT
+     * +--SINGLE_LINE_COMMENT
      *         |
      *         +--COMMENT_CONTENT
      * </pre>

@@ -136,7 +136,7 @@ public class ClassResolverTest {
         ClassResolver classResolver = PowerMockito.spy(new ClassResolver(Thread
                 .currentThread().getContextClassLoader(), "", imports));
 
-        PowerMockito.doThrow(new ClassNotFoundException("excpected exception"))
+        PowerMockito.doThrow(new ClassNotFoundException("expected exception"))
                 .when(classResolver, "safeLoad", anyObject());
         PowerMockito.doReturn(true).when(classResolver, "isLoadable", anyObject());
 
@@ -147,7 +147,7 @@ public class ClassResolverTest {
         catch (IllegalStateException e) {
             // expected
             assertTrue(e.getCause() instanceof ClassNotFoundException);
-            assertTrue(e.getMessage().endsWith("excpected exception"));
+            assertTrue(e.getMessage().endsWith("expected exception"));
         }
     }
 }

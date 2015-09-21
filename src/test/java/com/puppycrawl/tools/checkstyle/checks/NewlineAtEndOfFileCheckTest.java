@@ -169,8 +169,8 @@ public class NewlineAtEndOfFileCheckTest
         File impossibleFile = new File("");
         Set<LocalizedMessage> messages = check.process(impossibleFile, Lists.newArrayList("txt"));
         assertEquals(1, messages.size());
-        Iterator<LocalizedMessage> iter = messages.iterator();
-        assertEquals("Unable to open ''.", iter.next().getMessage());
+        Iterator<LocalizedMessage> iterator = messages.iterator();
+        assertEquals("Unable to open ''.", iterator.next().getMessage());
     }
 
     @Test

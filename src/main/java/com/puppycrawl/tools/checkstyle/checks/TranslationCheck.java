@@ -213,7 +213,7 @@ public class TranslationCheck
 
     /**
      * Helper method to log an io exception.
-     * @param ex the exception that occured
+     * @param ex the exception that occurred
      * @param file the file that could not be processed
      */
     private void logIOException(IOException ex, File file) {
@@ -234,7 +234,7 @@ public class TranslationCheck
         final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
-        LOG.debug("IOException occured.", ex);
+        LOG.debug("IOException occurred.", ex);
     }
 
     /**

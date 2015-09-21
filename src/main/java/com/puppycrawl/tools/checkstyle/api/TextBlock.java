@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * A block of text from an inputfile that does not necessarily
+ * A block of text from an input file that does not necessarily
  * have any grammatical structure.
  *
  * @author lkuehne
@@ -36,28 +36,28 @@ public interface TextBlock {
     String[] getText();
 
     /**
-     * The line in the inputfile where the text block starts.
+     * The line in the input file where the text block starts.
      * Counting starts from 1.
      * @return first line of the text block
      */
     int getStartLineNo();
 
     /**
-     * The last line of the text block in the inputfile.
+     * The last line of the text block in the input file.
      * Counting starts from 1.
      * @return last line of the text block
      */
     int getEndLineNo();
 
     /**
-     * The column in the inputfile where the text block starts.
+     * The column in the input file where the text block starts.
      * Counting starts from 0.
      * @return first line of the text block
      */
     int getStartColNo();
 
     /**
-     * The column in the inputfile where the text block ends.
+     * The column in the input file where the text block ends.
      * Counting starts from 0.
      * @return last line of the text block
      */
