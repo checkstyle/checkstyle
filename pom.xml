@@ -1668,8 +1668,8 @@
                   </regex>
                   <regex>
                     <pattern>.*.checks.SuppressWarningsHolder</pattern>
-                    <branchRate>75</branchRate>
-                    <lineRate>93</lineRate>
+                    <branchRate>86</branchRate>
+                    <lineRate>97</lineRate>
                   </regex>
                   <regex>
                     <!-- till https://github.com/checkstyle/checkstyle/issues/2243 -->
