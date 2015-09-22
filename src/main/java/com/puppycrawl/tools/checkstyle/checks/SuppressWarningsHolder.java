@@ -151,8 +151,8 @@ public class SuppressWarningsHolder
         for (Entry entry : entries) {
             final boolean afterStart =
                 entry.getFirstLine() < line
-                    || entry.getFirstLine() == line && entry
-                        .getFirstColumn() <= column;
+                    || entry.getFirstLine() == line
+                            && entry.getFirstColumn() <= column;
             final boolean beforeEnd =
                 entry.getLastLine() > line
                     || entry.getLastLine() == line && entry
@@ -306,42 +306,36 @@ public class SuppressWarningsHolder
     private static DetailAST getAnnotationTarget(DetailAST ast) {
         DetailAST targetAST = null;
         DetailAST parentAST = ast.getParent();
-        if (parentAST != null) {
-            switch (parentAST.getType()) {
-                case TokenTypes.MODIFIERS:
-                case TokenTypes.ANNOTATIONS:
-                    parentAST = parentAST.getParent();
-                    if (parentAST != null) {
-                        switch (parentAST.getType()) {
-                            case TokenTypes.ANNOTATION_DEF:
-                            case TokenTypes.PACKAGE_DEF:
-                            case TokenTypes.CLASS_DEF:
-                            case TokenTypes.INTERFACE_DEF:
-                            case TokenTypes.ENUM_DEF:
-                            case TokenTypes.ENUM_CONSTANT_DEF:
-                            case TokenTypes.CTOR_DEF:
-                            case TokenTypes.METHOD_DEF:
-                            case TokenTypes.PARAMETER_DEF:
-                            case TokenTypes.VARIABLE_DEF:
-                            case TokenTypes.ANNOTATION_FIELD_DEF:
-                            case TokenTypes.TYPE:
-                            case TokenTypes.LITERAL_NEW:
-                            case TokenTypes.LITERAL_THROWS:
-                            case TokenTypes.TYPE_ARGUMENT:
-                            case TokenTypes.IMPLEMENTS_CLAUSE:
-                            case TokenTypes.DOT:
-                                targetAST = parentAST;
-                                break;
-
-                            default:
-                                // unexpected target type
-                        }
-                    }
-                    break;
-
-                default:
-                    // unexpected container type
-            }
+        switch (parentAST.getType()) {
+            case TokenTypes.MODIFIERS:
+            case TokenTypes.ANNOTATIONS:
+                parentAST = parentAST.getParent();
+                switch (parentAST.getType()) {
+                    case TokenTypes.ANNOTATION_DEF:
+                    case TokenTypes.PACKAGE_DEF:
+                    case TokenTypes.CLASS_DEF:
+                    case TokenTypes.INTERFACE_DEF:
+                    case TokenTypes.ENUM_DEF:
+                    case TokenTypes.ENUM_CONSTANT_DEF:
+                    case TokenTypes.CTOR_DEF:
+                    case TokenTypes.METHOD_DEF:
+                    case TokenTypes.PARAMETER_DEF:
+                    case TokenTypes.VARIABLE_DEF:
+                    case TokenTypes.ANNOTATION_FIELD_DEF:
+                    case TokenTypes.TYPE:
+                    case TokenTypes.LITERAL_NEW:
+                    case TokenTypes.LITERAL_THROWS:
+                    case TokenTypes.TYPE_ARGUMENT:
+                    case TokenTypes.IMPLEMENTS_CLAUSE:
+                    case TokenTypes.DOT:
+                        targetAST = parentAST;
+                        break;
+                    default:
+                        // unexpected target type
+                }
+                break;
+            default:
+                // unexpected container type
         }
         return targetAST;
     }
