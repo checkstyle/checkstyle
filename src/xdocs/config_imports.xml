@@ -701,14 +701,6 @@ public class SomeClass { ... }
             <td><a href="property_types.html#string">string</a></td>
             <td><code>null</code></td>
           </tr>
-          <tr>
-            <td>url</td>
-            <td>
-              URL of the file containing the import control configuration.
-            </td>
-            <td><a href="property_types.html#string">string</a></td>
-            <td><code>null</code></td>
-          </tr>
         </table>
       </subsection>
 
