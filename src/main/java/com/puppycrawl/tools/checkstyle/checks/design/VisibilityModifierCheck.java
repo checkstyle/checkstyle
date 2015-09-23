@@ -386,24 +386,20 @@ public class VisibilityModifierCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.IMPORT,
-        };
+        return getAcceptableTokens();
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.VARIABLE_DEF,
-            TokenTypes.OBJBLOCK,
             TokenTypes.IMPORT,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return getAcceptableTokens();
     }
 
     @Override
