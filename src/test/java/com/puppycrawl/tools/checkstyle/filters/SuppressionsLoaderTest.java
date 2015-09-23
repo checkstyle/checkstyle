@@ -27,7 +27,6 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -64,38 +63,25 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testLoadFromURL() throws Exception {
-        boolean online = isInternetReachable();
+        final String[] urlCandidates = {
+            "http://checkstyle.sourceforge.net/files/suppressions_none.xml",
+            "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/files/suppressions_none.xml",
+        };
+        FilterSet actualFilterSet = null;
 
-        Assume.assumeTrue(online);
+        for (String url : urlCandidates) {
+            actualFilterSet = loadFilterSet(url);
 
-        FilterSet fc = null;
-
-        int attemptCount = 0;
-        final int attemptLimit = 5;
-        while (attemptCount <= attemptLimit) {
-            try {
-
-                fc = SuppressionsLoader
-                        .loadSuppressions("http://checkstyle.sourceforge.net/files/suppressions_none.xml");
+            if (actualFilterSet != null) {
                 break;
-
-            }
-            catch (CheckstyleException ex) {
-                // for some reason Travis CI failed some times(unstable) on reading this file
-                if (attemptCount < attemptLimit
-                        && ex.getMessage().contains("Unable to read")) {
-                    attemptCount++;
-                    // wait for bad/disconnection time to pass
-                    Thread.sleep(1000);
-                }
-                else {
-                    throw ex;
-                }
             }
         }
-
-        final FilterSet fc2 = new FilterSet();
-        assertEquals(fc, fc2);
+        // Use Assume.assumeNotNull(actualFilterSet) instead of the if-condition
+        // when https://github.com/jayway/powermock/issues/428 will be fixed
+        if (actualFilterSet != null) {
+            final FilterSet expectedFilterSet = new FilterSet();
+            assertEquals(expectedFilterSet, actualFilterSet);
+        }
     }
 
     @Test(expected = CheckstyleException.class)
@@ -173,10 +159,38 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
     }
 
-    private static boolean isInternetReachable() {
+    private static FilterSet loadFilterSet(String url) throws Exception {
+        FilterSet filterSet = null;
+
+        if (isUrlReachable(url)) {
+            int attemptCount = 0;
+            final int attemptLimit = 5;
+
+            while (attemptCount <= attemptLimit) {
+                try {
+                    filterSet = SuppressionsLoader.loadSuppressions(url);
+                    break;
+                }
+                catch (CheckstyleException ex) {
+                    // for some reason Travis CI failed some times(unstable) on reading this file
+                    if (attemptCount < attemptLimit && ex.getMessage().contains("Unable to read")) {
+                        attemptCount++;
+                        // wait for bad/disconnection time to pass
+                        Thread.sleep(1000);
+                    }
+                    else {
+                        throw ex;
+                    }
+                }
+            }
+        }
+        return filterSet;
+    }
+
+    private static boolean isUrlReachable(String url) {
         try {
-            URL url = new URL("http://checkstyle.sourceforge.net/");
-            HttpURLConnection urlConnect = (HttpURLConnection) url.openConnection();
+            URL verifiableUrl = new URL(url);
+            HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
         catch (IOException e) {
