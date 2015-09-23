@@ -260,7 +260,6 @@ public class VisibilityModifierCheckTest
         VisibilityModifierCheck obj = new VisibilityModifierCheck();
         int[] expected = {
             TokenTypes.VARIABLE_DEF,
-            TokenTypes.OBJBLOCK,
             TokenTypes.IMPORT,
         };
         assertArrayEquals(expected, obj.getAcceptableTokens());
