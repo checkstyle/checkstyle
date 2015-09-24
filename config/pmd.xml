@@ -244,7 +244,7 @@
   <rule ref="rulesets/java/strings.xml"/>
   <rule ref="rulesets/java/sunsecure.xml/MethodReturnsInternalArray">
     <properties>
-      <!--It's not imoprtant when array is empty-->
+      <!--It's not important when array is empty-->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocNodeImpl']"/>
     </properties>
   </rule>

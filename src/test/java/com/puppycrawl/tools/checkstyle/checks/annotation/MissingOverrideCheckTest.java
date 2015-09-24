@@ -58,7 +58,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      * flagged for only including the inheritDoc tag even in Java 5 compatibility mode.
      */
     @Test
-    public void testBadOverrideFromObjectJ5Compat() throws Exception {
+    public void testBadOverrideFromObjectJ5Compatible() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -97,7 +97,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    public void testBadOverrideFromOtherJ5Compat() throws Exception {
+    public void testBadOverrideFromOtherJ5Compatible() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -128,7 +128,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    public void testBadAnnotationOverrideJ5Compat() throws Exception {
+    public void testBadAnnotationOverrideJ5Compatible() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -169,7 +169,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      * flagged for only including the inheritDoc tag even in Java 5 compatibility mode.
      */
     @Test
-    public void testGoodOverrideFromObjectJ5Compat() throws Exception {
+    public void testGoodOverrideFromObjectJ5Compatible() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -195,7 +195,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    public void testGoodOverrideFromOtherJ5Compat() throws Exception {
+    public void testGoodOverrideFromOtherJ5Compatible() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -221,7 +221,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    public void testGoodAnnotationOverrideJ5Compat() throws Exception {
+    public void testGoodAnnotationOverrideJ5Compatible() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;

@@ -125,7 +125,7 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "/google_checks.xml", "NonexistingFile.java");
+        Main.main("-c", "/google_checks.xml", "NonExistingFile.java");
     }
 
     @Test

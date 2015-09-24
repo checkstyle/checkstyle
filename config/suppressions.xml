@@ -77,7 +77,7 @@
     <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
     <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/]test[\\/]"/>
 
-    <!-- There are a lot of setters/getters in the Check. A small number of methods is left for Check's logics -->
+    <!-- There are a lot of setters/getters in the Check. A small number of methods is left for Check's logic -->
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
 
     <!-- getDetails() method - huge Switch, it has to be monolithic -->
@@ -87,7 +87,7 @@
 
     <!-- we need that set of converters -->
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
-    <!-- they are agregators of logic, usage a several of classes are ok -->
+    <!-- they are aggregators of logic, usage a several of classes are ok -->
     <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|AbstractJavadocCheck)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest)\.java"/>
     <!-- a lot of GUI elements is OK -->
@@ -96,7 +96,7 @@
     <!-- Should be fixed after moving https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo -->
     <suppress checks="ReturnCount" files="(ClassResolver|ConfigurationLoader|IndentationCheckTest)\.java"/>
     
-    <!-- Just big SWITCHes. Cannot be splitted to several methods. Till https://github.com/checkstyle/checkstyle/issues/2029 -->
+    <!-- Just big switches. Cannot be split to several methods. Till https://github.com/checkstyle/checkstyle/issues/2029 -->
     <suppress checks="CyclomaticComplexity" files="(AbstractDeclarationCollector|SuppressWarningsHolder|LeftCurlyCheck|FallThroughCheck|FinalLocalVariableCheck|ModifiedControlVariableCheck)\.java"/>
     <suppress checks="CyclomaticComplexity" files="(ParameterAssignmentCheck|VariableDeclarationUsageDistanceCheck|BooleanExpressionComplexityCheck|NPathComplexityCheck|CheckUtils)\.java"/>
 

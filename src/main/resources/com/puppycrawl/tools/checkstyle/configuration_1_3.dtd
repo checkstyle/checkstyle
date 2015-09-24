@@ -42,7 +42,7 @@
    messages.
 
    The 'key' attribute specifies for which actual Checkstyle message the
-   replacing should occur, look into Checkstyles message.properties for
+   replacing should occur, look into Checkstyle's message.properties for
    the according message keys.
 
    The 'value' attribute defines the custom message patterns including

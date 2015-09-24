@@ -339,18 +339,18 @@ public class JavadocStyleCheck
      *                 the Javadoc comment.
      */
     private void checkHtmlTags(final DetailAST ast, final TextBlock comment) {
-        final int lineno = comment.getStartLineNo();
+        final int lineNo = comment.getStartLineNo();
         final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
         final String[] text = comment.getText();
 
-        final TagParser parser = new TagParser(text, lineno);
+        final TagParser parser = new TagParser(text, lineNo);
 
         while (parser.hasNextTag()) {
             final HtmlTag tag = parser.nextTag();
 
             if (tag.isIncompleteTag()) {
                 log(tag.getLineNo(), INCOMPLETE_TAG,
-                    text[tag.getLineNo() - lineno]);
+                    text[tag.getLineNo() - lineNo]);
                 return;
             }
             if (tag.isClosedTag()) {

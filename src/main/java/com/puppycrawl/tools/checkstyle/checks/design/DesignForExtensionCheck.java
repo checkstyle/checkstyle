@@ -99,7 +99,7 @@ public class DesignForExtensionCheck extends Check {
                     && !classMods.branchContains(TokenTypes.FINAL);
 
             if (nonEmptyImplementation && classCanBeSubclassed
-                    && hasDefaultOrExplNonPrivateCtor(classDef)) {
+                    && hasDefaultOrExplicitNonPrivateCtor(classDef)) {
 
                 final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY, name);
@@ -122,16 +122,16 @@ public class DesignForExtensionCheck extends Check {
     }
 
     /**
-     * Has Default Or Expl Non Private Ctor.
+     * Has Default Or Explicit Non Private Ctor.
      * @param classDef class ast
      * @return true if Check should make a violation
      */
-    private static boolean hasDefaultOrExplNonPrivateCtor(DetailAST classDef) {
+    private static boolean hasDefaultOrExplicitNonPrivateCtor(DetailAST classDef) {
         // check if subclassing is prevented by having only private ctors
         final DetailAST objBlock = classDef.findFirstToken(TokenTypes.OBJBLOCK);
 
         boolean hasDefaultConstructor = true;
-        boolean hasExplNonPrivateCtor = false;
+        boolean hasExplicitNonPrivateCtor = false;
 
         DetailAST candidate = objBlock.getFirstChild();
 
@@ -142,14 +142,14 @@ public class DesignForExtensionCheck extends Check {
                 final DetailAST ctorMods =
                         candidate.findFirstToken(TokenTypes.MODIFIERS);
                 if (!ctorMods.branchContains(TokenTypes.LITERAL_PRIVATE)) {
-                    hasExplNonPrivateCtor = true;
+                    hasExplicitNonPrivateCtor = true;
                     break;
                 }
             }
             candidate = candidate.getNextSibling();
         }
 
-        return hasDefaultConstructor || hasExplNonPrivateCtor;
+        return hasDefaultConstructor || hasExplicitNonPrivateCtor;
     }
 
     /**

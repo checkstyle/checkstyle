@@ -76,12 +76,12 @@ class SinglelineDetector {
 
     /**
      * Check a line for matches.
-     * @param lineno the line number of the line to check
+     * @param lineNo the line number of the line to check
      * @param line the line to check
      * @param matcher the matcher to use
      * @param startPosition the position to start searching from.
      */
-    private void checkLine(int lineno, String line, Matcher matcher,
+    private void checkLine(int lineNo, String line, Matcher matcher,
             int startPosition) {
         final boolean foundMatch = matcher.find(startPosition);
         if (!foundMatch) {
@@ -96,10 +96,10 @@ class SinglelineDetector {
         // needs column number of the last character.
         // So we need to use (endCol - 1) here.
         if (options.getSuppressor()
-                .shouldSuppress(lineno, startCol, lineno, endCol - 1)) {
+                .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
             if (endCol < line.length()) {
                 // check if the expression is on the rest of the line
-                checkLine(lineno, line, matcher, endCol);
+                checkLine(lineNo, line, matcher, endCol);
             }
             return;
         }
@@ -107,11 +107,11 @@ class SinglelineDetector {
         currentMatches++;
         if (currentMatches > options.getMaximum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(lineno, "regexp.exceeded",
+                options.getReporter().log(lineNo, "regexp.exceeded",
                         matcher.pattern().toString());
             }
             else {
-                options.getReporter().log(lineno, options.getMessage());
+                options.getReporter().log(lineNo, options.getMessage());
             }
         }
     }
