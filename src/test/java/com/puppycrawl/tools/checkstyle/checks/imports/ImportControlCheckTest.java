@@ -23,9 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -109,10 +111,11 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         try {
             verify(checkConfig, getPath("imports" + File.separator
                     + "InputImportControl.java"), expected);
-            fail("should fail");
+            fail("Test should fail if exception was not thrown");
         }
         catch (CheckstyleException ex) {
-            //do nothing
+            final String message = ((InvocationTargetException) ex.getCause().getCause()).getTargetException().getMessage();
+            assertTrue(message.startsWith("Unable to load "));
         }
     }
 
@@ -125,10 +128,11 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         try {
             verify(checkConfig, getPath("imports" + File.separator
                     + "InputImportControl.java"), expected);
-            fail("should fail");
+            fail("Test should fail if exception was not thrown");
         }
         catch (CheckstyleException ex) {
-            //do nothing
+            final String message = ((InvocationTargetException) ex.getCause().getCause()).getTargetException().getMessage();
+            assertTrue(message.startsWith("Unable to load "));
         }
     }
 
@@ -172,14 +176,61 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         assertArrayEquals(expected, actual);
     }
 
-    @Test(expected = CheckstyleException.class)
-    public void testWrongFormatURI() throws Exception {
+    @Test
+    public void testUrl() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file",
-                "aaa://src");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        checkConfig.addAttribute("url", getUriString("imports" + File.separator
+                + "import-control_one.xml"));
+        final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
+
         verify(checkConfig, getPath("imports" + File.separator
                 + "InputImportControl.java"), expected);
+    }
+
+    @Test
+    public void testUrlBlank() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("url", "");
+        final String[] expected = {"1:40: " + getCheckMessage(MSG_MISSING_FILE)};
+
+        verify(checkConfig, getPath("imports" + File.separator
+                + "InputImportControl.java"), expected);
+    }
+
+    @Test
+    public void testUrlUnableToLoad() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("url", "https://UnableToLoadThisURL");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        try {
+            verify(checkConfig, getPath("imports" + File.separator
+                    + "InputImportControl.java"), expected);
+            fail("Test should fail if exception was not thrown");
+        }
+        catch (final CheckstyleException ex) {
+            final String message = ((InvocationTargetException) ex.getCause().getCause())
+                    .getTargetException().getMessage();
+            assertTrue(message.startsWith("Unable to load "));
+        }
+    }
+
+    @Test
+    public void testUrlIncorrectUrl() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("url", "https://{WrongCharsInURL}");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        try {
+            verify(checkConfig, getPath("imports" + File.separator
+                    + "InputImportControl.java"), expected);
+            fail("Test should fail if exception was not thrown");
+        }
+        catch (final CheckstyleException ex) {
+            final String message = ((InvocationTargetException) ex.getCause().getCause())
+                    .getTargetException().getMessage();
+            assertTrue(message.startsWith("Syntax error in url "));
+        }
     }
 
 }
