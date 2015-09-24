@@ -179,15 +179,16 @@ public class InnerAssignmentCheck
     }
 
     /**
-     * Tests whether the given AST is used in the "assignment in while test"
-     * idiom.
-     * <p>
+     * Tests whether the given AST is used in the "assignment in while" idiom.
      * <pre>
-     * while ((b = is.read()) != -1) {
-     *   // work with b
+     * String line;
+     * while ((line = bufferedReader.readLine()) != null) {
+     *    // process the line
      * }
      * </pre>
-     * </p>
+     * Assignment inside a condition is not a problem here, as the assignment is surrounded by an
+     * extra pair of parentheses. The comparison is {@code != null} and there is no chance that
+     * intention was to write {@code line == reader.readLine()}.
      *
      * @param ast assignment AST
      * @return whether the context of the assignment AST indicates the idiom
