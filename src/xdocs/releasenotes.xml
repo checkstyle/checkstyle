@@ -178,6 +178,9 @@
         <li>
           Change default value of property "format" to "^Abstract.*$" in <a href="http://checkstyle.sourceforge.net/config_naming.html#AbstractClassName">AbstractClassNameCheck</a>. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/1279">#1279</a>
         </li>
+        <li>
+          Removed property "url" in <a href="http://checkstyle.sourceforge.net/config_imports.html#ImportControl">ImportControlCheck</a>. Note: will be restored in release 6.11. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1128">#1128</a>
+        </li>
       </ul>
 
       <p>New:</p>

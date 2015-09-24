@@ -93,6 +93,10 @@ public class BaseCheckTestSupport {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
     }
 
+    protected static String getUriString(String filename) {
+        return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).toURI().toString();
+    }
+
     protected static String getSrcPath(String filename) throws IOException {
 
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();

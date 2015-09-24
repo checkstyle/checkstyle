@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.io.File;
+import java.net.URI;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.StringUtils;
@@ -62,6 +63,11 @@ public class ImportControlCheck extends Check {
      * file.
      */
     public static final String MSG_DISALLOWED = "import.control.disallowed";
+
+    /**
+     * A part of message for exception.
+     */
+    private static final String UNABLE_TO_LOAD = "Unable to load ";
 
     /** The root package controller. */
     private PkgControl root;
@@ -145,7 +151,33 @@ public class ImportControlCheck extends Check {
             root = ImportControlLoader.load(new File(name).toURI());
         }
         catch (final CheckstyleException ex) {
-            throw new ConversionException("Unable to load " + name, ex);
+            throw new ConversionException(UNABLE_TO_LOAD + name, ex);
+        }
+    }
+
+    /**
+     * Set the parameter for the url containing the import control
+     * configuration. It will cause the url to be loaded.
+     * @param url the url of the file to load.
+     * @throws ConversionException on error loading the file.
+     */
+    public void setUrl(final String url) {
+        // Handle empty param
+        if (StringUtils.isBlank(url)) {
+            return;
+        }
+        final URI uri;
+        try {
+            uri = URI.create(url);
+        }
+        catch (final IllegalArgumentException ex) {
+            throw new ConversionException("Syntax error in url " + url, ex);
+        }
+        try {
+            root = ImportControlLoader.load(uri);
+        }
+        catch (final CheckstyleException ex) {
+            throw new ConversionException(UNABLE_TO_LOAD + url, ex);
         }
     }
 }
