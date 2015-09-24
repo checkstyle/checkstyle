@@ -282,6 +282,7 @@ public class FinalLocalVariableCheck extends Check {
         DetailAST astTraverse = ast;
         while (!(astTraverse.getType() == TokenTypes.METHOD_DEF
                 || astTraverse.getType() == TokenTypes.CLASS_DEF
+                || astTraverse.getType() == TokenTypes.ENUM_DEF
                 || astTraverse.getType() == TokenTypes.CTOR_DEF)) {
             astTraverse = astTraverse.getParent();
         }
