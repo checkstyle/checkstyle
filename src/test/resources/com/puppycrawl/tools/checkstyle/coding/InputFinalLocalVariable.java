@@ -171,3 +171,11 @@ class A {
     }
 }
 
+enum Enum1 {
+    ;
+
+    {
+        int var = 0;
+        var = 1;
+    }
+}
