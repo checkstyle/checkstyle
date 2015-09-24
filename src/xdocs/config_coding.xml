@@ -939,10 +939,23 @@ class SomeClass
         </p>
 
         <p>
-          Rationale: With the exception of <code>for</code>
-          iterators, all assignments should occur in their own top-level
-          statement to increase readability.  With inner assignments like the
-          one given above, it is difficult to see all places where a variable is set.
+          Rationale: With the exception of <code>for</code> iterators and assignment in
+          <code>while</code> idiom, all assignments should occur in their own top-level statement
+          to increase readability. With inner assignments like the one given above, it is difficult
+          to see all places where a variable is set.
+        </p>
+
+        <p>
+          Note: Check allows usage of the popular assignment in <code>while</code> idiom:
+          <source>
+String line;
+while ((line = bufferedReader.readLine()) != null) {
+   // process the line
+}
+          </source>
+          Assignment inside a condition is not a problem here, as the assignment is surrounded by
+          an extra pair of parentheses. The comparison is <code>!= null</code> and there is no
+          chance that intention was to write <code>line == reader.readLine()</code>.
         </p>
       </subsection>
 
