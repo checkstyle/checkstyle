@@ -489,8 +489,8 @@
         <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
         <li><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></li>
         <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
-        <li><a href="config_naming.html#Modules">ClassTypeParameterName</a></li>
-        <li><a href="config_naming.html#Modules">MethodTypeParameterName</a></li>
+        <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
+        <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
         <li><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></li>
         <li><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></li>
         <li><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
@@ -771,9 +771,9 @@
           Schneeberger for providing patch #1947417.
         </li>
         <li>
-          New checks <a href="config_naming.html#Modules">
+          New checks <a href="config_naming.html#ClassTypeParameterName">
           ClassTypeParameterName</a> and
-          <a href="config_naming.html#Modules">
+          <a href="config_naming.html#MethodTypeParameterName">
           MethodTypeParameterName</a>
           for type name formats. Thanks to Travis Schneeberger for providing
           patch #1956561.

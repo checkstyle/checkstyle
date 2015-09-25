@@ -313,7 +313,7 @@
         <tr>
           <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">Bamboo Checkstyle plug-in</a></td>
           <td>Atlassian (formerly by Ross Rowe and Stephan Paulicke)</td>
-          <td><a href="https://marketplace.atlassian.com/plugins/com.atlassian.bamboo.plugins.bamboo-checkstyle-plugin">Bamboo Checkstyle plug-in Atlassian Marketplace page</a></td>
+          <td><a href="https://marketplace.atlassian.com/archive/com.atlassian.bamboo.plugins.bamboo-checkstyle-plugin">Bamboo Checkstyle plug-in Atlassian Marketplace page</a></td>
           <td>An add-on that will parse and record CheckStyle reports and report your style violations over time.</td>
         </tr>
       </table>
