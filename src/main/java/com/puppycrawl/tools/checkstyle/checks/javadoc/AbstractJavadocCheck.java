@@ -75,10 +75,16 @@ public abstract class AbstractJavadocCheck extends Check {
         "javadoc.wrong.singleton.html.tag";
 
     /**
-     * Key is "line:column".
-     * value is DetailNode tree.
+     * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
+     * to guarantee basic thread safety and avoid shared, mutable state when not necessary.
      */
-    private static final Map<String, ParseStatus> TREE_CACHE = new HashMap<>();
+    private static final ThreadLocal<Map<String, ParseStatus>> TREE_CACHE =
+        new ThreadLocal<Map<String, ParseStatus>>() {
+            @Override
+            protected Map<String, ParseStatus> initialValue() {
+                return new HashMap<>();
+            }
+        };
 
     /**
      * Custom error listener.
@@ -153,12 +159,12 @@ public abstract class AbstractJavadocCheck extends Check {
 
     @Override
     public final void beginTree(DetailAST rootAST) {
-        TREE_CACHE.clear();
+        TREE_CACHE.get().clear();
     }
 
     @Override
     public final void finishTree(DetailAST rootAST) {
-        TREE_CACHE.clear();
+        TREE_CACHE.get().clear();
     }
 
     @Override
@@ -171,12 +177,12 @@ public abstract class AbstractJavadocCheck extends Check {
 
             ParseStatus ps;
 
-            if (TREE_CACHE.containsKey(treeCacheKey)) {
-                ps = TREE_CACHE.get(treeCacheKey);
+            if (TREE_CACHE.get().containsKey(treeCacheKey)) {
+                ps = TREE_CACHE.get().get(treeCacheKey);
             }
             else {
                 ps = parseJavadocAsDetailNode(blockCommentNode);
-                TREE_CACHE.put(treeCacheKey, ps);
+                TREE_CACHE.get().put(treeCacheKey, ps);
             }
 
             if (ps.getParseErrorMessage() == null) {
