@@ -328,6 +328,21 @@ messages.properties: Key 'ok' missing.
             <td><a href="property_types.html#string">String</a></td>
             <td><code>_</code></td>
           </tr>
+          <tr>
+             <td>requiredTranslations</td>
+             <td>
+                 Allows to specify language codes of required translations which must exist in project.
+                 The check looks only for messages bundles which names contain the word 'messages'.
+                 Language code is composed of the lowercase, two-letter codes as defined by
+                 <a href="http://www.fatbellyman.com/webstuff/language_codes_639-1/">ISO 639-1</a>.
+                 Default value is empty String Set which means that only the existence
+                 of default translation is checked.
+                 Note, if you specify language codes (or just one language code) of required translations
+                 the check will also check for existence of default translation files in project.
+             </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+             <td><code>empty String Set</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -345,6 +360,15 @@ messages.properties: Key 'ok' missing.
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
     &lt;property name=&quot;basenameSeparator&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to check existence of Japanese and French translations:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;&gt;
+&lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
