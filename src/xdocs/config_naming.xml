@@ -88,6 +88,32 @@
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
           </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
+            </td>
+          </tr>
         </table>
       </subsection>
 
@@ -152,8 +178,8 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
-            <td><code>^Abstract.+$|^.*Factory$</code></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^Abstract.+$</code></td>
           </tr>
           <tr>
             <td>ignoreModifier</td>
@@ -225,7 +251,7 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[A-Z]$</code></td>
           </tr>
         </table>
@@ -281,7 +307,7 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
           </tr>
           <tr>
@@ -369,7 +395,7 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[A-Z]$</code></td>
           </tr>
         </table>
@@ -421,9 +447,22 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
+          <tr>
+          <td>tokens</td>
+          <td>tokens to check</td>
+          <td>
+            subset of tokens
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>.
+          </td>
+          <td>
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>.
+          </td>
+        </tr>
         </table>
       </subsection>
 
@@ -477,7 +516,7 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
           <tr>
@@ -490,6 +529,19 @@ for (int i = 1; i &lt; 10; i++) {}
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>.
+            </td>
           </tr>
         </table>
       </subsection>
@@ -565,7 +617,7 @@ for (int i = 1; i &lt; 10; i++) {}
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
           <tr>
@@ -657,7 +709,7 @@ for (int i = 1; i &lt; 10; i++) {}
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
           <tr>
@@ -734,7 +786,7 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[A-Z]$</code></td>
           </tr>
         </table>
@@ -789,7 +841,7 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</code></td>
           </tr>
         </table>
@@ -857,7 +909,7 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
         </table>
@@ -916,7 +968,7 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
           <tr>
@@ -997,7 +1049,7 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#boolean">String</a></td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
           </tr>
           <tr>
@@ -1030,8 +1082,7 @@ class MyClass {
             <td>tokens</td>
             <td>Controls the kind of type that the check applies to.</td>
             <td>
-              A comma-separated list of one or more of the following
-              tokens:
+              subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                 CLASS_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
@@ -1049,7 +1100,7 @@ class MyClass {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
                 ENUM_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>
+                ANNOTATION_DEF</a>.
             </td>
           </tr>
         </table>
