@@ -376,5 +376,7 @@
       <property name="severity" value="ignore"/>
     </module>
   </module>
-  <module name="Translation"/>
+  <module name="Translation">
+    <property name="requiredTranslations" value="de, fr, fi, es, pt, ja, tr"/>
+  </module>
 </module>

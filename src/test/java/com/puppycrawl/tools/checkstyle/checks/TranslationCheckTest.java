@@ -126,4 +126,109 @@ public class TranslationCheckTest
         logIOException.invoke(check, new IOException("test exception"), new File(""));
     }
 
+    @Test
+    public void testDefaultTranslationFileIsMissing() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "ja,,, de, ja");
+
+        final File[] propertyFiles = {
+            new File(getPath("checks" + File.separator
+                + "messages_translation_de.properties")),
+            new File(getPath("checks" + File.separator
+                + "messages_translation_ja.properties")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'messages_translation.properties' is missing.",
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("checks"),
+            expected);
+    }
+
+    @Test
+    public void testTranslationFilesAreMissing() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "ja, de");
+
+        final File[] propertyFiles = {
+            new File(getPath("checks" + File.separator
+                + "messages_translation.properties")),
+            new File(getPath("checks" + File.separator
+                + "messages_translation_ja.properties")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'messages_translation_de.properties' is missing.",
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("checks"),
+            expected);
+    }
+
+    @Test
+    public void testBaseNameSeparatorDefaultTranslationIsMissing() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "fr");
+        checkConfig.addAttribute("basenameSeparator", "-");
+
+        final File[] propertyFiles = {
+            new File(getPath("checks" + File.separator
+                + "messages-translation_fr.properties")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'messages-translation.properties' is missing.",
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("checks"),
+            expected);
+    }
+
+    @Test
+    public void testBaseNameSeparatorTranslationsAreMissing() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "fr, tr");
+        checkConfig.addAttribute("basenameSeparator", "-");
+
+        final File[] propertyFiles = {
+            new File(getPath("checks" + File.separator
+                + "messages-translation.properties")),
+            new File(getPath("checks" + File.separator
+                + "messages-translation_fr.properties")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'messages-translation_tr.properties' is missing.",
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("checks"),
+            expected);
+    }
+
+    @Test
+    public void testIsNotMessagesBundle() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "de");
+
+        final File[] propertyFiles = {
+            new File(getPath("app-dev.properties")),
+            new File(getPath("app-stage.properties")),
+        };
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath("app-dev.properties"),
+            expected);
+    }
 }
