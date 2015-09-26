@@ -1671,6 +1671,12 @@
                     <branchRate>75</branchRate>
                     <lineRate>93</lineRate>
                   </regex>
+                  <regex>
+                    <!-- till https://github.com/checkstyle/checkstyle/issues/2243 -->
+                    <pattern>.*.checks.TranslationCheck</pattern>
+                    <branchRate>97</branchRate>
+                    <lineRate>98</lineRate>
+                  </regex>
                 </regexes>
               </check>
               <instrumentation>
