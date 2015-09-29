@@ -105,4 +105,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
     }
+
+    @Test
+    public void testWithAnnonymousClass() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("coding" + File.separator + "InputRequireThis3.java"),
+                expected);
+    }
 }
