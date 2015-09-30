@@ -22,12 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 @RunWith(PowerMockRunner.class)
@@ -141,4 +145,119 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("InputSuppressWarningsHolder2.java"), expected);
     }
 
+    @Test
+    public void testEmptyAnnotation() throws Exception {
+        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputSuppressWarningsHolder3.java"), expected);
+    }
+
+    @Test
+    public void testGetAllAnnotationValuesWrongArg() throws ReflectiveOperationException {
+        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        Method getAllAnnotationValues = holder.getClass()
+                .getDeclaredMethod("getAllAnnotationValues", DetailAST.class);
+        getAllAnnotationValues.setAccessible(true);
+
+        DetailAST methodDef = new DetailAST();
+        methodDef.setType(TokenTypes.METHOD_DEF);
+        methodDef.setText("Method Def");
+        methodDef.setLineNo(0);
+        methodDef.setColumnNo(0);
+
+        DetailAST lparen = new DetailAST();
+        lparen.setType(TokenTypes.LPAREN);
+
+        DetailAST parent = new DetailAST();
+        parent.addChild(lparen);
+        parent.addChild(methodDef);
+
+        try {
+            getAllAnnotationValues.invoke(holder, parent);
+            fail("Exception expected");
+        }
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof IllegalArgumentException);
+            assertEquals("Unexpected AST: Method Def[0x0]", ex.getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testGetAnnotationValuesWrongArg() throws ReflectiveOperationException {
+        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        Method getAllAnnotationValues = holder.getClass()
+                .getDeclaredMethod("getAnnotationValues", DetailAST.class);
+        getAllAnnotationValues.setAccessible(true);
+
+        DetailAST methodDef = new DetailAST();
+        methodDef.setType(TokenTypes.METHOD_DEF);
+        methodDef.setText("Method Def");
+        methodDef.setLineNo(0);
+        methodDef.setColumnNo(0);
+
+        try {
+            getAllAnnotationValues.invoke(holder, methodDef);
+            fail("Exception expected");
+        }
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof IllegalArgumentException);
+            assertEquals("Expression or annotation array"
+                    + " initializer AST expected: Method Def[0x0]", ex.getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testGetAnnotationTargetWrongArg() throws ReflectiveOperationException {
+        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        Method getAnnotationTarget = holder.getClass()
+                .getDeclaredMethod("getAnnotationTarget", DetailAST.class);
+        getAnnotationTarget.setAccessible(true);
+
+        DetailAST methodDef = new DetailAST();
+        methodDef.setType(TokenTypes.METHOD_DEF);
+        methodDef.setText("Method Def");
+
+        DetailAST parent = new DetailAST();
+        parent.setType(TokenTypes.ASSIGN);
+        parent.setText("Parent ast");
+        parent.addChild(methodDef);
+        parent.setLineNo(0);
+        parent.setColumnNo(0);
+
+        try {
+            getAnnotationTarget.invoke(holder, methodDef);
+            fail("Exception expected");
+        }
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof IllegalArgumentException);
+            assertEquals("Unexpected container AST: Parent ast[0x0]", ex.getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testAstWithouChildren() {
+        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        DetailAST methodDef = new DetailAST();
+        methodDef.setType(TokenTypes.METHOD_DEF);
+
+        try {
+            holder.visitToken(methodDef);
+            fail("Exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Identifier AST expected, but get null.", ex.getMessage());
+        }
+
+    }
+
+    @Test
+    public void testAnnotationWithFullName() throws Exception {
+        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputSuppressWarningsHolder4.java"), expected);
+    }
 }

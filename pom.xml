@@ -1662,11 +1662,6 @@
                 <totalLineRate>95</totalLineRate>
                 <regexes>
                   <regex>
-                    <pattern>.*.checks.SuppressWarningsHolder</pattern>
-                    <branchRate>86</branchRate>
-                    <lineRate>97</lineRate>
-                  </regex>
-                  <regex>
                     <!-- till https://github.com/checkstyle/checkstyle/issues/2243 -->
                     <pattern>.*.checks.TranslationCheck</pattern>
                     <branchRate>97</branchRate>

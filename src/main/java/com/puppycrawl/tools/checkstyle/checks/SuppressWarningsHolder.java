@@ -225,14 +225,12 @@ public class SuppressWarningsHolder
 
             // add suppression entries for listed checks
             final List<Entry> entries = ENTRIES.get();
-            if (entries != null) {
-                for (String value : values) {
-                    String checkName = value;
-                    // strip off the checkstyle-only prefix if present
-                    checkName = removeCheckstylePrefixIfExists(checkName);
-                    entries.add(new Entry(checkName, firstLine, firstColumn,
+            for (String value : values) {
+                String checkName = value;
+                // strip off the checkstyle-only prefix if present
+                checkName = removeCheckstylePrefixIfExists(checkName);
+                entries.add(new Entry(checkName, firstLine, firstColumn,
                         lastLine, lastColumn));
-                }
             }
         }
     }
@@ -263,27 +261,26 @@ public class SuppressWarningsHolder
         final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
         if (lparenAST != null) {
             final DetailAST nextAST = lparenAST.getNextSibling();
-            if (nextAST != null) {
-                final int nextType = nextAST.getType();
-                switch (nextType) {
-                    case TokenTypes.EXPR:
-                    case TokenTypes.ANNOTATION_ARRAY_INIT:
-                        values = getAnnotationValues(nextAST);
-                        break;
+            final int nextType = nextAST.getType();
+            switch (nextType) {
+                case TokenTypes.EXPR:
+                case TokenTypes.ANNOTATION_ARRAY_INIT:
+                    values = getAnnotationValues(nextAST);
+                    break;
 
-                    case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                        // expected children: IDENT ASSIGN ( EXPR |
-                        // ANNOTATION_ARRAY_INIT )
-                        values = getAnnotationValues(getNthChild(nextAST, 2));
-                        break;
+                case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
+                    // expected children: IDENT ASSIGN ( EXPR |
+                    // ANNOTATION_ARRAY_INIT )
+                    values = getAnnotationValues(getNthChild(nextAST, 2));
+                    break;
 
-                    case TokenTypes.RPAREN:
-                        // no value present (not valid Java)
-                        break;
+                case TokenTypes.RPAREN:
+                    // no value present (not valid Java)
+                    break;
 
-                    default:
-                        // unknown annotation value type (new syntax?)
-                }
+                default:
+                    // unknown annotation value type (new syntax?)
+                    throw new IllegalArgumentException("Unexpected AST: " + nextAST);
             }
         }
         return values;
@@ -331,11 +328,12 @@ public class SuppressWarningsHolder
                         targetAST = parentAST;
                         break;
                     default:
-                        // unexpected target type
+                        // it's possible case, but shouldn't be processed here
                 }
                 break;
             default:
                 // unexpected container type
+                throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
         }
         return targetAST;
     }
@@ -348,10 +346,8 @@ public class SuppressWarningsHolder
      */
     private static DetailAST getNthChild(DetailAST ast, int index) {
         DetailAST child = ast.getFirstChild();
-        if (child != null) {
-            for (int i = 0; i < index && child != null; ++i) {
-                child = child.getNextSibling();
-            }
+        for (int i = 0; i < index && child != null; ++i) {
+            child = child.getNextSibling();
         }
         return child;
     }
@@ -367,12 +363,12 @@ public class SuppressWarningsHolder
             if (ast.getType() == TokenTypes.IDENT) {
                 return ast.getText();
             }
-            else if (ast.getType() == TokenTypes.DOT) {
+            else {
                 return getIdentifier(ast.getFirstChild()) + "."
-                    + getIdentifier(ast.getLastChild());
+                        + getIdentifier(ast.getLastChild());
             }
         }
-        throw new IllegalArgumentException("Identifier AST expected: " + ast);
+        throw new IllegalArgumentException("Identifier AST expected, but get null.");
     }
 
     /**
@@ -383,28 +379,25 @@ public class SuppressWarningsHolder
      * @throws IllegalArgumentException if the AST is invalid
      */
     private static String getStringExpr(DetailAST ast) {
-        if (ast != null && ast.getType() == TokenTypes.EXPR) {
-            final DetailAST firstChild = ast.getFirstChild();
-            String expr = "";
+        final DetailAST firstChild = ast.getFirstChild();
+        String expr = "";
 
-            switch (firstChild.getType()) {
-                case TokenTypes.STRING_LITERAL:
-                    // NOTE: escaped characters are not unescaped
-                    final String quotedText = firstChild.getText();
-                    expr = quotedText.substring(1, quotedText.length() - 1);
-                    break;
-                case TokenTypes.IDENT:
-                    expr = firstChild.getText();
-                    break;
-                case TokenTypes.DOT:
-                    expr = firstChild.getLastChild().getText();
-                    break;
-                default:
-                    // annotations with complex expressions cannot suppress warnings
-            }
-            return expr;
+        switch (firstChild.getType()) {
+            case TokenTypes.STRING_LITERAL:
+                // NOTE: escaped characters are not unescaped
+                final String quotedText = firstChild.getText();
+                expr = quotedText.substring(1, quotedText.length() - 1);
+                break;
+            case TokenTypes.IDENT:
+                expr = firstChild.getText();
+                break;
+            case TokenTypes.DOT:
+                expr = firstChild.getLastChild().getText();
+                break;
+            default:
+                // annotations with complex expressions cannot suppress warnings
         }
-        throw new IllegalArgumentException("Expression AST expected: " + ast);
+        return expr;
     }
 
     /**
@@ -431,9 +424,9 @@ public class SuppressWarningsHolder
                 return valueList;
 
             default:
+                throw new IllegalArgumentException(
+                        "Expression or annotation array initializer AST expected: " + ast);
         }
-        throw new IllegalArgumentException(
-            "Expression or annotation array initializer AST expected: " + ast);
     }
 
     /** Records a particular suppression for a region of a file. */
