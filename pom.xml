@@ -297,6 +297,22 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.10.3</version>
+          <configuration>
+            <source>1.7</source>
+            <failOnError>true</failOnError>
+            <linksource>true</linksource>
+            <tags>
+              <tag>
+                <name>noinspection</name>
+                <placement>X</placement>
+              </tag>
+            </tags>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${maven.pmd.plugin.version}</version>
           <configuration>
@@ -860,20 +876,7 @@
       </plugin>
 
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.3</version>
-        <configuration>
-          <source>1.7</source>
-          <failOnError>true</failOnError>
-          <linksource>true</linksource>
-          <tags>
-            <tag>
-              <name>noinspection</name>
-              <placement>X</placement>
-            </tag>
-          </tags>
-        </configuration>
         <reportSets>
           <reportSet>
             <id>default</id>

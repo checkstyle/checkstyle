@@ -193,7 +193,15 @@ matrix:
         - CMD8="&& travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
-
+    # release dry run (oraclejdk8)
+    - jdk: oraclejdk8
+      env:
+        - DESC="release dry run"
+        - CMD1="mvn release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs "
+        - CMD2="-Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD3="-Dcheckstyle.ant.skip=true -Dgpg.passphrase=xxxxxxxxxxxx'"
+        - CMD=$CMD1$CMD2$CMD3
+        - COVERAGE_CMD=""
     # unit tests (openjdk7, oraclejdk7)
     - jdk: openjdk7
       env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
