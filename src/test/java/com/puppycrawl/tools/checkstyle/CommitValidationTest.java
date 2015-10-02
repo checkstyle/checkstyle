@@ -137,17 +137,17 @@ public class CommitValidationTest {
     }
 
     private static List<RevCommit> getCommitsToCheck() throws Exception {
-        Repository repo = new FileRepositoryBuilder().findGitDir().build();
-
-        RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);
         List<RevCommit> commits;
-        if (COMMITS_RESOLUTION_MODE == CommitsResolutionMode.BY_COUNTER) {
-            commits = getCommitsByCounter(revCommitsPair.getFirst());
-            commits.addAll(getCommitsByCounter(revCommitsPair.getSecond()));
-        }
-        else {
-            commits = getCommitsByLastCommitAuthor(revCommitsPair.getFirst());
-            commits.addAll(getCommitsByLastCommitAuthor(revCommitsPair.getSecond()));
+        try (Repository repo = new FileRepositoryBuilder().findGitDir().build()) {
+            RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);
+            if (COMMITS_RESOLUTION_MODE == CommitsResolutionMode.BY_COUNTER) {
+                commits = getCommitsByCounter(revCommitsPair.getFirst());
+                commits.addAll(getCommitsByCounter(revCommitsPair.getSecond()));
+            }
+            else {
+                commits = getCommitsByLastCommitAuthor(revCommitsPair.getFirst());
+                commits.addAll(getCommitsByLastCommitAuthor(revCommitsPair.getSecond()));
+            }
         }
         return commits;
     }
@@ -165,12 +165,10 @@ public class CommitValidationTest {
 
     private static RevCommitsPair resolveRevCommitsPair(Repository repo) {
         RevCommitsPair revCommitIteratorPair;
-        try {
+
+        try (RevWalk revWalk = new RevWalk(repo)) {
             Iterator<RevCommit> first;
             Iterator<RevCommit> second;
-
-            RevWalk revWalk = new RevWalk(repo);
-
             ObjectId headId = repo.resolve(Constants.HEAD);
             RevCommit headCommit = revWalk.parseCommit(headId);
 
@@ -178,11 +176,15 @@ public class CommitValidationTest {
                 RevCommit firstParent = headCommit.getParent(0);
                 RevCommit secondParent = headCommit.getParent(1);
 
-                first = new Git(repo).log().add(firstParent).call().iterator();
-                second = new Git(repo).log().add(secondParent).call().iterator();
+                try (Git git = new Git(repo)) {
+                    first = git.log().add(firstParent).call().iterator();
+                    second = git.log().add(secondParent).call().iterator();
+                }
             }
             else {
-                first = new Git(repo).log().call().iterator();
+                try (Git git = new Git(repo)) {
+                    first = git.log().call().iterator();
+                }
                 second = Collections.emptyIterator();
             }
 
