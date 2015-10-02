@@ -19,7 +19,7 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Add lambda support to indentation check (see #281). Author: Pieter Noordhuis <a href="https://github.com/checkstyle/checkstyle/issues/1548">#1548</a>
+          Add lambda support to indentation check (see #281). Author: Pieter Noordhuis <a href="https://github.com/checkstyle/checkstyle/pull/1548">#1548</a>
         </li>
       </ul>
 
