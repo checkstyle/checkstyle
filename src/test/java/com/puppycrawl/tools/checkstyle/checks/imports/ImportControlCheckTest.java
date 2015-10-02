@@ -114,7 +114,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (CheckstyleException ex) {
-            final String message = ((InvocationTargetException) ex.getCause().getCause()).getTargetException().getMessage();
+            final String message = getInvocationTargetExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }
     }
@@ -131,7 +131,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (CheckstyleException ex) {
-            final String message = ((InvocationTargetException) ex.getCause().getCause()).getTargetException().getMessage();
+            final String message = getInvocationTargetExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }
     }
@@ -209,8 +209,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (final CheckstyleException ex) {
-            final String message = ((InvocationTargetException) ex.getCause().getCause())
-                    .getTargetException().getMessage();
+            final String message = getInvocationTargetExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }
     }
@@ -227,10 +226,22 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (final CheckstyleException ex) {
-            final String message = ((InvocationTargetException) ex.getCause().getCause())
-                    .getTargetException().getMessage();
+            final String message = getInvocationTargetExceptionMessage(ex);
             assertTrue(message.startsWith("Syntax error in url "));
         }
+    }
+
+    /**
+     * Returns String message of original exception that was thrown in
+     * ImportControlCheck.setUrl or ImportControlCheck.setFile
+     * and caught in test (it was caught and re-thrown twice after that)
+     * Note: this is helper method with hard-coded structure of exception causes. It works
+     * fine for methods mentioned, you may need to adjust it if you try to use it for other needs
+     * @param ex Exception
+     * @return String message of original exception
+     */
+    private static String getInvocationTargetExceptionMessage(CheckstyleException ex) {
+        return ((InvocationTargetException) ex.getCause().getCause()).getTargetException().getMessage();
     }
 
 }
