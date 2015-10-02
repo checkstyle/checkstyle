@@ -16,6 +16,34 @@
   <body>
 
     <section name="Release 6.11">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Add lambda support to indentation check (see #281). Author: Pieter Noordhuis <a href="https://github.com/checkstyle/checkstyle/issues/1548">#1548</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Coverage has been increased to 100% in 'checks' package. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/1290">#1290</a>
+        </li>
+        <li>
+          Resolve Doxia Site Renderer warnings. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/905">#905</a>
+        </li>
+        <li>
+          Update plexus-compiler-javac-errorprone to 2.6. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2247">#2247</a>
+        </li>
+        <li>
+          Update JGit to 4.0.2.201509141540-r. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2246">#2246</a>
+        </li>
+        <li>
+          Fix release failure due to unknown Javadoc tag. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2245">#2245</a>
+        </li>
+      </ul>
+    </section>
+
+    <section name="Release 6.11">
       <p>Breaking backward compatibility:</p>
       <ul>
         <li>
