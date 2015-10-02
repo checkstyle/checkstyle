@@ -24,6 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
@@ -225,8 +226,8 @@ public class TranslationCheck
     private String getFullBundleName(Set<File> filesInResourceBundle) {
         final String fullBundleName;
 
-        final File translationFile = filesInResourceBundle.iterator().next();
-        final String translationPath = translationFile.getPath();
+        final File firstTranslationFile = Collections.min(filesInResourceBundle);
+        final String translationPath = firstTranslationFile.getPath();
         final String extension = getFileExtensions()[0];
 
         final Pattern pattern = Pattern.compile("^.+_[a-z]{2}"
