@@ -68,7 +68,7 @@ directory.
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
-[sonar img]:https://img.shields.io/sonar/http/nemo.sonarqube.org/com.puppycrawl.tools:checkstyle/tech_debt.svg?label=Sonarqube%20tech%20dept
+[sonar img]:https://img.shields.io/sonar/http/nemo.sonarqube.org/com.puppycrawl.tools:checkstyle/tech_debt.svg?label=Sonarqube%20tech%20debt
 
 [codacy]:https://www.codacy.com/app/kontakt/checkstyle
 [codacy img]:https://api.codacy.com/project/badge/3adf12d434314ba8b38277ea46d3c44b
