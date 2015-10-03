@@ -1539,5 +1539,27 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
     </section>
+
+    <section name="FileContentsHolder">
+      <subsection name="Description">
+        <p>
+          Holds the current file contents for global access when configured
+          as a TreeWalker sub-module. For example,a filter can access
+          the current file contents through this module.
+        </p>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+      </section>
   </body>
 </document>
