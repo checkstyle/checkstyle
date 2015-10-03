@@ -542,7 +542,8 @@ for (Iterator foo = very.long.line.iterator();
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">POST_DEC</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">POST_INC</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_START">GENERIC_START</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_END">GENERIC_END</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_END">GENERIC_END</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>.
             </td>
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">SEMI</a>,
