@@ -33,6 +33,7 @@ import java.util.Properties;
 
 import org.junit.Test;
 import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -404,6 +405,19 @@ public class ConfigurationLoaderTest {
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                         "src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
                                 + "config_with_ignore.xml",
+                        new PropertiesExpander(new Properties()), true);
+
+        final Configuration[] children = config.getChildren();
+        assertEquals(0, children[0].getChildren().length);
+    }
+
+    @Test
+    public void testConfigWithIgnoreUsingInputSource() throws CheckstyleException {
+
+        final DefaultConfiguration config =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(new InputSource(
+                        new File("src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
+                                + "config_with_ignore.xml").toURI().toString()),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();

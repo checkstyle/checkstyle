@@ -219,7 +219,7 @@ public final class ConfigurationLoader {
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      */
-    private static Configuration loadConfiguration(InputSource configSource,
+    public static Configuration loadConfiguration(InputSource configSource,
             PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
         throws CheckstyleException {
         try {
