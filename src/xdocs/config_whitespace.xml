@@ -1310,6 +1310,7 @@ public @interface Beta {} // empty annotation type
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">STAR</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION_AND">TYPE_EXTENSION_AND</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#WILDCARD_TYPE">WILDCARD_TYPE</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_START">GENERIC_START</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_END">GENERIC_END</a>.
             </td>
