@@ -22,6 +22,10 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,8 +45,10 @@ import org.xml.sax.SAXException;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 
 public class AllChecksTest extends BaseCheckTestSupport {
@@ -145,7 +151,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
         final String configFilePath = "config/checkstyle_checks.xml";
         final Set<Class<?>> checksFromClassPath = getCheckstyleChecks();
         final Set<String> checksReferencedInConfig = getCheckStyleChecksReferencedInConfig(configFilePath);
-        final Set<String> checksNames = getChecksNames(checksFromClassPath);
+        final Set<String> checksNames = getSimpleNames(checksFromClassPath);
 
         for (String check : checksNames) {
             if (!checksReferencedInConfig.contains(check)) {
@@ -156,13 +162,31 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     }
 
+    @Test
+    public void testAllCheckstyleModulesHaveXdocDocumentation() throws Exception {
+        final Set<Class<?>> checkstyleModules = getCheckstyleModules();
+        final Set<String> checkstyleModulesNames = getSimpleNames(checkstyleModules);
+        final String xdocsDirectoryPath = "src" + File.separator + "xdocs";
+        final Set<String> modulesNamesWhichHaveXdocs =
+            getModulesNamesWhichHaveXdoc(xdocsDirectoryPath);
+
+        for (String moduleName : checkstyleModulesNames) {
+            if (!modulesNamesWhichHaveXdocs.contains(moduleName)) {
+                final String missingModuleMessage = String.format(
+                    "Module %s does not have xdoc documentation.",
+                    moduleName);
+                Assert.fail(missingModuleMessage);
+            }
+        }
+    }
+
     /**
      * Gets the checkstyle's non abstract checks.
      * @return the set of checkstyle's non abstract check classes.
      * @throws IOException if the attempt to read class path resources failed.
      */
     private static Set<Class<?>> getCheckstyleChecks() throws IOException {
-        Set<Class<?>> checkstyleChecks = new HashSet<>();
+        final Set<Class<?>> checkstyleChecks = new HashSet<>();
 
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();
         final ClassPath classpath = ClassPath.from(loader);
@@ -173,14 +197,80 @@ public class AllChecksTest extends BaseCheckTestSupport {
         for (ClassPath.ClassInfo clazz : checkstyleClasses) {
             final String className = clazz.getSimpleName();
             final Class<?> loadedClass = clazz.load();
-            if (!Modifier.isAbstract(loadedClass.getModifiers())
-                && !className.contains("Input")
-                && className.endsWith("Check")) {
-
+            if (isCheckstyleNonAbstractCheck(loadedClass, className)) {
                 checkstyleChecks.add(loadedClass);
             }
         }
         return checkstyleChecks;
+    }
+
+    /**
+     * Gets the checkstyle's modules.
+     * Checkstyle's modules are nonabstract classes from com.puppycrawl.tools.checkstyle package
+     * which names end with 'Check', do not contain the word 'Input' (are not input files for UTs),
+     * checkstyle's filters and SuppressWarningsHolder class.
+     * @return a set of checkstyle's modules names.
+     * @throws IOException if the attempt to read class path resources failed.
+     */
+    private static Set<Class<?>> getCheckstyleModules() throws IOException {
+        final Set<Class<?>> checkstyleModules = new HashSet<>();
+
+        final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        final ClassPath classpath = ClassPath.from(loader);
+        final String packageName = "com.puppycrawl.tools.checkstyle";
+        final ImmutableSet<ClassPath.ClassInfo> checkstyleClasses =
+            classpath.getTopLevelClassesRecursive(packageName);
+
+        for (ClassPath.ClassInfo clazz : checkstyleClasses) {
+            final Class<?> loadedClass = clazz.load();
+            if (isCheckstyleModule(loadedClass)) {
+                checkstyleModules.add(loadedClass);
+            }
+        }
+        return checkstyleModules;
+    }
+
+    /**
+     * Checks whether a class may be considered as the checkstyle check.
+     * Checkstyle's checks are nonabstract classes which names end with 'Check',
+     * do not contain the word 'Input' (are not input files for UTs).
+     * @param loadedClass class to check.
+     * @param className class name to check.
+     * @return true if a class may be considered as the checkstyle check.
+     */
+    private static boolean isCheckstyleNonAbstractCheck(Class<?> loadedClass, String className) {
+        return !Modifier.isAbstract(loadedClass.getModifiers())
+            && className.endsWith("Check")
+            && !className.contains("Input");
+    }
+
+    /**
+     * Checks whether a class may be considered as the checkstyle module.
+     * Checkstyle's modules are nonabstract classes which names end with 'Check',
+     * do not contain the word 'Input' (are not input files for UTs),
+     * checkstyle's filters and SuppressWarningsHolder class.
+     * @param loadedClass class to check.
+     * @return true if the class may be considered as the checkstyle module.
+     */
+    private static boolean isCheckstyleModule(Class<?> loadedClass) {
+        final String className = loadedClass.getSimpleName();
+        return isCheckstyleNonAbstractCheck(loadedClass, className)
+            || isFilterModule(loadedClass, className)
+            || "SuppressWarningsHolder".equals(className);
+    }
+
+    /**
+     * Checks whether a class may be considered as the checkstyle filter.
+     * Checkstyle's filters are classes which are subclasses of AutomicBean,
+     * implement 'Filter' interface, and which names end with 'Filter'.
+     * @param loadedClass class to check.
+     * @param className class name to check.
+     * @return true if a class may be considered as the checkstyle filter.
+     */
+    private static boolean isFilterModule(Class<?> loadedClass, String className) {
+        return Filter.class.isAssignableFrom(loadedClass)
+            && AutomaticBean.class.isAssignableFrom(loadedClass)
+            && className.endsWith("Filter");
     }
 
     /**
@@ -245,11 +335,82 @@ public class AllChecksTest extends BaseCheckTestSupport {
     }
 
     /**
-     * Gets checks names from a set of checks which are Class instances.
-     * @param checks are Class instances.
-     * @return a set of checks names.
+     * Gets names of checkstyle's modules which are documented in xdocs.
+     * @param xdocsDirectoryPath xdocs directory path.
+     * @return a set of checkstyle's modules which have xdoc documentation.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies the configuration requested.
+     * @throws IOException if any IO errors occur.
+     * @throws SAXException if any parse errors occur.
      */
-    private static Set<String> getChecksNames(Set<Class<?>> checks) {
+    private static Set<String> getModulesNamesWhichHaveXdoc(String xdocsDirectoryPath)
+        throws ParserConfigurationException, IOException, SAXException {
+
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+        // Validations of XML file make parsing too slow, that is why we disable all validations.
+        factory.setNamespaceAware(false);
+        factory.setValidating(false);
+        factory.setFeature("http://xml.org/sax/features/namespaces", false);
+        factory.setFeature("http://xml.org/sax/features/validation", false);
+        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-dtd-grammar", false);
+        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+        final Set<Path> xdocsFilePaths = getXdocsFilePaths(xdocsDirectoryPath);
+        final Set<String> modulesNamesWhichHaveXdoc = new HashSet<>();
+
+        for (Path path : xdocsFilePaths) {
+            final DocumentBuilder builder = factory.newDocumentBuilder();
+            final Document document = builder.parse(path.toFile());
+
+            // optional, but recommended
+            // FYI: http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+            document.getDocumentElement().normalize();
+
+            final NodeList nodeList = document.getElementsByTagName("section");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                final Node currentNode = nodeList.item(i);
+                if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
+                    final Element module = (Element) currentNode;
+                    final String moduleName = module.getAttribute("name");
+                    if (!"Content".equals(moduleName)
+                            && !"Overview".equals(moduleName)) {
+                        modulesNamesWhichHaveXdoc.add(moduleName);
+                    }
+                }
+            }
+        }
+        return modulesNamesWhichHaveXdoc;
+    }
+
+    /**
+     * Gets xdocs documentation file paths.
+     * @param xdocsDirectoryPath xdocs directory path.
+     * @return a list of xdocs file paths.
+     * @throws IOException if an I/O error occurs.
+     */
+    private static Set<Path> getXdocsFilePaths(String xdocsDirectoryPath)
+        throws IOException {
+
+        final Path directory = Paths.get(xdocsDirectoryPath);
+        final Set<Path> xdocs = new HashSet<>();
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory, "*.xml")) {
+            for (Path entry : stream) {
+                final String fileName = entry.getFileName().toString();
+                if (fileName.startsWith("config_")) {
+                    xdocs.add(entry);
+                }
+            }
+            return xdocs;
+        }
+    }
+
+    /**
+     * Removes 'Check' suffix from each class name in the set.
+     * @param checks class instances.
+     * @return a set of simple names.
+     */
+    private static Set<String> getSimpleNames(Set<Class<?>> checks) {
         final Set<String> checksNames = new HashSet<>();
         for (Class<?> check : checks) {
             checksNames.add(check.getSimpleName().replace("Check", ""));
