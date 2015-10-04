@@ -47,7 +47,7 @@
           href="https://plus.google.com/108692338295483568100/posts"
           />
   </poweredBy>
-  
+
   <body>
     <menu name="About">
       <item name="Checkstyle" href="index.html"/>
@@ -58,6 +58,7 @@
     <menu name="Documentation">
       <item name="Configuration" href="config.html">
         <item name="Property Types" href="property_types.html"/>
+        <item name="Filters" href="config_filters.html"/>
       </item>
 
       <item name="Running" href="running.html">

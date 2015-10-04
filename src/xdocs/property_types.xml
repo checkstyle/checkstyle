@@ -21,28 +21,29 @@
       </macro>
     </section>
 
-    <section name="Property Types">
+    <section name="Overview">
     <p>
       Checkstyle is configured using properties, which are string
       representations. This document describes how these string
       representations are mapped to typed properties.
     </p>
+    </section>
 
-    <subsection name="integer">
+    <section name="integer">
       <p>
         This property represents an integer. The string representation is
         parsed using the <code>java.lang.Integer</code> class.
       </p>
-    </subsection>
+    </section>
 
-    <subsection name="string">
+    <section name="string">
       <p>
         This property represents a string. The literal string representation
         is used.
       </p>
-    </subsection>
+    </section>
 
-    <subsection name="boolean">
+    <section name="boolean">
       <p>
         This property represents a boolean. The default value is <code>false</code>. The following string representations will
         map to <code>true</code>:
@@ -55,9 +56,9 @@
       </ul>
 
       <p>Anything else will map to <code>false</code>.</p>
-    </subsection>
+    </section>
 
-    <subsection name="stringSet">
+    <section name="stringSet">
       <p>
         This property represents a set of strings. The string representation
         is parsed as a set of comma (',') separated strings.
@@ -75,9 +76,9 @@
 &lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;PLUS_ASSIGN&quot;/&gt;
       </source>
-    </subsection>
+    </section>
 
-    <subsection name="intSet">
+    <section name="intSet">
       <p>
         This property represents a set of integers. The string representation
         is parsed as a set of comma (',') separated integers that are parsed
@@ -96,18 +97,18 @@
 &lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
       </source>
-    </subsection>
+    </section>
 
-    <subsection name="regexp">
+    <section name="regexp">
       <p>
         This property represents a regular expression. The string
         representation is parsed using <a
         href="http://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">java.util.regex
         package</a>.
       </p>
-    </subsection>
+    </section>
 
-    <subsection name="parenPad">
+    <section name="parenPad">
       <p>
         This property represents the policy for padding with white space. The
         following table describes the valid options:
@@ -132,9 +133,9 @@
           </td>
         </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="wrapOp">
+    <section name="wrapOp">
       <p>
         This property represents the policy for wrapping lines.
         The following table describes the valid options:
@@ -166,9 +167,9 @@
           </td>
         </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="block">
+    <section name="block">
       <p>
         This property represents the policy for checking block statements. The
         following table describes the valid options:
@@ -202,9 +203,9 @@
           </td>
         </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="lcurly">
+    <section name="lcurly">
       <p>
         This property represents the policy for checking the placement of a
         left curly brace (<code>'{'</code>). The following table
@@ -263,9 +264,9 @@
           </td>
         </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="rcurly">
+    <section name="rcurly">
       <p>
         This property represents the policy for checking the placement of a
         right curly brace (<code>'}'</code>). The following table
@@ -375,9 +376,9 @@
               </td>
           </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="scope">
+    <section name="scope">
       <p>This property represents a Java scope. The scope is treated
       inclusively (as javadoc does): 'package' means all 'package', 'protected'
       and 'public' methods/fields/classes. The valid options are:</p>
@@ -390,9 +391,9 @@
         <li><code>private</code></li>
         <li><code>anoninner</code></li>
       </ul>
-    </subsection>
+    </section>
 
-    <subsection name="severity">
+    <section name="severity">
       <p>
         This property represents the severity level of a check violation. The
         valid options are:
@@ -404,9 +405,9 @@
         <li><code>warning</code></li>
         <li><code>error</code></li>
       </ul>
-    </subsection>
+    </section>
 
-    <subsection name="importOrder">
+    <section name="importOrder">
       <p>
         This property represents the policy for checking imports order.
         The following table describes the valid options:
@@ -479,9 +480,9 @@
           </td>
         </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="elementStyle">
+    <section name="elementStyle">
       <p>
         This property represents the policy for the styles for defining
         elements in an annotation. The following table
@@ -535,9 +536,9 @@
           </td>
         </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="closingParens">
+    <section name="closingParens">
       <p>
         This property represents the policy for the styles for the ending
         parenthesis. The following table describes the valid options:
@@ -572,9 +573,9 @@
           </td>
         </tr>
       </table>
-    </subsection>
+    </section>
 
-    <subsection name="trailingArrayComma">
+    <section name="trailingArrayComma">
       <p>
         This property represents the policy for the styles for the trailing
         array comma. The following table describes the valid options:
@@ -609,7 +610,6 @@
           </td>
         </tr>
       </table>
-    </subsection>
     </section>
   </body>
 </document>
