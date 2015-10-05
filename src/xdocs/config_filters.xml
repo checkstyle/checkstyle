@@ -25,7 +25,7 @@
       <subsection name="Description">
         <p>
           Filter <code>SeverityMatchFilter</code> decides
-          audit events according to the <a href="#Severity">severity
+          audit events according to the <a href="config.html#Severity">severity
           level</a> of the event.
         </p>
       </subsection>
@@ -82,7 +82,7 @@
           <p>
             Filter <code>SuppressionFilter</code> rejects
             audit events for Check errors according to
-            a <a href="#XML_Details"><em>suppressions XML
+            a <a href="config.html#XML_Structure"><em>suppressions XML
             document</em></a> in a file. If there is no configured
             suppressions file, the Filter accepts all audit events.
           </p>
@@ -131,7 +131,7 @@
 &lt;/module&gt;
           </source>
           <p>
-            A <a href="#XML_Details"><em>suppressions XML
+            A <a href="config.html#XML_Structure"><em>suppressions XML
             document</em></a> contains a set
             of <code>suppress</code> elements, where
             each <code>suppress</code> element can have the
