@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -96,7 +97,7 @@ public class ScopeTest {
         assertTrue(Scope.PROTECTED.isIn(Scope.PRIVATE));
         assertTrue(Scope.PACKAGE.isIn(Scope.PRIVATE));
         assertTrue(Scope.PRIVATE.isIn(Scope.PRIVATE));
-        assertTrue(!Scope.ANONINNER.isIn(Scope.PRIVATE));
+        assertFalse(Scope.ANONINNER.isIn(Scope.PRIVATE));
     }
 
     @Test
@@ -105,8 +106,8 @@ public class ScopeTest {
         assertTrue(Scope.PUBLIC.isIn(Scope.PACKAGE));
         assertTrue(Scope.PROTECTED.isIn(Scope.PACKAGE));
         assertTrue(Scope.PACKAGE.isIn(Scope.PACKAGE));
-        assertTrue(!Scope.PRIVATE.isIn(Scope.PACKAGE));
-        assertTrue(!Scope.ANONINNER.isIn(Scope.PACKAGE));
+        assertFalse(Scope.PRIVATE.isIn(Scope.PACKAGE));
+        assertFalse(Scope.ANONINNER.isIn(Scope.PACKAGE));
     }
 
     @Test
@@ -114,28 +115,28 @@ public class ScopeTest {
         assertTrue(Scope.NOTHING.isIn(Scope.PROTECTED));
         assertTrue(Scope.PUBLIC.isIn(Scope.PROTECTED));
         assertTrue(Scope.PROTECTED.isIn(Scope.PROTECTED));
-        assertTrue(!Scope.PACKAGE.isIn(Scope.PROTECTED));
-        assertTrue(!Scope.PRIVATE.isIn(Scope.PROTECTED));
-        assertTrue(!Scope.ANONINNER.isIn(Scope.PROTECTED));
+        assertFalse(Scope.PACKAGE.isIn(Scope.PROTECTED));
+        assertFalse(Scope.PRIVATE.isIn(Scope.PROTECTED));
+        assertFalse(Scope.ANONINNER.isIn(Scope.PROTECTED));
     }
 
     @Test
     public void testIsInPublic() {
         assertTrue(Scope.NOTHING.isIn(Scope.PUBLIC));
         assertTrue(Scope.PUBLIC.isIn(Scope.PUBLIC));
-        assertTrue(!Scope.PROTECTED.isIn(Scope.PUBLIC));
-        assertTrue(!Scope.PACKAGE.isIn(Scope.PUBLIC));
-        assertTrue(!Scope.PRIVATE.isIn(Scope.PUBLIC));
-        assertTrue(!Scope.ANONINNER.isIn(Scope.PUBLIC));
+        assertFalse(Scope.PROTECTED.isIn(Scope.PUBLIC));
+        assertFalse(Scope.PACKAGE.isIn(Scope.PUBLIC));
+        assertFalse(Scope.PRIVATE.isIn(Scope.PUBLIC));
+        assertFalse(Scope.ANONINNER.isIn(Scope.PUBLIC));
     }
 
     @Test
     public void testIsInNothing() {
         assertTrue(Scope.NOTHING.isIn(Scope.NOTHING));
-        assertTrue(!Scope.PUBLIC.isIn(Scope.NOTHING));
-        assertTrue(!Scope.PROTECTED.isIn(Scope.NOTHING));
-        assertTrue(!Scope.PACKAGE.isIn(Scope.NOTHING));
-        assertTrue(!Scope.PRIVATE.isIn(Scope.NOTHING));
-        assertTrue(!Scope.ANONINNER.isIn(Scope.NOTHING));
+        assertFalse(Scope.PUBLIC.isIn(Scope.NOTHING));
+        assertFalse(Scope.PROTECTED.isIn(Scope.NOTHING));
+        assertFalse(Scope.PACKAGE.isIn(Scope.NOTHING));
+        assertFalse(Scope.PRIVATE.isIn(Scope.NOTHING));
+        assertFalse(Scope.ANONINNER.isIn(Scope.NOTHING));
     }
 }
