@@ -1668,16 +1668,8 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>89</totalBranchRate>
-                <totalLineRate>95</totalLineRate>
-                <regexes>
-                  <regex>
-                    <!-- till https://github.com/checkstyle/checkstyle/issues/2243 -->
-                    <pattern>.*.checks.TranslationCheck</pattern>
-                    <branchRate>97</branchRate>
-                    <lineRate>98</lineRate>
-                  </regex>
-                </regexes>
+                <totalBranchRate>100</totalBranchRate>
+                <totalLineRate>100</totalLineRate>
               </check>
               <instrumentation>
                 <excludes>
