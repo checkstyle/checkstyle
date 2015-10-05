@@ -14,7 +14,8 @@
   </head>
 
   <body>
-<!--    <section name="Content">
+<!-- till https://issues.apache.org/jira/browse/MSITE-748
+    <section name="Content">
       <macro name="toc">
         <param name="fromDepth" value="1"/>
         <param name="toDepth" value="1"/>
