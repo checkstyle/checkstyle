@@ -15,6 +15,46 @@
 
   <body>
 
+    <section name="Release 6.11.2">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Make ConfigurationLoader.loadConfiguration public. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2260">#2260</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Create UT to check that all checkstyle modules have xdocs. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/819">#819</a>
+        </li>
+        <li>
+          Split config.html into few pages. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/819">#819</a>
+        </li>
+        <li>
+          Create xdoc documentation for FileContentsHolder. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/819">#819</a>
+        </li>
+        <li>
+          Add GENERIC_START and GENERIC_END into list of acceptable tokens in xdocs of NoWhiteSpaceAfter and WhiteSpaceAround. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2258">#2258</a>
+        </li>
+        <li>
+          Add COMMA into list of acceptable tokens in xdocs of NoWhiteSpaceBefore. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2259">#2259</a>
+        </li>
+        <li>
+          minor refactoring, helper method was added. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2231">#2231</a>
+        </li>
+        <li>
+          fixed jgit resource leaks in commit validation. Author: rnveach
+        </li>
+        <li>
+          Ilja Dubinin was added as developer. Author: Roman Ivanov
+        </li>
+        <li>
+          Add WILDCARD_TYPE into list of acceptable tokens in xdocs of WhitespaceAround. Author: Andrei Selkin
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.11.1">
       <p>Bug fixes:</p>
       <ul>
