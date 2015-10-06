@@ -65,7 +65,7 @@ directory.
 [travis img]:https://img.shields.io/travis/checkstyle/checkstyle/master.svg?&label=Linux%26Mac
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle
-[appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
+[appveyor img]:https://img.shields.io/appveyor/ci/checkstyle/checkstyle.svg?label=Windows
 
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
 [sonar img]:https://img.shields.io/sonar/http/nemo.sonarqube.org/com.puppycrawl.tools:checkstyle/tech_debt.svg?label=Sonarqube%20tech%20debt
