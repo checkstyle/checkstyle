@@ -395,10 +395,10 @@ public final class CheckUtils {
     }
 
     /**
-     * Checks whether a method is a void one.
+     * Checks whether a method is a not void one.
      *
      * @param methodDefAst the method node.
-     * @return true if method is a void one.
+     * @return true if method is a not void one.
      */
     public static boolean isNonVoidMethod(DetailAST methodDefAst) {
         boolean retVal = false;
