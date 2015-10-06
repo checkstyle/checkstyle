@@ -30,7 +30,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void customImportTest_1() throws Exception {
+    public void customImportTest1() throws Exception {
         
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
@@ -54,7 +54,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void customImportTest_2() throws Exception {
+    public void customImportTest2() throws Exception {
         
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
@@ -75,7 +75,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport{
     }
 
     @Test
-    public void customImportTest_3() throws Exception {
+    public void customImportTest3() throws Exception {
         
         final String[] expected = {
                 "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
