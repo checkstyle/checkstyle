@@ -494,7 +494,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
             checkParamTags(tags, ast, !hasInheritDocTag);
             checkThrowsTags(tags, getThrows(ast), !hasInheritDocTag);
-            if (CheckUtils.isVoidMethod(ast)) {
+            if (CheckUtils.isNonVoidMethod(ast)) {
                 checkReturnTag(tags, ast.getLineNo(), !hasInheritDocTag);
             }
         }

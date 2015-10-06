@@ -400,7 +400,7 @@ public final class CheckUtils {
      * @param methodDefAst the method node.
      * @return true if method is a void one.
      */
-    public static boolean isVoidMethod(DetailAST methodDefAst) {
+    public static boolean isNonVoidMethod(DetailAST methodDefAst) {
         boolean retVal = false;
         if (methodDefAst.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST typeAST = methodDefAst.findFirstToken(TokenTypes.TYPE);
