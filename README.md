@@ -62,7 +62,7 @@ these packages are in the file named "LICENSE.apache20" in this
 directory.
 
 [travis]:http://travis-ci.org/checkstyle/checkstyle
-[travis img]:https://img.shields.io/travis/checkstyle/checkstyle/master.svg?&label=Linux%26Mac
+[travis img]:https://img.shields.io/travis/checkstyle/checkstyle/master.svg?label=Linux%26Mac
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle
 [appveyor img]:https://img.shields.io/appveyor/ci/checkstyle/checkstyle.svg?label=Windows
