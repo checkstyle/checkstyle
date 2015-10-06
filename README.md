@@ -95,5 +95,5 @@ directory.
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
 
 [teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
-[teamcity img]:https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/Checkstyle_IdeaInspectionsMaster.svg?label=TeamCity
+[teamcity img]:https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/Checkstyle_IdeaInspectionsMaster.svg?label=TeamCity%20inspections
 
