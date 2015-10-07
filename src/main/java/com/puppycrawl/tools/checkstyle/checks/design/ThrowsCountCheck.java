@@ -164,11 +164,11 @@ public final class ThrowsCountCheck extends Check {
     private static String getAnnotationName(DetailAST annotation) {
         final DetailAST dotAst = annotation.findFirstToken(TokenTypes.DOT);
         String name;
-        if (dotAst != null) {
-            name = dotAst.findFirstToken(TokenTypes.IDENT).getText();
+        if (dotAst == null) {
+            name = annotation.findFirstToken(TokenTypes.IDENT).getText();
         }
         else {
-            name = annotation.findFirstToken(TokenTypes.IDENT).getText();
+            name = dotAst.findFirstToken(TokenTypes.IDENT).getText();
         }
         return name;
     }

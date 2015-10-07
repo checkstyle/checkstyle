@@ -379,7 +379,20 @@ public class EqualsAvoidNullCheck extends Check {
         boolean result = false;
         final DetailAST previousSiblingAst = objCalledOn.getPreviousSibling();
         final String name = objCalledOn.getText();
-        if (previousSiblingAst != null) {
+        if (previousSiblingAst == null) {
+            FieldFrame frame = currentFrame;
+            while (frame != null) {
+                final DetailAST field = frame.findField(name);
+                if (field != null
+                        && (frame.isClassOrEnumOrEnumConstDef()
+                                || checkLineNo(field, objCalledOn))) {
+                    result = STRING.equals(getFieldType(field));
+                    break;
+                }
+                frame = frame.getParent();
+            }
+        }
+        else {
             if (previousSiblingAst.getType() == TokenTypes.LITERAL_THIS) {
                 final DetailAST field = getObjectFrame(currentFrame).findField(name);
                 result = STRING.equals(getFieldType(field));
@@ -395,19 +408,6 @@ public class EqualsAvoidNullCheck extends Check {
                     }
                     frame = getObjectFrame(frame.getParent());
                 }
-            }
-        }
-        else {
-            FieldFrame frame = currentFrame;
-            while (frame != null) {
-                final DetailAST field = frame.findField(name);
-                if (field != null
-                        && (frame.isClassOrEnumOrEnumConstDef()
-                                || checkLineNo(field, objCalledOn))) {
-                    result = STRING.equals(getFieldType(field));
-                    break;
-                }
-                frame = frame.getParent();
             }
         }
         return result;
