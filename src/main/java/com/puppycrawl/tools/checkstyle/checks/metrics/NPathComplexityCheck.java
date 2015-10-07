@@ -160,4 +160,14 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck {
         setCurrentValue(
                 getCurrentValue().add(BigInteger.ONE).multiply(popValue()));
     }
+
+    @Override
+    protected void visitTokenHook(DetailAST ast) {
+        // no code
+    }
+
+    @Override
+    protected void leaveTokenHook(DetailAST ast) {
+        // no code
+    }
 }
