@@ -252,16 +252,15 @@ public class AvoidEscapedUnicodeCharactersCheck
         final DetailAST variableDef = getVariableDef(ast);
         DetailAST semi;
 
-        if (variableDef != null) {
-
+        if (variableDef == null) {
+            semi = getSemi(ast);
+        }
+        else {
             semi = variableDef.getNextSibling();
 
             if (semi.getType() != TokenTypes.SEMI) {
                 semi = variableDef.getLastChild();
             }
-        }
-        else {
-            semi = getSemi(ast);
         }
 
         boolean result = false;

@@ -297,11 +297,11 @@ public class NeedBracesCheck extends Check {
     private static DetailAST findExpressionBlockInForLoop(DetailAST literalFor) {
         final DetailAST forEachClause = literalFor.findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
         final DetailAST firstToken;
-        if (forEachClause != null) {
-            firstToken = forEachClause.findFirstToken(TokenTypes.EXPR);
+        if (forEachClause == null) {
+            firstToken = literalFor.findFirstToken(TokenTypes.EXPR);
         }
         else {
-            firstToken = literalFor.findFirstToken(TokenTypes.EXPR);
+            firstToken = forEachClause.findFirstToken(TokenTypes.EXPR);
         }
         return firstToken;
     }

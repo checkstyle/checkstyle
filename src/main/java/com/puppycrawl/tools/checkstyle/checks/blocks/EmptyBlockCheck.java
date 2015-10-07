@@ -193,15 +193,13 @@ public class EmptyBlockCheck
         }
         else {
             // check only whitespace of first & last lines
-            if (!lines[slistLineNo - 1]
-                .substring(slistColNo + 1).trim().isEmpty()
-                    || !lines[rcurlyLineNo - 1]
-                .substring(0, rcurlyColNo).trim().isEmpty()) {
-                retVal = true;
-            }
-            else {
+            if (lines[slistLineNo - 1].substring(slistColNo + 1).trim().isEmpty()
+                    && lines[rcurlyLineNo - 1].substring(0, rcurlyColNo).trim().isEmpty()) {
                 // check if all lines are also only whitespace
                 retVal = !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
+            }
+            else {
+                retVal = true;
             }
         }
         return retVal;
