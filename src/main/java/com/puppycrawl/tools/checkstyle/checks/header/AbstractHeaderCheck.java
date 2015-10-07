@@ -59,6 +59,12 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
     private final List<String> readerLines = Lists.newArrayList();
 
     /**
+     * Hook method for post processing header lines.
+     * This implementation does nothing.
+     */
+    protected abstract void postProcessHeaderLines();
+
+    /**
      * Return the header lines to check against.
      * @return the header lines to check against.
      */
@@ -172,14 +178,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
             readerLines.add(line);
         }
         postProcessHeaderLines();
-    }
-
-    /**
-     * Hook method for post processing header lines.
-     * This implementation does nothing.
-     */
-    protected void postProcessHeaderLines() {
-        // No code by default
     }
 
     @Override
