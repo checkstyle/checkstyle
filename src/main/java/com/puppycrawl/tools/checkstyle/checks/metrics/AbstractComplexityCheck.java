@@ -61,6 +61,22 @@ public abstract class AbstractComplexityCheck
      */
     protected abstract String getMessageID();
 
+    /**
+     * Hook called when visiting a token. Will not be called the method
+     * definition tokens.
+     *
+     * @param ast the token being visited
+     */
+    protected abstract void visitTokenHook(DetailAST ast);
+
+    /**
+     * Hook called when leaving a token. Will not be called the method
+     * definition tokens.
+     *
+     * @param ast the token being left
+     */
+    protected abstract void leaveTokenHook(DetailAST ast);
+
     @Override
     public final int[] getRequiredTokens() {
         return new int[] {
@@ -106,26 +122,6 @@ public abstract class AbstractComplexityCheck
             default:
                 leaveTokenHook(ast);
         }
-    }
-
-    /**
-     * Hook called when visiting a token. Will not be called the method
-     * definition tokens.
-     *
-     * @param ast the token being visited
-     */
-    protected void visitTokenHook(DetailAST ast) {
-        // no code
-    }
-
-    /**
-     * Hook called when leaving a token. Will not be called the method
-     * definition tokens.
-     *
-     * @param ast the token being left
-     */
-    protected void leaveTokenHook(DetailAST ast) {
-        // no code
     }
 
     /**
