@@ -237,7 +237,7 @@
   <rule ref="rulesets/java/strictexception.xml/AvoidCatchingThrowable">
     <properties>
       <!-- log name of problematic file and do not crash completely (bug 694111) -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']//MethodDeclarator/@Image='processFiltered'"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']//MethodDeclarator[@Image='processFiltered']"/>
     </properties>
   </rule>
 
