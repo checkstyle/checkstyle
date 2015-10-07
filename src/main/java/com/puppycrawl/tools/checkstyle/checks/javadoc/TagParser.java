@@ -101,38 +101,50 @@ class TagParser {
             if (isCommentTag(text, position)) {
                 position = skipHtmlComment(text, position);
             }
-            else if (!isTag(text, position)) {
-                position = getNextCharPos(text, position);
+            else if (isTag(text, position)) {
+                position = parseTag(text, lineNo, nLines, position);
             }
             else {
-                // find end of tag
-                final Point endTag = findChar(text, '>', position);
-                final boolean incompleteTag = endTag.getLineNo() >= nLines;
-                // get tag id (one word)
-                final String tagId;
-
-                if (incompleteTag) {
-                    tagId = "";
-                }
-                else {
-                    tagId = getTagId(text, position);
-                }
-                // is this closed tag
-                final boolean closedTag =
-                        endTag.getLineNo() < nLines
-                         && text[endTag.getLineNo()]
-                         .charAt(endTag.getColumnNo() - 1) == '/';
-                // add new tag
-                add(new HtmlTag(tagId,
-                                position.getLineNo() + lineNo,
-                                position.getColumnNo(),
-                                closedTag,
-                                incompleteTag,
-                                text[position.getLineNo()]));
-                position = endTag;
+                position = getNextCharPos(text, position);
             }
             position = findChar(text, '<', position);
         }
+    }
+
+    /**
+     * Parses the tag and return position after it
+     * @param text the source line to parse.
+     * @param lineNo the source line number.
+     * @param nLines line length
+     * @param position start position for parsing
+     * @return position after tag
+     */
+    private Point parseTag(String[] text, int lineNo, final int nLines, Point position) {
+        // find end of tag
+        final Point endTag = findChar(text, '>', position);
+        final boolean incompleteTag = endTag.getLineNo() >= nLines;
+        // get tag id (one word)
+        final String tagId;
+
+        if (incompleteTag) {
+            tagId = "";
+        }
+        else {
+            tagId = getTagId(text, position);
+        }
+        // is this closed tag
+        final boolean closedTag =
+                endTag.getLineNo() < nLines
+                 && text[endTag.getLineNo()]
+                 .charAt(endTag.getColumnNo() - 1) == '/';
+        // add new tag
+        add(new HtmlTag(tagId,
+                        position.getLineNo() + lineNo,
+                        position.getColumnNo(),
+                        closedTag,
+                        incompleteTag,
+                        text[position.getLineNo()]));
+        return endTag;
     }
 
     /**

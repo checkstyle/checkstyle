@@ -102,11 +102,11 @@ public class SuppressElement
      */
     public void setLines(String lines) {
         linesCSV = lines;
-        if (lines != null) {
-            lineFilter = new CSVFilter(lines);
+        if (lines == null) {
+            lineFilter = null;
         }
         else {
-            lineFilter = null;
+            lineFilter = new CSVFilter(lines);
         }
     }
 
@@ -117,11 +117,11 @@ public class SuppressElement
      */
     public void setColumns(String columns) {
         columnsCSV = columns;
-        if (columns != null) {
-            columnFilter = new CSVFilter(columns);
+        if (columns == null) {
+            columnFilter = null;
         }
         else {
-            columnFilter = null;
+            columnFilter = new CSVFilter(columns);
         }
     }
 
