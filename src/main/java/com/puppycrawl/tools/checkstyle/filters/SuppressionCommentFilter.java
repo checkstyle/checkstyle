@@ -340,29 +340,29 @@ public class SuppressionCommentFilter
                     format =
                         expandFromComment(text, filter.checkFormat, filter.onRegexp);
                     tagCheckRegexp = Pattern.compile(format);
-                    if (filter.messageFormat != null) {
-                        format =
-                            expandFromComment(text, filter.messageFormat, filter.onRegexp);
-                        tagMessageRegexp = Pattern.compile(format);
+                    if (filter.messageFormat == null) {
+                        tagMessageRegexp = null;
                     }
                     else {
-                        tagMessageRegexp = null;
+                        format =
+                                expandFromComment(text, filter.messageFormat, filter.onRegexp);
+                        tagMessageRegexp = Pattern.compile(format);
                     }
                 }
                 else {
                     format =
                         expandFromComment(text, filter.checkFormat, filter.offRegexp);
                     tagCheckRegexp = Pattern.compile(format);
-                    if (filter.messageFormat != null) {
-                        format =
-                            expandFromComment(
-                                    text,
-                                    filter.messageFormat,
-                                    filter.offRegexp);
-                        tagMessageRegexp = Pattern.compile(format);
+                    if (filter.messageFormat == null) {
+                        tagMessageRegexp = null;
                     }
                     else {
-                        tagMessageRegexp = null;
+                        format =
+                                expandFromComment(
+                                        text,
+                                        filter.messageFormat,
+                                        filter.offRegexp);
+                        tagMessageRegexp = Pattern.compile(format);
                     }
                 }
             }
@@ -446,12 +446,12 @@ public class SuppressionCommentFilter
             boolean match = false;
             final Matcher tagMatcher = tagCheckRegexp.matcher(event.getSourceName());
             if (tagMatcher.find()) {
-                if (tagMessageRegexp != null) {
-                    final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
-                    match = messageMatcher.find();
+                if (tagMessageRegexp == null) {
+                    match = true;
                 }
                 else {
-                    match = true;
+                    final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
+                    match = messageMatcher.find();
                 }
             }
             return match;

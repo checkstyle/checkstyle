@@ -49,22 +49,22 @@ public class ForHandler extends BlockParentHandler {
             new IndentLevel(getLevel(), getBasicOffset());
         final DetailAST init = getMainAst().findFirstToken(TokenTypes.FOR_INIT);
 
-        if (init != null) {
+        if (init == null) {
+            // for each
+            final DetailAST forEach =
+                    getMainAst().findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
+            checkExpressionSubtree(forEach, expected, false, false);
+        }
+        else {
             checkExpressionSubtree(init, expected, false, false);
 
             final DetailAST cond =
-                getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
+                    getMainAst().findFirstToken(TokenTypes.FOR_CONDITION);
             checkExpressionSubtree(cond, expected, false, false);
 
             final DetailAST forIterator =
-                getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
+                    getMainAst().findFirstToken(TokenTypes.FOR_ITERATOR);
             checkExpressionSubtree(forIterator, expected, false, false);
-        }
-        // for each
-        else {
-            final DetailAST forEach =
-                getMainAst().findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
-            checkExpressionSubtree(forEach, expected, false, false);
         }
     }
 
