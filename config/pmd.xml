@@ -136,8 +136,6 @@
     <exclude name="MissingBreakInSwitch"/>
     <!-- we need compare by ref as Tree structure is immutable, we can easily rely on refs -->
     <exclude name="CompareObjectsWithEquals"/>
-    <!-- till #996 -->
-    <exclude name="PreserveStackTrace"/>
     <!-- we will use our own declaration order logic -->
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
     <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independent logic container -->
@@ -148,6 +146,12 @@
     <properties>
      <!-- false positives on IF_ELSE-IF-ELSE-IF -->
     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclarator[@Image='isReference'] | //ClassOrInterfaceDeclaration[@Image='DetailAST']//MethodDeclarator[@Image='addPreviousSibling'] | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']//MethodDeclarator[@Image='checkAnnotations'] | //ClassOrInterfaceDeclaration[@Image='PkgControl']//MethodDeclarator[@Image='checkAccess'] | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']//MethodDeclarator[@Image='getHandler']"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/design.xml/PreserveStackTrace">
+    <properties>
+     <!-- yes we swallow one exception and try to do another attempt, second attempt does not hide cause -->
+    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']//MethodDeclarator[@Image='createModule']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/design.xml/EmptyMethodInAbstractClassShouldBeAbstract">
