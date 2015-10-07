@@ -154,11 +154,11 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
             try {
                 headerRegexps.add(Pattern.compile(line));
             }
-            catch (final PatternSyntaxException ignored) {
+            catch (final PatternSyntaxException ex) {
                 throw new ConversionException("line "
                         + (headerRegexps.size() + 1)
                         + " in header specification"
-                        + " is not a regular expression");
+                        + " is not a regular expression", ex);
             }
         }
     }

@@ -98,8 +98,8 @@ public final class SuppressionsLoader
                     suppress.setChecks(checks);
                 }
             }
-            catch (final PatternSyntaxException ignored) {
-                throw new SAXException("invalid files or checks format");
+            catch (final PatternSyntaxException ex) {
+                throw new SAXException("invalid files or checks format", ex);
             }
             final String lines = attributes.getValue("lines");
             if (lines != null) {
