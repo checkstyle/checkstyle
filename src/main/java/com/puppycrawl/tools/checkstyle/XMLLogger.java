@@ -141,7 +141,7 @@ public class XMLLogger
         printer.println("]]>");
         printer.println("</exception>");
         printer.flush();
-        this.writer.println(encode(stringWriter.toString()));
+        writer.println(encode(stringWriter.toString()));
     }
 
     /**
