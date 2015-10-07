@@ -335,20 +335,7 @@ public final class ConfigurationLoader {
                 fragments.add(String.valueOf(DOLLAR_SIGN));
                 prev = pos + 1;
             }
-            else if (value.charAt(pos + 1) != '{') {
-                if (value.charAt(pos + 1) == DOLLAR_SIGN) {
-                    //backwards compatibility two $ map to one mode
-                    fragments.add(String.valueOf(DOLLAR_SIGN));
-                    prev = pos + 2;
-                }
-                else {
-                    //new behaviour: $X maps to $X for all values of X!='$'
-                    fragments.add(value.substring(pos, pos + 2));
-                    prev = pos + 2;
-                }
-
-            }
-            else {
+            else if (value.charAt(pos + 1) == '{') {
                 //property found, extract its name or bail on a typo
                 final int endName = value.indexOf('}', pos);
                 if (endName < 0) {
@@ -359,6 +346,18 @@ public final class ConfigurationLoader {
                 fragments.add(null);
                 propertyRefs.add(propertyName);
                 prev = endName + 1;
+            }
+            else {
+                if (value.charAt(pos + 1) == DOLLAR_SIGN) {
+                    //backwards compatibility two $ map to one mode
+                    fragments.add(String.valueOf(DOLLAR_SIGN));
+                    prev = pos + 2;
+                }
+                else {
+                    //new behaviour: $X maps to $X for all values of X!='$'
+                    fragments.add(value.substring(pos, pos + 2));
+                    prev = pos + 2;
+                }
             }
 
             //search for the next instance of $ from the 'prev' position

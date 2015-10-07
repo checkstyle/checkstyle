@@ -218,19 +218,18 @@ public final class MissingDeprecatedCheck extends Check {
             if (multilineCont.find()) {
                 reindex = lines.length;
                 final String lFin = multilineCont.group(1);
-                if (!lFin.equals(NEXT_TAG)
-                    && !lFin.equals(END_JAVADOC)) {
+                if (lFin.equals(NEXT_TAG) || lFin.equals(END_JAVADOC)) {
+                    log(currentLine, MSG_KEY_JAVADOC_MISSING);
                     if (foundBefore) {
                         log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
-                            JavadocTagInfo.DEPRECATED.getText());
+                                JavadocTagInfo.DEPRECATED.getText());
                     }
                     found = true;
                 }
                 else {
-                    log(currentLine, MSG_KEY_JAVADOC_MISSING);
                     if (foundBefore) {
                         log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
-                            JavadocTagInfo.DEPRECATED.getText());
+                                JavadocTagInfo.DEPRECATED.getText());
                     }
                     found = true;
                 }

@@ -156,12 +156,12 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
                 warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         DetailAST warning;
 
-        if (token != null) {
-            // case like '@SuppressWarnings(value = UNUSED)'
-            warning = token.findFirstToken(TokenTypes.EXPR);
+        if (token == null) {
+            warning = warningHolder.findFirstToken(TokenTypes.EXPR);
         }
         else {
-            warning = warningHolder.findFirstToken(TokenTypes.EXPR);
+            // case like '@SuppressWarnings(value = UNUSED)'
+            warning = token.findFirstToken(TokenTypes.EXPR);
         }
 
         //rare case with empty array ex: @SuppressWarnings({})
@@ -252,13 +252,13 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
             annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         final DetailAST annArrayInit;
 
-        if (annValuePair != null) {
+        if (annValuePair == null) {
             annArrayInit =
-                annValuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+                    annotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
         }
         else {
             annArrayInit =
-                annotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
+                    annValuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
         }
 
         if (annArrayInit != null) {

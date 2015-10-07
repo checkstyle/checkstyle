@@ -213,11 +213,11 @@ public abstract class AbstractDeclarationCollector extends Check {
      * @return LexicalFrame containing declaration or null
      */
     private LexicalFrame findFrame(String name) {
-        if (current != null) {
-            return current.getIfContains(name);
+        if (current == null) {
+            return null;
         }
         else {
-            return null;
+            return current.getIfContains(name);
         }
     }
 
