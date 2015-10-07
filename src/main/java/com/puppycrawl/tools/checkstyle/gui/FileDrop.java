@@ -249,7 +249,7 @@ class FileDrop {
         public void dragEnter(DropTargetDragEvent evt) {
             if (isDragOk(evt)) {
                 if (component instanceof JComponent) {
-                    final JComponent comp = (JComponent) this.component;
+                    final JComponent comp = (JComponent) component;
                     normalBorder = comp.getBorder();
                     comp.setBorder(dragBorder);
                 }
