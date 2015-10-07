@@ -110,9 +110,9 @@ public final class FullIdent {
      * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdent(DetailAST ast) {
-        final FullIdent fi = new FullIdent();
-        extractFullIdent(fi, ast);
-        return fi;
+        final FullIdent ident = new FullIdent();
+        extractFullIdent(ident, ast);
+        return ident;
     }
 
     /**

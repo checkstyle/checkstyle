@@ -198,17 +198,17 @@ class TagParser {
     /**
      * Skips HTML comments.
      * @param text text of javadoc comments.
-     * @param from start position of HTML-comments
+     * @param fromPoint start position of HTML-comments
      * @return position after HTML-comments
      */
-    private static Point skipHtmlComment(String[] text, Point from) {
-        Point to = from;
-        to = findChar(text, '>', to);
-        while (!text[to.getLineNo()]
-               .substring(0, to.getColumnNo() + 1).endsWith("-->")) {
-            to = findChar(text, '>', getNextCharPos(text, to));
+    private static Point skipHtmlComment(String[] text, Point fromPoint) {
+        Point toPoint = fromPoint;
+        toPoint = findChar(text, '>', toPoint);
+        while (!text[toPoint.getLineNo()]
+               .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
+            toPoint = findChar(text, '>', getNextCharPos(text, toPoint));
         }
-        return to;
+        return toPoint;
     }
 
     /**

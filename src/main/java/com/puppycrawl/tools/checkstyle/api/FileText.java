@@ -136,10 +136,10 @@ public final class FileText extends AbstractList<String> {
         // is about 30% faster than using the
         // LINE_TERMINATOR.split(fullText, -1) method
         final ArrayList<String> textLines = new ArrayList<>();
-        final BufferedReader br =
+        final BufferedReader reader =
             new BufferedReader(new StringReader(fullText));
         while (true) {
-            final String line = br.readLine();
+            final String line = reader.readLine();
             if (line == null) {
                 break;
             }

@@ -156,9 +156,9 @@ public class AutomaticBean
                 // BeanUtilsBean.copyProperties silently ignores missing setters
                 // for key, so we have to go through great lengths here to
                 // figure out if the bean property really exists.
-                final PropertyDescriptor pd =
+                final PropertyDescriptor descriptor =
                         PropertyUtils.getPropertyDescriptor(this, key);
-                if (pd == null) {
+                if (descriptor == null) {
                     final String message = String.format("Property '%s' in module %s does not "
                             + "exist, please check the documentation", key, moduleName);
                     throw new CheckstyleException(message);
@@ -245,12 +245,12 @@ public class AutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             // Convert to a String and trim it for the tokenizer.
-            final StringTokenizer st = new StringTokenizer(
+            final StringTokenizer tokenizer = new StringTokenizer(
                 value.toString().trim(), ",");
             final List<String> result = Lists.newArrayList();
 
-            while (st.hasMoreTokens()) {
-                final String token = st.nextToken();
+            while (tokenizer.hasMoreTokens()) {
+                final String token = tokenizer.nextToken();
                 result.add(token.trim());
             }
 

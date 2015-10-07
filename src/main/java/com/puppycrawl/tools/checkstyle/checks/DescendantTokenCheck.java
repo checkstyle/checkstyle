@@ -339,10 +339,10 @@ public class DescendantTokenCheck extends Check {
         // Any tokens set by property 'tokens' are acceptable
         final Set<String> tokenNames = getTokenNames();
         final int[] result = new int[tokenNames.size()];
-        int i = 0;
+        int index = 0;
         for (String name : tokenNames) {
-            result[i] = TokenUtils.getTokenId(name);
-            i++;
+            result[index] = TokenUtils.getTokenId(name);
+            index++;
         }
         return result;
     }

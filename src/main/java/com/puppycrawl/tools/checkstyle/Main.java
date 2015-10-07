@@ -404,8 +404,8 @@ public final class Main {
 
     /** Prints the usage information. **/
     private static void printUsage() {
-        final HelpFormatter hf = new HelpFormatter();
-        hf.printHelp(String.format("java %s [options] -c <config.xml> file...",
+        final HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp(String.format("java %s [options] -c <config.xml> file...",
                 Main.class.getName()), buildOptions());
     }
 

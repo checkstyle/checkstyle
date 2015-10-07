@@ -60,7 +60,7 @@ public final class TokenTypesDoclet {
         final String fileName = getDestFileName(root.options());
         final FileOutputStream fos = new FileOutputStream(fileName);
         final Writer osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
-        final PrintWriter pw = new PrintWriter(osw, false);
+        final PrintWriter writer = new PrintWriter(osw, false);
 
         try {
             final ClassDoc[] classes = root.classes();
@@ -72,13 +72,13 @@ public final class TokenTypesDoclet {
                         final String message = "Should be only one tag.";
                         throw new IllegalArgumentException(message);
                     }
-                    pw.println(field.name() + "="
-                        + field.firstSentenceTags()[0].text());
+                    writer.println(field.name() + "="
+                            + field.firstSentenceTags()[0].text());
                 }
             }
         }
         finally {
-            pw.close();
+            writer.close();
         }
 
         return true;

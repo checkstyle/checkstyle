@@ -157,9 +157,9 @@ public final class AnnotationUtility {
         for (DetailAST child = holder.getFirstChild();
             child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST at = child.getFirstChild();
+                final DetailAST firstChild = child.getFirstChild();
                 final String name =
-                    FullIdent.createFullIdent(at.getNextSibling()).getText();
+                    FullIdent.createFullIdent(firstChild.getNextSibling()).getText();
                 if (annotation.equals(name)) {
                     return child;
                 }

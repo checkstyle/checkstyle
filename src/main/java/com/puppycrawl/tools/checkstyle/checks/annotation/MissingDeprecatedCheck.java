@@ -204,14 +204,14 @@ public final class MissingDeprecatedCheck extends Check {
      * @param lines all lines
      * @param foundBefore flag from parent method
      * @param currentLine current line
-     * @param i som index
+     * @param index som index
      * @return true if Tag is found
      */
     private boolean checkTagAtTheRestOfComment(String[] lines, boolean foundBefore,
-            int currentLine, int i) {
+            int currentLine, int index) {
 
         boolean found = false;
-        for (int reindex = i + 1;
+        for (int reindex = index + 1;
             reindex < lines.length;) {
             final Matcher multilineCont = MATCH_DEPRECATED_MULTILINE_CONT.matcher(lines[reindex]);
 

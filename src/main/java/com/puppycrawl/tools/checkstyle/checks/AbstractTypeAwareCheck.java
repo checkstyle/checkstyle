@@ -322,9 +322,9 @@ public abstract class AbstractTypeAwareCheck extends Check {
                 if (bounds != null) {
                     final FullIdent name =
                         FullIdent.createFullIdentBelow(bounds);
-                    final AbstractClassInfo ci =
+                    final AbstractClassInfo classInfo =
                         createClassInfo(new Token(name), currentClassName);
-                    paramsMap.put(alias, ci);
+                    paramsMap.put(alias, classInfo);
                 }
             }
         }
@@ -361,9 +361,9 @@ public abstract class AbstractTypeAwareCheck extends Check {
      */
     protected final AbstractClassInfo createClassInfo(final Token name,
                                               final String surroundingClass) {
-        final AbstractClassInfo ci = findClassAlias(name.getText());
-        if (ci != null) {
-            return new ClassAlias(name, ci);
+        final AbstractClassInfo classInfo = findClassAlias(name.getText());
+        if (classInfo != null) {
+            return new ClassAlias(name, classInfo);
         }
         return new RegularClass(name, surroundingClass, this);
     }
@@ -374,16 +374,16 @@ public abstract class AbstractTypeAwareCheck extends Check {
      * @return ClassInfo for alias if it exists, null otherwise
      */
     protected final AbstractClassInfo findClassAlias(final String name) {
-        AbstractClassInfo ci = null;
+        AbstractClassInfo classInfo = null;
         final Iterator<Map<String, AbstractClassInfo>> iterator = typeParams.descendingIterator();
         while (iterator.hasNext()) {
             final Map<String, AbstractClassInfo> paramMap = iterator.next();
-            ci = paramMap.get(name);
-            if (ci != null) {
+            classInfo = paramMap.get(name);
+            if (classInfo != null) {
                 break;
             }
         }
-        return ci;
+        return classInfo;
     }
 
     /**

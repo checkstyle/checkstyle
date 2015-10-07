@@ -74,13 +74,13 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
 
     @Override
     public void initialize(AST ast) {
-        final DetailAST da = (DetailAST) ast;
-        setText(da.getText());
-        setType(da.getType());
-        lineNo = da.getLineNo();
-        columnNo = da.getColumnNo();
-        hiddenAfter = da.getHiddenAfter();
-        hiddenBefore = da.getHiddenBefore();
+        final DetailAST detailAst = (DetailAST) ast;
+        setText(detailAst.getText());
+        setType(detailAst.getType());
+        lineNo = detailAst.getLineNo();
+        columnNo = detailAst.getColumnNo();
+        hiddenAfter = detailAst.getHiddenAfter();
+        hiddenBefore = detailAst.getHiddenBefore();
     }
 
     @Override

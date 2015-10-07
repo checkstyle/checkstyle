@@ -88,9 +88,9 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         }
         else {
             int headerLineNo = 0;
-            int i;
-            for (i = 0; headerLineNo < headerSize && i < fileSize; i++) {
-                final String line = lines.get(i);
+            int index;
+            for (index = 0; headerLineNo < headerSize && index < fileSize; index++) {
+                final String line = lines.get(index);
                 boolean isMatch = isMatch(line, headerLineNo);
                 while (!isMatch && isMultiLine(headerLineNo)) {
                     headerLineNo++;
@@ -98,7 +98,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                             || isMatch(line, headerLineNo);
                 }
                 if (!isMatch) {
-                    log(i + 1, MSG_HEADER_MISMATCH, getHeaderLines().get(
+                    log(index + 1, MSG_HEADER_MISMATCH, getHeaderLines().get(
                             headerLineNo));
                     break;
                 }
@@ -106,7 +106,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                     headerLineNo++;
                 }
             }
-            if (i == fileSize) {
+            if (index == fileSize) {
                 // if file finished, but we have at least one non-multi-line
                 // header isn't completed
                 logFirstSinglelineLine(headerLineNo, headerSize);

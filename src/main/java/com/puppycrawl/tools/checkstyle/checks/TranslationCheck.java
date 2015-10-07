@@ -384,9 +384,9 @@ public class TranslationCheck
             props.load(inStream);
 
             // Gather the keys and put them into a set
-            final Enumeration<?> e = props.propertyNames();
-            while (e.hasMoreElements()) {
-                keys.add(e.nextElement());
+            final Enumeration<?> element = props.propertyNames();
+            while (element.hasMoreElements()) {
+                keys.add(element.nextElement());
             }
         }
         catch (final IOException e) {

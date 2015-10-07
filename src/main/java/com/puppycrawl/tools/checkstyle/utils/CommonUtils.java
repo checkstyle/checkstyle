@@ -198,13 +198,13 @@ public final class CommonUtils {
      * @return the base class name from a fully qualified name
      */
     public static String baseClassName(String type) {
-        final int i = type.lastIndexOf('.');
+        final int index = type.lastIndexOf('.');
 
-        if (i == -1) {
+        if (index == -1) {
             return type;
         }
         else {
-            return type.substring(i + 1);
+            return type.substring(index + 1);
         }
     }
 

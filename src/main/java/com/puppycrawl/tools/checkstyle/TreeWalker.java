@@ -446,8 +446,8 @@ public final class TreeWalker
     public static DetailAST parse(FileContents contents)
         throws RecognitionException, TokenStreamException {
         final String fullText = contents.getText().getFullText().toString();
-        final Reader sr = new StringReader(fullText);
-        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(sr);
+        final Reader reader = new StringReader(fullText);
+        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(reader);
         lexer.setFilename(contents.getFileName());
         lexer.setCommentListener(contents);
         lexer.setTreatAssertAsKeyword(true);

@@ -109,12 +109,12 @@ public final class JavadocUtils {
         final List<InvalidJavadocTag> invalidTags = Lists.newArrayList();
         Pattern blockTagPattern = Pattern.compile("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
-            final String s = text[i];
-            final Matcher blockTagMatcher = blockTagPattern.matcher(s);
+            final String textValue = text[i];
+            final Matcher blockTagMatcher = blockTagPattern.matcher(textValue);
             if ((tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK)
                     && blockTagMatcher.find()) {
                 final String tagName = blockTagMatcher.group(1);
-                String content = s.substring(blockTagMatcher.end(1));
+                String content = textValue.substring(blockTagMatcher.end(1));
                 if (content.endsWith("*/")) {
                     content = content.substring(0, content.length() - 2);
                 }
@@ -149,10 +149,10 @@ public final class JavadocUtils {
      */
     private static void lookForInlineTags(TextBlock comment, int lineNumber,
             final List<JavadocTag> validTags, final List<InvalidJavadocTag> invalidTags) {
-        final String s = comment.getText()[lineNumber];
+        final String text = comment.getText()[lineNumber];
         // Match Javadoc text after comment characters
         final Pattern commentPattern = Pattern.compile("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
-        final Matcher commentMatcher = commentPattern.matcher(s);
+        final Matcher commentMatcher = commentPattern.matcher(text);
         final String commentContents;
 
         // offset including comment characters
@@ -164,7 +164,7 @@ public final class JavadocUtils {
         }
         else {
             // No leading asterisks, still valid
-            commentContents = s;
+            commentContents = text;
             commentOffset = 0;
         }
         final Pattern tagPattern = Pattern.compile(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");

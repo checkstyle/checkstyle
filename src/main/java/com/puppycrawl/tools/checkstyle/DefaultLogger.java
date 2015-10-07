@@ -61,12 +61,12 @@ public class DefaultLogger
 
     /**
      * Creates a new {@code DefaultLogger} instance.
-     * @param os where to log infos and errors
+     * @param outputStream where to log infos and errors
      * @param closeStreamsAfterUse if oS should be closed in auditFinished()
      */
-    public DefaultLogger(OutputStream os, boolean closeStreamsAfterUse) {
+    public DefaultLogger(OutputStream outputStream, boolean closeStreamsAfterUse) {
         // no need to close oS twice
-        this(os, closeStreamsAfterUse, os, false);
+        this(outputStream, closeStreamsAfterUse, outputStream, false);
     }
 
     /**

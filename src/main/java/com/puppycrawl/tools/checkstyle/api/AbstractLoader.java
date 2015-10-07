@@ -116,12 +116,12 @@ public abstract class AbstractLoader
     }
 
     @Override
-    public void error(SAXParseException ex) throws SAXException {
-        throw ex;
+    public void error(SAXParseException exception) throws SAXException {
+        throw exception;
     }
 
     @Override
-    public void fatalError(SAXParseException ex) throws SAXException {
-        throw ex;
+    public void fatalError(SAXParseException exception) throws SAXException {
+        throw exception;
     }
 }

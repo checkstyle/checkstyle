@@ -197,10 +197,10 @@ final class PropertyCacheFile {
             // use a message digest here to keep the length of the
             // hashcode reasonable
 
-            final MessageDigest md = MessageDigest.getInstance("SHA-1");
-            md.update(outputStream.toByteArray());
+            final MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.update(outputStream.toByteArray());
 
-            return hexEncode(md.digest());
+            return hexEncode(digest.digest());
         }
         catch (final IOException | NoSuchAlgorithmException ex) {
             // rethrow as unchecked exception

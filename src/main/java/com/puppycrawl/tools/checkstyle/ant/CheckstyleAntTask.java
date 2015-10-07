@@ -150,10 +150,10 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Adds set of files (nested fileset attribute).
-     * @param fS the file set to add
+     * @param fileSet the file set to add
      */
-    public void addFileset(FileSet fS) {
-        fileSets.add(fS);
+    public void addFileset(FileSet fileSet) {
+        fileSets.add(fileSet);
     }
 
     /**
@@ -357,10 +357,10 @@ public class CheckstyleAntTask extends Task {
             throw new BuildException("Unable to process files: " + files, e);
         }
         final int numWarnings = warningCounter.getCount();
-        final boolean ok = numErrs <= maxErrors && numWarnings <= maxWarnings;
+        final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
 
         // Handle the return status
-        if (!ok) {
+        if (!okStatus) {
             final String failureMsg =
                     "Got " + numErrs + " errors and " + numWarnings
                             + " warnings.";
@@ -491,16 +491,16 @@ public class CheckstyleAntTask extends Task {
             list.add(new File(fileName));
         }
         for (int i = 0; i < fileSets.size(); i++) {
-            final FileSet fs = fileSets.get(i);
-            final DirectoryScanner ds = fs.getDirectoryScanner(getProject());
-            ds.scan();
+            final FileSet fileSet = fileSets.get(i);
+            final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
+            scanner.scan();
 
-            final String[] names = ds.getIncludedFiles();
+            final String[] names = scanner.getIncludedFiles();
             log(i + ") Adding " + names.length + " files from directory "
-                    + ds.getBasedir(), Project.MSG_VERBOSE);
+                    + scanner.getBasedir(), Project.MSG_VERBOSE);
 
             for (String element : names) {
-                final String pathname = ds.getBasedir() + File.separator
+                final String pathname = scanner.getBasedir() + File.separator
                         + element;
                 list.add(new File(pathname));
             }
@@ -550,10 +550,10 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Set the file to output to.
-         * @param to the file to output to
+         * @TreeWalker:262param destination the file to output to
          */
-        public void setTofile(File to) {
-            toFile = to;
+        public void setTofile(File destination) {
+            toFile = destination;
         }
 
         /**

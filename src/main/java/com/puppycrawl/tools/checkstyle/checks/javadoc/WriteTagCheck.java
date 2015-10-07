@@ -180,12 +180,12 @@ public class WriteTagCheck
 
         int tagCount = 0;
         for (int i = 0; i < comment.length; i++) {
-            final String s = comment[i];
-            final Matcher matcher = tagRE.matcher(s);
+            final String commentValue = comment[i];
+            final Matcher matcher = tagRE.matcher(commentValue);
             if (matcher.find()) {
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
-                final String content = s.substring(contentStart);
+                final String content = commentValue.substring(contentStart);
                 if (tagFormatRE != null && !tagFormatRE.matcher(content).find()) {
                     log(lineNo + i - comment.length, TAG_FORMAT, tag, tagFormat);
                 }

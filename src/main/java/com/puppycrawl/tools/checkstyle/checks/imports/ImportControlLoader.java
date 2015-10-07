@@ -109,21 +109,21 @@ final class ImportControlLoader extends AbstractLoader {
             final boolean isLocalOnly = attributes.getValue("local-only") != null;
             final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
             final boolean regex = attributes.getValue("regex") != null;
-            final Guard g;
+            final Guard guard;
             if (pkg != null) {
                 final boolean exactMatch =
                         attributes.getValue("exact-match") != null;
-                g = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
+                guard = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
             else {
                 // handle class names which can be normal class names or regular
                 // expressions
                 final String clazz = safeGet(attributes, "class");
-                g = new Guard(isAllow, isLocalOnly, clazz, regex);
+                guard = new Guard(isAllow, isLocalOnly, clazz, regex);
             }
 
-            final PkgControl pc = stack.peek();
-            pc.addGuard(g);
+            final PkgControl pkgControl = stack.peek();
+            pkgControl.addGuard(guard);
         }
     }
 
@@ -142,9 +142,9 @@ final class ImportControlLoader extends AbstractLoader {
      * @throws CheckstyleException if an error occurs.
      */
     static PkgControl load(final URI uri) throws CheckstyleException {
-        InputStream is;
+        InputStream inputStream;
         try {
-            is = uri.toURL().openStream();
+            inputStream = uri.toURL().openStream();
         }
         catch (final MalformedURLException e) {
             throw new CheckstyleException("syntax error in url " + uri, e);
@@ -152,7 +152,7 @@ final class ImportControlLoader extends AbstractLoader {
         catch (final IOException e) {
             throw new CheckstyleException("unable to find " + uri, e);
         }
-        final InputSource source = new InputSource(is);
+        final InputSource source = new InputSource(inputStream);
         return load(source, uri);
     }
 

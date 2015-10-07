@@ -778,9 +778,9 @@ public class VisibilityModifierCheck
         for (DetailAST child = holder.getFirstChild();
             child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST at = child.getFirstChild();
+                final DetailAST ast = child.getFirstChild();
                 final String name =
-                    FullIdent.createFullIdent(at.getNextSibling()).getText();
+                    FullIdent.createFullIdent(ast.getNextSibling()).getText();
                 if (ignoreAnnotationCanonicalNames.contains(name)
                          || ignoreAnnotationShortNames.contains(name)) {
                     matchingAnnotation = child;

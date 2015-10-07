@@ -62,20 +62,20 @@ public class XMLLogger
     /**
      * Creates a new {@code XMLLogger} instance.
      * Sets the output to a defined stream.
-     * @param os the stream to write logs to.
+     * @param outputStream the stream to write logs to.
      * @param closeStream close oS in auditFinished
      */
-    public XMLLogger(OutputStream os, boolean closeStream) {
-        setOutputStream(os);
+    public XMLLogger(OutputStream outputStream, boolean closeStream) {
+        setOutputStream(outputStream);
         this.closeStream = closeStream;
     }
 
     /**
      * Sets the OutputStream.
-     * @param oS the OutputStream to use
+     * @param outputStream the OutputStream to use
      **/
-    private void setOutputStream(OutputStream oS) {
-        final OutputStreamWriter osw = new OutputStreamWriter(oS, StandardCharsets.UTF_8);
+    private void setOutputStream(OutputStream outputStream) {
+        final OutputStreamWriter osw = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
         writer = new PrintWriter(osw);
     }
 
@@ -133,15 +133,15 @@ public class XMLLogger
 
     @Override
     public void addException(AuditEvent evt, Throwable throwable) {
-        final StringWriter sw = new StringWriter();
-        final PrintWriter pw = new PrintWriter(sw);
-        pw.println("<exception>");
-        pw.println("<![CDATA[");
-        throwable.printStackTrace(pw);
-        pw.println("]]>");
-        pw.println("</exception>");
-        pw.flush();
-        writer.println(encode(sw.toString()));
+        final StringWriter stringWriter = new StringWriter();
+        final PrintWriter printer = new PrintWriter(stringWriter);
+        printer.println("<exception>");
+        printer.println("<![CDATA[");
+        throwable.printStackTrace(printer);
+        printer.println("]]>");
+        printer.println("</exception>");
+        printer.flush();
+        this.writer.println(encode(stringWriter.toString()));
     }
 
     /**

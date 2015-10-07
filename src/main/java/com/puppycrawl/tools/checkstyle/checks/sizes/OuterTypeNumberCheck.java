@@ -86,9 +86,9 @@ public class OuterTypeNumberCheck extends Check {
 
     /**
      * Sets the maximum allowed number of outer types.
-     * @param to the new number.
+     * @param max the new number.
      */
-    public void setMax(int to) {
-        max = to;
+    public void setMax(int max) {
+        this.max = max;
     }
 }
