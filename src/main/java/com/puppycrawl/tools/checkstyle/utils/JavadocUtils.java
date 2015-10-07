@@ -371,20 +371,20 @@ public final class JavadocUtils {
 
     /**
      * Returns the name of a token for a given ID.
-     * @param iD
+     * @param id
      *        the ID of the token name to get
      * @return a token name
      */
-    public static String getTokenName(int iD) {
-        if (iD == JavadocTokenTypes.EOF) {
+    public static String getTokenName(int id) {
+        if (id == JavadocTokenTypes.EOF) {
             return "EOF";
         }
-        if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + iD);
+        if (id > TOKEN_VALUE_TO_NAME.length - 1) {
+            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
         }
-        final String name = TOKEN_VALUE_TO_NAME[iD];
+        final String name = TOKEN_VALUE_TO_NAME[id];
         if (name == null) {
-            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + iD);
+            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
         }
         return name;
     }

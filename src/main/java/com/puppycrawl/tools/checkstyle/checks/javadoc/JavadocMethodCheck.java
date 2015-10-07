@@ -629,8 +629,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private static List<JavadocTag> getMultilineArgTags(final Matcher argMultilineStart,
             final int column, final String[] lines, final int lineIndex, final int tagLine) {
         final List<JavadocTag> tags = new ArrayList<>();
-        final String p1 = argMultilineStart.group(1);
-        final String p2 = argMultilineStart.group(2);
+        final String param1 = argMultilineStart.group(1);
+        final String param2 = argMultilineStart.group(2);
         int remIndex = lineIndex + 1;
         while (remIndex < lines.length) {
             final Matcher multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);
@@ -639,7 +639,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                 final String lFin = multilineCont.group(1);
                 if (!lFin.equals(NEXT_TAG)
                     && !lFin.equals(END_JAVADOC)) {
-                    tags.add(new JavadocTag(tagLine, column, p1, p2));
+                    tags.add(new JavadocTag(tagLine, column, param1, param2));
                 }
             }
             remIndex++;
@@ -657,7 +657,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     private static List<JavadocTag> getMultilineNoArgTags(final Matcher noargMultilineStart,
             final String[] lines, final int lineIndex, final int tagLine) {
-        final String p1 = noargMultilineStart.group(1);
+        final String param1 = noargMultilineStart.group(1);
         final int col = noargMultilineStart.start(1) - 1;
         final List<JavadocTag> tags = new ArrayList<>();
         int remIndex = lineIndex + 1;
@@ -669,7 +669,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             final String lFin = multilineCont.group(1);
             if (!lFin.equals(NEXT_TAG)
                 && !lFin.equals(END_JAVADOC)) {
-                tags.add(new JavadocTag(tagLine, col, p1));
+                tags.add(new JavadocTag(tagLine, col, param1));
             }
             remIndex++;
         }
@@ -713,10 +713,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             while (child != null) {
                 if (child.getType() == TokenTypes.IDENT
                         || child.getType() == TokenTypes.DOT) {
-                    final FullIdent fi = FullIdent.createFullIdent(child);
-                    final ExceptionInfo ei = new ExceptionInfo(createClassInfo(new Token(fi),
-                            getCurrentClassName()));
-                    retVal.add(ei);
+                    final FullIdent ident = FullIdent.createFullIdent(child);
+                    final ExceptionInfo exceptionInfo = new ExceptionInfo(
+                            createClassInfo(new Token(ident), getCurrentClassName()));
+                    retVal.add(exceptionInfo);
                 }
                 child = child.getNextSibling();
             }
@@ -843,12 +843,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         boolean found = false;
         final ListIterator<JavadocTag> it = tags.listIterator();
         while (it.hasNext()) {
-            final JavadocTag jt = it.next();
-            if (jt.isReturnTag()) {
+            final JavadocTag javadocTag = it.next();
+            if (javadocTag.isReturnTag()) {
                 if (found) {
-                    log(jt.getLineNo(), jt.getColumnNo(),
-                        MSG_DUPLICATE_TAG,
-                        JavadocTagInfo.RETURN.getText());
+                    log(javadocTag.getLineNo(), javadocTag.getColumnNo(),
+                            MSG_DUPLICATE_TAG,
+                            JavadocTagInfo.RETURN.getText());
                 }
                 found = true;
                 it.remove();
@@ -913,10 +913,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         if (!allowMissingThrowsTags && reportExpectedTags) {
             for (ExceptionInfo ei : throwsList) {
                 if (!ei.isFound()) {
-                    final Token fi = ei.getName();
-                    log(fi.getLineNo(), fi.getColumnNo(),
+                    final Token token = ei.getName();
+                    log(token.getLineNo(), token.getColumnNo(),
                             MSG_EXPECTED_TAG,
-                        JavadocTagInfo.THROWS.getText(), fi.getText());
+                            JavadocTagInfo.THROWS.getText(), token.getText());
                 }
             }
         }
@@ -938,26 +938,26 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         // First look for matches on the exception name
         final ListIterator<ExceptionInfo> throwIt = throwsList.listIterator();
         while (!found && throwIt.hasNext()) {
-            final ExceptionInfo ei = throwIt.next();
+            final ExceptionInfo exceptionInfo = throwIt.next();
 
-            if (ei.getName().getText().equals(
+            if (exceptionInfo.getName().getText().equals(
                     documentedCI.getName().getText())) {
                 found = true;
-                foundException = ei;
+                foundException = exceptionInfo;
             }
         }
 
         // Now match on the exception type
         final ListIterator<ExceptionInfo> exceptionInfoIt = throwsList.listIterator();
         while (!found && exceptionInfoIt.hasNext()) {
-            final ExceptionInfo ei = exceptionInfoIt.next();
+            final ExceptionInfo exceptionInfo = exceptionInfoIt.next();
 
-            if (documentedCI.getClazz() == ei.getClazz()) {
+            if (documentedCI.getClazz() == exceptionInfo.getClazz()) {
                 found = true;
-                foundException = ei;
+                foundException = exceptionInfo;
             }
             else if (allowThrowsTagsForSubclasses) {
-                found = isSubclass(documentedCI.getClazz(), ei.getClazz());
+                found = isSubclass(documentedCI.getClazz(), exceptionInfo.getClazz());
             }
         }
 

@@ -144,22 +144,22 @@ public class TreeTableModelAdapter extends AbstractTableModel {
      */
     private class UpdatingTreeModelListener implements TreeModelListener {
         @Override
-        public void treeNodesChanged(TreeModelEvent e) {
+        public void treeNodesChanged(TreeModelEvent event) {
             delayedFireTableDataChanged();
         }
 
         @Override
-        public void treeNodesInserted(TreeModelEvent e) {
+        public void treeNodesInserted(TreeModelEvent event) {
             delayedFireTableDataChanged();
         }
 
         @Override
-        public void treeNodesRemoved(TreeModelEvent e) {
+        public void treeNodesRemoved(TreeModelEvent event) {
             delayedFireTableDataChanged();
         }
 
         @Override
-        public void treeStructureChanged(TreeModelEvent e) {
+        public void treeStructureChanged(TreeModelEvent event) {
             delayedFireTableDataChanged();
         }
     }

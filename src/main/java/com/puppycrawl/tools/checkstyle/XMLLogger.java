@@ -152,8 +152,8 @@ public class XMLLogger
     public static String encode(String value) {
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < value.length(); i++) {
-            final char c = value.charAt(i);
-            switch (c) {
+            final char chr = value.charAt(i);
+            switch (chr) {
                 case '<':
                     sb.append("&lt;");
                     break;
@@ -177,7 +177,7 @@ public class XMLLogger
                     }
                     break;
                 default:
-                    sb.append(c);
+                    sb.append(chr);
                     break;
             }
         }

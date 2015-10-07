@@ -66,14 +66,14 @@ public class FilterSet
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        final FilterSet filterSet = (FilterSet) o;
+        final FilterSet filterSet = (FilterSet) other;
         return Objects.equals(filters, filterSet.filters);
     }
 

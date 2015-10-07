@@ -80,8 +80,8 @@ public class ParseTreeInfoPanel extends JPanel {
 
         parseTreeModel = new ParseTreeModel(null);
         final JTreeTable treeTable = new JTreeTable(parseTreeModel);
-        final JScrollPane sp = new JScrollPane(treeTable);
-        add(sp, BorderLayout.PAGE_START);
+        final JScrollPane scrollPane = new JScrollPane(treeTable);
+        add(scrollPane, BorderLayout.PAGE_START);
 
         final JButton fileSelectionButton =
             new JButton(new FileSelectionAction());
@@ -98,13 +98,13 @@ public class ParseTreeInfoPanel extends JPanel {
         final JScrollPane sp2 = new JScrollPane(textArea);
         add(sp2, BorderLayout.CENTER);
 
-        final JPanel p = new JPanel(new GridLayout(1, 2));
-        add(p, BorderLayout.PAGE_END);
-        p.add(fileSelectionButton);
-        p.add(reloadButton);
+        final JPanel pane = new JPanel(new GridLayout(1, 2));
+        add(pane, BorderLayout.PAGE_END);
+        pane.add(fileSelectionButton);
+        pane.add(reloadButton);
 
         try {
-            new FileDrop(sp, new FileDropListener(sp));
+            new FileDrop(scrollPane, new FileDropListener(scrollPane));
         }
         catch (final TooManyListenersException ignored) {
             showErrorDialog(null, "Cannot initialize Drag and Drop support");
@@ -293,14 +293,14 @@ public class ParseTreeInfoPanel extends JPanel {
         }
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            final JFileChooser fc = new JFileChooser(lastDirectory);
+        public void actionPerformed(ActionEvent event) {
+            final JFileChooser chooser = new JFileChooser(lastDirectory);
             final FileFilter filter = new JavaFileFilter();
-            fc.setFileFilter(filter);
+            chooser.setFileFilter(filter);
             final Component parent =
                 SwingUtilities.getRoot(ParseTreeInfoPanel.this);
-            fc.showDialog(parent, "Open");
-            final File file = fc.getSelectedFile();
+            chooser.showDialog(parent, "Open");
+            final File file = chooser.getSelectedFile();
             openFile(file, parent);
 
         }
@@ -322,7 +322,7 @@ public class ParseTreeInfoPanel extends JPanel {
         }
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent event) {
             final Component parent =
                 SwingUtilities.getRoot(ParseTreeInfoPanel.this);
             openFile(currentFile, parent);

@@ -105,17 +105,17 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
             Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
-        TreeModelEvent e = null;
+        TreeModelEvent event = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
-                if (e == null) {
-                    e = new TreeModelEvent(source, path,
+                if (event == null) {
+                    event = new TreeModelEvent(source, path,
                             childIndices, children);
                 }
-                ((TreeModelListener) listeners[i + 1]).treeNodesChanged(e);
+                ((TreeModelListener) listeners[i + 1]).treeNodesChanged(event);
             }
         }
     }
@@ -136,17 +136,17 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
             Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
-        TreeModelEvent e = null;
+        TreeModelEvent event = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
-                if (e == null) {
-                    e = new TreeModelEvent(source, path,
+                if (event == null) {
+                    event = new TreeModelEvent(source, path,
                             childIndices, children);
                 }
-                ((TreeModelListener) listeners[i + 1]).treeNodesInserted(e);
+                ((TreeModelListener) listeners[i + 1]).treeNodesInserted(event);
             }
         }
     }
@@ -167,17 +167,17 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
             Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
-        TreeModelEvent e = null;
+        TreeModelEvent event = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
-                if (e == null) {
-                    e = new TreeModelEvent(source, path,
+                if (event == null) {
+                    event = new TreeModelEvent(source, path,
                             childIndices, children);
                 }
-                ((TreeModelListener) listeners[i + 1]).treeNodesRemoved(e);
+                ((TreeModelListener) listeners[i + 1]).treeNodesRemoved(event);
             }
         }
     }
@@ -198,17 +198,17 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
             Object... children) {
         // Guaranteed to return a non-null array
         final Object[] listeners = listenerList.getListenerList();
-        TreeModelEvent e = null;
+        TreeModelEvent event = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
-                if (e == null) {
-                    e = new TreeModelEvent(source, path,
+                if (event == null) {
+                    event = new TreeModelEvent(source, path,
                             childIndices, children);
                 }
-                ((TreeModelListener) listeners[i + 1]).treeStructureChanged(e);
+                ((TreeModelListener) listeners[i + 1]).treeStructureChanged(event);
             }
         }
     }

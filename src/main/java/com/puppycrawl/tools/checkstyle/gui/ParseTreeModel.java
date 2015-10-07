@@ -133,11 +133,11 @@ public class ParseTreeModel extends AbstractTreeTableModel {
     @Override
     public Object getChild(Object parent, int index) {
         final DetailAST ast = (DetailAST) parent;
-        int i = 0;
+        int indx = 0;
         AST child = ast.getFirstChild();
-        while (i < index) {
+        while (indx < index) {
             child = child.getNextSibling();
-            i++;
+            indx++;
         }
         return child;
     }

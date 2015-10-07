@@ -106,9 +106,9 @@ class TreeTableCellRenderer extends JTree implements
      * row will be drawn at 0,0.
      */
     @Override
-    public void paint(Graphics g) {
-        g.translate(0, -visibleRow * getRowHeight());
-        super.paint(g);
+    public void paint(Graphics graph) {
+        graph.translate(0, -visibleRow * getRowHeight());
+        super.paint(graph);
     }
 
     /**

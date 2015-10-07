@@ -101,7 +101,7 @@ public class JTreeTable extends JTable {
             private static final long serialVersionUID = -5859674518660156121L;
 
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(ActionEvent event) {
                     final TreePath selected = tree.getSelectionPath();
                     final DetailAST ast = (DetailAST) selected.getLastPathComponent();
                     new CodeSelector(ast, editor, linePositionMap).select();
@@ -227,18 +227,18 @@ public class JTreeTable extends JTable {
          * @see TableCellEditor
          */
         @Override
-        public boolean isCellEditable(EventObject e) {
-            if (e instanceof MouseEvent) {
+        public boolean isCellEditable(EventObject event) {
+            if (event instanceof MouseEvent) {
                 for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
                     if (getColumnClass(counter) == TreeTableModel.class) {
-                        final MouseEvent me = (MouseEvent) e;
-                        final MouseEvent newME = new MouseEvent(tree, me.getID(),
-                                me.getWhen(), me.getModifiers(),
-                                me.getX() - getCellRect(0, counter, true).x,
-                                me.getY(), me.getClickCount(),
-                                me.isPopupTrigger());
-                        tree.dispatchEvent(newME);
+                        final MouseEvent mouseEvent = (MouseEvent) event;
+                        final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),
+                                mouseEvent.getWhen(), mouseEvent.getModifiers(),
+                                mouseEvent.getX() - getCellRect(0, counter, true).x,
+                                mouseEvent.getY(), mouseEvent.getClickCount(),
+                                mouseEvent.isPopupTrigger());
+                        tree.dispatchEvent(newMouseEvent);
                         break;
                     }
                 }

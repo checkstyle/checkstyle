@@ -307,25 +307,25 @@ public class JavadocStyleCheck
      * @param builder the StringBuilder to trim.
      */
     private static void trimTail(StringBuilder builder) {
-        int i = builder.length() - 1;
+        int index = builder.length() - 1;
         while (true) {
-            if (Character.isWhitespace(builder.charAt(i))) {
-                builder.deleteCharAt(i);
+            if (Character.isWhitespace(builder.charAt(index))) {
+                builder.deleteCharAt(index);
             }
-            else if (builder.charAt(i) == '/'
-                    && builder.charAt(i - 1) == '*') {
-                builder.deleteCharAt(i);
-                builder.deleteCharAt(i - 1);
-                i--;
-                while (builder.charAt(i - 1) == '*') {
-                    builder.deleteCharAt(i - 1);
-                    i--;
+            else if (builder.charAt(index) == '/'
+                    && builder.charAt(index - 1) == '*') {
+                builder.deleteCharAt(index);
+                builder.deleteCharAt(index - 1);
+                index--;
+                while (builder.charAt(index - 1) == '*') {
+                    builder.deleteCharAt(index - 1);
+                    index--;
                 }
             }
             else {
                 break;
             }
-            i--;
+            index--;
         }
     }
 

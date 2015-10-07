@@ -141,7 +141,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      */
     private class ListSelectionHandler implements ListSelectionListener {
         @Override
-        public void valueChanged(ListSelectionEvent e) {
+        public void valueChanged(ListSelectionEvent event) {
             updateSelectedPathsFromSelectedRows();
         }
     }

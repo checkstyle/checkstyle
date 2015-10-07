@@ -196,7 +196,7 @@ public class SuppressionCommentFilter
                     tagSuppressions();
                 }
                 final Tag matchTag = findNearestMatch(event);
-                accepted = matchTag == null || matchTag.isOn();
+                accepted = matchTag == null || matchTag.isReportingOn();
             }
         }
         return accepted;
@@ -284,10 +284,10 @@ public class SuppressionCommentFilter
      * @param text the text of the tag.
      * @param line the line number of the tag.
      * @param column the column number of the tag.
-     * @param on {@code true} if the tag turns checkstyle reporting on.
+     * @param reportingOn {@code true} if the tag turns checkstyle reporting on.
      */
-    private void addTag(String text, int line, int column, boolean on) {
-        final Tag tag = new Tag(line, column, text, on, this);
+    private void addTag(String text, int line, int column, boolean reportingOn) {
+        final Tag tag = new Tag(line, column, text, reportingOn, this);
         tags.add(tag);
     }
 
@@ -308,7 +308,7 @@ public class SuppressionCommentFilter
         private final int column;
 
         /** Determines whether the suppression turns checkstyle reporting on. */
-        private final boolean on;
+        private final boolean reportingOn;
 
         /** The parsed check regexp, expanded for the text of this tag. */
         private final Pattern tagCheckRegexp;
@@ -321,21 +321,22 @@ public class SuppressionCommentFilter
          * @param line the line number.
          * @param column the column number.
          * @param text the text of the suppression.
-         * @param on {@code true} if the tag turns checkstyle reporting.
+         * @param reportingOn {@code true} if the tag turns checkstyle reporting.
          * @param filter the {@code SuppressionCommentFilter} with the context
          * @throws ConversionException if unable to parse expanded text.
          */
-        public Tag(int line, int column, String text, boolean on, SuppressionCommentFilter filter) {
+        public Tag(int line, int column, String text, boolean reportingOn,
+                   SuppressionCommentFilter filter) {
             this.line = line;
             this.column = column;
             this.text = text;
-            this.on = on;
+            this.reportingOn = reportingOn;
 
             //Expand regexp for check and message
             //Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                if (on) {
+                if (reportingOn) {
                     format =
                         expandFromComment(text, filter.checkFormat, filter.onRegexp);
                     tagCheckRegexp = Pattern.compile(format);
@@ -394,8 +395,8 @@ public class SuppressionCommentFilter
          * off.
          * @return {@code true}if the suppression turns reporting on.
          */
-        public boolean isOn() {
-            return on;
+        public boolean isReportingOn() {
+            return reportingOn;
         }
 
         /**
@@ -416,23 +417,23 @@ public class SuppressionCommentFilter
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) {
+        public boolean equals(Object other) {
+            if (this == other) {
                 return true;
             }
-            if (o == null || getClass() != o.getClass()) {
+            if (other == null || getClass() != other.getClass()) {
                 return false;
             }
-            final Tag tag = (Tag) o;
+            final Tag tag = (Tag) other;
             return Objects.equals(line, tag.line)
                     && Objects.equals(column, tag.column)
-                    && Objects.equals(on, tag.on)
+                    && Objects.equals(reportingOn, tag.reportingOn)
                     && Objects.equals(text, tag.text);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(text, line, column, on);
+            return Objects.hash(text, line, column, reportingOn);
         }
 
         /**
@@ -483,7 +484,7 @@ public class SuppressionCommentFilter
         @Override
         public final String toString() {
             return "Tag[line=" + line + "; col=" + column
-                + "; on=" + on + "; text='" + text + "']";
+                + "; on=" + reportingOn + "; text='" + text + "']";
         }
     }
 }

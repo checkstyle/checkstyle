@@ -74,7 +74,7 @@
       <Bug pattern="BC_UNCONFIRMED_CAST" />
     </Match>
     <Match>
-      <!-- Support both getFileName() and getFilename() -->
+      <!-- till SonarQube update Checkstyle version. Support both getFileName() and getFilename() -->
       <and>
         <Class name="com.puppycrawl.tools.checkstyle.api.FileContents" />
         <Method name="~setFile[nN]ame" />

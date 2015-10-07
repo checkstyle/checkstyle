@@ -157,14 +157,14 @@ public class SuppressElement
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        final SuppressElement suppressElement = (SuppressElement) o;
+        final SuppressElement suppressElement = (SuppressElement) other;
         return Objects.equals(filePattern, suppressElement.filePattern)
                 && Objects.equals(checkPattern, suppressElement.checkPattern)
                 && Objects.equals(moduleId, suppressElement.moduleId)

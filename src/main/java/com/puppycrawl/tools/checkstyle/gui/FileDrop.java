@@ -136,8 +136,8 @@ class FileDrop {
     private void makeDropTarget(final Component component, boolean recursive)
             throws TooManyListenersException {
         // Make drop target
-        final DropTarget dt = new DropTarget();
-        dt.addDropTargetListener(dropListener);
+        final DropTarget target = new DropTarget();
+        target.addDropTargetListener(dropListener);
 
         // Listen for hierarchy changes and remove the
         // drop target when the parent gets cleared out.
@@ -173,21 +173,21 @@ class FileDrop {
      * @return True if the drag was ok
      */
     private static boolean isDragOk(final DropTargetDragEvent evt) {
-        boolean ok = false;
+        boolean okStatus = false;
         final DataFlavor[] flavors = evt.getCurrentDataFlavors();
 
         // See if any of the flavors are a file list
-        int i = 0;
+        int index = 0;
 
         // Is the flavor a file list?
-        while (!ok && i < flavors.length) {
-            if (flavors[i].equals(DataFlavor.javaFileListFlavor)) {
-                ok = true;
+        while (!okStatus && index < flavors.length) {
+            if (flavors[index].equals(DataFlavor.javaFileListFlavor)) {
+                okStatus = true;
             }
-            i++;
+            index++;
         }
 
-        return ok;
+        return okStatus;
     }
 
     /**
@@ -249,9 +249,9 @@ class FileDrop {
         public void dragEnter(DropTargetDragEvent evt) {
             if (isDragOk(evt)) {
                 if (component instanceof JComponent) {
-                    final JComponent jc = (JComponent) component;
-                    normalBorder = jc.getBorder();
-                    jc.setBorder(dragBorder);
+                    final JComponent comp = (JComponent) this.component;
+                    normalBorder = comp.getBorder();
+                    comp.setBorder(dragBorder);
                 }
                 evt.acceptDrag(DnDConstants.ACTION_COPY);
             }
@@ -264,12 +264,12 @@ class FileDrop {
         @SuppressWarnings("unchecked")
         public void drop(DropTargetDropEvent evt) {
             try {
-                final Transferable tr = evt.getTransferable();
+                final Transferable transferable = evt.getTransferable();
 
-                if (tr.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+                if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                     evt.acceptDrop(DnDConstants.ACTION_COPY);
 
-                    final List<File> fileList = (List<File>) tr.getTransferData(
+                    final List<File> fileList = (List<File>) transferable.getTransferData(
                             DataFlavor.javaFileListFlavor);
                     final File[] files = new File[fileList.size()];
                     fileList.toArray(files);
@@ -289,8 +289,8 @@ class FileDrop {
             }
             finally {
                 if (component instanceof JComponent) {
-                    final JComponent jc = (JComponent) component;
-                    jc.setBorder(normalBorder);
+                    final JComponent comp = (JComponent) component;
+                    comp.setBorder(normalBorder);
                 }
             }
         }
@@ -298,8 +298,8 @@ class FileDrop {
         @Override
         public void dragExit(DropTargetEvent evt) {
             if (component instanceof JComponent) {
-                final JComponent jc = (JComponent) component;
-                jc.setBorder(normalBorder);
+                final JComponent comp = (JComponent) component;
+                comp.setBorder(normalBorder);
             }
         }
 

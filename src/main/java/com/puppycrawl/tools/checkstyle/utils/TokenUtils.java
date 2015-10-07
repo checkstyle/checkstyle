@@ -115,16 +115,16 @@ public final class TokenUtils {
 
     /**
      * Returns the name of a token for a given ID.
-     * @param iD the ID of the token name to get
+     * @param id the ID of the token name to get
      * @return a token name
      */
-    public static String getTokenName(int iD) {
-        if (iD > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + iD);
+    public static String getTokenName(int id) {
+        if (id > TOKEN_VALUE_TO_NAME.length - 1) {
+            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + id);
         }
-        final String name = TOKEN_VALUE_TO_NAME[iD];
+        final String name = TOKEN_VALUE_TO_NAME[id];
         if (name == null) {
-            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + iD);
+            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + id);
         }
         return name;
     }

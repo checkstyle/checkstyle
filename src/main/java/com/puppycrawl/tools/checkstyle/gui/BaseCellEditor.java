@@ -50,7 +50,7 @@ public class BaseCellEditor implements CellEditor {
     }
 
     @Override
-    public boolean isCellEditable(EventObject e) {
+    public boolean isCellEditable(EventObject event) {
         return true;
     }
 

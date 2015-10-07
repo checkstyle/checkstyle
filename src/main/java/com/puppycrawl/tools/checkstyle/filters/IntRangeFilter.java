@@ -55,14 +55,14 @@ class IntRangeFilter implements IntFilter {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (other == null || getClass() != other.getClass()) {
             return false;
         }
-        final IntRangeFilter intRangeFilter = (IntRangeFilter) o;
+        final IntRangeFilter intRangeFilter = (IntRangeFilter) other;
         return Objects.equals(lowerBound, intRangeFilter.lowerBound)
                 && Objects.equals(upperBound, intRangeFilter.upperBound);
     }
