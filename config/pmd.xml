@@ -161,13 +161,6 @@
     </properties>
   </rule>
 
-  <rule ref="rulesets/java/design.xml/SingularField">
-    <properties>
-      <!-- maxLineLength is deprecated since 6.10 release -->
-      <property name="violationSuppressRegex" value="^Perhaps 'maxLineLength' could be replaced by a local variable.$"/>
-    </properties>
-  </rule>
-
   <rule ref="rulesets/java/empty.xml"/>
   <rule ref="rulesets/java/finalizers.xml"/>
   <rule ref="rulesets/java/imports.xml"/>
@@ -222,22 +215,10 @@
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
   <rule ref="rulesets/java/strictexception.xml"/>
-  <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException">
-    <properties>
-        <!-- till #1244 and #1245 -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Checker' or @Image='CheckstyleAntTask']"/>
-    </properties>
-  </rule>
   <rule ref="rulesets/java/strictexception.xml/ExceptionAsFlowControl">
     <properties>
       <!-- till #1159 -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']"/>
-    </properties>
-  </rule>
-  <rule ref="rulesets/java/strictexception.xml/AvoidCatchingThrowable">
-    <properties>
-      <!-- log name of problematic file and do not crash completely (bug 694111) -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='TreeWalker']//MethodDeclarator[@Image='processFiltered']"/>
     </properties>
   </rule>
 
@@ -252,10 +233,4 @@
   <rule ref="rulesets/java/unnecessary.xml"/>
   <rule ref="rulesets/java/unusedcode.xml"/>
 
-  <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateField">
-    <properties>
-      <!-- maxLineLength is deprecated since 6.10 release -->
-      <property name="violationSuppressRegex" value="^Avoid unused private fields such as 'maxLineLength'.$"/>
-    </properties>
-  </rule>
 </ruleset>
