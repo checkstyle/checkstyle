@@ -550,7 +550,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Set the file to output to.
-         * @TreeWalker:262param destination the file to output to
+         * @destination destination the file to output to
          */
         public void setTofile(File destination) {
             toFile = destination;
