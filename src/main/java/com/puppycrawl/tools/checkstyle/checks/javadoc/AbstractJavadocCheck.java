@@ -33,6 +33,8 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.primitives.Ints;
@@ -50,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * @author Baratali Izmailov
  */
 public abstract class AbstractJavadocCheck extends Check {
+
     /**
      * Error message key for common javadoc errors.
      */
@@ -85,6 +88,9 @@ public abstract class AbstractJavadocCheck extends Check {
                 return new HashMap<>();
             }
         };
+
+    /** Logger. */
+    private static final Log LOG = LogFactory.getLog(AbstractJavadocCheck.class);
 
     /**
      * Custom error listener.
@@ -228,6 +234,7 @@ public abstract class AbstractJavadocCheck extends Check {
             parseTree = parseJavadocAsParseTree(javadocComment);
         }
         catch (ParseCancellationException e) {
+            LOG.error("Syntax error occurs during javadoc parsing.", e);
             // If syntax error occurs then message is printed by error listener
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
