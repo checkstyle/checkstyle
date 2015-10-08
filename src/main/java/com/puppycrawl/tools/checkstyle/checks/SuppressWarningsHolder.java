@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Maintains a set of check suppressions from {@link SuppressWarnings}
  * annotations.
  * @author Trevor Robinson
+ * @author St&eacute;phane Galland
  */
 public class SuppressWarningsHolder
     extends Check {
@@ -61,6 +62,9 @@ public class SuppressWarningsHolder
 
     /** Suffix to be removed from subclasses of Check. */
     private static final String CHECK_SUFFIX = "Check";
+
+    /** Special warning id for matching all the warnings. */
+    private static final String ALL_WARNING_MATCHING_ID = "all";
 
     /** A map from check source names to suppression aliases. */
     private static final Map<String, String> CHECK_ALIAS_MAP = new HashMap<>();
@@ -158,7 +162,8 @@ public class SuppressWarningsHolder
                     || entry.getLastLine() == line && entry
                         .getLastColumn() >= column;
             final boolean nameMatches =
-                entry.getCheckName().equals(checkAlias);
+                ALL_WARNING_MATCHING_ID.equals(entry.getCheckName())
+                    || entry.getCheckName().equals(checkAlias);
             if (afterStart && beforeEnd && nameMatches) {
                 return true;
             }

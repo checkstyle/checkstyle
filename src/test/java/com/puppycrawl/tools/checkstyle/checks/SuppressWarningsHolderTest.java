@@ -135,6 +135,34 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testIsSuppressedWithAllArgument() throws Exception {
+        Class<?> entry = Class
+                .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
+        Constructor<?> entryConstr = entry.getDeclaredConstructor(String.class, int.class,
+                int.class, int.class, int.class);
+        entryConstr.setAccessible(true);
+
+        Object entryInstance = entryConstr.newInstance("all", 100, 100, 350, 350);
+
+        List<Object> entriesList = new ArrayList<>();
+        entriesList.add(entryInstance);
+
+        ThreadLocal<?> threadLocal = mock(ThreadLocal.class);
+        PowerMockito.doReturn(entriesList).when(threadLocal, "get");
+
+        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        Field entries = holder.getClass().getDeclaredField("ENTRIES");
+        entries.setAccessible(true);
+        entries.set(holder, threadLocal);
+
+        assertFalse(SuppressWarningsHolder.isSuppressed("SourceName", 100, 10));
+
+        assertTrue(SuppressWarningsHolder.isSuppressed("SourceName", 100, 150));
+
+        assertTrue(SuppressWarningsHolder.isSuppressed("SourceName", 200, 1));
+    }
+
+    @Test
     public void testAnnotationInTry() throws Exception {
         Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 

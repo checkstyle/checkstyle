@@ -440,6 +440,15 @@
           </source>
       </p>
 
+      <p>It is possible to suppress all the checkstyle warnings with the argument <code>"all"</code>:
+          <source>
+            @SuppressWarnings("all")
+            public void someFunctionWithInvalidStyle() {
+              //...
+            }
+          </source>
+      </p>
+
       </subsection>
 
       <subsection name="Example of Usage">
