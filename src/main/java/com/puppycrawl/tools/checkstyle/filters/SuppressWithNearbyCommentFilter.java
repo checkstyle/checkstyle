@@ -320,18 +320,19 @@ public class SuppressWithNearbyCommentFilter
             //Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
-                format = expandFromComment(text, filter.checkFormat, filter.commentRegexp);
+                format = CommonUtils.fillTemplateWithStringsByRegexp(
+                        filter.checkFormat, text, filter.commentRegexp);
                 tagCheckRegexp = Pattern.compile(format);
                 if (filter.messageFormat == null) {
                     tagMessageRegexp = null;
                 }
                 else {
-                    format = expandFromComment(
-                            text, filter.messageFormat, filter.commentRegexp);
+                    format = CommonUtils.fillTemplateWithStringsByRegexp(
+                            filter.messageFormat, text, filter.commentRegexp);
                     tagMessageRegexp = Pattern.compile(format);
                 }
-                format = expandFromComment(
-                        text, filter.influenceFormat, filter.commentRegexp);
+                format = CommonUtils.fillTemplateWithStringsByRegexp(
+                        filter.influenceFormat, text, filter.commentRegexp);
                 int influence;
                 try {
                     if (CommonUtils.startsWithChar(format, '+')) {
@@ -420,30 +421,6 @@ public class SuppressWithNearbyCommentFilter
                 }
             }
             return match;
-        }
-
-        /**
-         * Expand based on a matching comment.
-         * @param comment the comment.
-         * @param stringToExpand the string to expand.
-         * @param regexp the parsed expander.
-         * @return the expanded string
-         */
-        private static String expandFromComment(
-            String comment,
-            String stringToExpand,
-            Pattern regexp) {
-            final Matcher matcher = regexp.matcher(comment);
-            // Match primarily for effect.
-            if (!matcher.find()) {
-                return stringToExpand;
-            }
-            String result = stringToExpand;
-            for (int i = 0; i <= matcher.groupCount(); i++) {
-                // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
-            }
-            return result;
         }
 
         @Override
