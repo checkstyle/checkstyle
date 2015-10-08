@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -361,5 +362,26 @@ public final class CommonUtils {
         }
 
         return uri;
+    }
+
+    /**
+     * Puts part of line, which matches regexp into given template
+     * on positions $n where 'n' is number of matched part in line.
+     * @param template the string to expand.
+     * @param lineToPlaceInTemplate contains expression which should be placed into string.
+     * @param regexp expression to find in comment.
+     * @return the string, based on template filled with given lines
+     */
+    public static String fillTemplateWithStringsByRegexp(
+        String template, String lineToPlaceInTemplate, Pattern regexp) {
+        final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
+        String result = template;
+        if (matcher.find()) {
+            for (int i = 0; i <= matcher.groupCount(); i++) {
+                // $n expands comment match like in Pattern.subst().
+                result = result.replaceAll("\\$" + i, matcher.group(i));
+            }
+        }
+        return result;
     }
 }

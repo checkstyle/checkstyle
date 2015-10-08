@@ -337,31 +337,28 @@ public class SuppressionCommentFilter
             String format = "";
             try {
                 if (reportingOn) {
-                    format =
-                        expandFromComment(text, filter.checkFormat, filter.onRegexp);
+                    format = CommonUtils.fillTemplateWithStringsByRegexp(
+                            filter.checkFormat, text, filter.onRegexp);
                     tagCheckRegexp = Pattern.compile(format);
                     if (filter.messageFormat == null) {
                         tagMessageRegexp = null;
                     }
                     else {
-                        format =
-                                expandFromComment(text, filter.messageFormat, filter.onRegexp);
+                        format = CommonUtils.fillTemplateWithStringsByRegexp(
+                                filter.messageFormat, text, filter.onRegexp);
                         tagMessageRegexp = Pattern.compile(format);
                     }
                 }
                 else {
-                    format =
-                        expandFromComment(text, filter.checkFormat, filter.offRegexp);
+                    format = CommonUtils.fillTemplateWithStringsByRegexp(
+                            filter.checkFormat, text, filter.offRegexp);
                     tagCheckRegexp = Pattern.compile(format);
                     if (filter.messageFormat == null) {
                         tagMessageRegexp = null;
                     }
                     else {
-                        format =
-                                expandFromComment(
-                                        text,
-                                        filter.messageFormat,
-                                        filter.offRegexp);
+                        format = CommonUtils.fillTemplateWithStringsByRegexp(
+                                filter.messageFormat, text, filter.offRegexp);
                         tagMessageRegexp = Pattern.compile(format);
                     }
                 }
@@ -455,30 +452,6 @@ public class SuppressionCommentFilter
                 }
             }
             return match;
-        }
-
-        /**
-         * Expand based on a matching comment.
-         * @param comment the comment.
-         * @param stringToExpand the string to expand.
-         * @param regexp the parsed expander.
-         * @return the expanded string
-         */
-        private static String expandFromComment(
-                String comment,
-                String stringToExpand,
-                Pattern regexp) {
-            final Matcher matcher = regexp.matcher(comment);
-            // Match primarily for effect.
-            if (!matcher.find()) {
-                return stringToExpand;
-            }
-            String result = stringToExpand;
-            for (int i = 0; i <= matcher.groupCount(); i++) {
-                // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
-            }
-            return result;
         }
 
         @Override
