@@ -472,6 +472,7 @@
           <source>${java.version}</source>
           <target>${java.version}</target>
         </configuration>
+        <!-- till https://github.com/checkstyle/checkstyle/issues/2160
         <executions>
           <execution>
             <id>compile-without-error-prone</id>
@@ -510,6 +511,7 @@
             <version>2.0.5</version>
           </dependency>
         </dependencies>
+        -->
       </plugin>
 
       <plugin>
