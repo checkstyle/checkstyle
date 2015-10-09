@@ -399,16 +399,16 @@ public abstract class AbstractJavadocCheck extends Check {
             final ParseTree parent = node.getParent();
             final int childCount = parent.getChildCount();
 
-            int i = 0;
+            int index = 0;
             while (true) {
-                final ParseTree currentNode = parent.getChild(i);
+                final ParseTree currentNode = parent.getChild(index);
                 if (currentNode.equals(node)) {
-                    if (i != childCount - 1) {
-                        nextSibling = parent.getChild(i + 1);
+                    if (index != childCount - 1) {
+                        nextSibling = parent.getChild(index + 1);
                     }
                     break;
                 }
-                i++;
+                index++;
             }
         }
         return nextSibling;
