@@ -283,7 +283,12 @@ public class NeedBracesCheck extends Check {
         else if (literalFor.getParent().getType() == TokenTypes.SLIST
                 && literalFor.getLastChild().getType() != TokenTypes.SLIST) {
             final DetailAST block = findExpressionBlockInForLoop(literalFor);
-            result = literalFor.getLineNo() == block.getLineNo();
+            if (block == null) {
+                result = literalFor.getLineNo() == literalFor.getLastChild().getLineNo();
+            }
+            else {
+                result = literalFor.getLineNo() == block.getLineNo();
+            }
         }
         return result;
     }

@@ -53,6 +53,9 @@ public class InputBracesSingleLineStatements
         do
             this.notify();
         while (o != null);
+        for (;;)
+            break;
+        for (;;) break;
         for (int i = 0; i < 10; i++) {
              this.notify();
         }
