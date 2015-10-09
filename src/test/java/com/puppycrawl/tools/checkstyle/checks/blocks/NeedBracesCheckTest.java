@@ -67,10 +67,11 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "46: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
             "53: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
-            "59: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "88: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "92: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "104: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "56: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "62: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "91: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "95: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "107: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
         verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
     }
@@ -96,8 +97,8 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
-            "69: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "72: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "75: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
     }
