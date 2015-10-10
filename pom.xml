@@ -874,6 +874,33 @@
           </validationSets>
         </configuration>
       </plugin>
+      <plugin>
+      <groupId>de.thetaphi</groupId>
+      <artifactId>forbiddenapis</artifactId>
+      <version>2.0</version>
+      <configuration>
+        <targetVersion>${java.version}</targetVersion>
+        <internalRuntimeForbidden>true</internalRuntimeForbidden>
+        <failOnUnsupportedJava>false</failOnUnsupportedJava>
+        <bundledSignatures>
+          <bundledSignature>jdk-unsafe</bundledSignature>
+          <bundledSignature>jdk-deprecated</bundledSignature>
+          <bundledSignature>jdk-system-out</bundledSignature>
+        </bundledSignatures>
+        <excludes>
+          <exclude>**/GeneratedJavaLexer.class</exclude>
+          <exclude>**/JavadocParser.class</exclude>
+          <exclude>**/Main.class</exclude>
+        </excludes>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
     </plugins>
   </build>
 
