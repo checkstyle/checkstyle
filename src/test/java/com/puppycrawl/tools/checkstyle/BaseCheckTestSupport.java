@@ -88,16 +88,16 @@ public class BaseCheckTestSupport {
         return dc;
     }
 
-    protected static String getPath(String filename)
+    protected String getPath(String filename)
             throws IOException {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
     }
 
-    protected static String getUriString(String filename) {
+    protected String getUriString(String filename) {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).toURI().toString();
     }
 
-    protected static String getSrcPath(String filename) throws IOException {
+    protected String getSrcPath(String filename) throws IOException {
 
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
     }

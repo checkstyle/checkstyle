@@ -43,6 +43,12 @@ public class TranslationCheckTest
         return dc;
     }
 
+    @Override
+    protected String getPath(String filename)
+            throws IOException {
+        return super.getPath("checks" + File.separator + filename);
+    }
+
     @Test
     public void testTranslation() throws Exception {
         final Configuration checkConfig = createCheckConfig(TranslationCheck.class);
@@ -132,10 +138,8 @@ public class TranslationCheckTest
         checkConfig.addAttribute("requiredTranslations", "ja,,, de, ja");
 
         final File[] propertyFiles = {
-            new File(getPath("checks" + File.separator
-                + "messages_translation_de.properties")),
-            new File(getPath("checks" + File.separator
-                + "messages_translation_ja.properties")),
+            new File(getPath("messages_translation_de.properties")),
+            new File(getPath("messages_translation_ja.properties")),
         };
 
         final String[] expected = {
@@ -144,7 +148,7 @@ public class TranslationCheckTest
         verify(
             createChecker(checkConfig),
             propertyFiles,
-            getPath("checks"),
+            getPath(""),
             expected);
     }
 
@@ -154,10 +158,8 @@ public class TranslationCheckTest
         checkConfig.addAttribute("requiredTranslations", "ja, de");
 
         final File[] propertyFiles = {
-            new File(getPath("checks" + File.separator
-                + "messages_translation.properties")),
-            new File(getPath("checks" + File.separator
-                + "messages_translation_ja.properties")),
+            new File(getPath("messages_translation.properties")),
+            new File(getPath("messages_translation_ja.properties")),
         };
 
         final String[] expected = {
@@ -166,7 +168,7 @@ public class TranslationCheckTest
         verify(
             createChecker(checkConfig),
             propertyFiles,
-            getPath("checks"),
+            getPath(""),
             expected);
     }
 
@@ -177,8 +179,7 @@ public class TranslationCheckTest
         checkConfig.addAttribute("basenameSeparator", "-");
 
         final File[] propertyFiles = {
-            new File(getPath("checks" + File.separator
-                + "messages-translation_fr.properties")),
+            new File(getPath("messages-translation_fr.properties")),
         };
 
         final String[] expected = {
@@ -187,7 +188,7 @@ public class TranslationCheckTest
         verify(
             createChecker(checkConfig),
             propertyFiles,
-            getPath("checks"),
+            getPath(""),
             expected);
     }
 
@@ -198,10 +199,8 @@ public class TranslationCheckTest
         checkConfig.addAttribute("basenameSeparator", "-");
 
         final File[] propertyFiles = {
-            new File(getPath("checks" + File.separator
-                + "messages-translation.properties")),
-            new File(getPath("checks" + File.separator
-                + "messages-translation_fr.properties")),
+            new File(getPath("messages-translation.properties")),
+            new File(getPath("messages-translation_fr.properties")),
         };
 
         final String[] expected = {
@@ -210,7 +209,7 @@ public class TranslationCheckTest
         verify(
             createChecker(checkConfig),
             propertyFiles,
-            getPath("checks"),
+            getPath(""),
             expected);
     }
 
