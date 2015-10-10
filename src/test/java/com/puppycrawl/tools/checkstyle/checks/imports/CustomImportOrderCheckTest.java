@@ -539,7 +539,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             };
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("imports" + File.separator
+        verify(checkConfig, getPath("checks" + File.separator + "imports" + File.separator
             + "InputCustomImportOrder_OverlappingPatterns.java"), expected);
     }
 
