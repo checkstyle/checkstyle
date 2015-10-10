@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.coding;
 
 public class InputRequireThis3 {
     interface AnonWithEmpty {
