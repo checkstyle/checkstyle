@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.grammars;
+package com.puppycrawl.tools.checkstyle;
 
 public class InputSuppressWarningsHolder2
 {
