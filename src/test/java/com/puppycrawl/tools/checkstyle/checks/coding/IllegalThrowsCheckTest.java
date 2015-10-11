@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -31,6 +32,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
@@ -41,7 +48,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
     }
 
     @Test
@@ -59,7 +66,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
     }
 
     /**
@@ -75,7 +82,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
     }
 
     /**
@@ -93,7 +100,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
     }
 
     /**
@@ -107,8 +114,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("coding" + File.separator
-                + "InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
     }
 
     /**
@@ -125,8 +131,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "12:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator
-                + "InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
     }
 
     @Test
