@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -30,6 +33,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidNestedBlocksCheckTest
         extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "blocks" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -74,5 +82,4 @@ public class AvoidNestedBlocksCheckTest
         int[] expected = {TokenTypes.SLIST };
         assertArrayEquals(expected, actual);
     }
-
 }
