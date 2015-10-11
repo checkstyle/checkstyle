@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -34,6 +37,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
  */
 public class NoFinalizerCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testHasFinalizer()
         throws Exception {
@@ -42,7 +51,7 @@ public class NoFinalizerCheckTest
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("coding/InputHasFinalizer.java"), expected);
+        verify(checkConfig, getPath("InputHasFinalizer.java"), expected);
     }
 
     @Test
@@ -51,6 +60,6 @@ public class NoFinalizerCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("coding/InputFallThrough.java"), expected);
+        verify(checkConfig, getPath("InputFallThrough.java"), expected);
     }
 }
