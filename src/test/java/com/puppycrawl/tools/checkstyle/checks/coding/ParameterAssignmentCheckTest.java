@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -43,7 +50,7 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
             "12:14: " + getCheckMessage(MSG_KEY, "field"),
             "20:30: " + getCheckMessage(MSG_KEY, "field1"),
         };
-        verify(checkConfig, getPath("coding" + File.separator + "InputParameterAssignment.java"),
+        verify(checkConfig, getPath("InputParameterAssignment.java"),
                expected);
     }
 
