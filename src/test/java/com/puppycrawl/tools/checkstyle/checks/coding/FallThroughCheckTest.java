@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck.MSG
 import static com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck.MSG_FALL_THROUGH_LAST;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,6 +32,11 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class FallThroughCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
 
     @Test
     public void testDefault() throws Exception {
@@ -55,7 +61,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
 
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputFallThrough.java"),
+               getPath("InputFallThrough.java"),
                expected);
     }
 
@@ -84,7 +90,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputFallThrough.java"),
+               getPath("InputFallThrough.java"),
                expected);
     }
 
@@ -132,7 +138,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputFallThrough.java"),
+               getPath("InputFallThrough.java"),
                expected);
 
     }
@@ -160,7 +166,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
             "88:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
-            getPath("coding" + File.separator + "InputFallThrough2.java"),
+            getPath("InputFallThrough2.java"),
             expected);
     }
 }
