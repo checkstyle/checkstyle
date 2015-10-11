@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -34,6 +35,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class FinalLocalVariableCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -59,7 +72,7 @@ public class FinalLocalVariableCheckTest
             "97:17: " + getCheckMessage(MSG_KEY, "j"),
             "98:17: " + getCheckMessage(MSG_KEY, "k"),
         };
-        verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariable.java"), expected);
     }
 
     @Test
@@ -73,7 +86,7 @@ public class FinalLocalVariableCheckTest
             "149:36: " + getCheckMessage(MSG_KEY, "_o"),
             "154:37: " + getCheckMessage(MSG_KEY, "_o1"),
         };
-        verify(checkConfig, getPath("coding/InputFinalLocalVariable.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariable.java"), expected);
     }
 
     @Test
@@ -83,7 +96,7 @@ public class FinalLocalVariableCheckTest
         checkConfig.addAttribute("tokens", "PARAMETER_DEF");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("coding/InputFinalLocalVariableNativeMethods.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableNativeMethods.java"), expected);
     }
 
     @Test
@@ -93,7 +106,7 @@ public class FinalLocalVariableCheckTest
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("coding/InputFinalLocalVariableCheckFalsePositive.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableCheckFalsePositive.java"), expected);
     }
 
     @Test
@@ -106,7 +119,7 @@ public class FinalLocalVariableCheckTest
             "8:20: " + "Variable 'a' should be declared final.",
             "15:13: " + "Variable 'x' should be declared final.",
         };
-        verify(checkConfig, getPath("coding/InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
     }
 
     @Test
@@ -117,7 +130,7 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "15:13: " + "Variable 'x' should be declared final.",
         };
-        verify(checkConfig, getPath("coding/InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
     }
 
     @Test
@@ -127,9 +140,7 @@ public class FinalLocalVariableCheckTest
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/"
-                + "tools/checkstyle/naming/InputFinalLocalVariableNameLambda.java")
-                .getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputFinalLocalVariableNameLambda.java"), expected);
     }
 
     @Test
@@ -143,7 +154,7 @@ public class FinalLocalVariableCheckTest
             "4:28: " + "Variable 'text' should be declared final.",
             "17:13: " + "Variable 'x' should be declared final.",
         };
-        verify(checkConfig, getPath("coding/InputFinalLocalVariableNameShadowing.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableNameShadowing.java"), expected);
     }
 
     @Test
