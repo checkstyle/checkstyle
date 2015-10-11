@@ -191,39 +191,6 @@ class FileDrop {
     }
 
     /**
-     * Removes the drag-and-drop hooks from the component and optionally
-     * from the all children. You should call this if you add and remove
-     * components after you've set up the drag-and-drop.
-     * This will recursively unregister all components contained within
-     * <var>c</var> if <var>c</var> is a {@link Container}.
-     *
-     * @param component The component to unregister as a drop target
-     * @since 1.0
-     */
-    static void remove(Component component) {
-        remove(component, true);
-    }
-
-    /**
-     * Removes the drag-and-drop hooks from the component and optionally
-     * from the all children. You should call this if you add and remove
-     * components after you've set up the drag-and-drop.
-     *
-     * @param component The component to unregister
-     * @param recursive Recursively unregister components within a container
-     * @since 1.0
-     */
-    private static void remove(Component component, boolean recursive) {
-        component.setDropTarget(null);
-        if (recursive && component instanceof Container) {
-            final Component[] comps = ((Container) component).getComponents();
-            for (Component element : comps) {
-                remove(element, recursive);
-            }
-        }
-    }
-
-    /**
      * Listener and handler for file drop target events.
      */
     private class FileDropTargetListener extends DropTargetAdapter {
