@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,6 +31,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ExplicitInitializationCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -56,7 +63,7 @@ public class ExplicitInitializationCheckTest extends BaseCheckTestSupport {
             "54:27: " + getCheckMessage(MSG_KEY, "barArray", "null"),
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputExplicitInit.java"),
+               getPath("InputExplicitInit.java"),
                expected);
     }
 
