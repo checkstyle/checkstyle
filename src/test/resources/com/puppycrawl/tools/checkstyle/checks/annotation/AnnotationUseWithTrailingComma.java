@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation;
 //this file compiles in eclipse 3.4 but not with Sun's JDK 1.6.0.11
 
 /**

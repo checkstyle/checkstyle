@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocati
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -31,6 +34,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "annotation" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -43,7 +51,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("annotation/InputCorrectAnnotationLocation.java"), expected);
+        verify(checkConfig, getPath("InputCorrectAnnotationLocation.java"), expected);
     }
 
     @Test
@@ -70,7 +78,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             "88: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 10, 8),
             "98: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 0, 3),
         };
-        verify(checkConfig, getPath("annotation/InputIncorrectAnnotationLocation.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectAnnotationLocation.java"), expected);
     }
 
     @Test
@@ -101,7 +109,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
     public void testWithoutAnnotations() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("annotation/InputAnnotationLocationCheckTest1.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationCheckTest1.java"), expected);
     }
 
     @Test
@@ -125,7 +133,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             "88: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 10, 8),
             "98: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 0, 3),
             };
-        verify(checkConfig, getPath("annotation/InputIncorrectAnnotationLocation.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectAnnotationLocation.java"), expected);
     }
 
     @Test
@@ -137,7 +145,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation12"),
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation13"),
             };
-        verify(checkConfig, getPath("annotation/InputAnnotationLocationCheckTest2.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationCheckTest2.java"), expected);
     }
 
 }

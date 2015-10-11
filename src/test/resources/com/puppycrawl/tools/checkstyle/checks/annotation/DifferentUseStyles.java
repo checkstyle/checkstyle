@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 @Deprecated
 @SomeArrays(pooches={DOGS.LEO})
