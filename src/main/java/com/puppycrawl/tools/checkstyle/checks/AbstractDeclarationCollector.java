@@ -246,7 +246,7 @@ public abstract class AbstractDeclarationCollector extends Check {
         /** Add a name to the frame.
          * @param nameToAdd the name we're adding
          */
-        void addName(String nameToAdd) {
+        private void addName(String nameToAdd) {
             varNames.add(nameToAdd);
         }
 
@@ -262,7 +262,7 @@ public abstract class AbstractDeclarationCollector extends Check {
          * @param nameToFind the name we're looking for
          * @return whether it was found
          */
-        LexicalFrame getIfContains(String nameToFind) {
+        private LexicalFrame getIfContains(String nameToFind) {
             LexicalFrame frame = null;
 
             if (contains(nameToFind)) {
