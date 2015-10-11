@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecate
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -34,6 +35,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MissingDeprecatedTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "annotation" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -71,7 +77,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "56: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "InputBadDeprecatedAnnotation.java"), expected);
+        verify(checkConfig, getPath("InputBadDeprecatedAnnotation.java"), expected);
     }
 
     /**
@@ -94,7 +100,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "55: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "BadDeprecatedJavadoc.java"), expected);
+        verify(checkConfig, getPath("BadDeprecatedJavadoc.java"), expected);
     }
 
     /**
@@ -121,7 +127,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "51: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "InputSpecialCaseDeprecated.java"), expected);
+        verify(checkConfig, getPath("InputSpecialCaseDeprecated.java"), expected);
     }
 
     /**
@@ -134,7 +140,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("annotation" + File.separator + "GoodDeprecated.java"), expected);
+        verify(checkConfig, getPath("GoodDeprecated.java"), expected);
     }
 
     @Test
@@ -148,7 +154,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "InputMissingDeprecatedCheckTest1.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedCheckTest1.java"), expected);
     }
 
     @Test
@@ -161,6 +167,6 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "InputMissingDeprecatedCheckTest2.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedCheckTest2.java"), expected);
     }
 }
