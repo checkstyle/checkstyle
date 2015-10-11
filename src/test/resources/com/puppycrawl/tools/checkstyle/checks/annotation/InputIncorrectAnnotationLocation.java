@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 
 
 
-@MyAnnotation2 @com.puppycrawl.tools.checkstyle.annotation.MyAnnotation1 //warn
+@MyAnnotation2 @com.puppycrawl.tools.checkstyle.checks.annotation.MyAnnotation1 //warn
 (value = "")
 class InputIncorrectAnnotationLocation
 {

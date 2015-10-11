@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 @MyAnnotation11 @MyAnnotation12 @MyAnnotation13
 public class InputAnnotationLocationCheckTest2 {
