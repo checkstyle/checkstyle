@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,6 +32,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class OverloadMethodsDeclarationOrderCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -40,7 +49,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "68: " + getCheckMessage(MSG_KEY, 66),
             "111: " + getCheckMessage(MSG_KEY, 100),
         };
-        verify(checkConfig, getPath("coding/InputOverloadMethodsDeclarationOrder.java"), expected);
+        verify(checkConfig, getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
     }
 
     @Test
