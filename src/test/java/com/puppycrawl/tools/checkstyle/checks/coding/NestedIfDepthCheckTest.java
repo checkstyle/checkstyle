@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,6 +32,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -39,7 +48,7 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
             "44:17: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
-        verify(checkConfig, getPath("coding/InputNestedIfDepth.java"), expected);
+        verify(checkConfig, getPath("InputNestedIfDepth.java"), expected);
     }
     //        checkConfig.addAttribute("max", "2");
 
@@ -51,7 +60,7 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("coding/InputNestedIfDepth.java"), expected);
+        verify(checkConfig, getPath("InputNestedIfDepth.java"), expected);
     }
 
     @Test
