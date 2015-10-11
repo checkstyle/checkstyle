@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +35,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ModifiedControlVariableCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testModifiedControlVariable() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -46,7 +55,7 @@ public class ModifiedControlVariableCheckTest
             "67:15: " + getCheckMessage(MSG_KEY, "i"),
             "68:15: " + getCheckMessage(MSG_KEY, "k"),
         };
-        verify(checkConfig, getPath("coding/InputModifiedControl.java"), expected);
+        verify(checkConfig, getPath("InputModifiedControl.java"), expected);
     }
 
     @Test
@@ -56,7 +65,7 @@ public class ModifiedControlVariableCheckTest
         checkConfig.addAttribute("skipEnhancedForLoopVariable", "true");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("coding/InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
     }
 
     @Test
@@ -67,7 +76,7 @@ public class ModifiedControlVariableCheckTest
         final String[] expected = {
             "9:18: " + getCheckMessage(MSG_KEY, "line"),
         };
-        verify(checkConfig, getPath("coding/InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
     }
 
     @Test
