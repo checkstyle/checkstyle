@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 public class InputIllegalCatchCheck2 {
     public void foo() throws OneMoreException {

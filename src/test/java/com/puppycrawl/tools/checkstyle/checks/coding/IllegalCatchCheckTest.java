@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,6 +31,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class IllegalCatchCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
@@ -43,7 +50,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
             "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatchCheck.java"), expected);
     }
 
     @Test
@@ -59,7 +66,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
             "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatchCheck.java"), expected);
     }
 
     @Test
@@ -73,7 +80,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
             "16:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalCatchCheck2.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatchCheck2.java"), expected);
     }
 
     @Test
