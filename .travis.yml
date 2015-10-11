@@ -11,10 +11,6 @@ matrix:
     - jdk: oraclejdk8
       env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD="" DEPLOY="true"
 
-    # unit tests in German locale (oraclejdk8)
-    - jdk: oraclejdk8
-      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE'" COVERAGE_CMD=""
-
     # checkstyle (oraclejdk8)
     - jdk: oraclejdk8
       env:
@@ -202,6 +198,9 @@ matrix:
         - CMD3="-Dcheckstyle.ant.skip=true -Dgpg.skip=true'"
         - CMD=$CMD1$CMD2$CMD3
         - COVERAGE_CMD=""
+    # unit tests in German locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE'" COVERAGE_CMD=""
     # unit tests (openjdk7, oraclejdk7)
     - jdk: openjdk7
       env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
