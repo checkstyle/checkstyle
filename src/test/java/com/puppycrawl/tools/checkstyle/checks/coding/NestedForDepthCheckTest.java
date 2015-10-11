@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,6 +36,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
  * @see NestedForDepthCheck
  */
 public class NestedForDepthCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     /**
      * Call the check allowing 2 layers of nested for-statements. This
      * means the top-level for can contain up to 2 levels of nested for
@@ -53,7 +62,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
             "44:13: " + getCheckMessage(MSG_KEY, 4, 2),
         };
 
-        verify(checkConfig, getPath("coding/InputNestedForDepth.java"),
+        verify(checkConfig, getPath("InputNestedForDepth.java"),
                expected);
     }
 
@@ -75,7 +84,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("coding/InputNestedForDepth.java"),
+        verify(checkConfig, getPath("InputNestedForDepth.java"),
                expected);
     }
 
