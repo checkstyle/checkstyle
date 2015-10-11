@@ -1,5 +1,5 @@
 //Compilable with Java8
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 public interface JsonTranslator {
 
     String toJson(Response one, Response two, Response three);

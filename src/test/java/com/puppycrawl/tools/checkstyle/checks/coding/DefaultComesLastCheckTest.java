@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -31,6 +32,18 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -40,7 +53,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
             "31:24: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputDefaultComesLast.java"),
+               getPath("InputDefaultComesLast.java"),
                expected);
     }
 
@@ -51,10 +64,8 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
                 createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                  new File(
-                        "src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/coding/InputDefaultComesLast2.java").getCanonicalPath(),
-                  expected);
+                getNonCompilablePath("InputDefaultComesLast2.java"),
+                expected);
     }
 
     @Test

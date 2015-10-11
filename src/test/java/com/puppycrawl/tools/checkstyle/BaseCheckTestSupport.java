@@ -88,8 +88,7 @@ public class BaseCheckTestSupport {
         return dc;
     }
 
-    protected String getPath(String filename)
-            throws IOException {
+    protected String getPath(String filename) throws IOException {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
     }
 
@@ -98,8 +97,12 @@ public class BaseCheckTestSupport {
     }
 
     protected String getSrcPath(String filename) throws IOException {
-
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
+    }
+
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
+                + filename).getCanonicalPath();
     }
 
     protected void verify(Configuration aConfig, String fileName, String... expected)
