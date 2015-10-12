@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,6 +31,18 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testMultiCaseClass() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
@@ -44,7 +57,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getPath("checks/coding/OneStatementPerLineCheckInput.java"),
+            getPath("OneStatementPerLineCheckInput.java"),
             expected);
     }
 
@@ -69,7 +82,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getPath("checks/coding/OneStatementPerLineCheckInput2.java"),
+            getPath("OneStatementPerLineCheckInput2.java"),
             expected);
     }
 
@@ -80,9 +93,6 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
             "24:6: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, new File("src/test/resources-noncompilable/"
-                + "com/puppycrawl/tools/checkstyle/coding/"
-                + "InputOneStatementPerLineCheck.java").getCanonicalPath(),
-            expected);
+        verify(checkConfig, getNonCompilablePath("InputOneStatementPerLineCheck.java"), expected);
     }
 }
