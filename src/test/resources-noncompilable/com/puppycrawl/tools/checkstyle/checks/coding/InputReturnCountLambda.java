@@ -1,5 +1,5 @@
 //Compilable with Java8
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Optional;
 import java.util.concurrent.Callable;
