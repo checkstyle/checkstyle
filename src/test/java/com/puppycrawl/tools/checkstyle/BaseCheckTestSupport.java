@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,12 +12,19 @@ import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
+import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
+import com.google.common.collect.MapDifference;
+import com.google.common.collect.MapDifference.ValueDifference;
+import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -135,6 +143,15 @@ public class BaseCheckTestSupport {
                           String messageFileName,
                           String... expected)
             throws Exception {
+        final Map<String, List<String>> expectedMessages = new HashMap<>(1);
+        expectedMessages.put(messageFileName, asList(expected));
+        verify(checker, processedFiles, expectedMessages);
+    }
+
+    protected void verify(Checker checker,
+                          File[] processedFiles,
+                          Map<String, List<String>> expectedViolations)
+            throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);
@@ -146,14 +163,55 @@ public class BaseCheckTestSupport {
         try (final LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
-            for (int i = 0; i < expected.length; i++) {
-                final String expectedResult = messageFileName + ":" + expected[i];
-                final String actual = lnr.readLine();
-                assertEquals("error message " + i, expectedResult, actual);
+            final Map<String, List<String>> actualViolations = new HashMap<>();
+            for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errs; line = lnr.readLine()) {
+                // have at least 2 characters before the splitting colon,
+                // to not split after the drive letter on windows
+                final String[] actualViolation = line.split("(?<=.{2}):", 2);
+                final String actualViolationFileName = actualViolation[0];
+                final String actualViolationMessage = actualViolation[1];
+
+                List<String> actualViolationsPerFile = actualViolations.get(actualViolationFileName);
+                if (actualViolationsPerFile == null) {
+                    actualViolationsPerFile = new ArrayList<>();
+                    actualViolations.put(actualViolationFileName, actualViolationsPerFile);
+                }
+                actualViolationsPerFile.add(actualViolationMessage);
             }
 
-            assertEquals("unexpected output: " + lnr.readLine(),
-                    expected.length, errs);
+            final Map<String, List<String>> realExpectedViolations = Maps.filterValues(expectedViolations, new Predicate<List<String>>() {
+                @Override
+                public boolean apply(List<String> input) {
+                    return !input.isEmpty();
+                }
+            });
+            final MapDifference<String, List<String>> violationDifferences = Maps.difference(realExpectedViolations, actualViolations);
+
+            final Map<String, List<String>> missingViolations = violationDifferences.entriesOnlyOnLeft();
+            final Map<String, List<String>> unexpectedViolations = violationDifferences.entriesOnlyOnRight();
+            final Map<String, ValueDifference<List<String>>> differingViolations = violationDifferences.entriesDiffering();
+
+            final StringBuilder message = new StringBuilder();
+            if (!missingViolations.isEmpty()) {
+                message.append("missing violations: ").append(missingViolations);
+            }
+            if (!unexpectedViolations.isEmpty()) {
+                if (message.length() > 0) {
+                    message.append('\n');
+                }
+                message.append("unexpected violations: ").append(unexpectedViolations);
+            }
+            if (!differingViolations.isEmpty()) {
+                if (message.length() > 0) {
+                    message.append('\n');
+                }
+                message.append("differing violations: ").append(differingViolations);
+            }
+
+            assertTrue(message.toString(),
+                missingViolations.isEmpty()
+                && unexpectedViolations.isEmpty()
+                && differingViolations.isEmpty());
         }
         checker.destroy();
     }

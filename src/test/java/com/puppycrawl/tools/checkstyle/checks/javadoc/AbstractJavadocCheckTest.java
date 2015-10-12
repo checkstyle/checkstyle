@@ -23,11 +23,15 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocChec
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -85,8 +89,42 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checker, getPath("InputCorrectJavaDocParagraphCheck.java"), expected);
+        verify(checker, getPath("InputCorrectJavaDocParagraphCheck.java"));
+    }
+
+    @Test
+    public void testAntlrError() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY, 0, null),
+        };
+        verify(checkConfig, getPath("InputTestInvalidAtSeeReference.java"), expected);
+    }
+
+    @Test
+    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
+        expectedMessages.put(getPath("InputParsingErrors.java"), asList(
+            "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "8: " + getCheckMessage(JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
+        ));
+        expectedMessages.put(getPath("InputTestInvalidAtSeeReference.java"), singletonList(
+            "3: " + getCheckMessage(UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY, 0, null)
+        ));
+        verify(createChecker(checkConfig), new File[] {
+            new File(getPath("InputParsingErrors.java")),
+            new File(getPath("InputTestInvalidAtSeeReference.java")), }, expectedMessages);
+    }
+
+    @Test
+    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
+        final String[] expected = {
+            "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "7: " + getCheckMessage(UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY, 4, null),
+        };
+        verify(checkConfig, getPath("InputTestUnclosedTagAndInvalidAtSeeReference.java"), expected);
     }
 
     private static class TempCheck extends AbstractJavadocCheck {
