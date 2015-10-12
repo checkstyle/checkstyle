@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck.
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -31,6 +32,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class IllegalImportCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "imports" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -50,8 +56,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "23:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "27:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputIllegalImportCheck.java"),
-                expected);
+        verify(checkConfig, getPath("InputIllegalImportCheck.java"), expected);
     }
 
     @Test
@@ -63,8 +68,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
             "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputIllegalImportCheck.java"),
-                expected);
+        verify(checkConfig, getPath("InputIllegalImportCheck.java"), expected);
     }
 
     @Test
