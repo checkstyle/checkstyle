@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -36,6 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ThrowsCountCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "design" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
@@ -47,7 +54,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
             "55:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
 
-        verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
+        verify(checkConfig, getPath("InputThrowsCount.java"), expected);
     }
 
     @Test
@@ -59,7 +66,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
             "27:20: " + getCheckMessage(MSG_KEY, 6, 5),
         };
 
-        verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
+        verify(checkConfig, getPath("InputThrowsCount.java"), expected);
     }
 
     @Test
@@ -101,6 +108,6 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
             "35:28: " + getCheckMessage(MSG_KEY, 5, 4),
             "55:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
-        verify(checkConfig, getPath("design" + File.separator + "InputThrowsCount.java"), expected);
+        verify(checkConfig, getPath("InputThrowsCount.java"), expected);
     }
 }
