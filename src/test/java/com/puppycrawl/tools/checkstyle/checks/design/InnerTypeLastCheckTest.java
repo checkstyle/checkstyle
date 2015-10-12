@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.M
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -31,6 +32,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "design" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -50,8 +56,7 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
             "78:5: " + getCheckMessage(MSG_KEY),
             "95:9: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("design" + File.separator
-                                    + "InputInnerClassCheck.java"), expected);
+        verify(checkConfig, getPath("InputInnerClassCheck.java"), expected);
     }
 
     @Test
