@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportChec
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -32,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidStarImportTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "imports" + File.separator + filename);
+    }
+
     @Test
     public void testDefaultOperation()
         throws Exception {
@@ -46,7 +53,7 @@ public class AvoidStarImportTest
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
-        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStarImportCheck.java"),
+        verify(checkConfig, getPath("InputAvoidStarImportCheck.java"),
                 expected);
     }
 
@@ -62,7 +69,7 @@ public class AvoidStarImportTest
             "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputAvoidStarImportCheck.java"),
+        verify(checkConfig, getPath("InputAvoidStarImportCheck.java"),
                 expected2);
     }
 
@@ -75,8 +82,7 @@ public class AvoidStarImportTest
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
-        verify(checkConfig, getPath("imports" + File.separator
-            + "InputAvoidStarImportCheck.java"), expected2);
+        verify(checkConfig, getPath("InputAvoidStarImportCheck.java"), expected2);
     }
 
     @Test
@@ -89,8 +95,7 @@ public class AvoidStarImportTest
             "9: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "10: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };
-        verify(checkConfig, getPath("imports" + File.separator
-            + "InputAvoidStarImportCheck.java"), expected2);
+        verify(checkConfig, getPath("InputAvoidStarImportCheck.java"), expected2);
     }
 
     @Test
