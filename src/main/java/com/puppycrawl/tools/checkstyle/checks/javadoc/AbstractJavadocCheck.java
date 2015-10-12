@@ -89,8 +89,7 @@ public abstract class AbstractJavadocCheck extends Check {
     /**
      * Custom error listener.
      */
-    private final DescriptiveErrorListener errorListener =
-            new DescriptiveErrorListener();
+    private DescriptiveErrorListener errorListener;
 
     /**
      * DetailAST node of considered Javadoc comment that is just a block comment
@@ -215,6 +214,11 @@ public abstract class AbstractJavadocCheck extends Check {
      */
     private ParseStatus parseJavadocAsDetailNode(DetailAST javadocCommentAst) {
         final String javadocComment = JavadocUtils.getJavadocCommentContent(javadocCommentAst);
+
+        // Use a new error listener each time to be able to use
+        // one check instance for multiple files to be checked
+        // without getting side effects.
+        errorListener = new DescriptiveErrorListener();
 
         // Log messages should have line number in scope of file,
         // not in scope of Javadoc comment.
