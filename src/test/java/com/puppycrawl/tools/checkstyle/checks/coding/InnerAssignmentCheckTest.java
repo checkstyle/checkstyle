@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -32,6 +33,18 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class InnerAssignmentCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -55,7 +68,7 @@ public class InnerAssignmentCheckTest
             "45:27: " + getCheckMessage(MSG_KEY),
             "46:32: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("coding" + File.separator + "InputInnerAssignment.java"), expected);
+        verify(checkConfig, getPath("InputInnerAssignment.java"), expected);
     }
 
     @Test
@@ -63,9 +76,7 @@ public class InnerAssignmentCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/coding/"
-                + "InputInnerAssignmentLambdaExpressions.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputInnerAssignmentLambdaExpressions.java"), expected);
     }
 
     @Test
