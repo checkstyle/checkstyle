@@ -9,7 +9,7 @@ matrix:
   include:
     # unit tests (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD="" DEPLOY="true"
+      env: DESC="tests and deploy" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD="" DEPLOY="true"
 
     # checkstyle (oraclejdk8)
     - jdk: oraclejdk8
@@ -232,8 +232,8 @@ after_success:
             && $DEPLOY == 'true'
        ]];
     then
-        mvn -s config/deploy-settings.xml deploy
-          -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true
+        mvn -s config/deploy-settings.xml deploy \
+          -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true \
           -Dcobertura.skip=true -Dcheckstyle.ant.skip=true ;
     fi
 
