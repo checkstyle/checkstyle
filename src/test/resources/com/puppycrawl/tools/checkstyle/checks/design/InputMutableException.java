@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.design;
+package com.puppycrawl.tools.checkstyle.checks.design;
 
 public class InputMutableException {
     public class FooException extends Exception {

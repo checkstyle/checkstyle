@@ -24,6 +24,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -36,6 +37,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MutableExceptionCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "design" + File.separator + filename);
+    }
 
     @Test
     public void testClassExtendsGenericClass() throws Exception {
@@ -43,8 +49,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("design" + File.separator
-            + "InputMutableExceptionClassExtendsGenericClass.java"), expected);
+        verify(checkConfig, getPath("InputMutableExceptionClassExtendsGenericClass.java"), expected);
     }
 
     @Test
@@ -57,7 +62,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
             "46:9: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
-        verify(checkConfig, getPath("design" + File.separator + "InputMutableException.java"), expected);
+        verify(checkConfig, getPath("InputMutableException.java"), expected);
     }
 
     @Test
@@ -69,7 +74,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
             "34:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
-        verify(checkConfig, getPath("design" + File.separator + "InputMutableException.java"), expected);
+        verify(checkConfig, getPath("InputMutableException.java"), expected);
     }
 
     @Test
