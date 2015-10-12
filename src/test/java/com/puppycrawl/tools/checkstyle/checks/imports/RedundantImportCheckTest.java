@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportChec
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -34,6 +35,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class RedundantImportCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "imports" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "imports" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -52,14 +64,14 @@ public class RedundantImportCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantImportCheck.class);
         final String[] expected = {
-            "7:1: " + getCheckMessage(MSG_SAME, "com.puppycrawl.tools.checkstyle.imports.*"),
-            "8:1: " + getCheckMessage(MSG_SAME, "com.puppycrawl.tools.checkstyle.imports.InputImportBug"),
+            "7:1: " + getCheckMessage(MSG_SAME, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
+            "8:1: " + getCheckMessage(MSG_SAME, "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
             "10:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
             "11:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
             "14:1: " + getCheckMessage(MSG_DUPLICATE, 13, "java.util.List"),
             "26:1: " + getCheckMessage(MSG_DUPLICATE, 25, "javax.swing.WindowConstants.*"),
         };
-        verify(checkConfig, getPath("imports" + File.separator + "InputRedundantImportCheck.java"), expected);
+        verify(checkConfig, getPath("InputRedundantImportCheck.java"), expected);
     }
 
     @Test
@@ -71,9 +83,7 @@ public class RedundantImportCheckTest
             "2:1: " + getCheckMessage(MSG_DUPLICATE, 1, "java.util.List"),
             "4:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/imports/"
-                + "InputRedundantImportCheck_UnnamedPackage.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputRedundantImportCheck_UnnamedPackage.java"), expected);
     }
 
     @Test
