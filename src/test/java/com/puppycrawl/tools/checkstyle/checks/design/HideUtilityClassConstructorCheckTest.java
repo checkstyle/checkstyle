@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassCons
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -33,6 +34,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class HideUtilityClassConstructorCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "design" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -49,7 +55,7 @@ public class HideUtilityClassConstructorCheckTest
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructor.java"), expected);
+        verify(checkConfig, getPath("UtilityClassConstructor.java"), expected);
     }
 
     @Test
@@ -59,7 +65,7 @@ public class HideUtilityClassConstructorCheckTest
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructorPublic.java"), expected);
+        verify(checkConfig, getPath("UtilityClassConstructorPublic.java"), expected);
     }
 
     @Test
@@ -67,7 +73,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("design" + File.separator + "UtilityClassConstructorPrivate.java"), expected);
+        verify(checkConfig, getPath("UtilityClassConstructorPrivate.java"), expected);
     }
 
     /** Non-static methods - always OK. */
@@ -84,7 +90,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("design" + File.separator + "InputNonUtilityClass.java"), expected);
+        verify(checkConfig, getPath("InputNonUtilityClass.java"), expected);
     }
 
     @Test
@@ -92,7 +98,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("design" + File.separator + "InputRegression1762702.java"), expected);
+        verify(checkConfig, getPath("InputRegression1762702.java"), expected);
     }
 
     @Test
@@ -100,7 +106,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassContructor3041574_1.java"), expected);
+        verify(checkConfig, getPath("HideUtilityClassContructor3041574_1.java"), expected);
     }
 
     @Test
@@ -108,7 +114,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassContructor3041574_2.java"), expected);
+        verify(checkConfig, getPath("HideUtilityClassContructor3041574_2.java"), expected);
     }
 
     @Test
@@ -116,7 +122,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassContructor3041574_3.java"), expected);
+        verify(checkConfig, getPath("HideUtilityClassContructor3041574_3.java"), expected);
     }
 
     @Test
@@ -124,7 +130,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("design" + File.separator + "HideUtilityClassConstructor.java"), expected);
+        verify(checkConfig, getPath("HideUtilityClassConstructor.java"), expected);
     }
 
     @Test

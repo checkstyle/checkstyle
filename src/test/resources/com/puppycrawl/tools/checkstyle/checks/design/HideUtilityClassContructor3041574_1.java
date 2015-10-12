@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.design;
+package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.io.Serializable;
 /*input file*/
