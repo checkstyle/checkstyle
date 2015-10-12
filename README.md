@@ -63,10 +63,10 @@ The software uses the Google Guava Libraries
 these packages are in the file named "LICENSE.apache20" in this
 directory.
 
-[travis]:http://travis-ci.org/checkstyle/checkstyle
+[travis]:https://travis-ci.org/checkstyle/checkstyle/builds
 [travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
 
-[appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle
+[appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
