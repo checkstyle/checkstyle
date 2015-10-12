@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -33,6 +34,18 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ReturnCountCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -41,7 +54,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "18:5: " + getCheckMessage(MSG_KEY, 7, 2),
             "35:17: " + getCheckMessage(MSG_KEY, 6, 2),
         };
-        verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
+        verify(checkConfig, getPath("InputReturnCount.java"), expected);
     }
 
     @Test
@@ -54,7 +67,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "18:5: " + getCheckMessage(MSG_KEY, 7, 2),
             "35:17: " + getCheckMessage(MSG_KEY, 6, 2),
         };
-        verify(checkConfig, getPath("coding" + File.separator + "InputReturnCount.java"), expected);
+        verify(checkConfig, getPath("InputReturnCount.java"), expected);
     }
 
     @Test
@@ -68,8 +81,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "40:5: " + getCheckMessage(MSG_KEY, 2, 1),
             "48:57: " + getCheckMessage(MSG_KEY, 2, 1),
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
@@ -79,8 +91,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "33:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
@@ -93,8 +104,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "40:5: " + getCheckMessage(MSG_KEY, 4, 2),
             "55:5: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
@@ -102,8 +112,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_RETURN");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-            + "checkstyle/coding/InputReturnCountLambda.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
