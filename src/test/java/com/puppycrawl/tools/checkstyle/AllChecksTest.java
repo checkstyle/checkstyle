@@ -28,6 +28,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -100,8 +101,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
                 if (!isSubset(defaultTokens, acceptableTokens)) {
-                    String errorMessage = String.format("%s's default tokens must be a subset"
-                        + " of acceptable tokens.", check.getName());
+                    String errorMessage = String.format(Locale.ROOT,
+                            "%s's default tokens must be a subset"
+                            + " of acceptable tokens.", check.getName());
                     Assert.fail(errorMessage);
                 }
             }
@@ -119,8 +121,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
                 if (!isSubset(requiredTokens, acceptableTokens)) {
-                    String errorMessage = String.format("%s's required tokens must be a subset"
-                        + " of acceptable tokens.", check.getName());
+                    String errorMessage = String.format(Locale.ROOT,
+                            "%s's required tokens must be a subset"
+                            + " of acceptable tokens.", check.getName());
                     Assert.fail(errorMessage);
                 }
             }
@@ -138,8 +141,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 
                 if (!isSubset(requiredTokens, defaultTokens)) {
-                    String errorMessage = String.format("%s's required tokens must be a subset"
-                        + " of default tokens.", check.getName());
+                    String errorMessage = String.format(Locale.ROOT,
+                            "%s's required tokens must be a subset"
+                            + " of default tokens.", check.getName());
                     Assert.fail(errorMessage);
                 }
             }
@@ -155,7 +159,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         for (String check : checksNames) {
             if (!checksReferencedInConfig.contains(check)) {
-                String errorMessage = String.format("%s is not referenced in checkstyle_checks.xml", check);
+                String errorMessage = String.format(Locale.ROOT,
+                        "%s is not referenced in checkstyle_checks.xml", check);
                 Assert.fail(errorMessage);
             }
         }
@@ -172,7 +177,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         for (String moduleName : checkstyleModulesNames) {
             if (!modulesNamesWhichHaveXdocs.contains(moduleName)) {
-                final String missingModuleMessage = String.format(
+                final String missingModuleMessage = String.format(Locale.ROOT,
                     "Module %s does not have xdoc documentation.",
                     moduleName);
                 Assert.fail(missingModuleMessage);

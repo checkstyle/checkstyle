@@ -35,6 +35,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -86,7 +87,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     final int actualIndent = getLineStart(line, tabWidth);
 
                     if (actualIndent != indentInComment) {
-                        throw new IllegalStateException(String.format(
+                        throw new IllegalStateException(String.format(Locale.ROOT,
                                         "File \"%1$s\" has incorrect indentation in comment."
                                                         + "Line %2$d: comment:%3$d, actual:%4$d.",
                                         aFileName,
@@ -100,14 +101,14 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     }
 
                     if (!isCommentConsistent(comment)) {
-                        throw new IllegalStateException(String.format(
+                        throw new IllegalStateException(String.format(Locale.ROOT,
                                         "File \"%1$s\" has inconsistent comment on line %2$d",
                                         aFileName,
                                         lineNumber));
                     }
                 }
                 else if (NONEMPTY_LINE_REGEX.matcher(line).matches()) {
-                    throw new IllegalStateException(String.format(
+                    throw new IllegalStateException(String.format(Locale.ROOT,
                                     "File \"%1$s\" has no indentation comment or its format "
                                                     + "malformed. Error on line: %2$d",
                                     aFileName,

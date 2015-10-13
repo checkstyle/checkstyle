@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 
-import java.text.MessageFormat;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -71,7 +69,7 @@ public class IllegalTokenTextCheckTest
         String customMessage = "My custom message";
         checkConfig.addAttribute("message", customMessage);
         final String[] expected = {
-            "24:28: " + MessageFormat.format(customMessage, "a href"),
+            "24:28: " + customMessage,
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }

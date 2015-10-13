@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -76,7 +77,7 @@ public class AllChecksPresentOnAvailableChecksPageTest {
     }
 
     private static boolean isPresent(String availableChecks, String checkName) {
-        final String linkPattern = String.format(LINK_TEMPLATE, checkName);
+        final String linkPattern = String.format(Locale.ROOT, LINK_TEMPLATE, checkName);
         return availableChecks.matches(linkPattern);
     }
 }

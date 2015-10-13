@@ -1,6 +1,5 @@
 package com.google.checkstyle.test.base;
 
-import static java.text.MessageFormat.format;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
@@ -10,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -163,7 +163,9 @@ public abstract class BaseCheckTestSupport
      */
     protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
             String messageKey, Object... arguments) {
-        return format(getCheckMessage(aClass, messageKey), arguments);
+        final MessageFormat formatter = new MessageFormat(getCheckMessage(aClass, messageKey),
+                Locale.ROOT);
+        return formatter.format(arguments);
     }
 
     /**
@@ -175,7 +177,8 @@ public abstract class BaseCheckTestSupport
    {
        for (Map.Entry<String, String> entry : messages.entrySet()) {
            if (messageKey.equals(entry.getKey())) {
-               return format(entry.getValue(), arguments);
+               final MessageFormat formatter = new MessageFormat(entry.getValue(), Locale.ROOT);
+               return formatter.format(arguments);
            }
        }
        return null;

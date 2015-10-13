@@ -82,7 +82,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                String usage = String.format("Unrecognized option: -w%n"
+                String usage = String.format(Locale.ROOT, "Unrecognized option: -w%n"
                     + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>%n"
                     + "            file...%n"
                     + " -c <arg>   Sets the check configuration file to use.%n"
@@ -135,8 +135,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(
-                        String.format("Unable to find: src/main/resources/non_existing_config.xml%n"
+                assertEquals(String.format(Locale.ROOT,
+                        "Unable to find: src/main/resources/non_existing_config.xml%n"
                                 + "Checkstyle ends with 1 errors.%n"),
                         systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -152,7 +152,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format("Invalid output format. "
+                assertEquals(String.format(Locale.ROOT, "Invalid output format. "
                         + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -187,7 +187,7 @@ public class MainTest {
             + " how to configure short name usage http://checkstyle.sourceforge.net/config.html#Packages."
             + " Please also recheck that provided ClassLoader to Checker is configured correctly.";
         final String expectedExceptionMessage =
-            String.format("cannot initialize module TreeWalker - %1$s%n"
+            String.format(Locale.ROOT, "cannot initialize module TreeWalker - %1$s%n"
                 + "Cause: com.puppycrawl.tools.checkstyle.api.CheckstyleException: %1$s%n"
                 + "Checkstyle ends with 1 errors.%n", cause);
         exit.checkAssertionAfterwards(new Assertion() {
@@ -208,7 +208,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format("Starting audit...%n"
+                assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -230,7 +230,8 @@ public class MainTest {
                 final ResourceBundle compilationProperties =
                         ResourceBundle.getBundle("checkstylecompilation");
                 String version = compilationProperties.getString("checkstyle.compile.version");
-                assertEquals(String.format("<?xml version=\"1.0\" encoding=\"UTF-8\"?>%n"
+                assertEquals(String.format(Locale.ROOT,
+                        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>%n"
                         + "<checkstyle version=\"%s\">%n"
                         + "<file name=\"%s\">%n"
                         + "</file>%n"
@@ -249,7 +250,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format("Starting audit...%n"
+                assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -269,7 +270,7 @@ public class MainTest {
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
-                assertEquals(String.format("Starting audit...%n"
+                assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                                 + "%1$s:3:14: "
                                 + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
                                 + "%1$s:5:7: "
@@ -294,7 +295,7 @@ public class MainTest {
                 String expectedPath = currentPath
                     + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
                     .replace("/", File.separator);
-                assertEquals(String.format("Starting audit...%n"
+                assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                         + "%1$s:3:14: error: "
                         + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
                         + "%1$s:5:7: error: "
@@ -396,7 +397,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format("Starting audit...%n"
+                assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                         + "Audit done.%n"), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -432,10 +433,10 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertTrue(systemOut.getLog().startsWith(String.format(
+                assertTrue(systemOut.getLog().startsWith(String.format(Locale.ROOT,
                       "unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
                       + "Cause: org.xml.sax.SAXParseException; systemId: file:")));
-                assertTrue(systemOut.getLog().endsWith(String.format(
+                assertTrue(systemOut.getLog().endsWith(String.format(Locale.ROOT,
                       "com/puppycrawl/tools/checkstyle/config-Incorrect.xml; lineNumber: 7; columnNumber: 1; "
                       + "Content is not allowed in prolog.%n"
                       + "Checkstyle ends with 1 errors.%n")));
@@ -529,7 +530,7 @@ public class MainTest {
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
                 String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
                 for (String[] outputValue : outputValues) {
-                    String line = String.format(format,
+                    String line = String.format(Locale.ROOT, format,
                             expectedPath + outputValue[0], outputValue[1],
                             outputValue[2]);
                     sb.append(line).append(System.getProperty("line.separator"));

@@ -891,12 +891,35 @@
           <exclude>**/GeneratedJavaLexer.class</exclude>
           <exclude>**/JavadocParser.class</exclude>
           <exclude>**/Main.class</exclude>
+          <!-- Tests related -->
+          <exclude>**/Input*</exclude>
+          <exclude>**/*Input.class</exclude>
+          <exclude>**/New*</exclude>
+          <exclude>**/CompareTreesWithComments.class</exclude>
+          <exclude>**/UpdateClass.class</exclude>
+          <exclude>**/bug*</exclude>
+          <exclude>**/oneMoreClass.class</exclude>
+          <exclude>**/RightCurlyInput_Other.class</exclude>
+          <exclude>**/JavaNCSSCheckTestInput$1.class</exclude>
+          <exclude>**/test_*</exclude>
+          <exclude>**/WithInner$Inner.class</exclude>
+          <exclude>**/Foo*</exclude>
+          <exclude>**/WithAnon$1.class</exclude>
+          <exclude>**/UncommentedMainTest*</exclude>
+          <exclude>**/Temp*</exclude>
+          <exclude>**/Issue*</exclude>
+          <exclude>**/ParenPadWithSpace.class</exclude>
+          <exclude>**/Main1.class</exclude>
+          <exclude>**/ConfigurationBuilder.class</exclude>
+          <exclude>**/WithAnonymousClass$1.class</exclude>
+          <exclude>**/Test.class</exclude>
         </excludes>
       </configuration>
       <executions>
         <execution>
           <goals>
             <goal>check</goal>
+            <goal>testCheck</goal>
           </goals>
         </execution>
       </executions>

@@ -25,6 +25,7 @@ import static org.junit.Assert.assertNull;
 import java.io.File;
 import java.io.FileFilter;
 import java.text.MessageFormat;
+import java.util.Locale;
 
 import org.junit.Test;
 
@@ -147,13 +148,13 @@ public class DetailASTTest {
         Object[] params = {
             node, parent, prev, filename, root,
         };
-        String badParentMsg = MessageFormat.format(
-            "Bad parent node={0} parent={1} filename={3} root={4}",
-            params);
+        MessageFormat badParentFormatter = new MessageFormat(
+                "Bad parent node={0} parent={1} filename={3} root={4}", Locale.ROOT);
+        String badParentMsg = badParentFormatter.format(params);
         assertEquals(badParentMsg, parent, node.getParent());
-        String badPrevMsg = MessageFormat.format(
-            "Bad prev node={0} prev={2} parent={1} filename={3} root={4}",
-            params);
+        MessageFormat badPrevFormatter = new MessageFormat(
+                "Bad prev node={0} prev={2} parent={1} filename={3} root={4}", Locale.ROOT);
+        String badPrevMsg = badPrevFormatter.format(params);
         assertEquals(badPrevMsg, prev, node.getPreviousSibling());
 
         if (node.getFirstChild() != null) {
