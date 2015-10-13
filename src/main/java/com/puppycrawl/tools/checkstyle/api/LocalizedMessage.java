@@ -256,13 +256,15 @@ public final class LocalizedMessage
                 // custom classes.
                 final ResourceBundle resourceBundle = getBundle(bundle);
                 final String pattern = resourceBundle.getString(key);
-                message = MessageFormat.format(pattern, args);
+                final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
+                message = formatter.format(args);
             }
             catch (final MissingResourceException ignored) {
                 // If the Check author didn't provide i18n resource bundles
                 // and logs error messages directly, this will return
                 // the author's original message
-                message = MessageFormat.format(key, args);
+                final MessageFormat formatter = new MessageFormat(key, Locale.ROOT);
+                message = formatter.format(args);
             }
         }
         return message;
@@ -278,8 +280,8 @@ public final class LocalizedMessage
         if (customMessage == null) {
             return null;
         }
-
-        return MessageFormat.format(customMessage, args);
+        final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
+        return formatter.format(args);
     }
 
     /**

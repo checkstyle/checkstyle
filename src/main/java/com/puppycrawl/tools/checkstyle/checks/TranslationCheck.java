@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
@@ -270,7 +271,7 @@ public class TranslationCheck
      */
     private String formMissingTranslationName(String fullBundleName, String languageCode) {
         final String extension = getFileExtensions()[0];
-        return String.format("%s_%s%s", fullBundleName, languageCode, extension);
+        return String.format(Locale.ROOT, "%s_%s%s", fullBundleName, languageCode, extension);
     }
 
     /**

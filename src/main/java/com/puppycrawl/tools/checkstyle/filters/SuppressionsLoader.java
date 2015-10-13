@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
@@ -147,7 +148,7 @@ public final class SuppressionsLoader
             throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, e);
         }
         catch (final ParserConfigurationException | SAXException e) {
-            final String message = String.format("Unable to parse %s - %s",
+            final String message = String.format(Locale.ROOT, "Unable to parse %s - %s",
                     sourceName, e.getMessage());
             throw new CheckstyleException(message, e);
         }
@@ -155,7 +156,7 @@ public final class SuppressionsLoader
             throw new CheckstyleException("Unable to read " + sourceName, e);
         }
         catch (final NumberFormatException e) {
-            final String message = String.format("Number format exception %s - %s",
+            final String message = String.format(Locale.ROOT, "Number format exception %s - %s",
                     sourceName, e.getMessage());
             throw new CheckstyleException(message, e);
         }

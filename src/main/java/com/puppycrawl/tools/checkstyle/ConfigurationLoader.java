@@ -26,6 +26,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -230,7 +231,8 @@ public final class ConfigurationLoader {
             return loader.configuration;
         }
         catch (final SAXParseException e) {
-            final String message = String.format("%s - %s:%s:%s", UNABLE_TO_PARSE_EXCEPTION_PREFIX,
+            final String message = String.format(Locale.ROOT, "%s - %s:%s:%s",
+                    UNABLE_TO_PARSE_EXCEPTION_PREFIX,
                     e.getMessage(), e.getLineNumber(), e.getColumnNumber());
             throw new CheckstyleException(message, e);
         }

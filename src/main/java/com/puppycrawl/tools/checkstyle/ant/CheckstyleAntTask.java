@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -402,7 +403,7 @@ public class CheckstyleAntTask extends Task {
             checker.configure(config);
         }
         catch (final CheckstyleException e) {
-            throw new BuildException(String.format("Unable to create a Checker: "
+            throw new BuildException(String.format(Locale.ROOT, "Unable to create a Checker: "
                     + "configLocation {%s}, classpath {%s}.", configLocation, classpath), e);
         }
         return checker;
@@ -472,7 +473,7 @@ public class CheckstyleAntTask extends Task {
             }
         }
         catch (IOException e) {
-            throw new BuildException(String.format("Unable to create listeners: "
+            throw new BuildException(String.format(Locale.ROOT, "Unable to create listeners: "
                     + "formatters {%s}.", formatters), e);
         }
         return listeners;

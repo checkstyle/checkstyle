@@ -23,6 +23,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
@@ -159,8 +160,8 @@ public class AutomaticBean
                 final PropertyDescriptor descriptor =
                         PropertyUtils.getPropertyDescriptor(this, key);
                 if (descriptor == null) {
-                    final String message = String.format("Property '%s' in module %s does not "
-                            + "exist, please check the documentation", key, moduleName);
+                    final String message = String.format(Locale.ROOT, "Property '%s' in module %s "
+                            + "does not exist, please check the documentation", key, moduleName);
                     throw new CheckstyleException(message);
                 }
             }
@@ -173,13 +174,13 @@ public class AutomaticBean
             // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
-            final String message = String.format("Cannot set property '%s' to '%s' in module %s",
-                    key, value, moduleName);
+            final String message = String.format(Locale.ROOT,
+                    "Cannot set property '%s' to '%s' in module %s", key, value, moduleName);
             throw new CheckstyleException(message, e);
         }
         catch (final IllegalArgumentException | ConversionException e) {
-            final String message = String.format("illegal value '%s' for property '%s' of "
-                    + "module %s", value, key, moduleName);
+            final String message = String.format(Locale.ROOT, "illegal value '%s' for property "
+                    + "'%s' of module %s", value, key, moduleName);
             throw new CheckstyleException(message, e);
         }
     }

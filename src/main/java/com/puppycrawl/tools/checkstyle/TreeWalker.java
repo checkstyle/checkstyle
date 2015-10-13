@@ -27,6 +27,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -207,12 +208,13 @@ public final class TreeWalker
             walk(astWithComments, contents, AstState.WITH_COMMENTS);
         }
         catch (final TokenStreamRecognitionException tre) {
-            final String exceptionMsg = String.format(msg, "TokenStreamRecognitionException",
-                     fileName);
+            final String exceptionMsg = String.format(Locale.ROOT, msg,
+                    "TokenStreamRecognitionException", fileName);
             throw new CheckstyleException(exceptionMsg, tre);
         }
         catch (RecognitionException | TokenStreamException ex) {
-            final String exceptionMsg = String.format(msg, ex.getClass().getSimpleName(), fileName);
+            final String exceptionMsg = String.format(Locale.ROOT, msg,
+                    ex.getClass().getSimpleName(), fileName);
             throw new CheckstyleException(exceptionMsg, ex);
         }
 
@@ -246,8 +248,8 @@ public final class TreeWalker
                     registerCheck(token, check);
                 }
                 else {
-                    final String message = String.format("Token \"%s\" was not found in "
-                            + "Acceptable tokens list in check %s",
+                    final String message = String.format(Locale.ROOT, "Token \"%s\" was "
+                            + "not found in Acceptable tokens list in check %s",
                             token, check.getClass().getName());
                     throw new CheckstyleException(message);
                 }
@@ -285,7 +287,7 @@ public final class TreeWalker
             tokenToCommentChecks.put(token, check);
         }
         else if (TokenUtils.isCommentType(token)) {
-            final String message = String.format("Check '%s' waits for comment type "
+            final String message = String.format(Locale.ROOT, "Check '%s' waits for comment type "
                     + "token ('%s') and should override 'isCommentNodesRequired()' "
                     + "method to return 'true'", check.getClass().getName(), token);
             throw new CheckstyleException(message);
@@ -306,8 +308,8 @@ public final class TreeWalker
             Arrays.sort(defaultTokens);
             for (final int token : check.getRequiredTokens()) {
                 if (Arrays.binarySearch(defaultTokens, token) < 0) {
-                    final String message = String.format("Token \"%s\" from required tokens was"
-                            + " not found in default tokens list in check %s",
+                    final String message = String.format(Locale.ROOT, "Token \"%s\" from required "
+                            + "tokens was not found in default tokens list in check %s",
                             token, check.getClass().getName());
                     throw new CheckstyleException(message);
                 }
