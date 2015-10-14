@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -29,6 +32,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testAcceptableTokens() {
@@ -55,7 +63,7 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
             "43: " + getCheckMessage(MSG_KEY),
             "49: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("javadoc/InputSingleLineJavadocCheck.java"), expected);
+        verify(checkConfig, getPath("InputSingleLineJavadocCheck.java"), expected);
     }
 
     @Test
@@ -74,6 +82,6 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
             "46: " + getCheckMessage(MSG_KEY),
             "49: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("javadoc/InputSingleLineJavadocCheck.java"), expected);
+        verify(checkConfig, getPath("InputSingleLineJavadocCheck.java"), expected);
     }
 }

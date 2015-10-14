@@ -28,6 +28,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.U
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -38,6 +39,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocStyleCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -335,11 +341,8 @@ public class JavadocStyleCheckTest
             "1: " + getCheckMessage(NO_PERIOD),
         };
 
-        String basePath = "javadoc" + File.separator
-            + "pkginfo" + File.separator + "invalidinherit" + File.separator;
-
         verify(createChecker(checkConfig),
-               getPath(basePath + "package-info.java"),
+               getPath("pkginfo" + File.separator + "invalidinherit" + File.separator + "package-info.java"),
                expected);
     }
 
@@ -351,11 +354,8 @@ public class JavadocStyleCheckTest
             "1: " + getCheckMessage(NO_PERIOD),
         };
 
-        String basePath = "javadoc" + File.separator
-            + "pkginfo" + File.separator + "invalidformat" + File.separator;
-
         verify(createChecker(checkConfig),
-               getPath(basePath + "package-info.java"),
+               getPath("pkginfo" + File.separator + "invalidformat" + File.separator + "package-info.java"),
                expected);
     }
 
@@ -365,11 +365,8 @@ public class JavadocStyleCheckTest
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        String basePath = "javadoc" + File.separator
-            + "pkginfo" + File.separator + "annotation" + File.separator;
-
         verify(createChecker(checkConfig),
-               getPath(basePath + "package-info.java"),
+               getPath("pkginfo" + File.separator + "annotation" + File.separator + "package-info.java"),
                expected);
     }
 
@@ -381,11 +378,8 @@ public class JavadocStyleCheckTest
             "1: " + getCheckMessage(JAVADOC_MISSING),
         };
 
-        String basePath = "javadoc" + File.separator
-            + "bothfiles" + File.separator;
-
         verify(createChecker(checkConfig),
-               getPath(basePath + "package-info.java"),
+               getPath("bothfiles" + File.separator + "package-info.java"),
                expected);
     }
 
@@ -395,11 +389,8 @@ public class JavadocStyleCheckTest
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        String basePath = "javadoc" + File.separator
-            + "pkginfo" + File.separator + "valid" + File.separator;
-
         verify(createChecker(checkConfig),
-               getPath(basePath + "package-info.java"),
+               getPath("pkginfo" + File.separator + "valid" + File.separator + "package-info.java"),
                expected);
     }
 }

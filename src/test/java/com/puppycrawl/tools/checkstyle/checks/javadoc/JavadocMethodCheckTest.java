@@ -75,7 +75,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "7:8: " + getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
         };
-        verify(config, getPath("javadoc/InputLoadErrors.java"), expected);
+        verify(config, getPath("checks/javadoc/InputLoadErrors.java"), expected);
     }
 
     @Test
@@ -327,7 +327,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "106:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(checkConfig, getPath("checks" + File.separator
+                                    + "javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
@@ -339,7 +340,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(checkConfig, getPath("checks" + File.separator
+                                    + "javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
@@ -372,7 +374,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(checkConfig, getPath("checks" + File.separator
+                                    + "javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
@@ -380,7 +383,8 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     public void testAllowMissingJavadoc() throws Exception {
         checkConfig.addAttribute("allowMissingJavadoc", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("javadoc" + File.separator
+        verify(checkConfig, getPath("checks" + File.separator
+                                    + "javadoc" + File.separator
                                     + "InputNoJavadoc.java"), expected);
     }
 
