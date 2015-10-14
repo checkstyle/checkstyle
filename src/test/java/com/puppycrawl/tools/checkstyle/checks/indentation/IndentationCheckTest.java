@@ -196,6 +196,18 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         verifyWarns(config, filePath, expected, 0);
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "indentation" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "indentation" + File.separator + filename);
+    }
+
     @Test
     public void testGetRequiredTokens() {
         IndentationCheck checkObj = new IndentationCheck();
@@ -236,7 +248,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "20: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
             "21: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputMethodCStyle.java"), expected);
+        verifyWarns(checkConfig, getPath("InputMethodCStyle.java"), expected);
     }
 
     @Test
@@ -251,7 +263,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputZeroCaseLevel.java"), expected);
+        verifyWarns(checkConfig, getPath("InputZeroCaseLevel.java"), expected);
     }
 
     @Test
@@ -276,7 +288,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "60: " + getCheckMessage(MSG_ERROR, "if rcurly", 11, 12),
             "62: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 7, 8),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputAndroidStyle.java"), expected);
+        verifyWarns(checkConfig, getPath("InputAndroidStyle.java"), expected);
     }
 
     @Test
@@ -295,7 +307,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "51: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 18, 20),
             "52: " + getCheckMessage(MSG_ERROR, "method call rparen", 14, 16),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputMethodCallLineWrap.java"), expected);
+        verifyWarns(checkConfig, getPath("InputMethodCallLineWrap.java"), expected);
     }
 
     @Test
@@ -315,7 +327,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "41: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
             "50: " + getCheckMessage(MSG_ERROR, "@", 6, 8),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputDifficultAnnotations.java"), expected);
+        verifyWarns(checkConfig, getPath("InputDifficultAnnotations.java"), expected);
     }
 
     @Test
@@ -331,7 +343,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputFromGuava2.java"), expected);
+        verifyWarns(checkConfig, getPath("InputFromGuava2.java"), expected);
     }
 
     @Test
@@ -347,7 +359,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputFromGuava.java"), expected);
+        verifyWarns(checkConfig, getPath("InputFromGuava.java"), expected);
     }
 
     @Test
@@ -363,7 +375,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/IndentationCorrectIfAndParameterInput.java"), expected);
+        verifyWarns(checkConfig, getPath("IndentationCorrectIfAndParameterInput.java"), expected);
     }
 
     @Test
@@ -379,7 +391,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputAnonymousClasses.java"), expected);
+        verifyWarns(checkConfig, getPath("InputAnonymousClasses.java"), expected);
     }
 
     @Test
@@ -395,7 +407,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputArrays.java"), expected);
+        verifyWarns(checkConfig, getPath("InputArrays.java"), expected);
     }
 
     @Test
@@ -411,7 +423,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputLabels.java"), expected);
+        verifyWarns(checkConfig, getPath("InputLabels.java"), expected);
     }
 
     @Test
@@ -427,7 +439,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputClassesMethods.java"), expected);
+        verifyWarns(checkConfig, getPath("InputClassesMethods.java"), expected);
     }
 
     @Test
@@ -447,7 +459,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "57: " + getCheckMessage(MSG_ERROR, "class def rcurly", 3, 2),
         };
 
-        verifyWarns(checkConfig, getPath("indentation/InputMembers.java"), expected);
+        verifyWarns(checkConfig, getPath("InputMembers.java"), expected);
     }
 
     @Test
@@ -470,7 +482,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "39: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 6, "8, 12"),
             "41: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 6, "8, 12"),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputInvalidLabelIndent.java"), expected);
+        verifyWarns(checkConfig, getPath("InputInvalidLabelIndent.java"), expected);
     }
 
     @Test
@@ -490,7 +502,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "19: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "8, 12"),
             "19: " + getCheckMessage(MSG_ERROR_MULTI, "while", 9, "8, 12"),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputInvalidLabelWithWhileLoopIndent.java"),
+        verifyWarns(checkConfig, getPath("InputInvalidLabelWithWhileLoopIndent.java"),
             expected);
     }
 
@@ -507,7 +519,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputValidLabelIndent.java"), expected);
+        verifyWarns(checkConfig, getPath("InputValidLabelIndent.java"), expected);
     }
 
     @Test
@@ -522,7 +534,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidIfIndent.java");
+        final String fname = getPath("InputValidIfIndent.java");
         final String[] expected = {
             "231: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
         };
@@ -542,7 +554,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidDotIndent.java");
+        final String fname = getPath("InputValidDotIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -560,7 +572,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidMethodIndent.java");
+        final String fname = getPath("InputValidMethodIndent.java");
         final String[] expected = {
             "129: " + getCheckMessage(MSG_ERROR, "void", 4, 8),
             "130: " + getCheckMessage(MSG_ERROR, "method5", 4, 8),
@@ -581,7 +593,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidMethodIndent.java");
+        final String fname = getPath("InputInvalidMethodIndent.java");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 6, 4),
             "26: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 6, 4),
@@ -640,7 +652,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidSwitchIndent.java");
+        final String fname = getPath("InputInvalidSwitchIndent.java");
         final String[] expected = {
             "30: " + getCheckMessage(MSG_ERROR, "switch", 6, 8),
             "32: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
@@ -685,7 +697,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidSwitchIndent.java");
+        final String fname = getPath("InputValidSwitchIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -703,7 +715,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidArrayInitDefaultIndent.java");
+        final String fname = getPath("InputValidArrayInitDefaultIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -721,7 +733,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidArrayInitIndent.java");
+        final String fname = getPath("InputValidArrayInitIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -739,7 +751,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidArrayInitIndent.java");
+        final String fname = getPath("InputInvalidArrayInitIndent.java");
         final String[] expected = {
             "21: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
             "22: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
@@ -791,7 +803,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidTryIndent.java");
+        final String fname = getPath("InputValidTryIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -809,7 +821,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidTryIndent.java");
+        final String fname = getPath("InputInvalidTryIndent.java");
         final String[] expected = {
             "25: " + getCheckMessage(MSG_ERROR, "try", 9, 8),
             "26: " + getCheckMessage(MSG_ERROR, "try rcurly", 7, 8),
@@ -854,7 +866,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidClassDefIndent.java");
+        final String fname = getPath("InputInvalidClassDefIndent.java");
         final String[] expected = {
             "22: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 0),
             "28: " + getCheckMessage(MSG_ERROR, "class def lcurly", 2, 0),
@@ -909,7 +921,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidBlockIndent.java");
+        final String fname = getPath("InputInvalidBlockIndent.java");
         final String[] expected = {
             "26: " + getCheckMessage(MSG_ERROR, "block lcurly", 7, 8),
             "27: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
@@ -984,7 +996,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidIfIndent.java");
+        final String fname = getPath("InputInvalidIfIndent.java");
         final String[] expected = {
             "55: " + getCheckMessage(MSG_ERROR, "if", 1, 8),
             "60: " + getCheckMessage(MSG_ERROR, "if", 9, 8),
@@ -1087,7 +1099,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidWhileIndent.java");
+        final String fname = getPath("InputInvalidWhileIndent.java");
         final String[] expected = {
             "25: " + getCheckMessage(MSG_ERROR, "while", 9, 8),
             "26: " + getCheckMessage(MSG_ERROR, "while rcurly", 7, 8),
@@ -1137,7 +1149,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidAnonymousClassIndent.java");
+        final String fname = getPath("InputInvalidAnonymousClassIndent.java");
         final String[] expected = {
             "28: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 17, "12, 16"),
         };
@@ -1157,7 +1169,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputInvalidForIndent.java");
+        final String fname = getPath("InputInvalidForIndent.java");
         final String[] expected = {
             "26: " + getCheckMessage(MSG_ERROR, "for", 6, 8),
             "27: " + getCheckMessage(MSG_ERROR, "for rcurly", 10, 8),
@@ -1204,7 +1216,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidForIndent.java");
+        final String fname = getPath("InputValidForIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -1222,7 +1234,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidDoWhileIndent.java");
+        final String fname = getPath("InputValidDoWhileIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -1240,7 +1252,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidBlockIndent.java");
+        final String fname = getPath("InputValidBlockIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -1258,7 +1270,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidWhileIndent.java");
+        final String fname = getPath("InputValidWhileIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -1276,7 +1288,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidClassDefIndent.java");
+        final String fname = getPath("InputValidClassDefIndent.java");
         final String[] expected = {
             "49: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
             "71: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
@@ -1297,7 +1309,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidInterfaceDefIndent.java");
+        final String fname = getPath("InputValidInterfaceDefIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -1316,7 +1328,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String fname = getPath("indentation/InputValidCommaIndent.java");
+        final String fname = getPath("InputValidCommaIndent.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fname, expected);
     }
@@ -1336,7 +1348,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "29: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 9, 8),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputUseTabs.java"), expected);
+        verifyWarns(checkConfig, getPath("InputUseTabs.java"), expected);
     }
 
     @Test
@@ -1354,7 +1366,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "29: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 5, 4),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputUseTwoSpaces.java"), expected);
+        verifyWarns(checkConfig, getPath("InputUseTwoSpaces.java"), expected);
     }
 
     @Test
@@ -1370,7 +1382,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InvalidInputThrowsIndent.java"), expected);
+        verifyWarns(checkConfig, getPath("InvalidInputThrowsIndent.java"), expected);
     }
 
     @Test
@@ -1388,7 +1400,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "27: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 8),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputCaseLevel.java"), expected);
+        verifyWarns(checkConfig, getPath("InputCaseLevel.java"), expected);
     }
 
     @Test
@@ -1406,7 +1418,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "28: " + getCheckMessage(MSG_ERROR, "if rcurly", 8, 10),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputBraceAdjustment.java"), expected);
+        verifyWarns(checkConfig, getPath("InputBraceAdjustment.java"), expected);
     }
 
     @Test
@@ -1427,7 +1439,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "28: " + getCheckMessage(MSG_ERROR, "=", 9, 12),
             "29: " + getCheckMessage(MSG_ERROR, "1", 10, 12),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputInvalidAssignIndent.java"), expected);
+        verifyWarns(checkConfig, getPath("InputInvalidAssignIndent.java"), expected);
     }
 
     @Test
@@ -1438,7 +1450,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "4: " + getCheckMessage(MSG_CHILD_ERROR, "import", 2, 8),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputInvalidImportIndent.java"), expected);
+        verifyWarns(checkConfig, getPath("InputInvalidImportIndent.java"), expected);
     }
 
     @Test
@@ -1454,7 +1466,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputValidAssignIndent.java"), expected);
+        verifyWarns(checkConfig, getPath("InputValidAssignIndent.java"), expected);
     }
 
     @Test
@@ -1470,7 +1482,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/Input15Extensions.java"), expected);
+        verifyWarns(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 
     @Test
@@ -1486,7 +1498,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputValidTryResourcesIndent.java"),
+        verifyWarns(checkConfig, getPath("InputValidTryResourcesIndent.java"),
                expected);
     }
 
@@ -1503,7 +1515,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputSwitchCustom.java"),
+        verifyWarns(checkConfig, getPath("InputSwitchCustom.java"),
                expected);
     }
 
@@ -1519,7 +1531,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputSynchronizedStatement.java"), expected);
+        verifyWarns(checkConfig, getPath("InputSynchronizedStatement.java"), expected);
     }
 
     @Test
@@ -1534,7 +1546,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputSynchronizedMethod.java"), expected);
+        verifyWarns(checkConfig, getPath("InputSynchronizedMethod.java"), expected);
     }
 
     @Test
@@ -1555,7 +1567,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "24: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly",  24, "18, 20, 22"),
             "26: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 2),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputAnonymousClassInMethod.java"), expected);
+        verifyWarns(checkConfig, getPath("InputAnonymousClassInMethod.java"), expected);
     }
 
     @Test
@@ -1563,7 +1575,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("indentation/InputAnnotationDefinition.java"), expected);
+        verifyWarns(checkConfig, getPath("InputAnnotationDefinition.java"), expected);
     }
 
     @Test
@@ -1573,7 +1585,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
         };
-        verifyWarns(checkConfig, getPath("indentation/InputPackageDeclaration.java"), expected);
+        verifyWarns(checkConfig, getPath("InputPackageDeclaration.java"), expected);
     }
 
     @Test
@@ -1595,8 +1607,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "175: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
             "180: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
         };
-        verifyWarns(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/indentation/InputLambda1.java").getCanonicalPath(), expected, 1);
+        verifyWarns(checkConfig, getNonCompilablePath("InputLambda1.java"), expected, 1);
     }
 
     @Test
@@ -1606,7 +1617,6 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("basicOffset", "4");
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         final String[] expected = EMPTY_EXPECTED;
-        verifyWarns(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/indentation/InputLambda2.java").getCanonicalPath(), expected, 0);
+        verifyWarns(checkConfig, getNonCompilablePath("InputLambda2.java"), expected, 0);
     }
 }

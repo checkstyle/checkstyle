@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndenta
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -39,6 +40,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 *
 */
 public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "indentation" + File.separator + filename);
+    }
 
     @Test
     public void testSurroundingCode() throws Exception {
@@ -53,8 +59,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "51: " + getCheckMessage(MSG_KEY_BLOCK, 53, 23, 36),
             "136: " + getCheckMessage(MSG_KEY_SINGLE, 137, 20, 16),
         };
-        verify(checkConfig, getPath("comments" + File.separator
-                 + "InputCommentsIndentationCheckSurroundingCode.java"), expected);
+        verify(checkConfig, getPath("InputCommentsIndentationCheckSurroundingCode.java"), expected);
     }
 
     @Test
@@ -62,8 +67,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CommentsIndentationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("comments" + File.separator
-                 + "InputCommentsIndentationTestNpe.java"), expected);
+        verify(checkConfig, getPath("InputCommentsIndentationTestNpe.java"), expected);
     }
 
     @Test
@@ -76,8 +80,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "50: " + getCheckMessage(MSG_KEY_SINGLE, 51, 27, 23),
             "136: " + getCheckMessage(MSG_KEY_SINGLE, 137, 20, 16),
         };
-        verify(checkConfig, getPath("comments" + File.separator
-                 + "InputCommentsIndentationCheckSurroundingCode.java"), expected);
+        verify(checkConfig, getPath("InputCommentsIndentationCheckSurroundingCode.java"), expected);
     }
 
     @Test

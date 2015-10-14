@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -32,12 +33,17 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
  * @author Ilja Dubinin
  */
 public class NewHandlerTest extends BaseCheckTestSupport {
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "indentation" + File.separator + filename);
+    }
+
     @Test
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/indentation/NewHandlerTestInput.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("NewHandlerTestInput.java"), expected);
     }
 
 }
