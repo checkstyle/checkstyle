@@ -28,7 +28,7 @@ Appveyor (Windows build): [![][appveyor img]][appveyor]
 
 Quality reports: http://checkstyle.sourceforge.net/project-reports.html
 
-JavaScript and CSS file analysis on Codacy: [![][codacy img]][codacy]
+JavaScript, CSS and Java source file analysis on Codacy: [![][codacy img]][codacy]
 
 Feedback/Support
 ========
@@ -72,7 +72,7 @@ directory.
 [sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
 [sonar img]:https://img.shields.io/sonar/http/nemo.sonarqube.org/com.puppycrawl.tools:checkstyle/tech_debt.svg?label=Sonarqube%20tech%20debt
 
-[codacy]:https://www.codacy.com/app/kontakt/checkstyle
+[codacy]:https://www.codacy.com/app/checkstyle/checkstyle
 [codacy img]:https://api.codacy.com/project/badge/3adf12d434314ba8b38277ea46d3c44b
 
 [coverage]:http://codecov.io/github/checkstyle/checkstyle?branch=master
