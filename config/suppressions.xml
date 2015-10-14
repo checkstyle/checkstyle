@@ -16,7 +16,7 @@
     <!-- test should be named as their main class -->
     <suppress checks="AbbreviationAsWordInName"
               files="JavaNCSSCheckTest.java"
-              lines="41"/>
+              lines="42"/>
 
     <!-- illegal words are part of Javadoc -->
     <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>

@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_F
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_METHOD;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -39,6 +40,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Lars Ködderitzsch
  */
 public class JavaNCSSCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "metrics" + File.separator + filename);
+    }
 
     @Test
     public void test() throws Exception {
@@ -64,8 +70,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             "83:5: " + getCheckMessage(MSG_METHOD, 1, 0),
         };
 
-        verify(checkConfig, getPath("metrics" + File.separator
-                + "JavaNCSSCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("JavaNCSSCheckTestInput.java"), expected);
     }
 
     @Test
@@ -74,8 +79,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("metrics" + File.separator
-            + "JavaNCSSCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("JavaNCSSCheckTestInput.java"), expected);
     }
 
     @Test
