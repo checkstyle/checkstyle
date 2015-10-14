@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -30,6 +33,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testGetAcceptableTokens() {
@@ -50,7 +58,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("javadoc/InputCorrectAtClauseOrderCheck.java"), expected);
+        verify(checkConfig, getPath("InputCorrectAtClauseOrderCheck.java"), expected);
     }
 
     @Test
@@ -100,7 +108,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
             "278: " + getCheckMessage(MSG_KEY, tagOrder),
             "288: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("javadoc/InputIncorrectAtClauseOrderCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectAtClauseOrderCheck.java"), expected);
     }
 
     @Test
@@ -117,6 +125,6 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "113: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("javadoc/InputIncorrectAtClauseOrderCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectAtClauseOrderCheck.java"), expected);
     }
 }

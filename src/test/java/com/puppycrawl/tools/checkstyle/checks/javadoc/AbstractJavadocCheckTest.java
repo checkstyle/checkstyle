@@ -24,6 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocChec
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.PARSE_ERROR_MESSAGE_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -35,6 +38,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testNumberFormatException() throws Exception {
@@ -44,7 +52,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
                 + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;' "
                 + "while parsing HTML_TAG"),
         };
-        verify(checkConfig, getPath("javadoc/InputTestNumberFormatException.java"), expected);
+        verify(checkConfig, getPath("InputTestNumberFormatException.java"), expected);
     }
 
     @Test
@@ -53,7 +61,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "4: " + getCheckMessage(UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY, 4, "null"),
         };
-        verify(checkConfig, getPath("javadoc/InputCustomTag.java"), expected);
+        verify(checkConfig, getPath("InputCustomTag.java"), expected);
     }
 
     @Test
@@ -63,7 +71,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
             "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "8: " + getCheckMessage(JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
         };
-        verify(checkConfig, getPath("javadoc/InputParsingErrors.java"), expected);
+        verify(checkConfig, getPath("InputParsingErrors.java"), expected);
     }
 
     @Test
@@ -78,7 +86,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         checker.configure(checkerConfig);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checker, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
+        verify(checker, getPath("InputCorrectJavaDocParagraphCheck.java"), expected);
     }
 
     private static class TempCheck extends AbstractJavadocCheck {

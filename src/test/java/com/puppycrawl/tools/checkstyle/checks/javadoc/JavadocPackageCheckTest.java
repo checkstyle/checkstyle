@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -33,6 +34,12 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class JavadocPackageCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
+
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {
@@ -49,8 +56,8 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getPath("checks/javadoc/BadCls.java"),
-            getPath("checks/javadoc/BadCls.java"),
+            getPath("BadCls.java"),
+            getPath("BadCls.java"),
             expected);
     }
 
@@ -63,16 +70,16 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getPath("checks/javadoc/BadCls.java"),
-            getPath("checks/javadoc/BadCls.java"),
+            getPath("BadCls.java"),
+            getPath("BadCls.java"),
             expected);
     }
 
     @Test
     public void testWithMultipleFiles() throws Exception {
         final Configuration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        final String path1 = getPath("javadoc/InputNoJavadoc.java");
-        final String path2 = getPath("javadoc/InputBadTag.java");
+        final String path1 = getPath("InputNoJavadoc.java");
+        final String path2 = getPath("InputBadTag.java");
         final String[] expected = {
             "0: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -90,8 +97,8 @@ public class JavadocPackageCheckTest
             "0: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
         verify(createChecker(checkConfig),
-            getPath("javadoc/bothfiles/Ignored.java"),
-            getPath("javadoc/bothfiles/Ignored.java"), expected);
+            getPath("bothfiles" + File.separator + "Ignored.java"),
+            getPath("bothfiles" + File.separator + "Ignored.java"), expected);
     }
 
     @Test
@@ -101,8 +108,8 @@ public class JavadocPackageCheckTest
             "0: Missing package-info.java file.",
         };
         verify(createChecker(checkConfig),
-            getPath("javadoc/pkghtml/Ignored.java"),
-            getPath("javadoc/pkghtml/Ignored.java"), expected);
+            getPath("pkghtml" + File.separator + "Ignored.java"),
+            getPath("pkghtml" + File.separator + "Ignored.java"), expected);
     }
 
     @Test
@@ -111,8 +118,8 @@ public class JavadocPackageCheckTest
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
-            getPath("javadoc/pkghtml/Ignored.java"),
-            getPath("javadoc/pkghtml/package-info.java"), expected);
+            getPath("pkghtml" + File.separator + "Ignored.java"),
+            getPath("pkghtml" + File.separator + "package-info.java"), expected);
     }
 
     @Test
@@ -120,7 +127,9 @@ public class JavadocPackageCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
-            getPath("javadoc/pkginfo/annotation/package-info.java"),
-            getPath("javadoc/pkginfo/annotation/package-info.java"), expected);
+            getPath("pkginfo" + File.separator + "annotation"
+                    + File.separator + "package-info.java"),
+            getPath("pkginfo" + File.separator + "annotation"
+                    + File.separator + "package-info.java"), expected);
     }
 }
