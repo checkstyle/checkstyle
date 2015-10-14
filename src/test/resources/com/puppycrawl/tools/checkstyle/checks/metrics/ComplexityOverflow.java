@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 /**
  * This class has methods that have an NPath complexity larger than MAXINT.

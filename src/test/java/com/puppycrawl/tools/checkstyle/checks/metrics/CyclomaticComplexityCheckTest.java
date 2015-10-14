@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CyclomaticComplexityCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "metrics" + File.separator + filename);
+    }
+
     @Test
     public void testSwitchBlockAsSingleDecisionPointSetToTrue() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -41,7 +50,7 @@ public class CyclomaticComplexityCheckTest
             "4:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("metrics/ComplexityCheckSwitchBlocksTestInput.java"), expected);
+        verify(checkConfig, getPath("ComplexityCheckSwitchBlocksTestInput.java"), expected);
     }
 
     @Test
@@ -55,7 +64,7 @@ public class CyclomaticComplexityCheckTest
             "4:5: " + getCheckMessage(MSG_KEY, 5, 0),
         };
 
-        verify(checkConfig, getPath("metrics/ComplexityCheckSwitchBlocksTestInput.java"), expected);
+        verify(checkConfig, getPath("ComplexityCheckSwitchBlocksTestInput.java"), expected);
     }
 
     @Test

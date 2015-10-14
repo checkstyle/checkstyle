@@ -517,18 +517,18 @@ public class MainTest {
 
         // we just reference there all violations
         final String[][] outputValues = {
-            {"JavaNCSSCheckTestInput", "1", "84"},
+            {"ComplexityOverflow", "1", "172"},
         };
 
         exit.checkAssertionAfterwards(new Assertion() {
             @Override public void checkAssertion() throws IOException {
                 String currentPath = new File(".").getCanonicalPath();
                 String expectedPath = currentPath
-                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/metrics/"
+                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/"
                         .replace("/", File.separator);
                 StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
-                String format = "%s.java:%s: warning: File length is %s lines (max allowed is 80).";
+                String format = "%s.java:%s: warning: File length is %s lines (max allowed is 170).";
                 for (String[] outputValue : outputValues) {
                     String line = String.format(Locale.ROOT, format,
                             expectedPath + outputValue[0], outputValue[1],
@@ -542,7 +542,7 @@ public class MainTest {
         });
 
         Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-filelength.xml",
-            "src/test/resources/com/puppycrawl/tools/checkstyle/metrics/");
+            "src/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/");
     }
 
     @Test

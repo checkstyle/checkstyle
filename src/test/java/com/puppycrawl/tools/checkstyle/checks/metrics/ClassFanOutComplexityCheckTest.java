@@ -44,7 +44,8 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-               getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
+               getPath("checks" + File.separator
+                       + "metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
                expected);
     }
 
@@ -67,7 +68,8 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         createChecker(checkConfig);
         verify(checkConfig,
-            getPath("metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
+            getPath("checks" + File.separator
+                    + "metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
             expected);
     }
 

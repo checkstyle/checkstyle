@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 public class InputBooleanExpressionComplexityNPE
 {

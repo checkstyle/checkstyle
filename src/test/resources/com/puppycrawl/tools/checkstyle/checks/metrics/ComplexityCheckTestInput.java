@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 public class ComplexityCheckTestInput {
     public void foo() {

@@ -22,17 +22,25 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "metrics" + File.separator + filename);
+    }
+
     @Test
     public void test() throws Exception {
         DefaultConfiguration checkConfig =
@@ -45,7 +53,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
             "40:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
-        verify(checkConfig, getPath("metrics" + File.separator + "BooleanExpressionComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("BooleanExpressionComplexityCheckTestInput.java"), expected);
     }
 
     @Test
@@ -57,7 +65,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("metrics" + File.separator + "BooleanExpressionComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("BooleanExpressionComplexityCheckTestInput.java"), expected);
     }
 
     @Test
@@ -67,7 +75,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("metrics" + File.separator + "InputBooleanExpressionComplexityNPE.java"), expected);
+        verify(checkConfig, getPath("InputBooleanExpressionComplexityNPE.java"), expected);
     }
 
     @Test(expected = IllegalArgumentException.class)
