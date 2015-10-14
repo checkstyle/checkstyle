@@ -281,7 +281,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "111: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("checks" + File.separator
+                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
                expected);
     }
 
@@ -295,7 +296,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "15: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("checks" + File.separator
+                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
                expected);
     }
 
@@ -316,7 +318,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "111: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("checks" + File.separator
+                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
                expected);
     }
 
@@ -353,7 +356,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "5:4: " + getCheckMessage(UNKNOWN_TAG, "mytag"),
         };
         verify(checkConfig,
-               getPath("javadoc" + File.separator + "InputBadTag.java"),
+               getPath("checks" + File.separator
+                       + "javadoc" + File.separator + "InputBadTag.java"),
                expected);
     }
 
@@ -364,7 +368,8 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowUnknownTags", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("javadoc" + File.separator + "InputBadTag.java"),
+                getPath("checks" + File.separator
+                        + "javadoc" + File.separator + "InputBadTag.java"),
                 expected);
     }
 }

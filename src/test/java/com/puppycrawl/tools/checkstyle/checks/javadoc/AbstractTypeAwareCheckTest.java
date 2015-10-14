@@ -25,6 +25,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -44,6 +46,12 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(JavadocMethodCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
     }
 
     @Test
@@ -154,7 +162,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
             "7:8: " + getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
         };
         try {
-            verify(config, getPath("javadoc/InputLoadErrors.java"), expected);
+            verify(config, getPath("InputLoadErrors.java"), expected);
         }
         catch (IllegalStateException ex) {
             assertEquals("Unable to get"
@@ -169,6 +177,6 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("javadoc/InputLoadErrors.java"), expected);
+        verify(checkConfig, getPath("InputLoadErrors.java"), expected);
     }
 }

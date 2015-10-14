@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -30,6 +33,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NonEmptyAtclauseDescriptionCheckTest
         extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testGetAcceptableTokens() {
@@ -77,6 +85,6 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "92: " + getCheckMessage(MSG_KEY),
             "93: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("javadoc/InputNonEmptyAtclauseDescriptionCheck.java"), expected);
+        verify(checkConfig, getPath("InputNonEmptyAtclauseDescriptionCheck.java"), expected);
     }
 }

@@ -25,6 +25,9 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphChe
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,12 +37,17 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
-
     private DefaultConfiguration checkConfig;
 
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(JavadocParagraphCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
     }
 
     @Test
@@ -53,7 +61,7 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
     public void testCorrect() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("javadoc/InputCorrectJavaDocParagraphCheck.java"), expected);
+        verify(checkConfig, getPath("InputCorrectJavaDocParagraphCheck.java"), expected);
     }
 
     @Test
@@ -96,7 +104,7 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
             "81: " + getCheckMessage(MSG_TAG_AFTER),
             "82: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("javadoc/InputIncorrectJavaDocParagraphCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectJavaDocParagraphCheck.java"), expected);
     }
 
     @Test
@@ -123,6 +131,6 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
             "81: " + getCheckMessage(MSG_TAG_AFTER),
             "82: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("javadoc/InputIncorrectJavaDocParagraphCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectJavaDocParagraphCheck.java"), expected);
     }
 }

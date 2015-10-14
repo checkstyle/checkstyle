@@ -1,4 +1,4 @@
 <!-- ATTENTION: this file is not used by TeamCity, all excludes should be specified in build configuration -->
 <component name="DependencyValidationManager">
-    <scope name="Checkstyle Inspection Scope" pattern="!file:target//*&amp;&amp;!file:src/test/resources*//**&amp;&amp;!file:src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/ParseTreeBuilder.java&amp;&amp;!file:src/site/resources/js/google-analytics.js"/>
+    <scope name="Checkstyle Inspection Scope" pattern="!file:target//*&amp;&amp;!file:src/test/resources*//**&amp;&amp;!file:src/test/java/com/puppycrawl/tools/checkstyle/grammars/javadoc/ParseTreeBuilder.java&amp;&amp;!file:src/site/resources/js/google-analytics.js"/>
 </component>

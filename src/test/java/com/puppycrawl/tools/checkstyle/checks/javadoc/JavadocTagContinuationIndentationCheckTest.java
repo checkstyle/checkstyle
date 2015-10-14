@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -31,6 +34,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocTagContinuationIndentationCheckTest
         extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -45,7 +53,7 @@ public class JavadocTagContinuationIndentationCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("javadoc/InputGuavaFalsePositive.java"), expected);
+        verify(checkConfig, getPath("InputGuavaFalsePositive.java"), expected);
     }
 
     @Test
@@ -66,7 +74,7 @@ public class JavadocTagContinuationIndentationCheckTest
             "310: " + getCheckMessage(MSG_KEY, 4),
             "322: " + getCheckMessage(MSG_KEY, 4),
         };
-        verify(checkConfig, getPath("javadoc/InputJavaDocTagContinuationIndentation.java"),
+        verify(checkConfig, getPath("InputJavaDocTagContinuationIndentation.java"),
                 expected);
     }
 
@@ -79,7 +87,7 @@ public class JavadocTagContinuationIndentationCheckTest
             "7: " + getCheckMessage(MSG_KEY, 3),
             "19: " + getCheckMessage(MSG_KEY, 3),
         };
-        verify(checkConfig, getPath("javadoc/InputJavaDocTagContinuationIndentationOffset3.java"),
+        verify(checkConfig, getPath("InputJavaDocTagContinuationIndentationOffset3.java"),
                 expected);
     }
 }
