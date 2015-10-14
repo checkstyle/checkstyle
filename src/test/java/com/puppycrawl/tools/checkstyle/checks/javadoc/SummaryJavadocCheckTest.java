@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +42,12 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
         checkConfig = createCheckConfig(SummaryJavadocCheck.class);
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
+
     @Test
     public void testGetRequiredTokens() {
         SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
@@ -52,7 +61,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("javadoc/InputCorrectSummaryJavaDocCheck.java"), expected);
+        verify(checkConfig, getPath("InputCorrectSummaryJavaDocCheck.java"), expected);
     }
 
     @Test
@@ -68,7 +77,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             "83: " + getCheckMessage(SUMMARY_JAVADOC),
             "103: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
         };
-        verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectSummaryJavaDocCheck.java"), expected);
     }
 
     @Test
@@ -79,7 +88,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             "10: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
         };
 
-        verify(checkConfig, getPath("javadoc/InputSummaryJavadocCheckPeriod.java"), expected);
+        verify(checkConfig, getPath("InputSummaryJavadocCheckPeriod.java"), expected);
     }
 
     @Test
@@ -87,7 +96,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("period", "");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("javadoc/InputSummaryJavadocCheckNoPeriod.java"), expected);
+        verify(checkConfig, getPath("InputSummaryJavadocCheckNoPeriod.java"), expected);
     }
 
     @Test
@@ -100,6 +109,6 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
         };
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("javadoc/InputIncorrectSummaryJavaDocCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectSummaryJavaDocCheck.java"), expected);
     }
 }
