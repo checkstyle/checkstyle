@@ -26,7 +26,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -36,12 +35,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class TypeNameCheckTest
     extends BaseCheckTestSupport {
-
-    private String inputFilename;
-
-    @Before
-    public void setUp() throws IOException {
-        inputFilename = getPath("naming" + File.separator + "InputTypeName.java");
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
     }
 
     @Test
@@ -51,7 +48,7 @@ public class TypeNameCheckTest
                 createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("format", "^inputHe");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, inputFilename, expected);
+        verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 
     @Test
@@ -69,7 +66,7 @@ public class TypeNameCheckTest
             "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, inputFilename, expected);
+        verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 
     @Test
@@ -82,7 +79,7 @@ public class TypeNameCheckTest
             "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass", DEFAULT_PATTERN),
         };
-        verify(checkConfig, inputFilename, expected);
+        verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 
     @Test
@@ -95,7 +92,7 @@ public class TypeNameCheckTest
             "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
         };
-        verify(checkConfig, inputFilename, expected);
+        verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 
     @Test
@@ -108,7 +105,7 @@ public class TypeNameCheckTest
             "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
         };
-        verify(checkConfig, inputFilename, expected);
+        verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 
     @Test
@@ -121,6 +118,6 @@ public class TypeNameCheckTest
             "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, inputFilename, expected);
+        verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 }

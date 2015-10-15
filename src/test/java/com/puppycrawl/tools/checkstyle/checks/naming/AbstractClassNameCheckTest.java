@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameChe
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.NO_ABSTRACT_CLASS_MODIFIER;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
+
     @Test
     public void testIllegalAbstractClassName() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -47,7 +54,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
             "10:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass", pattern),
         };
 
-        verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
+        verify(checkConfig, getPath("InputAbstractClassName.java"), expected);
     }
 
     @Test
@@ -61,7 +68,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
             "22:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
-        verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
+        verify(checkConfig, getPath("InputAbstractClassName.java"), expected);
     }
 
     @Test
@@ -80,7 +87,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
             "22:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
-        verify(checkConfig, getPath("naming" + File.separator + "InputAbstractClassName.java"), expected);
+        verify(checkConfig, getPath("InputAbstractClassName.java"), expected);
     }
 
     @Test
@@ -91,8 +98,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
             "9:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
         };
 
-        verify(checkConfig, getPath("naming" + File.separator
-                 + "InputAbstractClassNameFormerFalsePositive.java"), expected);
+        verify(checkConfig, getPath("InputAbstractClassNameFormerFalsePositive.java"), expected);
     }
 
     @Test

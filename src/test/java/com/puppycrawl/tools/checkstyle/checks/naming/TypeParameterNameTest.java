@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -32,6 +33,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TypeParameterNameTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
 
     @Test
     public void testGetInterfaceRequiredTokens() {
@@ -70,7 +76,7 @@ public class TypeParameterNameTest
             "13:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
-        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
     }
 
     @Test
@@ -88,7 +94,7 @@ public class TypeParameterNameTest
             "23:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
         };
-        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
     }
 
     @Test
@@ -102,7 +108,7 @@ public class TypeParameterNameTest
         final String[] expected = {
             "48:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
         };
-        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
     }
 
     @Test
@@ -118,7 +124,7 @@ public class TypeParameterNameTest
             "5:38: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
             "33:18: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
     }
 
     @Test
@@ -139,7 +145,7 @@ public class TypeParameterNameTest
             "37:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
             //"40:14: Name 'EE' must match pattern '^foo$'.",
         };
-        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
     }
 
     @Test
@@ -155,7 +161,7 @@ public class TypeParameterNameTest
             "48:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
             "52:24: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("naming" + File.separator + "InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
     }
 
     @Test
