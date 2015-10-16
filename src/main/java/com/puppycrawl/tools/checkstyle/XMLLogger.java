@@ -80,7 +80,7 @@ public class XMLLogger
     }
 
     @Override
-    public void auditStarted(AuditEvent evt) {
+    public void auditStarted(AuditEvent event) {
         writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 
         final ResourceBundle compilationProperties =
@@ -92,7 +92,7 @@ public class XMLLogger
     }
 
     @Override
-    public void auditFinished(AuditEvent evt) {
+    public void auditFinished(AuditEvent event) {
         writer.println("</checkstyle>");
         if (closeStream) {
             writer.close();
@@ -103,36 +103,36 @@ public class XMLLogger
     }
 
     @Override
-    public void fileStarted(AuditEvent evt) {
-        writer.println("<file name=\"" + encode(evt.getFileName()) + "\">");
+    public void fileStarted(AuditEvent event) {
+        writer.println("<file name=\"" + encode(event.getFileName()) + "\">");
     }
 
     @Override
-    public void fileFinished(AuditEvent evt) {
+    public void fileFinished(AuditEvent event) {
         writer.println("</file>");
     }
 
     @Override
-    public void addError(AuditEvent evt) {
-        if (evt.getSeverityLevel() != SeverityLevel.IGNORE) {
-            writer.print("<error" + " line=\"" + evt.getLine() + "\"");
-            if (evt.getColumn() > 0) {
-                writer.print(" column=\"" + evt.getColumn() + "\"");
+    public void addError(AuditEvent event) {
+        if (event.getSeverityLevel() != SeverityLevel.IGNORE) {
+            writer.print("<error" + " line=\"" + event.getLine() + "\"");
+            if (event.getColumn() > 0) {
+                writer.print(" column=\"" + event.getColumn() + "\"");
             }
             writer.print(" severity=\""
-                + evt.getSeverityLevel().getName()
+                + event.getSeverityLevel().getName()
                 + "\"");
             writer.print(" message=\""
-                + encode(evt.getMessage())
+                + encode(event.getMessage())
                 + "\"");
             writer.println(" source=\""
-                + encode(evt.getSourceName())
+                + encode(event.getSourceName())
                 + "\"/>");
         }
     }
 
     @Override
-    public void addException(AuditEvent evt, Throwable throwable) {
+    public void addException(AuditEvent event, Throwable throwable) {
         final StringWriter stringWriter = new StringWriter();
         final PrintWriter printer = new PrintWriter(stringWriter);
         printer.println("<exception>");
@@ -167,7 +167,7 @@ public class XMLLogger
                     sb.append("&quot;");
                     break;
                 case '&':
-                    sb.append(encodeAmpersend(value, i));
+                    sb.append(encodeAmpersand(value, i));
                     break;
                 default:
                     sb.append(chr);
@@ -223,7 +223,7 @@ public class XMLLogger
      * @param ampPosition position of ampersand in value
      * @return encoded ampersand which should be used in xml
      */
-    private static String encodeAmpersend(String value, int ampPosition) {
+    private static String encodeAmpersand(String value, int ampPosition) {
         final int nextSemi = value.indexOf(';', ampPosition);
         String result;
         if (nextSemi < 0

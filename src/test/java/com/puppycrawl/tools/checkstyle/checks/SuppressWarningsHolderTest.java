@@ -265,7 +265,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAstWithouChildren() {
+    public void testAstWithoutChildren() {
         SuppressWarningsHolder holder = new SuppressWarningsHolder();
         DetailAST methodDef = new DetailAST();
         methodDef.setType(TokenTypes.METHOD_DEF);

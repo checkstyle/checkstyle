@@ -185,12 +185,12 @@ public class JavadocTypeCheck
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
             final int lineNo = ast.getLineNo();
-            final TextBlock cmt = contents.getJavadocBefore(lineNo);
-            if (cmt == null) {
+            final TextBlock textBlock = contents.getJavadocBefore(lineNo);
+            if (textBlock == null) {
                 log(lineNo, JAVADOC_MISSING);
             }
             else {
-                final List<JavadocTag> tags = getJavadocTags(cmt);
+                final List<JavadocTag> tags = getJavadocTags(textBlock);
                 if (ScopeUtils.isOuterMostType(ast)) {
                     // don't check author/version for inner classes
                     checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
@@ -243,11 +243,11 @@ public class JavadocTypeCheck
 
     /**
      * Gets all standalone tags from a given javadoc.
-     * @param cmt the Javadoc comment to process.
+     * @param textBlock the Javadoc comment to process.
      * @return all standalone tags from the given javadoc.
      */
-    private List<JavadocTag> getJavadocTags(TextBlock cmt) {
-        final JavadocTags tags = JavadocUtils.getJavadocTags(cmt,
+    private List<JavadocTag> getJavadocTags(TextBlock textBlock) {
+        final JavadocTags tags = JavadocUtils.getJavadocTags(textBlock,
             JavadocUtils.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
             for (final InvalidJavadocTag tag : tags.getInvalidTags()) {

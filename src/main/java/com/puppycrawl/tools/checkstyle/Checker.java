@@ -302,17 +302,17 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
     /** Notify all listeners about the audit start. */
     void fireAuditStarted() {
-        final AuditEvent evt = new AuditEvent(this);
+        final AuditEvent event = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
-            listener.auditStarted(evt);
+            listener.auditStarted(event);
         }
     }
 
     /** Notify all listeners about the audit end. */
     void fireAuditFinished() {
-        final AuditEvent evt = new AuditEvent(this);
+        final AuditEvent event = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
-            listener.auditFinished(evt);
+            listener.auditFinished(event);
         }
     }
 
@@ -325,9 +325,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     @Override
     public void fireFileStarted(String fileName) {
         final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
-        final AuditEvent evt = new AuditEvent(this, stripped);
+        final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
-            listener.fileStarted(evt);
+            listener.fileStarted(event);
         }
     }
 
@@ -340,9 +340,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     @Override
     public void fireFileFinished(String fileName) {
         final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
-        final AuditEvent evt = new AuditEvent(this, stripped);
+        final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
-            listener.fileFinished(evt);
+            listener.fileFinished(event);
         }
     }
 
@@ -356,10 +356,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
         final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
         for (final LocalizedMessage element : errors) {
-            final AuditEvent evt = new AuditEvent(this, stripped, element);
-            if (filters.accept(evt)) {
+            final AuditEvent event = new AuditEvent(this, stripped, element);
+            if (filters.accept(event)) {
                 for (final AuditListener listener : listeners) {
-                    listener.addError(evt);
+                    listener.addError(event);
                 }
             }
         }

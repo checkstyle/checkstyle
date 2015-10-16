@@ -416,14 +416,14 @@ public class CheckstyleAntTask extends Task {
      * @throws BuildException if an error occurs
      */
     private Properties createOverridingProperties() {
-        final Properties retVal = new Properties();
+        final Properties returnValue = new Properties();
 
         // Load the properties file if specified
         if (properties != null) {
             FileInputStream inStream = null;
             try {
                 inStream = new FileInputStream(properties);
-                retVal.load(inStream);
+                returnValue.load(inStream);
             }
             catch (final IOException e) {
                 throw new BuildException("Error loading Properties file '"
@@ -438,15 +438,15 @@ public class CheckstyleAntTask extends Task {
         final Map<String, Object> antProps = getProject().getProperties();
         for (Map.Entry<String, Object> entry : antProps.entrySet()) {
             final String value = String.valueOf(entry.getValue());
-            retVal.setProperty(entry.getKey(), value);
+            returnValue.setProperty(entry.getKey(), value);
         }
 
         // override with properties specified in subelements
         for (Property p : overrideProps) {
-            retVal.setProperty(p.getKey(), p.getValue());
+            returnValue.setProperty(p.getKey(), p.getValue());
         }
 
-        return retVal;
+        return returnValue;
     }
 
     /**

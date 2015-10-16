@@ -77,7 +77,7 @@ public class ConstantNameCheck
 
     @Override
     protected final boolean mustCheckName(DetailAST ast) {
-        boolean retVal = false;
+        boolean returnValue = false;
 
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
@@ -93,10 +93,10 @@ public class ConstantNameCheck
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if (!"serialVersionUID".equals(nameAST.getText())
                 && !"serialPersistentFields".equals(nameAST.getText())) {
-                retVal = true;
+                returnValue = true;
             }
         }
 
-        return retVal;
+        return returnValue;
     }
 }

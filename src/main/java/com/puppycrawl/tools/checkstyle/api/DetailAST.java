@@ -375,14 +375,14 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * @return the matching token, or null if no match
      */
     public DetailAST findFirstToken(int type) {
-        DetailAST retVal = null;
+        DetailAST returnValue = null;
         for (DetailAST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
             if (ast.getType() == type) {
-                retVal = ast;
+                returnValue = ast;
                 break;
             }
         }
-        return retVal;
+        return returnValue;
     }
 
     @Override

@@ -13,5 +13,5 @@ class BriefLogger extends DefaultLogger
         super(out, true, out, false, false);
     }
     @Override
-    public void auditStarted(AuditEvent evt) {}
+    public void auditStarted(AuditEvent event) {}
 }

@@ -106,10 +106,10 @@ public class JavadocVariableCheck
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
-            final TextBlock cmt =
+            final TextBlock textBlock =
                 contents.getJavadocBefore(ast.getLineNo());
 
-            if (cmt == null) {
+            if (textBlock == null) {
                 log(ast, JAVADOC_MISSING);
             }
         }

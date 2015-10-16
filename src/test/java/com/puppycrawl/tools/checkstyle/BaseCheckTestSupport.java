@@ -35,7 +35,7 @@ public class BaseCheckTestSupport {
         }
 
         @Override
-        public void auditStarted(AuditEvent evt) {
+        public void auditStarted(AuditEvent event) {
         }
 
     }

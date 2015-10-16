@@ -182,13 +182,13 @@ public class EmptyBlockCheck
         final int rcurlyLineNo = rcurlyAST.getLineNo();
         final int rcurlyColNo = rcurlyAST.getColumnNo();
         final String[] lines = getLines();
-        boolean retVal = false;
+        boolean returnValue = false;
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
             final String txt = lines[slistLineNo - 1]
                     .substring(slistColNo + 1, rcurlyColNo);
             if (StringUtils.isNotBlank(txt)) {
-                retVal = true;
+                returnValue = true;
             }
         }
         else {
@@ -196,13 +196,13 @@ public class EmptyBlockCheck
             if (lines[slistLineNo - 1].substring(slistColNo + 1).trim().isEmpty()
                     && lines[rcurlyLineNo - 1].substring(0, rcurlyColNo).trim().isEmpty()) {
                 // check if all lines are also only whitespace
-                retVal = !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
+                returnValue = !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
             }
             else {
-                retVal = true;
+                returnValue = true;
             }
         }
-        return retVal;
+        return returnValue;
     }
 
     /**

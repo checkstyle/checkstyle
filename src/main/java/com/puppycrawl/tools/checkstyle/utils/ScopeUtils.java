@@ -43,21 +43,21 @@ public final class ScopeUtils {
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
         // default scope
-        Scope retVal = Scope.PACKAGE;
+        Scope returnValue = Scope.PACKAGE;
         for (AST token = aMods.getFirstChild(); token != null
-                && retVal == Scope.PACKAGE;
+                && returnValue == Scope.PACKAGE;
                 token = token.getNextSibling()) {
             if ("public".equals(token.getText())) {
-                retVal = Scope.PUBLIC;
+                returnValue = Scope.PUBLIC;
             }
             else if ("protected".equals(token.getText())) {
-                retVal = Scope.PROTECTED;
+                returnValue = Scope.PROTECTED;
             }
             else if ("private".equals(token.getText())) {
-                retVal = Scope.PRIVATE;
+                returnValue = Scope.PRIVATE;
             }
         }
-        return retVal;
+        return returnValue;
     }
 
     /**
@@ -66,7 +66,7 @@ public final class ScopeUtils {
      * @return the Scope of the surrounding block
      */
     public static Scope getSurroundingScope(DetailAST aAST) {
-        Scope retVal = null;
+        Scope returnValue = null;
         for (DetailAST token = aAST.getParent();
              token != null;
              token = token.getParent()) {
@@ -78,18 +78,18 @@ public final class ScopeUtils {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = getScopeFromMods(mods);
-                if (retVal == null || retVal.isIn(modScope)) {
-                    retVal = modScope;
+                if (returnValue == null || returnValue.isIn(modScope)) {
+                    returnValue = modScope;
                 }
             }
             else if (type == TokenTypes.LITERAL_NEW) {
-                retVal = Scope.ANONINNER;
+                returnValue = Scope.ANONINNER;
                 // because Scope.ANONINNER is not in any other Scope
                 break;
             }
         }
 
-        return retVal;
+        return returnValue;
     }
 
     /**
@@ -99,17 +99,17 @@ public final class ScopeUtils {
      * @return a {@code boolean} value
      */
     public static boolean isInInterfaceBlock(DetailAST aAST) {
-        boolean retVal = false;
+        boolean returnValue = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
-             token != null && !retVal;
+             token != null && !returnValue;
              token = token.getParent()) {
 
             final int type = token.getType();
 
             if (type == TokenTypes.INTERFACE_DEF) {
-                retVal = true;
+                returnValue = true;
             }
             else if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.ENUM_DEF
@@ -119,7 +119,7 @@ public final class ScopeUtils {
             }
         }
 
-        return retVal;
+        return returnValue;
     }
 
     /**
@@ -129,15 +129,15 @@ public final class ScopeUtils {
      * @return a {@code boolean} value
      */
     public static boolean isInAnnotationBlock(DetailAST aAST) {
-        boolean retVal = false;
+        boolean returnValue = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
-             token != null && !retVal;
+             token != null && !returnValue;
              token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.ANNOTATION_DEF) {
-                retVal = true;
+                returnValue = true;
             }
             else if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.ENUM_DEF
@@ -148,7 +148,7 @@ public final class ScopeUtils {
 
         }
 
-        return retVal;
+        return returnValue;
     }
 
     /**
@@ -170,15 +170,15 @@ public final class ScopeUtils {
      * @return a {@code boolean} value
      */
     public static boolean isInEnumBlock(DetailAST aAST) {
-        boolean retVal = false;
+        boolean returnValue = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = aAST.getParent();
-             token != null && !retVal;
+             token != null && !returnValue;
              token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.ENUM_DEF) {
-                retVal = true;
+                returnValue = true;
             }
             else if (type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ANNOTATION_DEF
@@ -188,7 +188,7 @@ public final class ScopeUtils {
             }
         }
 
-        return retVal;
+        return returnValue;
     }
 
     /**
@@ -199,7 +199,7 @@ public final class ScopeUtils {
      * @return a {@code boolean} value
      */
     public static boolean isInCodeBlock(DetailAST aAST) {
-        boolean retVal = false;
+        boolean returnValue = false;
 
         // Loop up looking for a containing code block
         for (DetailAST token = aAST.getParent();
@@ -210,12 +210,12 @@ public final class ScopeUtils {
                 || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.INSTANCE_INIT
                 || type == TokenTypes.STATIC_INIT) {
-                retVal = true;
+                returnValue = true;
                 break;
             }
         }
 
-        return retVal;
+        return returnValue;
     }
 
     /**
@@ -225,7 +225,7 @@ public final class ScopeUtils {
      * @return a {@code boolean} value
      */
     public static boolean isOuterMostType(DetailAST aAST) {
-        boolean retVal = true;
+        boolean returnValue = true;
         for (DetailAST parent = aAST.getParent();
              parent != null;
              parent = parent.getParent()) {
@@ -233,12 +233,12 @@ public final class ScopeUtils {
                 || parent.getType() == TokenTypes.INTERFACE_DEF
                 || parent.getType() == TokenTypes.ANNOTATION_DEF
                 || parent.getType() == TokenTypes.ENUM_DEF) {
-                retVal = false;
+                returnValue = false;
                 break;
             }
         }
 
-        return retVal;
+        return returnValue;
     }
 
     /**

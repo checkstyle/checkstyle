@@ -119,21 +119,21 @@ public class DefaultLogger
      * @see AuditListener
      **/
     @Override
-    public void addError(AuditEvent evt) {
-        final SeverityLevel severityLevel = evt.getSeverityLevel();
+    public void addError(AuditEvent event) {
+        final SeverityLevel severityLevel = event.getSeverityLevel();
         if (severityLevel != SeverityLevel.IGNORE) {
 
-            final String fileName = evt.getFileName();
-            final String message = evt.getMessage();
+            final String fileName = event.getFileName();
+            final String message = event.getMessage();
 
             // avoid StringBuffer.expandCapacity
             final int bufLen = fileName.length() + message.length()
                 + BUFFER_CUSHION;
             final StringBuilder sb = new StringBuilder(bufLen);
 
-            sb.append(fileName).append(':').append(evt.getLine());
-            if (evt.getColumn() > 0) {
-                sb.append(':').append(evt.getColumn());
+            sb.append(fileName).append(':').append(event.getLine());
+            if (event.getColumn() > 0) {
+                sb.append(':').append(event.getColumn());
             }
             final String errorMessageSeparator = ": ";
             if (printSeverity) {
@@ -145,30 +145,30 @@ public class DefaultLogger
     }
 
     @Override
-    public void addException(AuditEvent evt, Throwable throwable) {
+    public void addException(AuditEvent event, Throwable throwable) {
         synchronized (errorWriter) {
-            errorWriter.println("Error auditing " + evt.getFileName());
+            errorWriter.println("Error auditing " + event.getFileName());
             throwable.printStackTrace(errorWriter);
         }
     }
 
     @Override
-    public void auditStarted(AuditEvent evt) {
+    public void auditStarted(AuditEvent event) {
         infoWriter.println("Starting audit...");
     }
 
     @Override
-    public void fileFinished(AuditEvent evt) {
+    public void fileFinished(AuditEvent event) {
         // No need to implement this method in this class
     }
 
     @Override
-    public void fileStarted(AuditEvent evt) {
+    public void fileStarted(AuditEvent event) {
         // No need to implement this method in this class
     }
 
     @Override
-    public void auditFinished(AuditEvent evt) {
+    public void auditFinished(AuditEvent event) {
         infoWriter.println("Audit done.");
         closeStreams();
     }
