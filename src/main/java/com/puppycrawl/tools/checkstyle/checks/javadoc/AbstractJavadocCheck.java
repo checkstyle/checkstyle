@@ -170,6 +170,7 @@ public abstract class AbstractJavadocCheck extends Check {
     @Override
     public final void visitToken(DetailAST blockCommentNode) {
         if (JavadocUtils.isJavadocComment(blockCommentNode)) {
+            // store as field, to share with child Checks
             blockCommentAst = blockCommentNode;
 
             final String treeCacheKey = blockCommentNode.getLineNo() + ":"
@@ -221,17 +222,18 @@ public abstract class AbstractJavadocCheck extends Check {
         errorListener.setOffset(javadocCommentAst.getLineNo() - 1);
 
         final ParseStatus result = new ParseStatus();
-        ParseTree parseTree = null;
-        ParseErrorMessage parseErrorMessage = null;
 
         try {
-            parseTree = parseJavadocAsParseTree(javadocComment);
+            final ParseTree parseTree = parseJavadocAsParseTree(javadocComment);
+
+            final DetailNode tree = convertParseTreeToDetailNode(parseTree);
+            result.setTree(tree);
         }
         catch (ParseCancellationException e) {
             // If syntax error occurs then message is printed by error listener
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
-            parseErrorMessage = errorListener.getErrorMessage();
+            ParseErrorMessage parseErrorMessage = errorListener.getErrorMessage();
 
             // There are cases when antlr error listener does not handle syntax error
             if (parseErrorMessage == null) {
@@ -239,13 +241,7 @@ public abstract class AbstractJavadocCheck extends Check {
                         UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY,
                         javadocCommentAst.getColumnNo(), e.getMessage());
             }
-        }
 
-        if (parseErrorMessage == null) {
-            final DetailNode tree = convertParseTreeToDetailNode(parseTree);
-            result.setTree(tree);
-        }
-        else {
             result.setParseErrorMessage(parseErrorMessage);
         }
 
