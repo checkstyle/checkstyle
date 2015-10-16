@@ -21,10 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -32,6 +36,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ExecutableStatementCountCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "sizes" + File.separator + filename);
+    }
+
     @Test
     public void testMaxZero() throws Exception {
         final DefaultConfiguration checkConfig =

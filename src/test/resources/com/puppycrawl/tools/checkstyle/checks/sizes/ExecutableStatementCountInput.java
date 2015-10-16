@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 public class ExecutableStatementCountInput {
     public void foo() {
