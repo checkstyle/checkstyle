@@ -23,6 +23,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -329,12 +330,40 @@ public class EmptyLineSeparatorCheck extends Check {
      * @param token token.
      * @return true if token have empty line after.
      */
-    private static boolean hasEmptyLineAfter(DetailAST token) {
+    private boolean hasEmptyLineAfter(DetailAST token) {
         DetailAST lastToken = token.getLastChild().getLastChild();
         if (lastToken == null) {
             lastToken = token.getLastChild();
         }
-        return token.getNextSibling().getLineNo() - lastToken.getLineNo() > 1;
+        // Start of the next token
+        final int nextBegin = token.getNextSibling().getLineNo();
+        // End of current token.
+        final int currentEnd = lastToken.getLineNo();
+        return hasEmptyLine(currentEnd + 1, nextBegin - 1);
+    }
+
+    /**
+     * Checks, whether there are empty lines within the specified line range. Line numbering is
+     * started from 1 for parameter values
+     * @param startLine number of the first line in the range
+     * @param endLine number of the second line in the range
+     * @return <code>true</code> if found any blank line within the range, <code>false</code>
+     *         otherwise
+     */
+    private boolean hasEmptyLine(int startLine, int endLine) {
+        // Initial value is false - blank line not found
+        boolean result = false;
+        if (startLine <= endLine) {
+            final FileContents fileContents = getFileContents();
+            for (int line = startLine; line <= endLine; line++) {
+                // Check, if the line is blank. Lines are numbered from 0, so subtract 1
+                if (fileContents.lineIsBlank(line - 1)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     /**
