@@ -109,6 +109,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("annotation" + File.separator + "package-info.java"), expected);
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+            + "checkstyle/checks/package-info.java").getCanonicalPath(), expected);
     }
 }

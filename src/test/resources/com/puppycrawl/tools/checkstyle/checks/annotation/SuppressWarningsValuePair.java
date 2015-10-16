@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.ArrayList;
 import java.util.List;
