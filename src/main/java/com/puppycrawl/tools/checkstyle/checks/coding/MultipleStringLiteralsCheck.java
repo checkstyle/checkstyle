@@ -197,6 +197,7 @@ public class MultipleStringLiteralsCheck extends Check {
          * Column of finding.
          */
         private final int col;
+
         /**
          * Creates information about a string position.
          * @param line int

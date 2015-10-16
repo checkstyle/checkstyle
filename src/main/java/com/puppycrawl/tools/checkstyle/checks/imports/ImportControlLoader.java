@@ -77,6 +77,7 @@ final class ImportControlLoader extends AbstractLoader {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
     }
+
     /**
      * Constructs an instance.
      * @throws ParserConfigurationException if an error occurs.

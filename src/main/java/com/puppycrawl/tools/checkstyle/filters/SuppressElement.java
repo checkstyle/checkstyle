@@ -95,6 +95,7 @@ public class SuppressElement
     public void setModuleId(final String moduleId) {
         this.moduleId = moduleId;
     }
+
     /**
      * Sets the CSV values and ranges for line number filtering.
      * E.g. "1,7-15,18".

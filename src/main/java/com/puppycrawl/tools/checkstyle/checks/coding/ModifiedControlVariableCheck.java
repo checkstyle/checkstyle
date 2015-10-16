@@ -252,6 +252,7 @@ public final class ModifiedControlVariableCheck extends Check {
     private void enterBlock() {
         variableStack.push(new ArrayDeque<String>());
     }
+
     /**
      * Leave an inner class, so restore variable set.
      */
