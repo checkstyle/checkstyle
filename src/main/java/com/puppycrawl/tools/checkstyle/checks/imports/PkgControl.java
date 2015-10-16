@@ -113,9 +113,9 @@ class PkgControl {
      */
     AccessResult checkAccess(final String forImport, final String inPkg) {
         AccessResult result;
-        final AccessResult retVal = localCheckAccess(forImport, inPkg);
-        if (retVal != AccessResult.UNKNOWN) {
-            result = retVal;
+        final AccessResult returnValue = localCheckAccess(forImport, inPkg);
+        if (returnValue != AccessResult.UNKNOWN) {
+            result = returnValue;
         }
         else if (parent == null) {
             // we are the top, so default to not allowed.

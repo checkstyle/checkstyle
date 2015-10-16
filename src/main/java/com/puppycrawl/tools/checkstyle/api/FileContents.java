@@ -175,22 +175,22 @@ public final class FileContents implements CommentListener {
      **/
     private String[] extractCComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        String[] retVal;
+        String[] returnValue;
         if (startLineNo == endLineNo) {
-            retVal = new String[1];
-            retVal[0] = line(startLineNo - 1).substring(startColNo,
+            returnValue = new String[1];
+            returnValue[0] = line(startLineNo - 1).substring(startColNo,
                     endColNo + 1);
         }
         else {
-            retVal = new String[endLineNo - startLineNo + 1];
-            retVal[0] = line(startLineNo - 1).substring(startColNo);
+            returnValue = new String[endLineNo - startLineNo + 1];
+            returnValue[0] = line(startLineNo - 1).substring(startColNo);
             for (int i = startLineNo; i < endLineNo; i++) {
-                retVal[i - startLineNo + 1] = line(i);
+                returnValue[i - startLineNo + 1] = line(i);
             }
-            retVal[retVal.length - 1] = line(endLineNo - 1).substring(0,
+            returnValue[returnValue.length - 1] = line(endLineNo - 1).substring(0,
                     endColNo + 1);
         }
-        return retVal;
+        return returnValue;
     }
 
     /**

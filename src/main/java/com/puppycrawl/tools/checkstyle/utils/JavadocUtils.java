@@ -96,15 +96,15 @@ public final class JavadocUtils {
 
     /**
      * Gets validTags from a given piece of Javadoc.
-     * @param cmt
+     * @param textBlock
      *        the Javadoc comment to process.
      * @param tagType
      *        the type of validTags we're interested in
      * @return all standalone validTags from the given javadoc.
      */
-    public static JavadocTags getJavadocTags(TextBlock cmt,
+    public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
-        final String[] text = cmt.getText();
+        final String[] text = textBlock.getText();
         final List<JavadocTag> tags = Lists.newArrayList();
         final List<InvalidJavadocTag> invalidTags = Lists.newArrayList();
         Pattern blockTagPattern = Pattern.compile("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
@@ -118,10 +118,10 @@ public final class JavadocUtils {
                 if (content.endsWith("*/")) {
                     content = content.substring(0, content.length() - 2);
                 }
-                final int line = cmt.getStartLineNo() + i;
+                final int line = textBlock.getStartLineNo() + i;
                 int col = blockTagMatcher.start(1) - 1;
                 if (i == 0) {
-                    col += cmt.getStartColNo();
+                    col += textBlock.getStartColNo();
                 }
                 if (JavadocTagInfo.isValidName(tagName)) {
                     tags.add(
@@ -133,7 +133,7 @@ public final class JavadocUtils {
             }
             // No block tag, so look for inline validTags
             else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE) {
-                lookForInlineTags(cmt, i, tags, invalidTags);
+                lookForInlineTags(textBlock, i, tags, invalidTags);
             }
             blockTagPattern = Pattern.compile("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }
@@ -261,16 +261,16 @@ public final class JavadocUtils {
      * @return the matching token, or null if no match
      */
     public static DetailNode findFirstToken(DetailNode detailNode, int type) {
-        DetailNode retVal = null;
+        DetailNode returnValue = null;
         DetailNode node = getFirstChild(detailNode);
         while (node != null) {
             if (node.getType() == type) {
-                retVal = node;
+                returnValue = node;
                 break;
             }
             node = getNextSibling(node);
         }
-        return retVal;
+        return returnValue;
     }
 
     /**

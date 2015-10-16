@@ -143,7 +143,7 @@ class FileDrop {
         // drop target when the parent gets cleared out.
         component.addHierarchyListener(new HierarchyListener() {
             @Override
-            public void hierarchyChanged(HierarchyEvent evt) {
+            public void hierarchyChanged(HierarchyEvent event) {
                 final Component parent = component.getParent();
                 if (parent == null) {
                     component.setDropTarget(null);
@@ -169,12 +169,12 @@ class FileDrop {
 
     /**
      * Determine if the dragged data is a file list.
-     * @param evt Drop target drop event.
+     * @param event Drop target drop event.
      * @return True if the drag was ok
      */
-    private static boolean isDragOk(final DropTargetDragEvent evt) {
+    private static boolean isDragOk(final DropTargetDragEvent event) {
         boolean okStatus = false;
-        final DataFlavor[] flavors = evt.getCurrentDataFlavors();
+        final DataFlavor[] flavors = event.getCurrentDataFlavors();
 
         // See if any of the flavors are a file list
         int index = 0;
@@ -213,28 +213,28 @@ class FileDrop {
         }
 
         @Override
-        public void dragEnter(DropTargetDragEvent evt) {
-            if (isDragOk(evt)) {
+        public void dragEnter(DropTargetDragEvent event) {
+            if (isDragOk(event)) {
                 if (component instanceof JComponent) {
                     final JComponent comp = (JComponent) component;
                     normalBorder = comp.getBorder();
                     comp.setBorder(dragBorder);
                 }
-                evt.acceptDrag(DnDConstants.ACTION_COPY);
+                event.acceptDrag(DnDConstants.ACTION_COPY);
             }
             else {
-                evt.rejectDrag();
+                event.rejectDrag();
             }
         }
 
         @Override
         @SuppressWarnings("unchecked")
-        public void drop(DropTargetDropEvent evt) {
+        public void drop(DropTargetDropEvent event) {
             try {
-                final Transferable transferable = evt.getTransferable();
+                final Transferable transferable = event.getTransferable();
 
                 if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-                    evt.acceptDrop(DnDConstants.ACTION_COPY);
+                    event.acceptDrop(DnDConstants.ACTION_COPY);
 
                     final List<File> fileList = (List<File>) transferable.getTransferData(
                             DataFlavor.javaFileListFlavor);
@@ -245,14 +245,14 @@ class FileDrop {
                         listener.filesDropped(files);
                     }
 
-                    evt.getDropTargetContext().dropComplete(true);
+                    event.getDropTargetContext().dropComplete(true);
                 }
                 else {
-                    evt.rejectDrop();
+                    event.rejectDrop();
                 }
             }
             catch (final IOException | UnsupportedFlavorException ignored) {
-                evt.rejectDrop();
+                event.rejectDrop();
             }
             finally {
                 if (component instanceof JComponent) {
@@ -263,7 +263,7 @@ class FileDrop {
         }
 
         @Override
-        public void dragExit(DropTargetEvent evt) {
+        public void dragExit(DropTargetEvent event) {
             if (component instanceof JComponent) {
                 final JComponent comp = (JComponent) component;
                 comp.setBorder(normalBorder);
@@ -271,12 +271,12 @@ class FileDrop {
         }
 
         @Override
-        public void dropActionChanged(DropTargetDragEvent evt) {
-            if (isDragOk(evt)) {
-                evt.acceptDrag(DnDConstants.ACTION_COPY);
+        public void dropActionChanged(DropTargetDragEvent event) {
+            if (isDragOk(event)) {
+                event.acceptDrag(DnDConstants.ACTION_COPY);
             }
             else {
-                evt.rejectDrag();
+                event.rejectDrag();
             }
         }
     }

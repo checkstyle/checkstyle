@@ -354,15 +354,15 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         final Scope theScope = calculateScope(ast);
         if (shouldCheck(ast, theScope)) {
             final FileContents contents = getFileContents();
-            final TextBlock cmt = contents.getJavadocBefore(ast.getLineNo());
+            final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
 
-            if (cmt == null) {
+            if (textBlock == null) {
                 if (!isMissingJavadocAllowed(ast)) {
                     log(ast, MSG_JAVADOC_MISSING);
                 }
             }
             else {
-                checkComment(ast, cmt);
+                checkComment(ast, textBlock);
             }
         }
     }
@@ -685,17 +685,17 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      */
     private static List<DetailAST> getParameters(DetailAST ast) {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        final List<DetailAST> retVal = Lists.newArrayList();
+        final List<DetailAST> returnValue = Lists.newArrayList();
 
         DetailAST child = params.getFirstChild();
         while (child != null) {
             if (child.getType() == TokenTypes.PARAMETER_DEF) {
                 final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-                retVal.add(ident);
+                returnValue.add(ident);
             }
             child = child.getNextSibling();
         }
-        return retVal;
+        return returnValue;
     }
 
     /**
@@ -705,7 +705,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @return the list of exception nodes for ast.
      */
     private List<ExceptionInfo> getThrows(DetailAST ast) {
-        final List<ExceptionInfo> retVal = Lists.newArrayList();
+        final List<ExceptionInfo> returnValue = Lists.newArrayList();
         final DetailAST throwsAST = ast
                 .findFirstToken(TokenTypes.LITERAL_THROWS);
         if (throwsAST != null) {
@@ -716,12 +716,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
                     final FullIdent ident = FullIdent.createFullIdent(child);
                     final ExceptionInfo exceptionInfo = new ExceptionInfo(
                             createClassInfo(new Token(ident), getCurrentClassName()));
-                    retVal.add(exceptionInfo);
+                    returnValue.add(exceptionInfo);
                 }
                 child = child.getNextSibling();
             }
         }
-        return retVal;
+        return returnValue;
     }
 
     /**

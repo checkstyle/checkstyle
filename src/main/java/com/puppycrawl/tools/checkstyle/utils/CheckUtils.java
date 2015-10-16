@@ -401,13 +401,13 @@ public final class CheckUtils {
      * @return true if method is a not void one.
      */
     public static boolean isNonVoidMethod(DetailAST methodDefAst) {
-        boolean retVal = false;
+        boolean returnValue = false;
         if (methodDefAst.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST typeAST = methodDefAst.findFirstToken(TokenTypes.TYPE);
             if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
-                retVal = true;
+                returnValue = true;
             }
         }
-        return retVal;
+        return returnValue;
     }
 }

@@ -222,31 +222,31 @@ public class UnusedImportsCheck extends Check {
     private void collectReferencesFromJavadoc(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
-        final TextBlock cmt = contents.getJavadocBefore(lineNo);
-        if (cmt != null) {
-            referenced.addAll(collectReferencesFromJavadoc(cmt));
+        final TextBlock textBlock = contents.getJavadocBefore(lineNo);
+        if (textBlock != null) {
+            referenced.addAll(collectReferencesFromJavadoc(textBlock));
         }
     }
 
     /**
      * Process a javadoc {@link TextBlock} and return the set of classes
      * referenced within.
-     * @param cmt The javadoc block to parse
+     * @param textBlock The javadoc block to parse
      * @return a set of classes referenced in the javadoc block
      */
-    private static Set<String> collectReferencesFromJavadoc(TextBlock cmt) {
+    private static Set<String> collectReferencesFromJavadoc(TextBlock textBlock) {
         final Set<String> references = new HashSet<>();
         // process all the @link type tags
         // INLINE tags inside BLOCKs get hidden when using ALL
         for (final JavadocTag tag
-                : getValidTags(cmt, JavadocUtils.JavadocTagType.INLINE)) {
+                : getValidTags(textBlock, JavadocUtils.JavadocTagType.INLINE)) {
             if (tag.canReferenceImports()) {
                 references.addAll(processJavadocTag(tag));
             }
         }
         // process all the @throws type tags
         for (final JavadocTag tag
-                : getValidTags(cmt, JavadocUtils.JavadocTagType.BLOCK)) {
+                : getValidTags(textBlock, JavadocUtils.JavadocTagType.BLOCK)) {
             if (tag.canReferenceImports()) {
                 references.addAll(
                         matchPattern(tag.getFirstArg(), FIRST_CLASS_NAME));
