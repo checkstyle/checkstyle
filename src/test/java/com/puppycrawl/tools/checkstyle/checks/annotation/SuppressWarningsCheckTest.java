@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck.MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -30,6 +31,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "annotation" + File.separator + filename);
+    }
+
     /**
      * Tests SuppressWarnings with default regex.
      */
@@ -49,7 +56,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:106: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "    "),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsSingle.java"), expected);
     }
 
     /**
@@ -91,7 +98,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:115: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsSingle.java"), expected);
     }
 
     /**
@@ -115,7 +122,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:47: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsSingle.java"), expected);
     }
 
     /**
@@ -137,7 +144,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:47: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsSingle.java"), expected);
     }
 
     /**
@@ -170,7 +177,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:115: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsSingle.java"), expected);
     }
 
     /**
@@ -200,7 +207,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:115: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsSingle.java"), expected);
     }
 
     /**
@@ -242,7 +249,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:115: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsSingle.java"), expected);
     }
 
     /**
@@ -271,7 +278,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:194: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsCompact.java"), expected);
     }
 
     /**
@@ -332,7 +339,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:202: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsCompact.java"), expected);
     }
 
     /**
@@ -359,7 +366,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:135: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsCompact.java"), expected);
 
     }
 
@@ -379,7 +386,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "64:62: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsCompact.java"), expected);
     }
 
     /**
@@ -421,7 +428,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:202: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsCompact.java"), expected);
     }
 
     /**
@@ -457,7 +464,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:202: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsCompact.java"), expected);
     }
 
     /**
@@ -518,7 +525,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:202: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsCompact.java"), expected);
     }
 
     /**
@@ -545,7 +552,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:200: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsExpanded.java"), expected);
     }
 
     /**
@@ -603,7 +610,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsExpanded.java"), expected);
     }
 
     /**
@@ -631,7 +638,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:141: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsExpanded.java"), expected);
     }
 
     /**
@@ -650,7 +657,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "64:68: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsExpanded.java"), expected);
     }
 
     /**
@@ -688,7 +695,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:208: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsExpanded.java"), expected);
     }
 
     /**
@@ -725,7 +732,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:208: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsExpanded.java"), expected);
     }
 
     /**
@@ -782,7 +789,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
             "82:208: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("annotation" + File.separator + "SuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsExpanded.java"), expected);
     }
 
     @Test
@@ -791,8 +798,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("annotation" + File.separator
-                + "SuppressWarningsConstants.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsConstants.java"), expected);
     }
 
     @Test
@@ -801,8 +807,7 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("annotation" + File.separator
-                + "SuppressWarningsValuePair.java"), expected);
+        verify(checkConfig, getPath("SuppressWarningsValuePair.java"), expected);
     }
 
     @Test

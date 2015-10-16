@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -30,6 +31,18 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class PackageAnnotationTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "annotation" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "annotation" + File.separator + filename);
+    }
+
     /**
      * This tests a package annotation that is in the package-info.java file.
      */
@@ -39,7 +52,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("annotation" + File.separator + "package-info.java"), expected);
+        verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }
 
     @Test
@@ -56,7 +69,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("annotation" + File.separator + "InputPackageAnnotationCheckTest.java"), expected);
+        verify(checkConfig, getPath("InputPackageAnnotationCheckTest.java"), expected);
     }
 
     @Test
@@ -67,6 +80,6 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
             "0: Package annotations must be in the package-info.java info.",
         };
 
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/annotation/InputPackageAnnotationCheckTest2.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputPackageAnnotationCheckTest2.java"), expected);
     }
 }
