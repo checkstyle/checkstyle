@@ -25,6 +25,9 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +41,12 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(RightCurlyCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "blocks" + File.separator + filename);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -160,57 +169,57 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             + "LITERAL_ELSE, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, "
             + "STATIC_INIT, INSTANCE_INIT");
         final String[] expected = {
-            "9:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "12:65: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 65),
-            "23:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
-            "27:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
-            "30:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
-            "33:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
-            "39:73: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 73),
-            "41:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "46:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
-            "48:97: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 97),
-            "51:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "54:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "61:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
-            "68:62: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 62),
-            "77:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
-            "79:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
-            "81:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
-            "83:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
-            "94:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
-            "104:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "108:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
-            "112:52: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 52),
-            "112:112: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 112),
-            "115:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 18),
-            "119:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
-            "122:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "124:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
-            "128:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "137:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "139:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "149:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "151:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
+            "8:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "11:65: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 65),
+            "22:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
+            "26:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
+            "29:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "32:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
+            "38:73: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 73),
+            "40:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "45:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
+            "47:97: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 97),
+            "50:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "53:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "60:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "67:62: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 62),
+            "76:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
+            "78:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "80:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
+            "82:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
+            "93:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "103:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "107:29: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 29),
+            "111:52: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 52),
+            "111:112: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 112),
+            "114:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 18),
+            "118:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "121:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "123:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "127:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "136:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "138:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "148:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "150:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
+            "151:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
+            "151:93: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 93),
             "152:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "152:93: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 93),
             "153:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "154:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
-            "154:93: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 93),
-            "160:37: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 37),
-            "167:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
-            "182:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "189:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "189:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 13),
-            "198:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "198:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 10),
-            "202:49: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 49),
-            "202:50: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 50),
-            "205:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
-            "205:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
-            "205:77: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 77),
-            "209:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
-            "217:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "153:93: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 93),
+            "159:37: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 37),
+            "166:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "181:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "188:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "188:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 13),
+            "197:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "197:10: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 10),
+            "201:49: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 49),
+            "201:50: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 50),
+            "204:75: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 75),
+            "204:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
+            "204:77: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 77),
+            "208:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
+            "216:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
 
         };
         verify(checkConfig, getPath("InputRightCurlyAnnotations.java"), expected);

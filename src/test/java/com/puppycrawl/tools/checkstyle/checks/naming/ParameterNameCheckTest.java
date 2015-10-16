@@ -46,7 +46,7 @@ public class ParameterNameCheckTest
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("checks/naming/InputCatchOnly.java"), expected);
     }
 
     @Test

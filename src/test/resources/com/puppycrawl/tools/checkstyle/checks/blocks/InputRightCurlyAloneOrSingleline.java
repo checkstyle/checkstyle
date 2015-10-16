@@ -1,134 +1,94 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-@TestClassAnnotation
-class InputRightCurlyAnnotations
-{
+public class InputRightCurlyAloneOrSingleline {
 
-    @Deprecated
-    @Override
-    public boolean equals(Object other) { boolean flag = true; return flag; } //violation
+    public boolean equals(Object other) { boolean flag = true; return flag; } 
 
-    @Override
-    public String toString() { String s = "toString"; return s; } //violation
-
-    @Override
-    @SuppressWarnings("unused")
     public int hashCode()
-    {
+    { 
         int a = 10;
         return 1;
     }
 
-    @SuppressWarnings("unused")
-    private void foo2() { int a = 9; return; } //violation
+    private void foo()
+    { int var1 = 5; var2 = 6; } 
 
-    @SuppressWarnings("unused")
-    private void foo3()
-    { int var1 = 5; var2 = 6; } //violation
+    private void foo1() { return; } 
 
-    @Deprecated
-    private void foo4() { return; } //violation
+    private String foo2() { return toString();
+    } 
 
-    @SuppressWarnings("unused")
-    private int foo5() { return 1; } //violation
-
-    @SuppressWarnings("unused")
-    private String foo6() { return toString();
-    }
-
-    private String foo7() { String s = toString(); return s.toString(); } //violation
-
-    private void foo8() { ; return; } //violation
+    private void foo3() { ; return; } 
 
     private int var1;
     private int var2;
-    @SuppressWarnings("unused")
-    public InputRightCurlyAnnotations() { this.var1 = 1; } //violation
-    @SuppressWarnings("unused")
-    public InputRightCurlyAnnotations(int var1, int var2) { this.var1 = var1; this.var2 = var2; } //violation
+    public InputRightCurlyAloneOrSingleline() { this.var1 = 1; } 
+    public InputRightCurlyAloneOrSingleline(int var1, int var2) { this.var1 = var1; this.var2 = var2; } 
 
-    @SuppressWarnings("unused")
-    private void foo9() { ;; } //violation
+    private void foo4() { ;; } 
 
-    @SuppressWarnings("unused")
-    private void foo10() { ; } //violation
+    private void foo5() { ; } 
 
-    @SuppressWarnings("unused")
-    private void foo11() {  } //it's ok - empty block
+    private void foo6() {  } 
 
-    @SuppressWarnings("unused")
     private void foo12() {
-        try { int i = 5; int b = 10; } //violation
-        catch (Exception e) { } //it's ok - empty block
-    }
+        try { int i = 5; int b = 10; } 
+        catch (Exception e) { } 
+    } 
 
-    @Deprecated
-    @SuppressWarnings("unused")
     private void foo13() {
-        for (int i = 0; i < 10; i++) { int a = 5; int b = 6; } //violation
+        for (int i = 0; i < 10; i++) { int a = 5; int b = 6; } 
 
         do
         {
             var1 = 2;
-        }
+        } 
         while (var2 == 2);
-    }
+    } 
 
-    static { int a; int b; } //violation
+    static { int a; int b; } 
 
-    static { int a; } //violation
+    { int c; int d;} 
 
-    { int c; int d;} //violation
-
-    { int c; } //violation
-
-    @Deprecated
     private void foo14() {
         if (var1 > 0) {
             return;
-        }
-    }
+        } 
+    } 
 
-    @Deprecated
     private void foo15() {
         class A { int a; } var1++; //violation
-        class B {  }
+        class B {  } 
         if(true) {
 
-        }
+        } 
         else;
     }
 
-    @Deprecated
     private void foo16() {
         if (true) { return; } else { } //violation
         if (false) {
         }
-
-        if (true) { return; } else { } //violation
     }
 
-    @Deprecated
-    private void foo17() { int var1 = 5; var2 = 6; } @Deprecated private void foo18() {int var1 = 5; var2 = 6; } //violation
+    private void foo17() { int var1 = 5; var2 = 6; } private void foo18() {int var1 = 5; var2 = 6; } //violation
 
     private void foo19() {int var1 = 5;
         var2 = 6;} //violation
 
-    @SuppressWarnings("Hello, world!")
     private String foo20() {
-        do { var2 ++; } //violation
+        do { var2 ++; }  
         while (var2 < 15);
 
-        while (var1 < 10) { var1++; } //violation
+        while (var1 < 10) { var1++; } 
 
         do { var2++; var1++; } while (var2 < 15); return ""+0xCAFEBABE; //violation
     }
 
     private void foo21() {
-        new Object() { @Override protected void finalize() { "".toString(); }}; //violation
-    }
+        new Object() { @Override protected void finalize() { "".toString(); }}; 
+    } 
 
-    @SuppressWarnings("All")
     void foo22() {
         long startTime = System.nanoTime();
         try {
@@ -139,19 +99,18 @@ class InputRightCurlyAnnotations
         } finally { toString(); } //violation
     }
 
-    @SuppressWarnings("")
     void doDoubleBraceInitialization() {
         java.util.Map<String, String> map = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }}; //violation
+        }}; // it's ok
 
-        Thread t = new Thread() {@Override public void run() {super.run();}}; //violation
-        new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }}; //violation
-        new Object() { @Override protected void finalize() { "".toString(); }  int b = 10; }; //violation
-        new Object() { @Override protected void finalize() { "".toString(); }  { int c = 5; } int d = 8; }; //violation
+        Thread t = new Thread() {@Override public void run() {super.run();}};
+        new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }};
+        new Object() { @Override protected void finalize() { "".toString(); }  int b = 10; };
+        new Object() { @Override protected void finalize() { "".toString(); }  { int c = 5; } int d = 8; };
 
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
@@ -164,14 +123,14 @@ class InputRightCurlyAnnotations
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-            put("alpha", "betical");}};  //violation
+            put("alpha", "betical");}}; //violation
 
         java.util.Map<String, String> map4 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-            }
+        }
         };
 
         foo23(new java.util.HashSet<String>() {{
@@ -179,7 +138,7 @@ class InputRightCurlyAnnotations
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }}); //violation
+        }});  //it's ok, can't be formatted better
 
         foo23(new java.util.HashSet<String>() {{
             add("XZ13s");
@@ -206,7 +165,7 @@ class InputRightCurlyAnnotations
 
     private java.util.ArrayList<Integer> foo28(int delta) {
         return new java.util.ArrayList<Integer>() {
-        @Override public int size() { return Math.max(0, super.size() + 1);}; //violation
+            @Override public int size() { return Math.max(0, super.size() + 1);};
         };
     }
 

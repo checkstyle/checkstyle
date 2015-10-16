@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 public class InputLeftCurlyEnums {
     enum Colors {RED,

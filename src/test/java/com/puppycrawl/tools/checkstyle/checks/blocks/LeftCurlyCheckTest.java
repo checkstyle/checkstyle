@@ -25,6 +25,9 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_K
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +42,12 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(LeftCurlyCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "blocks" + File.separator + filename);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -62,10 +71,10 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     public void testDefault() throws Exception {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "12:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "30:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "39:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "10:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "18:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
@@ -74,12 +83,12 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     public void testNL() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
-            "49:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
-            "53:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
-            "58:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
-            "62:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
-            "67:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
-            "72:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "27:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
+            "31:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
+            "36:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "40:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "45:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
+            "50:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
@@ -89,16 +98,16 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "12:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "30:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "39:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "49:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
-            "53:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
-            "58:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
-            "62:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
-            "67:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
-            "72:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "10:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "18:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "27:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
+            "31:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
+            "36:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "40:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "45:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
+            "50:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }

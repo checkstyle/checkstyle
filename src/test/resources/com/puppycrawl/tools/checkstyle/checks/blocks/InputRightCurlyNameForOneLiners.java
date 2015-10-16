@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2015
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
  * Test case for RightCurly with option SAME to omit oneliners
