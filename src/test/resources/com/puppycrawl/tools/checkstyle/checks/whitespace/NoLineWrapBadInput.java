@@ -1,5 +1,5 @@
 package com.puppycrawl.tools.
-    checkstyle.whitespace;
+    checkstyle.checks.whitespace;
 
 import com.google.common.annotations.Beta;
 

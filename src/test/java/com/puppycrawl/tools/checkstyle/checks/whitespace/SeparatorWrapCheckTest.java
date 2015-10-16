@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_PREVIOUS;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +42,12 @@ public class SeparatorWrapCheckTest
         checkConfig = createCheckConfig(SeparatorWrapCheck.class);
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
     @Test
     public void testDot()
         throws Exception {
@@ -47,7 +56,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "31:10: " + getCheckMessage(LINE_NEW, "."),
         };
-        verify(checkConfig, getPath("whitespace/InputSeparatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
     }
 
     @Test
@@ -57,7 +66,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "39:17: " + getCheckMessage(LINE_PREVIOUS, ","),
         };
-        verify(checkConfig, getPath("whitespace/InputSeparatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
     }
 
     @Test

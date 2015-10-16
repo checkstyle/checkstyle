@@ -109,7 +109,7 @@ public class ParenPadCheckTest
             "48:27: " + getCheckMessage(WS_PRECEDED, ")"),
             "51:26: " + getCheckMessage(WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("checks/whitespace/InputForWhitespace.java"), expected);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class ParenPadCheckTest
             "27:14: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
             "32:14: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("checks/whitespace/InputForWhitespace.java"), expected);
     }
 
     @Test

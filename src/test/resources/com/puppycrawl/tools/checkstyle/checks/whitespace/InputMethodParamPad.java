@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import java.util.Vector;
 /** Test input for MethodDefPadCheck */
 public class InputMethodParamPad

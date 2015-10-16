@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-package com.puppycrawl.tools.checkstyle.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 
 import java.util.*;

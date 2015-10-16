@@ -78,7 +78,7 @@ public class WhitespaceAfterCheckTest
             "14:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
             "17:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("checks/whitespace/InputForWhitespace.java"), expected);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void test1322879() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
                expected);
     }
 }

@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_PREVIOUS;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,6 +40,12 @@ public class OperatorWrapCheckTest
         checkConfig = createCheckConfig(OperatorWrapCheck.class);
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -45,7 +54,7 @@ public class OperatorWrapCheckTest
             "16:15: " + getCheckMessage(LINE_NEW, "-"),
             "24:18: " + getCheckMessage(LINE_NEW, "&&"),
             "39:30: " + getCheckMessage(LINE_NEW, "&"),
-            "52:29: " + getCheckMessage(LINE_NEW, "&"),
+            "52:30: " + getCheckMessage(LINE_NEW, "&"),
         };
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }

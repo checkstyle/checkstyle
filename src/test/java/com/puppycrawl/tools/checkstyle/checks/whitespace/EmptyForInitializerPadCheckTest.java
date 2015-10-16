@@ -24,6 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitiali
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,6 +41,12 @@ public class EmptyForInitializerPadCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(EmptyForInitializerPadCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
     }
 
     @Test

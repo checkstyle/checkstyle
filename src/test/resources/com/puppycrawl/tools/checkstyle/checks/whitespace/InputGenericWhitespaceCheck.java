@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.io.Serializable;
 import java.util.ArrayList;
