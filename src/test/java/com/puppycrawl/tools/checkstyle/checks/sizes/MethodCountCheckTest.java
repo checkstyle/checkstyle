@@ -26,6 +26,9 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_PUBLIC_METHODS;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -34,6 +37,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodCountCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "sizes" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -65,7 +73,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("sizes/MethodCountCheckInput.java"), expected);
+        verify(checkConfig, getPath("MethodCountCheckInput.java"), expected);
     }
 
     @Test
@@ -90,7 +98,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             "45: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
         };
 
-        verify(checkConfig, getPath("sizes/MethodCountCheckInput.java"), expected);
+        verify(checkConfig, getPath("MethodCountCheckInput.java"), expected);
     }
 
     @Test
@@ -105,7 +113,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             "9: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
         };
 
-        verify(checkConfig, getPath("sizes/MethodCountCheckInput2.java"), expected);
+        verify(checkConfig, getPath("MethodCountCheckInput2.java"), expected);
     }
 
     @Test
@@ -118,6 +126,6 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             "3: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
         };
 
-        verify(checkConfig, getPath("sizes/MethodCountCheckInput3.java"), expected);
+        verify(checkConfig, getPath("MethodCountCheckInput3.java"), expected);
     }
 }

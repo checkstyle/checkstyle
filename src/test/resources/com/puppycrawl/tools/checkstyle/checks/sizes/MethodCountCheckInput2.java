@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.sizes;
+package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 public enum MethodCountCheckInput2 {
 
