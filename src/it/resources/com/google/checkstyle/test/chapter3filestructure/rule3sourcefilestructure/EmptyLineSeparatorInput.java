@@ -37,11 +37,11 @@ class InputEmptyLineSeparatorCheck //warn
 	static {  //warn
         //empty static initializer
 	}
-	//separator blank line
+
 	{
 		//empty instance initializer
 	}
-	//separator blank line
+
 	/**
 	 * 
 	 * 
@@ -51,7 +51,7 @@ class InputEmptyLineSeparatorCheck //warn
 	{
 		//empty
 	}
-	//separator blank line
+
     public int compareTo(InputEmptyLineSeparatorCheck aObject)
     {
     	int number = 0;
@@ -63,18 +63,18 @@ class InputEmptyLineSeparatorCheck //warn
      * @param result
      * @return
      */
-    public static <T> Callable<T> callable(Runnable task, T result)
+    public static <T> Callable<T> callable(Runnable task, T result) // warn
     {
         return null;
     }
-    //separator blank line
+
     public int getBeastNumber()
     {
         return 666;
     }
     interface IntEnum { //warn
     }
-    //separator blank line
+
     class InnerClass {
     	
     	public static final double FOO_PI_INNER = 3.1415;
@@ -82,7 +82,7 @@ class InputEmptyLineSeparatorCheck //warn
     	{ //warn
     		//empty instance initializer
     	}
-    	//separator blank line
+
     	private InnerClass()
     	{
     		//empty

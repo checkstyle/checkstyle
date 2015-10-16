@@ -39,11 +39,16 @@ class InputEmptyLineSeparatorCheck
     static {
         //empty static initializer
     }
-    //separator blank line
+    // no blank line - fail
     {
         //empty instance initializer
     }
-    //separator blank line
+
+    // one blank line - ok
+    {
+        //empty instance initializer
+    }
+    // no blank line - fail
     /**
      * 
      * 
@@ -59,8 +64,14 @@ class InputEmptyLineSeparatorCheck
         int number = 0;
         return 0;
     }
+
+    public int compareTo2(Object aObject) // empty line - ok
+    {
+        int number = 0;
+        return 0;
+    }
     /**
-     * 
+     * No blank line between methods - fail
      * @param task
      * @param result
      * @return
@@ -69,24 +80,46 @@ class InputEmptyLineSeparatorCheck
     {
         return null;
     }
-    //separator blank line
+
+    /**
+     * Blank line before Javadoc - ok
+     * @param task
+     * @param result
+     * @return
+     */
+    public static <T> Callable<T> callable2(Runnable task, T result)
+    {
+        return null;
+    }
+    /**
+     * Blank line after Javadoc - ok
+     * @param task
+     * @param result
+     * @return
+     */
+    
+    public static <T> Callable<T> callable3(Runnable task, T result)
+    {
+        return null;
+    }
+
     public int getBeastNumber()
     {
         return 666;
     }
     interface IntEnum {
     }
-    //separator blank line
+
     class InnerClass {
         
         public static final double FOO_PI_INNER = 3.1415;
-        //separator blank line
+
         private boolean flagInner = true; 
-        //separator blank line
+
         {
             //empty instance initializer
         }
-        //separator blank line
+
         private InnerClass()
         {
             //empty

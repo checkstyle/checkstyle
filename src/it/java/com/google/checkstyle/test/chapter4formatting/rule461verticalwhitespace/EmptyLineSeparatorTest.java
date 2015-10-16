@@ -30,6 +30,7 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport{
             "20: " + getCheckMessage(clazz, messageKey, "import"),
             "33: " + getCheckMessage(clazz, messageKey, "CLASS_DEF"),
             "37: " + getCheckMessage(clazz, messageKey, "STATIC_INIT"),
+            "66: " + getCheckMessage(clazz, messageKey, "METHOD_DEF"),
             "75: " + getCheckMessage(clazz, messageKey, "INTERFACE_DEF"),
             "82: " + getCheckMessage(clazz, messageKey, "INSTANCE_INIT"),
             "113: " + getCheckMessage(clazz, messageKey, "CLASS_DEF"),
