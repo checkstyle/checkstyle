@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -32,6 +35,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class EmptyLineSeparatorCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -50,7 +58,7 @@ public class EmptyLineSeparatorCheckTest
             "39: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
             "77: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
-        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorCheck.java"), expected);
     }
 
     @Test
@@ -65,7 +73,7 @@ public class EmptyLineSeparatorCheckTest
             "39: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
             "77: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
-        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheck.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorCheck.java"), expected);
     }
 
     @Test
@@ -74,7 +82,7 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
         };
-        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckHeader.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorCheckHeader.java"), expected);
     }
 
     @Test
@@ -88,7 +96,7 @@ public class EmptyLineSeparatorCheckTest
             "38: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
             "43: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
         };
-        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorCheckMultipleEmptyLines.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorCheckMultipleEmptyLines.java"), expected);
     }
 
     @Test
@@ -96,7 +104,7 @@ public class EmptyLineSeparatorCheckTest
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorFormerException.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorFormerException.java"), expected);
     }
 
     @Test
@@ -105,7 +113,7 @@ public class EmptyLineSeparatorCheckTest
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
     }
 
     @Test
@@ -115,7 +123,7 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
         };
-        verify(checkConfig, getPath("whitespace/InputEmptyLineSeparatorMultipleImportEmptyClass.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleImportEmptyClass.java"), expected);
     }
 
     @Test
@@ -142,6 +150,6 @@ public class EmptyLineSeparatorCheckTest
         DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputPrePreviousLineEmptiness.java"), expected);
+        verify(checkConfig, getPath("InputPrePreviousLineEmptiness.java"), expected);
     }
 }

@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIterator
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_NOT_FOLLOWED;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,6 +40,12 @@ public class EmptyForIteratorPadCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(EmptyForIteratorPadCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
     }
 
     @Test

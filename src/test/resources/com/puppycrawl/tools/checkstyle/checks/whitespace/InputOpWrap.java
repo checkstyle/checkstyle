@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 /**
  * Test case for detecting operator wrapping.
@@ -49,15 +49,11 @@ class InputOpWrap
     }
 }
 
-class badCase<T extends Foo &
+class badCase2<T extends Foo &
     Bar> {
 }
 
 class goodCase<T extends Foo & Bar> {
-}
-
-interface Bar {
-	
 }
 
 class Switch {

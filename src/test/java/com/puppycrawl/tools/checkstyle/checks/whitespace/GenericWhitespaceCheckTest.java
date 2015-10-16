@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespac
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -52,6 +53,18 @@ public class GenericWhitespaceCheckTest
             entry.getValue();
         }
         //for (final Entry<Class<?>, Integer> entry : entrySet())
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
     }
 
     @Test
@@ -94,22 +107,19 @@ public class GenericWhitespaceCheckTest
             "60:60: " + getCheckMessage(WS_NOT_PRECEDED, "&"),
             "63:60: " + getCheckMessage(WS_FOLLOWED, ">"),
         };
-        verify(checkConfig,
-                getPath("whitespace/InputGenericWhitespaceCheck.java"),
-                expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceCheck.java"), expected);
     }
 
     @Test
     public void testGh47() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/Gh47.java"), expected);
+        verify(checkConfig, getPath("Gh47.java"), expected);
     }
 
     @Test
     public void testInnerClass() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/"
-                + "InputGenericWhitespaceInnerClassCheck.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceInnerClassCheck.java"), expected);
     }
 
     @Test
@@ -125,9 +135,7 @@ public class GenericWhitespaceCheckTest
         final String[] expected = {
             "7:69: " + getCheckMessage(WS_FOLLOWED, ">"),
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/whitespace/"
-                + "InputGenericWhitespaceMethodRef.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputGenericWhitespaceMethodRef.java"), expected);
     }
 
     @Test

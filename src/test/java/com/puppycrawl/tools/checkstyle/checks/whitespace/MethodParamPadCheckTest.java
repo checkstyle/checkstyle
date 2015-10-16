@@ -24,6 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCh
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_PRECEDED;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +42,12 @@ public class MethodParamPadCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(MethodParamPadCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
     }
 
     @Test
@@ -67,7 +76,7 @@ public class MethodParamPadCheckTest
             "61:36: " + getCheckMessage(WS_PRECEDED, "("),
             "63:13: " + getCheckMessage(LINE_PREVIOUS, "("),
         };
-        verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
+        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
 
     @Test
@@ -83,7 +92,7 @@ public class MethodParamPadCheckTest
             "56:18: " + getCheckMessage(WS_PRECEDED, "("),
             "61:36: " + getCheckMessage(WS_PRECEDED, "("),
         };
-        verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
+        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
 
     @Test
@@ -112,14 +121,14 @@ public class MethodParamPadCheckTest
             "69:66: " + getCheckMessage(WS_NOT_PRECEDED, "("),
             "70:57: " + getCheckMessage(WS_NOT_PRECEDED, "("),
         };
-        verify(checkConfig, getPath("whitespace/InputMethodParamPad.java"), expected);
+        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
 
     @Test
     public void test1322879() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
 

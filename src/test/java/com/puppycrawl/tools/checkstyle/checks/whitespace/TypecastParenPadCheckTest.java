@@ -71,7 +71,7 @@ public class TypecastParenPadCheckTest
             createCheckConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
                expected);
     }
 

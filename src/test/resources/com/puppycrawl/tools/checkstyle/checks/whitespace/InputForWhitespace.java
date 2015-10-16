@@ -2,7 +2,7 @@
 // Test case file for FOR_ITERATION and whitespace.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 class InputForWhitespace
 {

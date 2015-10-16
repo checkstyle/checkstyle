@@ -145,7 +145,7 @@ public class WhitespaceAroundTest
     @Test
     public void test1322879And1649038() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
                expected);
     }
 
@@ -155,7 +155,7 @@ public class WhitespaceAroundTest
         final String[] expected = {
             "19:20: " + getCheckMessage(WS_NOT_PRECEDED, ":"),
         };
-        verify(checkConfig, getPath("whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
                expected);
     }
 
@@ -218,7 +218,7 @@ public class WhitespaceAroundTest
         checkConfig.addAttribute("allowEmptyMethods", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-               getPath("whitespace/InputWhitespaceAround.java"),
+               getPath("checks/whitespace/InputWhitespaceAround.java"),
                expected);
     }
 

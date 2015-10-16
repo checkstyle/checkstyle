@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -29,11 +32,17 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NoLineWrapCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
     @Test
     public void testCaseWithoutLineWrapping() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/NoLineWrapGoodInput.java"), expected);
+        verify(checkConfig, getPath("NoLineWrapGoodInput.java"), expected);
     }
 
     @Test
@@ -43,7 +52,7 @@ public class NoLineWrapCheckTest
             "1: " + getCheckMessage(MSG_KEY, "package"),
             "6: " + getCheckMessage(MSG_KEY, "import"),
         };
-        verify(checkConfig, getPath("whitespace/NoLineWrapBadInput.java"), expected);
+        verify(checkConfig, getPath("NoLineWrapBadInput.java"), expected);
     }
 
     @Test
@@ -57,6 +66,6 @@ public class NoLineWrapCheckTest
             "13: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
             "20: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
         };
-        verify(checkConfig, getPath("whitespace/NoLineWrapBadInput.java"), expected);
+        verify(checkConfig, getPath("NoLineWrapBadInput.java"), expected);
     }
 }
