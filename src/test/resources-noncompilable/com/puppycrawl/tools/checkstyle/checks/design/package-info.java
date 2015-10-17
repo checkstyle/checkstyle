@@ -20,4 +20,4 @@
 /**
  * Package containing input files for design checks.
  */
-package com.puppycrawl.tools.checkstyle.design;
+package com.puppycrawl.tools.checkstyle.checks.design;

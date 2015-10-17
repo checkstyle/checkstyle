@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -40,6 +43,12 @@ public class VisibilityModifierCheckTest
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         return createChecker(checkConfig);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "design" + File.separator + filename);
     }
 
     @Test
@@ -84,12 +93,12 @@ public class VisibilityModifierCheckTest
     @Test
     public void testSimple() throws Exception {
         final String[] expected = {
-            "39:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
-            "49:23: " + getCheckMessage(MSG_KEY, "sTest1"),
-            "51:26: " + getCheckMessage(MSG_KEY, "sTest3"),
-            "53:16: " + getCheckMessage(MSG_KEY, "sTest2"),
-            "56:9: " + getCheckMessage(MSG_KEY, "mTest1"),
-            "58:16: " + getCheckMessage(MSG_KEY, "mTest2"),
+            "33:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
+            "43:23: " + getCheckMessage(MSG_KEY, "sTest1"),
+            "45:26: " + getCheckMessage(MSG_KEY, "sTest3"),
+            "47:16: " + getCheckMessage(MSG_KEY, "sTest2"),
+            "50:9: " + getCheckMessage(MSG_KEY, "mTest1"),
+            "52:16: " + getCheckMessage(MSG_KEY, "mTest2"),
         };
         verify(getChecker(), getPath("InputSimple.java"), expected);
     }
@@ -97,9 +106,9 @@ public class VisibilityModifierCheckTest
     @Test
     public void testStrictJavadoc() throws Exception {
         final String[] expected = {
-            "44:9: " + getCheckMessage(MSG_KEY, "mLen"),
-            "45:19: " + getCheckMessage(MSG_KEY, "mDeer"),
-            "46:16: " + getCheckMessage(MSG_KEY, "aFreddo"),
+            "32:9: " + getCheckMessage(MSG_KEY, "mLen"),
+            "33:19: " + getCheckMessage(MSG_KEY, "mDeer"),
+            "34:16: " + getCheckMessage(MSG_KEY, "aFreddo"),
         };
         verify(getChecker(), getPath("InputPublicOnly.java"), expected);
     }
@@ -144,7 +153,7 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames",
                  "com.puppycrawl.tools.checkstyle.checks.coding.GregorianCalendar,"
-                 + "com.puppycrawl.tools.checkstyle.InetSocketAddress");
+                 + "com.puppycrawl.tools.checkstyle.checks.design.InetSocketAddress");
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "11:45: " + getCheckMessage(MSG_KEY, "adr"),
