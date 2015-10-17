@@ -53,7 +53,7 @@
 
     <section name="Organize Imports">
       <p>
-        One of the Checkstyle checks we run on our own code require sertain order of import
+        One of the Checkstyle checks we run on our own code require certain order of import
         statements. Few changes in IDE settings are required to help your IDE do it automatically.<br/>
         To change formatter settings please go to File->Settings in menu.<br/>
         Then in the tree go to: Editor->Code Style->Java, open Import tab (follow numbers on a

@@ -193,7 +193,7 @@ final class PropertyCacheFile {
                 flushAndCloseOutStream(oos);
             }
 
-            // Instead of hexEncoding baos.toByteArray() directly we
+            // Instead of hexEncoding outputStream.toByteArray() directly we
             // use a message digest here to keep the length of the
             // hashcode reasonable
 
