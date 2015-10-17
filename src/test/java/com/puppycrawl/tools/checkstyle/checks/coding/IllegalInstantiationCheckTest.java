@@ -44,18 +44,18 @@ public class IllegalInstantiationCheckTest
         checkConfig.addAttribute(
             "classes",
             "java.lang.Boolean,"
-                + "com.puppycrawl.tools.checkstyle.InputModifier,"
+                + "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier,"
                 + "java.io.File,"
                 + "java.awt.Color");
         final String[] expected = {
             "19:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "24:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "31:16: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
-            "38:21: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.InputModifier"),
+            "38:21: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier"),
             "41:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "44:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("checks/coding/InputSemantic.java"), expected);
     }
 
     @Test

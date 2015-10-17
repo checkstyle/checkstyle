@@ -24,6 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderChec
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_STATIC;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,6 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class DeclarationOrderCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -68,7 +77,7 @@ public class DeclarationOrderCheckTest
             "178:5: " + getCheckMessage(MSG_INSTANCE),
             "182:9: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
+        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
     }
 
     @Test
@@ -87,7 +96,7 @@ public class DeclarationOrderCheckTest
             "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
-        verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
+        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
     }
 
     @Test
@@ -124,7 +133,7 @@ public class DeclarationOrderCheckTest
             "178:5: " + getCheckMessage(MSG_INSTANCE),
             "182:9: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("coding/InputDeclarationOrder.java"), expected);
+        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
     }
 
     @Test
@@ -162,5 +171,4 @@ public class DeclarationOrderCheckTest
         DeclarationOrderCheck check = new DeclarationOrderCheck();
         check.visitToken(array);
     }
-
 }

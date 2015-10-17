@@ -124,9 +124,9 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
-            "83: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
+            "10: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
         };
-        verify(checkConfig, getPath("coding" + File.separator + "InputDeclarationOrder.java"), expected);
+        verify(checkConfig, getPath("checks" + File.separator + "design" + File.separator + "InputDeclarationOrder.java"), expected);
     }
 
     @Test

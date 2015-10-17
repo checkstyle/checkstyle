@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,14 +33,20 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class EqualsHashCodeCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
-            "126:9: " + getCheckMessage(MSG_KEY),
-            "163:13: " + getCheckMessage(MSG_KEY),
-            "191:9: " + getCheckMessage(MSG_KEY),
+            "57:9: " + getCheckMessage(MSG_KEY),
+            "94:13: " + getCheckMessage(MSG_KEY),
+            "122:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -47,7 +56,7 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("coding/InputEqualsHashCodeCheck.java"), expected);
+        verify(checkConfig, getPath("InputEqualsHashCodeCheck.java"), expected);
     }
 
     @Test

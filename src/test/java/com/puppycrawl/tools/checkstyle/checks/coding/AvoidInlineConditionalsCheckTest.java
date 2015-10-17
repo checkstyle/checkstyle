@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,15 +32,21 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AvoidInlineConditionalsCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testIt()
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidInlineConditionalsCheck.class);
         final String[] expected = {
-            "97:29: " + getCheckMessage(MSG_KEY),
-            "98:20: " + getCheckMessage(MSG_KEY),
-            "150:34: " + getCheckMessage(MSG_KEY),
+            "32:29: " + getCheckMessage(MSG_KEY),
+            "33:20: " + getCheckMessage(MSG_KEY),
+            "46:34: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
