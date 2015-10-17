@@ -45,7 +45,7 @@ public class AvoidStarImportTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStarImportCheck.class);
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
+            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
             "9: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "10: " + getCheckMessage(MSG_KEY, "java.lang.*"),
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -66,7 +66,7 @@ public class AvoidStarImportTest
             "java.io,java.lang,javax.swing.WindowConstants.*, javax.swing.WindowConstants");
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = {
-            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
+            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
         verify(checkConfig, getPath("InputAvoidStarImportCheck.java"),
@@ -91,7 +91,7 @@ public class AvoidStarImportTest
         checkConfig.addAttribute("allowStaticMemberImports", "true");
         // allow all static star imports
         final String[] expected2 = {
-            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.imports.*"),
+            "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
             "9: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "10: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };

@@ -3,7 +3,7 @@
     "-//Puppy Crawl//DTD Import Control 1.1//EN"
     "http://www.puppycrawl.com/dtds/import_control_1_1.dtd">
 
-<import-control pkg="com.puppycrawl.tools.checkstyle">
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks">
   <allow class="java\.awt.Image" regex="true"/>
   <allow class="java..*.Button.ABORT" regex="true"/>
   <allow class="java.(io|lui).File" local-only="true" regex="true"/>

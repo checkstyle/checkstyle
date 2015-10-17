@@ -34,27 +34,28 @@ import org.xml.sax.helpers.AttributesImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class ImportControlLoaderTest {
+    private static String getPath(String filename) {
+        return "src/test/resources/com/puppycrawl/tools/checkstyle/checks/imports/" + filename;
+    }
+
     @Test
     public void testLoad() throws CheckstyleException {
         final PkgControl root =
-                ImportControlLoader.load(new File(
-                        "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml").toURI());
+                ImportControlLoader.load(new File(getPath("import-control_complete.xml")).toURI());
         assertNotNull(root);
     }
 
     @Test(expected = CheckstyleException.class)
     public void testWrongFormatURI() throws Exception {
         final PkgControl root =
-                ImportControlLoader.load(
-                        new URI("aaa://src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml"));
+                ImportControlLoader.load(new URI("aaa://" + getPath("import-control_complete.xml")));
         assertNotNull(root);
     }
 
     @Test
     public void testExtraElementInConfig() throws Exception {
         final PkgControl root =
-                ImportControlLoader.load(new File(
-                        "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_WithNewElement.xml").toURI());
+                ImportControlLoader.load(new File(getPath("import-control_WithNewElement.xml")).toURI());
         assertNotNull(root);
     }
 
@@ -78,7 +79,6 @@ public class ImportControlLoaderTest {
                 | ClassNotFoundException | NoSuchMethodException | SecurityException e) {
             throw new IllegalStateException(e);
         }
-
     }
 
     @Test(expected = InvocationTargetException.class)
@@ -92,14 +92,11 @@ public class ImportControlLoaderTest {
                     "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader");
             Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class, URI.class);
             privateMethod.setAccessible(true);
-            privateMethod.invoke(null, source, new File(
-                    "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml").toURI());
+            privateMethod.invoke(null, source, new File(getPath("import-control_complete.xml")).toURI());
         }
         catch (IllegalAccessException | IllegalArgumentException
                 | ClassNotFoundException | NoSuchMethodException | SecurityException e) {
             throw new IllegalStateException(e);
         }
-
     }
-
 }
