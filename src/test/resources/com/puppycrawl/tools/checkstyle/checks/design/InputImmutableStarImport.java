@@ -1,7 +1,7 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.design;
 
-import com.puppycrawl.tools.checkstyle.InputImmutable;
-import com.puppycrawl.tools.checkstyle.InetSocketAddress.*;
+import com.puppycrawl.tools.checkstyle.checks.design.InputImmutable;
+import com.puppycrawl.tools.checkstyle.checks.design.InetSocketAddress.*;
 
 public final class InputImmutableStarImport
 {

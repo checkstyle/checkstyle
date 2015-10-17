@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.math.BigDecimal;
 import java.util.Collection;

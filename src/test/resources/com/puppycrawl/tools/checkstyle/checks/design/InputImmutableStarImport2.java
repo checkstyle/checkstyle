@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.google.common.collect.*;
 //config.immutableClassName=com.google.google.common.ImmutableSet
