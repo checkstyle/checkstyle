@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * The following is a bad tag.

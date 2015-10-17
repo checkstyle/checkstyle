@@ -3,7 +3,7 @@
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Testing author and version tag patterns

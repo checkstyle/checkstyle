@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
  * Some javadoc.
@@ -11,7 +11,7 @@ public class AllowedAnnotations implements SomeInterface {
     @ThisIsOkToo
     public void allowed2() {}
 
-    @com.puppycrawl.tools.checkstyle.javadoc.ThisIsOk
+    @com.puppycrawl.tools.checkstyle.checks.javadoc.ThisIsOk
     public void allowed3() {}
 
     @Override
