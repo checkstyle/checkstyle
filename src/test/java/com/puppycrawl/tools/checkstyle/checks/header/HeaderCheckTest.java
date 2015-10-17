@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -45,11 +46,20 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ HeaderCheck.class, HeaderCheckTest.class, AbstractHeaderCheck.class })
 public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "header" + File.separator + filename);
+    }
+
+    protected String getConfigPath(String filename) throws IOException {
+        return super.getPath("configs" + File.separator + filename);
+    }
 
     @Test
     public void testStaticHeader() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
+        checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
         checkConfig.addAttribute("ignoreLines", "");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
@@ -91,7 +101,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testInvalidCharset() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("config/java.header"));
+        checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
         checkConfig.addAttribute("charset", "XSO-8859-1");
         try {
             createChecker(checkConfig);
@@ -126,22 +136,22 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testNotMatch() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
+        checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
         checkConfig.addAttribute("ignoreLines", "");
         final String[] expected = {
             "2: " + getCheckMessage(MSG_MISMATCH,
                     "// checkstyle: Checks Java source code for adherence to a set of rules."),
         };
-        verify(checkConfig, getPath("configs/java2.header"), expected);
+        verify(checkConfig, getConfigPath("java2.header"), expected);
     }
 
     @Test
     public void testIgnore() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
-        checkConfig.addAttribute("headerFile", getPath("configs/java.header"));
+        checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
         checkConfig.addAttribute("ignoreLines", "2");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("configs/java2.header"), expected);
+        verify(checkConfig, getConfigPath("java2.header"), expected);
     }
 
     @Test
