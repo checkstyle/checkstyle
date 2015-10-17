@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -90,7 +91,9 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                     ConversionException.class));
         }
         catch (ConversionException ex) {
-            // expected
+            assertEquals("Unable to parse format: ^/**\\n *"
+                    + " Licensed to the Apache Software Foundation (ASF)",
+                    ex.getMessage());
         }
     }
 
@@ -111,7 +114,11 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Checker creation should not succeed with invalid headerFile");
         }
         catch (CheckstyleException ex) {
-            // expected exception
+            assertEquals("cannot initialize module"
+                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
+                    + " - Cannot set property 'headerFile' to '' in"
+                    + " module com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
+                    ex.getMessage());
         }
     }
 
@@ -159,7 +166,11 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Checker creation should not succeed when regexp spans multiple lines");
         }
         catch (CheckstyleException ex) {
-            // expected exception
+            assertEquals("cannot initialize module"
+                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
+                    + " - Cannot set property 'header' to '^(.*\\n.*)' in module"
+                    + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
+                    ex.getMessage());
         }
     }
 

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -55,7 +56,11 @@ public class ConstantNameCheckTest
             fail();
         }
         catch (CheckstyleException ex) {
-            // expected exception
+            assertEquals("cannot initialize module"
+                    + " com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property"
+                    + " 'format' to '\\' in module"
+                    + " com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
+                    ex.getMessage());
         }
     }
 
