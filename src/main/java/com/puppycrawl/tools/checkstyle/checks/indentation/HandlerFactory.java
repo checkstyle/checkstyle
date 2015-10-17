@@ -162,7 +162,7 @@ public class HandlerFactory {
      *
      * @return new instance.
      */
-    AbstractExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
+    private AbstractExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
         AbstractExpressionHandler theParent = parent;
         DetailAST astNode = ast.getFirstChild();
