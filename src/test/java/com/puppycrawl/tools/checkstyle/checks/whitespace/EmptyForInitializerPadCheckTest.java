@@ -75,7 +75,8 @@ public class EmptyForInitializerPadCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        EmptyForInitializerPadCheck emptyForInitializerPadCheckObj = new EmptyForInitializerPadCheck();
+        EmptyForInitializerPadCheck emptyForInitializerPadCheckObj =
+            new EmptyForInitializerPadCheck();
         int[] actual = emptyForInitializerPadCheckObj.getAcceptableTokens();
         int[] expected = {
             TokenTypes.FOR_INIT,

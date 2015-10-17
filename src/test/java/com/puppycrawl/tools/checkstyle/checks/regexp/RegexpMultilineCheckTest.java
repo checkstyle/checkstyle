@@ -171,7 +171,8 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     private static CharSequence makeLargeXYString() {
-        // now needs 10'000 or 100'000, as just 1000 is no longer enough today to provoke the StackOverflowError
+        // now needs 10'000 or 100'000, as just 1000 is no longer enough today to provoke the
+        // StackOverflowError
         final int size = 100000;
         StringBuffer largeString = new StringBuffer(size);
         for (int i = 0; i < size / 2; i++) {

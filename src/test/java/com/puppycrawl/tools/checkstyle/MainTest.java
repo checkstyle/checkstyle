@@ -192,7 +192,8 @@ public class MainTest {
             + " com.puppycrawl.tools.checkstyle.filters.NonExistingClass,"
             + " com.puppycrawl.tools.checkstyle.NonExistingClass."
             + " Please recheck that class name is specified as canonical name or read"
-            + " how to configure short name usage http://checkstyle.sourceforge.net/config.html#Packages."
+            + " how to configure short name usage"
+            + " http://checkstyle.sourceforge.net/config.html#Packages."
             + " Please also recheck that provided ClassLoader to Checker is configured correctly.";
         final String expectedExceptionMessage =
             String.format(Locale.ROOT, "cannot initialize module TreeWalker - %1$s%n"
@@ -274,9 +275,11 @@ public class MainTest {
                 String expectedPath = getFilePath("InputMain.java");
                 assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                                 + "%1$s:3:14: "
-                                + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
+                                + "warning: Name 'InputMain' must match pattern"
+                                + " '^[a-z0-9]*$'.%n"
                                 + "%1$s:5:7: "
-                                + "warning: Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
+                                + "warning: Name 'InputMainInner' must match pattern"
+                                + " '^[a-z0-9]*$'.%n"
                                 + "Audit done.%n", expectedPath),
                         systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -431,10 +434,12 @@ public class MainTest {
             @Override
             public void checkAssertion() {
                 assertTrue(systemOut.getLog().startsWith(String.format(Locale.ROOT,
-                      "unable to parse configuration stream - Content is not allowed in prolog.:7:1%n"
+                      "unable to parse configuration stream"
+                      + " - Content is not allowed in prolog.:7:1%n"
                       + "Cause: org.xml.sax.SAXParseException; systemId: file:")));
                 assertTrue(systemOut.getLog().endsWith(String.format(Locale.ROOT,
-                      "com/puppycrawl/tools/checkstyle/config-Incorrect.xml; lineNumber: 7; columnNumber: 1; "
+                      "com/puppycrawl/tools/checkstyle/config-Incorrect.xml;"
+                      + " lineNumber: 7; columnNumber: 1; "
                       + "Content is not allowed in prolog.%n"
                       + "Checkstyle ends with 1 errors.%n")));
                 assertEquals("", systemErr.getLog());
@@ -470,7 +475,8 @@ public class MainTest {
             // We do separate validation for message as in Windows
             // disk drive letter appear in message,
             // so we skip that drive letter for compatibility issues
-            assertTrue(e.getCause().getMessage().startsWith("Unable to load properties from file '"));
+            assertTrue(e.getCause().getMessage()
+                    .startsWith("Unable to load properties from file '"));
             assertTrue(e.getCause().getMessage().endsWith(":invalid'."));
         }
     }
@@ -521,7 +527,8 @@ public class MainTest {
                 String expectedPath = getFilePath("checks/metrics") + File.separator;
                 StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
-                String format = "%s.java:%s: warning: File length is %s lines (max allowed is 170).";
+                String format = "%s.java:%s: warning: File length is %s lines "
+                    + "(max allowed is 170).";
                 for (String[] outputValue : outputValues) {
                     String line = String.format(Locale.ROOT, format,
                             expectedPath + outputValue[0], outputValue[1],

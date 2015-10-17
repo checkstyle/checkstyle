@@ -67,7 +67,8 @@ public class JavadocParseTreeTest {
 
     private static String getPath(String filename) throws IOException {
         return new File(
-                "src/test/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/" + filename).getCanonicalPath();
+                "src/test/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/"
+                    + filename).getCanonicalPath();
     }
 
     private static String getHtmlPath(String filename) throws IOException {

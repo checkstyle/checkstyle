@@ -84,7 +84,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
         };
 
@@ -109,7 +110,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
         String[] expected = {
-            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
@@ -132,7 +134,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testSameFileNameGeneral() throws Exception {
-        checkConfig.addAttribute("illegalClassNames", "List, InputGregorianCalendar, java.io.File, ArrayList");
+        checkConfig.addAttribute("illegalClassNames",
+            "List, InputGregorianCalendar, java.io.File, ArrayList");
         String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, "InputGregorianCalendar"),
             "16:23: " + getCheckMessage(MSG_KEY, "InputGregorianCalendar"),
@@ -175,10 +178,14 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
                 + " LITERAL_STATIC");
         String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.coding."
+                    + "InputIllegalTypeMemberModifiers.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "23:15: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
+            "23:15: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.coding."
+                    + "InputIllegalTypeMemberModifiers.AbstractClass"),
             "25:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "33:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };

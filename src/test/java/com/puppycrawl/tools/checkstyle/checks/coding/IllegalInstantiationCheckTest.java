@@ -64,7 +64,8 @@ public class IllegalInstantiationCheckTest
             "19:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "24:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "31:16: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
-            "38:21: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier"),
+            "38:21: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier"),
             "41:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "44:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };

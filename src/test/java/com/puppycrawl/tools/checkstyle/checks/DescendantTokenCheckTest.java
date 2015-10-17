@@ -175,7 +175,8 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("limitedTokens", "STRING_LITERAL");
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("maximumDepth", "1");
-        checkConfig.addAttribute("maximumMessage", "Literal Strings should be compared using equals(), not ''==''.");
+        checkConfig.addAttribute("maximumMessage",
+            "Literal Strings should be compared using equals(), not ''==''.");
 
         final String[] expected = {
             "7:18: Literal Strings should be compared using equals(), not '=='.",

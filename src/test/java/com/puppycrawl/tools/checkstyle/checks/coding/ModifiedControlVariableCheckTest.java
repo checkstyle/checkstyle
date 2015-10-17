@@ -65,7 +65,8 @@ public class ModifiedControlVariableCheckTest
         checkConfig.addAttribute("skipEnhancedForLoopVariable", "true");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"),
+            expected);
     }
 
     @Test
@@ -76,7 +77,8 @@ public class ModifiedControlVariableCheckTest
         final String[] expected = {
             "9:18: " + getCheckMessage(MSG_KEY, "line"),
         };
-        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"),
+            expected);
     }
 
     @Test

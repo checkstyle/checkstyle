@@ -82,7 +82,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
 
         Class<?> regularClassType = Class
                 .forName(
-                        "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
+                    "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
         Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(tokenType,
                 String.class, AbstractTypeAwareCheck.class);
         regularClassConstructor.setAccessible(true);
@@ -125,7 +125,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
 
         Class<?> regularClassType = Class
                 .forName(
-                        "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
+                    "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
         Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(tokenType,
                 String.class, AbstractTypeAwareCheck.class);
         regularClassConstructor.setAccessible(true);

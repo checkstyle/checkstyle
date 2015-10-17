@@ -259,7 +259,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ImportOrderCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"), expected);
+        verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"),
+            expected);
     }
 
     @Test
@@ -357,7 +358,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "8: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
         };
-        verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
+        verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrderBottom.java"),
+            expected);
     }
 
     @Test
@@ -368,7 +370,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("groups", "org, java");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
+        verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrderBottom.java"),
+            expected);
     }
 
     @Test
@@ -382,7 +385,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
             "7: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.*"),
             "8: " + getCheckMessage(MSG_ORDERING, "org.antlr.v4.runtime.CommonToken.*"),
         };
-        verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrderBottom.java"), expected);
+        verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrderBottom.java"),
+            expected);
     }
 
     @Test(expected = CheckstyleException.class)
@@ -400,7 +404,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("groups", "java.awt.");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"), expected);
+        verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"),
+            expected);
     }
 
     @Test
@@ -409,7 +414,8 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("groups", "/java/,/rga/,/myO/,/org/,/organ./");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getNonCompilablePath("InputImportOrder_MultiplePatternMatches.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrder_MultiplePatternMatches.java"),
+            expected);
     }
 
     @Test(expected = IllegalStateException.class)

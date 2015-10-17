@@ -96,7 +96,8 @@ public class XDocsPagesTest {
         final String availableChecks = Files.toString(AVAILABLE_CHECKS_FILE, UTF_8);
         for (File file : Files.fileTreeTraverser().preOrderTraversal(JAVA_SOURCES_DIRECTORY)) {
             final String fileName = file.getName();
-            if (fileName.matches(CHECK_FILE_NAME) && !CHECKS_ON_PAGE_IGNORE_LIST.contains(fileName)) {
+            if (fileName.matches(CHECK_FILE_NAME)
+                    && !CHECKS_ON_PAGE_IGNORE_LIST.contains(fileName)) {
                 final String checkName = fileName.replace(CHECK_SUFFIX, "");
                 if (!isPresent(availableChecks, checkName)) {
                     Assert.fail(checkName + " is not correctly listed on Available Checks page"

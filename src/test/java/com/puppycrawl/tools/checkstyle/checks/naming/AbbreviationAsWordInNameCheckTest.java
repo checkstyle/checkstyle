@@ -43,7 +43,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     @Test
     public void testTypeNamesForThreePermittedCapitalLetters() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -66,7 +67,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final int expectedCapitalCount = 4;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "CLASS,FACTORY");
         checkConfig.addAttribute("tokens", "CLASS_DEF");
@@ -84,7 +86,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "CLASS");
         checkConfig.addAttribute("tokens", "CLASS_DEF");
@@ -102,7 +105,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "CLASS");
         checkConfig.addAttribute("tokens", "CLASS_DEF"
@@ -128,7 +132,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "false");
@@ -157,7 +162,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "true");
@@ -182,7 +188,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final int expectedCapitalCount = 4;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "false");
@@ -210,7 +217,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final int expectedCapitalCount = 5;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
         checkConfig.addAttribute("ignoreStatic", "true");
@@ -233,9 +241,11 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testTypeNamesForThreePermittedCapitalLettersWithOverriddenMethod() throws Exception {
+    public void testTypeNamesForThreePermittedCapitalLettersWithOverriddenMethod()
+        throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -300,7 +310,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     @Test
     public void testNPE() throws Exception {
 
-        final DefaultConfiguration checkConfig = createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 1;
         warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));

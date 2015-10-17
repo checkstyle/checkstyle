@@ -94,7 +94,8 @@ public class PackageNamesLoaderTest {
     @SuppressWarnings("unchecked")
     public void testPackagesWithDots() throws Exception {
 
-        Constructor<PackageNamesLoader> constructor = PackageNamesLoader.class.getDeclaredConstructor();
+        Constructor<PackageNamesLoader> constructor =
+                PackageNamesLoader.class.getDeclaredConstructor();
         constructor.setAccessible(true);
         PackageNamesLoader loader = constructor.newInstance();
 

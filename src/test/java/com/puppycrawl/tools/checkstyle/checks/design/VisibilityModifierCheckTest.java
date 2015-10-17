@@ -213,7 +213,8 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("ignoreAnnotationCanonicalNames",
-                "com.puppycrawl.tools.checkstyle.checks.design.InputAnnotatedVisibility.CustomAnnotation");
+                "com.puppycrawl.tools.checkstyle.checks.design."
+                    + "InputAnnotatedVisibility.CustomAnnotation");
         final String[] expected = {
             "15:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "18:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),

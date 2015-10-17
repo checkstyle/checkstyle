@@ -49,7 +49,8 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "8:45: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
+            "8:45: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "14:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -66,12 +67,17 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
             "35:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
             "37:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
             "38:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
-            "39:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport"),
+            "39:8: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport"),
             "40:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
-            "41:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.Input15Extensions"),
-            "42:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
-            "43:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
-            "44:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
+            "41:8: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.Input15Extensions"),
+            "42:8: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
+            "43:8: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
+            "44:8: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
             "45:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
         verify(checkConfig, getPath("InputUnusedImports.java"), expected);
@@ -82,7 +88,8 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         checkConfig.addAttribute("processJavadoc", "true");
         final String[] expected = {
-            "8:45: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
+            "8:45: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "14:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -168,7 +175,8 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
             "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
             "4:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
-        verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
+            expected);
     }
 
 }

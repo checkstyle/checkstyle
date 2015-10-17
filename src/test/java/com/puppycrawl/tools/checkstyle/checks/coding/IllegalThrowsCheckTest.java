@@ -92,7 +92,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
     public void testIllegalClassNamesWithIgnoreMethodNames() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("illegalClassNames",
-                                 "java.lang.Error, java.lang.Exception, NullPointerException, Throwable");
+            "java.lang.Error, java.lang.Exception, NullPointerException, Throwable");
         checkConfig.addAttribute("ignoredMethodNames", "methodTwo");
 
         String[] expected = {

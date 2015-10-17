@@ -80,7 +80,8 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test(expected = IllegalArgumentException.class)
     public void testWrongToken() {
-        BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj = new BooleanExpressionComplexityCheck();
+        BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
+            new BooleanExpressionComplexityCheck();
         DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         booleanExpressionComplexityCheckObj.visitToken(ast);

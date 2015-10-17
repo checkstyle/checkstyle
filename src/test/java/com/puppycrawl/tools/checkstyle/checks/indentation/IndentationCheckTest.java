@@ -56,7 +56,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     Pattern.compile(".*?\\S+.*?");
 
     private static final Pattern LINE_WITH_COMMENT_REGEX =
-                    Pattern.compile(".*?\\S+.*?(//indent:(\\d+) exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)");
+                    Pattern.compile(".*?\\S+.*?(//indent:(\\d+)"
+                        + " exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)");
 
     private static final Pattern GET_INDENT_FROM_COMMENT_REGEX =
                     Pattern.compile("//indent:(\\d+).*?");
@@ -162,8 +163,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         throw new IllegalStateException("Comments are not consistent");
     }
 
-    private static boolean isSingleLevelCommentConsistent(int indentInComment, boolean isWarnComment,
-            int expectedLevel) {
+    private static boolean isSingleLevelCommentConsistent(int indentInComment,
+            boolean isWarnComment, int expectedLevel) {
         return expectedLevel == indentInComment && !isWarnComment
                 || expectedLevel != indentInComment && isWarnComment;
     }
@@ -765,7 +766,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "40: " + getCheckMessage(MSG_ERROR, "array initialization lcurly", 2, 4),
             "44: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "4, 8"),
             "48: " + getCheckMessage(MSG_ERROR, "array initialization lcurly", 2, 4),
-            "52: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 20, "8, 31, 33"),
+            "52: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 20,
+                "8, 31, 33"),
             "53: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 4, "8, 31, 33"),
             "58: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 6, 8),
             "63: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),

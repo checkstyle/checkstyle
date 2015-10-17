@@ -65,7 +65,8 @@ public class RedundantImportCheckTest
             createCheckConfig(RedundantImportCheck.class);
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_SAME, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
-            "8:1: " + getCheckMessage(MSG_SAME, "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
+            "8:1: " + getCheckMessage(MSG_SAME,
+                "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
             "10:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
             "11:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
             "14:1: " + getCheckMessage(MSG_DUPLICATE, 13, "java.util.List"),
@@ -83,7 +84,8 @@ public class RedundantImportCheckTest
             "2:1: " + getCheckMessage(MSG_DUPLICATE, 1, "java.util.List"),
             "4:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
         };
-        verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
+            expected);
     }
 
     @Test

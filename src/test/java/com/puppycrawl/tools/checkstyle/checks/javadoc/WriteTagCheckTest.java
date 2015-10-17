@@ -92,7 +92,8 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("tagSeverity", "warning");
         final String[] expected = {
-            "11: " + getCheckMessage(WRITE_TAG, "warning: @incomplete", "This class needs more code..."),
+            "11: " + getCheckMessage(WRITE_TAG, "warning: @incomplete",
+                "This class needs more code..."),
         };
         final boolean printSeverity = true;
         verify(checkConfig, printSeverity, getPath("InputWriteTag.java"), expected);
@@ -204,9 +205,12 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
             "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
         final String[] expected = {
             "9: " + getCheckMessage(WRITE_TAG, "@incomplete", "This enum needs more code..."),
-            "13: " + getCheckMessage(WRITE_TAG, "@incomplete", "This enum constant needs more code..."),
-            "19: " + getCheckMessage(WRITE_TAG, "@incomplete", "This annotation needs more code..."),
-            "23: " + getCheckMessage(WRITE_TAG, "@incomplete", "This annotation field needs more code..."),
+            "13: " + getCheckMessage(WRITE_TAG, "@incomplete",
+                "This enum constant needs more code..."),
+            "19: " + getCheckMessage(WRITE_TAG, "@incomplete",
+                "This annotation needs more code..."),
+            "23: " + getCheckMessage(WRITE_TAG, "@incomplete",
+                "This annotation field needs more code..."),
         };
         verify(checkConfig, getPath("InputWriteTag2.java"), expected);
     }

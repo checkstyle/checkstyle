@@ -49,7 +49,8 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMutableExceptionClassExtendsGenericClass.java"), expected);
+        verify(checkConfig, getPath("InputMutableExceptionClassExtendsGenericClass.java"),
+            expected);
     }
 
     @Test

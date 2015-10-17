@@ -67,7 +67,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
             if (Check.class.isAssignableFrom(check)) {
                 // Checks which have Check as a parent.
                 if (check.equals(ImportControlCheck.class)) {
-                    // ImportControlCheck must have the import control configuration file to avoid violation.
+                    // ImportControlCheck must have the import control configuration file to avoid
+                    // violation.
                     checkConfig.addAttribute("file", getPath("import-control_complete.xml"));
                 }
                 checker = createChecker(checkConfig);
@@ -152,7 +153,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
     public void testAllChecksAreReferencedInConfigFile() throws Exception {
         final String configFilePath = "config/checkstyle_checks.xml";
         final Set<Class<?>> checksFromClassPath = getCheckstyleChecks();
-        final Set<String> checksReferencedInConfig = getCheckStyleChecksReferencedInConfig(configFilePath);
+        final Set<String> checksReferencedInConfig =
+                getCheckStyleChecksReferencedInConfig(configFilePath);
         final Set<String> checksNames = getSimpleNames(checksFromClassPath);
 
         for (String check : checksNames) {
@@ -295,7 +297,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
      * Gets a set of names of checkstyle's checks which are referenced in checkstyle_checks.xml.
      * @param configFilePath file path of checkstyle_checks.xml.
      * @return names of checkstyle's checks which are referenced in checkstyle_checks.xml.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies the configuration requested.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies
+     *              the configuration requested.
      * @throws IOException if any IO errors occur.
      * @throws SAXException if any parse errors occur.
      */
@@ -316,7 +319,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
         final Document document = builder.parse(new File(configFilePath));
 
         // optional, but recommended
-        // FYI: http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+        // FYI: http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-
+        // how-does-it-work
         document.getDocumentElement().normalize();
 
         final NodeList nodeList = document.getElementsByTagName("module");
@@ -341,7 +345,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
      * Gets names of checkstyle's modules which are documented in xdocs.
      * @param xdocsDirectoryPath xdocs directory path.
      * @return a set of checkstyle's modules which have xdoc documentation.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies the configuration requested.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies
+     *              the configuration requested.
      * @throws IOException if any IO errors occur.
      * @throws SAXException if any parse errors occur.
      */
@@ -366,7 +371,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
             final Document document = builder.parse(path.toFile());
 
             // optional, but recommended
-            // FYI: http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+            // FYI: http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-
+            // java-how-does-it-work
             document.getDocumentElement().normalize();
 
             final NodeList nodeList = document.getElementsByTagName("section");

@@ -129,7 +129,8 @@ public class CommitValidationTest {
                  * if commit message has a single line we have to make sure that the only
                  * newline character found is in the end of commit message.
                  */
-                boolean isFoundNewLineCharacterAtTheEndOfMessage = matcher.end() == commitMessage.length();
+                boolean isFoundNewLineCharacterAtTheEndOfMessage =
+                        matcher.end() == commitMessage.length();
                 assertTrue(getInvalidCommitMessageFormattingError(commitId, commitMessage),
                         isFoundNewLineCharacterAtTheEndOfMessage);
             }
@@ -203,11 +204,14 @@ public class CommitValidationTest {
         return currentCommit.getParentCount() > 1;
     }
 
-    private static List<RevCommit> getCommitsByCounter(Iterator<RevCommit> previousCommitsIterator) {
-        return Lists.newArrayList(Iterators.limit(previousCommitsIterator, PREVIOUS_COMMITS_TO_CHECK_COUNT));
+    private static List<RevCommit> getCommitsByCounter(
+            Iterator<RevCommit> previousCommitsIterator) {
+        return Lists.newArrayList(Iterators.limit(previousCommitsIterator,
+                PREVIOUS_COMMITS_TO_CHECK_COUNT));
     }
 
-    private static List<RevCommit> getCommitsByLastCommitAuthor(Iterator<RevCommit> previousCommitsIterator) {
+    private static List<RevCommit> getCommitsByLastCommitAuthor(
+            Iterator<RevCommit> previousCommitsIterator) {
         List<RevCommit> commits = new LinkedList<>();
 
         if (previousCommitsIterator.hasNext()) {
@@ -216,7 +220,8 @@ public class CommitValidationTest {
             commits.add(lastCommit);
 
             boolean wasLastCheckedCommitAuthorSameAsLastCommit = true;
-            while (previousCommitsIterator.hasNext() && wasLastCheckedCommitAuthorSameAsLastCommit) {
+            while (previousCommitsIterator.hasNext()
+                    && wasLastCheckedCommitAuthorSameAsLastCommit) {
                 RevCommit currentCommit = previousCommitsIterator.next();
                 String currentCommitAuthor = currentCommit.getAuthorIdent().getName();
                 if (currentCommitAuthor.equals(lastCommitAuthor)) {
@@ -240,7 +245,8 @@ public class CommitValidationTest {
                 + "    2) It contains only one line";
     }
 
-    private static String getInvalidCommitMessageFormattingError(String commitId, String commitMessage) {
+    private static String getInvalidCommitMessageFormattingError(String commitId,
+            String commitMessage) {
         return "Commit " + commitId + " message: \"" + commitMessage + "\" is invalid\n"
                 + getRulesForCommitMessageFormatting();
     }

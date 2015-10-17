@@ -107,22 +107,26 @@ public class CheckerTest {
         // Let's try fire some events
         checker.fireAuditStarted();
         assertTrue("Checker.fireAuditStarted() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireAuditStarted() does call removed listener", auditAdapter.wasCalled());
+        assertFalse("Checker.fireAuditStarted() does call removed listener",
+                auditAdapter.wasCalled());
 
         aa2.resetListener();
         checker.fireAuditFinished();
         assertTrue("Checker.fireAuditFinished() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireAuditFinished() does call removed listener", auditAdapter.wasCalled());
+        assertFalse("Checker.fireAuditFinished() does call removed listener",
+                auditAdapter.wasCalled());
 
         aa2.resetListener();
         checker.fireFileStarted("Some File Name");
         assertTrue("Checker.fireFileStarted() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireFileStarted() does call removed listener", auditAdapter.wasCalled());
+        assertFalse("Checker.fireFileStarted() does call removed listener",
+                auditAdapter.wasCalled());
 
         aa2.resetListener();
         checker.fireFileFinished("Some File Name");
         assertTrue("Checker.fireFileFinished() doesn't call listener", aa2.wasCalled());
-        assertFalse("Checker.fireFileFinished() does call removed listener", auditAdapter.wasCalled());
+        assertFalse("Checker.fireFileFinished() does call removed listener",
+                auditAdapter.wasCalled());
 
         aa2.resetListener();
         final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();

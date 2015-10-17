@@ -52,7 +52,9 @@
 
     <!-- suppressions to remove over time -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress checks="LineLength" files=".*[\\/]src[\\/]test[\\/]"/>
+
+    <!-- Suppressions for long import statics -->
+    <suppress checks="LineLength" files=".*[\\/]src[\\/]test[\\/]" lines="22-29"/>
 
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using

@@ -158,7 +158,8 @@ public class XMLLoggerTest {
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines = {
-            "<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\" source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
+            "<error line=\"1\" column=\"1\" severity=\"error\" message=\"key\""
+                + " source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
         };
         verifyLines(expectedLines);
     }
@@ -175,7 +176,8 @@ public class XMLLoggerTest {
         logger.addError(ev);
         logger.auditFinished(null);
         final String[] expectedLines = {
-            "<error line=\"1\" severity=\"error\" message=\"key\" source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
+            "<error line=\"1\" severity=\"error\" message=\"key\""
+                + " source=\"com.puppycrawl.tools.checkstyle.XMLLoggerTest\"/>",
         };
         verifyLines(expectedLines);
     }

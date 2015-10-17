@@ -119,7 +119,8 @@ public class FinalLocalVariableCheckTest
             "8:20: " + "Variable 'a' should be declared final.",
             "15:13: " + "Variable 'x' should be declared final.",
         };
-        verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
+            expected);
     }
 
     @Test
@@ -130,7 +131,8 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "15:13: " + "Variable 'x' should be declared final.",
         };
-        verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
+            expected);
     }
 
     @Test
@@ -140,7 +142,8 @@ public class FinalLocalVariableCheckTest
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputFinalLocalVariableNameLambda.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputFinalLocalVariableNameLambda.java"),
+            expected);
     }
 
     @Test

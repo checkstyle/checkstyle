@@ -57,7 +57,8 @@ public class PackageNameCheckTest
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "6:9: " + getCheckMessage(MSG_INVALID_PATTERN, "com.puppycrawl.tools.checkstyle.checks.naming", pattern),
+            "6:9: " + getCheckMessage(MSG_INVALID_PATTERN,
+                "com.puppycrawl.tools.checkstyle.checks.naming", pattern),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }

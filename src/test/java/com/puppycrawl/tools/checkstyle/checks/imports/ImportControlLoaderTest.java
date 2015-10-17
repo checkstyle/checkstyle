@@ -48,14 +48,16 @@ public class ImportControlLoaderTest {
     @Test(expected = CheckstyleException.class)
     public void testWrongFormatURI() throws Exception {
         final PkgControl root =
-                ImportControlLoader.load(new URI("aaa://" + getPath("import-control_complete.xml")));
+                ImportControlLoader.load(new URI("aaa://"
+                    + getPath("import-control_complete.xml")));
         assertNotNull(root);
     }
 
     @Test
     public void testExtraElementInConfig() throws Exception {
         final PkgControl root =
-                ImportControlLoader.load(new File(getPath("import-control_WithNewElement.xml")).toURI());
+                ImportControlLoader.load(
+                    new File(getPath("import-control_WithNewElement.xml")).toURI());
         assertNotNull(root);
     }
 
@@ -70,7 +72,8 @@ public class ImportControlLoaderTest {
             };
         try {
             Class<?> clazz = ImportControlLoader.class;
-            Method privateMethod = clazz.getDeclaredMethod("safeGet", Attributes.class, String.class);
+            Method privateMethod = clazz.getDeclaredMethod("safeGet",
+                Attributes.class, String.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, attr, "you_cannot_find_me");
         }
@@ -90,7 +93,8 @@ public class ImportControlLoaderTest {
             Class<?> clazz = ImportControlLoader.class;
             Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class, URI.class);
             privateMethod.setAccessible(true);
-            privateMethod.invoke(null, source, new File(getPath("import-control_complete.xml")).toURI());
+            privateMethod.invoke(null, source,
+                    new File(getPath("import-control_complete.xml")).toURI());
         }
         catch (IllegalAccessException | IllegalArgumentException
                 | NoSuchMethodException | SecurityException e) {

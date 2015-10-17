@@ -57,8 +57,12 @@ public class AvoidStaticImportTest
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "29: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass"),
-            "30: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass.one"),
+            "29: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass"),
+            "30: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
 
         verify(checkConfig, getPath("InputAvoidStaticImport.java"), expected);
@@ -74,8 +78,12 @@ public class AvoidStaticImportTest
         final String[] expected = {
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "29: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass"),
-            "30: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass.one"),
+            "29: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass"),
+            "30: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
         verify(checkConfig, getPath("InputAvoidStaticImport.java"), expected);
     }
@@ -92,8 +100,12 @@ public class AvoidStaticImportTest
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "29: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass"),
-            "30: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass.one"),
+            "29: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass"),
+            "30: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
         verify(checkConfig, getPath("InputAvoidStaticImport.java"), expected);
     }
@@ -108,15 +120,20 @@ public class AvoidStaticImportTest
         checkConfig.addAttribute(
             "excludes",
             "java.io.File.listRoots.listRoots, javax.swing.WindowConstants, javax.swing.*,"
-            + "sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk, java.io.File.listRootsmorejunk");
+            + "sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk,"
+            + " java.io.File.listRootsmorejunk");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "29: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass"),
-            "30: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass.one"),
+            "29: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass"),
+            "30: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
         verify(checkConfig, getPath("InputAvoidStaticImport.java"), expected);
     }
@@ -127,17 +144,21 @@ public class AvoidStaticImportTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
 
-        // should mask com.puppycrawl.tools.checkstyle.imports.InputAvoidStaticImportNestedClass.InnerClass.one
+        // should mask com.puppycrawl.tools.checkstyle.imports.InputAvoidStaticImportNestedClass.
+        // InnerClass.one
         checkConfig.addAttribute(
             "excludes",
-            "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass.*");
+            "com.puppycrawl.tools.checkstyle.checks.imports."
+                + "InputAvoidStaticImportNestedClass.InnerClass.*");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "29: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass"),
+            "29: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "InputAvoidStaticImportNestedClass.InnerClass"),
         };
         verify(checkConfig, getPath("InputAvoidStaticImport.java"), expected);
     }

@@ -70,7 +70,8 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
 
     @Test(expected = IllegalArgumentException.class)
     public void testWrongToken() {
-        ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj = new ClassDataAbstractionCouplingCheck();
+        ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
+            new ClassDataAbstractionCouplingCheck();
         DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
         classDataAbstractionCouplingCheckObj.visitToken(ast);

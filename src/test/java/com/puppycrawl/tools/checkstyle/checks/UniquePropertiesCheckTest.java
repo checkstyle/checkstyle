@@ -130,11 +130,13 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testWrongKeyTypeInProperties() throws Exception {
         Class<?> uniquePropertiesClass = Class
-                .forName("com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties");
+                .forName("com.puppycrawl.tools.checkstyle.checks."
+                    + "UniquePropertiesCheck$UniqueProperties");
         Constructor<?> constructor = uniquePropertiesClass.getDeclaredConstructor();
         constructor.setAccessible(true);
         Object uniqueProperties = constructor.newInstance();
-        Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class, Object.class);
+        Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class,
+                Object.class);
         Object result = method.invoke(uniqueProperties, 1, "value");
         Map<Object, Object> table = new HashMap<>();
         Object expected = table.put(1, "value");

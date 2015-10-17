@@ -118,7 +118,8 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile() throws Exception {
+    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
+        throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),

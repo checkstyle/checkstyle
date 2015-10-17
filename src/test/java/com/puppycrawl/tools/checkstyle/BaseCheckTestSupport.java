@@ -97,15 +97,18 @@ public class BaseCheckTestSupport {
     }
 
     protected String getPath(String filename) throws IOException {
-        return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
+        return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename)
+                .getCanonicalPath();
     }
 
     protected String getUriString(String filename) {
-        return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).toURI().toString();
+        return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).toURI()
+                .toString();
     }
 
     protected String getSrcPath(String filename) throws IOException {
-        return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename).getCanonicalPath();
+        return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename)
+                .getCanonicalPath();
     }
 
     protected String getNonCompilablePath(String filename) throws IOException {
@@ -158,17 +161,22 @@ public class BaseCheckTestSupport {
         final int errs = checker.process(theFiles);
 
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
-        final Map<String, List<String>> realExpectedViolations = Maps.filterValues(expectedViolations, new Predicate<List<String>>() {
-            @Override
-            public boolean apply(List<String> input) {
-                return !input.isEmpty();
-            }
-        });
-        final MapDifference<String, List<String>> violationDifferences = Maps.difference(realExpectedViolations, actualViolations);
+        final Map<String, List<String>> realExpectedViolations =
+            Maps.filterValues(expectedViolations, new Predicate<List<String>>() {
+                @Override
+                public boolean apply(List<String> input) {
+                    return !input.isEmpty();
+                }
+            });
+        final MapDifference<String, List<String>> violationDifferences =
+            Maps.difference(realExpectedViolations, actualViolations);
 
-        final Map<String, List<String>> missingViolations = violationDifferences.entriesOnlyOnLeft();
-        final Map<String, List<String>> unexpectedViolations = violationDifferences.entriesOnlyOnRight();
-        final Map<String, ValueDifference<List<String>>> differingViolations = violationDifferences.entriesDiffering();
+        final Map<String, List<String>> missingViolations =
+            violationDifferences.entriesOnlyOnLeft();
+        final Map<String, List<String>> unexpectedViolations =
+            violationDifferences.entriesOnlyOnRight();
+        final Map<String, ValueDifference<List<String>>> differingViolations =
+            violationDifferences.entriesDiffering();
 
         final StringBuilder message = new StringBuilder();
         if (!missingViolations.isEmpty()) {
@@ -212,7 +220,8 @@ public class BaseCheckTestSupport {
                 final String actualViolationFileName = actualViolation[0];
                 final String actualViolationMessage = actualViolation[1];
 
-                List<String> actualViolationsPerFile = actualViolations.get(actualViolationFileName);
+                List<String> actualViolationsPerFile =
+                    actualViolations.get(actualViolationFileName);
                 if (actualViolationsPerFile == null) {
                     actualViolationsPerFile = new ArrayList<>();
                     actualViolations.put(actualViolationFileName, actualViolationsPerFile);

@@ -72,7 +72,8 @@ public class MethodNameCheckTest
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY, "InputMethNameEqualClsName"),
             "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
-            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName", pattern),
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName",
+                pattern),
             "23:20: " + getCheckMessage(MSG_KEY, "Inner"),
             "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
             "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
@@ -99,7 +100,8 @@ public class MethodNameCheckTest
 
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
-            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName", pattern),
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName",
+                pattern),
             "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
             "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
             "37:24: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),

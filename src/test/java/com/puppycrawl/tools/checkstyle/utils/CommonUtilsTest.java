@@ -128,7 +128,8 @@ public class CommonUtilsTest {
         final String absoluteFilePath = sampleAbsolutePath + "/SampleFile.java";
         final String basePath = sampleAbsolutePath + PATH_DENORMALIZER;
 
-        final String relativePath = CommonUtils.relativizeAndNormalizePath(basePath, absoluteFilePath);
+        final String relativePath = CommonUtils.relativizeAndNormalizePath(basePath,
+            absoluteFilePath);
 
         assertEquals("SampleFile.java", relativePath);
     }

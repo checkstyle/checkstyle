@@ -87,7 +87,8 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        LocalFinalVariableNameCheck localFinalVariableNameCheckObj = new LocalFinalVariableNameCheck();
+        LocalFinalVariableNameCheck localFinalVariableNameCheckObj =
+            new LocalFinalVariableNameCheck();
         int[] actual = localFinalVariableNameCheckObj.getAcceptableTokens();
         int[] expected = {
             TokenTypes.VARIABLE_DEF,

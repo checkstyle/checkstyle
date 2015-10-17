@@ -234,6 +234,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
      * @return String message of original exception
      */
     private static String getInvocationTargetExceptionMessage(CheckstyleException ex) {
-        return ((InvocationTargetException) ex.getCause().getCause()).getTargetException().getMessage();
+        return ((InvocationTargetException) ex.getCause().getCause())
+            .getTargetException().getMessage();
     }
 }

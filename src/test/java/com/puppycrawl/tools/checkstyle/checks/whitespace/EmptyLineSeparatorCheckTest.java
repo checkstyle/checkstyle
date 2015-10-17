@@ -131,7 +131,8 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
         };
-        verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleImportEmptyClass.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleImportEmptyClass.java"),
+            expected);
     }
 
     @Test

@@ -342,7 +342,8 @@ public class JavadocStyleCheckTest
         };
 
         verify(createChecker(checkConfig),
-               getPath("pkginfo" + File.separator + "invalidinherit" + File.separator + "package-info.java"),
+               getPath("pkginfo" + File.separator + "invalidinherit" + File.separator
+                   + "package-info.java"),
                expected);
     }
 
@@ -355,7 +356,8 @@ public class JavadocStyleCheckTest
         };
 
         verify(createChecker(checkConfig),
-               getPath("pkginfo" + File.separator + "invalidformat" + File.separator + "package-info.java"),
+               getPath("pkginfo" + File.separator + "invalidformat" + File.separator
+                   + "package-info.java"),
                expected);
     }
 
@@ -366,7 +368,8 @@ public class JavadocStyleCheckTest
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(createChecker(checkConfig),
-               getPath("pkginfo" + File.separator + "annotation" + File.separator + "package-info.java"),
+               getPath("pkginfo" + File.separator + "annotation" + File.separator
+                   + "package-info.java"),
                expected);
     }
 

@@ -68,7 +68,8 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     public void testLoadFromURL() throws Exception {
         final String[] urlCandidates = {
             "http://checkstyle.sourceforge.net/files/suppressions_none.xml",
-            "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/files/suppressions_none.xml",
+            "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
+                + "files/suppressions_none.xml",
         };
         FilterSet actualFilterSet = null;
 
@@ -130,7 +131,8 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "Unable to parse " + fn + " - Attribute \"files\" is required and must be specified for element type \"suppress\".",
+                "Unable to parse " + fn + " - Attribute \"files\" is required and must be"
+                    + " specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }
@@ -143,7 +145,8 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             assertEquals(
-                "Unable to parse " + fn + " - Attribute \"checks\" is required and must be specified for element type \"suppress\".",
+                "Unable to parse " + fn + " - Attribute \"checks\" is required and must be"
+                    + " specified for element type \"suppress\".",
                 ex.getMessage());
         }
     }

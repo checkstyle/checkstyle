@@ -105,7 +105,8 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void test15Extensions() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(UnnecessaryParenthesesCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }

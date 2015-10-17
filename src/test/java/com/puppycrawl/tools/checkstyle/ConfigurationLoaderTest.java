@@ -67,7 +67,8 @@ public class ConfigurationLoaderTest {
         props.setProperty("checkstyle.basedir", "basedir");
 
         // load config that's only found in the classpath
-        final DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+        final DefaultConfiguration config =
+            (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                 getConfigPath("checkstyle_checks.xml"), new PropertiesExpander(props));
 
         //verify the root, and property substitution

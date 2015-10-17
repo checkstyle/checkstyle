@@ -76,7 +76,8 @@ public class InnerAssignmentCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputInnerAssignmentLambdaExpressions.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputInnerAssignmentLambdaExpressions.java"),
+            expected);
     }
 
     @Test

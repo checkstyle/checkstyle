@@ -41,7 +41,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testGeneralLogic() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
         checkConfig.addAttribute("allowedDistance", "1");
         checkConfig.addAttribute("ignoreVariablePattern", "");
         checkConfig.addAttribute("validateBetweenScopes", "true");
@@ -85,7 +86,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testDistance() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
         checkConfig.addAttribute("allowedDistance", "3");
         checkConfig.addAttribute("ignoreVariablePattern", "");
         checkConfig.addAttribute("validateBetweenScopes", "true");
@@ -105,7 +107,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testVariableRegExp() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
         checkConfig.addAttribute("allowedDistance", "1");
         checkConfig.addAttribute("ignoreVariablePattern",
                 "a|b|c|d|block|dist|t|m");
@@ -143,7 +146,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testValidateBetweenScopesOption() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
         checkConfig.addAttribute("allowedDistance", "1");
         checkConfig.addAttribute("ignoreVariablePattern", "");
         checkConfig.addAttribute("validateBetweenScopes", "false");
@@ -166,17 +170,22 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "471: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
             "471: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
             "479: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
-            "491: Distance between variable 'myOption' declaration and its first usage is 6, but allowed 1.",
-            "505: Distance between variable 'files' declaration and its first usage is 2, but allowed 1.",
-            "540: Distance between variable 'id' declaration and its first usage is 2, but allowed 1.",
-            "542: Distance between variable 'parentId' declaration and its first usage is 4, but allowed 1.",
+            "491: Distance between variable 'myOption' declaration and its first usage is 6,"
+                + " but allowed 1.",
+            "505: Distance between variable 'files' declaration and its first usage is 2,"
+                + " but allowed 1.",
+            "540: Distance between variable 'id' declaration and its first usage is 2,"
+                + " but allowed 1.",
+            "542: Distance between variable 'parentId' declaration and its first usage is 4,"
+                + " but allowed 1.",
         };
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 
     @Test
     public void testIgnoreFinalOption() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
         checkConfig.addAttribute("allowedDistance", "1");
         checkConfig.addAttribute("ignoreVariablePattern", "");
         checkConfig.addAttribute("validateBetweenScopes", "true");
@@ -227,7 +236,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VariableDeclarationUsageDistanceCheck.class);
         final String[] expected = {
             "71: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
             "219: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 3),
