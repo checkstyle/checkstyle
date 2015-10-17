@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.puppycrawl.tools.checkstyle.imports.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.*;
 
 import java.io.*;
 import java.lang.*;

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.awt.Image;
 import javax.swing.border.*;

@@ -70,7 +70,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 if (check.equals(ImportControlCheck.class)) {
                     // ImportControlCheck must have the import control configuration file to avoid violation.
                     checkConfig.addAttribute("file",
-                        "src/test/resources/com/puppycrawl/tools/checkstyle/imports/import-control_complete.xml");
+                        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/imports/import-control_complete.xml");
                 }
                 checker = createChecker(checkConfig);
             }

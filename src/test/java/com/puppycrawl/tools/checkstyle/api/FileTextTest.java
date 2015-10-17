@@ -48,7 +48,7 @@ public class FileTextTest {
     public void testSupportedCharset() throws IOException {
         String charsetName = "ISO-8859-1";
         FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
-                 + "checkstyle/imports/import-control_complete.xml"), charsetName);
+                 + "checkstyle/checks/imports/import-control_complete.xml"), charsetName);
         assertEquals(o.getCharset().name(), charsetName);
     }
 }

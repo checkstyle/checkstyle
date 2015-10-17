@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports;
 
 public class InputAvoidStaticImportNestedClass{
     public static Integer zero=0;
