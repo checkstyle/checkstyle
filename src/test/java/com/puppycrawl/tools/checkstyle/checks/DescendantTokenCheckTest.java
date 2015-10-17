@@ -39,7 +39,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(DescendantTokenCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -51,9 +51,9 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("limitedTokens", "LITERAL_NATIVE");
         checkConfig.addAttribute("maximumNumber", "0");
         final String[] expected = {
-            "20:12: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_NATIVE", "LITERAL_NATIVE"),
+            "17:12: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_NATIVE", "LITERAL_NATIVE"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -66,9 +66,9 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("maximumMessage", "Using ''native'' is not allowed.");
         final String[] expected = {
-            "20:12: Using 'native' is not allowed.",
+            "17:12: Using 'native' is not allowed.",
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -80,9 +80,9 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
         checkConfig.addAttribute("minimumNumber", "2");
         final String[] expected = {
-            "11:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
+            "8:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("minimumDepth", "3");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("maximumDepth", "1");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -190,11 +190,11 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("maximumMessage", "Using ''{2}'' is not allowed.");
 
         final String[] expected = {
-            "11:9: Using 'LITERAL_SWITCH' is not allowed.",
-            "14:18: Using 'POST_DEC' is not allowed.",
-            "15:18: Using 'POST_INC' is not allowed.",
+            "8:9: Using 'LITERAL_SWITCH' is not allowed.",
+            "11:18: Using 'POST_DEC' is not allowed.",
+            "12:18: Using 'POST_INC' is not allowed.",
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -208,9 +208,9 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("maximumMessage", "Using ''{2}'' is not allowed.");
 
         final String[] expected = {
-            "20:12: Using 'LITERAL_NATIVE' is not allowed.",
+            "17:12: Using 'LITERAL_NATIVE' is not allowed.",
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test

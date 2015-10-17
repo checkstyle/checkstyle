@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,6 +32,17 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class HiddenFieldCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
 
     @Test
     public void testStaticVisibilityFromLambdas() throws Exception {
@@ -54,8 +66,7 @@ public class HiddenFieldCheckTest
             "216:55: " + getCheckMessage(MSG_KEY, "someObject"),
             "224:52: " + getCheckMessage(MSG_KEY, "someObject"),
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-            + "checkstyle/coding/InputHiddenFieldLambdas.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputHiddenFieldLambdas.java"), expected);
     }
 
     @Test
@@ -391,5 +402,4 @@ public class HiddenFieldCheckTest
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
     }
-
 }

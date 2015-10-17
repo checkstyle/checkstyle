@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -41,6 +42,12 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig = createCheckConfig(IllegalTypeCheck.class);
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
         checkConfig.addAttribute("validateAbstractClassNames", "true");
@@ -50,7 +57,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
             "33:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalTypeAbstractClassNames.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTypeAbstractClassNames.java"), expected);
     }
 
     @Test
@@ -58,7 +65,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateAbstractClassNames", "false");
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalTypeAbstractClassNames.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTypeAbstractClassNames.java"), expected);
     }
 
     @Test
@@ -68,7 +75,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("InputIllegalType.java"), expected);
     }
 
     @Test
@@ -77,11 +84,11 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("InputIllegalType.java"), expected);
     }
 
     @Test
@@ -93,7 +100,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("InputIllegalType.java"), expected);
     }
 
     @Test
@@ -102,12 +109,12 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
         String[] expected = {
-            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalType.AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator + "InputIllegalType.java"), expected);
+        verify(checkConfig, getPath("InputIllegalType.java"), expected);
     }
 
     @Test
@@ -120,8 +127,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
             "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator
-                + "InputIllegalTypeSameFileName.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTypeSameFileName.java"), expected);
     }
 
     @Test
@@ -135,8 +141,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
             "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "28:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
         };
-        verify(checkConfig, getPath("coding" + File.separator
-                + "InputIllegalTypeSameFileName.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTypeSameFileName.java"), expected);
     }
 
     @Test
@@ -147,8 +152,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
             "10:5: " + getCheckMessage(MSG_KEY, "List"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator
-                + "InputIllegalTypeStarImports.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTypeStarImports.java"), expected);
     }
 
     @Test
@@ -161,8 +165,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
             "15:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator
-                + "InputIllegalTypeStaticImports.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTypeStaticImports.java"), expected);
     }
 
     @Test
@@ -172,16 +175,15 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
                 + " LITERAL_STATIC");
         String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
-            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
+            "9:13: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "23:15: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
+            "23:15: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalTypeMemberModifiers.AbstractClass"),
             "25:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "33:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
-        verify(checkConfig, getPath("coding" + File.separator
-                + "InputIllegalTypeMemberModifiers.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTypeMemberModifiers.java"), expected);
     }
 
     @Test

@@ -143,7 +143,7 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames",
-                 "com.puppycrawl.tools.checkstyle.coding.GregorianCalendar,"
+                 "com.puppycrawl.tools.checkstyle.checks.coding.GregorianCalendar,"
                  + "com.puppycrawl.tools.checkstyle.InetSocketAddress");
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
@@ -159,7 +159,7 @@ public class VisibilityModifierCheckTest
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "8:36: " + getCheckMessage(MSG_KEY, "calendar2"),
-            "9:75: " + getCheckMessage(MSG_KEY, "calendar3"),
+            "9:82: " + getCheckMessage(MSG_KEY, "calendar3"),
             "10:36: " + getCheckMessage(MSG_KEY, "address"),
         };
         verify(checkConfig, getPath("InputImmutableSameTypeName.java"), expected);

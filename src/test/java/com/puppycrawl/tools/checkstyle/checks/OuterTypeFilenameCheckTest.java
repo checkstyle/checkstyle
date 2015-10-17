@@ -49,7 +49,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
     }
 
     @Test

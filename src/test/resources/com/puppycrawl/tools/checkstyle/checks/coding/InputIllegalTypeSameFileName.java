@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.ArrayList;
 import java.awt.List;
 import java.util.*;
-import com.puppycrawl.tools.checkstyle.coding.GregorianCalendar; 
-import com.puppycrawl.tools.checkstyle.coding.GregorianCalendar.SubCalendar;
+import com.puppycrawl.tools.checkstyle.checks.coding.GregorianCalendar; 
+import com.puppycrawl.tools.checkstyle.checks.coding.GregorianCalendar.SubCalendar;
 //configuration: "illegalClassNames": List, GregorianCalendar, java.io.File, SubCalendar, ArrayList
 public class InputIllegalTypeSameFileName
 {
