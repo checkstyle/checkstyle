@@ -109,14 +109,15 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
             createCheckConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "25: " + getCheckMessage(MSG_KEY, "NoSuperClone"),
-            "33: " + getCheckMessage(MSG_KEY, "InnerClone"),
-            "50: " + getCheckMessage(MSG_KEY, "CloneWithTypeArguments"),
-            "58: " + getCheckMessage(MSG_KEY, "CloneWithTypeArgumentsAndNoSuper"),
-            "67: " + getCheckMessage(MSG_KEY, "MyClassWithGenericSuperMethod"),
-            "84: " + getCheckMessage(MSG_KEY, "AnotherClass"),
-            "97: " + getCheckMessage(MSG_KEY, "NativeTest"),
+            "29: " + getCheckMessage(MSG_KEY, "InnerClone"),
+            "33: " + getCheckMessage(MSG_KEY, "CloneWithTypeArguments"),
+            "37: " + getCheckMessage(MSG_KEY, "CloneWithTypeArgumentsAndNoSuper"),
+            "41: " + getCheckMessage(MSG_KEY, "MyClassWithGenericSuperMethod"),
+            "45: " + getCheckMessage(MSG_KEY, "AnotherClass"),
+            "48: " + getCheckMessage(MSG_KEY, "NativeTest"),
         };
-        verify(checkConfig, getPath("coding" + File.separator + "InputClone.java"), expected);
+        verify(checkConfig, getPath("checks" + File.separator + "design"
+                + File.separator + "InputClone.java"), expected);
     }
 
     @Test

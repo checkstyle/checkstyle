@@ -158,7 +158,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
             "17:9: switch without \"default\" clause.",
         };
 
-        verify(checkConfig, getPath("InputMissingSwitchDefault.java"), expected);
+        verify(checkConfig, getPath("checks/InputMissingSwitchDefault.java"), expected);
     }
 
     @Test
@@ -172,11 +172,11 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("maximumMessage", "Literal Strings should be compared using equals(), not ''==''.");
 
         final String[] expected = {
-            "11:18: Literal Strings should be compared using equals(), not '=='.",
-            "16:20: Literal Strings should be compared using equals(), not '=='.",
-            "21:22: Literal Strings should be compared using equals(), not '=='.",
+            "7:18: Literal Strings should be compared using equals(), not '=='.",
+            "12:20: Literal Strings should be compared using equals(), not '=='.",
+            "17:22: Literal Strings should be compared using equals(), not '=='.",
         };
-        verify(checkConfig, getPath("coding" + File.separator + "InputStringLiteralEquality.java"), expected);
+        verify(checkConfig, getPath("checks" + File.separator + "InputStringLiteralEquality.java"), expected);
     }
 
     @Test

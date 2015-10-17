@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 public class InputRequireThis2 {
 	private final int number = 1;

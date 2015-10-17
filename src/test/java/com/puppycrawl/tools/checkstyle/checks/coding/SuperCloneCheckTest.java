@@ -40,7 +40,7 @@ public class SuperCloneCheckTest
             "35:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "60:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verify(checkConfig, getPath("coding/InputClone.java"), expected);
+        verify(checkConfig, getPath("checks/coding/InputClone.java"), expected);
     }
 
     @Test

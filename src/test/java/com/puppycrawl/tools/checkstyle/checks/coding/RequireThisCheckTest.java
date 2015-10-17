@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -32,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class RequireThisCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -44,7 +51,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputRequireThis.java"),
+               getPath("InputRequireThis.java"),
                expected);
     }
 
@@ -57,7 +64,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "17:9: " + getCheckMessage(MSG_METHOD, "method1", "\"this\""),
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputRequireThis.java"),
+               getPath("InputRequireThis.java"),
                expected);
     }
 
@@ -73,7 +80,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
         };
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputRequireThis.java"),
+               getPath("InputRequireThis.java"),
                expected);
     }
 
@@ -94,7 +101,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "8:16: " + getCheckMessage(MSG_METHOD, "other", "\"this\""),
         };
         verify(checkConfig,
-                getPath("coding" + File.separator + "InputRequireThis2.java"),
+                getPath("InputRequireThis2.java"),
                 expected);
     }
 
@@ -111,7 +118,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("coding" + File.separator + "InputRequireThis3.java"),
+                getPath("InputRequireThis3.java"),
                 expected);
     }
 }
