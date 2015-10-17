@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 public class InputClone
 {/* class body */
     public InputClone() throws CloneNotSupportedException
