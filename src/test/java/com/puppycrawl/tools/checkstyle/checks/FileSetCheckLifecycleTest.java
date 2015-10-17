@@ -58,7 +58,7 @@ public class FileSetCheckLifecycleTest
         final Configuration checkConfig =
             createCheckConfig(TestFileSetCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
     }
@@ -85,7 +85,7 @@ public class FileSetCheckLifecycleTest
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, getPath("InputScopeAnonInner.java"), expected);
+        verify(checker, getPath("checks/InputIllegalTokens.java"), expected);
 
         assertTrue("FileContent should be available during finishProcessing() call",
                 TestFileSetCheck.isFileContentAvailable());

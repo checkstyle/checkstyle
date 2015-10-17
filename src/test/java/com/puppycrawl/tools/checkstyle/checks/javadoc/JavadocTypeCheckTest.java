@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.UN
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -40,6 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver.Burn
  */
 public class JavadocTypeCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -77,7 +83,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "302: " + getCheckMessage(JAVADOC_MISSING),
             "327: " + getCheckMessage(JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     @Test
@@ -281,8 +287,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "111: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("InputNoJavadoc.java"),
                expected);
     }
 
@@ -296,8 +301,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "15: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("InputNoJavadoc.java"),
                expected);
     }
 
@@ -318,8 +322,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "111: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("InputNoJavadoc.java"),
                expected);
     }
 
@@ -356,8 +359,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "5:4: " + getCheckMessage(UNKNOWN_TAG, "mytag"),
         };
         verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "javadoc" + File.separator + "InputBadTag.java"),
+               getPath("InputBadTag.java"),
                expected);
     }
 
@@ -368,8 +370,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowUnknownTags", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("checks" + File.separator
-                        + "javadoc" + File.separator + "InputBadTag.java"),
+                getPath("InputBadTag.java"),
                 expected);
     }
 }

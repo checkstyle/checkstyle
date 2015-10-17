@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableChec
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -34,6 +35,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class JavadocVariableCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -69,7 +75,7 @@ public class JavadocVariableCheckTest
             "311:5: " + getCheckMessage(JAVADOC_MISSING),
             "330:5: " + getCheckMessage(JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     @Test
@@ -168,8 +174,7 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("InputNoJavadoc.java"),
                expected);
     }
 
@@ -185,8 +190,7 @@ public class JavadocVariableCheckTest
             "17:9: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("InputNoJavadoc.java"),
                expected);
     }
 
@@ -232,8 +236,7 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "javadoc" + File.separator + "InputNoJavadoc.java"),
+               getPath("InputNoJavadoc.java"),
                expected);
     }
 
@@ -282,8 +285,7 @@ public class JavadocVariableCheckTest
             "103:9: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-                getPath("checks" + File.separator
-                        + "javadoc" + File.separator + "InputNoJavadoc.java"),
+                getPath("InputNoJavadoc.java"),
                 expected);
     }
 
@@ -333,9 +335,7 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(JAVADOC_MISSING),
         };
         verify(checkConfig,
-                getPath("checks" + File.separator
-                        + "javadoc" + File.separator + "InputNoJavadoc.java"),
+                getPath("InputNoJavadoc.java"),
                 expected);
     }
-
 }

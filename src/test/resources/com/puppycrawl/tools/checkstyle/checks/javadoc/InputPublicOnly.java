@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 public class InputPublicOnly // ignore - need javadoc
 {

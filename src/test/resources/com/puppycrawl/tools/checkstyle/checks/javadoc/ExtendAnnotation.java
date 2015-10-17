@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.puppycrawl.tools.checkstyle.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;

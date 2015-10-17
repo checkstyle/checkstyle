@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 public class TestGenerics <E extends java.lang.Exception,
                            RE extends RuntimeException & java.io.Serializable>

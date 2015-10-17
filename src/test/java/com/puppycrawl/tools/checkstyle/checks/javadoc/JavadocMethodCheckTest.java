@@ -30,6 +30,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
@@ -46,6 +47,12 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(JavadocMethodCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
     }
 
     @Test
@@ -75,7 +82,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "7:8: " + getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
         };
-        verify(config, getPath("checks/javadoc/InputLoadErrors.java"), expected);
+        verify(config, getPath("InputLoadErrors.java"), expected);
     }
 
     @Test
@@ -86,7 +93,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "46:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(config, getPath("javadoc/ExtendAnnotation.java"), expected);
+        verify(config, getPath("ExtendAnnotation.java"), expected);
     }
 
     @Test
@@ -97,7 +104,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "57:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(config, getPath("javadoc/InputJavadocMethodCheck_SmallMethods.java"), expected);
+        verify(config, getPath("InputJavadocMethodCheck_SmallMethods.java"), expected);
     }
 
     @Test
@@ -106,7 +113,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(config, getPath("javadoc/AllowedAnnotations.java"), expected);
+        verify(config, getPath("AllowedAnnotations.java"), expected);
     }
 
     @Test
@@ -143,7 +150,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     @Test
@@ -177,7 +184,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     @Test
@@ -285,7 +292,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "320:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "329:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("checks/javadoc/InputTags.java"), expected);
+        verify(checkConfig, getPath("InputTags.java"), expected);
     }
 
     @Test
@@ -327,9 +334,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "106:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
-        verify(checkConfig, getPath("checks" + File.separator
-                                    + "javadoc" + File.separator
-                                    + "InputNoJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
     }
 
     @Test
@@ -340,9 +345,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
-        verify(checkConfig, getPath("checks" + File.separator
-                                    + "javadoc" + File.separator
-                                    + "InputNoJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
     }
 
     @Test
@@ -374,18 +377,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
-        verify(checkConfig, getPath("checks" + File.separator
-                                    + "javadoc" + File.separator
-                                    + "InputNoJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
     }
 
     @Test
     public void testAllowMissingJavadoc() throws Exception {
         checkConfig.addAttribute("allowMissingJavadoc", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks" + File.separator
-                                    + "javadoc" + File.separator
-                                    + "InputNoJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
     }
 
     @Test
@@ -394,8 +393,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowMissingThrowsTags", "true");
         checkConfig.addAttribute("allowMissingReturnTag", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("javadoc" + File.separator
-                                    + "InputMissingJavadocTags.java"), expected);
+        verify(checkConfig, getPath("InputMissingJavadocTags.java"), expected);
     }
 
     @Test
@@ -407,8 +405,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "51: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "61: " + getCheckMessage(MSG_RETURN_EXPECTED),
         };
-        verify(checkConfig, getPath("javadoc" + File.separator
-                + "InputMissingJavadocTags.java"), expected);
+        verify(checkConfig, getPath("InputMissingJavadocTags.java"), expected);
     }
 
     @Test
@@ -432,8 +429,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "74:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "76:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("javadoc" + File.separator
-                                    + "InputSetterGetter.java"), expected);
+        verify(checkConfig, getPath("InputSetterGetter.java"), expected);
     }
 
     @Test
@@ -455,8 +451,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "74:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "76:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("javadoc" + File.separator
-                                    + "InputSetterGetter.java"), expected);
+        verify(checkConfig, getPath("InputSetterGetter.java"), expected);
     }
 
     @Test
@@ -473,13 +468,13 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void test11684081() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/javadoc/Input_01.java"), expected);
+        verify(checkConfig, getPath("Input_01.java"), expected);
     }
 
     @Test
     public void test11684082() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/javadoc/Input_02.java"), expected);
+        verify(checkConfig, getPath("Input_02.java"), expected);
     }
 
     @Test
@@ -487,7 +482,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/javadoc/Input_03.java"), expected);
+        verify(checkConfig, getPath("Input_03.java"), expected);
     }
 
     @Test
@@ -502,7 +497,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
-        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+        verify(checkConfig, getPath("TestGenerics.java"), expected);
     }
 
     @Test
@@ -516,7 +511,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
-        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+        verify(checkConfig, getPath("TestGenerics.java"), expected);
     }
 
     @Test
@@ -530,7 +525,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
-        verify(checkConfig, getPath("javadoc/TestGenerics.java"), expected);
+        verify(checkConfig, getPath("TestGenerics.java"), expected);
     }
 
     @Test
@@ -538,7 +533,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/javadoc/Input_1379666.java"), expected);
+        verify(checkConfig, getPath("Input_1379666.java"), expected);
     }
 
     @Test
@@ -551,14 +546,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "41:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "46:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
         };
-        verify(checkConfig, getPath("javadoc/InputInheritDoc.java"), expected);
+        verify(checkConfig, getPath("InputInheritDoc.java"), expected);
     }
 
     @Test
     public void testSkipCertainMethods() throws Exception {
         checkConfig.addAttribute("ignoreMethodNamesRegex", "^foo.*$");
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("javadoc/InputJavadocMethodIgnoreNameRegex.java"), expected);
+        verify(checkConfig, getPath("InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
 
     @Test
@@ -569,7 +564,6 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("javadoc/InputJavadocMethodIgnoreNameRegex.java"), expected);
+        verify(checkConfig, getPath("InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
-
 }
