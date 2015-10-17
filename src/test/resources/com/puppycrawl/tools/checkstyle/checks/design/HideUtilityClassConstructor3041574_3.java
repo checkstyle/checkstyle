@@ -2,10 +2,10 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.io.Serializable;
 
-public class HideUtilityClassContructor3041574_3 implements Serializable {
+public class HideUtilityClassConstructor3041574_3 implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public HideUtilityClassContructor3041574_3(int i) {
+    public HideUtilityClassConstructor3041574_3(int i) {
         // no code
     }
 

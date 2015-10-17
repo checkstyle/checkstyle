@@ -114,7 +114,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWithAnnonymousClass() throws Exception {
+    public void testWithAnonymousClass() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,

@@ -266,7 +266,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     /**
      * Checks whether a class may be considered as the checkstyle filter.
-     * Checkstyle's filters are classes which are subclasses of AutomicBean,
+     * Checkstyle's filters are classes which are subclasses of AutomaticBean,
      * implement 'Filter' interface, and which names end with 'Filter'.
      * @param loadedClass class to check.
      * @param className class name to check.

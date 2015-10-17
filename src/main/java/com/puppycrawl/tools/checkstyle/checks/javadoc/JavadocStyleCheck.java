@@ -384,12 +384,12 @@ public class JavadocStyleCheck
         // Skip multiples, like <b>...<b>
         String lastFound = "";
         final List<String> typeParameters = CheckUtils.getTypeParameterNames(ast);
-        for (final HtmlTag htag : htmlStack) {
-            if (!isSingleTag(htag)
-                && !htag.getId().equals(lastFound)
-                && !typeParameters.contains(htag.getId())) {
-                log(htag.getLineNo(), htag.getPosition(), UNCLOSED_HTML, htag);
-                lastFound = htag.getId();
+        for (final HtmlTag htmlTag : htmlStack) {
+            if (!isSingleTag(htmlTag)
+                && !htmlTag.getId().equals(lastFound)
+                && !typeParameters.contains(htmlTag.getId())) {
+                log(htmlTag.getLineNo(), htmlTag.getPosition(), UNCLOSED_HTML, htmlTag);
+                lastFound = htmlTag.getId();
             }
         }
     }

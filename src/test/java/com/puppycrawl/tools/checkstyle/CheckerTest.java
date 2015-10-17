@@ -159,10 +159,10 @@ public class CheckerTest {
         checker.removeFilter(filter);
 
         f2.resetFilter();
-        final SortedSet<LocalizedMessage> msgs = Sets.newTreeSet();
-        msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
+        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", msgs);
+        checker.fireErrors("Some File Name", messages);
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed filter", filter.wasCalled());
 

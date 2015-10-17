@@ -864,7 +864,7 @@
           Ineffective suppressions are removed from checkstyle's configs. Author: Bhavik Patel
         </li>
         <li>
-          Checking existance of config file before processing target file.. Author: Bhavik Patel
+          Checking existence of config file before processing target file.. Author: Bhavik Patel
         </li>
         <li>
           Changed Integration Tests to use /src/it/. Author: Aleksandr Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1200">#1200</a>

@@ -114,11 +114,11 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testIsSuppressed() throws Exception {
         Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
-        Constructor<?> entryConstr = entry.getDeclaredConstructor(String.class, int.class,
+        Constructor<?> entryConstructor = entry.getDeclaredConstructor(String.class, int.class,
                 int.class, int.class, int.class);
-        entryConstr.setAccessible(true);
+        entryConstructor.setAccessible(true);
 
-        Object entryInstance = entryConstr.newInstance("MockEntry", 100, 100, 350, 350);
+        Object entryInstance = entryConstructor.newInstance("MockEntry", 100, 100, 350, 350);
 
         List<Object> entriesList = new ArrayList<>();
         entriesList.add(entryInstance);
