@@ -228,7 +228,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputReturnFromCatchCheck.java"),
+               getPath("checks" + File.separator + "InputReturnFromCatchCheck.java"),
                expected);
     }
 
@@ -247,7 +247,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               getPath("checks" + File.separator + "InputReturnFromFinallyCheck.java"),
                expected);
     }
 
@@ -263,7 +263,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               getPath("checks" + File.separator + "InputReturnFromFinallyCheck.java"),
                expected);
     }
 
@@ -285,7 +285,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               getPath("checks" + File.separator + "InputReturnFromFinallyCheck.java"),
                expected);
     }
 
@@ -306,7 +306,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-               getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+               getPath("checks" + File.separator + "InputReturnFromFinallyCheck.java"),
                expected);
     }
 
@@ -329,7 +329,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-                getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+                getPath("checks" + File.separator + "InputReturnFromFinallyCheck.java"),
                 expected);
     }
 
@@ -353,7 +353,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-                getPath("coding" + File.separator + "InputReturnFromFinallyCheck.java"),
+                getPath("checks" + File.separator + "InputReturnFromFinallyCheck.java"),
                 expected);
     }
 }

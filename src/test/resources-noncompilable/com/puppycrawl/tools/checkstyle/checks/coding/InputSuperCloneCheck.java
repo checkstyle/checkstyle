@@ -1,5 +1,5 @@
 // Requires Java8
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 interface InputSuperCloneCheck {
     void clone();

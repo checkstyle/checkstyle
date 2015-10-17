@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 public class InputUnnecessaryParentheses {
     int f1() {
         int x = 0;

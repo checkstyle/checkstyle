@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthes
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_STRING;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -41,8 +42,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
  * @author  Eric K. Roe
  */
 public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
-    private static final String TEST_FILE = "coding" + File.separator
-        + "InputUnnecessaryParentheses.java";
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
 
     @Test
     public void testDefault() throws Exception {
@@ -96,7 +100,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
             "82:39: " + getCheckMessage(MSG_ASSIGN),
         };
 
-        verify(checkConfig, getPath(TEST_FILE), expected);
+        verify(checkConfig, getPath("InputUnnecessaryParentheses.java"), expected);
     }
 
     @Test

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,6 +32,18 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SuperCloneCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -40,7 +53,7 @@ public class SuperCloneCheckTest
             "35:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "60:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verify(checkConfig, getPath("checks/coding/InputClone.java"), expected);
+        verify(checkConfig, getPath("InputClone.java"), expected);
     }
 
     @Test
@@ -51,8 +64,7 @@ public class SuperCloneCheckTest
             "13:8: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "19:8: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/coding/InputSuperCloneCheck.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputSuperCloneCheck.java"), expected);
     }
 
     @Test

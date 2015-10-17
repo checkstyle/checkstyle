@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -37,6 +38,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class IllegalInstantiationCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "coding" + File.separator + filename);
+    }
+
     @Test
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -55,7 +68,7 @@ public class IllegalInstantiationCheckTest
             "41:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "44:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
-        verify(checkConfig, getPath("checks/coding/InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
     @Test
@@ -64,8 +77,7 @@ public class IllegalInstantiationCheckTest
                 createCheckConfig(IllegalInstantiationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
-                          + "coding/InputIllegalInstantiationCheckTest2.java").getCanonicalPath(),
+                getNonCompilablePath("InputIllegalInstantiationCheckTest2.java"),
                 expected);
     }
 
@@ -80,8 +92,7 @@ public class IllegalInstantiationCheckTest
             "3:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
         verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
-                          + "coding/InputIllegalInstantiationCheckNoPackage.java").getCanonicalPath(),
+                getNonCompilablePath("InputIllegalInstantiationCheckNoPackage.java"),
                 expected);
     }
 
@@ -97,8 +108,7 @@ public class IllegalInstantiationCheckTest
             "11:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
         verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
-                          + "coding/InputIllegalInstantiationCheckLang.java").getCanonicalPath(),
+                getNonCompilablePath("InputIllegalInstantiationCheckLang.java"),
                 expected);
     }
 
@@ -111,8 +121,7 @@ public class IllegalInstantiationCheckTest
                 "jjva.lang.Boolean,java.lang*Boolean");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
-                          + "coding/InputIllegalInstantiationCheckLang.java").getCanonicalPath(),
+                getNonCompilablePath("InputIllegalInstantiationCheckLang.java"),
                 expected);
     }
 
@@ -146,8 +155,7 @@ public class IllegalInstantiationCheckTest
         elistAst.setNextSibling(rparenAst);
 
         IllegalInstantiationCheck check = new IllegalInstantiationCheck();
-        File inputFile = new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
-                + "coding/InputIllegalInstantiationCheckLang.java");
+        File inputFile = new File(getNonCompilablePath("InputIllegalInstantiationCheckLang.java"));
         check.setFileContents(new FileContents(new FileText(inputFile, "UTF-8")));
         check.configure(createCheckConfig(IllegalInstantiationCheck.class));
         check.setMessages(new LocalizedMessages());
