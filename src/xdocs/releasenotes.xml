@@ -1004,7 +1004,7 @@
           Fix exception in <a href="http://checkstyle.sourceforge.net/config_coding.html#FallThrough">FallThrough</a> check for nested switch statements. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/837">#837</a>
         </li>
         <li>
-          Magic Number annotation detection enhanced for arbitrary parent nodes in <a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a> check. Author: Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
+          MagicNumber annotation detection enhanced for arbitrary parent nodes in <a href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a> check. Author: Mehmet Can Cömert <a href="https://github.com/checkstyle/checkstyle/issues/926">#926</a>
         </li>
         <li>
           Improve standard package regexp for <a href="http://checkstyle.sourceforge.net/config_imports.html#CustomImportOrder">CustomImportOrder</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1020">#1020</a>
@@ -1264,7 +1264,7 @@
           Fix bug with lambda params in FinalLocalVariable check. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/747">#747</a>
         </li>
         <li>
-          Final Local Variable Check, extended acceptable tokens. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/pull/762">#762</a>
+          FinalLocalVariable Check, extended acceptable tokens. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/pull/762">#762</a>
         </li>
         <li>
           Add support of logging severity for all audit events. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/67">#67</a>
@@ -1363,17 +1363,17 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Visibility Modifier Check, updated option setter. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/710">#710</a>
+          VisibilityModifier Check, updated option setter. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/710">#710</a>
         </li>
         <li>
-          Generic Whitespace Check, updated method references processing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/677">#677</a>
+          GenericWhitespace Check, updated method references processing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/677">#677</a>
         </li>
       </ul>
 
       <p>Notes:</p>
       <ul>
         <li>
-          Hidden Field Check, updated docs for 'ignoreFormat' option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/607">#607</a>
+          HiddenField Check, updated docs for 'ignoreFormat' option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/607">#607</a>
         </li>
         <li>
           Clarified all Indentation Input files for certain expected values. Author: Alexey Zuy <a href="https://github.com/checkstyle/checkstyle/issues/675">#675</a>
@@ -1391,10 +1391,10 @@
       <p>New:</p>
       <ul>
         <li>
-          New Check: Empty Catch Block Check for Google Style Guide. Author: Alex Kravin<a href="https://github.com/checkstyle/checkstyle/issues/571">#571</a>
+          New Check: EmptyCatchBlock Check for Google Style Guide. Author: Alex Kravin<a href="https://github.com/checkstyle/checkstyle/issues/571">#571</a>
         </li>
         <li>
-          New option for Visibility Modifier Check, to allow public immutable fields. Author: Alex Kravin<a href="https://github.com/checkstyle/checkstyle/issues/61">#61</a>
+          New option for VisibilityModifier Check, to allow public immutable fields. Author: Alex Kravin<a href="https://github.com/checkstyle/checkstyle/issues/61">#61</a>
         </li>
       </ul>
 
@@ -1407,19 +1407,19 @@
           Fix NPE when setting classpath field. Author: Aaron Sheldon
         </li>
         <li>
-          Illegal Type Check, updated memberModifiers option setting. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/663">#663</a>
+          IllegalType Check, updated memberModifiers option setting. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/663">#663</a>
         </li>
         <li>
-          Boolean Expression Complexity Check, fixed NPE. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/654">#654</a>
+          BooleanExpression Complexity Check, fixed NPE. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/654">#654</a>
         </li>
         <li>
-          Final Local Variable Check, fixed false-positive. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/258">#258</a>
+          FinalLocalVariable Check, fixed false-positive. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/258">#258</a>
         </li>
         <li>
-          Abstract Class Name Check, updated default regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/595">#595</a>
+          AbstractClassName Check, updated default regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/595">#595</a>
         </li>
         <li>
-          Empty Line Separator Check, fixed Exception if file doesn't have header. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/621">#621</a>
+          EmptyLineSeparator Check, fixed Exception if file doesn't have header. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/621">#621</a>
         </li>
         <li>
           BooleanExpressionComplexity misidentifies integer expression as boolean expression. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/572">#572</a>
@@ -1432,7 +1432,7 @@
           Fixed typo in 'ignoreOverriden' property of IllegalThrowsCheck. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/623">#623</a>
         </li>
         <li>
-          Annotation Location Check, extended typo fixing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/585">#585</a>
+          AnnotationLocation Check, extended typo fixing. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/585">#585</a>
         </li>
       </ul>
 
@@ -1454,7 +1454,7 @@
           TreeWalker update, added logging warning if AcceptableTokens are broken. Acceptable tokens are specified for all checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/342">#342</a>
         </li>
         <li>
-          Suppression Comment Filter, extended docs for messageFormat option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/132">#123</a>
+          SuppressionCommentFilter, extended docs for messageFormat option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/132">#123</a>
         </li>
         <li>
           Site: moved 'Extending Checkstyle' to Developers groups. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/606">#606</a>
@@ -1512,19 +1512,19 @@
           New option to Checker and TreeWalker to specify file extensions. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/25">#25</a>
         </li>
         <li>
-          New option to Empty Line Separator Check, for managing empty lines between class members. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/530">#530</a>
+          New option to EmptyLineSeparator Check, for managing empty lines between class members. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/530">#530</a>
         </li>
         <li>
           New option to Indentation to avoid C style. Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/354">#354</a>
         </li>
         <li>
-          New option to Illegal Throws Check due to twitter custom checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+          New option to IllegalThrows Check due to twitter custom checks. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
         </li>
         <li>
-          New option to Javadoc Method Name Check - ignore method name regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+          New option to JavadocMethod Name Check - ignore method name regex. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
         </li>
         <li>
-          New option to Illegal Type Check to control validation based on modifiers - memberModifiers, updated default illegal types. Author: Alex Kravin <a
+          New option to IllegalType Check to control validation based on modifiers - memberModifiers, updated default illegal types. Author: Alex Kravin <a
                 href="https://github.com/checkstyle/checkstyle/issues/567">#567</a>
         </li>
       </ul>
@@ -1532,25 +1532,25 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Extended Method Name Check to ignore overridden methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
+          ExtendedMethodName Check to ignore overridden methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/430">#430</a>
         </li>
         <li>
           Allow basedir property of Checker module to be set to NULL. Author: Lars Ködderitzsch <a href="https://github.com/checkstyle/checkstyle/issues/570">#570</a>
         </li>
         <li>
-          Custom Import Order Check, third-party package meaning is adjusted. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/515">#515</a>
+          CustomImportOrder Check, third-party package meaning is adjusted. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/515">#515</a>
         </li>
         <li>
-          Final Local Variable Check, fixed false-positive. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/258">#258</a>
+          FinalLocalVariable Check, fixed false-positive. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/258">#258</a>
         </li>
         <li>
-          Illegal Type Check, fixed false positives on same file names, added support of analyzing imports. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/78">#78</a>
+          IllegalType Check, fixed false positives on same file names, added support of analyzing imports. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/78">#78</a>
         </li>
         <li>
-          Suppress Warnings Holder - fixed throwing exception if annotation uses constant value. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/539">#539</a>
+          SuppressWarnings Holder - fixed throwing exception if annotation uses constant value. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/539">#539</a>
         </li>
         <li>
-          No Whitespace After Check, fixed NPE, fixed false-positives at multidimensional arrays. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/542">#542</a>
+          NoWhitespaceAfter Check, fixed NPE, fixed false-positives at multidimensional arrays. Author: Alexey Kravin <a href="https://github.com/checkstyle/checkstyle/issues/542">#542</a>
         </li>
         <li>
           message is extended according to google/guava/issues/1891. Author: Roman Ivanov
@@ -1560,7 +1560,7 @@
       <p>Breaking backward compatibility:</p>
       <ul>
         <li>
-          Annotation Location Check, fixed typo in property name. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/585">#585</a>
+          AnnotationLocation Check, fixed typo in property name. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/585">#585</a>
         </li>
       </ul>
       <p>Notes:</p>
@@ -1617,10 +1617,10 @@
           Build and install the tests jar artifact. Author: Peter Palaga <a href="https://github.com/checkstyle/checkstyle/pull/477">#477</a>
         </li>
         <li>
-          Final Local Variable Check, fixed false-positive - native method's param should be declared final. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/158">#158</a>
+          FinalLocalVariable Check, fixed false-positive - native method's param should be declared final. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/158">#158</a>
         </li>
         <li>
-          Final Parameters Check, added option allows ignoring primitive types as params. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/446">#446</a>
+          FinalParameters Check, added option allows ignoring primitive types as params. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/446">#446</a>
         </li>
         <li>
           Unsatisfiable Indentation module scenario with difficult annotations. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/321">#321</a>
@@ -1632,7 +1632,7 @@
           Fix InnerAssignment check for lambda expressions. Author: Evan Cahill
         </li>
         <li>
-          Generic Whitespace Check, fixed bug - '>' is followed by an illegal character. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/350">#350</a>
+          GenericWhitespace Check, fixed bug - '>' is followed by an illegal character. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/350">#350</a>
         </li>
         <li>
           InnerTypeLast within methods. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/6">#6</a>
@@ -1653,19 +1653,19 @@
           MutableException check requires class to explicitly extend some other class. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/60">#60</a>
         </li>
         <li>
-          Need Braces, added option which allows one line if-statements without braces. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/300">#300</a>
+          NeedBraces, added option which allows one line if-statements without braces. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/300">#300</a>
         </li>
         <li>
-          Redundant Modifier Check fixed bug with warning on final variables in default methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/364">#364</a>
+          RedundantModifier Check fixed bug with warning on final variables in default methods. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/364">#364</a>
         </li>
         <li>
-          Redundant Modifier Check, fixed false-positive Redundant modifier final error for @SafeVarargs method. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/301">#301</a>
+          RedundantModifier Check, fixed false-positive Redundant modifier final error for @SafeVarargs method. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/301">#301</a>
         </li>
         <li>
-          Summary Javadoc Check, added 'specify period' option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/472">#472</a>
+          SummaryJavadoc Check, added 'specify period' option. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/472">#472</a>
         </li>
         <li>
-          Suppress Warnings Check, annotation param in constant. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/268">#268</a>
+          SuppressWarnings Check, annotation param in constant. Author: Alex Kravin <a href="https://github.com/checkstyle/checkstyle/issues/268">#268</a>
         </li>
       </ul>
       <p>Breaking backward compatibility:</p>
