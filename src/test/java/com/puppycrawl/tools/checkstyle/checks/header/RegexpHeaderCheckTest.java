@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISS
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.util.Locale;
 
@@ -40,6 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author richter
  */
 public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "header" + File.separator + filename);
+    }
 
     /**
      * Test of setHeader method, of class RegexpHeaderCheck.
@@ -123,7 +129,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
         };
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
 
     @Test
@@ -135,7 +141,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
         };
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
 
     @Test
@@ -146,7 +152,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = {
             "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
         };
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
 
     @Test
@@ -169,7 +175,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header1"));
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
+        verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
 
     @Test
