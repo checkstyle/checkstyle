@@ -89,7 +89,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
                 + "IMPORT");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
-            verify(checkConfig, getPath("InputHiddenField.java"), expected);
+            verify(checkConfig, getPath("InputMain.java"), expected);
             fail();
         }
         catch (CheckstyleException e) {
