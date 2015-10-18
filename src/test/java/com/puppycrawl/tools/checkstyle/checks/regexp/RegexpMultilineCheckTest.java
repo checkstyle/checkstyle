@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.RE
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.STACKOVERFLOW;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
@@ -45,6 +46,12 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(RegexpMultilineCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "regexp" + File.separator + filename);
     }
 
     @Test
@@ -196,5 +203,4 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
-
 }
