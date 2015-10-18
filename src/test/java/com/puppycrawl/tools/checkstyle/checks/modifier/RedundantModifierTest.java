@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -33,6 +34,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class RedundantModifierTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "modifier" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "modifier" + File.separator + filename);
+    }
 
     @Test
     public void testClassesInsideOfInterfaces() throws Exception {
@@ -76,10 +88,7 @@ public class RedundantModifierTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),
-                expected);
+        verify(checkConfig, getNonCompilablePath("InputStaticModifierInInterface.java"), expected);
     }
 
     @Test
@@ -90,10 +99,7 @@ public class RedundantModifierTest
         final String[] expected = {
             "3:9: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/InputFinalInDefaultMethods.java").getCanonicalPath(),
-                expected);
+        verify(checkConfig, getNonCompilablePath("InputFinalInDefaultMethods.java"), expected);
     }
 
     @Test
@@ -114,7 +120,8 @@ public class RedundantModifierTest
             "8:5: " + getCheckMessage(MSG_KEY, "static"),
             "12:5: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig, getPath("InputRedundantStaticModifierInInnerTypeOfInterface.java"), expected);
+        verify(checkConfig, getPath("InputRedundantStaticModifierInInnerTypeOfInterface.java"),
+            expected);
     }
 
     @Test
@@ -178,7 +185,6 @@ public class RedundantModifierTest
             "8:9: " + getCheckMessage(MSG_KEY, "static"),
             "12:9: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig, getPath("InputRedundantStatic"
-            + "ModifierInNestedEnum.java"), expected);
+        verify(checkConfig, getPath("InputRedundantStaticModifierInNestedEnum.java"), expected);
     }
 }

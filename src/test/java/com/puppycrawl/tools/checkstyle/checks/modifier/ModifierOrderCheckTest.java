@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -35,6 +36,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ModifierOrderCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "modifier" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "modifier" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -64,8 +76,7 @@ public class ModifierOrderCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools"
-                  + "/checkstyle/InputModifier2.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputModifier2.java"), expected);
     }
 
     @Test
