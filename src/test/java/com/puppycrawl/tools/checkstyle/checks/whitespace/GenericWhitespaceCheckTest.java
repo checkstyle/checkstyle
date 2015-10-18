@@ -125,9 +125,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testMethodReferences() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                + "checkstyle/grammars/java8/"
-                + "InputMethodReferencesTest3.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputMethodReferencesTest3.java"), expected);
     }
 
     @Test

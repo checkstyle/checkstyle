@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAround
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck.WS_NOT_PRECEDED;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +41,12 @@ public class WhitespaceAroundTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAroundCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
     }
 
     @Test
@@ -108,14 +117,14 @@ public class WhitespaceAroundTest
     public void testIt3()
         throws Exception {
         final String[] expected = {
-            "41:14: " + getCheckMessage(WS_NOT_FOLLOWED, "while"),
-            "58:12: " + getCheckMessage(WS_NOT_FOLLOWED, "for"),
+            "37:14: " + getCheckMessage(WS_NOT_FOLLOWED, "while"),
+            "54:12: " + getCheckMessage(WS_NOT_FOLLOWED, "for"),
             // + ":58:23: ';' is not followed by whitespace.",
             //  + ":58:29: ';' is not followed by whitespace.",
-            "115:27: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
-            "115:27: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
-            "118:40: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
-            "118:40: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "111:27: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "111:27: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "114:40: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "114:40: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
@@ -126,8 +135,8 @@ public class WhitespaceAroundTest
         checkConfig.addAttribute("allowEmptyMethods", "true");
         checkConfig.addAttribute("allowEmptyConstructors", "true");
         final String[] expected = {
-            "41:14: " + getCheckMessage(WS_NOT_FOLLOWED, "while"),
-            "58:12: " + getCheckMessage(WS_NOT_FOLLOWED, "for"),
+            "37:14: " + getCheckMessage(WS_NOT_FOLLOWED, "while"),
+            "54:12: " + getCheckMessage(WS_NOT_FOLLOWED, "for"),
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
@@ -145,7 +154,7 @@ public class WhitespaceAroundTest
     @Test
     public void test1322879And1649038() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
 
@@ -155,7 +164,7 @@ public class WhitespaceAroundTest
         final String[] expected = {
             "19:20: " + getCheckMessage(WS_NOT_PRECEDED, ":"),
         };
-        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
 
@@ -170,7 +179,7 @@ public class WhitespaceAroundTest
             "31:21: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
             "31:21: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
         };
-        verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
+        verify(checkConfig, getPath("InputEmptyTypesAndCycles.java"),
                expected);
     }
 
@@ -189,7 +198,7 @@ public class WhitespaceAroundTest
             "60:18: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
             "60:18: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
         };
-        verify(checkConfig, getPath("whitespace/InputEmptyTypesAndCycles.java"),
+        verify(checkConfig, getPath("InputEmptyTypesAndCycles.java"),
                expected);
     }
 
@@ -198,9 +207,7 @@ public class WhitespaceAroundTest
         final String[] expected = {
             "6:15: " + getCheckMessage(WS_NOT_FOLLOWED, "switch"),
         };
-        verify(checkConfig,
-               getPath("whitespace/InputSwitchWhitespaceAround.java"),
-               expected);
+        verify(checkConfig, getPath("InputSwitchWhitespaceAround.java"), expected);
     }
 
     @Test
@@ -208,18 +215,14 @@ public class WhitespaceAroundTest
         final String[] expected = {
             "9:16: " + getCheckMessage(WS_NOT_FOLLOWED, "while"),
         };
-        verify(checkConfig,
-               getPath("whitespace/InputDoWhileWhitespaceAround.java"),
-               expected);
+        verify(checkConfig, getPath("InputDoWhileWhitespaceAround.java"), expected);
     }
 
     @Test
     public void allowEmptyMethods() throws Exception {
         checkConfig.addAttribute("allowEmptyMethods", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-               getPath("checks/whitespace/InputWhitespaceAround.java"),
-               expected);
+        verify(checkConfig, getPath("InputWhitespaceAround.java"), expected);
     }
 
     @Test

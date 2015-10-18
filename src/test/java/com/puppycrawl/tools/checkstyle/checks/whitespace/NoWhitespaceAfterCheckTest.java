@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck.MSG_KEY;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +34,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 public class NoWhitespaceAfterCheckTest
     extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
 
     @Before
     public void setUp() {
@@ -100,13 +109,13 @@ public class NoWhitespaceAfterCheckTest
             "40:16: " + getCheckMessage(MSG_KEY, "int"),
             "43:63: " + getCheckMessage(MSG_KEY, "getLongMultArray"),
         };
-        verify(checkConfig, getPath("whitespace/InputNoWhitespaceAfterArrayDeclarations.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations.java"), expected);
     }
 
     @Test
     public void testNpe() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/InputNoWhiteSpaceAfterCheckFormerNpe.java"),
+        verify(checkConfig, getPath("InputNoWhiteSpaceAfterCheckFormerNpe.java"),
                  expected);
     }
 }
