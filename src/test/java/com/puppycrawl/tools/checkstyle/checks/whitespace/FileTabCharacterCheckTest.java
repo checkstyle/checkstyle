@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.FILE_CONTAINS_TAB;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -32,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class FileTabCharacterCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {

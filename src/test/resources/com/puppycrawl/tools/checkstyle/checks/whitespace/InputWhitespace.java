@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com . puppycrawl
     .tools.
-    checkstyle;
+    checkstyle.checks.whitespace;
 
 /**
  * Class for testing whitespace issues.

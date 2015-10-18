@@ -2,12 +2,8 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-/**
- * Test case for correct use of braces.
- * @author Oliver Burn
- **/
 class InputBraces
 {
     /** @return helper func **/

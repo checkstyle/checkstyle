@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterC
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_TYPECAST;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +40,12 @@ public class WhitespaceAfterCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(WhitespaceAfterCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
     }
 
     @Test
@@ -65,9 +74,9 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testSemi() throws Exception {
         final String[] expected = {
-            "58:23: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
-            "58:29: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
-            "107:19: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
+            "54:23: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
+            "54:29: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
+            "103:19: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
@@ -78,7 +87,7 @@ public class WhitespaceAfterCheckTest
             "14:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
             "17:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("checks/whitespace/InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 
     @Test
@@ -94,7 +103,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void test1322879() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
 }

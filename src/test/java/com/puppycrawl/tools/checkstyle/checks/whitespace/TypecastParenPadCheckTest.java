@@ -24,6 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_PRECEDED;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,6 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TypecastParenPadCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -71,7 +80,7 @@ public class TypecastParenPadCheckTest
             createCheckConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/whitespace/InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
 

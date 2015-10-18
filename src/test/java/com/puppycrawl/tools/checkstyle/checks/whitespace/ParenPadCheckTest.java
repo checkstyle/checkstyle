@@ -24,6 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.WS_PRECEDED;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -32,6 +35,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ParenPadCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -109,7 +118,7 @@ public class ParenPadCheckTest
             "48:27: " + getCheckMessage(WS_PRECEDED, ")"),
             "51:26: " + getCheckMessage(WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("checks/whitespace/InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 
     @Test
@@ -129,7 +138,7 @@ public class ParenPadCheckTest
             "27:14: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
             "32:14: " + getCheckMessage(WS_NOT_FOLLOWED, "("),
         };
-        verify(checkConfig, getPath("checks/whitespace/InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
 
     @Test
@@ -138,7 +147,7 @@ public class ParenPadCheckTest
             createCheckConfig(ParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("whitespace/ParenPadWithSpace.java"),
+        verify(checkConfig, getPath("ParenPadWithSpace.java"),
                expected);
     }
 
@@ -213,7 +222,7 @@ public class ParenPadCheckTest
             "130:19: " + getCheckMessage(WS_FOLLOWED, "("),
             "130:19: " + getCheckMessage(WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("whitespace/InputParenPad.java"), expected);
+        verify(checkConfig, getPath("InputParenPad.java"), expected);
     }
 
     @Test
@@ -228,6 +237,6 @@ public class ParenPadCheckTest
             "115:53: " + getCheckMessage(WS_PRECEDED, ")"),
             "115:55: " + getCheckMessage(WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("whitespace/InputParenPad.java"), expected);
+        verify(checkConfig, getPath("InputParenPad.java"), expected);
     }
 }
