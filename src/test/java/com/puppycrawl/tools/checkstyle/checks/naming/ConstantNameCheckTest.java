@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -37,6 +38,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ConstantNameCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -117,7 +129,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("naming" + File.separator + "InputConstantNames.java"), expected);
+        verify(checkConfig, getPath("InputConstantNames.java"), expected);
     }
 
     @Test
@@ -137,7 +149,7 @@ public class ConstantNameCheckTest
             "52:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "53:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verify(checkConfig, getPath("naming" + File.separator + "InputMemberNameExtended.java"), expected);
+        verify(checkConfig, getPath("InputMemberNameExtended.java"), expected);
     }
 
     @Test
@@ -146,10 +158,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/InputStaticModifierInInterface.java").getCanonicalPath(),
-                expected);
+        verify(checkConfig, getNonCompilablePath("InputStaticModifierInInterface.java"), expected);
     }
 
     @Test

@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -29,6 +32,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class LocalVariableNameCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
+
     @Test
     public void testDefault()
         throws Exception {
@@ -66,7 +75,7 @@ public class LocalVariableNameCheckTest
         final String pattern = "^e$";
 
         final String[] expected = {
-            "74:24: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", pattern),
+            "69:24: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", pattern),
         };
         verify(checkConfig, getPath("InputEmptyStatement.java"), expected);
     }

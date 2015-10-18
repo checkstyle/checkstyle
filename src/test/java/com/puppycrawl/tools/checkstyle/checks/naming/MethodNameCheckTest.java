@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -32,6 +35,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodNameCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -134,7 +142,7 @@ public class MethodNameCheckTest
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("naming/InputMethodNameExtra.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameExtra.java"), expected);
     }
 
     @Test
@@ -149,7 +157,7 @@ public class MethodNameCheckTest
             "20:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
         };
 
-        verify(checkConfig, getPath("naming/InputMethodNameOverridenMethods.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameOverridenMethods.java"), expected);
     }
 
     @Test
