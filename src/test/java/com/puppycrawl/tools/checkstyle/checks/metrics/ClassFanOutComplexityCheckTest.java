@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -32,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "metrics" + File.separator + filename);
+    }
+
     @Test
     public void test() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
@@ -43,10 +50,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig,
-               getPath("checks" + File.separator
-                       + "metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
-               expected);
+        verify(checkConfig, getPath("ClassCouplingCheckTestInput.java"), expected);
     }
 
     @Test
@@ -67,10 +71,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
-        verify(checkConfig,
-            getPath("checks" + File.separator
-                    + "metrics" + File.separator + "ClassCouplingCheckTestInput.java"),
-            expected);
+        verify(checkConfig, getPath("ClassCouplingCheckTestInput.java"), expected);
     }
 
     @Test
