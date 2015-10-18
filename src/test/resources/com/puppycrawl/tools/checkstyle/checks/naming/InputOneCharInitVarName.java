@@ -3,7 +3,7 @@
 // Created: Feb-2001
 // Ignore error
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.naming;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;

@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -32,6 +33,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MemberNameCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -83,9 +89,7 @@ public class MemberNameCheckTest
             "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "13:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verify(checkConfig,
-               getPath("naming" + File.separator + "InputMemberName.java"),
-               expected);
+        verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
 
     @Test
@@ -102,9 +106,7 @@ public class MemberNameCheckTest
             "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
             "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verify(checkConfig,
-               getPath("naming" + File.separator + "InputMemberName.java"),
-               expected);
+        verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
 
     @Test
@@ -121,9 +123,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "5:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
         };
-        verify(checkConfig,
-               getPath("naming" + File.separator + "InputMemberName.java"),
-               expected);
+        verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
 
     @Test
@@ -140,9 +140,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "6:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
         };
-        verify(checkConfig,
-               getPath("naming" + File.separator + "InputMemberName.java"),
-               expected);
+        verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
 
     @Test
@@ -159,9 +157,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
         };
-        verify(checkConfig,
-               getPath("naming" + File.separator + "InputMemberName.java"),
-               expected);
+        verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
 
     @Test
@@ -178,9 +174,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verify(checkConfig,
-               getPath("naming" + File.separator + "InputMemberName.java"),
-               expected);
+        verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
 
     @Test
@@ -196,9 +190,7 @@ public class MemberNameCheckTest
             "11:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
             "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
         };
-        verify(checkConfig,
-               getPath("naming" + File.separator + "InputMemberName.java"),
-               expected);
+        verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
 
     @Test
@@ -243,9 +235,7 @@ public class MemberNameCheckTest
             "70:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "71:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verify(checkConfig,
-              getPath("naming" + File.separator + "InputMemberNameExtended.java"),
-              expected);
+        verify(checkConfig, getPath("InputMemberNameExtended.java"), expected);
     }
 
     @Test

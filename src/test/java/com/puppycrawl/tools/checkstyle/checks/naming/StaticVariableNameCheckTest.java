@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -33,6 +34,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class StaticVariableNameCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -76,10 +82,7 @@ public class StaticVariableNameCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(StaticVariableNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                new File("src/test/resources/com/puppycrawl/tools/"
-                        + "checkstyle/naming/InputStaticVariableName.java").getCanonicalPath(),
-                expected);
+        verify(checkConfig, getPath("InputStaticVariableName.java"), expected);
     }
 
     @Test
