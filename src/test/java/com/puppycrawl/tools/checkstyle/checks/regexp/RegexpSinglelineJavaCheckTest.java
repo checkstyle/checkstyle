@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.RE
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,6 +39,12 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(RegexpSinglelineJavaCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "regexp" + File.separator + filename);
     }
 
     @Test

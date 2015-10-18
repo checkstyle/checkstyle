@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +38,12 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(RegexpSinglelineCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "regexp" + File.separator + filename);
     }
 
     @Test
@@ -106,5 +115,4 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
 
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
-
 }
