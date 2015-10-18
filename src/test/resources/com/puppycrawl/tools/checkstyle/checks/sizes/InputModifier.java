@@ -3,14 +3,8 @@
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-/**
- * Test case for Modifier checks:
- * - order of modifiers
- * - use of 'public' in interface definition
- * @author lkuehne
- */
 strictfp final class InputModifier // illegal order of modifiers for class
 {
 

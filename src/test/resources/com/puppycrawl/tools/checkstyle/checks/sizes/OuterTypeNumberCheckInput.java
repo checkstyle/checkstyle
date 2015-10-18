@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 /**Contains empty inner class for OuterTypeNumberCheckTest*/
 public class OuterTypeNumberCheckInput {

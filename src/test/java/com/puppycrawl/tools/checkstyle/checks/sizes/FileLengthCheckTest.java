@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_K
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -33,6 +36,12 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class FileLengthCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "sizes" + File.separator + filename);
+    }
+
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {

@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -31,6 +34,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ParameterNumberCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
+                + "sizes" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
