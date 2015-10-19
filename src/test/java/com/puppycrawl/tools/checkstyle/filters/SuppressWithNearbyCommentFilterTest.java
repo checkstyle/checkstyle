@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
@@ -77,6 +79,11 @@ public class SuppressWithNearbyCommentFilterTest
         "80:59: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "81:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
     };
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("filters" + File.separator + filename);
+    }
 
     @Test
     public void testNone() throws Exception {
@@ -198,7 +205,7 @@ public class SuppressWithNearbyCommentFilterTest
             String... suppressed)
         throws Exception {
         verify(createChecker(filterConfig),
-               getPath("filters/InputSuppressWithNearbyCommentFilter.java"),
+               getPath("InputSuppressWithNearbyCommentFilter.java"),
                removeSuppressed(ALL_MESSAGES, suppressed));
     }
 

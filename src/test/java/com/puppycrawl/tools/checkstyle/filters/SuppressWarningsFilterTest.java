@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
@@ -53,6 +55,11 @@ public class SuppressWarningsFilterTest
         "56:9: Catching 'Exception' is not allowed.",
     };
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("filters" + File.separator + filename);
+    }
+
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
@@ -81,7 +88,7 @@ public class SuppressWarningsFilterTest
     private void verifySuppressed(Configuration aFilterConfig,
             String... aSuppressed) throws Exception {
         verify(createChecker(aFilterConfig),
-            getPath("filters/InputSuppressWarningsFilter.java"),
+            getPath("InputSuppressWarningsFilter.java"),
             removeSuppressed(ALL_MESSAGES, aSuppressed));
     }
 

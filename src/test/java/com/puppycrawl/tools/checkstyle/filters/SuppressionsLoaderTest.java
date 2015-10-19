@@ -47,16 +47,19 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SuppressionsLoader.class, SuppressionsLoaderTest.class })
 public class SuppressionsLoaderTest extends BaseCheckTestSupport {
-
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
+
+    @Override
+    protected String getPath(String filename) {
+        return "src/test/resources/com/puppycrawl/tools/checkstyle/filters/" + filename;
+    }
 
     @Test
     public void testNoSuppressions()
         throws CheckstyleException {
         final FilterSet fc =
-            SuppressionsLoader.loadSuppressions(
-                    "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
+            SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
@@ -98,8 +101,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     public void testMultipleSuppression()
         throws CheckstyleException {
         final FilterSet fc =
-            SuppressionsLoader.loadSuppressions(
-                    "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_multiple.xml");
+            SuppressionsLoader.loadSuppressions(getPath("suppressions_multiple.xml"));
         final FilterSet fc2 = new FilterSet();
         SuppressElement se0 = new SuppressElement("file0");
         se0.setChecks("check0");
@@ -122,7 +124,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testNoFile() {
-        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_no_file.xml";
+        final String fn = getPath("suppressions_no_file.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
         }
@@ -135,7 +137,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testNoCheck() {
-        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_no_check.xml";
+        final String fn = getPath("suppressions_no_check.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
         }
@@ -148,7 +150,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testBadInt() {
-        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_bad_int.xml";
+        final String fn = getPath("suppressions_bad_int.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
         }
@@ -233,7 +235,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testNoCheckNoId() {
-        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_no_check_and_id.xml";
+        final String fn = getPath("suppressions_no_check_and_id.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
         }
@@ -246,13 +248,13 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testNoCheckYesId() throws Exception {
-        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_id.xml";
+        final String fn = getPath("suppressions_id.xml");
         SuppressionsLoader.loadSuppressions(fn);
     }
 
     @Test
     public void testInvalidFileFormat() {
-        final String fn = "src/test/resources/com/puppycrawl/tools/checkstyle/suppressions_invalid_file.xml";
+        final String fn = getPath("suppressions_invalid_file.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
         }
@@ -267,10 +269,8 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     public void testLoadFromClasspath()
         throws CheckstyleException {
         final FilterSet fc =
-            SuppressionsLoader.loadSuppressions(
-                    "/com/puppycrawl/tools/checkstyle/suppressions_none.xml");
+            SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
         assertEquals(fc, fc2);
     }
-
 }

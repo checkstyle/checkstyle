@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
@@ -68,6 +70,11 @@ public class SuppressionCommentFilterTest
         "78:11: Catching 'Exception' is not allowed.",
         "86:31: Catching 'Exception' is not allowed.",
     };
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("filters" + File.separator + filename);
+    }
 
     @Test
     public void testNone() throws Exception {
@@ -198,7 +205,7 @@ public class SuppressionCommentFilterTest
             String... aSuppressed)
         throws Exception {
         verify(createChecker(aFilterConfig),
-               getPath("filters/InputSuppressionCommentFilter.java"),
+               getPath("InputSuppressionCommentFilter.java"),
                removeSuppressed(ALL_MESSAGES, aSuppressed));
     }
 
