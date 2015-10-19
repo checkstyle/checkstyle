@@ -6,7 +6,7 @@ puppycrawl//4
 .//5
 tools//6
 .//7
-checkstyle//8
+checkstyle.grammars//8
 .//9
 comments//10
 //11
