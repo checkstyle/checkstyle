@@ -65,9 +65,9 @@
     <suppress checks="MagicNumber" files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
 
     <!-- Methods that build fake AST are very long-->
-    <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
-    <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
-    <suppress checks="JavaNCSS" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]comments[\\/]CommentsTest\.java"/>
+    <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
+    <suppress checks="ExecutableStatementCount" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
+    <suppress checks="JavaNCSS" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
 
     <suppress checks="." files=".*JavadocTokenTypes\.java"/>
     <suppress checks="." files=".*ParseTreeBuilder\.java"/>

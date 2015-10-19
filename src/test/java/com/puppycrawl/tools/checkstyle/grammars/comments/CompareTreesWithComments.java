@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.comments;
+package com.puppycrawl.tools.checkstyle.grammars.comments;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.comments;
+package com.puppycrawl.tools.checkstyle.grammars.comments;
 // my class
 class InputCommentsTest_2
 {

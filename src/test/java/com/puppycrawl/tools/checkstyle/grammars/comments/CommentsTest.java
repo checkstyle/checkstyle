@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.comments;
+package com.puppycrawl.tools.checkstyle.grammars.comments;
 
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATIONS;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN;
@@ -47,6 +47,7 @@ import static com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST;
 import static com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
@@ -92,31 +93,37 @@ public class CommentsTest extends BaseCheckTestSupport {
         annotationsDef.setType(ANNOTATIONS);
         annotationsDef.setText("ANNOTATIONS");
         annotationsDef.setLineNo(1);
-        annotationsDef.setColumnNo(39);
+        annotationsDef.setColumnNo(48);
 
         DetailAST dotDef = new DetailAST();
         dotDef.setType(DOT);
         dotDef.setText(".");
         dotDef.setLineNo(1);
-        dotDef.setColumnNo(39);
+        dotDef.setColumnNo(48);
 
         DetailAST subDotDef = new DetailAST();
         subDotDef.setType(DOT);
         subDotDef.setText(".");
         subDotDef.setLineNo(1);
-        subDotDef.setColumnNo(28);
+        subDotDef.setColumnNo(39);
 
         DetailAST subDotDef1 = new DetailAST();
         subDotDef1.setType(DOT);
         subDotDef1.setText(".");
         subDotDef1.setLineNo(1);
-        subDotDef1.setColumnNo(22);
+        subDotDef1.setColumnNo(28);
 
         DetailAST subDotDef2 = new DetailAST();
         subDotDef2.setType(DOT);
         subDotDef2.setText(".");
         subDotDef2.setLineNo(1);
-        subDotDef2.setColumnNo(11);
+        subDotDef2.setColumnNo(22);
+
+        DetailAST subDotDef3 = new DetailAST();
+        subDotDef3.setType(DOT);
+        subDotDef3.setText(".");
+        subDotDef3.setLineNo(1);
+        subDotDef3.setColumnNo(11);
 
         DetailAST identDef = new DetailAST();
         identDef.setType(IDENT);
@@ -140,7 +147,7 @@ public class CommentsTest extends BaseCheckTestSupport {
         semiDef.setType(SEMI);
         semiDef.setText(";");
         semiDef.setLineNo(1);
-        semiDef.setColumnNo(48);
+        semiDef.setColumnNo(57);
 
         DetailAST identDef4 = new DetailAST();
         identDef4.setType(IDENT);
@@ -150,9 +157,15 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         DetailAST identDef5 = new DetailAST();
         identDef5.setType(IDENT);
-        identDef5.setText("comments");
+        identDef5.setText("grammars");
         identDef5.setLineNo(1);
         identDef5.setColumnNo(40);
+
+        DetailAST identDef6 = new DetailAST();
+        identDef6.setType(IDENT);
+        identDef6.setText("comments");
+        identDef6.setLineNo(1);
+        identDef6.setColumnNo(49);
 
         DetailAST classDef = new DetailAST();
         classDef.setType(CLASS_DEF);
@@ -237,11 +250,13 @@ public class CommentsTest extends BaseCheckTestSupport {
         dotDef.setFirstChild(subDotDef);
         subDotDef.setFirstChild(subDotDef1);
         subDotDef1.setFirstChild(subDotDef2);
-        subDotDef2.setFirstChild(identDef);
+        subDotDef2.setFirstChild(subDotDef3);
+        subDotDef3.setFirstChild(identDef);
         identDef.setNextSibling(identDef2);
-        subDotDef2.setNextSibling(identDef3);
-        subDotDef1.setNextSibling(identDef4);
-        subDotDef.setNextSibling(identDef5);
+        subDotDef2.setNextSibling(identDef4);
+        subDotDef3.setNextSibling(identDef3);
+        subDotDef1.setNextSibling(identDef5);
+        subDotDef.setNextSibling(identDef6);
         dotDef.setNextSibling(semiDef);
         packageDef.setNextSibling(classDef);
         classDef.setFirstChild(modifiers);
@@ -308,31 +323,37 @@ public class CommentsTest extends BaseCheckTestSupport {
         annotationsDef.setType(ANNOTATIONS);
         annotationsDef.setText("ANNOTATIONS");
         annotationsDef.setLineNo(1);
-        annotationsDef.setColumnNo(39);
+        annotationsDef.setColumnNo(48);
 
         DetailAST dotDef = new DetailAST();
         dotDef.setType(DOT);
         dotDef.setText(".");
         dotDef.setLineNo(1);
-        dotDef.setColumnNo(39);
+        dotDef.setColumnNo(48);
 
         DetailAST subDotDef = new DetailAST();
         subDotDef.setType(DOT);
         subDotDef.setText(".");
         subDotDef.setLineNo(1);
-        subDotDef.setColumnNo(28);
+        subDotDef.setColumnNo(39);
 
         DetailAST subDotDef1 = new DetailAST();
         subDotDef1.setType(DOT);
         subDotDef1.setText(".");
         subDotDef1.setLineNo(1);
-        subDotDef1.setColumnNo(22);
+        subDotDef1.setColumnNo(28);
 
         DetailAST subDotDef2 = new DetailAST();
         subDotDef2.setType(DOT);
         subDotDef2.setText(".");
         subDotDef2.setLineNo(1);
-        subDotDef2.setColumnNo(11);
+        subDotDef2.setColumnNo(22);
+
+        DetailAST subDotDef3 = new DetailAST();
+        subDotDef3.setType(DOT);
+        subDotDef3.setText(".");
+        subDotDef3.setLineNo(1);
+        subDotDef3.setColumnNo(11);
 
         DetailAST identDef = new DetailAST();
         identDef.setType(IDENT);
@@ -356,7 +377,7 @@ public class CommentsTest extends BaseCheckTestSupport {
         semiDef.setType(SEMI);
         semiDef.setText(";");
         semiDef.setLineNo(1);
-        semiDef.setColumnNo(48);
+        semiDef.setColumnNo(57);
 
         DetailAST identDef4 = new DetailAST();
         identDef4.setType(IDENT);
@@ -366,9 +387,15 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         DetailAST identDef5 = new DetailAST();
         identDef5.setType(IDENT);
-        identDef5.setText("comments");
+        identDef5.setText("grammars");
         identDef5.setLineNo(1);
         identDef5.setColumnNo(40);
+
+        DetailAST identDef6 = new DetailAST();
+        identDef6.setType(IDENT);
+        identDef6.setText("comments");
+        identDef6.setLineNo(1);
+        identDef6.setColumnNo(49);
 
         DetailAST classDef = new DetailAST();
         classDef.setType(CLASS_DEF);
@@ -584,11 +611,13 @@ public class CommentsTest extends BaseCheckTestSupport {
         dotDef.setFirstChild(subDotDef);
         subDotDef.setFirstChild(subDotDef1);
         subDotDef1.setFirstChild(subDotDef2);
-        subDotDef2.setFirstChild(identDef);
+        subDotDef2.setFirstChild(subDotDef3);
+        subDotDef3.setFirstChild(identDef);
         identDef.setNextSibling(identDef2);
-        subDotDef2.setNextSibling(identDef3);
-        subDotDef1.setNextSibling(identDef4);
-        subDotDef.setNextSibling(identDef5);
+        subDotDef2.setNextSibling(identDef4);
+        subDotDef3.setNextSibling(identDef3);
+        subDotDef1.setNextSibling(identDef5);
+        subDotDef.setNextSibling(identDef6);
         dotDef.setNextSibling(semiDef);
         packageDef.setNextSibling(classDef);
         blockCommentStart.setNextSibling(literalProtected);
@@ -596,13 +625,18 @@ public class CommentsTest extends BaseCheckTestSupport {
         return packageDef;
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("grammars" + File.separator
+                + "comments" + File.separator + filename);
+    }
+
     @Test
     public void testCompareExpectedTreeWithInput1() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.expectedTree = buildInput1();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("comments" + File.separator
-                + "InputCommentsTest_1.java"), expected);
+        verify(checkConfig, getPath("InputCommentsTest_1.java"), expected);
     }
 
     @Test
@@ -610,8 +644,7 @@ public class CommentsTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.expectedTree = buildInput2();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("comments" + File.separator
-                + "InputCommentsTest_2.java"), expected);
+        verify(checkConfig, getPath("InputCommentsTest_2.java"), expected);
     }
 
     @Test
