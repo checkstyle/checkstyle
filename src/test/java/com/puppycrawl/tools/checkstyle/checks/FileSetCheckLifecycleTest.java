@@ -23,6 +23,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,6 +40,11 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
 public class FileSetCheckLifecycleTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator + filename);
+    }
+
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {
@@ -58,7 +64,7 @@ public class FileSetCheckLifecycleTest
         final Configuration checkConfig =
             createCheckConfig(TestFileSetCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
     }
@@ -85,7 +91,7 @@ public class FileSetCheckLifecycleTest
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, getPath("checks/InputIllegalTokens.java"), expected);
+        verify(checker, getPath("InputIllegalTokens.java"), expected);
 
         assertTrue("FileContent should be available during finishProcessing() call",
                 TestFileSetCheck.isFileContentAvailable());
