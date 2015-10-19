@@ -29,7 +29,6 @@ import java.io.UnsupportedEncodingException;
 import org.junit.Test;
 
 public class FileTextTest {
-
     @Test
     public void testUnsupportedCharset() throws IOException {
         // just to make UT coverage 100%
@@ -48,7 +47,7 @@ public class FileTextTest {
     public void testSupportedCharset() throws IOException {
         String charsetName = "ISO-8859-1";
         FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
-                 + "checkstyle/checks/imports/import-control_complete.xml"), charsetName);
+                 + "checkstyle/api/import-control_complete.xml"), charsetName);
         assertEquals(o.getCharset().name(), charsetName);
     }
 }
