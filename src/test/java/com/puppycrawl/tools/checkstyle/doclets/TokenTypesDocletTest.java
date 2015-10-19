@@ -42,6 +42,9 @@ import com.sun.tools.javadoc.Messager;
 import com.sun.tools.javadoc.ModifierFilter;
 
 public class TokenTypesDocletTest {
+    private static String getPath(String filename) {
+        return "src/test/resources/com/puppycrawl/tools/checkstyle/doclets/" + filename;
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -93,8 +96,7 @@ public class TokenTypesDocletTest {
         options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
         ListBuffer<String> names = new ListBuffer<>();
-        names.add("src/test/resources/com/puppycrawl/tools/"
-                + "checkstyle/doclets/InputTokenTypesDocletNotConstants.java");
+        names.add(getPath("InputTokenTypesDocletNotConstants.java"));
 
         Context context = new Context();
         new TestMessager(context);
@@ -110,8 +112,7 @@ public class TokenTypesDocletTest {
         options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
         ListBuffer<String> names = new ListBuffer<>();
-        names.add("src/test/resources/com/puppycrawl/tools/"
-                + "checkstyle/doclets/InputTokenTypesDocletEmptyJavadoc.java");
+        names.add(getPath("InputTokenTypesDocletEmptyJavadoc.java"));
 
         Context context = new Context();
         new TestMessager(context);
@@ -135,8 +136,7 @@ public class TokenTypesDocletTest {
         options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
         ListBuffer<String> names = new ListBuffer<>();
-        names.add("src/test/resources/com/puppycrawl/tools/"
-                + "checkstyle/doclets/InputTokenTypesDocletCorrect.java");
+        names.add(getPath("InputTokenTypesDocletCorrect.java"));
 
         Context context = new Context();
         new TestMessager(context);
