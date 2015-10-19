@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,6 +38,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UncommentedMainCheckTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator + filename);
+    }
+
     @Test
     public void testDefaults()
         throws Exception {

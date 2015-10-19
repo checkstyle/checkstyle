@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KE
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,6 +41,11 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(TrailingCommentCheck.class);
+    }
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator + filename);
     }
 
     @Test

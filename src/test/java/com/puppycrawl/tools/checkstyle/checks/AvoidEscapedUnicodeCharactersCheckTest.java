@@ -21,6 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertArrayEquals;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -28,8 +31,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport {
-
     private final String msg = getCheckMessage("forbid.escaped.unicode.char");
+
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -186,5 +193,4 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         int[] expected = {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
         assertArrayEquals(expected, actual);
     }
-
 }

@@ -1,10 +1,5 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-/**
- * Input class for testing EmptyStatementCheck
- * @author Rick Giles
- * @version 5-May-2003
- */
 public class InputEmptyStatement
 {
    public InputEmptyStatement()

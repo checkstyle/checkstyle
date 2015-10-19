@@ -54,6 +54,11 @@ public class NewlineAtEndOfFileCheckTest
         return dc;
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator + filename);
+    }
+
     @Test
     public void testNewlineLfAtEndOfFile() throws Exception {
         final DefaultConfiguration checkConfig =

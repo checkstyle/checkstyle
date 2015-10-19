@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
 public class InputSuppressWarningsHolder {
     static final String UNUSED = "unused";
@@ -7,13 +7,13 @@ public class InputSuppressWarningsHolder {
     int a;
     @SuppressWarnings(InputSuppressWarningsHolder.UNUSED)
     int b;
-    @SuppressWarnings(com.puppycrawl.tools.checkstyle.InputSuppressWarningsHolder.UNUSED)
+    @SuppressWarnings(com.puppycrawl.tools.checkstyle.checks.InputSuppressWarningsHolder.UNUSED)
     int c;
     @SuppressWarnings(value = UNUSED)
     int d;
     @SuppressWarnings(value = InputSuppressWarningsHolder.UNUSED)
     int e;
-    @SuppressWarnings(value = com.puppycrawl.tools.checkstyle.InputSuppressWarningsHolder.UNUSED)
+    @SuppressWarnings(value = com.puppycrawl.tools.checkstyle.checks.InputSuppressWarningsHolder.UNUSED)
     int f;
     @SuppressWarnings((1 != 1) ? "" : "unused")
     int g;

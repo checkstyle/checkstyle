@@ -2,12 +2,13 @@
 // Test case file for checkstyle.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks;
 
-class oneMoreClass {
-    
-    public static void anyWrongMethodName(String[] args)
+class InputUncommentedMainTest4
+{
+    // one more uncommented main
+    public static void main(int[] args)
     {
-        System.out.println("InputUncommentedMain.main()");
+        System.out.println("test1.main()");
     }
 }

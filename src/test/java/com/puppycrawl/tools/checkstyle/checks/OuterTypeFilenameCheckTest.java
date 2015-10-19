@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -31,6 +32,15 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator + filename);
+    }
 
     @Test
     public void testGetRequiredTokens() {
@@ -49,7 +59,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("checks/InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -109,7 +119,6 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-            + "checkstyle/checks/package-info.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }
 }
