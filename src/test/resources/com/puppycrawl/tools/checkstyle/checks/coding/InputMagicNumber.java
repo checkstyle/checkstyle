@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 /**
  * Describe class InputMagicNumber
@@ -73,7 +73,7 @@ public class InputMagicNumber {
     }
 }
 
-interface Blah
+interface Blah2
 {
   int LOW = 5;
   int HIGH = 78;
@@ -143,12 +143,12 @@ class ComplexButNotFlagged
         javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 }
 
-enum MyEnum
+enum MyEnum2
 {
     A(3),
     B(54);
 
-    private MyEnum(int value)
+    private MyEnum2(int value)
     {
 
     }
