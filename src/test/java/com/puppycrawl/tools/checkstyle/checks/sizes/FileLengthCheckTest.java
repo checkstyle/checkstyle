@@ -85,6 +85,11 @@ public class FileLengthCheckTest
         }
         catch (CheckstyleException ex) {
             // Expected Exception because of illegal argument for "max"
+            assertEquals("cannot initialize module"
+                + " com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck"
+                + " - illegal value 'abc' for property 'max' of module"
+                + " com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
+                ex.getMessage());
         }
     }
 
