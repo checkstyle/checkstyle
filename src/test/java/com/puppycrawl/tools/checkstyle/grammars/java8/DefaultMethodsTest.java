@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -29,6 +30,17 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
 public class DefaultMethodsTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("grammars" + File.separator
+                + "java8" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("grammars" + File.separator
+                + "java8" + File.separator + filename);
+    }
 
     @Test
     public void testCanParse()
@@ -36,11 +48,7 @@ public class DefaultMethodsTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
-                        + "grammars/java8/"
-                        + "InputDefaultMethodsTest.java").getCanonicalPath(),
-                expected);
+        verify(checkConfig, getNonCompilablePath("InputDefaultMethodsTest.java"), expected);
 
     }
 
@@ -50,9 +58,7 @@ public class DefaultMethodsTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                getPath("grammars/java8/InputDefaultMethodsTest2.java"),
-                expected);
+        verify(checkConfig, getPath("InputDefaultMethodsTest2.java"), expected);
 
     }
 
