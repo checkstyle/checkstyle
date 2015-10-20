@@ -56,8 +56,8 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getPath("BadCls.java"),
-            getPath("BadCls.java"),
+            getPath("InputBadCls.java"),
+            getPath("InputBadCls.java"),
             expected);
     }
 
@@ -70,8 +70,8 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getPath("BadCls.java"),
-            getPath("BadCls.java"),
+            getPath("InputBadCls.java"),
+            getPath("InputBadCls.java"),
             expected);
     }
 
@@ -97,8 +97,8 @@ public class JavadocPackageCheckTest
             "0: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
         verify(createChecker(checkConfig),
-            getPath("bothfiles" + File.separator + "Ignored.java"),
-            getPath("bothfiles" + File.separator + "Ignored.java"), expected);
+            getPath("bothfiles" + File.separator + "InputIgnored.java"),
+            getPath("bothfiles" + File.separator + "InputIgnored.java"), expected);
     }
 
     @Test
@@ -108,8 +108,8 @@ public class JavadocPackageCheckTest
             "0: Missing package-info.java file.",
         };
         verify(createChecker(checkConfig),
-            getPath("pkghtml" + File.separator + "Ignored.java"),
-            getPath("pkghtml" + File.separator + "Ignored.java"), expected);
+            getPath("pkghtml" + File.separator + "InputIgnored.java"),
+            getPath("pkghtml" + File.separator + "InputIgnored.java"), expected);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class JavadocPackageCheckTest
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
-            getPath("pkghtml" + File.separator + "Ignored.java"),
+            getPath("pkghtml" + File.separator + "InputIgnored.java"),
             getPath("pkghtml" + File.separator + "package-info.java"), expected);
     }
 

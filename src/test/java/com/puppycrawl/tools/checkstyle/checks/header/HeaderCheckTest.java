@@ -64,7 +64,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
-        verify(checkConfig, getPath("inputHeader.java"), expected);
+        verify(checkConfig, getPath("InputHeader.java"), expected);
     }
 
     @Test

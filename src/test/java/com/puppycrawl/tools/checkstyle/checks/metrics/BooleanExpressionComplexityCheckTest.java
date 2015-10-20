@@ -53,7 +53,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
             "40:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
-        verify(checkConfig, getPath("BooleanExpressionComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("BooleanExpressionComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
     }
 
     @Test

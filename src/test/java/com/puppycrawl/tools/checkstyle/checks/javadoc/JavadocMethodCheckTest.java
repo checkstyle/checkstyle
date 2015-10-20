@@ -93,7 +93,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "46:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(config, getPath("ExtendAnnotation.java"), expected);
+        verify(config, getPath("InputExtendAnnotation.java"), expected);
     }
 
     @Test
@@ -113,7 +113,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(config, getPath("AllowedAnnotations.java"), expected);
+        verify(config, getPath("InputAllowedAnnotations.java"), expected);
     }
 
     @Test
@@ -498,7 +498,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
-        verify(checkConfig, getPath("TestGenerics.java"), expected);
+        verify(checkConfig, getPath("InputTestGenerics.java"), expected);
     }
 
     @Test
@@ -512,7 +512,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
-        verify(checkConfig, getPath("TestGenerics.java"), expected);
+        verify(checkConfig, getPath("InputTestGenerics.java"), expected);
     }
 
     @Test
@@ -526,7 +526,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "43:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "44:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
-        verify(checkConfig, getPath("TestGenerics.java"), expected);
+        verify(checkConfig, getPath("InputTestGenerics.java"), expected);
     }
 
     @Test

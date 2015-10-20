@@ -263,7 +263,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             "5: " + getCheckMessage(MSG_NONGROUP_EXPECTED, THIRD, "org.w3c.dom.Node"),
         };
 
-        verify(checkConfig, getPath("DOMSource.java"), expected);
+        verify(checkConfig, getPath("InputDOMSource.java"), expected);
     }
 
     @Test

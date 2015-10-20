@@ -73,7 +73,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("MethodCountCheckInput.java"), expected);
+        verify(checkConfig, getPath("InputMethodCount.java"), expected);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             "45: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
         };
 
-        verify(checkConfig, getPath("MethodCountCheckInput.java"), expected);
+        verify(checkConfig, getPath("InputMethodCount.java"), expected);
     }
 
     @Test
@@ -113,7 +113,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             "9: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
         };
 
-        verify(checkConfig, getPath("MethodCountCheckInput2.java"), expected);
+        verify(checkConfig, getPath("InputMethodCount2.java"), expected);
     }
 
     @Test
@@ -126,6 +126,6 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             "3: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
         };
 
-        verify(checkConfig, getPath("MethodCountCheckInput3.java"), expected);
+        verify(checkConfig, getPath("InputMethodCount3.java"), expected);
     }
 }

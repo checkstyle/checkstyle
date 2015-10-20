@@ -44,6 +44,6 @@ public class GeneratedJava14LexerTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("SemicolonBetweenImports.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);
     }
 }

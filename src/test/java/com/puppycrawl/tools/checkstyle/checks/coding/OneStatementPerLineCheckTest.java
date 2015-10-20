@@ -57,7 +57,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getPath("OneStatementPerLineCheckInput.java"),
+            getPath("InputOneStatementPerLine.java"),
             expected);
     }
 
@@ -82,7 +82,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getPath("OneStatementPerLineCheckInput2.java"),
+            getPath("InputOneStatementPerLine2.java"),
             expected);
     }
 

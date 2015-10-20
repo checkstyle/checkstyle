@@ -132,10 +132,10 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testSameFileNameGeneral() throws Exception {
-        checkConfig.addAttribute("illegalClassNames", "List, GregorianCalendar, java.io.File, ArrayList");
+        checkConfig.addAttribute("illegalClassNames", "List, InputGregorianCalendar, java.io.File, ArrayList");
         String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY, "GregorianCalendar"),
-            "16:23: " + getCheckMessage(MSG_KEY, "GregorianCalendar"),
+            "10:5: " + getCheckMessage(MSG_KEY, "InputGregorianCalendar"),
+            "16:23: " + getCheckMessage(MSG_KEY, "InputGregorianCalendar"),
             "24:9: " + getCheckMessage(MSG_KEY, "List"),
             "25:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),

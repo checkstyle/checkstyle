@@ -43,7 +43,7 @@ public class NewHandlerTest extends BaseCheckTestSupport {
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("NewHandlerTestInput.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputNewHandler.java"), expected);
     }
 
 }

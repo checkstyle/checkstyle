@@ -1382,7 +1382,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("InvalidInputThrowsIndent.java"), expected);
+        verifyWarns(checkConfig, getPath("InputInvalidThrowsIndent.java"), expected);
     }
 
     @Test

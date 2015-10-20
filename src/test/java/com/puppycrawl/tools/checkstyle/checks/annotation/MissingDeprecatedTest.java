@@ -100,7 +100,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "55: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("BadDeprecatedJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputBadDeprecatedJavadoc.java"), expected);
     }
 
     /**
@@ -140,7 +140,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("GoodDeprecated.java"), expected);
+        verify(checkConfig, getPath("InputGoodDeprecated.java"), expected);
     }
 
     @Test
