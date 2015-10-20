@@ -319,8 +319,11 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             verify(checkConfig, pathToEmptyFile, expected);
             fail();
         }
-        catch (CheckstyleException ignored) {
-            //expected
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getMessage().startsWith("cannot initialize module"
+                + " com.puppycrawl.tools.checkstyle.TreeWalker - Token \""
+                + TokenTypes.ASSIGN + "\" from required"
+                + " tokens was not found in default tokens list in check"));
         }
     }
 

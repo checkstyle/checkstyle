@@ -54,7 +54,10 @@ public class TokenUtilsTest {
             fail();
         }
         catch (IllegalStateException expected) {
-            // expected
+            assertTrue(expected.getMessage().startsWith(
+                "java.lang.IllegalAccessException: Class"
+                + " com.puppycrawl.tools.checkstyle.utils.TokenUtils"
+                + " can not access a member of class java.lang.Integer with modifiers "));
         }
     }
 
