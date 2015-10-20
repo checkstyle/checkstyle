@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.grammars;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
@@ -32,12 +35,17 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
  */
 public class Java7StringSwitchTest
     extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("grammars" + File.separator + filename);
+    }
+
     @Test
     public void testCanParse()
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("grammars/InputJava7StringSwitch.java"), expected);
+        verify(checkConfig, getPath("InputJava7StringSwitch.java"), expected);
     }
 }
