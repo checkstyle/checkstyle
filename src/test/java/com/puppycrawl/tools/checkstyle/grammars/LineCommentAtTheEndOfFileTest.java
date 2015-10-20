@@ -48,7 +48,7 @@ public class LineCommentAtTheEndOfFileTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("LineCommentAtTheEndOfFile.java"),
+        verify(checkConfig, getPath("InputLineCommentAtTheEndOfFile.java"),
             expected);
     }
 }

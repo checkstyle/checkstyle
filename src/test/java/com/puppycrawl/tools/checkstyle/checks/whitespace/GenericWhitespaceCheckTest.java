@@ -113,7 +113,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testGh47() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("Gh47.java"), expected);
+        verify(checkConfig, getPath("InputGh47.java"), expected);
     }
 
     @Test

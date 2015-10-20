@@ -62,7 +62,7 @@ public class ExecutableStatementCountCheckTest
             "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
+        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ExecutableStatementCountCheckTest
             "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
+        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class ExecutableStatementCountCheckTest
             "76:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
+        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 
     @Test
@@ -113,7 +113,7 @@ public class ExecutableStatementCountCheckTest
             "58:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
+        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 
     @Test
@@ -128,7 +128,7 @@ public class ExecutableStatementCountCheckTest
             "67:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
+        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -158,6 +158,6 @@ public class ExecutableStatementCountCheckTest
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("ExecutableStatementCountInput.java"), expected);
+        verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 }

@@ -46,6 +46,6 @@ public class UnicodeEscapeTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("UnicodeEscape.java"), expected);
+        verify(checkConfig, getPath("InputUnicodeEscape.java"), expected);
     }
 }

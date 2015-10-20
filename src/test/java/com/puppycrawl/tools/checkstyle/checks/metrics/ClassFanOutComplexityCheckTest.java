@@ -50,7 +50,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("ClassCouplingCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("ClassCouplingCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
     }
 
     @Test

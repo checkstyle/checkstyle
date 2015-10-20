@@ -147,7 +147,7 @@ public class ParenPadCheckTest
             createCheckConfig(ParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("ParenPadWithSpace.java"),
+        verify(checkConfig, getPath("InputParenPadWithSpace.java"),
                expected);
     }
 

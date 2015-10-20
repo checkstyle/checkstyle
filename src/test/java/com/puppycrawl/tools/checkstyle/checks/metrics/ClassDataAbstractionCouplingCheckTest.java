@@ -55,7 +55,7 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("ClassCouplingCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("ClassCouplingCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
     }
 
     @Test(expected = IllegalArgumentException.class)

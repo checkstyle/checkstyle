@@ -61,7 +61,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
             "79:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputComplexityCheck.java"), expected);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
             "9:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityOverflow.java"), expected);
+        verify(checkConfig, getPath("InputComplexityOverflow.java"), expected);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputComplexityCheck.java"), expected);
     }
 
     @Test

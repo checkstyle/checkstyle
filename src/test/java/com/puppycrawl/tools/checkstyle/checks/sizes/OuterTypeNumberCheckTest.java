@@ -90,6 +90,6 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
             createCheckConfig(OuterTypeNumberCheck.class);
         checkConfig.addAttribute("max", "1");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("OuterTypeNumberCheckInput.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeNumber.java"), expected);
     }
 }

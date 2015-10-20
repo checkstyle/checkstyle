@@ -43,7 +43,7 @@ public class MultiDimensionalArraysInGenericsTest
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("MultiDimensionalArraysInGenericsTestInput.java"),
+                getPath("InputMultiDimensionalArraysInGenerics.java"),
                 expected);
     }
 }

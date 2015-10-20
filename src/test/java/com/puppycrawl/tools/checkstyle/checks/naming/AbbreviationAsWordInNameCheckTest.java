@@ -309,6 +309,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("AbstractMultisetSetCountTester.java"), expected);
+        verify(checkConfig, getPath("InputAbstractMultisetSetCountTester.java"), expected);
     }
 }

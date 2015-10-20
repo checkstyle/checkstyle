@@ -513,7 +513,7 @@ public class MainTest {
 
         // we just reference there all violations
         final String[][] outputValues = {
-            {"ComplexityOverflow", "1", "172"},
+            {"InputComplexityOverflow", "1", "172"},
         };
 
         exit.checkAssertionAfterwards(new Assertion() {

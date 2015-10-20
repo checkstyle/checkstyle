@@ -152,7 +152,7 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames",
-                 "com.puppycrawl.tools.checkstyle.checks.coding.GregorianCalendar,"
+                 "com.puppycrawl.tools.checkstyle.checks.coding.InputGregorianCalendar,"
                  + "com.puppycrawl.tools.checkstyle.checks.design.InetSocketAddress");
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
@@ -167,8 +167,8 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
-            "8:36: " + getCheckMessage(MSG_KEY, "calendar2"),
-            "9:82: " + getCheckMessage(MSG_KEY, "calendar3"),
+            "8:41: " + getCheckMessage(MSG_KEY, "calendar2"),
+            "9:87: " + getCheckMessage(MSG_KEY, "calendar3"),
             "10:36: " + getCheckMessage(MSG_KEY, "address"),
         };
         verify(checkConfig, getPath("InputImmutableSameTypeName.java"), expected);
@@ -205,7 +205,7 @@ public class VisibilityModifierCheckTest
             "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
             "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
         };
-        verify(checkConfig, getPath("AnnotatedVisibility.java"), expected);
+        verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
     }
 
     @Test
@@ -213,7 +213,7 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("ignoreAnnotationCanonicalNames",
-                "com.puppycrawl.tools.checkstyle.AnnotatedVisibility.CustomAnnotation");
+                "com.puppycrawl.tools.checkstyle.checks.design.InputAnnotatedVisibility.CustomAnnotation");
         final String[] expected = {
             "15:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "18:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
@@ -227,7 +227,7 @@ public class VisibilityModifierCheckTest
             "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
             "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
         };
-        verify(checkConfig, getPath("AnnotatedVisibility.java"), expected);
+        verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
     }
 
     @Test
@@ -251,7 +251,7 @@ public class VisibilityModifierCheckTest
             "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
             "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
         };
-        verify(checkConfig, getPath("AnnotatedVisibility.java"), expected);
+        verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
     }
 
     @Test
@@ -261,7 +261,7 @@ public class VisibilityModifierCheckTest
         final String[] expected = {
             "10:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
         };
-        verify(checkConfig, getPath("AnnotatedVisibilitySameTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAnnotatedVisibilitySameTypeName.java"), expected);
     }
 
     @Test

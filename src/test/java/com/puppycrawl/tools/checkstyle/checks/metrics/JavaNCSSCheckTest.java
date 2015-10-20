@@ -70,7 +70,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             "83:5: " + getCheckMessage(MSG_METHOD, 1, 0),
         };
 
-        verify(checkConfig, getPath("JavaNCSSCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputJavaNCSS.java"), expected);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("JavaNCSSCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputJavaNCSS.java"), expected);
     }
 
     @Test

@@ -50,7 +50,7 @@ public class CyclomaticComplexityCheckTest
             "4:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckSwitchBlocksTestInput.java"), expected);
+        verify(checkConfig, getPath("InputComplexityCheckSwitchBlocks.java"), expected);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class CyclomaticComplexityCheckTest
             "4:5: " + getCheckMessage(MSG_KEY, 5, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckSwitchBlocksTestInput.java"), expected);
+        verify(checkConfig, getPath("InputComplexityCheckSwitchBlocks.java"), expected);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class CyclomaticComplexityCheckTest
             "79:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("ComplexityCheckTestInput.java"), expected);
+        verify(checkConfig, getPath("InputComplexityCheck.java"), expected);
     }
 
     @Test
