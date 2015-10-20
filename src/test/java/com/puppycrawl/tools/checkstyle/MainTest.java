@@ -55,6 +55,14 @@ public class MainTest {
     @Rule
     public final SystemOutRule systemOut = new SystemOutRule().enableLog().mute();
 
+    private static String getPath(String filename) {
+        return "src/test/resources/com/puppycrawl/tools/checkstyle/" + filename;
+    }
+
+    private static String getFilePath(String filename) throws IOException {
+        return new File(getPath(filename)).getCanonicalPath();
+    }
+
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertUtilsClassHasPrivateConstructor(Main.class);
@@ -110,7 +118,7 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main(getPath("InputMain.java"));
     }
 
     @Test
@@ -143,7 +151,7 @@ public class MainTest {
             }
         });
         Main.main("-c", "src/main/resources/non_existing_config.xml",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -158,7 +166,7 @@ public class MainTest {
             }
         });
         Main.main("-c", "/google_checks.xml", "-f", "xmlp",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -198,8 +206,8 @@ public class MainTest {
             }
         });
 
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-non-existing-classname.xml",
-            "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", getPath("config-non-existing-classname.xml"),
+            getPath("InputMain.java"));
     }
 
     @Test
@@ -213,8 +221,8 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", getPath("config-classname.xml"),
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -223,10 +231,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
-                String currentPath = new File(".").getCanonicalPath();
-                String expectedPath = currentPath
-                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
-                        .replace("/", File.separator);
+                String expectedPath = getFilePath("InputMain.java");
                 final ResourceBundle compilationProperties =
                         ResourceBundle.getBundle("checkstylecompilation");
                 String version = compilationProperties.getString("checkstyle.compile.version");
@@ -239,9 +244,9 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+        Main.main("-c", getPath("config-classname.xml"),
                 "-f", "xml",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -255,9 +260,9 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+        Main.main("-c", getPath("config-classname.xml"),
                 "-f", "plain",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -266,10 +271,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
-                String currentPath = new File(".").getCanonicalPath();
-                String expectedPath = currentPath
-                    + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
-                    .replace("/", File.separator);
+                String expectedPath = getFilePath("InputMain.java");
                 assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                                 + "%1$s:3:14: "
                                 + "warning: Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
@@ -280,8 +282,8 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2.xml",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", getPath("config-classname2.xml"),
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -291,10 +293,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
-                String currentPath = new File(".").getCanonicalPath();
-                String expectedPath = currentPath
-                    + "/src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java"
-                    .replace("/", File.separator);
+                String expectedPath = getFilePath("InputMain.java");
                 assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                         + "%1$s:3:14: error: "
                         + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
@@ -306,8 +305,8 @@ public class MainTest {
             }
         });
         Main.main("-c",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname2-error.xml",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("config-classname2-error.xml"),
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -321,10 +320,10 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+        Main.main("-c", getPath("config-classname.xml"),
                 "-f", "plain",
                 "-o", temporaryFolder.getRoot() + "/output.txt",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -338,10 +337,10 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+        Main.main("-c", getPath("config-classname.xml"),
                 "-f", "plain",
                 "-o", file.getCanonicalPath(),
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -359,10 +358,10 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+        Main.main("-c", getPath("config-classname.xml"),
                 "-f", "plain",
                 "-o", file.getCanonicalPath(),
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -384,10 +383,10 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-classname.xml",
+        Main.main("-c", getPath("config-classname.xml"),
                 "-f", "plain",
                 "-o", file.getCanonicalPath(),
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -402,10 +401,9 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
-                + "config-classname-prop.xml",
-                "-p", "src/test/resources/com/puppycrawl/tools/checkstyle/mycheckstyle.properties",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", getPath("config-classname-prop.xml"),
+                "-p", getPath("mycheckstyle.properties"),
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -420,10 +418,9 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
-                + "config-classname-prop.xml",
+        Main.main("-c", getPath("config-classname-prop.xml"),
                 "-p", "nonexisting.properties",
-                "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+                getPath("InputMain.java"));
     }
 
     @Test
@@ -443,9 +440,8 @@ public class MainTest {
                 assertEquals("", systemErr.getLog());
             }
         });
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/"
-                + "config-Incorrect.xml",
-            "src/test/resources/com/puppycrawl/tools/checkstyle/InputMain.java");
+        Main.main("-c", getPath("config-Incorrect.xml"),
+            getPath("InputMain.java"));
     }
 
     @Test
@@ -522,10 +518,7 @@ public class MainTest {
 
         exit.checkAssertionAfterwards(new Assertion() {
             @Override public void checkAssertion() throws IOException {
-                String currentPath = new File(".").getCanonicalPath();
-                String expectedPath = currentPath
-                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/"
-                        .replace("/", File.separator);
+                String expectedPath = getFilePath("checks/metrics") + File.separator;
                 StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
                 String format = "%s.java:%s: warning: File length is %s lines (max allowed is 170).";
@@ -541,8 +534,8 @@ public class MainTest {
             }
         });
 
-        Main.main("-c", "src/test/resources/com/puppycrawl/tools/checkstyle/config-filelength.xml",
-            "src/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/");
+        Main.main("-c", getPath("config-filelength.xml"),
+            getPath("checks/metrics"));
     }
 
     @Test

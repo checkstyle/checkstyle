@@ -58,8 +58,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
     public void testAllChecksWithDefaultConfiguration() throws Exception {
 
         final Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
-        final String inputFilePath = "src/test/resources-noncompilable/"
-            + "com/puppycrawl/tools/checkstyle/InputDefaultConfig.java";
+        final String inputFilePath = getNonCompilablePath("InputDefaultConfig.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         for (Class<?> check : checkstyleChecks) {
@@ -69,8 +68,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 // Checks which have Check as a parent.
                 if (check.equals(ImportControlCheck.class)) {
                     // ImportControlCheck must have the import control configuration file to avoid violation.
-                    checkConfig.addAttribute("file",
-                        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/imports/import-control_complete.xml");
+                    checkConfig.addAttribute("file", getPath("import-control_complete.xml"));
                 }
                 checker = createChecker(checkConfig);
             }
