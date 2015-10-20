@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
@@ -29,6 +30,17 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
 public class AnnotationTest extends BaseCheckTestSupport {
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("grammars" + File.separator
+                + "java8" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("grammars" + File.separator
+                + "java8" + File.separator + filename);
+    }
 
     @Test
     public void testSimpleTypeAnnotation()
@@ -36,8 +48,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                getPath("grammars/java8/InputAnnotationsTest1.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationsTest1.java"), expected);
 
     }
 
@@ -47,10 +58,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest2.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest2.java"), expected);
 
     }
 
@@ -60,10 +68,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest3.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest3.java"), expected);
 
     }
 
@@ -73,10 +78,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest4.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest4.java"), expected);
 
     }
 
@@ -86,10 +88,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest5.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest5.java"), expected);
 
     }
 
@@ -99,10 +98,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest6.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest6.java"), expected);
 
     }
 
@@ -112,10 +108,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest7.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest7.java"), expected);
 
     }
 
@@ -125,10 +118,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest8.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest8.java"), expected);
 
     }
 
@@ -138,10 +128,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest9.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest9.java"), expected);
 
     }
 
@@ -151,10 +138,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-                  new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/grammars/java8/"
-                        + "InputAnnotationsTest10.java").getCanonicalPath(), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest10.java"), expected);
 
     }
 
