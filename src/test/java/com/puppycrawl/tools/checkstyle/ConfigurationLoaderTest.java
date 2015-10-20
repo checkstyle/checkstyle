@@ -44,6 +44,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  * @author lkuehne
  */
 public class ConfigurationLoaderTest {
+    private static String getConfigPath(String filename) {
+        return "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + filename;
+    }
 
     private static Configuration loadConfiguration(String name)
         throws CheckstyleException {
@@ -52,8 +55,7 @@ public class ConfigurationLoaderTest {
 
     private static Configuration loadConfiguration(
         String name, Properties props) throws CheckstyleException {
-        final String fName =
-            "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + name;
+        final String fName = getConfigPath(name);
 
         return ConfigurationLoader.loadConfiguration(
                 fName, new PropertiesExpander(props));
@@ -66,7 +68,7 @@ public class ConfigurationLoaderTest {
 
         // load config that's only found in the classpath
         final DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-            "src/test/resources/com/puppycrawl/tools/checkstyle/configs/checkstyle_checks.xml", new PropertiesExpander(props));
+                getConfigPath("checkstyle_checks.xml"), new PropertiesExpander(props));
 
         //verify the root, and property substitution
         final Properties attributes = new Properties();
@@ -334,8 +336,7 @@ public class ConfigurationLoaderTest {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 
-        final File file = new File(
-                "src/test/resources/com/puppycrawl/tools/checkstyle/configs/subdir/including.xml");
+        final File file = new File(getConfigPath("subdir/including.xml"));
         final DefaultConfiguration config =
             (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                     file.toURI().toString(), new PropertiesExpander(props));
@@ -403,8 +404,7 @@ public class ConfigurationLoaderTest {
 
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        "src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
-                                + "config_with_ignore.xml",
+                        getConfigPath("config_with_ignore.xml"),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -416,8 +416,7 @@ public class ConfigurationLoaderTest {
 
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(new InputSource(
-                        new File("src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
-                                + "config_with_ignore.xml").toURI().toString()),
+                        new File(getConfigPath("config_with_ignore.xml")).toURI().toString()),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -429,8 +428,7 @@ public class ConfigurationLoaderTest {
 
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                        "src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
-                                + "config_with_checker_ignore.xml",
+                        getConfigPath("config_with_checker_ignore.xml"),
                         new PropertiesExpander(new Properties()), true);
 
         final Configuration[] children = config.getChildren();
@@ -460,9 +458,7 @@ public class ConfigurationLoaderTest {
             @SuppressWarnings("deprecation")
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                            new FileInputStream(
-                                    "src/test/resources/com/puppycrawl/tools/checkstyle/configs/"
-                                    + "config_with_ignore.xml"),
+                            new FileInputStream(getConfigPath("config_with_ignore.xml")),
                             new PropertiesExpander(new Properties()), true);
 
             final Configuration[] children = config.getChildren();
