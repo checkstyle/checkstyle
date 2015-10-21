@@ -74,7 +74,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
             "44:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
             "45:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
-        verify(checkConfig, getPath("InputUnusedImportsCheck.java"), expected);
+        verify(checkConfig, getPath("InputUnusedImports.java"), expected);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
             "32:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
             "45:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
-        verify(checkConfig, getPath("InputUnusedImportsCheck.java"), expected);
+        verify(checkConfig, getPath("InputUnusedImports.java"), expected);
     }
 
     @Test
@@ -168,7 +168,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
             "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
             "4:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
-        verify(checkConfig, getNonCompilablePath("InputRedundantImportCheck_UnnamedPackage.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"), expected);
     }
 
 }

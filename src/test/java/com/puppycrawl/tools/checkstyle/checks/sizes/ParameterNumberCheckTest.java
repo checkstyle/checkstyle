@@ -105,6 +105,6 @@ public class ParameterNumberCheckTest
             "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "11:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verify(checkConfig, getPath("InputParameterNumberCheck.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumber.java"), expected);
     }
 }

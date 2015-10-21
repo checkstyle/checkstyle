@@ -64,7 +64,7 @@ public class SuperCloneCheckTest
             "13:8: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "19:8: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verify(checkConfig, getNonCompilablePath("InputSuperCloneCheck.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputSuperClone.java"), expected);
     }
 
     @Test

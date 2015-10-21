@@ -233,7 +233,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
             "15:11: Return from catch is not allowed.",
         };
 
-        verify(checkConfig, getPath("InputReturnFromCatchCheck.java"), expected);
+        verify(checkConfig, getPath("InputReturnFromCatch.java"), expected);
     }
 
     @Test
@@ -250,7 +250,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
             "15:11: Return from finally is not allowed.",
         };
 
-        verify(checkConfig, getPath("InputReturnFromFinallyCheck.java"), expected);
+        verify(checkConfig, getPath("InputReturnFromFinally.java"), expected);
     }
 
     @Test
@@ -264,7 +264,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputReturnFromFinallyCheck.java"), expected);
+        verify(checkConfig, getPath("InputReturnFromFinally.java"), expected);
     }
 
     @Test
@@ -284,7 +284,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
             "23:51: this cannot be null.",
         };
 
-        verify(checkConfig, getPath("InputReturnFromFinallyCheck.java"), expected);
+        verify(checkConfig, getPath("InputReturnFromFinally.java"), expected);
     }
 
     @Test
@@ -303,7 +303,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
             "23:51: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
         };
 
-        verify(checkConfig, getPath("InputReturnFromFinallyCheck.java"), expected);
+        verify(checkConfig, getPath("InputReturnFromFinally.java"), expected);
     }
 
     @Test
@@ -324,7 +324,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
             "24:77: " + getCheckMessage(MSG_KEY_SUM_MIN, 1, 3, "EQUAL"),
         };
 
-        verify(checkConfig, getPath("InputReturnFromFinallyCheck.java"), expected);
+        verify(checkConfig, getPath("InputReturnFromFinally.java"), expected);
     }
 
     @Test
@@ -346,6 +346,6 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
             "24:77: custom message",
         };
 
-        verify(checkConfig, getPath("InputReturnFromFinallyCheck.java"), expected);
+        verify(checkConfig, getPath("InputReturnFromFinally.java"), expected);
     }
 }

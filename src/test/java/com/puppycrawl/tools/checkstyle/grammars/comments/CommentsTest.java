@@ -211,7 +211,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         DetailAST ident = new DetailAST();
         ident.setType(IDENT);
-        ident.setText("InputCommentsTest_1");
+        ident.setText("InputComments1");
         ident.setLineNo(5);
         ident.setColumnNo(0);
 
@@ -436,7 +436,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         DetailAST identClassName = new DetailAST();
         identClassName.setType(IDENT);
-        identClassName.setText("InputCommentsTest_2");
+        identClassName.setText("InputComments2");
         identClassName.setLineNo(3);
         identClassName.setColumnNo(6);
 
@@ -636,7 +636,7 @@ public class CommentsTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.expectedTree = buildInput1();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputCommentsTest_1.java"), expected);
+        verify(checkConfig, getPath("InputComments1.java"), expected);
     }
 
     @Test
@@ -644,7 +644,7 @@ public class CommentsTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.expectedTree = buildInput2();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputCommentsTest_2.java"), expected);
+        verify(checkConfig, getPath("InputComments2.java"), expected);
     }
 
     @Test

@@ -57,7 +57,7 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
             "35: Empty catch block.",
             "42: Empty catch block.",
         };
-        verify(checkConfig, getPath("InputEmptyCatchBlockCheck.java"), expected);
+        verify(checkConfig, getPath("InputEmptyCatchBlock.java"), expected);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
             "230: Empty catch block.",
             "239: Empty catch block.",
         };
-        verify(checkConfig, getPath("InputEmptyCatchBlockCheck.java"), expected);
+        verify(checkConfig, getPath("InputEmptyCatchBlock.java"), expected);
     }
 
     @Test

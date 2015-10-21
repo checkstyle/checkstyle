@@ -89,7 +89,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
 
-        verify(checker, getPath("InputCorrectJavaDocParagraphCheck.java"));
+        verify(checker, getPath("InputCorrectJavaDocParagraph.java"));
     }
 
     @Test

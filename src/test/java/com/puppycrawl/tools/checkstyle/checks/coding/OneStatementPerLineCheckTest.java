@@ -93,6 +93,6 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
             "24:6: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputOneStatementPerLineCheck.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
     }
 }

@@ -115,7 +115,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testNpe() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNoWhiteSpaceAfterCheckFormerNpe.java"),
+        verify(checkConfig, getPath("InputNoWhiteSpaceAfterFormerNpe.java"),
                  expected);
     }
 }

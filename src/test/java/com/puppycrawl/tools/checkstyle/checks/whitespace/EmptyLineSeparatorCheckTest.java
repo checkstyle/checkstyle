@@ -62,7 +62,7 @@ public class EmptyLineSeparatorCheckTest
             "79: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
             "110: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
-        verify(checkConfig, getPath("InputEmptyLineSeparatorCheck.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparator.java"), expected);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class EmptyLineSeparatorCheckTest
             "79: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
             "110: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
-        verify(checkConfig, getPath("InputEmptyLineSeparatorCheck.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparator.java"), expected);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
         };
-        verify(checkConfig, getPath("InputEmptyLineSeparatorCheckHeader.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorHeader.java"), expected);
     }
 
     @Test
@@ -104,7 +104,7 @@ public class EmptyLineSeparatorCheckTest
             "38: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
             "43: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
         };
-        verify(checkConfig, getPath("InputEmptyLineSeparatorCheckMultipleEmptyLines.java"), expected);
+        verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleEmptyLines.java"), expected);
     }
 
     @Test

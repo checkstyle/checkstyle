@@ -56,7 +56,7 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
             "78:5: " + getCheckMessage(MSG_KEY),
             "95:9: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputInnerClassCheck.java"), expected);
+        verify(checkConfig, getPath("InputInnerClass.java"), expected);
     }
 
     @Test

@@ -56,7 +56,7 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputEqualsHashCodeCheck.java"), expected);
+        verify(checkConfig, getPath("InputEqualsHashCode.java"), expected);
     }
 
     @Test

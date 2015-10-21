@@ -48,7 +48,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationsTest1.java"), expected);
+        verify(checkConfig, getPath("InputAnnotations1.java"), expected);
 
     }
 
@@ -58,7 +58,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest2.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations2.java"), expected);
 
     }
 
@@ -68,7 +68,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest3.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations3.java"), expected);
 
     }
 
@@ -78,7 +78,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest4.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations4.java"), expected);
 
     }
 
@@ -88,7 +88,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest5.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations5.java"), expected);
 
     }
 
@@ -98,7 +98,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest6.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations6.java"), expected);
 
     }
 
@@ -108,7 +108,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest7.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations7.java"), expected);
 
     }
 
@@ -118,7 +118,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest8.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations8.java"), expected);
 
     }
 
@@ -128,7 +128,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest9.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations9.java"), expected);
 
     }
 
@@ -138,7 +138,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsTest10.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputAnnotations10.java"), expected);
 
     }
 

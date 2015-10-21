@@ -63,7 +63,7 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
             "43: " + getCheckMessage(MSG_KEY),
             "49: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputSingleLineJavadocCheck.java"), expected);
+        verify(checkConfig, getPath("InputSingleLineJavadoc.java"), expected);
     }
 
     @Test
@@ -82,6 +82,6 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
             "46: " + getCheckMessage(MSG_KEY),
             "49: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputSingleLineJavadocCheck.java"), expected);
+        verify(checkConfig, getPath("InputSingleLineJavadoc.java"), expected);
     }
 }

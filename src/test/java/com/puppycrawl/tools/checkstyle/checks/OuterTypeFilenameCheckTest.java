@@ -87,21 +87,21 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     public void testNestedClass() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOuterTypeFilenameCheck1.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeFilename1.java"), expected);
     }
 
     @Test
     public void testFinePublic() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOuterTypeFilenameCheck2.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeFilename2.java"), expected);
     }
 
     @Test
     public void testFineDefault() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOuterTypeFilenameCheck3.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeFilename3.java"), expected);
     }
 
     @Test
@@ -110,7 +110,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "4: " + getCheckMessage("type.file.mismatch"),
         };
-        verify(checkConfig, getPath("InputOuterTypeFilenameCheck5.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeFilename5.java"), expected);
     }
 
     @Test

@@ -106,7 +106,7 @@ public class FinalLocalVariableCheckTest
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFinalLocalVariableCheckFalsePositive.java"), expected);
+        verify(checkConfig, getPath("InputFinalLocalVariableFalsePositive.java"), expected);
     }
 
     @Test

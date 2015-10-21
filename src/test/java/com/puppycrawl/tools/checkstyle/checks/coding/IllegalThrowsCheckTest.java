@@ -48,7 +48,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrows.java"), expected);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrows.java"), expected);
     }
 
     /**
@@ -82,7 +82,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrows.java"), expected);
     }
 
     /**
@@ -100,7 +100,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrows.java"), expected);
     }
 
     /**
@@ -114,7 +114,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
         String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsIgnoreOverriddenMethods.java"), expected);
     }
 
     /**
@@ -131,7 +131,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
             "12:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsCheckIgnoreOverriddenMethods.java"), expected);
+        verify(checkConfig, getPath("InputIllegalThrowsIgnoreOverriddenMethods.java"), expected);
     }
 
     @Test

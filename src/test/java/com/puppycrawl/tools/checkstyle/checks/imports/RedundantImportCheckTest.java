@@ -71,7 +71,7 @@ public class RedundantImportCheckTest
             "14:1: " + getCheckMessage(MSG_DUPLICATE, 13, "java.util.List"),
             "26:1: " + getCheckMessage(MSG_DUPLICATE, 25, "javax.swing.WindowConstants.*"),
         };
-        verify(checkConfig, getPath("InputRedundantImportCheck.java"), expected);
+        verify(checkConfig, getPath("InputRedundantImport.java"), expected);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class RedundantImportCheckTest
             "2:1: " + getCheckMessage(MSG_DUPLICATE, 1, "java.util.List"),
             "4:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
         };
-        verify(checkConfig, getNonCompilablePath("InputRedundantImportCheck_UnnamedPackage.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"), expected);
     }
 
     @Test

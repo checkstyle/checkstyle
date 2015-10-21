@@ -81,7 +81,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "79: " + msg,
             "82: " + msg,
         };
-        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
+        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
 
     @Test
@@ -114,7 +114,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "79: " + msg,
             "82: " + msg,
         };
-        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
+        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
 
     @Test
@@ -142,7 +142,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "79: " + msg,
             "82: " + msg,
         };
-        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
+        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
 
     @Test
@@ -161,7 +161,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "33: " + msg,
             "42: " + msg,
         };
-        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
+        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
 
     @Test
@@ -183,7 +183,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "34: " + msg,
             "42: " + msg,
         };
-        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharactersCheck.java"), expected);
+        verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
 
     @Test

@@ -117,7 +117,7 @@ public class JavadocStyleCheckTest
             "405: " + getCheckMessage(NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -141,7 +141,7 @@ public class JavadocStyleCheckTest
             "405: " + getCheckMessage(NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -169,7 +169,7 @@ public class JavadocStyleCheckTest
             "405: " + getCheckMessage(NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -192,7 +192,7 @@ public class JavadocStyleCheckTest
             "378:15: " + getCheckMessage(UNCLOSED_HTML, "<b>Note:<b> it's unterminated tag.</p>"),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -202,7 +202,7 @@ public class JavadocStyleCheckTest
         checkConfig.addAttribute("checkHtml", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputJavadocStyleCheckHtmlComment.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyleHtmlComment.java"), expected);
     }
 
     @Test
@@ -226,7 +226,7 @@ public class JavadocStyleCheckTest
             "386: " + getCheckMessage(NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -253,7 +253,7 @@ public class JavadocStyleCheckTest
             "386: " + getCheckMessage(NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -285,7 +285,7 @@ public class JavadocStyleCheckTest
             "405: " + getCheckMessage(NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -302,7 +302,7 @@ public class JavadocStyleCheckTest
             "230: " + getCheckMessage(EMPTY),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test
@@ -330,7 +330,7 @@ public class JavadocStyleCheckTest
             "405: " + getCheckMessage(NO_PERIOD),
         };
 
-        verify(checkConfig, getPath("InputJavadocStyleCheck.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 
     @Test

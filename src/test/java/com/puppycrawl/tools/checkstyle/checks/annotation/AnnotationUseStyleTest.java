@@ -282,7 +282,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAnnotationUseStyleCheckTest.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyle.java"), expected);
 
     }
 

@@ -154,7 +154,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedCheckTest1.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecated1.java"), expected);
     }
 
     @Test
@@ -167,6 +167,6 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedCheckTest2.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecated2.java"), expected);
     }
 }

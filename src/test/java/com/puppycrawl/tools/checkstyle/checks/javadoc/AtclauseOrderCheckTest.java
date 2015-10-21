@@ -58,7 +58,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
         DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCorrectAtClauseOrderCheck.java"), expected);
+        verify(checkConfig, getPath("InputCorrectAtClauseOrder.java"), expected);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
             "278: " + getCheckMessage(MSG_KEY, tagOrder),
             "288: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputIncorrectAtClauseOrderCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectAtClauseOrder.java"), expected);
     }
 
     @Test
@@ -125,6 +125,6 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "113: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputIncorrectAtClauseOrderCheck.java"), expected);
+        verify(checkConfig, getPath("InputIncorrectAtClauseOrder.java"), expected);
     }
 }

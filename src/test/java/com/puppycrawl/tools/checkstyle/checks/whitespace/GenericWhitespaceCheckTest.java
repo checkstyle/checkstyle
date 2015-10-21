@@ -107,7 +107,7 @@ public class GenericWhitespaceCheckTest
             "60:60: " + getCheckMessage(WS_NOT_PRECEDED, "&"),
             "63:60: " + getCheckMessage(WS_FOLLOWED, ">"),
         };
-        verify(checkConfig, getPath("InputGenericWhitespaceCheck.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespace.java"), expected);
     }
 
     @Test
@@ -119,13 +119,13 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testInnerClass() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputGenericWhitespaceInnerClassCheck.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceInnerClass.java"), expected);
     }
 
     @Test
     public void testMethodReferences() throws Exception {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferencesTest3.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences3.java"), expected);
     }
 
     @Test

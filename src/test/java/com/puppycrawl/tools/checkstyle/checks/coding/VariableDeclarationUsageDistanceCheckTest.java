@@ -80,7 +80,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "901: " + getCheckMessage(MSG_KEY, "a", 4, 1),
             "967: " + getCheckMessage(MSG_KEY, "a", 4, 1),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceCheck.java"), expected);
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "901: " + getCheckMessage(MSG_KEY, "a", 4, 3),
             "967: " + getCheckMessage(MSG_KEY, "a", 4, 3),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceCheck.java"), expected);
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 
     @Test
@@ -138,7 +138,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "540: " + getCheckMessage(MSG_KEY, "id", 2, 1),
             "542: " + getCheckMessage(MSG_KEY, "parentId", 3, 1),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceCheck.java"), expected);
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 
     @Test
@@ -171,7 +171,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "540: Distance between variable 'id' declaration and its first usage is 2, but allowed 1.",
             "542: Distance between variable 'parentId' declaration and its first usage is 4, but allowed 1.",
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceCheck.java"), expected);
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 
     @Test
@@ -214,7 +214,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "901: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
             "967: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceCheck.java"), expected);
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 
     @Test
@@ -237,6 +237,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         };
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceCheck.java"), expected);
+        verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 }

@@ -50,7 +50,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
             "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatchCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatch.java"), expected);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
             "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatchCheck.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatch.java"), expected);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
             "16:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatchCheck2.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatch2.java"), expected);
     }
 
     @Test

@@ -120,7 +120,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tokens", "LITERAL_WHILE, LITERAL_DO, LITERAL_FOR");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNeedBracesCheckTest.java"), expected);
+        verify(checkConfig, getPath("InputNeedBraces.java"), expected);
     }
 
     @Test
@@ -138,6 +138,6 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "56: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
-        verify(checkConfig, getPath("InputNeedBracesCheckTest.java"), expected);
+        verify(checkConfig, getPath("InputNeedBraces.java"), expected);
     }
 }

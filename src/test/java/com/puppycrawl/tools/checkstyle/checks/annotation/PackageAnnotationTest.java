@@ -69,7 +69,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageAnnotationCheckTest.java"), expected);
+        verify(checkConfig, getPath("InputPackageAnnotation.java"), expected);
     }
 
     @Test
@@ -80,6 +80,6 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
             "0: Package annotations must be in the package-info.java info.",
         };
 
-        verify(checkConfig, getNonCompilablePath("InputPackageAnnotationCheckTest2.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputPackageAnnotation2.java"), expected);
     }
 }

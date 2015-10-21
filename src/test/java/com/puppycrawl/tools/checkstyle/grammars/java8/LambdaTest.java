@@ -42,7 +42,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest1.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda1.java"), expected);
 
     }
 
@@ -52,7 +52,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest2.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda2.java"), expected);
 
     }
 
@@ -62,7 +62,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest3.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda3.java"), expected);
 
     }
 
@@ -72,7 +72,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest4.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda4.java"), expected);
 
     }
 
@@ -82,7 +82,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest5.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda5.java"), expected);
 
     }
 
@@ -92,7 +92,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest6.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda6.java"), expected);
 
     }
 
@@ -102,7 +102,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest7.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda7.java"), expected);
 
     }
 
@@ -112,7 +112,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest8.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda8.java"), expected);
 
     }
 
@@ -122,7 +122,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest9.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda9.java"), expected);
 
     }
 
@@ -132,7 +132,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest10.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda10.java"), expected);
 
     }
 
@@ -142,7 +142,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest11.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda11.java"), expected);
 
     }
 
@@ -152,7 +152,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest12.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda12.java"), expected);
 
     }
 
@@ -162,7 +162,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest13.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda13.java"), expected);
 
     }
 
@@ -172,7 +172,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest14.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda14.java"), expected);
 
     }
 
@@ -182,7 +182,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest15.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda15.java"), expected);
 
     }
 
@@ -192,7 +192,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest16.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda16.java"), expected);
 
     }
 
@@ -202,7 +202,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest17.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda17.java"), expected);
 
     }
 
@@ -212,7 +212,7 @@ public class LambdaTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaTest18.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputLambda18.java"), expected);
 
     }
 

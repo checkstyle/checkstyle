@@ -84,7 +84,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
             "28: " + getCheckMessage(MSG_KEY, "Support Link ", 2),
             "34: " + getCheckMessage(MSG_KEY, "failed", 2),
         };
-        verify(checkConfig, getPath("InputUniquePropertiesCheck.properties"), expected);
+        verify(checkConfig, getPath("InputUniqueProperties.properties"), expected);
     }
 
     /**

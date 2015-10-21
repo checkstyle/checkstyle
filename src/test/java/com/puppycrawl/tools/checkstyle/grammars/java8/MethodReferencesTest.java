@@ -42,7 +42,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferencesTest.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences.java"), expected);
 
     }
 
@@ -52,7 +52,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferencesTest2.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences2.java"), expected);
 
     }
 
@@ -62,7 +62,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferencesTest3.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences3.java"), expected);
 
     }
 }

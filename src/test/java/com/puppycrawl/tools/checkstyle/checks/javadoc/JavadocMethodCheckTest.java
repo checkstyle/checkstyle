@@ -104,7 +104,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "57:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(config, getPath("InputJavadocMethodCheck_SmallMethods.java"), expected);
+        verify(config, getPath("InputJavadocMethodSmallMethods.java"), expected);
     }
 
     @Test

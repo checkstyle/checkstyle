@@ -77,7 +77,7 @@ public class IllegalInstantiationCheckTest
                 createCheckConfig(IllegalInstantiationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getNonCompilablePath("InputIllegalInstantiationCheckTest2.java"),
+                getNonCompilablePath("InputIllegalInstantiation2.java"),
                 expected);
     }
 
@@ -92,7 +92,7 @@ public class IllegalInstantiationCheckTest
             "3:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
         verify(checkConfig,
-                getNonCompilablePath("InputIllegalInstantiationCheckNoPackage.java"),
+                getNonCompilablePath("InputIllegalInstantiationNoPackage.java"),
                 expected);
     }
 
@@ -108,7 +108,7 @@ public class IllegalInstantiationCheckTest
             "11:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
         verify(checkConfig,
-                getNonCompilablePath("InputIllegalInstantiationCheckLang.java"),
+                getNonCompilablePath("InputIllegalInstantiationLang.java"),
                 expected);
     }
 
@@ -121,7 +121,7 @@ public class IllegalInstantiationCheckTest
                 "jjva.lang.Boolean,java.lang*Boolean");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getNonCompilablePath("InputIllegalInstantiationCheckLang.java"),
+                getNonCompilablePath("InputIllegalInstantiationLang.java"),
                 expected);
     }
 
@@ -155,7 +155,7 @@ public class IllegalInstantiationCheckTest
         elistAst.setNextSibling(rparenAst);
 
         IllegalInstantiationCheck check = new IllegalInstantiationCheck();
-        File inputFile = new File(getNonCompilablePath("InputIllegalInstantiationCheckLang.java"));
+        File inputFile = new File(getNonCompilablePath("InputIllegalInstantiationLang.java"));
         check.setFileContents(new FileContents(new FileText(inputFile, "UTF-8")));
         check.configure(createCheckConfig(IllegalInstantiationCheck.class));
         check.setMessages(new LocalizedMessages());

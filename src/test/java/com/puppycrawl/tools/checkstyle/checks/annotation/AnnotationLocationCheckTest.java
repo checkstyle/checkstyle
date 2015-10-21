@@ -109,7 +109,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
     public void testWithoutAnnotations() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocationCheckTest1.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocation1.java"), expected);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation12"),
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation13"),
             };
-        verify(checkConfig, getPath("InputAnnotationLocationCheckTest2.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocation2.java"), expected);
     }
 
 }
