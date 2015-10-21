@@ -61,4 +61,15 @@ public class InputMissingJavadocTags {
     private int missingReturnAtTheEnd(int number) {
         return number;
     }
+
+    /**
+     * Missing return at the end followed by empty line.
+     *
+     * @param number to return
+     * @return
+     * 
+     */
+    private int missingReturnAtTheEndFollowedByEmptyLine(int number) {
+        return number;
+    }
 }

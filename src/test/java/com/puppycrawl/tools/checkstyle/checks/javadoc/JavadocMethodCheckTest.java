@@ -404,6 +404,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "30:42: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "ThreadDeath"),
             "51: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "61: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "72: " + getCheckMessage(MSG_RETURN_EXPECTED),
         };
         verify(checkConfig, getPath("InputMissingJavadocTags.java"), expected);
     }
