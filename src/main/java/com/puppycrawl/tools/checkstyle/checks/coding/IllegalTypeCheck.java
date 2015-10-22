@@ -404,7 +404,7 @@ public class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of illegal variable types.
      * @param classNames array of illegal variable types
      */
-    public void setIllegalClassNames(String... classNames) {
+    public final void setIllegalClassNames(String... classNames) {
         illegalClassNames.clear();
         Collections.addAll(illegalClassNames, classNames);
     }
@@ -413,7 +413,7 @@ public class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of ignore method names.
      * @param methodNames array of ignored method names
      */
-    public void setIgnoredMethodNames(String... methodNames) {
+    public final void setIgnoredMethodNames(String... methodNames) {
         ignoredMethodNames.clear();
         Collections.addAll(ignoredMethodNames, methodNames);
     }
@@ -422,7 +422,7 @@ public class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of legal abstract class names.
      * @param classNames array of legal abstract class names
      */
-    public void setLegalAbstractClassNames(String... classNames) {
+    public final void setLegalAbstractClassNames(String... classNames) {
         legalAbstractClassNames.clear();
         Collections.addAll(legalAbstractClassNames, classNames);
     }
@@ -431,7 +431,7 @@ public class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of member modifiers (of methods and fields) which should be checked.
      * @param modifiers String contains modifiers.
      */
-    public void setMemberModifiers(String modifiers) {
+    public final void setMemberModifiers(String modifiers) {
         final List<Integer> modifiersList = new ArrayList<>();
         for (String modifier : modifiers.split(",")) {
             modifiersList.add(TokenUtils.getTokenId(modifier.trim()));
