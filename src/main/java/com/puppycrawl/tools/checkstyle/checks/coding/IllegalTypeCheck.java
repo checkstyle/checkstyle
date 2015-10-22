@@ -24,6 +24,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -92,8 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 public final class IllegalTypeCheck extends AbstractFormatCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "illegal.type";
 
@@ -170,7 +171,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
