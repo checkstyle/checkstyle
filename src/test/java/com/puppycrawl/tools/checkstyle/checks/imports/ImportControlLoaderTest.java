@@ -69,14 +69,13 @@ public class ImportControlLoaderTest {
                 }
             };
         try {
-            Class<?> clazz = Class.forName(
-                    "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader");
+            Class<?> clazz = ImportControlLoader.class;
             Method privateMethod = clazz.getDeclaredMethod("safeGet", Attributes.class, String.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, attr, "you_cannot_find_me");
         }
         catch (IllegalAccessException | IllegalArgumentException
-                | ClassNotFoundException | NoSuchMethodException | SecurityException e) {
+                | NoSuchMethodException | SecurityException e) {
             throw new IllegalStateException(e);
         }
     }
@@ -88,14 +87,13 @@ public class ImportControlLoaderTest {
     public void testLoadThrowsException() throws InvocationTargetException {
         InputSource source = new InputSource();
         try {
-            Class<?> clazz = Class.forName(
-                    "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader");
+            Class<?> clazz = ImportControlLoader.class;
             Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class, URI.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, source, new File(getPath("import-control_complete.xml")).toURI());
         }
         catch (IllegalAccessException | IllegalArgumentException
-                | ClassNotFoundException | NoSuchMethodException | SecurityException e) {
+                | NoSuchMethodException | SecurityException e) {
             throw new IllegalStateException(e);
         }
     }

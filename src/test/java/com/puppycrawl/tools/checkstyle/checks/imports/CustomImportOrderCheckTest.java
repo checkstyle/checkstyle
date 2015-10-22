@@ -353,14 +353,13 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     public void testGetFullImportIdent() {
         Object actual;
         try {
-            Class<?> clazz = Class.forName(
-                    "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck");
+            Class<?> clazz = CustomImportOrderCheck.class;
             Object t = clazz.getConstructor().newInstance();
             Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
             method.setAccessible(true);
             actual = method.invoke(t, (DetailAST) null);
         }
-        catch (ClassNotFoundException | NoSuchMethodException | InstantiationException
+        catch (NoSuchMethodException | InstantiationException
                   | IllegalAccessException | InvocationTargetException ignored) {
             actual = null;
         }
