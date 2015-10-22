@@ -91,7 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
-public final class IllegalTypeCheck extends AbstractFormatCheck {
+public class IllegalTypeCheck extends AbstractFormatCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
