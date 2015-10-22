@@ -47,6 +47,7 @@
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheckTest.java$"/>
     <suppress checks="MethodCount" files="[\\/]MainTest.java$"/>
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
+    <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/]test[\\/]"/>
 
     <!-- suppressions to remove over time -->
@@ -91,7 +92,7 @@
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
     <!-- they are aggregators of logic, usage a several of classes are ok -->
     <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|AbstractJavadocCheck)\.java"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport)\.java"/>
     <!-- a lot of GUI elements is OK -->
     <suppress checks="ClassDataAbstractionCoupling" files="ParseTreeInfoPanel\.java"/>
 

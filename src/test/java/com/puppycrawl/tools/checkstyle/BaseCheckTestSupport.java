@@ -1,3 +1,22 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2015 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle;
 
 import static java.util.Arrays.asList;
@@ -29,25 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class BaseCheckTestSupport {
-    /**
-     * A brief logger that only display info about errors.
-     */
-    protected static class BriefLogger
-            extends DefaultLogger {
-        public BriefLogger(OutputStream out) {
-            super(out, true, out, false, false);
-        }
-
-        public BriefLogger(OutputStream out, boolean printSeverity) {
-            super(out, true, out, false, printSeverity);
-        }
-
-        @Override
-        public void auditStarted(AuditEvent event) {
-        }
-
-    }
-
     protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
@@ -157,14 +157,55 @@ public class BaseCheckTestSupport {
         Collections.addAll(theFiles, processedFiles);
         final int errs = checker.process(theFiles);
 
+        final Map<String, List<String>> actualViolations = getActualViolations(errs);
+        final Map<String, List<String>> realExpectedViolations = Maps.filterValues(expectedViolations, new Predicate<List<String>>() {
+            @Override
+            public boolean apply(List<String> input) {
+                return !input.isEmpty();
+            }
+        });
+        final MapDifference<String, List<String>> violationDifferences = Maps.difference(realExpectedViolations, actualViolations);
+
+        final Map<String, List<String>> missingViolations = violationDifferences.entriesOnlyOnLeft();
+        final Map<String, List<String>> unexpectedViolations = violationDifferences.entriesOnlyOnRight();
+        final Map<String, ValueDifference<List<String>>> differingViolations = violationDifferences.entriesDiffering();
+
+        final StringBuilder message = new StringBuilder();
+        if (!missingViolations.isEmpty()) {
+            message.append("missing violations: ").append(missingViolations);
+        }
+        if (!unexpectedViolations.isEmpty()) {
+            if (message.length() > 0) {
+                message.append('\n');
+            }
+            message.append("unexpected violations: ").append(unexpectedViolations);
+        }
+        if (!differingViolations.isEmpty()) {
+            if (message.length() > 0) {
+                message.append('\n');
+            }
+            message.append("differing violations: ").append(differingViolations);
+        }
+
+        assertTrue(message.toString(),
+            missingViolations.isEmpty()
+            && unexpectedViolations.isEmpty()
+            && differingViolations.isEmpty());
+
+        checker.destroy();
+    }
+
+    private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
         // process each of the lines
         final ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
+
         try (final LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
             final Map<String, List<String>> actualViolations = new HashMap<>();
-            for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errs; line = lnr.readLine()) {
+            for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
+                    line = lnr.readLine()) {
                 // have at least 2 characters before the splitting colon,
                 // to not split after the drive letter on windows
                 final String[] actualViolation = line.split("(?<=.{2}):", 2);
@@ -179,41 +220,8 @@ public class BaseCheckTestSupport {
                 actualViolationsPerFile.add(actualViolationMessage);
             }
 
-            final Map<String, List<String>> realExpectedViolations = Maps.filterValues(expectedViolations, new Predicate<List<String>>() {
-                @Override
-                public boolean apply(List<String> input) {
-                    return !input.isEmpty();
-                }
-            });
-            final MapDifference<String, List<String>> violationDifferences = Maps.difference(realExpectedViolations, actualViolations);
-
-            final Map<String, List<String>> missingViolations = violationDifferences.entriesOnlyOnLeft();
-            final Map<String, List<String>> unexpectedViolations = violationDifferences.entriesOnlyOnRight();
-            final Map<String, ValueDifference<List<String>>> differingViolations = violationDifferences.entriesDiffering();
-
-            final StringBuilder message = new StringBuilder();
-            if (!missingViolations.isEmpty()) {
-                message.append("missing violations: ").append(missingViolations);
-            }
-            if (!unexpectedViolations.isEmpty()) {
-                if (message.length() > 0) {
-                    message.append('\n');
-                }
-                message.append("unexpected violations: ").append(unexpectedViolations);
-            }
-            if (!differingViolations.isEmpty()) {
-                if (message.length() > 0) {
-                    message.append('\n');
-                }
-                message.append("differing violations: ").append(differingViolations);
-            }
-
-            assertTrue(message.toString(),
-                missingViolations.isEmpty()
-                && unexpectedViolations.isEmpty()
-                && differingViolations.isEmpty());
+            return actualViolations;
         }
-        checker.destroy();
     }
 
     /**
@@ -227,11 +235,30 @@ public class BaseCheckTestSupport {
         Properties pr = new Properties();
         try {
             pr.load(getClass().getResourceAsStream("messages.properties"));
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             return null;
         }
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
                 Locale.ROOT);
         return formatter.format(arguments);
+    }
+
+    /**
+     * A brief logger that only display info about errors.
+     */
+    protected static class BriefLogger
+            extends DefaultLogger {
+        public BriefLogger(OutputStream out) {
+            super(out, true, out, false, false);
+        }
+
+        public BriefLogger(OutputStream out, boolean printSeverity) {
+            super(out, true, out, false, printSeverity);
+        }
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+        }
     }
 }

@@ -634,7 +634,7 @@ public class CommentsTest extends BaseCheckTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput1() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
-        CompareTreesWithComments.expectedTree = buildInput1();
+        CompareTreesWithComments.setExpectedTree(buildInput1());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputComments1.java"), expected);
     }
@@ -642,7 +642,7 @@ public class CommentsTest extends BaseCheckTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput2() throws Exception {
         DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
-        CompareTreesWithComments.expectedTree = buildInput2();
+        CompareTreesWithComments.setExpectedTree(buildInput2());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputComments2.java"), expected);
     }
