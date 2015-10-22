@@ -155,11 +155,12 @@ public class DefaultLogger
     @Override
     public void auditStarted(AuditEvent event) {
         infoWriter.println("Starting audit...");
+        infoWriter.flush();
     }
 
     @Override
     public void fileFinished(AuditEvent event) {
-        // No need to implement this method in this class
+        infoWriter.flush();
     }
 
     @Override
