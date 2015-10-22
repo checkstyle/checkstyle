@@ -110,4 +110,7 @@
     <suppress checks="ParameterNumber"
               files="LocalizedMessage.java"
               lines="105, 143, 174"/>
+
+    <!-- 31 "register" lines in a straightforward constructor, max allowed is 30. -->
+    <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java" lines="48"/>
 </suppressions>

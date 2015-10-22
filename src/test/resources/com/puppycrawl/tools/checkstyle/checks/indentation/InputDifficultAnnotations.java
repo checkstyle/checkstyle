@@ -68,3 +68,13 @@ class IncorrectClass { //indent:0 exp:0
 } //indent:0 exp:0
 
 @interface SimpleAnnotation {} //indent:0 exp:0
+
+class InnerAnnotations { //indent:0 exp:0
+    @interface MyAnno { //indent:4 exp:4
+
+        int HELLO = 3; //indent:8 exp:8
+        String name(); //indent:8 exp:8
+    int WRONG_HELLO = 2; //indent:4 exp:8 warn
+
+    } //indent:4 exp:4
+} //indent:0 exp:0

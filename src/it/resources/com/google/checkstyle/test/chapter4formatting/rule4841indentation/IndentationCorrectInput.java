@@ -110,4 +110,8 @@ public abstract class IndentationCorrectInput { //indent:0 exp:0
           "superVeryExtraLongString"); //indent:10 exp:10
     } //indent:4 exp:4
   } //indent:2 exp:2
+
+  public @interface Anno { //indent:2 exp:2
+    public static final int X = 8; //indent:4 exp:4
+  } //indent:2 exp:2
 } //indent:0 exp:0

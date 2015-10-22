@@ -76,6 +76,7 @@ public class HandlerFactory {
         register(TokenTypes.INDEX_OP, IndexHandler.class);
         register(TokenTypes.LITERAL_SYNCHRONIZED, SynchronizedHandler.class);
         register(TokenTypes.LAMBDA, LambdaHandler.class);
+        register(TokenTypes.ANNOTATION_DEF, ClassDefHandler.class);
     }
 
     /**
