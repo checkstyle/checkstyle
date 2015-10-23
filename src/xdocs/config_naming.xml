@@ -130,7 +130,7 @@
     &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
     &lt;property name="ignoreStatic" value="false"/&gt;
     &lt;property name="allowedAbbreviationLength" value="1"/&gt;
-    &lt;property name="allowedAbbreviation" value="XML,URL"/&gt;
+    &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

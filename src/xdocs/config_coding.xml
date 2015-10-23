@@ -430,7 +430,7 @@ String nullString = null;
          </p>
          <source>
  &lt;module name="FinalLocalVariable"&gt;
-     &lt;property name="token" value="VARIABLE_DEF"/&gt;
+     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
      &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
  &lt;/module&gt;
          </source>
@@ -2774,7 +2774,7 @@ case 5:
         <source>
 &lt;module name=&quot;FallThrough&quot;&gt;
     &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
-&lt;module name=&quot;FallThrough&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
@@ -3344,10 +3344,10 @@ cal.set(Calendar.MINUTE, minutes);
          </p>
          <source>
 &lt;module name="VariableDeclarationUsageDistance"&gt;
-    &lt;property name="allowedDistance" value="4"&gt;
-    &lt;property name="ignoreVariablePattern" value="^temp.*"&gt;
-    &lt;property name="validateBetweenScopes" value="true"&gt;
-    &lt;property name="mIgnoreFinal" value="false"&gt;
+    &lt;property name="allowedDistance" value="4"/&gt;
+    &lt;property name="ignoreVariablePattern" value="^temp.*"/&gt;
+    &lt;property name="validateBetweenScopes" value="true"/&gt;
+    &lt;property name="ignoreFinal" value="false"/&gt;
 &lt;/module&gt;
          </source>
       </subsection>

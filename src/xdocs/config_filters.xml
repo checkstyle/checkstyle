@@ -123,11 +123,11 @@
               For example, the following configuration fragment directs the
               Checker to use a <code>SuppressionFilter</code>
               with suppressions
-              file <code>docs/suppressions.xml</code>:
+              file <code>config/suppressions.xml</code>:
           </p>
           <source>
 &lt;module name=&quot;SuppressionFilter&quot;&gt;
-  &lt;property name=&quot;file&quot; value=&quot;docs/suppressions.xml&quot;/&gt;
+  &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
 &lt;/module&gt;
           </source>
           <p>

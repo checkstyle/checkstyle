@@ -129,7 +129,7 @@ class PackageObjectFactory implements ModuleFactory {
             declaredConstructor.setAccessible(true);
             return declaredConstructor.newInstance();
         }
-        catch (final ReflectiveOperationException exception) {
+        catch (final ReflectiveOperationException | NoClassDefFoundError exception) {
             throw new CheckstyleException("Unable to find class for " + className, exception);
         }
     }

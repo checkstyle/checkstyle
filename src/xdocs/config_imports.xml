@@ -710,12 +710,12 @@ public class SomeClass { ... }
       <subsection name="Example">
         <p>
           To configure the check using a import control file called
-          &quot;import-control.xml&quot;, then have the following:
+          &quot;config/import-control.xml&quot;, then have the following:
         </p>
 
         <source>
 &lt;module name=&quot;ImportControl&quot;&gt;
-    &lt;property name=&quot;file&quot; value=&quot;import-control.xml&quot;/&gt;
+    &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
 &lt;/module&gt;
         </source>
 

@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre class="body">
  * &lt;module name=&quot;NoLineWrap&quot;&gt;
- *     &lt;property name="tokens" value="IMPORT"&gt;
+ *     &lt;property name="tokens" value="IMPORT"/&gt;
  * &lt;/module&gt;
  * </pre>
  *

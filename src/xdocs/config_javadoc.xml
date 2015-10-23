@@ -221,7 +221,7 @@
         <source>
 &lt;module name="JavadocType"&gt;
    &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludescope" value="package"/&gt;
+   &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -970,14 +970,6 @@ public boolean isSomething()
         <source>
 &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
         </source>
-        <p>
-          To check non-empty at-clause description for tags <code>@throws</code>, <code>@deprecated</code>, use following config:
-        </p>
-        <source>
-&lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
-    &lt;property name=&quot;target&quot; value=&quot;JAVADOC_TAG_THROWS_LITERAL, JAVADOC_TAG_DEPRECATED_LITERAL&quot;/&gt;
-&lt;/module&gt;
-        </source>
       </subsection>
 
       <subsection name="Example of Usage">
@@ -1036,7 +1028,7 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
-    &lt;property name=&quot;tagContinuationIndentation&quot; value=&quot;4&quot;/&gt;
+    &lt;property name=&quot;offset&quot; value=&quot;4&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

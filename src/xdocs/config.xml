@@ -123,7 +123,7 @@
           for element:
 
           <source>
-&lt;module name=&quot;com.puppycrawl.tools.checkstyle.TreeWalker&quot;&gt;
+&lt;module name=&quot;com.puppycrawl.tools.checkstyle.TreeWalker&quot;/&gt;
           </source>
 
           This is useful for plugging third-party modules into a configuration.
@@ -218,7 +218,9 @@
      </p>
 
       <source>
-&lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
+&lt;module name=&quot;Header&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;${checkstyle.header.file}&quot;/&gt;
+&lt;/module&gt;
       </source>
 
       <p>
@@ -236,7 +238,7 @@
       </p>
 
       <source>
-&lt;module name=&quot;JavaDocMethod&quot;&gt;
+&lt;module name=&quot;JavadocMethod&quot;&gt;
   &lt;property name=&quot;severity&quot;
                value=&quot;${checkstyle.javadoc.severity}&quot;
                default=&quot;error&quot;/&gt;
@@ -375,9 +377,9 @@
     &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
     ...
 &lt;/module&gt;
-
-OR
-
+      </source>
+        <p>OR</p>
+      <source>
 &lt;module name=&quot;Checker&quot;&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
     ...
@@ -479,9 +481,9 @@ OR
     &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
     ...
 &lt;/module&gt;
-
-OR
-
+      </source>
+        <p>OR</p>
+      <source>
 &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
     ...
@@ -550,7 +552,7 @@ OR
 &lt;module name=&quot;MethodLength&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
 &lt;/module&gt;
-        &lt;module name=&quot;MethodLength&quot;&gt;
+&lt;module name=&quot;MethodLength&quot;&gt;
     &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
     &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
 &lt;/module&gt;

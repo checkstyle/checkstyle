@@ -1516,7 +1516,7 @@ import com.puppycrawl.tools.
       </p>
       <source>
 &lt;module name=&quot;NoLineWrap&quot;&gt;
-    &lt;property name="tokens" value="IMPORT"&gt;
+    &lt;property name="tokens" value="IMPORT"/&gt;
 &lt;/module&gt;
       </source>
       <p>

@@ -31,16 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * <pre>
  * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
  * </pre>
- * <p>
- * To check non-empty at-clause description for tags {@code @throws},
- * {@code @deprecated}, use following configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
- *     &lt;property name=&quot;target&quot; value=&quot;JAVADOC_TAG_THROWS_LITERAL,
- *     JAVADOC_TAG_DEPRECATED_LITERAL&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
  *
  * @author maxvetrenko
  *

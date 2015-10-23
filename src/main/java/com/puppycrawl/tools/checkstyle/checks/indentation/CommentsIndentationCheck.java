@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * <pre>
  * {@code
- * &lt;module name=&quot;CommentsIndentation&quot;/module&gt;
+ * &lt;module name=&quot;CommentsIndentation&quot;/&gt;
  * }
  * {@code
  * /*

@@ -155,10 +155,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  * <pre>
  * &lt;module name="VariableDeclarationUsageDistance"&gt;
- *     &lt;property name="allowedDistance" value="4"&gt;
- *     &lt;property name="ignoreVariablePattern" value="^temp.*"&gt;
- *     &lt;property name="validateBetweenScopes" value="true"&gt;
- *     &lt;property name="ignoreFinal" value="false"&gt;
+ *     &lt;property name="allowedDistance" value="4"/&gt;
+ *     &lt;property name="ignoreVariablePattern" value="^temp.*"/&gt;
+ *     &lt;property name="validateBetweenScopes" value="true"/&gt;
+ *     &lt;property name="ignoreFinal" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
