@@ -38,10 +38,10 @@
 
     <!-- Tone down the checking for test code -->
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress checks="ImportControl" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress checks="Javadoc" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="ImportControl" files=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <suppress checks="Javadoc" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/]test[\\/]"/>
-    <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MethodCount" files="[\\/]ImportOrderCheckTest.java$"/>
     <suppress checks="MethodCount" files="[\\/]IndentationCheckTest.java$"/>
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheckTest.java$"/>
@@ -49,6 +49,9 @@
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
     <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/]test[\\/]"/>
+
+    <!-- Suppressions to remove over time -->
+    <suppress checks="." files=".*[\\/]src[\\/]it[\\/]" lines="28-999"/>
 
     <!-- Suppressions for long import statics -->
     <suppress checks="LineLength" files=".*[\\/]src[\\/]test[\\/]" lines="22-29"/>

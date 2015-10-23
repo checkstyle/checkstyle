@@ -3,7 +3,7 @@
 <project xmlns="http://maven.apache.org/DECORATION/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
-  
+
   <bannerLeft>
     <alt>Checkstyle</alt>
     <href>http://checkstyle.sourceforge.net</href>
@@ -14,13 +14,13 @@
     <href>http://checkstyle.sourceforge.net</href>
     <src>images/header-right-ruller.png</src>
   </bannerRight>
-  
+
   <publishDate position="right" />
   <version position="right" />
 
   <poweredBy>
-    <logo name="GitHub" href="https://github.com/checkstyle/checkstyle" 
-        img="images/github_logo_social_coding_outlined.png" 
+    <logo name="GitHub" href="https://github.com/checkstyle/checkstyle"
+        img="images/github_logo_social_coding_outlined.png"
           />
     <logo name="SourceForge"
           img="images/sflogo.gif"

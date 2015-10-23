@@ -27,7 +27,8 @@
                 failureProperty="checkstyle.failure.property"
                 >
       <fileset dir="src"
-               includes="main/**/*.java,main/**/*.properties,xdocs/**/*.xml,test/java/**/*.java"/>
+               includes="**/*"
+               excludes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
       <classpath path="${mvn.runtime_classpath}"/>
