@@ -236,7 +236,7 @@
           To configure the Check:
         </p>
         <source>
-&lt;module name=&quot;CommentsIndentation&quot;/module&gt;
+&lt;module name=&quot;CommentsIndentation&quot;&gt;&lt;/module&gt;
         </source>
         <source>
 /*
