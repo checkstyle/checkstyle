@@ -78,4 +78,15 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
+
+    @Test
+    public void shouldNotLogLongImportStatements() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("max", "80");
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_KEY, 80, 87),
+        };
+        verify(checkConfig, getPath("InputLongImportStatements.java"), expected);
+    }
 }
