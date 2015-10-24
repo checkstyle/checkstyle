@@ -153,6 +153,7 @@ public class LeftCurlyCheck
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FOR,
             TokenTypes.STATIC_INIT,
+            TokenTypes.OBJBLOCK,
         };
     }
 

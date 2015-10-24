@@ -301,7 +301,8 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_FOR,
-            TokenTypes.STATIC_INIT, };
+            TokenTypes.STATIC_INIT,
+            TokenTypes.OBJBLOCK, };
         assertArrayEquals(expected, actual);
     }
 
