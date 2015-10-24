@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static java.util.Arrays.asList;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
@@ -141,14 +141,37 @@ public class BaseCheckTestSupport {
                 messageFileName, expected);
     }
 
+    /**
+     *  We keep two verify methods with separate logic only for convenience of debuging
+     *  We have minimum amount of multi-file test cases
+     */
     protected void verify(Checker checker,
                           File[] processedFiles,
                           String messageFileName,
                           String... expected)
             throws Exception {
-        final Map<String, List<String>> expectedMessages = new HashMap<>(1);
-        expectedMessages.put(messageFileName, asList(expected));
-        verify(checker, processedFiles, expectedMessages);
+        stream.flush();
+        final List<File> theFiles = Lists.newArrayList();
+        Collections.addAll(theFiles, processedFiles);
+        final int errs = checker.process(theFiles);
+
+        // process each of the lines
+        final ByteArrayInputStream inputStream =
+                new ByteArrayInputStream(stream.toByteArray());
+        try (final LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+
+            for (int i = 0; i < expected.length; i++) {
+                final String expectedResult = messageFileName + ":" + expected[i];
+                final String actual = lnr.readLine();
+                assertEquals("error message " + i, expectedResult, actual);
+            }
+
+            assertEquals("unexpected output: " + lnr.readLine(),
+                    expected.length, errs);
+        }
+
+        checker.destroy();
     }
 
     protected void verify(Checker checker,
@@ -160,6 +183,7 @@ public class BaseCheckTestSupport {
         Collections.addAll(theFiles, processedFiles);
         final int errs = checker.process(theFiles);
 
+        // process each of the lines
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
         final Map<String, List<String>> realExpectedViolations =
             Maps.filterValues(expectedViolations, new Predicate<List<String>>() {
