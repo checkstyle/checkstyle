@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class ParameterNameTest extends BaseCheckTestSupport{
+public class ParameterNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
     private static String format;

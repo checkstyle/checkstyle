@@ -34,8 +34,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class IndentationConfigurationBuilder extends ConfigurationBuilder
-{
+public class IndentationConfigurationBuilder extends ConfigurationBuilder {
     private static final int TAB_WIDTH = 4;
 
     public IndentationConfigurationBuilder(File aROOT) {

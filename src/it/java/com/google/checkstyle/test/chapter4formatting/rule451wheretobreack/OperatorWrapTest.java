@@ -31,10 +31,10 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 
-public class OperatorWrapTest extends BaseCheckTestSupport{
-    
+public class OperatorWrapTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -42,7 +42,7 @@ public class OperatorWrapTest extends BaseCheckTestSupport{
 
     @Test
     public void operatorWrapTest() throws Exception {
-        
+
         Class<OperatorWrapCheck> clazz = OperatorWrapCheck.class;
         String messageKey = "line.new";
 
@@ -74,7 +74,7 @@ public class OperatorWrapTest extends BaseCheckTestSupport{
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void operatorWrapTestAssign() throws Exception {
         DefaultConfiguration newCheckConfig = createCheckConfig(OperatorWrapCheck.class);
@@ -84,7 +84,7 @@ public class OperatorWrapTest extends BaseCheckTestSupport{
                 + "BOR_ASSIGN, BAND_ASSIGN");
         String messageKey = "line.previous";
         Class<OperatorWrapCheck> clazz = OperatorWrapCheck.class;
-        
+
         final String[] expected = {
             "28:13: " + getCheckMessage(clazz, messageKey, "="),
             "177:9: " + getCheckMessage(clazz, messageKey, "="),

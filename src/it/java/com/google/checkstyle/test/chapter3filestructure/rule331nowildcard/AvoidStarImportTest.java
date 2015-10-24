@@ -28,10 +28,10 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class AvoidStarImportTest extends BaseCheckTestSupport{
-    
+public class AvoidStarImportTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -46,7 +46,7 @@ public class AvoidStarImportTest extends BaseCheckTestSupport{
             "18: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
             "19: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("AvoidStarImport");
         String filePath = builder.getFilePath("AvoidStarImportInput");
 

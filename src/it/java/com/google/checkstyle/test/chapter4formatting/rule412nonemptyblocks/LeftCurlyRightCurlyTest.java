@@ -38,9 +38,9 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 
 public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
-    
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -61,11 +61,11 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
 
         Configuration checkConfig = builder.getCheckConfig("LeftCurly");
         String filePath = builder.getFilePath("LeftCurlyInput_Braces");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void leftCurlyAnnotationsTest() throws Exception {
 
@@ -76,14 +76,14 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
             "27:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
             "50:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("LeftCurly");
         String filePath = builder.getFilePath("LeftCurlyInput_Annotations");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void leftCurlyMethodsTest() throws Exception {
 
@@ -107,7 +107,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
 
         Configuration checkConfig = builder.getCheckConfig("LeftCurly");
         String filePath = builder.getFilePath("LeftCurlyInput_Method");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

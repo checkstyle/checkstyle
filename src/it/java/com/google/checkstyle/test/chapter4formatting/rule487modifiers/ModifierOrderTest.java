@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
 
-public class ModifierOrderTest extends BaseCheckTestSupport{
-    
+public class ModifierOrderTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class ModifierOrderTest extends BaseCheckTestSupport{
 
     @Test
     public void modifierOrderTest() throws Exception {
-        
+
         Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
         String msgMod = "mod.order";
         String msgAnnotation = "annotation.order";
@@ -100,10 +100,10 @@ public class ModifierOrderTest extends BaseCheckTestSupport{
             "217:37: " + getCheckMessage(clazz, msgMod, "protected"),
             "219:22: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("ModifierOrder");
         String filePath = builder.getFilePath("ModifierOrderInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

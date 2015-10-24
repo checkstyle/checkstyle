@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 
-public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport{
-    
+public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport{
 
     @Test
     public void multipleVariableDeclarationsTest() throws Exception {
-        
+
         String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class, "multiple.variable.declarations.comma");
         String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class, "multiple.variable.declarations");
 
@@ -69,7 +69,7 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("MultipleVariableDeclarations");
         String filePath = builder.getFilePath("MultipleVariableDeclarationsInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

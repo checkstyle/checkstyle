@@ -40,7 +40,7 @@
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="ImportControl" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="Javadoc" files=".*[\\/]src[\\/](test|it)[\\/]"/>
-    <suppress checks="MagicNumber" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="MagicNumber" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="AvoidStaticImport" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="MethodCount" files="[\\/]ImportOrderCheckTest.java$"/>
     <suppress checks="MethodCount" files="[\\/]IndentationCheckTest.java$"/>
@@ -48,10 +48,10 @@
     <suppress checks="MethodCount" files="[\\/]MainTest.java$"/>
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
     <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$"/>
-    <suppress checks="WriteTag" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
     <!-- Suppressions to remove over time -->
-    <suppress checks="." files=".*[\\/]src[\\/]it[\\/]" lines="28-999"/>
+    <suppress checks="." files=".*[\\/]src[\\/]it[\\/]" lines="40-999"/>
 
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using

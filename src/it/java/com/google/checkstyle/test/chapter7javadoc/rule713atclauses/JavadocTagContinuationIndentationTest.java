@@ -28,12 +28,12 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck;
 
-public class JavadocTagContinuationIndentationTest extends BaseCheckTestSupport{
+public class JavadocTagContinuationIndentationTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithDefaultConfiguration() throws Exception {
-        ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
-        String msg = getCheckMessage(JavadocTagContinuationIndentationCheck.class,
+        final ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
+        final String msg = getCheckMessage(JavadocTagContinuationIndentationCheck.class,
                 "tag.continuation.indent", 4);
 
         final String[] expected = {
@@ -53,7 +53,7 @@ public class JavadocTagContinuationIndentationTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("JavadocTagContinuationIndentation");
         String filePath = builder.getFilePath("InputJavaDocTagContinuationIndentation");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

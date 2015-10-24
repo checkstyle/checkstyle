@@ -28,10 +28,10 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class MethodNameTest extends BaseCheckTestSupport{
-    
+public class MethodNameTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -39,7 +39,7 @@ public class MethodNameTest extends BaseCheckTestSupport{
 
     @Test
     public void methodNameTest() throws Exception {
-        
+
         Configuration checkConfig = builder.getCheckConfig("MethodName");
         String msgKey = "name.invalidPattern";
         String format = "^[a-z][a-z0-9][a-zA-Z0-9_]*$";
@@ -70,9 +70,9 @@ public class MethodNameTest extends BaseCheckTestSupport{
             "49:14: " + getCheckMessage(checkConfig.getMessages(), msgKey, "f", format),
             "50:14: " + getCheckMessage(checkConfig.getMessages(), msgKey, "fO", format),
         };
-        
+
         String filePath = builder.getFilePath("InputMethodName");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

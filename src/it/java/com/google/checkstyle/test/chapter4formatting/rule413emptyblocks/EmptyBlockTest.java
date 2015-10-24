@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
 
-public class EmptyBlockTest extends BaseCheckTestSupport{
-    
+public class EmptyBlockTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
 
     @Test
     public void emptyBlockTest() throws Exception {
-        
+
         final String[] expected = {
             "19:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "if"),
             "22:34: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "if"),
@@ -79,14 +79,14 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("EmptyBlock");
         String filePath = builder.getFilePath("EmptyBlockInput_Basic");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void emptyBlockTestCatch() throws Exception {
-        
+
         final String[] expected = {
             "29:17: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
             "50:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
@@ -95,7 +95,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("EmptyBlock");
         String filePath = builder.getFilePath("EmptyBlockInputCatch");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

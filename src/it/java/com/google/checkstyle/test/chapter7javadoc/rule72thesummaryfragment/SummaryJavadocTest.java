@@ -30,7 +30,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck;
 
-public class SummaryJavadocTest extends BaseCheckTestSupport{
+public class SummaryJavadocTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -41,19 +41,19 @@ public class SummaryJavadocTest extends BaseCheckTestSupport{
 
     @Test
     public void testCorrect() throws Exception {
-        
+
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
         String filePath = builder.getFilePath("InputCorrectSummaryJavaDocCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void testIncorrect() throws Exception {
-        
+
         String msgFirstSentence = getCheckMessage(SummaryJavadocCheck.class, "summary.first.sentence");
         String msgForbiddenFragment = getCheckMessage(SummaryJavadocCheck.class, "summary.javaDoc");
 
@@ -69,7 +69,7 @@ public class SummaryJavadocTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
         String filePath = builder.getFilePath("InputIncorrectSummaryJavaDocCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

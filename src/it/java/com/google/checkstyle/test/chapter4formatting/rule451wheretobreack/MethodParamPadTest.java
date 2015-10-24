@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
-public class MethodParamPadTest extends BaseCheckTestSupport{
-    
+public class MethodParamPadTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class MethodParamPadTest extends BaseCheckTestSupport{
 
     @Test
     public void operatorWrapTest() throws Exception {
-        
+
         Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
         String messageKey = "line.previous";
 

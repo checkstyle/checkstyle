@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 
-public class AnnotationLocationTest extends BaseCheckTestSupport{
-    
+public class AnnotationLocationTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class AnnotationLocationTest extends BaseCheckTestSupport{
 
     @Test
     public void annotationTest() throws Exception {
-        
+
         Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
         getCheckMessage(clazz, "annotation.location.alone");
         Configuration checkConfig = builder.getCheckConfig("AnnotationLocation");

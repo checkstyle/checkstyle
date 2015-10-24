@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
-public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport{
-    
+public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -54,7 +54,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
         Configuration checkConfig = builder.getCheckConfig("AvoidEscapedUnicodeCharacters");
         String filePath = builder.getFilePath("AvoidEscapedUnicodeCharactersInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

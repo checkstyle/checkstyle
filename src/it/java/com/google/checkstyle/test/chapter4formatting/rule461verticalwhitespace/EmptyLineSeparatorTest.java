@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
 
-public class EmptyLineSeparatorTest extends BaseCheckTestSupport{
+public class EmptyLineSeparatorTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -40,7 +40,7 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport{
 
     @Test
     public void emptyLineSeparatorTest() throws Exception {
-        
+
         Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
         String messageKey = "empty.line.separator";
 

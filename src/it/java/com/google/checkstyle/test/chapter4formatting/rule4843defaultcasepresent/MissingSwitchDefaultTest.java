@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck;
 
-public class MissingSwitchDefaultTest extends BaseCheckTestSupport{
-    
+public class MissingSwitchDefaultTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class MissingSwitchDefaultTest extends BaseCheckTestSupport{
 
     @Test
     public void missingSwitchDefaultTest() throws Exception {
-        
+
         String msg = getCheckMessage(MissingSwitchDefaultCheck.class, "missing.switch.default");
 
         final String[] expected = {
@@ -51,10 +51,10 @@ public class MissingSwitchDefaultTest extends BaseCheckTestSupport{
             "38:21: " + msg,
             "42:21: " + msg,
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("MissingSwitchDefault");
         String filePath = builder.getFilePath("MissingSwitchDefaultInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

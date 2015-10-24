@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
 
-public class ArrayTypeStyleTest extends BaseCheckTestSupport{
-    
+public class ArrayTypeStyleTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport{
 
     @Test
     public void arrayTypeStyleTest() throws Exception {
-        
+
         String msg = getCheckMessage(ArrayTypeStyleCheck.class, "array.type.style");
 
         final String[] expected = {
@@ -51,10 +51,10 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport{
             "41:16: " + msg,
             "42:19: " + msg,
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("ArrayTypeStyle");
         String filePath = builder.getFilePath("ArrayTypeStyleInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

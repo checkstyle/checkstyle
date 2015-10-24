@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck;
 
-public class NoLineWrapTest extends BaseCheckTestSupport{
+public class NoLineWrapTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 

@@ -30,7 +30,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 
-public class JavadocParagraphTest extends BaseCheckTestSupport{
+public class JavadocParagraphTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -46,11 +46,11 @@ public class JavadocParagraphTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("JavadocParagraph");
         String filePath = builder.getFilePath("InputCorrectJavadocParagraphCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void javadocParagraphIncorrectTest() throws Exception {
 
@@ -93,7 +93,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("JavadocParagraph");
         String filePath = builder.getFilePath("InputIncorrectJavadocParagraphCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

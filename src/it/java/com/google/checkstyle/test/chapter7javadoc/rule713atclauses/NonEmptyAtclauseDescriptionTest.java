@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
 
-public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
+public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -58,7 +58,7 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
         String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheck");
-        
+
         Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);
     }
@@ -78,7 +78,7 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
         String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq");
-        
+
         Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);
     }

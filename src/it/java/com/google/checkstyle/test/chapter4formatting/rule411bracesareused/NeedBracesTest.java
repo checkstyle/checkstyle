@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck;
 
-public class NeedBracesTest extends BaseCheckTestSupport{
-    
+public class NeedBracesTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class NeedBracesTest extends BaseCheckTestSupport{
 
     @Test
     public void needBracesTest() throws Exception {
-        
+
         Class<NeedBracesCheck> clazz = NeedBracesCheck.class;
         String messageKey = "needBraces";
 
@@ -87,7 +87,7 @@ public class NeedBracesTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("NeedBraces");
         String filePath = builder.getFilePath("NeedBracesInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

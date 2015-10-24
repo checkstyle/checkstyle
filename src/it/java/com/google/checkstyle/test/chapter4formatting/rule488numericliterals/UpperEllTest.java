@@ -28,10 +28,10 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class UpperEllTest extends BaseCheckTestSupport{
-    
+public class UpperEllTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -39,7 +39,7 @@ public class UpperEllTest extends BaseCheckTestSupport{
 
     @Test
     public void upperEllTest() throws Exception {
-        
+
         final String[] expected = {
             "6:36: Should use uppercase 'L'.",
             "12:27: Should use uppercase 'L'.",
@@ -66,10 +66,10 @@ public class UpperEllTest extends BaseCheckTestSupport{
             "99:29: Should use uppercase 'L'.",
             "100:22: Should use uppercase 'L'.",
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("UpperEll");
         String filePath = builder.getFilePath("InputUpperEll");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

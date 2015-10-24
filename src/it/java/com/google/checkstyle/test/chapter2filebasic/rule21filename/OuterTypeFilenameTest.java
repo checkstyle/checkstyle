@@ -30,7 +30,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
 
-public class OuterTypeFilenameTest extends BaseCheckTestSupport{
+public class OuterTypeFilenameTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 

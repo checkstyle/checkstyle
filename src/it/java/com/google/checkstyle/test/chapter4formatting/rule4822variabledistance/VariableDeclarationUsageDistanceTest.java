@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
 
-public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport{
+public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 

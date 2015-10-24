@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 
-public class JavadocMethodTest extends BaseCheckTestSupport{
+public class JavadocMethodTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 

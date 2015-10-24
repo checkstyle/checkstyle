@@ -30,7 +30,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
 
-public class AtclauseOrderTest extends BaseCheckTestSupport{
+public class AtclauseOrderTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -46,11 +46,11 @@ public class AtclauseOrderTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
         String filePath = builder.getFilePath("InputCorrectAtClauseOrderCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void testIncorrect() throws Exception {
         final String tagOrder = "[@param, @return, @throws, @deprecated]";
@@ -88,7 +88,7 @@ public class AtclauseOrderTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
         String filePath = builder.getFilePath("InputIncorrectAtClauseOrderCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

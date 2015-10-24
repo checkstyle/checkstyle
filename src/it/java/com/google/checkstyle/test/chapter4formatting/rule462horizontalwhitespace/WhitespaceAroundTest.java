@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class WhitespaceAroundTest extends BaseCheckTestSupport{
+public class WhitespaceAroundTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -40,7 +40,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
 
     @Test
     public void whitespaceAroundBasicTest() throws Exception {
-        
+
         Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
         String msgPreceded = "ws.notPreceded";
         String msgFollowed = "ws.notFollowed";
@@ -73,14 +73,14 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void whitespaceAroundGenericsTest() throws Exception {
-        
+
         String msgPreceded = "ws.preceded";
         String msgFollowed = "ws.followed";
         Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
-        
+
         final String[] expected = {
             "12:16: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
             "12:18: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "<"),
@@ -107,7 +107,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
     }
     @Test
     public void whitespaceAroundEmptyTypesCyclesTest() throws Exception {
-        
+
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
@@ -116,7 +116,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void genericWhitespaceTest() throws Exception {
         String msgPreceded = "ws.preceded";
@@ -124,8 +124,8 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport{
         String msgNotPreceded = "ws.notPreceded";
         String msgIllegalFollow = "ws.illegalFollow";
         Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
-        
-        
+
+
         final String[] expected = {
             "16:13: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
             "16:15: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "<"),

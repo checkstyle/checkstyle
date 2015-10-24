@@ -30,15 +30,15 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 
-public class FileTabCharacterTest extends BaseCheckTestSupport{
-    
+public class FileTabCharacterTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
-    
+
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration aConfig)
@@ -63,12 +63,12 @@ public class FileTabCharacterTest extends BaseCheckTestSupport{
             "133:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
             "134:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
         };
-        
+
         String filePath = builder.getFilePath("FileTabCharacterInput");
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(createChecker(checkConfig),filePath,
             expected, warnList);
-    } 
+    }
 
     /**
      * Creates a configuration that is functionally close to that in the docs.

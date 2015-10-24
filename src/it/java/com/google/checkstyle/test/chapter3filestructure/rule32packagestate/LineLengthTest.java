@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
-public class LineLengthTest extends BaseCheckTestSupport{
-    
+public class LineLengthTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -54,7 +54,7 @@ public class LineLengthTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("LineLength");
         String filePath = builder.getFilePath("LineLengthInput2");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

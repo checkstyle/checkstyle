@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
 
-public class NoFinalizerTest extends BaseCheckTestSupport{
+public class NoFinalizerTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -40,7 +40,7 @@ public class NoFinalizerTest extends BaseCheckTestSupport{
 
     @Test
     public void noFinalizerBasicTest() throws Exception {
-        
+
         String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
@@ -49,14 +49,14 @@ public class NoFinalizerTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
         String filePath = builder.getFilePath("NoFinalizerInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-    
+
     @Test
     public void noFinalizerExtendedTest() throws Exception {
-        
+
         String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
@@ -73,7 +73,7 @@ public class NoFinalizerTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
         String filePath = builder.getFilePath("NoFinalizeExtendInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

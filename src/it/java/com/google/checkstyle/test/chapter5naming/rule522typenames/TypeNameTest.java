@@ -28,7 +28,7 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class TypeNameTest extends BaseCheckTestSupport{
+public class TypeNameTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 

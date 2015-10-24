@@ -28,10 +28,10 @@ import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class IllegalTokenTextTest extends BaseCheckTestSupport{
-    
+public class IllegalTokenTextTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -39,7 +39,7 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport{
 
     @Test
     public void illegalTokensTest() throws Exception {
-        
+
         final String[] expected = {
             "17:27: Avoid using corresponding octal or Unicode escape.",
             "18:27: Avoid using corresponding octal or Unicode escape.",
@@ -111,7 +111,7 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("IllegalTokenText");
         String filePath = builder.getFilePath("IllegalTokenTextInput");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

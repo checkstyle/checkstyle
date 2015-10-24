@@ -29,13 +29,13 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
 
-public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport{
+public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "abbreviation.as.word";
     private static ConfigurationBuilder builder;
-    private final Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
     private static Configuration checkConfig;
-    
+    private final Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -61,7 +61,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport{
         };
 
         String filePath = builder.getFilePath("InputAbbreviationAsWordInTypeNameCheck");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

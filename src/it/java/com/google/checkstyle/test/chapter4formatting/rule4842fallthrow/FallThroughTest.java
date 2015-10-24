@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
 
-public class FallThroughTest extends BaseCheckTestSupport{
-    
+public class FallThroughTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -42,10 +42,10 @@ public class FallThroughTest extends BaseCheckTestSupport{
     public void fallThroughTest() throws Exception {
 
         String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
-                     
+
         final String[] expected = {
             "14:13: " + msg,
-            "38:13: " + msg, 
+            "38:13: " + msg,
             "47:13: " + msg,
             "53:13: " + msg,
             "70:13: " + msg,
@@ -57,7 +57,7 @@ public class FallThroughTest extends BaseCheckTestSupport{
             "372:11: " + msg,
             "374:41: " + msg,
         };
-        
+
         Configuration checkConfig = builder.getCheckConfig("FallThrough");
         String filePath = builder.getFilePath("FallThroughInput");
 

@@ -29,10 +29,10 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
 
-public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport{
-    
+public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport {
+
     private static ConfigurationBuilder builder;
-    
+
     @BeforeClass
     public static void setConfigurationBuilder() {
         builder = new ConfigurationBuilder(new File("src/it/"));
@@ -40,7 +40,7 @@ public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport{
 
     @Test
     public void overloadMethodsTest() throws Exception {
-        
+
         Class<OverloadMethodsDeclarationOrderCheck> clazz = OverloadMethodsDeclarationOrderCheck.class;
         String messageKey = "overload.methods.declaration";
 
@@ -53,7 +53,7 @@ public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport{
 
         Configuration checkConfig = builder.getCheckConfig("OverloadMethodsDeclarationOrder");
         String filePath = builder.getFilePath("InputOverloadMethodsDeclarationOrder");
-        
+
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }

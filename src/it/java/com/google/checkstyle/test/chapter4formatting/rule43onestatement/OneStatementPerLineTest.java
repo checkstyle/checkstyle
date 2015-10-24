@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
-public class OneStatementPerLineTest extends BaseCheckTestSupport{
+public class OneStatementPerLineTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
