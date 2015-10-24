@@ -245,9 +245,8 @@
             property <code>tabWidth</code> for <code>LineLength</code> alone.
           </li>
           <li>
-            Support for the special handling of imports in CheckStyle Version
-            2 has been dropped as it is a special case of regexp: The user can
-            set property <code>ignorePattern</code> to <code>^import</code> and achieve the same effect.
+            Import statements (lines matching pattern <code>^import .*</code>) are not verified by
+            this check.
           </li>
         </ul>
       </subsection>

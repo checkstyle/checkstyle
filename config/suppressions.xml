@@ -53,9 +53,6 @@
     <!-- Suppressions to remove over time -->
     <suppress checks="." files=".*[\\/]src[\\/]it[\\/]" lines="28-999"/>
 
-    <!-- Suppressions for long import statics -->
-    <suppress checks="LineLength" files=".*[\\/]src[\\/]test[\\/]" lines="22-29"/>
-
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using
       Eclipse plug-in.

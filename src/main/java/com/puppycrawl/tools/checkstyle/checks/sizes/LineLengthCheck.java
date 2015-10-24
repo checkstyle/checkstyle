@@ -37,9 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  *
  * <p>
- * Note: Support for the special handling of imports in CheckStyle Version 2
- * has been dropped as it is a special case of regexp: The user can set
- * the ignorePattern to "^import" and achieve the same effect.
+ * Import statements (lines matching pattern {@code ^import .*}) are not verified by this check.
  * </p>
  * <p>
  * The default maximum allowable line length is 80 characters. To change the
@@ -86,6 +84,9 @@ public class LineLengthCheck extends Check {
     /** Default maximum number of columns in a line. */
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
+    /** Pattern matching import and import static statements. */
+    private static final Pattern IMPORT_PATTERN = Pattern.compile("^import .*");
+
     /** The maximum number of columns in a line. */
     private int max = DEFAULT_MAX_COLUMNS;
 
@@ -123,7 +124,7 @@ public class LineLengthCheck extends Check {
             final int realLength = CommonUtils.lengthExpandedTabs(
                 line, line.length(), getTabWidth());
 
-            if (realLength > max
+            if (realLength > max && !IMPORT_PATTERN.matcher(line).find()
                 && !ignorePattern.matcher(line).find()) {
                 log(i + 1, MSG_KEY, max, realLength);
             }
