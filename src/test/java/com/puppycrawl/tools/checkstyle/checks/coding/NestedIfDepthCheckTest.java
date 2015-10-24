@@ -65,7 +65,7 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        NestedIfDepthCheck check = new NestedIfDepthCheck();
+        final NestedIfDepthCheck check = new NestedIfDepthCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

@@ -57,16 +57,16 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
 
     @Test
     public void testCustomMessage() throws Exception {
-        DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
+        final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message.");
         emptyCheck.configure(config);
 
-        LocalizedMessages collector = new LocalizedMessages();
+        final LocalizedMessages collector = new LocalizedMessages();
         emptyCheck.setMessages(collector);
 
         emptyCheck.log(0, "msgKey");
 
-        SortedSet<LocalizedMessage> messages = collector.getMessages();
+        final SortedSet<LocalizedMessage> messages = collector.getMessages();
         assertEquals(1, messages.size());
         assertEquals("This is a custom message.", messages.first()
                 .getMessage());
@@ -74,16 +74,16 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
 
     @Test
     public void testCustomMessageWithParameters() throws Exception {
-        DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
+        final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message with {0}.");
         emptyCheck.configure(config);
 
-        LocalizedMessages collector = new LocalizedMessages();
+        final LocalizedMessages collector = new LocalizedMessages();
         emptyCheck.setMessages(collector);
 
         emptyCheck.log(0, "msgKey", "TestParam");
 
-        SortedSet<LocalizedMessage> messages = collector.getMessages();
+        final SortedSet<LocalizedMessage> messages = collector.getMessages();
         assertEquals(1, messages.size());
 
         assertEquals("This is a custom message with TestParam.",
@@ -92,16 +92,16 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
 
     @Test(expected = IllegalArgumentException.class)
     public void testCustomMessageWithParametersNegative() throws Exception {
-        DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
+        final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message {0.");
         emptyCheck.configure(config);
 
-        LocalizedMessages collector = new LocalizedMessages();
+        final LocalizedMessages collector = new LocalizedMessages();
         emptyCheck.setMessages(collector);
 
         emptyCheck.log(0, "msgKey", "TestParam");
 
-        SortedSet<LocalizedMessage> messages = collector.getMessages();
+        final SortedSet<LocalizedMessage> messages = collector.getMessages();
         assertEquals(1, messages.size());
 
         //we expect an exception here because of the bogus custom message

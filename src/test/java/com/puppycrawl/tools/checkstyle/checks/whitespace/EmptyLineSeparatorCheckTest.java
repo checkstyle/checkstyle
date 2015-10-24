@@ -43,13 +43,13 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        EmptyLineSeparatorCheck checkObj = new EmptyLineSeparatorCheck();
+        final EmptyLineSeparatorCheck checkObj = new EmptyLineSeparatorCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
 
         final String[] expected = {
             "21: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -68,7 +68,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testAllowNoEmptyLineBetweenFields() throws Exception {
 
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
 
         final String[] expected = {
@@ -86,7 +86,7 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testHeader() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
         };
@@ -95,7 +95,7 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testMultipleEmptyLinesBetweenClassMembers() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "21: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
@@ -109,7 +109,7 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testFormerArrayIndexOutOfBounds() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEmptyLineSeparatorFormerException.java"), expected);
@@ -117,7 +117,7 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testAllowMultipleFieldInClass() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -126,7 +126,7 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testAllowMultipleImportSeparatedFromPackage() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -137,9 +137,9 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        EmptyLineSeparatorCheck emptyLineSeparatorCheckObj = new EmptyLineSeparatorCheck();
-        int[] actual = emptyLineSeparatorCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final EmptyLineSeparatorCheck emptyLineSeparatorCheckObj = new EmptyLineSeparatorCheck();
+        final int[] actual = emptyLineSeparatorCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
@@ -156,7 +156,7 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testPrePreviousLineEmptiness() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputPrePreviousLineEmptiness.java"), expected);

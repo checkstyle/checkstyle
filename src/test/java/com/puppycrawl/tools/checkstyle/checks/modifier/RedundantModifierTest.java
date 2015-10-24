@@ -154,9 +154,9 @@ public class RedundantModifierTest
 
     @Test
     public void testGetAcceptableTokens() {
-        RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
-        int[] actual = redundantModifierCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
+        final int[] actual = redundantModifierCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.METHOD_DEF,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
@@ -170,9 +170,9 @@ public class RedundantModifierTest
 
     @Test
     public void testGetRequiredTokens() {
-        RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
-        int[] actual = redundantModifierCheckObj.getRequiredTokens();
-        int[] expected = ArrayUtils.EMPTY_INT_ARRAY;
+        final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
+        final int[] actual = redundantModifierCheckObj.getRequiredTokens();
+        final int[] expected = ArrayUtils.EMPTY_INT_ARRAY;
         Assert.assertArrayEquals(expected, actual);
     }
 

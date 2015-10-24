@@ -55,7 +55,7 @@ public class FileSetCheckLifecycleTest
 
     @Test
     public void testGetRequiredTokens() {
-        FileContentsHolder checkObj = new FileContentsHolder();
+        final FileContentsHolder checkObj = new FileContentsHolder();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
@@ -72,8 +72,8 @@ public class FileSetCheckLifecycleTest
     @Test
     public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
 
-        DefaultConfiguration dc = new DefaultConfiguration("configuration");
-        DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
+        final DefaultConfiguration dc = new DefaultConfiguration("configuration");
+        final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
         dc.addAttribute("charset", "UTF-8");
         dc.addChild(twConf);
         twConf.addChild(new DefaultConfiguration(FileContentsHolder.class.getName()));

@@ -89,12 +89,12 @@ public class CommonUtilsTest {
     @Test
     public void testFileExtensions() {
         final String[] fileExtensions = {"java"};
-        File pdfFile = new File("file.pdf");
+        final File pdfFile = new File("file.pdf");
         assertFalse(CommonUtils.matchesFileExtension(pdfFile, fileExtensions));
         assertTrue(CommonUtils.matchesFileExtension(pdfFile, (String[]) null));
-        File javaFile = new File("file.java");
+        final File javaFile = new File("file.java");
         assertTrue(CommonUtils.matchesFileExtension(javaFile, fileExtensions));
-        File emptyExtensionFile = new File("file.");
+        final File emptyExtensionFile = new File("file.");
         assertTrue(CommonUtils.matchesFileExtension(emptyExtensionFile, ""));
     }
 
@@ -136,13 +136,13 @@ public class CommonUtilsTest {
 
     @Test
     public void testInvalidPattern() {
-        boolean result = CommonUtils.isPatternValid("some[invalidPattern");
+        final boolean result = CommonUtils.isPatternValid("some[invalidPattern");
         assertFalse(result);
     }
 
     @Test
     public void testGetExistingConstructor() throws NoSuchMethodException {
-        Constructor<?> constructor = CommonUtils.getConstructor(String.class, String.class);
+        final Constructor<?> constructor = CommonUtils.getConstructor(String.class, String.class);
 
         assertEquals(String.class.getConstructor(String.class), constructor);
     }
@@ -160,9 +160,9 @@ public class CommonUtilsTest {
 
     @Test
     public void testInvokeConstructor() throws NoSuchMethodException {
-        Constructor<String> constructor = String.class.getConstructor(String.class);
+        final Constructor<String> constructor = String.class.getConstructor(String.class);
 
-        String constructedString = CommonUtils.invokeConstructor(constructor, "string");
+        final String constructedString = CommonUtils.invokeConstructor(constructor, "string");
 
         assertEquals("string", constructedString);
     }
@@ -170,7 +170,7 @@ public class CommonUtilsTest {
     @SuppressWarnings("rawtypes")
     @Test
     public void testInvokeConstructorThatFails() throws NoSuchMethodException {
-        Constructor<Dictionary> constructor = Dictionary.class.getConstructor();
+        final Constructor<Dictionary> constructor = Dictionary.class.getConstructor();
 
         try {
             CommonUtils.invokeConstructor(constructor);
@@ -183,7 +183,7 @@ public class CommonUtilsTest {
 
     @Test
     public void testClose() {
-        TestCloseable closeable = new TestCloseable();
+        final TestCloseable closeable = new TestCloseable();
 
         CommonUtils.close(null);
         CommonUtils.close(closeable);
@@ -206,11 +206,11 @@ public class CommonUtilsTest {
     @PrepareForTest({ CommonUtils.class, CommonUtilsTest.class })
     @SuppressWarnings("unchecked")
     public void testLoadSuppressionsURISyntaxException() throws Exception {
-        URL configUrl = mock(URL.class);
+        final URL configUrl = mock(URL.class);
 
         when(configUrl.toURI()).thenThrow(URISyntaxException.class);
         mockStatic(CommonUtils.class, Mockito.CALLS_REAL_METHODS);
-        String fileName = "suppressions_none.xml";
+        final String fileName = "suppressions_none.xml";
         when(CommonUtils.class.getResource(fileName)).thenReturn(configUrl);
 
         try {

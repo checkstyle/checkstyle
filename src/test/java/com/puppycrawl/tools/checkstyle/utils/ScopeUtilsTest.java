@@ -36,15 +36,15 @@ public class ScopeUtilsTest {
 
     @Test
     public void testInEnumOnRoot() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         Assert.assertFalse(ScopeUtils.isInEnumBlock(ast));
     }
 
     @Test
     public void testInEnumBlockInNew() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_NEW);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
@@ -53,12 +53,12 @@ public class ScopeUtilsTest {
 
     @Test
     public void testInEnumBlockWithEnum() throws ReflectiveOperationException {
-        DetailAST ast0 = new DetailAST();
+        final DetailAST ast0 = new DetailAST();
         ast0.setType(TokenTypes.OBJBLOCK);
-        DetailAST ast1 = new DetailAST();
+        final DetailAST ast1 = new DetailAST();
         ast1.setType(TokenTypes.ENUM_DEF);
         ast0.addChild(ast1);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast1.addChild(ast2);
 
@@ -67,9 +67,9 @@ public class ScopeUtilsTest {
 
     @Test
     public void testInEnumBlockInInterface() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.INTERFACE_DEF);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
@@ -78,9 +78,9 @@ public class ScopeUtilsTest {
 
     @Test
     public void testInEnumBlockInAnnotation() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ANNOTATION_DEF);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
@@ -89,9 +89,9 @@ public class ScopeUtilsTest {
 
     @Test
     public void testInEnumBlockInClass() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.CLASS_DEF);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
@@ -100,9 +100,9 @@ public class ScopeUtilsTest {
 
     @Test
     public void testIsOuterMostTypeInterface() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.INTERFACE_DEF);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
@@ -111,9 +111,9 @@ public class ScopeUtilsTest {
 
     @Test
     public void testIsOuterMostTypeAnnotation() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ANNOTATION_DEF);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
@@ -122,9 +122,9 @@ public class ScopeUtilsTest {
 
     @Test
     public void testIsOuterMostTypeEnum() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ENUM_DEF);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
 
@@ -133,9 +133,9 @@ public class ScopeUtilsTest {
 
     @Test
     public void testIsLocalVariableDefCatch() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_CATCH);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.PARAMETER_DEF);
         ast.addChild(ast2);
 
@@ -144,7 +144,7 @@ public class ScopeUtilsTest {
 
     @Test
     public void testIsLocalVariableDefUnexpected() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_CATCH);
 
         Assert.assertFalse(ScopeUtils.isLocalVariableDef(ast));

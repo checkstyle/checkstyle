@@ -37,29 +37,29 @@ public class CheckUtilsTest {
 
     @Test
     public void testParseDoubleWithIncorrectToken() throws Exception {
-        double parsedDouble = CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
+        final double parsedDouble = CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
         assertEquals(0.0, parsedDouble, 0.0);
     }
 
     @Test
     public void testElseWithCurly() throws Exception {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ASSIGN);
         ast.setText("ASSIGN");
         Assert.assertFalse(CheckUtils.isElseIf(ast));
 
-        DetailAST parentAst = new DetailAST();
+        final DetailAST parentAst = new DetailAST();
         parentAst.setType(TokenTypes.LCURLY);
         parentAst.setText("LCURLY");
 
-        DetailAST ifAst = new DetailAST();
+        final DetailAST ifAst = new DetailAST();
         ifAst.setType(TokenTypes.LITERAL_IF);
         ifAst.setText("IF");
         parentAst.addChild(ifAst);
 
         Assert.assertFalse(CheckUtils.isElseIf(ifAst));
 
-        DetailAST parentAst2 = new DetailAST();
+        final DetailAST parentAst2 = new DetailAST();
         parentAst2.setType(TokenTypes.SLIST);
         parentAst2.setText("SLIST");
 
@@ -67,7 +67,7 @@ public class CheckUtilsTest {
 
         Assert.assertFalse(CheckUtils.isElseIf(ifAst));
 
-        DetailAST elseAst = new DetailAST();
+        final DetailAST elseAst = new DetailAST();
         elseAst.setType(TokenTypes.LITERAL_ELSE);
 
         elseAst.setFirstChild(ifAst);
@@ -76,14 +76,14 @@ public class CheckUtilsTest {
 
     @Test
     public void testEquals() throws Exception {
-        DetailAST litStatic = new DetailAST();
+        final DetailAST litStatic = new DetailAST();
         litStatic.setType(TokenTypes.LITERAL_STATIC);
 
-        DetailAST modifiers = new DetailAST();
+        final DetailAST modifiers = new DetailAST();
         modifiers.setType(TokenTypes.MODIFIERS);
         modifiers.addChild(litStatic);
 
-        DetailAST metDef = new DetailAST();
+        final DetailAST metDef = new DetailAST();
         metDef.setType(TokenTypes.METHOD_DEF);
         metDef.addChild(modifiers);
 
@@ -91,19 +91,19 @@ public class CheckUtilsTest {
 
         metDef.removeChildren();
 
-        DetailAST metName = new DetailAST();
+        final DetailAST metName = new DetailAST();
         metName.setType(TokenTypes.IDENT);
         metName.setText("equals");
         metDef.addChild(metName);
 
-        DetailAST modifiers2 = new DetailAST();
+        final DetailAST modifiers2 = new DetailAST();
         modifiers2.setType(TokenTypes.MODIFIERS);
         metDef.addChild(modifiers2);
 
-        DetailAST parameter1 = new DetailAST();
-        DetailAST parameter2 = new DetailAST();
+        final DetailAST parameter1 = new DetailAST();
+        final DetailAST parameter2 = new DetailAST();
 
-        DetailAST parameters = new DetailAST();
+        final DetailAST parameters = new DetailAST();
         parameters.setType(TokenTypes.PARAMETERS);
 
         parameters.addChild(parameter2);

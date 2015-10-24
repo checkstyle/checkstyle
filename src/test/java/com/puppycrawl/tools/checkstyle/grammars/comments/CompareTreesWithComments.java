@@ -85,12 +85,12 @@ class CompareTreesWithComments extends Check {
         }
 
         if (result) {
-            DetailAST childExpected = expected.getFirstChild();
-            DetailAST childActual = actual.getFirstChild();
+            final DetailAST childExpected = expected.getFirstChild();
+            final DetailAST childActual = actual.getFirstChild();
             result = isAstEquals(childExpected, childActual);
             if (result) {
-                DetailAST nextSiblingExpected = expected.getNextSibling();
-                DetailAST nextSiblingActual = actual.getNextSibling();
+                final DetailAST nextSiblingExpected = expected.getNextSibling();
+                final DetailAST nextSiblingActual = actual.getNextSibling();
                 result = isAstEquals(nextSiblingExpected, nextSiblingActual);
             }
         }

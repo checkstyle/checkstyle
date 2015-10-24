@@ -45,14 +45,14 @@ public class FileLengthCheckTest
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {
-        DefaultConfiguration dc = new DefaultConfiguration("root");
+        final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(config);
         return dc;
     }
 
     @Test
     public void testAlarm() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", "20");
         final String[] expected = {
@@ -65,7 +65,7 @@ public class FileLengthCheckTest
 
     @Test
     public void testOK() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", "2000");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -95,7 +95,7 @@ public class FileLengthCheckTest
 
     @Test
     public void testNoAlarmByExtension() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
                 createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("fileExtensions", "txt");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -107,7 +107,7 @@ public class FileLengthCheckTest
 
     @Test
     public void testExtensions() throws Exception {
-        FileLengthCheck check = new FileLengthCheck();
+        final FileLengthCheck check = new FileLengthCheck();
         check.setFileExtensions("java");
         assertEquals("extension should be the same", ".java", check.getFileExtensions()[0]);
         check.setFileExtensions(".java");

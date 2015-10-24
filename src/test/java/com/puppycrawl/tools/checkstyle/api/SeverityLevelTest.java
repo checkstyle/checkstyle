@@ -38,7 +38,7 @@ public class SeverityLevelTest {
      */
     @Test
     public void testSeverityLevelValueOf() {
-        SeverityLevel level = SeverityLevel.valueOf("INFO");
+        final SeverityLevel level = SeverityLevel.valueOf("INFO");
         assertEquals(SeverityLevel.INFO, level);
     }
 
@@ -63,8 +63,8 @@ public class SeverityLevelTest {
 
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
-        Locale[] differentLocales = {new Locale("TR", "tr") };
-        Locale defaultLocale = Locale.getDefault();
+        final Locale[] differentLocales = {new Locale("TR", "tr") };
+        final Locale defaultLocale = Locale.getDefault();
         try {
             for (Locale differentLocale : differentLocales) {
                 Locale.setDefault(differentLocale);

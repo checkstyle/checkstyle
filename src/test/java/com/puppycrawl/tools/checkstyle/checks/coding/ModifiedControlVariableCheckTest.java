@@ -83,7 +83,7 @@ public class ModifiedControlVariableCheckTest
 
     @Test
     public void testTokensNotNull() {
-        ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
+        final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -91,9 +91,9 @@ public class ModifiedControlVariableCheckTest
 
     @Test
     public void testImproperToken() throws Exception {
-        ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
+        final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
 
-        DetailAST classDefAst = new DetailAST();
+        final DetailAST classDefAst = new DetailAST();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {

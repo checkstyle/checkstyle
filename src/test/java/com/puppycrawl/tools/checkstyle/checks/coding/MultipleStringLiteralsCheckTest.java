@@ -39,7 +39,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIt() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MultipleStringLiteralsCheck.class);
         checkConfig.addAttribute("allowedDuplicates", "2");
         checkConfig.addAttribute("ignoreStringsRegexp", "");
@@ -57,7 +57,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testItIgnoreEmpty() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MultipleStringLiteralsCheck.class);
         checkConfig.addAttribute("allowedDuplicates", "2");
 
@@ -73,7 +73,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testItIgnoreEmptyAndComspace() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MultipleStringLiteralsCheck.class);
         checkConfig.addAttribute("allowedDuplicates", "2");
         checkConfig.addAttribute("ignoreStringsRegexp", "^((\"\")|(\", \"))$");
@@ -89,7 +89,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testItWithoutIgnoringAnnotations() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MultipleStringLiteralsCheck.class);
         checkConfig.addAttribute("allowedDuplicates", "3");
         checkConfig.addAttribute("ignoreOccurrenceContext", "");
@@ -105,7 +105,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        MultipleStringLiteralsCheck check = new MultipleStringLiteralsCheck();
+        final MultipleStringLiteralsCheck check = new MultipleStringLiteralsCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -113,7 +113,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MultipleStringLiteralsCheck.class);
         final String[] expected = {
             "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
@@ -129,7 +129,7 @@ public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIgnores() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MultipleStringLiteralsCheck.class);
         checkConfig.addAttribute("ignoreStringsRegexp", null);
         checkConfig.addAttribute("ignoreOccurrenceContext", "VARIABLE_DEF");

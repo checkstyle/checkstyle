@@ -45,9 +45,9 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testClassExtendsGenericClass() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMutableExceptionClassExtendsGenericClass.java"),
             expected);
@@ -55,9 +55,9 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
             "23:9: " + getCheckMessage(MSG_KEY, "errorCode"),
             "46:9: " + getCheckMessage(MSG_KEY, "errorCode"),
@@ -68,10 +68,10 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testFormat() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MutableExceptionCheck.class);
         checkConfig.addAttribute("format", "^.*Failure$");
         checkConfig.addAttribute("extendedClassNameFormat", "^.*ThreadDeath$");
-        String[] expected = {
+        final String[] expected = {
             "34:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
@@ -80,22 +80,22 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        MutableExceptionCheck obj = new MutableExceptionCheck();
-        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        final MutableExceptionCheck obj = new MutableExceptionCheck();
+        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
-        MutableExceptionCheck obj = new MutableExceptionCheck();
-        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        final MutableExceptionCheck obj = new MutableExceptionCheck();
+        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
         assertArrayEquals(expected, obj.getRequiredTokens());
     }
 
     @Test
     public void testWrongTokenType() {
-        MutableExceptionCheck obj = new MutableExceptionCheck();
-        DetailAST ast = new DetailAST();
+        final MutableExceptionCheck obj = new MutableExceptionCheck();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             obj.visitToken(ast);

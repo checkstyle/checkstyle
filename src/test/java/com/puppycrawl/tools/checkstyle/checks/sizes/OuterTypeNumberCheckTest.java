@@ -41,8 +41,8 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        OuterTypeNumberCheck checkObj = new OuterTypeNumberCheck();
-        int[] expected = {
+        final OuterTypeNumberCheck checkObj = new OuterTypeNumberCheck();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -53,10 +53,10 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        OuterTypeNumberCheck outerTypeNumberObj =
+        final OuterTypeNumberCheck outerTypeNumberObj =
             new OuterTypeNumberCheck();
-        int[] actual = outerTypeNumberObj.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = outerTypeNumberObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,

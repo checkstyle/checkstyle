@@ -25,7 +25,7 @@ import org.junit.Test;
 public class FullIdentTest {
 
     public static void testToString() {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_NEW);
         ast.setColumnNo(14);
         ast.setLineNo(15);
@@ -37,19 +37,19 @@ public class FullIdentTest {
 
     @Test
     public void testNonValidCoordinates() {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.DOT);
         ast.setColumnNo(1);
         ast.setLineNo(2);
         ast.setText("Root");
 
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.LE);
         ast2.setColumnNo(-14);
         ast2.setLineNo(-15);
         ast2.setText("MyTestik");
 
-        DetailAST ast1 = new DetailAST();
+        final DetailAST ast1 = new DetailAST();
         ast1.setType(TokenTypes.LITERAL_NEW);
         ast1.setColumnNo(14);
         ast1.setLineNo(15);

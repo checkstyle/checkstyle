@@ -45,9 +45,9 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "17:20: " + getCheckMessage(MSG_KEY, 5, 4),
             "22:20: " + getCheckMessage(MSG_KEY, 5, 4),
             "27:20: " + getCheckMessage(MSG_KEY, 6, 4),
@@ -59,10 +59,10 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMax() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
         checkConfig.addAttribute("max", "5");
 
-        String[] expected = {
+        final String[] expected = {
             "27:20: " + getCheckMessage(MSG_KEY, 6, 5),
         };
 
@@ -71,22 +71,22 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        ThrowsCountCheck obj = new ThrowsCountCheck();
-        int[] expected = {TokenTypes.LITERAL_THROWS};
+        final ThrowsCountCheck obj = new ThrowsCountCheck();
+        final int[] expected = {TokenTypes.LITERAL_THROWS};
         assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
-        ThrowsCountCheck obj = new ThrowsCountCheck();
-        int[] expected = {TokenTypes.LITERAL_THROWS};
+        final ThrowsCountCheck obj = new ThrowsCountCheck();
+        final int[] expected = {TokenTypes.LITERAL_THROWS};
         assertArrayEquals(expected, obj.getRequiredTokens());
     }
 
     @Test
     public void testWrongTokenType() {
-        ThrowsCountCheck obj = new ThrowsCountCheck();
-        DetailAST ast = new DetailAST();
+        final ThrowsCountCheck obj = new ThrowsCountCheck();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
         try {
             obj.visitToken(ast);
@@ -99,9 +99,9 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testNotIgnorePrivateMethod() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(ThrowsCountCheck.class);
         checkConfig.addAttribute("ignorePrivateMethods", "false");
-        String[] expected = {
+        final String[] expected = {
             "17:20: " + getCheckMessage(MSG_KEY, 5, 4),
             "22:20: " + getCheckMessage(MSG_KEY, 5, 4),
             "27:20: " + getCheckMessage(MSG_KEY, 6, 4),

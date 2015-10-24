@@ -128,25 +128,25 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testNullClassLoader() throws Exception {
-        DetailAST exprAst = new DetailAST();
+        final DetailAST exprAst = new DetailAST();
         exprAst.setType(TokenTypes.EXPR);
 
-        DetailAST newAst = new DetailAST();
+        final DetailAST newAst = new DetailAST();
         newAst.setType(TokenTypes.LITERAL_NEW);
         newAst.setLineNo(1);
         newAst.setColumnNo(1);
 
-        DetailAST identAst = new DetailAST();
+        final DetailAST identAst = new DetailAST();
         identAst.setType(TokenTypes.IDENT);
         identAst.setText("Boolean");
 
-        DetailAST lparenAst = new DetailAST();
+        final DetailAST lparenAst = new DetailAST();
         lparenAst.setType(TokenTypes.LPAREN);
 
-        DetailAST elistAst = new DetailAST();
+        final DetailAST elistAst = new DetailAST();
         elistAst.setType(TokenTypes.ELIST);
 
-        DetailAST rparenAst = new DetailAST();
+        final DetailAST rparenAst = new DetailAST();
         rparenAst.setType(TokenTypes.RPAREN);
 
         exprAst.addChild(newAst);
@@ -155,8 +155,8 @@ public class IllegalInstantiationCheckTest
         lparenAst.setNextSibling(elistAst);
         elistAst.setNextSibling(rparenAst);
 
-        IllegalInstantiationCheck check = new IllegalInstantiationCheck();
-        File inputFile = new File(getNonCompilablePath("InputIllegalInstantiationLang.java"));
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final File inputFile = new File(getNonCompilablePath("InputIllegalInstantiationLang.java"));
         check.setFileContents(new FileContents(new FileText(inputFile, "UTF-8")));
         check.configure(createCheckConfig(IllegalInstantiationCheck.class));
         check.setMessages(new LocalizedMessages());
@@ -168,7 +168,7 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testTokensNotNull() {
-        IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -176,9 +176,9 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testImproperToken() throws Exception {
-        IllegalInstantiationCheck check = new IllegalInstantiationCheck();
+        final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
 
-        DetailAST lambdaAst = new DetailAST();
+        final DetailAST lambdaAst = new DetailAST();
         lambdaAst.setType(TokenTypes.LAMBDA);
 
         try {

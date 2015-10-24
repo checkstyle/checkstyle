@@ -34,7 +34,7 @@ public class LineColumnTest {
 
     @Test
     public void testCompareToFirstLarger() {
-        LineColumn lineColumn = new LineColumn(0, 0);
+        final LineColumn lineColumn = new LineColumn(0, 0);
 
         assertEquals(1, new LineColumn(1, 0).compareTo(lineColumn));
         assertEquals(1, new LineColumn(0, 1).compareTo(lineColumn));
@@ -42,7 +42,7 @@ public class LineColumnTest {
 
     @Test
     public void testCompareToFirstSmaller() {
-        Comparable<LineColumn> lineColumn = new LineColumn(0, 0);
+        final Comparable<LineColumn> lineColumn = new LineColumn(0, 0);
 
         assertEquals(-1, lineColumn.compareTo(new LineColumn(1, 0)));
         assertEquals(-1, lineColumn.compareTo(new LineColumn(0, 1)));

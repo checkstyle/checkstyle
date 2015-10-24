@@ -51,7 +51,7 @@ public class WhitespaceAroundTest
 
     @Test
     public void testGetRequiredTokens() {
-        WhitespaceAroundCheck checkObj = new WhitespaceAroundCheck();
+        final WhitespaceAroundCheck checkObj = new WhitespaceAroundCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
@@ -227,9 +227,9 @@ public class WhitespaceAroundTest
 
     @Test
     public void testGetAcceptableTokens() {
-        WhitespaceAroundCheck whitespaceAroundCheckObj = new WhitespaceAroundCheck();
-        int[] actual = whitespaceAroundCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final WhitespaceAroundCheck whitespaceAroundCheckObj = new WhitespaceAroundCheck();
+        final int[] actual = whitespaceAroundCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.ASSIGN,
             TokenTypes.BAND,
             TokenTypes.BAND_ASSIGN,

@@ -45,7 +45,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMultiCaseClass() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
             "24:59: " + getCheckMessage(MSG_KEY),
             "104:21: " + getCheckMessage(MSG_KEY),
@@ -63,7 +63,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        OneStatementPerLineCheck check = new OneStatementPerLineCheck();
+        final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -71,7 +71,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithMultilineStatements() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
             "44:21: " + getCheckMessage(MSG_KEY),
             "61:17: " + getCheckMessage(MSG_KEY),
@@ -88,7 +88,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void oneStatementNonCompilableInputTest() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
             "24:6: " + getCheckMessage(MSG_KEY),
         };

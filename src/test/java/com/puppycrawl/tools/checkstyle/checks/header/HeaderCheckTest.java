@@ -156,7 +156,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testSetHeaderTwice() {
-        HeaderCheck check = new HeaderCheck();
+        final HeaderCheck check = new HeaderCheck();
         check.setHeader("Header");
         try {
             check.setHeader("Header2");
@@ -170,7 +170,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testIoExceptionWhenLoadingHeader() throws Exception {
-        HeaderCheck check = PowerMockito.spy(new HeaderCheck());
+        final HeaderCheck check = PowerMockito.spy(new HeaderCheck());
         PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
                 anyObject());
 
@@ -186,13 +186,13 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testIoExceptionWhenLoadingHeaderFile() throws Exception {
-        HeaderCheck check = PowerMockito.spy(new HeaderCheck());
+        final HeaderCheck check = PowerMockito.spy(new HeaderCheck());
         PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
                 anyObject());
 
         check.setHeaderFile(getPath("InputRegexpHeader1.java"));
 
-        Method loadHeaderFile = AbstractHeaderCheck.class.getDeclaredMethod("loadHeaderFile");
+        final Method loadHeaderFile = AbstractHeaderCheck.class.getDeclaredMethod("loadHeaderFile");
         loadHeaderFile.setAccessible(true);
         try {
             loadHeaderFile.invoke(check);

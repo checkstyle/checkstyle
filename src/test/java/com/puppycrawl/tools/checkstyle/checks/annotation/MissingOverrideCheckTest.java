@@ -47,7 +47,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testBadOverrideFromObject() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
         final String[] expected = {
@@ -66,7 +66,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testBadOverrideFromObjectJ5Compatible() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = {
@@ -85,7 +85,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testBadOverrideFromOther() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
             "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -105,7 +105,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testBadOverrideFromOtherJ5Compatible() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -119,7 +119,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testBadAnnotationOverride() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
             "16: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -136,7 +136,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testBadAnnotationOverrideJ5Compatible() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -148,7 +148,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testNotOverride() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "8: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
             "15: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
@@ -163,7 +163,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodOverrideFromObject() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -177,7 +177,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodOverrideFromObjectJ5Compatible() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -191,7 +191,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodOverrideFromOther() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodOverrideFromOther.java"), expected);
@@ -203,7 +203,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodOverrideFromOtherJ5Compatible() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -217,7 +217,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodAnnotationOverride() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodAnnotationOverride.java"), expected);
@@ -229,7 +229,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodAnnotationOverrideJ5Compatible() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -238,9 +238,9 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() throws Exception {
-        int[] expectedTokens = {TokenTypes.METHOD_DEF };
-        MissingOverrideCheck check = new MissingOverrideCheck();
-        int[] actual = check.getAcceptableTokens();
+        final int[] expectedTokens = {TokenTypes.METHOD_DEF };
+        final MissingOverrideCheck check = new MissingOverrideCheck();
+        final int[] actual = check.getAcceptableTokens();
         assertEquals(1, actual.length);
         Assert.assertArrayEquals(expectedTokens, actual);
     }

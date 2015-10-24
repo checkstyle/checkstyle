@@ -48,7 +48,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
 
     @Test
     public void testAllBlockComments() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(BlockCommentListenerCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(BlockCommentListenerCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFullOfBlockComments.java"), expected);
         Assert.assertTrue(ALL_COMMENTS.isEmpty());
@@ -90,7 +90,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
 
         @Override
         public void visitToken(DetailAST ast) {
-            String commentContent = ast.getFirstChild().getText();
+            final String commentContent = ast.getFirstChild().getText();
             if (!ALL_COMMENTS.remove(commentContent)) {
                 Assert.fail("Unexpected comment: " + commentContent);
             }

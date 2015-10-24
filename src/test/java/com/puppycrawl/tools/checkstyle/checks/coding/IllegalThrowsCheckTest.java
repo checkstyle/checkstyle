@@ -40,9 +40,9 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "9:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "14:45: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
             "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
@@ -53,7 +53,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIllegalClassNames() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, NullPointerException");
 
@@ -61,7 +61,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("illegalClassNames",
                 "java.lang.IOException.");
 
-        String[] expected = {
+        final String[] expected = {
             "5:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
             "14:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
@@ -74,10 +74,10 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testIgnoreMethodNames() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("ignoredMethodNames", "methodTwo");
 
-        String[] expected = {
+        final String[] expected = {
             "9:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
@@ -90,12 +90,12 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testIllegalClassNamesWithIgnoreMethodNames() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("illegalClassNames",
             "java.lang.Error, java.lang.Exception, NullPointerException, Throwable");
         checkConfig.addAttribute("ignoredMethodNames", "methodTwo");
 
-        String[] expected = {
+        final String[] expected = {
             "5:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
             "18:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
@@ -109,10 +109,10 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputIllegalThrowsIgnoreOverriddenMethods.java"), expected);
     }
@@ -123,10 +123,10 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testNotIgnoreOverriddenMethods() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalThrowsCheck.class);
         checkConfig.addAttribute("ignoreOverriddenMethods", "false");
 
-        String[] expected = {
+        final String[] expected = {
             "7:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "12:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
@@ -136,7 +136,7 @@ public class IllegalThrowsCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        IllegalThrowsCheck check = new IllegalThrowsCheck();
+        final IllegalThrowsCheck check = new IllegalThrowsCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

@@ -50,8 +50,8 @@ public class EmptyForIteratorPadCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
-        int[] expected = {TokenTypes.FOR_ITERATOR};
+        final EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
+        final int[] expected = {TokenTypes.FOR_ITERATOR};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -76,9 +76,9 @@ public class EmptyForIteratorPadCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        EmptyForIteratorPadCheck emptyForIteratorPadCheckObj = new EmptyForIteratorPadCheck();
-        int[] actual = emptyForIteratorPadCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final EmptyForIteratorPadCheck emptyForIteratorPadCheckObj = new EmptyForIteratorPadCheck();
+        final int[] actual = emptyForIteratorPadCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.FOR_ITERATOR,
         };
         assertArrayEquals(expected, actual);

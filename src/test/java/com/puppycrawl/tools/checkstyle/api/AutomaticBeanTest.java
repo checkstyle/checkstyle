@@ -70,7 +70,7 @@ public class AutomaticBeanTest {
     @Test
     public void testContextualizeInvocationTargetException() {
         final TestBean testBean = new TestBean();
-        DefaultContext context = new DefaultContext();
+        final DefaultContext context = new DefaultContext();
         context.add("exceptionalMethod", 123.0f);
         try {
             testBean.contextualize(context);
@@ -85,7 +85,7 @@ public class AutomaticBeanTest {
     @Test
     public void testContextualizeConversionException() {
         final TestBean testBean = new TestBean();
-        DefaultContext context = new DefaultContext();
+        final DefaultContext context = new DefaultContext();
         context.add("val", "some string");
         try {
             testBean.contextualize(context);

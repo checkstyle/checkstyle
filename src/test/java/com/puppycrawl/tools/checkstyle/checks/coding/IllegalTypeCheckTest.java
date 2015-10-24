@@ -51,7 +51,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     @Test
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
         checkConfig.addAttribute("validateAbstractClassNames", "true");
-        String[] expected = {
+        final String[] expected = {
             "27:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "29:37: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "33:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
@@ -63,14 +63,14 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     @Test
     public void testValidateAbstractClassNamesSetToFalse() throws Exception {
         checkConfig.addAttribute("validateAbstractClassNames", "false");
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputIllegalTypeAbstractClassNames.java"), expected);
     }
 
     @Test
     public void testDefaults() throws Exception {
-        String[] expected = {
+        final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
@@ -82,7 +82,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     public void testIgnoreMethodNames() throws Exception {
         checkConfig.addAttribute("ignoredMethodNames", "table2");
         checkConfig.addAttribute("validateAbstractClassNames", "true");
-        String[] expected = {
+        final String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "9:13: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
@@ -96,7 +96,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     public void testFormat() throws Exception {
         checkConfig.addAttribute("format", "^$");
 
-        String[] expected = {
+        final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
@@ -109,7 +109,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
 
-        String[] expected = {
+        final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
@@ -124,7 +124,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
                 + "java.util.List");
 
-        String[] expected = {
+        final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, "SubCalendar"),
             "27:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
@@ -136,7 +136,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     public void testSameFileNameGeneral() throws Exception {
         checkConfig.addAttribute("illegalClassNames",
             "List, InputGregorianCalendar, java.io.File, ArrayList");
-        String[] expected = {
+        final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, "InputGregorianCalendar"),
             "16:23: " + getCheckMessage(MSG_KEY, "InputGregorianCalendar"),
             "24:9: " + getCheckMessage(MSG_KEY, "List"),
@@ -151,7 +151,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     public void testStarImports() throws Exception {
         checkConfig.addAttribute("illegalClassNames", "List");
 
-        String[] expected = {
+        final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, "List"),
         };
 
@@ -163,7 +163,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("illegalClassNames", "SomeStaticClass");
         checkConfig.addAttribute("ignoredMethodNames", "foo1");
 
-        String[] expected = {
+        final String[] expected = {
             "13:6: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
             "15:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
         };
@@ -176,7 +176,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         checkConfig.addAttribute("memberModifiers", "LITERAL_PRIVATE, LITERAL_PROTECTED,"
                 + " LITERAL_STATIC");
-        String[] expected = {
+        final String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "9:13: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.coding."
@@ -195,7 +195,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        IllegalTypeCheck check = new IllegalTypeCheck();
+        final IllegalTypeCheck check = new IllegalTypeCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -203,9 +203,9 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testImproperToken() throws Exception {
-        IllegalTypeCheck check = new IllegalTypeCheck();
+        final IllegalTypeCheck check = new IllegalTypeCheck();
 
-        DetailAST classDefAst = new DetailAST();
+        final DetailAST classDefAst = new DetailAST();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {

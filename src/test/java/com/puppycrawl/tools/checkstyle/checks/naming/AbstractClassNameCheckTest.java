@@ -107,9 +107,9 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
-        int[] actual = classNameCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
+        final int[] actual = classNameCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
         };
         Assert.assertArrayEquals(expected, actual);
@@ -117,9 +117,9 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
-        int[] actual = classNameCheckObj.getRequiredTokens();
-        int[] expected = {
+        final AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
+        final int[] actual = classNameCheckObj.getRequiredTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
         };
         Assert.assertArrayEquals(expected, actual);

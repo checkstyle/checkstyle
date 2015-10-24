@@ -82,7 +82,7 @@ public class InnerAssignmentCheckTest
 
     @Test
     public void testTokensNotNull() {
-        InnerAssignmentCheck check = new InnerAssignmentCheck();
+        final InnerAssignmentCheck check = new InnerAssignmentCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

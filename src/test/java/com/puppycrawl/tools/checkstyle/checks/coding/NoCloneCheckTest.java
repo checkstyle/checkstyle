@@ -60,7 +60,7 @@ public class NoCloneCheckTest
 
     @Test
     public void testTokensNotNull() {
-        NoCloneCheck check = new NoCloneCheck();
+        final NoCloneCheck check = new NoCloneCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

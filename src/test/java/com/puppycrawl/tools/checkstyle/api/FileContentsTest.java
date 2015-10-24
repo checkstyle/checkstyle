@@ -33,14 +33,14 @@ public class FileContentsTest {
     @SuppressWarnings("deprecation")
     public void testDeprecatedCtor() {
         // just to make UT coverage 100%
-        FileContents o = new FileContents("filename.java", "1", "2");
+        final FileContents o = new FileContents("filename.java", "1", "2");
         o.getFilename();
     }
 
     @Test
     public void testCppCommentNotIntersect() {
         // just to make UT coverage 100%
-        FileContents o = new FileContents(
+        final FileContents o = new FileContents(
                 FileText.fromLines(new File("filename"), Collections.singletonList("  //  ")));
         o.reportCppComment(1, 2);
         assertFalse(o.hasIntersectionWithComment(1, 0, 1, 1));
@@ -49,7 +49,7 @@ public class FileContentsTest {
     @Test
     public void testCppCommentIntersect() {
         // just to make UT coverage 100%
-        FileContents o = new FileContents(
+        final FileContents o = new FileContents(
                 FileText.fromLines(new File("filename"), Collections.singletonList("  //   ")));
         o.reportCppComment(1, 2);
         assertTrue(o.hasIntersectionWithComment(1, 5, 1, 6));

@@ -52,7 +52,7 @@ public class PropertyCacheFileTest {
 
     @Test
     public void testNonAccessibleFile() throws IOException {
-        Configuration config = new DefaultConfiguration("myName");
+        final Configuration config = new DefaultConfiguration("myName");
         final File file = temporaryFolder.newFile("file.output");
         file.setReadable(true, false);
         file.setWritable(false, false);
@@ -69,7 +69,7 @@ public class PropertyCacheFileTest {
             assertEquals("config can not be null", ex.getMessage());
         }
         try {
-            Configuration config = new DefaultConfiguration("myName");
+            final Configuration config = new DefaultConfiguration("myName");
             new PropertyCacheFile(config, null);
         }
         catch (IllegalArgumentException ex) {
@@ -79,9 +79,9 @@ public class PropertyCacheFileTest {
 
     @Test
     public void testInCache() throws IOException {
-        Configuration config = new DefaultConfiguration("myName");
+        final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
-        PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
         assertTrue(cache.isInCache("myFile", 1));
         assertFalse(cache.isInCache("myFile", 2));
@@ -92,18 +92,18 @@ public class PropertyCacheFileTest {
     @SuppressWarnings("unchecked")
     public void testExceptionNoSuchAlgorithmException() throws Exception {
 
-        Configuration config = new DefaultConfiguration("myName");
+        final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
-        PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
         mockStatic(MessageDigest.class);
 
         when(MessageDigest.getInstance("SHA-1"))
                 .thenThrow(NoSuchAlgorithmException.class);
 
-        Class<?>[] param = new Class<?>[1];
+        final Class<?>[] param = new Class<?>[1];
         param[0] = Serializable.class;
-        Method method = PropertyCacheFile.class.getDeclaredMethod("getConfigHashCode", param);
+        final Method method = PropertyCacheFile.class.getDeclaredMethod("getConfigHashCode", param);
         method.setAccessible(true);
         try {
             method.invoke(cache, config);

@@ -53,7 +53,7 @@ public class AvoidInlineConditionalsCheckTest
 
     @Test
     public void testTokensNotNull() {
-        AvoidInlineConditionalsCheck check = new AvoidInlineConditionalsCheck();
+        final AvoidInlineConditionalsCheck check = new AvoidInlineConditionalsCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

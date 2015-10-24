@@ -103,13 +103,13 @@ public class TranslationCheckTest
         //I can't put wrong file here. Checkstyle fails before check started.
         //I saw some usage of file or handling of wrong file in Checker, or somewhere
         //in checks running part. So I had to do it with reflection to improve coverage.
-        TranslationCheck check = new TranslationCheck();
-        DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final TranslationCheck check = new TranslationCheck();
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
         check.configure(checkConfig);
-        Checker checker = createChecker(checkConfig);
+        final Checker checker = createChecker(checkConfig);
         check.setMessageDispatcher(checker);
 
-        Method loadKeys = check.getClass().getDeclaredMethod("loadKeys", File.class);
+        final Method loadKeys = check.getClass().getDeclaredMethod("loadKeys", File.class);
         loadKeys.setAccessible(true);
         loadKeys.invoke(check, new File(""));
 
@@ -120,12 +120,12 @@ public class TranslationCheckTest
         //I can't put wrong file here. Checkstyle fails before check started.
         //I saw some usage of file or handling of wrong file in Checker, or somewhere
         //in checks running part. So I had to do it with reflection to improve coverage.
-        TranslationCheck check = new TranslationCheck();
-        DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final TranslationCheck check = new TranslationCheck();
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
         check.configure(checkConfig);
         check.setMessageDispatcher(createChecker(checkConfig));
 
-        Method logIOException = check.getClass().getDeclaredMethod("logIOException",
+        final Method logIOException = check.getClass().getDeclaredMethod("logIOException",
                 IOException.class,
                 File.class);
         logIOException.setAccessible(true);

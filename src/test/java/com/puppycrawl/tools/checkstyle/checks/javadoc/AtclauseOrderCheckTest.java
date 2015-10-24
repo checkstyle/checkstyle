@@ -41,21 +41,21 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
-        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertArrayEquals(expected, checkObj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
-        AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
-        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testCorrect() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCorrectAtClauseOrder.java"), expected);
@@ -65,7 +65,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
     public void testIncorrect() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
-        DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         final String[] expected = {
             "9: " + getCheckMessage(MSG_KEY, tagOrder),
             "11: " + getCheckMessage(MSG_KEY, tagOrder),
@@ -114,7 +114,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
     @Test
     public void testIncorrectCustom() throws Exception {
 
-        DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF");
         final String customOrder = " @since,  @version, @param,@return,@throws, @exception,"
                 + "@deprecated, @see,@serial,   @serialField,  @serialData,@author";

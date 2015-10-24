@@ -41,11 +41,12 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void test() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
 
-        String[] expected = {
+        final String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, 3, 0),
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
@@ -55,20 +56,21 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void test15() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(ClassFanOutComplexityCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ClassFanOutComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(ClassFanOutComplexityCheck.class);
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputClassCoupling.java"), expected);
@@ -76,9 +78,10 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        ClassFanOutComplexityCheck classFanOutComplexityCheckObj = new ClassFanOutComplexityCheck();
-        int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final ClassFanOutComplexityCheck classFanOutComplexityCheckObj =
+            new ClassFanOutComplexityCheck();
+        final int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,

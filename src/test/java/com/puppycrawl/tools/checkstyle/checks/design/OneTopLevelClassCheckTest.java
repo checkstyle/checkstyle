@@ -47,7 +47,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
+        final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

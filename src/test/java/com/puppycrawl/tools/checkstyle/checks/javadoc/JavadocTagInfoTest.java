@@ -40,7 +40,7 @@ public class JavadocTagInfoTest {
      */
     @Test
     public void testJavadocTagInfoValueOf() {
-        JavadocTagInfo tag = JavadocTagInfo.valueOf("AUTHOR");
+        final JavadocTagInfo tag = JavadocTagInfo.valueOf("AUTHOR");
         assertEquals(JavadocTagInfo.AUTHOR, tag);
     }
 
@@ -50,7 +50,7 @@ public class JavadocTagInfoTest {
      */
     @Test
     public void testTypeValueOf() {
-        JavadocTagInfo.Type type = JavadocTagInfo.Type.valueOf("BLOCK");
+        final JavadocTagInfo.Type type = JavadocTagInfo.Type.valueOf("BLOCK");
         assertEquals(JavadocTagInfo.Type.BLOCK, type);
     }
 
@@ -60,11 +60,11 @@ public class JavadocTagInfoTest {
      */
     @Test
     public void testTypeValues() {
-        JavadocTagInfo.Type[] expected = {
+        final JavadocTagInfo.Type[] expected = {
             JavadocTagInfo.Type.BLOCK,
             JavadocTagInfo.Type.INLINE,
         };
-        JavadocTagInfo.Type[] actual = JavadocTagInfo.Type.values();
+        final JavadocTagInfo.Type[] actual = JavadocTagInfo.Type.values();
         assertArrayEquals(expected, actual);
     }
 
@@ -72,7 +72,7 @@ public class JavadocTagInfoTest {
     public void testAuthor() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -90,7 +90,7 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testOthers() throws ReflectiveOperationException {
-        JavadocTagInfo[] tags = {
+        final JavadocTagInfo[] tags = {
             JavadocTagInfo.CODE,
             JavadocTagInfo.DOC_ROOT,
             JavadocTagInfo.LINK,
@@ -101,15 +101,15 @@ public class JavadocTagInfoTest {
             JavadocTagInfo.VALUE,
         };
         for (JavadocTagInfo tagInfo : tags) {
-            DetailAST astParent = new DetailAST();
+            final DetailAST astParent = new DetailAST();
             astParent.setType(TokenTypes.LITERAL_CATCH);
 
             final DetailAST ast = new DetailAST();
-            Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
+            final Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
             setParent.setAccessible(true);
             setParent.invoke(ast, astParent);
 
-            int[] validTypes = {
+            final int[] validTypes = {
                 TokenTypes.PACKAGE_DEF,
                 TokenTypes.CLASS_DEF,
                 TokenTypes.INTERFACE_DEF,
@@ -136,13 +136,13 @@ public class JavadocTagInfoTest {
     @Test
     public void testDeprecated() throws ReflectiveOperationException {
         final DetailAST ast = new DetailAST();
-        DetailAST astParent = new DetailAST();
+        final DetailAST astParent = new DetailAST();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
+        final Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
         setParent.setAccessible(true);
         setParent.invoke(ast, astParent);
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -169,13 +169,13 @@ public class JavadocTagInfoTest {
     @Test
     public void testSerial() throws ReflectiveOperationException {
         final DetailAST ast = new DetailAST();
-        DetailAST astParent = new DetailAST();
+        final DetailAST astParent = new DetailAST();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
+        final Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAST.class);
         setParent.setAccessible(true);
         setParent.invoke(ast, astParent);
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.VARIABLE_DEF,
         };
         for (int type: validTypes) {
@@ -195,7 +195,7 @@ public class JavadocTagInfoTest {
     public void testException() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };
@@ -212,7 +212,7 @@ public class JavadocTagInfoTest {
     public void testThrows() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };
@@ -229,7 +229,7 @@ public class JavadocTagInfoTest {
     public void testVersions() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -249,7 +249,7 @@ public class JavadocTagInfoTest {
     public void testParam() {
         final DetailAST ast = new DetailAST();
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
@@ -274,7 +274,7 @@ public class JavadocTagInfoTest {
         astChild2.setType(TokenTypes.LITERAL_INT);
         astChild.setFirstChild(astChild2);
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.METHOD_DEF,
         };
         for (int type: validTypes) {
@@ -300,7 +300,7 @@ public class JavadocTagInfoTest {
         astChild2.setText("ObjectStreafield");
         astChild.setFirstChild(astChild2);
 
-        int[] validTypes = {
+        final int[] validTypes = {
             TokenTypes.VARIABLE_DEF,
         };
         for (int type: validTypes) {
@@ -327,7 +327,7 @@ public class JavadocTagInfoTest {
         astChild.setText("writeObject");
         ast.setFirstChild(astChild);
 
-        String[] validNames = {
+        final String[] validNames = {
             "writeObject",
             "readObject",
             "writeExternal",

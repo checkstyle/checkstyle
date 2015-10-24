@@ -41,8 +41,8 @@ public class FinalClassCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        FinalClassCheck checkObj = new FinalClassCheck();
-        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+        final FinalClassCheck checkObj = new FinalClassCheck();
+        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -60,8 +60,8 @@ public class FinalClassCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        FinalClassCheck obj = new FinalClassCheck();
-        int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+        final FinalClassCheck obj = new FinalClassCheck();
+        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 }

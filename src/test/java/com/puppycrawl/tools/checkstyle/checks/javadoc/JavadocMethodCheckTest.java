@@ -57,10 +57,10 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        JavadocMethodCheck javadocMethodCheck = new JavadocMethodCheck();
+        final JavadocMethodCheck javadocMethodCheck = new JavadocMethodCheck();
 
-        int[] actual = javadocMethodCheck.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = javadocMethodCheck.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
@@ -76,7 +76,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testLogLoadErrors() throws Exception {
-        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("logLoadErrors", "true");
         config.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {
@@ -87,7 +87,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void extendAnnotationTest() throws Exception {
-        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
         config.addAttribute("minLineCount", "2");
         final String[] expected = {
@@ -98,7 +98,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void newTest() throws Exception {
-        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
         config.addAttribute("minLineCount", "2");
         final String[] expected = {
@@ -110,7 +110,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void allowedAnnotationsTest() throws Exception {
 
-        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(config, getPath("InputAllowedAnnotations.java"), expected);
@@ -553,14 +553,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void testSkipCertainMethods() throws Exception {
         checkConfig.addAttribute("ignoreMethodNamesRegex", "^foo.*$");
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
 
     @Test
     public void testNotSkipAnythingWhenSkipRegexDoesNotMatch() throws Exception {
         checkConfig.addAttribute("ignoreMethodNamesRegex", "regexThatDoesNotMatch");
-        String[] expected = {
+        final String[] expected = {
             "5:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),

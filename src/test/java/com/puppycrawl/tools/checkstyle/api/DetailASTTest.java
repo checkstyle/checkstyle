@@ -112,7 +112,7 @@ public class DetailASTTest {
     }
 
     private static void checkDir(File dir) throws Exception {
-        File[] files = dir.listFiles(new FileFilter() {
+        final File[] files = dir.listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File file) {
                     return (file.getName().endsWith(".java")
@@ -145,16 +145,16 @@ public class DetailASTTest {
                            final DetailAST prev,
                            final String filename,
                            final DetailAST root) {
-        Object[] params = {
+        final Object[] params = {
             node, parent, prev, filename, root,
         };
-        MessageFormat badParentFormatter = new MessageFormat(
+        final MessageFormat badParentFormatter = new MessageFormat(
                 "Bad parent node={0} parent={1} filename={3} root={4}", Locale.ROOT);
-        String badParentMsg = badParentFormatter.format(params);
+        final String badParentMsg = badParentFormatter.format(params);
         assertEquals(badParentMsg, parent, node.getParent());
-        MessageFormat badPrevFormatter = new MessageFormat(
+        final MessageFormat badPrevFormatter = new MessageFormat(
                 "Bad prev node={0} prev={2} parent={1} filename={3} root={4}", Locale.ROOT);
-        String badPrevMsg = badPrevFormatter.format(params);
+        final String badPrevMsg = badPrevFormatter.format(params);
         assertEquals(badPrevMsg, prev, node.getPreviousSibling());
 
         if (node.getFirstChild() != null) {

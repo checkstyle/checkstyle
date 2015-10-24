@@ -40,8 +40,8 @@ public class ArrayTypeStyleCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
-        int[] expected = {TokenTypes.ARRAY_DECLARATOR};
+        final ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
+        final int[] expected = {TokenTypes.ARRAY_DECLARATOR};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -74,9 +74,9 @@ public class ArrayTypeStyleCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        int[] expected = {TokenTypes.ARRAY_DECLARATOR };
-        ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
-        int[] actual = check.getAcceptableTokens();
+        final int[] expected = {TokenTypes.ARRAY_DECLARATOR };
+        final ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
+        final int[] actual = check.getAcceptableTokens();
         assertEquals(1, actual.length);
         assertArrayEquals(expected, actual);
     }

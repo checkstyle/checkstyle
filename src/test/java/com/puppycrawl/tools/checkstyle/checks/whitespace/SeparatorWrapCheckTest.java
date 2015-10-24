@@ -71,9 +71,9 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testGetDefaultTokens() {
-        SeparatorWrapCheck separatorWrapCheckObj = new SeparatorWrapCheck();
-        int[] actual = separatorWrapCheckObj.getDefaultTokens();
-        int[] expected = {
+        final SeparatorWrapCheck separatorWrapCheckObj = new SeparatorWrapCheck();
+        final int[] actual = separatorWrapCheckObj.getDefaultTokens();
+        final int[] expected = {
             TokenTypes.DOT,
             TokenTypes.COMMA,
         };

@@ -39,7 +39,7 @@ public class SuppressionFilterTest {
 
     @Test
     public void testAccept() throws CheckstyleException {
-        SuppressionFilter filter = new SuppressionFilter();
+        final SuppressionFilter filter = new SuppressionFilter();
         filter.setFile("src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
             + "suppressions_none.xml");
 

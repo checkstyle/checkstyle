@@ -93,7 +93,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             fail();
         }
         catch (CheckstyleException e) {
-            String errorMsg = e.getMessage();
+            final String errorMsg = e.getMessage();
             assertTrue(errorMsg.contains("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - Token \"IMPORT\""
                     + " was not found in Acceptable tokens list in check"
@@ -140,7 +140,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
                         .toLowerCase(Locale.ENGLISH).startsWith("windows")) {
             // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
             // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
-            File file = new File("C\\:invalid");
+            final File file = new File("C\\:invalid");
             treeWalker.setCacheFile(file.getAbsolutePath());
         }
         else {
@@ -195,7 +195,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checkerConfig.addAttribute("charset", "UTF-8");
         checkerConfig.addChild(treeWalkerConfig);
 
-        Checker checker = new Checker();
+        final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
         checker.setLocaleCountry(locale.getCountry());
         checker.setLocaleLanguage(locale.getLanguage());
@@ -212,7 +212,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         //checker.destroy();
         //checker.configure(checkerConfig);
 
-        Checker otherChecker = new Checker();
+        final Checker otherChecker = new Checker();
         otherChecker.setLocaleCountry(locale.getCountry());
         otherChecker.setLocaleLanguage(locale.getLanguage());
         otherChecker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -245,7 +245,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setTabWidth(1);
         treeWalker.configure(new DefaultConfiguration("default config"));
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
-        File file = new File("src/main/resources/checkstyle_packages.xml");
+        final File file = new File("src/main/resources/checkstyle_packages.xml");
         treeWalker.processFiltered(file, new ArrayList<String>());
     }
 
@@ -253,13 +253,13 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testWithCacheWithNoViolation() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createCheckConfig(TypeNameCheck.class));
-        PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
         treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
         final File file = temporaryFolder.newFile("file.java");
-        List<String> lines = new ArrayList<>();
+        final List<String> lines = new ArrayList<>();
         lines.add(" class a {} ");
         treeWalker.processFiltered(file, lines);
     }
@@ -268,13 +268,13 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testProcessWithParserThrowable() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createCheckConfig(TypeNameCheck.class));
-        PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
         treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
         final File file = temporaryFolder.newFile("file.java");
-        List<String> lines = new ArrayList<>();
+        final List<String> lines = new ArrayList<>();
         lines.add(" classD a {} ");
 
         try {
@@ -290,13 +290,13 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testProcessWithRecognitionException() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createCheckConfig(TypeNameCheck.class));
-        PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
         treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
         final File file = temporaryFolder.newFile("file.java");
-        List<String> lines = new ArrayList<>();
+        final List<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
 
         try {

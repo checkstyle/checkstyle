@@ -43,10 +43,10 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void test() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(BooleanExpressionComplexityCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, 4, 3),
             "32:9: " + getCheckMessage(MSG_KEY, 6, 3),
             "38:34: " + getCheckMessage(MSG_KEY, 4, 3),
@@ -58,31 +58,31 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testNoBitwise() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(BooleanExpressionComplexityCheck.class);
         checkConfig.addAttribute("max", "5");
         checkConfig.addAttribute("tokens", "BXOR,LAND,LOR");
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
     }
 
     @Test
     public void testNPE() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(BooleanExpressionComplexityCheck.class);
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputBooleanExpressionComplexityNPE.java"), expected);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testWrongToken() {
-        BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
+        final BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
             new BooleanExpressionComplexityCheck();
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         booleanExpressionComplexityCheckObj.visitToken(ast);
     }

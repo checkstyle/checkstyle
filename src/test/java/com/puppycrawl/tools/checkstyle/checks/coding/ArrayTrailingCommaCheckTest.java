@@ -53,7 +53,7 @@ public class ArrayTrailingCommaCheckTest
 
     @Test
     public void testTokensNotNull() {
-        ArrayTrailingCommaCheck check = new ArrayTrailingCommaCheck();
+        final ArrayTrailingCommaCheck check = new ArrayTrailingCommaCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

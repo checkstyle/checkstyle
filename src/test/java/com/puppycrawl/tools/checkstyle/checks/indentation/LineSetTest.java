@@ -27,11 +27,11 @@ public class LineSetTest {
 
     @Test
     public void testToStringShowingFirstAndLastLine() {
-        LineSet lineSet = new LineSet();
+        final LineSet lineSet = new LineSet();
         lineSet.addLineAndCol(0, 1);
         lineSet.addLineAndCol(2, 3);
 
-        String result = lineSet.toString();
+        final String result = lineSet.toString();
 
         assertEquals("LineSet[firstLine=0, lastLine=2]", result);
     }

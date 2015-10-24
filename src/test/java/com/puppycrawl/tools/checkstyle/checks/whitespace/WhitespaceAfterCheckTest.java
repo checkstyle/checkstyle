@@ -50,7 +50,7 @@ public class WhitespaceAfterCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
+        final WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

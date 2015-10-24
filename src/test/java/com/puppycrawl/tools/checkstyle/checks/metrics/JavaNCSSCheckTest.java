@@ -48,13 +48,13 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void test() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
 
         checkConfig.addAttribute("methodMaximum", "0");
         checkConfig.addAttribute("classMaximum", "1");
         checkConfig.addAttribute("fileMaximum", "2");
 
-        String[] expected = {
+        final String[] expected = {
             "2:1: " + getCheckMessage(MSG_FILE, 39, 2),
             "9:1: " + getCheckMessage(MSG_CLASS, 22, 1),
             "14:5: " + getCheckMessage(MSG_METHOD, 2, 0),
@@ -75,8 +75,8 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig = createCheckConfig(JavaNCSSCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputJavaNCSS.java"), expected);
@@ -84,9 +84,9 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
-        int[] actual = javaNcssCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
+        final int[] actual = javaNcssCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
@@ -122,9 +122,9 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
-        int[] actual = javaNcssCheckObj.getRequiredTokens();
-        int[] expected = {
+        final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
+        final int[] actual = javaNcssCheckObj.getRequiredTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,

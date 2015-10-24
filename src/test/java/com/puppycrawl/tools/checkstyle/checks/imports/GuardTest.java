@@ -33,7 +33,7 @@ public class GuardTest {
      */
     @Test
     public void testAccessResultValueOf() {
-        AccessResult result = AccessResult.valueOf("ALLOWED");
+        final AccessResult result = AccessResult.valueOf("ALLOWED");
         assertEquals(AccessResult.ALLOWED, result);
     }
 
@@ -43,8 +43,8 @@ public class GuardTest {
      */
     @Test
     public void testAccessResultValues() {
-        AccessResult[] actual = AccessResult.values();
-        AccessResult[] expected = {
+        final AccessResult[] actual = AccessResult.values();
+        final AccessResult[] expected = {
             AccessResult.ALLOWED,
             AccessResult.DISALLOWED,
             AccessResult.UNKNOWN,

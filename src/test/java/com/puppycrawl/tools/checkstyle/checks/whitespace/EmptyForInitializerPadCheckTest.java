@@ -51,8 +51,8 @@ public class EmptyForInitializerPadCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
-        int[] expected = {TokenTypes.FOR_INIT};
+        final EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
+        final int[] expected = {TokenTypes.FOR_INIT};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -75,10 +75,10 @@ public class EmptyForInitializerPadCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        EmptyForInitializerPadCheck emptyForInitializerPadCheckObj =
+        final EmptyForInitializerPadCheck emptyForInitializerPadCheckObj =
             new EmptyForInitializerPadCheck();
-        int[] actual = emptyForInitializerPadCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = emptyForInitializerPadCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.FOR_INIT,
         };
         assertArrayEquals(expected, actual);
@@ -90,7 +90,7 @@ public class EmptyForInitializerPadCheckTest
      */
     @Test
     public void testPadOptionValueOf() {
-        PadOption option = PadOption.valueOf("NOSPACE");
+        final PadOption option = PadOption.valueOf("NOSPACE");
         assertEquals(PadOption.NOSPACE, option);
     }
 
@@ -100,7 +100,7 @@ public class EmptyForInitializerPadCheckTest
      */
     @Test
     public void testWrapOptionValueOf() {
-        WrapOption option = WrapOption.valueOf("EOL");
+        final WrapOption option = WrapOption.valueOf("EOL");
         assertEquals(WrapOption.EOL, option);
     }
 }

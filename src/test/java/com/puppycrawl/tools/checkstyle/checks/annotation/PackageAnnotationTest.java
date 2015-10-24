@@ -48,7 +48,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
      */
     @Test
     public void testGoodPackageAnnotation() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -57,15 +57,15 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
-        int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = {TokenTypes.PACKAGE_DEF };
+        final PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
+        final int[] actual = constantNameCheckObj.getAcceptableTokens();
+        final int[] expected = {TokenTypes.PACKAGE_DEF };
         Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void testAnnotationNotInPackageInfo() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -74,7 +74,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithoutAnnotation() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
         final String[] expected = {
             "0: Package annotations must be in the package-info.java info.",

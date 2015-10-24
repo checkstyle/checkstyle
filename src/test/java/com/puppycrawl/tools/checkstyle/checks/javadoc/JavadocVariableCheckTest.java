@@ -43,9 +43,9 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
-        int[] actual = javadocVariableCheck.getRequiredTokens();
-        int[] expected = {
+        final JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
+        final int[] actual = javadocVariableCheck.getRequiredTokens();
+        final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
         assertArrayEquals(expected, actual);
@@ -53,10 +53,10 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
+        final JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
 
-        int[] actual = javadocVariableCheck.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = javadocVariableCheck.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
         };

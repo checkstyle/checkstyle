@@ -49,14 +49,14 @@ public class LocalizedMessageTest {
 
     @Test
     public void testGetModuleId() {
-        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("module", localizedMessage.getModuleId());
     }
 
     @Test
     public void testMessageInEnglish() {
-        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
         LocalizedMessage.setLocale(Locale.ENGLISH);
 
         assertEquals("Empty statement.", localizedMessage.getMessage());
@@ -64,7 +64,7 @@ public class LocalizedMessageTest {
 
     @Test
     public void testBundleReloadUrlNull() throws IOException {
-        LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
+        final LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
         control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 Thread.currentThread().getContextClassLoader(), true);
@@ -73,16 +73,17 @@ public class LocalizedMessageTest {
     @Test
     public void testBundleReloadUrlNotNull() throws IOException {
 
-        ClassLoader classloader = mock(ClassLoader.class);
+        final ClassLoader classloader = mock(ClassLoader.class);
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(
                 new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
 
-        URL url = getMockUrl(mockConnection);
-        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
+        final URL url = getMockUrl(mockConnection);
+        final String resource =
+            "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
         when(classloader.getResource(resource)).thenReturn(url);
 
-        LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
+        final LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
         control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 classloader, true);
@@ -91,13 +92,14 @@ public class LocalizedMessageTest {
     @Test
     public void testBundleReloadUrlNotNullStreamNull() throws IOException {
 
-        ClassLoader classloader = mock(ClassLoader.class);
-        String resource = "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
+        final ClassLoader classloader = mock(ClassLoader.class);
+        final String resource =
+            "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
 
-        URL url = getMockUrl(null);
+        final URL url = getMockUrl(null);
         when(classloader.getResource(resource)).thenReturn(url);
 
-        LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
+        final LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
         control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 classloader, true);
@@ -115,7 +117,7 @@ public class LocalizedMessageTest {
 
     @Test
     public void testMessageInFrench() {
-        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
         LocalizedMessage.setLocale(Locale.FRENCH);
 
         assertEquals("Instruction vide.", localizedMessage.getMessage());
@@ -125,7 +127,7 @@ public class LocalizedMessageTest {
     public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
         Locale.setDefault(Locale.FRENCH);
         LocalizedMessage.setLocale(Locale.US);
-        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("Empty statement.", localizedMessage.getMessage());
     }
@@ -134,7 +136,7 @@ public class LocalizedMessageTest {
     public void testEnforceEnglishLanguageBySettingRootLocale() {
         Locale.setDefault(Locale.FRENCH);
         LocalizedMessage.setLocale(Locale.ROOT);
-        LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("Empty statement.", localizedMessage.getMessage());
     }

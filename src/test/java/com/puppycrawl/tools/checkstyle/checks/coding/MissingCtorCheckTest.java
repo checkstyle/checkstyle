@@ -39,7 +39,7 @@ public class MissingCtorCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMissingSwitchDefault() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MissingCtorCheck.class);
 
         final String[] expected = {
@@ -53,7 +53,7 @@ public class MissingCtorCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        MissingCtorCheck check = new MissingCtorCheck();
+        final MissingCtorCheck check = new MissingCtorCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

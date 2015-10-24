@@ -56,13 +56,13 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testLeftCurlyOptionValueOf() {
-        LeftCurlyOption option = LeftCurlyOption.valueOf("NL");
+        final LeftCurlyOption option = LeftCurlyOption.valueOf("NL");
         assertEquals(LeftCurlyOption.NL, option);
     }
 
     @Test
     public void testGetRequiredTokens() {
-        LeftCurlyCheck checkObj = new LeftCurlyCheck();
+        final LeftCurlyCheck checkObj = new LeftCurlyCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
 
     }
@@ -281,9 +281,9 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        LeftCurlyCheck check = new LeftCurlyCheck();
-        int[] actual = check.getAcceptableTokens();
-        int[] expected = {
+        final LeftCurlyCheck check = new LeftCurlyCheck();
+        final int[] actual = check.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,

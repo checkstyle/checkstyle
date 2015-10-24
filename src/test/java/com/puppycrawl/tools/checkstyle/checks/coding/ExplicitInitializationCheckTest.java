@@ -69,7 +69,7 @@ public class ExplicitInitializationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        ExplicitInitializationCheck check = new ExplicitInitializationCheck();
+        final ExplicitInitializationCheck check = new ExplicitInitializationCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

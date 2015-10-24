@@ -27,7 +27,7 @@ public class CheckTest {
 
     @Test
     public void testGetRequiredTokens() {
-        Check check = new Check() {
+        final Check check = new Check() {
             @Override
             public int[] getDefaultTokens() {
                 return ArrayUtils.EMPTY_INT_ARRAY;
@@ -40,7 +40,7 @@ public class CheckTest {
 
     @Test
     public void testGetAcceptable() {
-        Check check = new Check() {
+        final Check check = new Check() {
             @Override
             public int[] getDefaultTokens() {
                 return ArrayUtils.EMPTY_INT_ARRAY;
@@ -53,7 +53,7 @@ public class CheckTest {
 
     @Test
     public void testVisitToken() {
-        Check check = new Check() {
+        final Check check = new Check() {
             @Override
             public int[] getDefaultTokens() {
                 return  ArrayUtils.EMPTY_INT_ARRAY;

@@ -42,13 +42,13 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
+        final AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testCorrect() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCorrectAnnotationLocation.java"), expected);
@@ -56,7 +56,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIncorrect() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = {
             "6: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
@@ -83,9 +83,9 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        AnnotationLocationCheck constantNameCheckObj = new AnnotationLocationCheck();
-        int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final AnnotationLocationCheck constantNameCheckObj = new AnnotationLocationCheck();
+        final int[] actual = constantNameCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -107,14 +107,14 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithoutAnnotations() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAnnotationLocation1.java"), expected);
     }
 
     @Test
     public void testWithParameters() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "true");
         checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "true");
         checkConfig.addAttribute("allowSamelineMultipleAnnotations", "true");
@@ -138,7 +138,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithMultipleAnnotations() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation11"),

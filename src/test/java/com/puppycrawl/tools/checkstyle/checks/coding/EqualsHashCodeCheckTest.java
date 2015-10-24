@@ -61,7 +61,7 @@ public class EqualsHashCodeCheckTest
 
     @Test
     public void testTokensNotNull() {
-        EqualsHashCodeCheck check = new EqualsHashCodeCheck();
+        final EqualsHashCodeCheck check = new EqualsHashCodeCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

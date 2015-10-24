@@ -169,25 +169,26 @@ public class NewlineAtEndOfFileCheckTest
     @Test
     public void testWrongFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
-        NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
+        final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         check.configure(checkConfig);
-        File impossibleFile = new File("");
-        Set<LocalizedMessage> messages = check.process(impossibleFile, Lists.newArrayList("txt"));
+        final File impossibleFile = new File("");
+        final Set<LocalizedMessage> messages = check.process(impossibleFile,
+            Lists.newArrayList("txt"));
         assertEquals(1, messages.size());
-        Iterator<LocalizedMessage> iterator = messages.iterator();
+        final Iterator<LocalizedMessage> iterator = messages.iterator();
         assertEquals("Unable to open ''.", iterator.next().getMessage());
     }
 
     @Test
     public void testWrongSeparatorLength() throws Exception {
-        NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
+        final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
         check.configure(checkConfig);
 
-        Method method = NewlineAtEndOfFileCheck.class
+        final Method method = NewlineAtEndOfFileCheck.class
                 .getDeclaredMethod("endsWithNewline", RandomAccessFile.class);
         method.setAccessible(true);
-        RandomAccessFile file = mock(RandomAccessFile.class);
+        final RandomAccessFile file = mock(RandomAccessFile.class);
         when(file.length()).thenReturn(2000000L);
         try {
             method.invoke(new NewlineAtEndOfFileCheck(), file);

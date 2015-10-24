@@ -83,163 +83,163 @@ public class CommentsTest extends BaseCheckTestSupport {
      *         +--RCURLY [6,0]
      */
     private static DetailAST buildInput1() {
-        DetailAST packageDef = new DetailAST();
+        final DetailAST packageDef = new DetailAST();
         packageDef.setType(PACKAGE_DEF);
         packageDef.setText("package");
         packageDef.setLineNo(1);
         packageDef.setColumnNo(0);
 
-        DetailAST annotationsDef = new DetailAST();
+        final DetailAST annotationsDef = new DetailAST();
         annotationsDef.setType(ANNOTATIONS);
         annotationsDef.setText("ANNOTATIONS");
         annotationsDef.setLineNo(1);
         annotationsDef.setColumnNo(48);
 
-        DetailAST dotDef = new DetailAST();
+        final DetailAST dotDef = new DetailAST();
         dotDef.setType(DOT);
         dotDef.setText(".");
         dotDef.setLineNo(1);
         dotDef.setColumnNo(48);
 
-        DetailAST subDotDef = new DetailAST();
+        final DetailAST subDotDef = new DetailAST();
         subDotDef.setType(DOT);
         subDotDef.setText(".");
         subDotDef.setLineNo(1);
         subDotDef.setColumnNo(39);
 
-        DetailAST subDotDef1 = new DetailAST();
+        final DetailAST subDotDef1 = new DetailAST();
         subDotDef1.setType(DOT);
         subDotDef1.setText(".");
         subDotDef1.setLineNo(1);
         subDotDef1.setColumnNo(28);
 
-        DetailAST subDotDef2 = new DetailAST();
+        final DetailAST subDotDef2 = new DetailAST();
         subDotDef2.setType(DOT);
         subDotDef2.setText(".");
         subDotDef2.setLineNo(1);
         subDotDef2.setColumnNo(22);
 
-        DetailAST subDotDef3 = new DetailAST();
+        final DetailAST subDotDef3 = new DetailAST();
         subDotDef3.setType(DOT);
         subDotDef3.setText(".");
         subDotDef3.setLineNo(1);
         subDotDef3.setColumnNo(11);
 
-        DetailAST identDef = new DetailAST();
+        final DetailAST identDef = new DetailAST();
         identDef.setType(IDENT);
         identDef.setText("com");
         identDef.setLineNo(1);
         identDef.setColumnNo(8);
 
-        DetailAST identDef2 = new DetailAST();
+        final DetailAST identDef2 = new DetailAST();
         identDef2.setType(IDENT);
         identDef2.setText("puppycrawl");
         identDef2.setLineNo(1);
         identDef2.setColumnNo(12);
 
-        DetailAST identDef3 = new DetailAST();
+        final DetailAST identDef3 = new DetailAST();
         identDef3.setType(IDENT);
         identDef3.setText("tools");
         identDef3.setLineNo(1);
         identDef3.setColumnNo(23);
 
-        DetailAST semiDef = new DetailAST();
+        final DetailAST semiDef = new DetailAST();
         semiDef.setType(SEMI);
         semiDef.setText(";");
         semiDef.setLineNo(1);
         semiDef.setColumnNo(57);
 
-        DetailAST identDef4 = new DetailAST();
+        final DetailAST identDef4 = new DetailAST();
         identDef4.setType(IDENT);
         identDef4.setText("checkstyle");
         identDef4.setLineNo(1);
         identDef4.setColumnNo(29);
 
-        DetailAST identDef5 = new DetailAST();
+        final DetailAST identDef5 = new DetailAST();
         identDef5.setType(IDENT);
         identDef5.setText("grammars");
         identDef5.setLineNo(1);
         identDef5.setColumnNo(40);
 
-        DetailAST identDef6 = new DetailAST();
+        final DetailAST identDef6 = new DetailAST();
         identDef6.setType(IDENT);
         identDef6.setText("comments");
         identDef6.setLineNo(1);
         identDef6.setColumnNo(49);
 
-        DetailAST classDef = new DetailAST();
+        final DetailAST classDef = new DetailAST();
         classDef.setType(CLASS_DEF);
         classDef.setText("CLASS_DEF");
         classDef.setLineNo(2);
         classDef.setColumnNo(0);
 
-        DetailAST modifiers = new DetailAST();
+        final DetailAST modifiers = new DetailAST();
         modifiers.setType(MODIFIERS);
         modifiers.setText("MODIFIERS");
         modifiers.setLineNo(2);
         modifiers.setColumnNo(0);
 
-        DetailAST literalPublic = new DetailAST();
+        final DetailAST literalPublic = new DetailAST();
         literalPublic.setType(LITERAL_PUBLIC);
         literalPublic.setText("public");
         literalPublic.setLineNo(2);
         literalPublic.setColumnNo(0);
 
-        DetailAST literalClass = new DetailAST();
+        final DetailAST literalClass = new DetailAST();
         literalClass.setType(LITERAL_CLASS);
         literalClass.setText("class");
         literalClass.setLineNo(2);
         literalClass.setColumnNo(7);
 
-        DetailAST blockCommentStart = new DetailAST();
+        final DetailAST blockCommentStart = new DetailAST();
         blockCommentStart.setType(BLOCK_COMMENT_BEGIN);
         blockCommentStart.setText("/*");
         blockCommentStart.setLineNo(2);
         blockCommentStart.setColumnNo(13);
 
-        DetailAST blockCommentContent = new DetailAST();
+        final DetailAST blockCommentContent = new DetailAST();
         blockCommentContent.setType(COMMENT_CONTENT);
         blockCommentContent.setText(LINE_SEPARATOR + "    i'mcomment567" + LINE_SEPARATOR + "    ");
         blockCommentContent.setLineNo(2);
         blockCommentContent.setColumnNo(15);
 
-        DetailAST blockCommentEnd = new DetailAST();
+        final DetailAST blockCommentEnd = new DetailAST();
         blockCommentEnd.setType(BLOCK_COMMENT_END);
         blockCommentEnd.setText("*/");
         blockCommentEnd.setLineNo(4);
         blockCommentEnd.setColumnNo(4);
 
-        DetailAST ident = new DetailAST();
+        final DetailAST ident = new DetailAST();
         ident.setType(IDENT);
         ident.setText("InputComments1");
         ident.setLineNo(5);
         ident.setColumnNo(0);
 
-        DetailAST objBlock = new DetailAST();
+        final DetailAST objBlock = new DetailAST();
         objBlock.setType(OBJBLOCK);
         objBlock.setText("OBJBLOCK");
         objBlock.setLineNo(6);
         objBlock.setColumnNo(0);
 
-        DetailAST lcurly = new DetailAST();
+        final DetailAST lcurly = new DetailAST();
         lcurly.setType(LCURLY);
         lcurly.setText("{");
         lcurly.setLineNo(6);
         lcurly.setColumnNo(0);
 
-        DetailAST slComment = new DetailAST();
+        final DetailAST slComment = new DetailAST();
         slComment.setType(SINGLE_LINE_COMMENT);
         slComment.setText("//");
         slComment.setLineNo(6);
         slComment.setColumnNo(2);
 
-        DetailAST slCommentContent = new DetailAST();
+        final DetailAST slCommentContent = new DetailAST();
         slCommentContent.setType(COMMENT_CONTENT);
         slCommentContent.setText(" comment to left curly brace" + LINE_SEPARATOR);
         slCommentContent.setLineNo(6);
         slCommentContent.setColumnNo(4);
 
-        DetailAST rcurly = new DetailAST();
+        final DetailAST rcurly = new DetailAST();
         rcurly.setType(RCURLY);
         rcurly.setText("}");
         rcurly.setLineNo(7);
@@ -313,97 +313,97 @@ public class CommentsTest extends BaseCheckTestSupport {
      *         +--RCURLY [12,0]
      */
     private static DetailAST buildInput2() {
-        DetailAST packageDef = new DetailAST();
+        final DetailAST packageDef = new DetailAST();
         packageDef.setType(PACKAGE_DEF);
         packageDef.setText("package");
         packageDef.setLineNo(1);
         packageDef.setColumnNo(0);
 
-        DetailAST annotationsDef = new DetailAST();
+        final DetailAST annotationsDef = new DetailAST();
         annotationsDef.setType(ANNOTATIONS);
         annotationsDef.setText("ANNOTATIONS");
         annotationsDef.setLineNo(1);
         annotationsDef.setColumnNo(48);
 
-        DetailAST dotDef = new DetailAST();
+        final DetailAST dotDef = new DetailAST();
         dotDef.setType(DOT);
         dotDef.setText(".");
         dotDef.setLineNo(1);
         dotDef.setColumnNo(48);
 
-        DetailAST subDotDef = new DetailAST();
+        final DetailAST subDotDef = new DetailAST();
         subDotDef.setType(DOT);
         subDotDef.setText(".");
         subDotDef.setLineNo(1);
         subDotDef.setColumnNo(39);
 
-        DetailAST subDotDef1 = new DetailAST();
+        final DetailAST subDotDef1 = new DetailAST();
         subDotDef1.setType(DOT);
         subDotDef1.setText(".");
         subDotDef1.setLineNo(1);
         subDotDef1.setColumnNo(28);
 
-        DetailAST subDotDef2 = new DetailAST();
+        final DetailAST subDotDef2 = new DetailAST();
         subDotDef2.setType(DOT);
         subDotDef2.setText(".");
         subDotDef2.setLineNo(1);
         subDotDef2.setColumnNo(22);
 
-        DetailAST subDotDef3 = new DetailAST();
+        final DetailAST subDotDef3 = new DetailAST();
         subDotDef3.setType(DOT);
         subDotDef3.setText(".");
         subDotDef3.setLineNo(1);
         subDotDef3.setColumnNo(11);
 
-        DetailAST identDef = new DetailAST();
+        final DetailAST identDef = new DetailAST();
         identDef.setType(IDENT);
         identDef.setText("com");
         identDef.setLineNo(1);
         identDef.setColumnNo(8);
 
-        DetailAST identDef2 = new DetailAST();
+        final DetailAST identDef2 = new DetailAST();
         identDef2.setType(IDENT);
         identDef2.setText("puppycrawl");
         identDef2.setLineNo(1);
         identDef2.setColumnNo(12);
 
-        DetailAST identDef3 = new DetailAST();
+        final DetailAST identDef3 = new DetailAST();
         identDef3.setType(IDENT);
         identDef3.setText("tools");
         identDef3.setLineNo(1);
         identDef3.setColumnNo(23);
 
-        DetailAST semiDef = new DetailAST();
+        final DetailAST semiDef = new DetailAST();
         semiDef.setType(SEMI);
         semiDef.setText(";");
         semiDef.setLineNo(1);
         semiDef.setColumnNo(57);
 
-        DetailAST identDef4 = new DetailAST();
+        final DetailAST identDef4 = new DetailAST();
         identDef4.setType(IDENT);
         identDef4.setText("checkstyle");
         identDef4.setLineNo(1);
         identDef4.setColumnNo(29);
 
-        DetailAST identDef5 = new DetailAST();
+        final DetailAST identDef5 = new DetailAST();
         identDef5.setType(IDENT);
         identDef5.setText("grammars");
         identDef5.setLineNo(1);
         identDef5.setColumnNo(40);
 
-        DetailAST identDef6 = new DetailAST();
+        final DetailAST identDef6 = new DetailAST();
         identDef6.setType(IDENT);
         identDef6.setText("comments");
         identDef6.setLineNo(1);
         identDef6.setColumnNo(49);
 
-        DetailAST classDef = new DetailAST();
+        final DetailAST classDef = new DetailAST();
         classDef.setType(CLASS_DEF);
         classDef.setText("CLASS_DEF");
         classDef.setLineNo(3);
         classDef.setColumnNo(0);
 
-        DetailAST modifiers = new DetailAST();
+        final DetailAST modifiers = new DetailAST();
         modifiers.setType(MODIFIERS);
         modifiers.setText("MODIFIERS");
         modifiers.setLineNo(3);
@@ -411,13 +411,13 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         classDef.setFirstChild(modifiers);
 
-        DetailAST slComment = new DetailAST();
+        final DetailAST slComment = new DetailAST();
         slComment.setType(SINGLE_LINE_COMMENT);
         slComment.setText("//");
         slComment.setLineNo(2);
         slComment.setColumnNo(0);
 
-        DetailAST slCommentContent = new DetailAST();
+        final DetailAST slCommentContent = new DetailAST();
         slCommentContent.setType(COMMENT_CONTENT);
         slCommentContent.setText(" my class" + LINE_SEPARATOR);
         slCommentContent.setLineNo(2);
@@ -426,7 +426,7 @@ public class CommentsTest extends BaseCheckTestSupport {
         slComment.setFirstChild(slCommentContent);
         modifiers.setNextSibling(slComment);
 
-        DetailAST literalClass = new DetailAST();
+        final DetailAST literalClass = new DetailAST();
         literalClass.setType(LITERAL_CLASS);
         literalClass.setText("class");
         literalClass.setLineNo(3);
@@ -434,7 +434,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         slComment.setNextSibling(literalClass);
 
-        DetailAST identClassName = new DetailAST();
+        final DetailAST identClassName = new DetailAST();
         identClassName.setType(IDENT);
         identClassName.setText("InputComments2");
         identClassName.setLineNo(3);
@@ -442,7 +442,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         literalClass.setNextSibling(identClassName);
 
-        DetailAST objBlock = new DetailAST();
+        final DetailAST objBlock = new DetailAST();
         objBlock.setType(OBJBLOCK);
         objBlock.setText("OBJBLOCK");
         objBlock.setLineNo(4);
@@ -450,7 +450,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         identClassName.setNextSibling(objBlock);
 
-        DetailAST lcurly = new DetailAST();
+        final DetailAST lcurly = new DetailAST();
         lcurly.setType(LCURLY);
         lcurly.setText("{");
         lcurly.setLineNo(4);
@@ -458,7 +458,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         objBlock.setFirstChild(lcurly);
 
-        DetailAST methodDef = new DetailAST();
+        final DetailAST methodDef = new DetailAST();
         methodDef.setType(METHOD_DEF);
         methodDef.setText("METHOD_DEF");
         methodDef.setLineNo(10);
@@ -466,7 +466,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         lcurly.setNextSibling(methodDef);
 
-        DetailAST rcurly = new DetailAST();
+        final DetailAST rcurly = new DetailAST();
         rcurly.setType(RCURLY);
         rcurly.setText("}");
         rcurly.setLineNo(14);
@@ -474,7 +474,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         methodDef.setNextSibling(rcurly);
 
-        DetailAST methodModifiers = new DetailAST();
+        final DetailAST methodModifiers = new DetailAST();
         methodModifiers.setType(MODIFIERS);
         methodModifiers.setText("MODIFIERS");
         methodModifiers.setLineNo(10);
@@ -482,7 +482,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         methodDef.setFirstChild(methodModifiers);
 
-        DetailAST methodType = new DetailAST();
+        final DetailAST methodType = new DetailAST();
         methodType.setType(TYPE);
         methodType.setText("TYPE");
         methodType.setLineNo(10);
@@ -490,7 +490,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         methodModifiers.setNextSibling(methodType);
 
-        DetailAST identMethodType = new DetailAST();
+        final DetailAST identMethodType = new DetailAST();
         identMethodType.setType(IDENT);
         identMethodType.setText("String");
         identMethodType.setLineNo(10);
@@ -498,7 +498,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         methodType.setFirstChild(identMethodType);
 
-        DetailAST identMethodName = new DetailAST();
+        final DetailAST identMethodName = new DetailAST();
         identMethodName.setType(IDENT);
         identMethodName.setText("line");
         identMethodName.setLineNo(10);
@@ -506,7 +506,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         methodType.setNextSibling(identMethodName);
 
-        DetailAST lparen = new DetailAST();
+        final DetailAST lparen = new DetailAST();
         lparen.setType(LPAREN);
         lparen.setText("(");
         lparen.setLineNo(10);
@@ -514,7 +514,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         identMethodName.setNextSibling(lparen);
 
-        DetailAST parameters = new DetailAST();
+        final DetailAST parameters = new DetailAST();
         parameters.setType(PARAMETERS);
         parameters.setText("PARAMETERS");
         parameters.setLineNo(10);
@@ -522,25 +522,25 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         lparen.setNextSibling(parameters);
 
-        DetailAST returnDef = new DetailAST();
+        final DetailAST returnDef = new DetailAST();
         returnDef.setType(LITERAL_RETURN);
         returnDef.setText("return");
         returnDef.setLineNo(12);
         returnDef.setColumnNo(2);
 
-        DetailAST exprDef = new DetailAST();
+        final DetailAST exprDef = new DetailAST();
         exprDef.setType(EXPR);
         exprDef.setText("EXPR");
         exprDef.setLineNo(12);
         exprDef.setColumnNo(9);
 
-        DetailAST nullDef = new DetailAST();
+        final DetailAST nullDef = new DetailAST();
         nullDef.setType(LITERAL_NULL);
         nullDef.setText("null");
         nullDef.setLineNo(12);
         nullDef.setColumnNo(9);
 
-        DetailAST rparen = new DetailAST();
+        final DetailAST rparen = new DetailAST();
         rparen.setType(RPAREN);
         rparen.setText(")");
         rparen.setLineNo(10);
@@ -548,13 +548,13 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         parameters.setNextSibling(rparen);
 
-        DetailAST slist = new DetailAST();
+        final DetailAST slist = new DetailAST();
         slist.setType(SLIST);
         slist.setText("{");
         slist.setLineNo(11);
         slist.setColumnNo(4);
 
-        DetailAST semiDef1 = new DetailAST();
+        final DetailAST semiDef1 = new DetailAST();
         semiDef1.setType(SEMI);
         semiDef1.setText(";");
         semiDef1.setLineNo(12);
@@ -562,7 +562,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         rparen.setNextSibling(slist);
 
-        DetailAST methodRcurly = new DetailAST();
+        final DetailAST methodRcurly = new DetailAST();
         methodRcurly.setType(RCURLY);
         methodRcurly.setText("}");
         methodRcurly.setLineNo(13);
@@ -574,13 +574,13 @@ public class CommentsTest extends BaseCheckTestSupport {
         exprDef.setFirstChild(nullDef);
         exprDef.setNextSibling(semiDef1);
 
-        DetailAST blockCommentStart = new DetailAST();
+        final DetailAST blockCommentStart = new DetailAST();
         blockCommentStart.setType(BLOCK_COMMENT_BEGIN);
         blockCommentStart.setText("/*");
         blockCommentStart.setLineNo(5);
         blockCommentStart.setColumnNo(4);
 
-        DetailAST blockCommentContent = new DetailAST();
+        final DetailAST blockCommentContent = new DetailAST();
         blockCommentContent.setType(COMMENT_CONTENT);
         blockCommentContent.setText("*" + LINE_SEPARATOR
                 + "     * Lines <b>method</b>." + LINE_SEPARATOR
@@ -592,7 +592,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
         blockCommentStart.setFirstChild(blockCommentContent);
 
-        DetailAST blockCommentEnd = new DetailAST();
+        final DetailAST blockCommentEnd = new DetailAST();
         blockCommentEnd.setType(BLOCK_COMMENT_END);
         blockCommentEnd.setText("*/");
         blockCommentEnd.setLineNo(9);
@@ -601,7 +601,7 @@ public class CommentsTest extends BaseCheckTestSupport {
         blockCommentContent.setNextSibling(blockCommentEnd);
         methodModifiers.setFirstChild(blockCommentStart);
 
-        DetailAST literalProtected = new DetailAST();
+        final DetailAST literalProtected = new DetailAST();
         literalProtected.setType(LITERAL_PROTECTED);
         literalProtected.setText("protected");
         literalProtected.setLineNo(10);
@@ -633,7 +633,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
     @Test
     public void testCompareExpectedTreeWithInput1() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.setExpectedTree(buildInput1());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputComments1.java"), expected);
@@ -641,7 +641,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
     @Test
     public void testCompareExpectedTreeWithInput2() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(CompareTreesWithComments.class);
         CompareTreesWithComments.setExpectedTree(buildInput2());
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputComments2.java"), expected);
@@ -649,7 +649,7 @@ public class CommentsTest extends BaseCheckTestSupport {
 
     @Test
     public void testToString() throws Exception {
-        Comment comment = new Comment(new String[]{"value"}, 1, 2, 3);
+        final Comment comment = new Comment(new String[]{"value"}, 1, 2, 3);
         Assert.assertEquals("Comment[2:1-2:3]", comment.toString());
     }
 }

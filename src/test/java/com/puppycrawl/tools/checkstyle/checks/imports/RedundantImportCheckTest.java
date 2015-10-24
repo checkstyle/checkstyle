@@ -49,8 +49,8 @@ public class RedundantImportCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        RedundantImportCheck checkObj = new RedundantImportCheck();
-        int[] expected = {
+        final RedundantImportCheck checkObj = new RedundantImportCheck();
+        final int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
@@ -90,10 +90,10 @@ public class RedundantImportCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        RedundantImportCheck testCheckObject =
+        final RedundantImportCheck testCheckObject =
                 new RedundantImportCheck();
-        int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = testCheckObject.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,

@@ -76,12 +76,12 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
                     throws IOException {
-        List<Integer> result = new ArrayList<>();
+        final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
-                Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
+                final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
                 if (match.matches()) {
                     final String comment = match.group(1);
                     final int indentInComment = getIndentFromComment(comment);
@@ -135,7 +135,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
 
-        Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
+        final Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
         if (multilevelMatch.matches()) {
             final String[] levels = multilevelMatch.group(1).split(",");
             final String indentInCommentStr = String.valueOf(indentInComment);
@@ -146,13 +146,13 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     || !containsActualLevel && isWarnComment;
         }
 
-        Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
+        final Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
         if (singleLevelMatch.matches()) {
             final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
             return isSingleLevelCommentConsistent(indentInComment, isWarnComment, expectedLevel);
         }
 
-        Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
+        final Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
         if (nonStrictLevelMatch.matches()) {
             final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
 
@@ -182,7 +182,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     String[] expected, int warnCountCorrection)
                     throws Exception {
         final int tabWidth = Integer.parseInt(config.getAttribute("tabWidth"));
-        Integer[] linesWithWarn =
+        final Integer[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
         assertEquals("Expected warning count in UT does not match warn"
                         + " comment count in input file", linesWithWarn.length
@@ -211,23 +211,23 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        IndentationCheck checkObj = new IndentationCheck();
+        final IndentationCheck checkObj = new IndentationCheck();
         final HandlerFactory handlerFactory = new HandlerFactory();
-        int[] expected = handlerFactory.getHandledTypes();
+        final int[] expected = handlerFactory.getHandledTypes();
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
-        IndentationCheck checkObj = new IndentationCheck();
+        final IndentationCheck checkObj = new IndentationCheck();
         final HandlerFactory handlerFactory = new HandlerFactory();
-        int[] expected = handlerFactory.getHandledTypes();
+        final int[] expected = handlerFactory.getHandledTypes();
         assertArrayEquals(expected, checkObj.getAcceptableTokens());
     }
 
     @Test
     public void testThrowsIndentProperty() {
-        IndentationCheck indentationCheck = new IndentationCheck();
+        final IndentationCheck indentationCheck = new IndentationCheck();
 
         indentationCheck.setThrowsIndent(1);
 

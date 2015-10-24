@@ -53,8 +53,8 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        VisibilityModifierCheck checkObj = new VisibilityModifierCheck();
-        int[] expected = {
+        final VisibilityModifierCheck checkObj = new VisibilityModifierCheck();
+        final int[] expected = {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
         };
@@ -267,8 +267,8 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        VisibilityModifierCheck obj = new VisibilityModifierCheck();
-        int[] expected = {
+        final VisibilityModifierCheck obj = new VisibilityModifierCheck();
+        final int[] expected = {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
         };
@@ -292,8 +292,8 @@ public class VisibilityModifierCheckTest
 
     @Test(expected = IllegalArgumentException.class)
     public void testWrongTokenType() {
-        VisibilityModifierCheck obj = new VisibilityModifierCheck();
-        DetailAST ast = new DetailAST();
+        final VisibilityModifierCheck obj = new VisibilityModifierCheck();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
         obj.visitToken(ast);
     }

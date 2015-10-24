@@ -47,7 +47,8 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
 
     @Test
     public void testAllBlockComments() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(SinglelineCommentListenerCheck.class);
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(SinglelineCommentListenerCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFullOfSinglelineComments.java"), expected);
         Assert.assertTrue(ALL_COMMENTS.isEmpty());
@@ -76,7 +77,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
 
         @Override
         public void init() {
-            int lines = 63;
+            final int lines = 63;
             for (int i = 0; i < lines; i++) {
                 ALL_COMMENTS.add(i + LINE_SEPARATOR);
             }
@@ -85,7 +86,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
 
         @Override
         public void visitToken(DetailAST ast) {
-            String commentContent = ast.getFirstChild().getText();
+            final String commentContent = ast.getFirstChild().getText();
             if (!ALL_COMMENTS.remove(commentContent)) {
                 Assert.fail("Unexpected comment: " + commentContent);
             }

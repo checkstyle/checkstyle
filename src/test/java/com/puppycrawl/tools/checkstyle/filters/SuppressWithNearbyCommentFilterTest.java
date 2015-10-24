@@ -271,13 +271,13 @@ public class SuppressWithNearbyCommentFilterTest
             new LocalizedMessage(1, 1, "messages.properties", "key", null, SeverityLevel.ERROR,
                     null, getClass(), null);
         final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
-        SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         Assert.assertTrue(filter.accept(auditEvent));
     }
 
     @Test
     public void testToStringOfTagClass() {
-        SuppressWithNearbyCommentFilter.Tag tag = new SuppressWithNearbyCommentFilter.Tag(
+        final SuppressWithNearbyCommentFilter.Tag tag = new SuppressWithNearbyCommentFilter.Tag(
                 "text", 7, new SuppressWithNearbyCommentFilter()
         );
         assertEquals("Tag[lines=[7 to 7]; text='text']", tag.toString());

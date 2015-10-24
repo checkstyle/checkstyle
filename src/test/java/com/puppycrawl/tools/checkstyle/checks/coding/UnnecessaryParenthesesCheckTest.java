@@ -113,7 +113,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        UnnecessaryParenthesesCheck check = new UnnecessaryParenthesesCheck();
+        final UnnecessaryParenthesesCheck check = new UnnecessaryParenthesesCheck();
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getRequiredTokens());
