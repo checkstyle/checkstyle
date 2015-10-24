@@ -86,9 +86,9 @@ public class TypecastParenPadCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        TypecastParenPadCheck typecastParenPadCheckObj = new TypecastParenPadCheck();
-        int[] actual = typecastParenPadCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final TypecastParenPadCheck typecastParenPadCheckObj = new TypecastParenPadCheck();
+        final int[] actual = typecastParenPadCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.RPAREN,
             TokenTypes.TYPECAST,
         };

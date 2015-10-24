@@ -45,17 +45,17 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        MethodCountCheck checkObj = new MethodCountCheck();
-        int[] expected = {TokenTypes.METHOD_DEF};
+        final MethodCountCheck checkObj = new MethodCountCheck();
+        final int[] expected = {TokenTypes.METHOD_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
-        MethodCountCheck methodCountCheckObj =
+        final MethodCountCheck methodCountCheckObj =
             new MethodCountCheck();
-        int[] actual = methodCountCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = methodCountCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,

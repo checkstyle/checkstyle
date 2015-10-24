@@ -104,18 +104,18 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_multiple.xml"));
         final FilterSet fc2 = new FilterSet();
-        SuppressElement se0 = new SuppressElement("file0");
+        final SuppressElement se0 = new SuppressElement("file0");
         se0.setChecks("check0");
         fc2.addFilter(se0);
-        SuppressElement se1 = new SuppressElement("file1");
+        final SuppressElement se1 = new SuppressElement("file1");
         se1.setChecks("check1");
         se1.setLines("1,2-3");
         fc2.addFilter(se1);
-        SuppressElement se2 = new SuppressElement("file2");
+        final SuppressElement se2 = new SuppressElement("file2");
         se2.setChecks("check2");
         se2.setColumns("1,2-3");
         fc2.addFilter(se2);
-        SuppressElement se3 = new SuppressElement("file3");
+        final SuppressElement se3 = new SuppressElement("file3");
         se3.setChecks("check3");
         se3.setLines("1,2-3");
         se3.setColumns("1,2-3");
@@ -194,8 +194,8 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     private static boolean isUrlReachable(String url) {
         try {
-            URL verifiableUrl = new URL(url);
-            HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
+            final URL verifiableUrl = new URL(url);
+            final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
         catch (IOException e) {
@@ -206,13 +206,13 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testUnableToFindSuppressions() throws Exception {
-        Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
-        Method loadSuppressions =
+        final Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
+        final Method loadSuppressions =
             loaderClass.getDeclaredMethod("loadSuppressions", InputSource.class, String.class);
         loadSuppressions.setAccessible(true);
 
-        String sourceName = "suppressions_none.xml";
-        InputSource inputSource = new InputSource(sourceName);
+        final String sourceName = "suppressions_none.xml";
+        final InputSource inputSource = new InputSource(sourceName);
 
         thrown.expect(CheckstyleException.class);
         thrown.expectMessage("Unable to find: " + sourceName);
@@ -222,15 +222,15 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testUnableToReadSuppressions() throws Exception {
-        Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
-        Method loadSuppressions =
+        final Class<SuppressionsLoader> loaderClass = SuppressionsLoader.class;
+        final Method loadSuppressions =
             loaderClass.getDeclaredMethod("loadSuppressions", InputSource.class, String.class);
         loadSuppressions.setAccessible(true);
 
-        InputSource inputSource = new InputSource();
+        final InputSource inputSource = new InputSource();
 
         thrown.expect(CheckstyleException.class);
-        String sourceName = "suppressions_none.xml";
+        final String sourceName = "suppressions_none.xml";
         thrown.expectMessage("Unable to read " + sourceName);
 
         loadSuppressions.invoke(loaderClass, inputSource, sourceName);

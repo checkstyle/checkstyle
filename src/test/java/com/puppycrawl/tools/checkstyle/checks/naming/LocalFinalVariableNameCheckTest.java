@@ -42,7 +42,7 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        LocalFinalVariableNameCheck checkObj =
+        final LocalFinalVariableNameCheck checkObj =
             new LocalFinalVariableNameCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
@@ -87,10 +87,10 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        LocalFinalVariableNameCheck localFinalVariableNameCheckObj =
+        final LocalFinalVariableNameCheck localFinalVariableNameCheckObj =
             new LocalFinalVariableNameCheck();
-        int[] actual = localFinalVariableNameCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = localFinalVariableNameCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
         };

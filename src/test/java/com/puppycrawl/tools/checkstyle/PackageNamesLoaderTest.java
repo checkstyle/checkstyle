@@ -94,19 +94,19 @@ public class PackageNamesLoaderTest {
     @SuppressWarnings("unchecked")
     public void testPackagesWithDots() throws Exception {
 
-        Constructor<PackageNamesLoader> constructor =
+        final Constructor<PackageNamesLoader> constructor =
                 PackageNamesLoader.class.getDeclaredConstructor();
         constructor.setAccessible(true);
-        PackageNamesLoader loader = constructor.newInstance();
+        final PackageNamesLoader loader = constructor.newInstance();
 
-        Attributes attributes = mock(Attributes.class);
+        final Attributes attributes = mock(Attributes.class);
         when(attributes.getValue("name")).thenReturn("coding.");
         loader.startElement("", "", "package", attributes);
         loader.endElement("", "", "package");
 
-        Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
+        final Field field = PackageNamesLoader.class.getDeclaredField("packageNames");
         field.setAccessible(true);
-        Set<String> list = (Set<String>) field.get(loader);
+        final Set<String> list = (Set<String>) field.get(loader);
         assertEquals("coding.", list.iterator().next());
     }
 
@@ -118,13 +118,13 @@ public class PackageNamesLoaderTest {
         when(mockConnection.getInputStream()).thenReturn(
                 new ByteArrayInputStream(EMPTY_BYTE_ARRAY));
 
-        URL url = getMockUrl(mockConnection);
+        final URL url = getMockUrl(mockConnection);
 
-        Enumeration<URL> enumeration = (Enumeration<URL>) mock(Enumeration.class);
+        final Enumeration<URL> enumeration = (Enumeration<URL>) mock(Enumeration.class);
         when(enumeration.hasMoreElements()).thenReturn(true);
         when(enumeration.nextElement()).thenReturn(url);
 
-        ClassLoader classLoader = mock(ClassLoader.class);
+        final ClassLoader classLoader = mock(ClassLoader.class);
         when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumeration);
 
         try {
@@ -143,13 +143,13 @@ public class PackageNamesLoaderTest {
         final URLConnection mockConnection = Mockito.mock(URLConnection.class);
         when(mockConnection.getInputStream()).thenReturn(null);
 
-        URL url = getMockUrl(mockConnection);
+        final URL url = getMockUrl(mockConnection);
 
-        Enumeration<URL> enumer = (Enumeration<URL>) mock(Enumeration.class);
+        final Enumeration<URL> enumer = (Enumeration<URL>) mock(Enumeration.class);
         when(enumer.hasMoreElements()).thenReturn(true);
         when(enumer.nextElement()).thenReturn(url);
 
-        ClassLoader classLoader = mock(ClassLoader.class);
+        final ClassLoader classLoader = mock(ClassLoader.class);
         when(classLoader.getResources("checkstyle_packages.xml")).thenReturn(enumer);
 
         try {
@@ -166,7 +166,7 @@ public class PackageNamesLoaderTest {
     @SuppressWarnings("unchecked")
     public void testPackagesWithIoExceptionGetResources() throws Exception {
 
-        ClassLoader classLoader = mock(ClassLoader.class);
+        final ClassLoader classLoader = mock(ClassLoader.class);
         when(classLoader.getResources("checkstyle_packages.xml")).thenThrow(IOException.class);
 
         try {

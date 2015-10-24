@@ -117,9 +117,9 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testImproperToken() throws Exception {
-        ReturnCountCheck check = new ReturnCountCheck();
+        final ReturnCountCheck check = new ReturnCountCheck();
 
-        DetailAST classDefAst = new DetailAST();
+        final DetailAST classDefAst = new DetailAST();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {

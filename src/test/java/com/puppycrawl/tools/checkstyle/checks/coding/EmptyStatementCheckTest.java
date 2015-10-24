@@ -67,7 +67,8 @@ public class EmptyStatementCheckTest
 
     @Test
     public void testTokensNotNull() {
-        EmptyStatementCheck check = new EmptyStatementCheck();
+
+        final EmptyStatementCheck check = new EmptyStatementCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

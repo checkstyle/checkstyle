@@ -54,9 +54,9 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testSetHeaderNull() {
         // check null passes
-        RegexpHeaderCheck instance = new RegexpHeaderCheck();
+        final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // recreate for each test because multiple invocations fail
-        String header = null;
+        final String header = null;
         instance.setHeader(header);
     }
 
@@ -66,9 +66,9 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testSetHeaderEmpty() {
         // check null passes
-        RegexpHeaderCheck instance = new RegexpHeaderCheck();
+        final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check empty string passes
-        String header = "";
+        final String header = "";
         instance.setHeader(header);
     }
 
@@ -77,9 +77,9 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
      */
     @Test
     public void testSetHeaderSimple() {
-        RegexpHeaderCheck instance = new RegexpHeaderCheck();
+        final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check valid header passes
-        String header = "abc.*";
+        final String header = "abc.*";
         instance.setHeader(header);
     }
 
@@ -89,9 +89,9 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testSetHeader() {
         // check invalid header passes
-        RegexpHeaderCheck instance = new RegexpHeaderCheck();
+        final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         try {
-            String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
+            final String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
             instance.setHeader(header);
             fail(String.format(Locale.ROOT, "%s should have been thrown",
                     ConversionException.class));
@@ -143,7 +143,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     public void testRegexpHeaderURL() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RegexpHeaderCheck.class);
-        URI uri = new File(getPath("regexp.header")).toURI();
+        final URI uri = new File(getPath("regexp.header")).toURI();
         checkConfig.addAttribute("headerFile", uri.toString());
         final String[] expected = {
             "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),

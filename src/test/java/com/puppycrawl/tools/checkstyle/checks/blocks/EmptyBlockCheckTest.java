@@ -45,7 +45,7 @@ public class EmptyBlockCheckTest
      */
     @Test
     public void testBlockOptionValueOf() {
-        BlockOption option = BlockOption.valueOf("TEXT");
+        final BlockOption option = BlockOption.valueOf("TEXT");
         assertEquals(BlockOption.TEXT, option);
     }
 

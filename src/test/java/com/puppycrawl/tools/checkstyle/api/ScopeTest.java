@@ -40,7 +40,7 @@ public class ScopeTest {
      */
     @Test
     public void testScopeValueOf() {
-        Scope scope = Scope.valueOf("PRIVATE");
+        final Scope scope = Scope.valueOf("PRIVATE");
         assertEquals(Scope.PRIVATE, scope);
     }
 
@@ -67,8 +67,8 @@ public class ScopeTest {
 
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
-        Locale[] differentLocales = {new Locale("TR", "tr") };
-        Locale defaultLocale = Locale.getDefault();
+        final Locale[] differentLocales = {new Locale("TR", "tr") };
+        final Locale defaultLocale = Locale.getDefault();
         try {
             for (Locale differentLocale : differentLocales) {
                 Locale.setDefault(differentLocale);

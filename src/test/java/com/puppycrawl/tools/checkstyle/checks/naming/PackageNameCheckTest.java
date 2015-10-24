@@ -42,8 +42,8 @@ public class PackageNameCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        PackageNameCheck checkObj = new PackageNameCheck();
-        int[] expected = {TokenTypes.PACKAGE_DEF};
+        final PackageNameCheck checkObj = new PackageNameCheck();
+        final int[] expected = {TokenTypes.PACKAGE_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -74,9 +74,9 @@ public class PackageNameCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        PackageNameCheck packageNameCheckObj = new PackageNameCheck();
-        int[] actual = packageNameCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final PackageNameCheck packageNameCheckObj = new PackageNameCheck();
+        final int[] actual = packageNameCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.PACKAGE_DEF,
         };
         assertArrayEquals(expected, actual);

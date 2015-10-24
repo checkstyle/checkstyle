@@ -241,7 +241,7 @@ public class BaseCheckTestSupport {
      * @param arguments  the arguments of message in 'messages.properties' file.
      */
     protected String getCheckMessage(String messageKey, Object... arguments) {
-        Properties pr = new Properties();
+        final Properties pr = new Properties();
         try {
             pr.load(getClass().getResourceAsStream("messages.properties"));
         }

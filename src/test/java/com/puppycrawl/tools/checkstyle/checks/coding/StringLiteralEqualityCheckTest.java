@@ -52,7 +52,7 @@ public class StringLiteralEqualityCheckTest
 
     @Test
     public void testTokensNotNull() {
-        StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
+        final StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

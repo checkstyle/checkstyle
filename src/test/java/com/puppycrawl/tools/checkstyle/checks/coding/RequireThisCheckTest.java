@@ -107,7 +107,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        RequireThisCheck check = new RequireThisCheck();
+        final RequireThisCheck check = new RequireThisCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

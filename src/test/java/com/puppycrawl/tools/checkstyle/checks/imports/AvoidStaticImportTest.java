@@ -41,8 +41,8 @@ public class AvoidStaticImportTest
 
     @Test
     public void testGetRequiredTokens() {
-        AvoidStaticImportCheck checkObj = new AvoidStaticImportCheck();
-        int[] expected = {TokenTypes.STATIC_IMPORT};
+        final AvoidStaticImportCheck checkObj = new AvoidStaticImportCheck();
+        final int[] expected = {TokenTypes.STATIC_IMPORT};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -165,10 +165,10 @@ public class AvoidStaticImportTest
 
     @Test
     public void testGetAcceptableTokens() {
-        AvoidStaticImportCheck testCheckObject =
+        final AvoidStaticImportCheck testCheckObject =
                 new AvoidStaticImportCheck();
-        int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = {TokenTypes.STATIC_IMPORT};
+        final int[] actual = testCheckObject.getAcceptableTokens();
+        final int[] expected = {TokenTypes.STATIC_IMPORT};
 
         assertArrayEquals(expected, actual);
     }

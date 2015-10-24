@@ -70,7 +70,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        DefaultComesLastCheck check = new DefaultComesLastCheck();
+        final DefaultComesLastCheck check = new DefaultComesLastCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

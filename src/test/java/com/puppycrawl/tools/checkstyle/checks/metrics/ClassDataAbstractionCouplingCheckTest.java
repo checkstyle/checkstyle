@@ -43,13 +43,13 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
 
     @Test
     public void test() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(ClassDataAbstractionCouplingCheck.class);
 
         checkConfig.addAttribute("max", "0");
         checkConfig.addAttribute("excludedClasses", "InnerClass");
 
-        String[] expected = {
+        final String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
             "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
             "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
@@ -60,9 +60,9 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(ClassDataAbstractionCouplingCheck.class);
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputClassCoupling.java"), expected);
@@ -70,9 +70,9 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
 
     @Test(expected = IllegalArgumentException.class)
     public void testWrongToken() {
-        ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
+        final ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
             new ClassDataAbstractionCouplingCheck();
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
         classDataAbstractionCouplingCheckObj.visitToken(ast);
     }

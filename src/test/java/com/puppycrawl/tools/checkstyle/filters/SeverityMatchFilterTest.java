@@ -36,14 +36,14 @@ public class SeverityMatchFilterTest {
     public void testDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertFalse("no message", filter.accept(ev));
-        SeverityLevel errorLevel = SeverityLevel.ERROR;
-        LocalizedMessage errorMessage =
+        final SeverityLevel errorLevel = SeverityLevel.ERROR;
+        final LocalizedMessage errorMessage =
             new LocalizedMessage(0, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
         assertTrue("level:" + errorLevel, filter.accept(ev2));
-        SeverityLevel infoLevel = SeverityLevel.INFO;
-        LocalizedMessage infoMessage =
+        final SeverityLevel infoLevel = SeverityLevel.INFO;
+        final LocalizedMessage infoMessage =
                 new LocalizedMessage(0, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
         assertFalse("level:" + infoLevel, filter.accept(ev3));
@@ -55,14 +55,14 @@ public class SeverityMatchFilterTest {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
         assertTrue("no message", filter.accept(ev));
-        SeverityLevel errorLevel = SeverityLevel.ERROR;
-        LocalizedMessage errorMessage =
+        final SeverityLevel errorLevel = SeverityLevel.ERROR;
+        final LocalizedMessage errorMessage =
             new LocalizedMessage(0, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
         assertFalse("level:" + errorLevel, filter.accept(ev2));
-        SeverityLevel infoLevel = SeverityLevel.INFO;
-        LocalizedMessage infoMessage =
+        final SeverityLevel infoLevel = SeverityLevel.INFO;
+        final LocalizedMessage infoMessage =
                 new LocalizedMessage(0, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
         assertTrue("level:" + infoLevel, filter.accept(ev3));
@@ -75,15 +75,15 @@ public class SeverityMatchFilterTest {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
         assertFalse("no message", filter.accept(ev));
-        SeverityLevel errorLevel = SeverityLevel.ERROR;
-        LocalizedMessage errorMessage =
+        final SeverityLevel errorLevel = SeverityLevel.ERROR;
+        final LocalizedMessage errorMessage =
             new LocalizedMessage(0, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
         assertTrue("level:" + errorLevel, filter.accept(ev2));
-        SeverityLevel infoLevel = SeverityLevel.INFO;
-        LocalizedMessage infoMessage = new LocalizedMessage(0, 0, "", "", null, infoLevel, null,
-            getClass(), null);
+        final SeverityLevel infoLevel = SeverityLevel.INFO;
+        final LocalizedMessage infoMessage = new LocalizedMessage(0, 0, "", "", null, infoLevel,
+            null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
         assertFalse("level:" + infoLevel, filter.accept(ev3));
     }

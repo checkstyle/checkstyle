@@ -48,7 +48,7 @@ public class GenericWhitespaceCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(GenericWhitespaceCheck.class);
-        Map<Class<?>, Integer> x = Maps.newHashMap();
+        final Map<Class<?>, Integer> x = Maps.newHashMap();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
             entry.getValue();
         }
@@ -69,8 +69,8 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        GenericWhitespaceCheck checkObj = new GenericWhitespaceCheck();
-        int[] expected = {
+        final GenericWhitespaceCheck checkObj = new GenericWhitespaceCheck();
+        final int[] expected = {
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };
@@ -138,9 +138,9 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
-        int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
+        final int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };
@@ -149,8 +149,8 @@ public class GenericWhitespaceCheckTest
 
     @Test(expected = IllegalArgumentException.class)
     public void testWrongTokenType() {
-        GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
-        DetailAST ast = new DetailAST();
+        final GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         genericWhitespaceCheckObj.visitToken(ast);
     }

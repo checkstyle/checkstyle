@@ -43,8 +43,8 @@ public class MethodNameCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        MethodNameCheck checkObj = new MethodNameCheck();
-        int[] expected = {TokenTypes.METHOD_DEF};
+        final MethodNameCheck checkObj = new MethodNameCheck();
+        final int[] expected = {TokenTypes.METHOD_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -164,9 +164,9 @@ public class MethodNameCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        MethodNameCheck methodNameCheckObj = new MethodNameCheck();
-        int[] actual = methodNameCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final MethodNameCheck methodNameCheckObj = new MethodNameCheck();
+        final int[] actual = methodNameCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.METHOD_DEF,
         };
         assertArrayEquals(expected, actual);

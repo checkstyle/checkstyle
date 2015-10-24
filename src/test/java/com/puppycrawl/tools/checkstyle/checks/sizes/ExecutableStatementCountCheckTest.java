@@ -133,9 +133,9 @@ public class ExecutableStatementCountCheckTest
 
     @Test(expected = IllegalStateException.class)
     public void testVisitTokenWithWrongTokenType() {
-        ExecutableStatementCountCheck checkObj =
+        final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.initialize(
             new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
         checkObj.visitToken(ast);
@@ -143,9 +143,9 @@ public class ExecutableStatementCountCheckTest
 
     @Test(expected = IllegalStateException.class)
     public void testLeaveTokenWithWrongTokenType() {
-        ExecutableStatementCountCheck checkObj =
+        final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.initialize(
             new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
         checkObj.leaveToken(ast);
@@ -153,9 +153,9 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);

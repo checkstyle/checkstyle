@@ -52,8 +52,8 @@ public class ConstantNameCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        ConstantNameCheck checkObj = new ConstantNameCheck();
-        int[] expected = {TokenTypes.VARIABLE_DEF};
+        final ConstantNameCheck checkObj = new ConstantNameCheck();
+        final int[] expected = {TokenTypes.VARIABLE_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -163,9 +163,9 @@ public class ConstantNameCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        ConstantNameCheck constantNameCheckObj = new ConstantNameCheck();
-        int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final ConstantNameCheck constantNameCheckObj = new ConstantNameCheck();
+        final int[] actual = constantNameCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
         Assert.assertNotNull(actual);

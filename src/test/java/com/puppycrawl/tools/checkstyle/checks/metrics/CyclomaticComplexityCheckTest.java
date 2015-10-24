@@ -92,9 +92,10 @@ public class CyclomaticComplexityCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        CyclomaticComplexityCheck cyclomaticComplexityCheckObj = new CyclomaticComplexityCheck();
-        int[] actual = cyclomaticComplexityCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final CyclomaticComplexityCheck cyclomaticComplexityCheckObj =
+            new CyclomaticComplexityCheck();
+        final int[] actual = cyclomaticComplexityCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.INSTANCE_INIT,

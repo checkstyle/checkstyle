@@ -162,9 +162,9 @@ public class FinalLocalVariableCheckTest
 
     @Test
     public void testImproperToken() throws Exception {
-        FinalLocalVariableCheck check = new FinalLocalVariableCheck();
+        final FinalLocalVariableCheck check = new FinalLocalVariableCheck();
 
-        DetailAST lambdaAst = new DetailAST();
+        final DetailAST lambdaAst = new DetailAST();
         lambdaAst.setType(TokenTypes.LAMBDA);
 
         try {

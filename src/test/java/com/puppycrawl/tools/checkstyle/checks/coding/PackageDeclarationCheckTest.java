@@ -46,9 +46,9 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY),
         };
 
@@ -57,9 +57,9 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testOnFileWithCommentOnly() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY),
         };
 
@@ -68,16 +68,16 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testCorrectFile() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputPackageDeclaration.java"), expected);
     }
 
     @Test
     public void testTokensNotNull() {
-        PackageDeclarationCheck check = new PackageDeclarationCheck();
+        final PackageDeclarationCheck check = new PackageDeclarationCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

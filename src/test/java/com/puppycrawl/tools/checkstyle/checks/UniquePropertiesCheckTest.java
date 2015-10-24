@@ -67,7 +67,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
      */
     @Test
     public void testLineSeparatorOptionValueOf() {
-        LineSeparatorOption option = LineSeparatorOption.valueOf("CR");
+        final LineSeparatorOption option = LineSeparatorOption.valueOf("CR");
         assertEquals(LineSeparatorOption.CR, option);
     }
 
@@ -129,20 +129,20 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testWrongKeyTypeInProperties() throws Exception {
-        Class<?> uniquePropertiesClass = Class
+        final Class<?> uniquePropertiesClass = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks."
                     + "UniquePropertiesCheck$UniqueProperties");
-        Constructor<?> constructor = uniquePropertiesClass.getDeclaredConstructor();
+        final Constructor<?> constructor = uniquePropertiesClass.getDeclaredConstructor();
         constructor.setAccessible(true);
-        Object uniqueProperties = constructor.newInstance();
-        Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class,
+        final Object uniqueProperties = constructor.newInstance();
+        final Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class,
                 Object.class);
-        Object result = method.invoke(uniqueProperties, 1, "value");
-        Map<Object, Object> table = new HashMap<>();
-        Object expected = table.put(1, "value");
+        final Object result = method.invoke(uniqueProperties, 1, "value");
+        final Map<Object, Object> table = new HashMap<>();
+        final Object expected = table.put(1, "value");
         assertEquals(expected, result);
-        Object result2 = method.invoke(uniqueProperties, 1, "value");
-        Object expected2 = table.put(1, "value");
+        final Object result2 = method.invoke(uniqueProperties, 1, "value");
+        final Object expected2 = table.put(1, "value");
         assertEquals(expected2, result2);
     }
 

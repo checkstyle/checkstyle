@@ -140,15 +140,15 @@ public class JavadocUtilsTest {
 
     @Test
     public void testEmptyBlockCommentAst() {
-        DetailAST commentBegin = new DetailAST();
+        final DetailAST commentBegin = new DetailAST();
         commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
         commentBegin.setText("/*");
 
-        DetailAST commentContent = new DetailAST();
+        final DetailAST commentContent = new DetailAST();
         commentContent.setType(TokenTypes.COMMENT_CONTENT);
         commentContent.setText("");
 
-        DetailAST commentEnd = new DetailAST();
+        final DetailAST commentEnd = new DetailAST();
         commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
         commentEnd.setText("*/");
 
@@ -166,15 +166,15 @@ public class JavadocUtilsTest {
 
     @Test
     public void testEmptyJavadocCommentAst() {
-        DetailAST commentBegin = new DetailAST();
+        final DetailAST commentBegin = new DetailAST();
         commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
         commentBegin.setText("/*");
 
-        DetailAST javadocCommentContent = new DetailAST();
+        final DetailAST javadocCommentContent = new DetailAST();
         javadocCommentContent.setType(TokenTypes.COMMENT_CONTENT);
         javadocCommentContent.setText("*");
 
-        DetailAST commentEnd = new DetailAST();
+        final DetailAST commentEnd = new DetailAST();
         commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
         commentEnd.setText("*/");
 
@@ -191,9 +191,9 @@ public class JavadocUtilsTest {
 
     @Test
     public void testBranchContains() {
-        JavadocNodeImpl node = new JavadocNodeImpl();
-        JavadocNodeImpl firstChild = new JavadocNodeImpl();
-        JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl node = new JavadocNodeImpl();
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
 
         node.setType(JavadocTokenTypes.JAVADOC);
         firstChild.setType(JavadocTokenTypes.BODY_TAG_OPEN);

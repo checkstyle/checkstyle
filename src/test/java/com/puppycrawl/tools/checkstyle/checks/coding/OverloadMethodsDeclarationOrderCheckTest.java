@@ -54,7 +54,8 @@ public class OverloadMethodsDeclarationOrderCheckTest
 
     @Test
     public void testTokensNotNull() {
-        OverloadMethodsDeclarationOrderCheck check = new OverloadMethodsDeclarationOrderCheck();
+        final OverloadMethodsDeclarationOrderCheck check =
+            new OverloadMethodsDeclarationOrderCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

@@ -40,7 +40,7 @@ public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport 
 
     @Test
     public void testIt() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expected = {
@@ -59,7 +59,7 @@ public class MultipleVariableDeclarationsCheckTest extends BaseCheckTestSupport 
 
     @Test
     public void testTokensNotNull() {
-        MultipleVariableDeclarationsCheck check = new MultipleVariableDeclarationsCheck();
+        final MultipleVariableDeclarationsCheck check = new MultipleVariableDeclarationsCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

@@ -50,13 +50,13 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        TrailingCommentCheck checkObj = new TrailingCommentCheck();
+        final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
-        TrailingCommentCheck checkObj = new TrailingCommentCheck();
+        final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 
@@ -88,7 +88,7 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testCallVisitToken() throws Exception {
-        TrailingCommentCheck check = new TrailingCommentCheck();
+        final TrailingCommentCheck check = new TrailingCommentCheck();
         try {
             check.visitToken(new DetailAST());
             Assert.fail();

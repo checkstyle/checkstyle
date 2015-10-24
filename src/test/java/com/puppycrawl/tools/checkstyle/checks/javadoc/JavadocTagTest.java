@@ -34,7 +34,7 @@ public class JavadocTagTest {
      */
     @Test
     public void testJavadocTagTypeValueOf() {
-        JavadocUtils.JavadocTagType enumConst =
+        final JavadocUtils.JavadocTagType enumConst =
             JavadocUtils.JavadocTagType.valueOf("ALL");
         assertEquals(JavadocUtils.JavadocTagType.ALL, enumConst);
     }
@@ -45,9 +45,9 @@ public class JavadocTagTest {
      */
     @Test
     public void testJavadocTagTypeValues() {
-        JavadocUtils.JavadocTagType[] enumConstants =
+        final JavadocUtils.JavadocTagType[] enumConstants =
             JavadocUtils.JavadocTagType.values();
-        JavadocUtils.JavadocTagType[] expected = {
+        final JavadocUtils.JavadocTagType[] expected = {
             JavadocUtils.JavadocTagType.BLOCK,
             JavadocUtils.JavadocTagType.INLINE,
             JavadocUtils.JavadocTagType.ALL,
@@ -57,9 +57,9 @@ public class JavadocTagTest {
 
     @Test
     public void testToString() {
-        JavadocTag javadocTag = new JavadocTag(0, 1, "author", "firstArg");
+        final JavadocTag javadocTag = new JavadocTag(0, 1, "author", "firstArg");
 
-        String result = javadocTag.toString();
+        final String result = javadocTag.toString();
 
         assertEquals("JavadocTag{tag='author' lineNo=0, columnNo=1, firstArg='firstArg'}", result);
     }

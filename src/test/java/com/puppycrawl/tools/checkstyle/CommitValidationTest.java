@@ -109,9 +109,9 @@ public class CommitValidationTest {
     @Test
     public void testCommitMessageHasProperStructure() throws Exception {
         for (RevCommit commit : filterValidCommits(lastCommits)) {
-            String commitId = commit.getId().getName();
-            String commitMessage = commit.getFullMessage();
-            Matcher matcher = ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(commitMessage);
+            final String commitId = commit.getId().getName();
+            final String commitMessage = commit.getFullMessage();
+            final Matcher matcher = ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(commitMessage);
             assertTrue(getInvalidCommitMessageFormattingError(commitId, commitMessage),
                     matcher.matches());
         }
@@ -120,16 +120,16 @@ public class CommitValidationTest {
     @Test
     public void testCommitMessageHasSingleLine() throws Exception {
         for (RevCommit commit : filterValidCommits(lastCommits)) {
-            String commitId = commit.getId().getName();
-            String commitMessage = commit.getFullMessage();
-            Matcher matcher = NEWLINE_PATTERN.matcher(commitMessage);
+            final String commitId = commit.getId().getName();
+            final String commitMessage = commit.getFullMessage();
+            final Matcher matcher = NEWLINE_PATTERN.matcher(commitMessage);
             if (matcher.find()) {
                 /**
                  * Git by default put newline character at the end of commit message. To check
                  * if commit message has a single line we have to make sure that the only
                  * newline character found is in the end of commit message.
                  */
-                boolean isFoundNewLineCharacterAtTheEndOfMessage =
+                final boolean isFoundNewLineCharacterAtTheEndOfMessage =
                         matcher.end() == commitMessage.length();
                 assertTrue(getInvalidCommitMessageFormattingError(commitId, commitMessage),
                         isFoundNewLineCharacterAtTheEndOfMessage);
@@ -140,7 +140,7 @@ public class CommitValidationTest {
     private static List<RevCommit> getCommitsToCheck() throws Exception {
         List<RevCommit> commits;
         try (Repository repo = new FileRepositoryBuilder().findGitDir().build()) {
-            RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);
+            final RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);
             if (COMMITS_RESOLUTION_MODE == CommitsResolutionMode.BY_COUNTER) {
                 commits = getCommitsByCounter(revCommitsPair.getFirst());
                 commits.addAll(getCommitsByCounter(revCommitsPair.getSecond()));
@@ -154,9 +154,9 @@ public class CommitValidationTest {
     }
 
     private static List<RevCommit> filterValidCommits(List<RevCommit> revCommits) {
-        List<RevCommit> filteredCommits = new LinkedList<>();
+        final List<RevCommit> filteredCommits = new LinkedList<>();
         for (RevCommit commit : revCommits) {
-            String commitAuthor = commit.getAuthorIdent().getName();
+            final String commitAuthor = commit.getAuthorIdent().getName();
             if (!USERS_EXCLUDED_FROM_VALIDATION.contains(commitAuthor)) {
                 filteredCommits.add(commit);
             }
@@ -170,12 +170,12 @@ public class CommitValidationTest {
         try (RevWalk revWalk = new RevWalk(repo)) {
             Iterator<RevCommit> first;
             Iterator<RevCommit> second;
-            ObjectId headId = repo.resolve(Constants.HEAD);
-            RevCommit headCommit = revWalk.parseCommit(headId);
+            final ObjectId headId = repo.resolve(Constants.HEAD);
+            final RevCommit headCommit = revWalk.parseCommit(headId);
 
             if (isMergeCommit(headCommit)) {
-                RevCommit firstParent = headCommit.getParent(0);
-                RevCommit secondParent = headCommit.getParent(1);
+                final RevCommit firstParent = headCommit.getParent(0);
+                final RevCommit secondParent = headCommit.getParent(1);
 
                 try (Git git = new Git(repo)) {
                     first = git.log().add(firstParent).call().iterator();
@@ -212,18 +212,18 @@ public class CommitValidationTest {
 
     private static List<RevCommit> getCommitsByLastCommitAuthor(
             Iterator<RevCommit> previousCommitsIterator) {
-        List<RevCommit> commits = new LinkedList<>();
+        final List<RevCommit> commits = new LinkedList<>();
 
         if (previousCommitsIterator.hasNext()) {
-            RevCommit lastCommit = previousCommitsIterator.next();
-            String lastCommitAuthor = lastCommit.getAuthorIdent().getName();
+            final RevCommit lastCommit = previousCommitsIterator.next();
+            final String lastCommitAuthor = lastCommit.getAuthorIdent().getName();
             commits.add(lastCommit);
 
             boolean wasLastCheckedCommitAuthorSameAsLastCommit = true;
             while (previousCommitsIterator.hasNext()
                     && wasLastCheckedCommitAuthorSameAsLastCommit) {
-                RevCommit currentCommit = previousCommitsIterator.next();
-                String currentCommitAuthor = currentCommit.getAuthorIdent().getName();
+                final RevCommit currentCommit = previousCommitsIterator.next();
+                final String currentCommitAuthor = currentCommit.getAuthorIdent().getName();
                 if (currentCommitAuthor.equals(lastCommitAuthor)) {
                     commits.add(currentCommit);
                 }

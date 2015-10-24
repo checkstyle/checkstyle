@@ -74,14 +74,14 @@ public class FilterSetTest {
 
     @Test
     public void testGetFilters2() {
-        FilterSet filterSet = new FilterSet();
+        final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
         assertEquals("size is the same", 1, filterSet.getFilters().size());
     }
 
     @Test
     public void testToString2() {
-        FilterSet filterSet = new FilterSet();
+        final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
         assertNotNull("size is the same", filterSet.toString());
     }

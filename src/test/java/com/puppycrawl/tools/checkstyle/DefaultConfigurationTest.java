@@ -27,8 +27,8 @@ public class DefaultConfigurationTest {
 
     @Test
     public void testRemoveChild() {
-        DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        final DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
         assertEquals(0, config.getChildren().length);
         config.addChild(configChild);
         assertEquals(1, config.getChildren().length);

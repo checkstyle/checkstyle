@@ -63,8 +63,8 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        CustomImportOrderCheck checkObj = new CustomImportOrderCheck();
-        int[] expected = {
+        final CustomImportOrderCheck checkObj = new CustomImportOrderCheck();
+        final int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
@@ -353,10 +353,10 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        CustomImportOrderCheck testCheckObject =
+        final CustomImportOrderCheck testCheckObject =
                 new CustomImportOrderCheck();
-        int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = testCheckObject.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
@@ -371,9 +371,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     public void testGetFullImportIdent() {
         Object actual;
         try {
-            Class<?> clazz = CustomImportOrderCheck.class;
-            Object t = clazz.getConstructor().newInstance();
-            Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
+            final Class<?> clazz = CustomImportOrderCheck.class;
+            final Object t = clazz.getConstructor().newInstance();
+            final Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
             method.setAccessible(true);
             actual = method.invoke(t, (DetailAST) null);
         }
@@ -382,7 +382,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             actual = null;
         }
 
-        String expected = "";
+        final String expected = "";
         assertEquals(expected, actual);
     }
 
@@ -525,7 +525,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CustomImportOrderCheck.class);
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputCustomImportOrder.java"), expected);
@@ -566,7 +566,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE");
         checkConfig.addAttribute("specialImportsRegExp", "org");
         checkConfig.addAttribute("standardPackageRegExp", "junit");
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputCustomImportOrder_MultiplePatternMatches.java"),
@@ -581,7 +581,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE");
         checkConfig.addAttribute("specialImportsRegExp", "Test");
         checkConfig.addAttribute("standardPackageRegExp", "unit");
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputCustomImportOrder_MultiplePatternMatches.java"),
@@ -596,7 +596,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE");
         checkConfig.addAttribute("specialImportsRegExp", "unit");
         checkConfig.addAttribute("standardPackageRegExp", "Test");
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputCustomImportOrder_MultiplePatternMatches.java"),

@@ -176,9 +176,9 @@ public class CheckerTest {
     public void testFileExtensions() throws Exception {
         final Checker checker = new Checker();
         final List<File> files = new ArrayList<>();
-        File file = new File("file.pdf");
+        final File file = new File("file.pdf");
         files.add(file);
-        File otherFile = new File("file.java");
+        final File otherFile = new File("file.java");
         files.add(otherFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
@@ -198,7 +198,7 @@ public class CheckerTest {
         checker.setBasedir("some");
         checker.setSeverity("ignore");
 
-        PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
@@ -240,7 +240,7 @@ public class CheckerTest {
     public void testFinishLocalSetupFullyInitialized() throws Exception {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
@@ -250,11 +250,11 @@ public class CheckerTest {
     @Test
     public void testSetupChildExceptions() throws Exception {
         final Checker checker = new Checker();
-        PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
-        Configuration config = new DefaultConfiguration("java.lang.String");
+        final Configuration config = new DefaultConfiguration("java.lang.String");
         try {
             checker.setupChild(config);
             fail("Exception is expected");
@@ -267,11 +267,12 @@ public class CheckerTest {
     @Test
     public void testSetupChildListener() throws Exception {
         final Checker checker = new Checker();
-        PackageObjectFactory factory = new PackageObjectFactory(
+        final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
-        Configuration config = new DefaultConfiguration(DebugAuditAdapter.class.getCanonicalName());
+        final Configuration config = new DefaultConfiguration(
+            DebugAuditAdapter.class.getCanonicalName());
         checker.setupChild(config);
     }
 }

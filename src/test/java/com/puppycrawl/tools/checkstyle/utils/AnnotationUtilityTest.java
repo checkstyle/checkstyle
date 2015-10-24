@@ -66,16 +66,16 @@ public class AnnotationUtilityTest {
 
     @Test
     public void testContainsAnnotationFalse() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(1);
         Assert.assertFalse(AnnotationUtility.containsAnnotation(ast));
     }
 
     @Test
     public void testContainsAnnotationFalse2() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(1);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
         Assert.assertFalse(AnnotationUtility.containsAnnotation(ast));
@@ -83,12 +83,12 @@ public class AnnotationUtilityTest {
 
     @Test
     public void testContainsAnnotationTrue() throws ReflectiveOperationException {
-        DetailAST ast = new DetailAST();
+        final DetailAST ast = new DetailAST();
         ast.setType(1);
-        DetailAST ast2 = new DetailAST();
+        final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
-        DetailAST ast3 = new DetailAST();
+        final DetailAST ast3 = new DetailAST();
         ast3.setType(TokenTypes.ANNOTATION);
         ast2.addChild(ast3);
         Assert.assertTrue(AnnotationUtility.containsAnnotation(ast));

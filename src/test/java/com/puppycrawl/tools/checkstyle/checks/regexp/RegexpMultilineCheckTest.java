@@ -174,7 +174,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         // now needs 10'000 or 100'000, as just 1000 is no longer enough today to provoke the
         // StackOverflowError
         final int size = 100000;
-        StringBuffer largeString = new StringBuffer(size);
+        final StringBuffer largeString = new StringBuffer(size);
         for (int i = 0; i < size / 2; i++) {
             largeString.append("xy");
         }
@@ -188,7 +188,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("minimum", "500");
         checkConfig.addAttribute("message", "someMessage");
 
-        String[] expected = new String[223];
+        final String[] expected = new String[223];
         for (int i = 0; i < 223; i++) {
             expected[i] = i + ": someMessage";
         }

@@ -40,9 +40,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testGetRequiredTokens() {
-        AvoidEscapedUnicodeCharactersCheck checkObj =
+        final AvoidEscapedUnicodeCharactersCheck checkObj =
             new AvoidEscapedUnicodeCharactersCheck();
-        int[] expected = {
+        final int[] expected = {
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
         };
@@ -51,7 +51,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         final String[] expected = {
             "7: " + msg,
@@ -86,7 +86,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testAllowEscapesForControlCharacterSet() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowEscapesForControlCharacters", "true");
         final String[] expected = {
@@ -119,7 +119,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testAllowByTailComment() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowByTailComment", "true");
         final String[] expected = {
@@ -147,7 +147,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testAllowAllCharactersEscaped() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowIfAllCharactersEscaped", "true");
         final String[] expected = {
@@ -166,7 +166,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
     @Test
     public void allowNonPrintableEscapes() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
                 createCheckConfig(AvoidEscapedUnicodeCharactersCheck.class);
         checkConfig.addAttribute("allowNonPrintableEscapes", "true");
         final String[] expected = {
@@ -188,9 +188,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
 
     @Test
     public void testGetAcceptableTokens() {
-        AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
-        int[] actual = check.getAcceptableTokens();
-        int[] expected = {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+        final int[] actual = check.getAcceptableTokens();
+        final int[] expected = {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
         assertArrayEquals(expected, actual);
     }
 }

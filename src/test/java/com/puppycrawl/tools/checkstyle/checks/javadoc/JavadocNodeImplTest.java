@@ -29,22 +29,22 @@ public class JavadocNodeImplTest {
 
     @Test
     public void testToString() {
-        JavadocNodeImpl javadocNode = new JavadocNodeImpl();
+        final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
         javadocNode.setType(JavadocTokenTypes.CODE_LITERAL);
         javadocNode.setLineNumber(1);
         javadocNode.setColumnNumber(2);
 
-        String result = javadocNode.toString();
+        final String result = javadocNode.toString();
 
         assertEquals("CODE_LITERAL[1x2]", result);
     }
 
     @Test
     public void testGetColumnNumber() {
-        JavadocNodeImpl javadocNode = new JavadocNodeImpl();
+        final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
         javadocNode.setColumnNumber(1);
 
-        int result = javadocNode.getColumnNumber();
+        final int result = javadocNode.getColumnNumber();
 
         assertEquals(1, result);
     }

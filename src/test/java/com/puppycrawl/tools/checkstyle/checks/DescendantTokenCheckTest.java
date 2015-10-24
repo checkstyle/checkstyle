@@ -222,14 +222,14 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testReturnFromCatch() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
 
         checkConfig.addAttribute("tokens", "LITERAL_CATCH");
         checkConfig.addAttribute("limitedTokens", "LITERAL_RETURN");
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("maximumMessage", "Return from catch is not allowed.");
 
-        String[] expected = {
+        final String[] expected = {
             "7:11: Return from catch is not allowed.",
             "15:11: Return from catch is not allowed.",
         };
@@ -239,14 +239,14 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testReturnFromFinally() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
 
         checkConfig.addAttribute("tokens", "LITERAL_FINALLY");
         checkConfig.addAttribute("limitedTokens", "LITERAL_RETURN");
         checkConfig.addAttribute("maximumNumber", "0");
         checkConfig.addAttribute("maximumMessage", "Return from finally is not allowed.");
 
-        String[] expected = {
+        final String[] expected = {
             "7:11: Return from finally is not allowed.",
             "15:11: Return from finally is not allowed.",
         };
@@ -256,21 +256,21 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testNoSum() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
 
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
         checkConfig.addAttribute("maximumNumber", "1");
         checkConfig.addAttribute("maximumMessage", "What are you doing?");
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputReturnFromFinally.java"), expected);
     }
 
     @Test
     public void testWithSumCustomMsg() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
         checkConfig.addAttribute("maximumNumber", "1");
@@ -278,7 +278,7 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("maximumMessage", "this cannot be null.");
         checkConfig.addAttribute("sumTokenCounts", "true");
 
-        String[] expected = {
+        final String[] expected = {
             "22:32: this cannot be null.",
             "22:50: this cannot be null.",
             "23:33: this cannot be null.",
@@ -290,14 +290,14 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithSumDefaultMsg() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
         checkConfig.addAttribute("maximumNumber", "1");
         checkConfig.addAttribute("maximumDepth", "1");
         checkConfig.addAttribute("sumTokenCounts", "true");
 
-        String[] expected = {
+        final String[] expected = {
             "22:32: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
             "22:50: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
             "23:33: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
@@ -309,13 +309,13 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithSumLessThenMinDefMsg() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
         checkConfig.addAttribute("minimumNumber", "3");
         checkConfig.addAttribute("sumTokenCounts", "true");
 
-        String[] expected = {
+        final String[] expected = {
             "16:44: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 3, "EQUAL"),
             "22:32: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
             "22:50: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
@@ -330,14 +330,14 @@ public class DescendantTokenCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithSumLessThenMinCustomMsg() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(DescendantTokenCheck.class);
         checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
         checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
         checkConfig.addAttribute("minimumNumber", "3");
         checkConfig.addAttribute("sumTokenCounts", "true");
         checkConfig.addAttribute("minimumMessage", "custom message");
 
-        String[] expected = {
+        final String[] expected = {
             "16:44: custom message",
             "22:32: custom message",
             "22:50: custom message",

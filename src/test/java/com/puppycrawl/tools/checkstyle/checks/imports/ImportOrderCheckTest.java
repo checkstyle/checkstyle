@@ -63,7 +63,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testImportOrderOptionValueOf() {
-        ImportOrderOption option = ImportOrderOption.valueOf("TOP");
+        final ImportOrderOption option = ImportOrderOption.valueOf("TOP");
         assertEquals(ImportOrderOption.TOP, option);
     }
 
@@ -420,20 +420,21 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
 
     @Test(expected = IllegalStateException.class)
     public void testVisitTokenSwitchReflection() throws Exception {
-        ImportOrderOption importOrderOptionMock = PowerMockito.mock(ImportOrderOption.class);
+        final ImportOrderOption importOrderOptionMock = PowerMockito.mock(ImportOrderOption.class);
         Whitebox.setInternalState(importOrderOptionMock, "name", "NEW_OPTION_FOR_UT");
         Whitebox.setInternalState(importOrderOptionMock, "ordinal", 5);
 
-        DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
-        DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
+        final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
+        final DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
         astImport.addChild(astIdent);
-        DetailAST astSemi = mockAST(TokenTypes.SEMI, ";", "mockfile", 0, 0);
+        final DetailAST astSemi = mockAST(TokenTypes.SEMI, ";", "mockfile", 0, 0);
         astIdent.addNextSibling(astSemi);
 
-        ImportOrderCheck check = new ImportOrderCheck() {
+        final ImportOrderCheck check = new ImportOrderCheck() {
             @Override
             public ImportOrderOption getAbstractOption() {
-                ImportOrderOption importOrderOption = PowerMockito.mock(ImportOrderOption.class);
+                final ImportOrderOption importOrderOption = PowerMockito
+                    .mock(ImportOrderOption.class);
                 Whitebox.setInternalState(importOrderOption, "name", "NEW_OPTION_FOR_UT");
                 Whitebox.setInternalState(importOrderOption, "ordinal", 5);
                 return importOrderOption;
@@ -454,13 +455,13 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
      */
     private static DetailAST mockAST(final int tokenType, final String tokenText,
             final String tokenFileName, final int tokenRow, final int tokenColumn) {
-        CommonHiddenStreamToken tokenImportSemi = new CommonHiddenStreamToken();
+        final CommonHiddenStreamToken tokenImportSemi = new CommonHiddenStreamToken();
         tokenImportSemi.setType(tokenType);
         tokenImportSemi.setText(tokenText);
         tokenImportSemi.setLine(tokenRow);
         tokenImportSemi.setColumn(tokenColumn);
         tokenImportSemi.setFilename(tokenFileName);
-        DetailAST astSemi = new DetailAST();
+        final DetailAST astSemi = new DetailAST();
         astSemi.initialize(tokenImportSemi);
         return astSemi;
     }

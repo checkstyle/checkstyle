@@ -44,8 +44,8 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        OuterTypeFilenameCheck checkObj = new OuterTypeFilenameCheck();
-        int[] expected = {
+        final OuterTypeFilenameCheck checkObj = new OuterTypeFilenameCheck();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -72,9 +72,9 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        OuterTypeFilenameCheck check = new OuterTypeFilenameCheck();
-        int[] actual = check.getAcceptableTokens();
-        int[] expected = {
+        final OuterTypeFilenameCheck check = new OuterTypeFilenameCheck();
+        final int[] actual = check.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -115,7 +115,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testPackageAnnotation() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 

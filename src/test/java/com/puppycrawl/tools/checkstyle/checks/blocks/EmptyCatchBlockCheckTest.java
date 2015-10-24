@@ -44,8 +44,8 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
-        int[] expected = {TokenTypes.LITERAL_CATCH};
+        final EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
+        final int[] expected = {TokenTypes.LITERAL_CATCH};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -81,9 +81,9 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
-        int[] actual = constantNameCheckObj.getAcceptableTokens();
-        int[] expected = {TokenTypes.LITERAL_CATCH };
+        final EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
+        final int[] actual = constantNameCheckObj.getAcceptableTokens();
+        final int[] expected = {TokenTypes.LITERAL_CATCH };
         assertArrayEquals(expected, actual);
     }
 }

@@ -44,7 +44,7 @@ public class ClassResolverTest {
         imports.add("java.io.File");
         imports.add("nothing.will.match.*");
         imports.add("java.applet.*");
-        ClassResolver classResolver =
+        final ClassResolver classResolver =
             new ClassResolver(Thread.currentThread().getContextClassLoader(),
                 null, imports);
         assertNotNull(classResolver);
@@ -68,11 +68,11 @@ public class ClassResolverTest {
         }
 
         imports.add("java.text.ChoiceFormat");
-        ClassResolver newClassResolver = new ClassResolver(
+        final ClassResolver newClassResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(), null, imports);
         newClassResolver.resolve("ChoiceFormat", "");
 
-        ClassResolver javaUtilClassResolver = new ClassResolver(
+        final ClassResolver javaUtilClassResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(), "java.util", imports);
         javaUtilClassResolver.resolve("List", "");
         try {
@@ -88,7 +88,7 @@ public class ClassResolverTest {
     public void testExistedImportCantBeResolved() throws Exception {
         final Set<String> imports = Sets.newHashSet();
         imports.add("java.applet.someClass");
-        ClassResolver classResolver = new ClassResolver(
+        final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(),
                 "", imports);
 
@@ -105,18 +105,18 @@ public class ClassResolverTest {
     @Test
     public void testResolveInnerClass() throws Exception {
         final Set<String> imports = Sets.newHashSet();
-        ClassResolver classResolver = new ClassResolver(
+        final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(),
                 "java.util", imports);
 
-        Class<?> entry = classResolver.resolve("Entry", "Map");
+        final Class<?> entry = classResolver.resolve("Entry", "Map");
         assertEquals("java.util.Map$Entry", entry.getName());
     }
 
     @Test
     public void testResolveInnerClassWithEmptyPackage() throws Exception {
         final Set<String> imports = Sets.newHashSet();
-        ClassResolver classResolver = new ClassResolver(
+        final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(),
                 "", imports);
 
@@ -133,7 +133,7 @@ public class ClassResolverTest {
         final Set<String> imports = Sets.newHashSet();
         imports.add("java.applet.someClass");
 
-        ClassResolver classResolver = PowerMockito.spy(new ClassResolver(Thread
+        final ClassResolver classResolver = PowerMockito.spy(new ClassResolver(Thread
                 .currentThread().getContextClassLoader(), "", imports));
 
         PowerMockito.doThrow(new ClassNotFoundException("expected exception"))

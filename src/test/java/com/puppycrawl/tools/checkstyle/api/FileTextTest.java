@@ -32,22 +32,22 @@ public class FileTextTest {
     @Test
     public void testUnsupportedCharset() throws IOException {
         // just to make UT coverage 100%
-        String charsetName = "STRANGE_CHARSET";
+        final String charsetName = "STRANGE_CHARSET";
         try {
             new FileText(new File("any name"), charsetName);
             fail();
         }
         catch (UnsupportedEncodingException e) {
-            assertEquals(e.getMessage(), "Unsupported charset: " + charsetName);
+            assertEquals("Unsupported charset: " + charsetName, e.getMessage());
         }
 
     }
 
     @Test
     public void testSupportedCharset() throws IOException {
-        String charsetName = "ISO-8859-1";
-        FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+        final String charsetName = "ISO-8859-1";
+        final FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
-        assertEquals(o.getCharset().name(), charsetName);
+        assertEquals(charsetName, o.getCharset().name());
     }
 }

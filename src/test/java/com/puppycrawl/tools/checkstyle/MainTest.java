@@ -90,7 +90,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                String usage = String.format(Locale.ROOT, "Unrecognized option: -w%n"
+                final String usage = String.format(Locale.ROOT, "Unrecognized option: -w%n"
                     + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>%n"
                     + "            file...%n"
                     + " -c <arg>   Sets the check configuration file to use.%n"
@@ -232,10 +232,11 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
-                String expectedPath = getFilePath("InputMain.java");
+                final String expectedPath = getFilePath("InputMain.java");
                 final ResourceBundle compilationProperties =
                         ResourceBundle.getBundle("checkstylecompilation");
-                String version = compilationProperties.getString("checkstyle.compile.version");
+                final String version = compilationProperties
+                    .getString("checkstyle.compile.version");
                 assertEquals(String.format(Locale.ROOT,
                         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>%n"
                         + "<checkstyle version=\"%s\">%n"
@@ -272,7 +273,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
-                String expectedPath = getFilePath("InputMain.java");
+                final String expectedPath = getFilePath("InputMain.java");
                 assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                                 + "%1$s:3:14: "
                                 + "warning: Name 'InputMain' must match pattern"
@@ -296,7 +297,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
-                String expectedPath = getFilePath("InputMain.java");
+                final String expectedPath = getFilePath("InputMain.java");
                 assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
                         + "%1$s:3:14: error: "
                         + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
@@ -451,15 +452,15 @@ public class MainTest {
 
     @Test
     public void testLoadPropertiesIOException() throws Exception {
-        Class<?>[] param = new Class<?>[1];
+        final Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
-        Method method = Main.class.getDeclaredMethod("loadProperties", param);
+        final Method method = Main.class.getDeclaredMethod("loadProperties", param);
         method.setAccessible(true);
         try {
             if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
                 // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
                 // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
-                File file = new File(File.separator + ":invalid");
+                final File file = new File(File.separator + ":invalid");
                 if (file.exists()) {
                     file.delete();
                 }
@@ -483,7 +484,8 @@ public class MainTest {
 
     @Test
     public void testCreateListenerIllegalStateException() throws Exception {
-        Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
+        final Method method = Main.class.getDeclaredMethod("createListener", String.class,
+            String.class);
         method.setAccessible(true);
         try {
             method.invoke(null, "myformat", null);
@@ -497,9 +499,10 @@ public class MainTest {
 
     @Test
     public void testCreateListenerWithLocationIllegalStateException() throws Exception {
-        Method method = Main.class.getDeclaredMethod("createListener", String.class, String.class);
+        final Method method = Main.class.getDeclaredMethod("createListener", String.class,
+            String.class);
         method.setAccessible(true);
-        String outDir = "myfolder123";
+        final String outDir = "myfolder123";
         try {
             method.invoke(null, "myformat", outDir);
             fail();
@@ -524,13 +527,13 @@ public class MainTest {
 
         exit.checkAssertionAfterwards(new Assertion() {
             @Override public void checkAssertion() throws IOException {
-                String expectedPath = getFilePath("checks/metrics") + File.separator;
-                StringBuilder sb = new StringBuilder();
+                final String expectedPath = getFilePath("checks/metrics") + File.separator;
+                final StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
-                String format = "%s.java:%s: warning: File length is %s lines "
+                final String format = "%s.java:%s: warning: File length is %s lines "
                     + "(max allowed is 170).";
                 for (String[] outputValue : outputValues) {
-                    String line = String.format(Locale.ROOT, format,
+                    final String line = String.format(Locale.ROOT, format,
                             expectedPath + outputValue[0], outputValue[1],
                             outputValue[2]);
                     sb.append(line).append(System.getProperty("line.separator"));
@@ -548,30 +551,30 @@ public class MainTest {
     @Test
     @SuppressWarnings("unchecked")
     public void testListFilesNotFile() throws Exception {
-        Method method = Main.class.getDeclaredMethod("listFiles", File.class);
+        final Method method = Main.class.getDeclaredMethod("listFiles", File.class);
         method.setAccessible(true);
 
-        File fileMock = mock(File.class);
+        final File fileMock = mock(File.class);
         when(fileMock.canRead()).thenReturn(true);
         when(fileMock.isDirectory()).thenReturn(false);
         when(fileMock.isFile()).thenReturn(false);
 
-        List<File> result = (List<File>) method.invoke(null, fileMock);
+        final List<File> result = (List<File>) method.invoke(null, fileMock);
         assertEquals(0, result.size());
     }
 
     @Test
     @SuppressWarnings("unchecked")
     public void testListFilesDirectoryWithNull() throws Exception {
-        Method method = Main.class.getDeclaredMethod("listFiles", File.class);
+        final Method method = Main.class.getDeclaredMethod("listFiles", File.class);
         method.setAccessible(true);
 
-        File fileMock = mock(File.class);
+        final File fileMock = mock(File.class);
         when(fileMock.canRead()).thenReturn(true);
         when(fileMock.isDirectory()).thenReturn(true);
         when(fileMock.listFiles()).thenReturn(null);
 
-        List<File> result = (List<File>) method.invoke(null, fileMock);
+        final List<File> result = (List<File>) method.invoke(null, fileMock);
         assertEquals(0, result.size());
     }
 }

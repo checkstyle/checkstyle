@@ -351,30 +351,30 @@ public class ConfigurationLoaderTest {
     @Test
     public void testIncorrectTag() throws Exception {
         try {
-            Class<?> aClassParent = ConfigurationLoader.class;
+            final Class<?> aClassParent = ConfigurationLoader.class;
             Constructor<?> ctorParent = null;
-            Constructor<?>[] parentConstructors = aClassParent.getDeclaredConstructors();
+            final Constructor<?>[] parentConstructors = aClassParent.getDeclaredConstructors();
             for (Constructor<?> parentConstructor: parentConstructors) {
                 parentConstructor.setAccessible(true);
                 ctorParent = parentConstructor;
             }
-            Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
+            final Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                     + "ConfigurationLoader$InternalLoader");
             Constructor<?> constructor = null;
-            Constructor<?>[] constructors = aClass.getDeclaredConstructors();
+            final Constructor<?>[] constructors = aClass.getDeclaredConstructors();
             for (Constructor<?> constr: constructors) {
                 constr.setAccessible(true);
                 constructor = constr;
             }
 
-            Class<?>[] param = new Class<?>[4];
+            final Class<?>[] param = new Class<?>[4];
             param[0] = String.class;
             param[1] = String.class;
             param[2] = String.class;
             param[3] = Attributes.class;
-            Method method = aClass.getDeclaredMethod("startElement", param);
-            Object objParent = ctorParent.newInstance(null, true);
-            Object obj = constructor.newInstance(objParent);
+            final Method method = aClass.getDeclaredMethod("startElement", param);
+            final Object objParent = ctorParent.newInstance(null, true);
+            final Object obj = constructor.newInstance(objParent);
 
             method.invoke(obj, "", "", "hello", null);
 
@@ -473,9 +473,9 @@ public class ConfigurationLoaderTest {
     @Test
     public void testReplacePropertiesDefault() throws Exception {
         final Properties props = new Properties();
-        String defaultValue = "defaultValue";
+        final String defaultValue = "defaultValue";
 
-        String value = ConfigurationLoader.replaceProperties("${checkstyle.basedir}",
+        final String value = ConfigurationLoader.replaceProperties("${checkstyle.basedir}",
                 new PropertiesExpander(props), defaultValue);
 
         assertEquals(defaultValue, value);

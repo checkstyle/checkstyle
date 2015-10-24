@@ -45,17 +45,17 @@ public class AnonInnerLengthCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
-        int[] expected = {TokenTypes.LITERAL_NEW};
+        final AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
+        final int[] expected = {TokenTypes.LITERAL_NEW};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
-        AnonInnerLengthCheck anonInnerLengthCheckObj =
+        final AnonInnerLengthCheck anonInnerLengthCheckObj =
                 new AnonInnerLengthCheck();
-        int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
-        int[] expected = {TokenTypes.LITERAL_NEW};
+        final int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
+        final int[] expected = {TokenTypes.LITERAL_NEW};
 
         assertArrayEquals(expected, actual);
     }

@@ -59,7 +59,7 @@ public class MissingSwitchDefaultCheckTest
 
     @Test
     public void testTokensNotNull() {
-        MissingSwitchDefaultCheck check = new MissingSwitchDefaultCheck();
+        final MissingSwitchDefaultCheck check = new MissingSwitchDefaultCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

@@ -42,7 +42,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        RegexpCheck checkObj = new RegexpCheck();
+        final RegexpCheck checkObj = new RegexpCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

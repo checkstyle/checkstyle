@@ -55,7 +55,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
      */
     @Test
     public void testRightCurlyOptionValueOf() {
-        RightCurlyOption option = RightCurlyOption.valueOf("ALONE");
+        final RightCurlyOption option = RightCurlyOption.valueOf("ALONE");
         assertEquals(RightCurlyOption.ALONE, option);
     }
 

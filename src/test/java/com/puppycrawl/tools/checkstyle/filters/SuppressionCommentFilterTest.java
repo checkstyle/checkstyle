@@ -247,7 +247,7 @@ public class SuppressionCommentFilterTest
 
     @Test
     public void testToStringOfTagClass() {
-        SuppressionCommentFilter.Tag tag = new SuppressionCommentFilter.Tag(
+        final SuppressionCommentFilter.Tag tag = new SuppressionCommentFilter.Tag(
                 0, 1, "text", false, new SuppressionCommentFilter()
         );
 
@@ -286,7 +286,7 @@ public class SuppressionCommentFilterTest
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                     getClass(), null);
         final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
-        SuppressionCommentFilter filter = new SuppressionCommentFilter();
+        final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         Assert.assertTrue(filter.accept(auditEvent));
     }
 }

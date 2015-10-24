@@ -151,7 +151,7 @@ public class EqualsAvoidNullCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
+        final EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

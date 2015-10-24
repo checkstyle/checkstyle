@@ -62,11 +62,11 @@ public class TokenTypesDocletTest {
 
     @Test
     public void testCheckOptions() {
-        Context context = new Context();
-        TestMessager testMessager = new TestMessager(context);
+        final Context context = new Context();
+        final TestMessager testMessager = new TestMessager(context);
 
         //pass invalid options - empty array
-        String[][] options = new String[3][1];
+        final String[][] options = new String[3][1];
         assertFalse(TokenTypesDoclet.checkOptions(options, testMessager));
 
         //pass valid options - array with one "-destfile" option
@@ -77,7 +77,7 @@ public class TokenTypesDocletTest {
         options[1][0] = "-destfile";
         assertFalse(TokenTypesDoclet.checkOptions(options, testMessager));
 
-        String[] expected = {
+        final String[] expected = {
             "Usage: javadoc -destfile file -doclet TokenTypesDoclet ...",
             "Only one -destfile option allowed.",
         };
@@ -91,33 +91,33 @@ public class TokenTypesDocletTest {
         // modifiers public, static, final and type int, because they are referenced statically in
         // a lot of different places, must not be changed and an int value is used to encrypt
         // a token type.
-        ListBuffer<String[]> options = new ListBuffer<>();
+        final ListBuffer<String[]> options = new ListBuffer<>();
         options.add(new String[]{"-doclet", "TokenTypesDoclet"});
         options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
-        ListBuffer<String> names = new ListBuffer<>();
+        final ListBuffer<String> names = new ListBuffer<>();
         names.add(getPath("InputTokenTypesDocletNotConstants.java"));
 
-        Context context = new Context();
+        final Context context = new Context();
         new TestMessager(context);
-        JavadocTool javadocTool = JavadocTool.make0(context);
-        RootDoc rootDoc = getRootDoc(javadocTool, options, names);
+        final JavadocTool javadocTool = JavadocTool.make0(context);
+        final RootDoc rootDoc = getRootDoc(javadocTool, options, names);
 
         assertTrue(TokenTypesDoclet.start(rootDoc));
     }
 
     @Test
     public void testEmptyJavadoc() throws Exception {
-        ListBuffer<String[]> options = new ListBuffer<>();
+        final ListBuffer<String[]> options = new ListBuffer<>();
         options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
-        ListBuffer<String> names = new ListBuffer<>();
+        final ListBuffer<String> names = new ListBuffer<>();
         names.add(getPath("InputTokenTypesDocletEmptyJavadoc.java"));
 
-        Context context = new Context();
+        final Context context = new Context();
         new TestMessager(context);
-        JavadocTool javadocTool = JavadocTool.make0(context);
-        RootDoc rootDoc = getRootDoc(javadocTool, options, names);
+        final JavadocTool javadocTool = JavadocTool.make0(context);
+        final RootDoc rootDoc = getRootDoc(javadocTool, options, names);
 
         try {
             TokenTypesDoclet.start(rootDoc);
@@ -132,23 +132,23 @@ public class TokenTypesDocletTest {
 
     @Test
     public void testCorrect() throws Exception {
-        ListBuffer<String[]> options = new ListBuffer<>();
+        final ListBuffer<String[]> options = new ListBuffer<>();
         options.add(new String[]{"-destfile", "target/tokentypes.properties"});
 
-        ListBuffer<String> names = new ListBuffer<>();
+        final ListBuffer<String> names = new ListBuffer<>();
         names.add(getPath("InputTokenTypesDocletCorrect.java"));
 
-        Context context = new Context();
+        final Context context = new Context();
         new TestMessager(context);
-        JavadocTool javadocTool = JavadocTool.make0(context);
-        RootDoc rootDoc = getRootDoc(javadocTool, options, names);
+        final JavadocTool javadocTool = JavadocTool.make0(context);
+        final RootDoc rootDoc = getRootDoc(javadocTool, options, names);
 
         assertTrue(TokenTypesDoclet.start(rootDoc));
     }
 
     private static RootDoc getRootDoc(JavadocTool javadocTool, ListBuffer<String[]> options,
             ListBuffer<String> names) throws Exception {
-        Method getRootDocImpl = getMethodGetRootDocImplByReflection();
+        final Method getRootDocImpl = getMethodGetRootDocImplByReflection();
         RootDoc rootDoc;
         if (System.getProperty("java.version").startsWith("1.7.")) {
             rootDoc = (RootDoc) getRootDocImpl.invoke(javadocTool, "", "UTF-8",
@@ -176,8 +176,8 @@ public class TokenTypesDocletTest {
 
     private static Method getMethodGetRootDocImplByReflection() throws ClassNotFoundException {
         Method result = null;
-        Class<?> javadocToolClass = Class.forName("com.sun.tools.javadoc.JavadocTool");
-        Method[] methods = javadocToolClass.getMethods();
+        final Class<?> javadocToolClass = Class.forName("com.sun.tools.javadoc.JavadocTool");
+        final Method[] methods = javadocToolClass.getMethods();
         for (Method method: methods) {
             if ("getRootDocImpl".equals(method.getName())) {
                 result = method;

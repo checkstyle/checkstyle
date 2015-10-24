@@ -71,7 +71,7 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testTokens() throws Exception {
-        UncommentedMainCheck check = new UncommentedMainCheck();
+        final UncommentedMainCheck check = new UncommentedMainCheck();
         Assert.assertNotNull(check.getRequiredTokens());
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertArrayEquals(check.getDefaultTokens(), check.getAcceptableTokens());
@@ -101,8 +101,8 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testIllegalStateException() throws Exception {
-        UncommentedMainCheck check = new UncommentedMainCheck();
-        DetailAST ast = new DetailAST();
+        final UncommentedMainCheck check = new UncommentedMainCheck();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
         try {
             check.visitToken(ast);

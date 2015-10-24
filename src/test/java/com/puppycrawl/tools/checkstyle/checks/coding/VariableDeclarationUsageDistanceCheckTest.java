@@ -228,7 +228,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testTokensNotNull() {
-        VariableDeclarationUsageDistanceCheck check = new VariableDeclarationUsageDistanceCheck();
+        final VariableDeclarationUsageDistanceCheck check =
+            new VariableDeclarationUsageDistanceCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

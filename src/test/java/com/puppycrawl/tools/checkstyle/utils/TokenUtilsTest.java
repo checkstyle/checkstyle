@@ -40,14 +40,14 @@ public class TokenUtilsTest {
 
     @Test
     public void testGetIntFromAccessibleField() throws NoSuchFieldException {
-        Field field = Integer.class.getField("MAX_VALUE");
+        final Field field = Integer.class.getField("MAX_VALUE");
 
         assertEquals(Integer.MAX_VALUE, TokenUtils.getIntFromField(field, 0));
     }
 
     @Test
     public void testGetIntFromInaccessibleField() throws NoSuchFieldException {
-        Field field = Integer.class.getDeclaredField("value");
+        final Field field = Integer.class.getDeclaredField("value");
 
         try {
             TokenUtils.getIntFromField(field, 0);
@@ -63,7 +63,7 @@ public class TokenUtilsTest {
 
     @Test
     public void testTokenValueIncorrect() {
-        Integer id = Integer.MAX_VALUE - 1;
+        final Integer id = Integer.MAX_VALUE - 1;
         try {
             TokenUtils.getTokenName(id);
             fail();
@@ -75,17 +75,17 @@ public class TokenUtilsTest {
 
     @Test
     public void testTokenValueIncorrect2() throws Exception {
-        Integer id = 0;
+        final Integer id = 0;
         String[] originalValue = null;
         Field fieldToken = null;
         try {
             // overwrite static field with new value
-            Field[] fields = TokenUtils.class.getDeclaredFields();
+            final Field[] fields = TokenUtils.class.getDeclaredFields();
             for (Field field : fields) {
                 field.setAccessible(true);
                 if ("TOKEN_VALUE_TO_NAME".equals(field.getName())) {
                     fieldToken = field;
-                    Field modifiersField = Field.class.getDeclaredField("modifiers");
+                    final Field modifiersField = Field.class.getDeclaredField("modifiers");
                     modifiersField.setAccessible(true);
                     modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
                     originalValue = (String[]) field.get(null);
@@ -110,7 +110,7 @@ public class TokenUtilsTest {
 
     @Test
     public void testTokenIdIncorrect() {
-        String id = "NON_EXISTING_VALUE";
+        final String id = "NON_EXISTING_VALUE";
         try {
             TokenUtils.getTokenId(id);
             fail();
@@ -122,7 +122,7 @@ public class TokenUtilsTest {
 
     @Test
     public void testShortDescriptionIncorrect() {
-        String id = "NON_EXISTING_VALUE";
+        final String id = "NON_EXISTING_VALUE";
         try {
             TokenUtils.getShortDescription(id);
             fail();

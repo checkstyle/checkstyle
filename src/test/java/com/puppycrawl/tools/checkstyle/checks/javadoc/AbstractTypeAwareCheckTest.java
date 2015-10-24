@@ -56,8 +56,8 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIsSubclassWithNulls() throws Exception {
-        JavadocMethodCheck check = new JavadocMethodCheck();
-        Method isSubclass = check.getClass().getSuperclass()
+        final JavadocMethodCheck check = new JavadocMethodCheck();
+        final Method isSubclass = check.getClass().getSuperclass()
                 .getDeclaredMethod("isSubclass", Class.class, Class.class);
         isSubclass.setAccessible(true);
         assertFalse((boolean) isSubclass.invoke(check, null, null));
@@ -65,26 +65,26 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokenToString() throws Exception {
-        Class<?> tokenType = Class
+        final Class<?> tokenType = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token");
-        Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class, int.class,
-                int.class);
-        Object token = tokenConstructor.newInstance("blablabla", 1, 1);
-        Method toString = token.getClass().getDeclaredMethod("toString");
-        String result = (String) toString.invoke(token);
+        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
+                int.class, int.class);
+        final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
+        final Method toString = token.getClass().getDeclaredMethod("toString");
+        final String result = (String) toString.invoke(token);
         assertEquals("Token[blablabla(1x1)]", result);
     }
 
     @Test
     public void testClassRegularClass() throws Exception {
-        Class<?> tokenType = Class
+        final Class<?> tokenType = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token");
 
-        Class<?> regularClassType = Class
+        final Class<?> regularClassType = Class
                 .forName(
                     "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
-        Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(tokenType,
-                String.class, AbstractTypeAwareCheck.class);
+        final Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(
+                tokenType, String.class, AbstractTypeAwareCheck.class);
         regularClassConstructor.setAccessible(true);
 
         try {
@@ -95,67 +95,67 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
             assertEquals("ClassInfo's name should be non-null", ex.getCause().getMessage());
         }
 
-        Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class, int.class,
-                int.class);
-        Object token = tokenConstructor.newInstance("blablabla", 1, 1);
+        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
+                int.class, int.class);
+        final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
 
-        Object regularClass = regularClassConstructor.newInstance(token, "sur",
+        final Object regularClass = regularClassConstructor.newInstance(token, "sur",
                 new JavadocMethodCheck());
 
-        Method toString = regularClass.getClass().getDeclaredMethod("toString");
+        final Method toString = regularClass.getClass().getDeclaredMethod("toString");
         toString.setAccessible(true);
-        String result = (String) toString.invoke(regularClass);
+        final String result = (String) toString.invoke(regularClass);
         assertEquals("RegularClass[name=Token[blablabla(1x1)], in class=sur, loadable=true,"
                 + " class=null]", result);
 
-        Method setClazz = regularClass.getClass().getDeclaredMethod("setClazz", Class.class);
+        final Method setClazz = regularClass.getClass().getDeclaredMethod("setClazz", Class.class);
         setClazz.setAccessible(true);
-        Class<?> arg = null;
+        final Class<?> arg = null;
         setClazz.invoke(regularClass, arg);
 
-        Method getClazz = regularClass.getClass().getDeclaredMethod("getClazz");
+        final Method getClazz = regularClass.getClass().getDeclaredMethod("getClazz");
         getClazz.setAccessible(true);
         assertNull(getClazz.invoke(regularClass));
     }
 
     @Test
     public void testClassAliasToString() throws Exception {
-        Class<?> tokenType = Class
+        final Class<?> tokenType = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$Token");
 
-        Class<?> regularClassType = Class
+        final Class<?> regularClassType = Class
                 .forName(
                     "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$RegularClass");
-        Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(tokenType,
-                String.class, AbstractTypeAwareCheck.class);
+        final Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(
+                tokenType, String.class, AbstractTypeAwareCheck.class);
         regularClassConstructor.setAccessible(true);
 
-        Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class, int.class,
-                int.class);
-        Object token = tokenConstructor.newInstance("blablabla", 1, 1);
+        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
+                int.class, int.class);
+        final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
 
-        Object regularClass = regularClassConstructor.newInstance(token, "sur",
+        final Object regularClass = regularClassConstructor.newInstance(token, "sur",
                 new JavadocMethodCheck());
 
-        Class<?> classAliasType = Class.forName(
+        final Class<?> classAliasType = Class.forName(
                 "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$ClassAlias");
-        Class<?> abstractTypeInfoType = Class.forName(
+        final Class<?> abstractTypeInfoType = Class.forName(
                 "com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck$AbstractClassInfo");
 
-        Constructor<?> classAliasConstructor = classAliasType
+        final Constructor<?> classAliasConstructor = classAliasType
                 .getDeclaredConstructor(tokenType, abstractTypeInfoType);
         classAliasConstructor.setAccessible(true);
 
-        Object classAlias = classAliasConstructor.newInstance(token, regularClass);
-        Method toString = classAlias.getClass().getDeclaredMethod("toString");
+        final Object classAlias = classAliasConstructor.newInstance(token, regularClass);
+        final Method toString = classAlias.getClass().getDeclaredMethod("toString");
         toString.setAccessible(true);
-        String result = (String) toString.invoke(classAlias);
+        final String result = (String) toString.invoke(classAlias);
         assertEquals("ClassAlias[alias Token[blablabla(1x1)] for Token[blablabla(1x1)]]", result);
     }
 
     @Test
     public void testWithoutLogErrors() throws Exception {
-        DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
+        final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("logLoadErrors", "false");
         config.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = {

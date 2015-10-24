@@ -42,9 +42,9 @@ public class HideUtilityClassConstructorCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        HideUtilityClassConstructorCheck checkObj =
+        final HideUtilityClassConstructorCheck checkObj =
             new HideUtilityClassConstructorCheck();
-        int[] expected = {TokenTypes.CLASS_DEF};
+        final int[] expected = {TokenTypes.CLASS_DEF};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -135,8 +135,8 @@ public class HideUtilityClassConstructorCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
-        int[] expected = {TokenTypes.CLASS_DEF};
+        final HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
+        final int[] expected = {TokenTypes.CLASS_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());
     }
 }

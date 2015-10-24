@@ -52,7 +52,7 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        MethodParamPadCheck checkObj = new MethodParamPadCheck();
+        final MethodParamPadCheck checkObj = new MethodParamPadCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
@@ -134,9 +134,9 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        MethodParamPadCheck methodParamPadCheckObj = new MethodParamPadCheck();
-        int[] actual = methodParamPadCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final MethodParamPadCheck methodParamPadCheckObj = new MethodParamPadCheck();
+        final int[] actual = methodParamPadCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,

@@ -53,8 +53,8 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        ImportControlCheck checkObj = new ImportControlCheck();
-        int[] expected = {
+        final ImportControlCheck checkObj = new ImportControlCheck();
+        final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
@@ -162,10 +162,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        ImportControlCheck testCheckObject =
+        final ImportControlCheck testCheckObject =
                 new ImportControlCheck();
-        int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = testCheckObject.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,

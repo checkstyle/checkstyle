@@ -44,11 +44,11 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testCalculation() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(NPathComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
-        String[] expected = {
+        final String[] expected = {
             "4:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "7:17: " + getCheckMessage(MSG_KEY, 2, 0),
             "17:5: " + getCheckMessage(MSG_KEY, 5, 0),
@@ -66,14 +66,14 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIntegerOverflow() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(NPathComplexityCheck.class);
 
         checkConfig.addAttribute("max", "0");
 
         final long largerThanMaxInt = 3486784401L;
 
-        String[] expected = {
+        final String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
         };
 
@@ -82,9 +82,9 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        DefaultConfiguration checkConfig =
+        final DefaultConfiguration checkConfig =
             createCheckConfig(NPathComplexityCheck.class);
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputComplexity.java"), expected);
@@ -92,9 +92,9 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
-        int[] actual = npathComplexityCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        final int[] actual = npathComplexityCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.STATIC_INIT,
@@ -116,9 +116,9 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
-        int[] actual = npathComplexityCheckObj.getRequiredTokens();
-        int[] expected = {
+        final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        final int[] actual = npathComplexityCheckObj.getRequiredTokens();
+        final int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.INSTANCE_INIT,
@@ -130,8 +130,8 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultHooks() {
-        NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
-        DetailAST ast = new DetailAST();
+        final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         npathComplexityCheckObj.visitToken(ast);
         npathComplexityCheckObj.leaveToken(ast);

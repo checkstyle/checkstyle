@@ -51,7 +51,7 @@ public class SimplifyBooleanReturnCheckTest
 
     @Test
     public void testTokensNotNull() {
-        SimplifyBooleanReturnCheck check = new SimplifyBooleanReturnCheck();
+        final SimplifyBooleanReturnCheck check = new SimplifyBooleanReturnCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

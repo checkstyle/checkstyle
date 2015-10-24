@@ -42,16 +42,16 @@ public class ParameterNumberCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        ParameterNumberCheck checkObj = new ParameterNumberCheck();
+        final ParameterNumberCheck checkObj = new ParameterNumberCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
-        ParameterNumberCheck paramNumberCheckObj =
+        final ParameterNumberCheck paramNumberCheckObj =
             new ParameterNumberCheck();
-        int[] actual = paramNumberCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = paramNumberCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };

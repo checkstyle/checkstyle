@@ -30,17 +30,17 @@ public class DefaultLoggerTest {
 
     @Test
     public void testCtor() {
-        OutputStream infoStream = new ByteArrayOutputStream();
-        OutputStream errorStream = new ByteArrayOutputStream();
-        DefaultLogger dl = new DefaultLogger(infoStream, true, errorStream, true);
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final OutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, true, errorStream, true);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
     }
 
     @Test
     public void testCtorWithTwoParameters() {
-        OutputStream infoStream = new ByteArrayOutputStream();
-        DefaultLogger dl = new DefaultLogger(infoStream, true);
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, true);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
     }

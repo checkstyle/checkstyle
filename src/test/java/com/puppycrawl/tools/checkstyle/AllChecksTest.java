@@ -91,7 +91,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultTokensAreSubsetOfAcceptableTokens() throws Exception {
-        Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
+        final Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
 
         for (Class<?> check : checkstyleChecks) {
             if (Check.class.isAssignableFrom(check)) {
@@ -100,7 +100,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
                 if (!isSubset(defaultTokens, acceptableTokens)) {
-                    String errorMessage = String.format(Locale.ROOT,
+                    final String errorMessage = String.format(Locale.ROOT,
                             "%s's default tokens must be a subset"
                             + " of acceptable tokens.", check.getName());
                     Assert.fail(errorMessage);
@@ -111,7 +111,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     @Test
     public void testRequiredTokensAreSubsetOfAcceptableTokens() throws Exception {
-        Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
+        final Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
 
         for (Class<?> check : checkstyleChecks) {
             if (Check.class.isAssignableFrom(check)) {
@@ -120,7 +120,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
                 if (!isSubset(requiredTokens, acceptableTokens)) {
-                    String errorMessage = String.format(Locale.ROOT,
+                    final String errorMessage = String.format(Locale.ROOT,
                             "%s's required tokens must be a subset"
                             + " of acceptable tokens.", check.getName());
                     Assert.fail(errorMessage);
@@ -131,7 +131,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     @Test
     public void testRequiredTokensAreSubsetOfDefaultTokens() throws Exception {
-        Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
+        final Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
 
         for (Class<?> check : checkstyleChecks) {
             if (Check.class.isAssignableFrom(check)) {
@@ -140,7 +140,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 
                 if (!isSubset(requiredTokens, defaultTokens)) {
-                    String errorMessage = String.format(Locale.ROOT,
+                    final String errorMessage = String.format(Locale.ROOT,
                             "%s's required tokens must be a subset"
                             + " of default tokens.", check.getName());
                     Assert.fail(errorMessage);
@@ -159,7 +159,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         for (String check : checksNames) {
             if (!checksReferencedInConfig.contains(check)) {
-                String errorMessage = String.format(Locale.ROOT,
+                final String errorMessage = String.format(Locale.ROOT,
                         "%s is not referenced in checkstyle_checks.xml", check);
                 Assert.fail(errorMessage);
             }
@@ -325,7 +325,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         final NodeList nodeList = document.getElementsByTagName("module");
 
-        Set<String> checksReferencedInCheckstyleChecksXML = new HashSet<>();
+        final Set<String> checksReferencedInCheckstyleChecksXML = new HashSet<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             final Node currentNode = nodeList.item(i);
             if (currentNode.getNodeType() == Node.ELEMENT_NODE) {

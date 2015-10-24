@@ -100,19 +100,19 @@ public class AvoidStarImportTest
 
     @Test
     public void testGetAcceptableTokens() {
-        AvoidStarImportCheck testCheckObject =
+        final AvoidStarImportCheck testCheckObject =
                 new AvoidStarImportCheck();
-        int[] actual = testCheckObject.getAcceptableTokens();
-        int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        final int[] actual = testCheckObject.getAcceptableTokens();
+        final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void testGetRequiredTokens() {
-        AvoidStarImportCheck testCheckObject =
+        final AvoidStarImportCheck testCheckObject =
                 new AvoidStarImportCheck();
-        int[] actual = testCheckObject.getRequiredTokens();
-        int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        final int[] actual = testCheckObject.getRequiredTokens();
+        final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
 
         assertArrayEquals(expected, actual);
     }

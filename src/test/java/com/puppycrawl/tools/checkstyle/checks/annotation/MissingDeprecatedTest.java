@@ -43,8 +43,8 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        MissingDeprecatedCheck checkObj = new  MissingDeprecatedCheck();
-        int[] expected = {
+        final MissingDeprecatedCheck checkObj = new  MissingDeprecatedCheck();
+        final int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,
@@ -63,7 +63,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
      */
     @Test
     public void testBadDeprecatedAnnotation() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -86,7 +86,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {
 
-        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -109,7 +109,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     @Test
     public void testSpecialCaseDeprecated() throws Exception {
 
-        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
@@ -136,7 +136,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     @Test
     public void testGoodDeprecated() throws Exception {
 
-        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -146,7 +146,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
 
-        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),
@@ -160,7 +160,7 @@ public class MissingDeprecatedTest extends BaseCheckTestSupport {
     @Test
     public void testEmptyJavadocLine() throws Exception {
 
-        DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_JAVADOC_MISSING),

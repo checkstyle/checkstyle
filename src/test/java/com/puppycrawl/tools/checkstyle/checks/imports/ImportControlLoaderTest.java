@@ -64,15 +64,15 @@ public class ImportControlLoaderTest {
     @Test(expected = InvocationTargetException.class)
     // UT uses Reflection to avoid removing null-validation from static method
     public void testSafeGetThrowsException() throws InvocationTargetException {
-        AttributesImpl attr = new AttributesImpl() {
+        final AttributesImpl attr = new AttributesImpl() {
             @Override
             public String getValue(int index) {
                 return null;
                 }
             };
         try {
-            Class<?> clazz = ImportControlLoader.class;
-            Method privateMethod = clazz.getDeclaredMethod("safeGet",
+            final Class<?> clazz = ImportControlLoader.class;
+            final Method privateMethod = clazz.getDeclaredMethod("safeGet",
                 Attributes.class, String.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, attr, "you_cannot_find_me");
@@ -88,10 +88,11 @@ public class ImportControlLoaderTest {
     // because this is possible situation (though highly unlikely), which depends on hardware
     // and is difficult to emulate
     public void testLoadThrowsException() throws InvocationTargetException {
-        InputSource source = new InputSource();
+        final InputSource source = new InputSource();
         try {
-            Class<?> clazz = ImportControlLoader.class;
-            Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class, URI.class);
+            final Class<?> clazz = ImportControlLoader.class;
+            final Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class,
+                URI.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, source,
                     new File(getPath("import-control_complete.xml")).toURI());

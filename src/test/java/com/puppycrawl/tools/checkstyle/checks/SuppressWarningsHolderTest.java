@@ -63,23 +63,23 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
-        int[] expected = {TokenTypes.ANNOTATION};
+        final SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
+        final int[] expected = {TokenTypes.ANNOTATION};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testOnComplexAnnotations() throws Exception {
-        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
     }
 
     @Test
     public void testCustomAnnotation() throws Exception {
-        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -94,20 +94,20 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testSetAliasListEmpty() {
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("");
     }
 
     @Test
     public void testSetAliasListCorrect() {
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("alias=value");
         assertEquals("value", SuppressWarningsHolder.getAlias("alias"));
     }
 
     @Test
     public void testSetAliasListWrong() {
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
 
         try {
             holder.setAliasList("SomeAlias");
@@ -121,22 +121,22 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testIsSuppressed() throws Exception {
-        Class<?> entry = Class
+        final Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
-        Constructor<?> entryConstructor = entry.getDeclaredConstructor(String.class, int.class,
-                int.class, int.class, int.class);
+        final Constructor<?> entryConstructor = entry.getDeclaredConstructor(String.class,
+                int.class, int.class, int.class, int.class);
         entryConstructor.setAccessible(true);
 
-        Object entryInstance = entryConstructor.newInstance("MockEntry", 100, 100, 350, 350);
+        final Object entryInstance = entryConstructor.newInstance("MockEntry", 100, 100, 350, 350);
 
-        List<Object> entriesList = new ArrayList<>();
+        final List<Object> entriesList = new ArrayList<>();
         entriesList.add(entryInstance);
 
-        ThreadLocal<?> threadLocal = mock(ThreadLocal.class);
+        final ThreadLocal<?> threadLocal = mock(ThreadLocal.class);
         PowerMockito.doReturn(entriesList).when(threadLocal, "get");
 
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        Field entries = holder.getClass().getDeclaredField("ENTRIES");
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final Field entries = holder.getClass().getDeclaredField("ENTRIES");
         entries.setAccessible(true);
         entries.set(holder, threadLocal);
 
@@ -145,22 +145,22 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testIsSuppressedWithAllArgument() throws Exception {
-        Class<?> entry = Class
+        final Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
-        Constructor<?> entryConstr = entry.getDeclaredConstructor(String.class, int.class,
+        final Constructor<?> entryConstr = entry.getDeclaredConstructor(String.class, int.class,
                 int.class, int.class, int.class);
         entryConstr.setAccessible(true);
 
-        Object entryInstance = entryConstr.newInstance("all", 100, 100, 350, 350);
+        final Object entryInstance = entryConstr.newInstance("all", 100, 100, 350, 350);
 
-        List<Object> entriesList = new ArrayList<>();
+        final List<Object> entriesList = new ArrayList<>();
         entriesList.add(entryInstance);
 
-        ThreadLocal<?> threadLocal = mock(ThreadLocal.class);
+        final ThreadLocal<?> threadLocal = mock(ThreadLocal.class);
         PowerMockito.doReturn(entriesList).when(threadLocal, "get");
 
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        Field entries = holder.getClass().getDeclaredField("ENTRIES");
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final Field entries = holder.getClass().getDeclaredField("ENTRIES");
         entries.setAccessible(true);
         entries.set(holder, threadLocal);
 
@@ -173,7 +173,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testAnnotationInTry() throws Exception {
-        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
         final String[] expected = {
             "11: " + getCheckMessage("suppress.warnings.invalid.target"),
@@ -184,7 +184,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testEmptyAnnotation() throws Exception {
-        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -193,21 +193,21 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAllAnnotationValuesWrongArg() throws ReflectiveOperationException {
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        Method getAllAnnotationValues = holder.getClass()
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final Method getAllAnnotationValues = holder.getClass()
                 .getDeclaredMethod("getAllAnnotationValues", DetailAST.class);
         getAllAnnotationValues.setAccessible(true);
 
-        DetailAST methodDef = new DetailAST();
+        final DetailAST methodDef = new DetailAST();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("Method Def");
         methodDef.setLineNo(0);
         methodDef.setColumnNo(0);
 
-        DetailAST lparen = new DetailAST();
+        final DetailAST lparen = new DetailAST();
         lparen.setType(TokenTypes.LPAREN);
 
-        DetailAST parent = new DetailAST();
+        final DetailAST parent = new DetailAST();
         parent.addChild(lparen);
         parent.addChild(methodDef);
 
@@ -223,12 +223,12 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAnnotationValuesWrongArg() throws ReflectiveOperationException {
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        Method getAllAnnotationValues = holder.getClass()
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final Method getAllAnnotationValues = holder.getClass()
                 .getDeclaredMethod("getAnnotationValues", DetailAST.class);
         getAllAnnotationValues.setAccessible(true);
 
-        DetailAST methodDef = new DetailAST();
+        final DetailAST methodDef = new DetailAST();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("Method Def");
         methodDef.setLineNo(0);
@@ -247,16 +247,16 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAnnotationTargetWrongArg() throws ReflectiveOperationException {
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        Method getAnnotationTarget = holder.getClass()
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final Method getAnnotationTarget = holder.getClass()
                 .getDeclaredMethod("getAnnotationTarget", DetailAST.class);
         getAnnotationTarget.setAccessible(true);
 
-        DetailAST methodDef = new DetailAST();
+        final DetailAST methodDef = new DetailAST();
         methodDef.setType(TokenTypes.METHOD_DEF);
         methodDef.setText("Method Def");
 
-        DetailAST parent = new DetailAST();
+        final DetailAST parent = new DetailAST();
         parent.setType(TokenTypes.ASSIGN);
         parent.setText("Parent ast");
         parent.addChild(methodDef);
@@ -275,8 +275,8 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testAstWithoutChildren() {
-        SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        DetailAST methodDef = new DetailAST();
+        final SuppressWarningsHolder holder = new SuppressWarningsHolder();
+        final DetailAST methodDef = new DetailAST();
         methodDef.setType(TokenTypes.METHOD_DEF);
 
         try {
@@ -291,7 +291,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
     @Test
     public void testAnnotationWithFullName() throws Exception {
-        Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
+        final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 

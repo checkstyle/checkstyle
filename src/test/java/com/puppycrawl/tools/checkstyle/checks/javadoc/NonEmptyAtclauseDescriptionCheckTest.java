@@ -41,17 +41,17 @@ public class NonEmptyAtclauseDescriptionCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        NonEmptyAtclauseDescriptionCheck checkObj =
+        final NonEmptyAtclauseDescriptionCheck checkObj =
             new NonEmptyAtclauseDescriptionCheck();
-        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertArrayEquals(expected, checkObj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
-        NonEmptyAtclauseDescriptionCheck checkObj =
+        final NonEmptyAtclauseDescriptionCheck checkObj =
             new NonEmptyAtclauseDescriptionCheck();
-        int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 

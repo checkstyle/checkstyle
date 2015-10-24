@@ -40,13 +40,13 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        LineLengthCheck checkObj = new LineLengthCheck();
+        final LineLengthCheck checkObj = new LineLengthCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
-        LineLengthCheck checkObj = new LineLengthCheck();
+        final LineLengthCheck checkObj = new LineLengthCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 

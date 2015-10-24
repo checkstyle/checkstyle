@@ -75,7 +75,7 @@ public class IllegalTokenTextCheckTest
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
         checkConfig.addAttribute("format", "a href");
 
-        String customMessage = "My custom message";
+        final String customMessage = "My custom message";
         checkConfig.addAttribute("message", customMessage);
         final String[] expected = {
             "24:28: " + customMessage,
@@ -100,7 +100,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testTokensNotNull() {
-        IllegalTokenTextCheck check = new IllegalTokenTextCheck();
+        final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

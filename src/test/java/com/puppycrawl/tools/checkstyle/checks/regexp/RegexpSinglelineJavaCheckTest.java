@@ -49,7 +49,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
+        final RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 

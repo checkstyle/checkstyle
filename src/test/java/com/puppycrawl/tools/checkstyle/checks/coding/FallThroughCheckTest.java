@@ -40,7 +40,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -67,7 +67,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testLastCaseGroup() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
         checkConfig.addAttribute("checkLastCaseGroup", "true");
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -145,7 +145,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        FallThroughCheck check = new FallThroughCheck();
+        final FallThroughCheck check = new FallThroughCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -153,7 +153,7 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testFallThroughNoElse() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(FallThroughCheck.class);
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "35:13: " + getCheckMessage(MSG_FALL_THROUGH),

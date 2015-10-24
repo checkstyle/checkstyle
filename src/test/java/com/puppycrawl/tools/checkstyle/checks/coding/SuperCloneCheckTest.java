@@ -69,7 +69,7 @@ public class SuperCloneCheckTest
 
     @Test
     public void testTokensNotNull() {
-        SuperCloneCheck check = new SuperCloneCheck();
+        final SuperCloneCheck check = new SuperCloneCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

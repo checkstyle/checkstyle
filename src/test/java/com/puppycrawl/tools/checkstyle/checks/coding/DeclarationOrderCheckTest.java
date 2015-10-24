@@ -138,7 +138,7 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testTokensNotNull() {
-        DeclarationOrderCheck check = new DeclarationOrderCheck();
+        final DeclarationOrderCheck check = new DeclarationOrderCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -146,29 +146,29 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testParents() {
-        DetailAST parent = new DetailAST();
+        final DetailAST parent = new DetailAST();
         parent.setType(TokenTypes.STATIC_INIT);
-        DetailAST method = new DetailAST();
+        final DetailAST method = new DetailAST();
         method.setType(TokenTypes.METHOD_DEF);
         parent.setFirstChild(method);
-        DetailAST ctor = new DetailAST();
+        final DetailAST ctor = new DetailAST();
         ctor.setType(TokenTypes.CTOR_DEF);
         method.setNextSibling(ctor);
 
-        DeclarationOrderCheck check = new DeclarationOrderCheck();
+        final DeclarationOrderCheck check = new DeclarationOrderCheck();
         check.visitToken(method);
         check.visitToken(ctor);
     }
 
     @Test
     public void testImproperToken() {
-        DetailAST parent = new DetailAST();
+        final DetailAST parent = new DetailAST();
         parent.setType(TokenTypes.STATIC_INIT);
-        DetailAST array = new DetailAST();
+        final DetailAST array = new DetailAST();
         array.setType(TokenTypes.ARRAY_INIT);
         parent.setFirstChild(array);
 
-        DeclarationOrderCheck check = new DeclarationOrderCheck();
+        final DeclarationOrderCheck check = new DeclarationOrderCheck();
         check.visitToken(array);
     }
 }

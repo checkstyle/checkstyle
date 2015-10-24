@@ -56,7 +56,7 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        ParameterAssignmentCheck check = new ParameterAssignmentCheck();
+        final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
@@ -64,9 +64,9 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testImproperToken() throws Exception {
-        ParameterAssignmentCheck check = new ParameterAssignmentCheck();
+        final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
 
-        DetailAST classDefAst = new DetailAST();
+        final DetailAST classDefAst = new DetailAST();
         classDefAst.setType(TokenTypes.CLASS_DEF);
 
         try {

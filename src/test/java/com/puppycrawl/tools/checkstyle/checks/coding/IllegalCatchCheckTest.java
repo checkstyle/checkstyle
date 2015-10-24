@@ -39,9 +39,9 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "6:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "8:11: " + getCheckMessage(MSG_KEY, "Throwable"),
@@ -55,11 +55,11 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testIllegalClassNames() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
         checkConfig.addAttribute("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, java.lang.Throwable");
 
-        String[] expected = {
+        final String[] expected = {
             "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "8:11: " + getCheckMessage(MSG_KEY, "Throwable"),
             "15:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
@@ -71,9 +71,9 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMultipleTypes() throws Exception {
-        DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
 
-        String[] expected = {
+        final String[] expected = {
             "7:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "10:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "13:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -85,7 +85,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testTokensNotNull() {
-        IllegalCatchCheck check = new IllegalCatchCheck();
+        final IllegalCatchCheck check = new IllegalCatchCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

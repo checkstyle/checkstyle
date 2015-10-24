@@ -41,16 +41,16 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        MethodLengthCheck checkObj = new MethodLengthCheck();
+        final MethodLengthCheck checkObj = new MethodLengthCheck();
         assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
-        MethodLengthCheck methodLengthCheckObj =
+        final MethodLengthCheck methodLengthCheckObj =
             new MethodLengthCheck();
-        int[] actual = methodLengthCheckObj.getAcceptableTokens();
-        int[] expected = {
+        final int[] actual = methodLengthCheckObj.getAcceptableTokens();
+        final int[] expected = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };

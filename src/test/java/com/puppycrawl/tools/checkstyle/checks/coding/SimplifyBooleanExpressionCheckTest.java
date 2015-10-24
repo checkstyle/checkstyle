@@ -54,7 +54,7 @@ public class SimplifyBooleanExpressionCheckTest
 
     @Test
     public void testTokensNotNull() {
-        SimplifyBooleanExpressionCheck check = new SimplifyBooleanExpressionCheck();
+        final SimplifyBooleanExpressionCheck check = new SimplifyBooleanExpressionCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

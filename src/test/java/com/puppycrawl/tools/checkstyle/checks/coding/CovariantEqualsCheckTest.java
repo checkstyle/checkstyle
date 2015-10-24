@@ -56,7 +56,7 @@ public class CovariantEqualsCheckTest
 
     @Test
     public void testTokensNotNull() {
-        CovariantEqualsCheck check = new CovariantEqualsCheck();
+        final CovariantEqualsCheck check = new CovariantEqualsCheck();
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());

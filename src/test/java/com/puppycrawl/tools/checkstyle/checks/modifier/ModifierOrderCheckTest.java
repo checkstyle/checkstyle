@@ -50,8 +50,8 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        ModifierOrderCheck checkObj = new ModifierOrderCheck();
-        int[] expected = {TokenTypes.MODIFIERS};
+        final ModifierOrderCheck checkObj = new ModifierOrderCheck();
+        final int[] expected = {TokenTypes.MODIFIERS};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -81,11 +81,11 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testGetDefaultTokens() {
-        ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
-        int[] actual = modifierOrderCheckObj.getDefaultTokens();
-        int[] expected = {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
-        int[] unexpectedArray = {
+        final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
+        final int[] actual = modifierOrderCheckObj.getDefaultTokens();
+        final int[] expected = {TokenTypes.MODIFIERS};
+        final int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
+        final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
@@ -97,11 +97,11 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
-        int[] actual = modifierOrderCheckObj.getAcceptableTokens();
-        int[] expected = {TokenTypes.MODIFIERS};
-        int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
-        int[] unexpectedArray = {
+        final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
+        final int[] actual = modifierOrderCheckObj.getAcceptableTokens();
+        final int[] expected = {TokenTypes.MODIFIERS};
+        final int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
+        final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };

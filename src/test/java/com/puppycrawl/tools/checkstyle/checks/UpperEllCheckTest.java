@@ -41,8 +41,8 @@ public class UpperEllCheckTest
 
     @Test
     public void testGetRequiredTokens() {
-        UpperEllCheck checkObj = new UpperEllCheck();
-        int[] expected = {TokenTypes.NUM_LONG};
+        final UpperEllCheck checkObj = new UpperEllCheck();
+        final int[] expected = {TokenTypes.NUM_LONG};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
@@ -59,9 +59,9 @@ public class UpperEllCheckTest
 
     @Test
     public void testAcceptableTokens() {
-        int[] expected = {TokenTypes.NUM_LONG };
-        UpperEllCheck check = new UpperEllCheck();
-        int[] actual = check.getAcceptableTokens();
+        final int[] expected = {TokenTypes.NUM_LONG };
+        final UpperEllCheck check = new UpperEllCheck();
+        final int[] actual = check.getAcceptableTokens();
         assertEquals(1, actual.length);
         assertArrayEquals(expected, actual);
     }
