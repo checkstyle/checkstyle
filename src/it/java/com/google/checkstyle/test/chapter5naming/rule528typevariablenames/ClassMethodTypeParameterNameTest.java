@@ -72,7 +72,6 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport {
             "42:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "EE", format),
         };
 
-
         String filePath = builder.getFilePath("MethodTypeParameterNameInput");
 
         Integer[] warnList = builder.getLinesWithWarn(filePath);

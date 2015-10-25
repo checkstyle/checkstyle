@@ -43,9 +43,9 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public abstract class BaseCheckTestSupport {
-    final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+public class BaseCheckTestSupport {
     protected final Properties props = new Properties();
+    final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     protected static DefaultConfiguration createCheckConfig(Class<?> aClazz) {
         return new DefaultConfiguration(aClazz.getName());

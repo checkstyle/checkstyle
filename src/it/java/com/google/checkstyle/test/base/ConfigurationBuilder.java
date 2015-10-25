@@ -60,7 +60,8 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
         try {
             return ConfigurationLoader.loadConfiguration(aConfigName,
                     new PropertiesExpander(aProps));
-        } catch (final CheckstyleException e) {
+        }
+        catch (final CheckstyleException e) {
             System.out.println("Error loading configuration file");
             e.printStackTrace(System.out);
             System.exit(1);
@@ -80,7 +81,8 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
                         return checkConfig;
                     }
                 }
-            } else if (aCheckName.equals(currentConfig.getName())) {
+            }
+            else if (aCheckName.equals(currentConfig.getName())) {
                 return currentConfig;
             }
         }
@@ -106,7 +108,8 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
                 for (final File file : folder.listFiles()) {
                     listFiles(files, file, extension);
                 }
-            } else if (folder.toString().endsWith("." + extension)) {
+            }
+            else if (folder.toString().endsWith("." + extension)) {
                 files.add(folder);
             }
         }

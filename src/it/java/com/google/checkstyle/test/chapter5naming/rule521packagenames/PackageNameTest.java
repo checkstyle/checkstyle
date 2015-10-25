@@ -47,7 +47,6 @@ public class PackageNameTest extends BaseCheckTestSupport {
     @Test
     public void goodPackageNameTest() throws Exception {
 
-
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         String filePath = builder.getFilePath("PackageNameInputGood");
@@ -76,7 +75,6 @@ public class PackageNameTest extends BaseCheckTestSupport {
     @Test
     public void badPackageName2Test() throws Exception {
 
-
         String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
         String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
@@ -92,7 +90,6 @@ public class PackageNameTest extends BaseCheckTestSupport {
 
     @Test
     public void badPackageName3Test() throws Exception {
-
 
         String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
         String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);

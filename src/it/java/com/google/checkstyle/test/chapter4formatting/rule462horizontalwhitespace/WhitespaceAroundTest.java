@@ -105,6 +105,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
     @Test
     public void whitespaceAroundEmptyTypesCyclesTest() throws Exception {
 
@@ -124,7 +125,6 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
         String msgNotPreceded = "ws.notPreceded";
         String msgIllegalFollow = "ws.illegalFollow";
         Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
-
 
         final String[] expected = {
             "16:13: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),

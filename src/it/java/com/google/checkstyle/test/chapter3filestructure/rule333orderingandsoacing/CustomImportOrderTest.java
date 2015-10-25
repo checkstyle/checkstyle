@@ -35,13 +35,13 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     private static final String MSG_SEPARATOR = "custom.import.order.line.separator";
     private static final String MSG_LEX = "custom.import.order.lex";
     private static final String MSG_ORDER = "custom.import.order";
-    private static ConfigurationBuilder builder;
-    private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
-    String msgNonGroup = "custom.import.order.nonGroup.import";
 
     /** Shortcuts to make code more compact. */
     private static final String STD = CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
     private static final String SPECIAL = CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
+
+    private static ConfigurationBuilder builder;
+    private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
 
     @BeforeClass
     public static void setConfigurationBuilder() {
@@ -112,6 +112,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
         Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
     @Test
     public void validTest() throws Exception {
 

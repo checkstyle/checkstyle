@@ -37,6 +37,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class IndentationConfigurationBuilder extends ConfigurationBuilder {
     private static final int TAB_WIDTH = 4;
 
+    private static final Pattern NONEMPTY_LINE_REGEX =
+            Pattern.compile(".*?\\S+.*?");
+
+    private static final Pattern LINE_WITH_COMMENT_REGEX =
+            Pattern.compile(".*?\\S+.*?(//indent:(\\d+) exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)");
+
+    private static final Pattern GET_INDENT_FROM_COMMENT_REGEX =
+            Pattern.compile("//indent:(\\d+).*?");
+
+    private static final Pattern MULTILEVEL_COMMENT_REGEX =
+            Pattern.compile("//indent:\\d+ exp:(\\d+(,\\d+)+?)( warn)?");
+
+    private static final Pattern SINGLE_LEVEL_COMMENT_REGEX =
+            Pattern.compile("//indent:\\d+ exp:(\\d+)( warn)?");
+
+    private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
+            Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
+
     public IndentationConfigurationBuilder(File aROOT) {
         super(aROOT);
     }
@@ -45,24 +63,6 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
     public Integer[] getLinesWithWarn(String aFileName) throws IOException {
         return getLinesWithWarnAndCheckComments(aFileName, TAB_WIDTH);
     }
-
-    private static final Pattern NONEMPTY_LINE_REGEX =
-                    Pattern.compile(".*?\\S+.*?");
-
-    private static final Pattern LINE_WITH_COMMENT_REGEX =
-                    Pattern.compile(".*?\\S+.*?(//indent:(\\d+) exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)");
-
-    private static final Pattern GET_INDENT_FROM_COMMENT_REGEX =
-                    Pattern.compile("//indent:(\\d+).*?");
-
-    private static final Pattern MULTILEVEL_COMMENT_REGEX =
-                    Pattern.compile("//indent:\\d+ exp:(\\d+(,\\d+)+?)( warn)?");
-
-    private static final Pattern SINGLE_LEVEL_COMMENT_REGEX =
-                    Pattern.compile("//indent:\\d+ exp:(\\d+)( warn)?");
-
-    private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
-                    Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
