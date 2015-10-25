@@ -41,16 +41,16 @@ public class JavadocMethodTest extends BaseCheckTestSupport {
     @Test
     public void javadocMethodTest() throws Exception {
 
-        String msg = getCheckMessage(JavadocMethodCheck.class, "javadoc.missing");
+        final String msg = getCheckMessage(JavadocMethodCheck.class, "javadoc.missing");
 
         final String[] expected = {
             "57:5: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("JavadocMethod");
-        String filePath = builder.getFilePath("InputJavadocMethodCheck");
+        final Configuration checkConfig = builder.getCheckConfig("JavadocMethod");
+        final String filePath = builder.getFilePath("InputJavadocMethodCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -40,17 +40,23 @@ public class TypeNameTest extends BaseCheckTestSupport {
     @Test
     public void typeNameTest() throws Exception {
 
-        Configuration checkConfig = builder.getCheckConfig("TypeName");
-        String msgKey = "name.invalidPattern";
-        String format = "^[A-Z][a-zA-Z0-9]*$";
+        final Configuration checkConfig = builder.getCheckConfig("TypeName");
+        final String msgKey = "name.invalidPattern";
+        final String format = "^[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "3:7: " + getCheckMessage(checkConfig.getMessages(), msgKey, "inputHeaderClass", format),
-            "5:22: " + getCheckMessage(checkConfig.getMessages(), msgKey, "InputHeader___Interface", format),
-            "7:17: " + getCheckMessage(checkConfig.getMessages(), msgKey, "inputHeaderEnum", format),
-            "9:11: " + getCheckMessage(checkConfig.getMessages(), msgKey, "NoValid$Name", format),
-            "11:11: " + getCheckMessage(checkConfig.getMessages(), msgKey, "$NoValidName", format),
-            "13:11: " + getCheckMessage(checkConfig.getMessages(), msgKey, "NoValidName$", format),
+            "3:7: " + getCheckMessage(checkConfig.getMessages(), msgKey, "inputHeaderClass",
+                format),
+            "5:22: " + getCheckMessage(checkConfig.getMessages(), msgKey, "InputHeader___Interface",
+                format),
+            "7:17: " + getCheckMessage(checkConfig.getMessages(), msgKey, "inputHeaderEnum",
+                format),
+            "9:11: " + getCheckMessage(checkConfig.getMessages(), msgKey, "NoValid$Name",
+                format),
+            "11:11: " + getCheckMessage(checkConfig.getMessages(), msgKey, "$NoValidName",
+                format),
+            "13:11: " + getCheckMessage(checkConfig.getMessages(), msgKey, "NoValidName$",
+                format),
             "19:7: " + getCheckMessage(checkConfig.getMessages(), msgKey, "_ValidName", format),
             "21:7: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Valid_Name", format),
             "23:7: " + getCheckMessage(checkConfig.getMessages(), msgKey, "ValidName_", format),
@@ -77,9 +83,9 @@ public class TypeNameTest extends BaseCheckTestSupport {
             "71:12: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Annotation$", format),
         };
 
-        String filePath = builder.getFilePath("TypeNameInput");
+        final String filePath = builder.getFilePath("TypeNameInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

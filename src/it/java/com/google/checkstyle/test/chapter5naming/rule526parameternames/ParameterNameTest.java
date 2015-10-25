@@ -61,9 +61,9 @@ public class ParameterNameTest extends BaseCheckTestSupport {
             "50:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "bB", format),
         };
 
-        String filePath = builder.getFilePath("ParameterNameInput_Simple");
+        final String filePath = builder.getFilePath("ParameterNameInput_Simple");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

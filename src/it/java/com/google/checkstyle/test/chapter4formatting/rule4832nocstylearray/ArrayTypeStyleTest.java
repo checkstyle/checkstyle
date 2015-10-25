@@ -41,7 +41,7 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport {
     @Test
     public void arrayTypeStyleTest() throws Exception {
 
-        String msg = getCheckMessage(ArrayTypeStyleCheck.class, "array.type.style");
+        final String msg = getCheckMessage(ArrayTypeStyleCheck.class, "array.type.style");
 
         final String[] expected = {
             "9:23: " + msg,
@@ -52,10 +52,10 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport {
             "42:19: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("ArrayTypeStyle");
-        String filePath = builder.getFilePath("ArrayTypeStyleInput");
+        final Configuration checkConfig = builder.getCheckConfig("ArrayTypeStyle");
+        final String filePath = builder.getFilePath("ArrayTypeStyleInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

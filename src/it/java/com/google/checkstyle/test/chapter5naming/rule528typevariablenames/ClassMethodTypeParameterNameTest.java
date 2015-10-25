@@ -52,16 +52,16 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport {
             "27:24: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "$foo", format),
         };
 
-        String filePath = builder.getFilePath("ClassTypeParameterNameInput");
+        final String filePath = builder.getFilePath("ClassTypeParameterNameInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(configuration, filePath, expected, warnList);
     }
 
     @Test
     public void testMethodDefault() throws Exception {
 
-        Configuration checkConfig = builder.getCheckConfig("MethodTypeParameterName");
+        final Configuration checkConfig = builder.getCheckConfig("MethodTypeParameterName");
 
         final String[] expected = {
             "9:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "e_e", format),
@@ -72,9 +72,9 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport {
             "42:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "EE", format),
         };
 
-        String filePath = builder.getFilePath("MethodTypeParameterNameInput");
+        final String filePath = builder.getFilePath("MethodTypeParameterNameInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

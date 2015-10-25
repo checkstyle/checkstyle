@@ -43,8 +43,8 @@ public class OperatorWrapTest extends BaseCheckTestSupport {
     @Test
     public void operatorWrapTest() throws Exception {
 
-        Class<OperatorWrapCheck> clazz = OperatorWrapCheck.class;
-        String messageKey = "line.new";
+        final Class<OperatorWrapCheck> clazz = OperatorWrapCheck.class;
+        final String messageKey = "line.new";
 
         final String[] expected = {
             "10:27: " + getCheckMessage(clazz, messageKey, "+"),
@@ -68,22 +68,22 @@ public class OperatorWrapTest extends BaseCheckTestSupport {
             "185:38: " + getCheckMessage(clazz, messageKey, "?"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OperatorWrap");
-        String filePath = builder.getFilePath("OperatorWrapInput");
+        final Configuration checkConfig = builder.getCheckConfig("OperatorWrap");
+        final String filePath = builder.getFilePath("OperatorWrapInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void operatorWrapTestAssign() throws Exception {
-        DefaultConfiguration newCheckConfig = createCheckConfig(OperatorWrapCheck.class);
+        final DefaultConfiguration newCheckConfig = createCheckConfig(OperatorWrapCheck.class);
         newCheckConfig.addAttribute("option", WrapOption.EOL.toString());
         newCheckConfig.addAttribute("tokens", "ASSIGN, DIV_ASSIGN, PLUS_ASSIGN, MINUS_ASSIGN,"
                 + "STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN, SL_ASSIGN, BXOR_ASSIGN,"
                 + "BOR_ASSIGN, BAND_ASSIGN");
-        String messageKey = "line.previous";
-        Class<OperatorWrapCheck> clazz = OperatorWrapCheck.class;
+        final String messageKey = "line.previous";
+        final Class<OperatorWrapCheck> clazz = OperatorWrapCheck.class;
 
         final String[] expected = {
             "28:13: " + getCheckMessage(clazz, messageKey, "="),
@@ -123,8 +123,8 @@ public class OperatorWrapTest extends BaseCheckTestSupport {
             "348:17: " + getCheckMessage(clazz, messageKey, "<<="),
         };
 
-        String filePath = builder.getFilePath("OperatorWrapAssignInput");
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final String filePath = builder.getFilePath("OperatorWrapAssignInput");
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
 }

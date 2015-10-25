@@ -60,9 +60,9 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
             "36:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "aaaaaa$", format),
         };
 
-        String filePath = builder.getFilePath("LocalVariableNameInput_Simple");
+        final String filePath = builder.getFilePath("LocalVariableNameInput_Simple");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -79,9 +79,9 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
             "61:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "index$", format),
         };
 
-        String filePath = builder.getFilePath("LocalVariableNameInput_OneCharVarName");
+        final String filePath = builder.getFilePath("LocalVariableNameInput_OneCharVarName");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

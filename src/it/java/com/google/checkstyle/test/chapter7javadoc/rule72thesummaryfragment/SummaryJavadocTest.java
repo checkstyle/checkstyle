@@ -44,18 +44,20 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
-        String filePath = builder.getFilePath("InputCorrectSummaryJavaDocCheck");
+        final Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
+        final String filePath = builder.getFilePath("InputCorrectSummaryJavaDocCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void testIncorrect() throws Exception {
 
-        String msgFirstSentence = getCheckMessage(SummaryJavadocCheck.class, "summary.first.sentence");
-        String msgForbiddenFragment = getCheckMessage(SummaryJavadocCheck.class, "summary.javaDoc");
+        final String msgFirstSentence = getCheckMessage(SummaryJavadocCheck.class,
+            "summary.first.sentence");
+        final String msgForbiddenFragment = getCheckMessage(SummaryJavadocCheck.class,
+            "summary.javaDoc");
 
         final String[] expected = {
             "14: " + msgFirstSentence,
@@ -67,10 +69,10 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
             "103: " + msgFirstSentence,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
-        String filePath = builder.getFilePath("InputIncorrectSummaryJavaDocCheck");
+        final Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
+        final String filePath = builder.getFilePath("InputIncorrectSummaryJavaDocCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

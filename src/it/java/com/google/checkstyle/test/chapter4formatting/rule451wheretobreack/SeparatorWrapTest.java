@@ -45,10 +45,10 @@ public class SeparatorWrapTest extends BaseCheckTestSupport {
             "28:30: " + getCheckMessage(SeparatorWrapCheck.class, "line.new", "."),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("SeparatorWrap");
-        String filePath = builder.getFilePath("SeparatorWrapInput");
+        final Configuration checkConfig = builder.getCheckConfig("SeparatorWrap");
+        final String filePath = builder.getFilePath("SeparatorWrapInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

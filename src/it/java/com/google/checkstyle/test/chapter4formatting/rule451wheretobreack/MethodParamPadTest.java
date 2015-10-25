@@ -41,18 +41,18 @@ public class MethodParamPadTest extends BaseCheckTestSupport {
     @Test
     public void operatorWrapTest() throws Exception {
 
-        Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
-        String messageKey = "line.previous";
+        final Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
+        final String messageKey = "line.previous";
 
         final String[] expected = {
             "83:9: " + getCheckMessage(clazz, messageKey, "("),
             "128:13: " + getCheckMessage(clazz, messageKey, "("),
             "130:9: " + getCheckMessage(clazz, messageKey, "("),
         };
-        Configuration checkConfig = builder.getCheckConfig("MethodParamPad");
-        String filePath = builder.getFilePath("MethodParamPadInput");
+        final Configuration checkConfig = builder.getCheckConfig("MethodParamPad");
+        final String filePath = builder.getFilePath("MethodParamPadInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

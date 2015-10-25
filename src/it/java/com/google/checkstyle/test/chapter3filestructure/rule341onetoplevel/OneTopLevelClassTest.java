@@ -42,8 +42,8 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport {
     @Test
     public void badTest() throws Exception {
 
-        Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
-        String messageKey = "one.top.level.class";
+        final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
+        final String messageKey = "one.top.level.class";
 
         final String[] expected = {
             "25: " + getCheckMessage(clazz, messageKey, "NoSuperClone"),
@@ -54,10 +54,10 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport {
             "77: " + getCheckMessage(clazz, messageKey, "AnotherClass"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
-        String filePath = builder.getFilePath("OneTopLevelClassInput_Basic");
+        final Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
+        final String filePath = builder.getFilePath("OneTopLevelClassInput_Basic");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -66,45 +66,45 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
-        String filePath = builder.getFilePath("OneTopLevelClassInputGood");
+        final Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
+        final String filePath = builder.getFilePath("OneTopLevelClassInputGood");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void bad2Test() throws Exception {
 
-        Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
-        String messageKey = "one.top.level.class";
+        final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
+        final String messageKey = "one.top.level.class";
 
         final String[] expected = {
             "4: " + getCheckMessage(clazz, messageKey, "FooEnum"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
-        String filePath = builder.getFilePath("OneTopLevelClassBad2");
+        final Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
+        final String filePath = builder.getFilePath("OneTopLevelClassBad2");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void bad3Test() throws Exception {
 
-        Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
-        String messageKey = "one.top.level.class";
+        final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
+        final String messageKey = "one.top.level.class";
 
         final String[] expected = {
             "5: " + getCheckMessage(clazz, messageKey, "FooIn"),
             "7: " + getCheckMessage(clazz, messageKey, "FooClass"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
-        String filePath = builder.getFilePath("OneTopLevelClassBad3");
+        final Configuration checkConfig = builder.getCheckConfig("OneTopLevelClass");
+        final String filePath = builder.getFilePath("OneTopLevelClassBad3");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -41,23 +41,23 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
     @Test
     public void noFinalizerBasicTest() throws Exception {
 
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
+        final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
             "5: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizerInput");
+        final Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
+        final String filePath = builder.getFilePath("NoFinalizerInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void noFinalizerExtendedTest() throws Exception {
 
-        String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
+        final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
             "9: " + msg,
@@ -71,10 +71,10 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
             "136: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        String filePath = builder.getFilePath("NoFinalizeExtendInput");
+        final Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
+        final String filePath = builder.getFilePath("NoFinalizeExtendInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

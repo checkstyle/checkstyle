@@ -41,7 +41,7 @@ public class FallThroughTest extends BaseCheckTestSupport {
     @Test
     public void fallThroughTest() throws Exception {
 
-        String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
+        final String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
 
         final String[] expected = {
             "14:13: " + msg,
@@ -58,10 +58,10 @@ public class FallThroughTest extends BaseCheckTestSupport {
             "374:41: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("FallThrough");
-        String filePath = builder.getFilePath("FallThroughInput");
+        final Configuration checkConfig = builder.getCheckConfig("FallThrough");
+        final String filePath = builder.getFilePath("FallThroughInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

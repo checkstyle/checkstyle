@@ -52,7 +52,8 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     public void customImportTest1() throws Exception {
 
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
+                "java.io.File.createTempFile"),
             "7: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.awt.Button"),
             "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.awt.Frame"),
             "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.awt.Dialog"),
@@ -65,10 +66,10 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
             "16: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.io.Reader"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        String filePath = builder.getFilePath("CustomImportOrderInput_1");
+        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
+        final String filePath = builder.getFilePath("CustomImportOrderInput_1");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -76,20 +77,24 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     public void customImportTest2() throws Exception {
 
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
+                "java.io.File.createTempFile"),
             "7: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.List"),
             "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.StringTokenizer"),
             "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.*"),
-            "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
+            "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL,
+                "java.util.concurrent.AbstractExecutorService"),
             "11: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.*"),
-            "14: " + getCheckMessage(clazz, MSG_SEPARATOR, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
-            "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD, "com.google.common.reflect.*"),
+            "14: " + getCheckMessage(clazz, MSG_SEPARATOR,
+                "com.sun.xml.internal.xsom.impl.scd.Iterators"),
+            "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD,
+                "com.google.common.reflect.*"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        String filePath = builder.getFilePath("CustomImportOrderInput_2");
+        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
+        final String filePath = builder.getFilePath("CustomImportOrderInput_2");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -97,19 +102,23 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     public void customImportTest3() throws Exception {
 
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
+                "java.io.File.createTempFile"),
             "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.StringTokenizer"),
             "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.*"),
-            "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
+            "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL,
+                "java.util.concurrent.AbstractExecutorService"),
             "11: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.*"),
-            "14: " + getCheckMessage(clazz, MSG_SEPARATOR, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
-            "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD, "com.google.common.reflect.*"),
+            "14: " + getCheckMessage(clazz, MSG_SEPARATOR,
+                "com.sun.xml.internal.xsom.impl.scd.Iterators"),
+            "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD,
+                "com.google.common.reflect.*"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        String filePath = builder.getFilePath("CustomImportOrderInput_3");
+        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
+        final String filePath = builder.getFilePath("CustomImportOrderInput_3");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -118,10 +127,10 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        String filePath = builder.getFilePath("CustomImportOrderValidInput");
+        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
+        final String filePath = builder.getFilePath("CustomImportOrderValidInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -71,12 +71,12 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
                     throws IOException {
-        List<Integer> result = new ArrayList<>();
+        final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
-                Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
+                final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
                 if (match.matches()) {
                     final String comment = match.group(1);
                     final int indentInComment = getIndentFromComment(comment);
@@ -132,7 +132,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
         final boolean isWarnComment = isWarnComment(comment);
 
         boolean result;
-        CommentType type = getCommentType(comment);
+        final CommentType type = getCommentType(comment);
         switch (type) {
             case MULTILEVEL:
                 result = isMultiLevelCommentConsistent(comment, indentInComment, isWarnComment);
@@ -158,7 +158,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
 
     private static boolean isNonStrictCommentConsistent(String comment,
             int indentInComment, boolean isWarnComment) {
-        Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
+        final Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
         nonStrictLevelMatch.matches();
         final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
 
@@ -168,7 +168,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
 
     private static boolean isSingleLevelCommentConsistent(String comment,
             int indentInComment, boolean isWarnComment) {
-        Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
+        final Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
         singleLevelMatch.matches();
         final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
 
@@ -178,7 +178,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
 
     private static boolean isMultiLevelCommentConsistent(String comment,
             int indentInComment, boolean isWarnComment) {
-        Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
+        final Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
         multilevelMatch.matches();
         final String[] levels = multilevelMatch.group(1).split(",");
         final String indentInCommentStr = String.valueOf(indentInComment);
@@ -191,17 +191,17 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
 
     private static CommentType getCommentType(String comment) {
         CommentType result = CommentType.UNKNOWN;
-        Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
+        final Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
         if (multilevelMatch.matches()) {
             result = CommentType.MULTILEVEL;
         }
         else {
-            Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
+            final Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
             if (singleLevelMatch.matches()) {
                 result = CommentType.SINGLE_LEVEL;
             }
             else {
-                Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
+                final Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
                 if (nonStrictLevelMatch.matches()) {
                     result = CommentType.NON_STRICT_LEVEL;
                 }

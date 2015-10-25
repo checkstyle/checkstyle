@@ -51,8 +51,6 @@
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
     <!-- Suppressions to remove over time for sure -->
-    <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="LineLength" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="ReturnCount" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="SeparatorWrap" files=".*[\\/]src[\\/]it[\\/]"/>
 

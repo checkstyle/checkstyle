@@ -44,10 +44,10 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
-        String filePath = builder.getFilePath("OuterTypeFilenameInput_1");
+        final Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
+        final String filePath = builder.getFilePath("OuterTypeFilenameInput_1");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -56,10 +56,10 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
-        String filePath = builder.getFilePath("OuterTypeFilenameInput_2");
+        final Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
+        final String filePath = builder.getFilePath("OuterTypeFilenameInput_2");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -70,10 +70,10 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
             "3: " + getCheckMessage(OuterTypeFilenameCheck.class, "type.file.mismatch"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
-        String filePath = builder.getFilePath("OuterTypeFilenameInput_3");
+        final Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
+        final String filePath = builder.getFilePath("OuterTypeFilenameInput_3");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

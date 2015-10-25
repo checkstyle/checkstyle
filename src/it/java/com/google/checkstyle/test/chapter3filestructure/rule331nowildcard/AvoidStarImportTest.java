@@ -47,10 +47,10 @@ public class AvoidStarImportTest extends BaseCheckTestSupport {
             "19: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
         };
 
-        Configuration checkConfig = builder.getCheckConfig("AvoidStarImport");
-        String filePath = builder.getFilePath("AvoidStarImportInput");
+        final Configuration checkConfig = builder.getCheckConfig("AvoidStarImport");
+        final String filePath = builder.getFilePath("AvoidStarImportInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -49,58 +49,58 @@ public class PackageNameTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        String filePath = builder.getFilePath("PackageNameInputGood");
+        final String filePath = builder.getFilePath("PackageNameInputGood");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void badPackageNameTest() throws Exception {
 
-        String packagePath =
+        final String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
-        String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
+        final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
         };
 
-        String filePath = builder.getFilePath("PackageNameInputBad");
+        final String filePath = builder.getFilePath("PackageNameInputBad");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void badPackageName2Test() throws Exception {
 
-        String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
-        String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
+        final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
+        final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
         };
 
-        String filePath = builder.getFilePath("BadPackageNameInput2");
+        final String filePath = builder.getFilePath("BadPackageNameInput2");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void badPackageName3Test() throws Exception {
 
-        String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
-        String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
+        final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
+        final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
         };
 
-        String filePath = builder.getFilePath("PackageBadNameInput3");
+        final String filePath = builder.getFilePath("PackageBadNameInput3");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

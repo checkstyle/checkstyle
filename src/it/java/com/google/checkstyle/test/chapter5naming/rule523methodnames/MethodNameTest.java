@@ -40,9 +40,9 @@ public class MethodNameTest extends BaseCheckTestSupport {
     @Test
     public void methodNameTest() throws Exception {
 
-        Configuration checkConfig = builder.getCheckConfig("MethodName");
-        String msgKey = "name.invalidPattern";
-        String format = "^[a-z][a-z0-9][a-zA-Z0-9_]*$";
+        final Configuration checkConfig = builder.getCheckConfig("MethodName");
+        final String msgKey = "name.invalidPattern";
+        final String format = "^[a-z][a-z0-9][a-zA-Z0-9_]*$";
 
         final String[] expected = {
             "11:14: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Foo", format),
@@ -71,9 +71,9 @@ public class MethodNameTest extends BaseCheckTestSupport {
             "50:14: " + getCheckMessage(checkConfig.getMessages(), msgKey, "fO", format),
         };
 
-        String filePath = builder.getFilePath("InputMethodName");
+        final String filePath = builder.getFilePath("InputMethodName");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

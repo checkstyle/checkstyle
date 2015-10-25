@@ -42,7 +42,7 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport {
     @Test
     public void singleLineJavadocTest() throws Exception {
 
-        String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
+        final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
         final String[] expected = {
             "5: " + msg,
@@ -56,24 +56,24 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport {
 
         final DefaultConfiguration checkConfig = createCheckConfig(SingleLineJavadocCheck.class);
         checkConfig.addAttribute("ignoreInlineTags", "false");
-        String filePath = builder.getFilePath("InputSingleLineJavadocCheck");
+        final String filePath = builder.getFilePath("InputSingleLineJavadocCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test(expected = Exception.class)
     public void customInlineTagTest() throws Exception {
-        String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
+        final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
-        Configuration checkConfig = builder.getCheckConfig("SingleLineJavadocCheck");
-        String filePath = builder.getFilePath("InputSingleLineJavadocCheckError");
+        final Configuration checkConfig = builder.getCheckConfig("SingleLineJavadocCheck");
+        final String filePath = builder.getFilePath("InputSingleLineJavadocCheckError");
 
         final String[] expected = {
             "4: " + msg,
         };
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

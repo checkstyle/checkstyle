@@ -67,10 +67,10 @@ public class UpperEllTest extends BaseCheckTestSupport {
             "100:22: Should use uppercase 'L'.",
         };
 
-        Configuration checkConfig = builder.getCheckConfig("UpperEll");
-        String filePath = builder.getFilePath("InputUpperEll");
+        final Configuration checkConfig = builder.getCheckConfig("UpperEll");
+        final String filePath = builder.getFilePath("InputUpperEll");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

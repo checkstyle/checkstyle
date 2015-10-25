@@ -45,8 +45,8 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
     @Test
     public void abbreviationAsWordInNameTest() throws Exception {
 
-        int maxCapitalCount = 1;
-        String msg = getCheckMessage(clazz, MSG_KEY, maxCapitalCount);
+        final int maxCapitalCount = 1;
+        final String msg = getCheckMessage(clazz, MSG_KEY, maxCapitalCount);
 
         final String[] expected = {
             "50: " + msg,
@@ -60,9 +60,9 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
             "71: " + msg,
         };
 
-        String filePath = builder.getFilePath("InputAbbreviationAsWordInTypeNameCheck");
+        final String filePath = builder.getFilePath("InputAbbreviationAsWordInTypeNameCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

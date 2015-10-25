@@ -44,17 +44,17 @@ public class AtclauseOrderTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
-        String filePath = builder.getFilePath("InputCorrectAtClauseOrderCheck");
+        final Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
+        final String filePath = builder.getFilePath("InputCorrectAtClauseOrderCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void testIncorrect() throws Exception {
         final String tagOrder = "[@param, @return, @throws, @deprecated]";
-        String msg = getCheckMessage(AtclauseOrderCheck.class, "at.clause.order", tagOrder);
+        final String msg = getCheckMessage(AtclauseOrderCheck.class, "at.clause.order", tagOrder);
 
         final String[] expected = {
             "40: " + msg,
@@ -86,10 +86,10 @@ public class AtclauseOrderTest extends BaseCheckTestSupport {
             "261: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
-        String filePath = builder.getFilePath("InputIncorrectAtClauseOrderCheck");
+        final Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
+        final String filePath = builder.getFilePath("InputIncorrectAtClauseOrderCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

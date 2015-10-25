@@ -41,8 +41,8 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport {
     @Test
     public void emptyLineSeparatorTest() throws Exception {
 
-        Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
-        String messageKey = "empty.line.separator";
+        final Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
+        final String messageKey = "empty.line.separator";
 
         final String[] expected = {
             "19: " + getCheckMessage(clazz, messageKey, "package"),
@@ -56,10 +56,10 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport {
             "119: " + getCheckMessage(clazz, messageKey, "VARIABLE_DEF"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("EmptyLineSeparator");
-        String filePath = builder.getFilePath("EmptyLineSeparatorInput");
+        final Configuration checkConfig = builder.getCheckConfig("EmptyLineSeparator");
+        final String filePath = builder.getFilePath("EmptyLineSeparatorInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

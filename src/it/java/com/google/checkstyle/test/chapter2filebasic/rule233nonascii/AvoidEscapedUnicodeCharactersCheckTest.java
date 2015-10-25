@@ -41,7 +41,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
     @Test
     public void unicodeEscapesTest() throws Exception {
 
-        String msg = getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, "forbid.escaped.unicode.char");
+        final String msg = getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class,
+            "forbid.escaped.unicode.char");
 
         final String[] expected = {
             "5: " + msg,
@@ -52,10 +53,10 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "36: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("AvoidEscapedUnicodeCharacters");
-        String filePath = builder.getFilePath("AvoidEscapedUnicodeCharactersInput");
+        final Configuration checkConfig = builder.getCheckConfig("AvoidEscapedUnicodeCharacters");
+        final String filePath = builder.getFilePath("AvoidEscapedUnicodeCharactersInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

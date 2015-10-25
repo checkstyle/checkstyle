@@ -79,21 +79,23 @@ public class BaseCheckTestSupport {
 
     protected static String getPath(String aFilename)
         throws IOException {
-        return new File("src/main/java/com/google/checkstyle/test/filebasic/" + aFilename).getCanonicalPath();
+        return new File("src/main/java/com/google/checkstyle/test/filebasic/" + aFilename)
+            .getCanonicalPath();
     }
 
     protected static String getSrcPath(String aFilename) throws IOException {
 
-        return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + aFilename).getCanonicalPath();
+        return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + aFilename)
+            .getCanonicalPath();
     }
 
-    protected void verify(Configuration aConfig, String aFileName, String[] aExpected, Integer... aWarnsExpected)
-            throws Exception {
+    protected void verify(Configuration aConfig, String aFileName, String[] aExpected,
+            Integer... aWarnsExpected) throws Exception {
         verify(createChecker(aConfig), aFileName, aFileName, aExpected, aWarnsExpected);
     }
 
-    protected void verify(Checker aC, String aFileName, String[] aExpected, Integer... aWarnsExpected)
-            throws Exception {
+    protected void verify(Checker aC, String aFileName, String[] aExpected,
+            Integer... aWarnsExpected) throws Exception {
         verify(aC, aFileName, aFileName, aExpected, aWarnsExpected);
     }
 
@@ -126,12 +128,12 @@ public class BaseCheckTestSupport {
 
             for (int i = 0; i < aExpected.length; i++) {
                 final String expected = aMessageFileName + ":" + aExpected[i];
-                String actual = lnr.readLine();
+                final String actual = lnr.readLine();
                 assertEquals("error message " + i, expected, actual);
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
-                int lineNumber = Integer.parseInt(parseInt);
+                final int lineNumber = Integer.parseInt(parseInt);
                 Integer integer = 0;
                 if (Arrays.asList(aWarnsExpected).contains(lineNumber)) {
                     integer = lineNumber;
@@ -154,7 +156,7 @@ public class BaseCheckTestSupport {
      */
     protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
             String messageKey) {
-        Properties pr = new Properties();
+        final Properties pr = new Properties();
         try {
             pr.load(aClass.getResourceAsStream("messages.properties"));
         }
@@ -181,7 +183,8 @@ public class BaseCheckTestSupport {
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-    protected String getCheckMessage(Map<String, String> messages, String messageKey, Object... arguments) {
+    protected String getCheckMessage(Map<String, String> messages, String messageKey,
+            Object... arguments) {
         for (Map.Entry<String, String> entry : messages.entrySet()) {
             if (messageKey.equals(entry.getKey())) {
                 final MessageFormat formatter = new MessageFormat(entry.getValue(), Locale.ROOT);
@@ -192,7 +195,7 @@ public class BaseCheckTestSupport {
     }
 
     private static String removeDeviceFromPathOnWindows(String path) {
-        String os = System.getProperty("os.name", "Unix");
+        final String os = System.getProperty("os.name", "Unix");
         if (os.startsWith("Windows")) {
             return path.substring(path.indexOf(':') + 1);
         }

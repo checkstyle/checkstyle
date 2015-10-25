@@ -42,19 +42,26 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
     public void commentsIndentationTest() throws Exception {
 
         final String[] expected = {
-            "1: " + getCheckMessage(CommentsIndentationCheck.class, "comments.indentation.single", 2, 1, 0),
-            "13: " + getCheckMessage(CommentsIndentationCheck.class, "comments.indentation.single", 14, 8, 6),
-            "23: " + getCheckMessage(CommentsIndentationCheck.class, "comments.indentation.block", 24, 8, 4),
-            "25: " + getCheckMessage(CommentsIndentationCheck.class, "comments.indentation.block", 27, 8, 4),
-            "28: " + getCheckMessage(CommentsIndentationCheck.class, "comments.indentation.block", 31, 8, 4),
-            "50: " + getCheckMessage(CommentsIndentationCheck.class, "comments.indentation.single", 51, 23, 19),
-            "51: " + getCheckMessage(CommentsIndentationCheck.class, "comments.indentation.block", 53, 19, 32),
+            "1: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 2, 1, 0),
+            "13: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 14, 8, 6),
+            "23: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.block", 24, 8, 4),
+            "25: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.block", 27, 8, 4),
+            "28: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.block", 31, 8, 4),
+            "50: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.single", 51, 23, 19),
+            "51: " + getCheckMessage(CommentsIndentationCheck.class,
+                "comments.indentation.block", 53, 19, 32),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
-        String filePath = builder.getFilePath("CommentsIndentationInput");
+        final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
+        final String filePath = builder.getFilePath("CommentsIndentationInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

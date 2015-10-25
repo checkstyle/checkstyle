@@ -52,10 +52,10 @@ public class LineLengthTest extends BaseCheckTestSupport {
             "57: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("LineLength");
-        String filePath = builder.getFilePath("LineLengthInput2");
+        final Configuration checkConfig = builder.getCheckConfig("LineLength");
+        final String filePath = builder.getFilePath("LineLengthInput2");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -41,7 +41,8 @@ public class MissingSwitchDefaultTest extends BaseCheckTestSupport {
     @Test
     public void missingSwitchDefaultTest() throws Exception {
 
-        String msg = getCheckMessage(MissingSwitchDefaultCheck.class, "missing.switch.default");
+        final String msg = getCheckMessage(MissingSwitchDefaultCheck.class,
+            "missing.switch.default");
 
         final String[] expected = {
             "11:9: " + msg,
@@ -52,10 +53,10 @@ public class MissingSwitchDefaultTest extends BaseCheckTestSupport {
             "42:21: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("MissingSwitchDefault");
-        String filePath = builder.getFilePath("MissingSwitchDefaultInput");
+        final Configuration checkConfig = builder.getCheckConfig("MissingSwitchDefault");
+        final String filePath = builder.getFilePath("MissingSwitchDefaultInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

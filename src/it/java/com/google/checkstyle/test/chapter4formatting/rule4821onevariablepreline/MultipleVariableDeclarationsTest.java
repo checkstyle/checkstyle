@@ -41,8 +41,10 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
     @Test
     public void multipleVariableDeclarationsTest() throws Exception {
 
-        String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class, "multiple.variable.declarations.comma");
-        String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class, "multiple.variable.declarations");
+        final String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "multiple.variable.declarations.comma");
+        final String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "multiple.variable.declarations");
 
         final String[] expected = {
             "5:5: " + msgComma,
@@ -67,10 +69,10 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
             "89:5: " + msgComma,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("MultipleVariableDeclarations");
-        String filePath = builder.getFilePath("MultipleVariableDeclarationsInput");
+        final Configuration checkConfig = builder.getCheckConfig("MultipleVariableDeclarations");
+        final String filePath = builder.getFilePath("MultipleVariableDeclarationsInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

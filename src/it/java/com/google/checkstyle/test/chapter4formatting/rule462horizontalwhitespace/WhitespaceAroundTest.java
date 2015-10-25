@@ -41,9 +41,9 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
     @Test
     public void whitespaceAroundBasicTest() throws Exception {
 
-        Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
-        String msgPreceded = "ws.notPreceded";
-        String msgFollowed = "ws.notFollowed";
+        final Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
+        final String msgPreceded = "ws.notPreceded";
+        final String msgFollowed = "ws.notFollowed";
 
         final String[] expected = {
             "10:22: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "="),
@@ -68,18 +68,18 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
             "150:20: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ":"),
         };
 
-        String filePath = builder.getFilePath("WhitespaceAroundInput_Basic");
+        final String filePath = builder.getFilePath("WhitespaceAroundInput_Basic");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void whitespaceAroundGenericsTest() throws Exception {
 
-        String msgPreceded = "ws.preceded";
-        String msgFollowed = "ws.followed";
-        Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
+        final String msgPreceded = "ws.preceded";
+        final String msgFollowed = "ws.followed";
+        final Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
 
         final String[] expected = {
             "12:16: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
@@ -100,9 +100,9 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
             "20:61: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ">"),
         };
 
-        String filePath = builder.getFilePath("WhitespaceAroundInput_Generics");
+        final String filePath = builder.getFilePath("WhitespaceAroundInput_Generics");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -111,20 +111,20 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
-        String filePath = builder.getFilePath("WhitespaceAroundInput_EmptyTypesAndCycles");
+        final Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
+        final String filePath = builder.getFilePath("WhitespaceAroundInput_EmptyTypesAndCycles");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void genericWhitespaceTest() throws Exception {
-        String msgPreceded = "ws.preceded";
-        String msgFollowed = "ws.followed";
-        String msgNotPreceded = "ws.notPreceded";
-        String msgIllegalFollow = "ws.illegalFollow";
-        Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
+        final String msgPreceded = "ws.preceded";
+        final String msgFollowed = "ws.followed";
+        final String msgNotPreceded = "ws.notPreceded";
+        final String msgIllegalFollow = "ws.illegalFollow";
+        final Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
 
         final String[] expected = {
             "16:13: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
@@ -155,9 +155,9 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
             "63:60: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, ">"),
         };
 
-        String filePath = builder.getFilePath("GenericWhitespaceInput");
+        final String filePath = builder.getFilePath("GenericWhitespaceInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

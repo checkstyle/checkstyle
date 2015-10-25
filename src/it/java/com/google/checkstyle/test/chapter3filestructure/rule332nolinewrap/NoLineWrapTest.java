@@ -48,10 +48,10 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
             "6: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
-        String filePath = builder.getFilePath("NoLineWrap_Bad");
+        final Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
+        final String filePath = builder.getFilePath("NoLineWrap_Bad");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -60,17 +60,17 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
-        String filePath = builder.getFilePath("NoLineWrap_Good");
+        final Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
+        final String filePath = builder.getFilePath("NoLineWrap_Good");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void goodLineLength() throws Exception {
 
-        int maxLineLength = 100;
+        final int maxLineLength = 100;
         final String[] expected = {
             "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 112),
             "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 183),
@@ -82,10 +82,10 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
             "57: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 116),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("LineLength");
-        String filePath = builder.getFilePath("LineLengthInput2");
+        final Configuration checkConfig = builder.getCheckConfig("LineLength");
+        final String filePath = builder.getFilePath("LineLengthInput2");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

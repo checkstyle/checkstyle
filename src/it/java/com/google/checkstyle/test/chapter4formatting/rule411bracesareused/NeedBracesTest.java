@@ -41,8 +41,8 @@ public class NeedBracesTest extends BaseCheckTestSupport {
     @Test
     public void needBracesTest() throws Exception {
 
-        Class<NeedBracesCheck> clazz = NeedBracesCheck.class;
-        String messageKey = "needBraces";
+        final Class<NeedBracesCheck> clazz = NeedBracesCheck.class;
+        final String messageKey = "needBraces";
 
         final String[] expected = {
             "29: " + getCheckMessage(clazz, messageKey, "do"),
@@ -85,10 +85,10 @@ public class NeedBracesTest extends BaseCheckTestSupport {
             "210: " + getCheckMessage(clazz, messageKey, "for"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NeedBraces");
-        String filePath = builder.getFilePath("NeedBracesInput");
+        final Configuration checkConfig = builder.getCheckConfig("NeedBraces");
+        final String filePath = builder.getFilePath("NeedBracesInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -41,9 +41,9 @@ public class ModifierOrderTest extends BaseCheckTestSupport {
     @Test
     public void modifierOrderTest() throws Exception {
 
-        Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
-        String msgMod = "mod.order";
-        String msgAnnotation = "annotation.order";
+        final Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
+        final String msgMod = "mod.order";
+        final String msgAnnotation = "annotation.order";
 
         final String[] expected = {
             "3:10: " + getCheckMessage(clazz, msgMod, "abstract"),
@@ -101,10 +101,10 @@ public class ModifierOrderTest extends BaseCheckTestSupport {
             "219:22: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("ModifierOrder");
-        String filePath = builder.getFilePath("ModifierOrderInput");
+        final Configuration checkConfig = builder.getCheckConfig("ModifierOrder");
+        final String filePath = builder.getFilePath("ModifierOrderInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

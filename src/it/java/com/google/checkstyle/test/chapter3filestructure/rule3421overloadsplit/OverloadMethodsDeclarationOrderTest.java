@@ -41,8 +41,9 @@ public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport {
     @Test
     public void overloadMethodsTest() throws Exception {
 
-        Class<OverloadMethodsDeclarationOrderCheck> clazz = OverloadMethodsDeclarationOrderCheck.class;
-        String messageKey = "overload.methods.declaration";
+        final Class<OverloadMethodsDeclarationOrderCheck> clazz =
+            OverloadMethodsDeclarationOrderCheck.class;
+        final String messageKey = "overload.methods.declaration";
 
         final String[] expected = {
             "26: " + getCheckMessage(clazz, messageKey, 15),
@@ -51,10 +52,10 @@ public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport {
             "109: " + getCheckMessage(clazz, messageKey, 98),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OverloadMethodsDeclarationOrder");
-        String filePath = builder.getFilePath("InputOverloadMethodsDeclarationOrder");
+        final Configuration checkConfig = builder.getCheckConfig("OverloadMethodsDeclarationOrder");
+        final String filePath = builder.getFilePath("InputOverloadMethodsDeclarationOrder");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

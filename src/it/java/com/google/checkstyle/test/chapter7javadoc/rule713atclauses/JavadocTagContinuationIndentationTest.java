@@ -51,10 +51,11 @@ public class JavadocTagContinuationIndentationTest extends BaseCheckTestSupport 
             "322: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("JavadocTagContinuationIndentation");
-        String filePath = builder.getFilePath("InputJavaDocTagContinuationIndentation");
+        final Configuration checkConfig = builder
+            .getCheckConfig("JavadocTagContinuationIndentation");
+        final String filePath = builder.getFilePath("InputJavaDocTagContinuationIndentation");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

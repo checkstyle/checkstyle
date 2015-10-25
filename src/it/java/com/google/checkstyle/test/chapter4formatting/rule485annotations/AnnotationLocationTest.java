@@ -41,12 +41,12 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
     @Test
     public void annotationTest() throws Exception {
 
-        Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
+        final Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
         getCheckMessage(clazz, "annotation.location.alone");
-        Configuration checkConfig = builder.getCheckConfig("AnnotationLocation");
+        final Configuration checkConfig = builder.getCheckConfig("AnnotationLocation");
 
-        String msgLocationAlone = "annotation.location.alone";
-        String msgLocation = "annotation.location";
+        final String msgLocationAlone = "annotation.location.alone";
+        final String msgLocation = "annotation.location";
         final String[] expected = {
             "3: " + getCheckMessage(clazz, msgLocationAlone, "MyAnnotation1"),
             "20: " + getCheckMessage(clazz, msgLocation, "MyAnnotation1", "8", "4"),
@@ -61,9 +61,9 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
             "90: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "1", "0"),
         };
 
-        String filePath = builder.getFilePath("AnnotationLocationInput");
+        final String filePath = builder.getFilePath("AnnotationLocationInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

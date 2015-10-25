@@ -41,8 +41,9 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport {
     @Test
     public void arrayTypeStyleTest() throws Exception {
 
-        String msgExt = "variable.declaration.usage.distance.extend";
-        Class<VariableDeclarationUsageDistanceCheck> clazz = VariableDeclarationUsageDistanceCheck.class;
+        final String msgExt = "variable.declaration.usage.distance.extend";
+        final Class<VariableDeclarationUsageDistanceCheck> clazz =
+                VariableDeclarationUsageDistanceCheck.class;
 
         final String[] expected = {
             "71: " + getCheckMessage(clazz, msgExt, "count", 4, 3),
@@ -51,10 +52,11 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport {
             "491: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("VariableDeclarationUsageDistance");
-        String filePath = builder.getFilePath("InputVariableDeclarationUsageDistanceCheck");
+        final Configuration checkConfig =
+            builder.getCheckConfig("VariableDeclarationUsageDistance");
+        final String filePath = builder.getFilePath("InputVariableDeclarationUsageDistanceCheck");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

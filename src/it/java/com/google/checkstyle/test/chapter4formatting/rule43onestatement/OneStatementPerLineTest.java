@@ -41,7 +41,8 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
     @Test
     public void oneStatementTest() throws Exception {
 
-        String msg = getCheckMessage(OneStatementPerLineCheck.class, "multiple.statements.line");
+        final String msg = getCheckMessage(OneStatementPerLineCheck.class,
+            "multiple.statements.line");
 
         final String[] expected = {
             "6:59: " + msg,
@@ -67,28 +68,29 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
             "307:39: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
-        String filePath = builder.getFilePath("OneStatementPerLineInput");
+        final Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
+        final String filePath = builder.getFilePath("OneStatementPerLineInput");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void oneStatementNonCompilableInputTest() throws Exception {
 
-        String msg = getCheckMessage(OneStatementPerLineCheck.class, "multiple.statements.line");
+        final String msg = getCheckMessage(OneStatementPerLineCheck.class,
+            "multiple.statements.line");
 
         final String[] expected = {
             "24:6: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
-        String filePath = new File("src/test/resources-noncompilable/"
+        final Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
+        final String filePath = new File("src/test/resources-noncompilable/"
             + "com/puppycrawl/tools/checkstyle/checks/coding/"
             + "InputOneStatementPerLine.java").getCanonicalPath();
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

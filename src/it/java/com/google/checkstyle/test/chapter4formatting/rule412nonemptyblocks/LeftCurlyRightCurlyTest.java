@@ -59,10 +59,10 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
             "97:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("LeftCurly");
-        String filePath = builder.getFilePath("LeftCurlyInput_Braces");
+        final Configuration checkConfig = builder.getCheckConfig("LeftCurly");
+        final String filePath = builder.getFilePath("LeftCurlyInput_Braces");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -77,10 +77,10 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
             "50:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("LeftCurly");
-        String filePath = builder.getFilePath("LeftCurlyInput_Annotations");
+        final Configuration checkConfig = builder.getCheckConfig("LeftCurly");
+        final String filePath = builder.getFilePath("LeftCurlyInput_Annotations");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -105,16 +105,16 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
             "76:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
 
-        Configuration checkConfig = builder.getCheckConfig("LeftCurly");
-        String filePath = builder.getFilePath("LeftCurlyInput_Method");
+        final Configuration checkConfig = builder.getCheckConfig("LeftCurly");
+        final String filePath = builder.getFilePath("LeftCurlyInput_Method");
 
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void rightCurlyTestAlone() throws Exception {
-        DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
+        final DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
         newCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         newCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
 
@@ -126,20 +126,20 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
             "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
         };
 
-        String filePath = builder.getFilePath("RightCurlyInput_Other");
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final String filePath = builder.getFilePath("RightCurlyInput_Other");
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
 
     @Test
     public void rightCurlyTestSame() throws Exception {
-        DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
+        final DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
         newCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        String filePath = builder.getFilePath("RightCurlyInputSame");
-        Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final String filePath = builder.getFilePath("RightCurlyInputSame");
+        final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
 }

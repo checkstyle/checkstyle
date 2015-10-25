@@ -40,7 +40,8 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        String msg = getCheckMessage(NonEmptyAtclauseDescriptionCheck.class, "non.empty.atclause");
+        final String msg = getCheckMessage(NonEmptyAtclauseDescriptionCheck.class,
+            "non.empty.atclause");
 
         final String[] expected = {
             "34: " + msg,
@@ -56,16 +57,17 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
             "52: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
-        String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheck");
+        final Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
+        final String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheck");
 
-        Integer[] warnList = getLineNumbersFromExpected(expected);
+        final Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
     public void testSpaceSequence() throws Exception {
-        String msg = getCheckMessage(NonEmptyAtclauseDescriptionCheck.class, "non.empty.atclause");
+        final String msg = getCheckMessage(NonEmptyAtclauseDescriptionCheck.class,
+            "non.empty.atclause");
 
         final String[] expected = {
             "27: " + msg,
@@ -76,10 +78,11 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
             "40: " + msg,
         };
 
-        Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
-        String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq");
+        final Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
+        final String filePath = builder
+            .getFilePath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq");
 
-        Integer[] warnList = getLineNumbersFromExpected(expected);
+        final Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -91,7 +94,7 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
      * @return Integer array with numbers of lines with violations.
      */
     private static Integer[] getLineNumbersFromExpected(String[] expected) {
-        Integer[] result = new Integer[expected.length];
+        final Integer[] result = new Integer[expected.length];
         for (int i = 0; i < expected.length; i++) {
             result[i] = Integer.valueOf(expected[i].substring(0, expected[i].indexOf(':')));
         }
