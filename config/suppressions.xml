@@ -60,9 +60,6 @@
     <suppress checks="ReturnCount" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="SeparatorWrap" files=".*[\\/]src[\\/]it[\\/]"/>
 
-    <!-- quesionable suppressions, should be permanent ? -->
-    <suppress checks="CyclomaticComplexity" files=".*[\\/]src[\\/]it[\\/]"/>
-
     <!--
       Turn off all checks for Generated and Test code. Fixes issues with using
       Eclipse plug-in.

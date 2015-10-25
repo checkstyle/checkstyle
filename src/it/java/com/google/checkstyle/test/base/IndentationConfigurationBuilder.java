@@ -64,6 +64,10 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
         return getLinesWithWarnAndCheckComments(aFileName, TAB_WIDTH);
     }
 
+    private enum CommentType {
+        MULTILEVEL, SINGLE_LEVEL, NON_STRICT_LEVEL, UNKNOWN
+    }
+
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
                     throws IOException {
@@ -127,34 +131,83 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
 
+        boolean result;
+        CommentType type = getCommentType(comment);
+        switch (type) {
+            case MULTILEVEL:
+                result = isMultiLevelCommentConsistent(comment, indentInComment, isWarnComment);
+                break;
+
+            case SINGLE_LEVEL:
+                result = isSingleLevelCommentConsistent(comment, indentInComment, isWarnComment);
+                break;
+
+            case NON_STRICT_LEVEL:
+                result = isNonStrictCommentConsistent(comment, indentInComment, isWarnComment);
+                break;
+
+            case UNKNOWN:
+                throw new IllegalArgumentException("Cannot determine comment consistent");
+
+            default:
+                throw new IllegalStateException("Cannot determine comment is consistent");
+
+        }
+        return result;
+    }
+
+    private static boolean isNonStrictCommentConsistent(String comment
+            , int indentInComment, boolean isWarnComment) {
+        Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
+        nonStrictLevelMatch.matches();
+        final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
+
+        return indentInComment >= expectedMinimalIndent && !isWarnComment
+                || indentInComment < expectedMinimalIndent && isWarnComment;
+    }
+
+    private static boolean isSingleLevelCommentConsistent(String comment
+            , int indentInComment, boolean isWarnComment) {
+        Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
+        singleLevelMatch.matches();
+        final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
+
+        return expectedLevel == indentInComment && !isWarnComment
+                || expectedLevel != indentInComment && isWarnComment;
+    }
+
+    private static boolean isMultiLevelCommentConsistent(String comment
+            , int indentInComment, boolean isWarnComment) {
+        Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
+        multilevelMatch.matches();
+        final String[] levels = multilevelMatch.group(1).split(",");
+        final String indentInCommentStr = String.valueOf(indentInComment);
+        final boolean containsActualLevel =
+                Arrays.asList(levels).contains(indentInCommentStr);
+
+        return containsActualLevel && !isWarnComment
+                || !containsActualLevel && isWarnComment;
+    }
+
+    private static CommentType getCommentType(String comment) {
+        CommentType result = CommentType.UNKNOWN;
         Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
         if (multilevelMatch.matches()) {
-            final String[] levels = multilevelMatch.group(1).split(",");
-            final String indentInCommentStr = String.valueOf(indentInComment);
-            final boolean containsActualLevel =
-                            Arrays.asList(levels).contains(indentInCommentStr);
-
-            return containsActualLevel && !isWarnComment
-                    || !containsActualLevel && isWarnComment;
+            result = CommentType.MULTILEVEL;
         }
-
-        Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
-        if (singleLevelMatch.matches()) {
-            final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
-
-            return expectedLevel == indentInComment && !isWarnComment
-                    || expectedLevel != indentInComment && isWarnComment;
+        else {
+            Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
+            if (singleLevelMatch.matches()) {
+                result = CommentType.SINGLE_LEVEL;
+            }
+            else {
+                Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
+                if (nonStrictLevelMatch.matches()) {
+                    result = CommentType.NON_STRICT_LEVEL;
+                }
+            }
         }
-
-        Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
-        if (nonStrictLevelMatch.matches()) {
-            final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
-
-            return indentInComment >= expectedMinimalIndent && !isWarnComment
-                    || indentInComment < expectedMinimalIndent && isWarnComment;
-        }
-
-        throw new IllegalArgumentException("Cannot determine if commit is consistent");
+        return result;
     }
 
     private static int getLineStart(String line, final int tabWidth) {
