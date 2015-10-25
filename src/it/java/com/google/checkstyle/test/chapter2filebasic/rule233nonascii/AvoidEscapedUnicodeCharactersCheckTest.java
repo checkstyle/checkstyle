@@ -50,7 +50,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "33: " + msg,
             "35: " + msg,
             "36: " + msg,
-         };
+        };
 
         Configuration checkConfig = builder.getCheckConfig("AvoidEscapedUnicodeCharacters");
         String filePath = builder.getFilePath("AvoidEscapedUnicodeCharactersInput");

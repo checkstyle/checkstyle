@@ -45,10 +45,10 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport {
         Class<VariableDeclarationUsageDistanceCheck> clazz = VariableDeclarationUsageDistanceCheck.class;
 
         final String[] expected = {
-                "71: " + getCheckMessage(clazz, msgExt, "count", 4, 3),
-                "219: " + getCheckMessage(clazz, msgExt, "t", 5, 3),
-                "479: " + getCheckMessage(clazz, msgExt, "myOption", 7, 3),
-                "491: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
+            "71: " + getCheckMessage(clazz, msgExt, "count", 4, 3),
+            "219: " + getCheckMessage(clazz, msgExt, "t", 5, 3),
+            "479: " + getCheckMessage(clazz, msgExt, "myOption", 7, 3),
+            "491: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
         };
 
         Configuration checkConfig = builder.getCheckConfig("VariableDeclarationUsageDistance");

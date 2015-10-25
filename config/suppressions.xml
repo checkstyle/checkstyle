@@ -53,17 +53,12 @@
     <!-- Suppressions to remove over time -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="Regexp" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="Indentation" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="LineLength" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="JavadocType" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="WriteTag" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="NoWhitespaceBefore" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="WhitespaceAfter" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="WhitespaceAround" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="MagicNumber" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="DeclarationOrder" files=".*[\\/]src[\\/]it[\\/]"/>
-    <suppress checks="LeftCurly" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="RightCurly" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="AbbreviationAsWordInName" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="AbstractClassName" files=".*[\\/]src[\\/]it[\\/]"/>
@@ -97,7 +92,7 @@
 
     <!-- Fixing these cases will decrease code readability -->
     <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
-    <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/]test[\\/]"/>
+    <suppress checks="MultipleStringLiterals" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
     <!-- There are a lot of setters/getters in the Check. A small number of methods is left for Check's logic -->
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>

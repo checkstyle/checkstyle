@@ -42,14 +42,14 @@ public class LineLengthTest extends BaseCheckTestSupport {
     public void lineLengthTest() throws Exception {
 
         final String[] expected = {
-             "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),
-             "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 183),
-             "46: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 131),
-             "47: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 124),
-             "48: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
-             "50: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
-             "53: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 131),
-             "57: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
+            "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),
+            "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 183),
+            "46: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 131),
+            "47: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 124),
+            "48: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
+            "50: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
+            "53: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 131),
+            "57: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
         };
 
         Configuration checkConfig = builder.getCheckConfig("LineLength");

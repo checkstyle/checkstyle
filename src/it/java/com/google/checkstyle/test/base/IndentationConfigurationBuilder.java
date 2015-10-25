@@ -66,8 +66,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
 
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
-                    throws IOException
-    {
+                    throws IOException {
         List<Integer> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
@@ -114,20 +113,17 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
         return result.toArray(new Integer[result.size()]);
     }
 
-    private static int getIndentFromComment(String comment)
-    {
+    private static int getIndentFromComment(String comment) {
         final Matcher match = GET_INDENT_FROM_COMMENT_REGEX.matcher(comment);
         match.matches();
         return Integer.parseInt(match.group(1));
     }
 
-    private static boolean isWarnComment(String comment)
-    {
+    private static boolean isWarnComment(String comment) {
         return comment.endsWith(" warn");
     }
 
-    private static boolean isCommentConsistent(String comment)
-    {
+    private static boolean isCommentConsistent(String comment) {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
 
@@ -161,8 +157,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
         throw new IllegalArgumentException("Cannot determine if commit is consistent");
     }
 
-    private static int getLineStart(String line, final int tabWidth)
-    {
+    private static int getLineStart(String line, final int tabWidth) {
         for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
                 return CommonUtils.lengthExpandedTabs(line, index, tabWidth);

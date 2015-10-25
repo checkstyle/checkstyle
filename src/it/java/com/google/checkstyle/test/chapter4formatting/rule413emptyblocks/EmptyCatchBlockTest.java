@@ -39,8 +39,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void emptyBlockTestCatch() throws Exception
-    {
+    public void emptyBlockTestCatch() throws Exception {
 
         final String[] expected = {
             "28: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
@@ -56,8 +55,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNoViolations() throws Exception
-    {
+    public void testNoViolations() throws Exception {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
@@ -69,8 +67,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testViolationsByComment() throws Exception
-    {
+    public void testViolationsByComment() throws Exception {
 
         final String[] expected = {
             "19: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
@@ -85,8 +82,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testViolationsByVariableName() throws Exception
-    {
+    public void testViolationsByVariableName() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
             "35: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),

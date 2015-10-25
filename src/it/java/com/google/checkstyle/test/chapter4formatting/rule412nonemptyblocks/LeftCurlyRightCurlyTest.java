@@ -103,7 +103,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
             "69:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
             "72:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
             "76:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
-         };
+        };
 
         Configuration checkConfig = builder.getCheckConfig("LeftCurly");
         String filePath = builder.getFilePath("LeftCurlyInput_Method");

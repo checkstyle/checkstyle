@@ -43,19 +43,16 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public abstract class BaseCheckTestSupport
-{
+public abstract class BaseCheckTestSupport {
     final ByteArrayOutputStream stream = new ByteArrayOutputStream();
     protected final Properties props = new Properties();
 
-    protected static DefaultConfiguration createCheckConfig(Class<?> aClazz)
-    {
+    protected static DefaultConfiguration createCheckConfig(Class<?> aClazz) {
         return new DefaultConfiguration(aClazz.getName());
     }
 
     protected Checker createChecker(Configuration aCheckConfig)
-        throws Exception
-    {
+        throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
         final Checker checker = new Checker();
         // make sure the tests always run with english error messages
@@ -69,8 +66,7 @@ public abstract class BaseCheckTestSupport
         return checker;
     }
 
-    protected DefaultConfiguration createCheckerConfig(Configuration aConfig)
-    {
+    protected DefaultConfiguration createCheckerConfig(Configuration aConfig) {
         final DefaultConfiguration dc =
             new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
@@ -82,26 +78,22 @@ public abstract class BaseCheckTestSupport
     }
 
     protected static String getPath(String aFilename)
-        throws IOException
-    {
+        throws IOException {
         return new File("src/main/java/com/google/checkstyle/test/filebasic/" + aFilename).getCanonicalPath();
     }
 
-    protected static String getSrcPath(String aFilename) throws IOException
-    {
+    protected static String getSrcPath(String aFilename) throws IOException {
 
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + aFilename).getCanonicalPath();
     }
 
     protected void verify(Configuration aConfig, String aFileName, String[] aExpected, Integer... aWarnsExpected)
-            throws Exception
-    {
+            throws Exception {
         verify(createChecker(aConfig), aFileName, aFileName, aExpected, aWarnsExpected);
     }
 
     protected void verify(Checker aC, String aFileName, String[] aExpected, Integer... aWarnsExpected)
-            throws Exception
-    {
+            throws Exception {
         verify(aC, aFileName, aFileName, aExpected, aWarnsExpected);
     }
 
@@ -109,8 +101,7 @@ public abstract class BaseCheckTestSupport
             String aProcessedFilename,
             String aMessageFileName,
             String[] aExpected, Integer... aWarnsExpected)
-        throws Exception
-    {
+        throws Exception {
         verify(aC,
             new File[] {new File(aProcessedFilename)},
             aMessageFileName, aExpected, aWarnsExpected);
@@ -121,8 +112,7 @@ public abstract class BaseCheckTestSupport
             String aMessageFileName,
             String[] aExpected,
             Integer... aWarnsExpected)
-        throws Exception
-    {
+        throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, aProcessedFiles);
@@ -163,8 +153,7 @@ public abstract class BaseCheckTestSupport
      *            the key of message in 'messages.properties' file.
      */
     protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey)
-    {
+            String messageKey) {
         Properties pr = new Properties();
         try {
             pr.load(aClass.getResourceAsStream("messages.properties"));
@@ -192,22 +181,21 @@ public abstract class BaseCheckTestSupport
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-    protected String getCheckMessage(Map<String, String> messages, String messageKey, Object... arguments)
-   {
-       for (Map.Entry<String, String> entry : messages.entrySet()) {
-           if (messageKey.equals(entry.getKey())) {
-               final MessageFormat formatter = new MessageFormat(entry.getValue(), Locale.ROOT);
-               return formatter.format(arguments);
-           }
-       }
-       return null;
-   }
+    protected String getCheckMessage(Map<String, String> messages, String messageKey, Object... arguments) {
+        for (Map.Entry<String, String> entry : messages.entrySet()) {
+            if (messageKey.equals(entry.getKey())) {
+                final MessageFormat formatter = new MessageFormat(entry.getValue(), Locale.ROOT);
+                return formatter.format(arguments);
+            }
+        }
+        return null;
+    }
 
-   private static String removeDeviceFromPathOnWindows(String path) {
-       String os = System.getProperty("os.name", "Unix");
-       if (os.startsWith("Windows")) {
-           return path.substring(path.indexOf(':') + 1);
-       }
-       return path;
-   }
+    private static String removeDeviceFromPathOnWindows(String path) {
+        String os = System.getProperty("os.name", "Unix");
+        if (os.startsWith("Windows")) {
+            return path.substring(path.indexOf(':') + 1);
+        }
+        return path;
+    }
 }

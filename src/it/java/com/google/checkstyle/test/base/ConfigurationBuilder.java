@@ -117,7 +117,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
     }
 
     public List<File> getFiles() {
-            return Collections.unmodifiableList(files);
+        return Collections.unmodifiableList(files);
     }
 
     public Integer[] getLinesWithWarn(String aFileName) throws IOException {

@@ -97,13 +97,13 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     public void customImportTest3() throws Exception {
 
         final String[] expected = {
-                "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
-                "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.StringTokenizer"),
-                "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.*"),
-                "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
-                "11: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.*"),
-                "14: " + getCheckMessage(clazz, MSG_SEPARATOR, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
-                "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD, "com.google.common.reflect.*"),
+            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT", "java.io.File.createTempFile"),
+            "8: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.StringTokenizer"),
+            "9: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.*"),
+            "10: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.AbstractExecutorService"),
+            "11: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.util.concurrent.*"),
+            "14: " + getCheckMessage(clazz, MSG_SEPARATOR, "com.sun.xml.internal.xsom.impl.scd.Iterators"),
+            "16: " + getCheckMessage(clazz, MSG_ORDER, SPECIAL, STD, "com.google.common.reflect.*"),
         };
 
         Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");

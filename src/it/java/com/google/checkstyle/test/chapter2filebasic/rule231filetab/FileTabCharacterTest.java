@@ -41,8 +41,7 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
 
     @Override
     protected DefaultConfiguration createCheckerConfig(
-        Configuration aConfig)
-    {
+        Configuration aConfig) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
         dc.addChild(aConfig);
         return dc;
@@ -73,8 +72,7 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
     /**
      * Creates a configuration that is functionally close to that in the docs.
      */
-    private static DefaultConfiguration createConfig(boolean verbose)
-    {
+    private static DefaultConfiguration createConfig(boolean verbose) {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileTabCharacterCheck.class);
         checkConfig.addAttribute("eachLine", Boolean.toString(verbose));
