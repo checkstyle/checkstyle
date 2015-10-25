@@ -50,22 +50,23 @@
     <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
-    <!-- Suppressions to remove over time -->
+    <!-- Suppressions to remove over time for sure -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="Regexp" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="LineLength" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="NoWhitespaceBefore" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="WhitespaceAfter" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="WhitespaceAround" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="MagicNumber" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="DeclarationOrder" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="RightCurly" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="AbbreviationAsWordInName" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="AbstractClassName" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="EmptyLineSeparator" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="ReturnCount" files=".*[\\/]src[\\/]it[\\/]"/>
-    <suppress checks="CyclomaticComplexity" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="SeparatorWrap" files=".*[\\/]src[\\/]it[\\/]"/>
+
+    <!-- quesionable suppressions, should be permanent ? -->
+    <suppress checks="CyclomaticComplexity" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="VisibilityModifier" files=".*[\\/]src[\\/]it[\\/]"/>
 
     <!--
