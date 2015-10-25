@@ -49,8 +49,8 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
     private final Pattern warnPattern = CommonUtils.createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
 
-    public ConfigurationBuilder(File aROOT) {
-        root = aROOT;
+    public ConfigurationBuilder(File aRoot) {
+        root = aRoot;
         configuration = getConfigurationFromXML(XML_NAME, System.getProperties());
         listFiles(files, root, "java");
     }
@@ -94,7 +94,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
         String rootPath = absoluteRootPath.substring(0,
                 absoluteRootPath.lastIndexOf("src"));
         for (File file : files) {
-            if (file.toString().endsWith(aFileName+".java")) {
+            if (file.toString().endsWith(aFileName + ".java")) {
                 return rootPath + file;
             }
         }
@@ -125,7 +125,7 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
 
     public Integer[] getLinesWithWarn(String aFileName) throws IOException {
         List<Integer> result = new ArrayList<>();
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
             int lineNumber = 1;
             while (true) {

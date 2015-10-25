@@ -63,7 +63,7 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport {
     }
 
     @Test(expected = Exception.class)
-    public void customInlineTagTest() throws Exception{
+    public void customInlineTagTest() throws Exception {
         String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
         Configuration checkConfig = builder.getCheckConfig("SingleLineJavadocCheck");

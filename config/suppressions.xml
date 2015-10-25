@@ -53,10 +53,6 @@
     <!-- Suppressions to remove over time for sure -->
     <suppress checks="FinalLocalVariable" files=".*[\\/]src[\\/]it[\\/]" />
     <suppress checks="LineLength" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="NoWhitespaceBefore" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="WhitespaceAfter" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="WhitespaceAround" files=".*[\\/]src[\\/]it[\\/]" />
-    <suppress checks="AbbreviationAsWordInName" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="ReturnCount" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="SeparatorWrap" files=".*[\\/]src[\\/]it[\\/]"/>
 

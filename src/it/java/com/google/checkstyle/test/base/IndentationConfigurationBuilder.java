@@ -55,8 +55,8 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
     private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
             Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
-    public IndentationConfigurationBuilder(File aROOT) {
-        super(aROOT);
+    public IndentationConfigurationBuilder(File aRoot) {
+        super(aRoot);
     }
 
     @Override
@@ -156,8 +156,8 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
         return result;
     }
 
-    private static boolean isNonStrictCommentConsistent(String comment
-            , int indentInComment, boolean isWarnComment) {
+    private static boolean isNonStrictCommentConsistent(String comment,
+            int indentInComment, boolean isWarnComment) {
         Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
         nonStrictLevelMatch.matches();
         final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
@@ -166,8 +166,8 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
                 || indentInComment < expectedMinimalIndent && isWarnComment;
     }
 
-    private static boolean isSingleLevelCommentConsistent(String comment
-            , int indentInComment, boolean isWarnComment) {
+    private static boolean isSingleLevelCommentConsistent(String comment,
+            int indentInComment, boolean isWarnComment) {
         Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
         singleLevelMatch.matches();
         final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
@@ -176,8 +176,8 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
                 || expectedLevel != indentInComment && isWarnComment;
     }
 
-    private static boolean isMultiLevelCommentConsistent(String comment
-            , int indentInComment, boolean isWarnComment) {
+    private static boolean isMultiLevelCommentConsistent(String comment,
+            int indentInComment, boolean isWarnComment) {
         Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
         multilevelMatch.matches();
         final String[] levels = multilevelMatch.group(1).split(",");
