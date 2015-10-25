@@ -35,6 +35,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -119,22 +121,15 @@ public class XDocsPagesTest {
                 continue;
             }
 
-            final String source = Files.toString(file, UTF_8);
-            int position = -1;
+            final String input = Files.toString(file, UTF_8);
+            final String fileName = file.getName();
 
-            while (true) {
-                position = source.indexOf("<source>", position + 1);
+            final Document document = getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("source");
 
-                if (position == -1) {
-                    break;
-                }
-
-                final int nextPosition = source.indexOf("</source>", position);
-                final String unserializedSource = source.substring(position + 8, nextPosition)
-                        .trim().replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"")
-                        .replace("&amp;", "&").replace("...", "");
-
-                position = nextPosition;
+            for (int position = 0; position < sources.getLength(); position++) {
+                final String unserializedSource = sources.item(position).getTextContent()
+                        .replace("...", "").trim();
 
                 if (unserializedSource.charAt(0) != '<'
                         || unserializedSource.charAt(unserializedSource.length() - 1) != '>') {
@@ -146,7 +141,7 @@ public class XDocsPagesTest {
                     continue;
                 }
 
-                buildAndTestXml(file.getName(), unserializedSource);
+                buildAndTestXml(fileName, unserializedSource);
             }
         }
     }
@@ -172,7 +167,8 @@ public class XDocsPagesTest {
                     + code;
         }
 
-        testRawXml(fileName, code, unserializedSource);
+        // test only
+        getRawXml(fileName, code, unserializedSource);
 
         // can't test ant structure, or old and outdated checks
         if (!fileName.startsWith("anttask") && !fileName.startsWith("releasenotes")) {
@@ -193,7 +189,7 @@ public class XDocsPagesTest {
         return found;
     }
 
-    private static void testRawXml(String fileName, String code, String unserializedSource)
+    private static Document getRawXml(String fileName, String code, String unserializedSource)
             throws ParserConfigurationException {
         try {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -202,12 +198,14 @@ public class XDocsPagesTest {
 
             final DocumentBuilder builder = factory.newDocumentBuilder();
 
-            builder.parse(new InputSource(new StringReader(code)));
+            return builder.parse(new InputSource(new StringReader(code)));
         }
         catch (IOException | SAXException e) {
             Assert.fail(fileName + " has invalid xml (" + e.getMessage() + "): "
                     + unserializedSource);
         }
+
+        return null;
     }
 
     private static void testCheckstyleXml(String fileName, String code, String unserializedSource)

@@ -457,6 +457,8 @@
     &lt;module name=&quot;TreeWalker&quot;&gt;
         &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
         ...
+    &lt;/module&gt;
+&lt;/module&gt;
       </source>
 
       <p>
