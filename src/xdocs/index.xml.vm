@@ -192,6 +192,12 @@
                   <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">example report</a></td>
               </tr>
               <tr>
+                  <td><a href="http://tide.olympe.in/">tIDE</a></td>
+                  <td/>
+                  <td>Built in</td>
+                  <td/>
+              </tr>
+              <tr>
                   <td><a href="https://netbeans.org/">NetBeans</a></td>
                   <td>Petr Hejl</td>
                   <td>
@@ -238,20 +244,6 @@
                   <td>Provides quality assurance features.</td>
               </tr>
               <tr>
-                  <td/>
-                  <td><a href="http://jcoderz.github.io/">jCoderZ</a></td>
-                  <td>
-                      <a href="http://jcoderz.github.io/">fawkeZ</a>
-                  </td>
-                  <td>Combines multiple tools (CheckStyle, findbugs, PMD, Cobertura, etc.)</td>
-              </tr>
-              <tr>
-                  <td><a href="http://tide.olympe.in/">tIDE</a></td>
-                  <td/>
-                  <td>Built in</td>
-                  <td/>
-              </tr>
-              <tr>
                   <td><a href="http://www.jarchitect.com/">JArchitect</a></td>
                   <td/>
                   <td><a href="http://www.jarchitect.com/">JArchitect Home Page</a></td>
@@ -275,6 +267,14 @@
                       <a href="http://jetstyle.sourceforge.net/">JetStyle Project Page</a>
                   </td>
                   <td/>
+              </tr>
+              <tr>
+                  <td/>
+                  <td><a href="http://jcoderz.github.io/">jCoderZ</a></td>
+                  <td>
+                      <a href="https://github.com/jCoderZ/fawkez-code-report">fawkez-code-report</a>
+                  </td>
+                  <td>Combines multiple tools (CheckStyle, findbugs, PMD, Cobertura, etc.)</td>
               </tr>
               <tr>
                   <td><a href="http://www.bluej.org">BlueJ</a></td>
