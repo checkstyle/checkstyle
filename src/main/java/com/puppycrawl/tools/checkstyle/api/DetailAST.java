@@ -38,7 +38,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @see <a href="http://www.antlr.org/">ANTLR Website</a>
  */
 public final class DetailAST extends CommonASTWithHiddenTokens {
-    /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -2580884815577559874L;
 
     /** Constant to indicate if not calculated the child count. */

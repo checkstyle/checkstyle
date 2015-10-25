@@ -48,7 +48,6 @@ import java.util.ResourceBundle.Control;
  */
 public final class LocalizedMessage
     implements Comparable<LocalizedMessage>, Serializable {
-    /** Required for serialization. */
     private static final long serialVersionUID = 5675176836184862150L;
 
     /** The locale to localise messages to. **/

@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author Lars Kühne
  */
 public class JTreeTable extends JTable {
-    /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
     private final TreeTableCellRenderer tree;

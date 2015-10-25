@@ -112,12 +112,12 @@
     <suppress checks="CyclomaticComplexity" files="CustomImportOrderCheck\.java"/>
     
     <!-- equals() - a lot of fields to check -->
-    <suppress checks="CyclomaticComplexity" files="LocalizedMessage\.java" lines="211"/>
+    <suppress checks="CyclomaticComplexity" files="LocalizedMessage\.java" lines="210"/>
     <!-- SWITCH was transformed into IF-ELSE -->
     <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="331"/>
 
     <!-- LocalizedMessage class is immutable, we need that amount of arguments. -->
     <suppress checks="ParameterNumber"
               files="LocalizedMessage.java"
-              lines="106, 144, 175"/>
+              lines="105, 143, 174"/>
 </suppressions>

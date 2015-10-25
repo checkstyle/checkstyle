@@ -42,7 +42,6 @@ import javax.swing.tree.TreePath;
  * @author Scott Violet
  */
 public class TreeTableModelAdapter extends AbstractTableModel {
-    /** For Serialisation that will never happen. */
     private static final long serialVersionUID = 8269213416115369275L;
 
     /** JTree component. */

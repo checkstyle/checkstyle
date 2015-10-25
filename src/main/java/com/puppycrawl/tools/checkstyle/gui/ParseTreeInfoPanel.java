@@ -56,7 +56,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * @author Lars Kühne
  */
 public class ParseTreeInfoPanel extends JPanel {
-    /** For Serialisation that will never happen. */
     private static final long serialVersionUID = -4243405131202059043L;
 
     /** Parse tree model. */
@@ -281,9 +280,6 @@ public class ParseTreeInfoPanel extends JPanel {
      * Handler for file selection action events.
      */
     private class FileSelectionAction extends AbstractAction {
-        /**
-         * Serial ID.
-         */
         private static final long serialVersionUID = -1926935338069418119L;
 
         /** Default constructor to setup current action. */
@@ -310,9 +306,6 @@ public class ParseTreeInfoPanel extends JPanel {
      * Handler for reload action events.
      */
     private class ReloadAction extends AbstractAction {
-        /**
-         * Serial UID.
-         */
         private static final long serialVersionUID = -1021880396046355863L;
 
         /** Default constructor to setup current action. */

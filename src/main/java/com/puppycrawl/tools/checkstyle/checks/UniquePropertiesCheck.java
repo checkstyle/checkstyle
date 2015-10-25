@@ -126,9 +126,6 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * @author Pavel Baranchikov
      */
     private static class UniqueProperties extends Properties {
-        /**
-         * Default serial version id.
-         */
         private static final long serialVersionUID = 1L;
         /**
          * Multiset, holding duplicated keys. Keys are added here only if they
