@@ -111,5 +111,7 @@ class PackageClass {
     class IgnoredName {
         // ignore by name
         private int logger;
+        // no warning, 'serialVersionUID' fields do not require Javadoc
+        private static final long serialVersionUID = 0;
     }
 }

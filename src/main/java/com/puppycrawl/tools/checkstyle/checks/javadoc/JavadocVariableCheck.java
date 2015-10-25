@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
- * Checks that a variable has Javadoc comment.
+ * Checks that a variable has Javadoc comment. Ignores <code>serialVersionUID</code> fields.
  *
  * @author Oliver Burn
  */
@@ -122,8 +122,8 @@ public class JavadocVariableCheck
      */
     private boolean isIgnored(DetailAST ast) {
         final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
-        return ignoreNamePattern != null
-                && ignoreNamePattern.matcher(name).matches();
+        return ignoreNamePattern != null && ignoreNamePattern.matcher(name).matches()
+            || "serialVersionUID".equals(name);
     }
 
     /**

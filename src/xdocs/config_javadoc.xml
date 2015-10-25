@@ -557,7 +557,8 @@ public boolean isSomething()
     <section name="JavadocVariable">
       <subsection name="Description">
         <p>
-          Checks that variables have Javadoc comments.
+          Checks that variables have Javadoc comments. Ignores <code>serialVersionUID</code>
+          fields.
         </p>
       </subsection>
 
