@@ -50,16 +50,6 @@
     <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
-    <!-- Suppressions to remove over time for sure -->
-    <suppress checks="SeparatorWrap" files=".*[\\/]src[\\/]it[\\/]"/>
-
-    <!--
-      Turn off all checks for Generated and Test code. Fixes issues with using
-      Eclipse plug-in.
-      -->
-    <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
-    <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
-
     <!--Classes FileDrop, Main, ParseTreeInfoPanel from gui-package contain Magic Numbers.
     The Check generates too many violations, fixing them will make code unmanageable.-->
     <suppress checks="MagicNumber" files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
