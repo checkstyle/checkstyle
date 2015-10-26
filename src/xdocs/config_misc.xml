@@ -231,7 +231,7 @@
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the Check:
         </p>
@@ -364,7 +364,7 @@ messages.properties: Key 'ok' missing.
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check for files with '_' name separator:
         </p>
@@ -648,8 +648,14 @@ messages.properties: Key 'ok' missing.
             <th>default value</th>
           </tr>
           <tr>
+            <td>ignorePrimitiveTypes</td>
+            <td>ignore primitive types as parameters</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
             <td>tokens</td>
-            <td>blocks to check</td>
+            <td>tokens to check</td>
             <td>
               subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
@@ -661,12 +667,6 @@ messages.properties: Key 'ok' missing.
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>.
             </td>
-          </tr>
-          <tr>
-            <td>ignorePrimitiveTypes</td>
-            <td>ignore primitive types as parameters</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
           </tr>
         </table>
       </subsection>
@@ -750,13 +750,6 @@ messages.properties: Key 'ok' missing.
             <th>description</th>
             <th>type</th>
             <th>default value</th>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>token types to check</td>
-            <td>subset of tokens declared in <a
-            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
-            <td>empty set</td>
           </tr>
           <tr>
             <td>limitedTokens</td>
@@ -1274,7 +1267,7 @@ d = e / f;        // Another comment for this line
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks.indentation
+          com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
@@ -1292,10 +1285,6 @@ d = e / f;        // Another comment for this line
           the class <code>Foo</code> must be in a file named
           <code>Foo.java</code>.
         </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <p>None.</p>
       </subsection>
 
       <subsection name="Examples">
@@ -1549,6 +1538,19 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
 
+      <subsection name="Examples">
+        <p>
+          This check should not be used by itself, as it does no reporting.
+          It is to be used in conjuction with other checks like
+          <a href="config_filters.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
+          and
+          <a href="config_filters.html#SuppressWithNearbyCommentFilter">SuppressWithNearbyCommentFilter</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Example of Usage">
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -1557,7 +1559,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#Checker">Checker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
       </section>

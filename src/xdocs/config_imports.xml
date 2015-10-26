@@ -74,7 +74,7 @@
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           An example how to configure the check so that star imports from
           packages java.io and java.net as well as static members from class
@@ -161,7 +161,7 @@
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           An example of how to configure the check so that the <code>java.lang.System.out</code> member and all
           members from <code>java.lang.Math</code> are
@@ -289,7 +289,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -399,7 +399,7 @@ class FooBar {
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -513,10 +513,24 @@ class FooBar {
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
+
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.
+            </td>
+
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.
+            </td>
+          </tr>
         </table>
       </subsection>
 
-      <subsection name="Example" id="ImportOrder_Example">
+      <subsection name="Examples" id="ImportOrder_Example">
         <p>To configure the check so that it matches default Eclipse formatter configuration
            (tested on Kepler and Luna releases):</p>
         <ul>
@@ -707,7 +721,7 @@ public class SomeClass { ... }
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check using a import control file called
           &quot;config/import-control.xml&quot;, then have the following:
@@ -776,7 +790,7 @@ public class SomeClass { ... }
         </p>
       </subsection>
 
-      <subsection name="RuleDescription">
+      <subsection name="Rule Description">
         <p>
           The rule consists of:
         </p>
@@ -816,7 +830,7 @@ import java.util.regex.Matcher; //#8
         </p>
       </subsection>
 
-      <subsection name="Note">
+      <subsection name="Notes">
         <p>
           Use the separator '###' between rules.
         </p>

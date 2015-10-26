@@ -68,7 +68,7 @@
         </ol>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;ModifierOrder&quot;/&gt;
@@ -238,7 +238,7 @@
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p> To configure the check: </p>
         <source>
 &lt;module name=&quot;RedundantModifier&quot;/&gt;

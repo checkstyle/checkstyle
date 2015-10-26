@@ -34,7 +34,7 @@ public class SeverityMatchFilter
     extends AutomaticBean
     implements Filter {
     /** The severity level to accept. */
-    private SeverityLevel severityLevel = SeverityLevel.ERROR;
+    private SeverityLevel severity = SeverityLevel.ERROR;
 
     /** Whether to accept or reject on severity matches. */
     private boolean acceptOnMatch = true;
@@ -47,7 +47,7 @@ public class SeverityMatchFilter
      * @see SeverityLevel
      */
     public final void setSeverity(String severity) {
-        severityLevel = SeverityLevel.getInstance(severity);
+        this.severity = SeverityLevel.getInstance(severity);
     }
 
     /**
@@ -61,7 +61,7 @@ public class SeverityMatchFilter
 
     @Override
     public boolean accept(AuditEvent event) {
-        final boolean result = severityLevel == event.getSeverityLevel();
+        final boolean result = severity == event.getSeverityLevel();
         if (acceptOnMatch) {
             return result;
         }

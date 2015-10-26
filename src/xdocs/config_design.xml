@@ -322,7 +322,7 @@ class SomeClass
         </p>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -604,10 +604,6 @@ public abstract class Plant {
     public abstract void grow();
 }
         </source>
-      </subsection>
-
-      <subsection name="Properties">
-        <p> None.</p>
       </subsection>
 
       <subsection name="Examples">

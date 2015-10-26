@@ -77,7 +77,7 @@
             <td>true</td>
           </tr>
           <tr>
-            <td>ignoreOverriddenMethod</td>
+            <td>ignoreOverriddenMethods</td>
             <td>Allows to ignore methods tagged with @Override annotation
             (that usually mean inherited name).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -149,11 +149,11 @@
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -212,7 +212,7 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L297">
@@ -222,11 +222,11 @@
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -261,7 +261,7 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L122-L126">
@@ -275,11 +275,11 @@
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -350,7 +350,7 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L91">
@@ -364,11 +364,11 @@
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -405,7 +405,7 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L261">
@@ -415,11 +415,11 @@
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -470,7 +470,7 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L92">
@@ -484,11 +484,11 @@
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -568,7 +568,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L115-L121">
@@ -586,11 +586,11 @@ for (int i = 1; i &lt; 10; i++) {}
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -660,7 +660,7 @@ for (int i = 1; i &lt; 10; i++) {}
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L105-L109">
@@ -678,11 +678,11 @@ for (int i = 1; i &lt; 10; i++) {}
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -737,7 +737,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L193-L197">
@@ -755,11 +755,11 @@ class MyClass {
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -796,7 +796,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L127-L131">
@@ -810,11 +810,11 @@ class MyClass {
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -860,7 +860,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L96-L100">
@@ -878,11 +878,11 @@ class MyClass {
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -919,7 +919,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L110-L114">
@@ -937,11 +937,11 @@ class MyClass {
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -1004,7 +1004,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L98">
@@ -1018,11 +1018,11 @@ class MyClass {
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -1075,7 +1075,7 @@ class MyClass {
           </tr>
           <tr>
             <td>tokens</td>
-            <td>Controls the kind of type that the check applies to.</td>
+            <td>tokens to check</td>
             <td>
               subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
@@ -1118,7 +1118,7 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L101-L104">
@@ -1136,11 +1136,11 @@ class MyClass {
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 

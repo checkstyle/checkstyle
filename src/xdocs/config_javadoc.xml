@@ -52,10 +52,16 @@
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>{}</code></td>
+          </tr>
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -159,23 +165,6 @@
             <td>whether to ignore errors when a Javadoc tag is not recognised.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>definitions to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
-            </td>
           </tr>
         </table>
       </subsection>
@@ -456,16 +445,18 @@ public boolean isSomething()
           </tr>
           <tr>
             <td>tokens</td>
-            <td>definitions to check</td>
+            <td>tokens to check</td>
 
             <td>
               subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>.
             </td>
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>.
             </td>
           </tr>
         </table>
@@ -592,11 +583,9 @@ public boolean isSomething()
             <td>tokens</td>
             <td>tokens to check</td>
             <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
             </td>
             <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
             </td>
           </tr>
@@ -834,7 +823,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
@@ -945,7 +934,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
@@ -988,7 +977,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
@@ -1049,7 +1038,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
@@ -1131,7 +1120,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
@@ -1218,7 +1207,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
@@ -1253,7 +1242,7 @@ public boolean isSomething()
             <th>default value</th>
           </tr>
           <tr>
-            <td>tagImmediatelyBeforeFirstWord</td>
+            <td>allowNewlineParagraph</td>
             <td>whether the &lt;p&gt; tag should be placed immediately before the first word</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
@@ -1313,7 +1302,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
@@ -1389,7 +1378,7 @@ public boolean isSomething()
 
       <subsection name="Package">
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 

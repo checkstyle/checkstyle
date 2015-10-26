@@ -44,7 +44,7 @@
           </tr>
           <tr>
             <td>tokens</td>
-            <td>members to check</td>
+            <td>tokens to check</td>
             <td>
               subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
@@ -319,7 +319,7 @@
           </tr>
           <tr>
             <td>tokens</td>
-            <td>blocks to check</td>
+            <td>tokens to check</td>
 
             <td>
               subset of tokens <a
@@ -490,7 +490,7 @@
           </tr>
           <tr>
             <td>tokens</td>
-            <td>declarations to check</td>
+            <td>tokens to check</td>
 
             <td>
               subset of tokens <a
@@ -694,6 +694,26 @@ public void needsLotsOfParameters(int a, int b, int c, int d, int e, int f, int 
             <td>maximum allowable number of <code>public</code> methods</td>
             <td><a href="property_types.html#integer">integer</a></td>
             <td>100</td>
+          </tr>
+
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>.
+            </td>
+
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>.
+            </td>
           </tr>
         </table>
       </subsection>

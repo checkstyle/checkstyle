@@ -59,7 +59,7 @@
           </tr>
         </table>
       </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Examples">
           <p>
             For example, the following configuration fragment directs the
             Checker to not report audit events with severity
@@ -72,8 +72,14 @@
 &lt;/module&gt;
           </source>
       </subsection>
+      <subsection name="Example of Usage">
+      </subsection>
       <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.filters </p>
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
 
@@ -175,8 +181,6 @@
             suppressed if all specified attributes match against the audit
             event.
           </p>
-      </subsection>
-      <subsection name="Example of Usage">
           <p>
             You can download template of empty suppression filter
             <a href="files/suppressions_none.xml">here</a>.
@@ -277,8 +281,20 @@
 &lt;suppress checks=&quot;FileLength&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           </source>
       </subsection>
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L21">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
       <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.filters </p>
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
 
@@ -511,8 +527,14 @@ HashSet hashSet; // Warning here: Declaring variables, return values or paramete
 ...
           </source>
       </subsection>
+      <subsection name="Example of Usage">
+      </subsection>
       <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.filters </p>
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
 
@@ -584,7 +606,7 @@ HashSet hashSet; // Warning here: Declaring variables, return values or paramete
                 </tr>
             </table>
         </subsection>
-        <subsection name="Example of Usage">
+        <subsection name="Examples">
             <p>
                 To configure the check that makes comments available to the filter:
             </p>
@@ -690,8 +712,14 @@ private int D2;
 public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAfter
             </source>
         </subsection>
+        <subsection name="Example of Usage">
+        </subsection>
         <subsection name="Package">
-            <p> com.puppycrawl.tools.checkstyle.checks.filters </p>
+            <p> com.puppycrawl.tools.checkstyle.filters </p>
+        </subsection>
+
+        <subsection name="Parent Module">
+          <p> <a href="config.html#Checker">Checker</a> </p>
         </subsection>
       </section>
 
@@ -720,10 +748,7 @@ public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAft
               be written in lower case with any dotted prefix or "Check" suffix removed.
           </p>
       </subsection>
-      <subsection name="Properties">
-          <p>This filter does not expose any properties</p>
-      </subsection>
-      <subsection name="Example of Usage">
+      <subsection name="Examples">
           <p>
               To configure the check that makes tha annotations available to
               the filter.
@@ -748,8 +773,14 @@ private int J; // should NOT fail MemberNameCheck
 private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCheck
           </source>
       </subsection>
+      <subsection name="Example of Usage">
+      </subsection>
       <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.filters </p>
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#Checker">Checker</a> </p>
       </subsection>
     </section>
   </body>

@@ -140,7 +140,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
         </p>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -263,7 +263,7 @@ String nullString = null;
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -310,7 +310,7 @@ String nullString = null;
         </p>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -370,20 +370,6 @@ String nullString = null;
             <th>default value</th>
           </tr>
           <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-            </td>
-            <td>
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-            </td>
-          </tr>
-          <tr>
             <td>validateEnhancedForLoopVariable</td>
             <td>Controls whether to check <a href = "http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">enhanced for-loop</a> variable.</td>
             <td>
@@ -394,6 +380,20 @@ String nullString = null;
              <code>
               false
              </code>
+            </td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>.
+            </td>
+            <td>
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
             </td>
           </tr>
         </table>
@@ -483,24 +483,6 @@ String nullString = null;
             <th>default value</th>
           </tr>
           <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-            </td>
-
-            <td>
-              <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-               <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-            </td>
-          </tr>
-
-          <tr>
             <td>ignoreFormat</td>
             <td>pattern for names of variables and parameters to ignore</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
@@ -562,6 +544,25 @@ String nullString = null;
             <td><code>false</code></td>
           </tr>
 
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              LAMBDA.
+            </td>
+
+            <td>
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              LAMBDA.
+            </td>
+          </tr>
         </table>
       </subsection>
 
@@ -718,10 +719,24 @@ class SomeClass
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>{}</td>
           </tr>
+
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+
+            <td>
+              subset of tokens
+              CLASS_DEF.
+            </td>
+
+            <td>
+              CLASS_DEF.
+            </td>
+          </tr>
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check to find instantiations of java.lang.Boolean:
         </p>
@@ -784,7 +799,7 @@ class SomeClass
             <td>tokens</td>
             <td>tokens to check</td>
             <td>
-              subset of
+              subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>.
             </td>
             <td>
@@ -794,7 +809,7 @@ class SomeClass
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check to find token LITERAL_NATIVE:
         </p>
@@ -843,14 +858,6 @@ class SomeClass
             <th>default value</th>
           </tr>
           <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of <a
-            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-            </td>
-            <td>empty</td>
-          </tr>
-          <tr>
             <td>format</td>
             <td>illegal pattern</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
@@ -868,6 +875,14 @@ class SomeClass
             if empty then the default message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>&quot;&quot;</code>(empty)</td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>subset of tokens <a
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>.
+            </td>
+            <td>empty</td>
           </tr>
         </table>
       </subsection>
@@ -949,49 +964,6 @@ while ((line = bufferedReader.readLine()) != null) {
         </p>
       </subsection>
 
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>assignments to check</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">BAND_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">BOR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">BSR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">BXOR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">DIV_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">MINUS_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">MOD_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">PLUS_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">SL_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">SR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">BAND_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">BOR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">BSR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">BXOR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">DIV_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">MINUS_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">MOD_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">PLUS_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">SL_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">SR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a>.
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
       <subsection name="Examples">
         <p>
           To configure the check:
@@ -1066,22 +1038,6 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
             <th>default value</th>
           </tr>
           <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">NUM_DOUBLE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">NUM_FLOAT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">NUM_INT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">NUM_LONG</a>.
-            </td>
-            <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">NUM_DOUBLE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">NUM_FLOAT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">NUM_INT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">NUM_LONG</a>.
-            </td>
-          </tr>
-          <tr>
             <td>ignoreNumbers</td>
             <td>non-magic numbers</td>
             <td>list of numbers</td>
@@ -1138,6 +1094,22 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">PLUS</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">MINUS</a>.
               </td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">NUM_DOUBLE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">NUM_FLOAT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">NUM_INT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">NUM_LONG</a>.
+            </td>
+            <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">NUM_DOUBLE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">NUM_FLOAT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">NUM_INT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">NUM_LONG</a>.
+            </td>
           </tr>
         </table>
       </subsection>
@@ -1351,7 +1323,7 @@ class MyClass {
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1422,7 +1394,7 @@ class MyClass {
         </p>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1483,7 +1455,7 @@ return !valid();
         </p>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1538,7 +1510,7 @@ if (&quot;something&quot;.equals(x))
         </source>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1594,7 +1566,7 @@ if (&quot;something&quot;.equals(x))
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1658,7 +1630,7 @@ if (&quot;something&quot;.equals(x))
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1722,7 +1694,7 @@ if (&quot;something&quot;.equals(x))
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1784,7 +1756,7 @@ if (&quot;something&quot;.equals(x))
        This check is almost exactly the same as the {@link NoFinalizerCheck}
        </p>
       </subsection>
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -1823,7 +1795,7 @@ if (&quot;something&quot;.equals(x))
         </p>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
         <p>
           To configure the check:
         </p>
@@ -2177,21 +2149,6 @@ if (&quot;something&quot;.equals(x))
             <th>default value</th>
           </tr>
           <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
-            </td>
-          </tr>
-          <tr>
             <td>max</td>
             <td>maximum allowed number of return statements</td>
             <td><a href="property_types.html#integer">Integer</a></td>
@@ -2202,6 +2159,21 @@ if (&quot;something&quot;.equals(x))
             <td>method names to ignore</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^equals$</code> (empty)</td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
+            </td>
           </tr>
         </table>
       </subsection>
@@ -2291,21 +2263,6 @@ if (&quot;something&quot;.equals(x))
             <th>description</th>
             <th>type</th>
             <th>default value</th>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
-            </td>
           </tr>
           <tr>
             <td>validateAbstractClassNames</td>
@@ -3351,7 +3308,7 @@ cal.set(Calendar.MINUTE, minutes);
 &lt;/module&gt;
          </source>
       </subsection>
-      <subsection name="Note">
+      <subsection name="Notes">
         <p>
           ATTENTION!! (Not supported cases)
         </p>

@@ -98,7 +98,7 @@ line 5: ////////////////////////////////////////////////////////////////////
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
           <p>
               In default configuration the check does not rise any violations. Default values of properties are used.
           </p>
@@ -280,7 +280,7 @@ line 6: ^\W*$
         </table>
       </subsection>
 
-      <subsection name="Example">
+      <subsection name="Examples">
           <p>
               In default configuration the check does not rise any violations. Default values of properties are used.
           </p>
