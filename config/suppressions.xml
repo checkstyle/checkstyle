@@ -51,7 +51,6 @@
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
     <!-- Suppressions to remove over time for sure -->
-    <suppress checks="ReturnCount" files=".*[\\/]src[\\/]it[\\/]"/>
     <suppress checks="SeparatorWrap" files=".*[\\/]src[\\/]it[\\/]"/>
 
     <!--

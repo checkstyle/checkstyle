@@ -75,19 +75,24 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
     }
 
     public Configuration getCheckConfig(String aCheckName) {
+        Configuration result = null;
         for (Configuration currentConfig : configuration.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
                 for (Configuration checkConfig : currentConfig.getChildren()) {
                     if (aCheckName.equals(checkConfig.getName())) {
-                        return checkConfig;
+                        result = checkConfig;
+                        break;
                     }
+                }
+                if (result != null) {
+                    break;
                 }
             }
             else if (aCheckName.equals(currentConfig.getName())) {
-                return currentConfig;
+                result = currentConfig;
             }
         }
-        return null;
+        return result;
     }
 
     public String getFilePath(String aFileName) {
