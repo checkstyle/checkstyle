@@ -31,7 +31,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -196,7 +196,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseWithTrailingComma.java"), expected);
     }
@@ -227,7 +227,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "NEVER");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseNoTrailingComma.java"), expected);
     }
@@ -238,7 +238,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "ignore");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputDifferentUseStyles.java"), expected);
     }
@@ -247,7 +247,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
     public void testAnnotationsWithoutDefaultValues() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AnnotationUseStyleCheck.class);
         checkConfig.addAttribute("closingParens", "NEVER");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationsUseStyleParams.java"), expected);
     }
@@ -280,7 +280,7 @@ public class AnnotationUseStyleTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("closingParens", "ignore");
         checkConfig.addAttribute("elementStyle", "COMPACT_NO_ARRAY");
         checkConfig.addAttribute("trailingArrayComma", "ignore");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyle.java"), expected);
 

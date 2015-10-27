@@ -28,7 +28,7 @@ import java.util.Collection;
 import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -88,7 +88,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -245,7 +245,7 @@ public class SuppressWithNearbyCommentFilterTest
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("influenceFormat", "a");
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -254,7 +254,7 @@ public class SuppressWithNearbyCommentFilterTest
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkFormat", "a[l");
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -290,7 +290,7 @@ public class SuppressWithNearbyCommentFilterTest
         filterConfig.addAttribute("commentFormat", "SUPPRESS CHECKSTYLE (\\w+)");
         filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
         filterConfig.addAttribute("messageFormat", "^$1 ololo*$");
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 }

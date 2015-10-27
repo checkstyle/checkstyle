@@ -24,7 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierC
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -87,7 +87,7 @@ public class RedundantModifierTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputStaticModifierInInterface.java"), expected);
     }
 
@@ -172,7 +172,7 @@ public class RedundantModifierTest
     public void testGetRequiredTokens() {
         final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         final int[] actual = redundantModifierCheckObj.getRequiredTokens();
-        final int[] expected = ArrayUtils.EMPTY_INT_ARRAY;
+        final int[] expected = CommonUtils.EMPTY_INT_ARRAY;
         Assert.assertArrayEquals(expected, actual);
     }
 

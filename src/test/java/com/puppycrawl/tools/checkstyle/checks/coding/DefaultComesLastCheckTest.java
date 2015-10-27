@@ -24,7 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastChec
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -62,7 +62,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(DefaultComesLastCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getNonCompilablePath("InputDefaultComesLast2.java"),
                 expected);

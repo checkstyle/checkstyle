@@ -24,7 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -75,7 +75,7 @@ public class InnerAssignmentCheckTest
     public void testLambdaExpression() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InnerAssignmentCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputInnerAssignmentLambdaExpressions.java"),
             expected);
     }

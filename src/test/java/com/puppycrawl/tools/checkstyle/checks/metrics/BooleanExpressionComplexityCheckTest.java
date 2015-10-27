@@ -24,7 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionCo
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
@@ -63,7 +63,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("max", "5");
         checkConfig.addAttribute("tokens", "BXOR,LAND,LOR");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
     }
@@ -73,7 +73,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(BooleanExpressionComplexityCheck.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputBooleanExpressionComplexityNPE.java"), expected);
     }

@@ -24,7 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexi
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -61,7 +61,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         checkConfig.addAttribute("max", "0");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
@@ -70,7 +70,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ClassFanOutComplexityCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputClassCoupling.java"), expected);

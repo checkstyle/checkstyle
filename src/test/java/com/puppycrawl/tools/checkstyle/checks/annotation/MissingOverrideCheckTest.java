@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -108,7 +108,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputBadOverrideFromOther.java"), expected);
     }
@@ -138,7 +138,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     public void testBadAnnotationOverrideJ5Compatible() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputBadAnnotationOverride.java"), expected);
     }
@@ -166,7 +166,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "false");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodOverrideFromObject.java"), expected);
     }
@@ -180,7 +180,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodOverrideFromObject.java"), expected);
     }
@@ -192,7 +192,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGoodOverrideFromOther() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodOverrideFromOther.java"), expected);
     }
@@ -206,7 +206,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodOverrideFromOther.java"), expected);
     }
@@ -218,7 +218,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGoodAnnotationOverride() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodAnnotationOverride.java"), expected);
     }
@@ -231,7 +231,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     public void testGoodAnnotationOverrideJ5Compatible() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputGoodAnnotationOverride.java"), expected);
     }

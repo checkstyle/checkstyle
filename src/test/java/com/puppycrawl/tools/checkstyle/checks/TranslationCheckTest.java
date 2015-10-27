@@ -25,7 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -87,7 +87,7 @@ public class TranslationCheckTest
     @Test
     public void testOnePropertyFileSet() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         final File[] propertyFiles = {
             new File(getPath("app-dev.properties")),
         };
@@ -223,7 +223,7 @@ public class TranslationCheckTest
             new File(getPath("app-stage.properties")),
         };
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
             propertyFiles,

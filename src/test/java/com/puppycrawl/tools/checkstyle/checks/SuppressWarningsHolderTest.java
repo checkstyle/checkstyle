@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -72,7 +72,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testOnComplexAnnotations() throws Exception {
         final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder.java"), expected);
     }
@@ -81,7 +81,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testCustomAnnotation() throws Exception {
         final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("InputSuppressWarningsHolder.java"), expected);
     }
@@ -186,7 +186,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testEmptyAnnotation() throws Exception {
         final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder3.java"), expected);
     }
@@ -293,7 +293,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testAnnotationWithFullName() throws Exception {
         final Configuration checkConfig = createCheckConfig(SuppressWarningsHolder.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder4.java"), expected);
     }

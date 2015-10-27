@@ -21,7 +21,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 import java.io.File;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -109,7 +109,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
     @Test
     public void whitespaceAroundEmptyTypesCyclesTest() throws Exception {
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
         final String filePath = builder.getFilePath("WhitespaceAroundInput_EmptyTypesAndCycles");

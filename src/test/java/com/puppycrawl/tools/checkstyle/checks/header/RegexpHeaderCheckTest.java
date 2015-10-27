@@ -30,7 +30,7 @@ import java.net.URI;
 import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
@@ -107,7 +107,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
         createChecker(checkConfig);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
     }
 
@@ -185,7 +185,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header1"));
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
 
@@ -195,7 +195,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "3, 6");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
     }
 
@@ -205,7 +205,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "3, 6");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeader2.java"), expected);
     }
 
@@ -215,7 +215,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "3, 7");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
     }
 
@@ -225,7 +225,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "3, 5, 6, 7");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeader3.java"), expected);
     }
 
@@ -247,7 +247,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp2.header4"));
         checkConfig.addAttribute("multiLines", "8974382");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpHeader6.java"), expected);
     }
 
@@ -257,7 +257,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "3, 6");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegexpSmallHeader.java"), expected);
     }
 

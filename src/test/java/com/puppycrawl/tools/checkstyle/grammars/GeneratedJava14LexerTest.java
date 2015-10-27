@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.junit.Assume;
 import org.junit.Test;
@@ -66,7 +66,7 @@ public class GeneratedJava14LexerTest
     public void testSemicolonBetweenImports() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);
     }
 }

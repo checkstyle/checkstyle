@@ -19,8 +19,8 @@
 
 package com.google.checkstyle.test.base;
 
-import static org.apache.commons.lang3.ArrayUtils.EMPTY_INTEGER_OBJECT_ARRAY;
-import static org.apache.commons.lang3.ArrayUtils.EMPTY_STRING_ARRAY;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_INTEGER_OBJECT_ARRAY;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_STRING_ARRAY;
 
 import java.io.File;
 import java.util.List;

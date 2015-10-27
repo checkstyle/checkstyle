@@ -25,7 +25,7 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,7 +48,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
-        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     public void testFileWithOneTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelClass.java"), expected);
     }
 
@@ -72,7 +72,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     public void testFileWithOneTopLevelInterface() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelInterface.java"), expected);
     }
 
@@ -80,7 +80,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     public void testFileWithOneTopLevelEnum() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOneTopLevelEnum.java"), expected);
     }
 
@@ -145,7 +145,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     @Test
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OneTopLevelClassCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }
 }

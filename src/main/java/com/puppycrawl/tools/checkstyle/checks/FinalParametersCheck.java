@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Set;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.Check;
@@ -109,7 +109,7 @@ public class FinalParametersCheck extends Check {
 
     @Override
     public int[] getRequiredTokens() {
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

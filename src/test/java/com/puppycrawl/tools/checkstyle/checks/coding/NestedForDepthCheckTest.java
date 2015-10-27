@@ -24,7 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -82,7 +82,7 @@ public class NestedForDepthCheckTest extends BaseCheckTestSupport {
             createCheckConfig(NestedForDepthCheck.class);
         checkConfig.addAttribute("max", "4");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputNestedForDepth.java"),
                expected);

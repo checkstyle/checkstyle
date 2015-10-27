@@ -26,7 +26,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.internal.util.reflection.Whitebox;
@@ -127,7 +127,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     public void testCaseInsensitive() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("caseSensitive", "false");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrderCaseInsensitive.java"), expected);
     }
@@ -137,7 +137,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("option", "invalid_option");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrder_Top.java"), expected);
     }
@@ -249,7 +249,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         <property name="separated" value="true"/>
         */
         checkConfig.addAttribute("groups", "java,javax,org");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrder_WildcardUnspecified.java"), expected);
     }
@@ -258,7 +258,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     public void testNoFailureForRedundantImports() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ImportOrderCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"),
             expected);
     }
@@ -270,7 +270,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("groups", "org, java");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImportOrderStaticGroupOrder.java"), expected);
     }
 
@@ -293,7 +293,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "bottom");
         checkConfig.addAttribute("groups", "org, java");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImportOrderStaticGroupOrderBottom.java"), expected);
     }
 
@@ -369,7 +369,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", "bottom");
         checkConfig.addAttribute("groups", "org, java");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrderBottom.java"),
             expected);
     }
@@ -393,7 +393,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     public void testGroupWithSlashes() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "/^javax");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrder.java"), expected);
     }
@@ -402,7 +402,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     public void testGroupWithDot() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "java.awt.");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"),
             expected);
@@ -412,7 +412,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     public void testMultiplePatternMatches() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "/java/,/rga/,/myO/,/org/,/organ./");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("InputImportOrder_MultiplePatternMatches.java"),
             expected);
@@ -474,7 +474,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("separated", "true");
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportOrder_EclipseDefaultPositive.java"), expected);
     }

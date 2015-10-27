@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -59,7 +59,7 @@ public final class JavadocUtils {
 
         final Field[] fields = JavadocTokenTypes.class.getDeclaredFields();
 
-        String[] tempTokenValueToName = ArrayUtils.EMPTY_STRING_ARRAY;
+        String[] tempTokenValueToName = CommonUtils.EMPTY_STRING_ARRAY;
 
         for (final Field field : fields) {
 

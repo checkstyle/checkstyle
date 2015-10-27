@@ -34,7 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,7 +63,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultSettings() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
@@ -171,7 +171,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tag", "@todo2");
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("severity", "ignore");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 
@@ -180,7 +180,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "0*");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
 

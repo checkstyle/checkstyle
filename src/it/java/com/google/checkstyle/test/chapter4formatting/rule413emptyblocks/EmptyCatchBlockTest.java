@@ -21,7 +21,7 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.File;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -57,7 +57,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
     @Test
     public void testNoViolations() throws Exception {
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyCatchBlock");
         final String filePath = builder.getFilePath("EmptyCatchBlockNoViolationsInput");

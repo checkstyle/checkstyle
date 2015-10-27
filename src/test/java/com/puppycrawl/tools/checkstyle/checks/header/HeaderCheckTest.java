@@ -32,7 +32,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -72,7 +72,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         try {
             createChecker(checkConfig);
-            final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
         }
         catch (CheckstyleException ex) {
@@ -150,7 +150,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
         checkConfig.addAttribute("ignoreLines", "2");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getConfigPath("java2.header"), expected);
     }
 

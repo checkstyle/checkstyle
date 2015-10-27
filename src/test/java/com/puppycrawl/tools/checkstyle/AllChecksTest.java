@@ -35,7 +35,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -59,7 +59,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         final Set<Class<?>> checkstyleChecks = getCheckstyleChecks();
         final String inputFilePath = getNonCompilablePath("InputDefaultConfig.java");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         for (Class<?> check : checkstyleChecks) {
             final DefaultConfiguration checkConfig = createCheckConfig(check);

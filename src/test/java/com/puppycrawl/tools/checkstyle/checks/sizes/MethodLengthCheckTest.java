@@ -25,7 +25,7 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -42,7 +42,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final MethodLengthCheck checkObj = new MethodLengthCheck();
-        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
             createCheckConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         checkConfig.addAttribute("countEmpty", "false");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -83,7 +83,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     public void testAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
 }

@@ -24,7 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,7 +63,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     @Test
     public void testValidateAbstractClassNamesSetToFalse() throws Exception {
         checkConfig.addAttribute("validateAbstractClassNames", "false");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputIllegalTypeAbstractClassNames.java"), expected);
     }

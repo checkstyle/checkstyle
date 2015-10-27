@@ -27,7 +27,7 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -43,7 +43,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final RegexpCheck checkObj = new RegexpCheck();
-        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", required);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -75,7 +75,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", required);
         checkConfig.addAttribute("duplicateLimit", "0");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -85,7 +85,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", required);
         checkConfig.addAttribute("duplicateLimit", "-1");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -109,7 +109,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RegexpCheck.class);
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -208,7 +208,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RegexpCheck.class);
         checkConfigFalse.addAttribute("format", illegalFalse);
         checkConfigFalse.addAttribute("illegalPattern", "true");
-        final String[] expectedFalse = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expectedFalse = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfigFalse, getPath("InputSemantic.java"), expectedFalse);
     }
 
@@ -221,7 +221,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -249,7 +249,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -276,7 +276,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -288,7 +288,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -300,7 +300,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
@@ -341,14 +341,14 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("illegalPattern", "true");
         checkConfig.addAttribute("ignoreComments", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testOnFileStartingWithEmptyLine() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputStartingWithEmptyLine.java"), expected);
     }
 }

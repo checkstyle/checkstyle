@@ -25,7 +25,7 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -72,7 +72,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testUtilClassPrivateCtor() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUtilityClassConstructorPrivate.java"), expected);
     }
 
@@ -81,7 +81,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testDerivedNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNonUtilityClass.java"), expected);
     }
 
@@ -97,7 +97,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testOnlyNonStaticFieldNonUtilClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRegression1762702.java"), expected);
     }
 
@@ -105,7 +105,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testEmptyAbstractClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHideUtilityClassConstructor3041574_1.java"), expected);
     }
 
@@ -113,7 +113,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testEmptyClassWithOnlyPrivateFields() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHideUtilityClassConstructor3041574_2.java"), expected);
     }
 
@@ -121,7 +121,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testClassWithStaticInnerClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHideUtilityClassConstructor3041574_3.java"), expected);
     }
 
@@ -129,7 +129,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testProtectedCtor() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(HideUtilityClassConstructorCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputHideUtilityClassConstructor.java"), expected);
     }
 

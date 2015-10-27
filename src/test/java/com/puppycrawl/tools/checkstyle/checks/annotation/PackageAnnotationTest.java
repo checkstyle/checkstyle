@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -50,7 +50,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
     public void testGoodPackageAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }
@@ -67,7 +67,7 @@ public class PackageAnnotationTest extends BaseCheckTestSupport {
     public void testAnnotationNotInPackageInfo() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputPackageAnnotation.java"), expected);
     }

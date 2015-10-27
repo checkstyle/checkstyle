@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -73,7 +73,7 @@ public class AvoidStaticImportCheck
     public static final String MSG_KEY = "import.avoidStatic";
 
     /** The classes/static members to exempt from this check. */
-    private String[] excludes = ArrayUtils.EMPTY_STRING_ARRAY;
+    private String[] excludes = CommonUtils.EMPTY_STRING_ARRAY;
 
     @Override
     public int[] getDefaultTokens() {

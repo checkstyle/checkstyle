@@ -34,7 +34,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -76,7 +76,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             final String content = "public class Main { public static final int k = 5 + 4; }";
             writer.write(content);
         }
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
     }
 
@@ -87,7 +87,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             createCheckConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("InputMain.java"), expected);
             fail();
@@ -105,7 +105,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testOnEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, pathToEmptyFile, expected);
     }
@@ -113,7 +113,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     @Test
     public void testWithCheckNotHavingTreeWalkerAsParent() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocPackageCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, temporaryFolder.newFile().getPath(), expected);
@@ -176,7 +176,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
         // one more time to reuse cache
@@ -204,7 +204,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
 
@@ -229,7 +229,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     public void testForInvalidCheckImplementation() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(BadJavaDocCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, pathToEmptyFile, expected);
@@ -313,7 +313,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequiredTokenIsNotInDefaultsCheck.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, pathToEmptyFile, expected);
@@ -332,7 +332,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequiredTokenIsEmptyIntArray.class);
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         try {
             verify(checkConfig, pathToEmptyFile, expected);
@@ -373,14 +373,14 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return ArrayUtils.EMPTY_INT_ARRAY;
+            return CommonUtils.EMPTY_INT_ARRAY;
         }
     }
 
     private static class RequiredTokenIsEmptyIntArray extends Check {
         @Override
         public int[] getRequiredTokens() {
-            return ArrayUtils.EMPTY_INT_ARRAY;
+            return CommonUtils.EMPTY_INT_ARRAY;
         }
 
         @Override
@@ -390,7 +390,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return ArrayUtils.EMPTY_INT_ARRAY;
+            return CommonUtils.EMPTY_INT_ARRAY;
         }
     }
 

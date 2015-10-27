@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-import org.apache.commons.lang3.ArrayUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -49,7 +49,7 @@ public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
     public void testAllBlockComments() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(SinglelineCommentListenerCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFullOfSinglelineComments.java"), expected);
         Assert.assertTrue(ALL_COMMENTS.isEmpty());
     }
