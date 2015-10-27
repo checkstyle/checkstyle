@@ -45,7 +45,7 @@
           added support for a separate throws indentation configuration
         </li>
         <li>
-          SuppressionCommentFilter ignores messageFormat. Patch from Chris Brigham. <a href="http://sourceforge.net/p/checkstyle/bugs/520/">#520</a>
+          SuppressionCommentFilter ignores messageFormat. Patch from Chris Brigham.
         </li>
         <li>
           Exclude some java.util classes from Class Fan out. Thanks to Ivan Sopov and Vincent Massol.<a href="https://github.com/checkstyle/checkstyle/issues/31">#31</a>
