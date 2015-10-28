@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class XDocsPagesTest {
@@ -439,11 +438,6 @@ public class XDocsPagesTest {
 
             // override
             properties.add("fileExtensions");
-        }
-
-        // missing setter, should be fixed
-        if (CustomImportOrderCheck.class.isAssignableFrom(clss)) {
-            properties.add("samePackageMatchingDepth");
         }
 
         // remove undocumented properties

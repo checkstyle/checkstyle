@@ -911,12 +911,6 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <td><code>^$</code></td>
           </tr>
           <tr>
-            <td>samePackageMatchingDepth</td>
-            <td>Number of first domains for SAME_PACKAGE group.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>2</code></td>
-          </tr>
-          <tr>
             <td>separateLineBetweenGroups</td>
             <td>Force empty line separator between import groups.</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
