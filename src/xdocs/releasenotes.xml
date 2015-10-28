@@ -94,6 +94,9 @@
       <p>New:</p>
       <ul>
         <li>
+          Detect nested enums marked as static in RedundantModifier check. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1530">#1530</a>
+        </li>
+        <li>
           New option 'requiredTranslations' to Translation check. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2166">#2166</a>
         </li>
         <li>
@@ -156,9 +159,6 @@
         </li>
         <li>
           Ignore classes nested in interaces or annotations in Final Class Check. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2064">#2064</a>
-        </li>
-        <li>
-          Detect nested enums marked as static in RedundantModifier check. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1530">#1530</a>
         </li>
         <li>
           Fixed NPE in MutableExceptionCheck.isExtendedClassNamedAsException. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1903">#1903</a>
