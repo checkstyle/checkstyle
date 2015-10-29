@@ -23,13 +23,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -89,7 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
-public final class IllegalTypeCheck extends AbstractFormatCheck {
+public final class IllegalTypeCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -97,8 +99,6 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      */
     public static final String MSG_KEY = "illegal.type";
 
-    /** Default value of pattern for illegal class name. */
-    private static final String DEFAULT_FORMAT = "^(.*[\\.])?Abstract.*$";
     /** Abstract classes legal by default. */
     private static final String[] DEFAULT_LEGAL_ABSTRACT_NAMES = {};
     /** Types illegal by default. */
@@ -132,6 +132,12 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
     /** Check methods and fields with only corresponding modifiers. */
     private List<Integer> memberModifiers;
 
+    /** The format string of the regexp. */
+    private String format = "^(.*[\\.])?Abstract.*$";
+
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
+
     /**
      * Controls whether to validate abstract class names.
      */
@@ -139,10 +145,19 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
 
     /** Creates new instance of the check. */
     public IllegalTypeCheck() {
-        super(DEFAULT_FORMAT);
         setIllegalClassNames(DEFAULT_ILLEGAL_TYPES);
         setLegalAbstractClassNames(DEFAULT_LEGAL_ABSTRACT_NAMES);
         setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
+    }
+
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     /**
@@ -325,7 +340,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
                 || illegalClassNames.contains(shortName)
                 || validateAbstractClassNames
                     && !legalAbstractClassNames.contains(className)
-                    && getRegexp().matcher(className).find();
+                    && regexp.matcher(className).find();
     }
 
     /**
