@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -44,21 +44,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * </pre>
  * @author o_sukhodolsky
  */
-public class MissingSwitchDefaultCheck extends DescendantTokenCheck {
+public class MissingSwitchDefaultCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
     public static final String MSG_KEY = "missing.switch.default";
-
-    /** Creates new instance of the check. */
-    public MissingSwitchDefaultCheck() {
-        setLimitedTokens(TokenUtils.getTokenName(TokenTypes.LITERAL_DEFAULT));
-        setMinimumNumber(1);
-        setMaximumDepth(2);
-        setMinimumMessage(MSG_KEY);
-    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -73,5 +65,35 @@ public class MissingSwitchDefaultCheck extends DescendantTokenCheck {
     @Override
     public int[] getRequiredTokens() {
         return getDefaultTokens();
+    }
+
+    @Override
+    public void visitToken(DetailAST ast) {
+        final DetailAST firstCaseGroupAst = ast.findFirstToken(TokenTypes.CASE_GROUP);
+
+        if (!containsDefaultSwitch(firstCaseGroupAst)) {
+            log(ast.getLineNo(), MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if the case group or its sibling contain the 'default' switch.
+     * @param caseGroupAst first case group to check.
+     * @return true if 'default' switch found.
+     */
+    private static boolean containsDefaultSwitch(DetailAST caseGroupAst) {
+        DetailAST nextAst = caseGroupAst;
+        boolean found = false;
+
+        while (nextAst != null) {
+            if (nextAst.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null) {
+                found = true;
+                break;
+            }
+
+            nextAst = nextAst.getNextSibling();
+        }
+
+        return found;
     }
 }
