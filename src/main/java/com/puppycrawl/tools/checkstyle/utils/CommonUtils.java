@@ -184,8 +184,23 @@ public final class CommonUtils {
      *             if unable to create Pattern object.
      **/
     public static Pattern createPattern(String pattern) {
+        return createPattern(pattern, 0);
+    }
+
+    /**
+     * Helper method to create a regular expression with a specific flags.
+     *
+     * @param pattern
+     *            the pattern to match
+     * @param flags
+     *            the flags to set
+     * @return a created regexp object
+     * @throws ConversionException
+     *             if unable to create Pattern object.
+     **/
+    public static Pattern createPattern(String pattern, int flags) {
         try {
-            return Pattern.compile(pattern);
+            return Pattern.compile(pattern, flags);
         }
         catch (final PatternSyntaxException e) {
             throw new ConversionException(

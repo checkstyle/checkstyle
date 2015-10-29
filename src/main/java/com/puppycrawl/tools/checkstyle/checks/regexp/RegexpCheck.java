@@ -24,11 +24,12 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -40,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * it should be):
  * </p>
  * <pre>
- * &lt;module name="RequiredRegexp"&gt;
+ * &lt;module name="RegexpCheck"&gt;
  *    &lt;property name="format" value="This code is copyrighted"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -48,13 +49,13 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * And to make sure the same statement appears at the beginning of the file.
  * </p>
  * <pre>
- * &lt;module name="RequiredRegexp"&gt;
+ * &lt;module name="RegexpCheck"&gt;
  *    &lt;property name="format" value="\AThis code is copyrighted"/&gt;
  * &lt;/module&gt;
  * </pre>
  * @author Stan Quinn
  */
-public class RegexpCheck extends AbstractFormatCheck {
+public class RegexpCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -109,16 +110,14 @@ public class RegexpCheck extends AbstractFormatCheck {
     /** Tracks number of errors. */
     private int errorCount;
 
+    /** The format string of the regexp. */
+    private String format = "$^";
+
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format, Pattern.MULTILINE);
+
     /** The matcher. */
     private Matcher matcher;
-
-    /**
-     * Instantiates an new RegexpCheck.
-     */
-    public RegexpCheck() {
-        // the empty language
-        super("$^", Pattern.MULTILINE);
-    }
 
     /**
      * Setter for message property.
@@ -167,6 +166,16 @@ public class RegexpCheck extends AbstractFormatCheck {
         checkForDuplicates = duplicateLimit > DEFAULT_DUPLICATE_LIMIT;
     }
 
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public final void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format, Pattern.MULTILINE);
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -184,8 +193,7 @@ public class RegexpCheck extends AbstractFormatCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        final Pattern pattern = getRegexp();
-        matcher = pattern.matcher(getFileContents().getText().getFullText());
+        matcher = regexp.matcher(getFileContents().getText().getFullText());
         matchCount = 0;
         errorCount = 0;
         findMatch();
@@ -265,7 +273,7 @@ public class RegexpCheck extends AbstractFormatCheck {
         String msg;
 
         if (message.isEmpty()) {
-            msg = getFormat();
+            msg = format;
         }
         else {
             msg = message;
