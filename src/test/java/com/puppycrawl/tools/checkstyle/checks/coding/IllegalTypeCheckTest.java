@@ -49,6 +49,22 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testTokenModifiers() throws Exception {
+        checkConfig.addAttribute("illegalClassNames", "Date, Calendar, GregorianCalendar");
+        checkConfig.addAttribute("validateAbstractClassNames", "true");
+        checkConfig.addAttribute("tokens", "PARAMETER_DEF,METHOD_DEF");
+        String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        /*
+        java.lang.AssertionError: differing violations:
+        [16:17: Declaring variables, return values or parameters of type 'Calendar' is not allowed.,
+        26:23: Declaring variables, return values or parameters of type 'Date' is not allowed.])}
+         */
+
+        verify(checkConfig, getPath("InputIllegalTypeExcludeVariableScope.java"), expected);
+    }
+
+    @Test
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
         checkConfig.addAttribute("validateAbstractClassNames", "true");
         final String[] expected = {

@@ -24,6 +24,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -89,11 +91,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
-public final class IllegalTypeCheck extends AbstractFormatCheck {
+public class IllegalTypeCheck extends AbstractFormatCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "illegal.type";
 
@@ -170,7 +171,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return ArrayUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -403,7 +404,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of illegal variable types.
      * @param classNames array of illegal variable types
      */
-    public void setIllegalClassNames(String... classNames) {
+    public final void setIllegalClassNames(String... classNames) {
         illegalClassNames.clear();
         Collections.addAll(illegalClassNames, classNames);
     }
@@ -412,7 +413,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of ignore method names.
      * @param methodNames array of ignored method names
      */
-    public void setIgnoredMethodNames(String... methodNames) {
+    public final void setIgnoredMethodNames(String... methodNames) {
         ignoredMethodNames.clear();
         Collections.addAll(ignoredMethodNames, methodNames);
     }
@@ -421,7 +422,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of legal abstract class names.
      * @param classNames array of legal abstract class names
      */
-    public void setLegalAbstractClassNames(String... classNames) {
+    public final void setLegalAbstractClassNames(String... classNames) {
         legalAbstractClassNames.clear();
         Collections.addAll(legalAbstractClassNames, classNames);
     }
@@ -430,7 +431,7 @@ public final class IllegalTypeCheck extends AbstractFormatCheck {
      * Set the list of member modifiers (of methods and fields) which should be checked.
      * @param modifiers String contains modifiers.
      */
-    public void setMemberModifiers(String modifiers) {
+    public final void setMemberModifiers(String modifiers) {
         final List<Integer> modifiersList = new ArrayList<>();
         for (String modifier : modifiers.split(",")) {
             modifiersList.add(TokenUtils.getTokenId(modifier.trim()));
