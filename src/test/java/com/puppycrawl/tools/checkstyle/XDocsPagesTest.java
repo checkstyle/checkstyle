@@ -125,7 +125,6 @@ public class XDocsPagesTest {
             "MemberNameCheck.compileFlags",
             "MethodNameCheck.compileFlags",
             "MethodTypeParameterNameCheck.compileFlags",
-            "PackageNameCheck.compileFlags",
             "ParameterNameCheck.compileFlags",
             "StaticVariableNameCheck.compileFlags",
             "TypeNameCheck.compileFlags",
