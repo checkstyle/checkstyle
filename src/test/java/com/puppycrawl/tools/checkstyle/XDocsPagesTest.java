@@ -128,7 +128,6 @@ public class XDocsPagesTest {
             "ParameterNameCheck.compileFlags",
             "StaticVariableNameCheck.compileFlags",
             "TypeNameCheck.compileFlags",
-            "RegexpCheck.compileFlags",
             "SuppressionCommentFilter.fileContents",
             "MethodNameCheck.applyToPackage",
             "MethodNameCheck.applyToPrivate",
