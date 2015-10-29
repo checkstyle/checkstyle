@@ -21,10 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -38,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class ReturnCountCheck extends AbstractFormatCheck {
+public final class ReturnCountCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -46,21 +48,17 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
      */
     public static final String MSG_KEY = "return.count";
 
-    /** Default allowed number of return statements. */
-    private static final int DEFAULT_MAX = 2;
+    /** The format string of the regexp. */
+    private String format = "^equals$";
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
 
     /** Stack of method contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
-    /** Maximum allowed number of return stmts. */
-    private int max;
+    /** Maximum allowed number of return statements. */
+    private int max = 2;
     /** Current method context. */
     private Context context;
-
-    /** Creates new instance of the checks. */
-    public ReturnCountCheck() {
-        super("^equals$");
-        max = DEFAULT_MAX;
-    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -87,6 +85,16 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
             TokenTypes.LAMBDA,
             TokenTypes.LITERAL_RETURN,
         };
+    }
+
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     /**
@@ -152,7 +160,7 @@ public final class ReturnCountCheck extends AbstractFormatCheck {
     private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
         final DetailAST methodNameAST = ast.findFirstToken(TokenTypes.IDENT);
-        final boolean check = !getRegexp().matcher(methodNameAST.getText()).find();
+        final boolean check = !regexp.matcher(methodNameAST.getText()).find();
         context = new Context(check);
     }
 
