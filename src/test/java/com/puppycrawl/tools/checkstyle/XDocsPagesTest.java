@@ -109,7 +109,6 @@ public class XDocsPagesTest {
     private static final Set<String> FILESET_PROPERTIES = getProperties(AbstractFileSetCheck.class);
 
     private static final List<String> UNDOCUMENTED_PROPERTIES = Arrays.asList(
-            "SuppressWarningsCheck.compileFlags",
             "SuppressWithNearbyCommentFilter.fileContents",
             "IllegalTokenTextCheck.compileFlags",
             "ReturnCountCheck.compileFlags",
