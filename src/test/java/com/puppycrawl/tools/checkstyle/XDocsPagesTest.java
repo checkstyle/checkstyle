@@ -112,7 +112,6 @@ public class XDocsPagesTest {
             "SuppressWithNearbyCommentFilter.fileContents",
             "IllegalTokenTextCheck.compileFlags",
             "ReturnCountCheck.compileFlags",
-            "IllegalTypeCheck.compileFlags",
             "MutableExceptionCheck.compileFlags",
             "AbstractClassNameCheck.compileFlags",
             "ClassTypeParameterNameCheck.compileFlags",
