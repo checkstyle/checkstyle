@@ -43,7 +43,7 @@ public class MissingCtorCheckTest extends BaseCheckTestSupport {
             createCheckConfig(MissingCtorCheck.class);
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_KEY),
+            "3: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,

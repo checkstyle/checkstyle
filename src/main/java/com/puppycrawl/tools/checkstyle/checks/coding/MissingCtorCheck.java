@@ -19,10 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * <p>
@@ -38,21 +37,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *
  * @author o_sukhodolsky
  */
-public class MissingCtorCheck extends DescendantTokenCheck {
+public class MissingCtorCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
     public static final String MSG_KEY = "missing.ctor";
-
-    /** Creates new instance of the check. */
-    public MissingCtorCheck() {
-        setLimitedTokens(TokenUtils.getTokenName(TokenTypes.CTOR_DEF));
-        setMinimumNumber(1);
-        setMaximumDepth(2);
-        setMinimumMessage(MSG_KEY);
-    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -72,8 +63,10 @@ public class MissingCtorCheck extends DescendantTokenCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (!modifiers.branchContains(TokenTypes.ABSTRACT)) {
-            super.visitToken(ast);
+        if (!modifiers.branchContains(TokenTypes.ABSTRACT)
+                && ast.findFirstToken(TokenTypes.OBJBLOCK)
+                    .findFirstToken(TokenTypes.CTOR_DEF) == null) {
+            log(ast.getLineNo(), MSG_KEY);
         }
     }
 }
