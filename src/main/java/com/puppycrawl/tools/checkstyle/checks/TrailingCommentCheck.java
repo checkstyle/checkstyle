@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -98,7 +99,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * @author o_sukhodolsky
  */
-public class TrailingCommentCheck extends AbstractFormatCheck {
+public class TrailingCommentCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -106,25 +107,31 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
      */
     public static final String MSG_KEY = "trailing.comments";
 
-    /** Default format for allowed blank line. */
-    private static final String DEFAULT_FORMAT = "^[\\s\\}\\);]*$";
-
     /** Pattern for legal trailing comment. */
     private Pattern legalComment;
 
-    /**
-     * Creates new instance of the check.
-     */
-    public TrailingCommentCheck() {
-        super(DEFAULT_FORMAT);
-    }
+    /** The format string of the regexp. */
+    private String format = "^[\\s\\}\\);]*$";
+
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
 
     /**
      * Sets patter for legal trailing comments.
-     * @param format format to set.
+     * @param legalComment format to set.
      */
-    public void setLegalComment(final String format) {
-        legalComment = CommonUtils.createPattern(format);
+    public void setLegalComment(final String legalComment) {
+        this.legalComment = CommonUtils.createPattern(legalComment);
+    }
+
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public final void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override
@@ -149,7 +156,6 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        final Pattern blankLinePattern = getRegexp();
         final Map<Integer, TextBlock> cppComments = getFileContents()
                 .getCppComments();
         final Map<Integer, List<TextBlock>> cComments = getFileContents()
@@ -177,7 +183,7 @@ public class TrailingCommentCheck extends AbstractFormatCheck {
                     continue;
                 }
             }
-            if (!blankLinePattern.matcher(lineBefore).find()
+            if (!regexp.matcher(lineBefore).find()
                 && !isLegalComment(comment)) {
                 log(lineNo, MSG_KEY);
             }

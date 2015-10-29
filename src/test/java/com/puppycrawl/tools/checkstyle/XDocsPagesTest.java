@@ -115,7 +115,6 @@ public class XDocsPagesTest {
             "ReturnCountCheck.compileFlags",
             "IllegalTypeCheck.compileFlags",
             "MutableExceptionCheck.compileFlags",
-            "TrailingCommentCheck.compileFlags",
             "AbstractClassNameCheck.compileFlags",
             "ClassTypeParameterNameCheck.compileFlags",
             "ConstantNameCheck.compileFlags",
