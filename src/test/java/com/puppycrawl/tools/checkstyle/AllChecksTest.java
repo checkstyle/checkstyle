@@ -53,6 +53,8 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 
 public class AllChecksTest extends BaseCheckTestSupport {
+    private static final String CONFIG_PATH = "config" + File.separator
+            + "checkstyle_checks.xml";
 
     @Test
     public void testAllChecksWithDefaultConfiguration() throws Exception {
@@ -151,10 +153,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     @Test
     public void testAllChecksAreReferencedInConfigFile() throws Exception {
-        final String configFilePath = "config/checkstyle_checks.xml";
         final Set<Class<?>> checksFromClassPath = getCheckstyleChecks();
         final Set<String> checksReferencedInConfig =
-                getCheckStyleChecksReferencedInConfig(configFilePath);
+                getCheckStyleChecksReferencedInConfig(CONFIG_PATH);
         final Set<String> checksNames = getSimpleNames(checksFromClassPath);
 
         for (String check : checksNames) {
@@ -182,6 +183,23 @@ public class AllChecksTest extends BaseCheckTestSupport {
                     moduleName);
                 Assert.fail(missingModuleMessage);
             }
+        }
+    }
+
+    @Test
+    public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
+        final Set<String> configChecks = getCheckStyleChecksReferencedInConfig(CONFIG_PATH);
+
+        for (String moduleName : getSimpleNames(getCheckstyleModules())) {
+            if ("SuppressionCommentFilter".equals(moduleName)
+                || "SeverityMatchFilter".equals(moduleName)
+                || "SuppressWithNearbyCommentFilter".equals(moduleName)
+                || "SuppressWarningsFilter".equals(moduleName)) {
+                continue;
+            }
+
+            Assert.assertTrue("checkstyle_checks.xml is missing module: " + moduleName,
+                    configChecks.contains(moduleName));
         }
     }
 
@@ -261,7 +279,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
         final String className = loadedClass.getSimpleName();
         return isCheckstyleNonAbstractCheck(loadedClass, className)
             || isFilterModule(loadedClass, className)
-            || "SuppressWarningsHolder".equals(className);
+            || "SuppressWarningsHolder".equals(className)
+            || "FileContentsHolder".equals(className);
     }
 
     /**
@@ -332,8 +351,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final Element module = (Element) currentNode;
                 final String checkName = module.getAttribute("name");
                 if (!"Checker".equals(checkName)
-                    && !"TreeWalker".equals(checkName)
-                    && !"SuppressionFilter".equals(checkName)) {
+                    && !"TreeWalker".equals(checkName)) {
                     checksReferencedInCheckstyleChecksXML.add(checkName);
                 }
             }

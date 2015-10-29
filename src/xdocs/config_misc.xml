@@ -398,7 +398,7 @@ messages.properties: Key 'ok' missing.
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L379">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L380">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1549,6 +1549,12 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       </subsection>
 
       <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L378">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
 
       <subsection name="Package">
