@@ -345,7 +345,7 @@ public class CheckstyleAntTask extends Task {
                 + " files", Project.MSG_INFO);
         log("Using configuration " + configLocation, Project.MSG_VERBOSE);
 
-        int numErrs;
+        final int numErrs;
 
         try {
             final long processingStartTime = System.currentTimeMillis();
@@ -380,7 +380,7 @@ public class CheckstyleAntTask extends Task {
      * @return new instance of {@code Checker}
      */
     private Checker createChecker() {
-        Checker checker;
+        final Checker checker;
         try {
             final Properties props = createOverridingProperties();
             final Configuration config =
