@@ -43,7 +43,7 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testContainsAnnotationNull() throws ReflectiveOperationException {
+    public void testContainsAnnotationNull() {
         try {
             AnnotationUtility.containsAnnotation(null);
             Assert.fail();
@@ -54,7 +54,7 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testContainsAnnotationNull2() throws ReflectiveOperationException {
+    public void testContainsAnnotationNull2() {
         try {
             AnnotationUtility.containsAnnotation(null, "");
             Assert.fail();
@@ -65,14 +65,14 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testContainsAnnotationFalse() throws ReflectiveOperationException {
+    public void testContainsAnnotationFalse() {
         final DetailAST ast = new DetailAST();
         ast.setType(1);
         Assert.assertFalse(AnnotationUtility.containsAnnotation(ast));
     }
 
     @Test
-    public void testContainsAnnotationFalse2() throws ReflectiveOperationException {
+    public void testContainsAnnotationFalse2() {
         final DetailAST ast = new DetailAST();
         ast.setType(1);
         final DetailAST ast2 = new DetailAST();
@@ -82,7 +82,7 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testContainsAnnotationTrue() throws ReflectiveOperationException {
+    public void testContainsAnnotationTrue() {
         final DetailAST ast = new DetailAST();
         ast.setType(1);
         final DetailAST ast2 = new DetailAST();
@@ -95,7 +95,7 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testAnnotationHolderNull() throws ReflectiveOperationException {
+    public void testAnnotationHolderNull() {
         try {
             AnnotationUtility.getAnnotationHolder(null);
             Assert.fail();
@@ -106,7 +106,7 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testAnnotationNull() throws ReflectiveOperationException {
+    public void testAnnotationNull() {
         try {
             AnnotationUtility.getAnnotation(null, null);
             Assert.fail();
@@ -117,7 +117,7 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testAnnotationNull2() throws ReflectiveOperationException {
+    public void testAnnotationNull2() {
         try {
             AnnotationUtility.getAnnotation(new DetailAST(), null);
             Assert.fail();
@@ -128,7 +128,7 @@ public class AnnotationUtilityTest {
     }
 
     @Test
-    public void testAnnotationEmpty() throws ReflectiveOperationException {
+    public void testAnnotationEmpty() {
         try {
             AnnotationUtility.getAnnotation(new DetailAST(), "");
             Assert.fail();

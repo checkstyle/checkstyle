@@ -35,13 +35,13 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testInEnumOnRoot() throws ReflectiveOperationException {
+    public void testInEnumOnRoot() {
         final DetailAST ast = new DetailAST();
         Assert.assertFalse(ScopeUtils.isInEnumBlock(ast));
     }
 
     @Test
-    public void testInEnumBlockInNew() throws ReflectiveOperationException {
+    public void testInEnumBlockInNew() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_NEW);
         final DetailAST ast2 = new DetailAST();
@@ -52,7 +52,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testInEnumBlockWithEnum() throws ReflectiveOperationException {
+    public void testInEnumBlockWithEnum() {
         final DetailAST ast0 = new DetailAST();
         ast0.setType(TokenTypes.OBJBLOCK);
         final DetailAST ast1 = new DetailAST();
@@ -66,7 +66,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testInEnumBlockInInterface() throws ReflectiveOperationException {
+    public void testInEnumBlockInInterface() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.INTERFACE_DEF);
         final DetailAST ast2 = new DetailAST();
@@ -77,7 +77,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testInEnumBlockInAnnotation() throws ReflectiveOperationException {
+    public void testInEnumBlockInAnnotation() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ANNOTATION_DEF);
         final DetailAST ast2 = new DetailAST();
@@ -88,7 +88,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testInEnumBlockInClass() throws ReflectiveOperationException {
+    public void testInEnumBlockInClass() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.CLASS_DEF);
         final DetailAST ast2 = new DetailAST();
@@ -99,7 +99,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testIsOuterMostTypeInterface() throws ReflectiveOperationException {
+    public void testIsOuterMostTypeInterface() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.INTERFACE_DEF);
         final DetailAST ast2 = new DetailAST();
@@ -110,7 +110,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testIsOuterMostTypeAnnotation() throws ReflectiveOperationException {
+    public void testIsOuterMostTypeAnnotation() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ANNOTATION_DEF);
         final DetailAST ast2 = new DetailAST();
@@ -121,7 +121,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testIsOuterMostTypeEnum() throws ReflectiveOperationException {
+    public void testIsOuterMostTypeEnum() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ENUM_DEF);
         final DetailAST ast2 = new DetailAST();
@@ -132,7 +132,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testIsLocalVariableDefCatch() throws ReflectiveOperationException {
+    public void testIsLocalVariableDefCatch() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_CATCH);
         final DetailAST ast2 = new DetailAST();
@@ -143,7 +143,7 @@ public class ScopeUtilsTest {
     }
 
     @Test
-    public void testIsLocalVariableDefUnexpected() throws ReflectiveOperationException {
+    public void testIsLocalVariableDefUnexpected() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_CATCH);
 

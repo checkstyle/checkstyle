@@ -61,7 +61,7 @@ public class PropertyCacheFileTest {
     }
 
     @Test
-    public void testCtor() throws IOException {
+    public void testCtor() {
         try {
             new PropertyCacheFile(null, "");
         }

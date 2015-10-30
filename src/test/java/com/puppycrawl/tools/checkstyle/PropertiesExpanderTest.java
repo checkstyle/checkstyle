@@ -21,12 +21,10 @@ package com.puppycrawl.tools.checkstyle;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-
 public class PropertiesExpanderTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCtorException()  throws CheckstyleException {
+    public void testCtorException() {
         new PropertiesExpander(null);
     }
 
