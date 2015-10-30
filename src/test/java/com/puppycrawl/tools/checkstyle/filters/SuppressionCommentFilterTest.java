@@ -254,22 +254,39 @@ public class SuppressionCommentFilterTest
         assertEquals("Tag[line=0; col=1; on=false; text='text']", tag.toString());
     }
 
-    @Test(expected = ConversionException.class)
+    @Test
     public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkFormat", "e[l");
         final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifySuppressed(filterConfig, suppressed);
+
+        try {
+            verifySuppressed(filterConfig, suppressed);
+        }
+        catch (CheckstyleException ex) {
+            final ConversionException cause = (ConversionException) ex.getCause();
+            assertEquals("unable to parse expanded comment e[l",
+                    cause.getMessage());
+        }
     }
 
-    @Test(expected = ConversionException.class)
+    @Test
     public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("messageFormat", "e[l");
         final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifySuppressed(filterConfig, suppressed);
+
+        try {
+            verifySuppressed(filterConfig, suppressed);
+        }
+        catch (CheckstyleException ex) {
+            final ConversionException cause = (ConversionException) ex.getCause();
+            assertEquals("unable to parse expanded comment e[l",
+                    cause.getMessage());
+        }
+
     }
 
     @Test

@@ -252,28 +252,35 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
         // Process each file
         for (final File file : files) {
-            if (!CommonUtils.matchesFileExtension(file, fileExtensions)) {
-                continue;
-            }
-            final String fileName = file.getAbsolutePath();
-            fireFileStarted(fileName);
-            final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
             try {
-                final FileText theText = new FileText(file.getAbsoluteFile(),
-                        charset);
-                for (final FileSetCheck fsc : fileSetChecks) {
-                    fileMessages.addAll(fsc.process(file, theText));
+                if (!CommonUtils.matchesFileExtension(file, fileExtensions)) {
+                    continue;
                 }
+                final String fileName = file.getAbsolutePath();
+                fireFileStarted(fileName);
+                final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
+                try {
+                    final FileText theText = new FileText(file.getAbsoluteFile(),
+                            charset);
+                    for (final FileSetCheck fsc : fileSetChecks) {
+                        fileMessages.addAll(fsc.process(file, theText));
+                    }
+                }
+                catch (final IOException ioe) {
+                    LOG.debug("IOException occurred.", ioe);
+                    fileMessages.add(new LocalizedMessage(0,
+                            Definitions.CHECKSTYLE_BUNDLE, "general.exception",
+                            new String[] {ioe.getMessage()}, null, getClass(),
+                            null));
+                }
+                fireErrors(fileName, fileMessages);
+                fireFileFinished(fileName);
             }
-            catch (final IOException ioe) {
-                LOG.debug("IOException occurred.", ioe);
-                fileMessages.add(new LocalizedMessage(0,
-                        Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                        new String[] {ioe.getMessage()}, null, getClass(),
-                        null));
+            catch (Exception ex) {
+                // We need to catch all exception to put a reason failure(file name) in exception
+                throw new CheckstyleException("Exception happens during processing of "
+                        + file.getPath(), ex);
             }
-            fireErrors(fileName, fileMessages);
-            fireFileFinished(fileName);
         }
 
         // Finish up

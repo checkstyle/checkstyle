@@ -37,6 +37,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
 
 @SuppressWarnings("deprecation")
@@ -164,10 +165,11 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         try {
             verify(config, getPath("InputLoadErrors.java"), expected);
         }
-        catch (IllegalStateException ex) {
+        catch (CheckstyleException ex) {
+            final IllegalStateException cause = (IllegalStateException) ex.getCause();
             assertEquals("Unable to get"
-                    + " class information for @throws tag 'InvalidExceptionName'.",
-                    ex.getMessage());
+                            + " class information for @throws tag 'InvalidExceptionName'.",
+                    cause.getMessage());
         }
     }
 
