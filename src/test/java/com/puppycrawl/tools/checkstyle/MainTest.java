@@ -59,6 +59,10 @@ public class MainTest {
         return "src/test/resources/com/puppycrawl/tools/checkstyle/" + filename;
     }
 
+    private static String getNonCompilablePath(String filename) {
+        return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/" + filename;
+    }
+
     private static String getFilePath(String filename) throws IOException {
         return new File(getPath(filename)).getCanonicalPath();
     }
@@ -439,10 +443,10 @@ public class MainTest {
                       + " - Content is not allowed in prolog.:7:1%n"
                       + "Cause: org.xml.sax.SAXParseException; systemId: file:")));
                 assertTrue(systemOut.getLog().endsWith(String.format(Locale.ROOT,
-                      "com/puppycrawl/tools/checkstyle/config-Incorrect.xml;"
-                      + " lineNumber: 7; columnNumber: 1; "
-                      + "Content is not allowed in prolog.%n"
-                      + "Checkstyle ends with 1 errors.%n")));
+                        "com/puppycrawl/tools/checkstyle/config-Incorrect.xml;"
+                                + " lineNumber: 7; columnNumber: 1; "
+                                + "Content is not allowed in prolog.%n"
+                                + "Checkstyle ends with 1 errors.%n")));
                 assertEquals("", systemErr.getLog());
             }
         });
@@ -577,4 +581,31 @@ public class MainTest {
         final List<File> result = (List<File>) method.invoke(null, fileMock);
         assertEquals(0, result.size());
     }
+
+    @Test
+    public void testFileReferenceDuringException() throws Exception {
+        exit.expectSystemExitWithStatus(-2);
+        final String cause = "Cause: com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
+                + " NoViableAltException occurred during the analysis of file "
+                + getNonCompilablePath("InputIncorrectClass.java.");
+
+        final String expectedExceptionMessage =
+                String.format(Locale.ROOT, "Starting audit...%n"
+                        + "Exception happens during processing of %1$s%n"
+                        + "%2$s%n"
+                        + "Checkstyle ends with 1 errors.%n",
+                        getNonCompilablePath("InputIncorrectClass.java"), cause);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals(expectedExceptionMessage, systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        // We put xml as source to cause parse excepion
+        Main.main("-c", getPath("config-classname.xml"),
+                getNonCompilablePath("InputIncorrectClass.java"));
+    }
+
 }

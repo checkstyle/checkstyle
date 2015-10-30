@@ -9,6 +9,11 @@
               files="TokenTypes.java"
               lines="1"/>
 
+    <!-- There is no other way to deliver filename that was under processing -->
+    <suppress checks="IllegalCatch"
+              files="Checker.java"
+              lines="279"/>
+
     <!-- we can not change it as, Check name is part of API (used in configurations) -->
     <suppress checks="AbbreviationAsWordInName"
               files="JavaNCSSCheck.java"

@@ -252,6 +252,12 @@
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']"/>
     </properties>
   </rule>
+  <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException">
+    <properties>
+      <!-- There is no other way to deliver filename that was under processing -->
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='process' and ../../..[@Image='Checker']]"/>
+    </properties>
+  </rule>
 
   <rule ref="rulesets/java/strings.xml"/>
   <rule ref="rulesets/java/sunsecure.xml/MethodReturnsInternalArray">
