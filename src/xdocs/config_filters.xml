@@ -73,6 +73,12 @@
           </source>
       </subsection>
       <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L384-L390">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
@@ -528,6 +534,12 @@ HashSet hashSet; // Warning here: Declaring variables, return values or paramete
           </source>
       </subsection>
       <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L401-L409">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
@@ -713,6 +725,12 @@ public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAft
             </source>
         </subsection>
         <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L391-L400">
+            Checkstyle Style</a>
+          </li>
+        </ul>
         </subsection>
         <subsection name="Package">
             <p> com.puppycrawl.tools.checkstyle.filters </p>
@@ -774,6 +792,12 @@ private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCh
           </source>
       </subsection>
       <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L383">
+            Checkstyle Style</a>
+          </li>
+        </ul>
       </subsection>
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
