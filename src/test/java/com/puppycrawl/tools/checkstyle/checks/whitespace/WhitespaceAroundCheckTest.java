@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class WhitespaceAroundTest
+public class WhitespaceAroundCheckTest
     extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
