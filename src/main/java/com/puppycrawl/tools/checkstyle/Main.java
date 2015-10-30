@@ -83,6 +83,7 @@ public final class Main {
      * @param args the command line arguments.
      * @throws FileNotFoundException if there is a problem with files access
      **/
+    @SuppressWarnings("CallToPrintStackTrace")
     public static void main(String... args) throws FileNotFoundException {
         int errorCounter = 0;
         boolean cliViolations = false;
@@ -131,7 +132,7 @@ public final class Main {
         catch (CheckstyleException e) {
             exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
             errorCounter = 1;
-            printMessageAndCause(e);
+            e.printStackTrace();
         }
         finally {
             // return exit code base on validation of Checker
@@ -141,17 +142,6 @@ public final class Main {
             if (exitStatus != 0) {
                 System.exit(exitStatus);
             }
-        }
-    }
-
-    /**
-     * Prints message of exception to the first line and cause of exception to the second line.
-     * @param exception to be written to console
-   */
-    private static void printMessageAndCause(CheckstyleException exception) {
-        System.out.println(exception.getMessage());
-        if (exception.getCause() != null) {
-            System.out.println("Cause: " + exception.getCause());
         }
     }
 

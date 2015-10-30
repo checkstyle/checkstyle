@@ -591,15 +591,16 @@ public class MainTest {
 
         final String expectedExceptionMessage =
                 String.format(Locale.ROOT, "Starting audit...%n"
-                        + "Exception happens during processing of %1$s%n"
-                        + "%2$s%n"
-                        + "Checkstyle ends with 1 errors.%n",
-                        getNonCompilablePath("InputIncorrectClass.java"), cause);
+                        + "Checkstyle ends with 1 errors.%n");
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
-                assertEquals("", systemErr.getLog());
+                String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
+                        + "CheckstyleException: Exception happens during processing of "
+                        + "src/test/resources-noncompilable/com/puppycrawl/tools/"
+                        + "checkstyle/InputIncorrectClass.java\n";
+                assertTrue(systemErr.getLog().startsWith(exceptionFirstLine));
             }
         });
 
