@@ -120,7 +120,7 @@ public class PackageNamesLoaderTest {
 
         final URL url = getMockUrl(mockConnection);
 
-        final Enumeration<URL> enumeration = (Enumeration<URL>) mock(Enumeration.class);
+        final Enumeration<URL> enumeration = mock(Enumeration.class);
         when(enumeration.hasMoreElements()).thenReturn(true);
         when(enumeration.nextElement()).thenReturn(url);
 
@@ -145,7 +145,7 @@ public class PackageNamesLoaderTest {
 
         final URL url = getMockUrl(mockConnection);
 
-        final Enumeration<URL> enumer = (Enumeration<URL>) mock(Enumeration.class);
+        final Enumeration<URL> enumer = mock(Enumeration.class);
         when(enumer.hasMoreElements()).thenReturn(true);
         when(enumer.nextElement()).thenReturn(url);
 
