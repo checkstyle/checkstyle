@@ -333,7 +333,7 @@ public class SuppressWithNearbyCommentFilter
                 }
                 format = CommonUtils.fillTemplateWithStringsByRegexp(
                         filter.influenceFormat, text, filter.commentRegexp);
-                int influence;
+                final int influence;
                 try {
                     if (CommonUtils.startsWithChar(format, '+')) {
                         format = format.substring(1);

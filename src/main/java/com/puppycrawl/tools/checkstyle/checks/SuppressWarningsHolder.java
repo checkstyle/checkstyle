@@ -306,7 +306,7 @@ public class SuppressWarningsHolder
      * @return get target of annotation
      */
     private static DetailAST getAnnotationTarget(DetailAST ast) {
-        DetailAST targetAST;
+        final DetailAST targetAST;
         final DetailAST parentAST = ast.getParent();
         switch (parentAST.getType()) {
             case TokenTypes.MODIFIERS:
