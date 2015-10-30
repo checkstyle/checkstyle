@@ -37,11 +37,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * must be declared final.
  * </p>
  * <p>
- * An example of how to configure the check is:
+ * An example of how to configure the check to validate variable definition is:
  * </p>
  * <pre>
  * &lt;module name="FinalLocalVariable"&gt;
- *     &lt;property name="token" value="VARIABLE_DEF"/&gt;
+ *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </p>
  * <pre>
  * &lt;module name="FinalLocalVariable"&gt;
- *     &lt;property name="token" value="VARIABLE_DEF"/&gt;
+ *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
  *     &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -71,6 +71,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * }
  * </p>
  * @author k_gibbs, r_auckenthaler
+ * @author Vladislav Lisetskiy
  */
 public class FinalLocalVariableCheck extends Check {
 
@@ -81,7 +82,7 @@ public class FinalLocalVariableCheck extends Check {
     public static final String MSG_KEY = "final.variable";
 
     /**
-     * Assign operators types.
+     * Assign operator types.
      */
     private static final int[] ASSIGN_OPERATOR_TYPES = {
         TokenTypes.POST_INC,
@@ -102,8 +103,17 @@ public class FinalLocalVariableCheck extends Check {
         TokenTypes.DEC,
     };
 
-    /** Scope Stack. */
-    private final Deque<Map<String, DetailAST>> scopeStack = new ArrayDeque<>();
+    /**
+     * Loop types.
+     */
+    private static final int[] LOOP_TYPES = {
+        TokenTypes.LITERAL_FOR,
+        TokenTypes.LITERAL_WHILE,
+        TokenTypes.LITERAL_DO,
+    };
+
+    /** Scope Deque. */
+    private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
 
     /** Controls whether to check enhanced for-loop variable. */
     private boolean validateEnhancedForLoopVariable;
@@ -111,6 +121,7 @@ public class FinalLocalVariableCheck extends Check {
     static {
         // Array sorting for binary search
         Arrays.sort(ASSIGN_OPERATOR_TYPES);
+        Arrays.sort(LOOP_TYPES);
     }
 
     /**
@@ -122,17 +133,25 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return new int[] {
+            TokenTypes.IDENT,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.SLIST,
+            TokenTypes.OBJBLOCK,
+        };
+    }
+
+    @Override
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.IDENT,
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.LITERAL_FOR,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
@@ -142,27 +161,10 @@ public class FinalLocalVariableCheck extends Check {
             TokenTypes.IDENT,
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.SLIST,
+            TokenTypes.OBJBLOCK,
             TokenTypes.VARIABLE_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.SLIST,
-            TokenTypes.OBJBLOCK,
             TokenTypes.PARAMETER_DEF,
-        };
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return new int[] {
-            TokenTypes.IDENT,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.SLIST,
-            TokenTypes.OBJBLOCK,
         };
     }
 
@@ -171,12 +173,9 @@ public class FinalLocalVariableCheck extends Check {
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.SLIST:
-            case TokenTypes.LITERAL_FOR:
             case TokenTypes.METHOD_DEF:
             case TokenTypes.CTOR_DEF:
-            case TokenTypes.STATIC_INIT:
-            case TokenTypes.INSTANCE_INIT:
-                scopeStack.push(new HashMap<String, DetailAST>());
+                scopeStack.push(new ScopeData());
                 break;
 
             case TokenTypes.PARAMETER_DEF:
@@ -184,14 +183,14 @@ public class FinalLocalVariableCheck extends Check {
                         && !ast.branchContains(TokenTypes.FINAL)
                         && !isInAbstractOrNativeMethod(ast)
                         && !ScopeUtils.isInInterfaceBlock(ast)) {
-                    insertVariable(ast);
+                    insertParameter(ast);
                 }
                 break;
             case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
+                        && !ast.branchContains(TokenTypes.FINAL)
                         && !isVariableInForInit(ast)
-                        && shouldCheckEnhancedForLoopVariable(ast)
-                        && !ast.branchContains(TokenTypes.FINAL)) {
+                        && shouldCheckEnhancedForLoopVariable(ast)) {
                     insertVariable(ast);
                 }
                 break;
@@ -199,7 +198,7 @@ public class FinalLocalVariableCheck extends Check {
             case TokenTypes.IDENT:
                 final int parentType = ast.getParent().getType();
                 if (isAssignOperator(parentType)
-                        && ast.getParent().getFirstChild() == ast) {
+                        && isFirstChild(ast)) {
                     removeVariable(ast);
                 }
                 break;
@@ -209,13 +208,22 @@ public class FinalLocalVariableCheck extends Check {
         }
     }
 
-    /**
-     * Is Arithmetic operator.
-     * @param parentType token AST
-     * @return true is token type is in arithmetic operator
-     */
-    private static boolean isAssignOperator(int parentType) {
-        return Arrays.binarySearch(ASSIGN_OPERATOR_TYPES, parentType) >= 0;
+    @Override
+    public void leaveToken(DetailAST ast) {
+        switch (ast.getType()) {
+            case TokenTypes.OBJBLOCK:
+            case TokenTypes.SLIST:
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+                final Map<String, DetailAST> scope = scopeStack.pop().scope;
+                for (DetailAST node : scope.values()) {
+                    log(node.getLineNo(), node.getColumnNo(), MSG_KEY, node
+                        .getText());
+                }
+                break;
+            default:
+                // do nothing
+        }
     }
 
     /**
@@ -226,6 +234,100 @@ public class FinalLocalVariableCheck extends Check {
     private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
         return validateEnhancedForLoopVariable
                 || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
+    }
+
+    /**
+     * Insert a parameter at the topmost scope stack.
+     * @param ast the variable to insert.
+     */
+    private void insertParameter(DetailAST ast) {
+        final Map<String, DetailAST> scope = scopeStack.peek().scope;
+        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        scope.put(astNode.getText(), astNode);
+    }
+
+    /**
+     * Insert a variable at the topmost scope stack.
+     * @param ast the variable to insert.
+     */
+    private void insertVariable(DetailAST ast) {
+        final Map<String, DetailAST> scope = scopeStack.peek().scope;
+        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+        scope.put(astNode.getText(), astNode);
+        if (!isInitialized(astNode)) {
+            scopeStack.peek().uninitializedVariables.add(astNode);
+        }
+    }
+
+    /**
+     * Check if VARIABLE_DEF is initialized or not.
+     * @param ast VARIABLE_DEF to be checked
+     * @return true if initialized
+     */
+    private static boolean isInitialized(DetailAST ast) {
+        return ast.getParent().getLastChild().getType() == TokenTypes.ASSIGN;
+    }
+
+    /**
+     * Whether the ast is the first child of its parent.
+     * @param ast the ast to check.
+     * @return true if the ast is the first child of its parent.
+     */
+    private static boolean isFirstChild(DetailAST ast) {
+        return ast.getPreviousSibling() == null;
+    }
+
+    /**
+     * Remove the variable from the Stack.
+     * @param ast Variable to remove
+     */
+    private void removeVariable(DetailAST ast) {
+        final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+        while (iterator.hasNext()) {
+            final ScopeData scopeData = iterator.next();
+            final Map<String, DetailAST> scope = scopeData.scope;
+            final DetailAST storedVariable = scope.get(ast.getText());
+            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+                if (shouldRemoveVariable(scopeData, ast)) {
+                    scope.remove(ast.getText());
+                }
+                break;
+            }
+        }
+    }
+
+    /**
+     * Whether the variable should be removed from the list of final local variable
+     * candidates.
+     * @param scopeData the scope data of the variable.
+     * @param ast the variable ast.
+     * @return true, if the variable should be removed.
+     */
+    private boolean shouldRemoveVariable(ScopeData scopeData, DetailAST ast) {
+        boolean shouldRemove = true;
+        for (DetailAST variable : scopeData.uninitializedVariables) {
+            if (variable.getText().equals(ast.getText())) {
+
+                // if the variable is declared outside the loop and initialized inside
+                // the loop, then it cannot be declared final, as it can be initialized
+                // more than once in this case
+                if (isInTheSameLoop(variable, ast)) {
+                    shouldRemove = false;
+                }
+                scopeData.uninitializedVariables.remove(variable);
+                break;
+            }
+        }
+        return shouldRemove;
+    }
+
+    /**
+     * Is Arithmetic operator.
+     * @param parentType token AST
+     * @return true is token type is in arithmetic operator
+     */
+    private static boolean isAssignOperator(int parentType) {
+        return Arrays.binarySearch(ASSIGN_OPERATOR_TYPES, parentType) >= 0;
     }
 
     /**
@@ -274,87 +376,71 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
-     * Find the Class or Constructor or Method in which it is defined.
+     * Find the Class, Constructor, Enum or Method in which it is defined.
      * @param ast Variable for which we want to find the scope in which it is defined
      * @return ast The Class or Constructor or Method in which it is defined.
      */
-    private static DetailAST findClassOrConstructorOrMethodInWhichItIsDefined(DetailAST ast) {
+    private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         DetailAST astTraverse = ast;
-        while (!(astTraverse.getType() == TokenTypes.METHOD_DEF
-                || astTraverse.getType() == TokenTypes.CLASS_DEF
-                || astTraverse.getType() == TokenTypes.ENUM_DEF
-                || astTraverse.getType() == TokenTypes.CTOR_DEF)) {
+        while (astTraverse.getType() != TokenTypes.METHOD_DEF
+                && astTraverse.getType() != TokenTypes.CLASS_DEF
+                && astTraverse.getType() != TokenTypes.ENUM_DEF
+                && astTraverse.getType() != TokenTypes.CTOR_DEF) {
             astTraverse = astTraverse.getParent();
         }
         return astTraverse;
     }
 
     /**
-     * Check if both the Variable are same.
+     * Check if both the Variables are same.
      * @param ast1 Variable to compare
      * @param ast2 Variable to compare
-     * @return true if both the variable are same, otherwise false
+     * @return true if both the variables are same, otherwise false
      */
     private static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
         final DetailAST classOrMethodOfAst1 =
-            findClassOrConstructorOrMethodInWhichItIsDefined(ast1);
+            findFirstUpperNamedBlock(ast1);
         final DetailAST classOrMethodOfAst2 =
-            findClassOrConstructorOrMethodInWhichItIsDefined(ast2);
-
-        final String identifierOfAst1 =
-            classOrMethodOfAst1.findFirstToken(TokenTypes.IDENT).getText();
-        final String identifierOfAst2 =
-            classOrMethodOfAst2.findFirstToken(TokenTypes.IDENT).getText();
-
-        return identifierOfAst1.equals(identifierOfAst2);
+            findFirstUpperNamedBlock(ast2);
+        return classOrMethodOfAst1 == classOrMethodOfAst2;
     }
 
     /**
-     * Inserts a variable at the topmost scope stack.
-     * @param ast the variable to insert
+     * Check if both the variables are in the same loop.
+     * @param ast1 variable to compare.
+     * @param ast2 variable to compare.
+     * @return true if both the variables are in the same loop.
      */
-    private void insertVariable(DetailAST ast) {
-        final Map<String, DetailAST> state = scopeStack.peek();
-        final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
-        state.put(astNode.getText(), astNode);
+    private static boolean isInTheSameLoop(DetailAST ast1, DetailAST ast2) {
+        DetailAST loop1 = ast1.getParent();
+        while (loop1 != null && !isLoopAst(loop1.getType())) {
+            loop1 = loop1.getParent();
+        }
+        DetailAST loop2 = ast2.getParent();
+        while (loop2 != null && !isLoopAst(loop2.getType())) {
+            loop2 = loop2.getParent();
+        }
+        return loop1 == null && loop2 == null
+                || loop1 != null && loop1 == loop2;
     }
 
     /**
-     * Removes the variable from the Stacks.
-     * @param ast Variable to remove
+     * Checks whether the ast is a loop.
+     * @param ast the ast to check.
+     * @return true if the ast is a loop.
      */
-    private void removeVariable(DetailAST ast) {
-        final Iterator<Map<String, DetailAST>> iterator = scopeStack.descendingIterator();
-        while (iterator.hasNext()) {
-            final Map<String, DetailAST> state = iterator.next();
-            final DetailAST storedVariable = state.get(ast.getText());
-            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
-                state.remove(ast.getText());
-                break;
-            }
-        }
+    private static boolean isLoopAst(int ast) {
+        return Arrays.binarySearch(LOOP_TYPES, ast) >= 0;
     }
 
-    @Override
-    public void leaveToken(DetailAST ast) {
-        super.leaveToken(ast);
+    /**
+     * Holder for the scope data.
+     */
+    private static class ScopeData {
+        /** Contains variable definitions. */
+        private final Map<String, DetailAST> scope = new HashMap<>();
 
-        switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK:
-            case TokenTypes.SLIST:
-            case TokenTypes.LITERAL_FOR:
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.STATIC_INIT:
-            case TokenTypes.INSTANCE_INIT:
-            case TokenTypes.METHOD_DEF:
-                final Map<String, DetailAST> state = scopeStack.pop();
-                for (DetailAST node : state.values()) {
-                    log(node.getLineNo(), node.getColumnNo(), MSG_KEY, node
-                        .getText());
-                }
-                break;
-
-            default:
-        }
+        /** Contains definitions of uninitialized variables. */
+        private final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
     }
 }
