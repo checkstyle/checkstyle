@@ -191,13 +191,6 @@ public class AllChecksTest extends BaseCheckTestSupport {
         final Set<String> configChecks = getCheckStyleChecksReferencedInConfig(CONFIG_PATH);
 
         for (String moduleName : getSimpleNames(getCheckstyleModules())) {
-            if ("SuppressionCommentFilter".equals(moduleName)
-                || "SeverityMatchFilter".equals(moduleName)
-                || "SuppressWithNearbyCommentFilter".equals(moduleName)
-                || "SuppressWarningsFilter".equals(moduleName)) {
-                continue;
-            }
-
             Assert.assertTrue("checkstyle_checks.xml is missing module: " + moduleName,
                     configChecks.contains(moduleName));
         }
