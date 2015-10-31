@@ -50,6 +50,8 @@ class DetectorOptions {
     private boolean ignoreCase;
     /** Used to determine whether to suppress a detected match. */
     private MatchSuppressor suppressor = NeverSuppress.INSTANCE;
+    /** Pattern created from format. Lazily initialized. */
+    private Pattern pattern;
 
     /**
      * Creates an instance.
@@ -69,6 +71,7 @@ class DetectorOptions {
      */
     public DetectorOptions setFormat(String format) {
         this.format = format;
+        pattern = null;
         return this;
     }
 
@@ -119,6 +122,7 @@ class DetectorOptions {
      */
     public DetectorOptions setIgnoreCase(boolean ignore) {
         ignoreCase = ignore;
+        pattern = null;
         return this;
     }
 
@@ -175,11 +179,15 @@ class DetectorOptions {
      * @return the pattern to use when matching.
      */
     public Pattern getPattern() {
+        if (pattern != null) {
+            return pattern;
+        }
         int options = compileFlags;
 
         if (ignoreCase) {
             options |= Pattern.CASE_INSENSITIVE;
         }
-        return Pattern.compile(format, options);
+        pattern = Pattern.compile(format, options);
+        return pattern;
     }
 }
