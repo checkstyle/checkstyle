@@ -147,11 +147,11 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format(Locale.ROOT,
-                        "Unable to find: src/main/resources/non_existing_config.xml%n"
-                                + "Checkstyle ends with 1 errors.%n"),
+                assertEquals(String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n"),
                         systemOut.getLog());
-                assertEquals("", systemErr.getLog());
+                final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
+                        + " Unable to find: src/main/resources/non_existing_config.xml";
+                assertTrue(systemErr.getLog().startsWith(cause));
             }
         });
         Main.main("-c", "src/main/resources/non_existing_config.xml",
@@ -176,38 +176,18 @@ public class MainTest {
     @Test
     public void testNonExistingClass() throws Exception {
         exit.expectSystemExitWithStatus(-2);
-        final String cause = "Unable to instantiate 'NonExistingClass' class,"
-            + " it is also not possible to instantiate it as"
-            + " com.puppycrawl.tools.checkstyle.checks.annotation.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.blocks.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.coding.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.design.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.header.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.imports.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.indentation.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.javadoc.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.metrics.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.modifier.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.naming.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.regexp.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.sizes.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.whitespace.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.checks.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.filters.NonExistingClass,"
-            + " com.puppycrawl.tools.checkstyle.NonExistingClass."
-            + " Please recheck that class name is specified as canonical name or read"
-            + " how to configure short name usage"
-            + " http://checkstyle.sourceforge.net/config.html#Packages."
-            + " Please also recheck that provided ClassLoader to Checker is configured correctly.";
-        final String expectedExceptionMessage =
-            String.format(Locale.ROOT, "cannot initialize module TreeWalker - %1$s%n"
-                + "Cause: com.puppycrawl.tools.checkstyle.api.CheckstyleException: %1$s%n"
-                + "Checkstyle ends with 1 errors.%n", cause);
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
+                final String expectedExceptionMessage =
+                        String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n");
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
-                assertEquals("", systemErr.getLog());
+
+                final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
+                        + " cannot initialize module TreeWalker - "
+                        + "Unable to instantiate 'NonExistingClass' class, "
+                        + "it is also not possible to instantiate it as ";
+                assertTrue(systemErr.getLog().startsWith(cause));
             }
         });
 
@@ -438,16 +418,10 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertTrue(systemOut.getLog().startsWith(String.format(Locale.ROOT,
-                      "unable to parse configuration stream"
-                      + " - Content is not allowed in prolog.:7:1%n"
-                      + "Cause: org.xml.sax.SAXParseException; systemId: file:")));
-                assertTrue(systemOut.getLog().endsWith(String.format(Locale.ROOT,
-                        "com/puppycrawl/tools/checkstyle/config-Incorrect.xml;"
-                                + " lineNumber: 7; columnNumber: 1; "
-                                + "Content is not allowed in prolog.%n"
-                                + "Checkstyle ends with 1 errors.%n")));
-                assertEquals("", systemErr.getLog());
+                assertEquals("Checkstyle ends with 1 errors.\n", systemOut.getLog());
+                assertTrue(systemErr.getLog().startsWith("com.puppycrawl.tools.checkstyle.api."
+                        + "CheckstyleException: unable to parse configuration stream"
+                        + " - Content is not allowed in prolog.:7:1\n"));
             }
         });
         Main.main("-c", getPath("config-Incorrect.xml"),
@@ -596,7 +570,7 @@ public class MainTest {
             @Override
             public void checkAssertion() {
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
-                String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
+                final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: Exception happens during processing of "
                         + "src/test/resources-noncompilable/com/puppycrawl/tools/"
                         + "checkstyle/InputIncorrectClass.java\n";

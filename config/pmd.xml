@@ -186,6 +186,12 @@
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
     </properties>
   </rule>
+  <rule ref="rulesets/java/logging-java.xml/AvoidPrintStackTrace">
+    <properties>
+      <!-- it is ok to use print stack trace in CLI class -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+    </properties>
+  </rule>
 
   <rule ref="rulesets/java/migrating.xml"/>
   

@@ -82,8 +82,8 @@ public final class Main {
      * is the number of errors found in all the files.
      * @param args the command line arguments.
      * @throws FileNotFoundException if there is a problem with files access
+     * @noinspection CallToPrintStackTrace
      **/
-    @SuppressWarnings("CallToPrintStackTrace")
     public static void main(String... args) throws FileNotFoundException {
         int errorCounter = 0;
         boolean cliViolations = false;
