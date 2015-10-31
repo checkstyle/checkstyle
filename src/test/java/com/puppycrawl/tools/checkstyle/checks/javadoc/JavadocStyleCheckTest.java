@@ -206,6 +206,14 @@ public class JavadocStyleCheckTest
     }
 
     @Test
+    public void testOnInputWithNoJavadoc() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
+    }
+
+    @Test
     public void testScopePublic()
         throws Exception {
         final DefaultConfiguration checkConfig =

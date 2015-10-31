@@ -150,7 +150,8 @@ public final class FileContents implements CommentListener {
         }
 
         // Remember if possible Javadoc comment
-        if (line(startLineNo - 1).indexOf("/**", startColNo) != -1) {
+        final String firstLine = line(startLineNo - 1);
+        if (firstLine.contains("/**") && !firstLine.contains("/**/")) {
             javadocComments.put(endLineNo - 1, comment);
         }
     }
