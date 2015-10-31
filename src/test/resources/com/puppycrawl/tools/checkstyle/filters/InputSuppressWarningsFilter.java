@@ -29,7 +29,7 @@ class InputSuppressWarningsFilter
     private int L; private int X; // L should NOT fail, X should
 
     // test "checkstyle:" prefix
-    @SuppressWarnings("checkstyle:constantname")
+    @SuppressWarnings("checkstyle:ConstantName")
     private static final int m = 0; // should NOT fail ConstantNameCheck
     private static final int n = 0; // should fail ConstantNameCheck
 
@@ -48,7 +48,7 @@ class InputSuppressWarningsFilter
     }
 
     // test fully qualified annotation name
-    @java.lang.SuppressWarnings("illegalcatch")
+    @java.lang.SuppressWarnings("illegalCatch")
     public void needsToCatchException()
     {
         try {

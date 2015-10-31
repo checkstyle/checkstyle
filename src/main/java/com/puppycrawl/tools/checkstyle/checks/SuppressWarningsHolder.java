@@ -52,8 +52,8 @@ public class SuppressWarningsHolder
      * Optional prefix for warning suppressions that are only intended to be
      * recognized by checkstyle. For instance, to suppress {@code
      * FallThroughCheck} only in checkstyle (and not in javac), use the
-     * suppression {@code "checkstyle:fallthrough"}. To suppress the warning in
-     * both tools, just use {@code "fallthrough"}.
+     * suppression {@code "checkstyle:fallthrough"} or {@code "checkstyle:FallThrough"}.
+     * To suppress the warning in both tools, just use {@code "fallthrough"}.
      */
     public static final String CHECKSTYLE_PREFIX = "checkstyle:";
 
@@ -163,7 +163,7 @@ public class SuppressWarningsHolder
                         .getLastColumn() >= column;
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(entry.getCheckName())
-                    || entry.getCheckName().equals(checkAlias);
+                    || entry.getCheckName().equalsIgnoreCase(checkAlias);
             if (afterStart && beforeEnd && nameMatches) {
                 return true;
             }

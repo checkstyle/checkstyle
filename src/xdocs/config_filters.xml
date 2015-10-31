@@ -762,8 +762,8 @@ public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAft
               the filter. Because of that, a configuration that includes
               this filter must also include
               <code>SuppressWarningsHolder</code> as a child module of the
-              <code>TreeWalker</code>. Name of check in annotation should
-              be written in lower case with any dotted prefix or "Check" suffix removed.
+              <code>TreeWalker</code>. Name of check in annotation is case-insensitive
+              and should be written with any dotted prefix or "Check" suffix removed.
           </p>
       </subsection>
       <subsection name="Examples">
@@ -783,11 +783,11 @@ public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAft
 &lt;module name="SuppressWarningsFilter" /&gt;
           </source>
           <source>
-@SuppressWarnings({"membername"})
+@SuppressWarnings({"memberName"})
 private int J; // should NOT fail MemberNameCheck
 
-@SuppressWarnings({"membername"})
-@SuppressWarnings({"nowhitespaceafter"})
+@SuppressWarnings({"MemberName"})
+@SuppressWarnings({"NoWhitespaceAfter"})
 private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCheck
           </source>
       </subsection>
