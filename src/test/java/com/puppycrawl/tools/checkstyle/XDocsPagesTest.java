@@ -110,7 +110,6 @@ public class XDocsPagesTest {
 
     private static final List<String> UNDOCUMENTED_PROPERTIES = Arrays.asList(
             "SuppressWithNearbyCommentFilter.fileContents",
-            "AbstractClassNameCheck.compileFlags",
             "ClassTypeParameterNameCheck.compileFlags",
             "ConstantNameCheck.compileFlags",
             "InterfaceTypeParameterNameCheck.compileFlags",

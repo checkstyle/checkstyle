@@ -60,6 +60,26 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testCustomFormat() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbstractClassNameCheck.class);
+        checkConfig.addAttribute("ignoreName", "false");
+        checkConfig.addAttribute("ignoreModifier", "true");
+        final String pattern = "^NonAbstract.+$";
+        checkConfig.addAttribute("format", pattern);
+
+        final String[] expected = {
+            "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+                pattern),
+            "9:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOther", pattern),
+            "21:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2",
+                pattern),
+        };
+
+        verify(checkConfig, getPath("InputAbstractClassName.java"), expected);
+    }
+
+    @Test
     public void testIllegalClassType() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
         checkConfig.addAttribute("ignoreName", "true");

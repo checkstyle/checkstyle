@@ -19,9 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.util.regex.Pattern;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -39,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author <a href="mailto:solid.danil@gmail.com">Danil Lopatin</a>
  */
-public final class AbstractClassNameCheck extends AbstractFormatCheck {
+public final class AbstractClassNameCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -53,19 +56,17 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
      */
     public static final String NO_ABSTRACT_CLASS_MODIFIER = "no.abstract.class.modifier";
 
-    /** Default format for abstract class names. */
-    private static final String DEFAULT_FORMAT = "^Abstract.+$";
-
     /** Whether to ignore checking the modifier. */
     private boolean ignoreModifier;
 
     /** Whether to ignore checking the name. */
     private boolean ignoreName;
 
-    /** Creates new instance of the check. */
-    public AbstractClassNameCheck() {
-        super(DEFAULT_FORMAT);
-    }
+    /** The format string of the regexp. */
+    private String format = "^Abstract.+$";
+
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
 
     /**
      * Whether to ignore checking for the {@code abstract} modifier.
@@ -81,6 +82,16 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
      */
     public void setIgnoreName(boolean value) {
         ignoreName = value;
+    }
+
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override
@@ -114,7 +125,7 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
             // if class has abstract modifier
             if (!ignoreName && !isMatchingClassName(className)) {
                 log(ast.getLineNo(), ast.getColumnNo(),
-                    ILLEGAL_ABSTRACT_CLASS_NAME, className, getFormat());
+                    ILLEGAL_ABSTRACT_CLASS_NAME, className, format);
             }
         }
         else if (!ignoreModifier && isMatchingClassName(className)) {
@@ -139,6 +150,6 @@ public final class AbstractClassNameCheck extends AbstractFormatCheck {
      * @return true if class name matches format of abstract class names.
      */
     private boolean isMatchingClassName(String className) {
-        return getRegexp().matcher(className).find();
+        return regexp.matcher(className).find();
     }
 }
