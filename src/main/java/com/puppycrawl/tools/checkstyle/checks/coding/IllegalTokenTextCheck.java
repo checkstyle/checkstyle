@@ -23,8 +23,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -53,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author Rick Giles
  */
 public class IllegalTokenTextCheck
-    extends AbstractFormatCheck {
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -67,13 +68,14 @@ public class IllegalTokenTextCheck
      */
     private String message = "";
 
-    /**
-     * Instantiates a new instance.
-     */
-    public IllegalTokenTextCheck() {
-        // the empty language
-        super("$^");
-    }
+    /** The format string of the regexp. */
+    private String format = "$^";
+
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
+
+    /** The flags to use with the regexp. */
+    private int compileFlags;
 
     @Override
     public int[] getDefaultTokens() {
@@ -93,7 +95,7 @@ public class IllegalTokenTextCheck
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        if (getRegexp().matcher(text).find()) {
+        if (regexp.matcher(text).find()) {
             String customMessage = message;
             if (customMessage.isEmpty()) {
                 customMessage = MSG_KEY;
@@ -102,7 +104,7 @@ public class IllegalTokenTextCheck
                 ast.getLineNo(),
                 ast.getColumnNo(),
                 customMessage,
-                getFormat());
+                format);
         }
     }
 
@@ -121,12 +123,35 @@ public class IllegalTokenTextCheck
     }
 
     /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public void setFormat(String format) {
+        this.format = format;
+        updateRegexp();
+    }
+
+    /**
      * Set whether or not the match is case sensitive.
      * @param caseInsensitive true if the match is case insensitive.
      */
     public void setIgnoreCase(boolean caseInsensitive) {
         if (caseInsensitive) {
-            setCompileFlags(Pattern.CASE_INSENSITIVE);
+            compileFlags = Pattern.CASE_INSENSITIVE;
         }
+        else {
+            compileFlags = 0;
+        }
+
+        updateRegexp();
+    }
+
+    /**
+     * Updates the {@link #regexp} based on the values from {@link #format} and
+     * {@link #compileFlags}.
+     */
+    private void updateRegexp() {
+        regexp = CommonUtils.createPattern(format, compileFlags);
     }
 }
