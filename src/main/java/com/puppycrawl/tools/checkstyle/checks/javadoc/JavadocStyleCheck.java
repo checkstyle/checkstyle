@@ -231,7 +231,7 @@ public class JavadocStyleCheck
 
         if (!commentText.isEmpty()
             && !getEndOfSentencePattern().matcher(commentText).find()
-            && !("{@inheritDoc}".equals(commentText)
+            && !(commentText.startsWith("{@inheritDoc}")
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
             log(comment.getStartLineNo(), NO_PERIOD);
         }
