@@ -559,17 +559,14 @@ public class MainTest {
     @Test
     public void testFileReferenceDuringException() throws Exception {
         exit.expectSystemExitWithStatus(-2);
-        final String cause = "Cause: com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
-                + " NoViableAltException occurred during the analysis of file "
-                + getNonCompilablePath("InputIncorrectClass.java.");
-
-        final String expectedExceptionMessage =
-                String.format(Locale.ROOT, "Starting audit...%n"
-                        + "Checkstyle ends with 1 errors.%n");
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
+                final String expectedExceptionMessage =
+                        String.format(Locale.ROOT, "Starting audit...%n"
+                                + "Checkstyle ends with 1 errors.%n");
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
+
                 final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: Exception happens during processing of "
                         + "src/test/resources-noncompilable/com/puppycrawl/tools/"
