@@ -114,4 +114,7 @@ class PackageClass {
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }
+
+    /**/
+    void methodWithTwoStarComment() {}
 }

@@ -333,7 +333,9 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "106:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
+            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "119:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
         verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
     }
 
@@ -376,7 +378,9 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
+            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "119:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
         verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
     }
 
