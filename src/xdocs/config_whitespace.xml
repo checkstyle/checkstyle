@@ -381,6 +381,16 @@ for (Iterator foo = very.long.line.iterator();
           forbid linebreaks after a token, set property <code>allowLineBreaks</code> to <code>
           false</code>.
         </p>
+        <p>
+          The check processes
+          <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>
+          and
+          <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>
+          tokens specially from other tokens. Actually it is checked that there is
+          no whitespace before this tokens, not after them.
+          </p>
       </subsection>
 
       <subsection name="Properties">
@@ -425,9 +435,7 @@ for (Iterator foo = very.long.line.iterator();
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>,
               <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_START">GENERIC_START</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_END">GENERIC_END</a>.
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>.
             </td>
 
             <td>
@@ -448,7 +456,9 @@ for (Iterator foo = very.long.line.iterator();
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
               <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>.
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>.
             </td>
           </tr>
         </table>
