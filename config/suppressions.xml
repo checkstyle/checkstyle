@@ -37,7 +37,7 @@
               files="AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java"/>
 
     <!-- Tone down the checking for test code -->
-    <suppress checks="CyclomaticComplexity" files="[\\/]XDocsPagesTest\.java" lines="319"/>
+    <suppress checks="CyclomaticComplexity" files="[\\/]XDocsPagesTest\.java" lines="318"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="ImportControl" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="Javadoc" files=".*[\\/]src[\\/](test|it)[\\/]"/>
