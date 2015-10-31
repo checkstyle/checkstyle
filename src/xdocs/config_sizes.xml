@@ -245,7 +245,7 @@
             property <code>tabWidth</code> for <code>LineLength</code> alone.
           </li>
           <li>
-            Import statements (lines matching pattern <code>^import .*</code>) are not verified by
+            Package and import statements (lines matching pattern <code>^(package|import) .*</code>) are not verified by
             this check.
           </li>
         </ul>
