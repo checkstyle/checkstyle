@@ -569,8 +569,8 @@ public class MainTest {
 
                 final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: Exception happens during processing of "
-                        + "src/test/resources-noncompilable/com/puppycrawl/tools/"
-                        + "checkstyle/InputIncorrectClass.java\n";
+                        + new File(getNonCompilablePath("InputIncorrectClass.java")).getPath()
+                        + "\n";
                 assertTrue(systemErr.getLog().startsWith(exceptionFirstLine));
             }
         });
