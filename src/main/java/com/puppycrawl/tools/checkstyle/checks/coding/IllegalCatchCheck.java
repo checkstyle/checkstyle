@@ -105,7 +105,7 @@ public final class IllegalCatchCheck extends Check {
      * @param parentToken - parent node for types (TYPE or BOR)
      * @return list, that contains all exception types in current catch
      */
-    public static List<DetailAST> getAllExceptionTypes(DetailAST parentToken) {
+    private static List<DetailAST> getAllExceptionTypes(DetailAST parentToken) {
         DetailAST currentNode = parentToken.getFirstChild();
         final List<DetailAST> exceptionTypes = new LinkedList<>();
         if (currentNode.getType() == TokenTypes.BOR) {

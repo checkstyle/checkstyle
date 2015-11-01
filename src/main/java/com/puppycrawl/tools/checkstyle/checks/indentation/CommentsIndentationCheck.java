@@ -262,7 +262,8 @@ public class CommentsIndentationCheck extends Check {
      * @param comment single line comment.
      * @return the first token of the destributed previous statement of single line comment.
      */
-    public static DetailAST getDistributedPreviousStatementOfSingleLineComment(DetailAST comment) {
+    private static DetailAST getDistributedPreviousStatementOfSingleLineComment(
+            DetailAST comment) {
         DetailAST previousStatement = comment.getPreviousSibling();
         if (previousStatement.getType() == TokenTypes.LITERAL_RETURN
                 || previousStatement.getType() == TokenTypes.LITERAL_THROW) {
