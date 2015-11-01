@@ -418,9 +418,11 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                String output = String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n");
+                final String output = String.format(Locale.ROOT,
+                        "Checkstyle ends with 1 errors.%n");
                 assertEquals(output, systemOut.getLog());
-                String errorOuput = String.format(Locale.ROOT, "com.puppycrawl.tools.checkstyle.api."
+                final String errorOuput = String.format(Locale.ROOT,
+                        "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: unable to parse configuration stream"
                         + " - Content is not allowed in prolog.:7:1%n");
                 assertTrue(systemErr.getLog().startsWith(errorOuput));
@@ -569,7 +571,8 @@ public class MainTest {
                                 + "Checkstyle ends with 1 errors.%n");
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
 
-                final String exceptionFirstLine =  String.format(Locale.ROOT, "com.puppycrawl.tools.checkstyle.api."
+                final String exceptionFirstLine =  String.format(Locale.ROOT,
+                        "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: Exception was thrown while processing "
                         + new File(getNonCompilablePath("InputIncorrectClass.java")).getPath()
                         + "%n");
