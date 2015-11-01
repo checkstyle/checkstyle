@@ -166,7 +166,7 @@ public class CommentsIndentationCheck extends Check {
      * @param comment single line comment.
      * @return the previous statement of a single line comment.
      */
-    private DetailAST getPreviousStatementOfSingleLineComment(DetailAST comment) {
+    private static DetailAST getPreviousStatementOfSingleLineComment(DetailAST comment) {
         final DetailAST prevStatement;
         if (isDistributedPreviousStatement(comment)) {
             prevStatement = getDistributedPreviousStatementOfSingleLineComment(comment);
@@ -184,7 +184,7 @@ public class CommentsIndentationCheck extends Check {
      * @return true if the previous statement of a single line comment is distributed over two or
      *         more lines.
      */
-    private boolean isDistributedPreviousStatement(DetailAST singleLineComment) {
+    private static boolean isDistributedPreviousStatement(DetailAST singleLineComment) {
         final DetailAST previousSibling = singleLineComment.getPreviousSibling();
         return isDistributedMethodChainOrConcatenationStatement(singleLineComment, previousSibling)
             || isDistributedReturnStatement(previousSibling)
@@ -322,7 +322,7 @@ public class CommentsIndentationCheck extends Check {
      * @param nextStmt next statement.
      * @return true if a single line comment is placed at the end of the block.
      */
-    private boolean isSingleLineCommentAtTheEndOfTheCodeBlock(DetailAST nextStmt) {
+    private static boolean isSingleLineCommentAtTheEndOfTheCodeBlock(DetailAST nextStmt) {
         return nextStmt != null
             && nextStmt.getType() == TokenTypes.RCURLY;
     }
@@ -342,7 +342,7 @@ public class CommentsIndentationCheck extends Check {
      * @param nextStmt next statement.
      * @return true if comment is placed in the empty code block.
      */
-    private boolean isInEmptyCodeBlock(DetailAST prevStmt, DetailAST nextStmt) {
+    private static boolean isInEmptyCodeBlock(DetailAST prevStmt, DetailAST nextStmt) {
         return prevStmt != null
             && nextStmt != null
             && (prevStmt.getType() == TokenTypes.SLIST
