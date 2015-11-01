@@ -418,10 +418,12 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals("Checkstyle ends with 1 errors.\n", systemOut.getLog());
-                assertTrue(systemErr.getLog().startsWith("com.puppycrawl.tools.checkstyle.api."
+                String output = String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n");
+                assertEquals(output, systemOut.getLog());
+                String errorOuput = String.format(Locale.ROOT, "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: unable to parse configuration stream"
-                        + " - Content is not allowed in prolog.:7:1\n"));
+                        + " - Content is not allowed in prolog.:7:1%n");
+                assertTrue(systemErr.getLog().startsWith(errorOuput));
             }
         });
         Main.main("-c", getPath("config-Incorrect.xml"),
@@ -523,7 +525,7 @@ public class MainTest {
         });
 
         Main.main("-c", getPath("config-filelength.xml"),
-            getPath("checks/metrics"));
+                getPath("checks/metrics"));
     }
 
     @Test
@@ -567,10 +569,10 @@ public class MainTest {
                                 + "Checkstyle ends with 1 errors.%n");
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
 
-                final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
+                final String exceptionFirstLine =  String.format(Locale.ROOT, "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: Exception was thrown while processing "
                         + new File(getNonCompilablePath("InputIncorrectClass.java")).getPath()
-                        + "\n";
+                        + "%n");
                 assertTrue(systemErr.getLog().startsWith(exceptionFirstLine));
             }
         });
