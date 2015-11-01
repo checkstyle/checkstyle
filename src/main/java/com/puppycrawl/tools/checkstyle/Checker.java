@@ -278,7 +278,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
             }
             catch (Exception ex) {
                 // We need to catch all exception to put a reason failure(file name) in exception
-                throw new CheckstyleException("Exception happens during processing of "
+                throw new CheckstyleException("Exception was thrown while processing "
                         + file.getPath(), ex);
             }
         }

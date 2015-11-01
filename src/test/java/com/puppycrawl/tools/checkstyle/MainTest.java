@@ -568,7 +568,7 @@ public class MainTest {
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
 
                 final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
-                        + "CheckstyleException: Exception happens during processing of "
+                        + "CheckstyleException: Exception was thrown while processing "
                         + new File(getNonCompilablePath("InputIncorrectClass.java")).getPath()
                         + "\n";
                 assertTrue(systemErr.getLog().startsWith(exceptionFirstLine));
