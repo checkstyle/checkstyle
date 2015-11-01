@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -49,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * @author John Sirois
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public final class IllegalThrowsCheck extends AbstractIllegalCheck {
+public final class IllegalThrowsCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -57,22 +58,33 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck {
      */
     public static final String MSG_KEY = "illegal.throw";
 
-    /** Default ignored method names. */
-    private static final String[] DEFAULT_IGNORED_METHOD_NAMES = {
-        "finalize",
-    };
-
     /** Property for ignoring overridden methods. */
     private boolean ignoreOverriddenMethods = true;
 
     /** Methods which should be ignored. */
-    private final Set<String> ignoredMethodNames = Sets.newHashSet();
+    private final Set<String> ignoredMethodNames = Sets.newHashSet("finalize");
 
-    /** Creates new instance of the check. */
-    public IllegalThrowsCheck() {
-        super("Error", "RuntimeException", "Throwable", "java.lang.Error",
-                "java.lang.RuntimeException", "java.lang.Throwable");
-        setIgnoredMethodNames(DEFAULT_IGNORED_METHOD_NAMES);
+    /** Illegal class names. */
+    private final Set<String> illegalClassNames = Sets.newHashSet("Error", "RuntimeException",
+            "Throwable", "java.lang.Error", "java.lang.RuntimeException", "java.lang.Throwable");
+
+    /**
+     * Set the list of illegal classes.
+     *
+     * @param classNames
+     *            array of illegal exception classes
+     */
+    public void setIllegalClassNames(final String... classNames) {
+        illegalClassNames.clear();
+        for (final String name : classNames) {
+            illegalClassNames.add(name);
+            final int lastDot = name.lastIndexOf('.');
+            if (lastDot > 0 && lastDot < name.length() - 1) {
+                final String shortName = name
+                        .substring(name.lastIndexOf('.') + 1);
+                illegalClassNames.add(shortName);
+            }
+        }
     }
 
     @Override
@@ -99,7 +111,7 @@ public final class IllegalThrowsCheck extends AbstractIllegalCheck {
             while (token != null) {
                 if (token.getType() != TokenTypes.COMMA) {
                     final FullIdent ident = FullIdent.createFullIdent(token);
-                    if (isIllegalClassName(ident.getText())) {
+                    if (illegalClassNames.contains(ident.getText())) {
                         log(token, MSG_KEY, ident.getText());
                     }
                 }
