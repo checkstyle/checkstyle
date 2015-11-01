@@ -26,8 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 
 /**
  * Support for checks that look for usage of illegal types.
+ * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
  * @author Oliver Burn
  */
+@Deprecated
 public abstract class AbstractIllegalCheck extends Check {
     /** Illegal class names. */
     private final Set<String> illegalClassNames = Sets.newHashSet();
