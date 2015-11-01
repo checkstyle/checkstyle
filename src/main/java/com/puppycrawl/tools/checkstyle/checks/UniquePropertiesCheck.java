@@ -66,15 +66,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     protected void processFiltered(File file, List<String> lines) {
         final UniqueProperties properties = new UniqueProperties();
 
-        try {
-            final FileInputStream fileInputStream = new FileInputStream(file);
-            try {
-                // As file is already read, there should not be any exceptions.
-                properties.load(fileInputStream);
-            }
-            finally {
-                fileInputStream.close();
-            }
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
+            // As file is already read, there should not be any exceptions.
+            properties.load(fileInputStream);
         }
         catch (IOException e) {
             log(0, IO_EXCEPTION_KEY, file.getPath(),
