@@ -185,7 +185,7 @@ public final class IllegalTypeCheck extends Check {
 
     @Override
     public int[] getRequiredTokens() {
-        return getAcceptableTokens();
+        return new int[] {TokenTypes.IMPORT};
     }
 
     @Override
