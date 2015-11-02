@@ -170,6 +170,15 @@ public final class Main {
         final List<String> result = new ArrayList<>();
         // ensure a configuration file is specified
         if (cmdLine.hasOption(OPTION_C_NAME)) {
+            final String configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
+            try {
+                // test location only
+                CommonUtils.getUriByFilename(configLocation);
+            }
+            catch (CheckstyleException ignored) {
+                result.add(String.format("Could not find config XML file '%s'.", configLocation));
+            }
+
             // validate optional parameters
             if (cmdLine.hasOption(OPTION_F_NAME)) {
                 final String format = cmdLine.getOptionValue(OPTION_F_NAME);
