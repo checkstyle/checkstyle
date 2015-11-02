@@ -111,7 +111,7 @@
         </p>
         <ol>
           <li>Interface and annotation definitions.</li>
-          <li>Final modifier on methods of final classes.</li>
+          <li>Final modifier on methods of final and anonymous classes.</li>
           <li>
             Inner <code>interface</code> declarations that are declared
             as <code>static</code>.

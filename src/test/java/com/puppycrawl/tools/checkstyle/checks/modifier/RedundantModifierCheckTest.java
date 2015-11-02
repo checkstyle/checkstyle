@@ -187,4 +187,15 @@ public class RedundantModifierCheckTest
         };
         verify(checkConfig, getPath("InputRedundantStaticModifierInNestedEnum.java"), expected);
     }
+
+    @Test
+    public void testFinalInAnonymousClass()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "14:20: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verify(checkConfig, getPath("InputFinalInAnonymousClass.java"), expected);
+    }
 }
