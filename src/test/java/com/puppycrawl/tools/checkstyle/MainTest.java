@@ -143,15 +143,15 @@ public class MainTest {
     @Test
     public void testNonExistingConfigFile()
             throws Exception {
-        exit.expectSystemExitWithStatus(-2);
+        exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals(String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n"),
+                assertEquals(String.format(Locale.ROOT,
+                        "Could not find config XML file "
+                            + "'src/main/resources/non_existing_config.xml'.%n"),
                         systemOut.getLog());
-                final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
-                        + " Unable to find: src/main/resources/non_existing_config.xml";
-                assertTrue(systemErr.getLog().startsWith(cause));
+                assertEquals("", systemErr.getLog());
             }
         });
         Main.main("-c", "src/main/resources/non_existing_config.xml",
