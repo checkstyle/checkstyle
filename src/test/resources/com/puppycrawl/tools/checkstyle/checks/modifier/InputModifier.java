@@ -137,3 +137,10 @@ class SafeVarargsUsage {
     @SuppressWarnings("")
     private final void foo1(Object... obj) {}
 }
+
+enum TestEnum {
+    ;
+    
+    public void method() {
+    }
+}
