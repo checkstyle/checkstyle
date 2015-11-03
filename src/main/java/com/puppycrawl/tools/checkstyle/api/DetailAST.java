@@ -24,7 +24,7 @@ import java.util.BitSet;
 import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
-
+import com.google.common.annotations.VisibleForTesting;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -192,6 +192,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
      * Set the parent token.
      * @param parent the parent token
      */
+    @VisibleForTesting
     void setParent(DetailAST parent) {
         this.parent = parent;
         final DetailAST nextSibling = getNextSibling();

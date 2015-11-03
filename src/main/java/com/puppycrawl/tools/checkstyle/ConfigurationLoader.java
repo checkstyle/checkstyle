@@ -38,6 +38,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
@@ -264,7 +265,7 @@ public final class ConfigurationLoader {
      *                           {@code ${} without a closing
      *                           {@code }}
      */
-    // Package visible for testing purposes
+    @VisibleForTesting
     static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
         throws CheckstyleException {
