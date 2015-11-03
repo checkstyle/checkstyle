@@ -195,588 +195,6 @@
       </subsection>
     </section>
 
-    <section name="IllegalImport">
-      <subsection name="Description">
-        <p>
-          Checks for imports from a set of illegal packages. By default, the
-          check rejects all <code>sun.*</code> packages since
-          programs that contain direct calls to the <code>sun.*</code> packages are <a
-          href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not guaranteed
-          to work on all Java-compatible platforms"</a>. To reject other packages, set property <code> illegalPkgs</code> to a list of the illegal packages.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>illegalPkgs</td>
-            <td>packages to reject</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><code>sun</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalImport&quot;/&gt;
-        </source>
-
-        <p>
-          To configure the check so that it rejects packages <code>java.io.*</code> and <code>java.sql.*</code>:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalImport&quot;&gt;
-    &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L104">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L106">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.imports
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="RedundantImport">
-      <subsection name="Description">
-        <p>
-          Checks for redundant import statements. An import statement is
-          considered redundant if:
-        </p>
-
-        <ul>
-          <li>
-            It is a duplicate of another import. This is, when a class is
-            imported more than once.
-          </li>
-          <li>
-            The class non-statically imported is from the <code>java.lang</code>
-            package, e.g.  importing <code>java.lang.String</code>.
-          </li>
-          <li>
-            The class non-statically imported is from the same package as the current package.
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;RedundantImport&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L105">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L188">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.imports
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="UnusedImports">
-      <subsection name="Description">
-        <p>
-          Checks for unused import statements. Checkstyle uses a simple but
-          very reliable algorithm to report on unused import statements. An
-          import statement is considered unused if:
-        </p>
-
-        <ul>
-          <li>
-            It is not referenced in the file. The algorithm does not support
-            wild-card imports like <code>import
-            java.io.*;</code>. Most IDE's provide very sophisticated checks
-            for imports that handle wild-card imports.
-          </li>
-
-          <li>
-            It is a duplicate of another import. This is when a class is
-            imported more than once.
-          </li>
-
-          <li>
-            The class imported is from the <code>java.lang</code>
-            package. For example importing <code>java.lang.String</code>.
-          </li>
-
-          <li>
-            The class imported is from the same package.
-          </li>
-          <li>
-            <b>Optionally:</b> it is referenced in Javadoc comments. This check
-            is off by default, as it is considered bad practice to introduce
-            a compile time dependency for documentation purposes only.
-            As an example, the import <code>java.util.Date</code> would be
-            considered referenced with the Javadoc comment
-            <code>{@link Date}</code>. The alternative to avoid introducing a
-            compile time dependency would be to write the Javadoc comment as
-            <code>{@link java.util.Date}</code>.
-          </li>
-        </ul>
-        <p>
-          The main limitation of this check is handling the case where
-          an imported type has the same name as a declaration, such as a
-          member variable.
-        </p>
-        <p>
-          For example, in the following case the import <code>java.awt.Component</code> will not be flagged as
-          unused:
-        </p>
-        <source>
-import java.awt.Component;
-class FooBar {
-    private Object Component; // a bad practice in my opinion
-    ...
-}
-        </source>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>processJavadoc</td>
-            <td>whether to process Javadoc</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;UnusedImports&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L106">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L199-L201">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.imports
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="ImportOrder">
-      <subsection name="Description">
-        <p>Checks the ordering/grouping of imports. Features are:</p>
-        <ul>
-          <li>groups imports: ensures that groups of imports come in a
-          specific order (e.g., java. comes first, javax. comes second,
-          then everything else)</li>
-          <li>adds a separation between groups : ensures that a blank
-          line sit between each group</li>
-          <li>sorts imports inside each group: ensures that imports
-          within each group are in lexicographic order</li>
-          <li>sorts according to case: ensures that the comparison
-          between imports is case sensitive, in
-          <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a></li>
-          <li>groups static imports: ensures the relative order between
-          regular imports and static imports (see
-          <a href="property_types.html#importOrder">import orders</a>)</li>
-         </ul>
-        <p>
-        <a href="#ImportOrder_Example">Examples section</a> contains examples that
-          work with default formatter configurations of Eclipse, IntelliJ IDEA and NetBeans
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>option</td>
-            <td>policy on the relative order between regular imports and static imports</td>
-            <td><a href="property_types.html#importOrder">import order</a></td>
-            <td><code>under</code></td>
-          </tr>
-          <tr>
-            <td>groups</td>
-            <td>
-              list of imports groups (every group identified either by a
-              common prefix string, or by a regular expression enclosed
-              in forward slashes (e.g. <code>/regexp/</code>)
-            </td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><code>empty list</code></td>
-          </tr>
-          <tr>
-            <td>ordered</td>
-            <td>whether imports within group should be sorted</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>true</td>
-          </tr>
-          <tr>
-            <td>separated</td>
-            <td>
-              whether imports groups should be separated by, at least, one
-              blank line
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-          </tr>
-          <tr>
-            <td>caseSensitive</td>
-            <td>whether string comparison should be case sensitive or not.
-              Case sensitive sorting is in
-              <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>true</td>
-          </tr>
-          <tr>
-            <td>sortStaticImportsAlphabetically</td>
-            <td>whether static imports grouped by <b>top</b> or <b>bottom</b> option
-            are sorted alphabetically or not</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-          </tr>
-
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.
-            </td>
-
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples" id="ImportOrder_Example">
-        <p>To configure the check so that it matches default Eclipse formatter configuration
-           (tested on Kepler and Luna releases):</p>
-        <ul>
-          <li>group of static imports is on the top</li>
-          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
-              then &quot;org&quot; and then all other imports</li>
-          <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
-        </ul>
-        <p>Notes:</p>
-        <ul>
-          <li>&quot;com&quot; package is not mentioned on configuration, because it is
-              ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
-          <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
-              prior to Mars release, but covers most scenarios</li>
-        </ul>
-
-        <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>To configure the check so that it matches default Eclipse formatter
-           configuration (tested on Mars release):</p>
-        <ul>
-          <li>group of static imports is on the top</li>
-          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
-              then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
-          <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
-        </ul>
-
-        <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org,com&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>To configure the check so that it matches default IntelliJ IDEA formatter
-           configuration (tested on v14):</p>
-        <ul>
-          <li>group of static imports is on the bottom</li>
-          <li>groups of non-static imports: all imports except of &quot;javax&quot;
-              and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
-          <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
-        </ul>
-
-        <p>
-        Note: &quot;separated&quot; option is disabled because IDEA default has blank line
-        between &quot;java&quot; and static imports, and no blank line between
-        &quot;javax&quot; and &quot;java&quot;
-        </p>
-
-        <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
-    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>To configure the check so that it matches default NetBeans formatter configuration
-           (tested on v8):</p>
-        <ul>
-          <li>groups of non-static imports are not defined, all imports will be sorted as a one
-              group</li>
-          <li>static imports are not separated, they will be sorted along with other imports</li>
-        </ul>
-
-        <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the Check allows static imports grouped to the <b>top</b>
-          being sorted alphabetically:
-        </p>
-
-        <source>
-&lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <source>
-import static java.lang.Math.PI;
-import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
-import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
-
-import org.abego.*;
-
-import java.util.Set; //  Wrong order for 'java.util.Set' import.
-
-public class SomeClass { ... }
-        </source>
-
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L92-L98">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.imports
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="ImportControl">
-      <subsection name="Description">
-        <p>
-          Controls what can be imported in each package. Useful for
-          ensuring that application layering rules are not violated,
-          especially on large projects.
-        </p>
-
-        <p>
-          The DTD for a import control XML document is at <a
-          href="http://www.puppycrawl.com/dtds/import_control_1_1.dtd">
-          http://www.puppycrawl.com/dtds/import_control_1_1.dtd</a>. It
-          contains documentation on each of the elements and attributes.
-        </p>
-
-        <p>
-          The check validates a XML document when it loads the document.
-          To validate against the above DTD, include the following
-          document type declaration in your XML document:
-        </p>
-
-        <pre>
-&lt;!DOCTYPE import-control PUBLIC
-    &quot;-//Puppy Crawl//DTD Import Control 1.1//EN&quot;
-    &quot;http://www.puppycrawl.com/dtds/import_control_1_1.dtd&quot;&gt;
-        </pre>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>file</td>
-            <td>
-              name of the file containing the import control configuration.
-            </td>
-            <td><a href="property_types.html#string">string</a></td>
-            <td><code>null</code></td>
-          </tr>
-          <tr>
-            <td>url</td>
-            <td>
-              URL of the file containing the import control configuration.
-            </td>
-            <td><a href="property_types.html#string">string</a></td>
-            <td><code>null</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check using a import control file called
-          &quot;config/import-control.xml&quot;, then have the following:
-        </p>
-
-        <source>
-&lt;module name=&quot;ImportControl&quot;&gt;
-    &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          In the example below, all classes beginning with an I in the package
-          java.awt are allowed. In the package java.io only the classes File
-          and InputStream are allowed.
-        </p>
-
-        <source>
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-    &lt;allow class=&quot;java\.awt\.I.*&quot; regex=&quot;true&quot;/&gt;
-    &lt;allow class=&quot;java\.io\.(File|InputStream)&quot; local-only=&quot;true&quot;
-        regex=&quot;true&quot;/&gt;
-&lt;/import-control&gt;
-        </source>
-
-        <p>
-          For an example import control file, look at the file called <a
-          href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
-          import-control.xml</a>
-          which is part of the Checkstyle distribution.
-        </p>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L89-L91">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.imports
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
     <section name="CustomImportOrder">
       <subsection name="Description">
         <p>
@@ -1092,6 +510,588 @@ import android.*;
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L99-L104">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="IllegalImport">
+      <subsection name="Description">
+        <p>
+          Checks for imports from a set of illegal packages. By default, the
+          check rejects all <code>sun.*</code> packages since
+          programs that contain direct calls to the <code>sun.*</code> packages are <a
+          href="http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">"not guaranteed
+          to work on all Java-compatible platforms"</a>. To reject other packages, set property <code> illegalPkgs</code> to a list of the illegal packages.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>illegalPkgs</td>
+            <td>packages to reject</td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><code>sun</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalImport&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check so that it rejects packages <code>java.io.*</code> and <code>java.sql.*</code>:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalImport&quot;&gt;
+    &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L104">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L106">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="ImportControl">
+      <subsection name="Description">
+        <p>
+          Controls what can be imported in each package. Useful for
+          ensuring that application layering rules are not violated,
+          especially on large projects.
+        </p>
+
+        <p>
+          The DTD for a import control XML document is at <a
+          href="http://www.puppycrawl.com/dtds/import_control_1_1.dtd">
+          http://www.puppycrawl.com/dtds/import_control_1_1.dtd</a>. It
+          contains documentation on each of the elements and attributes.
+        </p>
+
+        <p>
+          The check validates a XML document when it loads the document.
+          To validate against the above DTD, include the following
+          document type declaration in your XML document:
+        </p>
+
+        <pre>
+&lt;!DOCTYPE import-control PUBLIC
+    &quot;-//Puppy Crawl//DTD Import Control 1.1//EN&quot;
+    &quot;http://www.puppycrawl.com/dtds/import_control_1_1.dtd&quot;&gt;
+        </pre>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>file</td>
+            <td>
+              name of the file containing the import control configuration.
+            </td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>url</td>
+            <td>
+              URL of the file containing the import control configuration.
+            </td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><code>null</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check using a import control file called
+          &quot;config/import-control.xml&quot;, then have the following:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportControl&quot;&gt;
+    &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          In the example below, all classes beginning with an I in the package
+          java.awt are allowed. In the package java.io only the classes File
+          and InputStream are allowed.
+        </p>
+
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;allow class=&quot;java\.awt\.I.*&quot; regex=&quot;true&quot;/&gt;
+    &lt;allow class=&quot;java\.io\.(File|InputStream)&quot; local-only=&quot;true&quot;
+        regex=&quot;true&quot;/&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <p>
+          For an example import control file, look at the file called <a
+          href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
+          import-control.xml</a>
+          which is part of the Checkstyle distribution.
+        </p>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L89-L91">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="ImportOrder">
+      <subsection name="Description">
+        <p>Checks the ordering/grouping of imports. Features are:</p>
+        <ul>
+          <li>groups imports: ensures that groups of imports come in a
+          specific order (e.g., java. comes first, javax. comes second,
+          then everything else)</li>
+          <li>adds a separation between groups : ensures that a blank
+          line sit between each group</li>
+          <li>sorts imports inside each group: ensures that imports
+          within each group are in lexicographic order</li>
+          <li>sorts according to case: ensures that the comparison
+          between imports is case sensitive, in
+          <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a></li>
+          <li>groups static imports: ensures the relative order between
+          regular imports and static imports (see
+          <a href="property_types.html#importOrder">import orders</a>)</li>
+         </ul>
+        <p>
+        <a href="#ImportOrder_Example">Examples section</a> contains examples that
+          work with default formatter configurations of Eclipse, IntelliJ IDEA and NetBeans
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>option</td>
+            <td>policy on the relative order between regular imports and static imports</td>
+            <td><a href="property_types.html#importOrder">import order</a></td>
+            <td><code>under</code></td>
+          </tr>
+          <tr>
+            <td>groups</td>
+            <td>
+              list of imports groups (every group identified either by a
+              common prefix string, or by a regular expression enclosed
+              in forward slashes (e.g. <code>/regexp/</code>)
+            </td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><code>empty list</code></td>
+          </tr>
+          <tr>
+            <td>ordered</td>
+            <td>whether imports within group should be sorted</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>true</td>
+          </tr>
+          <tr>
+            <td>separated</td>
+            <td>
+              whether imports groups should be separated by, at least, one
+              blank line
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>caseSensitive</td>
+            <td>whether string comparison should be case sensitive or not.
+              Case sensitive sorting is in
+              <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>true</td>
+          </tr>
+          <tr>
+            <td>sortStaticImportsAlphabetically</td>
+            <td>whether static imports grouped by <b>top</b> or <b>bottom</b> option
+            are sorted alphabetically or not</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.
+            </td>
+
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples" id="ImportOrder_Example">
+        <p>To configure the check so that it matches default Eclipse formatter configuration
+           (tested on Kepler and Luna releases):</p>
+        <ul>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+              then &quot;org&quot; and then all other imports</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+        <p>Notes:</p>
+        <ul>
+          <li>&quot;com&quot; package is not mentioned on configuration, because it is
+              ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
+          <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
+              prior to Mars release, but covers most scenarios</li>
+        </ul>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default Eclipse formatter
+           configuration (tested on Mars release):</p>
+        <ul>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
+              then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org,com&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default IntelliJ IDEA formatter
+           configuration (tested on v14):</p>
+        <ul>
+          <li>group of static imports is on the bottom</li>
+          <li>groups of non-static imports: all imports except of &quot;javax&quot;
+              and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by, at least, one blank line</li>
+        </ul>
+
+        <p>
+        Note: &quot;separated&quot; option is disabled because IDEA default has blank line
+        between &quot;java&quot; and static imports, and no blank line between
+        &quot;javax&quot; and &quot;java&quot;
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>To configure the check so that it matches default NetBeans formatter configuration
+           (tested on v8):</p>
+        <ul>
+          <li>groups of non-static imports are not defined, all imports will be sorted as a one
+              group</li>
+          <li>static imports are not separated, they will be sorted along with other imports</li>
+        </ul>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the Check allows static imports grouped to the <b>top</b>
+          being sorted alphabetically:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <source>
+import static java.lang.Math.PI;
+import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
+
+import org.abego.*;
+
+import java.util.Set; //  Wrong order for 'java.util.Set' import.
+
+public class SomeClass { ... }
+        </source>
+
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L92-L98">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="RedundantImport">
+      <subsection name="Description">
+        <p>
+          Checks for redundant import statements. An import statement is
+          considered redundant if:
+        </p>
+
+        <ul>
+          <li>
+            It is a duplicate of another import. This is, when a class is
+            imported more than once.
+          </li>
+          <li>
+            The class non-statically imported is from the <code>java.lang</code>
+            package, e.g.  importing <code>java.lang.String</code>.
+          </li>
+          <li>
+            The class non-statically imported is from the same package as the current package.
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;RedundantImport&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L105">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L188">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="UnusedImports">
+      <subsection name="Description">
+        <p>
+          Checks for unused import statements. Checkstyle uses a simple but
+          very reliable algorithm to report on unused import statements. An
+          import statement is considered unused if:
+        </p>
+
+        <ul>
+          <li>
+            It is not referenced in the file. The algorithm does not support
+            wild-card imports like <code>import
+            java.io.*;</code>. Most IDE's provide very sophisticated checks
+            for imports that handle wild-card imports.
+          </li>
+
+          <li>
+            It is a duplicate of another import. This is when a class is
+            imported more than once.
+          </li>
+
+          <li>
+            The class imported is from the <code>java.lang</code>
+            package. For example importing <code>java.lang.String</code>.
+          </li>
+
+          <li>
+            The class imported is from the same package.
+          </li>
+          <li>
+            <b>Optionally:</b> it is referenced in Javadoc comments. This check
+            is off by default, as it is considered bad practice to introduce
+            a compile time dependency for documentation purposes only.
+            As an example, the import <code>java.util.Date</code> would be
+            considered referenced with the Javadoc comment
+            <code>{@link Date}</code>. The alternative to avoid introducing a
+            compile time dependency would be to write the Javadoc comment as
+            <code>{@link java.util.Date}</code>.
+          </li>
+        </ul>
+        <p>
+          The main limitation of this check is handling the case where
+          an imported type has the same name as a declaration, such as a
+          member variable.
+        </p>
+        <p>
+          For example, in the following case the import <code>java.awt.Component</code> will not be flagged as
+          unused:
+        </p>
+        <source>
+import java.awt.Component;
+class FooBar {
+    private Object Component; // a bad practice in my opinion
+    ...
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>processJavadoc</td>
+            <td>whether to process Javadoc</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;UnusedImports&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L106">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L199-L201">
             Checkstyle Style</a>
           </li>
         </ul>

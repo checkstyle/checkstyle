@@ -21,6 +21,154 @@
       </macro>
     </section>
 
+    <section name="AnnotationLocation">
+      <subsection name="Description">
+        <p>
+          Check location of annotation on language elements.
+          By default, Check enforce to locate annotations immediately
+          after documentation block and before target element, annotation should be located on separate line from target element.
+        </p>
+        <p>
+          Example:
+        </p>
+        <source>
+@Override
+@Nullable
+public String getNameIfPresent() { ... }
+        </source>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowSamelineMultipleAnnotations</td>
+            <td>To allow annotation to be located on the same line as target element.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+           <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowSamelineSingleParameterlessAnnotation</td>
+            <td>To allow single prameterless annotation to be located on the same line as target element.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>allowSamelineParameterizedAnnotation</td>
+            <td>To allow parameterized annotation to be located on the same line as target element.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_THROWS">LITERAL_THROWS</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPLEMENTS_CLAUSE">IMPLEMENTS_CLAUSE</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_ARGUMENT">TYPE_ARGUMENT</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Example to allow single parameterless annotation on the same line
+        </p>
+        <source>
+@Override public int hashCode() { ... }
+        </source>
+        <p>
+          Use following configuration:
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationLocation&quot;&gt;
+    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example to allow multiple parameterized annotations on the same line
+        </p>
+        <source>
+@SuppressWarnings("deprecation") @Mock DataLoader loader;
+        </source>
+        <p>
+          Use following configuration:
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationLocation&quot;&gt;
+    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example to allow multiple parameterless annotations on the same line
+        </p>
+        <source>
+@Partial @Mock DataLoader loader;
+        </source>
+        <p>
+          Use following configuration:
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationLocation&quot;&gt;
+    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L167-L169">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L239">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+
     <section name="AnnotationUseStyle">
       <subsection name="Description">
         <p> This check controls the style with the usage of annotations.
@@ -468,154 +616,6 @@
         <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
 
-    </section>
-
-    <section name="AnnotationLocation">
-      <subsection name="Description">
-        <p>
-          Check location of annotation on language elements.
-          By default, Check enforce to locate annotations immediately
-          after documentation block and before target element, annotation should be located on separate line from target element.
-        </p>
-        <p>
-          Example:
-        </p>
-        <source>
-@Override
-@Nullable
-public String getNameIfPresent() { ... }
-        </source>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>allowSamelineMultipleAnnotations</td>
-            <td>To allow annotation to be located on the same line as target element.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-           <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>allowSamelineSingleParameterlessAnnotation</td>
-            <td>To allow single prameterless annotation to be located on the same line as target element.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-          <tr>
-            <td>allowSamelineParameterizedAnnotation</td>
-            <td>To allow parameterized annotation to be located on the same line as target element.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_THROWS">LITERAL_THROWS</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPLEMENTS_CLAUSE">IMPLEMENTS_CLAUSE</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_ARGUMENT">TYPE_ARGUMENT</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          Example to allow single parameterless annotation on the same line
-        </p>
-        <source>
-@Override public int hashCode() { ... }
-        </source>
-        <p>
-          Use following configuration:
-        </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example to allow multiple parameterized annotations on the same line
-        </p>
-        <source>
-@SuppressWarnings("deprecation") @Mock DataLoader loader;
-        </source>
-        <p>
-          Use following configuration:
-        </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example to allow multiple parameterless annotations on the same line
-        </p>
-        <source>
-@Partial @Mock DataLoader loader;
-        </source>
-        <p>
-          Use following configuration:
-        </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L167-L169">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L239">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
-      </subsection>
     </section>
   </body>
 </document>

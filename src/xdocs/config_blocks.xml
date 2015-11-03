@@ -21,6 +21,119 @@
       </macro>
     </section>
 
+    <section name="AvoidNestedBlocks">
+      <subsection name="Description">
+        <p>
+          Finds nested blocks, i.e. blocks that are used freely in the code.
+        </p>
+
+        <p>
+          Rationale: Nested blocks are often leftovers from the
+          debugging process, they confuse the reader.
+        </p>
+
+        <p>
+          For example this Check finds the obsolete braces in
+        </p>
+        <source>
+public void guessTheOutput()
+{
+    int whichIsWhich = 0;
+    {
+        int whichIsWhich = 2;
+    }
+    System.out.println("value = " + whichIsWhich);
+}
+        </source>
+
+        <p> and debugging / refactoring leftovers such as </p>
+        <source>
+// if (conditionThatIsNotUsedAnyLonger)
+{
+    System.out.println("unconditional");
+}
+        </source>
+
+        <p>
+          A case in a switch statement does not implicitly form a block.
+          Thus to be able to introduce local variables that have case
+          scope it is necessary to open a nested block. This is
+          supported, set the allowInSwitchCase property to true and
+          include all statements of the case in the block.
+        </p>
+        <source>
+switch (a)
+{
+    case 0:
+        // Never OK, break outside block
+        {
+            x = 1;
+        }
+        break;
+    case 1:
+        // Never OK, statement outside block
+        System.out.println("Hello");
+        {
+            x = 2;
+            break;
+        }
+    case 1:
+        // OK if allowInSwitchCase is true
+        {
+            System.out.println("Hello");
+            x = 2;
+            break;
+        }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowInSwitchCase</td>
+            <td>Allow nested blocks in case statements</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p> To configure the check: </p>
+        <source>
+&lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L134">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L243-L245">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+      </subsection>
+    </section>
+
     <section name="EmptyBlock">
       <subsection name="Description">
         <p> Checks for empty blocks. </p>
@@ -632,119 +745,6 @@ switch (num) {
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L190-L192">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
-      </subsection>
-    </section>
-
-    <section name="AvoidNestedBlocks">
-      <subsection name="Description">
-        <p>
-          Finds nested blocks, i.e. blocks that are used freely in the code.
-        </p>
-
-        <p>
-          Rationale: Nested blocks are often leftovers from the
-          debugging process, they confuse the reader.
-        </p>
-
-        <p>
-          For example this Check finds the obsolete braces in
-        </p>
-        <source>
-public void guessTheOutput()
-{
-    int whichIsWhich = 0;
-    {
-        int whichIsWhich = 2;
-    }
-    System.out.println("value = " + whichIsWhich);
-}
-        </source>
-
-        <p> and debugging / refactoring leftovers such as </p>
-        <source>
-// if (conditionThatIsNotUsedAnyLonger)
-{
-    System.out.println("unconditional");
-}
-        </source>
-
-        <p>
-          A case in a switch statement does not implicitly form a block.
-          Thus to be able to introduce local variables that have case
-          scope it is necessary to open a nested block. This is
-          supported, set the allowInSwitchCase property to true and
-          include all statements of the case in the block.
-        </p>
-        <source>
-switch (a)
-{
-    case 0:
-        // Never OK, break outside block
-        {
-            x = 1;
-        }
-        break;
-    case 1:
-        // Never OK, statement outside block
-        System.out.println("Hello");
-        {
-            x = 2;
-            break;
-        }
-    case 1:
-        // OK if allowInSwitchCase is true
-        {
-            System.out.println("Hello");
-            x = 2;
-            break;
-        }
-}
-        </source>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>allowInSwitchCase</td>
-            <td>Allow nested blocks in case statements</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p> To configure the check: </p>
-        <source>
-&lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L134">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L243-L245">
             Checkstyle Style</a>
           </li>
         </ul>
