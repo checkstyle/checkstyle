@@ -21,82 +21,6 @@
       </macro>
     </section>
 
-    <section name="GenericWhitespace">
-      <subsection name="Description">
-        <p>
-          Checks that the whitespace around the Generic tokens (angle brackets)
-          "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
-          The convention is not configurable.
-        </p>
-        <p>
-          Left angle bracket ("&lt;"):
-        </p>
-        <ul>
-          <li> should be preceded with whitespace only in generic methods definitions.</li>
-          <li> should not be preceded with whitespace when it is precede method name or following type name.</li>
-          <li> should not be followed with whitespace in all cases.</li>
-        </ul>
-        <p>
-          Right angle bracket ("&gt;"):
-        </p>
-        <ul>
-          <li> should not be preceded with whitespace in all cases.</li>
-          <li> should be followed with whitespace in almost all cases, except diamond operators and when preceding method name.</li>
-        </ul>
-
-        <p>
-          Examples with correct spacing:
-        </p>
-        <source>
-public void &lt;K, V extends Number&gt; boolean foo(K, V) {} // Generic methods definitions
-class name&lt;T1, T2, ..., Tn&gt; {}                         // Generic type definition
-OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;                   // Generic type reference
-boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);  // Generic preceded method name
-Pair&lt;Integer, String> p1 = new Pair&lt;&gt;(1, "apple");     // Diamond operator
-List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;          // Method reference
-sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
-        </source>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;GenericWhitespace&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L133-L142">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L117">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L206">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
     <section name="EmptyForInitializerPad">
       <subsection name="Description">
         <p>
@@ -247,6 +171,324 @@ for (Iterator foo = very.long.line.iterator();
       </subsection>
     </section>
 
+    <section name="EmptyLineSeparator">
+      <subsection name="Description">
+        <p>
+          Checks for empty line separators after header, package, all import declarations,
+          fields, constructors, methods, nested classes,
+          static initializers and instance initializers.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowNoEmptyLineBetweenFields</td>
+            <td>Allow no empty line between fields</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
+             <td>allowMultipleEmptyLines</td>
+             <td>Allow multiple empty lines between class members</td>
+             <td><a href="property_types.html#boolean">boolean</a></td>
+             <td>true</td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>subset of tokens
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">STATIC_INIT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
+          </td>
+          <td>
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">STATIC_INIT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
+          </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+      <p>
+        Example of declarations without empty line separator:
+      </p>
+      <source>
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+package com.puppycrawl.tools.checkstyle.whitespace;
+import java.io.Serializable;
+class Foo
+{
+    public static final int FOO_CONST = 1;
+    public void foo() {} //should be separated from previous statement.
+}
+      </source>
+      <p>
+        An example of how to configure the check with default parameters is:
+      </p>
+      <source>
+&lt;module name="EmptyLineSeparator"/&gt;
+      </source>
+      <p>
+        Example of declarations with empty line separator that is expected by the Check by default:
+      </p>
+      <source>
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.whitespace;
+
+import java.io.Serializable;
+
+class Foo
+{
+    public static final int FOO_CONST = 1;
+
+    public void foo() {} //should be separated from previous statement.
+}
+      </source>
+      <p>
+        An example how to check empty line after  <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a> and <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>:
+      </p>
+      <source>
+&lt;module name="EmptyLineSeparator"&gt;
+    &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
+&lt;/module&gt;
+      </source>
+      <p>
+        An example how to allow no empty line between fields:
+      </p>
+      <source>
+&lt;module name="EmptyLineSeparator"&gt;
+    &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
+&lt;/module&gt;
+      </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L85-L87">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L254-L256">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="FileTabCharacter">
+      <subsection name="Description">
+        <p>
+          Checks that there are no tab characters (<code>'\t'</code>) in the source code.
+        </p>
+
+        <p>
+          Rationale:
+        </p>
+
+        <ul>
+          <li>
+            Developers should not need to configure the tab width of their
+            text editors in order to be able to read source code.
+          </li>
+          <li>
+            From the Apache jakarta coding standards: In a distributed
+            development environment, when the commit messages get sent
+            to a mailing list, they are almost impossible to read if you
+            use tabs.
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>eachLine</td>
+            <td>whether to report on each line containing a tab, or just the first instance</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>{}</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check to report on the first instance in each
+          file:
+        </p>
+        <source>
+&lt;module name=&quot;FileTabCharacter&quot;/&gt;
+        </source>
+        <p>
+          To configure the check to report on each line in each file:
+        </p>
+        <source>
+&lt;module name=&quot;FileTabCharacter&quot;&gt;
+    &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L32-L34">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L62">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L29-L31">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="GenericWhitespace">
+      <subsection name="Description">
+        <p>
+          Checks that the whitespace around the Generic tokens (angle brackets)
+          "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+          The convention is not configurable.
+        </p>
+        <p>
+          Left angle bracket ("&lt;"):
+        </p>
+        <ul>
+          <li> should be preceded with whitespace only in generic methods definitions.</li>
+          <li> should not be preceded with whitespace when it is precede method name or following type name.</li>
+          <li> should not be followed with whitespace in all cases.</li>
+        </ul>
+        <p>
+          Right angle bracket ("&gt;"):
+        </p>
+        <ul>
+          <li> should not be preceded with whitespace in all cases.</li>
+          <li> should be followed with whitespace in almost all cases, except diamond operators and when preceding method name.</li>
+        </ul>
+
+        <p>
+          Examples with correct spacing:
+        </p>
+        <source>
+public void &lt;K, V extends Number&gt; boolean foo(K, V) {} // Generic methods definitions
+class name&lt;T1, T2, ..., Tn&gt; {}                         // Generic type definition
+OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;                   // Generic type reference
+boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);  // Generic preceded method name
+Pair&lt;Integer, String> p1 = new Pair&lt;&gt;(1, "apple");     // Diamond operator
+List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;          // Method reference
+sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
+        </source>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;GenericWhitespace&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L133-L142">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L117">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L206">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="MethodParamPad">
       <subsection name="Description">
         <p>
@@ -354,6 +596,111 @@ for (Iterator foo = very.long.line.iterator();
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L141">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="NoLineWrap">
+      <subsection name="Description">
+        <p>
+          Checks that chosen statements are not line-wrapped. By default this
+          Check restricts wrapping import and package statements, but it's possible to check
+          any statement.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>subset of tokens
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>.
+            </td>
+            <td><a
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>.</td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+      <p>
+        Examples of line-wrapped statements (bad case):
+      </p>
+      <source>
+package com.puppycrawl.
+    tools.checkstyle.checks;
+
+import com.puppycrawl.tools.
+    checkstyle.api.Check;
+      </source>
+      <p>
+        To configure the check to force no line-wrapping
+        in package and import statements (default values):
+      </p>
+      <source>
+&lt;module name=&quot;NoLineWrap&quot;/&gt;
+      </source>
+      <p>
+        To configure the check to force no line-wrapping only
+        in import statements:
+      </p>
+      <source>
+&lt;module name=&quot;NoLineWrap&quot;&gt;
+    &lt;property name="tokens" value="IMPORT"/&gt;
+&lt;/module&gt;
+      </source>
+      <p>
+        Examples of not line-wrapped statements (good case):
+      </p>
+      <source>
+import com.puppycrawl.tools.checkstyle.api.Check;
+      </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L54">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L267">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -915,6 +1262,126 @@ for (Iterator foo = very.long.line.iterator();
       </subsection>
     </section>
 
+    <section name="SeparatorWrap">
+      <subsection name="Description">
+        <p>
+          Checks line wrapping with separators.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>option</td>
+            <td>policy on how to wrap lines</td>
+            <td>
+              <a href="property_types.html#wrapOp">wrap operator policy</a>
+            </td>
+            <td><code>eol</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+
+            <td>
+              subset of tokens <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>,
+               <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">SEMI</a>,
+                <a
+                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">ELLIPSIS</a>,
+                 <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">AT</a>,
+                  <a
+                   href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">LPAREN</a>,
+                   <a
+                    href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">RPAREN</a>,
+                    <a
+                     href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>,
+                     <a
+                      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">RBRACK</a>.
+            </td>
+
+            <td>
+             <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a
+               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Code example for comma and dot at the new line:
+        </p>
+        <source>
+s
+    .isEmpty();
+foo(i
+    ,s);
+        </source>
+        <p>
+          An example of how to configure the check is:
+        </p>
+        <source>
+&lt;module name="SeparatorWrap"/&gt;
+        </source>
+        <p>
+          Code example for comma and dot at the previous line:
+        </p>
+        <source>
+s.
+    isEmpty();
+foo(i,
+    s);
+        </source>
+        <p>
+          An example of how to configure the check for comma at the new line is:
+        </p>
+        <source>
+&lt;module name="SeparatorWrap"&gt;
+    &lt;property name="tokens" value="COMMA"/&gt;
+    &lt;property name="option" value="nl"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L88-L95">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L275-L282">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="TypecastParenPad">
       <subsection name="Description">
         <p>
@@ -981,101 +1448,6 @@ for (Iterator foo = very.long.line.iterator();
       <subsection name="Parent Module">
         <p>
           <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="FileTabCharacter">
-      <subsection name="Description">
-        <p>
-          Checks that there are no tab characters (<code>'\t'</code>) in the source code.
-        </p>
-
-        <p>
-          Rationale:
-        </p>
-
-        <ul>
-          <li>
-            Developers should not need to configure the tab width of their
-            text editors in order to be able to read source code.
-          </li>
-          <li>
-            From the Apache jakarta coding standards: In a distributed
-            development environment, when the commit messages get sent
-            to a mailing list, they are almost impossible to read if you
-            use tabs.
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>eachLine</td>
-            <td>whether to report on each line containing a tab, or just the first instance</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check to report on the first instance in each
-          file:
-        </p>
-        <source>
-&lt;module name=&quot;FileTabCharacter&quot;/&gt;
-        </source>
-        <p>
-          To configure the check to report on each line in each file:
-        </p>
-        <source>
-&lt;module name=&quot;FileTabCharacter&quot;&gt;
-    &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L32-L34">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L62">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L29-L31">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#Checker">Checker</a>
         </p>
       </subsection>
     </section>
@@ -1376,377 +1748,6 @@ public @interface Beta {} // empty annotation type
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L205">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="NoLineWrap">
-      <subsection name="Description">
-        <p>
-          Checks that chosen statements are not line-wrapped. By default this
-          Check restricts wrapping import and package statements, but it's possible to check
-          any statement.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>.
-            </td>
-            <td><a
-            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
-            <a
-             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>.</td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-      <p>
-        Examples of line-wrapped statements (bad case):
-      </p>
-      <source>
-package com.puppycrawl.
-    tools.checkstyle.checks;
-
-import com.puppycrawl.tools.
-    checkstyle.api.Check;
-      </source>
-      <p>
-        To configure the check to force no line-wrapping
-        in package and import statements (default values):
-      </p>
-      <source>
-&lt;module name=&quot;NoLineWrap&quot;/&gt;
-      </source>
-      <p>
-        To configure the check to force no line-wrapping only
-        in import statements:
-      </p>
-      <source>
-&lt;module name=&quot;NoLineWrap&quot;&gt;
-    &lt;property name="tokens" value="IMPORT"/&gt;
-&lt;/module&gt;
-      </source>
-      <p>
-        Examples of not line-wrapped statements (good case):
-      </p>
-      <source>
-import com.puppycrawl.tools.checkstyle.api.Check;
-      </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L54">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L267">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-    <section name="EmptyLineSeparator">
-      <subsection name="Description">
-        <p>
-          Checks for empty line separators after header, package, all import declarations,
-          fields, constructors, methods, nested classes,
-          static initializers and instance initializers.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>allowNoEmptyLineBetweenFields</td>
-            <td>Allow no empty line between fields</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td>false</td>
-          </tr>
-          <tr>
-             <td>allowMultipleEmptyLines</td>
-             <td>Allow multiple empty lines between class members</td>
-             <td><a href="property_types.html#boolean">boolean</a></td>
-             <td>true</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">STATIC_INIT</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-          </td>
-          <td>
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">STATIC_INIT</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-            <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-          </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-      <p>
-        Example of declarations without empty line separator:
-      </p>
-      <source>
-///////////////////////////////////////////////////
-//HEADER
-///////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.whitespace;
-import java.io.Serializable;
-class Foo
-{
-    public static final int FOO_CONST = 1;
-    public void foo() {} //should be separated from previous statement.
-}
-      </source>
-      <p>
-        An example of how to configure the check with default parameters is:
-      </p>
-      <source>
-&lt;module name="EmptyLineSeparator"/&gt;
-      </source>
-      <p>
-        Example of declarations with empty line separator that is expected by the Check by default:
-      </p>
-      <source>
-///////////////////////////////////////////////////
-//HEADER
-///////////////////////////////////////////////////
-
-package com.puppycrawl.tools.checkstyle.whitespace;
-
-import java.io.Serializable;
-
-class Foo
-{
-    public static final int FOO_CONST = 1;
-
-    public void foo() {} //should be separated from previous statement.
-}
-      </source>
-      <p>
-        An example how to check empty line after  <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a> and <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>:
-      </p>
-      <source>
-&lt;module name="EmptyLineSeparator"&gt;
-    &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
-&lt;/module&gt;
-      </source>
-      <p>
-        An example how to allow no empty line between fields:
-      </p>
-      <source>
-&lt;module name="EmptyLineSeparator"&gt;
-    &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
-&lt;/module&gt;
-      </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L85-L87">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L254-L256">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="SeparatorWrap">
-      <subsection name="Description">
-        <p>
-          Checks line wrapping with separators.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>option</td>
-            <td>policy on how to wrap lines</td>
-            <td>
-              <a href="property_types.html#wrapOp">wrap operator policy</a>
-            </td>
-            <td><code>eol</code></td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-
-            <td>
-              subset of tokens <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
-              <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>,
-               <a
-                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">SEMI</a>,
-                <a
-                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">ELLIPSIS</a>,
-                 <a
-                  href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">AT</a>,
-                  <a
-                   href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">LPAREN</a>,
-                   <a
-                    href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">RPAREN</a>,
-                    <a
-                     href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>,
-                     <a
-                      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">RBRACK</a>.
-            </td>
-
-            <td>
-             <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
-              <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>.
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          Code example for comma and dot at the new line:
-        </p>
-        <source>
-s
-    .isEmpty();
-foo(i
-    ,s);
-        </source>
-        <p>
-          An example of how to configure the check is:
-        </p>
-        <source>
-&lt;module name="SeparatorWrap"/&gt;
-        </source>
-        <p>
-          Code example for comma and dot at the previous line:
-        </p>
-        <source>
-s.
-    isEmpty();
-foo(i,
-    s);
-        </source>
-        <p>
-          An example of how to configure the check for comma at the new line is:
-        </p>
-        <source>
-&lt;module name="SeparatorWrap"&gt;
-    &lt;property name="tokens" value="COMMA"/&gt;
-    &lt;property name="option" value="nl"/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L88-L95">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L275-L282">
             Checkstyle Style</a>
           </li>
         </ul>

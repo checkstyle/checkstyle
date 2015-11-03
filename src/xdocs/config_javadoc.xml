@@ -21,17 +21,10 @@
       </macro>
     </section>
 
-    <section name="JavadocPackage">
+    <section name="AtclauseOrder">
       <subsection name="Description">
         <p>
-          Checks that each Java package has a Javadoc file used for
-          commenting.  By default it only allows a <code>package-info.java</code> file, but can be
-          configured to allow a <code>package.html</code>
-          file.
-        </p>
-        <p>
-          An error will be reported if both files exist as this is not
-          allowed by the Javadoc tool.
+          Checks the order of at-clauses.
         </p>
       </subsection>
 
@@ -44,202 +37,59 @@
             <th>default value</th>
           </tr>
           <tr>
-            <td>allowLegacy</td>
-            <td>
-              If set then allow the use of a
-              <code>package.html</code> file.
+            <td>target</td>
+            <td>allows to specify targets to check at-clauses.</td>
+            <td>subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
+            </td>
           </tr>
           <tr>
-            <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
+            <td>tagOrder</td>
+            <td>allows to specify the order by tags.</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>&#64;author, &#64;version, &#64;param,
+                  &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
+                  &#64;serialField, &#64;serialData, &#64;deprecated</code></td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          Default configuration
         </p>
         <source>
-&lt;module name="JavadocPackage"/&gt;
+&lt;module name=&quot;AtclauseOrder&quot;&gt;
+    &lt;property name=&quot;tagOrder&quot; value=&quot;&#64;author, &#64;version, &#64;param,
+    &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
+    &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
+    &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
+    METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
+&lt;/module>
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L46">
-            Sun Style</a>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L180-L183">
+            Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L25-L27">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#Checker">Checker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="JavadocType">
-      <subsection name="Description">
-        <p>
-          Checks Javadoc comments for class and interface definitions.
-          By default, does not check for author or version tags.  The
-          scope to verify is specified using the <code>Scope</code>
-          class and defaults to <code>Scope.PRIVATE</code>. To verify
-          another scope, set property scope to one of the
-          <code>Scope</code> constants.  To define the format for an
-          author tag or a version tag, set property authorFormat or
-          versionFormat respectively to a
-          <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">
-            regular expression</a>.
-        </p>
-        <p>
-          Does not perform checks for author and version tags for inner
-          classes, as they should be redundant because of outer class.
-        </p>
-        <p>
-          Error messages about type parameters for which no param tags are
-          present can be suppressed by defining property
-          <code>allowMissingParamTags</code>.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>scope</td>
-            <td>visibility scope where Javadoc comments are checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
-            <td><code>private</code></td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>visibility scope where Javadoc comments are not checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
-            <td><code>null</code></td>
-          </tr>
-          <tr>
-            <td>authorFormat</td>
-            <td>pattern for @author tag</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>null</code> (tag not required)</td>
-          </tr>
-          <tr>
-            <td>versionFormat</td>
-            <td>pattern for @version tag</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>null</code> (tag not required)</td>
-          </tr>
-          <tr>
-            <td>allowMissingParamTags</td>
-            <td>whether to ignore errors when a class has type parameters
-                but does not have matching param tags in the javadoc.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>allowUnknownTags</td>
-            <td>whether to ignore errors when a Javadoc tag is not recognised.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the default check:
-        </p>
-        <source>
-&lt;module name="JavadocType"/&gt;
-        </source>
-
-        <p>
-          To configure the check for <code>public</code> scope:
-        </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-   &lt;property name="scope" value="public"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check for an @author tag:
-        </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-   &lt;property name="authorFormat" value="\S"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check for a CVS revision version tag:
-        </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check for <code>private</code> classes only:
-        </p>
-        <source>
-&lt;module name="JavadocType"&gt;
-   &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludeScope" value="package"/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L85">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L110-L112">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L242">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -562,11 +412,17 @@ public boolean isSomething()
       </subsection>
     </section>
 
-    <section name="JavadocVariable">
+    <section name="JavadocPackage">
       <subsection name="Description">
         <p>
-          Checks that variables have Javadoc comments. Ignores <code>serialVersionUID</code>
-          fields.
+          Checks that each Java package has a Javadoc file used for
+          commenting.  By default it only allows a <code>package-info.java</code> file, but can be
+          configured to allow a <code>package.html</code>
+          file.
+        </p>
+        <p>
+          An error will be reported if both files exist as this is not
+          allowed by the Javadoc tool.
         </p>
       </subsection>
 
@@ -579,85 +435,135 @@ public boolean isSomething()
             <th>default value</th>
           </tr>
           <tr>
-            <td>scope</td>
-            <td>visibility scope where Javadoc comments are checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
-            <td><code>private</code></td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>visibility scope where Javadoc comments are not checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
-            <td><code>null</code></td>
-          </tr>
-          <tr>
-              <td>ignoreNamePattern</td>
-              <td>regexp to define variable names to ignore</td>
-              <td><a href="property_types.html#regexp">regular expression</a></td>
-              <td><code>null</code></td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
-            </td>
+            <td>allowLegacy</td>
             <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
+              If set then allow the use of a
+              <code>package.html</code> file.
             </td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>{}</code></td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          To configure the default check:
+          To configure the check:
         </p>
         <source>
-&lt;module name="JavadocVariable"/&gt;
-        </source>
-
-        <p>
-          To configure the check for <code>public</code>
-          scope:
-        </p>
-
-        <source>
-&lt;module name="JavadocVariable"&gt;
-   &lt;property name="scope" value="public"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check for members which are in <code>private</code>, but not in <code>protected</code> scope:
-        </p>
-
-        <source>
-&lt;module name="JavadocVariable"&gt;
-   &lt;property name="scope" value="private"/&gt;
-   &lt;property name="excludeScope" value="protected"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-            To ignore absence of Javadoc comments for variables with names <code>log</code> or <code>logger</code>:
-        </p>
-
-        <source>
-&lt;module name="JavadocVariable"&gt;
-    &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
-&lt;/module&gt;
+&lt;module name="JavadocPackage"/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L86">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L46">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L118">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L25-L27">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="JavadocParagraph">
+      <subsection name="Description">
+        <p>
+          Checks that:
+        </p>
+        <ul>
+          <li>
+            There is one blank line between each of two paragraphs and one blank line before the at-clauses block if it is present.
+          </li>
+          <li>
+            Each paragraph but the first has &lt;p&gt; immediately before the first word, with no space after.
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowNewlineParagraph</td>
+            <td>whether the &lt;p&gt; tag should be placed immediately before the first word</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Default configuration:
+        </p>
+        <source>
+&lt;module name=&quot;JavadocParagraph&quot;/&gt;
+        </source>
+        <p>
+          To allows to place text of a paragraph not immediately after a &lt;p&gt; tag:
+        </p>
+        <source>
+&lt;module name=&quot;JavadocParagraph&quot;&gt;
+    &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          In case of tagImmediatelyBeforeFirstWord set to false
+          the following example will not have any violations:
+        </p>
+        <source>
+/**
+ * Some Javadoc.
+ *
+ * &lt;p&gt;
+ * Some Javadoc.
+ *
+ * &lt;p&gt;  Some Javadoc.
+ *
+ * &lt;p&gt;
+ * &lt;pre&gt;
+ * Some preformatted Javadoc.
+ * &lt;/pre&gt;
+ *
+ *&#47;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L179">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L344">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -851,16 +757,10 @@ public boolean isSomething()
       </subsection>
     </section>
 
-    <section name="WriteTag">
+    <section name="JavadocTagContinuationIndentation">
       <subsection name="Description">
         <p>
-         Outputs a JavaDoc tag as information. Can be used e.g. with the
-         stylesheets that sort the report by author name.  To define the
-         format for a tag, set property tagFormat to a regular
-         expression.  This check uses two different severity levels. The
-         normal one is used for reporting when the tag is missing. The
-         additional one (tagSeverity) is used for the level of reporting
-         when the tag exists.
+          Checks the indentation of the continuation lines in at-clauses.
         </p>
       </subsection>
 
@@ -873,35 +773,130 @@ public boolean isSomething()
             <th>default value</th>
           </tr>
           <tr>
-            <td>tag</td>
-            <td>Name of tag</td>
-            <td><a href="property_types.html#string">String</a></td>
-           <td><code>null</code></td>
+            <td>offset</td>
+            <td>How many spaces to use for new indentation level.</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><span class="default">4</span></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          Default configuration
+        </p>
+        <source>
+&lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
+    &lt;property name=&quot;offset&quot; value=&quot;4&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L175">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L343">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="JavadocType">
+      <subsection name="Description">
+        <p>
+          Checks Javadoc comments for class and interface definitions.
+          By default, does not check for author or version tags.  The
+          scope to verify is specified using the <code>Scope</code>
+          class and defaults to <code>Scope.PRIVATE</code>. To verify
+          another scope, set property scope to one of the
+          <code>Scope</code> constants.  To define the format for an
+          author tag or a version tag, set property authorFormat or
+          versionFormat respectively to a
+          <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">
+            regular expression</a>.
+        </p>
+        <p>
+          Does not perform checks for author and version tags for inner
+          classes, as they should be redundant because of outer class.
+        </p>
+        <p>
+          Error messages about type parameters for which no param tags are
+          present can be suppressed by defining property
+          <code>allowMissingParamTags</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
           </tr>
           <tr>
-            <td>tagFormat</td>
-            <td>Format of tag</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><code>private</code></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>visibility scope where Javadoc comments are not checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
-            <td>tagSeverity</td>
-            <td>Severity level when tag is found and printed</td>
-            <td><a href="property_types.html#severity">severity</a></td>
-            <td><code>info</code></td>
+            <td>authorFormat</td>
+            <td>pattern for @author tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>null</code> (tag not required)</td>
+          </tr>
+          <tr>
+            <td>versionFormat</td>
+            <td>pattern for @version tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>null</code> (tag not required)</td>
+          </tr>
+          <tr>
+            <td>allowMissingParamTags</td>
+            <td>whether to ignore errors when a class has type parameters
+                but does not have matching param tags in the javadoc.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowUnknownTags</td>
+            <td>whether to ignore errors when a Javadoc tag is not recognised.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>tokens</td>
             <td>tokens to check</td>
-            <td>subset of tokens
+            <td>
+              subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
             </td>
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
@@ -915,27 +910,46 @@ public boolean isSomething()
 
       <subsection name="Examples">
         <p>
-        An example of how to configure the check for printing author name is:
+          To configure the default check:
         </p>
-
         <source>
-&lt;module name="WriteTag"&gt;
-   &lt;property name="tag" value="@author"/&gt;
-   &lt;property name="tagFormat" value="\S"/&gt;
+&lt;module name="JavadocType"/&gt;
+        </source>
+
+        <p>
+          To configure the check for <code>public</code> scope:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+   &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
         </source>
 
         <p>
-         An example of how to configure the check to print warnings if an
-         "@incomplete" tag is found, and not print anything if it is not found:
+          To configure the check for an @author tag:
         </p>
-
         <source>
-&lt;module name="WriteTag"&gt;
-   &lt;property name="tag" value="@incomplete"/&gt;
-   &lt;property name="tagFormat" value="\S"/&gt;
-   &lt;property name="severity" value="ignore"/&gt;
-   &lt;property name="tagSeverity" value="warning"/&gt;
+&lt;module name="JavadocType"&gt;
+   &lt;property name="authorFormat" value="\S"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for a CVS revision version tag:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for <code>private</code> classes only:
+        </p>
+        <source>
+&lt;module name="JavadocType"&gt;
+   &lt;property name="scope" value="private"/&gt;
+   &lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -943,7 +957,125 @@ public boolean isSomething()
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L345">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L85">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L110-L112">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="JavadocVariable">
+      <subsection name="Description">
+        <p>
+          Checks that variables have Javadoc comments. Ignores <code>serialVersionUID</code>
+          fields.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>scope</td>
+            <td>visibility scope where Javadoc comments are checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><code>private</code></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>visibility scope where Javadoc comments are not checked</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+              <td>ignoreNamePattern</td>
+              <td>regexp to define variable names to ignore</td>
+              <td><a href="property_types.html#regexp">regular expression</a></td>
+              <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name="JavadocVariable"/&gt;
+        </source>
+
+        <p>
+          To configure the check for <code>public</code>
+          scope:
+        </p>
+
+        <source>
+&lt;module name="JavadocVariable"&gt;
+   &lt;property name="scope" value="public"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check for members which are in <code>private</code>, but not in <code>protected</code> scope:
+        </p>
+
+        <source>
+&lt;module name="JavadocVariable"&gt;
+   &lt;property name="scope" value="private"/&gt;
+   &lt;property name="excludeScope" value="protected"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+            To ignore absence of Javadoc comments for variables with names <code>log</code> or <code>logger</code>:
+        </p>
+
+        <source>
+&lt;module name="JavadocVariable"&gt;
+    &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L86">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L118">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1005,10 +1137,12 @@ public boolean isSomething()
       </subsection>
     </section>
 
-    <section name="JavadocTagContinuationIndentation">
+    <section name="SingleLineJavadoc">
       <subsection name="Description">
         <p>
-          Checks the indentation of the continuation lines in at-clauses.
+           Checks that a JavaDoc block can fit in a single line and doesn't
+           contain at-clauses. Javadoc comment that contains at least one at-clause
+           should be formatted in a few lines.
         </p>
       </subsection>
 
@@ -1021,21 +1155,34 @@ public boolean isSomething()
             <th>default value</th>
           </tr>
           <tr>
-            <td>offset</td>
-            <td>How many spaces to use for new indentation level.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><span class="default">4</span></td>
+            <td>ignoredTags</td>
+            <td>allows to specify at-clauses which are ignored by the check.</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>ignoreInlineTags</td>
+            <td>whether inline tags must be ignored.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          Default configuration
+          Default configuration:
         </p>
         <source>
-&lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
-    &lt;property name=&quot;offset&quot; value=&quot;4&quot;/&gt;
+&lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
+        </source>
+        <p>
+          To specify a list of ignored at-clauses and make inline at-clauses not ignored:
+        </p>
+        <source>
+&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
+    &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
+    &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1043,11 +1190,11 @@ public boolean isSomething()
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L175">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L198-L200">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L343">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L342">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1148,10 +1295,16 @@ public boolean isSomething()
       </subsection>
     </section>
 
-    <section name="AtclauseOrder">
+    <section name="WriteTag">
       <subsection name="Description">
         <p>
-          Checks the order of at-clauses.
+         Outputs a JavaDoc tag as information. Can be used e.g. with the
+         stylesheets that sort the report by author name.  To define the
+         format for a tag, set property tagFormat to a regular
+         expression.  This check uses two different severity levels. The
+         normal one is used for reporting when the tag is missing. The
+         additional one (tagSeverity) is used for the level of reporting
+         when the tag exists.
         </p>
       </subsection>
 
@@ -1164,218 +1317,69 @@ public boolean isSomething()
             <th>default value</th>
           </tr>
           <tr>
-            <td>target</td>
-            <td>allows to specify targets to check at-clauses.</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
-            </td>
-          </tr>
-          <tr>
-            <td>tagOrder</td>
-            <td>allows to specify the order by tags.</td>
+            <td>tag</td>
+            <td>Name of tag</td>
             <td><a href="property_types.html#string">String</a></td>
-            <td><code>&#64;author, &#64;version, &#64;param,
-                  &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
-                  &#64;serialField, &#64;serialData, &#64;deprecated</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          Default configuration
-        </p>
-        <source>
-&lt;module name=&quot;AtclauseOrder&quot;&gt;
-    &lt;property name=&quot;tagOrder&quot; value=&quot;&#64;author, &#64;version, &#64;param,
-    &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
-    &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
-    &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
-    METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
-&lt;/module>
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L180-L183">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L242">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="JavadocParagraph">
-      <subsection name="Description">
-        <p>
-          Checks that:
-        </p>
-        <ul>
-          <li>
-            There is one blank line between each of two paragraphs and one blank line before the at-clauses block if it is present.
-          </li>
-          <li>
-            Each paragraph but the first has &lt;p&gt; immediately before the first word, with no space after.
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
+           <td><code>null</code></td>
           </tr>
           <tr>
-            <td>allowNewlineParagraph</td>
-            <td>whether the &lt;p&gt; tag should be placed immediately before the first word</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          Default configuration:
-        </p>
-        <source>
-&lt;module name=&quot;JavadocParagraph&quot;/&gt;
-        </source>
-        <p>
-          To allows to place text of a paragraph not immediately after a &lt;p&gt; tag:
-        </p>
-        <source>
-&lt;module name=&quot;JavadocParagraph&quot;&gt;
-    &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          In case of tagImmediatelyBeforeFirstWord set to false
-          the following example will not have any violations:
-        </p>
-        <source>
-/**
- * Some Javadoc.
- *
- * &lt;p&gt;
- * Some Javadoc.
- *
- * &lt;p&gt;  Some Javadoc.
- *
- * &lt;p&gt;
- * &lt;pre&gt;
- * Some preformatted Javadoc.
- * &lt;/pre&gt;
- *
- *&#47;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L179">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L344">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="SingleLineJavadoc">
-      <subsection name="Description">
-        <p>
-           Checks that a JavaDoc block can fit in a single line and doesn't
-           contain at-clauses. Javadoc comment that contains at least one at-clause
-           should be formatted in a few lines.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>ignoredTags</td>
-            <td>allows to specify at-clauses which are ignored by the check.</td>
-            <td><a href="property_types.html#string">String</a></td>
+            <td>tagFormat</td>
+            <td>Format of tag</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
-            <td>ignoreInlineTags</td>
-            <td>whether inline tags must be ignored.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
+            <td>tagSeverity</td>
+            <td>Severity level when tag is found and printed</td>
+            <td><a href="property_types.html#severity">severity</a></td>
+            <td><code>info</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
+            </td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          Default configuration:
+        An example of how to configure the check for printing author name is:
         </p>
+
         <source>
-&lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
+&lt;module name="WriteTag"&gt;
+   &lt;property name="tag" value="@author"/&gt;
+   &lt;property name="tagFormat" value="\S"/&gt;
+&lt;/module&gt;
         </source>
+
         <p>
-          To specify a list of ignored at-clauses and make inline at-clauses not ignored:
+         An example of how to configure the check to print warnings if an
+         "@incomplete" tag is found, and not print anything if it is not found:
         </p>
+
         <source>
-&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
-    &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
-    &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
+&lt;module name="WriteTag"&gt;
+   &lt;property name="tag" value="@incomplete"/&gt;
+   &lt;property name="tagFormat" value="\S"/&gt;
+   &lt;property name="severity" value="ignore"/&gt;
+   &lt;property name="tagSeverity" value="warning"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -1383,11 +1387,7 @@ public boolean isSomething()
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L198-L200">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L342">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L345">
             Checkstyle Style</a>
           </li>
         </ul>

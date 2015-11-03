@@ -459,6 +459,105 @@
       </subsection>
     </section>
 
+    <section name="RegexpMultiline">
+      <subsection name="Description">
+        <p>
+          A check for detecting that matches across multiple lines.
+          Works with any file type.
+        </p>
+
+        <p>
+          Rationale: This check can be used to when the regular
+          expression can be span multiple lines.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>illegal pattern</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^$</code> (empty)</td>
+          </tr>
+          <tr>
+            <td>message</td>
+            <td>message which is used to notify about violations,
+            if empty then default(hard-coded) message is used.</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>&quot;&quot;</code>(empty)</td>
+          </tr>
+          <tr>
+            <td>ignoreCase</td>
+            <td>Controls whether to ignore case when searching.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>minimum</td>
+            <td>The minimum number of matches required in each file.</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><code>0</code></td>
+          </tr>
+          <tr>
+            <td>maximum</td>
+            <td>The maximum number of matches required in each file.</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><code>0</code></td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of files to process</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>{}</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check to find calls to print to the console:
+        </p>
+        <source>
+&lt;module name=&quot;RegexpMultiline&quot;&gt;
+  &lt;property name=&quot;format&quot;
+   value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L51-L56">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L63-L67">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.regexp
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="RegexpSingleline">
       <subsection name="Description">
         <p>
@@ -574,105 +673,6 @@
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L66-L71">
             Sun Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#Checker">Checker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="RegexpMultiline">
-      <subsection name="Description">
-        <p>
-          A check for detecting that matches across multiple lines.
-          Works with any file type.
-        </p>
-
-        <p>
-          Rationale: This check can be used to when the regular
-          expression can be span multiple lines.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>illegal pattern</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code> (empty)</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>message which is used to notify about violations,
-            if empty then default(hard-coded) message is used.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>&quot;&quot;</code>(empty)</td>
-          </tr>
-          <tr>
-            <td>ignoreCase</td>
-            <td>Controls whether to ignore case when searching.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>minimum</td>
-            <td>The minimum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-          </tr>
-          <tr>
-            <td>maximum</td>
-            <td>The maximum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>file type extension of files to process</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check to find calls to print to the console:
-        </p>
-        <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot;
-   value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L51-L56">
-            Checkstyle Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L63-L67">
-            Checkstyle Style</a>
           </li>
         </ul>
       </subsection>

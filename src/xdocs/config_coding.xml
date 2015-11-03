@@ -171,6 +171,168 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
       </subsection>
     </section>
 
+    <section name="DeclarationOrder">
+      <subsection name="Description">
+        <p>
+          According to <a
+          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
+          Code Conventions for the Java Programming Language</a> , the parts
+          of a class or interface declaration should appear in the following
+          order:
+        </p>
+
+        <ol>
+          <li>
+            Class (static) variables. First the public class variables, then
+             protected, then package level (no access modifier), and then
+             private.
+          </li>
+          <li>
+            Instance variables. First the public class variables, then
+            protected, then package level (no access modifier), and then
+            private.
+          </li>
+          <li> Constructors </li>
+          <li> Methods </li>
+        </ol>
+
+        <p>
+          Purpose of <b>ignore*</b> option is to ignore related violations, however it still impacts on other class members.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>ignoreConstructors</td>
+            <td>whether to ignore constructors</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>ignoreModifiers</td>
+            <td>whether to ignore modifiers</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;DeclarationOrder&quot;/&gt;
+        </source>
+
+        <p>
+        For example:
+        <source>
+            class K {
+                int a;
+                void m(){}
+                K(){}  &lt;-- "Constructor definition in wrong order"
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
+        <p>
+        With <b>ignoreConstructors</b> option:
+        <source>
+            class K {
+                int a;
+                void m(){}
+                K(){}
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
+        <p>
+        With <b>ignoreConstructors</b> option and without a method definition in a source class:
+        <source>
+            class K {
+                int a;
+                K(){}
+                int b; &lt;-- "Instance variable definition in wrong order"
+            }
+        </source>
+        </p>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L249">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="DefaultComesLast">
+      <subsection name="Description">
+        <p>
+          Check that the <code>default</code> is after all the
+          <code>case</code>s in a <code>switch</code> statement.
+        </p>
+
+        <p>
+          Rationale: Java allows <code>default</code> anywhere
+          within the <code>switch</code> statement. But it is
+          more readable if it comes after the last <code>case</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;DefaultComesLast&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L250">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="EmptyStatement">
       <subsection name="Description">
         <p>
@@ -327,6 +489,175 @@ String nullString = null;
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L85">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="ExplicitInitialization">
+      <subsection name="Description">
+        <p>
+          Checks if any class or object member is explicitly initialized to
+          default for its type value (<code>null</code> for
+          object references, zero for numeric types and <code>char</code> and <code>false</code> for
+          <code>boolean</code>.
+        </p>
+
+        <p>
+          Rationale: Each instance variable gets initialized twice, to the
+          same value.  Java initializes each instance variable to its default
+          value (0 or null) before performing any initialization specified in
+          the code.  So in this case, x gets initialized to 0 twice, and bar
+          gets initialized to null twice.  So there is a minor inefficiency.
+          This style of coding is a holdover from C/C++ style coding, and it
+          shows that the developer isn't really confident that Java
+          initializes instance variables to default values.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;ExplicitInitialization&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L229">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="FallThrough">
+      <subsection name="Description">
+        <p>
+          Checks for fall-through in <code>switch</code>
+          statements. Finds locations where a <code>case</code>
+          <b>contains</b> Java code but lacks a <code>break</code>, <code>return</code>,
+          <code>throw</code> or <code>continue</code>
+          statement.
+        </p>
+        <p>
+          The check honors special comments to suppress the warning. By
+          default the text "fallthru", "fall through", "fallthrough",
+          "falls through" and "fallsthrough" are recognized (case
+          sensitive). The comment containing these words must be all on one line, and must
+          be on the last non-empty line before the
+          <code>case</code> triggering the warning or on
+          the same line before the <code>case</code>
+          (ugly, but possible).
+        </p>
+        <source>
+switch (i){
+case 0:
+    i++; // fall through
+
+case 1:
+    i++;
+    // falls through
+case 2:
+case 3:
+case 4: {
+    i++;
+}
+// fallthrough
+case 5:
+    i++;
+/* fallthru */case 6:
+    i++
+    break;
+}
+        </source>
+        <p>
+          Note: The check assumes that there is no unreachable
+          code in the <code>case</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>checkLastCaseGroup</td>
+            <td>
+              Whether the last case group must be checked.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>reliefPattern</td>
+            <td>
+              Regular expression to match the relief comment that suppresses
+              the warning about a fall through.
+            </td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>fallthru|falls? ?through</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;FallThrough&quot;/&gt;
+        </source>
+        <p>
+          or
+        </p>
+        <source>
+&lt;module name=&quot;FallThrough&quot;&gt;
+    &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L82">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L258">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -670,6 +1001,71 @@ class SomeClass
       </subsection>
     </section>
 
+    <section name="IllegalCatch">
+      <subsection name="Description">
+        <p>
+        Checks that certain exception types do not appear in a <code>catch</code> statement.
+        </p>
+
+        <p>
+          Rationale:
+          Catching java.lang.Exception, java.lang.Error or
+          java.lang.RuntimeException is almost never acceptable.
+          Novice developers often simply catch Exception in an
+          attempt to handle multiple exception classes. This unfortunately
+          leads to code that inadvertently catches NullPointerException, OutOfMemoryError, etc.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>illegalClassNames</td>
+            <td>exception class names to reject</td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><code>&quot;java.lang.Exception,
+            java.lang.Throwable, java.lang.RuntimeException&quot;</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalCatch&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L88">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="IllegalInstantiation">
       <subsection name="Description">
         <p>
@@ -755,6 +1151,103 @@ class SomeClass
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L107">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="IllegalThrows">
+      <subsection name="Description">
+        <p>
+          This check can be used to ensure that types are not declared
+          to be thrown. Declaring that a method throws java.lang.Error or
+          java.lang.RuntimeException is almost never acceptable.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>illegalClassNames</td>
+            <td>throw class names to reject</td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td>
+              <code>&quot;java.lang.Throwable,
+              java.lang.Error, java.lang.RuntimeException&quot;</code>
+            </td>
+          </tr>
+          <tr>
+            <td>ignoredMethodNames</td>
+            <td>names of methods to ignore</td>
+            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><code>finalize</code></td>
+          </tr>
+          <tr>
+            <td>ignoreOverriddenMethods</td>
+            <td>ignore checking overridden methods (marked with Override or java.lang.Override
+             annotation).</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;/&gt;
+        </source>
+        <p>
+          To configure the check rejecting throws NullPointerException from methods:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;&gt;
+    &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check ignoring method named &quot;foo()&quot;:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;&gt;
+    &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;foo&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to warn on overridden methods:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalThrows&quot;&gt;
+    &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L108">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -919,6 +1412,126 @@ class SomeClass
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L259">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="IllegalType">
+      <subsection name="Description">
+        <p>
+          Checks that particular classes are never used as types in variable
+          declarations, return values or parameters.
+        </p>
+
+        <p>
+          Rationale: Helps reduce coupling on concrete classes.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>validateAbstractClassNames</td>
+            <td>Whether to validate abstract class names</td>
+            <td>boolean</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>illegalClassNames</td>
+            <td>Classes that should not be used as types in variable
+            declarations, return values or parameters</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td>&quot;java.util.HashSet, java.util.HashMap, java.util.LinkedHashMap,
+            java.util.LinkedHashSet, java.util.TreeSet,
+            java.util.TreeMap&quot;</td>
+          </tr>
+          <tr>
+          <td>legalAbstractClassNames</td>
+          <td>Abstract classes that may be used as types. </td>
+          <td><a href="property_types.html#stringSet">String Set</a></td>
+          <td/>
+        </tr>
+        <tr>
+            <td>ignoredMethodNames</td>
+            <td>Methods that should not be checked.</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td>&quot;getInitialContext, getEnvironment&quot; </td>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Pattern for illegal class names.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^(.*[\\.])?Abstract.*$</code></td>
+          </tr>
+          <tr>
+            <td>memberModifiers</td>
+            <td>Check methods and fields with only corresponding modifiers.</td>
+            <td><a href="property_types.html#stringSet">List of tokens</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check so that it ignores getInstance() methods:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalType&quot;&gt;
+    &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;getInstance&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the Check so that it verifies only public, protected and static
+           methods and fields:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalType&quot;&gt;
+    &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
+     LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L313">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1218,6 +1831,45 @@ class MyClass {
       </subsection>
     </section>
 
+    <section name="MissingCtor">
+      <subsection name="Description">
+        <p>
+          Checks that classes (except abstract ones) define a constructor and don't
+          rely on the default one.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;MissingCtor&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L348-L354">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="MissingSwitchDefault">
       <subsection name="Description">
         <p>
@@ -1380,18 +2032,62 @@ class MyClass {
       </subsection>
     </section>
 
-    <section name="SimplifyBooleanExpression">
+    <section name="MultipleStringLiterals">
       <subsection name="Description">
         <p>
-          Checks for over-complicated boolean expressions. Currently finds
-          code like <code> if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
-          etc.
+          Checks for multiple occurrences of the same string literal within a
+          single file.
         </p>
 
         <p>
-          Rationale: Complex boolean logic makes code hard to understand and
-          maintain.
+          Rationale: Code duplication makes maintenance more difficult, so it
+          can be better to replace the multiple occurrences with a constant.
         </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>allowedDuplicates</td>
+            <td>
+              The maximum number of occurrences to allow without generating a
+              warning
+            </td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>ignoreStringsRegexp</td>
+            <td>
+              Regular expression pattern for ignored strings (with quotation marks)
+            </td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^""$</code> (ignore empty strings)</td>
+          </tr>
+          <tr>
+            <td>ignoreOccurrenceContext</td>
+            <td>
+              Token type names where duplicate strings are ignored even if they don't match
+              ignoredStringsRegexp. This allows you to exclude syntactical contexts like
+              annotations or static initializers from the check.
+            </td>
+            <td>
+              <a href="property_types.html#stringSet">list</a> of
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">token type</a>
+              names
+            </td>
+            <td>
+              <code>ANNOTATION</code>
+              (ignore strings inside the context of an annotation)
+            </td>
+          </tr>
+        </table>
       </subsection>
 
       <subsection name="Examples">
@@ -1399,18 +2095,44 @@ class MyClass {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
+&lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check so that it allows two occurrences of each
+          string:
+        </p>
+        <source>
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+    &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it ignores ", " and empty strings:
+        </p>
+        <source>
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+    &lt;property name=&quot;ignoreStringsRegexp&quot; value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it flags duplicate strings in all
+          syntactical contexts, even in annotations like
+          <code>@SuppressWarnings("unchecked")</code>:
+        </p>
+        <source>
+&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+    &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L150">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L193">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L315">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1429,29 +2151,18 @@ class MyClass {
       </subsection>
     </section>
 
-    <section name="SimplifyBooleanReturn">
+    <section name="MultipleVariableDeclarations">
       <subsection name="Description">
         <p>
-          Checks for over-complicated boolean return statements. For example
-          the following code
+          Checks that each variable declaration is in its own statement and on
+          its own line.
         </p>
-        <source>
-if (valid())
-    return false;
-else
-    return true;
-        </source>
 
         <p>
-          could be written as
-        </p>
-        <source>
-return !valid();
-        </source>
-
-        <p>
-          The idea for this Check has been shamelessly stolen from the
-          equivalent <a href="http://pmd.sourceforge.net">PMD</a> rule.
+          Rationale: <a
+          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141270.html#2992">
+          the Java code conventions chapter 6.1</a> recommends that
+          declarations should be one per line/statement.
         </p>
       </subsection>
 
@@ -1460,69 +2171,18 @@ return !valid();
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
+&lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L151">
-            Sun Style</a>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L79">
+            Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L194">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="StringLiteralEquality">
-      <subsection name="Description">
-        <p>
-          Checks that string literals are not used with <code>==</code> or
-          <code>&#33;=</code>.
-        </p>
-
-        <p>
-          Rationale: Novice Java programmers often use code like:
-        </p>
-        <source>
-if (x == &quot;something&quot;)
-        </source>
-
-        <p>when they mean</p>
-        <source>
-if (&quot;something&quot;.equals(x))
-        </source>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;StringLiteralEquality&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L283">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L263">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1830,33 +2490,64 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-    <section name="SuperClone">
+    <section name="OneStatementPerLine">
       <subsection name="Description">
-        <p>
-          Checks that an overriding <code>clone()</code> method invokes
-          <code>super.clone()</code>. Does not check native methods, as
-          they have no possible java defined implementation.
-        </p>
-
-        <p>
-          Reference: <a
-          href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#clone%28%29">Object.clone()</a>.
-        </p>
+          <p>
+          Checks that there is only one statement per line.
+          </p>
+          <p>
+              Rationale: It's very difficult to read multiple statements on one line.
+          </p>
+          <p>
+              In the Java programming language, statements are the fundamental unit of
+              execution. All statements except blocks are terminated by a semicolon.
+              Blocks are denoted by open and close curly braces.
+          </p>
+          <p>
+              OneStatementPerLineCheck checks the following types of statements:
+              variable declaration statements, empty statements, import statements,
+              assignment statements, expression statements, increment statements,
+              object creation statements, 'for loop' statements, 'break' statements,
+              'continue' statements, 'return' statements.
+          </p>
       </subsection>
 
       <subsection name="Examples">
+          <p>
+              The following examples will be flagged as a violation:
+          </p>
+          <source>
+//Each line causes violation:
+int var1; int var2;
+var1 = 1; var2 = 2;
+int var1 = 1; int var2 = 2;
+var1++; var2++;
+Object obj1 = new Object(); Object obj2 = new Object();
+import java.io.EOFException; import java.io.BufferedReader;
+;; //two empty statements on the same line.
+
+//Multi-line statements:
+int var1 = 1
+; var2 = 2; //violation here
+int o = 1, p = 2,
+r = 5; int t; //violation here
+          </source>
         <p>
-          To configure the check:
+            An example of how to configure this Check:
         </p>
         <source>
-&lt;module name=&quot;SuperClone&quot;/&gt;
+&lt;module name=&quot;OneStatementPerLine&quot;/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L284">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L78">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L86">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1875,196 +2566,39 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-    <section name="SuperFinalize">
+    <section name="OverloadMethodsDeclarationOrder">
       <subsection name="Description">
         <p>
-          Checks that an overriding <code>finalize()</code> method invokes
-          <code>super.finalize()</code>. Does not check native methods, as
-          they have no possible java defined implementation.
-        </p>
-
-        <p>
-          Reference: <a
-          href="http://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
-          Use Finalization Only When You Must</a>.
+          Checks that overload methods are grouped together.
         </p>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          Example of incorrect grouping overload methods:
         </p>
         <source>
-&lt;module name=&quot;SuperFinalize&quot;/&gt;
+public void foo(int i) {}
+public void foo(String s) {}
+public void notFoo() {} // Have to be after foo(int i, String s)
+public void foo(int i, String s) {}
         </source>
-      </subsection>
+        <p>
+          An example of how to configure the check is:
+        </p>
+        <source>
+&lt;module name="OverloadMethodsDeclarationOrder"/&gt;
+        </source>
+        </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L285">
-            Checkstyle Style</a>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L155">
+            Google Style</a>
           </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="IllegalCatch">
-      <subsection name="Description">
-        <p>
-        Checks that certain exception types do not appear in a <code>catch</code> statement.
-        </p>
-
-        <p>
-          Rationale:
-          Catching java.lang.Exception, java.lang.Error or
-          java.lang.RuntimeException is almost never acceptable.
-          Novice developers often simply catch Exception in an
-          attempt to handle multiple exception classes. This unfortunately
-          leads to code that inadvertently catches NullPointerException, OutOfMemoryError, etc.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>illegalClassNames</td>
-            <td>exception class names to reject</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><code>&quot;java.lang.Exception,
-            java.lang.Throwable, java.lang.RuntimeException&quot;</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalCatch&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L88">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="IllegalThrows">
-      <subsection name="Description">
-        <p>
-          This check can be used to ensure that types are not declared
-          to be thrown. Declaring that a method throws java.lang.Error or
-          java.lang.RuntimeException is almost never acceptable.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>illegalClassNames</td>
-            <td>throw class names to reject</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td>
-              <code>&quot;java.lang.Throwable,
-              java.lang.Error, java.lang.RuntimeException&quot;</code>
-            </td>
-          </tr>
-          <tr>
-            <td>ignoredMethodNames</td>
-            <td>names of methods to ignore</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
-            <td><code>finalize</code></td>
-          </tr>
-          <tr>
-            <td>ignoreOverriddenMethods</td>
-            <td>ignore checking overridden methods (marked with Override or java.lang.Override
-             annotation).</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalThrows&quot;/&gt;
-        </source>
-        <p>
-          To configure the check rejecting throws NullPointerException from methods:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-    &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          To configure the check ignoring method named &quot;foo()&quot;:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-    &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;foo&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          To configure the check to warn on overridden methods:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalThrows&quot;&gt;
-    &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L108">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L335">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2109,6 +2643,121 @@ if (&quot;something&quot;.equals(x))
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L333">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="ParameterAssignment">
+      <subsection name="Description">
+        <p> Disallows assignment of parameters.</p>
+        <p>
+          Rationale: Parameter assignment is often considered poor programming
+          practice. Forcing developers to declare parameters as final is often
+          onerous. Having a check ensure that parameters are never assigned
+          would give the best of both worlds.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;ParameterAssignment&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L218">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="RequireThis">
+      <subsection name="Description">
+        <p>
+          Checks that references to instance variables and methods of the present
+          object are explicitly of the form &quot;this.varName&quot; or
+          &quot;this.methodName(args)&quot; and that those references don't
+          rely on the default behavior when &quot;this.&quot; is absent.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>checkFields</td>
+            <td>Whether to check references to fields.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>checkMethods</td>
+            <td>Whether to check references to methods.</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;RequireThis&quot;/&gt;
+        </source>
+
+        <p>
+          To configure to check the <code>this</code> qualifier for fields only:
+        </p>
+        <source>
+&lt;module name="RequireThis"&gt;
+    &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L355-L362">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2244,251 +2893,17 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-    <section name="IllegalType">
+    <section name="SimplifyBooleanExpression">
       <subsection name="Description">
         <p>
-          Checks that particular classes are never used as types in variable
-          declarations, return values or parameters.
+          Checks for over-complicated boolean expressions. Currently finds
+          code like <code> if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
+          etc.
         </p>
 
         <p>
-          Rationale: Helps reduce coupling on concrete classes.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>validateAbstractClassNames</td>
-            <td>Whether to validate abstract class names</td>
-            <td>boolean</td>
-            <td>false</td>
-          </tr>
-          <tr>
-            <td>illegalClassNames</td>
-            <td>Classes that should not be used as types in variable
-            declarations, return values or parameters</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>&quot;java.util.HashSet, java.util.HashMap, java.util.LinkedHashMap,
-            java.util.LinkedHashSet, java.util.TreeSet,
-            java.util.TreeMap&quot;</td>
-          </tr>
-          <tr>
-          <td>legalAbstractClassNames</td>
-          <td>Abstract classes that may be used as types. </td>
-          <td><a href="property_types.html#stringSet">String Set</a></td>
-          <td/>
-        </tr>
-        <tr>
-            <td>ignoredMethodNames</td>
-            <td>Methods that should not be checked.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>&quot;getInitialContext, getEnvironment&quot; </td>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>Pattern for illegal class names.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^(.*[\\.])?Abstract.*$</code></td>
-          </tr>
-          <tr>
-            <td>memberModifiers</td>
-            <td>Check methods and fields with only corresponding modifiers.</td>
-            <td><a href="property_types.html#stringSet">List of tokens</a></td>
-            <td><code>null</code></td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check so that it ignores getInstance() methods:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-    &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;getInstance&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          To configure the Check so that it verifies only public, protected and static
-           methods and fields:
-        </p>
-        <source>
-&lt;module name=&quot;IllegalType&quot;&gt;
-    &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
-     LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L313">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="DeclarationOrder">
-      <subsection name="Description">
-        <p>
-          According to <a
-          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
-          Code Conventions for the Java Programming Language</a> , the parts
-          of a class or interface declaration should appear in the following
-          order:
-        </p>
-
-        <ol>
-          <li>
-            Class (static) variables. First the public class variables, then
-             protected, then package level (no access modifier), and then
-             private.
-          </li>
-          <li>
-            Instance variables. First the public class variables, then
-            protected, then package level (no access modifier), and then
-            private.
-          </li>
-          <li> Constructors </li>
-          <li> Methods </li>
-        </ol>
-
-        <p>
-          Purpose of <b>ignore*</b> option is to ignore related violations, however it still impacts on other class members.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>ignoreConstructors</td>
-            <td>whether to ignore constructors</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>ignoreModifiers</td>
-            <td>whether to ignore modifiers</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;DeclarationOrder&quot;/&gt;
-        </source>
-
-        <p>
-        For example:
-        <source>
-            class K {
-                int a;
-                void m(){}
-                K(){}  &lt;-- "Constructor definition in wrong order"
-                int b; &lt;-- "Instance variable definition in wrong order"
-            }
-        </source>
-        </p>
-        <p>
-        With <b>ignoreConstructors</b> option:
-        <source>
-            class K {
-                int a;
-                void m(){}
-                K(){}
-                int b; &lt;-- "Instance variable definition in wrong order"
-            }
-        </source>
-        </p>
-        <p>
-        With <b>ignoreConstructors</b> option and without a method definition in a source class:
-        <source>
-            class K {
-                int a;
-                K(){}
-                int b; &lt;-- "Instance variable definition in wrong order"
-            }
-        </source>
-        </p>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L249">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="ParameterAssignment">
-      <subsection name="Description">
-        <p> Disallows assignment of parameters.</p>
-        <p>
-          Rationale: Parameter assignment is often considered poor programming
-          practice. Forcing developers to declare parameters as final is often
-          onerous. Having a check ensure that parameters are never assigned
-          would give the best of both worlds.
+          Rationale: Complex boolean logic makes code hard to understand and
+          maintain.
         </p>
       </subsection>
 
@@ -2497,14 +2912,18 @@ if (&quot;something&quot;.equals(x))
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ParameterAssignment&quot;/&gt;
+&lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L218">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L150">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L193">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2523,24 +2942,29 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-    <section name="ExplicitInitialization">
+    <section name="SimplifyBooleanReturn">
       <subsection name="Description">
         <p>
-          Checks if any class or object member is explicitly initialized to
-          default for its type value (<code>null</code> for
-          object references, zero for numeric types and <code>char</code> and <code>false</code> for
-          <code>boolean</code>.
+          Checks for over-complicated boolean return statements. For example
+          the following code
         </p>
+        <source>
+if (valid())
+    return false;
+else
+    return true;
+        </source>
 
         <p>
-          Rationale: Each instance variable gets initialized twice, to the
-          same value.  Java initializes each instance variable to its default
-          value (0 or null) before performing any initialization specified in
-          the code.  So in this case, x gets initialized to 0 twice, and bar
-          gets initialized to null twice.  So there is a minor inefficiency.
-          This style of coding is a holdover from C/C++ style coding, and it
-          shows that the developer isn't really confident that Java
-          initializes instance variables to default values.
+          could be written as
+        </p>
+        <source>
+return !valid();
+        </source>
+
+        <p>
+          The idea for this Check has been shamelessly stolen from the
+          equivalent <a href="http://pmd.sourceforge.net">PMD</a> rule.
         </p>
       </subsection>
 
@@ -2549,14 +2973,18 @@ if (&quot;something&quot;.equals(x))
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;ExplicitInitialization&quot;/&gt;
+&lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L229">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L151">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L194">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2575,17 +3003,68 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-    <section name="DefaultComesLast">
+    <section name="StringLiteralEquality">
       <subsection name="Description">
         <p>
-          Check that the <code>default</code> is after all the
-          <code>case</code>s in a <code>switch</code> statement.
+          Checks that string literals are not used with <code>==</code> or
+          <code>&#33;=</code>.
         </p>
 
         <p>
-          Rationale: Java allows <code>default</code> anywhere
-          within the <code>switch</code> statement. But it is
-          more readable if it comes after the last <code>case</code>.
+          Rationale: Novice Java programmers often use code like:
+        </p>
+        <source>
+if (x == &quot;something&quot;)
+        </source>
+
+        <p>when they mean</p>
+        <source>
+if (&quot;something&quot;.equals(x))
+        </source>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L283">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="SuperClone">
+      <subsection name="Description">
+        <p>
+          Checks that an overriding <code>clone()</code> method invokes
+          <code>super.clone()</code>. Does not check native methods, as
+          they have no possible java defined implementation.
+        </p>
+
+        <p>
+          Reference: <a
+          href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#clone%28%29">Object.clone()</a>.
         </p>
       </subsection>
 
@@ -2594,14 +3073,14 @@ if (&quot;something&quot;.equals(x))
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;DefaultComesLast&quot;/&gt;
+&lt;module name=&quot;SuperClone&quot;/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L250">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L284">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -2620,11 +3099,18 @@ if (&quot;something&quot;.equals(x))
       </subsection>
     </section>
 
-    <section name="MissingCtor">
+    <section name="SuperFinalize">
       <subsection name="Description">
         <p>
-          Checks that classes (except abstract ones) define a constructor and don't
-          rely on the default one.
+          Checks that an overriding <code>finalize()</code> method invokes
+          <code>super.finalize()</code>. Does not check native methods, as
+          they have no possible java defined implementation.
+        </p>
+
+        <p>
+          Reference: <a
+          href="http://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
+          Use Finalization Only When You Must</a>.
         </p>
       </subsection>
 
@@ -2633,373 +3119,14 @@ if (&quot;something&quot;.equals(x))
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;MissingCtor&quot;/&gt;
+&lt;module name=&quot;SuperFinalize&quot;/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L348-L354">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="FallThrough">
-      <subsection name="Description">
-        <p>
-          Checks for fall-through in <code>switch</code>
-          statements. Finds locations where a <code>case</code>
-          <b>contains</b> Java code but lacks a <code>break</code>, <code>return</code>,
-          <code>throw</code> or <code>continue</code>
-          statement.
-        </p>
-        <p>
-          The check honors special comments to suppress the warning. By
-          default the text "fallthru", "fall through", "fallthrough",
-          "falls through" and "fallsthrough" are recognized (case
-          sensitive). The comment containing these words must be all on one line, and must
-          be on the last non-empty line before the
-          <code>case</code> triggering the warning or on
-          the same line before the <code>case</code>
-          (ugly, but possible).
-        </p>
-        <source>
-switch (i){
-case 0:
-    i++; // fall through
-
-case 1:
-    i++;
-    // falls through
-case 2:
-case 3:
-case 4: {
-    i++;
-}
-// fallthrough
-case 5:
-    i++;
-/* fallthru */case 6:
-    i++
-    break;
-}
-        </source>
-        <p>
-          Note: The check assumes that there is no unreachable
-          code in the <code>case</code>.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>checkLastCaseGroup</td>
-            <td>
-              Whether the last case group must be checked.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>reliefPattern</td>
-            <td>
-              Regular expression to match the relief comment that suppresses
-              the warning about a fall through.
-            </td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>fallthru|falls? ?through</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;FallThrough&quot;/&gt;
-        </source>
-        <p>
-          or
-        </p>
-        <source>
-&lt;module name=&quot;FallThrough&quot;&gt;
-    &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L82">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L258">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="MultipleStringLiterals">
-      <subsection name="Description">
-        <p>
-          Checks for multiple occurrences of the same string literal within a
-          single file.
-        </p>
-
-        <p>
-          Rationale: Code duplication makes maintenance more difficult, so it
-          can be better to replace the multiple occurrences with a constant.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>allowedDuplicates</td>
-            <td>
-              The maximum number of occurrences to allow without generating a
-              warning
-            </td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td>ignoreStringsRegexp</td>
-            <td>
-              Regular expression pattern for ignored strings (with quotation marks)
-            </td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^""$</code> (ignore empty strings)</td>
-          </tr>
-          <tr>
-            <td>ignoreOccurrenceContext</td>
-            <td>
-              Token type names where duplicate strings are ignored even if they don't match
-              ignoredStringsRegexp. This allows you to exclude syntactical contexts like
-              annotations or static initializers from the check.
-            </td>
-            <td>
-              <a href="property_types.html#stringSet">list</a> of
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">token type</a>
-              names
-            </td>
-            <td>
-              <code>ANNOTATION</code>
-              (ignore strings inside the context of an annotation)
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
-        </source>
-
-        <p>
-          To configure the check so that it allows two occurrences of each
-          string:
-        </p>
-        <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-    &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check so that it ignores ", " and empty strings:
-        </p>
-        <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-    &lt;property name=&quot;ignoreStringsRegexp&quot; value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check so that it flags duplicate strings in all
-          syntactical contexts, even in annotations like
-          <code>@SuppressWarnings("unchecked")</code>:
-        </p>
-        <source>
-&lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-    &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L315">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="MultipleVariableDeclarations">
-      <subsection name="Description">
-        <p>
-          Checks that each variable declaration is in its own statement and on
-          its own line.
-        </p>
-
-        <p>
-          Rationale: <a
-          href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141270.html#2992">
-          the Java code conventions chapter 6.1</a> recommends that
-          declarations should be one per line/statement.
-        </p>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L79">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L263">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="RequireThis">
-      <subsection name="Description">
-        <p>
-          Checks that references to instance variables and methods of the present
-          object are explicitly of the form &quot;this.varName&quot; or
-          &quot;this.methodName(args)&quot; and that those references don't
-          rely on the default behavior when &quot;this.&quot; is absent.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>checkFields</td>
-            <td>Whether to check references to fields.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-          <tr>
-            <td>checkMethods</td>
-            <td>Whether to check references to methods.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the default check:
-        </p>
-        <source>
-&lt;module name=&quot;RequireThis&quot;/&gt;
-        </source>
-
-        <p>
-          To configure to check the <code>this</code> qualifier for fields only:
-        </p>
-        <source>
-&lt;module name="RequireThis"&gt;
-    &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L355-L362">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L285">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3102,82 +3229,6 @@ case 5:
         <ul>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L294">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="OneStatementPerLine">
-      <subsection name="Description">
-          <p>
-          Checks that there is only one statement per line.
-          </p>
-          <p>
-              Rationale: It's very difficult to read multiple statements on one line.
-          </p>
-          <p>
-              In the Java programming language, statements are the fundamental unit of
-              execution. All statements except blocks are terminated by a semicolon.
-              Blocks are denoted by open and close curly braces.
-          </p>
-          <p>
-              OneStatementPerLineCheck checks the following types of statements:
-              variable declaration statements, empty statements, import statements,
-              assignment statements, expression statements, increment statements,
-              object creation statements, 'for loop' statements, 'break' statements,
-              'continue' statements, 'return' statements.
-          </p>
-      </subsection>
-
-      <subsection name="Examples">
-          <p>
-              The following examples will be flagged as a violation:
-          </p>
-          <source>
-//Each line causes violation:
-int var1; int var2;
-var1 = 1; var2 = 2;
-int var1 = 1; int var2 = 2;
-var1++; var2++;
-Object obj1 = new Object(); Object obj2 = new Object();
-import java.io.EOFException; import java.io.BufferedReader;
-;; //two empty statements on the same line.
-
-//Multi-line statements:
-int var1 = 1
-; var2 = 2; //violation here
-int o = 1, p = 2,
-r = 5; int t; //violation here
-          </source>
-        <p>
-            An example of how to configure this Check:
-        </p>
-        <source>
-&lt;module name=&quot;OneStatementPerLine&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L78">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L86">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -3382,57 +3433,6 @@ cal.set(Calendar.MINUTE, minutes);
           </li>
           <li>
             <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L334">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-        <section name="OverloadMethodsDeclarationOrder">
-      <subsection name="Description">
-        <p>
-          Checks that overload methods are grouped together.
-        </p>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          Example of incorrect grouping overload methods:
-        </p>
-        <source>
-public void foo(int i) {}
-public void foo(String s) {}
-public void notFoo() {} // Have to be after foo(int i, String s)
-public void foo(int i, String s) {}
-        </source>
-        <p>
-          An example of how to configure the check is:
-        </p>
-        <source>
-&lt;module name="OverloadMethodsDeclarationOrder"/&gt;
-        </source>
-        </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L155">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L335">
             Checkstyle Style</a>
           </li>
         </ul>

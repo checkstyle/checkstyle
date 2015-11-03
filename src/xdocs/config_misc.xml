@@ -21,17 +21,12 @@
       </macro>
     </section>
 
-    <section name="NewlineAtEndOfFile">
+    <section name="ArrayTypeStyle">
       <subsection name="Description">
         <p>
-          Checks whether files end with a line separator.
-        </p>
-
-        <p>
-          Rationale: Any source files and text files in general should
-          end with a line separator, especially when using source control management
-          systems such as CVS. CVS will even print a warning when it
-          encounters a file that doesn't end with a line separator.
+          Checks the style of array type definitions.  Some like Java style:
+          <code>public static void main(String[] args)</code> and some like
+          C style: public static void main(String args[])
         </p>
       </subsection>
 
@@ -44,60 +39,46 @@
             <th>default value</th>
           </tr>
           <tr>
-            <td>lineSeparator</td>
-            <td>type of line separator</td>
+            <td>javaStyle</td>
             <td>
-              One of &quot;system&quot; (system default),
-              &quot;crlf&quot; (Windows-style), &quot;cr&quot;
-              (Mac-style), &quot;lf&quot; (Unix-style) and &quot;lf_cr_crlf&quot; (lf, cr or crlf).
+              Controls whether to enforce Java style (true) or C style (false).
             </td>
-            <td>&quot;system&quot;</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
           </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>file type extension of the files to check.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>all files</td>
-          </tr>
-
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          To configure the check to enforce Java style:
         </p>
         <source>
-&lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
+&lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
         </source>
 
         <p>
-          To configure the check to always use Unix-style line separators:
+          To configure the check to enforce C style:
         </p>
         <source>
-&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
-    &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
+&lt;module name=&quot;ArrayTypeStyle&quot;&gt;
+    &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
-
-          <p>
-            To configure the check to work only on Java, XML and Python files:
-          </p>
-          <source>
-&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
-&lt;/module&gt;
-          </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L50">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L80">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L163">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L37">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L241">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -111,23 +92,25 @@
 
       <subsection name="Parent Module">
         <p>
-          <a href="config.html#Checker">Checker</a>
+          <a href="config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
 
-    <section name="TodoComment">
+    <section name="AvoidEscapedUnicodeCharacters">
       <subsection name="Description">
         <p>
-          A check for <code>TODO:</code> comments. Actually
-          it is a generic <a
-          href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">regular
-          expression</a> matcher on Java comments. To check for other
-          patterns in Java comments, set the <code>format</code> property.
+          Restrict using <a href = "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
+          Unicode escapes</a> (e.g. \u221e).
+          It is possible to allow using escapes for
+          <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
+          Also, this check can be configured to allow using escapes
+          if trail comment is present. By the option it is possible to
+          allow using escapes if literal contains only them.
         </p>
       </subsection>
 
-      <subsection name="Properties">
+       <subsection name="Properties">
         <table>
           <tr>
             <th>name</th>
@@ -136,37 +119,97 @@
             <th>default value</th>
           </tr>
           <tr>
-            <td>format</td>
-            <td>Pattern to match comments against</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>TODO:</code></td>
+            <td>allowEscapesForControlCharacters</td>
+            <td>Allow use escapes for non-printable(control) characters.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>allowByTailComment</td>
+            <td>Allow use escapes if trail comment is present.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>allowIfAllCharactersEscaped</td>
+            <td>Allow if all characters in literal are escaped.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>allowNonPrintableEscapes</td>
+            <td>Allow non-printable escapes.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
           </tr>
         </table>
       </subsection>
 
-      <subsection name="Notes">
-        <p>
-          Using <code>TODO:</code> comments is a great way
-          to keep track of tasks that need to be done. Having them
-          reported by Checkstyle makes it very hard to forget about
-          them.
-        </p>
-      </subsection>
-
       <subsection name="Examples">
-        <p>
-          To configure the check:
+       <p>
+          Examples of using Unicode:
         </p>
         <source>
-&lt;module name=&quot;TodoComment&quot;/&gt;
+String unitAbbrev = "μs"; //Best: perfectly clear even without a comment.
+String unitAbbrev = "\u03bcs"; //Poor: the reader has no idea what this is.
         </source>
-
         <p>
-          To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>:
+          An example of how to configure the check is:
         </p>
         <source>
-&lt;module name=&quot;TodoComment&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
+&lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
+        </source>
+        <p>
+          An example of non-printable(control) characters.
+        </p>
+        <source>
+return '\ufeff' + content; // byte order mark
+        </source>
+        <p>
+          An example of how to configure the check to allow using escapes
+          for non-printable(control) characters:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of using escapes with trail comment:
+        </p>
+        <source>
+String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
+        </source>
+        <p>
+          An example of how to configure the check to allow using escapes
+          if trail comment is present:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowByTailComment" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of using escapes if literal contains only them:
+        </p>
+        <source>
+String unitAbbrev = "\u03bc\u03bc\u03bc";
+        </source>
+        <p>
+          An example of how to configure the check to allow escapes
+          if literal contains only them:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          An example of how to configure the check to allow non-printable escapes:
+        </p>
+        <source>
+&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
+    &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
@@ -174,11 +217,11 @@
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L165">
-            Sun Style</a>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L43-L47">
+            Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L290-L292">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L296">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -416,448 +459,6 @@
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="Translation">
-      <subsection name="Description">
-        <p>
-          A <a href="config.html#Overview">FileSetCheck</a> that ensures
-          the correct translation of code by checking property files for
-          consistency regarding their keys. Two property files
-          describing one and the same context are consistent if they
-          contain the same keys.
-        </p>
-
-        <p>
-          Consider the following properties file in the same directory:
-        </p>
-        <source>
-#messages.properties
-hello=Hello
-cancel=Cancel
-
-#messages_de.properties
-hell=Hallo
-ok=OK
-        </source>
-
-        <p>
-          The Translation check will find the typo in the German <code>hello</code>
-          key, the missing <code>ok</code> key in the default resource file and the
-          missing <code>cancel</code> key in the German resource file:
-        </p>
-        <source>
-messages_de.properties: Key 'hello' missing.
-messages_de.properties: Key 'cancel' missing.
-messages.properties: Key 'hell' missing.
-messages.properties: Key 'ok' missing.
-        </source>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>
-              file type extension to identify translation files. Setting
-              this property is typically only required if your
-              translation files are preprocessed and the original files
-              do not have the extension <code>.properties</code>
-            </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>properties</code></td>
-          </tr>
-          <tr>
-            <td>basenameSeparator</td>
-            <td>Allows setting file names separator</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>_</code></td>
-          </tr>
-          <tr>
-             <td>requiredTranslations</td>
-             <td>
-                 Allows to specify language codes of required translations which must exist in project.
-                 The check looks only for messages bundles which names contain the word 'messages'.
-                 Language code is composed of the lowercase, two-letter codes as defined by
-                 <a href="http://www.fatbellyman.com/webstuff/language_codes_639-1/">ISO 639-1</a>.
-                 Default value is empty String Set which means that only the existence
-                 of default translation is checked.
-                 Note, if you specify language codes (or just one language code) of required translations
-                 the check will also check for existence of default translation files in project.
-             </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
-             <td><code>empty String Set</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check for files with '_' name separator:
-        </p>
-        <source>
-&lt;module name=&quot;Translation&quot;/&gt;
-        </source>
-
-        <p>
-          To configure the check for files with user-set name separator:
-        </p>
-        <source>
-&lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;basenameSeparator&quot; value=&quot;STRING_LITERAL&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check to check existence of Japanese and French translations:
-        </p>
-        <source>
-&lt;module name=&quot;Translation&quot;&gt;
-&lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L54">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L380">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#Checker">Checker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="UncommentedMain">
-      <subsection name="Description">
-        <p>
-          Checks for uncommented main() methods.
-        </p>
-
-        <p>
-          Rationale: A main() method is often used for debugging
-          purposes. When debugging is finished, developers often forget
-          to remove the method, which changes the API and increases the
-          size of the resulting class or JAR file. With the exception of
-          the real program entry points, all main() methods should be
-          removed or commented out of the sources.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>excludedClasses</td>
-            <td>Pattern for qualified names of classes which are allowed
-            to have a main method.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;UncommentedMain&quot;/&gt;
-        </source>
-
-        <p>
-          To configure the check to allow the <code>main</code> method for all classes
-          with &quot;Main&quot; name:
-        </p>
-        <source>
-&lt;module name=&quot;UncommentedMain&quot;&gt;
-    &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L293">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="UpperEll">
-      <subsection name="Description">
-        <p>
-          Checks that long constants are defined with an upper ell. That
-          is <code>' L'</code> and not <code>'l'</code>. This is in accordance with the Java
-          Language Specification, <a
-          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
-          Section 3.10.1</a>.
-        </p>
-
-        <p>
-          The capital L looks a lot like <code>1</code>.
-        </p>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;UpperEll&quot;/&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L83">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L166">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L202">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="ArrayTypeStyle">
-      <subsection name="Description">
-        <p>
-          Checks the style of array type definitions.  Some like Java style:
-          <code>public static void main(String[] args)</code> and some like
-          C style: public static void main(String args[])
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>javaStyle</td>
-            <td>
-              Controls whether to enforce Java style (true) or C style (false).
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check to enforce Java style:
-        </p>
-        <source>
-&lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
-        </source>
-
-        <p>
-          To configure the check to enforce C style:
-        </p>
-        <source>
-&lt;module name=&quot;ArrayTypeStyle&quot;&gt;
-    &lt;property name=&quot;javaStyle&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L80">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L163">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L241">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-    </section>
-
-    <section name="FinalParameters">
-      <subsection name="Description">
-        <p>
-          Check that parameters for methods, constructors, and catch blocks are
-          final. Interface and abstract methods are not checked: the final
-          keyword does not make sense for interface and abstract method
-          parameters as there is no code that could modify the parameter.
-        </p>
-
-        <p>
-          Rationale: Changing the value of parameters during the execution of
-          the method's algorithm can be confusing and should be avoided. A
-          great way to let the Java compiler prevent this coding style is to
-          declare parameters final.
-        </p>
-      </subsection>
-
-      <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>ignorePrimitiveTypes</td>
-            <td>ignore primitive types as parameters</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#FOR_EACH_CLAUSE">FOR_EACH_CLAUSE</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>.
-            </td>
-          </tr>
-        </table>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          To configure the check to enforce final parameters for methods and
-          constructors:
-        </p>
-        <source>
-&lt;module name=&quot;FinalParameters&quot;/&gt;
-        </source>
-
-        <p>
-          To configure the check to enforce final parameters only for
-          constructors:
-        </p>
-        <source>
-&lt;module name=&quot;FinalParameters&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          To configure the check to allow ignoring
-          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
-           primitive datatypes</a> as parameters:
-        </p>
-        <source>
-&lt;module name=&quot;FinalParameters&quot;&gt;
-    &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L164">
-            Sun Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L363-L370">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
@@ -1152,6 +753,152 @@ messages.properties: Key 'ok' missing.
       </subsection>
     </section>
 
+    <section name="FileContentsHolder">
+      <subsection name="Description">
+        <p>
+          Holds the current file contents for global access when configured
+          as a TreeWalker sub-module. For example,a filter can access
+          the current file contents through this module.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          This check should not be used by itself, as it does no reporting.
+          It is to be used in conjuction with other checks like
+          <a href="config_filters.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
+          and
+          <a href="config_filters.html#SuppressWithNearbyCommentFilter">SuppressWithNearbyCommentFilter</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L378">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="FinalParameters">
+      <subsection name="Description">
+        <p>
+          Check that parameters for methods, constructors, and catch blocks are
+          final. Interface and abstract methods are not checked: the final
+          keyword does not make sense for interface and abstract method
+          parameters as there is no code that could modify the parameter.
+        </p>
+
+        <p>
+          Rationale: Changing the value of parameters during the execution of
+          the method's algorithm can be confusing and should be avoided. A
+          great way to let the Java compiler prevent this coding style is to
+          declare parameters final.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>ignorePrimitiveTypes</td>
+            <td>ignore primitive types as parameters</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>tokens</td>
+            <td>tokens to check</td>
+            <td>
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">LITERAL_CATCH</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#FOR_EACH_CLAUSE">FOR_EACH_CLAUSE</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check to enforce final parameters for methods and
+          constructors:
+        </p>
+        <source>
+&lt;module name=&quot;FinalParameters&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check to enforce final parameters only for
+          constructors:
+        </p>
+        <source>
+&lt;module name=&quot;FinalParameters&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check to allow ignoring
+          <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
+           primitive datatypes</a> as parameters:
+        </p>
+        <source>
+&lt;module name=&quot;FinalParameters&quot;&gt;
+    &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L164">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L363-L370">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="Indentation">
       <subsection name="Description">
         <p>
@@ -1280,6 +1027,226 @@ void foo(String aFooString,
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="NewlineAtEndOfFile">
+      <subsection name="Description">
+        <p>
+          Checks whether files end with a line separator.
+        </p>
+
+        <p>
+          Rationale: Any source files and text files in general should
+          end with a line separator, especially when using source control management
+          systems such as CVS. CVS will even print a warning when it
+          encounters a file that doesn't end with a line separator.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>lineSeparator</td>
+            <td>type of line separator</td>
+            <td>
+              One of &quot;system&quot; (system default),
+              &quot;crlf&quot; (Windows-style), &quot;cr&quot;
+              (Mac-style), &quot;lf&quot; (Unix-style) and &quot;lf_cr_crlf&quot; (lf, cr or crlf).
+            </td>
+            <td>&quot;system&quot;</td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension of the files to check.</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td>all files</td>
+          </tr>
+
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check to always use Unix-style line separators:
+        </p>
+        <source>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
+    &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+          <p>
+            To configure the check to work only on Java, XML and Python files:
+          </p>
+          <source>
+&lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
+&lt;/module&gt;
+          </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L50">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L37">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="OuterTypeFilename">
+      <subsection name="Description">
+        <p>
+          Checks that the outer type name and the file name match. For example,
+          the class <code>Foo</code> must be in a file named
+          <code>Foo.java</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;OuterTypeFilename&quot;/&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L37">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L237">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="TodoComment">
+      <subsection name="Description">
+        <p>
+          A check for <code>TODO:</code> comments. Actually
+          it is a generic <a
+          href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">regular
+          expression</a> matcher on Java comments. To check for other
+          patterns in Java comments, set the <code>format</code> property.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Pattern to match comments against</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>TODO:</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Notes">
+        <p>
+          Using <code>TODO:</code> comments is a great way
+          to keep track of tasks that need to be done. Having them
+          reported by Checkstyle makes it very hard to forget about
+          them.
+        </p>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;TodoComment&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>:
+        </p>
+        <source>
+&lt;module name=&quot;TodoComment&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L165">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L290-L292">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
@@ -1419,13 +1386,170 @@ d = e / f;        // Another comment for this line
       </subsection>
     </section>
 
-    <section name="OuterTypeFilename">
+    <section name="Translation">
       <subsection name="Description">
         <p>
-          Checks that the outer type name and the file name match. For example,
-          the class <code>Foo</code> must be in a file named
-          <code>Foo.java</code>.
+          A <a href="config.html#Overview">FileSetCheck</a> that ensures
+          the correct translation of code by checking property files for
+          consistency regarding their keys. Two property files
+          describing one and the same context are consistent if they
+          contain the same keys.
         </p>
+
+        <p>
+          Consider the following properties file in the same directory:
+        </p>
+        <source>
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages_de.properties
+hell=Hallo
+ok=OK
+        </source>
+
+        <p>
+          The Translation check will find the typo in the German <code>hello</code>
+          key, the missing <code>ok</code> key in the default resource file and the
+          missing <code>cancel</code> key in the German resource file:
+        </p>
+        <source>
+messages_de.properties: Key 'hello' missing.
+messages_de.properties: Key 'cancel' missing.
+messages.properties: Key 'hell' missing.
+messages.properties: Key 'ok' missing.
+        </source>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>
+              file type extension to identify translation files. Setting
+              this property is typically only required if your
+              translation files are preprocessed and the original files
+              do not have the extension <code>.properties</code>
+            </td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>properties</code></td>
+          </tr>
+          <tr>
+            <td>basenameSeparator</td>
+            <td>Allows setting file names separator</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td><code>_</code></td>
+          </tr>
+          <tr>
+             <td>requiredTranslations</td>
+             <td>
+                 Allows to specify language codes of required translations which must exist in project.
+                 The check looks only for messages bundles which names contain the word 'messages'.
+                 Language code is composed of the lowercase, two-letter codes as defined by
+                 <a href="http://www.fatbellyman.com/webstuff/language_codes_639-1/">ISO 639-1</a>.
+                 Default value is empty String Set which means that only the existence
+                 of default translation is checked.
+                 Note, if you specify language codes (or just one language code) of required translations
+                 the check will also check for existence of default translation files in project.
+             </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+             <td><code>empty String Set</code></td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check for files with '_' name separator:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check for files with user-set name separator:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;basenameSeparator&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to check existence of Japanese and French translations:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;&gt;
+&lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L54">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L380">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="UncommentedMain">
+      <subsection name="Description">
+        <p>
+          Checks for uncommented main() methods.
+        </p>
+
+        <p>
+          Rationale: A main() method is often used for debugging
+          purposes. When debugging is finished, developers often forget
+          to remove the method, which changes the API and increases the
+          size of the resulting class or JAR file. With the exception of
+          the real program entry points, all main() methods should be
+          removed or commented out of the sources.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>excludedClasses</td>
+            <td>Pattern for qualified names of classes which are allowed
+            to have a main method.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^$</code></td>
+          </tr>
+        </table>
       </subsection>
 
       <subsection name="Examples">
@@ -1433,18 +1557,24 @@ d = e / f;        // Another comment for this line
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;OuterTypeFilename&quot;/&gt;
+&lt;module name=&quot;UncommentedMain&quot;/&gt;
+        </source>
+
+        <p>
+          To configure the check to allow the <code>main</code> method for all classes
+          with &quot;Main&quot; name:
+        </p>
+        <source>
+&lt;module name=&quot;UncommentedMain&quot;&gt;
+    &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
+&lt;/module&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L37">
-            Google Style</a>
-          </li>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L237">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L293">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1527,131 +1657,42 @@ d = e / f;        // Another comment for this line
       </subsection>
     </section>
 
-    <section name="AvoidEscapedUnicodeCharacters">
+    <section name="UpperEll">
       <subsection name="Description">
         <p>
-          Restrict using <a href = "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
-          Unicode escapes</a> (e.g. \u221e).
-          It is possible to allow using escapes for
-          <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters"> non-printable(control) characters</a>.
-          Also, this check can be configured to allow using escapes
-          if trail comment is present. By the option it is possible to
-          allow using escapes if literal contains only them.
+          Checks that long constants are defined with an upper ell. That
+          is <code>' L'</code> and not <code>'l'</code>. This is in accordance with the Java
+          Language Specification, <a
+          href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">
+          Section 3.10.1</a>.
         </p>
-      </subsection>
 
-       <subsection name="Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-          </tr>
-          <tr>
-            <td>allowEscapesForControlCharacters</td>
-            <td>Allow use escapes for non-printable(control) characters.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-          </tr>
-          <tr>
-            <td>allowByTailComment</td>
-            <td>Allow use escapes if trail comment is present.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-          </tr>
-          <tr>
-            <td>allowIfAllCharactersEscaped</td>
-            <td>Allow if all characters in literal are escaped.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-          </tr>
-          <tr>
-            <td>allowNonPrintableEscapes</td>
-            <td>Allow non-printable escapes.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-          </tr>
-        </table>
+        <p>
+          The capital L looks a lot like <code>1</code>.
+        </p>
       </subsection>
 
       <subsection name="Examples">
-       <p>
-          Examples of using Unicode:
-        </p>
-        <source>
-String unitAbbrev = "μs"; //Best: perfectly clear even without a comment.
-String unitAbbrev = "\u03bcs"; //Poor: the reader has no idea what this is.
-        </source>
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
-&lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
-        </source>
-        <p>
-          An example of non-printable(control) characters.
-        </p>
-        <source>
-return '\ufeff' + content; // byte order mark
-        </source>
-        <p>
-          An example of how to configure the check to allow using escapes
-          for non-printable(control) characters:
-        </p>
-        <source>
-&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example of using escapes with trail comment:
-        </p>
-        <source>
-String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
-        </source>
-        <p>
-          An example of how to configure the check to allow using escapes
-          if trail comment is present:
-        </p>
-        <source>
-&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowByTailComment" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example of using escapes if literal contains only them:
-        </p>
-        <source>
-String unitAbbrev = "\u03bc\u03bc\u03bc";
-        </source>
-        <p>
-          An example of how to configure the check to allow escapes
-          if literal contains only them:
-        </p>
-        <source>
-&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          An example of how to configure the check to allow non-printable escapes:
-        </p>
-        <source>
-&lt;module name="AvoidEscapedUnicodeCharacters"&gt;
-    &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
-&lt;/module&gt;
+&lt;module name=&quot;UpperEll&quot;/&gt;
         </source>
       </subsection>
 
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L43-L47">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L83">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L296">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L166">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L202">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -1669,46 +1710,5 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </p>
       </subsection>
     </section>
-
-    <section name="FileContentsHolder">
-      <subsection name="Description">
-        <p>
-          Holds the current file contents for global access when configured
-          as a TreeWalker sub-module. For example,a filter can access
-          the current file contents through this module.
-        </p>
-      </subsection>
-
-      <subsection name="Examples">
-        <p>
-          This check should not be used by itself, as it does no reporting.
-          It is to be used in conjuction with other checks like
-          <a href="config_filters.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
-          and
-          <a href="config_filters.html#SuppressWithNearbyCommentFilter">SuppressWithNearbyCommentFilter</a>.
-        </p>
-      </subsection>
-
-      <subsection name="Example of Usage">
-        <ul>
-          <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L378">
-            Checkstyle Style</a>
-          </li>
-        </ul>
-      </subsection>
-
-      <subsection name="Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks
-        </p>
-      </subsection>
-
-      <subsection name="Parent Module">
-        <p>
-          <a href="config.html#TreeWalker">TreeWalker</a>
-        </p>
-      </subsection>
-      </section>
   </body>
 </document>
