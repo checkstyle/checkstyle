@@ -509,9 +509,38 @@ public class XDocsPagesTest {
     }
 
     private static void validateUsageExample(String fileName, String sectionName, Node subSection) {
-        Assert.assertNull(fileName + " section '" + sectionName
-                + "' should have no xml examples, they belong in 'Examples'",
-                findChildElementByTag(subSection, "source"));
+        final String text = subSection.getTextContent().replace("Checkstyle Style", "")
+                .replace("Google Style", "").replace("Sun Style", "").trim();
+
+        Assert.assertTrue(fileName + " section '" + sectionName
+                + "' has unknown text in 'Example of Usage': " + text, text.isEmpty());
+
+        for (Node node : findChildElementsByTag(subSection, "a")) {
+            final String url = node.getAttributes().getNamedItem("href").getTextContent();
+            final String linkText = node.getTextContent().trim();
+            String expectedUrl = null;
+
+            if ("Checkstyle Style".equals(linkText)) {
+                expectedUrl = "https://github.com/search?q="
+                        + "path%3Aconfig+filename%3Acheckstyle_checks.xml+"
+                        + "repo%3Acheckstyle%2Fcheckstyle+" + sectionName;
+            }
+            else if ("Google Style".equals(linkText)) {
+                expectedUrl = "https://github.com/search?q="
+                        + "path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+"
+                        + "repo%3Acheckstyle%2Fcheckstyle+"
+                        + sectionName;
+            }
+            else if ("Sun Style".equals(linkText)) {
+                expectedUrl = "https://github.com/search?q="
+                        + "path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+"
+                        + "repo%3Acheckstyle%2Fcheckstyle+"
+                        + sectionName;
+            }
+
+            Assert.assertEquals(fileName + " section '" + sectionName
+                    + "' should have matching url", expectedUrl, url);
+        }
     }
 
     private static void validatePackageSection(String fileName, String sectionName,
@@ -560,21 +589,15 @@ public class XDocsPagesTest {
         return null;
     }
 
-    private static Node findChildElementByTag(Node node, String tag) {
-        Node result = null;
+    private static Set<Node> findChildElementsByTag(Node node, String tag) {
+        final Set<Node> result = new LinkedHashSet<>();
 
         for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
             if (tag.equals(child.getNodeName())) {
-                result = child;
-                break;
+                result.add(child);
             }
-
-            if (child.hasChildNodes()) {
-                result = findChildElementByTag(child, tag);
-
-                if (result != null) {
-                    break;
-                }
+            else if (child.hasChildNodes()) {
+                result.addAll(findChildElementsByTag(child, tag));
             }
         }
 
