@@ -272,6 +272,48 @@ public class MethodLimitCheck extends Check
 
     </section>
 
+    <section name="Understanding token sets">
+
+      <p>
+        There are four methods in Check class to control the processed
+        <a href="http://checkstyle.sourceforge.net/apidocs/index.html">TokenTypes</a> -
+        one setter
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#setTokens-java.lang.String...-">
+        setTokens()</a>, which is used to define a custom set (which is different
+        from the default one) of the processed TokenTypes via config file and
+        three getters, which have to be overridden:
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#getDefaultTokens--">
+        getDefaultTokens()</a>,
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#getAcceptableTokens--">
+        getAcceptableTokens()</a>,
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#getRequiredTokens--">
+        getRequiredTokens()</a>.
+      </p>
+
+      <ul>
+
+        <li>
+          getDefaultTokens() - returns a set of TokenTypes which are processed in
+          <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+          visitToken()</a> method by default.
+        </li>
+
+        <li>
+          getRequiredTokens() - returns a set of TokenTypes which Check must be subscribed to for
+          a valid execution. If the user wants to specify a custom set of TokenTypes then
+          this set must contain all the TokenTypes from RequiredTokens.
+        </li>
+
+        <li>
+          getAcceptableTokens() - returns a set, which contains all the TokenTypes that
+          can be processed by the check. Both DefaultTokens and RequiredTokens and any custom
+          set of TokenTypes are subsets of AcceptableTokens.
+        </li>
+        
+      </ul>
+
+    </section>
+
     <section name="Navigating the AST">
 
       <p>
