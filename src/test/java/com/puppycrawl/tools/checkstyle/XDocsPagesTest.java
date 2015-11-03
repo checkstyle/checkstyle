@@ -297,6 +297,7 @@ public class XDocsPagesTest {
             final String input = Files.toString(file, UTF_8);
             final Document document = getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("section");
+            String lastSectioName = null;
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final Node section = sources.item(position);
@@ -304,13 +305,24 @@ public class XDocsPagesTest {
                         .getNodeValue();
 
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
+                    Assert.assertNull(fileName + " section '" + sectionName + "' should be first",
+                            lastSectioName);
                     continue;
                 }
 
                 Assert.assertTrue(fileName + " section '" + sectionName
                         + "' shouldn't end with 'Check'", !sectionName.endsWith("Check"));
+                if (lastSectioName != null) {
+                    Assert.assertTrue(
+                            fileName + " section '" + sectionName
+                                    + "' is out of order compared to '" + lastSectioName + "'",
+                            sectionName.toLowerCase(Locale.ENGLISH).compareTo(
+                                    lastSectioName.toLowerCase(Locale.ENGLISH)) >= 0);
+                }
 
                 validateCheckSection(moduleFactory, fileName, sectionName, section);
+
+                lastSectioName = sectionName;
             }
         }
     }
