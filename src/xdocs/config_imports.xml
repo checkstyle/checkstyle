@@ -1031,7 +1031,7 @@ public class SomeClass { ... }
           </li>
           <li>
             <b>Optionally:</b> it is referenced in Javadoc comments. This check
-            is off by default, as it is considered bad practice to introduce
+            is on by default, but it is considered bad practice to introduce
             a compile time dependency for documentation purposes only.
             As an example, the import <code>java.util.Date</code> would be
             considered referenced with the Javadoc comment
@@ -1070,7 +1070,7 @@ class FooBar {
             <td>processJavadoc</td>
             <td>whether to process Javadoc</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
-            <td><code>false</code></td>
+            <td><code>true</code></td>
           </tr>
         </table>
       </subsection>
@@ -1087,7 +1087,7 @@ class FooBar {
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L106">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L106-L108">
             Sun Style</a>
           </li>
           <li>
