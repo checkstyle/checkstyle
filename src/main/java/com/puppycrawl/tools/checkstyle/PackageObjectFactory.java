@@ -25,6 +25,7 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -74,6 +75,7 @@ class PackageObjectFactory implements ModuleFactory {
      * Registers a package name to use for shortName resolution.
      * @param packageName the package name
      */
+    @VisibleForTesting
     void addPackage(String packageName) {
         packages.add(packageName);
     }
