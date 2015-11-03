@@ -74,7 +74,7 @@
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L163">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L165">
             Sun Style</a>
           </li>
           <li>
@@ -876,7 +876,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L164">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L166">
             Sun Style</a>
           </li>
           <li>
@@ -1234,7 +1234,7 @@ void foo(String aFooString,
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L165">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L167">
             Sun Style</a>
           </li>
           <li>
@@ -1688,7 +1688,7 @@ messages.properties: Key 'ok' missing.
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L166">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L168">
             Sun Style</a>
           </li>
           <li>

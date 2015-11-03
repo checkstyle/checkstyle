@@ -115,7 +115,7 @@ switch (a)
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L134">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L136">
             Sun Style</a>
           </li>
           <li>
@@ -217,7 +217,7 @@ switch (a)
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L135">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L137">
             Sun Style</a>
           </li>
           <li>
@@ -488,7 +488,7 @@ try {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L136">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L138">
             Sun Style</a>
           </li>
           <li>
@@ -618,7 +618,7 @@ switch (num) {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L137">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L139">
             Sun Style</a>
           </li>
           <li>
@@ -740,7 +740,7 @@ switch (num) {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L138">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L140">
             Sun Style</a>
           </li>
           <li>

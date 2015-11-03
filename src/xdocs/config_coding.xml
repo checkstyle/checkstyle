@@ -352,7 +352,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L143">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L145">
             Sun Style</a>
           </li>
           <li>
@@ -484,7 +484,7 @@ String nullString = null;
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L144">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L146">
             Sun Style</a>
           </li>
           <li>
@@ -978,7 +978,7 @@ class SomeClass
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L145">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L147">
             Sun Style</a>
           </li>
           <li>
@@ -1146,7 +1146,7 @@ class SomeClass
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L146">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L148">
             Sun Style</a>
           </li>
           <li>
@@ -1598,7 +1598,7 @@ while ((line = bufferedReader.readLine()) != null) {
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L147">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L149">
             Sun Style</a>
           </li>
           <li>
@@ -1808,7 +1808,7 @@ class MyClass {
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L148">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L150">
             Sun Style</a>
           </li>
           <li>
@@ -1902,7 +1902,7 @@ class MyClass {
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L149">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L151">
             Sun Style</a>
           </li>
           <li>
@@ -2919,7 +2919,7 @@ public void foo(int i, String s) {}
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L150">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L152">
             Sun Style</a>
           </li>
           <li>
@@ -2980,7 +2980,7 @@ return !valid();
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L151">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L153">
             Sun Style</a>
           </li>
           <li>

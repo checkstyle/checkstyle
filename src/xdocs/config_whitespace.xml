@@ -148,7 +148,7 @@ for (Iterator foo = very.long.line.iterator();
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L116">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L118">
             Sun Style</a>
           </li>
           <li>
@@ -466,7 +466,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L117">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L119">
             Sun Style</a>
           </li>
           <li>
@@ -591,7 +591,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L118">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L120">
             Sun Style</a>
           </li>
           <li>
@@ -833,7 +833,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L119">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L121">
             Sun Style</a>
           </li>
           <li>
@@ -929,7 +929,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L120">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L122">
             Sun Style</a>
           </li>
           <li>
@@ -1071,7 +1071,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L121">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L123">
             Sun Style</a>
           </li>
           <li>
@@ -1239,7 +1239,7 @@ import com.puppycrawl.tools.checkstyle.api.Check;
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L122">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L124">
             Sun Style</a>
           </li>
           <li>
@@ -1429,7 +1429,7 @@ foo(i,
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L123">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L125">
             Sun Style</a>
           </li>
           <li>
@@ -1514,7 +1514,7 @@ foo(i,
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L124">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L126">
             Sun Style</a>
           </li>
           <li>
@@ -1743,7 +1743,7 @@ public @interface Beta {} // empty annotation type
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L125">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L127">
             Sun Style</a>
           </li>
           <li>
