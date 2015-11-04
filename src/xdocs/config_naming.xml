@@ -907,6 +907,22 @@ class MyClass {
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
+          <tr>
+            <td>ignoreOverridden</td>
+            <td>
+              Allows to skip methods with Override annotation from validation. For example, the
+              following method's parameter will be skipped from validation, if
+              ignoreOverridden is true:
+              <pre>
+@Override
+public boolean equals(Object o) {
+  return super.equals(o);
+}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -917,6 +933,15 @@ class MyClass {
         <source>
 &lt;module name=&quot;ParameterName&quot;/&gt;
         </source>
+          <p>
+            An example of how to configure the check to skip methods with Override annotation from
+            validation:
+          </p>
+          <source>
+&lt;module name="ParameterName"&gt;
+    &lt;property name="ignoreOverridden" value="true"/&gt;
+&lt;/module&gt;
+          </source>
       </subsection>
 
       <subsection name="Example of Usage">
