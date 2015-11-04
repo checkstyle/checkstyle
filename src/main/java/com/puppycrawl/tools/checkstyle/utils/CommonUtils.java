@@ -498,13 +498,11 @@ public final class CommonUtils {
         final int[] result;
 
         if (array.length == 0) {
-            return EMPTY_INT_ARRAY;
+            return new int[0];
         }
         else {
             result = new int[array.length];
-            for (int i = 0; i < array.length; i++) {
-                result[i] = array[i];
-            }
+            System.arraycopy(result, 0, array, 0, 1);
         }
         return result;
     }
@@ -524,14 +522,10 @@ public final class CommonUtils {
     public static String join(final Iterator<?> iterator, final char separator) {
         String bufferString;
 
-        if (!iterator.hasNext()) {
-            bufferString = EMPTY;
-        }
-        else {
+        if (iterator.hasNext()) {
             final Object first = iterator.next();
             if (!iterator.hasNext()) {
-                final String result = toString(first);
-                return result;
+                return toString(first);
             }
 
             // two or more elements
@@ -548,6 +542,9 @@ public final class CommonUtils {
                 }
             }
             bufferString = buf.toString();
+        }
+        else {
+            bufferString = EMPTY;
         }
         return bufferString;
     }
@@ -566,14 +563,10 @@ public final class CommonUtils {
     public static String join(final Iterator<?> iterator, final String separator) {
         String bufferString;
 
-        if (!iterator.hasNext()) {
-            bufferString = EMPTY;
-        }
-        else {
+        if (iterator.hasNext()) {
             final Object first = iterator.next();
             if (!iterator.hasNext()) {
-                final String result = toString(first);
-                return result;
+                return toString(first);
             }
 
             // two or more elements
@@ -592,6 +585,9 @@ public final class CommonUtils {
                 }
             }
             bufferString = buf.toString();
+        }
+        else {
+            bufferString = EMPTY;
         }
         return bufferString;
     }
@@ -671,12 +667,11 @@ public final class CommonUtils {
     public static boolean isBlank(final CharSequence cs) {
         boolean isBlank = true;
         final int strLen = cs.length();
-        if (cs == null || strLen == 0) {
-            return true;
-        }
-        for (int i = 0; i < strLen; i++) {
-            if (!Character.isWhitespace(cs.charAt(i))) {
-                isBlank = false;
+        if (!(cs == null || strLen == 0)) {
+            for (int i = 0; i < strLen; i++) {
+                if (!Character.isWhitespace(cs.charAt(i))) {
+                    isBlank = false;
+                }
             }
         }
         return isBlank;
@@ -734,9 +729,6 @@ public final class CommonUtils {
             return System.getProperty(property);
         }
         catch (final SecurityException ex) {
-            // we are not allowed to look at this property
-            System.err.println("Caught a SecurityException reading the system property '" + property
-                    + "'; the SystemUtils property value will default to null.");
             return null;
         }
     }
