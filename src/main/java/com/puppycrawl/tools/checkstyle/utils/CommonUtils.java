@@ -485,7 +485,7 @@ public final class CommonUtils {
      * @param array  the array to clone, may be {@code null}
      * @return the cloned array, {@code null} if {@code null} input
      */
-    public static int[] clone(final int... array) {
+    public static int[] clone(final int[] array) {
         if (array == null) {
             return null;
         }
@@ -501,16 +501,16 @@ public final class CommonUtils {
      * @return an {@code int} array, {@code null} if null array input
      * @throws NullPointerException if array content is {@code null}
      */
-    public static int[] toPrimitive(final Integer... array) {
-        if (array == null) {
-            return null;
-        }
+    public static int[] toPrimitive(final Integer[] array) {
+        final int[] result;
+
         if (array.length == 0) {
             return EMPTY_INT_ARRAY;
-        }
-        final int[] result = new int[array.length];
-        for (int i = 0; i < array.length; i++) {
-            result[i] = array[i];
+        }else {
+            result = new int[array.length];
+            for (int i = 0; i < array.length; i++) {
+                result[i] = array[i];
+            }
         }
         return result;
     }
@@ -528,37 +528,35 @@ public final class CommonUtils {
      * @since 2.0
      */
     public static String join(final Iterator<?> iterator, final char separator) {
+        String bufferString;
 
-        // handle null, zero and one elements before building a buffer
-        if (iterator == null) {
-            return null;
-        }
         if (!iterator.hasNext()) {
-            return EMPTY;
-        }
-        final Object first = iterator.next();
-        if (!iterator.hasNext()) {
-            @SuppressWarnings( "deprecation" ) // ObjectUtils.toString(Object) has been deprecated in 3.2
-            final
-            String result = toString(first);
-            return result;
-        }
-
-        // two or more elements
-        final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
-        if (first != null) {
-            buf.append(first);
-        }
-
-        while (iterator.hasNext()) {
-            buf.append(separator);
-            final Object obj = iterator.next();
-            if (obj != null) {
-                buf.append(obj);
+            bufferString = EMPTY;
+        }else {
+            final Object first = iterator.next();
+            if (!iterator.hasNext()) {
+                @SuppressWarnings("deprecation") // ObjectUtils.toString(Object) has been deprecated in 3.2
+                final
+                String result = toString(first);
+                return result;
             }
-        }
 
-        return buf.toString();
+            // two or more elements
+            final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
+            if (first != null) {
+                buf.append(first);
+            }
+
+            while (iterator.hasNext()) {
+                buf.append(separator);
+                final Object obj = iterator.next();
+                if (obj != null) {
+                    buf.append(obj);
+                }
+            }
+            bufferString = buf.toString();
+        }
+        return bufferString;
     }
 
     /**
@@ -573,37 +571,36 @@ public final class CommonUtils {
      * @return the joined String, {@code null} if null iterator input
      */
     public static String join(final Iterator<?> iterator, final String separator) {
+        String bufferString;
 
-        // handle null, zero and one elements before building a buffer
-        if (iterator == null) {
-            return null;
-        }
         if (!iterator.hasNext()) {
-            return EMPTY;
-        }
-        final Object first = iterator.next();
-        if (!iterator.hasNext()) {
-            @SuppressWarnings( "deprecation" ) // ObjectUtils.toString(Object) has been deprecated in 3.2
-            final String result = toString(first);
-            return result;
-        }
-
-        // two or more elements
-        final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
-        if (first != null) {
-            buf.append(first);
-        }
-
-        while (iterator.hasNext()) {
-            if (separator != null) {
-                buf.append(separator);
+            bufferString = EMPTY;
+        }else {
+            final Object first = iterator.next();
+            if (!iterator.hasNext()) {
+                @SuppressWarnings("deprecation") // ObjectUtils.toString(Object) has been deprecated in 3.2
+                final String result = toString(first);
+                return result;
             }
-            final Object obj = iterator.next();
-            if (obj != null) {
-                buf.append(obj);
+
+            // two or more elements
+            final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
+            if (first != null) {
+                buf.append(first);
             }
+
+            while (iterator.hasNext()) {
+                if (separator != null) {
+                    buf.append(separator);
+                }
+                final Object obj = iterator.next();
+                if (obj != null) {
+                    buf.append(obj);
+                }
+            }
+            bufferString = buf.toString();
         }
-        return buf.toString();
+        return bufferString;
     }
 
     /**
@@ -682,16 +679,17 @@ public final class CommonUtils {
      * @since 3.0 Changed signature from isBlank(String) to isBlank(CharSequence)
      */
     public static boolean isBlank(final CharSequence cs) {
+        boolean isBlank = true;
         int strLen;
         if (cs == null || (strLen = cs.length()) == 0) {
             return true;
         }
         for (int i = 0; i < strLen; i++) {
             if (!Character.isWhitespace(cs.charAt(i))) {
-                return false;
+                isBlank = false;
             }
         }
-        return true;
+        return isBlank;
     }
     // ToString
     //-----------------------------------------------------------------------
