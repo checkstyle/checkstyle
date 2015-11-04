@@ -50,8 +50,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
  * &lt;/module&gt;
  * </pre>
- * Check has an option <b>allowSingleLineStatement</b> which allows single-line
- * statements without braces, e.g.:
+ * Check has the following options:
+ * <p><b>allowSingleLineStatement</b> which allows single-line statements without braces, e.g.:</p>
  * <p>
  * {@code
  * if (obj.isValid()) return true;
@@ -72,6 +72,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * for (int i = 0; ; ) this.notify();
  * }
  * </p>
+ * <p><b>allowEmptyLoopBody</b> which allows loops with empty bodies, e.g.:</p>
+ * <p>
+ * {@code
+ * while (value.incrementValue() < 5);
+ * }
+ * </p>
+ * <p>
+ * {@code
+ * for(int i = 0; i < 10; value.incrementValue());
+ * }
+ * </p>
+ * <p>Default value for allowEmptyLoopBody option is <b>false</b>.</p>
  * <p>
  * To configure the Check to allow {@code case, default} single-line statements
  * without braces:
@@ -97,10 +109,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * }
  * </pre>
+ * <p>
+ * To configure the Check to allow {@code while, for} loops with empty bodies:
+ * </p>
  *
+ * <pre>
+ * &lt;module name=&quot;NeedBraces&quot;&gt;
+ *     &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Such statements would be allowed:
+ * </p>
+ *
+ * <pre>
+ * {@code
+ * while (value.incrementValue() &lt; 5); // OK
+ * for(int i = 0; i &lt; 10; value.incrementValue()); // OK
+ * }
+ * </pre>
  *
  * @author Rick Giles
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
+ * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
  */
 public class NeedBracesCheck extends Check {
     /**
@@ -115,11 +147,24 @@ public class NeedBracesCheck extends Check {
     private boolean allowSingleLineStatement;
 
     /**
+     * Check's option for allowing loops with empty body.
+     */
+    private boolean allowEmptyLoopBody;
+
+    /**
      * Setter.
      * @param allowSingleLineStatement Check's option for skipping single-line statements
      */
     public void setAllowSingleLineStatement(boolean allowSingleLineStatement) {
         this.allowSingleLineStatement = allowSingleLineStatement;
+    }
+
+    /**
+     * Sets whether to allow empty loop body.
+     * @param allowEmptyLoopBody Check's option for allowing loops with empty body.
+     */
+    public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
+        this.allowEmptyLoopBody = allowEmptyLoopBody;
     }
 
     @Override
@@ -162,8 +207,9 @@ public class NeedBracesCheck extends Check {
         }
 
         final boolean skipStatement = isSkipStatement(ast);
+        final boolean skipEmptyLoopBody = allowEmptyLoopBody && isEmptyLoopBody(ast);
 
-        if (slistAST == null && !isElseIf && !skipStatement) {
+        if (slistAST == null && !isElseIf && !skipStatement && !skipEmptyLoopBody) {
             log(ast.getLineNo(), MSG_KEY_NEED_BRACES, ast.getText());
         }
     }
@@ -175,6 +221,32 @@ public class NeedBracesCheck extends Check {
      */
     private boolean isSkipStatement(DetailAST statement) {
         return allowSingleLineStatement && isSingleLineStatement(statement);
+    }
+
+    /**
+     * Checks if current loop statement does not have body, e.g.:
+     * <p>
+     * {@code
+     *   while (value.incrementValue() < 5);
+     *   ...
+     *   for(int i = 0; i < 10; value.incrementValue());
+     * }
+     * </p>
+     * @param ast ast token.
+     * @return true if current loop statement does not have body.
+     */
+    private boolean isEmptyLoopBody(DetailAST ast) {
+        boolean noBodyLoop = false;
+
+        if (ast.getType() == TokenTypes.LITERAL_FOR
+                || ast.getType() == TokenTypes.LITERAL_WHILE) {
+            DetailAST currentToken = ast.getFirstChild();
+            while (currentToken.getNextSibling() != null) {
+                currentToken = currentToken.getNextSibling();
+            }
+            noBodyLoop = currentToken.getType() == TokenTypes.EMPTY_STAT;
+        }
+        return noBodyLoop;
     }
 
     /**

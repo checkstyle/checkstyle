@@ -140,4 +140,41 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputNeedBraces.java"), expected);
     }
+
+    @Test
+    public void testAllowEmptyLoopBodyTrue() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("allowEmptyLoopBody", "true");
+        final String[] expected = {
+            "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+        };
+        verify(checkConfig, getPath("InputNeedBracesNoBodyLoops.java"), expected);
+    }
+
+    @Test
+    public void testAllowEmptyLoopBodyFalse() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(NeedBracesCheck.class);
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "14: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "18: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "19: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "23: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "33: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "39: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "45: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "50: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "54: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "67: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "89: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "93: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "97: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "108: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+        };
+        verify(checkConfig, getPath("InputNeedBracesNoBodyLoops.java"), expected);
+    }
 }
