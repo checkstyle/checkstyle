@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class RedundantModifierTest
+public class RedundantModifierCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
@@ -186,5 +186,16 @@ public class RedundantModifierTest
             "12:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verify(checkConfig, getPath("InputRedundantStaticModifierInNestedEnum.java"), expected);
+    }
+
+    @Test
+    public void testFinalInAnonymousClass()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "14:20: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verify(checkConfig, getPath("InputFinalInAnonymousClass.java"), expected);
     }
 }

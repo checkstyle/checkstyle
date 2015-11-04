@@ -82,6 +82,7 @@ public final class Main {
      * is the number of errors found in all the files.
      * @param args the command line arguments.
      * @throws FileNotFoundException if there is a problem with files access
+     * @noinspection CallToPrintStackTrace
      **/
     public static void main(String... args) throws FileNotFoundException {
         int errorCounter = 0;
@@ -131,7 +132,7 @@ public final class Main {
         catch (CheckstyleException e) {
             exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
             errorCounter = 1;
-            printMessageAndCause(e);
+            e.printStackTrace();
         }
         finally {
             // return exit code base on validation of Checker
@@ -141,17 +142,6 @@ public final class Main {
             if (exitStatus != 0) {
                 System.exit(exitStatus);
             }
-        }
-    }
-
-    /**
-     * Prints message of exception to the first line and cause of exception to the second line.
-     * @param exception to be written to console
-   */
-    private static void printMessageAndCause(CheckstyleException exception) {
-        System.out.println(exception.getMessage());
-        if (exception.getCause() != null) {
-            System.out.println("Cause: " + exception.getCause());
         }
     }
 
@@ -180,6 +170,15 @@ public final class Main {
         final List<String> result = new ArrayList<>();
         // ensure a configuration file is specified
         if (cmdLine.hasOption(OPTION_C_NAME)) {
+            final String configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
+            try {
+                // test location only
+                CommonUtils.getUriByFilename(configLocation);
+            }
+            catch (CheckstyleException ignored) {
+                result.add(String.format("Could not find config XML file '%s'.", configLocation));
+            }
+
             // validate optional parameters
             if (cmdLine.hasOption(OPTION_F_NAME)) {
                 final String format = cmdLine.getOptionValue(OPTION_F_NAME);

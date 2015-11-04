@@ -74,7 +74,7 @@ public class UnusedImportsCheck extends Check {
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
     /** Flag whether to process Javadoc comments. */
-    private boolean processJavadoc;
+    private boolean processJavadoc = true;
 
     /** Set of the imports. */
     private final Set<FullIdent> imports = Sets.newHashSet();

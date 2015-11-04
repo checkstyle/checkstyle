@@ -109,6 +109,8 @@
     <module name="InnerAssignment"/>
     <module name="JavadocType">
       <property name="authorFormat" value="\S"/>
+      <!-- avoid errors on tag '@noinspection' -->
+      <property name="allowUnknownTags" value="true"/>
     </module>
     <module name="JavadocMethod">
       <property name="allowUndeclaredRTE" value="true"/>
@@ -196,9 +198,9 @@
       <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
     </module>
     <module name="TypeName"/>
-    <module name="UnusedImports">
-        <property name="processJavadoc" value="true"/>
-    </module>
+    <module name="UnusedImports"/>
+
+
     <module name="UpperEll"/>
     <module name="VisibilityModifier"/>
     <module name="WhitespaceAfter"/>
@@ -375,8 +377,36 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="FileContentsHolder"/>
   </module>
   <module name="Translation">
     <property name="requiredTranslations" value="de, fr, fi, es, pt, ja, tr"/>
+  </module>
+  <module name="SuppressWarningsFilter"/>
+  <module name="SeverityMatchFilter">
+    <!--
+      report all violations except ignore
+    -->
+    <property name="severity" value="ignore"/>
+    <property name="acceptOnMatch" value="false"/>
+  </module>
+  <module name="SuppressWithNearbyCommentFilter">
+    <!--
+      Use suppressions.xml for suppressions, this is only example.
+      checkFormat will prevent suppression comments from being valid.
+    -->
+    <property name="checkFormat" value="IGNORETHIS"/>
+    <property name="commentFormat" value="SUPPRESS CHECKSTYLE, (\w+)"/>
+    <property name="messageFormat" value="$1"/>
+    <property name="influenceFormat" value="-1"/>
+  </module>
+  <module name="SuppressionCommentFilter">
+    <!--
+      Use suppressions.xml for suppressions, this is only example.
+      checkFormat will prevent suppression comments from being valid.
+    -->
+    <property name="checkFormat" value="IGNORETHIS"/>
+    <property name="offCommentFormat" value="CSOFF\: .*"/>
+    <property name="onCommentFormat" value="CSON\: .*"/>
   </module>
 </module>

@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class WhitespaceAroundTest
+public class WhitespaceAroundCheckTest
     extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
@@ -285,5 +285,49 @@ public class WhitespaceAroundTest
             TokenTypes.GENERIC_END,
         };
         assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testAllowEmptyTypesIsSetToFalseAndNonEmptyClasses() throws Exception {
+        checkConfig.addAttribute("allowEmptyTypes", "false");
+        final String[] expected = {
+            "6:52: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "10:20: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "14:32: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "18:18: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "20:24: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "20:25: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "20:31: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "22:31: " + getCheckMessage(WS_NOT_FOLLOWED, "}"),
+            "24:18: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "24:18: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "26:69: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "26:69: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "28:24: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "31:13: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "31:13: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+        };
+        verify(checkConfig, getPath("InputAllowEmptyTypesAndNonEmptyClasses.java"),
+            expected);
+    }
+
+    @Test
+    public void testAllowEmptyTypesIsSetToTrueAndNonEmptyClasses() throws Exception {
+        checkConfig.addAttribute("allowEmptyTypes", "true");
+        final String[] expected = {
+            "6:52: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "10:20: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "14:32: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "18:18: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "20:24: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "20:25: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "20:31: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "22:31: " + getCheckMessage(WS_NOT_FOLLOWED, "}"),
+            "28:24: " + getCheckMessage(WS_NOT_PRECEDED, "{"),
+            "31:13: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "31:13: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            };
+        verify(checkConfig, getPath("InputAllowEmptyTypesAndNonEmptyClasses.java"),
+            expected);
     }
 }

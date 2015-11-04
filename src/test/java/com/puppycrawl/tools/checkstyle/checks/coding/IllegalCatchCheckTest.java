@@ -70,6 +70,24 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testIllegalClassNamesBad() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
+        checkConfig.addAttribute("illegalClassNames",
+                                 "java.lang.Error, java.lang.Exception, NullPointerException");
+
+        // check that incorrect names don't break the Check
+        checkConfig.addAttribute("illegalClassNames",
+                "java.lang.IOException.");
+
+        final String[] expected = {
+            "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
+            "15:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+        };
+
+        verify(checkConfig, getPath("InputIllegalCatch.java"), expected);
+    }
+
+    @Test
     public void testMultipleTypes() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IllegalCatchCheck.class);
 

@@ -76,4 +76,10 @@ class InputModifiedControl
 
 @SuppressWarnings(value = "this previously caused NullPointerException")
 class VariableDeclaredBeforeTheFirstBlockBegins {
+    void foo(String[] requests) {
+        for (String eventDataType : requests) {
+            @SuppressWarnings(value = "this previously caused NullPointerException")
+            String eventData;
+        }
+    }
 }

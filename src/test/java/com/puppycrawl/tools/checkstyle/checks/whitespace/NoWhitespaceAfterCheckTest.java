@@ -20,16 +20,21 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck.MSG_KEY;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
+import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NoWhitespaceAfterCheckTest
     extends BaseCheckTestSupport {
@@ -38,6 +43,12 @@ public class NoWhitespaceAfterCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
                 + "whitespace" + File.separator + filename);
     }
 
@@ -91,6 +102,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testArrayDeclarations() throws Exception {
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
+        checkConfig.addAttribute("tokens", "INDEX_OP");
         final String[] expected = {
             "6:11: " + getCheckMessage(MSG_KEY, "Object"),
             "8:22: " + getCheckMessage(MSG_KEY, "someStuff3"),
@@ -113,9 +125,105 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testArrayDeclarations2() throws Exception {
+        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
+        checkConfig.addAttribute("tokens", "INDEX_OP");
+        final String[] expected = {
+            "12:30: " + getCheckMessage(MSG_KEY, "]"),
+            "17:40: " + getCheckMessage(MSG_KEY, "create"),
+            "18:27: " + getCheckMessage(MSG_KEY, "int"),
+            "29:23: " + getCheckMessage(MSG_KEY, "]"),
+            "30:27: " + getCheckMessage(MSG_KEY, "int"),
+            "30:38: " + getCheckMessage(MSG_KEY, "]"),
+            "30:51: " + getCheckMessage(MSG_KEY, "]"),
+            "35:44: " + getCheckMessage(MSG_KEY, "int"),
+            "35:56: " + getCheckMessage(MSG_KEY, "]"),
+            "36:18: " + getCheckMessage(MSG_KEY, "e"),
+            "36:23: " + getCheckMessage(MSG_KEY, "]"),
+            "36:43: " + getCheckMessage(MSG_KEY, "]"),
+            "37:14: " + getCheckMessage(MSG_KEY, "e"),
+            "37:18: " + getCheckMessage(MSG_KEY, "]"),
+            "42:30: " + getCheckMessage(MSG_KEY, "Integer"),
+            "43:20: " + getCheckMessage(MSG_KEY, "]"),
+            "48:28: " + getCheckMessage(MSG_KEY, ">"),
+            "48:31: " + getCheckMessage(MSG_KEY, "]"),
+            "48:34: " + getCheckMessage(MSG_KEY, "]"),
+            "52:34: " + getCheckMessage(MSG_KEY, "int"),
+            "54:14: " + getCheckMessage(MSG_KEY, "g"),
+            "55:17: " + getCheckMessage(MSG_KEY, "]"),
+            "56:14: " + getCheckMessage(MSG_KEY, "g"),
+            "56:18: " + getCheckMessage(MSG_KEY, "]"),
+            "56:22: " + getCheckMessage(MSG_KEY, "]"),
+            "62:50: " + getCheckMessage(MSG_KEY, "create"),
+            "62:57: " + getCheckMessage(MSG_KEY, "]"),
+            "67:32: " + getCheckMessage(MSG_KEY, "boolean"),
+            "69:46: " + getCheckMessage(MSG_KEY, "String"),
+            "69:50: " + getCheckMessage(MSG_KEY, "]"),
+            "70:36: " + getCheckMessage(MSG_KEY, "String"),
+            "81:40: " + getCheckMessage(MSG_KEY, "Integer"),
+            "85:14: " + getCheckMessage(MSG_KEY, "char"),
+            "86:52: " + getCheckMessage(MSG_KEY, "A"),
+            "87:86: " + getCheckMessage(MSG_KEY, "Object"),
+            "90:41: " + getCheckMessage(MSG_KEY, ")"),
+            "90:49: " + getCheckMessage(MSG_KEY, "]"),
+            "92:35: " + getCheckMessage(MSG_KEY, "Object"),
+            "94:45: " + getCheckMessage(MSG_KEY, ")"),
+            "97:41: " + getCheckMessage(MSG_KEY, "Object"),
+            "100:43: " + getCheckMessage(MSG_KEY, "]"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations2.java"), expected);
+    }
+
+    @Test
     public void testNpe() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNoWhiteSpaceAfterFormerNpe.java"),
+        verify(checkConfig, getPath("InputNoWhiteSpaceAfterFormerNpe.java"));
+    }
+
+    @Test
+    public void testMethodReference() throws Exception {
+        final String[] expected = {
+            "10:40: " + getCheckMessage(MSG_KEY, "int"),
+            "11:63: " + getCheckMessage(MSG_KEY, "Message"),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputNoWhitespaceAfterMethodRef.java"),
                  expected);
+    }
+
+    @Test
+    public void testVisitTokenSwitchReflection() throws Exception {
+        //unexpected parent for ARRAY_DECLARATOR token
+        final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile");
+        final DetailAST astArrayDeclarator = mockAST(TokenTypes.ARRAY_DECLARATOR, "[", "mockfile");
+        final DetailAST astRBrake = mockAST(TokenTypes.RBRACK, "[", "mockfile");
+        astImport.addChild(astArrayDeclarator);
+        astArrayDeclarator.addChild(astRBrake);
+
+        final NoWhitespaceAfterCheck check = new NoWhitespaceAfterCheck();
+        try {
+            check.visitToken(astArrayDeclarator);
+            fail("no intended exception thrown");
+        }
+        catch (IllegalStateException e) {
+            assertEquals("unexpected ast syntaximport[0x-1]", e.getMessage());
+        }
+    }
+
+    /**
+     * Creates MOCK lexical token and returns AST node for this token
+     * @param tokenType type of token
+     * @param tokenText text of token
+     * @param tokenFileName file name of token
+     * @return AST node for the token
+     */
+    private static DetailAST mockAST(final int tokenType, final String tokenText,
+            final String tokenFileName) {
+        final CommonHiddenStreamToken tokenImportSemi = new CommonHiddenStreamToken();
+        tokenImportSemi.setType(tokenType);
+        tokenImportSemi.setText(tokenText);
+        tokenImportSemi.setFilename(tokenFileName);
+        final DetailAST astSemi = new DetailAST();
+        astSemi.initialize(tokenImportSemi);
+        return astSemi;
     }
 }

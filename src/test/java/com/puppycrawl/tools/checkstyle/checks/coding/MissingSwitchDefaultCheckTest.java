@@ -49,7 +49,7 @@ public class MissingSwitchDefaultCheckTest
     @Test
     public void testMissingSwitchDefault() throws Exception {
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY, "default"),
+            "17: " + getCheckMessage(MSG_KEY, "default"),
         };
         verify(
             checkConfig,

@@ -71,6 +71,15 @@ public class FinalLocalVariableCheckTest
             "96:17: " + getCheckMessage(MSG_KEY, "weird"),
             "97:17: " + getCheckMessage(MSG_KEY, "j"),
             "98:17: " + getCheckMessage(MSG_KEY, "k"),
+            "185:13: " + getCheckMessage(MSG_KEY, "x"),
+            "190:17: " + getCheckMessage(MSG_KEY, "x"),
+            "210:17: " + getCheckMessage(MSG_KEY, "n"),
+            "216:13: " + getCheckMessage(MSG_KEY, "q"),
+            "217:13: " + getCheckMessage(MSG_KEY, "w"),
+            "226:21: " + getCheckMessage(MSG_KEY, "w"),
+            "227:21: " + getCheckMessage(MSG_KEY, "e"),
+            "247:17: " + getCheckMessage(MSG_KEY, "n"),
+            "259:17: " + getCheckMessage(MSG_KEY, "t"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariable.java"), expected);
     }

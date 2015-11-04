@@ -162,8 +162,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *          <td>regular expression</td><td>.*</td></tr>
  *      <tr><td>specialImportsRegExp</td><td>RegExp for SPECIAL_IMPORTS group imports.</td>
  *          <td>regular expression</td><td>^$</td></tr>
- *      <tr><td>samePackageMatchingDepth</td><td>Number of first domains for SAME_PACKAGE group.
- *          </td><td>Integer</td><td>2</td></tr>
  *      <tr><td>separateLineBetweenGroups</td><td>Force empty line separator between import groups.
  *          </td><td>boolean</td><td>true</td></tr>
  *      <tr><td>sortImportsInGroupAlphabetically</td><td>Force grouping alphabetically,

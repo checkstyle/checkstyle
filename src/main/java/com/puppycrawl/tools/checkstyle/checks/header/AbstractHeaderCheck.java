@@ -50,7 +50,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
     /** Pattern to detect occurrences of '\n' in text. */
     private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
     /** The file that contains the header to check against. */
-    private String filename;
+    private String headerFile;
 
     /** Name of a charset to use for loading the header from a file. */
     private String charset = System.getProperty("file.encoding", "UTF-8");
@@ -97,7 +97,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
                     + getConfiguration().getName());
         }
 
-        filename = fileName;
+        headerFile = fileName;
     }
 
     /**
@@ -108,14 +108,14 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
         checkHeaderNotInitialized();
         Reader headerReader = null;
         try {
-            final URI uri = CommonUtils.getUriByFilename(filename);
+            final URI uri = CommonUtils.getUriByFilename(headerFile);
             headerReader = new InputStreamReader(new BufferedInputStream(
                     uri.toURL().openStream()), charset);
             loadHeader(headerReader);
         }
         catch (final IOException ex) {
             throw new CheckstyleException(
-                    "unable to load header file " + filename, ex);
+                    "unable to load header file " + headerFile, ex);
         }
         finally {
             Closeables.closeQuietly(headerReader);
@@ -182,7 +182,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
 
     @Override
     protected final void finishLocalSetup() throws CheckstyleException {
-        if (filename != null) {
+        if (headerFile != null) {
             loadHeaderFile();
         }
         if (readerLines.isEmpty()) {

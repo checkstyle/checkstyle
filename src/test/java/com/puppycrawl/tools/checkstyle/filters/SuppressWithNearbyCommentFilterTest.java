@@ -240,22 +240,39 @@ public class SuppressWithNearbyCommentFilterTest
         return coll.toArray(new String[coll.size()]);
     }
 
-    @Test(expected = ConversionException.class)
+    @Test
     public void testInvalidInfluenceFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("influenceFormat", "a");
         final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifySuppressed(filterConfig, suppressed);
+
+        try {
+            verifySuppressed(filterConfig, suppressed);
+        }
+        catch (CheckstyleException ex) {
+            final ConversionException cause = (ConversionException) ex.getCause();
+            assertEquals("unable to parse influence"
+                            + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a",
+                    cause.getMessage());
+        }
     }
 
-    @Test(expected = ConversionException.class)
+    @Test
     public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkFormat", "a[l");
         final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifySuppressed(filterConfig, suppressed);
+
+        try {
+            verifySuppressed(filterConfig, suppressed);
+        }
+        catch (CheckstyleException ex) {
+            final ConversionException cause = (ConversionException) ex.getCause();
+            assertEquals("unable to parse expanded comment a[l",
+                    cause.getMessage());
+        }
     }
 
     @Test

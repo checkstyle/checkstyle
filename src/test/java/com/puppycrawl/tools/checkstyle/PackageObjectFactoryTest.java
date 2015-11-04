@@ -38,7 +38,7 @@ public class PackageObjectFactoryTest {
             new HashSet<String>(), Thread.currentThread().getContextClassLoader());
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCtorException()  throws CheckstyleException {
+    public void testCtorException() {
         new PackageObjectFactory(new HashSet<String>(), null);
     }
 

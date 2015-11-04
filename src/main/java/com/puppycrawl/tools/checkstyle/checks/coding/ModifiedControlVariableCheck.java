@@ -276,7 +276,7 @@ public final class ModifiedControlVariableCheck extends Check {
         if (!getCurrentVariables().isEmpty()) {
             final DetailAST identAST = ast.getFirstChild();
 
-            if (identAST.getType() == TokenTypes.IDENT
+            if (identAST != null && identAST.getType() == TokenTypes.IDENT
                 && getCurrentVariables().contains(identAST.getText())) {
                 log(ast.getLineNo(), ast.getColumnNo(),
                     MSG_KEY, identAST.getText());

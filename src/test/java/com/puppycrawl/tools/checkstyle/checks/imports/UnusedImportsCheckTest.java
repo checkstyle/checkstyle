@@ -46,8 +46,9 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testWithoutProcessJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
+        checkConfig.addAttribute("processJavadoc", "false");
         final String[] expected = {
             "8:45: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
@@ -86,7 +87,6 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     @Test
     public void testProcessJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
-        checkConfig.addAttribute("processJavadoc", "true");
         final String[] expected = {
             "8:45: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),

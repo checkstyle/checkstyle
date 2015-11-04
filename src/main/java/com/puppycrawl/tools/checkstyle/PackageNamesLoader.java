@@ -132,7 +132,7 @@ public final class PackageNamesLoader
     public static Set<String> getPackageNames(ClassLoader classLoader)
             throws CheckstyleException {
 
-        Set<String> result;
+        final Set<String> result;
         try {
             //create the loader outside the loop to prevent PackageObjectFactory
             //being created anew for each file

@@ -259,6 +259,10 @@ public class RedundantModifierCheck
                     classModifiers.branchContains(TokenTypes.FINAL);
                 break;
             }
+            if (parent.getType() == TokenTypes.LITERAL_NEW) {
+                checkFinal = true;
+                break;
+            }
             parent = parent.getParent();
         }
         if (checkFinal && !isAnnotatedWithSafeVarargs(ast)) {

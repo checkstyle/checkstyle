@@ -399,3 +399,11 @@ class Anonymous {
     }
     {}
 }
+
+enum TestEnum {
+    ONE;
+    public void foo() {
+        TestEnum.ONE.equals(this);
+        this.ONE.equals(this);
+    }
+}

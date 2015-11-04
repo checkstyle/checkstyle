@@ -6,34 +6,34 @@ import java.util.*;
 // some
 public class InputCommentsIndentationSurroundingCode
 {
-    private void foo() {
+    private void foo1() {
         if (true) {
             // here initialize some variables
             int k = 0; // trailing comment
-              // initialize b
+              // violation
             int b = 10;
             // sss
         }
     }
 
-    private void foo1() {
+    private void foo2() {
         if (true) {
             /* some */
             int k = 0;
-                /* some */
+                /* violation */
             int b = 10;
-                /*
+                /* violation
                  * */
             double d; /* trailing comment */
-                /*
-             * 
+                /* violation
+             *
                 */
             boolean bb;
             /***/
             /* my comment*/
             /*
-             * 
-             * 
+             *
+             *
              *  some
              */
             /*
@@ -42,76 +42,24 @@ public class InputCommentsIndentationSurroundingCode
             boolean x;
         }
     }
-    
+
     private void foo3() {
         int a = 5, b = 3, v = 6;
         if (a == b
-                && v == b || ( a ==1
-                           /// What about that case ? the same for block comments
-                       /*
+            && v == b || ( a ==1
+                           /// violation
+                       /* violation
                         * one fine day ... */
                                     && b == 1)   ) {
-              // code
-           }
-    }
-    
-    // Comments here should be ok by Check
-    @SuppressWarnings("unused") // trailing
-    private static void check () { // trailing
-        if (true) // trailing comment
-        {
-            // some comment
         }
-        if (true) { // trailing comment
+    }
 
-        }
-        /**
-         * 
-         */
-    }
-    
     private static void com() {
         /* here's my weird trailing comment */ boolean b = true;
     }
 
-
-    private static void cases() {
-        switch("") {
-            case "0": //some comment
-            case "1":
-                // my comment
-                com();
-                break;
-            case "2":
-            // my comment
-                //comment
-                check();
-                // comment
-                break;
-            case "3":
-            /* com */
-            check();
-                /* com */
-                break;
-            case "5":
-                check();
-                // fall through
-            case "6":
-                int k = 7;
-                // fall through
-            case "7":
-                if (true) {}
-                // fall through
-            case "8":
-                break;
-            default:
-                // comment
-                break;
-        }
-    }
-
     private static final String[][] mergeMatrix = {
-        // TOP ALWAYS NEVER UNKNOWN
+        // This example of trailing block comments was found in PMD sources.
         /* TOP */{ "", },
         /* ALWAYS */{ "", "", },
        /* NEVER */{ "NEVER", "UNKNOWN", "NEVER", },
@@ -125,18 +73,57 @@ public class InputCommentsIndentationSurroundingCode
     /**
      * some javadoc
      */
-    private static void l() {}
-    
-    private void foo32() {
-        if (true) {
-            switch(1) {
-            case 0:
-                
-            case 1:
-                    // initialize b
-                int b = 10;
-            }
-            
-        }
+    private static void l() {
     }
+
+    public void foid5() {
+        String s = "";
+        s.toString().toString().toString();
+        // comment
+    }
+
+    public void foo6() {
+              // comment
+              // ...
+              // block
+              // ...
+              // violation
+        String someStr = new String();
+    }
+
+    public void foo7() {
+             // comment
+             // ...
+             // block
+             // violation
+        // comment
+        String someStr = new String();
+    }
+
+    public void foo8() {
+        String s = new String(); // comment
+                                 // ...
+                                 // block
+                                 // ...
+                                 // violation
+        String someStr = new String();
+    }
+
+
+    public String foo9(String s1, String s2, String s3) {
+        return "";
+    }
+
+    public void foo10()
+        throws Exception {
+
+        final String pattern = "^foo$";
+
+        final String[] expected = {
+            "7:13: " + foo9("", "", ""),
+            // comment
+        };
+    }
+
 } // The Check should not throw NPE here!
+// The Check should not throw NPE here!

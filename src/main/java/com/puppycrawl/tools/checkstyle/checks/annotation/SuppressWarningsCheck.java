@@ -20,13 +20,15 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -38,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * </p>
  *
  * <p>
- * The {@link AbstractFormatCheck#setFormat warnings} property is a
+ * The {@link #setFormat warnings} property is a
  * regex pattern.  Any warning being suppressed matching
  * this pattern will be flagged.
  * </p>
@@ -47,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * By default, any warning specified will be disallowed on
  * all legal TokenTypes unless otherwise specified via
  * the
- * {@link com.puppycrawl.tools.checkstyle.api.Check#setTokens(String[]) tokens}
+ * {@link Check#setTokens(String[]) tokens}
  * property.
  *
  * Also, by default warnings that are empty strings or all
@@ -89,7 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * </pre>
  * @author Travis Schneeberger
  */
-public class SuppressWarningsCheck extends AbstractFormatCheck {
+public class SuppressWarningsCheck extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -107,12 +109,20 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;
 
+    /** The format string of the regexp. */
+    private String format = "^$|^\\s+$";
+
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
+
     /**
-     * Ctor that specifies the default for the format property
-     * as specified in the class javadocs.
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
      */
-    public SuppressWarningsCheck() {
-        super("^$|^\\s+$");
+    public final void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override
@@ -234,7 +244,7 @@ public class SuppressWarningsCheck extends AbstractFormatCheck {
      */
     private void logMatch(final int lineNo,
         final int colNum, final String warningText) {
-        final Matcher matcher = getRegexp().matcher(warningText);
+        final Matcher matcher = regexp.matcher(warningText);
         if (matcher.matches()) {
             log(lineNo, colNum,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);

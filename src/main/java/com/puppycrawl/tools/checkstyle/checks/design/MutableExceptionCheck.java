@@ -21,10 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p> Ensures that exceptions (classes with names conforming to some regular
@@ -39,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class MutableExceptionCheck extends AbstractFormatCheck {
+public final class MutableExceptionCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -50,17 +52,15 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
     /** Default value for format and extendedClassNameFormat properties. */
     private static final String DEFAULT_FORMAT = "^.*Exception$|^.*Error$|^.*Throwable$";
     /** Pattern for class name that is being extended. */
-    private String extendedClassNameFormat;
+    private String extendedClassNameFormat = DEFAULT_FORMAT;
     /** Stack of checking information for classes. */
     private final Deque<Boolean> checkingStack = new ArrayDeque<>();
     /** Should we check current class or not. */
     private boolean checking;
-
-    /** Creates new instance of the check. */
-    public MutableExceptionCheck() {
-        super(DEFAULT_FORMAT);
-        extendedClassNameFormat = DEFAULT_FORMAT;
-    }
+    /** The format string of the regexp. */
+    private String format = DEFAULT_FORMAT;
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
 
     /**
      * Sets the format of extended class name to the specified regular expression.
@@ -68,6 +68,16 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
      */
     public void setExtendedClassNameFormat(String extendedClassNameFormat) {
         this.extendedClassNameFormat = extendedClassNameFormat;
+    }
+
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override
@@ -143,7 +153,7 @@ public final class MutableExceptionCheck extends AbstractFormatCheck {
      */
     private boolean isNamedAsException(DetailAST ast) {
         final String className = ast.findFirstToken(TokenTypes.IDENT).getText();
-        return getRegexp().matcher(className).find();
+        return regexp.matcher(className).find();
     }
 
     /**

@@ -77,7 +77,7 @@
             <td>true</td>
           </tr>
           <tr>
-            <td>ignoreOverriddenMethod</td>
+            <td>ignoreOverriddenMethods</td>
             <td>Allows to ignore methods tagged with @Override annotation
             (that usually mean inherited name).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
@@ -138,22 +138,22 @@
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L151-L154">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L295">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -212,21 +212,21 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L297">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbstractClassName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -261,25 +261,25 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L122-L126">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L247">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -350,25 +350,25 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L91">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L80">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -405,21 +405,21 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L261">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -470,25 +470,25 @@
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L92">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L134">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -568,29 +568,29 @@ for (int i = 1; i &lt; 10; i++) {}
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L115-L121">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L93">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L135">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -660,29 +660,29 @@ for (int i = 1; i &lt; 10; i++) {}
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L105-L109">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L94">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L136-L138">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -737,29 +737,29 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L193-L197">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L95">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L140">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -796,25 +796,25 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L127-L131">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L262">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -860,29 +860,29 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L96-L100">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L96">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L178">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -907,6 +907,22 @@ class MyClass {
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
           </tr>
+          <tr>
+            <td>ignoreOverridden</td>
+            <td>
+              Allows to skip methods with Override annotation from validation. For example, the
+              following method's parameter will be skipped from validation, if
+              ignoreOverridden is true:
+              <pre>
+@Override
+public boolean equals(Object o) {
+  return super.equals(o);
+}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -917,31 +933,40 @@ class MyClass {
         <source>
 &lt;module name=&quot;ParameterName&quot;/&gt;
         </source>
+          <p>
+            An example of how to configure the check to skip methods with Override annotation from
+            validation:
+          </p>
+          <source>
+&lt;module name="ParameterName"&gt;
+    &lt;property name="ignoreOverridden" value="true"/&gt;
+&lt;/module&gt;
+          </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L110-L114">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L97">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L179-L181">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -1004,25 +1029,25 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L98">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L195-L197">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -1075,7 +1100,7 @@ class MyClass {
           </tr>
           <tr>
             <td>tokens</td>
-            <td>Controls the kind of type that the check applies to.</td>
+            <td>tokens to check</td>
             <td>
               subset of tokens
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
@@ -1118,29 +1143,29 @@ class MyClass {
         </source>
       </subsection>
 
-      <subsection name="Examples of Usage">
+      <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml#L101-L104">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
             Google Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml#L99">
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
             Sun Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L198">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
             Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
       </subsection>
 
       <subsection name="Parent Module">
-        <p><a href="config.html#TreeWalker">TreeWalker</a></p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 

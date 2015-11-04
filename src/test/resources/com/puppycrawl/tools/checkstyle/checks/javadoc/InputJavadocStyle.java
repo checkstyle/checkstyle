@@ -407,4 +407,11 @@ public class InputJavadocStyle
          * @throws Exception if an error occurs
          */
         void bar() throws Exception {}
+
+        /**
+         * {@inheritDoc}
+         * <p>
+         * @throws IllegalArgumentException with errMsg as its message
+         */
+        void inheritDocWithThrows() {}
 }

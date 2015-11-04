@@ -9,6 +9,11 @@
               files="TokenTypes.java"
               lines="1"/>
 
+    <!-- There is no other way to deliver filename that was under processing -->
+    <suppress checks="IllegalCatch"
+              files="Checker.java"
+              lines="279"/>
+
     <!-- we can not change it as, Check name is part of API (used in configurations) -->
     <suppress checks="AbbreviationAsWordInName"
               files="JavaNCSSCheck.java"
@@ -37,6 +42,7 @@
               files="AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java"/>
 
     <!-- Tone down the checking for test code -->
+    <suppress checks="CyclomaticComplexity" files="[\\/]XDocsPagesTest\.java" lines="329"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="ImportControl" files=".*[\\/]src[\\/](test|it)[\\/]"/>
     <suppress checks="Javadoc" files=".*[\\/]src[\\/](test|it)[\\/]"/>
@@ -49,16 +55,6 @@
     <suppress checks="EqualsAvoidNull" files="[\\/]Int.*FilterTest.java$"/>
     <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
-
-    <!-- Suppressions to remove over time for sure -->
-    <suppress checks="SeparatorWrap" files=".*[\\/]src[\\/]it[\\/]"/>
-
-    <!--
-      Turn off all checks for Generated and Test code. Fixes issues with using
-      Eclipse plug-in.
-      -->
-    <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
-    <suppress checks="." files=".*[\\/]grammars[\\/]Generated[a-zA-Z]*\.java"/>
 
     <!--Classes FileDrop, Main, ParseTreeInfoPanel from gui-package contain Magic Numbers.
     The Check generates too many violations, fixing them will make code unmanageable.-->
@@ -91,7 +87,7 @@
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
     <!-- they are aggregators of logic, usage a several of classes are ok -->
     <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|AbstractJavadocCheck)\.java"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport|XDocsPagesTest)\.java"/>
     <!-- a lot of GUI elements is OK -->
     <suppress checks="ClassDataAbstractionCoupling" files="ParseTreeInfoPanel\.java"/>
 
@@ -104,7 +100,7 @@
 
     <!-- Suppressions from PMD configuration-->
     <!-- validateCli is not reasonable to split as encapsulation of logic will be damaged -->
-    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="179"/>
+    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="169"/>
     <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
     <suppress checks="CyclomaticComplexity" files="JavadocMethodCheck\.java"/>
     <suppress checks="CyclomaticComplexity" files="JavadocStyleCheck\.java"/>

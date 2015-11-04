@@ -38,6 +38,12 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
                 + "sizes" + File.separator + filename);
     }
 
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "sizes" + File.separator + filename);
+    }
+
     @Test
     public void testGetRequiredTokens() {
         final LineLengthCheck checkObj = new LineLengthCheck();
@@ -88,5 +94,16 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
             "9: " + getCheckMessage(MSG_KEY, 80, 87),
         };
         verify(checkConfig, getPath("InputLongImportStatements.java"), expected);
+    }
+
+    @Test
+    public void shouldNotLogLongPackageStatements() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("max", "80");
+        final String[] expected = {
+            "6: " + getCheckMessage(MSG_KEY, 80, 88),
+        };
+        verify(checkConfig, getNonCompilablePath("InputLongPackageStatement.java"), expected);
     }
 }

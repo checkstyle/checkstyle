@@ -277,7 +277,7 @@ public class EqualsAvoidNullCheck extends Check {
         if (isObjectValid(objCalledOn)
                 && containsOneArgument(methodCall)
                 && containsAllSafeTokens(expr)
-                && isCalledOnStringField(objCalledOn)) {
+                && isCalledOnStringFieldOrVariable(objCalledOn)) {
             final String methodName = methodCall.getFirstChild().getLastChild().getText();
             if (EQUALS.equals(methodName)) {
                 log(methodCall.getLineNo(), methodCall.getColumnNo(),
@@ -375,40 +375,81 @@ public class EqualsAvoidNullCheck extends Check {
      * @param objCalledOn object ast.
      * @return true if the object is of String type.
      */
-    private boolean isCalledOnStringField(DetailAST objCalledOn) {
-        boolean result = false;
+    private boolean isCalledOnStringFieldOrVariable(DetailAST objCalledOn) {
+        boolean result;
         final DetailAST previousSiblingAst = objCalledOn.getPreviousSibling();
-        final String name = objCalledOn.getText();
         if (previousSiblingAst == null) {
-            FieldFrame frame = currentFrame;
-            while (frame != null) {
-                final DetailAST field = frame.findField(name);
-                if (field != null
-                        && (frame.isClassOrEnumOrEnumConstDef()
-                                || checkLineNo(field, objCalledOn))) {
-                    result = STRING.equals(getFieldType(field));
-                    break;
-                }
-                frame = frame.getParent();
-            }
+            result = isStringFieldOrVariable(objCalledOn);
         }
         else {
             if (previousSiblingAst.getType() == TokenTypes.LITERAL_THIS) {
-                final DetailAST field = getObjectFrame(currentFrame).findField(name);
-                result = STRING.equals(getFieldType(field));
+                result = isStringFieldOrVariableFromThisInstance(objCalledOn);
             }
             else {
                 final String className = previousSiblingAst.getText();
-                FieldFrame frame = getObjectFrame(currentFrame);
-                while (frame != null) {
-                    if (className.equals(frame.getFrameName())) {
-                        final DetailAST field = frame.findField(name);
-                        result = STRING.equals(getFieldType(field));
-                        break;
-                    }
-                    frame = getObjectFrame(frame.getParent());
-                }
+                result = isStringFieldOrVariableFromClass(objCalledOn, className);
             }
+        }
+        return result;
+    }
+
+    /**
+     * Whether the field or the variable is of String type.
+     * @param objCalledOn the field or the variable to check.
+     * @return true if the field or the variable is of String type.
+     */
+    private boolean isStringFieldOrVariable(DetailAST objCalledOn) {
+        boolean result = false;
+        final String name = objCalledOn.getText();
+        FieldFrame frame = currentFrame;
+        while (frame != null) {
+            final DetailAST field = frame.findField(name);
+            if (field != null
+                    && (frame.isClassOrEnumOrEnumConstDef()
+                            || checkLineNo(field, objCalledOn))) {
+                result = STRING.equals(getFieldType(field));
+                break;
+            }
+            frame = frame.getParent();
+        }
+        return result;
+    }
+
+    /**
+     * Whether the field or the variable from THIS instance is of String type.
+     * @param objCalledOn the field or the variable from THIS instance to check.
+     * @return true if the field or the variable from THIS instance is of String type.
+     */
+    private boolean isStringFieldOrVariableFromThisInstance(DetailAST objCalledOn) {
+        boolean result = false;
+        final String name = objCalledOn.getText();
+        final DetailAST field = getObjectFrame(currentFrame).findField(name);
+        if (field != null) {
+            result = STRING.equals(getFieldType(field));
+        }
+        return result;
+    }
+
+    /**
+     * Whether the field or the variable from the specified class is of String type.
+     * @param objCalledOn the field or the variable from the specified class to check.
+     * @param className the name of the class to check in.
+     * @return true if the field or the variable from the specified class is of String type.
+     */
+    private boolean isStringFieldOrVariableFromClass(DetailAST objCalledOn,
+            final String className) {
+        boolean result = false;
+        final String name = objCalledOn.getText();
+        FieldFrame frame = getObjectFrame(currentFrame);
+        while (frame != null) {
+            if (className.equals(frame.getFrameName())) {
+                final DetailAST field = frame.findField(name);
+                if (field != null) {
+                    result = STRING.equals(getFieldType(field));
+                }
+                break;
+            }
+            frame = getObjectFrame(frame.getParent());
         }
         return result;
     }

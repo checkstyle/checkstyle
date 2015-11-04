@@ -19,18 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.util.regex.Pattern;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
  * Checks that package names conform to a format specified
  * by the format property. The format is a
- * {@link java.util.regex.Pattern regular expression}
+ * {@link Pattern regular expression}
  * and defaults to
- * <strong>^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9]*)*$</strong>.
+ * <strong>^[a-z]+(\.[a-zA-Z_][a-zA-Z_0-9_]*)*$</strong>.
  * </p>
  * <p>
  * The default format has been chosen to match the requirements in the
@@ -54,22 +57,36 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractFormatCheck;
  * <pre>
  * &lt;module name="PackageName"&gt;
  *    &lt;property name="format"
- *              value="^com\.puppycrawl\.tools\.checkstyle(\\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/&gt;
+ *              value="^com\.puppycrawl\.tools\.checkstyle(\.[a-zA-Z_][a-zA-Z_0-9]*)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
  * @author Oliver Burn
  */
 public class PackageNameCheck
-    extends AbstractFormatCheck {
+    extends Check {
     /**
-     * Creates a new {@code PackageNameCheck} instance.
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
      */
-    public PackageNameCheck() {
-        // Uppercase letters seem rather uncommon, but they're allowed in
-        // http://docs.oracle.com/javase/specs/
-        //   second_edition/html/packages.doc.html#40169
-        super("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
+    public static final String MSG_KEY = "name.invalidPattern";
+
+    /** The format string of the regexp. */
+    // Uppercase letters seem rather uncommon, but they're allowed in
+    // http://docs.oracle.com/javase/specs/
+    //  second_edition/html/packages.doc.html#40169
+    private String format = "^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$";
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
+
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public final void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override
@@ -91,12 +108,12 @@ public class PackageNameCheck
     public void visitToken(DetailAST ast) {
         final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
         final FullIdent full = FullIdent.createFullIdent(nameAST);
-        if (!getRegexp().matcher(full.getText()).find()) {
+        if (!regexp.matcher(full.getText()).find()) {
             log(full.getLineNo(),
                 full.getColumnNo(),
-                "name.invalidPattern",
+                MSG_KEY,
                 full.getText(),
-                getFormat());
+                format);
         }
     }
 }

@@ -50,13 +50,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
-        final int[] expected = {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-        };
-        assertArrayEquals(expected, javadocTypeCheck.getRequiredTokens());
+        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens());
     }
 
     @Test
@@ -289,6 +283,17 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         verify(checkConfig,
                getPath("InputNoJavadoc.java"),
                expected);
+    }
+
+    @Test
+    public void testLimitViolationsBySpecifyingTokens() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("tokens", "INTERFACE_DEF");
+        final String[] expected = {
+            "4: " + getCheckMessage(JAVADOC_MISSING),
+        };
+        verify(checkConfig, getPath("InputNoJavadocOnInterface.java"), expected);
     }
 
     @Test

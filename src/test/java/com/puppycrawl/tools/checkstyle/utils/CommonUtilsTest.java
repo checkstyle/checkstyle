@@ -36,6 +36,7 @@ import java.lang.reflect.Constructor;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Dictionary;
+import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
@@ -84,6 +85,11 @@ public class CommonUtilsTest {
     @Test(expected = ConversionException.class)
     public void testBadRegex() {
         CommonUtils.createPattern("[");
+    }
+
+    @Test(expected = ConversionException.class)
+    public void testBadRegex2() {
+        CommonUtils.createPattern("[", Pattern.MULTILINE);
     }
 
     @Test

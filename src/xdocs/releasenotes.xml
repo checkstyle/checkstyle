@@ -15,6 +15,175 @@
 
   <body>
 
+    <section name="Release 6.12">
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          CommentsIndentationCheck doesn't report errors at end of block. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2078">#2078</a>
+        </li>
+        <li>
+          Fix NoWhitespaceAfterCheck. Author: attatrol <a href="https://github.com/checkstyle/checkstyle/issues/1013">#1013</a>
+        </li>
+        <li>
+          Fix NPE in EqualsAvoidNull check. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2474">#2474</a>
+        </li>
+        <li>
+          Fix FinalLocalVariable false-negative. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1551">#1551</a>
+        </li>
+        <li>
+          Exclude lines with package in LineLength check. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2482">#2482</a>
+        </li>
+        <li>
+          fixed NPE in NeedBraces.isSingleLineFor. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2283">#2283</a>
+        </li>
+        <li>
+          JavaDocMethod: Exception thrown for incomplete @return tag if next line is empty. Author: John Erik Halse <a href="https://github.com/checkstyle/checkstyle/issues/2398">#2398</a>
+        </li>
+        <li>
+          Fix reusability of JavaDoc checks. Author: Björn Kautler <a href="https://github.com/checkstyle/checkstyle/issues/2326">#2326</a>
+        </li>
+        <li>
+          Fixed blank line indentification for EmptyLineSeparator check. Author: Pavel Baranchikov <a href="https://github.com/checkstyle/checkstyle/issues/2266">#2266</a>
+        </li>
+        <li>
+          Support for @SuppressWarnings("all").. Author: Stéphane Galland <a href="https://github.com/checkstyle/checkstyle/issues/2275">#2275</a>
+        </li>
+        <li>
+          Make SuppressWarningsFilter case-insensitive. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2202">#2202</a>
+        </li>
+        <li>
+          Fix NPE in ModifiedControlVariable on SuppressWarnings. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2327">#2327</a>
+        </li>
+        <li>
+          Do not recognize '/**/' as valid Javadoc. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2387">#2387</a>
+        </li>
+        <li>
+          Make JavadocType check customizable by list of tokens. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2388">#2388</a>
+        </li>
+        <li>
+          Fix FALSE positive in JavadocStyle check on inheritDoc tag. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2411">#2411</a>
+        </li>
+        <li>
+          Ignore missing Javadoc for 'serialVersionUID' fields. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/792">#792</a>
+        </li>
+        <li>
+          Exclude lines with imports in LineLength check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2433">#2433</a>
+        </li>
+        <li>
+          IllegalTypeCheck, requiredTokens is set to IMPORT only. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2415">#2415</a>
+        </li>
+        <li>
+          CLI should print a file name where exception is happen. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2109">#2109</a>
+        </li>
+        <li>
+          LeftCurly: add Anonymous class to allowed tokens. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2431">#2431</a>
+        </li>
+      </ul>
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Deploy snapshots versions in CI. Author: WonderCsabo <a href="https://github.com/checkstyle/checkstyle/issues/2167">#2167</a>
+        </li>
+        <li>
+          require all filters appear in checkstyle_checks.xml. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2268">#2268</a>
+        </li>
+        <li>
+          removed xdoc of CustomImportOrder.samePackageMatchingDepth. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2453">#2453</a>
+        </li>
+        <li>
+          added xdoc check validation. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2442">#2442</a>
+        </li>
+        <li>
+          Run CheckStyle on Full Test Directory. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2421">#2421</a>
+        </li>
+        <li>
+          fixed invalid xml examples in xdocs. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2425">#2425</a>
+        </li>
+        <li>
+          flush audit outputs sooner. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2085">#2085</a>
+        </li>
+        <li>
+          unify test input locations for whole project. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2161">#2161</a>
+        </li>
+        <li>
+          removed excess hierarchy from few Check. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2451">#2451</a>
+        </li>
+        <li>
+          Bunch of refactoring and code optimizarion. Author: rnveach
+        </li>
+        <li>
+          Update list of missing tools. Author: Dawid Nejman <a href="https://github.com/checkstyle/checkstyle/issues/1238">#1238</a>
+        </li>
+        <li>
+          Sonarqube found problems in Checkstyle. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/46">#46</a>
+        </li>
+        <li>
+          Replaced outdated link for bamboo-checkstyle-plugin. Author: Dawid Nejman <a href="https://github.com/checkstyle/checkstyle/issues/1238">#1238</a>
+        </li>
+        <li>
+          'forbiddenapis' plugin added to maven config. Author: Ruslan Diachenko <a href="https://github.com/checkstyle/checkstyle/issues/1217">#1217</a>
+        </li>
+        <li>
+          Update list of related Tools. Author: Dawid Nejman <a href="https://github.com/checkstyle/checkstyle/issues/1238">#1238</a>
+        </li>
+        <li>
+          skip all analysers during deploy. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2167">#2167</a>
+        </li>
+        <li>
+          usage of error-prone plugin is commented out till problems with Eclipse resovled. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2160">#2160</a>
+        </li>
+        <li>
+          Inconvenience to debug UTs after recent changes in BaseCheckTestSupport. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2434">#2434</a>
+        </li>
+        <li>
+          Fix PMD violations for ShortVariable rule. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/985">#985</a>
+        </li>
+        <li>
+          PMD violations PreserveStackTrace. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/996">#996</a>
+        </li>
+        <li>
+          PMD violations EmptyMethodInAbstractClassShouldBeAbstract. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/997">#997</a>
+        </li>
+        <li>
+          PMD violation ConfusingTernary. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/974">#974</a>
+        </li>
+        <li>
+          rename CheckUtils.isVoidMethod to isNonVoidMethod. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2273">#2273</a>
+        </li>
+        <li>
+          Decrease visibility of package-private methods. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/957">#957</a>
+        </li>
+        <li>
+          Rename tests to match tested class name with Test suffix. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2215">#2215</a>
+        </li>
+        <li>
+          Fix all issues for Java found by Codacy static analysis tool. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2271">#2271</a>
+        </li>
+        <li>
+          Fix missing code coverage. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2243">#2243</a>
+        </li>
+        <li>
+          Fix typos in code. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2080">#2080</a>
+        </li>
+        <li>
+          Update Maven Shade Plugin to 2.4.2. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2464">#2464</a>
+        </li>
+        <li>
+          Update Maven Surefire and Failsafe plugins to 2.19. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2394">#2394</a>
+        </li>
+        <li>
+          Update Maven Assembly Plugin to 2.6. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2350">#2350</a>
+        </li>
+        <li>
+          Update JGit to 4.1.0.201509280440-r. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2324">#2324</a>
+        </li>
+        <li>
+          Update PowerMock to 1.6.3. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2293">#2293</a>
+        </li>
+      </ul>
+    </section>
+
     <section name="Release 6.11.2">
       <p>Bug fixes:</p>
       <ul>

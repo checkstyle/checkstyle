@@ -437,7 +437,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfigurationWrongURL() throws CheckstyleException {
+    public void testLoadConfigurationWrongURL() {
         try {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
@@ -454,7 +454,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfigurationDeprecated() throws CheckstyleException {
+    public void testLoadConfigurationDeprecated() {
         try {
             @SuppressWarnings("deprecation")
             final DefaultConfiguration config =
@@ -482,7 +482,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfigurationFromClassPath() throws CheckstyleException {
+    public void testLoadConfigurationFromClassPath() {
         try {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
