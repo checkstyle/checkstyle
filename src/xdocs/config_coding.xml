@@ -130,13 +130,50 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
     <section name="CovariantEquals">
       <subsection name="Description">
         <p>
-          Checks that classes that define a covariant <code>equals()</code> method also override method <code>equals(java.lang.Object)</code>.  Inspired by <a
-          href="http://www.cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">Finding Bugs is Easy, chapter '2.3.1 Bad Covariant Definition of Equals (Eq)'</a>.
+          Checks that classes which define a covariant <code>equals()</code> method
+          also override method <code>equals(Object)</code>.<br/>
+          Covariant <code>equals()</code> - method that is similar to <code>equals(Object)</code>,
+          but with a covariant parameter type (any subtype of Object).<br/>
+          <strong>Notice</strong>: the enums are also checked, even
+          though they cannot override <code>equals(Object)</code>. The reason is
+          to point out that implementing <code>equals()</code> in enums is considered an
+          awful practice: it may cause having two different enum values that are equal using
+          covariant enum method, and not equal when compared normally.
         </p>
 
         <p>
-          Rationale: Mistakenly defining a covariant <code>equals()</code> method without overriding method <code>equals(java.lang.Object)</code> can produce unexpected
-          runtime behaviour.
+          Inspired by <a href="http://www.cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">
+          Finding Bugs is Easy, chapter '2.3.1 Bad Covariant Definition of Equals (Eq)'</a>:
+        </p>
+
+        <p>
+          Java classes may override the <code>equals(Object)</code> method to define
+          a predicate for object equality. This method is used by many of the Java runtime
+          library classes; for example, to implement generic containers.
+        </p>
+
+        <p>
+          Programmers sometimes mistakenly use the type of their class <code>Foo</code>
+          as the type of the parameter to <code>equals()</code>:
+        </p>
+
+        <source>
+public boolean equals(Foo obj) {...}
+        </source>
+
+        <p>
+          This covariant version of <code>equals()</code> does not override the version in the
+          <code>Object</code> class, and it may lead to unexpected behavior at runtime,
+          especially if the class is used with one of the standard collection classes
+          which expect that the standard <code>equals(Object)</code> method is overridden.
+        </p>
+
+        <p>
+          This kind of bug is not obvious because it looks correct, and in circumstances where
+          the class is accessed through the references of the class type (rather than a supertype),
+          it will work correctly. However, the first time it is used in a container,
+          the behavior might be mysterious. For these reasons, this type of bug can elude
+          testing and code inspections.
         </p>
       </subsection>
 
@@ -147,6 +184,31 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
         <source>
 &lt;module name=&quot;CovariantEquals&quot;/&gt;
         </source>
+
+        <p>
+          For example:
+          <source>
+class Test {
+    public boolean equals(Test i) {  // violation
+        return false;
+    }
+}
+          </source>
+        </p>
+        <p>
+          The same class without violations:
+          <source>
+class Test {
+    public boolean equals(Test i) {  // no violation
+        return false;
+    }
+
+    public boolean equals(Object i) {
+       return false;
+    }
+}
+          </source>
+        </p>
       </subsection>
 
       <subsection name="Example of Usage">
