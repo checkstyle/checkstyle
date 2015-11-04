@@ -92,4 +92,39 @@ public class ParameterNameCheckTest
         };
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void testSkipMethodsWithOverrideAnnotationTrue()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^h$");
+        checkConfig.addAttribute("ignoreOverridden", "true");
+
+        final String pattern = "^h$";
+
+        final String[] expected = {
+            "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
+            "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            };
+        verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testSkipMethodsWithOverrideAnnotationFalse()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^h$");
+        checkConfig.addAttribute("ignoreOverridden", "false");
+
+        final String pattern = "^h$";
+
+        final String[] expected = {
+            "6:34: " + getCheckMessage(MSG_INVALID_PATTERN, "o", pattern),
+            "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
+            "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            };
+        verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
+    }
 }

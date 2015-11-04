@@ -30,6 +30,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
+ * <p>The check has the following option:</p>
+ * <p><b>ignoreOverridden</b> - allows to skip methods with Override annotation from
+ * validation. Default values is <b>false</b> .</p>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -45,16 +48,41 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="format" value="^^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * An example of how to configure the check to skip methods with Override annotation from
+ * validation:
+ * </p>
+ * <pre>
+ * &lt;module name="ParameterName"&gt;
+ *    &lt;property name="ignoreOverridden" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
  * @author Oliver Burn
+ * @author Andrei Selkin
  */
 public class ParameterNameCheck
     extends AbstractNameCheck {
+
+    /**
+     * Allows to skip methods with Override annotation from validation.
+     */
+    private boolean ignoreOverridden;
+
     /**
      * Creates a new {@code ParameterNameCheck} instance.
      */
     public ParameterNameCheck() {
         super("^[a-z][a-zA-Z0-9]*$");
+    }
+
+    /**
+     * Sets whether to skip methods with Override annotation from validation.
+     *
+     * @param ignoreOverridden Flag for skipping methods with Override annotation.
+     */
+    public void setIgnoreOverridden(boolean ignoreOverridden) {
+        this.ignoreOverridden = ignoreOverridden;
     }
 
     @Override
@@ -74,6 +102,29 @@ public class ParameterNameCheck
 
     @Override
     protected boolean mustCheckName(DetailAST ast) {
-        return ast.getParent().getType() != TokenTypes.LITERAL_CATCH;
+        boolean checkName = true;
+        if (ignoreOverridden && isOverriddenMethod(ast)
+                || ast.getParent().getType() == TokenTypes.LITERAL_CATCH) {
+            checkName = false;
+        }
+        return checkName;
+    }
+
+    /**
+     * Checks whether a method is annotated with Override annotation.
+     * @param ast method parameter definition token.
+     * @return true if a method is annotated with Override annotation.
+     */
+    private static boolean isOverriddenMethod(DetailAST ast) {
+        boolean overridden = false;
+        final DetailAST parent = ast.getParent().getParent();
+        final DetailAST annotation = parent.getFirstChild().getFirstChild();
+        if (annotation.getType() == TokenTypes.ANNOTATION) {
+            final DetailAST overrideToken = annotation.findFirstToken(TokenTypes.IDENT);
+            if ("Override".equals(overrideToken.getText())) {
+                overridden = true;
+            }
+        }
+        return overridden;
     }
 }
