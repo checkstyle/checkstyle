@@ -427,7 +427,7 @@ public class HiddenFieldCheck
             aMethodAST.findFirstToken(TokenTypes.IDENT).getText();
         boolean isSetterMethod = false;
 
-        if (methodName.equals("set" + capitalize(aName))) {
+        if (("set" + capitalize(aName)).equals(methodName)) {
             // method name did match set${Name}(${anyType} ${aName})
             // where ${Name} is capitalized version of ${aName}
             // therefore this method is potentially a setter
