@@ -99,16 +99,9 @@ public final class CommonUtils {
      * The {@code os.name} System Property. Operating system name.
      * </p>
      * <p>
-     * Defaults to {@code null} if the runtime does not have security access to read this property or the property
-     * does not exist.
+     * Defaults to {@code null} if the runtime does not have security access to read this
+     * property or the property does not exist.
      * </p>
-     * <p>
-     * This value is initialized when the class is loaded. If {@link System#setProperty(String,String)} or
-     * {@link System#setProperties(java.util.Properties)} is called after this class is loaded, the value will be
-     * out of sync with that System property.
-     * </p>
-     *
-     * @since Java 1.1
      */
     public static final String OS_NAME = getSystemProperty("os.name");
 
@@ -470,7 +463,7 @@ public final class CommonUtils {
      * @param array  the array to clone, may be {@code null}
      * @return the cloned array, {@code null} if {@code null} input
      */
-    public static int[] clone(final int[] array) {
+    public static int[] clone(final int... array) {
         if (array == null) {
             return null;
         }
@@ -486,12 +479,13 @@ public final class CommonUtils {
      * @return an {@code int} array, {@code null} if null array input
      * @throws NullPointerException if array content is {@code null}
      */
-    public static int[] toPrimitive(final Integer[] array) {
+    public static int[] toPrimitive(final Integer... array) {
         final int[] result;
 
         if (array.length == 0) {
             return EMPTY_INT_ARRAY;
-        }else {
+        }
+        else {
             result = new int[array.length];
             for (int i = 0; i < array.length; i++) {
                 result[i] = array[i];
@@ -517,17 +511,16 @@ public final class CommonUtils {
 
         if (!iterator.hasNext()) {
             bufferString = EMPTY;
-        }else {
+        }
+        else {
             final Object first = iterator.next();
             if (!iterator.hasNext()) {
-                @SuppressWarnings("deprecation") // ObjectUtils.toString(Object) has been deprecated in 3.2
-                final
-                String result = toString(first);
+                final String result = toString(first);
                 return result;
             }
 
             // two or more elements
-            final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
+            final StringBuilder buf = new StringBuilder(256);
             if (first != null) {
                 buf.append(first);
             }
@@ -560,16 +553,16 @@ public final class CommonUtils {
 
         if (!iterator.hasNext()) {
             bufferString = EMPTY;
-        }else {
+        }
+        else {
             final Object first = iterator.next();
             if (!iterator.hasNext()) {
-                @SuppressWarnings("deprecation") // ObjectUtils.toString(Object) has been deprecated in 3.2
                 final String result = toString(first);
                 return result;
             }
 
             // two or more elements
-            final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
+            final StringBuilder buf = new StringBuilder(256);
             if (first != null) {
                 buf.append(first);
             }
@@ -638,10 +631,7 @@ public final class CommonUtils {
      * </pre>
      *
      * @param cs  the CharSequence to check, may be null
-     * @return {@code true} if the CharSequence is
-     *  not empty and not null and not whitespace
-     * @since 2.0
-     * @since 3.0 Changed signature from isNotBlank(String) to isNotBlank(CharSequence)
+     * @return {@code true} if the CharSequence is not empty and not null and not whitespace
      */
     public static boolean isNotBlank(final CharSequence cs) {
         return !isBlank(cs);
@@ -665,8 +655,8 @@ public final class CommonUtils {
      */
     public static boolean isBlank(final CharSequence cs) {
         boolean isBlank = true;
-        int strLen;
-        if (cs == null || (strLen = cs.length()) == 0) {
+        final int strLen = cs.length();
+        if (cs == null || strLen == 0) {
             return true;
         }
         for (int i = 0; i < strLen; i++) {
@@ -676,6 +666,7 @@ public final class CommonUtils {
         }
         return isBlank;
     }
+
     // ToString
     //-----------------------------------------------------------------------
     /**
@@ -688,17 +679,16 @@ public final class CommonUtils {
      * ObjectUtils.toString("bat")        = "bat"
      * ObjectUtils.toString(Boolean.TRUE) = "true"
      * </pre>
-     * @see String#valueOf(Object)
      * @param obj  the Object to {@code toString}, may be null
      * @return the passed in Object's toString, or {@code ""} if {@code null} input
-     * @since 2.0
-     * @deprecated this method has been replaced by {@code java.util.Objects.toString(Object)} in Java 7 and will be
-     * removed in future releases. Note however that said method will return "null" for null references, while this
-     * method returns and empty String. To preserve behavior use {@code java.util.Objects.toString(myObject, "")}
      */
-    @Deprecated
     public static String toString(final Object obj) {
-        return obj == null ? "" : obj.toString();
+        if (obj == null) {
+            return "";
+        }
+        else {
+            return obj.toString();
+        }
     }
 
     /**
@@ -717,8 +707,8 @@ public final class CommonUtils {
      * Gets a System property, defaulting to {@code null} if the property cannot be read.
      * </p>
      * <p>
-     * If a {@code SecurityException} is caught, the return value is {@code null} and a message is written to
-     * {@code System.err}.
+     * If a {@code SecurityException} is caught, the return value is {@code null} and a message
+     * is written to {@code System.err}.
      * </p>
      *
      * @param property the system property name
@@ -727,13 +717,15 @@ public final class CommonUtils {
     private static String getSystemProperty(final String property) {
         try {
             return System.getProperty(property);
-        } catch (final SecurityException ex) {
+        }
+        catch (final SecurityException ex) {
             // we are not allowed to look at this property
             System.err.println("Caught a SecurityException reading the system property '" + property
                     + "'; the SystemUtils property value will default to null.");
             return null;
         }
     }
+
     /**
      * Decides if the operating system matches.
      * <p>
