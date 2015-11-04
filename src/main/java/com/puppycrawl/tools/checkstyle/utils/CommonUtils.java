@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -45,12 +46,87 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 public final class CommonUtils {
 
+    /**
+     * The empty String {@code ""}.
+     * @since 2.0
+     */
+    public static final String EMPTY = "";
+
+    /**
+     * An empty immutable {@code byte} array.
+     */
+    public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+
+    /**
+     * An empty immutable {@code double} array.
+     */
+    public static final double[] EMPTY_DOUBLE_ARRAY = new double[0];
+
+    /**
+     * An empty immutable {@code int} array.
+     */
+    public static final int[] EMPTY_INT_ARRAY = new int[0];
+
+    /**
+     * An empty immutable {@code Integer} array.
+     */
+    public static final Integer[] EMPTY_INTEGER_OBJECT_ARRAY = new Integer[0];
+
+    /**
+     * An empty immutable {@code Object} array.
+     */
+    public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+
+    /**
+     * An empty immutable {@code String} array.
+     */
+    public static final String[] EMPTY_STRING_ARRAY = new String[0];
+
+    /**
+     * <p>
+     * Is {@code true} if this is Windows.
+     * </p>
+     * <p>
+     * The field will return {@code false} if {@code OS_NAME} is {@code null}.
+     * </p>
+     *
+     * @since 2.0
+     */
+    public static final boolean IS_OS_WINDOWS;
+
+    /**
+     * <p>
+     * The {@code os.name} System Property. Operating system name.
+     * </p>
+     * <p>
+     * Defaults to {@code null} if the runtime does not have security access to read this property or the property
+     * does not exist.
+     * </p>
+     * <p>
+     * This value is initialized when the class is loaded. If {@link System#setProperty(String,String)} or
+     * {@link System#setProperties(java.util.Properties)} is called after this class is loaded, the value will be
+     * out of sync with that System property.
+     * </p>
+     *
+     * @since Java 1.1
+     */
+    public static final String OS_NAME = getSystemProperty("os.name");
+
+    /**
+     * The prefix String for all Windows OS.
+     */
+    private static final String OS_NAME_WINDOWS_PREFIX = "Windows";
+
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
     /** Stop instances being created. **/
     private CommonUtils() {
 
+    }
+
+    static {
+        IS_OS_WINDOWS = getOSMatchesName(OS_NAME_WINDOWS_PREFIX);
     }
 
     /**
@@ -143,8 +219,8 @@ public final class CommonUtils {
      * @return the length of string.substring(0, toIdx) with tabs expanded.
      */
     public static int lengthExpandedTabs(String inputString,
-            int toIdx,
-            int tabWidth) {
+                                         int toIdx,
+                                         int tabWidth) {
         int len = 0;
         for (int idx = 0; idx < toIdx; idx++) {
             if (inputString.charAt(idx) == '\t') {
@@ -373,7 +449,7 @@ public final class CommonUtils {
      * @return the string, based on template filled with given lines
      */
     public static String fillTemplateWithStringsByRegexp(
-        String template, String lineToPlaceInTemplate, Pattern regexp) {
+            String template, String lineToPlaceInTemplate, Pattern regexp) {
         final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
         String result = template;
         if (matcher.find()) {
@@ -383,5 +459,297 @@ public final class CommonUtils {
             }
         }
         return result;
+    }
+
+    /**
+     * <p>Clones an array returning a typecast result and handling
+     * {@code null}.</p>
+     *
+     * <p>This method returns {@code null} for a {@code null} input array.</p>
+     *
+     * @param array  the array to clone, may be {@code null}
+     * @return the cloned array, {@code null} if {@code null} input
+     */
+    public static int[] clone(final int... array) {
+        if (array == null) {
+            return null;
+        }
+        return array.clone();
+    }
+
+    /**
+     * <p>Converts an array of object Integers to primitives.</p>
+     *
+     * <p>This method returns {@code null} for a {@code null} input array.</p>
+     *
+     * @param array  a {@code Integer} array, may be {@code null}
+     * @return an {@code int} array, {@code null} if null array input
+     * @throws NullPointerException if array content is {@code null}
+     */
+    public static int[] toPrimitive(final Integer... array) {
+        if (array == null) {
+            return null;
+        }
+        if (array.length == 0) {
+            return EMPTY_INT_ARRAY;
+        }
+        final int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i];
+        }
+        return result;
+    }
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterator} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list. Null objects or empty
+     * strings within the iteration are represented by empty strings.</p>
+     *
+     * @param iterator  the {@code Iterator} of values to join together, may be null
+     * @param separator  the separator character to use
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.0
+     */
+    public static String join(final Iterator<?> iterator, final char separator) {
+
+        // handle null, zero and one elements before building a buffer
+        if (iterator == null) {
+            return null;
+        }
+        if (!iterator.hasNext()) {
+            return EMPTY;
+        }
+        final Object first = iterator.next();
+        if (!iterator.hasNext()) {
+            @SuppressWarnings( "deprecation" ) // ObjectUtils.toString(Object) has been deprecated in 3.2
+            final
+            String result = toString(first);
+            return result;
+        }
+
+        // two or more elements
+        final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
+        if (first != null) {
+            buf.append(first);
+        }
+
+        while (iterator.hasNext()) {
+            buf.append(separator);
+            final Object obj = iterator.next();
+            if (obj != null) {
+                buf.append(obj);
+            }
+        }
+
+        return buf.toString();
+    }
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterator} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list.
+     * A {@code null} separator is the same as an empty String ("").</p>
+     *
+     * @param iterator  the {@code Iterator} of values to join together, may be null
+     * @param separator  the separator character to use, null treated as ""
+     * @return the joined String, {@code null} if null iterator input
+     */
+    public static String join(final Iterator<?> iterator, final String separator) {
+
+        // handle null, zero and one elements before building a buffer
+        if (iterator == null) {
+            return null;
+        }
+        if (!iterator.hasNext()) {
+            return EMPTY;
+        }
+        final Object first = iterator.next();
+        if (!iterator.hasNext()) {
+            @SuppressWarnings( "deprecation" ) // ObjectUtils.toString(Object) has been deprecated in 3.2
+            final String result = toString(first);
+            return result;
+        }
+
+        // two or more elements
+        final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
+        if (first != null) {
+            buf.append(first);
+        }
+
+        while (iterator.hasNext()) {
+            if (separator != null) {
+                buf.append(separator);
+            }
+            final Object obj = iterator.next();
+            if (obj != null) {
+                buf.append(obj);
+            }
+        }
+        return buf.toString();
+    }
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterable} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list. Null objects or empty
+     * strings within the iteration are represented by empty strings.</p>
+     *
+     * @param iterable  the {@code Iterable} providing the values to join together, may be null
+     * @param separator  the separator character to use
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.3
+     */
+    public static String join(final Iterable<?> iterable, final char separator) {
+        if (iterable == null) {
+            return null;
+        }
+        return join(iterable.iterator(), separator);
+    }
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterable} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list.
+     * A {@code null} separator is the same as an empty String ("").</p>
+     *
+     * @param iterable  the {@code Iterable} providing the values to join together, may be null
+     * @param separator  the separator character to use, null treated as ""
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.3
+     */
+    public static String join(final Iterable<?> iterable, final String separator) {
+        if (iterable == null) {
+            return null;
+        }
+        return join(iterable.iterator(), separator);
+    }
+
+    /**
+     * <p>Checks if a CharSequence is not empty (""), not null and not whitespace only.</p>
+     *
+     * <pre>
+     * StringUtils.isNotBlank(null)      = false
+     * StringUtils.isNotBlank("")        = false
+     * StringUtils.isNotBlank(" ")       = false
+     * StringUtils.isNotBlank("bob")     = true
+     * StringUtils.isNotBlank("  bob  ") = true
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is
+     *  not empty and not null and not whitespace
+     * @since 2.0
+     * @since 3.0 Changed signature from isNotBlank(String) to isNotBlank(CharSequence)
+     */
+    public static boolean isNotBlank(final CharSequence cs) {
+        return !isBlank(cs);
+    }
+
+    /**
+     * <p>Checks if a CharSequence is whitespace, empty ("") or null.</p>
+     *
+     * <pre>
+     * StringUtils.isBlank(null)      = true
+     * StringUtils.isBlank("")        = true
+     * StringUtils.isBlank(" ")       = true
+     * StringUtils.isBlank("bob")     = false
+     * StringUtils.isBlank("  bob  ") = false
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is null, empty or whitespace
+     * @since 2.0
+     * @since 3.0 Changed signature from isBlank(String) to isBlank(CharSequence)
+     */
+    public static boolean isBlank(final CharSequence cs) {
+        int strLen;
+        if (cs == null || (strLen = cs.length()) == 0) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    // ToString
+    //-----------------------------------------------------------------------
+    /**
+     * <p>Gets the {@code toString} of an {@code Object} returning
+     * an empty string ("") if {@code null} input.</p>
+     *
+     * <pre>
+     * ObjectUtils.toString(null)         = ""
+     * ObjectUtils.toString("")           = ""
+     * ObjectUtils.toString("bat")        = "bat"
+     * ObjectUtils.toString(Boolean.TRUE) = "true"
+     * </pre>
+     * @see String#valueOf(Object)
+     * @param obj  the Object to {@code toString}, may be null
+     * @return the passed in Object's toString, or {@code ""} if {@code null} input
+     * @since 2.0
+     * @deprecated this method has been replaced by {@code java.util.Objects.toString(Object)} in Java 7 and will be
+     * removed in future releases. Note however that said method will return "null" for null references, while this
+     * method returns and empty String. To preserve behavior use {@code java.util.Objects.toString(myObject, "")}
+     */
+    @Deprecated
+    public static String toString(final Object obj) {
+        return obj == null ? "" : obj.toString();
+    }
+
+    /**
+     * Decides if the operating system matches.
+     *
+     * @param osNamePrefix the prefix for the os name
+     * @return true if matches, or false if not or can't determine
+     */
+    private static boolean getOSMatchesName(final String osNamePrefix) {
+        return isOSNameMatch(OS_NAME, osNamePrefix);
+    }
+
+    // -----------------------------------------------------------------------
+    /**
+     * <p>
+     * Gets a System property, defaulting to {@code null} if the property cannot be read.
+     * </p>
+     * <p>
+     * If a {@code SecurityException} is caught, the return value is {@code null} and a message is written to
+     * {@code System.err}.
+     * </p>
+     *
+     * @param property the system property name
+     * @return the system property value or {@code null} if a security problem occurs
+     */
+    private static String getSystemProperty(final String property) {
+        try {
+            return System.getProperty(property);
+        } catch (final SecurityException ex) {
+            // we are not allowed to look at this property
+            System.err.println("Caught a SecurityException reading the system property '" + property
+                    + "'; the SystemUtils property value will default to null.");
+            return null;
+        }
+    }
+    /**
+     * Decides if the operating system matches.
+     * <p>
+     * This method is package private instead of private to support unit test invocation.
+     * </p>
+     *
+     * @param osName the actual OS name
+     * @param osNamePrefix the prefix for the expected OS name
+     * @return true if matches, or false if not or can't determine
+     */
+    static boolean isOSNameMatch(final String osName, final String osNamePrefix) {
+        if (osName == null) {
+            return false;
+        }
+        return osName.startsWith(osNamePrefix);
     }
 }
