@@ -75,7 +75,7 @@
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L384-L390">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeverityMatchFilter">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -321,7 +321,7 @@ HashSet hashSet; // Warning here: Declaring variables, return values or paramete
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L401-L409">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -536,7 +536,7 @@ HashSet hashSet; // Warning here: Declaring variables, return values or paramete
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L21">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -603,7 +603,7 @@ private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCh
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L383">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -794,7 +794,7 @@ public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAft
         <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L391-L400">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
             Checkstyle Style</a>
           </li>
         </ul>

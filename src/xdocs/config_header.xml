@@ -142,7 +142,7 @@ line 5: ////////////////////////////////////////////////////////////////////
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L39-L43">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Header">
             Checkstyle Style</a>
           </li>
         </ul>
@@ -328,7 +328,7 @@ line 6: ^\W*$
       <subsection name="Example of Usage">
         <ul>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml#L69-L72">
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpHeader">
             Checkstyle Style</a>
           </li>
         </ul>
