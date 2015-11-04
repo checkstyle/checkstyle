@@ -480,7 +480,7 @@ public final class CommonUtils {
      */
     public static int[] clone(final int... array) {
         if (array == null) {
-            return null;
+            return new int[0];
         }
         return array.clone();
     }
@@ -666,8 +666,11 @@ public final class CommonUtils {
      */
     public static boolean isBlank(final CharSequence cs) {
         boolean isBlank = true;
+        if (cs == null) {
+            return isBlank;
+        }
         final int strLen = cs.length();
-        if (!(cs == null || strLen == 0)) {
+        if (strLen != 0) {
             for (int i = 0; i < strLen; i++) {
                 if (!Character.isWhitespace(cs.charAt(i))) {
                     isBlank = false;
