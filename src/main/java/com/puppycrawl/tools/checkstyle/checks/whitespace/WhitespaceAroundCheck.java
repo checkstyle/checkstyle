@@ -139,6 +139,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Oliver Burn
  * @author maxvetrenko
+ * @author Andrei Selkin
  */
 public class WhitespaceAroundCheck extends Check {
 
@@ -390,7 +391,7 @@ public class WhitespaceAroundCheck extends Check {
                 isColonOfCaseOrDefault(currentType, parentType)
                 || isColonOfForEach(currentType, parentType);
         final boolean emptyBlockOrType = isEmptyBlock(ast, parentType)
-                || allowEmptyTypes && isEmptyType(ast, parentType);
+                || allowEmptyTypes && isEmptyType(ast);
 
         return starImportOrSlistInsideCaseGroup
                 || colonOfCaseOrDefaultOrForEach
@@ -525,14 +526,18 @@ public class WhitespaceAroundCheck extends Check {
      * </p>
      *
      * @param ast ast the {@code DetailAST} to test.
-     * @param parentType the token type of {@code ast}'s parent.
      * @return {@code true} if {@code ast} makes up part of an
      *         empty block contained under a {@code match} token type
      *         node.
      */
-    private static boolean isEmptyType(DetailAST ast, int parentType) {
+    private static boolean isEmptyType(DetailAST ast) {
         final int type = ast.getType();
-        return (type == TokenTypes.RCURLY || type == TokenTypes.LCURLY)
-                && parentType == TokenTypes.OBJBLOCK;
+        final DetailAST nextSibling = ast.getNextSibling();
+        final DetailAST previousSibling = ast.getPreviousSibling();
+        return type == TokenTypes.LCURLY
+                && nextSibling.getType() == TokenTypes.RCURLY
+            || type == TokenTypes.RCURLY
+                && previousSibling != null
+                && previousSibling.getType() == TokenTypes.LCURLY;
     }
 }
