@@ -337,24 +337,24 @@ public class EqualsAvoidNullCheck extends Check {
      * @param expr the argument expression
      * @return - true if any child matches the set of tokens, false if not
      */
-    private static boolean containsAllSafeTokens(final DetailAST expr) {
+    private boolean containsAllSafeTokens(final DetailAST expr) {
         DetailAST arg = expr.getFirstChild();
-        if (arg.branchContains(TokenTypes.METHOD_CALL)) {
-            return false;
-        }
         arg = skipVariableAssign(arg);
 
-        //Plus assignment can have ill affects
-        //do not want to recommend moving expression
-        //See example:
-        //String s = "SweetString";
-        //s.equals(s += "SweetString"); //false
-        //s = "SweetString";
-        //(s += "SweetString").equals(s); //true
+        boolean argIsNotNull = false;
+        if (arg.getType() == TokenTypes.PLUS) {
+            DetailAST child = arg.getFirstChild();
+            while (child != null
+                    && !argIsNotNull) {
+                argIsNotNull = child.getType() == TokenTypes.STRING_LITERAL
+                        || child.getType() == TokenTypes.IDENT;
+                child = child.getNextSibling();
+            }
+        }
 
-        return !arg.branchContains(TokenTypes.PLUS_ASSIGN)
-                && !arg.branchContains(TokenTypes.IDENT)
-                && !arg.branchContains(TokenTypes.LITERAL_NULL);
+        return argIsNotNull
+                || !arg.branchContains(TokenTypes.IDENT)
+                    && !arg.branchContains(TokenTypes.LITERAL_NULL);
     }
 
     /**
