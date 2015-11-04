@@ -407,3 +407,19 @@ enum TestEnum {
         this.ONE.equals(this);
     }
 }
+
+class TestConcatenations {
+    String s = null;
+
+    void foo() {
+        s.equals(s + s);
+        s.equals("a" + "b");
+        s.equals(getInt() + s);
+        s.equals(getInt() + getInt());
+    }
+
+    int getInt() {
+        return (Integer) null;
+    }
+}
+
