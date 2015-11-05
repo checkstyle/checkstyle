@@ -1144,6 +1144,8 @@
             <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
             <!-- Excluded due to linkcheck's issue #23: https://issues.apache.org/jira/browse/MLINKCHECK-23-->
             <excludedLink>http://www.kclee.com/clemens/java/javancss</excludedLink>
+            <!-- It is not a strict link, no needt ovalidate, github gives "429 Too Many Requests" for it -->
+            <excludedLink>https://github.com/search*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
