@@ -53,11 +53,6 @@ public final class CommonUtils {
     public static final String EMPTY = "";
 
     /**
-     * An empty immutable {@code byte} array.
-     */
-    public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
-
-    /**
      * An empty immutable {@code double} array.
      */
     public static final double[] EMPTY_DOUBLE_ARRAY = new double[0];
@@ -68,47 +63,9 @@ public final class CommonUtils {
     public static final int[] EMPTY_INT_ARRAY = new int[0];
 
     /**
-     * An empty immutable {@code Integer} array.
-     */
-    public static final Integer[] EMPTY_INTEGER_OBJECT_ARRAY = new Integer[0];
-
-    /**
-     * An empty immutable {@code Object} array.
-     */
-    public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
-
-    /**
      * An empty immutable {@code String} array.
      */
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
-
-    /**
-     * <p>
-     * Is {@code true} if this is Windows.
-     * </p>
-     * <p>
-     * The field will return {@code false} if {@code OS_NAME} is {@code null}.
-     * </p>
-     *
-     * @since 2.0
-     */
-    public static final boolean IS_OS_WINDOWS;
-
-    /**
-     * <p>
-     * The {@code os.name} System Property. Operating system name.
-     * </p>
-     * <p>
-     * Defaults to {@code null} if the runtime does not have security access to read this
-     * property or the property does not exist.
-     * </p>
-     */
-    public static final String OS_NAME = getSystemProperty("os.name");
-
-    /**
-     * The prefix String for all Windows OS.
-     */
-    private static final String OS_NAME_WINDOWS_PREFIX = "Windows";
 
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
@@ -116,10 +73,6 @@ public final class CommonUtils {
     /** Stop instances being created. **/
     private CommonUtils() {
 
-    }
-
-    static {
-        IS_OS_WINDOWS = getOSMatchesName(OS_NAME_WINDOWS_PREFIX);
     }
 
     /**
@@ -480,7 +433,7 @@ public final class CommonUtils {
      */
     public static int[] clone(final int... array) {
         if (array == null) {
-            return new int[0];
+            return array;
         }
         return array.clone();
     }
@@ -505,48 +458,6 @@ public final class CommonUtils {
             System.arraycopy(result, 0, array, 0, 1);
         }
         return result;
-    }
-
-    /**
-     * <p>Joins the elements of the provided {@code Iterator} into
-     * a single String containing the provided elements.</p>
-     *
-     * <p>No delimiter is added before or after the list. Null objects or empty
-     * strings within the iteration are represented by empty strings.</p>
-     *
-     * @param iterator  the {@code Iterator} of values to join together, may be null
-     * @param separator  the separator character to use
-     * @return the joined String, {@code null} if null iterator input
-     * @since 2.0
-     */
-    public static String join(final Iterator<?> iterator, final char separator) {
-        String bufferString;
-
-        if (iterator.hasNext()) {
-            final Object first = iterator.next();
-            if (!iterator.hasNext()) {
-                return toString(first);
-            }
-
-            // two or more elements
-            final StringBuilder buf = new StringBuilder(256);
-            if (first != null) {
-                buf.append(first);
-            }
-
-            while (iterator.hasNext()) {
-                buf.append(separator);
-                final Object obj = iterator.next();
-                if (obj != null) {
-                    buf.append(obj);
-                }
-            }
-            bufferString = buf.toString();
-        }
-        else {
-            bufferString = EMPTY;
-        }
-        return bufferString;
     }
 
     /**
@@ -596,25 +507,6 @@ public final class CommonUtils {
      * <p>Joins the elements of the provided {@code Iterable} into
      * a single String containing the provided elements.</p>
      *
-     * <p>No delimiter is added before or after the list. Null objects or empty
-     * strings within the iteration are represented by empty strings.</p>
-     *
-     * @param iterable  the {@code Iterable} providing the values to join together, may be null
-     * @param separator  the separator character to use
-     * @return the joined String, {@code null} if null iterator input
-     * @since 2.3
-     */
-    public static String join(final Iterable<?> iterable, final char separator) {
-        if (iterable == null) {
-            return null;
-        }
-        return join(iterable.iterator(), separator);
-    }
-
-    /**
-     * <p>Joins the elements of the provided {@code Iterable} into
-     * a single String containing the provided elements.</p>
-     *
      * <p>No delimiter is added before or after the list.
      * A {@code null} separator is the same as an empty String ("").</p>
      *
@@ -634,11 +526,11 @@ public final class CommonUtils {
      * <p>Checks if a CharSequence is not empty (""), not null and not whitespace only.</p>
      *
      * <pre>
-     * StringUtils.isNotBlank(null)      = false
-     * StringUtils.isNotBlank("")        = false
-     * StringUtils.isNotBlank(" ")       = false
-     * StringUtils.isNotBlank("bob")     = true
-     * StringUtils.isNotBlank("  bob  ") = true
+     * CommonUtils.isNotBlank(null)      = false
+     * CommonUtils.isNotBlank("")        = false
+     * CommonUtils.isNotBlank(" ")       = false
+     * CommonUtils.isNotBlank("bob")     = true
+     * CommonUtils.isNotBlank("  bob  ") = true
      * </pre>
      *
      * @param cs  the CharSequence to check, may be null
@@ -652,11 +544,11 @@ public final class CommonUtils {
      * <p>Checks if a CharSequence is whitespace, empty ("") or null.</p>
      *
      * <pre>
-     * StringUtils.isBlank(null)      = true
-     * StringUtils.isBlank("")        = true
-     * StringUtils.isBlank(" ")       = true
-     * StringUtils.isBlank("bob")     = false
-     * StringUtils.isBlank("  bob  ") = false
+     * CommonUtils.isBlank(null)      = true
+     * CommonUtils.isBlank("")        = true
+     * CommonUtils.isBlank(" ")       = true
+     * CommonUtils.isBlank("bob")     = false
+     * CommonUtils.isBlank("  bob  ") = false
      * </pre>
      *
      * @param cs  the CharSequence to check, may be null
@@ -702,54 +594,5 @@ public final class CommonUtils {
         else {
             return obj.toString();
         }
-    }
-
-    /**
-     * Decides if the operating system matches.
-     *
-     * @param osNamePrefix the prefix for the os name
-     * @return true if matches, or false if not or can't determine
-     */
-    private static boolean getOSMatchesName(final String osNamePrefix) {
-        return isOSNameMatch(OS_NAME, osNamePrefix);
-    }
-
-    // -----------------------------------------------------------------------
-    /**
-     * <p>
-     * Gets a System property, defaulting to {@code null} if the property cannot be read.
-     * </p>
-     * <p>
-     * If a {@code SecurityException} is caught, the return value is {@code null} and a message
-     * is written to {@code System.err}.
-     * </p>
-     *
-     * @param property the system property name
-     * @return the system property value or {@code null} if a security problem occurs
-     */
-    private static String getSystemProperty(final String property) {
-        try {
-            return System.getProperty(property);
-        }
-        catch (final SecurityException ex) {
-            return null;
-        }
-    }
-
-    /**
-     * Decides if the operating system matches.
-     * <p>
-     * This method is package private instead of private to support unit test invocation.
-     * </p>
-     *
-     * @param osName the actual OS name
-     * @param osNamePrefix the prefix for the expected OS name
-     * @return true if matches, or false if not or can't determine
-     */
-    static boolean isOSNameMatch(final String osName, final String osNamePrefix) {
-        if (osName == null) {
-            return false;
-        }
-        return osName.startsWith(osNamePrefix);
     }
 }
