@@ -31,9 +31,11 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * {@link Pattern regular expression}.  It
  * provides support for setting the regular
  * expression using the property name {@code format}.  </p>
- *
+ * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
  * @author Oliver Burn
+ * @noinspection AbstractClassNeverImplemented
  */
+@Deprecated
 public abstract class AbstractFormatCheck
     extends Check {
     /** The flags to create the regular expression with. */
