@@ -329,7 +329,8 @@
     <module name="MethodTypeParameterName"/>
     <module name="PackageName"/>
     <module name="ParameterName">
-      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]+$"/>
+      <property name="ignoreOverridden" value="true"/>
     </module>
     <module name="StaticVariableName">
       <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
