@@ -480,7 +480,7 @@ public final class CommonUtils {
      */
     public static int[] clone(final int... array) {
         if (array == null) {
-            return new int[0];
+            return array;
         }
         return array.clone();
     }
