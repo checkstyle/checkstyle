@@ -327,6 +327,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "40: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
             "41: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
             "50: " + getCheckMessage(MSG_ERROR, "@", 6, 8),
+            "77: " + getCheckMessage(MSG_ERROR, "member def type", 4, 8),
         };
         verifyWarns(checkConfig, getPath("InputDifficultAnnotations.java"), expected);
     }
