@@ -118,11 +118,13 @@ public class ParameterNameCheck
     private static boolean isOverriddenMethod(DetailAST ast) {
         boolean overridden = false;
         final DetailAST parent = ast.getParent().getParent();
-        final DetailAST annotation = parent.getFirstChild().getFirstChild();
-        if (annotation.getType() == TokenTypes.ANNOTATION) {
-            final DetailAST overrideToken = annotation.findFirstToken(TokenTypes.IDENT);
-            if ("Override".equals(overrideToken.getText())) {
-                overridden = true;
+        if (parent.getFirstChild().getFirstChild() != null) {
+            final DetailAST annotation = parent.getFirstChild().getFirstChild();
+            if (annotation.getType() == TokenTypes.ANNOTATION) {
+                final DetailAST overrideToken = annotation.findFirstToken(TokenTypes.IDENT);
+                if ("Override".equals(overrideToken.getText())) {
+                    overridden = true;
+                }
             }
         }
         return overridden;

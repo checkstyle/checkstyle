@@ -106,6 +106,11 @@ public class ParameterNameCheckTest
         final String[] expected = {
             "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
             "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "19:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
+            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "28:33: " + getCheckMessage(MSG_INVALID_PATTERN, "field", pattern),
+            "28:62: " + getCheckMessage(MSG_INVALID_PATTERN, "packageNames", pattern),
             };
         verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
     }
@@ -124,6 +129,11 @@ public class ParameterNameCheckTest
             "6:34: " + getCheckMessage(MSG_INVALID_PATTERN, "o", pattern),
             "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
             "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "19:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
+            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "28:33: " + getCheckMessage(MSG_INVALID_PATTERN, "field", pattern),
+            "28:62: " + getCheckMessage(MSG_INVALID_PATTERN, "packageNames", pattern),
             };
         verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
     }
