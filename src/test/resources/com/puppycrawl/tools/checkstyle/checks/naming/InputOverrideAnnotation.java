@@ -26,6 +26,4 @@ public class InputOverrideAnnotation {
     InputOverrideAnnotation() {} // No NPE here!
 
     InputOverrideAnnotation(int field, java.util.Set<String> packageNames) {} // No NPE here!
-
-
 }

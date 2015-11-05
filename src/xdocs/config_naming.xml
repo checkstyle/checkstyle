@@ -923,6 +923,24 @@ public boolean equals(Object o) {
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
+          <tr>
+            <td>skipCatchParameter</td>
+            <td>
+              Allows to skip <code>catch</code> parameter from validation. For example, the
+              following catch parameter will be skipped from validation, if
+              skipCatchParameter is true:
+              <pre>
+try {
+  ...
+}
+catch (Exception ex) {
+  ...
+}
+              </pre>
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -942,6 +960,14 @@ public boolean equals(Object o) {
     &lt;property name="ignoreOverridden" value="true"/&gt;
 &lt;/module&gt;
           </source>
+        <p>
+          An example of how to configure the check to skip catch parameter from validation:
+        </p>
+        <source>
+&lt;module name="ParameterName"&gt;
+    &lt;property name="skipCatchParameter" value="true"/&gt;
+&lt;/module&gt;
+        </source>
       </subsection>
 
       <subsection name="Example of Usage">
