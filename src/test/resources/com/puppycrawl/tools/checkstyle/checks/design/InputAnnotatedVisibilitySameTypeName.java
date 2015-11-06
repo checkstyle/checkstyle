@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import org.junit.rules.TemporaryFolder;
 
-import com.puppycrawl.tools.checkstyle.LocalAnnotations.Rule;
+import com.puppycrawl.tools.checkstyle.checks.design.InputLocalAnnotations.Rule;
 
 public class InputAnnotatedVisibilitySameTypeName
 {
