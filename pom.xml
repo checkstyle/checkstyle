@@ -900,7 +900,6 @@
           <exclude>**/bug*</exclude>
           <exclude>**/oneMoreClass.class</exclude>
           <exclude>**/RightCurlyInput_Other.class</exclude>
-          <exclude>**/JavaNCSSCheckTestInput$1.class</exclude>
           <exclude>**/test_*</exclude>
           <exclude>**/WithInner$Inner.class</exclude>
           <exclude>**/Foo*</exclude>
@@ -908,7 +907,6 @@
           <exclude>**/UncommentedMainTest*</exclude>
           <exclude>**/Temp*</exclude>
           <exclude>**/Issue*</exclude>
-          <exclude>**/ParenPadWithSpace.class</exclude>
           <exclude>**/Main1.class</exclude>
           <exclude>**/ConfigurationBuilder.class</exclude>
           <exclude>**/WithAnonymousClass$1.class</exclude>
