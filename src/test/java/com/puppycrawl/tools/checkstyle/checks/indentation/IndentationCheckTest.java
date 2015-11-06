@@ -376,7 +376,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("IndentationCorrectIfAndParameterInput.java"), expected);
+        verifyWarns(checkConfig, getPath("InputIndentationCorrectIfAndParameter.java"), expected);
     }
 
     @Test
