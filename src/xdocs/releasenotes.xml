@@ -16,6 +16,13 @@
   <body>
 
     <section name="Release 6.12.1">
+      <p>New:</p>
+      <ul>
+        <li>
+          Add 'ignoreOverridden' option to skip methods with @Override annotation. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2290">#2290</a>
+        </li>
+      </ul>
+
       <p>Bug fixes:</p>
       <ul>
         <li>
@@ -23,9 +30,6 @@
         </li>
         <li>
           Performance-Optimization: Do not recompile Pattern for each file/line. Author: Fabian Loewner <a href="https://github.com/checkstyle/checkstyle/pull/2495">#2495</a>
-        </li>
-        <li>
-          Add 'ignoreOverridden' option to skip methods with @Override annotation. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2290">#2290</a>
         </li>
         <li>
           Fix skipping validation for non empty classes when allowEmptyTypes is true. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2480">#2480</a>
