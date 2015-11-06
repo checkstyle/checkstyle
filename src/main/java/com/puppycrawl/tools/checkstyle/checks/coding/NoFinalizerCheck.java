@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 /**
  * Checks that no method having zero parameters is defined
  * using the name <em>finalize</em>.
@@ -27,7 +31,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * @author smckay@google.com (Steve McKay)
  * @author lkuehne
  */
-public class NoFinalizerCheck extends AbstractIllegalMethodCheck {
+public class NoFinalizerCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -35,10 +39,35 @@ public class NoFinalizerCheck extends AbstractIllegalMethodCheck {
      */
     public static final String MSG_KEY = "avoid.finalizer.method";
 
-    /**
-     * Creates an instance.
-     */
-    public NoFinalizerCheck() {
-        super("finalize", MSG_KEY);
+    @Override
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {TokenTypes.METHOD_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public void visitToken(DetailAST aAST) {
+        final DetailAST mid = aAST.findFirstToken(TokenTypes.IDENT);
+        final String name = mid.getText();
+
+        if ("finalize".equals(name)) {
+
+            final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
+            final boolean hasEmptyParamList =
+                !params.branchContains(TokenTypes.PARAMETER_DEF);
+
+            if (hasEmptyParamList) {
+                log(aAST.getLineNo(), MSG_KEY);
+            }
+        }
     }
 }
