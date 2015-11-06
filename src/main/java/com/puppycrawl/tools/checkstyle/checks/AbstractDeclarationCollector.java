@@ -35,9 +35,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Abstract class for checks which need to collect information about
  * declared members/parameters/variables.
- *
+ * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
  * @author o_sukhodolsky
+ * @noinspection AbstractClassNeverImplemented
  */
+@Deprecated
 public abstract class AbstractDeclarationCollector extends Check {
     /**
      * Tree of all the parsed frames.
