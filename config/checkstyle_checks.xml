@@ -93,6 +93,25 @@
       <property name="fileExtensions" value="java"/>
       <property name="message" value="First sentence in a comment should start with a capital letter"/>
   </module>
+  <module name="RegexpOnFilename" />
+  <module name="RegexpOnFilename">
+      <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
+      <property name="fileNamePattern" value="\.java$"/>
+      <property name="match" value="false"/>
+      <message key="regexp.filepath.mismatch" value="Only java files should be located in the ''src/*/java'' folders."/>
+  </module>
+  <module name="RegexpOnFilename">
+      <property name="folderPattern" value="[\\/]src[\\/]xdocs[\\/]"/>
+      <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
+      <property name="match" value="false"/>
+      <message key="regexp.filepath.mismatch" value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
+  </module>
+  <module name="RegexpOnFilename">
+      <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
+      <property name="fileNamePattern" value="^((\w+Test)|(Base\w+))\.java$"/>
+      <property name="match" value="false"/>
+      <message key="regexp.filepath.mismatch" value="All files in the ''src/it/java'' folder should be named ''*Test.java'' or ''Base*.java''."/>
+  </module>
 
   <!-- Size Violations -->
   <module name="FileLength">
@@ -288,7 +307,9 @@
 
     <!-- Misc -->
     <module name="ArrayTypeStyle"/>
-    <module name="AvoidEscapedUnicodeCharacters"/>
+    <module name="AvoidEscapedUnicodeCharacters">
+      <property name="allowIfAllCharactersEscaped" value="true"/>
+    </module>
     <module name="CommentsIndentation"/>
     <module name="DescendantToken"/>
     <module name="FileContentsHolder"/>

@@ -638,6 +638,10 @@
         any file type.</td>
       </tr>
       <tr>
+        <td><a href="config_regexp.html#RegexpOnFilename">RegexpOnFilename</a></td>
+        <td>Implementation of a check that matches based on file and/or folder path.</td>
+      </tr>
+      <tr>
         <td><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></td>
         <td>Implementation of a check that looks for a single line in any file type.</td>
       </tr>
