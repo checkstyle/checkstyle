@@ -1731,6 +1731,7 @@
                   <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
                   <!-- deprecated classes -->
                   <exclude>com/puppycrawl/tools/checkstyle/checks/AbstractFormatCheck.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/checks/AbstractDeclarationCollector*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractIllegalCheck.class</exclude>
                 </excludes>
               </instrumentation>
