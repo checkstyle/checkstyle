@@ -99,6 +99,7 @@ public class XDocsPagesTest {
             "name=\"SuppressWithNearbyCommentFilter\"",
             "name=\"SuppressWarningsFilter\"",
             "name=\"RegexpHeader\"",
+            "name=\"RegexpOnFilename\"",
             "name=\"RegexpSingleline\"",
             "name=\"RegexpMultiline\"",
             "name=\"JavadocPackage\"",
