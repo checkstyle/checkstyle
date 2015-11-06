@@ -29,8 +29,12 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class RequireThisCheckTest extends BaseCheckTestSupport {
     @Override
@@ -120,5 +124,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         verify(checkConfig,
                 getPath("InputRequireThis3.java"),
                 expected);
+    }
+
+    @Test
+    public void testDefaultSwitch() {
+        final RequireThisCheck check = new RequireThisCheck();
+        final DetailAST ast = new DetailAST();
+        ast.initialize(new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+        check.visitToken(ast);
     }
 }

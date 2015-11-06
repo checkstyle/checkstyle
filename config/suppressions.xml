@@ -95,7 +95,7 @@
     <suppress checks="ReturnCount" files="(ClassResolver|ConfigurationLoader|IndentationCheckTest)\.java"/>
     
     <!-- Just big switches. Cannot be split to several methods. Till https://github.com/checkstyle/checkstyle/issues/2029 -->
-    <suppress checks="CyclomaticComplexity" files="(AbstractDeclarationCollector|SuppressWarningsHolder|LeftCurlyCheck|FallThroughCheck|FinalLocalVariableCheck|ModifiedControlVariableCheck)\.java"/>
+    <suppress checks="CyclomaticComplexity" files="(AbstractDeclarationCollector|RequireThisCheck|SuppressWarningsHolder|LeftCurlyCheck|FallThroughCheck|FinalLocalVariableCheck|ModifiedControlVariableCheck)\.java"/>
     <suppress checks="CyclomaticComplexity" files="(ParameterAssignmentCheck|VariableDeclarationUsageDistanceCheck|BooleanExpressionComplexityCheck|NPathComplexityCheck|CheckUtils)\.java"/>
 
     <!-- Suppressions from PMD configuration-->
