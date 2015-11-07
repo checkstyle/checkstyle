@@ -19,10 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
@@ -30,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * Checks that local final variable names conform to a format specified
  * by the format property. A catch parameter is considered to be
  * a local variable.The format is a
- * {@link java.util.regex.Pattern regular expression} and defaults to
+ * {@link Pattern regular expression} and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
  * <p>
@@ -52,10 +56,26 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author Rick Giles
  */
 public class LocalFinalVariableNameCheck
-    extends AbstractNameCheck {
-    /** Creates a new {@code LocalFinalVariableNameCheck} instance. */
-    public LocalFinalVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+    extends Check {
+    /**
+     * Message key for invalid pattern error.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /** The format string of the regexp. */
+    private String format = "^[a-z][a-zA-Z0-9]*$";
+
+    /** The regexp to match against. */
+    private Pattern regexp = Pattern.compile(format);
+
+    /**
+     * Set the format to the specified regular expression.
+     * @param format a {@code String} value
+     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     */
+    public final void setFormat(String format) {
+        this.format = format;
+        regexp = CommonUtils.createPattern(format);
     }
 
     @Override
@@ -77,7 +97,27 @@ public class LocalFinalVariableNameCheck
     }
 
     @Override
-    protected final boolean mustCheckName(DetailAST ast) {
+    public void visitToken(DetailAST ast) {
+        if (mustCheckName(ast)) {
+            final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
+            if (!regexp.matcher(nameAST.getText()).find()) {
+                log(nameAST.getLineNo(),
+                    nameAST.getColumnNo(),
+                    MSG_INVALID_PATTERN,
+                    nameAST.getText(),
+                    format);
+            }
+        }
+    }
+
+    /**
+     * Decides whether the name of an AST should be checked against
+     * the format regexp.
+     * @param ast the AST to check.
+     * @return true if the IDENT subnode of ast should be checked against
+     *     the format regexp.
+     */
+    private boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isFinal = modifiersAST.branchContains(TokenTypes.FINAL);
