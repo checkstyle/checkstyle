@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 /**
  * Test for illegal tokens
  */
-public class OuterTypeFilenameInput_2 //ok
+public class InputOuterTypeFilename2 //ok
 {
     public void defaultMethod()
     {

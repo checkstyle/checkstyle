@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 
 import java.io.*;
 
-final class FileTabCharacterInput
+final class InputFileTabCharacter
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<- //warn
@@ -78,7 +78,7 @@ final class FileTabCharacterInput
     }
 
     /** constructor that is 10 lines long **/
-    private FileTabCharacterInput()
+    private InputFileTabCharacter()
     {
         // a line
         // a line

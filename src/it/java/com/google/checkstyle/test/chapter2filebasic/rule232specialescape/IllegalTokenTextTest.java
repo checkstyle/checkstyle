@@ -110,7 +110,7 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("IllegalTokenText");
-        final String filePath = builder.getFilePath("IllegalTokenTextInput");
+        final String filePath = builder.getFilePath("InputIllegalTokenText");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

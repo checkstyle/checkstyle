@@ -54,7 +54,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
         };
 
         final Configuration checkConfig = builder.getCheckConfig("AvoidEscapedUnicodeCharacters");
-        final String filePath = builder.getFilePath("AvoidEscapedUnicodeCharactersInput");
+        final String filePath = builder.getFilePath("InputAvoidEscapedUnicodeCharacters");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

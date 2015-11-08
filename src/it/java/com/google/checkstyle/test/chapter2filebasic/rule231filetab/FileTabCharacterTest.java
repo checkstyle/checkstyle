@@ -63,7 +63,7 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
             "134:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
         };
 
-        final String filePath = builder.getFilePath("FileTabCharacterInput");
+        final String filePath = builder.getFilePath("InputFileTabCharacter");
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(createChecker(checkConfig), filePath,
             expected, warnList);

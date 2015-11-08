@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter2filebasic.rule233nonascii;
 
-public class AvoidEscapedUnicodeCharactersInput {
+public class InputAvoidEscapedUnicodeCharacters {
 
     /*warn*/private String unitAbbrev2 = "\u03bcs";
 

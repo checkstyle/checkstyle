@@ -45,7 +45,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
-        final String filePath = builder.getFilePath("OuterTypeFilenameInput_1");
+        final String filePath = builder.getFilePath("InputOuterTypeFilename1");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -57,7 +57,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
-        final String filePath = builder.getFilePath("OuterTypeFilenameInput_2");
+        final String filePath = builder.getFilePath("InputOuterTypeFilename2");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -71,7 +71,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("OuterTypeFilename");
-        final String filePath = builder.getFilePath("OuterTypeFilenameInput_3");
+        final String filePath = builder.getFilePath("InputOuterTypeFilename3");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

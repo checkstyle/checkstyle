@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule232specialescape;
 /**
  * Test for illegal tokens
  */
-public class IllegalTokenTextInput
+public class InputIllegalTokenText
 {
 
     public void methodWithLiterals()
