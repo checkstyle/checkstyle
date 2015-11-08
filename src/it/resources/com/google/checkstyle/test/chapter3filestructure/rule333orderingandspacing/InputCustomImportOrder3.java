@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter3filestructure.rule333orderingandsoacing;
+package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
 
 import static java.io.File.createTempFile;
 import static java.awt.Button.ABORT; //warn

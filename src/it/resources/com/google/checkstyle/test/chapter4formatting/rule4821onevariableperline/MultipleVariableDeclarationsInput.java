@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule4821onevariablepreline;
+package com.google.checkstyle.test.chapter4formatting.rule4821onevariableperline;
 
 public class MultipleVariableDeclarationsInput
 {

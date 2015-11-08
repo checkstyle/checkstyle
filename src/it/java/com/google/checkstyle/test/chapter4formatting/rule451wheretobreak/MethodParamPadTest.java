@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule4821onevariablepreline;
+package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 import java.io.File;
 
@@ -27,9 +27,9 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
-public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
+public class MethodParamPadTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -39,38 +39,18 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void multipleVariableDeclarationsTest() throws Exception {
+    public void operatorWrapTest() throws Exception {
 
-        final String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class,
-            "multiple.variable.declarations.comma");
-        final String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class,
-            "multiple.variable.declarations");
+        final Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
+        final String messageKey = "line.previous";
 
         final String[] expected = {
-            "5:5: " + msgComma,
-            "6:5: " + msg,
-            "9:9: " + msgComma,
-            "10:9: " + msg,
-            "14:5: " + msg,
-            "17:5: " + msg,
-            "31:9: " + msgComma,
-            "32:9: " + msg,
-            "35:13: " + msgComma,
-            "36:13: " + msg,
-            "40:9: " + msg,
-            "43:9: " + msg,
-            "57:13: " + msgComma,
-            "58:13: " + msg,
-            "61:17: " + msgComma,
-            "62:17: " + msg,
-            "66:13: " + msg,
-            "69:13: " + msg,
-            "86:5: " + msgComma,
-            "89:5: " + msgComma,
+            "83:9: " + getCheckMessage(clazz, messageKey, "("),
+            "128:13: " + getCheckMessage(clazz, messageKey, "("),
+            "130:9: " + getCheckMessage(clazz, messageKey, "("),
         };
-
-        final Configuration checkConfig = builder.getCheckConfig("MultipleVariableDeclarations");
-        final String filePath = builder.getFilePath("MultipleVariableDeclarationsInput");
+        final Configuration checkConfig = builder.getCheckConfig("MethodParamPad");
+        final String filePath = builder.getFilePath("InputMethodParamPad");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

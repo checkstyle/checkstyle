@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerool; // ok
+package com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule; // ok
 import java.io.*;
 final class InputLineLength
 {

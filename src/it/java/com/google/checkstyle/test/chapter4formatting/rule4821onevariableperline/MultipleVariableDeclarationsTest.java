@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule4842fallthrow;
+package com.google.checkstyle.test.chapter4formatting.rule4821onevariableperline;
 
 import java.io.File;
 
@@ -27,9 +27,9 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 
-public class FallThroughTest extends BaseCheckTestSupport {
+public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -39,27 +39,38 @@ public class FallThroughTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void fallThroughTest() throws Exception {
+    public void multipleVariableDeclarationsTest() throws Exception {
 
-        final String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
+        final String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "multiple.variable.declarations.comma");
+        final String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class,
+            "multiple.variable.declarations");
 
         final String[] expected = {
-            "14:13: " + msg,
-            "38:13: " + msg,
-            "47:13: " + msg,
-            "53:13: " + msg,
-            "70:13: " + msg,
-            "87:13: " + msg,
-            "105:13: " + msg,
-            "123:13: " + msg,
-            "179:11: " + msg,
-            "369:11: " + msg,
-            "372:11: " + msg,
-            "374:41: " + msg,
+            "5:5: " + msgComma,
+            "6:5: " + msg,
+            "9:9: " + msgComma,
+            "10:9: " + msg,
+            "14:5: " + msg,
+            "17:5: " + msg,
+            "31:9: " + msgComma,
+            "32:9: " + msg,
+            "35:13: " + msgComma,
+            "36:13: " + msg,
+            "40:9: " + msg,
+            "43:9: " + msg,
+            "57:13: " + msgComma,
+            "58:13: " + msg,
+            "61:17: " + msgComma,
+            "62:17: " + msg,
+            "66:13: " + msg,
+            "69:13: " + msg,
+            "86:5: " + msgComma,
+            "89:5: " + msgComma,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("FallThrough");
-        final String filePath = builder.getFilePath("FallThroughInput");
+        final Configuration checkConfig = builder.getCheckConfig("MultipleVariableDeclarations");
+        final String filePath = builder.getFilePath("MultipleVariableDeclarationsInput");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

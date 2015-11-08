@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule4842fallthrow;
+package com.google.checkstyle.test.chapter4formatting.rule4842fallthrough;
 
 public class FallThroughInput
 {

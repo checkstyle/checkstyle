@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule451wheretobreack;
+package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 public class InputSeparatorWrap { 
     public void goodCase() 

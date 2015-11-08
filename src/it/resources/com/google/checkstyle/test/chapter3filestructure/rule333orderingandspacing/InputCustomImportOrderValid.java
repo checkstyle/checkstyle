@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter3filestructure.rule333orderingandsoacing;
+package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;

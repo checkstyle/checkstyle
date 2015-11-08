@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule451wheretobreack;
+package com.google.checkstyle.test.chapter4formatting.rule4842fallthrough;
 
 import java.io.File;
 
@@ -27,9 +27,9 @@ import org.junit.Test;
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck;
 
-public class MethodParamPadTest extends BaseCheckTestSupport {
+public class FallThroughTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -39,18 +39,27 @@ public class MethodParamPadTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void operatorWrapTest() throws Exception {
+    public void fallThroughTest() throws Exception {
 
-        final Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
-        final String messageKey = "line.previous";
+        final String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
 
         final String[] expected = {
-            "83:9: " + getCheckMessage(clazz, messageKey, "("),
-            "128:13: " + getCheckMessage(clazz, messageKey, "("),
-            "130:9: " + getCheckMessage(clazz, messageKey, "("),
+            "14:13: " + msg,
+            "38:13: " + msg,
+            "47:13: " + msg,
+            "53:13: " + msg,
+            "70:13: " + msg,
+            "87:13: " + msg,
+            "105:13: " + msg,
+            "123:13: " + msg,
+            "179:11: " + msg,
+            "369:11: " + msg,
+            "372:11: " + msg,
+            "374:41: " + msg,
         };
-        final Configuration checkConfig = builder.getCheckConfig("MethodParamPad");
-        final String filePath = builder.getFilePath("InputMethodParamPad");
+
+        final Configuration checkConfig = builder.getCheckConfig("FallThrough");
+        final String filePath = builder.getFilePath("FallThroughInput");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
