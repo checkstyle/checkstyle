@@ -46,7 +46,7 @@ public class SeparatorWrapTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("SeparatorWrap");
-        final String filePath = builder.getFilePath("SeparatorWrapInput");
+        final String filePath = builder.getFilePath("InputSeparatorWrap");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

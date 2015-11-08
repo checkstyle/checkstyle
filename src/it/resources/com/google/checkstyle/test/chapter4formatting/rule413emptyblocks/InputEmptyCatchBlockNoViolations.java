@@ -5,7 +5,7 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.IOException;
 
-public class EmptyCatchBlockNoViolationsInput
+public class InputEmptyCatchBlockNoViolations
 {
     private void foo6() {
         try {

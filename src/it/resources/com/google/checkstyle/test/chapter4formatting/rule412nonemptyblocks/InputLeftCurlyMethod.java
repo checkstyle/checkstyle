@@ -1,11 +1,11 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-class LeftCurlyInput_Method
+class InputLeftCurlyMethod
 { //warn
-    LeftCurlyInput_Method() {} //ok
-    LeftCurlyInput_Method(String aOne) {//ok
+    InputLeftCurlyMethod() {} //ok
+    InputLeftCurlyMethod(String aOne) {//ok
     }
-    LeftCurlyInput_Method(int aOne)
+    InputLeftCurlyMethod(int aOne)
     { //warn
     }
 

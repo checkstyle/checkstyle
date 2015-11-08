@@ -60,7 +60,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("LeftCurly");
-        final String filePath = builder.getFilePath("LeftCurlyInput_Braces");
+        final String filePath = builder.getFilePath("InputLeftCurlyBraces");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -78,7 +78,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("LeftCurly");
-        final String filePath = builder.getFilePath("LeftCurlyInput_Annotations");
+        final String filePath = builder.getFilePath("InputLeftCurlyAnnotations");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -106,7 +106,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("LeftCurly");
-        final String filePath = builder.getFilePath("LeftCurlyInput_Method");
+        final String filePath = builder.getFilePath("InputLeftCurlyMethod");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -126,7 +126,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
             "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
         };
 
-        final String filePath = builder.getFilePath("RightCurlyInput_Other");
+        final String filePath = builder.getFilePath("InputRightCurlyOther");
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
@@ -138,7 +138,7 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final String filePath = builder.getFilePath("RightCurlyInputSame");
+        final String filePath = builder.getFilePath("InputRightCurlySame");
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }

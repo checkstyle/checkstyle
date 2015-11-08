@@ -69,7 +69,7 @@ public class OperatorWrapTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("OperatorWrap");
-        final String filePath = builder.getFilePath("OperatorWrapInput");
+        final String filePath = builder.getFilePath("InputOperatorWrap");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -123,7 +123,7 @@ public class OperatorWrapTest extends BaseCheckTestSupport {
             "348:17: " + getCheckMessage(clazz, messageKey, "<<="),
         };
 
-        final String filePath = builder.getFilePath("OperatorWrapAssignInput");
+        final String filePath = builder.getFilePath("InputOperatorWrapAssign");
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }

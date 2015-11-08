@@ -5,7 +5,7 @@ package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
  */
 import java.io.EOFException; import java.io.BufferedReader; //warn
 
-public class OneStatementPerLineInput {
+public class InputOneStatementPerLine {
 
   /**
    * Dummy variable to work on.
