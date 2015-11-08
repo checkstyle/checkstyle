@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport {
+public class ClassTypeParameterNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
     private static ConfigurationBuilder builder;
@@ -56,25 +56,5 @@ public class ClassMethodTypeParameterNameTest extends BaseCheckTestSupport {
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(configuration, filePath, expected, warnList);
-    }
-
-    @Test
-    public void testMethodDefault() throws Exception {
-
-        final Configuration checkConfig = builder.getCheckConfig("MethodTypeParameterName");
-
-        final String[] expected = {
-            "9:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "e_e", format),
-            "19:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "Tfo$o2T", format),
-            "23:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "foo_", format),
-            "28:10: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "_abc", format),
-            "37:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "T$", format),
-            "42:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "EE", format),
-        };
-
-        final String filePath = builder.getFilePath("MethodTypeParameterNameInput");
-
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
     }
 }
