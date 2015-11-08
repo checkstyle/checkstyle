@@ -20,24 +20,18 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS;
-import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
-import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
 
 import java.io.File;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
-import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
-import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 
-public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
+public class LeftCurlyTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
@@ -110,36 +104,5 @@ public class LeftCurlyRightCurlyTest extends BaseCheckTestSupport {
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
-    }
-
-    @Test
-    public void rightCurlyTestAlone() throws Exception {
-        final DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
-        newCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        newCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
-
-        final String[] expected = {
-            "97:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
-            "97:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
-            "108:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
-            "108:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
-            "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
-        };
-
-        final String filePath = builder.getFilePath("InputRightCurlyOther");
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
-        verify(newCheckConfig, filePath, expected, warnList);
-    }
-
-    @Test
-    public void rightCurlyTestSame() throws Exception {
-        final DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
-        newCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
-
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
-
-        final String filePath = builder.getFilePath("InputRightCurlySame");
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
-        verify(newCheckConfig, filePath, expected, warnList);
     }
 }
