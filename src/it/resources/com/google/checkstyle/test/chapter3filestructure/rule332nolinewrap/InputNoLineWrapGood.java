@@ -5,7 +5,7 @@ import com.google.common.annotations.Beta; //ok
 import javax.accessibility.AccessibleAttributeSequence; //ok
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater; //ok
 
-public class NoLineWrap_Good {
+public class InputNoLineWrapGood {
     
     public void fooMethod() {
         //

@@ -15,5 +15,5 @@ import com.sun.xml.internal.xsom.impl.scd.Iterators; //warn
 
 import com.google.common.reflect.*; //warn
 
-public class CustomImportOrderInput_2 {
+public class InputCustomImportOrder2 {
 }

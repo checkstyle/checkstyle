@@ -8,7 +8,7 @@ import javax.accessibility. //warn
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater; //ok
 
 public class
-    NoLineWrap_Bad {
+    InputNoLineWrapBad {
     
     public void
         fooMethod() {

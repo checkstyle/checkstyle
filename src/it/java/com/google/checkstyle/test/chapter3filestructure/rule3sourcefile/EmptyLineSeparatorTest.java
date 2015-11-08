@@ -57,7 +57,7 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyLineSeparator");
-        final String filePath = builder.getFilePath("EmptyLineSeparatorInput");
+        final String filePath = builder.getFilePath("InputEmptyLineSeparator");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

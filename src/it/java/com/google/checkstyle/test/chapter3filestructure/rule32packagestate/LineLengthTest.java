@@ -53,7 +53,7 @@ public class LineLengthTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("LineLength");
-        final String filePath = builder.getFilePath("LineLengthInput2");
+        final String filePath = builder.getFilePath("InputLineLength");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

@@ -26,4 +26,4 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
 
-class AvoidStarImportInput {}
+class InputAvoidStarImport {}

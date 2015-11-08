@@ -49,7 +49,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
-        final String filePath = builder.getFilePath("NoLineWrap_Bad");
+        final String filePath = builder.getFilePath("InputNoLineWrapBad");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -61,7 +61,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("NoLineWrap");
-        final String filePath = builder.getFilePath("NoLineWrap_Good");
+        final String filePath = builder.getFilePath("InputNoLineWrapGood");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -83,7 +83,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("LineLength");
-        final String filePath = builder.getFilePath("LineLengthInput2");
+        final String filePath = builder.getFilePath("InputLineLength");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
