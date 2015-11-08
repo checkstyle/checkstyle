@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerool; // ok
 import java.io.*;
-final class LineLengthInput2
+final class InputLineLength
 {
     // Long line ---------------------------------------------------------------------------------------- //warn
     // Contains a tab ->    <-

@@ -67,7 +67,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("CustomImportOrderInput_1");
+        final String filePath = builder.getFilePath("InputCustomImportOrder1");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -92,7 +92,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("CustomImportOrderInput_2");
+        final String filePath = builder.getFilePath("InputCustomImportOrder2");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -116,7 +116,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("CustomImportOrderInput_3");
+        final String filePath = builder.getFilePath("InputCustomImportOrder3");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -128,7 +128,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("CustomImportOrderValidInput");
+        final String filePath = builder.getFilePath("InputCustomImportOrderValid");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

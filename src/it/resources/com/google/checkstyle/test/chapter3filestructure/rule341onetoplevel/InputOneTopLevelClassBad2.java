@@ -1,4 +1,9 @@
 package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
 
-class Foo {} //ok
-enum FooEnum {} // warn 
+public enum InputOneTopLevelClassBad2 {} //ok
+
+interface FooIn {} // warn
+
+class FooClass {} // warn
+
+

@@ -19,4 +19,4 @@ import java.io.Reader; //warn
 
 import com.google.common.base.Ascii;
 
-public class CustomImportOrderInput_1 {}
+public class InputCustomImportOrder1 {}

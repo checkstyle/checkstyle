@@ -17,5 +17,5 @@ import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import javax.accessibility.Accessible;
 
-public class CustomImportOrderValidInput {
+public class InputCustomImportOrderValid {
 }

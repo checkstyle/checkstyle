@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter3filestructure.rule32packagestatement; // ok
 import java.io.*;
-final class LineLengthInput2
+final class InputLineLength
 {
     // Long line ---------------------------------------------------------------------------------------- //warn
     // Contains a tab ->    <-

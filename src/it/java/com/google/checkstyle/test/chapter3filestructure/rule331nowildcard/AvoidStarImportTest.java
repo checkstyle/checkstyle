@@ -48,7 +48,7 @@ public class AvoidStarImportTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("AvoidStarImport");
-        final String filePath = builder.getFilePath("AvoidStarImportInput");
+        final String filePath = builder.getFilePath("InputAvoidStarImport");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

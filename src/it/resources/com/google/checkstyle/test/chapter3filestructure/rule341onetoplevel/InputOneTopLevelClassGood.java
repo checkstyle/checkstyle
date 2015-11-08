@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
-public class OneTopLevelClassInputGood //ok
+public class InputOneTopLevelClassGood //ok
 {
-    public OneTopLevelClassInputGood() throws CloneNotSupportedException
+    public InputOneTopLevelClassGood() throws CloneNotSupportedException
     {
         super.equals(new String());
         super.clone();

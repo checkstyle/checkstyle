@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace; //warn
+package com.google.checkstyle.test.chapter3filestructure.rule3sourcefilestructure; //warn
 import java.io.Serializable; //warn
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ import com.google.common.io.CharSource;
 import javax.swing.AbstractAction;
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
-class InputEmptyLineSeparatorCheck //warn
+class InputEmptyLineSeparator //warn
 {
 	public static final double FOO_PI = 3.1415;
 	private boolean flag = true; 
@@ -47,12 +47,12 @@ class InputEmptyLineSeparatorCheck //warn
 	 * 
 	 * 
 	 */
-	private InputEmptyLineSeparatorCheck()
+	private InputEmptyLineSeparator()
 	{
 		//empty
 	}
 
-    public int compareTo(InputEmptyLineSeparatorCheck aObject)
+    public int compareTo(InputEmptyLineSeparator aObject)
     {
     	int number = 0;
         return 0;
@@ -98,7 +98,7 @@ class InputEmptyLineSeparatorCheck //warn
     }
 
     class InnerClass3 { //ok
-        public int compareTo(InputEmptyLineSeparatorCheck aObject) //ok
+        public int compareTo(InputEmptyLineSeparator aObject) //ok
         {
             int number = 0;
             return 0;
@@ -107,17 +107,17 @@ class InputEmptyLineSeparatorCheck //warn
     }
 }
 
-class Clazz { //ok
-    private Clazz() {} //ok
+class Class { //ok
+    private Class() {} //ok
 } 
 class Class2{ //warn
-    public int compareTo(InputEmptyLineSeparatorCheck aObject) //ok
+    public int compareTo(InputEmptyLineSeparator aObject) //ok
     {
         int number = 0;
         return 0;
     }
     Class2 anon = new Class2(){ //warn
-        public int compareTo(InputEmptyLineSeparatorCheck aObject) //ok
+        public int compareTo(InputEmptyLineSeparator aObject) //ok
         {
             int number = 0;
             return 0;
