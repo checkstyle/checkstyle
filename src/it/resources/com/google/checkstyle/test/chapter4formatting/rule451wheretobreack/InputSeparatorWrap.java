@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule451wheretobreack;
 
-public class SeparatorWrapInput { 
+public class InputSeparatorWrap { 
     public void goodCase() 
     {
         int i = 0;

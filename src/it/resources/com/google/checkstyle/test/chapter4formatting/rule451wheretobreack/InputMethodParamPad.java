@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreack;
 import java.util.HashMap;
 import java.util.Map;
 
-class OperatorWrapAssignInput
+class InputMethodParamPad
 {
     void test()
     {
@@ -25,7 +25,7 @@ class OperatorWrapAssignInput
     void testAssignment()
     {
         int x
-            = 0; //warn
+            = 0;
         int y =
             0;
     }
@@ -47,7 +47,7 @@ class OperatorWrapAssignInput
         
         int init = 9;
         
-        for (Map.Entry<String, String> entry :
+        /*ok*/ for (Map.Entry<String, String> entry :
             map.entrySet())
         {
             int i = flag == true ?
@@ -60,19 +60,19 @@ class OperatorWrapAssignInput
             
         }
         
-        while (init ==
+         while (init ==
                 10)
         {
             
         }
         
-        if (init >
+         if (init >
                 10)
         {
             
         } else {}
         
-        while (init < 10 ||
+         while (init < 10 ||
                 !flag) {
             
         }
@@ -80,7 +80,7 @@ class OperatorWrapAssignInput
     
     class Inner {
         void testGenerics1
-        ()
+        () //warn
         {
             Comparable
                 <
@@ -99,25 +99,25 @@ class OperatorWrapAssignInput
                         1 : 2;
             }
             
-            if (init !=
+             if (init !=
                     9)
             {
                 
             }
             
-            while (init ==
+             while (init ==
                     10)
             {
                 
             }
             
-            if (init >
+             if (init >
                     10)
             {
                 
             } else {}
             
-            while (init < 10 ||
+             while (init < 10 ||
                     !flag) {
                 
             }
@@ -125,9 +125,9 @@ class OperatorWrapAssignInput
     }
     
     Inner anon = new Inner
-            (){
+            (){  //warn
         void testGenerics1
-        ()
+        () //warn
         {
             Comparable
                 <
@@ -145,19 +145,19 @@ class OperatorWrapAssignInput
                         1 : 2;
             }
             
-            if (init !=
+             if (init !=
                     9)
             {
                 
             }
             
-           while (init ==
+             while (init ==
                     10)
             {
                 
             }
             
-           if (init >
+             if (init >
                     10)
             {
                 
@@ -171,15 +171,15 @@ class OperatorWrapAssignInput
     };
 }
 
-class AsInput3 {
+class AsInput1 {
     int abc = 0;
     String string
-        = "string"; // warn
+        = "string";
     double PI = // ok
             3.1415;
 }
 
-class Ternary4 {
+class Ternary2 {
     void foo() {
         boolean flag = true;
         int i = flag == true ?
@@ -197,54 +197,54 @@ class Ternary4 {
     }
 }
 
-class AssignClass5 {
+class AssignClass3 {
     void foo() {
         int i = 0;
         int j = 0;
         i +=
                 1;
         j
-             += 2; //warn
+             += 2;
         i -=
                 1;
         j
-             -= 2; //warn
+             -= 2;
         i /=
                 1;
         j
-             /= 2; //warn
+             /= 2;
         i *=
                 1;
         j
-             *= 2; //warn
+             *= 2;
         i %=
                 1;
         j
-             %= 2; //warn
+             %= 2;
         i ^=
                 1;
         j
-             ^= 2; //warn
+             ^= 2;
         i |=
                 1;
         j
-             |= 2; //warn
+             |= 2;
         i &=
                 1;
         j
-             &= 2; //warn
+             &= 2;
         i >>=
                 1;
         j
-            >>= 2; //warn
+            >>= 2;
         i >>>=
                 1;
         j
-            >>>= 2; //warn
+            >>>= 2;
         i <<=
                 1;
         j
-            <<= 2; //warn
+            <<= 2;
     }
     
     class InnerClass {
@@ -254,47 +254,47 @@ class AssignClass5 {
             i +=
                     1;
             j
-                 += 2; //warn
+                 += 2;
             i -=
                     1;
             j
-                 -= 2; //warn
+                 -= 2;
             i /=
                     1;
             j
-                 /= 2; //warn
+                 /= 2;
             i *=
                     1;
             j
-                 *= 2; //warn
+                 *= 2;
             i %=
                     1;
             j
-                 %= 2; //warn
+                 %= 2;
             i ^=
                     1;
             j
-                 ^= 2; //warn
+                 ^= 2;
             i |=
                     1;
             j
-                 |= 2; //warn
+                 |= 2;
             i &=
                     1;
             j
-                 &= 2; //warn
+                 &= 2;
             i >>=
                     1;
             j
-                >>= 2; //warn
+                >>= 2;
             i >>>=
                     1;
             j
-                >>>= 2; //warn
+                >>>= 2;
             i <<=
                     1;
             j
-                <<= 2; //warn
+                <<= 2;
         }
     }
     
@@ -305,47 +305,47 @@ class AssignClass5 {
             i +=
                     1;
             j
-                 += 2; //warn
+                 += 2;
             i -=
                     1;
             j
-                 -= 2; //warn
+                 -= 2;
             i /=
                     1;
             j
-                 /= 2; //warn
+                 /= 2;
             i *=
                     1;
             j
-                 *= 2; //warn
+                 *= 2;
             i %=
                     1;
             j
-                 %= 2; //warn
+                 %= 2;
             i ^=
                     1;
             j
-                 ^= 2; //warn
+                 ^= 2;
             i |=
                     1;
             j
-                 |= 2; //warn
+                 |= 2;
             i &=
                     1;
             j
-                 &= 2; //warn
+                 &= 2;
             i >>=
                     1;
             j
-                >>= 2; //warn
+                >>= 2;
             i >>>=
                     1;
             j
-                >>>= 2; //warn
+                >>>= 2;
             i <<=
                     1;
             j
-                <<= 2; //warn
+                <<= 2;
         }
     };
 }

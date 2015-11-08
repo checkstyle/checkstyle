@@ -8,7 +8,7 @@ import java.awt.print.*;
 import java.lang.management.*;
 import javax.lang.model.element.*;
 
-class NeedBracesInput
+class InputNeedBraces
 {
     /** @return helper func **/
     boolean condition()
@@ -112,7 +112,7 @@ class NeedBracesInput
     }
 
     /** Empty constructor block. **/
-    public NeedBracesInput() {}
+    public InputNeedBraces() {}
     
     /** Empty method block. **/
     public void emptyImplementation() {}

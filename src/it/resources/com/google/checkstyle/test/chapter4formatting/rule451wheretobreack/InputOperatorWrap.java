@@ -3,12 +3,12 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreack;
 import java.util.HashMap;
 import java.util.Map;
 
-class MethodParamPadInput
+class InputOperatorWrap
 {
     void test()
     {
-        int x = 1 + 
-                 2 - 
+        /*warn*/int x = 1 + 
+                /*warn*/ 2 - 
             3
             -
             4;
@@ -16,7 +16,7 @@ class MethodParamPadInput
         boolean y = true
             &&
             false;
-         y = true && 
+        /*warn*/ y = true && 
             false;
         y = false
             && true;
@@ -31,7 +31,7 @@ class MethodParamPadInput
     }
 
     <
-     T extends Comparable & 
+    T extends Comparable & 
         java.io.Serializable
     >
     void testGenerics1()
@@ -50,29 +50,29 @@ class MethodParamPadInput
         /*ok*/ for (Map.Entry<String, String> entry :
             map.entrySet())
         {
-            int i = flag == true ?
+            /*warn*/int i = flag == true ?
                     1 : 2;
         }
         
-         if (init !=
+        /*warn*/ if (init !=
                 9)
         {
             
         }
         
-         while (init ==
+        /*warn*/ while (init ==
                 10)
         {
             
         }
         
-         if (init >
+        /*warn*/ if (init >
                 10)
         {
             
         } else {}
         
-         while (init < 10 ||
+        /*warn*/ while (init < 10 ||
                 !flag) {
             
         }
@@ -80,7 +80,7 @@ class MethodParamPadInput
     
     class Inner {
         void testGenerics1
-        () //warn
+        ()
         {
             Comparable
                 <
@@ -95,29 +95,29 @@ class MethodParamPadInput
             /*ok*/ for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
-                int i = flag == true ?
+                /*warn*/int i = flag == true ?
                         1 : 2;
             }
             
-             if (init !=
+            /*warn*/ if (init !=
                     9)
             {
                 
             }
             
-             while (init ==
+            /*warn*/ while (init ==
                     10)
             {
                 
             }
             
-             if (init >
+            /*warn*/ if (init >
                     10)
             {
                 
             } else {}
             
-             while (init < 10 ||
+            /*warn*/ while (init < 10 ||
                     !flag) {
                 
             }
@@ -125,9 +125,9 @@ class MethodParamPadInput
     }
     
     Inner anon = new Inner
-            (){  //warn
+            (){
         void testGenerics1
-        () //warn
+        ()
         {
             Comparable
                 <
@@ -141,29 +141,29 @@ class MethodParamPadInput
             /*ok*/ for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
-                int i = flag == true ?
+                /*warn*/int i = flag == true ?
                         1 : 2;
             }
             
-             if (init !=
+            /*warn*/ if (init !=
                     9)
             {
                 
             }
             
-             while (init ==
+            /*warn*/ while (init ==
                     10)
             {
                 
             }
             
-             if (init >
+            /*warn*/ if (init >
                     10)
             {
                 
             } else {}
             
-             while (init < 10 ||
+            /*warn*/ while (init < 10 ||
                     !flag) {
                 
             }
@@ -171,7 +171,7 @@ class MethodParamPadInput
     };
 }
 
-class AsInput1 {
+class AsInput {
     int abc = 0;
     String string
         = "string";
@@ -179,10 +179,10 @@ class AsInput1 {
             3.1415;
 }
 
-class Ternary2 {
+class Ternary {
     void foo() {
         boolean flag = true;
-        int i = flag == true ?
+        /*warn*/int i = flag == true ?
                 1 : 
                 2;
         int i2 = flag == true 
@@ -197,7 +197,7 @@ class Ternary2 {
     }
 }
 
-class AssignClass3 {
+class AssignClass {
     void foo() {
         int i = 0;
         int j = 0;

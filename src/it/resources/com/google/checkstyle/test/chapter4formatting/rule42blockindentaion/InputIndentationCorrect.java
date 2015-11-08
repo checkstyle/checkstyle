@@ -1,9 +1,9 @@
-package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationlines; //indent:0 exp:0
+package com.google.checkstyle.test.chapter4formatting.rule42blockindentaion; //indent:0 exp:0
 
 import java.util.Map; //indent:0 exp:0
 import java.util.ArrayList;//indent:0 exp:0
 
-public abstract class IndentationCorrectInput { //indent:0 exp:0
+public abstract class InputIndentationCorrect { //indent:0 exp:0
 
   static int i; //indent:2 exp:2
 
@@ -26,8 +26,8 @@ public abstract class IndentationCorrectInput { //indent:0 exp:0
         + "\u0c66\u0ce6" //indent:8 exp:8
         + "\u1c40\u1c50"; //indent:8 exp:8
 
-    public static final IndentationCorrectInput JAVA_LETTER_OR_DIGIT = //indent:4 exp:4
-        new IndentationCorrectInput() { //indent:8 exp:8
+    public static final InputIndentationCorrect JAVA_LETTER_OR_DIGIT = //indent:4 exp:4
+        new InputIndentationCorrect() { //indent:8 exp:8
           @Override public boolean matches(char c) { //indent:10 exp:10
             return Character.isLetterOrDigit(c); //indent:12 exp:12
           } //indent:10 exp:10

@@ -78,7 +78,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyBlock");
-        final String filePath = builder.getFilePath("EmptyBlockInput_Basic");
+        final String filePath = builder.getFilePath("InputEmptyBlockBasic");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -94,7 +94,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyBlock");
-        final String filePath = builder.getFilePath("EmptyBlockInputCatch");
+        final String filePath = builder.getFilePath("InputEmptyBlockCatch");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

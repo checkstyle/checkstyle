@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-class LeftCurlyInput_Braces
+class InputLeftCurlyBraces
 { //warn
     /** @return helper func **/
     boolean condition()
@@ -104,7 +104,7 @@ class LeftCurlyInput_Braces
     }
 
     /** Empty constructor block. **/
-    public LeftCurlyInput_Braces() {}
+    public InputLeftCurlyBraces() {}
     
     /** Empty method block. **/
     public void emptyImplementation() {}

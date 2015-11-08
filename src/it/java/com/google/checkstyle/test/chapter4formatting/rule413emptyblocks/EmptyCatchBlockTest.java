@@ -48,7 +48,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyCatchBlock");
-        final String filePath = builder.getFilePath("EmptyBlockInputCatch");
+        final String filePath = builder.getFilePath("InputEmptyBlockCatch");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -60,7 +60,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyCatchBlock");
-        final String filePath = builder.getFilePath("EmptyCatchBlockNoViolationsInput");
+        final String filePath = builder.getFilePath("InputEmptyCatchBlockNoViolations");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -75,7 +75,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyCatchBlock");
-        final String filePath = builder.getFilePath("EmptyCatchBlockViolationsByCommentInput");
+        final String filePath = builder.getFilePath("InputEmptyCatchBlockViolationsByComment");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -91,7 +91,7 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("EmptyCatchBlock");
-        final String filePath = builder.getFilePath("EmptyCatchBlockViolationsByVariableNameInput");
+        final String filePath = builder.getFilePath("InputEmptyCatchBlockViolationsByVariableName");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

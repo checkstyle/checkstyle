@@ -69,7 +69,7 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
-        final String filePath = builder.getFilePath("OneStatementPerLineInput");
+        final String filePath = builder.getFilePath("InputOneStatementPerLine");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

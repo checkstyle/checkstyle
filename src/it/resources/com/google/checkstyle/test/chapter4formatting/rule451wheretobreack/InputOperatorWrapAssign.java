@@ -3,12 +3,12 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreack;
 import java.util.HashMap;
 import java.util.Map;
 
-class OperatorWrapInput
+class InputOperatorWrapAssign
 {
     void test()
     {
-        /*warn*/int x = 1 + 
-                /*warn*/ 2 - 
+        int x = 1 + 
+                 2 - 
             3
             -
             4;
@@ -16,7 +16,7 @@ class OperatorWrapInput
         boolean y = true
             &&
             false;
-        /*warn*/ y = true && 
+         y = true && 
             false;
         y = false
             && true;
@@ -25,13 +25,13 @@ class OperatorWrapInput
     void testAssignment()
     {
         int x
-            = 0;
+            = 0; //warn
         int y =
             0;
     }
 
     <
-    T extends Comparable & 
+     T extends Comparable & 
         java.io.Serializable
     >
     void testGenerics1()
@@ -47,32 +47,32 @@ class OperatorWrapInput
         
         int init = 9;
         
-        /*ok*/ for (Map.Entry<String, String> entry :
+        for (Map.Entry<String, String> entry :
             map.entrySet())
         {
-            /*warn*/int i = flag == true ?
+            int i = flag == true ?
                     1 : 2;
         }
         
-        /*warn*/ if (init !=
+         if (init !=
                 9)
         {
             
         }
         
-        /*warn*/ while (init ==
+        while (init ==
                 10)
         {
             
         }
         
-        /*warn*/ if (init >
+        if (init >
                 10)
         {
             
         } else {}
         
-        /*warn*/ while (init < 10 ||
+        while (init < 10 ||
                 !flag) {
             
         }
@@ -95,29 +95,29 @@ class OperatorWrapInput
             /*ok*/ for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
-                /*warn*/int i = flag == true ?
+                int i = flag == true ?
                         1 : 2;
             }
             
-            /*warn*/ if (init !=
+            if (init !=
                     9)
             {
                 
             }
             
-            /*warn*/ while (init ==
+            while (init ==
                     10)
             {
                 
             }
             
-            /*warn*/ if (init >
+            if (init >
                     10)
             {
                 
             } else {}
             
-            /*warn*/ while (init < 10 ||
+            while (init < 10 ||
                     !flag) {
                 
             }
@@ -141,29 +141,29 @@ class OperatorWrapInput
             /*ok*/ for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
-                /*warn*/int i = flag == true ?
+                int i = flag == true ?
                         1 : 2;
             }
             
-            /*warn*/ if (init !=
+            if (init !=
                     9)
             {
                 
             }
             
-            /*warn*/ while (init ==
+           while (init ==
                     10)
             {
                 
             }
             
-            /*warn*/ if (init >
+           if (init >
                     10)
             {
                 
             } else {}
             
-            /*warn*/ while (init < 10 ||
+             while (init < 10 ||
                     !flag) {
                 
             }
@@ -171,18 +171,18 @@ class OperatorWrapInput
     };
 }
 
-class AsInput {
+class AsInput3 {
     int abc = 0;
     String string
-        = "string";
+        = "string"; // warn
     double PI = // ok
             3.1415;
 }
 
-class Ternary {
+class Ternary4 {
     void foo() {
         boolean flag = true;
-        /*warn*/int i = flag == true ?
+        int i = flag == true ?
                 1 : 
                 2;
         int i2 = flag == true 
@@ -197,54 +197,54 @@ class Ternary {
     }
 }
 
-class AssignClass {
+class AssignClass5 {
     void foo() {
         int i = 0;
         int j = 0;
         i +=
                 1;
         j
-             += 2;
+             += 2; //warn
         i -=
                 1;
         j
-             -= 2;
+             -= 2; //warn
         i /=
                 1;
         j
-             /= 2;
+             /= 2; //warn
         i *=
                 1;
         j
-             *= 2;
+             *= 2; //warn
         i %=
                 1;
         j
-             %= 2;
+             %= 2; //warn
         i ^=
                 1;
         j
-             ^= 2;
+             ^= 2; //warn
         i |=
                 1;
         j
-             |= 2;
+             |= 2; //warn
         i &=
                 1;
         j
-             &= 2;
+             &= 2; //warn
         i >>=
                 1;
         j
-            >>= 2;
+            >>= 2; //warn
         i >>>=
                 1;
         j
-            >>>= 2;
+            >>>= 2; //warn
         i <<=
                 1;
         j
-            <<= 2;
+            <<= 2; //warn
     }
     
     class InnerClass {
@@ -254,47 +254,47 @@ class AssignClass {
             i +=
                     1;
             j
-                 += 2;
+                 += 2; //warn
             i -=
                     1;
             j
-                 -= 2;
+                 -= 2; //warn
             i /=
                     1;
             j
-                 /= 2;
+                 /= 2; //warn
             i *=
                     1;
             j
-                 *= 2;
+                 *= 2; //warn
             i %=
                     1;
             j
-                 %= 2;
+                 %= 2; //warn
             i ^=
                     1;
             j
-                 ^= 2;
+                 ^= 2; //warn
             i |=
                     1;
             j
-                 |= 2;
+                 |= 2; //warn
             i &=
                     1;
             j
-                 &= 2;
+                 &= 2; //warn
             i >>=
                     1;
             j
-                >>= 2;
+                >>= 2; //warn
             i >>>=
                     1;
             j
-                >>>= 2;
+                >>>= 2; //warn
             i <<=
                     1;
             j
-                <<= 2;
+                <<= 2; //warn
         }
     }
     
@@ -305,47 +305,47 @@ class AssignClass {
             i +=
                     1;
             j
-                 += 2;
+                 += 2; //warn
             i -=
                     1;
             j
-                 -= 2;
+                 -= 2; //warn
             i /=
                     1;
             j
-                 /= 2;
+                 /= 2; //warn
             i *=
                     1;
             j
-                 *= 2;
+                 *= 2; //warn
             i %=
                     1;
             j
-                 %= 2;
+                 %= 2; //warn
             i ^=
                     1;
             j
-                 ^= 2;
+                 ^= 2; //warn
             i |=
                     1;
             j
-                 |= 2;
+                 |= 2; //warn
             i &=
                     1;
             j
-                 &= 2;
+                 &= 2; //warn
             i >>=
                     1;
             j
-                >>= 2;
+                >>= 2; //warn
             i >>>=
                     1;
             j
-                >>>= 2;
+                >>>= 2; //warn
             i <<=
                     1;
             j
-                <<= 2;
+                <<= 2; //warn
         }
     };
 }

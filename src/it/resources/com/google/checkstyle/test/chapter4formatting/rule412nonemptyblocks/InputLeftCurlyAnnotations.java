@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @TestClassAnnotation
-class LeftCurlyInput_Annotations 
+class InputLeftCurlyAnnotations 
 { //warn
     private static final int X = 10;
     @Override

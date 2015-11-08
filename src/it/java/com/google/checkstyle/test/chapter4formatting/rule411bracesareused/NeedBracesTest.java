@@ -86,7 +86,7 @@ public class NeedBracesTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("NeedBraces");
-        final String filePath = builder.getFilePath("NeedBracesInput");
+        final String filePath = builder.getFilePath("InputNeedBraces");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

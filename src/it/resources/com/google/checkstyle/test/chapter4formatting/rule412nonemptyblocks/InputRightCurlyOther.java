@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-class RightCurlyInput_Other
+class InputRightCurlyOther
 {
     /** @see test method **/
     int foo() throws InterruptedException

@@ -50,7 +50,7 @@ public class MethodParamPadTest extends BaseCheckTestSupport {
             "130:9: " + getCheckMessage(clazz, messageKey, "("),
         };
         final Configuration checkConfig = builder.getCheckConfig("MethodParamPad");
-        final String filePath = builder.getFilePath("MethodParamPadInput");
+        final String filePath = builder.getFilePath("InputMethodParamPad");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

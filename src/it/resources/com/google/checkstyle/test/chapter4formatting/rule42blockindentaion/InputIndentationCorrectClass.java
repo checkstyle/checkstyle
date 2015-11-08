@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule42blockindentaion; //i
 
 import java.util.Iterator;  //indent:0 exp:0
 
-public class IndentationCorrectClassInput  //indent:0 exp:0
+public class InputIndentationCorrectClass  //indent:0 exp:0
     implements Runnable, Cloneable {  //indent:4 exp:4
 
   class InnerClass implements  //indent:2 exp:2
@@ -39,6 +39,6 @@ public class IndentationCorrectClassInput  //indent:0 exp:0
 
 class SecondClassWithLongLongLongLongName  //indent:0 exp:0
     extends  //indent:4 exp:4
-         IndentationCorrectClassInput{  //indent:9 exp:>=4
+         InputIndentationCorrectClass{  //indent:9 exp:>=4
 
 }  //indent:0 exp:0
