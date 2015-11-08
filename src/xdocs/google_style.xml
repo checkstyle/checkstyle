@@ -195,14 +195,14 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_misc.html#AvoidEscapedUnicodeCharacters">AvoidEscapedUnicodeCharactersCheck</a>
+                                <a href="config_misc.html#AvoidEscapedUnicodeCharacters">AvoidEscapedUnicodeCharacters</a>
                             </td>
                             <td>
                                 <a
-                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharactersCheck">config</a>
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule233nonascii/AvoidEscapedUnicodeCharactersCheckTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule233nonascii/AvoidEscapedUnicodeCharactersTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -217,11 +217,11 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparatorCheck</a>
+                                <a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a>
                             </td>
                             <td>
                                 <a
-                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparatorCheck">config</a>
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">config</a>
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">test</a>
@@ -253,7 +253,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_whitespace.html#NoLineWrap">NoLineWrapCheck</a>
+                                <a href="config_whitespace.html#NoLineWrap">NoLineWrap</a>
                             </td>
                             <td>
                                 <a
@@ -263,7 +263,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
                                 <br />
                                 <a
-                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrapCheck">config</a>
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">config</a>
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">test</a>
@@ -318,7 +318,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_whitespace.html#NoLineWrap">NoLineWrapCheck</a>
+                                <a href="config_whitespace.html#NoLineWrap">NoLineWrap</a>
                                 <br />
                             </td>
                             <td>
@@ -329,7 +329,7 @@
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule32packagestate/LineLengthTest.java">test</a>
                                 <br />
                                 <a
-                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrapCheck">config</a>
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">config</a>
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">test</a>
@@ -345,14 +345,14 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_imports.html#CustomImportOrder">CustomImportOrderCheck</a>
+                                <a href="config_imports.html#CustomImportOrder">CustomImportOrder</a>
                             </td>
                             <td>
                                 <a
-                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrderCheck">config</a>
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule333orderingandsoacing/CustomImportOrderTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing/CustomImportOrderTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -405,7 +405,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_coding.html#OverloadMethodsDeclarationOrder">OverloadMethodsDeclarationOrderCheck</a>
+                                <a href="config_coding.html#OverloadMethodsDeclarationOrder">OverloadMethodsDeclarationOrder</a>
                             </td>
                             <td>
                                 <a
@@ -481,10 +481,13 @@
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">config</a>
                                 <br/>
                                 <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/LeftCurlyTest.java">test</a>
+                                <br/>
+                                <a
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">config</a>
                                 <br/>
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/LeftCurlyRightCurlyTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/RightCurlyTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -619,13 +622,13 @@
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreack/OperatorWrapTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/OperatorWrapTest.java">test</a>
                                 <br />
                                 <a
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreack/SeparatorWrapTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/SeparatorWrapTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -668,7 +671,7 @@
                                 <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparatorCheck</a>
+                                <a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a>
                             </td>
                             <td>
                                 <a
@@ -708,7 +711,7 @@
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericWhitespace">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/WhitespaceAroundTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/GenericWhitespaceTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -776,7 +779,7 @@
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4821onevariablepreline/MultipleVariableDeclarationsTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4821onevariableperline/MultipleVariableDeclarationsTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -888,7 +891,7 @@
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4842fallthrow/FallThroughTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4842fallthrough/FallThroughTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1192,10 +1195,13 @@
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">config</a>
                                 <br />
                                 <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/MethodTypeParameterNameTest.java">test</a>
+                                <br />
+                                <a
                                     href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">config</a>
                                 <br />
                                 <a
-                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/ClassMethodTypeParameterNameTest.java">test</a>
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/ClassTypeParameterNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
@@ -1356,11 +1362,11 @@
                             <img
                                     src="images/ok_green.png"
                                     alt="" />
-                                <a href="config_javadoc.html#JavadocParagraph">JavaDocParagraph</a>
+                                <a href="config_javadoc.html#JavadocParagraph">JavadocParagraph</a>
                             </td>
                             <td>
                             <a
-                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavaDocParagraph">config</a><br/>
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">config</a><br/>
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/JavadocParagraphTest.java">test</a>
                                     </td>

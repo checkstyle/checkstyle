@@ -35,13 +35,15 @@
             <table>
                <thead>
                   <tr>
-                     <th>Sun Style Rule</th>
+                     <th/>
+                     <th>Sun's Java Style Rule</th>
                      <th>Checkstyle Check</th>
                      <th>Applied to config</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
+                     <td/>
                      <td> --  </td>
                      <td> --  </td>
                      <td> --  </td>
