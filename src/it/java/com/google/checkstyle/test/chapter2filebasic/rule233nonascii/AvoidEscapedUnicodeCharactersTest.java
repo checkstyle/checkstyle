@@ -29,7 +29,7 @@ import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
-public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport {
+public class AvoidEscapedUnicodeCharactersTest extends BaseCheckTestSupport {
 
     private static ConfigurationBuilder builder;
 
