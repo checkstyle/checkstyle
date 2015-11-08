@@ -28,9 +28,11 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
@@ -659,5 +661,109 @@ public class XDocsPagesTest {
 
             return result.toString();
         }
+    }
+
+    @Test
+    public void testAllStyleRules() throws Exception {
+        for (File file : Files.fileTreeTraverser().preOrderTraversal(XDOCS_DIRECTORY)) {
+            final String fileName = file.getName();
+
+            if (!fileName.endsWith("_style.xml")) {
+                continue;
+            }
+
+            final String input = Files.toString(file, UTF_8);
+            final Document document = getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("tr");
+            String lastRuleName = null;
+
+            for (int position = 0; position < sources.getLength(); position++) {
+                final Node row = sources.item(position);
+                final List<Node> columns = new ArrayList<>(findChildElementsByTag(row, "td"));
+
+                if (columns.isEmpty()) {
+                    continue;
+                }
+
+                final String ruleName = columns.get(1).getTextContent().trim();
+
+                if (lastRuleName != null) {
+                    Assert.assertTrue(
+                            fileName + " rule '" + ruleName + "' is out of order compared to '"
+                                    + lastRuleName + "'",
+                            ruleName.toLowerCase(Locale.ENGLISH).compareTo(
+                                    lastRuleName.toLowerCase(Locale.ENGLISH)) >= 0);
+                }
+
+                validateStyleChecks(findChildElementsByTag(columns.get(2), "a"),
+                        findChildElementsByTag(columns.get(3), "a"), fileName, ruleName);
+
+                lastRuleName = ruleName;
+            }
+        }
+    }
+
+    private static void validateStyleChecks(Set<Node> checks, Set<Node> configs, String fileName,
+            String ruleName) {
+        final Iterator<Node> itrChecks = checks.iterator();
+        final Iterator<Node> itrConfigs = configs.iterator();
+
+        while (itrChecks.hasNext()) {
+            final Node check = itrChecks.next();
+            final String checkName = check.getTextContent().trim();
+
+            if (!check.getAttributes().getNamedItem("href").getTextContent()
+                    .startsWith("config_")) {
+                continue;
+            }
+
+            Assert.assertTrue(fileName + " rule '" + ruleName + "' check '" + checkName
+                    + "' shouldn't end with 'Check'", !checkName.endsWith("Check"));
+
+            for (String configName : new String[] {"config", "test"}) {
+                Node config = null;
+
+                try {
+                    config = itrConfigs.next();
+                }
+                catch (NoSuchElementException ignore) {
+                    Assert.fail(fileName + " rule '" + ruleName + "' check '" + checkName
+                            + "' is missing the config link: " + configName);
+                }
+
+                Assert.assertEquals(fileName + " rule '" + ruleName + "' check '" + checkName
+                        + "' has mismatched config/test links", configName, config.getTextContent()
+                        .trim());
+
+                final String configUrl = config.getAttributes().getNamedItem("href")
+                        .getTextContent();
+
+                if ("config".equals(configName)) {
+                    final String expectedUrl = "https://github.com/search?q="
+                            + "path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+"
+                            + "repo%3Acheckstyle%2Fcheckstyle+" + checkName;
+
+                    Assert.assertEquals(fileName + " rule '" + ruleName + "' check '" + checkName
+                            + "' should have matching " + configName + " url", expectedUrl,
+                            configUrl);
+                }
+                else if ("test".equals(configName)) {
+                    Assert.assertTrue(fileName + " rule '" + ruleName + "' check '" + checkName
+                            + "' should have matching " + configName + " url",
+                            configUrl.startsWith("https://github.com/checkstyle/checkstyle/"
+                                    + "blob/master/src/it/java/com/google/checkstyle/test/"));
+                    Assert.assertTrue(fileName + " rule '" + ruleName + "' check '" + checkName
+                            + "' should have matching " + configName + " url",
+                            configUrl.endsWith("/" + checkName + "Test.java"));
+
+                    Assert.assertTrue(fileName + " rule '" + ruleName + "' check '" + checkName
+                            + "' should have a test that exists", new File(configUrl.substring(53)
+                            .replace('/', File.separatorChar)).exists());
+                }
+            }
+        }
+
+        Assert.assertFalse(fileName + " rule '" + ruleName + "' has too many configs",
+                itrConfigs.hasNext());
     }
 }
