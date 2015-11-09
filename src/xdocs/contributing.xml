@@ -61,6 +61,19 @@
       </p>
     </section>
 
+    <section name="Report an issue">
+
+      <p>
+        All functional changes in project should have registered issue and wide explanation in it.
+        Issue number has to be referenced in git commit message, see format below.
+      </p>
+
+      <p>
+        To report issue please follow our best practices page - <a href="report_issue.html">
+          How to report an issue ?</a>
+      </p>
+    </section>
+
     <section name="Quality matters">
 
       <p>

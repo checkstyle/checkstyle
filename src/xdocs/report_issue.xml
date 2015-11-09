@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>How to report an issue ?</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Introduction">
+
+      <p>
+        Hey, good to see you on this page. It means that you are
+        considereto report an issue to the Checkstyle
+        project. We welcome anything: bug reports, feature requests to existing functionality, new Check ideas, etc.
+      </p>
+
+      <p>
+        Our issue tracker system is at Github - <a href="https://github.com/checkstyle/checkstyle/issues">
+        https://github.com/checkstyle/checkstyle/issues</a>.
+      </p>
+    </section>
+
+    <section name="How to report a bug ?">
+
+      <p>
+        First and foremost, do not think that your issue is obvious and do not need details !!!!
+        Even tiny issue need all details and context to be shared with us.
+      </p>
+
+      <p>
+        The best way to report an Issue is to reproduce it by our <a href="cmdline.html#Download_and_Run">
+        Command Line Interface</a>. It is the most minimalistic way to launch Checkstyle.
+      </p>
+
+      <p>
+        Our project do not fix problems on any extension or plugins. Checkstyle is library that is used everywhere by number of IDEs and Static Analysis Integrators/Services.
+      </p>
+
+      <p>
+        We need minimized java file and minimized config. We do not need real source code any obfuscattion of your super secrect code is ok.
+      </p>
+
+      <p>
+        Example of report that we expect:
+
+        <source><![CDATA[
+/var/tmp $ java -jar checkstyle-6.XX-all.jar -c config.xml test.java
+Starting audit...
+Audit done.
+
+/var/tmp $ cat test.java
+public class CheckstyleTest{ // Doesn't warn - incorrect
+private static final int SOMETHING = 1;
+}
+
+/var/tmp $ cat config.xml
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="WhitespaceAround">
+            <property name="allowEmptyTypes" value="true"/>
+        </module>
+    </module>
+</module>
+        ]]></source>
+      </p>
+
+      <p>
+        Always specify what is expected.
+
+        <code>
+          Expected: violation on first line.
+          /var/tmp/test.java:1:28: error: '{' is not preceded with whitespace.
+        </code>
+      </p>
+
+    </section>
+
+    <section name="How to request new feature for existing functoinality?">
+
+      <p>
+        Please always specify exact name of the Check/Module.
+      </p>
+
+      <p>
+        Please provide detailed description of problem and chunks of code and config that you currently have.
+      </p>
+    </section>
+
+    <section name="How to request new Check/Module?">
+      <p>
+        Please provide detailed description of problem
+      </p>
+      <p>
+        You have to provide examples of code and expected violations on them. The more examples the better.
+      </p>
+      <p>
+        If you are opensource project, please send a link to the whole java file.
+      </p>
+    </section>
+
+  </body>
+</document>
