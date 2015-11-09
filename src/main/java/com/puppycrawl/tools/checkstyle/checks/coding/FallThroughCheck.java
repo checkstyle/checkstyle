@@ -272,20 +272,25 @@ public class FallThroughCheck extends Check {
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
         final DetailAST finalStmt = ast.getLastChild();
+        boolean isTerminated = false;
         if (finalStmt.getType() == TokenTypes.LITERAL_FINALLY) {
-            return isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
+            isTerminated = isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
                                 useBreak, useContinue);
         }
 
-        boolean isTerminated = isTerminated(ast.getFirstChild(),
-                                            useBreak, useContinue);
+        if (!isTerminated) {
+            isTerminated = isTerminated(ast.getFirstChild(),
+                    useBreak, useContinue);
 
-        DetailAST catchStmt = ast.findFirstToken(TokenTypes.LITERAL_CATCH);
-        while (catchStmt != null && isTerminated) {
-            final DetailAST catchBody =
-                catchStmt.findFirstToken(TokenTypes.SLIST);
-            isTerminated &= isTerminated(catchBody, useBreak, useContinue);
-            catchStmt = catchStmt.getNextSibling();
+            DetailAST catchStmt = ast.findFirstToken(TokenTypes.LITERAL_CATCH);
+            while (catchStmt != null
+                    && isTerminated
+                    && catchStmt.getType() == TokenTypes.LITERAL_CATCH) {
+                final DetailAST catchBody =
+                        catchStmt.findFirstToken(TokenTypes.SLIST);
+                isTerminated = isTerminated(catchBody, useBreak, useContinue);
+                catchStmt = catchStmt.getNextSibling();
+            }
         }
         return isTerminated;
     }

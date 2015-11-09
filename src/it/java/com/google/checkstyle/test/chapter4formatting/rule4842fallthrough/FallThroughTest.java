@@ -50,7 +50,6 @@ public class FallThroughTest extends BaseCheckTestSupport {
             "53:13: " + msg,
             "70:13: " + msg,
             "87:13: " + msg,
-            "105:13: " + msg,
             "123:13: " + msg,
             "179:11: " + msg,
             "369:11: " + msg,

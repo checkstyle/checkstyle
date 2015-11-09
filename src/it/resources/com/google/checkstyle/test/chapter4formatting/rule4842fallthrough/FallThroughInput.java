@@ -102,7 +102,7 @@ public class FallThroughInput
                 } finally {
                     i++;
                 }
-            case 23:  //warn
+            case 23:
                 switch (j) {
                 case 1:
                     continue;
