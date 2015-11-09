@@ -102,7 +102,7 @@ public class InputFallThrough
                 } finally {
                     i++;
                 }
-            case 23: //fall through!!!
+            case 23:
                 switch (j) {
                 case 1:
                     continue;
@@ -237,7 +237,7 @@ public class InputFallThrough
               } finally {
                   i++;
               }
-              /* fallthru */
+
           case 23:
               switch (j) {
               case 1:
