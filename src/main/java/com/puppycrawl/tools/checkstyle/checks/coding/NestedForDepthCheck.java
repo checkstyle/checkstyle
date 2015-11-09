@@ -19,15 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Check the number of nested {@code for} -statements. The maximum
- * number of nested layers can be configured. The default value is 1. Most of
- * the logic is implemented in the parent class. The code for the class is
- * copied from the NestedIfDepthCheck-class. The only difference is the
- * intercepted token (for instead of if). Example:
+ * number of nested layers can be configured. The default value is 1.
+ * The code for the class is copied from the NestedIfDepthCheck-class.
+ * The only difference is the intercepted token (for instead of if).
+ * Example:
  * <pre>
  *  &lt;!-- Restricts nested for blocks to a specified depth (default = 1).
  *                                                                        --&gt;
@@ -38,10 +39,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  &lt;/module&gt;
  * </pre>
  * @author Alexander Jesse
- * @see AbstractNestedDepthCheck
  * @see NestedIfDepthCheck
  */
-public final class NestedForDepthCheck extends AbstractNestedDepthCheck {
+public final class NestedForDepthCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -49,17 +49,22 @@ public final class NestedForDepthCheck extends AbstractNestedDepthCheck {
      */
     public static final String MSG_KEY = "nested.for.depth";
 
-    /** Default allowed nesting depth. */
-    private static final int DEFAULT_MAX = 1;
+    /** Maximum allowed nesting depth. */
+    private int max = 1;
+    /** Current nesting depth. */
+    private int depth;
 
-    /** Creates new check instance with default allowed nesting depth. */
-    public NestedForDepthCheck() {
-        super(DEFAULT_MAX);
+    /**
+     * Setter for maximum allowed nesting depth.
+     * @param max maximum allowed nesting depth.
+     */
+    public void setMax(int max) {
+        this.max = max;
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.LITERAL_FOR};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -68,12 +73,25 @@ public final class NestedForDepthCheck extends AbstractNestedDepthCheck {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        depth = 0;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        nestIn(ast, MSG_KEY);
+        if (depth > max) {
+            log(ast, MSG_KEY, depth, max);
+        }
+        ++depth;
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
-        nestOut();
+        --depth;
     }
 }
