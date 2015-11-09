@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
@@ -28,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  *
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  */
-public final class NestedIfDepthCheck extends AbstractNestedDepthCheck {
+public final class NestedIfDepthCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -36,17 +37,22 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck {
      */
     public static final String MSG_KEY = "nested.if.depth";
 
-    /** Default allowed nesting depth. */
-    private static final int DEFAULT_MAX = 1;
+    /** Maximum allowed nesting depth. */
+    private int max = 1;
+    /** Current nesting depth. */
+    private int depth;
 
-    /** Creates new check instance with default allowed nesting depth. */
-    public NestedIfDepthCheck() {
-        super(DEFAULT_MAX);
+    /**
+     * Setter for maximum allowed nesting depth.
+     * @param max maximum allowed nesting depth.
+     */
+    public void setMax(int max) {
+        this.max = max;
     }
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {TokenTypes.LITERAL_IF};
+        return getAcceptableTokens();
     }
 
     @Override
@@ -55,16 +61,29 @@ public final class NestedIfDepthCheck extends AbstractNestedDepthCheck {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        depth = 0;
+    }
+
+    @Override
     public void visitToken(DetailAST literalIf) {
         if (!CheckUtils.isElseIf(literalIf)) {
-            nestIn(literalIf, MSG_KEY);
+            if (depth > max) {
+                log(literalIf, MSG_KEY, depth, max);
+            }
+            ++depth;
         }
     }
 
     @Override
     public void leaveToken(DetailAST literalIf) {
         if (!CheckUtils.isElseIf(literalIf)) {
-            nestOut();
+            --depth;
         }
     }
 
