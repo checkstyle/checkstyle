@@ -43,5 +43,6 @@ public class InputEmptyLineSeparatorMultipleEmptyLines
     private static void foo() {}
     
     private static void foo1() {}
-    
+
+
 }
