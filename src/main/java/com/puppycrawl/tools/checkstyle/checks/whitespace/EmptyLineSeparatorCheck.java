@@ -161,6 +161,13 @@ public class EmptyLineSeparatorCheck extends Check {
      */
     public static final String MSG_MULTIPLE_LINES = "empty.line.separator.multiple.lines";
 
+    /**
+     * A key is pointing to the warning message empty.line.separator.lines.after
+     * in "messages.properties" file.
+     */
+    public static final String MSG_MULTIPLE_LINES_AFTER =
+            "empty.line.separator.multiple.lines.after";
+
     /** Allows no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
@@ -212,8 +219,11 @@ public class EmptyLineSeparatorCheck extends Check {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST nextToken = ast.getNextSibling();
+        if (hasMultipleLinesBefore(ast)) {
+            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
+        }
 
+        final DetailAST nextToken = ast.getNextSibling();
         if (nextToken != null) {
             final int astType = ast.getType();
             switch (astType) {
@@ -227,14 +237,32 @@ public class EmptyLineSeparatorCheck extends Check {
                     processPackage(ast, nextToken);
                     break;
                 default:
-                    if (nextToken.getType() != TokenTypes.RCURLY && !hasEmptyLineAfter(ast)) {
-                        log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+                    if (nextToken.getType() == TokenTypes.RCURLY) {
+                        if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
+                            log(ast.getLineNo(), MSG_MULTIPLE_LINES_AFTER, ast.getText());
+                        }
                     }
-                    if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
-                        log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
+                    else if (!hasEmptyLineAfter(ast)) {
+                        log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                            nextToken.getText());
                     }
             }
         }
+    }
+
+    /**
+     * Whether the token has not allowed multiple empty lines before.
+     * @param ast the ast to check.
+     * @return true if the token has not allowed multiple empty lines before.
+     */
+    private boolean hasMultipleLinesBefore(DetailAST ast) {
+        boolean result = false;
+        if ((ast.getType() != TokenTypes.VARIABLE_DEF
+            || isTypeField(ast))
+                && hasNotAllowedTwoEmptyLinesBefore(ast)) {
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -249,9 +277,6 @@ public class EmptyLineSeparatorCheck extends Check {
         if (!hasEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
-        if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
-            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
-        }
     }
 
     /**
@@ -263,9 +288,6 @@ public class EmptyLineSeparatorCheck extends Check {
     private void processImport(DetailAST ast, DetailAST nextToken, int astType) {
         if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
-        }
-        if (hasNotAllowedTwoEmptyLinesBefore(ast)) {
-            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
         }
     }
 
@@ -279,9 +301,6 @@ public class EmptyLineSeparatorCheck extends Check {
                 && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
                     nextToken.getText());
-        }
-        if (isTypeField(ast) && hasNotAllowedTwoEmptyLinesBefore(ast)) {
-            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
         }
     }
 

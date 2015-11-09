@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED;
 import static org.junit.Assert.assertArrayEquals;
 
@@ -100,9 +101,11 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = {
             "21: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
             "24: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
+            "29: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
             "33: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
             "38: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
             "43: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "45: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "METHOD_DEF"),
         };
         verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleEmptyLines.java"), expected);
     }
