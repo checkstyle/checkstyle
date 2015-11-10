@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
  * <p>
@@ -80,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @author maxvetrenko
  */
 public class SeparatorWrapCheck
-    extends AbstractOptionCheck<WrapOption> {
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -94,11 +97,21 @@ public class SeparatorWrapCheck
      */
     public static final String LINE_NEW = "line.new";
 
+    /** The policy to enforce. */
+    private WrapOption option = WrapOption.EOL;
+
     /**
-     * Sets the comma wrap option to end of the line.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    public SeparatorWrapCheck() {
-        super(WrapOption.EOL, WrapOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 
     @Override
@@ -139,13 +152,12 @@ public class SeparatorWrapCheck
                 currentLine.substring(colNo + text.length()).trim();
         final String substringBeforeToken =
                 currentLine.substring(0, colNo).trim();
-        final WrapOption wSp = getAbstractOption();
 
-        if (wSp == WrapOption.EOL
+        if (option == WrapOption.EOL
                 && substringBeforeToken.isEmpty()) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
-        else if (wSp == WrapOption.NL
+        else if (option == WrapOption.NL
                  && substringAfterToken.isEmpty()) {
             log(lineNo, colNo, LINE_NEW, text);
         }

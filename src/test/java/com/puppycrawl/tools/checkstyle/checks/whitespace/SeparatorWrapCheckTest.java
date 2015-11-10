@@ -25,12 +25,14 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapChe
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SeparatorWrapCheckTest
@@ -78,5 +80,13 @@ public class SeparatorWrapCheckTest
             TokenTypes.COMMA,
         };
         Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
     }
 }
