@@ -20,43 +20,67 @@
 package com.google.checkstyle.test.base;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class BaseCheckTestSupport {
-    protected final Properties props = new Properties();
-    final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    private static final Pattern WARN_PATTERN = CommonUtils
+            .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
 
-    protected static DefaultConfiguration createCheckConfig(Class<?> aClazz) {
-        return new DefaultConfiguration(aClazz.getName());
+    private static final String XML_NAME = "/google_checks.xml";
+
+    private static Configuration configuration;
+
+    protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+    protected static Configuration getConfiguration() throws CheckstyleException {
+        if (configuration == null) {
+            configuration = ConfigurationLoader.loadConfiguration(XML_NAME, new PropertiesExpander(
+                    System.getProperties()));
+        }
+
+        return configuration;
     }
 
-    protected Checker createChecker(Configuration aCheckConfig)
-        throws Exception {
-        final DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
+    protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
+        return new DefaultConfiguration(clazz.getName());
+    }
+
+    protected Checker createChecker(Configuration checkConfig)
+            throws Exception {
+        final DefaultConfiguration dc = createCheckerConfig(checkConfig);
         final Checker checker = new Checker();
-        // make sure the tests always run with english error messages
-        // so the tests don't fail in supported locales like german
+        // make sure the tests always run with English error messages
+        // so the tests don't fail in supported locales like German
         final Locale locale = Locale.ENGLISH;
         checker.setLocaleCountry(locale.getCountry());
         checker.setLocaleLanguage(locale.getLanguage());
@@ -66,114 +90,86 @@ public class BaseCheckTestSupport {
         return checker;
     }
 
-    protected DefaultConfiguration createCheckerConfig(Configuration aConfig) {
+    protected DefaultConfiguration createCheckerConfig(Configuration config) {
         final DefaultConfiguration dc =
-            new DefaultConfiguration("configuration");
+                new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createCheckConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         dc.addAttribute("charset", "iso-8859-1");
         dc.addChild(twConf);
-        twConf.addChild(aConfig);
+        twConf.addChild(config);
         return dc;
     }
 
-    protected static String getPath(String aFilename)
-        throws IOException {
-        return new File("src/main/java/com/google/checkstyle/test/filebasic/" + aFilename)
-            .getCanonicalPath();
+    protected String getPath(String fileName) throws IOException {
+        return new File("src/it/resources/com/google/checkstyle/test/" + fileName)
+                .getCanonicalPath();
     }
 
-    protected static String getSrcPath(String aFilename) throws IOException {
-
-        return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + aFilename)
-            .getCanonicalPath();
+    protected void verify(Configuration config, String fileName, String[] expected,
+            Integer... warnsExpected) throws Exception {
+        verify(createChecker(config),
+                new File[] {new File(fileName)},
+                fileName, expected, warnsExpected);
     }
 
-    protected void verify(Configuration aConfig, String aFileName, String[] aExpected,
-            Integer... aWarnsExpected) throws Exception {
-        verify(createChecker(aConfig), aFileName, aFileName, aExpected, aWarnsExpected);
-    }
-
-    protected void verify(Checker aC, String aFileName, String[] aExpected,
-            Integer... aWarnsExpected) throws Exception {
-        verify(aC, aFileName, aFileName, aExpected, aWarnsExpected);
-    }
-
-    private void verify(Checker aC,
-            String aProcessedFilename,
-            String aMessageFileName,
-            String[] aExpected, Integer... aWarnsExpected)
-        throws Exception {
-        verify(aC,
-            new File[] {new File(aProcessedFilename)},
-            aMessageFileName, aExpected, aWarnsExpected);
-    }
-
-    void verify(Checker aC,
-            File[] aProcessedFiles,
-            String aMessageFileName,
-            String[] aExpected,
-            Integer... aWarnsExpected)
+    protected void verify(Checker checker,
+            File[] processedFiles,
+            String messageFileName,
+            String[] expected,
+            Integer... warnsExpected)
         throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
-        Collections.addAll(theFiles, aProcessedFiles);
-        final int errs = aC.process(theFiles);
+        Collections.addAll(theFiles, processedFiles);
+        final List<Integer> theWarnings = Lists.newArrayList();
+        Collections.addAll(theWarnings, warnsExpected);
+        final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final ByteArrayInputStream localStream =
-            new ByteArrayInputStream(stream.toByteArray());
+        final ByteArrayInputStream inputStream =
+                new ByteArrayInputStream(stream.toByteArray());
         try (final LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
-            for (int i = 0; i < aExpected.length; i++) {
-                final String expected = aMessageFileName + ":" + aExpected[i];
+            for (int i = 0; i < expected.length; i++) {
+                final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
-                assertEquals("error message " + i, expected, actual);
+                assertEquals("error message " + i, expectedResult, actual);
+
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
                 final int lineNumber = Integer.parseInt(parseInt);
-                Integer integer = 0;
-                if (Arrays.asList(aWarnsExpected).contains(lineNumber)) {
-                    integer = lineNumber;
-                }
-                assertEquals("error message " + i, (long) integer, lineNumber);
+                assertNotNull("expected input file to have warning comment on line number "
+                        + lineNumber, theWarnings.remove((Integer) lineNumber));
             }
 
             assertEquals("unexpected output: " + lnr.readLine(),
-                    aExpected.length, errs);
+                    expected.length, errs);
+            assertTrue("unexpected warnings " + theWarnings, theWarnings.size() == 0);
         }
-        aC.destroy();
+
+        checker.destroy();
     }
 
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties'
      * file.
      *
-     * @param messageKey
-     *            the key of message in 'messages.properties' file.
+     * @param messageKey the key of message in 'messages.properties' file.
+     * @param arguments  the arguments of message in 'messages.properties' file.
      */
     protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey) {
+            String messageKey, Object... arguments) {
         final Properties pr = new Properties();
         try {
             pr.load(aClass.getResourceAsStream("messages.properties"));
         }
-        catch (IOException ignored) {
+        catch (IOException e) {
             return null;
         }
-        return pr.getProperty(messageKey);
-    }
-
-    /**
-     * Gets the check message 'as is' from appropriate 'messages.properties' file.
-     * @param messageKey the key of message in 'messages.properties' file.
-     * @param arguments the arguments of message in 'messages.properties' file.
-     */
-    protected String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey, Object... arguments) {
-        final MessageFormat formatter = new MessageFormat(getCheckMessage(aClass, messageKey),
+        final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
                 Locale.ROOT);
         return formatter.format(arguments);
     }
@@ -194,11 +190,49 @@ public class BaseCheckTestSupport {
         return null;
     }
 
+    protected static Configuration getCheckConfig(String checkName) throws CheckstyleException {
+        Configuration result = null;
+        for (Configuration currentConfig : getConfiguration().getChildren()) {
+            if ("TreeWalker".equals(currentConfig.getName())) {
+                for (Configuration checkConfig : currentConfig.getChildren()) {
+                    if (checkName.equals(checkConfig.getName())) {
+                        result = checkConfig;
+                        break;
+                    }
+                }
+            }
+            else if (checkName.equals(currentConfig.getName())) {
+                result = currentConfig;
+                break;
+            }
+        }
+        return result;
+    }
+
     private static String removeDeviceFromPathOnWindows(String path) {
         final String os = System.getProperty("os.name", "Unix");
         if (os.startsWith("Windows")) {
             return path.substring(path.indexOf(':') + 1);
         }
         return path;
+    }
+
+    protected Integer[] getLinesWithWarn(String fileName) throws IOException {
+        final List<Integer> result = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(
+                new FileInputStream(fileName), StandardCharsets.UTF_8))) {
+            int lineNumber = 1;
+            while (true) {
+                final String line = br.readLine();
+                if (line == null) {
+                    break;
+                }
+                if (WARN_PATTERN.matcher(line).find()) {
+                    result.add(lineNumber);
+                }
+                lineNumber++;
+            }
+        }
+        return result.toArray(new Integer[result.size()]);
     }
 }

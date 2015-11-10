@@ -20,31 +20,27 @@
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class ClassTypeParameterNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static ConfigurationBuilder builder;
-    private static Configuration configuration;
-    private static String format;
 
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-        configuration = builder.getCheckConfig("ClassTypeParameterName");
-        format = configuration.getAttribute("format");
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule528typevariablenames"
+                + File.separator + fileName);
     }
 
     @Test
     public void testClassDefault() throws Exception {
+        final Configuration configuration = getCheckConfig("ClassTypeParameterName");
+        final String format = configuration.getAttribute("format");
 
         final String[] expected = {
             "5:31: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "t", format),
@@ -52,9 +48,9 @@ public class ClassTypeParameterNameTest extends BaseCheckTestSupport {
             "27:24: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "$foo", format),
         };
 
-        final String filePath = builder.getFilePath("InputClassTypeParameterName");
+        final String filePath = getPath("InputClassTypeParameterName.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(configuration, filePath, expected, warnList);
     }
 }

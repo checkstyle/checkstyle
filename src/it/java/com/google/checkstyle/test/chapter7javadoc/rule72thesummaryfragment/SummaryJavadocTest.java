@@ -20,24 +20,21 @@
 package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck;
 
 public class SummaryJavadocTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter7javadoc" + File.separator + "rule72thesummaryfragment"
+                + File.separator + fileName);
     }
 
     @Test
@@ -45,10 +42,10 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
-        final String filePath = builder.getFilePath("InputCorrectSummaryJavaDocCheck");
+        final Configuration checkConfig = getCheckConfig("SummaryJavadocCheck");
+        final String filePath = getPath("InputCorrectSummaryJavaDocCheck.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -70,10 +67,10 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
             "103: " + msgFirstSentence,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("SummaryJavadocCheck");
-        final String filePath = builder.getFilePath("InputIncorrectSummaryJavaDocCheck");
+        final Configuration checkConfig = getCheckConfig("SummaryJavadocCheck");
+        final String filePath = getPath("InputIncorrectSummaryJavaDocCheck.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -20,33 +20,37 @@
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MethodTypeParameterNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static ConfigurationBuilder builder;
     private static Configuration configuration;
     private static String format;
 
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule528typevariablenames"
+                + File.separator + fileName);
+    }
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-        configuration = builder.getCheckConfig("ClassTypeParameterName");
+        configuration = getCheckConfig("ClassTypeParameterName");
         format = configuration.getAttribute("format");
     }
 
     @Test
     public void testMethodDefault() throws Exception {
 
-        final Configuration checkConfig = builder.getCheckConfig("MethodTypeParameterName");
+        final Configuration checkConfig = getCheckConfig("MethodTypeParameterName");
 
         final String[] expected = {
             "9:6: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "e_e", format),
@@ -57,9 +61,9 @@ public class MethodTypeParameterNameTest extends BaseCheckTestSupport {
             "42:14: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "EE", format),
         };
 
-        final String filePath = builder.getFilePath("InputMethodTypeParameterName");
+        final String filePath = getPath("InputMethodTypeParameterName.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule4822variabledistance;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
 
 public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule4822variabledistance"
+                + File.separator + fileName);
     }
 
     @Test
@@ -54,10 +51,10 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig =
-            builder.getCheckConfig("VariableDeclarationUsageDistance");
-        final String filePath = builder.getFilePath("InputVariableDeclarationUsageDistanceCheck");
+            getCheckConfig("VariableDeclarationUsageDistance");
+        final String filePath = getPath("InputVariableDeclarationUsageDistanceCheck.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

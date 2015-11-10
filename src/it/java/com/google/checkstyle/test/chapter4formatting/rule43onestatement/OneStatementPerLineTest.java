@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck;
 
 public class OneStatementPerLineTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule43onestatement"
+                + File.separator + fileName);
     }
 
     @Test
@@ -69,10 +66,10 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
             "307:39: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
-        final String filePath = builder.getFilePath("InputOneStatementPerLine");
+        final Configuration checkConfig = getCheckConfig("OneStatementPerLine");
+        final String filePath = getPath("InputOneStatementPerLine.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -86,12 +83,12 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
             "24:6: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("OneStatementPerLine");
+        final Configuration checkConfig = getCheckConfig("OneStatementPerLine");
         final String filePath = new File("src/test/resources-noncompilable/"
             + "com/puppycrawl/tools/checkstyle/checks/coding/"
             + "InputOneStatementPerLine.java").getCanonicalPath();
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

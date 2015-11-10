@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 
 public class MethodParamPadTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule451wheretobreak"
+                + File.separator + fileName);
     }
 
     @Test
@@ -50,10 +47,10 @@ public class MethodParamPadTest extends BaseCheckTestSupport {
             "128:13: " + getCheckMessage(clazz, messageKey, "("),
             "130:9: " + getCheckMessage(clazz, messageKey, "("),
         };
-        final Configuration checkConfig = builder.getCheckConfig("MethodParamPad");
-        final String filePath = builder.getFilePath("InputMethodParamPad");
+        final Configuration checkConfig = getCheckConfig("MethodParamPad");
+        final String filePath = getPath("InputMethodParamPad.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

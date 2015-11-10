@@ -20,14 +20,12 @@
 package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 
@@ -41,12 +39,12 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     private static final String STD = CustomImportOrderCheck.STANDARD_JAVA_PACKAGE_RULE_GROUP;
     private static final String SPECIAL = CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
 
-    private static ConfigurationBuilder builder;
     private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
 
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter3filestructure" + File.separator + "rule333orderingandspacing"
+                + File.separator + fileName);
     }
 
     @Test
@@ -67,10 +65,10 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
             "16: " + getCheckMessage(clazz, MSG_ORDER, STD, SPECIAL, "java.io.Reader"),
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("InputCustomImportOrder1");
+        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final String filePath = getPath("InputCustomImportOrder1.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -92,10 +90,10 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
                 "com.google.common.reflect.*"),
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("InputCustomImportOrder2");
+        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final String filePath = getPath("InputCustomImportOrder2.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -116,10 +114,10 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
                 "com.google.common.reflect.*"),
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("InputCustomImportOrder3");
+        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final String filePath = getPath("InputCustomImportOrder3.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -128,10 +126,10 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = builder.getCheckConfig("CustomImportOrder");
-        final String filePath = builder.getFilePath("InputCustomImportOrderValid");
+        final Configuration checkConfig = getCheckConfig("CustomImportOrder");
+        final String filePath = getPath("InputCustomImportOrderValid.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

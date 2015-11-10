@@ -20,22 +20,19 @@
 package com.google.checkstyle.test.chapter2filebasic.rule232specialescape;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class IllegalTokenTextTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter2filebasic" + File.separator + "rule232specialescape"
+                + File.separator + fileName);
     }
 
     @Test
@@ -110,10 +107,10 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport {
             "162:29: Avoid using corresponding octal or Unicode escape.",
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("IllegalTokenText");
-        final String filePath = builder.getFilePath("InputIllegalTokenText");
+        final Configuration checkConfig = getCheckConfig("IllegalTokenText");
+        final String filePath = getPath("InputIllegalTokenText.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

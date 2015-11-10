@@ -20,28 +20,25 @@
 package com.google.checkstyle.test.chapter5naming.rule522typenames;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class TypeNameTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule522typenames"
+                + File.separator + fileName);
     }
 
     @Test
     public void typeNameTest() throws Exception {
 
-        final Configuration checkConfig = builder.getCheckConfig("TypeName");
+        final Configuration checkConfig = getCheckConfig("TypeName");
         final String msgKey = "name.invalidPattern";
         final String format = "^[A-Z][a-zA-Z0-9]*$";
 
@@ -84,9 +81,9 @@ public class TypeNameTest extends BaseCheckTestSupport {
             "71:12: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Annotation$", format),
         };
 
-        final String filePath = builder.getFilePath("InputTypeName");
+        final String filePath = getPath("InputTypeName.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

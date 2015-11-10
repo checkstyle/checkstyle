@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule4821onevariableperline;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 
 public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule4821onevariableperline"
+                + File.separator + fileName);
     }
 
     @Test
@@ -70,10 +67,10 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
             "89:5: " + msgComma,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("MultipleVariableDeclarations");
-        final String filePath = builder.getFilePath("InputMultipleVariableDeclarations");
+        final Configuration checkConfig = getCheckConfig("MultipleVariableDeclarations");
+        final String filePath = getPath("InputMultipleVariableDeclarations.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

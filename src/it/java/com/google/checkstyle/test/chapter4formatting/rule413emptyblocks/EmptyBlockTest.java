@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
 
 public class EmptyBlockTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule413emptyblocks"
+                + File.separator + fileName);
     }
 
     @Test
@@ -78,10 +75,10 @@ public class EmptyBlockTest extends BaseCheckTestSupport {
             "320:34: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "if"),
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("EmptyBlock");
-        final String filePath = builder.getFilePath("InputEmptyBlockBasic");
+        final Configuration checkConfig = getCheckConfig("EmptyBlock");
+        final String filePath = getPath("InputEmptyBlockBasic.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -94,10 +91,10 @@ public class EmptyBlockTest extends BaseCheckTestSupport {
             "72:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("EmptyBlock");
-        final String filePath = builder.getFilePath("InputEmptyBlockCatch");
+        final Configuration checkConfig = getCheckConfig("EmptyBlock");
+        final String filePath = getPath("InputEmptyBlockCatch.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

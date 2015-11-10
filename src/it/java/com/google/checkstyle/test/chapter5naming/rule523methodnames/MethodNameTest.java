@@ -20,28 +20,25 @@
 package com.google.checkstyle.test.chapter5naming.rule523methodnames;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MethodNameTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule523methodnames"
+                + File.separator + fileName);
     }
 
     @Test
     public void methodNameTest() throws Exception {
 
-        final Configuration checkConfig = builder.getCheckConfig("MethodName");
+        final Configuration checkConfig = getCheckConfig("MethodName");
         final String msgKey = "name.invalidPattern";
         final String format = "^[a-z][a-z0-9][a-zA-Z0-9_]*$";
 
@@ -72,9 +69,9 @@ public class MethodNameTest extends BaseCheckTestSupport {
             "50:14: " + getCheckMessage(checkConfig.getMessages(), msgKey, "fO", format),
         };
 
-        final String filePath = builder.getFilePath("InputMethodName");
+        final String filePath = getPath("InputMethodName.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -23,6 +23,7 @@ import static org.apache.commons.lang3.ArrayUtils.EMPTY_INTEGER_OBJECT_ARRAY;
 import static org.apache.commons.lang3.ArrayUtils.EMPTY_STRING_ARRAY;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class ConfigValidationTest extends BaseCheckTestSupport {
     @Test
     public void testGoogleChecks() throws Exception {
-        final ConfigurationBuilder builder = new ConfigurationBuilder(new File("src/it/"));
-        final Configuration checkerConfig = builder.getConfiguration();
+        final Configuration checkerConfig = getConfiguration();
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
         checker.setLocaleCountry(locale.getCountry());
@@ -44,11 +44,26 @@ public class ConfigValidationTest extends BaseCheckTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(new BriefLogger(stream));
 
-        final List<File> files = builder.getFiles();
+        final List<File> files = new ArrayList<>();
+        listFiles(files, new File("src/it/"), "java");
 
         //runs over all input files;
         //as severity level is "warning", no errors expected
         verify(checker, files.toArray(new File[files.size()]), "",
                 EMPTY_STRING_ARRAY, EMPTY_INTEGER_OBJECT_ARRAY);
+    }
+
+    private static void listFiles(final List<File> files, final File folder,
+            final String extension) {
+        if (folder.canRead()) {
+            if (folder.isDirectory()) {
+                for (final File file : folder.listFiles()) {
+                    listFiles(files, file, extension);
+                }
+            }
+            else if (folder.toString().endsWith("." + extension)) {
+                files.add(folder);
+            }
+        }
     }
 }

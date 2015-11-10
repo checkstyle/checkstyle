@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
 
 public class NoFinalizerTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter6programpractice" + File.separator + "rule64finalizers"
+                + File.separator + fileName);
     }
 
     @Test
@@ -48,10 +45,10 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
             "5: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        final String filePath = builder.getFilePath("InputNoFinalizer");
+        final Configuration checkConfig = getCheckConfig("NoFinalizer");
+        final String filePath = getPath("InputNoFinalizer.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -72,10 +69,10 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
             "136: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        final String filePath = builder.getFilePath("InputNoFinalizeExtend");
+        final Configuration checkConfig = getCheckConfig("NoFinalizer");
+        final String filePath = getPath("InputNoFinalizeExtend.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }
