@@ -83,7 +83,7 @@ public class TypeNameTest extends BaseCheckTestSupport {
             "71:12: " + getCheckMessage(checkConfig.getMessages(), msgKey, "Annotation$", format),
         };
 
-        final String filePath = builder.getFilePath("TypeNameInput");
+        final String filePath = builder.getFilePath("InputTypeName");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

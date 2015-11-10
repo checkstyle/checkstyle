@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 
-public class MemberNameInput_Basic
+public class InputMemberNameBasic
 {
     public int mPublic; //warn
     protected int mProtected; //warn

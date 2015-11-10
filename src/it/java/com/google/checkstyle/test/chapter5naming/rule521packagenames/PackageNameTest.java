@@ -49,7 +49,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final String filePath = builder.getFilePath("PackageNameInputGood");
+        final String filePath = builder.getFilePath("InputPackageNameGood");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -66,7 +66,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = builder.getFilePath("PackageNameInputBad");
+        final String filePath = builder.getFilePath("InputPackageNameBad");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -82,7 +82,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = builder.getFilePath("BadPackageNameInput2");
+        final String filePath = builder.getFilePath("InputBadPackageName2");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -98,7 +98,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = builder.getFilePath("PackageBadNameInput3");
+        final String filePath = builder.getFilePath("InputPackageBadName3");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

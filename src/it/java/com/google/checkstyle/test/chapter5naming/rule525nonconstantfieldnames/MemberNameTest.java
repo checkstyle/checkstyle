@@ -62,7 +62,7 @@ public class MemberNameTest extends BaseCheckTestSupport {
             "25:9: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "mPackage$", format),
         };
 
-        final String filePath = builder.getFilePath("MemberNameInput_Basic");
+        final String filePath = builder.getFilePath("InputMemberNameBasic");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -106,7 +106,7 @@ public class MemberNameTest extends BaseCheckTestSupport {
             "131:25: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "mTest2$", format),
         };
 
-        final String filePath = builder.getFilePath("MemberNameInput_Simple");
+        final String filePath = builder.getFilePath("InputMemberNameSimple");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
