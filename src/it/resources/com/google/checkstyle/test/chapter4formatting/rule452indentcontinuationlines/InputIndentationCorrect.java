@@ -34,8 +34,8 @@ public abstract class InputIndentationCorrect { //indent:0 exp:0
         }; //indent:8 exp:8
 
     /** Matches no characters. */ //indent:4 exp:4
-    public static final FastMatcher NONE = //indent:4 exp:4
-            new FastMatcher() { //indent:12 exp:>=8
+    public static final InputFastMatcher NONE = //indent:4 exp:4
+            new InputFastMatcher() { //indent:12 exp:>=8
       @Override public boolean matches(char c) { //indent:6 exp:6
         return false; //indent:8 exp:8
       } //indent:6 exp:6

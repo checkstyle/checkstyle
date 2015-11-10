@@ -1,6 +1,6 @@
-package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationlines;
+package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-public class FastMatcher
+public class InputFastMatcher
 {
 
     public boolean matches(char c)
