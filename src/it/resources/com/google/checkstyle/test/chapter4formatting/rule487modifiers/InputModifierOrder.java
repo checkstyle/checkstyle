@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
-strictfp abstract class ModifierOrderInput //warn
+strictfp abstract class InputModifierOrder //warn
 {
 	transient private String dontSaveMe; //warn
 	

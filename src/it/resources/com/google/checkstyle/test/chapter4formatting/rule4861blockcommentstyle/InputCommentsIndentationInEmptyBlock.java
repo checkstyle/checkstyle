@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
-public class CommentsIndentationInEmptyBlockInput {
+public class InputCommentsIndentationInEmptyBlock {
 
     private void foo1() {
         int a = 5, b = 3, v = 6;

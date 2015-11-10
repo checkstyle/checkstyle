@@ -102,7 +102,7 @@ public class ModifierOrderTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("ModifierOrder");
-        final String filePath = builder.getFilePath("ModifierOrderInput");
+        final String filePath = builder.getFilePath("InputModifierOrder");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4821onevariableperline;
 
-public class MultipleVariableDeclarationsInput
+public class InputMultipleVariableDeclarations
 {
     int i, j; //warn
     int i1; int j1; //warn

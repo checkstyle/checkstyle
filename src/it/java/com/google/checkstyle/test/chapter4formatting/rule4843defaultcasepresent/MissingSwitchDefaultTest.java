@@ -54,7 +54,7 @@ public class MissingSwitchDefaultTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("MissingSwitchDefault");
-        final String filePath = builder.getFilePath("MissingSwitchDefaultInput");
+        final String filePath = builder.getFilePath("InputMissingSwitchDefault");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

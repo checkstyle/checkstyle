@@ -61,7 +61,7 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
             "90: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "1", "0"),
         };
 
-        final String filePath = builder.getFilePath("AnnotationLocationInput");
+        final String filePath = builder.getFilePath("InputAnnotationLocation");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

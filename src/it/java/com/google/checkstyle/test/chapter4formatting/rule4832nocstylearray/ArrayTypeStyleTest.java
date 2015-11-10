@@ -53,7 +53,7 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("ArrayTypeStyle");
-        final String filePath = builder.getFilePath("ArrayTypeStyleInput");
+        final String filePath = builder.getFilePath("InputArrayTypeStyle");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

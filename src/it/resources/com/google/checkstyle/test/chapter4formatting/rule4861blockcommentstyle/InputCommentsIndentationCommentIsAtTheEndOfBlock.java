@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 /**
  * Contains examples of using comments at the end of the block.
  */
-public class CommentsIndentationCommentIsAtTheEndOfBlockInput {
+public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foo1() {
         foo2();

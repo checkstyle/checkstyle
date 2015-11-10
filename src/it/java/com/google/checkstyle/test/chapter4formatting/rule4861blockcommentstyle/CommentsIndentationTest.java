@@ -99,7 +99,7 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
 
         final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("CommentsIndentationCommentIsAtTheEndOfBlockInput");
+            builder.getFilePath("InputCommentsIndentationCommentIsAtTheEndOfBlock");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -144,7 +144,7 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
 
         final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("CommentsIndentationInSwitchBlockInput");
+            builder.getFilePath("InputCommentsIndentationInSwitchBlock");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -167,7 +167,7 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
 
         final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("CommentsIndentationInEmptyBlockInput");
+            builder.getFilePath("InputCommentsIndentationInEmptyBlock");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -198,7 +198,7 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
 
         final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("CommentsIndentationSurroundingCodeInput");
+            builder.getFilePath("InputCommentsIndentationSurroundingCode");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

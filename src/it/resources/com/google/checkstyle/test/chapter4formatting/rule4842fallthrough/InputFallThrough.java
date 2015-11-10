@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4842fallthrough;
 
-public class FallThroughInput
+public class InputFallThrough
 {
     void method(int i, int j, boolean cond) {
         while (true) {

@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 import java.util.Arrays;
 
 // some
-public class CommentsIndentationSurroundingCodeInput
+public class InputCommentsIndentationSurroundingCode
 {
     private void foo1() {
         if (true) {

@@ -63,7 +63,7 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
             "20:61: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ">"),
         };
 
-        final String filePath = builder.getFilePath("WhitespaceAroundInput_Generics");
+        final String filePath = builder.getFilePath("InputWhitespaceAroundGenerics");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -106,7 +106,7 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
             "63:60: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, ">"),
         };
 
-        final String filePath = builder.getFilePath("GenericWhitespaceInput");
+        final String filePath = builder.getFilePath("InputGenericWhitespace");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
