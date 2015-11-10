@@ -82,8 +82,8 @@ public class InputBracesSingleLineStatements
     }
     
     private void testElse(int k) {
-        if (k == 4) System.out.println("yes");
-        else System.out.println("no");
+        if (k == 4) System.identityHashCode("yes");
+        else System.identityHashCode("no");
         for (;;);
     }
 

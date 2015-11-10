@@ -34,7 +34,7 @@ public class InputValidCommaIndent { //indent:0 exp:0
 
         if ((j == 2 && k == 3) //indent:8 exp:8
               || test) { //indent:14 exp:>=12
-            System.out.println("test"); //indent:12 exp:12
+            System.identityHashCode("test"); //indent:12 exp:12
         } //indent:8 exp:8
 
 

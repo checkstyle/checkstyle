@@ -88,7 +88,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
 		String ar[] = { "1", "2" };
 		for (String st : ar) {
-			System.out.println(st);
+			System.identityHashCode(st);
 		}
 	}
 
@@ -381,11 +381,11 @@ public class InputVariableDeclarationUsageDistanceCheck {
 		int filterCount = 0;
 		for (int i = 0; i < 10; i++, filterCount++) {
 			int abc = 0;
-			System.out.println(abc);
+			System.identityHashCode(abc);
 
 			for (int j = 0; j < 10; j++) {
 				abc = filterCount;
-				System.out.println(abc);
+				System.identityHashCode(abc);
 			}
 		}
 	}
@@ -482,7 +482,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
-        System.out.println("message");
+        System.identityHashCode("message");
         myOption.setArgName("abc"); // distance=7
     }
     
@@ -504,15 +504,15 @@ public class InputVariableDeclarationUsageDistanceCheck {
         int count = 0;
         String[] files = {};
 
-        System.out.println("Data archivation started");
+        System.identityHashCode("Data archivation started");
         files.notify();
-        System.out.println("sss");
+        System.identityHashCode("sss");
 
         if (files == null || files.length == 0) {
-            System.out.println("No files on a remote site");
+            System.identityHashCode("No files on a remote site");
         }
         else {
-            System.out.println("Files on remote site: " + files.length);
+            System.identityHashCode("Files on remote site: " + files.length);
 
             for (String ftpFile : files) {
                 if (files.length == 0) {
@@ -523,7 +523,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
             }
         }
 
-        System.out.println();
+        System.lineSeparator();
 
         return count;
     }

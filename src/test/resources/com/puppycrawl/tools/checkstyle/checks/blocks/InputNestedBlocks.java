@@ -54,7 +54,7 @@ class InputNestedBlocks
             case 3: // test fallthrough
             default:
                 // Not OK, SLIST is not complete case body
-                System.out.println("Hello");
+                System.identityHashCode("Hello");
                 {
                     x = 2;
                 }

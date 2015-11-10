@@ -23,7 +23,7 @@ class UpdateClass
         IO in = new IO();
         while ((r = in.read()) != null) {} // ok
         for (; index < s.length && s[index] != 'x'; index++) {} // ok
-        if (a == 1) {} else {System.out.println("a");}  // warn
+        if (a == 1) {} else {System.identityHashCode("a");}  // warn
         do {} while(a == 1); //ok
         switch (a) {} //warn
         int[] z = {}; // ok
@@ -72,7 +72,7 @@ class WithInner
             IO in = new IO();
             while ((r = in.read()) != null) {} // ok 
             for (; index < s.length && s[index] != 'x'; index++) {} // ok
-            if (a == 1) {} else {System.out.println("a");} // warn
+            if (a == 1) {} else {System.identityHashCode("a");} // warn
             do {} while(a == 1); //ok
             switch (a) {} //warn
             int[] z = {}; // ok
@@ -102,7 +102,7 @@ class WithAnon
                 IO in = new IO();
                 while ((r = in.read()) != null) {} // ok 
                 for (; index < s.length && s[index] != 'x'; index++) {} // ok
-                if (a == 1) {} else {System.out.println("a");} // warn
+                if (a == 1) {} else {System.identityHashCode("a");} // warn
                 do {} while(a == 1); //ok
                 switch (a) {} //warn
                 int[] z = {}; // ok
@@ -122,21 +122,21 @@ class NewClass {
         int a = 1;
 
         if (a == 1) {
-            System.out.println("a");
+            System.identityHashCode("a");
         } else {} // warn
 
         if (a == 1) {
-            System.out.println("a");
+            System.identityHashCode("a");
         } else {/*ignore*/} // OK
 
         if (a == 1) {
             /*ignore*/
         } else {
-            System.out.println("a");
+            System.identityHashCode("a");
         } // ok
         
         if (a == 1) {
-            System.out.println("a");
+            System.identityHashCode("a");
         } else if (a != 1) {
             /*ignore*/
         } else {
@@ -146,7 +146,7 @@ class NewClass {
         if (a == 1) {
             /*ignore*/
         } else if (a != 1) {
-            System.out.println("a");
+            System.identityHashCode("a");
         } else {
             /*ignore*/
         }
@@ -156,7 +156,7 @@ class NewClass {
         } else if (a != 1) {
             /*ignore*/
         } else {
-            System.out.println("a");
+            System.identityHashCode("a");
         }
         
         if (a == 1) {
@@ -191,21 +191,21 @@ class NewClass {
             int a = 1;
 
             if (a == 1) {
-                System.out.println("a");
+                System.identityHashCode("a");
             } else {} // warn
 
             if (a == 1) {
-                System.out.println("a");
+                System.identityHashCode("a");
             } else {/*ignore*/} // OK
 
             if (a == 1) {
                 /*ignore*/
             } else {
-                System.out.println("a");
+                System.identityHashCode("a");
             } // ok
             
             if (a == 1) {
-                System.out.println("a");
+                System.identityHashCode("a");
             } else if (a != 1) {
                 /*ignore*/
             } else {
@@ -215,7 +215,7 @@ class NewClass {
             if (a == 1) {
                 /*ignore*/
             } else if (a != 1) {
-                System.out.println("a");
+                System.identityHashCode("a");
             } else {
                 /*ignore*/
             }
@@ -225,7 +225,7 @@ class NewClass {
             } else if (a != 1) {
                 /*ignore*/
             } else {
-                System.out.println("a");
+                System.identityHashCode("a");
             }
             
             if (a == 1) {
@@ -260,21 +260,21 @@ class NewClass {
                 int a = 1;
 
                 if (a == 1) {
-                    System.out.println("a");
+                    System.identityHashCode("a");
                 } else {} // warn
 
                 if (a == 1) {
-                    System.out.println("a");
+                    System.identityHashCode("a");
                 } else {/*ignore*/} // OK
 
                 if (a == 1) {
                     /*ignore*/
                 } else {
-                    System.out.println("a");
+                    System.identityHashCode("a");
                 } // ok
                 
                 if (a == 1) {
-                    System.out.println("a");
+                    System.identityHashCode("a");
                 } else if (a != 1) {
                     /*ignore*/
                 } else {
@@ -284,7 +284,7 @@ class NewClass {
                 if (a == 1) {
                     /*ignore*/
                 } else if (a != 1) {
-                    System.out.println("a");
+                    System.identityHashCode("a");
                 } else {
                     /*ignore*/
                 }
@@ -294,7 +294,7 @@ class NewClass {
                 } else if (a != 1) {
                     /*ignore*/
                 } else {
-                    System.out.println("a");
+                    System.identityHashCode("a");
                 }
                 
                 if (a == 1) {

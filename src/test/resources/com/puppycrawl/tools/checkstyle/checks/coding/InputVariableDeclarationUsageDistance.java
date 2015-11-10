@@ -88,7 +88,7 @@ public class InputVariableDeclarationUsageDistance {
 
 		String ar[] = { "1", "2" };
 		for (String st : ar) {
-			System.out.println(st);
+			System.identityHashCode(st);
 		}
 	}
 
@@ -381,11 +381,11 @@ public class InputVariableDeclarationUsageDistance {
 		int filterCount = 0;
 		for (int i = 0; i < 10; i++, filterCount++) {
 			int abc = 0;
-			System.out.println(abc);
+			System.identityHashCode(abc);
 
 			for (int j = 0; j < 10; j++) {
 				abc = filterCount;
-				System.out.println(abc);
+				System.identityHashCode(abc);
 			}
 		}
 	}
@@ -482,7 +482,7 @@ public class InputVariableDeclarationUsageDistance {
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
-        System.out.println("message");
+        System.identityHashCode("message");
         myOption.setArgName("abc"); // distance=7
     }
     
@@ -504,15 +504,15 @@ public class InputVariableDeclarationUsageDistance {
         int count = 0;
         String[] files = {};
 
-        System.out.println("Data archivation started");
+        System.identityHashCode("Data archivation started");
         files.notify();
-        System.out.println("sss");
+        System.identityHashCode("sss");
 
         if (files == null || files.length == 0) {
-            System.out.println("No files on a remote site");
+            System.identityHashCode("No files on a remote site");
         }
         else {
-            System.out.println("Files on remote site: " + files.length);
+            System.identityHashCode("Files on remote site: " + files.length);
 
             for (String ftpFile : files) {
                 if (files.length == 0) {
@@ -523,7 +523,7 @@ public class InputVariableDeclarationUsageDistance {
             }
         }
 
-        System.out.println();
+        System.lineSeparator();
 
         return count;
     }
@@ -553,13 +553,13 @@ public class InputVariableDeclarationUsageDistance {
             else {
                 node = new TreeMapNode(label);
             }
-            System.out.println(id.toString() + node);
-            System.out.println(node.toString() + id);
+            System.identityHashCode(id.toString() + node);
+            System.identityHashCode(node.toString() + id);
             if (parentId == null || parentId == -1) { ///!!!!!!!
                 root = node;
             }
             else {
-                System.out.println(parentId.toString() +node);
+                System.identityHashCode(parentId.toString() +node);
             }
         }
         return root;
@@ -841,68 +841,68 @@ public class InputVariableDeclarationUsageDistance {
 class New {
     void a() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         while (true) {
-            System.out.println();
-            System.out.println(a);
+            System.lineSeparator();
+            System.identityHashCode(a);
         }
     }
     
     void b() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         do {
-            System.out.println();
-            System.out.println(a);
+            System.lineSeparator();
+            System.identityHashCode(a);
         } while (true);
     }
     
     void c() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         for (;;) {
-            System.out.println();
-            System.out.println(a);
+            System.lineSeparator();
+            System.identityHashCode(a);
         }
     }
     
     void d() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         for (int i: new int[]{1,2,3}) {
-            System.out.println();
-            System.out.println(a);
+            System.lineSeparator();
+            System.identityHashCode(a);
         }
     }
 
     void f() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         while (true)
-            System.out.println(a);
+            System.identityHashCode(a);
     }
     
     void h() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         while (true)
             while (true)
                 a++;
@@ -912,37 +912,37 @@ class New {
         int a = 1;
         switch (Math.max(1, 2)) {
         case 1:
-            System.out.println();
+            System.lineSeparator();
             break;
         case 2:
-            System.out.println();
+            System.lineSeparator();
             break;
         }
 
         switch (Math.max(1, 2)) {
         case 1:
-            System.out.println(a);
+            System.identityHashCode(a);
             break;
         case 2:
-            System.out.println(a);
+            System.identityHashCode(a);
             break;
         }
     }
     
     void k() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         while (true) {
-            System.out.println();
+            System.lineSeparator();
             if (true) {
-                System.out.println();
+                System.lineSeparator();
             } else if (true) {
-                System.out.println(a);
+                System.identityHashCode(a);
             } else {
-                System.out.println();
+                System.lineSeparator();
             }
         }
     }
@@ -954,10 +954,10 @@ class New {
             switch (hashCode()){}
             switch (Math.max(1, 2)) {
             case 1:
-                System.out.println(a);
+                System.identityHashCode(a);
                 break;
             case 2:
-                System.out.println(a);
+                System.identityHashCode(a);
                 break;
             }
         }
@@ -965,9 +965,9 @@ class New {
     
     void tryWithoutFinally() {
         int a = 1;
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.lineSeparator();
+        System.lineSeparator();
+        System.lineSeparator();
         try {
             a = 2;
         }

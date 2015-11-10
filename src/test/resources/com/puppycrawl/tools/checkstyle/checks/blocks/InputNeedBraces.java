@@ -32,7 +32,7 @@ public class InputNeedBraces
         }
         
         switch(1) {
-        case 1:  System.out.println();
+        case 1:  System.lineSeparator();
         case 2: { break;}
         
         case 3: { 
@@ -41,7 +41,7 @@ public class InputNeedBraces
         case 4: 
             break;
             
-        case 5:  System.out.println();
+        case 5:  System.lineSeparator();
             break;
         }
         

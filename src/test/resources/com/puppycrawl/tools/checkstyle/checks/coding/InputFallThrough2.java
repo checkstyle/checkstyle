@@ -26,7 +26,7 @@ public class InputFallThrough2 {
             case 0:
             case 1:
             case 2:
-                System.out.println(var2);
+                System.identityHashCode(var2);
                 break;
             case 3:
                 if (true) {
@@ -59,14 +59,14 @@ public class InputFallThrough2 {
                 }
             case 8:
                 if(var2 == 5) {
-                    System.out.println("0xB16B00B5");
+                    System.identityHashCode("0xB16B00B5");
                 }
                 else {
                     break;
                 }
             case 9:
                 if(var2 == 5) {
-                    System.out.println("0xCAFED00D");
+                    System.identityHashCode("0xCAFED00D");
                 }
                 else {
                     System.out.printf("0x4B1D");

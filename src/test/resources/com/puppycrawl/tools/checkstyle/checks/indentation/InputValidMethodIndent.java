@@ -140,14 +140,14 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
 
 
     void method6() { //indent:4 exp:4
-        System.out.println("methods are: " + Arrays.asList( //indent:8 exp:8
+        System.identityHashCode("methods are: " + Arrays.asList( //indent:8 exp:8
             new String[] {"method"}).toString()); //indent:12 exp:>=12
 
-        System.out.println("methods are: " + Arrays.asList( //indent:8 exp:8
+        System.identityHashCode("methods are: " + Arrays.asList( //indent:8 exp:8
             new String[] {"method"} //indent:12 exp:>=12
         ).toString()); //indent:8 exp:8
 
-        System.out.println("methods are: " + Arrays.asList( //indent:8 exp:8
+        System.identityHashCode("methods are: " + Arrays.asList( //indent:8 exp:8
             new String[] {"method"}).toString() //indent:12 exp:>=12
         ); //indent:8 exp:8
 
@@ -158,11 +158,11 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
         myfunc2(3, 4, method2(3, 4, 5, 6) + 5,  //indent:8 exp:8
             6, 7, 8, 9); //indent:12 exp:>=12
 
-        System.out.println("methods are: " +  //indent:8 exp:8
+        System.identityHashCode("methods are: " +  //indent:8 exp:8
             Arrays.asList( //indent:12 exp:>=12
                 new String[] {"method"}).toString()); //indent:16 exp:>=16
 
-        System.out.println("methods are: "  //indent:8 exp:8
+        System.identityHashCode("methods are: "  //indent:8 exp:8
             + Arrays.asList( //indent:12 exp:>=12
                 new String[] {"method"}).toString()); //indent:16 exp:>=16
 
@@ -170,11 +170,11 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
         String blah = (String) System.getProperty( //indent:8 exp:8
             new String("type")); //indent:12 exp:>=12
 
-        System.out.println(method1() + "mytext"  //indent:8 exp:8
+        System.identityHashCode(method1() + "mytext"  //indent:8 exp:8
             + " at indentation level not at correct indentation, "  //indent:12 exp:>=12
             + method1()); //indent:12 exp:>=12
 
-        System.out.println( //indent:8 exp:8
+        System.identityHashCode( //indent:8 exp:8
             method1() + "mytext"  //indent:12 exp:>=12
                 + " at indentation level not at correct indentation, "  //indent:16 exp:>=12
                 + method1()); //indent:16 exp:>=12

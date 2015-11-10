@@ -8,7 +8,7 @@ public class InputInnerClass {
 
 		class InnerInMethod1 {
 			void methodTest1() {
-				System.out.println("test1");
+				System.identityHashCode("test1");
 			}
 		}
 
@@ -42,7 +42,7 @@ public class InputInnerClass {
 	}
 
 	void methodTest2() { //error
-		System.out.println("test2");
+		System.identityHashCode("test2");
 	}
 }
 
@@ -63,7 +63,7 @@ class Temp2 {
 	}
 
 	void methodTest2() { //error
-		System.out.println("test2");
+		System.identityHashCode("test2");
 	}
 
 	private int i = 0; //error

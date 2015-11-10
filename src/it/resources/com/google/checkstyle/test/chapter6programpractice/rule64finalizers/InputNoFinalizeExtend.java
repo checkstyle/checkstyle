@@ -113,7 +113,7 @@ class WithAnonymousClass {
         Ball b = new Ball() {
             
             public void hit() {
-                System.out.println("You hit it!");
+                System.identityHashCode("You hit it!");
             }
 
             protected void finalize() { //warn

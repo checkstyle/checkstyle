@@ -30,7 +30,7 @@ public class InputInvalidSwitchIndent { //indent:0 exp:0
       switch (s) { //indent:6 exp:8 warn
 
           case 4: //indent:10 exp:12 warn
-              System.out.println(""); //indent:14 exp:16 warn
+              System.identityHashCode(""); //indent:14 exp:16 warn
                 break; //indent:16 exp:16
 
             case CONST: //indent:12 exp:12
@@ -41,7 +41,7 @@ public class InputInvalidSwitchIndent { //indent:0 exp:0
                 break; //indent:16 exp:16
 
           default: //indent:10 exp:12 warn
-              System.out.println(""); //indent:14 exp:16 warn
+              System.identityHashCode(""); //indent:14 exp:16 warn
               break; //indent:14 exp:16 warn
         } //indent:8 exp:8
 
@@ -50,21 +50,21 @@ public class InputInvalidSwitchIndent { //indent:0 exp:0
         switch (s) { //indent:8 exp:8
 
             case 4: { //indent:12 exp:12
-              System.out.println(""); //indent:14 exp:16 warn
+              System.identityHashCode(""); //indent:14 exp:16 warn
                   break; //indent:18 exp:16 warn
           } //indent:10 exp:12 warn
 
             case CONST2: //indent:12 exp:12
             case CONST3: //indent:12 exp:12
           { //indent:10 exp:12 warn
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
               } //indent:14 exp:12 warn
 
 
             case 22: //indent:12 exp:12
               { //indent:14 exp:12 warn
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
           } //indent:10 exp:12 warn
         } //indent:8 exp:8
@@ -80,7 +80,7 @@ public class InputInvalidSwitchIndent { //indent:0 exp:0
             case //indent:12 exp:12
               CONST3: //indent:14 exp:16 warn
             { //indent:12 exp:12
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
             } //indent:12 exp:12
         } //indent:8 exp:8

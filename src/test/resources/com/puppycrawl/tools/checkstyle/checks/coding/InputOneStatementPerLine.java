@@ -85,7 +85,7 @@ public class InputOneStatementPerLine {
   public void doLegalString() {
     one = 1;
     two = 2;
-    System.out.println("one = 1; two = 2");
+    System.identityHashCode("one = 1; two = 2");
   }
 
   /**

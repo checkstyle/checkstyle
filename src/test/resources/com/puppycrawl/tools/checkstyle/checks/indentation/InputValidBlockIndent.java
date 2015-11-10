@@ -152,7 +152,7 @@ class bug1260079 //indent:0 exp:0
         { //indent:8 exp:8
             public void run() //indent:12 exp:12
             { //indent:12 exp:12
-                System.out.println("ran"); //indent:16 exp:16
+                System.identityHashCode("ran"); //indent:16 exp:16
             } //indent:12 exp:12
         }.start(); //indent:8 exp:8
     } //indent:4 exp:4

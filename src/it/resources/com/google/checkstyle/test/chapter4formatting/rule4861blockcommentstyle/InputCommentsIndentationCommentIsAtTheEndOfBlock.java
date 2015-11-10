@@ -145,7 +145,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         for (int i = 0; i < 5; i++) {
         org.junit.Assert.assertEquals(expected.get(i), array[i]);
         }
-        String s = String.format("The array element "
+        String s = String.format(java.util.Locale.ENGLISH, "The array element "
                + "immediately following the end of the collection should be nulled",
             array[1]);
         // the above example was taken from hibernate-orm and was modified a bit
@@ -158,7 +158,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         for (int i = 0; i < 5; i++) {
             org.junit.Assert.assertEquals(expected.get(i), array[i]);
         }
-        String s = String.format("The array element "
+        String s = String.format(java.util.Locale.ENGLISH, "The array element "
                 + "immediately following the end of the collection should be nulled",
             array[1]);
                                  // warn
@@ -175,13 +175,13 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public String foo25() {
-        return String.format("%d",
+        return String.format(java.util.Locale.ENGLISH, "%d",
             1);
         // comment
     }
 
     public String foo26() {
-        return String.format("%d",
+        return String.format(java.util.Locale.ENGLISH, "%d",
             1);
                                   // warn
     }
@@ -196,14 +196,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public String foo28() {
         int a = 5;
-        return String.format("%d",
+        return String.format(java.util.Locale.ENGLISH, "%d",
             1);
         // comment
     }
 
     public String foo29() {
         int a = 5;
-        return String.format("%d",
+        return String.format(java.util.Locale.ENGLISH, "%d",
             1);
                           // warn
     }

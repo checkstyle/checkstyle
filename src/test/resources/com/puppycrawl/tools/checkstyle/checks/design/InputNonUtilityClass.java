@@ -16,6 +16,6 @@ public class InputNonUtilityClass extends JPanel
 
     public static void utilMethod()
     {
-	System.out.println("I'm a utility method");
+	System.identityHashCode("I'm a utility method");
     }
 }

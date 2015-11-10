@@ -22,21 +22,21 @@ public class InputInvalidLabelIndent { //indent:0 exp:0
 
         while (test) { //indent:8 exp:8
           label: //indent:10 exp:8,12 warn
-            System.out.println("label test"); //indent:12 exp:12
+            System.identityHashCode("label test"); //indent:12 exp:12
 
             if (test) { //indent:12 exp:12
                 unusedLabel: //indent:16 exp:16
-                System.out.println("more testing"); //indent:16 exp:16
+                System.identityHashCode("more testing"); //indent:16 exp:16
             } //indent:12 exp:12
 
         } //indent:8 exp:8
   label2: //indent:2 exp:4,8 warn
-        System.out.println("toplevel"); //indent:8 exp:8
+        System.identityHashCode("toplevel"); //indent:8 exp:8
     label3: //indent:4 exp:4
-                  System.out.println("toplevel"); //indent:18 exp:8,12 warn
-                  System.out.println("toplevel"); //indent:18 exp:8 warn
+                  System.identityHashCode("toplevel"); //indent:18 exp:8,12 warn
+                  System.identityHashCode("toplevel"); //indent:18 exp:8 warn
     label4: //indent:4 exp:4
-      System.out.println("toplevel"); //indent:6 exp:8,12 warn
+      System.identityHashCode("toplevel"); //indent:6 exp:8,12 warn
     label5: //indent:4 exp:4
       System //indent:6 exp:8,12 warn
             .out. //indent:12 exp:>=10

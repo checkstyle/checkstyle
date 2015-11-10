@@ -75,12 +75,12 @@ class InputRightCurlyOther
     {
         boolean flag = true;
         if (flag) {
-            System.out.println("heh");
-            flag = !flag; } System.err.
-              println("Xe-xe");
+            System.identityHashCode("heh");
+            flag = !flag; } System.
+              identityHashCode("Xe-xe");
         
        
-        if (flag) { System.err.println("some foo"); }
+        if (flag) { System.identityHashCode("some foo"); }
     } //ok
 } //ok
 

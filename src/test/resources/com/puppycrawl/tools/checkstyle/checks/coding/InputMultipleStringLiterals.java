@@ -11,7 +11,7 @@ public class InputMultipleStringLiterals
 
     void method1() {
         String a1 = "StringContents";
-        System.out.println("StringContents");
+        System.identityHashCode("StringContents");
         // The following is not reported, since it is two string literals.
         String a2 = "String" + "Contents";
     }

@@ -21,7 +21,7 @@ public abstract class InputDesignForExtension
     {
         protected void finalThroughClassDef()
         {
-            System.out.println("no way to override");
+            System.identityHashCode("no way to override");
         }
     }
 
@@ -36,7 +36,7 @@ public abstract class InputDesignForExtension
 
     private void aPrivateMethod()
     {
-        System.out.println("no way to override");
+        System.identityHashCode("no way to override");
     }
 
     protected abstract void nonFinalButAbstract();
@@ -45,7 +45,7 @@ public abstract class InputDesignForExtension
 
     protected void doh()
     {
-        System.out.println("nonempty and overriding possible");
+        System.identityHashCode("nonempty and overriding possible");
     }
 
     // has a potentially complex implementation in native code.
@@ -55,12 +55,12 @@ public abstract class InputDesignForExtension
     
     public final void aFinalMethod()
     {
-    	System.out.println("no way to override");
+    	System.identityHashCode("no way to override");
     }
     
     public static void aStaticMethod()
     {
-    	System.out.println("no way to override");
+    	System.identityHashCode("no way to override");
     }
 
     // tries to trigger bug #884035
@@ -84,7 +84,7 @@ public abstract class InputDesignForExtension
     {
         public void someMethod()
         {
-        	System.out.println("nonempty and overriding is possible");
+        	System.identityHashCode("nonempty and overriding is possible");
         }
     }
     
@@ -94,7 +94,7 @@ public abstract class InputDesignForExtension
     	private nonFinalClass(){}    	
         public void someMethod()
         {
-        	System.out.println("nonempty and overriding is possible");
+        	System.identityHashCode("nonempty and overriding is possible");
         }
     }
     
@@ -104,7 +104,7 @@ public abstract class InputDesignForExtension
     	public anotherNonFinalClass(){}    	
         public void someMethod()
         {
-        	System.out.println("nonempty and overriding is possible");
+        	System.identityHashCode("nonempty and overriding is possible");
         }
     }
     
