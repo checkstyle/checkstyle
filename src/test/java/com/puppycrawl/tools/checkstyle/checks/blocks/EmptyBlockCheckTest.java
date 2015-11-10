@@ -26,10 +26,12 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class EmptyBlockCheckTest
     extends BaseCheckTestSupport {
@@ -134,5 +136,14 @@ public class EmptyBlockCheckTest
             "23:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
         };
         verify(checkConfig, getPath("InputSemantic2.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }

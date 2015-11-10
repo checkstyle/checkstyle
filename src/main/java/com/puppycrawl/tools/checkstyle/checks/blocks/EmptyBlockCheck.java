@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 
 /**
  * Checks for empty blocks. The policy to verify is specified using the {@link
@@ -63,7 +66,7 @@ import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
  * @author Lars Kühne
  */
 public class EmptyBlockCheck
-    extends AbstractOptionCheck<BlockOption> {
+    extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -76,11 +79,21 @@ public class EmptyBlockCheck
      */
     public static final String MSG_KEY_BLOCK_EMPTY = "block.empty";
 
+    /** The policy to enforce. */
+    private BlockOption option = BlockOption.STMT;
+
     /**
-     * Creates a new {@code EmptyBlockCheck} instance.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    public EmptyBlockCheck() {
-        super(BlockOption.STMT, BlockOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 
     @Override
@@ -139,7 +152,7 @@ public class EmptyBlockCheck
         }
 
         if (leftCurly != null) {
-            if (getAbstractOption() == BlockOption.STMT) {
+            if (option == BlockOption.STMT) {
                 boolean emptyBlock;
                 if (leftCurly.getType() == TokenTypes.LCURLY) {
                     emptyBlock = leftCurly.getNextSibling().getType() != TokenTypes.CASE_GROUP;
