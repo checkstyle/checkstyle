@@ -34,6 +34,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class LeftCurlyCheckTest extends BaseCheckTestSupport {
@@ -329,5 +330,13 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             "72:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
         };
         verify(checkConfig, getPath("InputScopeInnerInterfaces2.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }
 }

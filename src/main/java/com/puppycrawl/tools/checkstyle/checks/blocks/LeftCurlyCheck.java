@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -76,7 +79,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author maxvetrenko
  */
 public class LeftCurlyCheck
-    extends AbstractOptionCheck<LeftCurlyOption> {
+    extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -101,11 +104,21 @@ public class LeftCurlyCheck
     /** If true, Check will ignore enums. */
     private boolean ignoreEnums = true;
 
+    /** The policy to enforce. */
+    private LeftCurlyOption option = LeftCurlyOption.EOL;
+
     /**
-     * Creates a default instance and sets the policy to EOL.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    public LeftCurlyCheck() {
-        super(LeftCurlyOption.EOL, LeftCurlyOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 
     /**
@@ -307,12 +320,12 @@ public class LeftCurlyCheck
         // Check for being told to ignore, or have '{}' which is a special case
         if (braceLine.length() <= brace.getColumnNo() + 1
                 || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
-            if (getAbstractOption() == LeftCurlyOption.NL) {
+            if (option == LeftCurlyOption.NL) {
                 if (!CommonUtils.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                     log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
                 }
             }
-            else if (getAbstractOption() == LeftCurlyOption.EOL) {
+            else if (option == LeftCurlyOption.EOL) {
 
                 validateEol(brace, braceLine);
             }
