@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -65,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 
 public class MethodParamPadCheck
-    extends AbstractOptionCheck<PadOption> {
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -91,12 +94,8 @@ public class MethodParamPadCheck
      */
     private boolean allowLineBreaks;
 
-    /**
-     * Sets the pad option to nospace.
-     */
-    public MethodParamPadCheck() {
-        super(PadOption.NOSPACE, PadOption.class);
-    }
+    /** The policy to enforce. */
+    private PadOption option = PadOption.NOSPACE;
 
     @Override
     public int[] getDefaultTokens() {
@@ -141,11 +140,11 @@ public class MethodParamPadCheck
         }
         else {
             final int before = parenAST.getColumnNo() - 1;
-            if (getAbstractOption() == PadOption.NOSPACE
+            if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))) {
                 log(parenAST, WS_PRECEDED, parenAST.getText());
             }
-            else if (getAbstractOption() == PadOption.SPACE
+            else if (option == PadOption.SPACE
                      && !Character.isWhitespace(line.charAt(before))) {
                 log(parenAST, WS_NOT_PRECEDED, parenAST.getText());
             }
@@ -159,5 +158,19 @@ public class MethodParamPadCheck
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
+    }
+
+    /**
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
+     */
+    public void setOption(String optionStr) {
+        try {
+            option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 }
