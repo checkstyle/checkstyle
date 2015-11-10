@@ -19,8 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -31,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Oliver Burn
  */
 abstract class AbstractParenPadCheck
-    extends AbstractOptionCheck<PadOption> {
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -63,11 +67,21 @@ abstract class AbstractParenPadCheck
     /** Close parenthesis literal. */
     private static final char CLOSE_PARENTHESIS = ')';
 
+    /** The policy to enforce. */
+    private PadOption option = PadOption.NOSPACE;
+
     /**
-     * Sets the paren pad option to nospace.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    AbstractParenPadCheck() {
-        super(PadOption.NOSPACE, PadOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 
     /**
@@ -78,11 +92,11 @@ abstract class AbstractParenPadCheck
         final String line = getLines()[ast.getLineNo() - 1];
         final int after = ast.getColumnNo() + 1;
         if (after < line.length()) {
-            if (getAbstractOption() == PadOption.NOSPACE
+            if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(after))) {
                 log(ast.getLineNo(), after, WS_FOLLOWED, OPEN_PARENTHESIS);
             }
-            else if (getAbstractOption() == PadOption.SPACE
+            else if (option == PadOption.SPACE
                      && !Character.isWhitespace(line.charAt(after))
                      && line.charAt(after) != CLOSE_PARENTHESIS) {
                 log(ast.getLineNo(), after, WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
@@ -98,12 +112,12 @@ abstract class AbstractParenPadCheck
         final String line = getLines()[ast.getLineNo() - 1];
         final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
-            if (getAbstractOption() == PadOption.NOSPACE
+            if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))
                 && !CommonUtils.hasWhitespaceBefore(before, line)) {
                 log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_PARENTHESIS);
             }
-            else if (getAbstractOption() == PadOption.SPACE
+            else if (option == PadOption.SPACE
                 && !Character.isWhitespace(line.charAt(before))
                 && line.charAt(before) != OPEN_PARENTHESIS) {
                 log(ast.getLineNo(), ast.getColumnNo(),

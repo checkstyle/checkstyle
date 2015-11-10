@@ -32,6 +32,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class ParenPadCheckTest
     extends BaseCheckTestSupport {
@@ -237,6 +238,15 @@ public class ParenPadCheckTest
             "115:53: " + getCheckMessage(WS_PRECEDED, ")"),
             "115:55: " + getCheckMessage(WS_PRECEDED, ")"),
         };
+        verify(checkConfig, getPath("InputParenPad.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ParenPadCheck.class);
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
         verify(checkConfig, getPath("InputParenPad.java"), expected);
     }
 }
