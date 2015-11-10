@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.beanutils.ConversionException;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -175,7 +178,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public class ImportOrderCheck
-    extends AbstractOptionCheck<ImportOrderOption> {
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -217,11 +220,31 @@ public class ImportOrderCheck
     /** Whether static imports should be sorted alphabetically or not. */
     private boolean sortStaticImportsAlphabetically;
 
+    /** The policy to enforce. */
+    private ImportOrderOption option = ImportOrderOption.UNDER;
+
     /**
-     * Groups static imports under each group.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    public ImportOrderCheck() {
-        super(ImportOrderOption.UNDER, ImportOrderOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = ImportOrderOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
+    }
+
+    /**
+     * Gets option set.
+     * @return the {@code option} set
+     */
+    public ImportOrderOption getAbstractOption() {
+        // WARNING!! Do not rename this method to getOption(). It breaks
+        // BeanUtils, which will silently not call setOption. Very annoying!
+        return option;
     }
 
     /**
