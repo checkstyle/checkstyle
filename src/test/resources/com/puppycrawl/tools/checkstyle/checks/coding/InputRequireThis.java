@@ -106,3 +106,19 @@ class Issue257 {
         }
     }
 }
+
+class Issue2240 {
+    int i;
+    void foo() {
+        i++;
+        i++; int i = 1; i++;
+        instanceMethod();
+    }
+    void instanceMethod() {};
+
+    class Nested {
+        void bar() {
+            instanceMethod();
+        }
+    }
+}

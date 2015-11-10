@@ -204,7 +204,7 @@ public class RequireThisCheck extends Check {
                 break;
             case TokenTypes.METHOD_CALL:
                 // let's check method calls
-                if (checkMethods && isClassMethod(ast.getText())) {
+                if (checkMethods && isClassMethod(ast)) {
                     log(ast, MSG_METHOD, ast.getText());
                 }
                 break;
@@ -231,13 +231,9 @@ public class RequireThisCheck extends Check {
         if (!importOrPackage
                 && !methodNameInMethodCall
                 && !typeName
-                && !isDeclarationToken(parentType)) {
-
-            final String name = ast.getText();
-
-            if (isClassField(name)) {
-                log(ast, MSG_VARIABLE, name);
-            }
+                && !isDeclarationToken(parentType)
+                && isClassField(ast)) {
+            log(ast, MSG_VARIABLE, ast.getText());
         }
     }
 
@@ -255,30 +251,30 @@ public class RequireThisCheck extends Check {
                 collectVariableDeclarations(ast, frame);
                 break;
             case TokenTypes.PARAMETER_DEF :
-                final DetailAST parameterAST = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addName(parameterAST.getText());
+                final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addIdent(parameterIdent);
                 break;
             case TokenTypes.CLASS_DEF :
             case TokenTypes.INTERFACE_DEF :
             case TokenTypes.ENUM_DEF :
             case TokenTypes.ANNOTATION_DEF :
-                final DetailAST classAST = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addName(classAST.getText());
+                final DetailAST classIdent = ast.findFirstToken(TokenTypes.IDENT);
+                frame.addIdent(classIdent);
                 frameStack.addFirst(new ClassFrame(frame));
                 break;
             case TokenTypes.SLIST :
                 frameStack.addFirst(new BlockFrame(frame));
                 break;
             case TokenTypes.METHOD_DEF :
-                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+                final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
                 if (frame instanceof ClassFrame) {
                     final DetailAST mods =
                             ast.findFirstToken(TokenTypes.MODIFIERS);
                     if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                        ((ClassFrame) frame).addStaticMethod(name);
+                        ((ClassFrame) frame).addStaticMethod(ident);
                     }
                     else {
-                        ((ClassFrame) frame).addInstanceMethod(name);
+                        ((ClassFrame) frame).addInstanceMethod(ident);
                     }
                 }
                 frameStack.addFirst(new MethodFrame(frame));
@@ -297,21 +293,21 @@ public class RequireThisCheck extends Check {
      * @param frame current frame
      */
     private static void collectVariableDeclarations(DetailAST ast, LexicalFrame frame) {
-        final String name =
-                ast.findFirstToken(TokenTypes.IDENT).getText();
+        final DetailAST ident =
+                ast.findFirstToken(TokenTypes.IDENT);
         if (frame instanceof ClassFrame) {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtils.isInInterfaceBlock(ast)
                     || mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                ((ClassFrame) frame).addStaticMember(name);
+                ((ClassFrame) frame).addStaticMember(ident);
             }
             else {
-                ((ClassFrame) frame).addInstanceMember(name);
+                ((ClassFrame) frame).addInstanceMember(ident);
             }
         }
         else {
-            frame.addName(name);
+            frame.addIdent(ident);
         }
     }
 
@@ -340,37 +336,38 @@ public class RequireThisCheck extends Check {
 
     /**
      * Check if given name is a name for class field in current environment.
-     * @param name a name to check
+     * @param ident an IDENT ast to check
      * @return true is the given name is name of member.
      */
-    protected final boolean isClassField(String name) {
-        final LexicalFrame frame = findFrame(name);
+    protected final boolean isClassField(DetailAST ident) {
+        final LexicalFrame frame = findFrame(ident, false);
         return frame instanceof ClassFrame
-                && ((ClassFrame) frame).hasInstanceMember(name);
+                && ((ClassFrame) frame).hasInstanceMember(ident);
     }
 
     /**
      * Check if given name is a name for class method in current environment.
-     * @param name a name to check
+     * @param ident the IDENT ast of the name to check
      * @return true is the given name is name of method.
      */
-    protected final boolean isClassMethod(String name) {
-        final LexicalFrame frame = findFrame(name);
+    protected final boolean isClassMethod(DetailAST ident) {
+        final LexicalFrame frame = findFrame(ident, true);
         return frame instanceof ClassFrame
-                && ((ClassFrame) frame).hasInstanceMethod(name);
+                && ((ClassFrame) frame).hasInstanceMethod(ident);
     }
 
     /**
      * Find frame containing declaration.
-     * @param name name of the declaration to find
-     * @return LexicalFrame containing declaration or null
+     * @param name IDENT ast of the declaration to find.
+     * @param lookForMethod whether we are looking for a method name.
+     * @return LexicalFrame containing declaration or null.
      */
-    private LexicalFrame findFrame(String name) {
+    private LexicalFrame findFrame(DetailAST name, boolean lookForMethod) {
         if (current == null) {
             return null;
         }
         else {
-            return current.getIfContains(name);
+            return current.getIfContains(name, lookForMethod);
         }
     }
 
@@ -389,7 +386,8 @@ public class RequireThisCheck extends Check {
      */
     private static class LexicalFrame {
         /** Set of name of variables declared in this frame. */
-        private final Set<String> varNames;
+        private final Set<DetailAST> varIdents;
+
         /**
          * Parent frame.
          */
@@ -402,38 +400,92 @@ public class RequireThisCheck extends Check {
          */
         protected LexicalFrame(LexicalFrame parent) {
             this.parent = parent;
-            varNames = Sets.newHashSet();
+            varIdents = Sets.newHashSet();
         }
 
-        /** Add a name to the frame.
-         * @param nameToAdd the name we're adding
+        /**
+         * Add a name to the frame.
+         * @param identToAdd the name we're adding
          */
-        private void addName(String nameToAdd) {
-            varNames.add(nameToAdd);
+        private void addIdent(DetailAST identToAdd) {
+            varIdents.add(identToAdd);
         }
 
-        /** Check whether the frame contains a given name.
-         * @param nameToFind the name we're looking for
-         * @return whether it was found
-         */
-        boolean contains(String nameToFind) {
-            return varNames.contains(nameToFind);
+        protected LexicalFrame getParent() {
+            return parent;
         }
 
         /** Check whether the frame contains a given name.
-         * @param nameToFind the name we're looking for
+         * @param nameToFind the IDENT ast of the name we're looking for
          * @return whether it was found
          */
-        private LexicalFrame getIfContains(String nameToFind) {
+        boolean contains(DetailAST nameToFind) {
+            return containsName(varIdents, nameToFind);
+        }
+
+        /** Check whether the frame contains a given name.
+         * @param nameToFind IDENT ast of the name we're looking for.
+         * @param lookForMethod whether we are looking for a method name.
+         * @return whether it was found.
+         */
+        protected LexicalFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
             LexicalFrame frame = null;
 
-            if (contains(nameToFind)) {
+            if (!lookForMethod
+                && contains(nameToFind)) {
                 frame = this;
             }
             else if (parent != null) {
-                frame = parent.getIfContains(nameToFind);
+                frame = parent.getIfContains(nameToFind, lookForMethod);
             }
             return frame;
+        }
+
+        /**
+         * Whether the set contains a declaration with the text of the specified
+         * IDENT ast and it is declared in a proper position.
+         * @param set the set of declarations.
+         * @param ident the specified IDENT ast
+         * @return true if the set contains a declaration with the text of the specified
+         *         IDENT ast and it is declared in a proper position.
+         */
+        protected boolean containsName(Set<DetailAST> set, DetailAST ident) {
+            boolean result = false;
+            for (DetailAST ast: set) {
+                if (isProperDefinition(ident, ast)) {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Whether the definition is correspondent to the IDENT.
+         * @param ident the IDENT ast to check.
+         * @param ast the IDENT ast of the definition to check.
+         * @return true if ast is correspondent to ident.
+         */
+        protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+            final String nameToFind = ident.getText();
+            return nameToFind.equals(ast.getText())
+                && checkPosition(ast, ident);
+        }
+
+        /**
+         * Whether the declaration is located before the checked ast.
+         * @param ast1 the IDENT ast of the declaration.
+         * @param ast2 the IDENT ast to check.
+         * @return true, if the declaration is located before the checked ast.
+         */
+        private static boolean checkPosition(DetailAST ast1, DetailAST ast2) {
+            boolean result = false;
+            if (ast1.getLineNo() < ast2.getLineNo()
+                || ast1.getLineNo() == ast2.getLineNo()
+                && ast1.getColumnNo() < ast2.getColumnNo()) {
+                result = true;
+            }
+            return result;
         }
     }
 
@@ -472,14 +524,14 @@ public class RequireThisCheck extends Check {
      * @author Stephen Bloch
      */
     private static class ClassFrame extends LexicalFrame {
-        /** Set of name of instance members declared in this frame. */
-        private final Set<String> instanceMembers;
-        /** Set of name of instance methods declared in this frame. */
-        private final Set<String> instanceMethods;
-        /** Set of name of variables declared in this frame. */
-        private final Set<String> staticMembers;
-        /** Set of name of static methods declared in this frame. */
-        private final Set<String> staticMethods;
+        /** Set of idents of instance members declared in this frame. */
+        private final Set<DetailAST> instanceMembers;
+        /** Set of idents of instance methods declared in this frame. */
+        private final Set<DetailAST> instanceMethods;
+        /** Set of idents of variables declared in this frame. */
+        private final Set<DetailAST> staticMembers;
+        /** Set of idents of static methods declared in this frame. */
+        private final Set<DetailAST> staticMethods;
 
         /**
          * Creates new instance of ClassFrame.
@@ -494,64 +546,83 @@ public class RequireThisCheck extends Check {
         }
 
         /**
-         * Adds static member's name.
-         * @param name a name of static member of the class
+         * Adds static member's ident.
+         * @param ident an ident of static member of the class
          */
-        public void addStaticMember(final String name) {
-            staticMembers.add(name);
+        public void addStaticMember(final DetailAST ident) {
+            staticMembers.add(ident);
         }
 
         /**
          * Adds static method's name.
-         * @param name a name of static method of the class
+         * @param ident an ident of static method of the class
          */
-        public void addStaticMethod(final String name) {
-            staticMethods.add(name);
+        public void addStaticMethod(final DetailAST ident) {
+            staticMethods.add(ident);
         }
 
         /**
-         * Adds instance member's name.
-         * @param name a name of instance member of the class
+         * Adds instance member's ident.
+         * @param ident an ident of instance member of the class
          */
-        public void addInstanceMember(final String name) {
-            instanceMembers.add(name);
+        public void addInstanceMember(final DetailAST ident) {
+            instanceMembers.add(ident);
         }
 
         /**
          * Adds instance method's name.
-         * @param name a name of instance method of the class
+         * @param ident an ident of instance method of the class
          */
-        public void addInstanceMethod(final String name) {
-            instanceMethods.add(name);
+        public void addInstanceMethod(final DetailAST ident) {
+            instanceMethods.add(ident);
         }
 
         /**
          * Checks if a given name is a known instance member of the class.
-         * @param name a name to check
+         * @param ident the IDENT ast of the name to check
          * @return true is the given name is a name of a known
          *         instance member of the class
          */
-        public boolean hasInstanceMember(final String name) {
-            return instanceMembers.contains(name);
+        public boolean hasInstanceMember(final DetailAST ident) {
+            return containsName(instanceMembers, ident);
         }
 
         /**
          * Checks if a given name is a known instance method of the class.
-         * @param name a name to check
+         * @param ident the IDENT ast of the name to check
          * @return true is the given name is a name of a known
          *         instance method of the class
          */
-        public boolean hasInstanceMethod(final String name) {
-            return instanceMethods.contains(name);
+        public boolean hasInstanceMethod(final DetailAST ident) {
+            return containsName(instanceMethods, ident);
         }
 
         @Override
-        boolean contains(String nameToFind) {
+        boolean contains(DetailAST nameToFind) {
             return super.contains(nameToFind)
-                    || instanceMembers.contains(nameToFind)
-                    || instanceMethods.contains(nameToFind)
-                    || staticMembers.contains(nameToFind)
-                    || staticMethods.contains(nameToFind);
+                    || containsName(instanceMembers, nameToFind)
+                    || containsName(instanceMethods, nameToFind)
+                    || containsName(staticMembers, nameToFind)
+                    || containsName(staticMethods, nameToFind);
+        }
+
+        @Override
+        protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+            final String nameToFind = ident.getText();
+            return nameToFind.equals(ast.getText());
+        }
+
+        @Override
+        protected LexicalFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+            LexicalFrame frame;
+
+            if (contains(nameToFind)) {
+                frame = this;
+            }
+            else {
+                frame = getParent().getIfContains(nameToFind, lookForMethod);
+            }
+            return frame;
         }
     }
 
