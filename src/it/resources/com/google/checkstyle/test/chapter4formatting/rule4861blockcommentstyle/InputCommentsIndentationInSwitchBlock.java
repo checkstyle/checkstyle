@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
-public class CommentsIndentationInSwitchBlockInput {
+public class InputCommentsIndentationInSwitchBlock {
 
     private static void fooSwitch() {
         switch("") {

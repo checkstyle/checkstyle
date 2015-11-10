@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
-class GenericWhitespaceInput implements Comparable<GenericWhitespaceInput>, Serializable
+class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Serializable
 {
     void meth()
     {
@@ -17,7 +17,7 @@ class GenericWhitespaceInput implements Comparable<GenericWhitespaceInput>, Seri
         List < List < Integer > > b = new ArrayList < List < Integer > > (); // warn
     }
 
-    public int compareTo(GenericWhitespaceInput aObject)
+    public int compareTo(InputGenericWhitespace aObject)
     {
         return 0;
     }
@@ -43,11 +43,11 @@ class GenericWhitespaceInput implements Comparable<GenericWhitespaceInput>, Seri
         return 666;
     }
     
-    <T> GenericWhitespaceInput(List<T> things, int i)
+    <T> InputGenericWhitespace(List<T> things, int i)
     {
     }
 
-    public <T> GenericWhitespaceInput(List<T> things)
+    public <T> InputGenericWhitespace(List<T> things)
     {
     }
 

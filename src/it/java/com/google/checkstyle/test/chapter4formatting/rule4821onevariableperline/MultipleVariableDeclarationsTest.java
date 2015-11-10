@@ -70,7 +70,7 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("MultipleVariableDeclarations");
-        final String filePath = builder.getFilePath("MultipleVariableDeclarationsInput");
+        final String filePath = builder.getFilePath("InputMultipleVariableDeclarations");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

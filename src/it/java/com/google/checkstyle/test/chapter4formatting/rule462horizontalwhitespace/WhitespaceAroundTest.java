@@ -68,7 +68,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
             "150:20: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ":"),
         };
 
-        final String filePath = builder.getFilePath("WhitespaceAroundInput_Basic");
+        final String filePath = builder.getFilePath("InputWhitespaceAroundBasic");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -80,7 +80,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
-        final String filePath = builder.getFilePath("WhitespaceAroundInput_EmptyTypesAndCycles");
+        final String filePath = builder.getFilePath("InputWhitespaceAroundEmptyTypesAndCycles");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

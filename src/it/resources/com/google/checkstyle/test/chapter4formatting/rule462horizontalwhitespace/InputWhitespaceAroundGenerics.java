@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 import java.util.Collection;
 import java.util.Map;
 
-public class WhitespaceAroundInput_Generics
+public class InputWhitespaceAroundGenerics
 {
     
 }

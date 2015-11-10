@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4843defaultcasepresent;
 
-public class MissingSwitchDefaultInput {
+public class InputMissingSwitchDefault {
     public void foo() {
         int i = 1;
         switch (i) {

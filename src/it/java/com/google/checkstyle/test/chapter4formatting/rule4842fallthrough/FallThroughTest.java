@@ -58,7 +58,7 @@ public class FallThroughTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("FallThrough");
-        final String filePath = builder.getFilePath("FallThroughInput");
+        final String filePath = builder.getFilePath("InputFallThrough");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

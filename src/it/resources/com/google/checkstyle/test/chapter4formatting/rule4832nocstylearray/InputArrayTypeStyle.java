@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4832nocstylearray;
 /**
  * Test case for ArrayTypeStyle (Java vs C)
  **/
-public class ArrayTypeStyleInput
+public class InputArrayTypeStyle
 {
     private int[] javaStyle = new int[0];
     private int cStyle[] = new int[0]; //warn
