@@ -31,10 +31,13 @@ import com.puppycrawl.tools.checkstyle.api.Check;
  * representation to the {@link Enum} is to {@link String#trim()} the string
  * and convert using {@link String#toUpperCase()} and then look up using
  * {@link Enum#valueOf}.
+ * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
  * @author Oliver Burn
  * @author Rick Giles
  * @param <T> the type of the option.
+ * @noinspection AbstractClassNeverImplemented
  */
+@Deprecated
 public abstract class AbstractOptionCheck<T extends Enum<T>>
     extends Check {
 
