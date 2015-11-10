@@ -20,25 +20,22 @@
 package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 
 public class OperatorWrapTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule451wheretobreak"
+                + File.separator + fileName);
     }
 
     @Test
@@ -69,10 +66,10 @@ public class OperatorWrapTest extends BaseCheckTestSupport {
             "185:38: " + getCheckMessage(clazz, messageKey, "?"),
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("OperatorWrap");
-        final String filePath = builder.getFilePath("InputOperatorWrap");
+        final Configuration checkConfig = getCheckConfig("OperatorWrap");
+        final String filePath = getPath("InputOperatorWrap.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -124,8 +121,8 @@ public class OperatorWrapTest extends BaseCheckTestSupport {
             "348:17: " + getCheckMessage(clazz, messageKey, "<<="),
         };
 
-        final String filePath = builder.getFilePath("InputOperatorWrapAssign");
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final String filePath = getPath("InputOperatorWrapAssign.java");
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
 }

@@ -20,29 +20,26 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class WhitespaceAroundTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule462horizontalwhitespace"
+                + File.separator + fileName);
     }
 
     @Test
     public void whitespaceAroundBasicTest() throws Exception {
 
-        final Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
+        final Configuration checkConfig = getCheckConfig("WhitespaceAround");
         final String msgPreceded = "ws.notPreceded";
         final String msgFollowed = "ws.notFollowed";
 
@@ -69,9 +66,9 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
             "150:20: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ":"),
         };
 
-        final String filePath = builder.getFilePath("InputWhitespaceAroundBasic");
+        final String filePath = getPath("InputWhitespaceAroundBasic.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -80,10 +77,10 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = builder.getCheckConfig("WhitespaceAround");
-        final String filePath = builder.getFilePath("InputWhitespaceAroundEmptyTypesAndCycles");
+        final Configuration checkConfig = getCheckConfig("WhitespaceAround");
+        final String filePath = getPath("InputWhitespaceAroundEmptyTypesAndCycles.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

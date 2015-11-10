@@ -20,27 +20,23 @@
 package com.google.checkstyle.test.chapter5naming.rule53camelcase;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
 
 public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "abbreviation.as.word";
-    private static ConfigurationBuilder builder;
-    private static Configuration checkConfig;
     private final Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
 
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-        checkConfig = builder.getCheckConfig("AbbreviationAsWordInName");
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule53camelcase"
+                + File.separator + fileName);
     }
 
     @Test
@@ -61,9 +57,10 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
             "71: " + msg,
         };
 
-        final String filePath = builder.getFilePath("InputAbbreviationAsWordInTypeNameCheck");
+        final String filePath = getPath("InputAbbreviationAsWordInTypeNameCheck.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Configuration checkConfig = getCheckConfig("AbbreviationAsWordInName");
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

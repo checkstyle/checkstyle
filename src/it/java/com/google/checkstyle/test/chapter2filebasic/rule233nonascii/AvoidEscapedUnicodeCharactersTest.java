@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter2filebasic.rule233nonascii;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
 public class AvoidEscapedUnicodeCharactersTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter2filebasic" + File.separator + "rule233nonascii"
+                + File.separator + fileName);
     }
 
     @Test
@@ -54,10 +51,10 @@ public class AvoidEscapedUnicodeCharactersTest extends BaseCheckTestSupport {
             "36: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("AvoidEscapedUnicodeCharacters");
-        final String filePath = builder.getFilePath("InputAvoidEscapedUnicodeCharacters");
+        final Configuration checkConfig = getCheckConfig("AvoidEscapedUnicodeCharacters");
+        final String filePath = getPath("InputAvoidEscapedUnicodeCharacters.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

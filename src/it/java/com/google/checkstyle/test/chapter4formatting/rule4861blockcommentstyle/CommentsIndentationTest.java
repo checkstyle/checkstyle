@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 
 public class CommentsIndentationTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule4861blockcommentstyle"
+                + File.separator + fileName);
     }
 
     @Test
@@ -98,11 +95,11 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
                 352, 9, 8),
             };
 
-        final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
+        final Configuration checkConfig = getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("InputCommentsIndentationCommentIsAtTheEndOfBlock");
+            getPath("InputCommentsIndentationCommentIsAtTheEndOfBlock.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -143,11 +140,11 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
                 "228, 230", 6, "12, 12"),
             };
 
-        final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
+        final Configuration checkConfig = getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("InputCommentsIndentationInSwitchBlock");
+            getPath("InputCommentsIndentationInSwitchBlock.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -166,11 +163,11 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
                 72, 0, 8),
             };
 
-        final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
+        final Configuration checkConfig = getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("InputCommentsIndentationInEmptyBlock");
+            getPath("InputCommentsIndentationInEmptyBlock.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -197,11 +194,11 @@ public class CommentsIndentationTest extends BaseCheckTestSupport {
                 109, 33, 8),
             };
 
-        final Configuration checkConfig = builder.getCheckConfig("CommentsIndentation");
+        final Configuration checkConfig = getCheckConfig("CommentsIndentation");
         final String filePath =
-            builder.getFilePath("InputCommentsIndentationSurroundingCode");
+            getPath("InputCommentsIndentationSurroundingCode.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

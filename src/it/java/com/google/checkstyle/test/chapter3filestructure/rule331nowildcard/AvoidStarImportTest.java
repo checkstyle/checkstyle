@@ -20,22 +20,19 @@
 package com.google.checkstyle.test.chapter3filestructure.rule331nowildcard;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class AvoidStarImportTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter3filestructure" + File.separator + "rule331nowildcard"
+                + File.separator + fileName);
     }
 
     @Test
@@ -48,10 +45,10 @@ public class AvoidStarImportTest extends BaseCheckTestSupport {
             "19: Using the '.*' form of import should be avoided - javax.swing.WindowConstants.*.",
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("AvoidStarImport");
-        final String filePath = builder.getFilePath("InputAvoidStarImport");
+        final Configuration checkConfig = getCheckConfig("AvoidStarImport");
+        final String filePath = getPath("InputAvoidStarImport.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

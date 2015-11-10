@@ -20,24 +20,21 @@
 package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
 
 public class AtclauseOrderTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter7javadoc" + File.separator + "rule713atclauses"
+                + File.separator + fileName);
     }
 
     @Test
@@ -45,10 +42,10 @@ public class AtclauseOrderTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
-        final String filePath = builder.getFilePath("InputCorrectAtClauseOrderCheck");
+        final Configuration checkConfig = getCheckConfig("AtclauseOrder");
+        final String filePath = getPath("InputCorrectAtClauseOrderCheck.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -87,10 +84,10 @@ public class AtclauseOrderTest extends BaseCheckTestSupport {
             "261: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("AtclauseOrder");
-        final String filePath = builder.getFilePath("InputIncorrectAtClauseOrderCheck");
+        final Configuration checkConfig = getCheckConfig("AtclauseOrder");
+        final String filePath = getPath("InputIncorrectAtClauseOrderCheck.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

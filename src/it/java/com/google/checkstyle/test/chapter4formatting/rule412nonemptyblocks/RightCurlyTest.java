@@ -23,25 +23,22 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 
 public class RightCurlyTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule412nonemptyblocks"
+                + File.separator + fileName);
     }
 
     @Test
@@ -58,8 +55,8 @@ public class RightCurlyTest extends BaseCheckTestSupport {
             "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
         };
 
-        final String filePath = builder.getFilePath("InputRightCurlyOther");
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final String filePath = getPath("InputRightCurlyOther.java");
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
 
@@ -70,8 +67,8 @@ public class RightCurlyTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final String filePath = builder.getFilePath("InputRightCurlySame");
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final String filePath = getPath("InputRightCurlySame.java");
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
     }
 }

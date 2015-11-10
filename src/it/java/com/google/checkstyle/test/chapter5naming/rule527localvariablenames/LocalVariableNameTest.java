@@ -20,26 +20,30 @@
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class LocalVariableNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static ConfigurationBuilder builder;
     private static Configuration checkConfig;
     private static String format;
 
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule527localvariablenames"
+                + File.separator + fileName);
+    }
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-        checkConfig = builder.getCheckConfig("LocalVariableName");
+        checkConfig = getCheckConfig("LocalVariableName");
         format = checkConfig.getAttribute("format");
     }
 
@@ -60,9 +64,9 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
             "36:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "aaaaaa$", format),
         };
 
-        final String filePath = builder.getFilePath("InputLocalVariableNameSimple");
+        final String filePath = getPath("InputLocalVariableNameSimple.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -79,9 +83,9 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
             "61:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "index$", format),
         };
 
-        final String filePath = builder.getFilePath("InputLocalVariableNameOneCharVarName");
+        final String filePath = getPath("InputLocalVariableNameOneCharVarName.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule485annotations;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 
 public class AnnotationLocationTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule485annotations"
+                + File.separator + fileName);
     }
 
     @Test
@@ -44,7 +41,7 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
 
         final Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
         getCheckMessage(clazz, "annotation.location.alone");
-        final Configuration checkConfig = builder.getCheckConfig("AnnotationLocation");
+        final Configuration checkConfig = getCheckConfig("AnnotationLocation");
 
         final String msgLocationAlone = "annotation.location.alone";
         final String msgLocation = "annotation.location";
@@ -62,9 +59,9 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
             "90: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "1", "0"),
         };
 
-        final String filePath = builder.getFilePath("InputAnnotationLocation");
+        final String filePath = getPath("InputAnnotationLocation.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

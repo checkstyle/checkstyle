@@ -20,24 +20,21 @@
 package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
 
 public class SingleLineJavadocTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter7javadoc" + File.separator + "rule711generalform"
+                + File.separator + fileName);
     }
 
     @Test
@@ -57,9 +54,9 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport {
 
         final DefaultConfiguration checkConfig = createCheckConfig(SingleLineJavadocCheck.class);
         checkConfig.addAttribute("ignoreInlineTags", "false");
-        final String filePath = builder.getFilePath("InputSingleLineJavadocCheck");
+        final String filePath = getPath("InputSingleLineJavadocCheck.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -67,14 +64,14 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport {
     public void customInlineTagTest() throws Exception {
         final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
-        final Configuration checkConfig = builder.getCheckConfig("SingleLineJavadocCheck");
-        final String filePath = builder.getFilePath("InputSingleLineJavadocCheckError");
+        final Configuration checkConfig = getCheckConfig("SingleLineJavadocCheck");
+        final String filePath = getPath("InputSingleLineJavadocCheckError.java");
 
         final String[] expected = {
             "4: " + msg,
         };
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

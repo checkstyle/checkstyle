@@ -20,26 +20,30 @@
 package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MemberNameTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
     private static final String MSG_KEY = "name.invalidPattern";
     private static Configuration checkConfig;
     private static String format;
 
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule525nonconstantfieldnames"
+                + File.separator + fileName);
+    }
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-        checkConfig = builder.getCheckConfig("MemberName");
+        checkConfig = getCheckConfig("MemberName");
         format = checkConfig.getAttribute("format");
     }
 
@@ -62,9 +66,9 @@ public class MemberNameTest extends BaseCheckTestSupport {
             "25:9: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "mPackage$", format),
         };
 
-        final String filePath = builder.getFilePath("InputMemberNameBasic");
+        final String filePath = getPath("InputMemberNameBasic.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -106,9 +110,9 @@ public class MemberNameTest extends BaseCheckTestSupport {
             "131:25: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "mTest2$", format),
         };
 
-        final String filePath = builder.getFilePath("InputMemberNameSimple");
+        final String filePath = getPath("InputMemberNameSimple.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

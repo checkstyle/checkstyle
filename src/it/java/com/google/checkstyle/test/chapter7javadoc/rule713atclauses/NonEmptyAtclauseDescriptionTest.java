@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck;
 
 public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter7javadoc" + File.separator + "rule713atclauses"
+                + File.separator + fileName);
     }
 
     @Test
@@ -58,8 +55,8 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
             "52: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
-        final String filePath = builder.getFilePath("InputNonEmptyAtclauseDescriptionCheck");
+        final Configuration checkConfig = getCheckConfig("NonEmptyAtclauseDescription");
+        final String filePath = getPath("InputNonEmptyAtclauseDescriptionCheck.java");
 
         final Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);
@@ -79,9 +76,8 @@ public class NonEmptyAtclauseDescriptionTest extends BaseCheckTestSupport {
             "40: " + msg,
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("NonEmptyAtclauseDescription");
-        final String filePath = builder
-            .getFilePath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq");
+        final Configuration checkConfig = getCheckConfig("NonEmptyAtclauseDescription");
+        final String filePath = getPath("InputNonEmptyAtclauseDescriptionCheckSpaceSeq.java");
 
         final Integer[] warnList = getLineNumbersFromExpected(expected);
         verify(checkConfig, filePath, expected, warnList);

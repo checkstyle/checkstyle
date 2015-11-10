@@ -20,27 +20,31 @@
 package com.google.checkstyle.test.chapter5naming.rule521packagenames;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class PackageNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static ConfigurationBuilder builder;
     private static Configuration checkConfig;
     private static String format;
 
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter5naming" + File.separator + "rule521packagenames"
+                + File.separator + fileName);
+    }
+
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
-        checkConfig = builder.getCheckConfig("PackageName");
+        checkConfig = getCheckConfig("PackageName");
         format = checkConfig.getAttribute("format");
     }
 
@@ -49,9 +53,9 @@ public class PackageNameTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final String filePath = builder.getFilePath("InputPackageNameGood");
+        final String filePath = getPath("InputPackageNameGood.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -66,9 +70,9 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = builder.getFilePath("InputPackageNameBad");
+        final String filePath = getPath("InputPackageNameBad.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -82,9 +86,9 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = builder.getFilePath("InputBadPackageName2");
+        final String filePath = getPath("InputBadPackageName2.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -98,9 +102,9 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = builder.getFilePath("InputPackageBadName3");
+        final String filePath = getPath("InputPackageBadName3.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

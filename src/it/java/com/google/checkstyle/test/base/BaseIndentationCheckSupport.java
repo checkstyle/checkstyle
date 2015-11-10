@@ -20,7 +20,6 @@
 package com.google.checkstyle.test.base;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,10 +31,9 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class IndentationConfigurationBuilder extends ConfigurationBuilder {
+public class BaseIndentationCheckSupport extends BaseCheckTestSupport {
     private static final int TAB_WIDTH = 4;
 
     private static final Pattern NONEMPTY_LINE_REGEX =
@@ -56,13 +54,9 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
     private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
             Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
-    public IndentationConfigurationBuilder(File aRoot) throws CheckstyleException {
-        super(aRoot);
-    }
-
     @Override
-    public Integer[] getLinesWithWarn(String aFileName) throws IOException {
-        return getLinesWithWarnAndCheckComments(aFileName, TAB_WIDTH);
+    protected Integer[] getLinesWithWarn(String fileName) throws IOException {
+        return getLinesWithWarnAndCheckComments(fileName, TAB_WIDTH);
     }
 
     private enum CommentType {

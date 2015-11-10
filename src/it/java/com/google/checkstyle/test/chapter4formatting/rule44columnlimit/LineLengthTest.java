@@ -20,23 +20,20 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
 public class LineLengthTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule44columnlimit"
+                + File.separator + fileName);
     }
 
     @Test
@@ -53,10 +50,10 @@ public class LineLengthTest extends BaseCheckTestSupport {
             "57: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
         };
 
-        final Configuration checkConfig = builder.getCheckConfig("LineLength");
-        final String filePath = builder.getFilePath("InputLineLength");
+        final Configuration checkConfig = getCheckConfig("LineLength");
+        final String filePath = getPath("InputLineLength.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }

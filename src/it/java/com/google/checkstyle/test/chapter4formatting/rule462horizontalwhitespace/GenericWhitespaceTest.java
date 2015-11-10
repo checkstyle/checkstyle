@@ -20,22 +20,19 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
 import java.io.File;
+import java.io.IOException;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.google.checkstyle.test.base.ConfigurationBuilder;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class GenericWhitespaceTest extends BaseCheckTestSupport {
 
-    private static ConfigurationBuilder builder;
-
-    @BeforeClass
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        builder = new ConfigurationBuilder(new File("src/it/"));
+    @Override
+    protected String getPath(String fileName) throws IOException {
+        return super.getPath("chapter4formatting" + File.separator + "rule462horizontalwhitespace"
+                + File.separator + fileName);
     }
 
     @Test
@@ -43,7 +40,7 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
 
         final String msgPreceded = "ws.preceded";
         final String msgFollowed = "ws.followed";
-        final Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
+        final Configuration checkConfig = getCheckConfig("GenericWhitespace");
 
         final String[] expected = {
             "12:16: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
@@ -64,9 +61,9 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
             "20:61: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ">"),
         };
 
-        final String filePath = builder.getFilePath("InputWhitespaceAroundGenerics");
+        final String filePath = getPath("InputWhitespaceAroundGenerics.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 
@@ -76,7 +73,7 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
         final String msgFollowed = "ws.followed";
         final String msgNotPreceded = "ws.notPreceded";
         final String msgIllegalFollow = "ws.illegalFollow";
-        final Configuration checkConfig = builder.getCheckConfig("GenericWhitespace");
+        final Configuration checkConfig = getCheckConfig("GenericWhitespace");
 
         final String[] expected = {
             "16:13: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "<"),
@@ -107,9 +104,9 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
             "63:60: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, ">"),
         };
 
-        final String filePath = builder.getFilePath("InputGenericWhitespace");
+        final String filePath = getPath("InputGenericWhitespace.java");
 
-        final Integer[] warnList = builder.getLinesWithWarn(filePath);
+        final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
 }
