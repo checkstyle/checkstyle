@@ -33,6 +33,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodParamPadCheckTest
@@ -144,5 +145,13 @@ public class MethodParamPadCheckTest
             TokenTypes.SUPER_CTOR_CALL,
         };
         assertArrayEquals(expected, actual);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
 }
