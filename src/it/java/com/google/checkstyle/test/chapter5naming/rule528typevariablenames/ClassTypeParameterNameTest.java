@@ -52,7 +52,7 @@ public class ClassTypeParameterNameTest extends BaseCheckTestSupport {
             "27:24: " + getCheckMessage(configuration.getMessages(), MSG_KEY, "$foo", format),
         };
 
-        final String filePath = builder.getFilePath("ClassTypeParameterNameInput");
+        final String filePath = builder.getFilePath("InputClassTypeParameterName");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(configuration, filePath, expected, warnList);
