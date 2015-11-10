@@ -53,6 +53,10 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "31:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
             "49:13: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
             "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
+            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
+            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),
@@ -66,6 +70,8 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("checkFields", "false");
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_METHOD, "method1", "\"this\""),
+            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
+            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),
@@ -82,6 +88,8 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "31:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
             "49:13: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
             "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
+            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),
