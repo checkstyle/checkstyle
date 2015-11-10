@@ -25,11 +25,13 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapChec
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class OperatorWrapCheckTest
     extends BaseCheckTestSupport {
@@ -79,6 +81,14 @@ public class OperatorWrapCheckTest
         final String[] expected = {
             "33:13: " + getCheckMessage(LINE_PREVIOUS, "="),
         };
+        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
 }
