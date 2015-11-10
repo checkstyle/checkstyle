@@ -29,9 +29,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <p>This class extends {@link AbstractNameCheck}</p>
- *
+ * @deprecated Checkstyle will not support abstract checks anymore. Use
+ *             {@link AbstractNameCheck} instead.
  * @author Travis Schneeberger
+ * @noinspection AbstractClassNeverImplemented
  */
+@Deprecated
 public abstract class AbstractTypeParameterNameCheck
     extends AbstractNameCheck {
 
