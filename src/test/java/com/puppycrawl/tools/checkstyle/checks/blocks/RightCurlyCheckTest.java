@@ -34,6 +34,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class RightCurlyCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -271,6 +272,14 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "24:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
         };
+        verify(checkConfig, getPath("InputRightCurly.java"), expected);
+    }
+
+    @Test(expected = CheckstyleException.class)
+    public void testInvalidOption() throws Exception {
+        checkConfig.addAttribute("option", "invalid_option");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
         verify(checkConfig, getPath("InputRightCurly.java"), expected);
     }
 }

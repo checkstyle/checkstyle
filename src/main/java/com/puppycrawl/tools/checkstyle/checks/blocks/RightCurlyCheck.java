@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
@@ -80,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author Andrei Selkin
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
-public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
+public class RightCurlyCheck extends Check {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -108,11 +111,21 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
     /** Do we need to check if right curly starts line. */
     private boolean shouldStartLine = true;
 
+    /** The policy to enforce. */
+    private RightCurlyOption option = RightCurlyOption.SAME;
+
     /**
-     * Sets the right curly option to same.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    public RightCurlyCheck() {
-        super(RightCurlyOption.SAME, RightCurlyOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 
     /**
@@ -171,10 +184,10 @@ public class RightCurlyCheck extends AbstractOptionCheck<RightCurlyOption> {
         final String violation;
         if (shouldStartLine) {
             final String targetSourceLine = getLines()[rcurly.getLineNo() - 1];
-            violation = validate(details, getAbstractOption(), true, targetSourceLine);
+            violation = validate(details, option, true, targetSourceLine);
         }
         else {
-            violation = validate(details, getAbstractOption(), false, "");
+            violation = validate(details, option, false, "");
         }
 
         if (!violation.isEmpty()) {
