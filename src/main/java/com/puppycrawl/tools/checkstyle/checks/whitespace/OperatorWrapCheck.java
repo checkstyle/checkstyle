@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -90,7 +93,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Rick Giles
  */
 public class OperatorWrapCheck
-    extends AbstractOptionCheck<WrapOption> {
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -104,11 +107,21 @@ public class OperatorWrapCheck
      */
     public static final String LINE_PREVIOUS = "line.previous";
 
+    /** The policy to enforce. */
+    private WrapOption option = WrapOption.NL;
+
     /**
-     * Sets the operator wrap option to new line.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    public OperatorWrapCheck() {
-        super(WrapOption.NL, WrapOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 
     @Override
@@ -197,7 +210,6 @@ public class OperatorWrapCheck
                 return;
             }
         }
-        final WrapOption wOp = getAbstractOption();
 
         final String text = ast.getText();
         final int colNo = ast.getColumnNo();
@@ -207,12 +219,12 @@ public class OperatorWrapCheck
         // Check if rest of line is whitespace, and not just the operator
         // by itself. This last bit is to handle the operator on a line by
         // itself.
-        if (wOp == WrapOption.NL
+        if (option == WrapOption.NL
                 && !text.equals(currentLine.trim())
                 && StringUtils.isBlank(currentLine.substring(colNo + text.length()))) {
             log(lineNo, colNo, LINE_NEW, text);
         }
-        else if (wOp == WrapOption.EOL
+        else if (option == WrapOption.EOL
                 && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
             log(lineNo, colNo, LINE_PREVIOUS, text);
         }
