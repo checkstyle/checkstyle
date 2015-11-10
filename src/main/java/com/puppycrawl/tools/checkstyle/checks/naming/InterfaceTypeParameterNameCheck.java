@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -47,19 +48,33 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class InterfaceTypeParameterNameCheck
-    extends AbstractTypeParameterNameCheck {
+    extends AbstractNameCheck {
     /** Creates a new {@code InterfaceTypeParameterNameCheck} instance. */
     public InterfaceTypeParameterNameCheck() {
         super("^[A-Z]$");
     }
 
     @Override
-    public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.TYPE_PARAMETER};
+    public int[] getDefaultTokens() {
+        return getAcceptableTokens();
     }
 
     @Override
-    protected final int getLocation() {
-        return TokenTypes.INTERFACE_DEF;
+    public int[] getAcceptableTokens() {
+        return new int[] {
+            TokenTypes.TYPE_PARAMETER,
+        };
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    protected final boolean mustCheckName(DetailAST ast) {
+        final DetailAST location =
+            ast.getParent().getParent();
+        return location.getType() == TokenTypes.INTERFACE_DEF;
     }
 }
