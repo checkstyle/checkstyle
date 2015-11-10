@@ -4,7 +4,7 @@ public class InputBooleanExpressionComplexityNPE
 {
     static {
         try {
-            System.out.println("a");
+            System.identityHashCode("a");
         } catch (IllegalStateException | IllegalArgumentException e) {
             throw new RuntimeException(e);
         }

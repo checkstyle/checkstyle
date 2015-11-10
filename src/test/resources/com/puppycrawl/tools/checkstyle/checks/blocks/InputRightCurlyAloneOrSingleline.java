@@ -153,12 +153,12 @@ public class InputRightCurlyAloneOrSingleline {
 
     void foo25() {
         for (int i = 0; i < 10; i++) {
-            System.out.println("Hello, world!");
+            System.identityHashCode("Hello, world!");
         }} //violation
 
     void foo26() {
         for (int i = 0; i < 10; i++) {
-            System.out.println("Hello, world!");}} //violation
+            System.identityHashCode("Hello, world!");}} //violation
 
     void foo27() {
         for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} //violation
@@ -172,7 +172,7 @@ public class InputRightCurlyAloneOrSingleline {
     private void foo29() {
         boolean flag = true;
         if (flag) {
-            System.out.println("heh");
+            System.identityHashCode("heh");
             flag = !flag; } System.err. //violation
             println("Xe-xe");
     }

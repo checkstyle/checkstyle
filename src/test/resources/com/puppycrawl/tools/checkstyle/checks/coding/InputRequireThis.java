@@ -102,7 +102,7 @@ class Issue257 {
             foo.read();
         }
         catch (final IOException e) {
-            e.printStackTrace();
+            e.getCause();
         }
     }
 }

@@ -66,7 +66,7 @@ public class InputCommentsIndentationInSwitchBlock {
                 int a;
             }
               // warn
-                case "18": { System.out.println();
+                case "18": { System.lineSeparator();
                 }   // trailing comment
             case "19":
                 // comment

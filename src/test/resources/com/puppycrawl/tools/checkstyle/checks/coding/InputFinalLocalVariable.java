@@ -148,7 +148,7 @@ class test_1241722
 
     public void doSomething(Object _o)
     {
-        System.out.println(_o);
+        System.identityHashCode(_o);
     }
 
     public void doSomething2(Object _o1)

@@ -19,7 +19,7 @@ class UpdateClass
 		if (doSideEffect() == 1) {} //is not OK, 
 		while ((a = index - 1) != 0) {} // is OK 
 		for (; index < s.length && s[index] != 'x'; index++) {} // is OK
-		if (a == 1) {} else {System.out.println("a");} // is not OK
+		if (a == 1) {} else {System.identityHashCode("a");} // is not OK
 		switch (a) {} //warn
 		switch (a) { //ok
         case 1:

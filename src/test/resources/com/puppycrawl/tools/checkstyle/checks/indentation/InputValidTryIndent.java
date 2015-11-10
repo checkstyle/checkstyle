@@ -24,26 +24,26 @@ public class InputValidTryIndent { //indent:0 exp:0
 
         try { //indent:8 exp:8
         } catch (Throwable t) { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         } //indent:8 exp:8
 
         try { //indent:8 exp:8
-            System.out.println("test"); //indent:12 exp:12
+            System.identityHashCode("test"); //indent:12 exp:12
         } finally { //indent:8 exp:8
-            System.out.println("finally"); //indent:12 exp:12
+            System.identityHashCode("finally"); //indent:12 exp:12
         } //indent:8 exp:8
 
         try { //indent:8 exp:8
         } catch (Throwable t) { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         } finally { //indent:8 exp:8
         } //indent:8 exp:8
 
         try { //indent:8 exp:8
         } catch (Exception t) { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         } catch (Throwable t) { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         } //indent:8 exp:8
 
         try { //indent:8 exp:8
@@ -53,30 +53,30 @@ public class InputValidTryIndent { //indent:0 exp:0
 
 
         try { //indent:8 exp:8
-            System.out.println("try"); //indent:12 exp:12
+            System.identityHashCode("try"); //indent:12 exp:12
         }  //indent:8 exp:8
         catch (Exception t) { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         }  //indent:8 exp:8
         catch (Throwable t) { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         }  //indent:8 exp:8
         finally { //indent:8 exp:8
         } //indent:8 exp:8
 
         try  //indent:8 exp:8
         { //indent:8 exp:8
-            System.out.println("try"); //indent:12 exp:12
+            System.identityHashCode("try"); //indent:12 exp:12
         }  //indent:8 exp:8
         catch (Exception t)  //indent:8 exp:8
         { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         }  //indent:8 exp:8
         catch (Throwable t)  //indent:8 exp:8
         { //indent:8 exp:8
-            System.out.println("err"); //indent:12 exp:12
+            System.identityHashCode("err"); //indent:12 exp:12
         } //indent:8 exp:8
         finally  //indent:8 exp:8
         { //indent:8 exp:8

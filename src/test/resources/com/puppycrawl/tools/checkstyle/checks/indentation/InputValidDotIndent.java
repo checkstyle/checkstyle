@@ -22,7 +22,7 @@ public class InputValidDotIndent { //indent:0 exp:0
     /** Creates a new instance of InputValidDotIndent */ //indent:4 exp:4
     public InputValidDotIndent() { //indent:4 exp:4
 
-        System.out.println(); //indent:8 exp:8
+        System.lineSeparator(); //indent:8 exp:8
 
         System. //indent:8 exp:8
             out.println(); //indent:12 exp:12

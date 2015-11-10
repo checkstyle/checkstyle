@@ -32,7 +32,7 @@ public class InputJavaNCSS {
         int a = 0;
         switch (a) {
             case 1: //falls through
-            case 2: System.out.println("Hello"); break;
+            case 2: System.identityHashCode("Hello"); break;
             default: break;
         }
         
@@ -40,7 +40,7 @@ public class InputJavaNCSS {
 
             //should give an ncss of 2
             public void itemStateChanged(ItemEvent e) {          
-                System.out.println("Hello");
+                System.identityHashCode("Hello");
             }
         };  
     }

@@ -52,7 +52,7 @@ public class InputFallThrough
                 }
             case 15: //fall through!!!
                 do {
-                    System.out.println("something");
+                    System.identityHashCode("something");
                     return;
                 } while(true);
             case 16:
@@ -185,7 +185,7 @@ public class InputFallThrough
               // fallthru
           case 15:
               do {
-                  System.out.println("something");
+                  System.identityHashCode("something");
                   return;
               } while(true);
           case 16:
@@ -422,7 +422,7 @@ public class InputFallThrough
         case 1:
             switch(hashCode()){}
         case 2:
-            System.out.println();
+            System.lineSeparator();
             break;
         }
     }
@@ -431,20 +431,20 @@ public class InputFallThrough
         switch(hashCode()) {
         case 1:
             if (true) {
-                System.out.println();
+                System.lineSeparator();
             }
         case 2:
-            System.out.println();
+            System.lineSeparator();
             break;
         }
     }
     
     void noCommentAtTheEnd() {
         switch(hashCode()) {
-        case 1: System.out.println();
+        case 1: System.lineSeparator();
 
         case 2:
-            System.out.println();
+            System.lineSeparator();
             break;
         }
     }

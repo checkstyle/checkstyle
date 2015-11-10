@@ -30,7 +30,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
         switch (s) { //indent:8 exp:8
 
             case 4: //indent:12 exp:12
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
 
             case CONST: //indent:12 exp:12
@@ -41,7 +41,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
                 break; //indent:16 exp:16
 
             default: //indent:12 exp:12
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
         } //indent:8 exp:8
 
@@ -50,7 +50,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
         switch (s) { //indent:8 exp:8
 
             case 4: { //indent:12 exp:12
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
             } //indent:12 exp:12
 
@@ -60,7 +60,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
             case CONST2: //indent:12 exp:12
             case CONST3: //indent:12 exp:12
             { //indent:12 exp:12
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
             } //indent:12 exp:12
 
@@ -73,7 +73,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
 
             case  //indent:12 exp:12
                 4: { //indent:16 exp:16
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
             } //indent:12 exp:12
 
@@ -85,7 +85,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
             case  //indent:12 exp:12
                 CONST3: //indent:16 exp:16
             { //indent:12 exp:12
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
             } //indent:12 exp:12
 
@@ -99,7 +99,7 @@ public class InputValidSwitchIndent { //indent:0 exp:0
 
         switch (s) { //indent:8 exp:8
             default: //indent:12 exp:12
-                System.out.println(""); //indent:16 exp:16
+                System.identityHashCode(""); //indent:16 exp:16
                 break; //indent:16 exp:16
         } //indent:8 exp:8
 

@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 class Foo1 {
     public void foo(String text) {
-        System.out.println(text);
+        System.identityHashCode(text);
 
         class Bar {
             void bar (String text) {

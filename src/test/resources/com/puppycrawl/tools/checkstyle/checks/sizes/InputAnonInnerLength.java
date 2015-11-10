@@ -50,22 +50,22 @@ public class InputAnonInnerLength
     private Runnable mRunnable1 = new Runnable() {
         public void run() // should not have to be documented, class is anon.
         {
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
         }
     };
 
@@ -75,21 +75,21 @@ public class InputAnonInnerLength
     private Runnable mRunnable2 = new Runnable() {
         public void run() // should not have to be documented, class is anon.
         {
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
-            System.out.println("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
+            System.identityHashCode("running");
         }
     };
 
@@ -102,7 +102,7 @@ public class InputAnonInnerLength
             {
                 public void mouseClicked( MouseEvent aEv )
                 {
-                    System.out.println("click");
+                    System.identityHashCode("click");
                 }
             } );
     }
@@ -116,7 +116,7 @@ public class InputAnonInnerLength
             {
                 public void mouseClicked( MouseEvent aEv )
                 {
-                    System.out.println("click");
+                    System.identityHashCode("click");
                 }
             } );
     }

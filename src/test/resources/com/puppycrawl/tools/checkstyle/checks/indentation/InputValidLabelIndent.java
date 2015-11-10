@@ -22,16 +22,16 @@ public class InputValidLabelIndent { //indent:0 exp:0
 
         while (test) { //indent:8 exp:8
         label: //indent:8 exp:8,12
-            System.out.println("label test"); //indent:12 exp:12,16
+            System.identityHashCode("label test"); //indent:12 exp:12,16
 
             if (test) { //indent:12 exp:12
             unusedLabel: //indent:12 exp:12
-                System.out.println("more testing"); //indent:16 exp:16,20
+                System.identityHashCode("more testing"); //indent:16 exp:16,20
             } //indent:12 exp:12
 
         } //indent:8 exp:8
     label2: //indent:4 exp:4,8
-        System.out.println("toplevel"); //indent:8 exp:8,12
+        System.identityHashCode("toplevel"); //indent:8 exp:8,12
     } //indent:4 exp:4
 
 } //indent:0 exp:0

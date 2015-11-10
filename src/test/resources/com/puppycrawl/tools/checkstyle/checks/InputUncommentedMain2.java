@@ -12,7 +12,7 @@ public class InputUncommentedMain2
         // uncommented main with depth 2
         public void main(String[] args)
         {
-            System.out.println("InputUncommentedMain.main()");
+            System.identityHashCode("InputUncommentedMain.main()");
         }
         
         //lets go deeper
@@ -21,7 +21,7 @@ public class InputUncommentedMain2
             // uncommented main with depth 3
             public void main(String[] args)
             {
-                System.out.println("InputUncommentedMain.main()");
+                System.identityHashCode("InputUncommentedMain.main()");
             }
             
             
@@ -30,7 +30,7 @@ public class InputUncommentedMain2
     
     public static void main(String[] args)
     {
-        System.out.println("InputUncommentedMain.main()");
+        System.identityHashCode("InputUncommentedMain.main()");
     }
     
 }

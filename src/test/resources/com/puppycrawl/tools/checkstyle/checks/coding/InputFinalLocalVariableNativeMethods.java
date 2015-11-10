@@ -11,12 +11,12 @@ public class InputFinalLocalVariableNativeMethods
 
      public void print () {
          String str = nativeFoo(1, 4);
-         System.out.println(str);
+         System.identityHashCode(str);
      }
 
      public static void main(final String[] args) {
          (new InputFinalLocalVariableNativeMethods()).print();
-         System.out.println("In Java, the average is " +
+         System.identityHashCode("In Java, the average is " +
              new InputFinalLocalVariableNativeMethods().average(3, 2));
          return;
      }

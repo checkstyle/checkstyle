@@ -24,7 +24,7 @@ public class InputBraceAdjustment //indent:0 exp:0
         boolean uglyGnuStyle = true; //indent:8 exp:8
         if (uglyGnuStyle) //indent:8 exp:8
           { //indent:10 exp:10
-            System.out.println("ugly GNU style braces"); //indent:12 exp:12
+            System.identityHashCode("ugly GNU style braces"); //indent:12 exp:12
         } //indent:8 exp:10 warn
       } //indent:6 exp:6
 

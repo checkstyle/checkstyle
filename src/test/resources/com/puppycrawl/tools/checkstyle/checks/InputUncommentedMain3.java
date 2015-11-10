@@ -8,6 +8,6 @@ class oneMoreClass {
     
     public static void anyWrongMethodName(String[] args)
     {
-        System.out.println("InputUncommentedMain.main()");
+        System.identityHashCode("InputUncommentedMain.main()");
     }
 }

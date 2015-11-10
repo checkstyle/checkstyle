@@ -16,7 +16,7 @@ public class InputParenPadWithSpace
     {
         int[] i = new int[2];
         for ( int j: i ) {
-            System.out.println ( j );
+            System.identityHashCode ( j );
         }
     }
 }

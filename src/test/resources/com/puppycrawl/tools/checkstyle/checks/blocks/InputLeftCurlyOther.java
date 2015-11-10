@@ -89,7 +89,7 @@ class InputLeftCurlyOther
     {
         boolean flag = true;
         if (flag) {
-            System.out.println("heh");
+            System.identityHashCode("heh");
             flag = !flag; } System.err.
               println("Xe-xe");
         // it is ok to have rcurly on the same line as previous

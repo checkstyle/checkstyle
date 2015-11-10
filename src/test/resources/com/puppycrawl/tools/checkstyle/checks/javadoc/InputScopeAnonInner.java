@@ -25,7 +25,7 @@ public class InputScopeAnonInner
     private Runnable mRunnable = new Runnable() {
         public void run() // should not have to be documented, class is anon.
         {
-            System.out.println("running");
+            System.identityHashCode("running");
         }
     };
 
@@ -38,7 +38,7 @@ public class InputScopeAnonInner
             {
                 public void mouseClicked( MouseEvent aEv )
                 {
-                    System.out.println("click");
+                    System.identityHashCode("click");
                 }
             } );
     }
@@ -52,7 +52,7 @@ public class InputScopeAnonInner
             {
                 public void mouseClicked( MouseEvent aEv )
                 {
-                    System.out.println("click");
+                    System.identityHashCode("click");
                 }
             } );
     }

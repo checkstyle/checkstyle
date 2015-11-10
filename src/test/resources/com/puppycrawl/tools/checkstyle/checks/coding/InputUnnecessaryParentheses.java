@@ -10,7 +10,7 @@ public class InputUnnecessaryParentheses {
         }
 
         for (int i = (0+1); (i) < ((6+6)); i += (1+0)) {
-            System.out.println("hi");
+            System.identityHashCode("hi");
         }
 
         return (0);
@@ -84,7 +84,7 @@ public class InputUnnecessaryParentheses {
 
     private void print(int arg)
     {
-        System.out.println("arg = " + arg);
+        System.identityHashCode("arg = " + arg);
     }
 
     static class TypeParameterized<T> {}

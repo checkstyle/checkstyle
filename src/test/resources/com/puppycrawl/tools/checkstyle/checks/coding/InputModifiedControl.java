@@ -35,7 +35,7 @@ class InputModifiedControl
             Serializable s = new Serializable() {
                 int i = 3;
                 void a() {
-                    System.out.println(i++);
+                    System.identityHashCode(i++);
                 }
             };
         }

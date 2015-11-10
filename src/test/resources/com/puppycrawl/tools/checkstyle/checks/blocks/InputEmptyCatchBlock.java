@@ -81,7 +81,7 @@ public class InputEmptyCatchBlock
             return; 
         } 
         catch (Exception e) {
-            System.out.println(e);
+            System.identityHashCode(e);
             return; 
         }
         finally
@@ -112,11 +112,11 @@ public class InputEmptyCatchBlock
             int e=u-y;
         } 
         catch (IllegalArgumentException e) {
-            System.out.println(e); //some comment
+            System.identityHashCode(e); //some comment
             return; 
         }
         catch (IllegalStateException ex) {
-                System.out.println(ex);
+                System.identityHashCode(ex);
                 return; 
         }
     }
@@ -129,7 +129,7 @@ public class InputEmptyCatchBlock
             int e=u-y;
         } 
         catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.identityHashCode(e);
             return; 
         }
     }
