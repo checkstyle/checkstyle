@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 
-public class NoFinalizerInput
+public class InputNoFinalizer
 {
     public void finalize() //warn
     {

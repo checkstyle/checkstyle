@@ -48,7 +48,7 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        final String filePath = builder.getFilePath("NoFinalizerInput");
+        final String filePath = builder.getFilePath("InputNoFinalizer");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -72,7 +72,7 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = builder.getCheckConfig("NoFinalizer");
-        final String filePath = builder.getFilePath("NoFinalizeExtendInput");
+        final String filePath = builder.getFilePath("InputNoFinalizeExtend");
 
         final Integer[] warnList = builder.getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
