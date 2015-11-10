@@ -19,9 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Locale;
+
+import org.apache.commons.beanutils.ConversionException;
+
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.AbstractOptionCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -47,7 +51,7 @@ for (
  * @author lkuehne
  */
 public class EmptyForInitializerPadCheck
-    extends AbstractOptionCheck<PadOption> {
+    extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -61,11 +65,24 @@ public class EmptyForInitializerPadCheck
      */
     public static final String MSG_NOT_PRECEDED = "ws.notPreceded";
 
+    /** Semicolon literal. */
+    private static final String SEMICOLON = ";";
+
+    /** The policy to enforce. */
+    private PadOption option = PadOption.NOSPACE;
+
     /**
-     * Sets the paren pad option to nospace.
+     * Set the option to enforce.
+     * @param optionStr string to decode option from
+     * @throws ConversionException if unable to decode
      */
-    public EmptyForInitializerPadCheck() {
-        super(PadOption.NOSPACE, PadOption.class);
+    public void setOption(String optionStr) {
+        try {
+            option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+        }
+        catch (IllegalArgumentException iae) {
+            throw new ConversionException("unable to parse " + optionStr, iae);
+        }
     }
 
     @Override
@@ -93,7 +110,6 @@ public class EmptyForInitializerPadCheck
             final int before = semi.getColumnNo() - 1;
             //don't check if semi at beginning of line
             if (!CommonUtils.hasWhitespaceBefore(before, line)) {
-                final PadOption option = getAbstractOption();
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {
                     log(semi.getLineNo(), before, MSG_PRECEDED, SEMICOLON);
