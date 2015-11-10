@@ -166,7 +166,7 @@ public class ClassTypeParameterNameCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        final AbstractTypeParameterNameCheck typeParameterNameCheckObj =
+        final ClassTypeParameterNameCheck typeParameterNameCheckObj =
             new ClassTypeParameterNameCheck();
         final int[] actual = typeParameterNameCheckObj.getAcceptableTokens();
         final int[] expected = {
