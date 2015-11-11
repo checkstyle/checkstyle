@@ -108,7 +108,9 @@
     <property name="tabWidth" value="4"/>
 
     <!-- Annotations -->
-    <module name="AnnotationLocation"/>
+    <module name="AnnotationLocation">
+      <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+    </module>
     <module name="AnnotationUseStyle"/>
     <module name="MissingDeprecated"/>
     <module name="MissingOverride">

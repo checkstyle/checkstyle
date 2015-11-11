@@ -48,7 +48,8 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
 public class TreeWalkerTest extends BaseCheckTestSupport {
-    @Rule public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @Rule
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Test
     public void testProperFileExtension() throws Exception {

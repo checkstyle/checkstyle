@@ -508,7 +508,8 @@ public class MainTest {
         };
 
         exit.checkAssertionAfterwards(new Assertion() {
-            @Override public void checkAssertion() throws IOException {
+            @Override
+            public void checkAssertion() throws IOException {
                 final String expectedPath = getFilePath("checks/metrics") + File.separator;
                 final StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
