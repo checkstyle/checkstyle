@@ -39,7 +39,8 @@ import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
-    @Rule public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @Rule
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     private DefaultConfiguration checkConfig;
 
