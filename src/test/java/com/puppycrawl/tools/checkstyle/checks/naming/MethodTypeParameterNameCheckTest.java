@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ClassTypeParameterNameCheckTest
+public class MethodTypeParameterNameCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
@@ -40,53 +40,49 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetClassRequiredTokens() {
-        final ClassTypeParameterNameCheck checkObj =
-            new ClassTypeParameterNameCheck();
+    public void testGetMethodRequiredTokens() {
+        final MethodTypeParameterNameCheck checkObj =
+            new MethodTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
 
     @Test
-    public void testClassDefault()
+    public void testMethodDefault()
         throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassTypeParameterNameCheck.class);
+            createCheckConfig(MethodTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
         final String[] expected = {
-            "5:38: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
-            "13:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
-            "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "7:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
+            "9:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
+            "19:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
+            "23:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
         };
         verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
     }
 
     @Test
-    public void testClassFooName()
+    public void testMethodFooName()
         throws Exception {
         final DefaultConfiguration checkConfig =
-            createCheckConfig(ClassTypeParameterNameCheck.class);
+            createCheckConfig(MethodTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");
 
         final String pattern = "^foo$";
 
         final String[] expected = {
-            "5:38: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
-            "33:18: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "7:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
+            "9:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
+            "19:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
+            "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
+            "35:6: " + getCheckMessage(MSG_INVALID_PATTERN, "E", pattern),
+            "37:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            //"40:14: Name 'EE' must match pattern '^foo$'.",
         };
         verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
-    }
-
-    @Test
-    public void testGetAcceptableTokens() {
-        final ClassTypeParameterNameCheck typeParameterNameCheckObj =
-            new ClassTypeParameterNameCheck();
-        final int[] actual = typeParameterNameCheckObj.getAcceptableTokens();
-        final int[] expected = {
-            TokenTypes.TYPE_PARAMETER,
-        };
-        assertArrayEquals(expected, actual);
     }
 }
