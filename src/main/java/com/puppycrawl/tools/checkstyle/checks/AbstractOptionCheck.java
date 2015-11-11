@@ -68,7 +68,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
                     Enum.valueOf(optionClass, optionStr.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + abstractOption, iae);
+            throw new ConversionException("unable to parse " + optionStr, iae);
         }
     }
 
