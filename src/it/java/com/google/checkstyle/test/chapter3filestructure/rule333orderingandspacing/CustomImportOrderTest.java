@@ -27,6 +27,7 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 
@@ -44,7 +45,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     private final Class<CustomImportOrderCheck> clazz = CustomImportOrderCheck.class;
 
     @BeforeClass
-    public static void setConfigurationBuilder() {
+    public static void setConfigurationBuilder() throws CheckstyleException {
         builder = new ConfigurationBuilder(new File("src/it/"));
     }
 

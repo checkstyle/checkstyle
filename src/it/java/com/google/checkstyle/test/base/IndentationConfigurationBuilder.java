@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IndentationConfigurationBuilder extends ConfigurationBuilder {
@@ -55,7 +56,7 @@ public class IndentationConfigurationBuilder extends ConfigurationBuilder {
     private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
             Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
 
-    public IndentationConfigurationBuilder(File aRoot) {
+    public IndentationConfigurationBuilder(File aRoot) throws CheckstyleException {
         super(aRoot);
     }
 

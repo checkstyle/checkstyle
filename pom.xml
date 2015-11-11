@@ -888,13 +888,13 @@
           <bundledSignature>jdk-system-out</bundledSignature>
         </bundledSignatures>
         <excludes>
+          <!-- system-out is ok there, that is CLI -->
+          <exclude>**/Main.class</exclude>
+          <!-- generated classes, unfortunately use problematic api -->
           <exclude>**/GeneratedJavaLexer.class</exclude>
           <exclude>**/JavadocParser.class</exclude>
-          <exclude>**/Main.class</exclude>
           <!-- Tests related -->
           <exclude>**/Input*</exclude>
-          <exclude>**/CompareTreesWithComments.class</exclude>
-          <exclude>**/ConfigurationBuilder.class</exclude>
         </excludes>
       </configuration>
       <executions>

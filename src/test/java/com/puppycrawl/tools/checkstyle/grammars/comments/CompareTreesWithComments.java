@@ -50,7 +50,9 @@ class CompareTreesWithComments extends Check {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        Assert.assertTrue(isAstEquals(expectedTree, rootAST));
+        if (!isAstEquals(expectedTree, rootAST)) {
+            Assert.assertEquals(expectedTree, rootAST);
+        }
     }
 
     private static boolean isAstEquals(DetailAST expected, DetailAST actual) {
@@ -63,9 +65,6 @@ class CompareTreesWithComments extends Check {
         }
         else {
             result = isAstEqualsSafe(expected, actual);
-        }
-        if (!result) {
-            System.out.println("Expected: " + expected + " | Actual: " + actual);
         }
         return result;
     }

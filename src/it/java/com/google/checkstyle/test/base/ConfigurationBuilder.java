@@ -50,24 +50,16 @@ public class ConfigurationBuilder extends BaseCheckTestSupport {
     private final Pattern warnPattern = CommonUtils
         .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
 
-    public ConfigurationBuilder(File aRoot) {
+    public ConfigurationBuilder(File aRoot) throws CheckstyleException {
         root = aRoot;
         configuration = getConfigurationFromXML(XML_NAME, System.getProperties());
         listFiles(files, root, "java");
     }
 
     private static Configuration getConfigurationFromXML(String aConfigName,
-            Properties aProps) {
-        try {
-            return ConfigurationLoader.loadConfiguration(aConfigName,
-                    new PropertiesExpander(aProps));
-        }
-        catch (final CheckstyleException e) {
-            System.out.println("Error loading configuration file");
-            e.printStackTrace(System.out);
-            System.exit(1);
-            return null;
-        }
+            Properties aProps) throws CheckstyleException {
+        return ConfigurationLoader.loadConfiguration(aConfigName,
+                new PropertiesExpander(aProps));
     }
 
     Configuration getConfiguration() {

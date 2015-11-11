@@ -26,6 +26,7 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.google.checkstyle.test.base.ConfigurationBuilder;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
 
@@ -37,7 +38,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
     private final Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;
 
     @BeforeClass
-    public static void setConfigurationBuilder() {
+    public static void setConfigurationBuilder() throws CheckstyleException {
         builder = new ConfigurationBuilder(new File("src/it/"));
         checkConfig = builder.getCheckConfig("AbbreviationAsWordInName");
     }
