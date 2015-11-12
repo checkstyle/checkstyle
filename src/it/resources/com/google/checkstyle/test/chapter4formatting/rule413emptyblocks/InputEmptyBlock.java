@@ -8,7 +8,7 @@ import java.io.*;
 import java.awt.Dimension;
 import java.awt.Color;
 
-class Catch {
+class Block {
     boolean flag;
     void doSm() {}
     void foo() {
@@ -25,8 +25,8 @@ class Catch {
            if (!flag) {
                doSm();
            }
-        } catch (Exception e) {} //warn
-        finally {}
+        } catch (Exception e) {}
+        finally {} //warn
     }
 
     class Inner {
@@ -46,8 +46,8 @@ class Catch {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) {} //warn
-            finally {}
+            } catch (Exception e) {}
+            finally {} //warn
         }
     }
     
@@ -68,8 +68,8 @@ class Catch {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) {} //warn
-            finally {}
+            } catch (Exception e) {}
+            finally {} //warn
         }
     };
 }

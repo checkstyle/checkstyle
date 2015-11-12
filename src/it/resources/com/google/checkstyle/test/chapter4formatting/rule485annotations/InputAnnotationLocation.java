@@ -21,7 +21,7 @@ class InputCorrectAnnotationIndentation
     public InputCorrectAnnotationIndentation() {}
 
     @MyAnnotationWithParam("foo")
-    @MyAnnotation2 void foo1() {} //warn
+    @MyAnnotation2 void foo1() {}
 
     @MyAnnotation1
        @MyAnnotation2 //warn
@@ -33,7 +33,7 @@ class InputCorrectAnnotationIndentation
           @MyAnnotation4 //warn
     class InnerClass
     {
-        @MyAnnotation2 @MyAnnotation1 //warn
+        @MyAnnotation2 @MyAnnotation1
         public int a;
 
         @MyAnnotation1 public int b;
@@ -60,7 +60,7 @@ class InputCorrectAnnotationIndentation
     }
 
     @MyAnnotation1
-       @MyAnnotation2 //warn
+       @MyAnnotation2
     InnerClass anon = new InnerClass()
     {
         @MyAnnotation2 @MyAnnotation1 public int a;

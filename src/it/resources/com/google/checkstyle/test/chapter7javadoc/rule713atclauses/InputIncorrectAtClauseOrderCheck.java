@@ -6,10 +6,10 @@ import java.io.Serializable;
  * Some javadoc.
  * 
  * @since Some javadoc.
- * @version 1.0 //warn //warn
+ * @version 1.0
  * @deprecated Some javadoc.
- * @see Some javadoc. //warn
- * @author max //warn
+ * @see Some javadoc.
+ * @author max
  */
 class WithAnnotations12 implements Serializable
 {

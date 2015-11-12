@@ -280,7 +280,7 @@ class JavaDocTagContinuationIndentation implements Serializable
         
         /**
          * Some text.
-         *       Some javadoc. // warn
+         *       Some javadoc.
          * @param aString Some text.
          *    Some javadoc. // warn
          * @return Some text.
