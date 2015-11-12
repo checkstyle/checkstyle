@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
 * <p>
- * Checks that parameter names conform to a format specified
+ * Checks that method and <code>catch</code> parameter names conform to a format specified
  * by the format property. The format is a
  * {@link java.util.regex.Pattern regular expression}
  * and defaults to

@@ -915,7 +915,8 @@ class MyClass {
     <section name="ParameterName">
       <subsection name="Description">
         <p>
-          Validates identifiers for parameters.
+          Checks that method and <code>catch</code> parameter names conform to a format specified
+          by the format property.
         </p>
       </subsection>
 
