@@ -36,9 +36,8 @@ public class PackageNameTest extends BaseCheckTestSupport {
     private static Configuration checkConfig;
     private static String format;
 
-    @Override
-    protected String getPath(String fileName) throws IOException {
-        return super.getPath("chapter5naming" + File.separator + "rule521packagenames"
+    protected String getPath(String packageName, String fileName) throws IOException {
+        return getPath("chapter5naming" + File.separator + "rule521" + packageName
                 + File.separator + fileName);
     }
 
@@ -53,7 +52,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final String filePath = getPath("InputPackageNameGood.java");
+        final String filePath = getPath("packagenames", "InputPackageNameGood.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -70,7 +69,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = getPath("InputPackageNameBad.java");
+        final String filePath = getPath("packageNamesCamelCase", "InputPackageNameBad.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -86,7 +85,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = getPath("InputBadPackageName2.java");
+        final String filePath = getPath("_packagenames", "InputBadPackageName2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
@@ -102,7 +101,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
             "1:9: " + msg,
         };
 
-        final String filePath = getPath("InputPackageBadName3.java");
+        final String filePath = getPath("$packagenames", "InputPackageBadName3.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
