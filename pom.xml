@@ -192,7 +192,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.5.1-1</antlr4.version>
     <maven.site.plugin.version>3.4</maven.site.plugin.version>
-    <maven.findbugs.plugin.version>3.0.2</maven.findbugs.plugin.version>
+    <maven.findbugs.plugin.version>3.0.3</maven.findbugs.plugin.version>
     <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
     <maven.jacoco.plugin.version>0.7.5.201505241946</maven.jacoco.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
