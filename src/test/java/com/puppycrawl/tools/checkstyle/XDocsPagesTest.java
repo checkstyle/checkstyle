@@ -112,11 +112,8 @@ public class XDocsPagesTest {
 
     private static final List<String> UNDOCUMENTED_PROPERTIES = Arrays.asList(
             "SuppressWithNearbyCommentFilter.fileContents",
-            "SuppressionCommentFilter.fileContents",
-            "MethodNameCheck.applyToPackage",
-            "MethodNameCheck.applyToPrivate",
-            "MethodNameCheck.applyToProtected",
-            "MethodNameCheck.applyToPublic");
+            "SuppressionCommentFilter.fileContents"
+    );
 
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws IOException {
