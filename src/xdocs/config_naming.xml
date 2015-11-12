@@ -495,8 +495,8 @@
     <section name="LocalVariableName">
       <subsection name="Description">
         <p>
-          Validates identifiers for local, non-<code>final</code> variables, including
-          <code>catch</code> parameters.
+            Checks that local, non-<code>final</code> variable names conform to a format specified
+            by the format property.
         </p>
       </subsection>
 
@@ -525,35 +525,16 @@ for (int i = 1; i &lt; 10; i++) {}
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>.
-            </td>
-          </tr>
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          The following
-          configuration element ensures that <code>catch</code> clause
-          parameters begin with <code>"e"</code>, followed by letters
-          and digits:
+          To configure the check to use the default configuration:
         </p>
 
         <source>
-&lt;module name=&quot;LocalVariableName&quot;&gt;
-    &lt;property name=&quot;format&quot; value=&quot;^e[a-zA-Z0-9]*$&quot;/&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;PARAMETER_DEF&quot;/&gt;
-&lt;/module&gt;
+&lt;module name=&quot;LocalVariableName&quot;/&gt;
         </source>
 
         <p>
