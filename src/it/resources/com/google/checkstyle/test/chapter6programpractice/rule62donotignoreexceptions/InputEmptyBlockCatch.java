@@ -25,7 +25,7 @@ class Catch {
            if (!flag) {
                doSm();
            }
-        } catch (Exception e) {} //warn
+        } catch (Exception e) {}
         finally {} //warn
     }
 
@@ -46,7 +46,7 @@ class Catch {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) {} //warn
+            } catch (Exception e) {}
             finally {} //warn
         }
     }
@@ -68,7 +68,7 @@ class Catch {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) {} //warn
+            } catch (Exception e) {}
             finally {} //warn
         }
     };

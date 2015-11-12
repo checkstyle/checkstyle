@@ -92,7 +92,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport {
         };
 
         final Configuration checkConfig = getCheckConfig("EmptyBlock");
-        final String filePath = getPath("InputEmptyBlockCatch.java");
+        final String filePath = getPath("InputEmptyBlock.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
