@@ -65,22 +65,6 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testCatchParameter()
-        throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(LocalVariableNameCheck.class);
-        checkConfig.addAttribute("tokens", "PARAMETER_DEF");
-        checkConfig.addAttribute("format", "^e$");
-
-        final String pattern = "^e$";
-
-        final String[] expected = {
-            "69:24: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", pattern),
-        };
-        verify(checkConfig, getPath("InputEmptyStatement.java"), expected);
-    }
-
-    @Test
     public void testLoopVariables()
         throws Exception {
         final DefaultConfiguration checkConfig =
