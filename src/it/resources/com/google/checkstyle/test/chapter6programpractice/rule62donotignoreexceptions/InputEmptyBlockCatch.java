@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.google.checkstyle.test.chapter6programpractice.rule62caughtexceptions;
+package com.google.checkstyle.test.chapter6programpractice.rule62donotignoreexceptions;
 
 import java.io.*; 
 import java.awt.Dimension;

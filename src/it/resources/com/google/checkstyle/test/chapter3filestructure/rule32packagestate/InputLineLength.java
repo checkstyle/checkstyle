@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter3filestructure.rule32packagestatement; // ok
+package com.google.checkstyle.test.chapter3filestructure.rule32packagestate; // ok
 import java.io.*;
 final class InputLineLength
 {

@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; //ok
+package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap; //ok
 import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*; //ok
 final class InputLineLength
 {
@@ -181,31 +181,4 @@ final class InputLineLength
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }
-}
-
-/** Test class for variable naming in for each clauses. */
-class InputSimple2
-{
-    /** Some more Javadoc. */
-    public void doSomething()
-    {
-        //"O" should be named "o"
-        for (Object O : new java.util.ArrayList())
-        {
-
-        }
-    }
-}
-
-/** Test enum for member naming check */
-enum MyEnum1
-{
-    /** ABC constant */
-    ABC,
-
-    /** XYZ constant */
-    XYZ;
-
-    /** Should be mSomeMemeber */
-    private int someMember;
 }

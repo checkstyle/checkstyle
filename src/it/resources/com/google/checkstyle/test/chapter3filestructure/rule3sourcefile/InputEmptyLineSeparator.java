@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.google.checkstyle.test.chapter3filestructure.rule3sourcefilestructure; //warn
+package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile; //warn
 import java.io.Serializable; //warn
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,8 +107,8 @@ class InputEmptyLineSeparator //warn
     }
 }
 
-class Class { //ok
-    private Class() {} //ok
+class Class1 { //ok
+    private Class1() {} //ok
 } 
 class Class2{ //warn
     public int compareTo(InputEmptyLineSeparator aObject) //ok
