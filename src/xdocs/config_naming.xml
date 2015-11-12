@@ -725,6 +725,32 @@ class MyClass {
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
+          <tr>
+            <td>applyToPublic</td>
+            <td>Controls whether to apply the check to public member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToProtected</td>
+            <td>Controls whether to apply the check to protected member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPackage</td>
+            <td>
+              Controls whether to apply the check to package-private member.
+            </td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+          <tr>
+            <td>applyToPrivate</td>
+            <td>Controls whether to apply the check to private member.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
         </table>
       </subsection>
 
