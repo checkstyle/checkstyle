@@ -51,7 +51,7 @@ matrix:
     - jdk: oraclejdk7
       env:
         - DESC="nemo.sonarqube.com"
-        - CMD1="mvn clean install cobertura:cobertura -Dcobertura.report.format=xml "
+        - CMD1="mvn clean istnall cobertura:cobertura -Dcobertura.report.format=xml "
         - CMD2=" -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true "
         - CMD3=" -Dpmd.skip=true -Dcheckstyle.ant.skip=true"
         - CMD=$CMD1$CMD2$CMD3
@@ -66,7 +66,7 @@ matrix:
         - CMD3=" && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD4="              -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
         - CMD5=" && git clone https://github.com/checkstyle/Orekit.git && cd Orekit"
-        - CMD6=" && sed -i \"s/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>\$CS_POM_VERSION</\" pom.xml "
+        - CMD6=" && sed -i \"""s/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>\$CS_POM_VERSION</""\" pom.xml "
         - CMD7=" && mvn compile checkstyle:check"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7
         - COVERAGE_CMD=""
