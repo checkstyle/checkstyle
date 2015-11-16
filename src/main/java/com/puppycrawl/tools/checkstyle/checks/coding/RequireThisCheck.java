@@ -339,7 +339,7 @@ public class RequireThisCheck extends Check {
      * @param ident an IDENT ast to check
      * @return true is the given name is name of member.
      */
-    protected final boolean isClassField(DetailAST ident) {
+    private boolean isClassField(DetailAST ident) {
         final LexicalFrame frame = findFrame(ident, false);
         return frame instanceof ClassFrame
                 && ((ClassFrame) frame).hasInstanceMember(ident);
@@ -350,7 +350,7 @@ public class RequireThisCheck extends Check {
      * @param ident the IDENT ast of the name to check
      * @return true is the given name is name of method.
      */
-    protected final boolean isClassMethod(DetailAST ident) {
+    private boolean isClassMethod(DetailAST ident) {
         final LexicalFrame frame = findFrame(ident, true);
         return frame instanceof ClassFrame
                 && ((ClassFrame) frame).hasInstanceMethod(ident);
