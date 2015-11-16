@@ -24,8 +24,7 @@
     <section name="Introduction">
 
       <p>
-        Hey, good to see you on this page. It means that you are
-        considereto report an issue to the Checkstyle
+        Hey, good to see you on this page. It means that you are considering reporting an issue to the Checkstyle
         project. We welcome anything: bug reports, feature requests to existing functionality, new Check ideas, etc.
       </p>
 
@@ -35,24 +34,26 @@
       </p>
     </section>
 
-    <section name="How to report a bug ?">
+    <section name="How to report a bug?">
 
       <p>
-        First and foremost, do not think that your issue is obvious and do not need details !!!!
+        First and foremost, do not think that your issue is obvious and do not need details.
         Even tiny issue need all details and context to be shared with us.
       </p>
 
       <p>
         The best way to report an Issue is to reproduce it by our <a href="cmdline.html#Download_and_Run">
-        Command Line Interface</a>. It is the most minimalistic way to launch Checkstyle.
+        Command Line Interface (CLI)</a>. It is the most minimalistic way to launch Checkstyle.
       </p>
 
       <p>
-        Our project do not fix problems on any extension or plugins. Checkstyle is library that is used everywhere by number of IDEs and Static Analysis Integrators/Services.
+        Our project is not responsible for problems on any extension or plugins. Checkstyle is library that is used
+        everywhere by number of IDEs and static analysis services.
       </p>
 
       <p>
-        We need minimized java file and minimized config. We do not need real source code any obfuscattion of your super secrect code is ok.
+        We need minimized Java file and minimized config. We do not need real source code. Any obfuscation of your
+        super secret code is OK.
       </p>
 
       <p>
@@ -94,7 +95,7 @@ private static final int SOMETHING = 1;
 
     </section>
 
-    <section name="How to request new feature for existing functoinality?">
+    <section name="How to request new feature for existing functionality?">
 
       <p>
         Please always specify exact name of the Check/Module.
@@ -107,13 +108,13 @@ private static final int SOMETHING = 1;
 
     <section name="How to request new Check/Module?">
       <p>
-        Please provide detailed description of problem
+        Please provide detailed description of problem.
       </p>
       <p>
         You have to provide examples of code and expected violations on them. The more examples the better.
       </p>
       <p>
-        If you are opensource project, please send a link to the whole java file.
+        If you have open source project, please send a link to the whole java file.
       </p>
     </section>
 
