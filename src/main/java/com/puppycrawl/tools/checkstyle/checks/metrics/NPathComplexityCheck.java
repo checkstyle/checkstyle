@@ -20,7 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import java.math.BigInteger;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
+import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -34,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
-public final class NPathComplexityCheck extends AbstractComplexityCheck {
+public final class NPathComplexityCheck extends Check {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -45,9 +48,25 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck {
     /** Default allowed complexity. */
     private static final int DEFAULT_MAX = 200;
 
-    /** Creates new instance of the check. */
-    public NPathComplexityCheck() {
-        super(DEFAULT_MAX);
+    /** The initial current value. */
+    private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
+
+    /** Stack of values - all but the current value. */
+    private final Deque<BigInteger> valueStack = new ArrayDeque<>();
+
+    /** The current value. */
+    private BigInteger currentValue = INITIAL_VALUE;
+
+    /** Threshold to report error for. */
+    private int max = DEFAULT_MAX;
+
+    /**
+     * Set the maximum threshold allowed.
+     *
+     * @param max the maximum threshold
+     */
+    public void setMax(int max) {
+        this.max = max;
     }
 
     @Override
@@ -91,6 +110,16 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck {
     }
 
     @Override
+    public int[] getRequiredTokens() {
+        return new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+        };
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.LITERAL_WHILE:
@@ -107,8 +136,14 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck {
             case TokenTypes.LITERAL_CASE:
                 visitAddingConditional();
                 break;
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                visitMethodDef();
+                break;
             default:
-                super.visitToken(ast);
+                break;
         }
     }
 
@@ -129,14 +164,15 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck {
             case TokenTypes.LITERAL_CASE:
                 leaveAddingConditional();
                 break;
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.INSTANCE_INIT:
+            case TokenTypes.STATIC_INIT:
+                leaveMethodDef(ast);
+                break;
             default:
-                super.leaveToken(ast);
+                break;
         }
-    }
-
-    @Override
-    protected String getMessageID() {
-        return MSG_KEY;
     }
 
     /** Visits else, catch or case. */
@@ -146,8 +182,7 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck {
 
     /** Leaves else, catch or case. */
     private void leaveAddingConditional() {
-        setCurrentValue(
-                getCurrentValue().subtract(BigInteger.ONE).add(popValue()));
+        currentValue = currentValue.subtract(BigInteger.ONE).add(popValue());
     }
 
     /** Visits while, do, for, if, try, ? (in ?::) or switch. */
@@ -157,17 +192,39 @@ public final class NPathComplexityCheck extends AbstractComplexityCheck {
 
     /** Leaves while, do, for, if, try, ? (in ?::) or switch. */
     private void leaveMultiplyingConditional() {
-        setCurrentValue(
-                getCurrentValue().add(BigInteger.ONE).multiply(popValue()));
+        currentValue = currentValue.add(BigInteger.ONE).multiply(popValue());
     }
 
-    @Override
-    protected void visitTokenHook(DetailAST ast) {
-        // no code
+    /** Push the current value on the stack. */
+    private void pushValue() {
+        valueStack.push(currentValue);
+        currentValue = INITIAL_VALUE;
     }
 
-    @Override
-    protected void leaveTokenHook(DetailAST ast) {
-        // no code
+    /**
+     * Pops a value off the stack and makes it the current value.
+     * @return pop a value off the stack and make it the current value
+     */
+    private BigInteger popValue() {
+        currentValue = valueStack.pop();
+        return currentValue;
+    }
+
+    /** Process the start of the method definition. */
+    private void visitMethodDef() {
+        pushValue();
+    }
+
+    /**
+     * Process the end of a method definition.
+     *
+     * @param ast the token representing the method definition
+     */
+    private void leaveMethodDef(DetailAST ast) {
+        final BigInteger bigIntegerMax = BigInteger.valueOf(max);
+        if (currentValue.compareTo(bigIntegerMax) > 0) {
+            log(ast, MSG_KEY, currentValue, bigIntegerMax);
+        }
+        popValue();
     }
 }
