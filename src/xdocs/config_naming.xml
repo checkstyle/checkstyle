@@ -230,6 +230,90 @@
       </subsection>
     </section>
 
+    <section name="CatchParameterName">
+      <subsection name="Description">
+        <p>
+          Checks that catch parameter names conform to a format specified by the format property.
+          Default pattern has the following characteristic:
+        </p>
+        <ul>
+          <li>allows names beginning with two lowercase letters followed by at least one uppercase
+            or lowercase letter</li>
+          <li>allows <code>e</code> abbreviation (suitable for exceptions end errors)</li>
+          <li>allows <code>ex</code> abbreviation (suitable for exceptions)</li>
+          <li>allows <code>t</code> abbreviation (suitable for throwables)</li>
+          <li>prohibits numbered abbreviations like <code>e1</code> or <code>t2</code></li>
+          <li>prohibits one letter prefixes like <code>pException</code></li>
+          <li>prohibits two letter abbreviations like <code>ie</code> or <code>ee</code></li>
+          <li>prohibits any other characters than letters</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>format</td>
+            <td>Specifies valid identifiers.</td>
+            <td>
+              <a href="property_types.html#regexp">regular expression</a>
+            </td>
+            <td>
+              <code>^(e|t|ex|[a-z][a-z][a-zA-Z]+)$</code>
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
+      <subsection name="Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;CatchParameterName&quot;/&gt;
+        </source>
+        <p>
+          An example of how to configure the check for names that begin with
+          a lower case letter, followed by letters and digits is:
+        </p>
+        <source>
+&lt;module name="ParameterName"&gt;
+    &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+              Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+              Checkstyle Style
+            </a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      </subsection>
+
+      <subsection name="Parent Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="ClassTypeParameterName">
       <subsection name="Description">
         <p>Validates identifiers for class type parameters.</p>
