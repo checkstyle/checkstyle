@@ -1719,6 +1719,7 @@
                   <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractIllegalCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractIllegalMethodCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractNestedDepthCheck.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/checks/metrics/AbstractComplexityCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/naming/AbstractTypeParameterNameCheck.class</exclude>
                 </excludes>
               </instrumentation>
