@@ -29,10 +29,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Base class for checks the calculate complexity based around methods.
- *
+ * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author Oliver Burn
+ * @noinspection AbstractClassNeverImplemented
  */
+@Deprecated
 public abstract class AbstractComplexityCheck
     extends Check {
     /** The initial current value. */
