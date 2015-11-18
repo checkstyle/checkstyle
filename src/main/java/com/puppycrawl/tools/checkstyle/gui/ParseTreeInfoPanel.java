@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TooManyListenersException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -101,13 +100,6 @@ public class ParseTreeInfoPanel extends JPanel {
         add(pane, BorderLayout.PAGE_END);
         pane.add(fileSelectionButton);
         pane.add(reloadButton);
-
-        try {
-            new FileDrop(scrollPane, new FileDropListener(scrollPane));
-        }
-        catch (final TooManyListenersException ignored) {
-            showErrorDialog(null, "Cannot initialize Drag and Drop support");
-        }
 
     }
 
@@ -322,26 +314,4 @@ public class ParseTreeInfoPanel extends JPanel {
         }
     }
 
-    /**
-     * Listener and handler for file dropped events.
-     */
-    private class FileDropListener implements Listener {
-        /** Scroll pane. */
-        private final JScrollPane scrollPane;
-
-        /**
-         * @param scrollPane Scroll pane.
-         */
-        FileDropListener(JScrollPane scrollPane) {
-            this.scrollPane = scrollPane;
-        }
-
-        @Override
-        public void filesDropped(File... files) {
-            if (files != null && files.length > 0) {
-                final File file = files[0];
-                openFile(file, scrollPane);
-            }
-        }
-    }
 }
