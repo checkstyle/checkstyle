@@ -262,16 +262,19 @@ public class CommentsIndentationCheck extends Check {
      * @param comment single line comment.
      * @return the first token of the destributed previous statement of single line comment.
      */
-    private static DetailAST getDistributedPreviousStatementOfSingleLineComment(
-            DetailAST comment) {
-        DetailAST previousStatement = comment.getPreviousSibling();
-        if (previousStatement.getType() == TokenTypes.LITERAL_RETURN
-                || previousStatement.getType() == TokenTypes.LITERAL_THROW) {
-            return previousStatement;
+    private static DetailAST getDistributedPreviousStatementOfSingleLineComment(DetailAST comment) {
+        final DetailAST previousStatement;
+        DetailAST currentToken = comment.getPreviousSibling();
+        if (currentToken.getType() == TokenTypes.LITERAL_RETURN
+                || currentToken.getType() == TokenTypes.LITERAL_THROW) {
+            previousStatement = currentToken;
         }
-        previousStatement = previousStatement.getPreviousSibling();
-        while (previousStatement.getFirstChild() != null) {
-            previousStatement = previousStatement.getFirstChild();
+        else {
+            currentToken = currentToken.getPreviousSibling();
+            while (currentToken.getFirstChild() != null) {
+                currentToken = currentToken.getFirstChild();
+            }
+            previousStatement = currentToken;
         }
         return previousStatement;
     }
@@ -493,6 +496,7 @@ public class CommentsIndentationCheck extends Check {
      *         statement.
      */
     private static DetailAST getOneLinePreviousStatementOfSingleLineComment(DetailAST comment) {
+        DetailAST previousStatement = null;
         final Stack<DetailAST> stack = new Stack<>();
         DetailAST root = comment.getParent();
 
@@ -501,10 +505,11 @@ public class CommentsIndentationCheck extends Check {
                 root = stack.pop();
             }
             while (root != null) {
-                final DetailAST previousStatement =
-                    findPreviousStatementOfSingleLineComment(comment, root);
+                previousStatement = findPreviousStatementOfSingleLineComment(comment, root);
                 if (previousStatement != null) {
-                    return previousStatement;
+                    root = null;
+                    stack.clear();
+                    break;
                 }
                 if (root.getNextSibling() != null) {
                     stack.push(root.getNextSibling());
@@ -512,7 +517,7 @@ public class CommentsIndentationCheck extends Check {
                 root = root.getFirstChild();
             }
         }
-        return null;
+        return previousStatement;
     }
 
     /**
