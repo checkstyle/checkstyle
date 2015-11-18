@@ -30,11 +30,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
- * <p>The check has the following options:</p>
+ * <p>The check has the following option:</p>
  * <p><b>ignoreOverridden</b> - allows to skip methods with Override annotation from
- * validation. Default value is <b>false</b> .</p>
- * <p><b>skipCatchParameter</b> - allows to skip catcj parameter from validation. Default value
- * is <b>true</b> .</p>
+ * validation. Default values is <b>false</b> .</p>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -59,14 +57,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    &lt;property name="ignoreOverridden" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * An example of how to configure the check to skip catch parameter from validation:
- * </p>
- * <pre>
- * &lt;module name="ParameterName"&gt;
- *    &lt;property name="skipCatchParameter" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
  *
  * @author Oliver Burn
  * @author Andrei Selkin
@@ -78,11 +68,6 @@ public class ParameterNameCheck
      * Allows to skip methods with Override annotation from validation.
      */
     private boolean ignoreOverridden;
-
-    /**
-     * Allows to skip catch parameter from validation.
-     */
-    private boolean skipCatchParameter = true;
 
     /**
      * Creates a new {@code ParameterNameCheck} instance.
@@ -98,14 +83,6 @@ public class ParameterNameCheck
      */
     public void setIgnoreOverridden(boolean ignoreOverridden) {
         this.ignoreOverridden = ignoreOverridden;
-    }
-
-    /**
-     * Sets whether to skip catch parameter from validation.
-     * @param skipCatchParameter Flag for skipping catch parameter.
-     */
-    public void setSkipCatchParameter(boolean skipCatchParameter) {
-        this.skipCatchParameter = skipCatchParameter;
     }
 
     @Override
@@ -127,7 +104,7 @@ public class ParameterNameCheck
     protected boolean mustCheckName(DetailAST ast) {
         boolean checkName = true;
         if (ignoreOverridden && isOverriddenMethod(ast)
-                || skipCatchParameter && ast.getParent().getType() == TokenTypes.LITERAL_CATCH) {
+                || ast.getParent().getType() == TokenTypes.LITERAL_CATCH) {
             checkName = false;
         }
         return checkName;
