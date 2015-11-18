@@ -47,6 +47,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -113,6 +114,11 @@ public class XDocsPagesTest {
             "SuppressWithNearbyCommentFilter.fileContents",
             "SuppressionCommentFilter.fileContents"
     );
+
+    private static final Set<String> SUN_CHECKS = ImmutableSet.copyOf(CheckUtil
+            .getConfigSunStyleChecks());
+    private static final Set<String> GOOGLE_CHECKS = ImmutableSet.copyOf(CheckUtil
+            .getConfigGoogleStyleChecks());
 
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws IOException {
@@ -496,12 +502,20 @@ public class XDocsPagesTest {
                         + "path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+"
                         + sectionName;
+
+                Assert.assertTrue(fileName + " section '" + sectionName
+                        + "' should be in google_checks.xml or not reference 'Google Style'",
+                        GOOGLE_CHECKS.contains(sectionName));
             }
             else if ("Sun Style".equals(linkText)) {
                 expectedUrl = "https://github.com/search?q="
                         + "path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+"
                         + sectionName;
+
+                Assert.assertTrue(fileName + " section '" + sectionName
+                        + "' should be in sun_checks.xml or not reference 'Sun Style'",
+                        SUN_CHECKS.contains(sectionName));
             }
 
             Assert.assertEquals(fileName + " section '" + sectionName

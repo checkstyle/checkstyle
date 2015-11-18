@@ -28,13 +28,11 @@ import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
@@ -46,15 +44,15 @@ public final class CheckUtil {
     private CheckUtil() {
     }
 
-    public static Set<String> getConfigCheckStyleChecks() throws Exception {
+    public static Set<String> getConfigCheckStyleChecks() {
         return getCheckStyleChecksReferencedInConfig("config/checkstyle_checks.xml");
     }
 
-    public static Set<String> getConfigSunStyleChecks() throws Exception {
+    public static Set<String> getConfigSunStyleChecks() {
         return getCheckStyleChecksReferencedInConfig("src/main/resources/sun_checks.xml");
     }
 
-    public static Set<String> getConfigGoogleStyleChecks() throws Exception {
+    public static Set<String> getConfigGoogleStyleChecks() {
         return getCheckStyleChecksReferencedInConfig("src/main/resources/google_checks.xml");
     }
 
@@ -64,49 +62,49 @@ public final class CheckUtil {
      * @param configFilePath
      *            file path of checkstyle_checks.xml.
      * @return names of checkstyle's checks which are referenced in checkstyle_checks.xml.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies
-     *              the configuration requested.
-     * @throws IOException if any IO errors occur.
-     * @throws SAXException if any parse errors occur.
      */
-    private static Set<String> getCheckStyleChecksReferencedInConfig(
-            String configFilePath) throws Exception {
-        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    private static Set<String> getCheckStyleChecksReferencedInConfig(String configFilePath) {
+        try {
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
-        // Validations of XML file make parsing too slow, that is why we disable all
-        // validations.
-        factory.setNamespaceAware(false);
-        factory.setValidating(false);
-        factory.setFeature("http://xml.org/sax/features/namespaces", false);
-        factory.setFeature("http://xml.org/sax/features/validation", false);
-        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-dtd-grammar",
-                false);
-        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd",
-                false);
+            // Validations of XML file make parsing too slow, that is why we
+            // disable all validations.
+            factory.setNamespaceAware(false);
+            factory.setValidating(false);
+            factory.setFeature("http://xml.org/sax/features/namespaces", false);
+            factory.setFeature("http://xml.org/sax/features/validation", false);
+            factory.setFeature("http://apache.org/xml/features/nonvalidating/load-dtd-grammar",
+                    false);
+            factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd",
+                    false);
 
-        final DocumentBuilder builder = factory.newDocumentBuilder();
-        final Document document = builder.parse(new File(configFilePath));
+            final DocumentBuilder builder = factory.newDocumentBuilder();
+            final Document document = builder.parse(new File(configFilePath));
 
-        // optional, but recommended
-        // FYI:
-        // http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-
-        // does-it-work
-        document.getDocumentElement().normalize();
+            // optional, but recommended
+            // FYI:
+            // http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-
+            // how-does-it-work
+            document.getDocumentElement().normalize();
 
-        final NodeList nodeList = document.getElementsByTagName("module");
+            final NodeList nodeList = document.getElementsByTagName("module");
 
-        final Set<String> checksReferencedInCheckstyleChecksXml = new HashSet<>();
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            final Node currentNode = nodeList.item(i);
-            if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-                final Element module = (Element) currentNode;
-                final String checkName = module.getAttribute("name");
-                if (!"Checker".equals(checkName) && !"TreeWalker".equals(checkName)) {
-                    checksReferencedInCheckstyleChecksXml.add(checkName);
+            final Set<String> checksReferencedInCheckstyleChecksXml = new HashSet<>();
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                final Node currentNode = nodeList.item(i);
+                if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
+                    final Element module = (Element) currentNode;
+                    final String checkName = module.getAttribute("name");
+                    if (!"Checker".equals(checkName) && !"TreeWalker".equals(checkName)) {
+                        checksReferencedInCheckstyleChecksXml.add(checkName);
+                    }
                 }
             }
+            return checksReferencedInCheckstyleChecksXml;
         }
-        return checksReferencedInCheckstyleChecksXml;
+        catch (Exception exception) {
+            throw new IllegalStateException(exception);
+        }
     }
 
     /**
