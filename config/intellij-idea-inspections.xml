@@ -480,7 +480,7 @@
     <inspection_tool class="CyclomaticComplexityJS" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="10" />
     </inspection_tool>
-    <inspection_tool class="DanglingJavadoc" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DanglingJavadoc" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DataProviderReturnType" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DateToString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DebuggerStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />

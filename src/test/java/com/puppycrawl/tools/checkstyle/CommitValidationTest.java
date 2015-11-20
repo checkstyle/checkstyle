@@ -124,10 +124,10 @@ public class CommitValidationTest {
             final String commitMessage = commit.getFullMessage();
             final Matcher matcher = NEWLINE_PATTERN.matcher(commitMessage);
             if (matcher.find()) {
-                /**
-                 * Git by default put newline character at the end of commit message. To check
-                 * if commit message has a single line we have to make sure that the only
-                 * newline character found is in the end of commit message.
+                /*
+                  Git by default put newline character at the end of commit message. To check
+                  if commit message has a single line we have to make sure that the only
+                  newline character found is in the end of commit message.
                  */
                 final boolean isFoundNewLineCharacterAtTheEndOfMessage =
                         matcher.end() == commitMessage.length();
