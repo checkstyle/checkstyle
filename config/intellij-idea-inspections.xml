@@ -616,7 +616,7 @@
     <inspection_tool class="EqualsUsesNonFinalVariable" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="EqualsWhichDoesntCheckParameterClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EqualsWithItself" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ErrorRethrown" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ErrorRethrown" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Eslint" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ExceptionCaughtLocallyJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExceptionFromCatchWhichDoesntWrap" enabled="true" level="WARNING" enabled_by_default="true">
