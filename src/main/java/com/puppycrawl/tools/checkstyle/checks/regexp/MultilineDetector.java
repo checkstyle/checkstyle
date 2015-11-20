@@ -89,7 +89,11 @@ class MultilineDetector {
         }
     }
 
-    /** Method that finds the matches. */
+    /**
+     * Method that finds the matches.
+     *
+     * @noinspection ErrorRethrown
+     */
     private void findMatch() {
         try {
             boolean foundMatch = matcher.find();
