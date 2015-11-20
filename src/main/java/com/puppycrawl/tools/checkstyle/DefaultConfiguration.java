@@ -104,7 +104,7 @@ public final class DefaultConfiguration implements Configuration {
      * @param value the value of the attribute.
      */
     public void addAttribute(String attributeName, String value) {
-        final String current = attributeMap.put(attributeName, value);
+        final String current = attributeMap.get(attributeName);
         if (current == null) {
             attributeMap.put(attributeName, value);
         }
