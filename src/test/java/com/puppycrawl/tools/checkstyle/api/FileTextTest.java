@@ -37,8 +37,8 @@ public class FileTextTest {
             new FileText(new File("any name"), charsetName);
             fail();
         }
-        catch (UnsupportedEncodingException e) {
-            assertEquals("Unsupported charset: " + charsetName, e.getMessage());
+        catch (UnsupportedEncodingException ex) {
+            assertEquals("Unsupported charset: " + charsetName, ex.getMessage());
         }
 
     }

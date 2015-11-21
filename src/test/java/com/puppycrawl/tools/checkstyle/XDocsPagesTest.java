@@ -222,8 +222,8 @@ public class XDocsPagesTest {
 
             return builder.parse(new InputSource(new StringReader(code)));
         }
-        catch (IOException | SAXException e) {
-            Assert.fail(fileName + " has invalid xml (" + e.getMessage() + "): "
+        catch (IOException | SAXException ex) {
+            Assert.fail(fileName + " has invalid xml (" + ex.getMessage() + "): "
                     + unserializedSource);
         }
 
@@ -261,8 +261,8 @@ public class XDocsPagesTest {
                 checker.destroy();
             }
         }
-        catch (CheckstyleException e) {
-            Assert.fail(fileName + " has invalid Checkstyle xml (" + e.getMessage() + "): "
+        catch (CheckstyleException ex) {
+            Assert.fail(fileName + " has invalid Checkstyle xml (" + ex.getMessage() + "): "
                     + unserializedSource);
         }
     }
@@ -320,7 +320,7 @@ public class XDocsPagesTest {
         try {
             instance = moduleFactory.createModule(sectionName);
         }
-        catch (CheckstyleException e) {
+        catch (CheckstyleException ex) {
             Assert.fail(fileName + " couldn't find class: " + sectionName);
         }
 

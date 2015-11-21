@@ -364,8 +364,8 @@ public class CheckstyleAntTask extends Task {
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
-        catch (CheckstyleException e) {
-            throw new BuildException("Unable to process files: " + files, e);
+        catch (CheckstyleException ex) {
+            throw new BuildException("Unable to process files: " + files, ex);
         }
         final int numWarnings = warningCounter.getCount();
         final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
@@ -412,9 +412,9 @@ public class CheckstyleAntTask extends Task {
             checker.contextualize(context);
             checker.configure(config);
         }
-        catch (final CheckstyleException e) {
+        catch (final CheckstyleException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create a Checker: "
-                    + "configLocation {%s}, classpath {%s}.", configLocation, classpath), e);
+                    + "configLocation {%s}, classpath {%s}.", configLocation, classpath), ex);
         }
         return checker;
     }
@@ -435,9 +435,9 @@ public class CheckstyleAntTask extends Task {
                 inStream = new FileInputStream(properties);
                 returnValue.load(inStream);
             }
-            catch (final IOException e) {
+            catch (final IOException ex) {
                 throw new BuildException("Error loading Properties file '"
-                        + properties + "'", e, getLocation());
+                        + properties + "'", ex, getLocation());
             }
             finally {
                 Closeables.closeQuietly(inStream);
@@ -482,9 +482,9 @@ public class CheckstyleAntTask extends Task {
                 }
             }
         }
-        catch (IOException e) {
+        catch (IOException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create listeners: "
-                    + "formatters {%s}.", formatters), e);
+                    + "formatters {%s}.", formatters), ex);
         }
         return listeners;
     }

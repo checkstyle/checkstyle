@@ -180,7 +180,7 @@ public class FinalLocalVariableCheckTest
             check.visitToken(lambdaAst);
             Assert.fail();
         }
-        catch (IllegalStateException e) {
+        catch (IllegalStateException ex) {
             // it is OK
         }
     }

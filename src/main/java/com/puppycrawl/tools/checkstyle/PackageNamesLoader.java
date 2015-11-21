@@ -149,8 +149,8 @@ public final class PackageNamesLoader
                     final InputSource source = new InputSource(stream);
                     namesLoader.parseInputSource(source);
                 }
-                catch (IOException e) {
-                    throw new CheckstyleException("unable to open " + packageFile, e);
+                catch (IOException ex) {
+                    throw new CheckstyleException("unable to open " + packageFile, ex);
                 }
                 finally {
                     Closeables.closeQuietly(stream);
@@ -160,11 +160,11 @@ public final class PackageNamesLoader
             result = namesLoader.packageNames;
 
         }
-        catch (IOException e) {
-            throw new CheckstyleException("unable to get package file resources", e);
+        catch (IOException ex) {
+            throw new CheckstyleException("unable to get package file resources", ex);
         }
-        catch (ParserConfigurationException | SAXException e) {
-            throw new CheckstyleException("unable to open one of package files", e);
+        catch (ParserConfigurationException | SAXException ex) {
+            throw new CheckstyleException("unable to open one of package files", ex);
         }
 
         return result;

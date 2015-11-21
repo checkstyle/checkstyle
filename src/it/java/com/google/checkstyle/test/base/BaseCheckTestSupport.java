@@ -165,7 +165,7 @@ public class BaseCheckTestSupport {
         try {
             pr.load(aClass.getResourceAsStream("messages.properties"));
         }
-        catch (IOException e) {
+        catch (IOException ex) {
             return null;
         }
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),

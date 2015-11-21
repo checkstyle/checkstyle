@@ -109,9 +109,9 @@ public class PropertyCacheFileTest {
             method.invoke(cache, config);
             fail();
         }
-        catch (InvocationTargetException e) {
-            assertTrue(e.getCause().getCause() instanceof NoSuchAlgorithmException);
-            assertEquals("Unable to calculate hashcode.", e.getCause().getMessage());
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause().getCause() instanceof NoSuchAlgorithmException);
+            assertEquals("Unable to calculate hashcode.", ex.getCause().getMessage());
         }
     }
 }

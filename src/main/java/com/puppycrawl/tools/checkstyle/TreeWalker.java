@@ -482,8 +482,8 @@ public final class TreeWalker
             try {
                 cache.persist();
             }
-            catch (IOException e) {
-                throw new IllegalStateException("Unable to persist cache file", e);
+            catch (IOException ex) {
+                throw new IllegalStateException("Unable to persist cache file", ex);
             }
         }
         super.destroy();

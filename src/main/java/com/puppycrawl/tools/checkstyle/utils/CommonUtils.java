@@ -202,9 +202,9 @@ public final class CommonUtils {
         try {
             return Pattern.compile(pattern, flags);
         }
-        catch (final PatternSyntaxException e) {
+        catch (final PatternSyntaxException ex) {
             throw new ConversionException(
-                    "Failed to initialise regular expression " + pattern, e);
+                    "Failed to initialise regular expression " + pattern, ex);
         }
     }
 
@@ -333,8 +333,8 @@ public final class CommonUtils {
         try {
             closeable.close();
         }
-        catch (IOException e) {
-            throw new IllegalStateException("Cannot close the stream", e);
+        catch (IOException ex) {
+            throw new IllegalStateException("Cannot close the stream", ex);
         }
     }
 
@@ -370,8 +370,8 @@ public final class CommonUtils {
                     }
                     uri = configUrl.toURI();
                 }
-                catch (final URISyntaxException e) {
-                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, e);
+                catch (final URISyntaxException ex) {
+                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);
                 }
             }
         }

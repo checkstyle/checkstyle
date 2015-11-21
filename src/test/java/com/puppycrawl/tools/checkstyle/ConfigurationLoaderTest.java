@@ -381,9 +381,9 @@ public class ConfigurationLoaderTest {
             fail("Exception is expected");
 
         }
-        catch (InvocationTargetException e) {
-            assertTrue(e.getCause() instanceof IllegalStateException);
-            assertEquals("Unknown name:" + "hello" + ".", e.getCause().getMessage());
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof IllegalStateException);
+            assertEquals("Unknown name:" + "hello" + ".", ex.getCause().getMessage());
         }
     }
 

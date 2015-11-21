@@ -363,10 +363,10 @@ public class SuppressionCommentFilter
                     }
                 }
             }
-            catch (final PatternSyntaxException e) {
+            catch (final PatternSyntaxException ex) {
                 throw new ConversionException(
                     "unable to parse expanded comment " + format,
-                    e);
+                    ex);
             }
         }
 

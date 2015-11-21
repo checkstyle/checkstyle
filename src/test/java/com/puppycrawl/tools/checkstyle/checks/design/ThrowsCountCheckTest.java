@@ -92,8 +92,8 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
             obj.visitToken(ast);
             fail();
         }
-        catch (IllegalStateException e) {
-            assertEquals(ast.toString(), e.getMessage());
+        catch (IllegalStateException ex) {
+            assertEquals(ast.toString(), ex.getMessage());
         }
     }
 

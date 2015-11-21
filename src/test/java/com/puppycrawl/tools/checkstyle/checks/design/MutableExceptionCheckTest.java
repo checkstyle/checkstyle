@@ -101,7 +101,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
             obj.visitToken(ast);
             fail();
         }
-        catch (IllegalStateException e) {
+        catch (IllegalStateException ex) {
             //expected
         }
     }

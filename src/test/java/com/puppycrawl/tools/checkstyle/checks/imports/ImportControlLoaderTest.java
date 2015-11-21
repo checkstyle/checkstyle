@@ -78,8 +78,8 @@ public class ImportControlLoaderTest {
             privateMethod.invoke(null, attr, "you_cannot_find_me");
         }
         catch (IllegalAccessException | IllegalArgumentException
-                | NoSuchMethodException | SecurityException e) {
-            throw new IllegalStateException(e);
+                | NoSuchMethodException | SecurityException ex) {
+            throw new IllegalStateException(ex);
         }
     }
 
@@ -98,8 +98,8 @@ public class ImportControlLoaderTest {
                     new File(getPath("import-control_complete.xml")).toURI());
         }
         catch (IllegalAccessException | IllegalArgumentException
-                | NoSuchMethodException | SecurityException e) {
-            throw new IllegalStateException(e);
+                | NoSuchMethodException | SecurityException ex) {
+            throw new IllegalStateException(ex);
         }
     }
 }

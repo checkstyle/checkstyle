@@ -157,12 +157,12 @@ class PackageObjectFactory implements ModuleFactory {
             try {
                 return doMakeObject(name + "Check");
             }
-            catch (final CheckstyleException ex2) {
+            catch (final CheckstyleException ex) {
                 final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, joinPackageNamesWithClassName(name)},
                     null, getClass(), null);
-                throw new CheckstyleException(exceptionMessage.getMessage(), ex2);
+                throw new CheckstyleException(exceptionMessage.getMessage(), ex);
             }
         }
     }
