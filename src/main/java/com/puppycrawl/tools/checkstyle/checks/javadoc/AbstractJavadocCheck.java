@@ -233,7 +233,7 @@ public abstract class AbstractJavadocCheck extends Check {
             final DetailNode tree = convertParseTreeToDetailNode(parseTree);
             result.setTree(tree);
         }
-        catch (ParseCancellationException e) {
+        catch (ParseCancellationException ex) {
             // If syntax error occurs then message is printed by error listener
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
@@ -243,7 +243,7 @@ public abstract class AbstractJavadocCheck extends Check {
             if (parseErrorMessage == null) {
                 parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
                         UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY,
-                        javadocCommentAst.getColumnNo(), e.getMessage());
+                        javadocCommentAst.getColumnNo(), ex.getMessage());
             }
 
             result.setParseErrorMessage(parseErrorMessage);

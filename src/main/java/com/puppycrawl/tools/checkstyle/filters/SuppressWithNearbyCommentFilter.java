@@ -62,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <pre>
  *   try {
  *     thirdPartyLibrary.method();
- *   } catch (RuntimeException e) {
+ *   } catch (RuntimeException ex) {
  *     // ALLOW ILLEGAL CATCH BECAUSE third party API wraps everything
  *     // in RuntimeExceptions.
  *     ...
@@ -340,10 +340,10 @@ public class SuppressWithNearbyCommentFilter
                     }
                     influence = Integer.parseInt(format);
                 }
-                catch (final NumberFormatException e) {
+                catch (final NumberFormatException ex) {
                     throw new ConversionException(
                         "unable to parse influence from '" + text
-                            + "' using " + filter.influenceFormat, e);
+                            + "' using " + filter.influenceFormat, ex);
                 }
                 if (influence >= 0) {
                     firstLine = line;
@@ -354,10 +354,10 @@ public class SuppressWithNearbyCommentFilter
                     lastLine = line;
                 }
             }
-            catch (final PatternSyntaxException e) {
+            catch (final PatternSyntaxException ex) {
                 throw new ConversionException(
                     "unable to parse expanded comment " + format,
-                    e);
+                    ex);
             }
         }
 

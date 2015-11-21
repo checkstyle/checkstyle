@@ -147,11 +147,11 @@ final class ImportControlLoader extends AbstractLoader {
         try {
             inputStream = uri.toURL().openStream();
         }
-        catch (final MalformedURLException e) {
-            throw new CheckstyleException("syntax error in url " + uri, e);
+        catch (final MalformedURLException ex) {
+            throw new CheckstyleException("syntax error in url " + uri, ex);
         }
-        catch (final IOException e) {
-            throw new CheckstyleException("unable to find " + uri, e);
+        catch (final IOException ex) {
+            throw new CheckstyleException("unable to find " + uri, ex);
         }
         final InputSource source = new InputSource(inputStream);
         return load(source, uri);
@@ -171,12 +171,12 @@ final class ImportControlLoader extends AbstractLoader {
             loader.parseInputSource(source);
             return loader.getRoot();
         }
-        catch (final ParserConfigurationException | SAXException e) {
+        catch (final ParserConfigurationException | SAXException ex) {
             throw new CheckstyleException("unable to parse " + uri
-                    + " - " + e.getMessage(), e);
+                    + " - " + ex.getMessage(), ex);
         }
-        catch (final IOException e) {
-            throw new CheckstyleException("unable to read " + uri, e);
+        catch (final IOException ex) {
+            throw new CheckstyleException("unable to read " + uri, ex);
         }
     }
 

@@ -144,21 +144,21 @@ public final class SuppressionsLoader
             suppressionsLoader.parseInputSource(source);
             return suppressionsLoader.filterChain;
         }
-        catch (final FileNotFoundException e) {
-            throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, e);
+        catch (final FileNotFoundException ex) {
+            throw new CheckstyleException(UNABLE_TO_FIND_ERROR_MESSAGE + sourceName, ex);
         }
-        catch (final ParserConfigurationException | SAXException e) {
+        catch (final ParserConfigurationException | SAXException ex) {
             final String message = String.format(Locale.ROOT, "Unable to parse %s - %s",
-                    sourceName, e.getMessage());
-            throw new CheckstyleException(message, e);
+                    sourceName, ex.getMessage());
+            throw new CheckstyleException(message, ex);
         }
-        catch (final IOException e) {
-            throw new CheckstyleException("Unable to read " + sourceName, e);
+        catch (final IOException ex) {
+            throw new CheckstyleException("Unable to read " + sourceName, ex);
         }
-        catch (final NumberFormatException e) {
+        catch (final NumberFormatException ex) {
             final String message = String.format(Locale.ROOT, "Number format exception %s - %s",
-                    sourceName, e.getMessage());
-            throw new CheckstyleException(message, e);
+                    sourceName, ex.getMessage());
+            throw new CheckstyleException(message, ex);
         }
     }
 

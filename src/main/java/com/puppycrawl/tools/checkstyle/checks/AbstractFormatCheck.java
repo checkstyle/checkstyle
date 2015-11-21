@@ -111,8 +111,8 @@ public abstract class AbstractFormatCheck
             format = regexpFormat;
             compileFlags |= compileFlagsParam;
         }
-        catch (final PatternSyntaxException e) {
-            throw new ConversionException("unable to parse " + regexpFormat, e);
+        catch (final PatternSyntaxException ex) {
+            throw new ConversionException("unable to parse " + regexpFormat, ex);
         }
     }
 }

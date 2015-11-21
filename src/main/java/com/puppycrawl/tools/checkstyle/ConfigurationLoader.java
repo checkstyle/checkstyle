@@ -231,14 +231,14 @@ public final class ConfigurationLoader {
             loader.parseInputSource(configSource);
             return loader.configuration;
         }
-        catch (final SAXParseException e) {
+        catch (final SAXParseException ex) {
             final String message = String.format(Locale.ROOT, "%s - %s:%s:%s",
                     UNABLE_TO_PARSE_EXCEPTION_PREFIX,
-                    e.getMessage(), e.getLineNumber(), e.getColumnNumber());
-            throw new CheckstyleException(message, e);
+                    ex.getMessage(), ex.getLineNumber(), ex.getColumnNumber());
+            throw new CheckstyleException(message, ex);
         }
-        catch (final ParserConfigurationException | IOException | SAXException e) {
-            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, e);
+        catch (final ParserConfigurationException | IOException | SAXException ex) {
+            throw new CheckstyleException(UNABLE_TO_PARSE_EXCEPTION_PREFIX, ex);
         }
     }
 
@@ -482,8 +482,8 @@ public final class ConfigurationLoader {
                     final String severity = recentModule.getAttribute(SEVERITY);
                     level = SeverityLevel.getInstance(severity);
                 }
-                catch (final CheckstyleException e) {
-                    LOG.debug("Severity not set, ignoring exception", e);
+                catch (final CheckstyleException ex) {
+                    LOG.debug("Severity not set, ignoring exception", ex);
                 }
 
                 // omit this module if these should be omitted and the module

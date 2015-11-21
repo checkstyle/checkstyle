@@ -453,14 +453,14 @@ public class MainTest {
             }
             fail("Exception was expected");
         }
-        catch (InvocationTargetException e) {
-            assertTrue(e.getCause() instanceof CheckstyleException);
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof CheckstyleException);
             // We do separate validation for message as in Windows
             // disk drive letter appear in message,
             // so we skip that drive letter for compatibility issues
-            assertTrue(e.getCause().getMessage()
+            assertTrue(ex.getCause().getMessage()
                     .startsWith("Unable to load properties from file '"));
-            assertTrue(e.getCause().getMessage().endsWith(":invalid'."));
+            assertTrue(ex.getCause().getMessage().endsWith(":invalid'."));
         }
     }
 
@@ -473,9 +473,9 @@ public class MainTest {
             method.invoke(null, "myformat", null);
             fail();
         }
-        catch (InvocationTargetException e) {
-            assertTrue(e.getCause() instanceof IllegalStateException);
-            assertTrue(e.getCause().getMessage().startsWith("Invalid output format. Found"));
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof IllegalStateException);
+            assertTrue(ex.getCause().getMessage().startsWith("Invalid output format. Found"));
         }
     }
 
@@ -489,9 +489,9 @@ public class MainTest {
             method.invoke(null, "myformat", outDir);
             fail();
         }
-        catch (InvocationTargetException e) {
-            assertTrue(e.getCause() instanceof IllegalStateException);
-            assertTrue(e.getCause().getMessage().startsWith("Invalid output format. Found"));
+        catch (InvocationTargetException ex) {
+            assertTrue(ex.getCause() instanceof IllegalStateException);
+            assertTrue(ex.getCause().getMessage().startsWith("Invalid output format. Found"));
         }
         finally {
             // method creates output folder

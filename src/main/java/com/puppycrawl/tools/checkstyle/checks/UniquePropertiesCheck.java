@@ -76,9 +76,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
                 fileInputStream.close();
             }
         }
-        catch (IOException e) {
+        catch (IOException ex) {
             log(0, IO_EXCEPTION_KEY, file.getPath(),
-                    e.getLocalizedMessage());
+                    ex.getLocalizedMessage());
         }
 
         for (Entry<String> duplication : properties

@@ -390,8 +390,8 @@ public class TranslationCheck
                 keys.add(element.nextElement());
             }
         }
-        catch (final IOException e) {
-            logIoException(e, file);
+        catch (final IOException ex) {
+            logIoException(ex, file);
         }
         finally {
             Closeables.closeQuietly(inStream);

@@ -52,7 +52,7 @@ public class ClassResolverTest {
             classResolver.resolve("who.will.win.the.world.cup", "");
             fail("Should not resolve class");
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException ex) {
             // expected
         }
         classResolver.resolve("java.lang.String", "");
@@ -63,7 +63,7 @@ public class ClassResolverTest {
             classResolver.resolve("ChoiceFormat", "");
             fail();
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException ex) {
             // expected
         }
 
@@ -79,7 +79,7 @@ public class ClassResolverTest {
             javaUtilClassResolver.resolve("two.nil.england", "");
             fail();
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException ex) {
             // expected
         }
     }
@@ -96,9 +96,9 @@ public class ClassResolverTest {
             classResolver.resolve("someClass", "");
             fail("Exception expected");
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException ex) {
             // expected
-            assertEquals("someClass", e.getMessage());
+            assertEquals("someClass", ex.getMessage());
         }
     }
 
@@ -144,10 +144,10 @@ public class ClassResolverTest {
             classResolver.resolve("someClass", "");
             fail("Exception expected");
         }
-        catch (IllegalStateException e) {
+        catch (IllegalStateException ex) {
             // expected
-            assertTrue(e.getCause() instanceof ClassNotFoundException);
-            assertTrue(e.getMessage().endsWith("expected exception"));
+            assertTrue(ex.getCause() instanceof ClassNotFoundException);
+            assertTrue(ex.getMessage().endsWith("expected exception"));
         }
     }
 }

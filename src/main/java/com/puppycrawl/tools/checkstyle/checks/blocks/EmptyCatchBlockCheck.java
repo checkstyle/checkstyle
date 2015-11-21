@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * {@code
  * try {
  *     throw new RuntimeException();
- * } catch (RuntimeException e) {
+ * } catch (RuntimeException ex) {
  *     //This is expected
  * }
  * }
@@ -110,7 +110,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * {@code
  * try {
  *     throw new RuntimeException();
- * } catch (RuntimeException e) {
+ * } catch (RuntimeException ex) {
  *     //This is expected
  * }
  * }

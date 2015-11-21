@@ -93,8 +93,8 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             verify(checkConfig, getPath("InputMain.java"), expected);
             fail();
         }
-        catch (CheckstyleException e) {
-            final String errorMsg = e.getMessage();
+        catch (CheckstyleException ex) {
+            final String errorMsg = ex.getMessage();
             assertTrue(errorMsg.contains("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - Token \"IMPORT\""
                     + " was not found in Acceptable tokens list in check"

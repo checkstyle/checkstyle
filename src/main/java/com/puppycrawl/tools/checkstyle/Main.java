@@ -129,10 +129,10 @@ public final class Main {
             System.out.println(pex.getMessage());
             printUsage();
         }
-        catch (CheckstyleException e) {
+        catch (CheckstyleException ex) {
             exitStatus = EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE;
             errorCounter = 1;
-            e.printStackTrace();
+            ex.printStackTrace();
         }
         finally {
             // return exit code base on validation of Checker
@@ -300,9 +300,9 @@ public final class Main {
             fis = new FileInputStream(file);
             properties.load(fis);
         }
-        catch (final IOException e) {
+        catch (final IOException ex) {
             throw new CheckstyleException(String.format(
-                    "Unable to load properties from file '%s'.", file.getAbsolutePath()), e);
+                    "Unable to load properties from file '%s'.", file.getAbsolutePath()), ex);
         }
         finally {
             Closeables.closeQuietly(fis);

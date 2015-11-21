@@ -287,7 +287,7 @@ public class JavadocParseTreeTest {
         public void syntaxError(
                 Recognizer<?, ?> recognizer, Object offendingSymbol,
                 int line, int charPositionInLine,
-                String msg, RecognitionException e) {
+                String msg, RecognitionException ex) {
             Assert.fail("[" + line + ", " + charPositionInLine + "] " + msg);
         }
     }
