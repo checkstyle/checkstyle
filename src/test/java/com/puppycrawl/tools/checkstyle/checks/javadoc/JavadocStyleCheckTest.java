@@ -46,40 +46,21 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
-        final JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
-        final int[] actual = javadocStyleCheck.getRequiredTokens();
-        final int[] expected = {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.PACKAGE_DEF,
-        };
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
     public void testGetAcceptableTokens() {
         final JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
 
         final int[] actual = javadocStyleCheck.getAcceptableTokens();
         final int[] expected = {
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.CLASS_DEF,
             TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.METHOD_DEF,
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.VARIABLE_DEF,
         };
 
         assertArrayEquals(expected, actual);
@@ -403,5 +384,21 @@ public class JavadocStyleCheckTest
         verify(createChecker(checkConfig),
                getPath("pkginfo" + File.separator + "valid" + File.separator + "package-info.java"),
                expected);
+    }
+
+    @Test
+    public void testRestrictedTokenSet()
+        throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
+        checkConfig.addAttribute("tokens", "METHOD_DEF");
+        checkConfig.addAttribute("scope", "public");
+        checkConfig.addAttribute("checkFirstSentence", "true");
+        checkConfig.addAttribute("checkEmptyJavadoc", "false");
+        checkConfig.addAttribute("checkHtml", "false");
+        final String[] expected = {
+            "88: " + getCheckMessage(NO_PERIOD),
+            "386: " + getCheckMessage(NO_PERIOD),
+        };
+        verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
 }
