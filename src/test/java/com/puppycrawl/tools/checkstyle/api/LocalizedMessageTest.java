@@ -64,7 +64,7 @@ public class LocalizedMessageTest {
 
     @Test
     public void testBundleReloadUrlNull() throws IOException {
-        final LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
+        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
         control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 Thread.currentThread().getContextClassLoader(), true);
@@ -83,7 +83,7 @@ public class LocalizedMessageTest {
             "com/puppycrawl/tools/checkstyle/checks/coding/messages_en.properties";
         when(classloader.getResource(resource)).thenReturn(url);
 
-        final LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
+        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
         control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 classloader, true);
@@ -99,7 +99,7 @@ public class LocalizedMessageTest {
         final URL url = getMockUrl(null);
         when(classloader.getResource(resource)).thenReturn(url);
 
-        final LocalizedMessage.UTF8Control control = new LocalizedMessage.UTF8Control();
+        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
         control.newBundle("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 classloader, true);

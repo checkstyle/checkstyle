@@ -64,7 +64,7 @@ public class FileLengthCheckTest
     }
 
     @Test
-    public void testOK() throws Exception {
+    public void testOk() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", "2000");

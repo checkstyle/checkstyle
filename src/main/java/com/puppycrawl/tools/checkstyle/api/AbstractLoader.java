@@ -107,10 +107,10 @@ public abstract class AbstractLoader
                     publicIdToResourceNameMap.get(publicId);
             final ClassLoader loader =
                 getClass().getClassLoader();
-            final InputStream dtdIS =
+            final InputStream dtdIs =
                 loader.getResourceAsStream(dtdResourceName);
 
-            return new InputSource(dtdIS);
+            return new InputSource(dtdIs);
         }
         return super.resolveEntity(publicId, systemId);
     }

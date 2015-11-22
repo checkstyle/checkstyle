@@ -308,7 +308,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNPE() throws Exception {
+    public void testNullPointerException() throws Exception {
 
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);

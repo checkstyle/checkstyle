@@ -69,7 +69,7 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNPE() throws Exception {
+    public void testNullPointerException() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(BooleanExpressionComplexityCheck.class);
 

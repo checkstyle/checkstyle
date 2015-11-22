@@ -296,7 +296,7 @@ public final class LocalizedMessage
                     .get(bundleName);
             if (resourceBundle == null) {
                 resourceBundle = ResourceBundle.getBundle(bundleName, sLocale,
-                        sourceClass.getClassLoader(), new UTF8Control());
+                        sourceClass.getClassLoader(), new Utf8Control());
                 BUNDLE_CACHE.put(bundleName, resourceBundle);
             }
             return resourceBundle;
@@ -392,7 +392,7 @@ public final class LocalizedMessage
      *
      * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
      */
-    protected static class UTF8Control extends Control {
+    protected static class Utf8Control extends Control {
         @Override
         public ResourceBundle newBundle(String aBaseName, Locale aLocale, String aFormat,
                  ClassLoader aLoader, boolean aReload) throws IOException {

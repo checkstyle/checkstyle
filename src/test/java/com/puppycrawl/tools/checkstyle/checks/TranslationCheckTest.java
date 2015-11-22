@@ -99,7 +99,7 @@ public class TranslationCheckTest
     }
 
     @Test
-    public void testLogIOExceptionFileNotFound() throws Exception {
+    public void testLogIoExceptionFileNotFound() throws Exception {
         //I can't put wrong file here. Checkstyle fails before check started.
         //I saw some usage of file or handling of wrong file in Checker, or somewhere
         //in checks running part. So I had to do it with reflection to improve coverage.
@@ -116,7 +116,7 @@ public class TranslationCheckTest
     }
 
     @Test
-    public void testLogIOException() throws Exception {
+    public void testLogIoException() throws Exception {
         //I can't put wrong file here. Checkstyle fails before check started.
         //I saw some usage of file or handling of wrong file in Checker, or somewhere
         //in checks running part. So I had to do it with reflection to improve coverage.
@@ -125,11 +125,11 @@ public class TranslationCheckTest
         check.configure(checkConfig);
         check.setMessageDispatcher(createChecker(checkConfig));
 
-        final Method logIOException = check.getClass().getDeclaredMethod("logIOException",
+        final Method logIoException = check.getClass().getDeclaredMethod("logIoException",
                 IOException.class,
                 File.class);
-        logIOException.setAccessible(true);
-        logIOException.invoke(check, new IOException("test exception"), new File(""));
+        logIoException.setAccessible(true);
+        logIoException.invoke(check, new IOException("test exception"), new File(""));
     }
 
     @Test

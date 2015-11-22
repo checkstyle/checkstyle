@@ -268,12 +268,12 @@ public final class TreeWalker
 
     /**
      * Register a check for a specified token id.
-     * @param tokenID the id of the token
+     * @param tokenId the id of the token
      * @param check the check to register
      * @throws CheckstyleException if Check is misconfigured
      */
-    private void registerCheck(int tokenID, Check check) throws CheckstyleException {
-        registerCheck(TokenUtils.getTokenName(tokenID), check);
+    private void registerCheck(int tokenId, Check check) throws CheckstyleException {
+        registerCheck(TokenUtils.getTokenName(tokenId), check);
     }
 
     /**

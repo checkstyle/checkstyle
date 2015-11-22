@@ -81,7 +81,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNL() throws Exception {
+    public void testNl() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "27:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
@@ -226,7 +226,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNLWithAnnotations() throws Exception {
+    public void testNlWithAnnotations() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "35:34: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 34),

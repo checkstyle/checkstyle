@@ -49,7 +49,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    public void testFP() throws Exception {
+    public void testFp() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;

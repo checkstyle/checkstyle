@@ -433,7 +433,7 @@ public class MainTest {
     }
 
     @Test
-    public void testLoadPropertiesIOException() throws Exception {
+    public void testLoadPropertiesIoException() throws Exception {
         final Class<?>[] param = new Class<?>[1];
         param[0] = File.class;
         final Method method = Main.class.getDeclaredMethod("loadProperties", param);

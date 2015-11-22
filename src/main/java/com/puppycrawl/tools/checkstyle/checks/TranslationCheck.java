@@ -391,7 +391,7 @@ public class TranslationCheck
             }
         }
         catch (final IOException e) {
-            logIOException(e, file);
+            logIoException(e, file);
         }
         finally {
             Closeables.closeQuietly(inStream);
@@ -404,7 +404,7 @@ public class TranslationCheck
      * @param ex the exception that occurred
      * @param file the file that could not be processed
      */
-    private void logIOException(IOException ex, File file) {
+    private void logIoException(IOException ex, File file) {
         String[] args = null;
         String key = "general.fileNotFound";
         if (!(ex instanceof FileNotFoundException)) {

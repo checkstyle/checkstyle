@@ -107,7 +107,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
      * Tests IO exception, that can occur during reading of properties file.
      */
     @Test
-    public void testIOException() throws Exception {
+    public void testIoException() throws Exception {
         final UniquePropertiesCheck check = new UniquePropertiesCheck();
         check.configure(checkConfig);
         final String fileName =

@@ -151,7 +151,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         };
 
         final File file = temporaryFolder.newFile();
-        Files.write(makeLargeXYString(), file, Charsets.UTF_8);
+        Files.write(makeLargeXyString(), file, Charsets.UTF_8);
 
         verify(checkConfig, file.getPath(), expected);
     }
@@ -171,7 +171,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         verify(checkConfig, file.getPath(), expected);
     }
 
-    private static CharSequence makeLargeXYString() {
+    private static CharSequence makeLargeXyString() {
         // now needs 10'000 or 100'000, as just 1000 is no longer enough today to provoke the
         // StackOverflowError
         final int size = 100000;

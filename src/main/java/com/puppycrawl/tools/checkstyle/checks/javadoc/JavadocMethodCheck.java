@@ -889,16 +889,16 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             final String documentedEx = tag.getFirstArg();
             final Token token = new Token(tag.getFirstArg(), tag.getLineNo(), tag
                     .getColumnNo());
-            final AbstractClassInfo documentedCI = createClassInfo(token,
+            final AbstractClassInfo documentedClassInfo = createClassInfo(token,
                     getCurrentClassName());
             final boolean found = foundThrows.contains(documentedEx)
-                    || isInThrows(throwsList, documentedCI, foundThrows);
+                    || isInThrows(throwsList, documentedClassInfo, foundThrows);
 
             // Handle extra JavadocTag.
             if (!found) {
                 boolean reqd = true;
                 if (allowUndeclaredRTE) {
-                    reqd = !isUnchecked(documentedCI.getClazz());
+                    reqd = !isUnchecked(documentedClassInfo.getClazz());
                 }
 
                 if (reqd && validateThrows) {
@@ -927,12 +927,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * Verifies that documented exception is in throws.
      *
      * @param throwsList list of throws
-     * @param documentedCI documented exception class info
+     * @param documentedClassInfo documented exception class info
      * @param foundThrows previously found throws
      * @return true if documented exception is in throws.
      */
     private boolean isInThrows(List<ExceptionInfo> throwsList,
-            AbstractClassInfo documentedCI, Set<String> foundThrows) {
+            AbstractClassInfo documentedClassInfo, Set<String> foundThrows) {
         boolean found = false;
         ExceptionInfo foundException = null;
 
@@ -942,7 +942,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             final ExceptionInfo exceptionInfo = throwIt.next();
 
             if (exceptionInfo.getName().getText().equals(
-                    documentedCI.getName().getText())) {
+                    documentedClassInfo.getName().getText())) {
                 found = true;
                 foundException = exceptionInfo;
             }
@@ -953,18 +953,18 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         while (!found && exceptionInfoIt.hasNext()) {
             final ExceptionInfo exceptionInfo = exceptionInfoIt.next();
 
-            if (documentedCI.getClazz() == exceptionInfo.getClazz()) {
+            if (documentedClassInfo.getClazz() == exceptionInfo.getClazz()) {
                 found = true;
                 foundException = exceptionInfo;
             }
             else if (allowThrowsTagsForSubclasses) {
-                found = isSubclass(documentedCI.getClazz(), exceptionInfo.getClazz());
+                found = isSubclass(documentedClassInfo.getClazz(), exceptionInfo.getClazz());
             }
         }
 
         if (foundException != null) {
             foundException.setFound();
-            foundThrows.add(documentedCI.getName().getText());
+            foundThrows.add(documentedClassInfo.getName().getText());
         }
 
         return found;

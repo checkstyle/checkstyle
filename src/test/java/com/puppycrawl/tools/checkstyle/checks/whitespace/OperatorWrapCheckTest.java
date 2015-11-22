@@ -62,7 +62,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void testOpWrapEOL()
+    public void testOpWrapEol()
         throws Exception {
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
@@ -74,7 +74,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void testAssignEOL()
+    public void testAssignEol()
         throws Exception {
         checkConfig.addAttribute("tokens", "ASSIGN");
         checkConfig.addAttribute("option", WrapOption.EOL.toString());

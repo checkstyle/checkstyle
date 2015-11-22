@@ -156,7 +156,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNPE() throws Exception {
+    public void testNullPointerException() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, "
             + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
