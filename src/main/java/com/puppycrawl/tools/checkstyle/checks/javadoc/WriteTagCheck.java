@@ -87,9 +87,9 @@ public class WriteTagCheck
     public static final String TAG_FORMAT = "type.tagFormat";
 
     /** Compiled regexp to match tag. **/
-    private Pattern tagRE;
+    private Pattern tagRegExp;
     /** Compiled regexp to match tag content. **/
-    private Pattern tagFormatRE;
+    private Pattern tagFormatRegExp;
 
     /** Regexp to match tag. */
     private String tag;
@@ -104,7 +104,7 @@ public class WriteTagCheck
      */
     public void setTag(String tag) {
         this.tag = tag;
-        tagRE = CommonUtils.createPattern(tag + "\\s*(.*$)");
+        tagRegExp = CommonUtils.createPattern(tag + "\\s*(.*$)");
     }
 
     /**
@@ -113,7 +113,7 @@ public class WriteTagCheck
      */
     public void setTagFormat(String format) {
         tagFormat = format;
-        tagFormatRE = CommonUtils.createPattern(format);
+        tagFormatRegExp = CommonUtils.createPattern(format);
     }
 
     /**
@@ -174,19 +174,19 @@ public class WriteTagCheck
      * @param comment the Javadoc comment for the type definition.
      */
     private void checkTag(int lineNo, String... comment) {
-        if (tagRE == null) {
+        if (tagRegExp == null) {
             return;
         }
 
         int tagCount = 0;
         for (int i = 0; i < comment.length; i++) {
             final String commentValue = comment[i];
-            final Matcher matcher = tagRE.matcher(commentValue);
+            final Matcher matcher = tagRegExp.matcher(commentValue);
             if (matcher.find()) {
                 tagCount += 1;
                 final int contentStart = matcher.start(1);
                 final String content = commentValue.substring(contentStart);
-                if (tagFormatRE == null || tagFormatRE.matcher(content).find()) {
+                if (tagFormatRegExp == null || tagFormatRegExp.matcher(content).find()) {
                     logTag(lineNo + i - comment.length, tag, content);
                 }
                 else {
