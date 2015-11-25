@@ -32,6 +32,11 @@
               files="XMLLoggerTest.java"
               lines="48"/>
 
+    <!-- should be removed at 7.0 version, we keep for some time to avoid braking compatibiilty -->
+    <suppress checks="AbbreviationAsWordInName"
+              files="nt/CheckstyleAntTask.java"
+              lines="230"/>
+
     <!-- illegal words are part of Javadoc -->
     <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
 

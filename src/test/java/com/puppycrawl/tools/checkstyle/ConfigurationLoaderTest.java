@@ -437,7 +437,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfigurationWrongURL() {
+    public void testLoadConfigurationWrongUrl() {
         try {
             final DefaultConfiguration config =
                     (DefaultConfiguration) ConfigurationLoader.loadConfiguration(

@@ -140,7 +140,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Test
-    public void testRegexpHeaderURL() throws Exception {
+    public void testRegexpHeaderUrl() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RegexpHeaderCheck.class);
         final URI uri = new File(getPath("regexp.header")).toURI();

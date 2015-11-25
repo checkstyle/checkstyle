@@ -65,7 +65,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testLoadFromURL() throws Exception {
+    public void testLoadFromUrl() throws Exception {
         final String[] urlCandidates = {
             "http://checkstyle.sourceforge.net/files/suppressions_none.xml",
             "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
@@ -89,12 +89,12 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     }
 
     @Test(expected = CheckstyleException.class)
-    public void testLoadFromMalformedURL() throws CheckstyleException {
+    public void testLoadFromMalformedUrl() throws CheckstyleException {
         SuppressionsLoader.loadSuppressions("http");
     }
 
     @Test(expected = CheckstyleException.class)
-    public void testLoadFromNonExistingURL() throws CheckstyleException {
+    public void testLoadFromNonExistingUrl() throws CheckstyleException {
         SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
     }
 

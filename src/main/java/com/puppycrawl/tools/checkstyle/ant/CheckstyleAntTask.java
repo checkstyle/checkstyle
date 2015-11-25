@@ -224,8 +224,18 @@ public class CheckstyleAntTask extends Task {
     /**
      * Sets URL to the configuration.
      * @param url the URL of the configuration to use
+     * @deprecated please use setConfigUrl instead
      */
+    @Deprecated
     public void setConfigURL(URL url) {
+        setConfigUrl(url);
+    }
+
+    /**
+     * Sets URL to the configuration.
+     * @param url the URL of the configuration to use
+     */
+    public void setConfigUrl(URL url) {
         setConfigLocation(url.toExternalForm());
     }
 
