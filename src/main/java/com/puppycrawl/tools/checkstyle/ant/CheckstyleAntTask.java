@@ -574,7 +574,7 @@ public class CheckstyleAntTask extends Task {
         public AuditListener createListener(Task task) throws IOException {
             if (formatterType != null
                     && E_XML.equals(formatterType.getValue())) {
-                return createXMLLogger(task);
+                return createXmlLogger(task);
             }
             return createDefaultLogger(task);
         }
@@ -602,7 +602,7 @@ public class CheckstyleAntTask extends Task {
          * @return an XMLLogger instance
          * @throws IOException if an error occurs
          */
-        private AuditListener createXMLLogger(Task task) throws IOException {
+        private AuditListener createXmlLogger(Task task) throws IOException {
             if (toFile == null || !useFile) {
                 return new XMLLogger(new LogOutputStream(task,
                         Project.MSG_INFO), true);

@@ -337,7 +337,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         final NodeList nodeList = document.getElementsByTagName("module");
 
-        final Set<String> checksReferencedInCheckstyleChecksXML = new HashSet<>();
+        final Set<String> checksReferencedInCheckstyleChecksXml = new HashSet<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             final Node currentNode = nodeList.item(i);
             if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -345,11 +345,11 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 final String checkName = module.getAttribute("name");
                 if (!"Checker".equals(checkName)
                     && !"TreeWalker".equals(checkName)) {
-                    checksReferencedInCheckstyleChecksXML.add(checkName);
+                    checksReferencedInCheckstyleChecksXml.add(checkName);
                 }
             }
         }
-        return checksReferencedInCheckstyleChecksXML;
+        return checksReferencedInCheckstyleChecksXml;
     }
 
     /**
