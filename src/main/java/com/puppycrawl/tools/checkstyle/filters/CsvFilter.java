@@ -34,12 +34,12 @@ import com.google.common.collect.Sets;
  * @author Rick Giles
  * @author o_sukhodolsky
  */
-class CSVFilter implements IntFilter {
+class CsvFilter implements IntFilter {
     /** Filter set. */
     private final Set<IntFilter> filters = Sets.newHashSet();
 
     /**
-     * Constructs a {@code CSVFilter} from a CSV, Comma-Separated Values,
+     * Constructs a {@code CsvFilter} from a CSV, Comma-Separated Values,
      * string. Each value is an integer, or a range of integers. A range of
      * integers is of the form integer-integer, such as 1-10.
      * Note: integers must be non-negative.
@@ -47,7 +47,7 @@ class CSVFilter implements IntFilter {
      * @throws NumberFormatException if a component substring does not
      *     contain a parsable integer.
      */
-    CSVFilter(String pattern) {
+    CsvFilter(String pattern) {
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();
@@ -105,7 +105,7 @@ class CSVFilter implements IntFilter {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        final CSVFilter csvFilter = (CSVFilter) object;
+        final CsvFilter csvFilter = (CsvFilter) object;
         return Objects.equals(filters, csvFilter.filters);
     }
 

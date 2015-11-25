@@ -26,11 +26,11 @@ import org.junit.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
-/** Tests CSVFilter. */
-public class CSVFilterTest {
+/** Tests CsvFilter. */
+public class CsvFilterTest {
     @Test
     public void testDecideSingle() {
-        final IntFilter filter = new CSVFilter("0");
+        final IntFilter filter = new CsvFilter("0");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal", filter.accept(0));
         assertFalse("greater than", filter.accept(1));
@@ -38,7 +38,7 @@ public class CSVFilterTest {
 
     @Test
     public void testDecidePair() {
-        final IntFilter filter = new CSVFilter("0, 2");
+        final IntFilter filter = new CsvFilter("0, 2");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal 0", filter.accept(0));
         assertFalse("greater than", filter.accept(1));
@@ -47,7 +47,7 @@ public class CSVFilterTest {
 
     @Test
     public void testDecideRange() {
-        final IntFilter filter = new CSVFilter("0-2");
+        final IntFilter filter = new CsvFilter("0-2");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal 0", filter.accept(0));
         assertTrue("equal 1", filter.accept(1));
@@ -57,7 +57,7 @@ public class CSVFilterTest {
 
     @Test
     public void testDecideEmptyRange() {
-        final IntFilter filter = new CSVFilter("2-0");
+        final IntFilter filter = new CsvFilter("2-0");
         assertFalse("less than", filter.accept(-1));
         assertFalse("equal 0", filter.accept(0));
         assertFalse("equal 1", filter.accept(1));
@@ -67,7 +67,7 @@ public class CSVFilterTest {
 
     @Test
     public void testDecideRangePlusValue() {
-        final IntFilter filter = new CSVFilter("0-2, 10");
+        final IntFilter filter = new CsvFilter("0-2, 10");
         assertFalse("less than", filter.accept(-1));
         assertTrue("equal 0", filter.accept(0));
         assertTrue("equal 1", filter.accept(1));
@@ -78,6 +78,6 @@ public class CSVFilterTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        EqualsVerifier.forClass(CSVFilter.class).usingGetClass().verify();
+        EqualsVerifier.forClass(CsvFilter.class).usingGetClass().verify();
     }
 }

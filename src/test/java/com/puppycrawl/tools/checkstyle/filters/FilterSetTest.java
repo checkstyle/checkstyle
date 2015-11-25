@@ -32,11 +32,11 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 
 /** Tests SuppressElementFilter. */
 public class FilterSetTest {
-    private CSVFilter filter;
+    private CsvFilter filter;
 
     @Before
     public void setUp() {
-        filter = new CSVFilter("");
+        filter = new CsvFilter("");
     }
 
     @Test
