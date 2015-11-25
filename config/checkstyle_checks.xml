@@ -320,7 +320,7 @@
     <module name="AbbreviationAsWordInName">
       <property name="ignoreFinal" value="false"/>
       <property name="allowedAbbreviationLength" value="1"/>
-      <property name="allowedAbbreviations" value="AST,CPP,RTE,RE,ID,CSV"/>
+      <property name="allowedAbbreviations" value="AST,CPP,RTE,RE,CSV"/>
     </module>
     <module name="AbstractClassName"/>
     <module name="ClassTypeParameterName"/>

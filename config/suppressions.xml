@@ -34,8 +34,13 @@
 
     <!-- should be removed at 7.0 version, we keep for some time to avoid braking compatibiilty -->
     <suppress checks="AbbreviationAsWordInName"
-              files="nt/CheckstyleAntTask.java"
+              files="CheckstyleAntTask.java"
               lines="230"/>
+
+    <!-- should be removed at 7.0 version, we keep for some time to avoid braking compatibiilty -->
+    <suppress checks="AbbreviationAsWordInName"
+              files="AbstractComplexityCheck.java"
+              lines="64"/>
 
     <!-- illegal words are part of Javadoc -->
     <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
