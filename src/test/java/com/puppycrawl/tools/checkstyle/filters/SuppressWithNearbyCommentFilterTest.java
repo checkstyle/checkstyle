@@ -121,7 +121,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testCheckCPP() throws Exception {
+    public void testCheckCpp() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");

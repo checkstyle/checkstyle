@@ -178,10 +178,10 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set whether to look in C++ comments.
-     * @param checkCPP {@code true} if C++ comments are checked.
+     * @param checkCpp {@code true} if C++ comments are checked.
      */
-    public void setCheckCPP(boolean checkCPP) {
-        this.checkCPP = checkCPP;
+    public void setCheckCPP(boolean checkCpp) {
+        this.checkCPP = checkCpp;
     }
 
     /**

@@ -112,7 +112,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    public void testCheckCPP() throws Exception {
+    public void testCheckCpp() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkCPP", "false");
