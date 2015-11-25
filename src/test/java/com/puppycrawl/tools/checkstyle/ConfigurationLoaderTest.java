@@ -333,7 +333,7 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testExternalEntityFromURI() throws Exception {
+    public void testExternalEntityFromUri() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
 

@@ -76,7 +76,7 @@ public final class SuppressionsLoader
     }
 
     @Override
-    public void startElement(String namespaceURI,
+    public void startElement(String namespaceUri,
                              String localName,
                              String qName,
                              Attributes attributes)

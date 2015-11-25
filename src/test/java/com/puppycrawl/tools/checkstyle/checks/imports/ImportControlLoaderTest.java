@@ -46,7 +46,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test(expected = CheckstyleException.class)
-    public void testWrongFormatURI() throws Exception {
+    public void testWrongFormatUri() throws Exception {
         final PkgControl root =
                 ImportControlLoader.load(new URI("aaa://"
                     + getPath("import-control_complete.xml")));

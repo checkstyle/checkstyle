@@ -89,7 +89,7 @@ final class ImportControlLoader extends AbstractLoader {
     }
 
     @Override
-    public void startElement(final String namespaceURI,
+    public void startElement(final String namespaceUri,
                              final String localName,
                              final String qName,
                              final Attributes attributes)
@@ -129,7 +129,7 @@ final class ImportControlLoader extends AbstractLoader {
     }
 
     @Override
-    public void endElement(final String namespaceURI, final String localName,
+    public void endElement(final String namespaceUri, final String localName,
         final String qName) {
         if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             stack.pop();
