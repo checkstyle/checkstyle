@@ -1093,7 +1093,6 @@
             <!-- Excluded due to Maven Enforcer Plugin's issue #234: https://issues.apache.org/jira/browse/MENFORCER-234-->
             <excludedLink>http://maven.apache.org/enforcer/maven-enforcer-plugin</excludedLink>
             <!-- Excluded due to Maven Surefire Plugin's issue #1173: https://issues.apache.org/jira/browse/SUREFIRE-1173-->
-            <excludedLink>http://maven.apache.org/surefire/maven-failsafe-plugin</excludedLink>
             <excludedLink>http://maven.apache.org/surefire/maven-surefire-plugin</excludedLink>
             <excludedLink>http://maven.apache.org/surefire/maven-surefire-report-plugin</excludedLink>
             <!-- Excluded due to Maven Codehaus Plugin's issue #4: https://github.com/mojohaus/mojohaus.github.io/issues/4-->
