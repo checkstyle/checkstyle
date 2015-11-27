@@ -170,7 +170,7 @@ public class SuppressionCommentFilter
      * @param checkCpp {@code true} if C++ comments are checked.
      */
     public void setCheckCPP(boolean checkCpp) {
-        this.checkCPP = checkCpp;
+        checkCPP = checkCpp;
     }
 
     /**
