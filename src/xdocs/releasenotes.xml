@@ -15,6 +15,128 @@
 
   <body>
 
+    <section name="Release 6.13">
+
+      <p>Breaking backward compatibility:</p>
+      <ul>
+        <li>
+          Remove access to undocumented check properties. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2451">#2451</a>
+        </li>
+      </ul>
+
+
+      <p>New:</p>
+      <ul>
+        <li>
+          ParameterName: new option to skip methods with Override annotation. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2290">#2290</a>
+        </li>
+      </ul>
+
+
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          False negative in RequireThis check. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2240">#2240</a>
+        </li>
+        <li>
+          Checkstyle throws NumberFormatException on Japanese locale when sizes and metrics Checks are used. Author: Takahashi Eikou <a href="https://github.com/checkstyle/checkstyle/issues/2601">#2601</a>
+        </li>
+        <li>
+          EmptyLineSeparator check does not validate newlines before class and after last method. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2067">#2067</a>
+        </li>
+        <li>
+          FallThroughCheck handles finally incorrectly. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1438">#1438</a>
+        </li>
+        <li>
+          EqualsAvoidNull check should сheck String concatenations. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1930">#1930</a>
+        </li>
+      </ul>
+
+
+      <p>Notes:</p>
+      <ul>
+        <li>
+          minor: remove maven-failsafe-plugin from linkcheck excludes, since link was fixed. Author: Andrei Selkin
+        </li>
+        <li>
+          minor: build-helper-maven-plugin version bump to 1.10. Author: Roman Ivanov
+        </li>
+        <li>
+          adjust AbbreviationAsWordInName in checkstyle_checks.xml to catch unexpected abbreviations. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2639">#2639</a>
+        </li>
+        <li>
+          Fix additional issues reported by IntelliJ IDEA inspections in Checkstyle code. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2080">#2080</a>
+        </li>
+        <li>
+          minor: fixed improper put that should be get. Author: rnveach
+        </li>
+        <li>
+          Code review of CommentsIndentationCheck.java. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2530">#2530</a>
+        </li>
+        <li>
+          Remove drag&amp;drop from GUI. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/2608">#2608</a>
+        </li>
+        <li>
+          create HTML web page to describe how to open issues against Checkstyle. Author: Michal Kordas, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2344">#2344</a>
+        </li>
+        <li>
+          Pull #2607: Update JGit to 4.1.1.201511131810-r. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2607">#2607</a>
+        </li>
+        <li>
+          Pull #2605: Make methods private in RequireThisCheck. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2605">#2605</a>
+        </li>
+        <li>
+          Tests for validating commit message should not allow period at the end of commit message. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2590">#2590</a>
+        </li>
+        <li>
+          doc: Correct xdoc/javadoc for ParameterNameCheck. Author: Andrei Selkin
+        </li>
+        <li>
+          unify IT test code. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2589">#2589</a>
+        </li>
+        <li>
+          minor: separated tests so one subject per file. Author: rnveach
+        </li>
+        <li>
+          Deactivate &#39;allowSamelineSingleParameterlessAnnotation&#39; property of AnnotationLocation in Checkstyle config. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2581">#2581</a>
+        </li>
+        <li>
+          Create test for checkstyle-X.X-all.jar on Travis. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2516">#2516</a>
+        </li>
+        <li>
+          Pull #2586: Update slf4j-simple to 1.7.13. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2586">#2586</a>
+        </li>
+        <li>
+          Pull #2585: Update FindBugs Maven Plugin to 3.0.3. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2585">#2585</a>
+        </li>
+        <li>
+          PMD: resolve problems from DefaultPackage rule. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/957">#957</a>
+        </li>
+        <li>
+          minor: fixed wrong variable usage in AbstractOptionCheck. Author: rnveach
+        </li>
+        <li>
+          Remove usage of System.out.println in IT resources. Author: Michal Kordas, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2541">#2541</a>
+        </li>
+        <li>
+          Unify naming of all files with IT inputs. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2540">#2540</a>
+        </li>
+        <li>
+          UT to validate google/sun style xdocs. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2557">#2557</a>
+        </li>
+        <li>
+          Unify naming of all files with test inputs. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2161">#2161</a>
+        </li>
+        <li>
+          spelling: fix strange japanese.. Author: Nobuyuki-Inaba
+        </li>
+        <li>
+          Improve documentation for CovariantEquals check. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1031">#1031</a>
+        </li>
+      </ul>
+
+    </section>
+
     <section name="Release 6.12.1">
       <p>New:</p>
       <ul>
