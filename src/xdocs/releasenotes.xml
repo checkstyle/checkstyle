@@ -24,14 +24,12 @@
         </li>
       </ul>
 
-
       <p>New:</p>
       <ul>
         <li>
           ParameterName: new option to skip methods with Override annotation. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2290">#2290</a>
         </li>
       </ul>
-
 
       <p>Bug fixes:</p>
       <ul>
@@ -51,7 +49,6 @@
           EqualsAvoidNull check should сheck String concatenations. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1930">#1930</a>
         </li>
       </ul>
-
 
       <p>Notes:</p>
       <ul>
