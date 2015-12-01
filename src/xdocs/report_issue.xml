@@ -37,23 +37,26 @@
     <section name="How to report a bug?">
 
       <p>
-        First and foremost, do not think that your issue is obvious and do not need details.
+        First and foremost, do not think that your issue is obvious and do not need details.<br/>
         Even tiny issue need all details and context to be shared with us.
       </p>
 
       <p>
         The best way to report an Issue is to reproduce it by our <a href="cmdline.html#Download_and_Run">
-        Command Line Interface (CLI)</a>. It is the most minimalistic way to launch Checkstyle.
+        Command Line Interface (CLI)</a>. It is the most minimalistic way to launch Checkstyle.<br/>
+        PLEASE use our latest released version.
       </p>
 
       <p>
-        Our project is not responsible for problems on any extension or plugins. Checkstyle is library that is used
-        everywhere by number of IDEs and static analysis services.
+        Our project is NOT responsible for problems at any extension or plugins.<br/>
+        Checkstyle is library that is used by number of IDEs and static analysis services.<br/>
+        We fix problems that are only reproducible on latest release.
       </p>
 
       <p>
-        We need minimized Java file and minimized config. We do not need real source code. Any obfuscation of your
-        super secret code is OK.
+        We need minimized but compilable Java file and minimized config with one Check that cause problem.<br/>
+        We do not need real source code. Any obfuscation of your super secret code is OK.<br/>
+        Link to your source code would be awesome.
       </p>
 
       <p>
@@ -85,7 +88,7 @@ private static final int SOMETHING = 1;
       </p>
 
       <p>
-        Always specify what is expected.
+        Always specify what is expected.<br/>
 
         <code>
           Expected: violation on first line.
@@ -103,6 +106,10 @@ private static final int SOMETHING = 1;
 
       <p>
         Please provide detailed description of problem and chunks of code and config that you currently have.
+      </p>
+
+      <p>
+        Imagine that everithing is possible and propose name of the new option and its behaviour. Do not think that your issue is so obvious.
       </p>
     </section>
 
