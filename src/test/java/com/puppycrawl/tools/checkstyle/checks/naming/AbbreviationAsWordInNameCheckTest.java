@@ -31,8 +31,6 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
-    /** Warning message. */
-    private String warningMessage;
 
     @Override
     protected String getPath(String filename) throws IOException {
@@ -46,17 +44,16 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "III");
         checkConfig.addAttribute("tokens", "CLASS_DEF");
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "9: " + warningMessage,
-            "12: " + warningMessage,
-            "32: " + warningMessage,
-            "37: " + warningMessage,
+            "9: "  + getWarningMessage("FactoryWithBADNAme", expectedCapitalCount),
+            "12: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -66,7 +63,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     public void testTypeNamesForFourPermittedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 4;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -75,7 +71,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "32: " + warningMessage,
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -85,7 +81,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     public void testTypeNamesForFivePermittedCapitalLetters() throws Exception {
 
         final int expectedCapitalCount = 5;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -93,8 +88,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tokens", "CLASS_DEF");
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
         final String[] expected = {
-            "32: " + warningMessage,
-            "37: " + warningMessage,
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -104,7 +99,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     public void testTypeAndVariablesAndMethodNames() throws Exception {
 
         final int expectedCapitalCount = 5;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -116,12 +110,12 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "32: " + warningMessage,
-            "37: " + warningMessage,
-            "38: " + warningMessage,
-            "39: " + warningMessage,
-            "40: " + warningMessage,
-            "58: " + warningMessage,
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
+            "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
+            "39: " + getWarningMessage("marazmaticVARIABLEName", expectedCapitalCount),
+            "40: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
+            "58: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -131,7 +125,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     public void testTypeAndVariablesAndMethodNamesWithNoIgnores() throws Exception {
 
         final int expectedCapitalCount = 5;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -145,13 +138,13 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "32: " + warningMessage,
-            "37: " + warningMessage,
-            "38: " + warningMessage,
-            "66: " + warningMessage,
-            "72: " + warningMessage,
-            "78: " + warningMessage,
-            "84: " + warningMessage,
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
+            "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
+            "66: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "72: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "78: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "84: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -161,7 +154,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     public void testTypeAndVariablesAndMethodNamesWithIgnores() throws Exception {
 
         final int expectedCapitalCount = 5;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -175,9 +167,9 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "32: " + warningMessage,
-            "37: " + warningMessage,
-            "38: " + warningMessage,
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
+            "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -187,7 +179,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     public void testTypeAndVariablesAndMethodNamesWithIgnoresFinal() throws Exception {
 
         final int expectedCapitalCount = 4;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -201,12 +192,13 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "12: " + warningMessage,
-            "32: " + warningMessage,
-            "37: " + warningMessage,
-            "38: " + warningMessage,
-            "58: " + warningMessage, // not in ignore list
-            "60: " + warningMessage, // no ignore for static
+            "12: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
+            "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
+            "58: " + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
+            "60: "
+                + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -216,7 +208,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     public void testTypeAndVariablesAndMethodNamesWithIgnoresStatic() throws Exception {
 
         final int expectedCapitalCount = 5;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
@@ -230,11 +221,12 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "32: " + warningMessage,
-            "37: " + warningMessage,
-            "38: " + warningMessage,
-            "58: " + warningMessage, // not in ignore list
-            "59: " + warningMessage, // no ignore for final
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
+            "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
+            "58: " + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
+            "59: "
+                + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -247,14 +239,13 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 3;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "");
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF");
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "22: " + warningMessage,
+            "22: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
         };
 
         verify(checkConfig,
@@ -266,7 +257,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 0;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength",
                 String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("allowedAbbreviations", "");
@@ -277,31 +267,31 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             + "ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,"
             + "PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF");
         final String[] expected = {
-            "3: " + warningMessage,
-            "6: " + warningMessage,
-            "9: " + warningMessage,
-            "12: " + warningMessage,
-            "32: " + warningMessage,
-            "37: " + warningMessage,
-            "38: " + warningMessage,
-            "39: " + warningMessage,
-            "40: " + warningMessage,
-            "46: " + warningMessage,
-            "47: " + warningMessage,
-            "48: " + warningMessage,
-            "49: " + warningMessage,
-            "57: " + warningMessage,
-            "58: " + warningMessage,
-            "59: " + warningMessage,
-            "60: " + warningMessage,
-            "61: " + warningMessage,
-            "66: " + warningMessage,
-            "72: " + warningMessage,
-            "78: " + warningMessage,
-            "84: " + warningMessage,
-            "88: " + warningMessage,
-            "90: " + warningMessage,
-            "98: " + warningMessage,
+            "3: " + getWarningMessage("IIIInputAbstractClassName", expectedCapitalCount),
+            "6: " + getWarningMessage("NonAAAAbstractClassName", expectedCapitalCount),
+            "9: " + getWarningMessage("FactoryWithBADNAme", expectedCapitalCount),
+            "12: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
+            "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
+            "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
+            "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
+            "39: " + getWarningMessage("marazmaticVARIABLEName", expectedCapitalCount),
+            "40: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
+            "46: " + getWarningMessage("RIGHT", expectedCapitalCount),
+            "47: " + getWarningMessage("LEFT", expectedCapitalCount),
+            "48: " + getWarningMessage("UP", expectedCapitalCount),
+            "49: " + getWarningMessage("DOWN", expectedCapitalCount),
+            "57: " + getWarningMessage("NonAAAAbstractClassName2", expectedCapitalCount),
+            "58: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
+            "59: " + getWarningMessage("s1erialNUMBER", expectedCapitalCount),
+            "60: " + getWarningMessage("s2erialNUMBER", expectedCapitalCount),
+            "61: " + getWarningMessage("s3erialNUMBER", expectedCapitalCount),
+            "66: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "72: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "78: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "84: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "88: " + getWarningMessage("FIleNameFormatException", expectedCapitalCount),
+            "90: " + getWarningMessage("serialVersionUID", expectedCapitalCount),
+            "98: " + getWarningMessage("userID", expectedCapitalCount),
         };
         verify(checkConfig,
                 getPath("InputAbbreviationAsWordInTypeName.java"), expected);
@@ -313,7 +303,6 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final int expectedCapitalCount = 1;
-        warningMessage = getCheckMessage(MSG_KEY, expectedCapitalCount);
         checkConfig.addAttribute("allowedAbbreviationLength", String.valueOf(expectedCapitalCount));
         checkConfig.addAttribute("ignoreFinal", "false");
         checkConfig.addAttribute("allowedAbbreviations", null);
@@ -321,5 +310,9 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAbstractMultisetSetCount.java"), expected);
+    }
+
+    private String getWarningMessage(String typeName, int expectedCapitalCount) {
+        return getCheckMessage(MSG_KEY, typeName, expectedCapitalCount);
     }
 }

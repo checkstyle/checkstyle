@@ -43,18 +43,17 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
     public void abbreviationAsWordInNameTest() throws Exception {
 
         final int maxCapitalCount = 1;
-        final String msg = getCheckMessage(clazz, MSG_KEY, maxCapitalCount);
 
         final String[] expected = {
-            "50: " + msg,
-            "52: " + msg,
-            "54: " + msg,
-            "58: " + msg,
-            "60: " + msg,
-            "62: " + msg,
-            "67: " + msg,
-            "69: " + msg,
-            "71: " + msg,
+            "50: " + getWarningMessage("newCustomerID", maxCapitalCount),
+            "52: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "54: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "58: " + getWarningMessage("newCustomerID", maxCapitalCount),
+            "60: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "62: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "67: " + getWarningMessage("newCustomerID", maxCapitalCount),
+            "69: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
+            "71: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
         };
 
         final String filePath = getPath("InputAbbreviationAsWordInTypeNameCheck.java");
@@ -62,5 +61,9 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
         final Configuration checkConfig = getCheckConfig("AbbreviationAsWordInName");
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
+    }
+
+    private String getWarningMessage(String typeName, int expectedCapitalCount) {
+        return getCheckMessage(clazz, MSG_KEY, typeName, expectedCapitalCount);
     }
 }

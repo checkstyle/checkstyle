@@ -208,7 +208,7 @@ public class AbbreviationAsWordInNameCheck extends Check {
 
             final String abbr = getDisallowedAbbreviation(typeName);
             if (abbr != null) {
-                log(nameAst.getLineNo(), MSG_KEY, allowedAbbreviationLength);
+                log(nameAst.getLineNo(), MSG_KEY, typeName, allowedAbbreviationLength);
             }
         }
     }
