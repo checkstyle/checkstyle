@@ -215,10 +215,7 @@ public class GenericWhitespaceCheck extends Check {
                 log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
-        else if (!Character.isWhitespace(charAfter)
-            && charAfter != '(' && charAfter != ')'
-            && charAfter != ',' && charAfter != '['
-            && charAfter != '.' && charAfter != ':') {
+        else if (!isCharacterValidAfterGenericEnd(charAfter)) {
             log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
     }
@@ -302,5 +299,17 @@ public class GenericWhitespaceCheck extends Check {
             }
         }
         return true;
+    }
+
+    /**
+     * Checks whether given character is valid to be right after generic ends
+     * @param charAfter character to check
+     * @return checks if given character is valid
+     */
+    private static boolean isCharacterValidAfterGenericEnd(char charAfter) {
+        return Character.isWhitespace(charAfter)
+                || charAfter == '(' || charAfter == ')'
+                || charAfter == ',' || charAfter == '['
+                || charAfter == '.' || charAfter == ':';
     }
 }
