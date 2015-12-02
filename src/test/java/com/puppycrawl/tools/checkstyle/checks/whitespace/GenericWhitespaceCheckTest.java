@@ -137,6 +137,13 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
+    public void testGenericEndsTheLine() throws Exception {
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputGenericWhitespaceEndsTheLine.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
         final int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
