@@ -109,4 +109,13 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+
+    @Test
+    public void genericEndsTheLine() throws Exception {
+        final Configuration checkConfig = getCheckConfig("GenericWhitespace");
+        final String[] expected = {
+        };
+        verify(checkConfig, getPath("InputGenericWhitespaceEndsTheLine.java"),
+                expected);
+    }
 }

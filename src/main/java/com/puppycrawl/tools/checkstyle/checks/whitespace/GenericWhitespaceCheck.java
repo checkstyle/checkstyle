@@ -302,7 +302,7 @@ public class GenericWhitespaceCheck extends Check {
     }
 
     /**
-     * Checks whether given character is valid to be right after generic ends
+     * Checks whether given character is valid to be right after generic ends.
      * @param charAfter character to check
      * @return checks if given character is valid
      */
@@ -310,6 +310,7 @@ public class GenericWhitespaceCheck extends Check {
         return Character.isWhitespace(charAfter)
                 || charAfter == '(' || charAfter == ')'
                 || charAfter == ',' || charAfter == '['
-                || charAfter == '.' || charAfter == ':';
+                || charAfter == '.' || charAfter == ':'
+                || charAfter == ';';
     }
 }
