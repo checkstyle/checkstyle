@@ -228,7 +228,7 @@ public class RightCurlyCheck extends Check {
         else if (shouldBeAloneOnLine(bracePolicy, details)) {
             violation = MSG_KEY_LINE_ALONE;
         }
-        else if (shouldStartLine && !startsLine(details, targetSourceLine)) {
+        else if (shouldStartLine && !isOnStartOfLine(details, targetSourceLine)) {
             violation = MSG_KEY_LINE_NEW;
         }
         return violation;
@@ -268,7 +268,7 @@ public class RightCurlyCheck extends Check {
      * @param targetSourceLine source line to check
      * @return true if right curly brace starts target source line.
      */
-    private static boolean startsLine(Details details, String targetSourceLine) {
+    private static boolean isOnStartOfLine(Details details, String targetSourceLine) {
         return CommonUtils.hasWhitespaceBefore(details.rcurly.getColumnNo(), targetSourceLine)
                 || details.lcurly.getLineNo() == details.rcurly.getLineNo();
     }

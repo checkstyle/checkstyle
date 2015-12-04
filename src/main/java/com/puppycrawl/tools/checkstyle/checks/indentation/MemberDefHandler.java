@@ -66,7 +66,7 @@ public class MemberDefHandler extends AbstractExpressionHandler {
     @Override
     protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (startsLine(modifier)
+        if (isOnStartOfLine(modifier)
             && !getLevel().isAcceptable(expandedTabsColumnNo(modifier))) {
             logError(modifier, "modifier", expandedTabsColumnNo(modifier));
         }
@@ -79,7 +79,7 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
         final DetailAST ident = AbstractExpressionHandler.getFirstToken(type);
         final int columnNo = expandedTabsColumnNo(ident);
-        if (startsLine(ident) && !getLevel().isAcceptable(columnNo)) {
+        if (isOnStartOfLine(ident) && !getLevel().isAcceptable(columnNo)) {
             logError(ident, "type", columnNo);
         }
     }

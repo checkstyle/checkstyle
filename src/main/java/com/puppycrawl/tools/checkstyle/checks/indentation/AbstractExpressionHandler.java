@@ -190,7 +190,7 @@ public abstract class AbstractExpressionHandler {
      *
      * @return true if it is, false otherwise
      */
-    protected final boolean startsLine(DetailAST ast) {
+    protected final boolean isOnStartOfLine(DetailAST ast) {
         return getLineStart(ast) == expandedTabsColumnNo(ast);
     }
 
@@ -507,7 +507,7 @@ public abstract class AbstractExpressionHandler {
         for (DetailAST modifier = modifiers.getFirstChild();
              modifier != null;
              modifier = modifier.getNextSibling()) {
-            if (startsLine(modifier)
+            if (isOnStartOfLine(modifier)
                 && !getLevel().isAcceptable(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
@@ -577,7 +577,7 @@ public abstract class AbstractExpressionHandler {
             // or has <lparen level> + 1 indentation
             final int lparenLevel = expandedTabsColumnNo(lparen);
 
-            if (!getLevel().isAcceptable(rparenLevel) && startsLine(rparen)
+            if (!getLevel().isAcceptable(rparenLevel) && isOnStartOfLine(rparen)
                     && rparenLevel != lparenLevel + 1) {
                 logError(rparen, "rparen", rparenLevel);
             }
@@ -593,7 +593,7 @@ public abstract class AbstractExpressionHandler {
         // same line as the lcurly
         if (lparen == null
             || getLevel().isAcceptable(expandedTabsColumnNo(lparen))
-            || !startsLine(lparen)) {
+            || !isOnStartOfLine(lparen)) {
             return;
         }
         logError(lparen, "lparen", expandedTabsColumnNo(lparen));
