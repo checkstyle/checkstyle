@@ -96,7 +96,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             || getLevel().isAcceptable(expandedTabsColumnNo(topLevel)) || hasLabelBefore()) {
             return;
         }
-        if (!shouldTopLevelStartLine() && !startsLine(topLevel)) {
+        if (!shouldTopLevelStartLine() && !isOnStartOfLine(topLevel)) {
             return;
         }
         logError(topLevel, "", expandedTabsColumnNo(topLevel));
@@ -158,7 +158,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST lcurly = getLCurly();
         final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
-        if (curlyLevel().isAcceptable(lcurlyPos) || !startsLine(lcurly)) {
+        if (curlyLevel().isAcceptable(lcurlyPos) || !isOnStartOfLine(lcurly)) {
             return;
         }
 
@@ -203,7 +203,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
         if (curlyLevel().isAcceptable(rcurlyPos)
-            || !shouldStartWithRCurly() && !startsLine(rcurly)
+            || !shouldStartWithRCurly() && !isOnStartOfLine(rcurly)
             || areOnSameLine(rcurly, lcurly)) {
             return;
         }
@@ -295,10 +295,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // try to suggest single level to children using curlies'
         // levels.
         if (getLevel().isMultiLevel() && hasCurlies()) {
-            if (startsLine(getLCurly())) {
+            if (isOnStartOfLine(getLCurly())) {
                 indentLevel = new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
             }
-            else if (startsLine(getRCurly())) {
+            else if (isOnStartOfLine(getRCurly())) {
                 final IndentLevel level = new IndentLevel(curlyLevel(), getBasicOffset());
                 level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
                 indentLevel = level;
