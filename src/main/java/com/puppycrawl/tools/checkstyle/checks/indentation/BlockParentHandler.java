@@ -308,7 +308,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
         return getChildrenExpectedLevel();
     }
 

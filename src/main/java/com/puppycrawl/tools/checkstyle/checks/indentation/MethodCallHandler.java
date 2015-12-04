@@ -116,7 +116,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
         // for whatever reason a method that crosses lines, like asList
         // here:
         //            System.out.println("methods are: " + Arrays.asList(
@@ -137,7 +137,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         if (getLineStart(rparen) == rparen.getColumnNo()) {
             suggestedLevel.addAcceptedIndent(new IndentLevel(
-                    getParent().suggestedChildLevel(this),
+                    getParent().getSuggestedChildLevel(this),
                     getIndentCheck().getLineWrappingIndentation()
             ));
         }

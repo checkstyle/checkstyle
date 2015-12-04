@@ -66,7 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *   - suggest child indent level
  *   - allows for some tokens to be on same line (ie inner classes OBJBLOCK)
  *     and not increase indentation level
- *   - looked at using double dispatch for suggestedChildLevel(), but it
+ *   - looked at using double dispatch for getSuggestedChildLevel(), but it
  *     doesn't seem worthwhile, at least now
  *   - both tabs and spaces are considered whitespace in front of the line...
  *     tabs are converted to spaces

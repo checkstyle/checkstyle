@@ -111,7 +111,7 @@ public abstract class AbstractExpressionHandler {
      * @return the expected indentation amount
      */
     protected IndentLevel getLevelImpl() {
-        return parent.suggestedChildLevel(this);
+        return parent.getSuggestedChildLevel(this);
     }
 
     /**
@@ -123,7 +123,7 @@ public abstract class AbstractExpressionHandler {
      *
      * @return suggested indentation for child
      */
-    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
         return new IndentLevel(getLevel(), getBasicOffset());
     }
 

@@ -42,11 +42,11 @@ public class IfHandler extends BlockParentHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
         if (child instanceof ElseHandler) {
             return getLevel();
         }
-        return super.suggestedChildLevel(child);
+        return super.getSuggestedChildLevel(child);
     }
 
     @Override

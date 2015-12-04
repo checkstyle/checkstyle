@@ -41,14 +41,14 @@ public class LambdaHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    public IndentLevel suggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
         return getLevel();
     }
 
     @Override
     protected IndentLevel getLevelImpl() {
         if (getParent() instanceof MethodCallHandler) {
-            return getParent().suggestedChildLevel(this);
+            return getParent().getSuggestedChildLevel(this);
         }
 
         DetailAST parent = getMainAst().getParent();
