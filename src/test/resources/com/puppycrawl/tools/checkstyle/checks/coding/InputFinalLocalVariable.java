@@ -261,3 +261,23 @@ class class2 {
         }
     }
 }
+
+class classs3 {
+    public void method(final int i) {
+        switch (i) {
+            case 1:
+                int foo = 1;    // Violation
+                break;
+            default:
+        }
+        switch (i) {
+            case 1:
+                int foo = 1;    // No Violation
+                break;
+            case 2:
+                foo = 2;
+                break;
+            default:
+        }
+    }
+}

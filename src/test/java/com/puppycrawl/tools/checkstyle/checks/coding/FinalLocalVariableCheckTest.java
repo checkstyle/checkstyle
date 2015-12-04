@@ -80,6 +80,7 @@ public class FinalLocalVariableCheckTest
             "227:21: " + getCheckMessage(MSG_KEY, "e"),
             "247:17: " + getCheckMessage(MSG_KEY, "n"),
             "259:17: " + getCheckMessage(MSG_KEY, "t"),
+            "269:21: " + getCheckMessage(MSG_KEY, "foo"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariable.java"), expected);
     }

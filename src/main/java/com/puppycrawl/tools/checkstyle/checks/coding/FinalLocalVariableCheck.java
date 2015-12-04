@@ -172,12 +172,17 @@ public class FinalLocalVariableCheck extends Check {
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
-            case TokenTypes.SLIST:
             case TokenTypes.METHOD_DEF:
             case TokenTypes.CTOR_DEF:
                 scopeStack.push(new ScopeData());
                 break;
-
+            case TokenTypes.SLIST:
+                if (ast.getParent().getType() != TokenTypes.CASE_GROUP
+                    || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
+                    == ast.getParent()) {
+                    scopeStack.push(new ScopeData());
+                }
+                break;
             case TokenTypes.PARAMETER_DEF:
                 if (!isInLambda(ast)
                         && !ast.branchContains(TokenTypes.FINAL)
@@ -210,20 +215,47 @@ public class FinalLocalVariableCheck extends Check {
 
     @Override
     public void leaveToken(DetailAST ast) {
+        Map<String, DetailAST> scope = null;
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
-            case TokenTypes.SLIST:
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
-                final Map<String, DetailAST> scope = scopeStack.pop().scope;
-                for (DetailAST node : scope.values()) {
-                    log(node.getLineNo(), node.getColumnNo(), MSG_KEY, node
-                        .getText());
+                scope = scopeStack.pop().scope;
+                break;
+            case TokenTypes.SLIST:
+                if (ast.getParent().getType() != TokenTypes.CASE_GROUP
+                    || findLastToken(ast.getParent().getParent(), TokenTypes.CASE_GROUP,
+                        TokenTypes.SLIST) == ast.getParent()) {
+                    scope = scopeStack.pop().scope;
                 }
                 break;
             default:
                 // do nothing
         }
+        if (scope != null) {
+            for (DetailAST node : scope.values()) {
+                log(node.getLineNo(), node.getColumnNo(), MSG_KEY, node.getText());
+            }
+        }
+    }
+
+    /**
+     * Returns the last child token that makes a specified type and contains containType in
+     * its branch.
+     * @param ast token to be tested
+     * @param childType the token type to match
+     * @param containType the token type which has to be present in the branch
+     * @return the matching token, or null if no match
+     */
+    public DetailAST findLastToken(DetailAST ast, int childType, int containType) {
+        DetailAST returnValue = null;
+        for (DetailAST astIterator = ast.getFirstChild(); astIterator != null;
+                astIterator = astIterator.getNextSibling()) {
+            if (astIterator.getType() == childType && astIterator.branchContains(containType)) {
+                returnValue = astIterator;
+            }
+        }
+        return returnValue;
     }
 
     /**
