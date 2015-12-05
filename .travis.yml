@@ -49,7 +49,7 @@ matrix:
         - CMD4=" && java -jar target/checkstyle-\$CS_POM_VERSION-all.jar -c /google_checks.xml"
         - CMD5="      src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/InputNoLineWrapGood.java > output.log"
         - CMD6=" && cat output.log"
-        - CMD7=" && cat output.log | grep 'warning|(Audit done.)' | if [[ \"Audit done.\" != $? ]]; then exit 1; fi"
+        - CMD7=" && cat output.log | grep 'warning|(Audit done.)' | if [[ 'Audit done.' != $? ]]; then exit 1; fi"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7
         - COVERAGE_CMD=""
     # nemo.sonarqube.com (oraclejdk7)
