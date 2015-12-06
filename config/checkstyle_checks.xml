@@ -309,7 +309,9 @@
       <property name="format" value="(TODO)|(FIXME)" />
     </module>
     <module name="TrailingComment"/>
-    <module name="UncommentedMain"/>
+    <module name="UncommentedMain">
+      <property name="excludedClasses" value="\.Main$"/>
+    </module>
     <module name="UpperEll"/>
 
     <!-- Modifiers -->
