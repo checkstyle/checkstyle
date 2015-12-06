@@ -179,7 +179,7 @@ matrix:
         - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD6="                   -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
         - CMD7=" && cd contribution/checkstyle-tester "
-        - CMD8=" && travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD8=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # NoExceptionTest - Hbase (oraclejdk8)
@@ -193,7 +193,7 @@ matrix:
         - CMD5="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD6="                 -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true "
         - CMD7="&& cd contribution/checkstyle-tester "
-        - CMD8="&& travis_wait ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+        - CMD8="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # release dry run (oraclejdk8)
