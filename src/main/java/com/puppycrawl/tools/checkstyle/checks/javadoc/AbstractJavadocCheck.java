@@ -175,21 +175,21 @@ public abstract class AbstractJavadocCheck extends Check {
             final String treeCacheKey = blockCommentNode.getLineNo() + ":"
                     + blockCommentNode.getColumnNo();
 
-            ParseStatus ps;
+            ParseStatus result;
 
             if (TREE_CACHE.get().containsKey(treeCacheKey)) {
-                ps = TREE_CACHE.get().get(treeCacheKey);
+                result = TREE_CACHE.get().get(treeCacheKey);
             }
             else {
-                ps = parseJavadocAsDetailNode(blockCommentNode);
-                TREE_CACHE.get().put(treeCacheKey, ps);
+                result = parseJavadocAsDetailNode(blockCommentNode);
+                TREE_CACHE.get().put(treeCacheKey, result);
             }
 
-            if (ps.getParseErrorMessage() == null) {
-                processTree(ps.getTree());
+            if (result.getParseErrorMessage() == null) {
+                processTree(result.getTree());
             }
             else {
-                final ParseErrorMessage parseErrorMessage = ps.getParseErrorMessage();
+                final ParseErrorMessage parseErrorMessage = result.getParseErrorMessage();
                 log(parseErrorMessage.getLineNumber(),
                         parseErrorMessage.getMessageKey(),
                         parseErrorMessage.getMessageArguments());

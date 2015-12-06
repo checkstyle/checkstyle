@@ -90,8 +90,8 @@ class PkgControl {
             // If there won't be match so I am the best there is.
             finestMatch = this;
             // Check if any of the children match.
-            for (PkgControl pc : children) {
-                final PkgControl match = pc.locateFinest(forPkg);
+            for (PkgControl child : children) {
+                final PkgControl match = child.locateFinest(forPkg);
                 if (match != null) {
                     finestMatch = match;
                     break;

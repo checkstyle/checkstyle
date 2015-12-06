@@ -912,9 +912,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
         if (!allowMissingThrowsTags && reportExpectedTags) {
-            for (ExceptionInfo ei : throwsList) {
-                if (!ei.isFound()) {
-                    final Token token = ei.getName();
+            for (ExceptionInfo exceptionInfo : throwsList) {
+                if (!exceptionInfo.isFound()) {
+                    final Token token = exceptionInfo.getName();
                     log(token.getLineNo(), token.getColumnNo(),
                             MSG_EXPECTED_TAG,
                             JavadocTagInfo.THROWS.getText(), token.getText());
