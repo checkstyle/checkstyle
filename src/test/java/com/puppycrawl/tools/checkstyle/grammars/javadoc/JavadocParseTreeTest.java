@@ -278,8 +278,8 @@ public class JavadocParseTreeTest {
         compareTrees(expectedTree, generatedTree);
     }
 
-    private void compareTrees(ParseTree t1, ParseTree t2) {
-        Assert.assertEquals(t1.toStringTree(parser), t2.toStringTree(parser));
+    private void compareTrees(ParseTree first, ParseTree second) {
+        Assert.assertEquals(first.toStringTree(parser), second.toStringTree(parser));
     }
 
     private static class FailOnErrorListener extends BaseErrorListener {
