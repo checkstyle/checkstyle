@@ -331,7 +331,7 @@
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName"/>
     <module name="MemberName">
-      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="MethodName"/>
     <module name="MethodTypeParameterName"/>
