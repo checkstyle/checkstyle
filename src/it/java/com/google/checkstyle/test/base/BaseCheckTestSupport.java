@@ -20,7 +20,7 @@
 package com.google.checkstyle.test.base;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -131,6 +131,7 @@ public class BaseCheckTestSupport {
         try (final LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
+            int previousLineNumber = 0;
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
@@ -140,8 +141,10 @@ public class BaseCheckTestSupport {
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
                 final int lineNumber = Integer.parseInt(parseInt);
-                assertNotNull("expected input file to have warning comment on line number "
-                        + lineNumber, theWarnings.remove((Integer) lineNumber));
+                assertTrue("input file is expected to have a warning comment on line number "
+                        + lineNumber, theWarnings.remove((Integer) lineNumber)
+                            || previousLineNumber == lineNumber);
+                previousLineNumber = lineNumber;
             }
 
             assertEquals("unexpected output: " + lnr.readLine(),
