@@ -52,6 +52,7 @@ public class UncommentedMainCheckTest
             "14: " + getCheckMessage(MSG_KEY),
             "23: " + getCheckMessage(MSG_KEY),
             "32: " + getCheckMessage(MSG_KEY),
+            "96: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
     }
@@ -65,6 +66,7 @@ public class UncommentedMainCheckTest
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY),
             "32: " + getCheckMessage(MSG_KEY),
+            "96: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
     }
