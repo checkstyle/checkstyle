@@ -471,12 +471,12 @@ public class JavadocStyleCheck
      */
     private static boolean isExtraHtml(String token, Deque<HtmlTag> htmlStack) {
         boolean isExtra = true;
-        for (final HtmlTag td : htmlStack) {
+        for (final HtmlTag tag : htmlStack) {
             // Loop, looking for tags that are closed.
             // The loop is needed in case there are unclosed
             // tags on the stack. In that case, the stack would
             // not be empty, but this tag would still be extra.
-            if (token.equalsIgnoreCase(td.getId())) {
+            if (token.equalsIgnoreCase(tag.getId())) {
                 isExtra = false;
                 break;
             }

@@ -329,7 +329,10 @@
     <module name="ConstantName"/>
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>
-    <module name="LocalVariableName"/>
+    <module name="LocalVariableName">
+      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="allowOneCharVarInForLoop" value="true"/>
+    </module>
     <module name="MemberName">
       <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
