@@ -62,12 +62,12 @@ public final class ScopeUtils {
 
     /**
      * Returns the scope of the surrounding "block".
-     * @param aAST the node to return the scope for
+     * @param node the node to return the scope for
      * @return the Scope of the surrounding block
      */
-    public static Scope getSurroundingScope(DetailAST aAST) {
+    public static Scope getSurroundingScope(DetailAST node) {
         Scope returnValue = null;
-        for (DetailAST token = aAST.getParent();
+        for (DetailAST token = node.getParent();
              token != null;
              token = token.getParent()) {
             final int type = token.getType();
@@ -95,14 +95,14 @@ public final class ScopeUtils {
     /**
      * Returns whether a node is directly contained within an interface block.
      *
-     * @param aAST the node to check if directly contained within an interface block.
+     * @param node the node to check if directly contained within an interface block.
      * @return a {@code boolean} value
      */
-    public static boolean isInInterfaceBlock(DetailAST aAST) {
+    public static boolean isInInterfaceBlock(DetailAST node) {
         boolean returnValue = false;
 
         // Loop up looking for a containing interface block
-        for (DetailAST token = aAST.getParent();
+        for (DetailAST token = node.getParent();
              token != null && !returnValue;
              token = token.getParent()) {
 
@@ -125,14 +125,14 @@ public final class ScopeUtils {
     /**
      * Returns whether a node is directly contained within an annotation block.
      *
-     * @param aAST the node to check if directly contained within an annotation block.
+     * @param node the node to check if directly contained within an annotation block.
      * @return a {@code boolean} value
      */
-    public static boolean isInAnnotationBlock(DetailAST aAST) {
+    public static boolean isInAnnotationBlock(DetailAST node) {
         boolean returnValue = false;
 
         // Loop up looking for a containing interface block
-        for (DetailAST token = aAST.getParent();
+        for (DetailAST token = node.getParent();
              token != null && !returnValue;
              token = token.getParent()) {
             final int type = token.getType();
@@ -155,25 +155,25 @@ public final class ScopeUtils {
      * Returns whether a node is directly contained within an interface or
      * annotation block.
      *
-     * @param aAST the node to check if directly contained within an interface
+     * @param node the node to check if directly contained within an interface
      *     or annotation block.
      * @return a {@code boolean} value
      */
-    public static boolean isInInterfaceOrAnnotationBlock(DetailAST aAST) {
-        return isInInterfaceBlock(aAST) || isInAnnotationBlock(aAST);
+    public static boolean isInInterfaceOrAnnotationBlock(DetailAST node) {
+        return isInInterfaceBlock(node) || isInAnnotationBlock(node);
     }
 
     /**
      * Returns whether a node is directly contained within an enum block.
      *
-     * @param aAST the node to check if directly contained within an enum block.
+     * @param node the node to check if directly contained within an enum block.
      * @return a {@code boolean} value
      */
-    public static boolean isInEnumBlock(DetailAST aAST) {
+    public static boolean isInEnumBlock(DetailAST node) {
         boolean returnValue = false;
 
         // Loop up looking for a containing interface block
-        for (DetailAST token = aAST.getParent();
+        for (DetailAST token = node.getParent();
              token != null && !returnValue;
              token = token.getParent()) {
             final int type = token.getType();
@@ -195,14 +195,14 @@ public final class ScopeUtils {
      * Returns whether the scope of a node is restricted to a code block.
      * A code block is a method or constructor body, or a initializer block.
      *
-     * @param aAST the node to check
+     * @param node the node to check
      * @return a {@code boolean} value
      */
-    public static boolean isInCodeBlock(DetailAST aAST) {
+    public static boolean isInCodeBlock(DetailAST node) {
         boolean returnValue = false;
 
         // Loop up looking for a containing code block
-        for (DetailAST token = aAST.getParent();
+        for (DetailAST token = node.getParent();
              token != null;
              token = token.getParent()) {
             final int type = token.getType();
@@ -221,12 +221,12 @@ public final class ScopeUtils {
     /**
      * Returns whether a node is contained in the outer most type block.
      *
-     * @param aAST the node to check
+     * @param node the node to check
      * @return a {@code boolean} value
      */
-    public static boolean isOuterMostType(DetailAST aAST) {
+    public static boolean isOuterMostType(DetailAST node) {
         boolean returnValue = true;
-        for (DetailAST parent = aAST.getParent();
+        for (DetailAST parent = node.getParent();
              parent != null;
              parent = parent.getParent()) {
             if (parent.getType() == TokenTypes.CLASS_DEF
@@ -245,22 +245,22 @@ public final class ScopeUtils {
      * Determines whether a node is a local variable definition.
      * I.e. if it is declared in a code block, a for initializer,
      * or a catch parameter.
-     * @param aAST the node to check.
+     * @param node the node to check.
      * @return whether aAST is a local variable definition.
      */
-    public static boolean isLocalVariableDef(DetailAST aAST) {
+    public static boolean isLocalVariableDef(DetailAST node) {
         boolean localVariableDef = false;
         // variable declaration?
-        if (aAST.getType() == TokenTypes.VARIABLE_DEF) {
-            final DetailAST parent = aAST.getParent();
+        if (node.getType() == TokenTypes.VARIABLE_DEF) {
+            final DetailAST parent = node.getParent();
             final int type = parent.getType();
             localVariableDef = type == TokenTypes.SLIST
                     || type == TokenTypes.FOR_INIT
                     || type == TokenTypes.FOR_EACH_CLAUSE;
         }
         // catch parameter?
-        if (aAST.getType() == TokenTypes.PARAMETER_DEF) {
-            final DetailAST parent = aAST.getParent();
+        if (node.getType() == TokenTypes.PARAMETER_DEF) {
+            final DetailAST parent = node.getParent();
             localVariableDef = parent.getType() == TokenTypes.LITERAL_CATCH;
         }
         return localVariableDef;

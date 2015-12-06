@@ -145,10 +145,10 @@ public abstract class AbstractComplexityCheck
     /**
      * Increments the current value by a specified amount.
      *
-     * @param by the amount to increment by
+     * @param amount the amount to increment by
      */
-    protected final void incrementCurrentValue(BigInteger by) {
-        currentValue = currentValue.add(by);
+    protected final void incrementCurrentValue(BigInteger amount) {
+        currentValue = currentValue.add(amount);
     }
 
     /** Push the current value on the stack. */

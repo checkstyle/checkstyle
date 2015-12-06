@@ -47,10 +47,10 @@ public final class LocalizedMessages {
 
     /**
      * Logs a message to be reported.
-     * @param aMsg the message to log
+     * @param message the message to log
      **/
-    public void add(LocalizedMessage aMsg) {
-        messages.add(aMsg);
+    public void add(LocalizedMessage message) {
+        messages.add(message);
     }
 
     /**

@@ -401,14 +401,14 @@ public class TranslationCheck
 
     /**
      * Helper method to log an io exception.
-     * @param ex the exception that occurred
+     * @param exception the exception that occurred
      * @param file the file that could not be processed
      */
-    private void logIoException(IOException ex, File file) {
+    private void logIoException(IOException exception, File file) {
         String[] args = null;
         String key = "general.fileNotFound";
-        if (!(ex instanceof FileNotFoundException)) {
-            args = new String[] {ex.getMessage()};
+        if (!(exception instanceof FileNotFoundException)) {
+            args = new String[] {exception.getMessage()};
             key = "general.exception";
         }
         final LocalizedMessage message =
@@ -422,7 +422,7 @@ public class TranslationCheck
         final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
-        LOG.debug("IOException occurred.", ex);
+        LOG.debug("IOException occurred.", exception);
     }
 
     /**
