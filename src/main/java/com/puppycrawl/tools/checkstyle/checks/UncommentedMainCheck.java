@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
+import com.google.common.base.Optional;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -213,7 +214,7 @@ public class UncommentedMainCheck
     }
 
     /**
-     * Checks that method has only {@code String[]} param.
+     * Checks that method has only {@code String[]} or only {@code String...} param.
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -223,15 +224,29 @@ public class UncommentedMainCheck
 
         if (params.getChildCount() == 1) {
             final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
-            final DetailAST arrayDecl = parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+            final Optional<DetailAST> arrayDecl = Optional.fromNullable(
+                parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR));
+            final Optional<DetailAST> varargs = Optional.fromNullable(
+                params.getFirstChild().findFirstToken(TokenTypes.ELLIPSIS));
 
-            if (arrayDecl != null) {
-                final DetailAST arrayType = arrayDecl.getFirstChild();
-                final FullIdent type = FullIdent.createFullIdent(arrayType);
-                checkPassed = "String".equals(type.getText())
-                        || "java.lang.String".equals(type.getText());
+            if (arrayDecl.isPresent()) {
+                checkPassed = isStringType(arrayDecl.get().getFirstChild());
+            }
+            else if (varargs.isPresent()) {
+                checkPassed = isStringType(parameterType.getFirstChild());
             }
         }
         return checkPassed;
+    }
+
+    /**
+     * Whether the type is java.lang.String.
+     * @param typeAst the type to check.
+     * @return true, if the type is java.lang.String.
+     */
+    private static boolean isStringType(DetailAST typeAst) {
+        final FullIdent type = FullIdent.createFullIdent(typeAst);
+        return "String".equals(type.getText())
+            || "java.lang.String".equals(type.getText());
     }
 }
