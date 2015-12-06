@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -79,12 +81,8 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @param tags to be ignored by check.
      */
     public void setIgnoredTags(String tags) {
-        final List<String> tagList = new ArrayList<>();
-        final String[] sTags = tags.split(",");
-        for (String sTag : sTags) {
-            tagList.add(sTag.trim());
-        }
-        ignoredTags = tagList;
+        ignoredTags =
+            Lists.newArrayList(Splitter.on(",").omitEmptyStrings().trimResults().split(tags));
     }
 
     /**
