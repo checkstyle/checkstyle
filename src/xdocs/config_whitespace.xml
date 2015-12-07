@@ -1545,7 +1545,7 @@ foo(i,
       <subsection name="Description">
         <p>
         Checks that a token is surrounded by whitespace.  Empty constructor,
-        method, class, enum, interface, loop bodies (blocks) of the form
+        method, class, enum, interface, loop bodies (blocks), lambdas of the form
         </p>
 
         <source>public MyClass() {}      // empty constructor
@@ -1557,13 +1557,15 @@ MyClass c = new MyClass() {}; // empty anonymous class
 while (i = 1) {} // empty while loop
 for (int i = 1; i > 1; i++) {} // empty for loop
 do {} while (i = 1); // empty do-while loop
+Runnable noop = () -> {}; // empty lambda
 public @interface Beta {} // empty annotation type
         </source>
 
         <p>
         may optionally be exempted from the policy using the <code>
         allowEmptyMethods</code>, <code>allowEmptyConstructors
-        </code>, <code>allowEmptyTypes</code> and <code>allowEmptyLoops</code> properties.
+        </code>, <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code> and
+        <code>allowEmptyLambdas</code> properties.
         </p>
       </subsection>
 
@@ -1596,6 +1598,12 @@ public @interface Beta {} // empty annotation type
           <tr>
             <td>allowEmptyLoops</td>
             <td>allow empty loop bodies</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowEmptyLambdas</td>
+            <td>allow empty lambda bodies</td>
             <td><a href="property_types.html#boolean">boolean</a></td>
             <td><code>false</code></td>
           </tr>

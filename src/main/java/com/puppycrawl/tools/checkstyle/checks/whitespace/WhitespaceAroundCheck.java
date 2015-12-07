@@ -98,7 +98,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * <p>In addition, this check can be configured to allow empty methods, types,
- * for, while, do-while loops and constructor bodies.
+ * for, while, do-while loops, lambdas and constructor bodies.
  * For example:
  *
  * <pre>{@code
@@ -111,6 +111,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * while (i = 1) {} // empty while loop
  * for (int i = 1; i &gt; 1; i++) {} // empty for loop
  * do {} while (i = 1); // empty do-while loop
+ * Runnable noop = () -> {}; // empty lambda
  * public @interface Beta {} // empty annotation type
  * }</pre>
  *
@@ -129,6 +130,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>To configure the check to allow empty loop blocks use
  *
  * <pre>   &lt;property name="allowEmptyLoops" value="true" /&gt;</pre>
+ *
+ * <p>To configure the check to allow empty lambdas blocks use
+ *
+ * <pre>   &lt;property name="allowEmptyLambdas" value="true" /&gt;</pre>
  *
  * <p>Also, this check can be configured to ignore the colon in an enhanced for
  * loop. The colon in an enhanced for loop is ignored by default
@@ -163,6 +168,8 @@ public class WhitespaceAroundCheck extends Check {
     private boolean allowEmptyTypes;
     /** Whether or not empty loops are allowed. */
     private boolean allowEmptyLoops;
+    /** Whether or not empty lambda blocks are allowed. */
+    private boolean allowEmptyLambdas;
     /** Whether or not to ignore a colon in a enhanced for loop. */
     private boolean ignoreEnhancedForColon = true;
 
@@ -327,6 +334,14 @@ public class WhitespaceAroundCheck extends Check {
         allowEmptyLoops = allow;
     }
 
+    /**
+     * Sets whether or not empty lambdas bodies are allowed.
+     * @param allow {@code true} to allow empty lambda expressions.
+     */
+    public void setAllowEmptyLambdas(boolean allow) {
+        allowEmptyLambdas = allow;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
@@ -408,7 +423,8 @@ public class WhitespaceAroundCheck extends Check {
     private boolean isEmptyBlock(DetailAST ast, int parentType) {
         return isEmptyMethodBlock(ast, parentType)
                 || isEmptyCtorBlock(ast, parentType)
-                || isEmptyLoop(ast, parentType);
+                || isEmptyLoop(ast, parentType)
+                || isEmptyLambda(ast, parentType);
     }
 
     /**
@@ -429,8 +445,10 @@ public class WhitespaceAroundCheck extends Check {
     private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
         final int type = ast.getType();
         if (type == TokenTypes.RCURLY) {
+            final DetailAST parent = ast.getParent();
             final DetailAST grandParent = ast.getParent().getParent();
             return parentType == TokenTypes.SLIST
+                && parent.getFirstChild().getType() == TokenTypes.RCURLY
                 && grandParent.getType() == match;
         }
 
@@ -516,6 +534,18 @@ public class WhitespaceAroundCheck extends Check {
                             parentType, TokenTypes.LITERAL_WHILE)
                             || isEmptyBlock(ast,
                                     parentType, TokenTypes.LITERAL_DO));
+    }
+
+    /**
+     * Test if the given {@code DetailAST} is part of an allowed empty
+     * lambda block.
+     * @param ast the {@code DetailAST} to test.
+     * @param parentType the token type of {@code ast}'s parent.
+     * @return {@code true} if {@code ast} makes up part of an
+     *         allowed empty lambda block.
+     */
+    private boolean isEmptyLambda(DetailAST ast, int parentType) {
+        return allowEmptyLambdas && isEmptyBlock(ast, parentType, TokenTypes.LAMBDA);
     }
 
     /**

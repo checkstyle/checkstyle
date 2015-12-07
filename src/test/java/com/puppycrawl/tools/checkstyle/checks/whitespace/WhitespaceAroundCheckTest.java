@@ -49,6 +49,12 @@ public class WhitespaceAroundCheckTest
                 + "whitespace" + File.separator + filename);
     }
 
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "whitespace" + File.separator + filename);
+    }
+
     @Test
     public void testGetRequiredTokens() {
         final WhitespaceAroundCheck checkObj = new WhitespaceAroundCheck();
@@ -329,5 +335,32 @@ public class WhitespaceAroundCheckTest
             };
         verify(checkConfig, getPath("InputAllowEmptyTypesAndNonEmptyClasses.java"),
             expected);
+    }
+
+    @Test
+    public void testNotAllowEmptyLambdaExpressionsByDefault() throws Exception {
+        final String[] expected = {
+            "7:28: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "7:28: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "12:29: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "12:30: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "13:29: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "13:43: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputAllowEmptyLambdaExpressions.java"),
+            expected);
+    }
+
+    @Test
+    public void testAllowEmptyLambdaExpressionsWithAllowEmptyLambdaParameter() throws Exception {
+        checkConfig.addAttribute("allowEmptyLambdas", "true");
+        final String[] expected = {
+            "12:29: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "12:30: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+            "13:29: " + getCheckMessage(WS_NOT_FOLLOWED, "{"),
+            "13:43: " + getCheckMessage(WS_NOT_PRECEDED, "}"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputAllowEmptyLambdaExpressions.java"),
+                expected);
     }
 }
