@@ -67,4 +67,34 @@ class InputSuppressWarningsFilter
     @SuppressWarnings(UNUSED)
     public void annotationUsingStringConstantValue(){
     }
+
+    @SuppressWarnings("checkstyle:uncommentedmain")
+    public static void main(String[] args) {
+
+    }
+
+    static class TestClass1 {
+        @SuppressWarnings("uncommentedmain")
+        public static void main(String[] args) {
+
+        }
+    }
+
+    static class TestClass2 {
+        @SuppressWarnings("UncommentedMain")
+        public static void main(String[] args) {
+
+        }
+    }
+
+    static class TestClass3 {
+        @SuppressWarnings("checkstyle:UncommentedMain")
+        public static void main(String[] args) {
+
+        }
+    }
+
+    @SuppressWarnings("checkstyle:javadoctype")
+    public static abstract class Task {
+    }
 }
