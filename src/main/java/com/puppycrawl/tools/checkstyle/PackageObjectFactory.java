@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
  * @author Rick Giles
  * @author lkuehne
  */
-class PackageObjectFactory implements ModuleFactory {
+public class PackageObjectFactory implements ModuleFactory {
     /** Logger for PackageObjectFactory. */
     private static final Log LOG = LogFactory.getLog(PackageObjectFactory.class);
 
@@ -59,7 +59,7 @@ class PackageObjectFactory implements ModuleFactory {
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
      */
-    PackageObjectFactory(Set<String> packageNames,
+    public PackageObjectFactory(Set<String> packageNames,
             ClassLoader moduleClassLoader) {
         if (moduleClassLoader == null) {
             throw new IllegalArgumentException(
