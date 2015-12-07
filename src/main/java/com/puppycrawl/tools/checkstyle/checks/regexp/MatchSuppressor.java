@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
  * Represents a suppressor for matches.
  * @author oliver
  */
-interface MatchSuppressor {
+public interface MatchSuppressor {
     /**
      * Checks if the specified selection should be suppressed.
      * @param startLineNo the starting line number

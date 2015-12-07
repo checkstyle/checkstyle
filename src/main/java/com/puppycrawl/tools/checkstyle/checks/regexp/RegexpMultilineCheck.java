@@ -32,15 +32,32 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * @author Oliver Burn
  */
 public class RegexpMultilineCheck extends AbstractFileSetCheck {
-    /** The detection options to use. */
-    private final DetectorOptions options = new DetectorOptions(Pattern.MULTILINE,
-            this);
+
+    /** The format of the regular expression to match. */
+    private String format = "$.";
+    /** The message to report for a match. */
+    private String message;
+    /** The minimum number of matches required per file. */
+    private int minimum;
+    /** The maximum number of matches required per file. */
+    private int maximum;
+    /** Whether to ignore case when matching. */
+    private boolean ignoreCase;
+
     /** The detector to use. */
     private MultilineDetector detector;
 
     @Override
     public void beginProcessing(String charset) {
         super.beginProcessing(charset);
+        final DetectorOptions options = new DetectorOptions.Builder(this)
+            .compileFlags(Pattern.MULTILINE)
+            .format(format)
+            .message(message)
+            .minimum(minimum)
+            .maximum(maximum)
+            .ignoreCase(ignoreCase)
+            .build();
         detector = new MultilineDetector(options);
     }
 
@@ -50,42 +67,42 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Set the format of the regular expression to match.
+     * Sets the format of the regular expression to match.
      * @param format the format of the regular expression to match.
      */
     public void setFormat(String format) {
-        options.setFormat(format);
+        this.format = format;
     }
 
     /**
-     * Set the message to report for a match.
+     * Sets the message to report for a match.
      * @param message the message to report for a match.
      */
     public void setMessage(String message) {
-        options.setMessage(message);
+        this.message = message;
     }
 
     /**
-     * Set the minimum number of matches required per file.
+     * Sets the minimum number of matches required per file.
      * @param minimum the minimum number of matches required per file.
      */
     public void setMinimum(int minimum) {
-        options.setMinimum(minimum);
+        this.minimum = minimum;
     }
 
     /**
-     * Set the maximum number of matches required per file.
+     * Sets the maximum number of matches required per file.
      * @param maximum the maximum number of matches required per file.
      */
     public void setMaximum(int maximum) {
-        options.setMaximum(maximum);
+        this.maximum = maximum;
     }
 
     /**
-     * Set whether to ignore case when matching.
-     * @param ignore whether to ignore case when matching.
+     * Sets whether to ignore case when matching.
+     * @param ignoreCase whether to ignore case when matching.
      */
-    public void setIgnoreCase(boolean ignore) {
-        options.setIgnoreCase(ignore);
+    public void setIgnoreCase(boolean ignoreCase) {
+        this.ignoreCase = ignoreCase;
     }
 }
