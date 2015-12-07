@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static com.puppycrawl.tools.checkstyle.TestUtils.assertUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
 
 import org.junit.Assert;
 import org.junit.Test;
