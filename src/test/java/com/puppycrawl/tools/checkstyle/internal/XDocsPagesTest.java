@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -25,11 +25,11 @@ import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
@@ -37,8 +37,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.beanutils.PropertyUtils;
@@ -48,18 +46,19 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import com.google.common.io.Files;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.ModuleFactory;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class XDocsPagesTest {
     private static final File JAVA_SOURCES_DIRECTORY = new File("src/main/java");
-    private static final File XDOCS_DIRECTORY = new File("src/xdocs");
     private static final String AVAILABLE_CHECKS_PATH = "src/xdocs/checks.xml";
     private static final File AVAILABLE_CHECKS_FILE = new File(AVAILABLE_CHECKS_PATH);
     private static final String CHECK_FILE_NAME = ".+Check.java$";
@@ -138,15 +137,12 @@ public class XDocsPagesTest {
 
     @Test
     public void testAllXmlExamples() throws Exception {
-        for (File file : Files.fileTreeTraverser().preOrderTraversal(XDOCS_DIRECTORY)) {
-            if (file.isDirectory()) {
-                continue;
-            }
-
+        for (Path path : XDocUtil.getXdocsFilePaths()) {
+            final File file = path.toFile();
             final String input = Files.toString(file, UTF_8);
             final String fileName = file.getName();
 
-            final Document document = getRawXml(fileName, input, input);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("source");
 
             for (int position = 0; position < sources.getLength(); position++) {
@@ -163,12 +159,12 @@ public class XDocsPagesTest {
                     continue;
                 }
 
-                buildAndTestXml(fileName, unserializedSource);
+                buildAndValidateXml(fileName, unserializedSource);
             }
         }
     }
 
-    private static void buildAndTestXml(String fileName, String unserializedSource)
+    private static void buildAndValidateXml(String fileName, String unserializedSource)
             throws IOException, ParserConfigurationException {
         // not all examples come with the full xml structure
         String code = unserializedSource;
@@ -189,12 +185,12 @@ public class XDocsPagesTest {
                     + code;
         }
 
-        // test only
-        getRawXml(fileName, code, unserializedSource);
+        // validate only
+        XmlUtil.getRawXml(fileName, code, unserializedSource);
 
         // can't test ant structure, or old and outdated checks
         if (!fileName.startsWith("anttask") && !fileName.startsWith("releasenotes")) {
-            testCheckstyleXml(fileName, code, unserializedSource);
+            validateCheckstyleXml(fileName, code, unserializedSource);
         }
     }
 
@@ -211,27 +207,8 @@ public class XDocsPagesTest {
         return found;
     }
 
-    private static Document getRawXml(String fileName, String code, String unserializedSource)
-            throws ParserConfigurationException {
-        try {
-            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            factory.setValidating(false);
-            factory.setNamespaceAware(true);
-
-            final DocumentBuilder builder = factory.newDocumentBuilder();
-
-            return builder.parse(new InputSource(new StringReader(code)));
-        }
-        catch (IOException | SAXException ex) {
-            Assert.fail(fileName + " has invalid xml (" + ex.getMessage() + "): "
-                    + unserializedSource);
-        }
-
-        return null;
-    }
-
-    private static void testCheckstyleXml(String fileName, String code, String unserializedSource)
-            throws IOException {
+    private static void validateCheckstyleXml(String fileName, String code,
+            String unserializedSource) throws IOException {
         // can't process non-existent examples, or out of context snippets
         if (code.contains("com.mycompany") || code.contains("checkstyle-packages")
                 || code.contains("MethodLimit") || code.contains("<suppress ")
@@ -269,19 +246,18 @@ public class XDocsPagesTest {
 
     @Test
     public void testAllCheckSections() throws Exception {
-        final ClassLoader cl = XDocsPagesTest.class.getClassLoader();
-        final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
-        final ModuleFactory moduleFactory = new PackageObjectFactory(packageNames, cl);
+        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
 
-        for (File file : Files.fileTreeTraverser().preOrderTraversal(XDOCS_DIRECTORY)) {
+        for (Path path : XDocUtil.getXdocsConfigFilePaths(XDocUtil.getXdocsFilePaths())) {
+            final File file = path.toFile();
             final String fileName = file.getName();
 
-            if (!fileName.startsWith("config_") || "config_reporting.xml".equals(fileName)) {
+            if ("config_reporting.xml".equals(fileName)) {
                 continue;
             }
 
             final String input = Files.toString(file, UTF_8);
-            final Document document = getRawXml(fileName, input, input);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("section");
             String lastSectioName = null;
 
@@ -325,7 +301,7 @@ public class XDocsPagesTest {
         }
 
         int subSectionPos = 0;
-        for (Node subSection : getChildrenElements(section)) {
+        for (Node subSection : XmlUtil.getChildrenElements(section)) {
             final String subSectionName = subSection.getAttributes().getNamedItem("name")
                     .getNodeValue();
 
@@ -453,7 +429,7 @@ public class XDocsPagesTest {
         boolean skip = true;
         boolean didTokens = false;
 
-        for (Node row : getChildrenElements(getFirstChildElement(subSection))) {
+        for (Node row : XmlUtil.getChildrenElements(XmlUtil.getFirstChildElement(subSection))) {
             if (skip) {
                 skip = false;
                 continue;
@@ -461,7 +437,7 @@ public class XDocsPagesTest {
             Assert.assertFalse(fileName + " section '" + sectionName
                     + "' should have token properties last", didTokens);
 
-            final List<Node> columns = new ArrayList<>(getChildrenElements(row));
+            final List<Node> columns = new ArrayList<>(XmlUtil.getChildrenElements(row));
 
             final String propertyName = columns.get(0).getTextContent();
             Assert.assertTrue(fileName + " section '" + sectionName
@@ -470,15 +446,19 @@ public class XDocsPagesTest {
 
             if ("tokens".equals(propertyName)) {
                 Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have the basic token description", "tokens to check",
-                        columns.get(1).getTextContent());
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have all the acceptable tokens", "subset of tokens "
-                        + getTokenText(check.getAcceptableTokens(), check.getRequiredTokens()),
-                        columns.get(2).getTextContent().replaceAll("\\s+", " ").trim());
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have all the default tokens",
-                        getTokenText(check.getDefaultTokens(), check.getRequiredTokens()),
+                        + "' should have the basic token description", "tokens to check", columns
+                        .get(1).getTextContent());
+                Assert.assertEquals(
+                        fileName + " section '" + sectionName
+                                + "' should have all the acceptable tokens",
+                        "subset of tokens "
+                                + CheckUtil.getTokenText(check.getAcceptableTokens(),
+                                        check.getRequiredTokens()), columns.get(2).getTextContent()
+                                .replaceAll("\\s+", " ").trim());
+                Assert.assertEquals(
+                        fileName + " section '" + sectionName
+                                + "' should have all the default tokens",
+                        CheckUtil.getTokenText(check.getDefaultTokens(), check.getRequiredTokens()),
                         columns.get(3).getTextContent().replaceAll("\\s+", " ").trim());
                 didTokens = true;
             }
@@ -501,7 +481,7 @@ public class XDocsPagesTest {
         Assert.assertTrue(fileName + " section '" + sectionName
                 + "' has unknown text in 'Example of Usage': " + text, text.isEmpty());
 
-        for (Node node : findChildElementsByTag(subSection, "a")) {
+        for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
             final String url = node.getAttributes().getNamedItem("href").getTextContent();
             final String linkText = node.getTextContent().trim();
             String expectedUrl = null;
@@ -553,43 +533,6 @@ public class XDocsPagesTest {
                         .getTextContent().trim());
     }
 
-    private static Set<Node> getChildrenElements(Node node) {
-        final Set<Node> result = new LinkedHashSet<>();
-
-        for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
-            if (child.getNodeType() != Node.TEXT_NODE) {
-                result.add(child);
-            }
-        }
-
-        return result;
-    }
-
-    private static Node getFirstChildElement(Node node) {
-        for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
-            if (child.getNodeType() != Node.TEXT_NODE) {
-                return child;
-            }
-        }
-
-        return null;
-    }
-
-    private static Set<Node> findChildElementsByTag(Node node, String tag) {
-        final Set<Node> result = new LinkedHashSet<>();
-
-        for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
-            if (tag.equals(child.getNodeName())) {
-                result.add(child);
-            }
-            else if (child.hasChildNodes()) {
-                result.addAll(findChildElementsByTag(child, tag));
-            }
-        }
-
-        return result;
-    }
-
     private static boolean hasParentModule(String sectionName) {
         final String search = "\"" + sectionName + "\"";
         boolean result = true;
@@ -617,66 +560,20 @@ public class XDocsPagesTest {
         return result;
     }
 
-    private static String getTokenText(int[] tokens, int... subtractions) {
-        if (Arrays.equals(tokens, TokenUtils.getAllTokenIds()) && subtractions.length == 0) {
-            return "TokenTypes.";
-        }
-        else {
-            final StringBuilder result = new StringBuilder();
-            boolean first = true;
-
-            for (int token : tokens) {
-                boolean found = false;
-
-                for (int subtraction : subtractions) {
-                    if (subtraction == token) {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (found) {
-                    continue;
-                }
-
-                if (first) {
-                    first = false;
-                }
-                else {
-                    result.append(", ");
-                }
-
-                result.append(TokenUtils.getTokenName(token));
-            }
-
-            if (result.length() == 0) {
-                result.append("empty");
-            }
-            else {
-                result.append(".");
-            }
-
-            return result.toString();
-        }
-    }
-
     @Test
     public void testAllStyleRules() throws Exception {
-        for (File file : Files.fileTreeTraverser().preOrderTraversal(XDOCS_DIRECTORY)) {
+        for (Path path : XDocUtil.getXdocsStyleFilePaths(XDocUtil.getXdocsFilePaths())) {
+            final File file = path.toFile();
             final String fileName = file.getName();
-
-            if (!fileName.endsWith("_style.xml")) {
-                continue;
-            }
-
             final String input = Files.toString(file, UTF_8);
-            final Document document = getRawXml(fileName, input, input);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("tr");
             String lastRuleName = null;
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final Node row = sources.item(position);
-                final List<Node> columns = new ArrayList<>(findChildElementsByTag(row, "td"));
+                final List<Node> columns = new ArrayList<>(
+                        XmlUtil.findChildElementsByTag(row, "td"));
 
                 if (columns.isEmpty()) {
                     continue;
@@ -692,8 +589,8 @@ public class XDocsPagesTest {
                                     lastRuleName.toLowerCase(Locale.ENGLISH)) >= 0);
                 }
 
-                validateStyleChecks(findChildElementsByTag(columns.get(2), "a"),
-                        findChildElementsByTag(columns.get(3), "a"), fileName, ruleName);
+                validateStyleChecks(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
+                        XmlUtil.findChildElementsByTag(columns.get(3), "a"), fileName, ruleName);
 
                 lastRuleName = ruleName;
             }

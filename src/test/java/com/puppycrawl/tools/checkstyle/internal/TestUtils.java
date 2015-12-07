@@ -17,12 +17,17 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle;
+package com.puppycrawl.tools.checkstyle.internal;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
+import java.util.Set;
 
 import org.junit.Assert;
+
+import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
+import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public final class TestUtils {
 
@@ -40,5 +45,15 @@ public final class TestUtils {
         }
         constructor.setAccessible(true);
         constructor.newInstance();
+    }
+
+    /**
+     * Returns the default PackageObjectFactory with the default package names.
+     * @return the default PackageObjectFactory.
+     */
+    public static PackageObjectFactory getPackageObjectFactory() throws CheckstyleException {
+        final ClassLoader cl = TestUtils.class.getClassLoader();
+        final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
+        return new PackageObjectFactory(packageNames, cl);
     }
 }

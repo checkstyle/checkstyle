@@ -54,7 +54,7 @@ public class BaseCheckTestSupport {
         return new DefaultConfiguration(clazz.getName());
     }
 
-    protected Checker createChecker(Configuration checkConfig)
+    public Checker createChecker(Configuration checkConfig)
             throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(checkConfig);
         final Checker checker = new Checker();

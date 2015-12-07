@@ -210,7 +210,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Override
-    protected Checker createChecker(Configuration checkConfig)
+    public Checker createChecker(Configuration checkConfig)
             throws CheckstyleException {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");

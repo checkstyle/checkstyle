@@ -93,7 +93,7 @@ public class SuppressWarningsFilterTest
     }
 
     @Override
-    protected Checker createChecker(Configuration checkConfig)
+    public Checker createChecker(Configuration checkConfig)
         throws Exception {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
