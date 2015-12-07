@@ -35,7 +35,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
+import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
@@ -43,6 +45,9 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 public class SuppressWarningsFilterTest
     extends BaseCheckTestSupport {
     private static final String[] ALL_MESSAGES = {
+        "16: Missing a Javadoc comment.",
+        "17: Missing a Javadoc comment.",
+        "19: Missing a Javadoc comment.",
         "22:45: Name 'I' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "24:17: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "25:17: Name 'K' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
@@ -53,6 +58,15 @@ public class SuppressWarningsFilterTest
         "39:17: More than 7 parameters (found 8).",
         "45:9: Catching 'Exception' is not allowed.",
         "56:9: Catching 'Exception' is not allowed.",
+        "61: Missing a Javadoc comment.",
+        "71: Uncommented main method found.",
+        "76: Missing a Javadoc comment.",
+        "77: Uncommented main method found.",
+        "83: Missing a Javadoc comment.",
+        "84: Uncommented main method found.",
+        "90: Missing a Javadoc comment.",
+        "91: Uncommented main method found.",
+        "97: Missing a Javadoc comment.",
     };
 
     @Override
@@ -77,6 +91,11 @@ public class SuppressWarningsFilterTest
             "33:30: Name 'm' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
             "39:17: More than 7 parameters (found 8).",
             "56:9: Catching 'Exception' is not allowed.",
+            "71: Uncommented main method found.",
+            "77: Uncommented main method found.",
+            "84: Uncommented main method found.",
+            "91: Uncommented main method found.",
+            "97: Missing a Javadoc comment.",
         };
         verifySuppressed(filterConfig, suppressed);
     }
@@ -109,6 +128,8 @@ public class SuppressWarningsFilterTest
         checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
         checksConfig.addChild(createCheckConfig(ParameterNumberCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
+        checksConfig.addChild(createCheckConfig(UncommentedMainCheck.class));
+        checksConfig.addChild(createCheckConfig(JavadocTypeCheck.class));
         checkerConfig.addChild(checksConfig);
         if (checkConfig != null) {
             checkerConfig.addChild(checkConfig);

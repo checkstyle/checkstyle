@@ -156,7 +156,8 @@ public class SuppressWarningsHolder
             final boolean afterStart =
                 entry.getFirstLine() < line
                     || entry.getFirstLine() == line
-                            && entry.getFirstColumn() <= column;
+                            && (entry.getFirstColumn() <= column
+                            || column == 0);
             final boolean beforeEnd =
                 entry.getLastLine() > line
                     || entry.getLastLine() == line && entry
