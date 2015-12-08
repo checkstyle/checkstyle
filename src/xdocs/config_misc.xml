@@ -729,6 +729,26 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
     &lt;property name="maximumNumber" value="10"/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>An example of how to configure the check to check you never assign something in a
+           control statement condition.</p>
+        <p>Code example:</p>
+        <source>
+class Test {
+  void foo() {
+    boolean a = false;
+    if (a = true) { } //violation (assigning a value to a variable in a control statement condition)
+  }
+}
+        </source>
+        <p>Configuration example:</p>
+        <source>
+&lt;module name="DescendantToken"&gt;
+    &lt;property name="tokens" value="LITERAL_IF"/&gt;
+    &lt;property name="limitedTokens" value="ASSIGN"/&gt;
+    &lt;property name="maximumNumber" value="0"/&gt;
+&lt;/module&gt;
+       </source>
       </subsection>
 
       <subsection name="Example of Usage">
