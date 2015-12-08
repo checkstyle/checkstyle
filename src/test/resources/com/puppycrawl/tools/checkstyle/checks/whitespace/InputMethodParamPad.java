@@ -69,4 +69,15 @@ public class InputMethodParamPad
         java.util.Vector<String> v = new java.util.Vector<String>();
         java.util.Vector<String> v1 = new Vector<String>();
     }
+
+    enum TestEnum {
+        FIRST ()
+            {
+            },
+
+        SECOND
+            ()
+        {
+        }
+    }
 }

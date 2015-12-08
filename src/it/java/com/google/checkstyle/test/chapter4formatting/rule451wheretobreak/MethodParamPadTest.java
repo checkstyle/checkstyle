@@ -40,12 +40,15 @@ public class MethodParamPadTest extends BaseCheckTestSupport {
     public void operatorWrapTest() throws Exception {
 
         final Class<MethodParamPadCheck> clazz = MethodParamPadCheck.class;
-        final String messageKey = "line.previous";
+        final String messageKeyPrevious = "line.previous";
+        final String messageKeyPreceded = "ws.preceded";
 
         final String[] expected = {
-            "83:9: " + getCheckMessage(clazz, messageKey, "("),
-            "128:13: " + getCheckMessage(clazz, messageKey, "("),
-            "130:9: " + getCheckMessage(clazz, messageKey, "("),
+            "83:9: " + getCheckMessage(clazz, messageKeyPrevious, "("),
+            "128:13: " + getCheckMessage(clazz, messageKeyPrevious, "("),
+            "130:9: " + getCheckMessage(clazz, messageKeyPrevious, "("),
+            "353:15: " + getCheckMessage(clazz, messageKeyPreceded, "("),
+            "358:13: " + getCheckMessage(clazz, messageKeyPrevious, "("),
         };
         final Configuration checkConfig = getCheckConfig("MethodParamPad");
         final String filePath = getPath("InputMethodParamPad.java");

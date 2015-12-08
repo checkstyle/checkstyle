@@ -110,6 +110,7 @@ public class MethodParamPadCheck
             TokenTypes.METHOD_CALL,
             TokenTypes.METHOD_DEF,
             TokenTypes.SUPER_CTOR_CALL,
+            TokenTypes.ENUM_CONSTANT_DEF,
         };
     }
 

@@ -348,4 +348,15 @@ class AssignClass3 {
                 <<= 2;
         }
     };
+
+    enum TestEnum {
+        FIRST () // warn
+            {
+            },
+
+        SECOND
+            () // warn
+            {
+            }
+    }
 }

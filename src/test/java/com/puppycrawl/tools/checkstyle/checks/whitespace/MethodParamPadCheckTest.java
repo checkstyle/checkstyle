@@ -76,6 +76,8 @@ public class MethodParamPadCheckTest
             "58:13: " + getCheckMessage(LINE_PREVIOUS, "("),
             "61:36: " + getCheckMessage(WS_PRECEDED, "("),
             "63:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "74:15: " + getCheckMessage(WS_PRECEDED, "("),
+            "79:13: " + getCheckMessage(LINE_PREVIOUS, "("),
         };
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
@@ -92,6 +94,7 @@ public class MethodParamPadCheckTest
             "50:21: " + getCheckMessage(WS_PRECEDED, "("),
             "56:18: " + getCheckMessage(WS_PRECEDED, "("),
             "61:36: " + getCheckMessage(WS_PRECEDED, "("),
+            "74:15: " + getCheckMessage(WS_PRECEDED, "("),
         };
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
@@ -121,6 +124,7 @@ public class MethodParamPadCheckTest
             "66:25: " + getCheckMessage(WS_NOT_PRECEDED, "("),
             "69:66: " + getCheckMessage(WS_NOT_PRECEDED, "("),
             "70:57: " + getCheckMessage(WS_NOT_PRECEDED, "("),
+            "79:13: " + getCheckMessage(LINE_PREVIOUS, "("),
         };
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
@@ -143,6 +147,7 @@ public class MethodParamPadCheckTest
             TokenTypes.METHOD_CALL,
             TokenTypes.METHOD_DEF,
             TokenTypes.SUPER_CTOR_CALL,
+            TokenTypes.ENUM_CONSTANT_DEF,
         };
         assertArrayEquals(expected, actual);
     }
