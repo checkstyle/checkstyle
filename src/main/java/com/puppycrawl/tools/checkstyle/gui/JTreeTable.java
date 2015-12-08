@@ -65,7 +65,7 @@ public class JTreeTable extends JTable {
      * Creates JTreeTable base on TreeTableModel.
      * @param treeTableModel Tree table model
      */
-    public JTreeTable(TreeTableModel treeTableModel) {
+    public JTreeTable(ParseTreeTableModel treeTableModel) {
 
         // Create the tree. It will be used as a renderer and editor.
         tree = new TreeTableCellRenderer(this, treeTableModel);
@@ -80,8 +80,8 @@ public class JTreeTable extends JTable {
         setSelectionModel(selectionWrapper.getListSelectionModel());
 
         // Install the tree editor renderer and editor.
-        setDefaultRenderer(TreeTableModel.class, tree);
-        setDefaultEditor(TreeTableModel.class, new TreeTableCellEditor());
+        setDefaultRenderer(ParseTreeTableModel.class, tree);
+        setDefaultEditor(ParseTreeTableModel.class, new TreeTableCellEditor());
 
         // No grid.
         setShowGrid(false);
@@ -147,7 +147,7 @@ public class JTreeTable extends JTable {
     public int getEditingRow() {
         final Class<?> editingClass = getColumnClass(editingColumn);
 
-        if (editingClass == TreeTableModel.class) {
+        if (editingClass == ParseTreeTableModel.class) {
             return -1;
         }
         else {
@@ -230,7 +230,7 @@ public class JTreeTable extends JTable {
             if (event instanceof MouseEvent) {
                 for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
-                    if (getColumnClass(counter) == TreeTableModel.class) {
+                    if (getColumnClass(counter) == ParseTreeTableModel.class) {
                         final MouseEvent mouseEvent = (MouseEvent) event;
                         final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),
                                 mouseEvent.getWhen(), mouseEvent.getModifiers(),
