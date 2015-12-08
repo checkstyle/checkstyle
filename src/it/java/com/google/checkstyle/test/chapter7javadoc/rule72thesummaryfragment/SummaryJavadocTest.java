@@ -42,7 +42,7 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("SummaryJavadocCheck");
+        final Configuration checkConfig = getCheckConfig("SummaryJavadoc");
         final String filePath = getPath("InputCorrectSummaryJavaDocCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -67,7 +67,7 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
             "103: " + msgFirstSentence,
         };
 
-        final Configuration checkConfig = getCheckConfig("SummaryJavadocCheck");
+        final Configuration checkConfig = getCheckConfig("SummaryJavadoc");
         final String filePath = getPath("InputIncorrectSummaryJavaDocCheck.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
