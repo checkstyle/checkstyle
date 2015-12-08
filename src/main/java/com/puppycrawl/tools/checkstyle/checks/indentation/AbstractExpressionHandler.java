@@ -276,13 +276,13 @@ public abstract class AbstractExpressionHandler {
     protected final void checkLinesIndent(int startLine, int endLine,
         IndentLevel indentLevel) {
         // check first line
-        checkSingleLine(startLine, indentLevel);
+        checkLineIndent(startLine, indentLevel);
 
         // check following lines
         final IndentLevel offsetLevel =
             new IndentLevel(indentLevel, getBasicOffset());
         for (int i = startLine + 1; i <= endLine; i++) {
-            checkSingleLine(i, offsetLevel);
+            checkLineIndent(i, offsetLevel);
         }
     }
 
@@ -311,7 +311,7 @@ public abstract class AbstractExpressionHandler {
             getLineStart(indentCheck.getLine(startLine - 1));
 
         if (realStartCol == startCol) {
-            checkSingleLine(startLine, startCol, indentLevel,
+            checkLineIndent(startLine, startCol, indentLevel,
                 firstLineMatches);
         }
 
@@ -335,7 +335,7 @@ public abstract class AbstractExpressionHandler {
             // checked by a child expression)
 
             if (col != null) {
-                checkSingleLine(i, col, theLevel, false);
+                checkLineIndent(i, col, theLevel, false);
             }
         }
     }
@@ -346,7 +346,7 @@ public abstract class AbstractExpressionHandler {
      * @param lineNum       the line number to check
      * @param indentLevel   the required indent level
      */
-    private void checkSingleLine(int lineNum, IndentLevel indentLevel) {
+    private void checkLineIndent(int lineNum, IndentLevel indentLevel) {
         final String line = indentCheck.getLine(lineNum - 1);
         final int start = getLineStart(line);
         if (indentLevel.isGreaterThan(start)) {
@@ -363,7 +363,7 @@ public abstract class AbstractExpressionHandler {
      * @param mustMatch     whether or not the indentation level must match
      */
 
-    private void checkSingleLine(int lineNum, int colNum,
+    private void checkLineIndent(int lineNum, int colNum,
         IndentLevel indentLevel, boolean mustMatch) {
         final String line = indentCheck.getLine(lineNum - 1);
         final int start = getLineStart(line);
