@@ -58,7 +58,7 @@ public class ParseTreeInfoPanel extends JPanel {
     private static final long serialVersionUID = -4243405131202059043L;
 
     /** Parse tree model. */
-    private final transient ParseTreeModel parseTreeModel;
+    private final transient ParseTreeTableModel parseTreeTableModel;
     /** JTextArea component. */
     private final JTextArea textArea;
     /** Last directory. */
@@ -76,8 +76,8 @@ public class ParseTreeInfoPanel extends JPanel {
     public ParseTreeInfoPanel() {
         setLayout(new BorderLayout());
 
-        parseTreeModel = new ParseTreeModel(null);
-        final JTreeTable treeTable = new JTreeTable(parseTreeModel);
+        parseTreeTableModel = new ParseTreeTableModel(null);
+        final JTreeTable treeTable = new JTreeTable(parseTreeTableModel);
         final JScrollPane scrollPane = new JScrollPane(treeTable);
         add(scrollPane, BorderLayout.PAGE_START);
 
@@ -108,7 +108,7 @@ public class ParseTreeInfoPanel extends JPanel {
      * @param parseTree DetailAST tree.
      */
     public void openAst(DetailAST parseTree) {
-        parseTreeModel.setParseTree(parseTree);
+        parseTreeTableModel.setParseTree(parseTree);
         reloadAction.setEnabled(true);
 
         // clear for each new file
@@ -138,7 +138,7 @@ public class ParseTreeInfoPanel extends JPanel {
                 final FileText text = new FileText(file.getAbsoluteFile(),
                                                    getEncoding());
                 final DetailAST parseTree = parseFile(text);
-                parseTreeModel.setParseTree(parseTree);
+                parseTreeTableModel.setParseTree(parseTree);
                 currentFile = file;
                 lastDirectory = file.getParentFile();
                 reloadAction.setEnabled(true);
