@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="ParameterName"&gt;
- *    &lt;property name="format" value="^^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *    &lt;property name="format" value="^[a-z][_a-zA-Z0-9]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
