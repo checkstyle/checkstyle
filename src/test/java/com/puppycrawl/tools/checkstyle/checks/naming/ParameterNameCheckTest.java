@@ -137,4 +137,14 @@ public class ParameterNameCheckTest
             };
         verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
     }
+
+    @Test
+    public void testIsOverriddenNoNullPointerException()
+        throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]*$");
+        checkConfig.addAttribute("ignoreOverridden", "true");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputOverrideAnnotationNoNPE.java"), expected);
+    }
 }
