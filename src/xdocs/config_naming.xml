@@ -282,7 +282,7 @@
           a lower case letter, followed by letters and digits is:
         </p>
         <source>
-&lt;module name="ParameterName"&gt;
+&lt;module name="CatchParameterName"&gt;
     &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
 &lt;/module&gt;
         </source>
