@@ -245,7 +245,7 @@ matrix:
         - CMD6=" && java -jar contribution/releasenotes-xdoc-builder/target/releasenotes-xdoc-builder-1.0-all.jar "
         - CMD7="        -localRepoPath . -startRef \$LATEST_RELEASE_TAG -releaseNumber \$CS_RELEASE_VERSION -authToken $GITHUB_AUTH_TOKEN"
         - CMD8=" && cat releasenotes.xml "
-        - CMD=CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
+        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
 
 script: eval $CMD
