@@ -224,10 +224,27 @@ matrix:
         - DESC="checkstyle"
         - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
         - COVERAGE_CMD=""
+
     # MacOS verify
     - os: osx
-      env: DESC="MacOS verify" CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn clean integration-test failsafe:verify " COVERAGE_CMD=""
-      
+      env:
+        - DESC="MacOS verify"
+        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn clean integration-test failsafe:verify "
+        - COVERAGE_CMD=""
+
+    # Releasenotes generation - validaton
+    - jdk: oraclejdk8
+      env:
+        - DESC="Releasenotes generation"
+        - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/releasenotes-xdoc-builder "
+        - CMD2="&& mvn clean compile package "
+        - CMD3="&& cd ../../ "
+        - CMD4="&& java -jar contribution/releasenotes-xdoc-builder/target/releasenotes-xdoc-builder-1.0-all.jar "
+        - CMD5="        -localRepoPath . -startRef checkstyle-6.13 -releaseNumber 6.14 -authToken $GITHUB_AUTH_TOKEN"
+        - CMD6=" && cat releasenotes.xml "
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6
+        - COVERAGE_CMD=""
+
 script: eval $CMD
 
 after_success:
