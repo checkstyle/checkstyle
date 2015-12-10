@@ -236,7 +236,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="Releasenotes generation"
-        - CMD0="echo $TRAVIS_PULL_REQUEST && if [[ $TRAVIS_PULL_REQUEST == 'true' ]]; then exit 0; fi "
+        - CMD0="echo ${TRAVIS_PULL_REQUEST} && if [[ "${TRAVIS_PULL_REQUEST}" == "true" ]]; then exit 0; fi "
         - CMD1=" && git clone https://github.com/checkstyle/contribution && cd contribution/releasenotes-xdoc-builder "
         - CMD2=" && mvn clean compile package "
         - CMD3=" && cd ../../ "
