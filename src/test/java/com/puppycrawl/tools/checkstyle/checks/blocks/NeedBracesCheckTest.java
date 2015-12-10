@@ -85,6 +85,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "91: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "95: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
             "107: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "114: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
         verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
     }

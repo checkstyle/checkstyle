@@ -108,4 +108,10 @@ public class InputBracesSingleLineStatements
             return true;
         }
     }
+
+    private void forEachLoop() {
+        for (String s: new String[]{""}) break;
+        for (String s: new String[]{""})
+            break;
+    }
 }

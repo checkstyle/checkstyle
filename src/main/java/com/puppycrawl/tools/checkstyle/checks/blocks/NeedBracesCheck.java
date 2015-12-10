@@ -354,33 +354,9 @@ public class NeedBracesCheck extends Check {
         }
         else if (literalFor.getParent().getType() == TokenTypes.SLIST
                 && literalFor.getLastChild().getType() != TokenTypes.SLIST) {
-            final DetailAST block = findExpressionBlockInForLoop(literalFor);
-            if (block == null) {
-                result = literalFor.getLineNo() == literalFor.getLastChild().getLineNo();
-            }
-            else {
-                result = literalFor.getLineNo() == block.getLineNo();
-            }
+            result = literalFor.getLineNo() == literalFor.getLastChild().getLineNo();
         }
         return result;
-    }
-
-    /**
-     * Detects and returns expression block in classical and enhanced for loops.
-     *
-     * @param literalFor parent for loop literal
-     * @return expression block
-     */
-    private static DetailAST findExpressionBlockInForLoop(DetailAST literalFor) {
-        final DetailAST forEachClause = literalFor.findFirstToken(TokenTypes.FOR_EACH_CLAUSE);
-        final DetailAST firstToken;
-        if (forEachClause == null) {
-            firstToken = literalFor.findFirstToken(TokenTypes.EXPR);
-        }
-        else {
-            firstToken = forEachClause.findFirstToken(TokenTypes.EXPR);
-        }
-        return firstToken;
     }
 
     /**
