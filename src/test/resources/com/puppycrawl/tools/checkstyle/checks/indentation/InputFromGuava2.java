@@ -20,7 +20,7 @@ import com.google.common.collect.RangeMap; //indent:0 exp:0
  *                                                                            //indent:1 exp:1
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
-public class InputFromGuava2<K extends Comparable<?>, V> implements RangeMap<K, V> { //indent:0 exp:0
+public abstract class InputFromGuava2<K extends Comparable<?>, V> implements RangeMap<K, V> { //indent:0 exp:0
 
   public InputFromGuava2<K, V> subRangeMap1(final Range<K> range) { //indent:2 exp:2
     Range<K> ranges = null; //indent:4 exp:4
