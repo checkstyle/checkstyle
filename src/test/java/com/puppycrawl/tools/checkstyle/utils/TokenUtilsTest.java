@@ -51,7 +51,7 @@ public class TokenUtilsTest {
 
         try {
             TokenUtils.getIntFromField(field, 0);
-            fail();
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException expected) {
             assertTrue(expected.getMessage().startsWith(
@@ -66,7 +66,7 @@ public class TokenUtilsTest {
         final Integer id = Integer.MAX_VALUE - 1;
         try {
             TokenUtils.getTokenName(id);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
             assertEquals("given id " + id, expected.getMessage());
@@ -104,7 +104,7 @@ public class TokenUtilsTest {
 
         }
         catch (IllegalAccessException | NoSuchFieldException ex) {
-            fail();
+            fail("Exception is expected");
         }
     }
 
@@ -113,7 +113,7 @@ public class TokenUtilsTest {
         final String id = "NON_EXISTING_VALUE";
         try {
             TokenUtils.getTokenId(id);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
             assertEquals("given name " + id, expected.getMessage());
@@ -125,7 +125,7 @@ public class TokenUtilsTest {
         final String id = "NON_EXISTING_VALUE";
         try {
             TokenUtils.getShortDescription(id);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
             assertEquals("given name " + id, expected.getMessage());

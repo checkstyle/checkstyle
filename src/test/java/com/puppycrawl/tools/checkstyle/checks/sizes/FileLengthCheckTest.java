@@ -114,7 +114,7 @@ public class FileLengthCheckTest
         assertEquals("extension should be the same", ".java", check.getFileExtensions()[0]);
         try {
             check.setFileExtensions((String[]) null);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Extensions array can not be null", ex.getMessage());

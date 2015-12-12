@@ -108,7 +108,7 @@ public class UncommentedMainCheckTest
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
         try {
             check.visitToken(ast);
-            Assert.fail();
+            Assert.fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             assertEquals(ast.toString(), ex.getMessage());

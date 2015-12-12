@@ -157,7 +157,7 @@ public class CommonUtilsTest {
     public void testGetNonExistingConstructor() {
         try {
             CommonUtils.getConstructor(Math.class);
-            fail();
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException expected) {
             assertSame(NoSuchMethodException.class, expected.getCause().getClass());
@@ -180,7 +180,7 @@ public class CommonUtilsTest {
 
         try {
             CommonUtils.invokeConstructor(constructor);
-            fail();
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException expected) {
             assertSame(InstantiationException.class, expected.getCause().getClass());

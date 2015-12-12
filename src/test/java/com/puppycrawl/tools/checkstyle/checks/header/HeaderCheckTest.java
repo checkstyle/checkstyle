@@ -77,7 +77,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             // Exception is not expected
-            fail();
+            fail("Exception is not expected");
         }
     }
 
@@ -87,7 +87,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("headerFile", getPath("nonExisting.file"));
         try {
             createChecker(checkConfig);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getMessage()
@@ -105,7 +105,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("charset", "XSO-8859-1");
         try {
             createChecker(checkConfig);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module"
@@ -160,7 +160,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         check.setHeader("Header");
         try {
             check.setHeader("Header2");
-            fail();
+            fail("ConversionException is expected");
         }
         catch (ConversionException ex) {
             assertEquals("header has already been set - "

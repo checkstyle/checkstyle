@@ -356,7 +356,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromName(null);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the name is null", ex.getMessage());
@@ -364,7 +364,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromName("myname");
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the name [myname] is not a valid Javadoc tag name", ex.getMessage());
@@ -372,7 +372,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromText(null);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the text is null", ex.getMessage());
@@ -380,7 +380,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromText("myname");
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the text [myname] is not a valid Javadoc tag text", ex.getMessage());

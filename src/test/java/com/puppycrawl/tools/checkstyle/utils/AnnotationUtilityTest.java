@@ -46,7 +46,7 @@ public class AnnotationUtilityTest {
     public void testContainsAnnotationNull() {
         try {
             AnnotationUtility.containsAnnotation(null);
-            Assert.fail();
+            Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the ast is null", ex.getMessage());
@@ -57,7 +57,7 @@ public class AnnotationUtilityTest {
     public void testContainsAnnotationNull2() {
         try {
             AnnotationUtility.containsAnnotation(null, "");
-            Assert.fail();
+            Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the ast is null", ex.getMessage());
@@ -98,7 +98,7 @@ public class AnnotationUtilityTest {
     public void testAnnotationHolderNull() {
         try {
             AnnotationUtility.getAnnotationHolder(null);
-            Assert.fail();
+            Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the ast is null", ex.getMessage());
@@ -109,7 +109,7 @@ public class AnnotationUtilityTest {
     public void testAnnotationNull() {
         try {
             AnnotationUtility.getAnnotation(null, null);
-            Assert.fail();
+            Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the ast is null", ex.getMessage());
@@ -120,7 +120,7 @@ public class AnnotationUtilityTest {
     public void testAnnotationNull2() {
         try {
             AnnotationUtility.getAnnotation(new DetailAST(), null);
-            Assert.fail();
+            Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the annotation is null", ex.getMessage());
@@ -131,7 +131,7 @@ public class AnnotationUtilityTest {
     public void testAnnotationEmpty() {
         try {
             AnnotationUtility.getAnnotation(new DetailAST(), "");
-            Assert.fail();
+            Assert.fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the annotation is empty or spaces", ex.getMessage());

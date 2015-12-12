@@ -121,7 +121,7 @@ public class TokenTypesDocletTest {
 
         try {
             TokenTypesDoclet.start(rootDoc);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
             // Token types must have first sentence of Javadoc summary

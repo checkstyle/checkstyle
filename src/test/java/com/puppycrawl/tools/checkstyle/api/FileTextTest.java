@@ -35,7 +35,7 @@ public class FileTextTest {
         final String charsetName = "STRANGE_CHARSET";
         try {
             new FileText(new File("any name"), charsetName);
-            fail();
+            fail("UnsupportedEncodingException is expected");
         }
         catch (UnsupportedEncodingException ex) {
             assertEquals("Unsupported charset: " + charsetName, ex.getMessage());

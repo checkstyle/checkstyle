@@ -74,7 +74,7 @@ public class AutomaticBeanTest {
         context.add("exceptionalMethod", 123.0f);
         try {
             testBean.contextualize(context);
-            fail();
+            fail("InvocationTargetException is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof InvocationTargetException);
@@ -89,7 +89,7 @@ public class AutomaticBeanTest {
         context.add("val", "some string");
         try {
             testBean.contextualize(context);
-            fail();
+            fail("InvocationTargetException is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof ConversionException);

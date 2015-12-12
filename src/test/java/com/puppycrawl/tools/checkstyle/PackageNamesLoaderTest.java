@@ -129,7 +129,7 @@ public class PackageNamesLoaderTest {
 
         try {
             PackageNamesLoader.getPackageNames(classLoader);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof SAXException);
@@ -154,7 +154,7 @@ public class PackageNamesLoaderTest {
 
         try {
             PackageNamesLoader.getPackageNames(classLoader);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof IOException);
@@ -171,7 +171,7 @@ public class PackageNamesLoaderTest {
 
         try {
             PackageNamesLoader.getPackageNames(classLoader);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof IOException);

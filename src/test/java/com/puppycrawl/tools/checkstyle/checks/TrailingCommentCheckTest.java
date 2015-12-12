@@ -91,7 +91,7 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
         final TrailingCommentCheck check = new TrailingCommentCheck();
         try {
             check.visitToken(new DetailAST());
-            Assert.fail();
+            Assert.fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             assertEquals("visitToken() shouldn't be called.", ex.getMessage());

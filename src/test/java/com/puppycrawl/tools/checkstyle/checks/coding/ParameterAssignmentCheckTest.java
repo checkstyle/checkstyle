@@ -71,7 +71,7 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
 
         try {
             check.visitToken(classDefAst);
-            Assert.fail();
+            Assert.fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             // it is OK
@@ -79,7 +79,7 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
 
         try {
             check.leaveToken(classDefAst);
-            Assert.fail();
+            Assert.fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             // it is OK

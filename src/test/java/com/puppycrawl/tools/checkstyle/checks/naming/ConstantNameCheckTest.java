@@ -65,7 +65,7 @@ public class ConstantNameCheckTest
         checkConfig.addAttribute("format", "\\");
         try {
             createChecker(checkConfig);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module"

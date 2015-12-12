@@ -471,7 +471,7 @@ public class MainTest {
         method.setAccessible(true);
         try {
             method.invoke(null, "myformat", null);
-            fail();
+            fail("InvocationTargetException is expected");
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IllegalStateException);
@@ -487,7 +487,7 @@ public class MainTest {
         final String outDir = "myfolder123";
         try {
             method.invoke(null, "myformat", outDir);
-            fail();
+            fail("InvocationTargetException  is expected");
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IllegalStateException);

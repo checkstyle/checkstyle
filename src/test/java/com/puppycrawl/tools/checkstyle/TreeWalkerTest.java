@@ -91,7 +91,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
             verify(checkConfig, getPath("InputMain.java"), expected);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             final String errorMsg = ex.getMessage();
@@ -118,7 +118,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
         try {
             verify(checkConfig, temporaryFolder.newFile().getPath(), expected);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException exception) {
             assertTrue(exception.getMessage().contains("TreeWalker is not allowed as a parent of"));
@@ -318,7 +318,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
         try {
             verify(checkConfig, pathToEmptyFile, expected);
-            fail();
+            fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getMessage().startsWith("cannot initialize module"
@@ -340,7 +340,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ignored) {
             // unexpected
-            fail();
+            fail("CheckstyleException is NOT expected");
         }
     }
 

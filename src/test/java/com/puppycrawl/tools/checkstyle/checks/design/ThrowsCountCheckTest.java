@@ -90,7 +90,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
         try {
             obj.visitToken(ast);
-            fail();
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             assertEquals(ast.toString(), ex.getMessage());

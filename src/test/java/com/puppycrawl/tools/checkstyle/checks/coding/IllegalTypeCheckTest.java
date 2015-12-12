@@ -210,7 +210,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
         try {
             check.visitToken(classDefAst);
-            Assert.fail();
+            Assert.fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             // it is OK

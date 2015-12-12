@@ -61,7 +61,7 @@ public class ClassResolverTest {
 
         try {
             classResolver.resolve("ChoiceFormat", "");
-            fail();
+            fail("ClassNotFoundException is expected");
         }
         catch (ClassNotFoundException ex) {
             // expected
@@ -77,7 +77,7 @@ public class ClassResolverTest {
         javaUtilClassResolver.resolve("List", "");
         try {
             javaUtilClassResolver.resolve("two.nil.england", "");
-            fail();
+            fail("ClassNotFoundException is expected");
         }
         catch (ClassNotFoundException ex) {
             // expected

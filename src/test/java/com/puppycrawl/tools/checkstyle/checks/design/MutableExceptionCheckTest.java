@@ -99,7 +99,7 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             obj.visitToken(ast);
-            fail();
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             //expected

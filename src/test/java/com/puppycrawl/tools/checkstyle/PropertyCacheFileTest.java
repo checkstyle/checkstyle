@@ -107,7 +107,7 @@ public class PropertyCacheFileTest {
         method.setAccessible(true);
         try {
             method.invoke(cache, config);
-            fail();
+            fail("InvocationTargetException is expected");
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause().getCause() instanceof NoSuchAlgorithmException);

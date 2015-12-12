@@ -265,13 +265,12 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
         final AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
         try {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");
+            Assert.fail("ConversionException is expected");
         }
         catch (ConversionException ex) {
             assertTrue(ex.getMessage().startsWith("unable to parse"));
             return;
         }
-
-        Assert.fail();
     }
 
     @Test
