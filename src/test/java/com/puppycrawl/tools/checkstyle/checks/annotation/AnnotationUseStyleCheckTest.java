@@ -269,7 +269,6 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
         }
         catch (ConversionException ex) {
             assertTrue(ex.getMessage().startsWith("unable to parse"));
-            return;
         }
     }
 
