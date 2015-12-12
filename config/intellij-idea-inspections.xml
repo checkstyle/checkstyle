@@ -1126,7 +1126,8 @@
     <inspection_tool class="JSUnfilteredForInLoop" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnnecessarySemicolon" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnresolvedFunction" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="JSUnresolvedLibraryURL" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- it produce false positives on references of globally availbale libraries -->
+    <inspection_tool class="JSUnresolvedLibraryURL" enabled="false" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnresolvedVariable" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnusedAssignment" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JSUnusedGlobalSymbols" enabled="true" level="ERROR" enabled_by_default="true" />
