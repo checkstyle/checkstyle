@@ -482,7 +482,7 @@ public class ImportOrderCheck
             final boolean shouldFireError =
                 // current and previous static or current and
                 // previous non-static
-                !(lastImportStatic ^ isStatic)
+                lastImportStatic == isStatic
                 &&
                         // and out of lexicographic order
                         compare(lastImport, name, caseSensitive) > 0
