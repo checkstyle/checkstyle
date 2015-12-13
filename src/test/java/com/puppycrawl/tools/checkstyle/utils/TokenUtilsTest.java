@@ -94,7 +94,7 @@ public class TokenUtilsTest {
             }
 
             TokenUtils.getTokenName(id);
-            fail();
+            fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
             // restoring original value, to let other tests pass
