@@ -26,6 +26,7 @@ import javax.swing.JTextArea;
 
 import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Helper class to select a code.
@@ -57,12 +58,20 @@ public class CodeSelector {
      */
     public void select() {
         final int start = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
-        final int end = findLastPosition(ast);
+        final int end;
+
+        if (ast.getChildCount() == 0
+            && TokenUtils.getTokenName(ast.getType()).equals(ast.getText())) {
+            end = start;
+        }
+        else {
+            end = findLastPosition(ast);
+        }
 
         editor.setSelectedTextColor(Color.blue);
         editor.requestFocusInWindow();
-        editor.setSelectionStart(start);
-        editor.setSelectionEnd(end);
+        editor.setCaretPosition(start);
+        editor.moveCaretPosition(end);
         editor.transferFocusBackward();
     }
 

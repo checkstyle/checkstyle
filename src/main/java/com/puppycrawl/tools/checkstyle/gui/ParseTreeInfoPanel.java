@@ -69,6 +69,8 @@ public class ParseTreeInfoPanel extends JPanel {
     private final ReloadAction reloadAction;
     /** Lines to position map. */
     private final List<Integer> linesToPosition = new ArrayList<>();
+    /** Tree table. */
+    private final JTreeTable treeTable;
 
     /**
      * Create a new ParseTreeInfoPanel instance.
@@ -77,7 +79,7 @@ public class ParseTreeInfoPanel extends JPanel {
         setLayout(new BorderLayout());
 
         parseTreeTableModel = new ParseTreeTableModel(null);
-        final JTreeTable treeTable = new JTreeTable(parseTreeTableModel);
+        treeTable = new JTreeTable(parseTreeTableModel);
         final JScrollPane scrollPane = new JScrollPane(treeTable);
         add(scrollPane, BorderLayout.PAGE_START);
 
@@ -164,6 +166,7 @@ public class ParseTreeInfoPanel extends JPanel {
 
                 // move back to the top of the file
                 textArea.moveCaretPosition(0);
+                treeTable.setLinePositionMap(linesToPosition);
             }
             catch (final IOException | ANTLRException ex) {
                 showErrorDialog(
@@ -256,10 +259,7 @@ public class ParseTreeInfoPanel extends JPanel {
     private static class JavaFileFilter extends FileFilter {
         @Override
         public boolean accept(File file) {
-            if (file == null) {
-                return false;
-            }
-            return file.isDirectory() || file.getName().endsWith(".java");
+            return file != null && (file.isDirectory() || file.getName().endsWith(".java"));
         }
 
         @Override
