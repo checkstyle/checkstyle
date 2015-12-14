@@ -303,7 +303,7 @@ public class FinalLocalVariableCheck extends Check {
      * @param ast the variable ast.
      * @return true, if the variable should be removed.
      */
-    private boolean shouldRemoveVariable(ScopeData scopeData, DetailAST ast) {
+    private static boolean shouldRemoveVariable(ScopeData scopeData, DetailAST ast) {
         boolean shouldRemove = true;
         for (DetailAST variable : scopeData.uninitializedVariables) {
             if (variable.getText().equals(ast.getText())) {

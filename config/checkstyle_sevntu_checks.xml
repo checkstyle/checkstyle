@@ -6,5 +6,6 @@
 
 <module name="Checker">
     <module name="TreeWalker">
+        <module name="StaticMethodCandidate"/>
     </module>
 </module>
