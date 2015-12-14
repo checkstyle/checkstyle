@@ -195,9 +195,12 @@
     <maven.findbugs.plugin.version>3.0.3</maven.findbugs.plugin.version>
     <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
     <maven.jacoco.plugin.version>0.7.5.201505241946</maven.jacoco.plugin.version>
+    <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
+    <maven.sevntu.checkstyle.plugin.version>1.17.1</maven.sevntu.checkstyle.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
     <java.version>1.7</java.version>
+    <checkstyle.version>6.13</checkstyle.version>
   </properties>
 
   <!-- that repositories are required for testing plugin's snapshot version -->
@@ -206,6 +209,11 @@
       <id>nexus-codehaus-snapshot</id>
       <name>Codehaus Snapshots</name>
       <url>https://oss.sonatype.org/content/repositories/codehaus-snapshots/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>sevntu-maven</id>
+      <name>sevntu-maven</name>
+      <url>http://sevntu-checkstyle.github.io/sevntu.checkstyle/maven2</url>
     </pluginRepository>
   </pluginRepositories>
 
@@ -433,6 +441,45 @@
       </plugins>
     </pluginManagement>
     <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven.checkstyle.plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${checkstyle.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>com.github.sevntu.checkstyle</groupId>
+            <artifactId>sevntu-checkstyle-maven-plugin</artifactId>
+            <version>${maven.sevntu.checkstyle.plugin.version}</version>
+          </dependency>
+        </dependencies>
+        <!-- Specifying configuration here will take effect on the execution of "mvn checkstyle:checkstyle",
+             but will not take effect on the execution of "mvn site"  -->
+        <configuration>
+          <configLocation>${project.basedir}/config/checkstyle_sevntu_checks.xml</configLocation>
+          <failOnViolation>true</failOnViolation>
+          <includeResources>false</includeResources>
+          <includeTestResources>false</includeTestResources>
+          <logViolationsToConsole>true</logViolationsToConsole>
+          <maxAllowedViolations>0</maxAllowedViolations>
+          <violationSeverity>error</violationSeverity>
+        </configuration>
+        <executions>
+          <execution>
+            <id>sevntu-checkstyle-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
