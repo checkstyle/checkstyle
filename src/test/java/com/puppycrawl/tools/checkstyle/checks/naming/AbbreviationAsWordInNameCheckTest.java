@@ -292,6 +292,10 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "88: " + getWarningMessage("FIleNameFormatException", expectedCapitalCount),
             "90: " + getWarningMessage("serialVersionUID", expectedCapitalCount),
             "98: " + getWarningMessage("userID", expectedCapitalCount),
+            "107: " + getWarningMessage("VALUE", expectedCapitalCount),
+            "111: " + getWarningMessage("VALUE", expectedCapitalCount),
+            "115: " + getWarningMessage("VALUE", expectedCapitalCount),
+            "119: " + getWarningMessage("VALUE", expectedCapitalCount),
         };
         verify(checkConfig,
                 getPath("InputAbbreviationAsWordInTypeName.java"), expected);
