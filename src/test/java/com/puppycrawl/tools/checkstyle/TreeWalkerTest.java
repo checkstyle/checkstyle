@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -29,12 +32,14 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.InvalidPathException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -135,6 +140,28 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
     @Test
     public void testDestroyNonExistingCache() throws Exception {
+
+        // We use assumption to satisfy coverage rate on OS Windows, since persist() method of
+        // class PropertyCacheFile does not throw IOException on OS Linux when path to a cache
+        // directory is invalid on OS Windows.
+        Assume.assumeTrue(System.getProperty("os.name")
+            .toLowerCase(Locale.ENGLISH).startsWith("windows"));
+
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.configure(new DefaultConfiguration("default config"));
+        final String tempFilePath = temporaryFolder.newFile().getPath() + ".\\\'";
+        treeWalker.setCacheFile(tempFilePath);
+        try {
+            treeWalker.destroy();
+            fail("Exception did not happen");
+        }
+        catch (IllegalStateException ex) {
+            assertTrue(ex.getCause() instanceof IOException);
+        }
+    }
+
+    @Test
+    public void testDestroyCacheFileWithInvalidPath() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(new DefaultConfiguration("default config"));
         if (System.getProperty("os.name")
@@ -152,7 +179,8 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             fail("Exception did not happen");
         }
         catch (IllegalStateException ex) {
-            assertTrue(ex.getCause() instanceof IOException);
+            assertThat(ex.getCause(), anyOf(instanceOf(IOException.class),
+                instanceOf(InvalidPathException.class)));
         }
     }
 

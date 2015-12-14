@@ -19,20 +19,32 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.doThrow;
+import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,8 +68,14 @@ public class PropertyCacheFileTest {
         final File file = temporaryFolder.newFile("file.output");
         file.setReadable(true, false);
         file.setWritable(false, false);
-
-        new PropertyCacheFile(config, file.getAbsolutePath());
+        try {
+            new PropertyCacheFile(config, file.getAbsolutePath()).persist();
+            fail("FileNotFoundException is expected, since access to the file was denied!");
+        }
+        catch (FileNotFoundException ex) {
+            assertThat(ex.getMessage(), anyOf(endsWith("file.output (Permission denied)"),
+                endsWith("file.output (Access is denied)")));
+        }
     }
 
     @Test
@@ -86,6 +104,95 @@ public class PropertyCacheFileTest {
         assertTrue(cache.isInCache("myFile", 1));
         assertFalse(cache.isInCache("myFile", 2));
         assertFalse(cache.isInCache("myFile1", 1));
+    }
+
+    @Test
+    public void testCacheDirectoryDoesNotExistAndShouldBeCreated() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String filePath = String.format(Locale.getDefault(), "%s%2$stemp%2$scache.temp",
+            temporaryFolder.getRoot(), File.separator);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        try {
+            cache.persist();
+        }
+        catch (FileNotFoundException ex) {
+            fail("Exception is not expected. Cache directory should be created successfully!");
+        }
+    }
+
+    @Test
+    public void testPathToCacheContainsOnlyFileName() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String filePath = "temp.cache";
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+
+        try {
+            cache.persist();
+        }
+        catch (FileNotFoundException ex) {
+            fail("Exception is not expected!");
+        }
+
+        if (Files.exists(Paths.get(filePath))) {
+            Files.delete(Paths.get(filePath));
+        }
+    }
+
+    @Test
+    public void testPathToCacheFileContainsIllegalCharacters() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String filePath = "\\\0:FOO\\server.properties";
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        try {
+            cache.persist();
+            fail("Exception is expected!");
+        }
+        catch (IllegalStateException ex) {
+            assertThat(ex.getCause(), instanceOf(InvalidPathException.class));
+            assertThat(ex.getMessage(), endsWith("server.properties"));
+        }
+    }
+
+    @Test
+    public void testNonAccessibleDirectory() throws Exception {
+
+        final PropertyCacheFile cache;
+        final String failMessage;
+
+        // That works fine on Linux/Unix, but ....
+        // It's not possible to make a directory/file unreadable in Windows NTFS for owner, that
+        // is why we use mock for testing on OS Windows.
+        // http://stackoverflow.com/a/4354686
+        // https://github.com/google/google-oauth-java-client/issues/55#issuecomment-69403681
+        if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+            // We use mock on Windows just to satisfy coverage rate
+            cache = mock(PropertyCacheFile.class);
+            final String mockExceptionMessage = "...cache";
+            final AccessDeniedException mockException =
+                new AccessDeniedException(mockExceptionMessage);
+            doThrow(new IllegalStateException(mockException)).when(cache).persist();
+            failMessage = "AccessDeniedException is expected since we use the mock object.";
+
+        }
+        else {
+            final Configuration config = new DefaultConfiguration("myName");
+            final File directory = temporaryFolder.newFolder("directory");
+            directory.setReadable(true, false);
+            directory.setWritable(false, false);
+            final String filePath = String.format(Locale.getDefault(), "%s%2$sscache%2$stemp.cache",
+                directory.getAbsolutePath(), File.separator);
+            cache = new PropertyCacheFile(config, filePath);
+            failMessage = "AccessDeniedException is expected since directory is readonly.";
+        }
+
+        try {
+            cache.persist();
+            fail(failMessage);
+        }
+        catch (IllegalStateException ex) {
+            assertTrue(ex.getCause() instanceof AccessDeniedException);
+            assertThat(ex.getMessage(), endsWith("cache"));
+        }
     }
 
     @Test
