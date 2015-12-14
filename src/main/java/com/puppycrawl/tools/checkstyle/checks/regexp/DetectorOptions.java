@@ -21,25 +21,26 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 
 /**
  * Options for a detector.
  * @author Oliver Burn
  */
-class DetectorOptions {
+final class DetectorOptions {
     /**
      * Flags to compile a regular expression with.
      * See {@link Pattern#flags()}.
      */
-    private final int compileFlags;
+    private int compileFlags;
     /** Used for reporting violations. */
-    private final AbstractViolationReporter reporter;
+    private AbstractViolationReporter reporter;
     /**
-     * Format of the regular expression to check for. Default value is pattern that never matches
-     * any string.
+     * Format of the regular expression to check for.
      */
-    private String format = "$.";
+    private String format;
     /** The message to report on detection. If blank, then use the format. */
     private String message = "";
     /** Minimum number of times regular expression should occur in a file. */
@@ -49,82 +50,12 @@ class DetectorOptions {
     /** Whether to ignore case when matching. */
     private boolean ignoreCase;
     /** Used to determine whether to suppress a detected match. */
-    private MatchSuppressor suppressor = NeverSuppress.INSTANCE;
+    private MatchSuppressor suppressor;
     /** Pattern created from format. Lazily initialized. */
     private Pattern pattern;
 
-    /**
-     * Creates an instance.
-     * @param compileFlags the flags to create the regular expression with.
-     * @param reporter used to report violations.
-     */
-    DetectorOptions(int compileFlags,
-            AbstractViolationReporter reporter) {
-        this.compileFlags = compileFlags;
-        this.reporter = reporter;
-    }
-
-    /**
-     * The format to use when matching lines.
-     * @param format the format to use when matching lines.
-     * @return current instance
-     */
-    public DetectorOptions setFormat(String format) {
-        this.format = format;
-        pattern = null;
-        return this;
-    }
-
-    /**
-     * Message to use when reporting a match.
-     * @param message message to use when reporting a match.
-     * @return current instance.
-     */
-    public DetectorOptions setMessage(String message) {
-        this.message = message;
-        return this;
-    }
-
-    /**
-     * Set the minimum allowed number of detections.
-     * @param minimum the minimum allowed number of detections.
-     * @return current instance
-     */
-    public DetectorOptions setMinimum(int minimum) {
-        this.minimum = minimum;
-        return this;
-    }
-
-    /**
-     * Set the maximum allowed number of detections.
-     * @param maximum the maximum allowed number of detections.
-     * @return current instance
-     */
-    public DetectorOptions setMaximum(int maximum) {
-        this.maximum = maximum;
-        return this;
-    }
-
-    /**
-     * Set the suppressor to use.
-     * @param sup the suppressor to use.
-     * @return current instance
-     */
-    public DetectorOptions setSuppressor(MatchSuppressor sup) {
-        suppressor = sup;
-        return this;
-    }
-
-    /**
-     * Set whether to ignore case when matching.
-     * @param ignore whether to ignore case when matching.
-     * @return current instance
-     */
-    public DetectorOptions setIgnoreCase(boolean ignore) {
-        ignoreCase = ignore;
-        pattern = null;
-        return this;
-    }
+    /** Default constructor.*/
+    private DetectorOptions() { }
 
     /**
      * Format of the regular expression.
@@ -189,5 +120,108 @@ class DetectorOptions {
         }
         pattern = Pattern.compile(format, options);
         return pattern;
+    }
+
+    /**
+     * Returns new Builder object.
+     * @return Builder object.
+     */
+    static Builder newBuilder() {
+        return new DetectorOptions().new Builder();
+    }
+
+    /** Class which implements Builder pattern to build DetectorOptions instance. */
+    public final class Builder {
+
+        /**
+         * Specifies the violation reporter and returns Builder object.
+         * @param val for reporting violations.
+         * @return Builder object.
+         */
+        Builder reporter(AbstractViolationReporter val) {
+            reporter = val;
+            return this;
+        }
+
+        /**
+         * Specifies the compile flags to compile a regular expression with
+         * and returns Builder object.
+         * @param val the format to use when matching lines.
+         * @return Builder object.
+         */
+        Builder compileFlags(int val) {
+            compileFlags = val;
+            return this;
+        }
+
+        /**
+         * Specifies the format to use when matching lines and returns Builder object.
+         * @param val the format to use when matching lines.
+         * @return Builder object.
+         */
+        Builder format(String val) {
+            format = val;
+            return this;
+        }
+
+        /**
+         * Specifies message to use when reporting a match and returns Builder object.
+         * @param val message to use when reporting a match.
+         * @return Builder object.
+         */
+        Builder message(String val) {
+            message = val;
+            return this;
+        }
+
+        /**
+         * Specifies the minimum allowed number of detections and returns Builder object.
+         * @param val the minimum allowed number of detections.
+         * @return Builder object.
+         */
+        Builder minimum(int val) {
+            minimum = val;
+            return this;
+        }
+
+        /**
+         * Specifies the maximum allowed number of detections and returns Builder object.
+         * @param val the maximum allowed number of detections.
+         * @return Builder object.
+         */
+        Builder maximum(int val) {
+            maximum = val;
+            return this;
+        }
+
+        /**
+         * Specifies whether to ignore case when matching and returns Builder object.
+         * @param val whether to ignore case when matching.
+         * @return Builder object.
+         */
+        Builder ignoreCase(boolean val) {
+            ignoreCase = val;
+            return this;
+        }
+
+        /**
+         * Specifies the suppressor to use and returns Builder object.
+         * @param val the suppressor to use.
+         * @return current instance
+         */
+        Builder suppressor(MatchSuppressor val) {
+            suppressor = val;
+            return this;
+        }
+
+        /**
+         * Returns new DetectorOptions instance.
+         * @return DetectorOptions instance.
+         */
+        DetectorOptions build() {
+            message = ObjectUtils.defaultIfNull(message, "");
+            suppressor = ObjectUtils.defaultIfNull(suppressor, NeverSuppress.INSTANCE);
+            return DetectorOptions.this;
+        }
     }
 }

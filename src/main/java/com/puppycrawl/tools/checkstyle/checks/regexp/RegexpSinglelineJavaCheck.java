@@ -32,10 +32,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author Oliver Burn
  */
 public class RegexpSinglelineJavaCheck extends Check {
-    /** The detection options to use. */
-    private final DetectorOptions options = new DetectorOptions(0, this);
-    /** The detector to use. */
-    private SinglelineDetector detector;
+
+    /** The format of the regular expression to match. */
+    private String format = "$.";
+    /** The message to report for a match. */
+    private String message;
+    /** The minimum number of matches required per file. */
+    private int minimum;
+    /** The maximum number of matches required per file. */
+    private int maximum;
+    /** Whether to ignore case when matching. */
+    private boolean ignoreCase;
     /** Suppress comments. **/
     private boolean ignoreComments;
 
@@ -55,21 +62,23 @@ public class RegexpSinglelineJavaCheck extends Check {
     }
 
     @Override
-    public void init() {
-        super.init();
-        detector = new SinglelineDetector(options);
-    }
-
-    @Override
     public void beginTree(DetailAST rootAST) {
-
+        MatchSuppressor supressor = null;
         if (ignoreComments) {
-            options.setSuppressor(new CommentSuppressor(getFileContents()));
-        }
-        else {
-            options.setSuppressor(NeverSuppress.INSTANCE);
+            supressor = new CommentSuppressor(getFileContents());
         }
 
+        final DetectorOptions options = DetectorOptions.newBuilder()
+            .reporter(this)
+            .compileFlags(0)
+            .suppressor(supressor)
+            .format(format)
+            .message(message)
+            .minimum(minimum)
+            .maximum(maximum)
+            .ignoreCase(ignoreCase)
+            .build();
+        final SinglelineDetector detector = new SinglelineDetector(options);
         detector.processLines(Arrays.asList(getLines()));
     }
 
@@ -78,7 +87,7 @@ public class RegexpSinglelineJavaCheck extends Check {
      * @param format the format of the regular expression to match.
      */
     public void setFormat(String format) {
-        options.setFormat(format);
+        this.format = format;
     }
 
     /**
@@ -86,7 +95,7 @@ public class RegexpSinglelineJavaCheck extends Check {
      * @param message the message to report for a match.
      */
     public void setMessage(String message) {
-        options.setMessage(message);
+        this.message = message;
     }
 
     /**
@@ -94,7 +103,7 @@ public class RegexpSinglelineJavaCheck extends Check {
      * @param minimum the minimum number of matches required per file.
      */
     public void setMinimum(int minimum) {
-        options.setMinimum(minimum);
+        this.minimum = minimum;
     }
 
     /**
@@ -102,15 +111,15 @@ public class RegexpSinglelineJavaCheck extends Check {
      * @param maximum the maximum number of matches required per file.
      */
     public void setMaximum(int maximum) {
-        options.setMaximum(maximum);
+        this.maximum = maximum;
     }
 
     /**
      * Set whether to ignore case when matching.
-     * @param ignore whether to ignore case when matching.
+     * @param ignoreCase whether to ignore case when matching.
      */
-    public void setIgnoreCase(boolean ignore) {
-        options.setIgnoreCase(ignore);
+    public void setIgnoreCase(boolean ignoreCase) {
+        this.ignoreCase = ignoreCase;
     }
 
     /**

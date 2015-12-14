@@ -1738,7 +1738,9 @@
         <option name="ignorePrivateMethods" value="true" />
     </inspection_tool>
     <inspection_tool class="ReturnOfDateField" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="ReturnOfInnerClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ReturnOfInnerClass" enabled="true" level="WARNING" enabled_by_default="true" >
+        <option name="ignoreNonPublic" value="true" />
+    </inspection_tool>
     <inspection_tool class="ReturnThis" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ReuseOfLocalVariable" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReuseOfLocalVariableJS" enabled="true" level="ERROR" enabled_by_default="true" />

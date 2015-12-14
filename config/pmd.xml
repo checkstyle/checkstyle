@@ -148,6 +148,13 @@
     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclarator[@Image='isReference'] | //ClassOrInterfaceDeclaration[@Image='DetailAST']//MethodDeclarator[@Image='addPreviousSibling'] | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']//MethodDeclarator[@Image='checkAnnotations'] | //ClassOrInterfaceDeclaration[@Image='PkgControl']//MethodDeclarator[@Image='checkAccess'] | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']//MethodDeclarator[@Image='getHandler']"/>
     </properties>
   </rule>
+  <rule ref="rulesets/java/design.xml/AccessorClassGeneration">
+    <properties>
+      <!-- We do instantiation by way of private constructors from outside of the constructor’s
+      class in DetectorOptions intentionally as it is a whole idea of Builder pattern. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='DetectorOptions']"/>
+    </properties>
+  </rule>
   <rule ref="rulesets/java/design.xml/PreserveStackTrace">
     <properties>
      <!-- yes we swallow one exception and try to do another attempt, second attempt does not hide cause -->
