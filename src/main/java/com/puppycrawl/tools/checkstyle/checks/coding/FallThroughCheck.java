@@ -327,41 +327,36 @@ public class FallThroughCheck extends Check {
         final int endLineNo = nextCase.getLineNo();
         final int endColNo = nextCase.getColumnNo();
 
-        /*
-         * Remember: The lines number returned from the AST is 1-based, but
-         * the lines number in this array are 0-based. So you will often
-         * see a "lineNo-1" etc.
-         */
+        // Remember: The lines number returned from the AST is 1-based, but
+        // the lines number in this array are 0-based. So you will often
+        // see a "lineNo-1" etc.
         final String[] lines = getLines();
 
-        /*
-         * Handle:
-         *    case 1:
-         *    /+ FALLTHRU +/ case 2:
-         *    ....
-         * and
-         *    switch(i) {
-         *    default:
-         *    /+ FALLTHRU +/}
-         */
+        // Handle:
+        //    case 1:
+        //    /+ FALLTHRU +/ case 2:
+        //    ....
+        // and
+        //    switch(i) {
+        //    default:
+        //    /+ FALLTHRU +/}
+        //
         final String linePart = lines[endLineNo - 1].substring(0, endColNo);
         if (matchesComment(regExp, linePart, endLineNo)) {
             allThroughComment = true;
         }
         else {
-            /*
-             * Handle:
-             *    case 1:
-             *    .....
-             *    // FALLTHRU
-             *    case 2:
-             *    ....
-             * and
-             *    switch(i) {
-             *    default:
-             *    // FALLTHRU
-             *    }
-             */
+            // Handle:
+            //    case 1:
+            //    .....
+            //    // FALLTHRU
+            //    case 2:
+            //    ....
+            // and
+            //    switch(i) {
+            //    default:
+            //    // FALLTHRU
+            //    }
             final int startLineNo = currentCase.getLineNo();
             for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
                 if (!lines[i].trim().isEmpty()) {

@@ -22,5 +22,6 @@
         <module name="ForbidThrowAnonymousExceptionsCheck"/>
         <module name="ForbidReturnInFinallyBlock"/>
         <module name="ForbidInstantiation"/>
+        <module name="ForbidCCommentsInMethods"/>
     </module>
 </module>
