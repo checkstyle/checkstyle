@@ -468,6 +468,7 @@
           <logViolationsToConsole>true</logViolationsToConsole>
           <maxAllowedViolations>0</maxAllowedViolations>
           <violationSeverity>error</violationSeverity>
+          <includes>${project.basedir}/src</includes>
         </configuration>
         <executions>
           <execution>
