@@ -9,5 +9,6 @@
         <module name="StaticMethodCandidate"/>
         <module name="UselessSingleCatchCheck"/>
         <module name="NestedSwitchCheck"/>
+        <module name="CauseParameterInException"/>
     </module>
 </module>
