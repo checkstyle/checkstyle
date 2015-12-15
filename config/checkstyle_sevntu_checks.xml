@@ -26,5 +26,6 @@
         <module name="FinalizeImplementationCheck"/>
         <module name="RequiredParameterForAnnotation"/>
         <module name="DiamondOperatorForVariableDefinitionCheck"/>
+        <module name="ConfusingConditionCheck"/>
     </module>
 </module>
