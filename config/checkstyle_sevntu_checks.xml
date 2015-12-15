@@ -20,5 +20,6 @@
         <module name="NoMainMethodInAbstractClass"/>
         <module name="InterfaceTypeParameterNameCheck"/>
         <module name="ForbidThrowAnonymousExceptionsCheck"/>
+        <module name="ForbidReturnInFinallyBlock"/>
     </module>
 </module>
