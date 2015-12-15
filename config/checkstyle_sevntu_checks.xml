@@ -23,5 +23,6 @@
         <module name="ForbidReturnInFinallyBlock"/>
         <module name="ForbidInstantiation"/>
         <module name="ForbidCCommentsInMethods"/>
+        <module name="FinalizeImplementationCheck"/>
     </module>
 </module>
