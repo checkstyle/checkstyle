@@ -25,5 +25,6 @@
         <module name="ForbidCCommentsInMethods"/>
         <module name="FinalizeImplementationCheck"/>
         <module name="RequiredParameterForAnnotation"/>
+        <module name="DiamondOperatorForVariableDefinitionCheck"/>
     </module>
 </module>
