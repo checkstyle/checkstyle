@@ -15,5 +15,6 @@
         <module name="TernaryPerExpressionCount"/>
         <module name="ReturnNullInsteadOfBoolean"/>
         <module name="ReturnBooleanFromTernary"/>
+        <module name="PublicReferenceToPrivateTypeCheck"/>
     </module>
 </module>
