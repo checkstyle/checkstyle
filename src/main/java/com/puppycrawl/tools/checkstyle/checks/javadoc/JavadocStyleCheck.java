@@ -195,10 +195,10 @@ public class JavadocStyleCheck
      */
     private void checkComment(final DetailAST ast, final TextBlock comment) {
         if (comment == null) {
-            /*checking for missing docs in JavadocStyleCheck is not consistent
-            with the rest of CheckStyle...  Even though, I didn't think it
-            made sense to make another check just to ensure that the
-            package-info.java file actually contains package Javadocs.*/
+            // checking for missing docs in JavadocStyleCheck is not consistent
+            // with the rest of CheckStyle...  Even though, I didn't think it
+            // made sense to make another check just to ensure that the
+            // package-info.java file actually contains package Javadocs.
             if (getFileContents().inPackageInfo()) {
                 log(ast.getLineNo(), JAVADOC_MISSING);
             }
