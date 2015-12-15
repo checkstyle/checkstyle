@@ -24,5 +24,6 @@
         <module name="ForbidInstantiation"/>
         <module name="ForbidCCommentsInMethods"/>
         <module name="FinalizeImplementationCheck"/>
+        <module name="RequiredParameterForAnnotation"/>
     </module>
 </module>
