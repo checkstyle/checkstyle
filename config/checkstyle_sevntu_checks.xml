@@ -13,5 +13,6 @@
         <module name="NameConventionForJunit4TestClassesCheck"/>
         <module name="EmptyPublicCtorInClassCheck"/>
         <module name="TernaryPerExpressionCount"/>
+        <module name="ReturnNullInsteadOfBoolean"/>
     </module>
 </module>
