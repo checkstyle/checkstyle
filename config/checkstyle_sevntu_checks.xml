@@ -27,5 +27,6 @@
         <module name="RequiredParameterForAnnotation"/>
         <module name="DiamondOperatorForVariableDefinitionCheck"/>
         <module name="ConfusingConditionCheck"/>
+        <module name="AvoidDefaultSerializableInInnerClasses"/>
     </module>
 </module>
