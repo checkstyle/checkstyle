@@ -29,14 +29,32 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
  * @author Oliver Burn
  */
 public class RegexpSinglelineCheck extends AbstractFileSetCheck {
-    /** The detection options to use. */
-    private final DetectorOptions options = new DetectorOptions(0, this);
+
+    /** The format of the regular expression to match. */
+    private String format = "$.";
+    /** The message to report for a match. */
+    private String message;
+    /** The minimum number of matches required per file. */
+    private int minimum;
+    /** The maximum number of matches required per file. */
+    private int maximum;
+    /** Whether to ignore case when matching. */
+    private boolean ignoreCase;
+
     /** The detector to use. */
     private SinglelineDetector detector;
 
     @Override
     public void beginProcessing(String charset) {
         super.beginProcessing(charset);
+        final DetectorOptions options = new DetectorOptions.Builder(this)
+            .compileFlags(0)
+            .format(format)
+            .message(message)
+            .minimum(minimum)
+            .maximum(maximum)
+            .ignoreCase(ignoreCase)
+            .build();
         detector = new SinglelineDetector(options);
     }
 
@@ -50,7 +68,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
      * @param format the format of the regular expression to match.
      */
     public void setFormat(String format) {
-        options.setFormat(format);
+        this.format = format;
     }
 
     /**
@@ -58,7 +76,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
      * @param message the message to report for a match.
      */
     public void setMessage(String message) {
-        options.setMessage(message);
+        this.message = message;
     }
 
     /**
@@ -66,7 +84,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
      * @param minimum the minimum number of matches required per file.
      */
     public void setMinimum(int minimum) {
-        options.setMinimum(minimum);
+        this.minimum = minimum;
     }
 
     /**
@@ -74,14 +92,14 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
      * @param maximum the maximum number of matches required per file.
      */
     public void setMaximum(int maximum) {
-        options.setMaximum(maximum);
+        this.maximum = maximum;
     }
 
     /**
      * Set whether to ignore case when matching.
-     * @param ignore whether to ignore case when matching.
+     * @param ignoreCase whether to ignore case when matching.
      */
-    public void setIgnoreCase(boolean ignore) {
-        options.setIgnoreCase(ignore);
+    public void setIgnoreCase(boolean ignoreCase) {
+        this.ignoreCase = ignoreCase;
     }
 }
