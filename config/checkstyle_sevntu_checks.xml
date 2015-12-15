@@ -14,5 +14,6 @@
         <module name="EmptyPublicCtorInClassCheck"/>
         <module name="TernaryPerExpressionCount"/>
         <module name="ReturnNullInsteadOfBoolean"/>
+        <module name="ReturnBooleanFromTernary"/>
     </module>
 </module>
