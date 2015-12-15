@@ -17,5 +17,6 @@
         <module name="ReturnBooleanFromTernary"/>
         <module name="PublicReferenceToPrivateTypeCheck"/>
         <module name="NoNullForCollectionReturnCheck"/>
+        <module name="NoMainMethodInAbstractClass"/>
     </module>
 </module>
