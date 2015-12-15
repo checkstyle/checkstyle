@@ -19,5 +19,6 @@
         <module name="NoNullForCollectionReturnCheck"/>
         <module name="NoMainMethodInAbstractClass"/>
         <module name="InterfaceTypeParameterNameCheck"/>
+        <module name="ForbidThrowAnonymousExceptionsCheck"/>
     </module>
 </module>
