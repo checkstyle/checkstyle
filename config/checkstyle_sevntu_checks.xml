@@ -18,5 +18,6 @@
         <module name="PublicReferenceToPrivateTypeCheck"/>
         <module name="NoNullForCollectionReturnCheck"/>
         <module name="NoMainMethodInAbstractClass"/>
+        <module name="InterfaceTypeParameterNameCheck"/>
     </module>
 </module>
