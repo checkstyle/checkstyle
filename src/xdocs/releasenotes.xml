@@ -77,10 +77,10 @@
           create HTML web page to describe how to open issues against Checkstyle. Author: Michal Kordas, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2344">#2344</a>
         </li>
         <li>
-          Pull #2607: Update JGit to 4.1.1.201511131810-r. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2607">#2607</a>
+          Update JGit to 4.1.1.201511131810-r. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2607">#2607</a>
         </li>
         <li>
-          Pull #2605: Make methods private in RequireThisCheck. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2605">#2605</a>
+          Make methods private in RequireThisCheck. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2605">#2605</a>
         </li>
         <li>
           Tests for validating commit message should not allow period at the end of commit message. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2590">#2590</a>
@@ -101,10 +101,10 @@
           Create test for checkstyle-X.X-all.jar on Travis. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2516">#2516</a>
         </li>
         <li>
-          Pull #2586: Update slf4j-simple to 1.7.13. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2586">#2586</a>
+          Update slf4j-simple to 1.7.13. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2586">#2586</a>
         </li>
         <li>
-          Pull #2585: Update FindBugs Maven Plugin to 3.0.3. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2585">#2585</a>
+          Update FindBugs Maven Plugin to 3.0.3. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2585">#2585</a>
         </li>
         <li>
           PMD: resolve problems from DefaultPackage rule. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/957">#957</a>
