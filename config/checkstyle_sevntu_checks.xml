@@ -16,5 +16,6 @@
         <module name="ReturnNullInsteadOfBoolean"/>
         <module name="ReturnBooleanFromTernary"/>
         <module name="PublicReferenceToPrivateTypeCheck"/>
+        <module name="NoNullForCollectionReturnCheck"/>
     </module>
 </module>
