@@ -21,5 +21,6 @@
         <module name="InterfaceTypeParameterNameCheck"/>
         <module name="ForbidThrowAnonymousExceptionsCheck"/>
         <module name="ForbidReturnInFinallyBlock"/>
+        <module name="ForbidInstantiation"/>
     </module>
 </module>
