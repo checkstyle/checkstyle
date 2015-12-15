@@ -11,5 +11,6 @@
         <module name="NestedSwitchCheck"/>
         <module name="CauseParameterInException"/>
         <module name="NameConventionForJunit4TestClassesCheck"/>
+        <module name="EmptyPublicCtorInClassCheck"/>
     </module>
 </module>
