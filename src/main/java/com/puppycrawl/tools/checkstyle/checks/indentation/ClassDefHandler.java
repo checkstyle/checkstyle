@@ -71,7 +71,7 @@ public class ClassDefHandler extends BlockParentHandler {
         if (modifiers.getChildCount() == 0) {
             final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
             final int lineStart = getLineStart(ident);
-            if (!getLevel().isAcceptable(lineStart)) {
+            if (!getIndent().isAcceptable(lineStart)) {
                 logError(ident, "ident", lineStart);
             }
 

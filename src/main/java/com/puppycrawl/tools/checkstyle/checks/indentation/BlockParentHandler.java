@@ -93,7 +93,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST topLevel = getTopLevelAst();
 
         if (topLevel == null
-            || getLevel().isAcceptable(expandedTabsColumnNo(topLevel)) || hasLabelBefore()) {
+            || getIndent().isAcceptable(expandedTabsColumnNo(topLevel)) || hasLabelBefore()) {
             return;
         }
         if (!shouldTopLevelStartLine() && !isOnStartOfLine(topLevel)) {
@@ -158,7 +158,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST lcurly = getLCurly();
         final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
-        if (curlyLevel().isAcceptable(lcurlyPos) || !isOnStartOfLine(lcurly)) {
+        if (curlyIndent().isAcceptable(lcurlyPos) || !isOnStartOfLine(lcurly)) {
             return;
         }
 
@@ -170,8 +170,8 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the curly brace indentation level
      */
-    protected IndentLevel curlyLevel() {
-        return new IndentLevel(getLevel(), getBraceAdjustment());
+    protected IndentLevel curlyIndent() {
+        return new IndentLevel(getIndent(), getBraceAdjustment());
     }
 
     /**
@@ -202,12 +202,12 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
-        if (curlyLevel().isAcceptable(rcurlyPos)
+        if (curlyIndent().isAcceptable(rcurlyPos)
             || !shouldStartWithRCurly() && !isOnStartOfLine(rcurly)
             || areOnSameLine(rcurly, lcurly)) {
             return;
         }
-        logError(rcurly, "rcurly", rcurlyPos, curlyLevel());
+        logError(rcurly, "rcurly", rcurlyPos, curlyIndent());
     }
 
     /**
@@ -228,7 +228,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             return;
         }
 
-        final IndentLevel expected = new IndentLevel(getLevel(), getBasicOffset());
+        final IndentLevel expected = new IndentLevel(getIndent(), getBasicOffset());
         checkExpressionSubtree(nonList, expected, false, false);
     }
 
@@ -278,7 +278,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             if (!hasCurlies() || !areOnSameLine(getLCurly(), getRCurly())) {
                 checkChildren(listChild,
                         getCheckedChildren(),
-                        getChildrenExpectedLevel(),
+                        getChildrenExpectedIndent(),
                         true,
                         canChildrenBeNested());
             }
@@ -289,17 +289,17 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * Gets indentation level expected for children.
      * @return indentation level expected for children
      */
-    protected IndentLevel getChildrenExpectedLevel() {
-        IndentLevel indentLevel = new IndentLevel(getLevel(), getBasicOffset());
+    protected IndentLevel getChildrenExpectedIndent() {
+        IndentLevel indentLevel = new IndentLevel(getIndent(), getBasicOffset());
         // if we have multileveled expected level then we should
         // try to suggest single level to children using curlies'
         // levels.
-        if (getLevel().isMultiLevel() && hasCurlies()) {
+        if (getIndent().isMultiLevel() && hasCurlies()) {
             if (isOnStartOfLine(getLCurly())) {
                 indentLevel = new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
             }
             else if (isOnStartOfLine(getRCurly())) {
-                final IndentLevel level = new IndentLevel(curlyLevel(), getBasicOffset());
+                final IndentLevel level = new IndentLevel(curlyIndent(), getBasicOffset());
                 level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
                 indentLevel = level;
             }
@@ -308,8 +308,8 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
-        return getChildrenExpectedLevel();
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
+        return getChildrenExpectedIndent();
     }
 
     /**

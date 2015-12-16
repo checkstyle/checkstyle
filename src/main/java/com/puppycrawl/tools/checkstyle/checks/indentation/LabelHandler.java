@@ -49,9 +49,9 @@ public class LabelHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
-        final IndentLevel level = new IndentLevel(super.getLevelImpl(), -getBasicOffset());
-        level.addAcceptedIndent(super.getLevelImpl());
+    protected IndentLevel getIndentImpl() {
+        final IndentLevel level = new IndentLevel(super.getIndentImpl(), -getBasicOffset());
+        level.addAcceptedIndent(super.getIndentImpl());
         return level;
     }
 
@@ -59,7 +59,7 @@ public class LabelHandler extends AbstractExpressionHandler {
      * Check the indentation of the label.
      */
     private void checkLabel() {
-        checkChildren(getMainAst(), LABEL_CHILDREN, getLevel(), true, false);
+        checkChildren(getMainAst(), LABEL_CHILDREN, getIndent(), true, false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class LabelHandler extends AbstractExpressionHandler {
         final DetailAST parent = getMainAst().getFirstChild().getNextSibling();
 
         final IndentLevel expected =
-            new IndentLevel(getLevel(), getBasicOffset());
+            new IndentLevel(getIndent(), getBasicOffset());
 
         checkExpressionSubtree(parent, expected, true, false);
     }

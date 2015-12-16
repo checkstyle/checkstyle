@@ -46,7 +46,7 @@ public class NewHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         final DetailAST type = getMainAst().getFirstChild();
         if (type != null) {
-            checkExpressionSubtree(type, getLevel(), false, false);
+            checkExpressionSubtree(type, getIndent(), false, false);
         }
 
         final DetailAST lparen = getMainAst().findFirstToken(TokenTypes.LPAREN);
@@ -54,13 +54,13 @@ public class NewHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
+    protected IndentLevel getIndentImpl() {
         // if our expression isn't first on the line, just use the start
         // of the line
         if (getLineStart(getMainAst()) != getMainAst().getColumnNo()) {
             return new IndentLevel(getLineStart(getMainAst()));
         }
-        return super.getLevelImpl();
+        return super.getIndentImpl();
     }
 
     @Override

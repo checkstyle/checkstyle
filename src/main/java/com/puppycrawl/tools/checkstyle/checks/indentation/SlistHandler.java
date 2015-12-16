@@ -68,7 +68,7 @@ public class SlistHandler extends BlockParentHandler {
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         // this is:
         //  switch (var) {
         //     case 3: {
@@ -83,9 +83,9 @@ public class SlistHandler extends BlockParentHandler {
                 && !(getParent() instanceof SlistHandler)
             || getParent() instanceof CaseHandler
                 && child instanceof SlistHandler) {
-            return getParent().getSuggestedChildLevel(child);
+            return getParent().getSuggestedChildIndent(child);
         }
-        return super.getSuggestedChildLevel(child);
+        return super.getSuggestedChildIndent(child);
     }
 
     @Override

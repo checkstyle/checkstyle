@@ -40,12 +40,12 @@ public class PrimordialHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         return new IndentLevel(0);
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
+    protected IndentLevel getIndentImpl() {
         return new IndentLevel(0);
     }
 }

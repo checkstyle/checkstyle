@@ -46,7 +46,7 @@ public class ForHandler extends BlockParentHandler {
      */
     private void checkForParams() {
         final IndentLevel expected =
-            new IndentLevel(getLevel(), getBasicOffset());
+            new IndentLevel(getIndent(), getBasicOffset());
         final DetailAST init = getMainAst().findFirstToken(TokenTypes.FOR_INIT);
 
         if (init == null) {

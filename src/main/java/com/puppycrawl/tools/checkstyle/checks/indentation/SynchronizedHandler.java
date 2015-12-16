@@ -67,7 +67,7 @@ public class SynchronizedHandler extends BlockParentHandler {
         final DetailAST syncAst = getMainAst().findFirstToken(TokenTypes.LPAREN)
                 .getNextSibling();
         final IndentLevel expected =
-                new IndentLevel(getLevel(), getBasicOffset());
+                new IndentLevel(getIndent(), getBasicOffset());
         checkExpressionSubtree(syncAst, expected, false, false);
     }
 

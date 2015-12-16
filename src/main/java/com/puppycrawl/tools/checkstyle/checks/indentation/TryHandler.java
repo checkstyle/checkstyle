@@ -41,11 +41,11 @@ public class TryHandler extends BlockParentHandler {
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         if (child instanceof CatchHandler
             || child instanceof FinallyHandler) {
-            return getLevel();
+            return getIndent();
         }
-        return super.getSuggestedChildLevel(child);
+        return super.getSuggestedChildIndent(child);
     }
 }

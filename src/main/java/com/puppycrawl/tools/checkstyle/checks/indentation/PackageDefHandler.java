@@ -44,12 +44,12 @@ public class PackageDefHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         final int columnNo = expandedTabsColumnNo(getMainAst());
-        if (!getLevel().isAcceptable(columnNo)) {
+        if (!getIndent().isAcceptable(columnNo)) {
             logError(getMainAst(), "", columnNo);
         }
 
         checkLinesIndent(getMainAst().getLineNo(),
             getMainAst().findFirstToken(TokenTypes.SEMI).getLineNo(),
-            getLevel());
+            getIndent());
     }
 }

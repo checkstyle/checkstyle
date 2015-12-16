@@ -48,7 +48,7 @@ public class ImportHandler extends AbstractExpressionHandler {
         final int lineEnd = semi.getLineNo();
 
         if (getMainAst().getLineNo() != lineEnd) {
-            checkLinesIndent(lineStart, lineEnd, getLevel());
+            checkLinesIndent(lineStart, lineEnd, getIndent());
         }
     }
 }

@@ -42,7 +42,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
+    protected IndentLevel getIndentImpl() {
         IndentLevel indentLevel;
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
@@ -51,12 +51,12 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                     (MethodCallHandler) getParent();
             if (areOnSameLine(container.getMainAst(), getMainAst())
                     || isChainedMethodCallWrapped()) {
-                indentLevel = container.getLevel();
+                indentLevel = container.getIndent();
             }
             // we should increase indentation only if this is the first
             // chained method call which was moved to the next line
             else {
-                indentLevel = new IndentLevel(container.getLevel(), getBasicOffset());
+                indentLevel = new IndentLevel(container.getIndent(), getBasicOffset());
             }
         }
         else {
@@ -67,7 +67,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             final int firstCol = lines.firstLineCol();
             final int lineStart = getLineStart(getFirstAst(getMainAst()));
             if (lineStart == firstCol) {
-                indentLevel = super.getLevelImpl();
+                indentLevel = super.getIndentImpl();
             }
             else {
                 indentLevel = new IndentLevel(lineStart);
@@ -116,7 +116,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         // for whatever reason a method that crosses lines, like asList
         // here:
         //            System.out.println("methods are: " + Arrays.asList(
@@ -137,7 +137,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         if (getLineStart(rparen) == rparen.getColumnNo()) {
             suggestedLevel.addAcceptedIndent(new IndentLevel(
-                    getParent().getSuggestedChildLevel(this),
+                    getParent().getSuggestedChildIndent(this),
                     getIndentCheck().getLineWrappingIndentation()
             ));
         }
@@ -152,7 +152,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             return;
         }
         final DetailAST methodName = getMainAst().getFirstChild();
-        checkExpressionSubtree(methodName, getLevel(), false, false);
+        checkExpressionSubtree(methodName, getIndent(), false, false);
 
         final DetailAST lparen = getMainAst();
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
@@ -164,7 +164,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
         checkExpressionSubtree(
             getMainAst().findFirstToken(TokenTypes.ELIST),
-            new IndentLevel(getLevel(), getBasicOffset()),
+            new IndentLevel(getIndent(), getBasicOffset()),
             false, true);
 
         checkRParen(lparen, rparen);

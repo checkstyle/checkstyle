@@ -50,8 +50,8 @@ public class CaseHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
-        return new IndentLevel(getParent().getLevel(),
+    protected IndentLevel getIndentImpl() {
+        return new IndentLevel(getParent().getIndent(),
                                getIndentCheck().getCaseIndent());
     }
 
@@ -59,12 +59,12 @@ public class CaseHandler extends AbstractExpressionHandler {
      * Check the indentation of the case statement.
      */
     private void checkCase() {
-        checkChildren(getMainAst(), CASE_CHILDREN, getLevel(), true, false);
+        checkChildren(getMainAst(), CASE_CHILDREN, getIndent(), true, false);
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
-        return getLevel();
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
+        return getIndent();
     }
 
     @Override

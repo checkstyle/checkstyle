@@ -41,14 +41,14 @@ public class LambdaHandler extends AbstractExpressionHandler {
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
-        return getLevel();
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
+        return getIndent();
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
+    protected IndentLevel getIndentImpl() {
         if (getParent() instanceof MethodCallHandler) {
-            return getParent().getSuggestedChildLevel(this);
+            return getParent().getSuggestedChildIndent(this);
         }
 
         DetailAST parent = getMainAst().getParent();
@@ -74,7 +74,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
         // If the argument list is the first element on the line
         final DetailAST firstChild = getMainAst().getFirstChild();
         if (getLineStart(firstChild) == firstChild.getColumnNo()) {
-            final IndentLevel level = getLevel();
+            final IndentLevel level = getIndent();
             if (!level.isAcceptable(firstChild.getColumnNo())) {
                 logError(firstChild, "arguments", firstChild.getColumnNo(), level);
             }
@@ -83,7 +83,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
         // If the "->" is the first element on the line, assume line wrapping.
         if (getLineStart(getMainAst()) == getMainAst().getColumnNo()) {
             final IndentLevel level =
-                new IndentLevel(getLevel(), getIndentCheck().getLineWrappingIndentation());
+                new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
             if (!level.isAcceptable(getMainAst().getColumnNo())) {
                 logError(getMainAst(), "", getMainAst().getColumnNo(), level);
             }

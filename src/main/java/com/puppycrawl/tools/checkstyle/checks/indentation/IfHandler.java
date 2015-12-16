@@ -42,19 +42,19 @@ public class IfHandler extends BlockParentHandler {
     }
 
     @Override
-    public IndentLevel getSuggestedChildLevel(AbstractExpressionHandler child) {
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         if (child instanceof ElseHandler) {
-            return getLevel();
+            return getIndent();
         }
-        return super.getSuggestedChildLevel(child);
+        return super.getSuggestedChildIndent(child);
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
+    protected IndentLevel getIndentImpl() {
         if (isIfAfterElse()) {
-            return getParent().getLevel();
+            return getParent().getIndent();
         }
-        return super.getLevelImpl();
+        return super.getIndentImpl();
     }
 
     /**
@@ -86,7 +86,7 @@ public class IfHandler extends BlockParentHandler {
         final DetailAST condAst = getMainAst().findFirstToken(TokenTypes.LPAREN)
             .getNextSibling();
         final IndentLevel expected =
-            new IndentLevel(getLevel(), getBasicOffset());
+            new IndentLevel(getIndent(), getBasicOffset());
         checkExpressionSubtree(condAst, expected, false, false);
     }
 

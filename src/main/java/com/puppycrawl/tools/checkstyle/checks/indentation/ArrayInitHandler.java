@@ -42,7 +42,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected IndentLevel getLevelImpl() {
+    protected IndentLevel getIndentImpl() {
         final DetailAST parentAST = getMainAst().getParent();
         final int type = parentAST.getType();
         if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
@@ -51,7 +51,7 @@ public class ArrayInitHandler extends BlockParentHandler {
         }
         else {
             // at this point getParent() is instance of BlockParentHandler
-            return ((BlockParentHandler) getParent()).getChildrenExpectedLevel();
+            return ((BlockParentHandler) getParent()).getChildrenExpectedIndent();
         }
     }
 
@@ -66,8 +66,8 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected IndentLevel curlyLevel() {
-        final IndentLevel level = new IndentLevel(getLevel(), getBraceAdjustment());
+    protected IndentLevel curlyIndent() {
+        final IndentLevel level = new IndentLevel(getIndent(), getBraceAdjustment());
         level.addAcceptedIndent(level.getLastIndentLevel() + getLineWrappingIndentation());
         return level;
     }
@@ -93,9 +93,9 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected IndentLevel getChildrenExpectedLevel() {
+    protected IndentLevel getChildrenExpectedIndent() {
         final IndentLevel expectedIndent =
-            new IndentLevel(getLevel(), getIndentCheck().getArrayInitIndent(),
+            new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
                     getIndentCheck().getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
