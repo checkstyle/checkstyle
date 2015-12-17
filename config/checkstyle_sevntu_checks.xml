@@ -57,5 +57,6 @@
         <module name="IllegalCatchExtended">
             <property name="allowRethrow" value="true"/>
         </module>
+        <module name="AvoidNotShortCircuitOperatorsForBoolean"/>
     </module>
 </module>
