@@ -29,5 +29,6 @@
         <module name="ConfusingConditionCheck"/>
         <module name="AvoidDefaultSerializableInInnerClasses"/>
         <module name="UselessSuperCtorCallCheck"/>
+        <module name="AvoidNotShortCircuitOperatorsForBoolean"/>
     </module>
 </module>

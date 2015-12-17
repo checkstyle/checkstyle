@@ -255,8 +255,7 @@ public class RedundantModifierCheck
             if (parent.getType() == TokenTypes.CLASS_DEF) {
                 final DetailAST classModifiers =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
-                checkFinal |=
-                    classModifiers.branchContains(TokenTypes.FINAL);
+                checkFinal = checkFinal || classModifiers.branchContains(TokenTypes.FINAL);
                 break;
             }
             if (parent.getType() == TokenTypes.LITERAL_NEW) {
