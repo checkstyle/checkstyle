@@ -234,7 +234,7 @@ public class CommentsIndentationCheck extends Check {
                 destributed = true;
             }
         }
-        return  destributed;
+        return destributed;
     }
 
     /**
