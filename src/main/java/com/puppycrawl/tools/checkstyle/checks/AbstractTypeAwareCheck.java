@@ -197,7 +197,7 @@ public abstract class AbstractTypeAwareCheck extends Check {
      */
     protected static boolean isSubclass(Class<?> child, Class<?> parent) {
         return parent != null && child != null
-            &&  parent.isAssignableFrom(child);
+            && parent.isAssignableFrom(child);
     }
 
     /**

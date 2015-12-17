@@ -255,7 +255,7 @@ public class TranslationCheck
         boolean missing = false;
         for (File file : filesInResourceBundle) {
             final String currentFileName = file.getPath();
-            missing =  !currentFileName.equals(fileName);
+            missing = !currentFileName.equals(fileName);
             if (!missing) {
                 break;
             }

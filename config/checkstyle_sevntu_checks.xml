@@ -29,5 +29,8 @@
         <module name="ConfusingConditionCheck"/>
         <module name="AvoidDefaultSerializableInInnerClasses"/>
         <module name="UselessSuperCtorCallCheck"/>
+        <module name="SingleSpaceSeparator">
+            <metadata name="validateCommentNodes" value="false"/>
+        </module>
     </module>
 </module>
