@@ -54,6 +54,8 @@
         <module name="EitherLogOrThrowCheck"/>
         <module name="SingleSpaceSeparator">
             <metadata name="validateCommentNodes" value="false"/>
+        <module name="IllegalCatchExtended">
+            <property name="allowRethrow" value="true"/>
         </module>
     </module>
 </module>
