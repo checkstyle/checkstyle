@@ -29,5 +29,8 @@
         <module name="ConfusingConditionCheck"/>
         <module name="AvoidDefaultSerializableInInnerClasses"/>
         <module name="UselessSuperCtorCallCheck"/>
+        <module name="IllegalCatchExtended">
+            <property name="allowRethrow" value="true"/>
+        </module>
     </module>
 </module>
