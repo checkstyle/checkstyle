@@ -248,7 +248,7 @@ public abstract class AbstractExpressionHandler {
      */
     protected final int getLineStart(String line) {
         int index = 0;
-        while (Character.isWhitespace(line.charAt(index))) {
+        while (index < line.length() && Character.isWhitespace(line.charAt(index))) {
             index++;
         }
         return CommonUtils.lengthExpandedTabs(
@@ -348,9 +348,11 @@ public abstract class AbstractExpressionHandler {
      */
     private void checkLineIndent(int lineNum, IndentLevel indentLevel) {
         final String line = indentCheck.getLine(lineNum - 1);
-        final int start = getLineStart(line);
-        if (indentLevel.isGreaterThan(start)) {
-            logChildError(lineNum, start, indentLevel);
+        if (!line.isEmpty()) {
+            final int start = getLineStart(line);
+            if (indentLevel.isGreaterThan(start)) {
+                logChildError(lineNum, start, indentLevel);
+            }
         }
     }
 

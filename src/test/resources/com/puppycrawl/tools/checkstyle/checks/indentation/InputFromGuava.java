@@ -216,7 +216,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
   {  //indent:2 exp:2
     return null; //indent:4 exp:4
   } //indent:2 exp:2
-  
+
   private static class ValueReference<T1, T2> { //indent:2 exp:2
 
   } //indent:2 exp:2
@@ -239,7 +239,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     } //indent:4 exp:4
 
   } //indent:2 exp:2
-  
+
   private static class StrongValueReference<T1, T2> { //indent:2 exp:2
 
     public StrongValueReference(int value) //indent:4 exp:4
@@ -248,7 +248,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
     } //indent:4 exp:4
 
   } //indent:2 exp:2
-  
+
   private static class WeightedStrongValueReference<T1, T2> { //indent:2 exp:2
 
     public WeightedStrongValueReference(int value, int weight) //indent:4 exp:4

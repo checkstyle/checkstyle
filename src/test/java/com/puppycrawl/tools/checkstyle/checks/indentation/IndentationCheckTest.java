@@ -52,12 +52,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author  jrichard
  */
 public class IndentationCheckTest extends BaseCheckTestSupport {
-    private static final Pattern NONEMPTY_LINE_REGEX =
-                    Pattern.compile(".*?\\S+.*?");
-
     private static final Pattern LINE_WITH_COMMENT_REGEX =
-                    Pattern.compile(".*?\\S+.*?(//indent:(\\d+)"
-                        + " exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)");
+                    Pattern.compile(".*?(//indent:(\\d+)"
+                        + " exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)$");
 
     private static final Pattern GET_INDENT_FROM_COMMENT_REGEX =
                     Pattern.compile("//indent:(\\d+).*?");
@@ -108,7 +105,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                                         lineNumber));
                     }
                 }
-                else if (NONEMPTY_LINE_REGEX.matcher(line).matches()) {
+                else if (!line.isEmpty()) {
                     throw new IllegalStateException(String.format(Locale.ROOT,
                                     "File \"%1$s\" has no indentation comment or its format "
                                                     + "malformed. Error on line: %2$d",
@@ -1620,5 +1617,23 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         final String[] expected = EMPTY_EXPECTED;
         verifyWarns(checkConfig, getNonCompilablePath("InputLambda2.java"), expected, 0);
+    }
+
+    @Test
+    public void testSeparatedStatements() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String fileName = getPath("InputSeparatedStatements.java");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testSeparatedLineWithJustSpaces() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String fileName = getPath("InputSeparatedStatementWithSpaces.java");
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, fileName, expected);
     }
 }
