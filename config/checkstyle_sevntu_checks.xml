@@ -29,5 +29,27 @@
         <module name="ConfusingConditionCheck"/>
         <module name="AvoidDefaultSerializableInInnerClasses"/>
         <module name="UselessSuperCtorCallCheck"/>
+        <module name="UnnecessaryParenthesesExtended">
+            <property name="ignoreCalculationOfBooleanVariables" value="true"/>
+            <property name="ignoreCalculationOfBooleanVariablesWithReturn" value="true"/>
+            <property name="ignoreCalculationOfBooleanVariablesWithAssert" value="true"/>
+        </module>
+        <module name="MultipleVariableDeclarationsExtended">
+            <property name="ignoreCycles" value="true"/>
+            <property name="ignoreMethods" value="true"/>
+        </module>
+        <module name="ChildBlockLength">
+            <property name="blockTypes" value="LITERAL_IF,LITERAL_ELSE,LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_SWITCH,LITERAL_TRY,LITERAL_CATCH"/>
+        </module>
+        <module name="MapIterationInForEachLoop">
+            <property name="proposeKeySetUsage" value="true"/>
+            <property name="proposeEntrySetUsage" value="true"/>
+        </module>
+
+        <!--Might cause problems related to issue:
+        https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/352-->
+        <module name="AvoidConstantAsFirstOperandInConditionCheck">
+            <property name="targetConstantTypes" value="LITERAL_NULL,LITERAL_TRUE,LITERAL_FALSE,NUM_INT,NUM_DOUBLE,NUM_LONG,NUM_FLOAT"/>
+        </module>
     </module>
 </module>
