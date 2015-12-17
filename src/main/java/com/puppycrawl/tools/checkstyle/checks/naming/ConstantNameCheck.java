@@ -84,7 +84,7 @@ public class ConstantNameCheck
         final boolean isStatic = modifiersAST.branchContains(TokenTypes.LITERAL_STATIC);
         final boolean isFinal = modifiersAST.branchContains(TokenTypes.FINAL);
 
-        if (isStatic  && isFinal && shouldCheckInScope(modifiersAST)
+        if (isStatic && isFinal && shouldCheckInScope(modifiersAST)
                 || ScopeUtils.isInAnnotationBlock(ast)
                 || ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
                         && !ScopeUtils.isInCodeBlock(ast)) {

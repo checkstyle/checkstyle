@@ -129,7 +129,7 @@ public final class ThrowsCountCheck extends Check {
             // Account for all the commas!
             final int count = (ast.getChildCount() + 1) / 2;
             if (count > max) {
-                log(ast.getLineNo(),  ast.getColumnNo(), MSG_KEY,
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
                     count, max);
             }
         }
