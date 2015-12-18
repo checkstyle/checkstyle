@@ -94,7 +94,7 @@ public final class OneStatementPerLineCheck extends Check {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[]{
+        return new int[] {
             TokenTypes.SEMI, TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
         };

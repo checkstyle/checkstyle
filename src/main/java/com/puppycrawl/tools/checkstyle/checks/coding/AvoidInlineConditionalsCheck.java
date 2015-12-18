@@ -46,7 +46,7 @@ public class AvoidInlineConditionalsCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{TokenTypes.QUESTION};
+        return new int[] {TokenTypes.QUESTION};
     }
 
     @Override
@@ -56,7 +56,7 @@ public class AvoidInlineConditionalsCheck extends Check {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[]{TokenTypes.QUESTION};
+        return new int[] {TokenTypes.QUESTION};
     }
 
     @Override

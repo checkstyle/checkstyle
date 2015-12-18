@@ -60,7 +60,7 @@ public class FinalClassCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[]{TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF};
     }
 
     @Override

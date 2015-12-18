@@ -96,17 +96,17 @@ public final class AbstractClassNameCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{TokenTypes.CLASS_DEF};
+        return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[]{TokenTypes.CLASS_DEF};
+        return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[]{TokenTypes.CLASS_DEF};
+        return new int[] {TokenTypes.CLASS_DEF};
     }
 
     @Override

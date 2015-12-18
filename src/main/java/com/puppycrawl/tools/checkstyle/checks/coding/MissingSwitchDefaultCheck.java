@@ -54,7 +54,7 @@ public class MissingSwitchDefaultCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{TokenTypes.LITERAL_SWITCH};
+        return new int[] {TokenTypes.LITERAL_SWITCH};
     }
 
     @Override
