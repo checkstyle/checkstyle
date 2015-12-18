@@ -62,5 +62,8 @@
         <module name="RedundantReturn"/>
         <module name="WhitespaceBeforeArrayInitializer"/>
         <module name="InnerClass"/>
+        <module name="EnumValueNameCheck">
+            <property name="objFormat" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+        </module>
     </module>
 </module>
