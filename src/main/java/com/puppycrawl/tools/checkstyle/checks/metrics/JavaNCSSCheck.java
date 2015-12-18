@@ -81,7 +81,7 @@ public class JavaNCSSCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{
+        return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
@@ -115,7 +115,7 @@ public class JavaNCSSCheck extends Check {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[]{
+        return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
@@ -149,7 +149,7 @@ public class JavaNCSSCheck extends Check {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[]{
+        return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,

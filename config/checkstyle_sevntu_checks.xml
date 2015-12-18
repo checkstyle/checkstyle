@@ -60,5 +60,6 @@
         </module>
         <module name="AvoidNotShortCircuitOperatorsForBoolean"/>
         <module name="RedundantReturn"/>
+        <module name="WhitespaceBeforeArrayInitializer"/>
     </module>
 </module>
