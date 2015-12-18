@@ -117,7 +117,10 @@ public final class OneStatementPerLineCheck extends Check {
         switch (ast.getType()) {
             case TokenTypes.SEMI:
                 DetailAST currentStatement = ast;
-                if (isMultilineStatement(currentStatement)) {
+                final boolean hasResourcesPrevSibling =
+                        currentStatement.getPreviousSibling() != null
+                        && currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;
+                if (!hasResourcesPrevSibling && isMultilineStatement(currentStatement)) {
                     currentStatement = ast.getPreviousSibling();
                 }
                 if (isOnTheSameLine(currentStatement, lastStatementEnd,
