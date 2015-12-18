@@ -65,5 +65,10 @@
         <module name="EnumValueNameCheck">
             <property name="objFormat" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
         </module>
+        <module name="OverridableMethodInConstructor">
+            <property name="checkCloneMethod" value="true"/>
+            <property name="checkReadObjectMethod" value="true"/>
+            <property name="matchMethodsByArgCount" value="true"/>
+        </module>
     </module>
 </module>
