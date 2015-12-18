@@ -92,7 +92,7 @@ public class FallThroughCheck extends Check {
 
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{TokenTypes.CASE_GROUP};
+        return new int[] {TokenTypes.CASE_GROUP};
     }
 
     @Override
@@ -102,7 +102,7 @@ public class FallThroughCheck extends Check {
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[]{TokenTypes.CASE_GROUP};
+        return new int[] {TokenTypes.CASE_GROUP};
     }
 
     /**
