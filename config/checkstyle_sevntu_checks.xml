@@ -59,5 +59,8 @@
             <property name="allowRethrow" value="true"/>
         </module>
         <module name="AvoidNotShortCircuitOperatorsForBoolean"/>
+        <module name="EnumValueNameCheck">
+            <property name="objFormat" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+        </module>
     </module>
 </module>
