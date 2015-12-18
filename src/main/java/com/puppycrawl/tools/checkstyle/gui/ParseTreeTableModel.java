@@ -222,7 +222,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @param children An array of Object containing the inserted, removed, or changed objects.
      * @see EventListenerList
      */
-    void fireTreeStructureChanged(Object source, Object[] path,
+    final void fireTreeStructureChanged(Object source, Object[] path,
                                   int[] childIndices,
                                   Object... children) {
         // Guaranteed to return a non-null array
