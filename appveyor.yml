@@ -51,4 +51,4 @@ build_script:
   #- ps: Invoke-Expression $cmdline
   - ps: $cmdline | Out-File command.ps1
   - ps: get-content command.ps1
-  - ps: "& .\\command.ps1" -ErrorAction SilentlyContinue
+  - ps: "& .\\command.ps1 -ErrorAction SilentlyContinue"
