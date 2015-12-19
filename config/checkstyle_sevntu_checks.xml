@@ -70,5 +70,9 @@
             <property name="checkReadObjectMethod" value="true"/>
             <property name="matchMethodsByArgCount" value="true"/>
         </module>
+
+        <!--Commented out due to the issue #410. -->
+        <!--See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/410-->
+        <!--<module name="AvoidModifiersForTypes"/>-->
     </module>
 </module>
