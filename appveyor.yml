@@ -44,6 +44,8 @@ environment:
       CMD_ARGS: site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true -e
 
 build_script:
+  - ps: get-host
+  - ps: $PSVersionTable
   - ps: $cmdline = get-content env:CMD
   - ps: $cmdline = "try{ $($cmdline) ; if(`$?) { } else { Exit 1 }} catch {  }"
   - ps: $cmdline = $cmdline.replace('-D','`-D')
