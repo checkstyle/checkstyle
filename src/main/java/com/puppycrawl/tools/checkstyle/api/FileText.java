@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
@@ -125,9 +124,7 @@ public final class FileText extends AbstractList<String> {
         }
         catch (final UnsupportedCharsetException ex) {
             final String message = "Unsupported charset: " + charsetName;
-            final UnsupportedEncodingException ex2 = new UnsupportedEncodingException(message);
-            ex2.initCause(ex);
-            throw ex2;
+            throw new IllegalStateException(message, ex);
         }
 
         fullText = readFile(file, decoder);

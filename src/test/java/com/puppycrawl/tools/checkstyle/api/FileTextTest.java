@@ -24,7 +24,6 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
 
@@ -37,7 +36,7 @@ public class FileTextTest {
             new FileText(new File("any name"), charsetName);
             fail("UnsupportedEncodingException is expected");
         }
-        catch (UnsupportedEncodingException ex) {
+        catch (IllegalStateException ex) {
             assertEquals("Unsupported charset: " + charsetName, ex.getMessage());
         }
 
