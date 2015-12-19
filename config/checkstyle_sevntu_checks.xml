@@ -83,6 +83,13 @@
         <module name="ForbidCertainImports">
             <property name="packageNameRegexp" value="^.*(api|utils).*$"/>
             <property name="forbiddenImportsRegexp" value="^.*checks.*$"/>
+        <module name="LineLengthExtended">
+            <property name="max" value="100"/>
+            <property name="ignoreClass" value="true"/>
+            <property name="ignoreConstructor" value="true"/>
+            <property name="ignoreField" value="true"/>
+            <property name="ignoreMethod" value="true"/>
+            <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
         </module>
     </module>
 </module>
