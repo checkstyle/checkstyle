@@ -70,5 +70,6 @@
             <property name="checkReadObjectMethod" value="true"/>
             <property name="matchMethodsByArgCount" value="true"/>
         </module>
+        <module name="AvoidHidingCauseException"/>
     </module>
 </module>
