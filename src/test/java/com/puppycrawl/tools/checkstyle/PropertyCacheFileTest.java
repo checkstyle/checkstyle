@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.core.StringEndsWith.endsWith;
 import static org.junit.Assert.assertEquals;
@@ -73,8 +73,7 @@ public class PropertyCacheFileTest {
             fail("FileNotFoundException is expected, since access to the file was denied!");
         }
         catch (FileNotFoundException ex) {
-            assertThat(ex.getMessage(), anyOf(endsWith("file.output (Permission denied)"),
-                endsWith("file.output (Access is denied)")));
+            assertThat(ex.getMessage(), containsString("file.output"));
         }
     }
 
