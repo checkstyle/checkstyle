@@ -48,7 +48,7 @@ build_script:
   - ps: $cmdline = "try{ $($cmdline) ; if(`$?) { } else { Exit 1 }} catch {  }"
   - ps: $cmdline = $cmdline.replace('-D','`-D')
   # We can not use Invoke-Expression as ANTLR write all in error log and error log is highlighted in Appveyor as RED - too scary
-  #- ps: Invoke-Expression $cmdline
-  - ps: $cmdline | Out-File command.ps1
-  - ps: get-content command.ps1
-  - ps: "& .\\command.ps1 -ErrorAction SilentlyContinue"
+  - ps: Invoke-Expression $cmdline -ErrorAction SilentlyContinue
+  #- ps: $cmdline | Out-File command.ps1
+  #- ps: get-content command.ps1
+  #- ps: "& .\\command.ps1 -ErrorAction SilentlyContinue"
