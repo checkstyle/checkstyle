@@ -91,5 +91,6 @@
             <property name="ignoreMethod" value="true"/>
             <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
         </module>
+        <module name="AvoidHidingCauseException"/>
     </module>
 </module>
