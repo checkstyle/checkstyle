@@ -70,5 +70,17 @@
             <property name="checkReadObjectMethod" value="true"/>
             <property name="matchMethodsByArgCount" value="true"/>
         </module>
+        <module name="ForbidAnnotation">
+            <property name="annotationNames" value="Ignore"/>
+            <property name="annotationTargets" value="METHOD_DEF"/>
+        </module>
+        <module name="RequiredParameterForAnnotation">
+            <property name="annotationName" value="Generated"/>
+            <property name="requiredParameters" value="value"/>
+        </module>
+        <module name="ForbidCertainImports">
+            <property name="packageNameRegexp" value="^.*(api|utils).*$"/>
+            <property name="forbiddenImportsRegexp" value="^.*checks.*$"/>
+        </module>
     </module>
 </module>
