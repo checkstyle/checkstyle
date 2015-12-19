@@ -70,9 +70,19 @@
             <property name="checkReadObjectMethod" value="true"/>
             <property name="matchMethodsByArgCount" value="true"/>
         </module>
-
-        <!--Commented out due to the issue #410. -->
-        <!--See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/410-->
+        <!--commented till https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/410-->
         <!--<module name="AvoidModifiersForTypes"/>-->
+        <module name="ForbidAnnotation">
+            <property name="annotationNames" value="Ignore"/>
+            <property name="annotationTargets" value="METHOD_DEF"/>
+        </module>
+        <module name="RequiredParameterForAnnotation">
+            <property name="annotationName" value="Generated"/>
+            <property name="requiredParameters" value="value"/>
+        </module>
+        <module name="ForbidCertainImports">
+            <property name="packageNameRegexp" value="^.*(api|utils).*$"/>
+            <property name="forbiddenImportsRegexp" value="^.*checks.*$"/>
+        </module>
     </module>
 </module>
