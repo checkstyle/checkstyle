@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+    <!-- Fixing these cases will decrease code readability -->
+    <suppress checks="MultipleStringLiteralsExtended"
+              files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
+    <suppress checks="MultipleStringLiteralsExtended"
+              files=".*[\\/]src[\\/](test|it)[\\/]"/>
+
+</suppressions>
