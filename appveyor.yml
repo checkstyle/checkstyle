@@ -23,32 +23,75 @@ install:
   - cmd: git config --global core.autocrlf
   - cmd: mvn --version
   - cmd: java -version
+  - cmd: '%CYG_BIN% -qnNdO -R %CYG_ROOT% -s %CYG_MIRROR% -l %CYG_CACHE% -P hg'
+
 cache:
   - C:\maven\
   - C:\Users\appveyor\.m2
+  - C:\cygwin\var\cache\setup
 
 matrix:
   fast_finish: true
 
 environment:
+  global:
+    CYG_BIN: C:\cygwin\setup-x86.exe
+    CYG_ROOT: C:\cygwin
+    CYG_CACHE: C:\cygwin\var\cache\setup
+    CYG_MIRROR: http://cygwin.mirror.constant.com
+    CMD1: " "
+    CMD2: " "
+    CMD3: " "
+    CMD4: " "
+    CMD5: " "
+    CMD6: " "
+    CMD7: " "
+    CMD8: " "
+    CMD9: " "
+    CMD10: " "
+  # We do matrix as Appveyor could fail to finish simple "mvn verify"
+  #    if he loose maven cache (happens from time to time)
   matrix:
     # checkstyle and sevntu.checkstyle
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      CMD: mvn -e verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true
+      DESC: "checkstyle and sevntu.checkstyle"
+      CMD1: "mvn -e verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
     # verify without checkstyle
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      CMD: mvn -e verify -Dcheckstyle.ant.skip=true
+      DESC: "verify without checkstyle"
+      CMD1: "mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
     # site, without verify
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      CMD: mvn -e site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests -DskipITs -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true
+      DESC: "site, without verify"
+      CMD1: "mvn -e site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests"
+      CMD2: "   -DskipITs -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true "
+      CMD3: "   -Dcheckstyle.ant.skip=true"
+    # checkstyle-tester
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+      DESC: "checkstyle-tester on guava"
+      CMD1: "mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+      CMD2: "    -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+      CMD3: " && git clone -q --depth=10 --branch=master "
+      CMD4: "      https://github.com/checkstyle/contribution C:\\projects\\checkstyle\\contribution "
+      CMD5: " && cd contribution\\checkstyle-tester "
+      CMD6: " && move /Y projects-for-travis.properties projects-to-test-on.properties "
+      CMD7: " && C:\\cygwin\\bin\\bash.exe -lc "
+      CMD8: "          \"cd $APPVEYOR_BUILD_FOLDER/contribution/checkstyle-tester/ ;"
+      CMD9: "               ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml\""
 
 build_script:
-  - ps: $PSVersionTable
-  - ps: $cmdline = get-content env:CMD
-  - ps: $cmdline = "try{ `$ErrorActionPreference = 'Stop' ; $($cmdline) ; if(`$?) { } else { Exit 1 }} catch { }"
-  - ps: $cmdline = $cmdline.replace('-D','`-D')
-  # We can not use Invoke-Expression as ANTLR write all in error log and error log is highlighted in Appveyor as RED - too scary
-  #- ps: Invoke-Expression $cmdline -ErrorAction SilentlyContinue
-  - ps: $cmdline | Out-File command.ps1
-  - ps: get-content command.ps1
-  - ps: "& .\\command.ps1"
+  - ps: >
+       (get-content env:CMD1) 
+       + (get-content env:CMD2) 
+       + (get-content env:CMD3) 
+       + (get-content env:CMD4) 
+       + (get-content env:CMD5) 
+       + (get-content env:CMD6) 
+       + (get-content env:CMD7) 
+       + (get-content env:CMD8) 
+       + (get-content env:CMD9) 
+       + (get-content env:CMD10) 
+       | Out-File appveyor.cmd -encoding ASCII
+  - ps: get-content appveyor.cmd
+  # We need to use cmd there as ps1 is failing each time error output appear from any command line
+  - appveyor.cmd
