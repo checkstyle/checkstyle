@@ -5,6 +5,12 @@
         "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
+
+    <!-- Filters -->
+    <module name="SuppressionFilter">
+        <property name="file" value="config/sevntu_suppressions.xml"/>
+    </module>
+
     <module name="TreeWalker">
         <module name="StaticMethodCandidate"/>
         <module name="UselessSingleCatchCheck"/>
@@ -93,5 +99,8 @@
             <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
         </module>
         <module name="AvoidHidingCauseException"/>
+        <module name="MultipleStringLiteralsExtended">
+            <property name="highlightAllDuplicates" value="true"/>
+        </module>    
     </module>
 </module>
