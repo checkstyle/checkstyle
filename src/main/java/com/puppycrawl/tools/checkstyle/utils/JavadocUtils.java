@@ -52,6 +52,22 @@ public final class JavadocUtils {
     private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javadoc"
             + " token id. Given id: ";
 
+    /** Comment pattern. */
+    private static final Pattern COMMENT_PATTERN = Pattern.compile(
+        "^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
+
+    /** Block tag pattern for a first line. */
+    private static final Pattern BLOCK_TAG_PATTERN_FIRST_LINE = Pattern.compile(
+        "/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
+
+    /** Block tag pattern. */
+    private static final Pattern BLOCK_TAG_PATTERN = Pattern.compile(
+        "^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
+
+    /** Inline tag pattern. */
+    private static final Pattern INLINE_TAG_PATTERN = Pattern.compile(
+        ".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
+
     // Using reflection gets all token names and values from JavadocTokenTypes class
     // and saves to TOKEN_NAME_TO_VALUE and TOKEN_VALUE_TO_NAME collections.
     static {
@@ -107,10 +123,9 @@ public final class JavadocUtils {
         final String[] text = textBlock.getText();
         final List<JavadocTag> tags = Lists.newArrayList();
         final List<InvalidJavadocTag> invalidTags = Lists.newArrayList();
-        Pattern blockTagPattern = Pattern.compile("/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
         for (int i = 0; i < text.length; i++) {
             final String textValue = text[i];
-            final Matcher blockTagMatcher = blockTagPattern.matcher(textValue);
+            final Matcher blockTagMatcher = getBlockTagPattern(i).matcher(textValue);
             if ((tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK)
                     && blockTagMatcher.find()) {
                 final String tagName = blockTagMatcher.group(1);
@@ -135,9 +150,24 @@ public final class JavadocUtils {
             else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE) {
                 lookForInlineTags(textBlock, i, tags, invalidTags);
             }
-            blockTagPattern = Pattern.compile("^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
         }
         return new JavadocTags(tags, invalidTags);
+    }
+
+    /**
+     * Get a block tag pattern depending on a line number of a javadoc.
+     * @param lineNumber the line number.
+     * @return a block tag pattern.
+     */
+    private static Pattern getBlockTagPattern(int lineNumber) {
+        final Pattern blockTagPattern;
+        if (lineNumber == 0) {
+            blockTagPattern = BLOCK_TAG_PATTERN_FIRST_LINE;
+        }
+        else {
+            blockTagPattern = BLOCK_TAG_PATTERN;
+        }
+        return blockTagPattern;
     }
 
     /**
@@ -151,8 +181,7 @@ public final class JavadocUtils {
             final List<JavadocTag> validTags, final List<InvalidJavadocTag> invalidTags) {
         final String text = comment.getText()[lineNumber];
         // Match Javadoc text after comment characters
-        final Pattern commentPattern = Pattern.compile("^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
-        final Matcher commentMatcher = commentPattern.matcher(text);
+        final Matcher commentMatcher = COMMENT_PATTERN.matcher(text);
         final String commentContents;
 
         // offset including comment characters
@@ -167,8 +196,7 @@ public final class JavadocUtils {
             commentContents = text;
             commentOffset = 0;
         }
-        final Pattern tagPattern = Pattern.compile(".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
-        final Matcher tagMatcher = tagPattern.matcher(commentContents);
+        final Matcher tagMatcher = INLINE_TAG_PATTERN.matcher(commentContents);
         while (tagMatcher.find()) {
             final String tagName = tagMatcher.group(1);
             final String tagValue = tagMatcher.group(2).trim();
