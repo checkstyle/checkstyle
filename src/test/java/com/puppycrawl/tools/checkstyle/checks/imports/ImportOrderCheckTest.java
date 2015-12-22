@@ -35,7 +35,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import antlr.CommonHiddenStreamToken;
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -420,28 +419,22 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
 
     @Test(expected = IllegalStateException.class)
     public void testVisitTokenSwitchReflection() throws Exception {
-        final ImportOrderOption importOrderOptionMock = PowerMockito.mock(ImportOrderOption.class);
-        Whitebox.setInternalState(importOrderOptionMock, "name", "NEW_OPTION_FOR_UT");
-        Whitebox.setInternalState(importOrderOptionMock, "ordinal", 5);
-
+        // Create mock ast
         final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
         final DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
         astImport.addChild(astIdent);
         final DetailAST astSemi = mockAST(TokenTypes.SEMI, ";", "mockfile", 0, 0);
         astIdent.addNextSibling(astSemi);
 
-        final ImportOrderCheck check = new ImportOrderCheck() {
-            @Override
-            public ImportOrderOption getAbstractOption() {
-                final ImportOrderOption importOrderOption = PowerMockito
-                    .mock(ImportOrderOption.class);
-                Whitebox.setInternalState(importOrderOption, "name", "NEW_OPTION_FOR_UT");
-                Whitebox.setInternalState(importOrderOption, "ordinal", 5);
-                return importOrderOption;
-                }
-        };
+        // Set unsupported option
+        final ImportOrderCheck mock = new ImportOrderCheck();
+        final ImportOrderOption importOrderOptionMock = PowerMockito.mock(ImportOrderOption.class);
+        Whitebox.setInternalState(importOrderOptionMock, "name", "NEW_OPTION_FOR_UT");
+        Whitebox.setInternalState(importOrderOptionMock, "ordinal", 5);
+        Whitebox.setInternalState(mock, "option", importOrderOptionMock);
+
         // expecting IllegalStateException
-        check.visitToken(astImport);
+        mock.visitToken(astImport);
     }
 
     /**

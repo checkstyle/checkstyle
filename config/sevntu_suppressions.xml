@@ -12,4 +12,12 @@
     <suppress checks="MultipleStringLiteralsExtended"
               files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
+    <!-- Override methods from base class.
+    Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166-->
+    <suppress checks="SimpleAccessorNameNotation"
+              files="ClassDataAbstractionCouplingCheck\.java"
+              lines="71"/>
+    <suppress checks="SimpleAccessorNameNotation"
+              files="ClassFanOutComplexityCheck\.java"
+              lines="76"/>
 </suppressions>

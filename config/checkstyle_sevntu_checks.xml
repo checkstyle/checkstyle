@@ -101,6 +101,7 @@
         <module name="AvoidHidingCauseException"/>
         <module name="MultipleStringLiteralsExtended">
             <property name="highlightAllDuplicates" value="true"/>
-        </module>    
+        </module>
+        <module name="SimpleAccessorNameNotation"/>
     </module>
 </module>

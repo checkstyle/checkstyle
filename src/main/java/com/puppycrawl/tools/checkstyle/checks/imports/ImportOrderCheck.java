@@ -238,16 +238,6 @@ public class ImportOrderCheck
     }
 
     /**
-     * Gets option set.
-     * @return the {@code option} set
-     */
-    public ImportOrderOption getAbstractOption() {
-        // WARNING!! Do not rename this method to getOption(). It breaks
-        // BeanUtils, which will silently not call setOption. Very annoying!
-        return option;
-    }
-
-    /**
      * Sets the list of package groups and the order they should occur in the
      * file.
      *
@@ -368,11 +358,10 @@ public class ImportOrderCheck
 
         final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
         final boolean isLastImportAndNonStatic = lastImportStatic && !isStatic;
-        final ImportOrderOption abstractOption = getAbstractOption();
 
         // using set of IF instead of SWITCH to analyze Enum options to satisfy coverage.
         // https://github.com/checkstyle/checkstyle/issues/1387
-        if (abstractOption == ImportOrderOption.TOP) {
+        if (option == ImportOrderOption.TOP) {
 
             if (isLastImportAndNonStatic) {
                 lastGroup = Integer.MIN_VALUE;
@@ -381,7 +370,7 @@ public class ImportOrderCheck
             doVisitToken(ident, isStatic, isStaticAndNotLastImport);
 
         }
-        else if (abstractOption == ImportOrderOption.BOTTOM) {
+        else if (option == ImportOrderOption.BOTTOM) {
 
             if (isStaticAndNotLastImport) {
                 lastGroup = Integer.MIN_VALUE;
@@ -390,23 +379,23 @@ public class ImportOrderCheck
             doVisitToken(ident, isStatic, isLastImportAndNonStatic);
 
         }
-        else if (abstractOption == ImportOrderOption.ABOVE) {
+        else if (option == ImportOrderOption.ABOVE) {
             // previous non-static but current is static
             doVisitToken(ident, isStatic, isStaticAndNotLastImport);
 
         }
-        else if (abstractOption == ImportOrderOption.UNDER) {
+        else if (option == ImportOrderOption.UNDER) {
             doVisitToken(ident, isStatic, isLastImportAndNonStatic);
 
         }
-        else if (abstractOption == ImportOrderOption.INFLOW) {
+        else if (option == ImportOrderOption.INFLOW) {
             // "previous" argument is useless here
             doVisitToken(ident, isStatic, true);
 
         }
         else {
             throw new IllegalStateException(
-                    "Unexpected option for static imports: " + abstractOption);
+                    "Unexpected option for static imports: " + option);
         }
 
         lastImportLine = ast.findFirstToken(TokenTypes.SEMI).getLineNo();
@@ -453,8 +442,8 @@ public class ImportOrderCheck
      */
     private boolean isAlphabeticallySortableStaticImport(boolean isStatic) {
         return isStatic && sortStaticImportsAlphabetically
-                && (getAbstractOption() == ImportOrderOption.TOP
-                    || getAbstractOption() == ImportOrderOption.BOTTOM);
+                && (option == ImportOrderOption.TOP
+                    || option == ImportOrderOption.BOTTOM);
     }
 
     /**
@@ -472,7 +461,7 @@ public class ImportOrderCheck
             return;
         }
 
-        if (getAbstractOption() == ImportOrderOption.INFLOW) {
+        if (option == ImportOrderOption.INFLOW) {
             // out of lexicographic order
             if (compare(lastImport, name, caseSensitive) > 0) {
                 log(line, MSG_ORDERING, name);
