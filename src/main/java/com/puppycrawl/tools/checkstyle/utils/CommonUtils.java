@@ -289,10 +289,12 @@ public final class CommonUtils {
      *            from which constructor is returned
      * @param parameterTypes
      *            of constructor
+     * @param <T> type of the target class object.
      * @return constructor of targetClass or {@link IllegalStateException} if any exception occurs
      * @see Class#getConstructor(Class[])
      */
-    public static Constructor<?> getConstructor(Class<?> targetClass, Class<?>... parameterTypes) {
+    public static <T> Constructor<T> getConstructor(Class<T> targetClass,
+                                                    Class<?>... parameterTypes) {
         try {
             return targetClass.getConstructor(parameterTypes);
         }

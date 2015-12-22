@@ -20,4 +20,17 @@
     <suppress checks="SimpleAccessorNameNotation"
               files="ClassFanOutComplexityCheck\.java"
               lines="76"/>
+
+    <!-- These classes are deprecated and will be removed soon. -->
+    <suppress checks="ForbidWildcardAsReturnType"
+              files="AbstractTypeAwareCheck\.java"
+              lines="223,239,419"/>
+    <suppress checks="ForbidWildcardAsReturnType"
+              files="ClassResolver\.java"
+              lines="72,184"/>
+    <!-- We need to satisfy javax.swing.table.AbstractTableModel
+    public Class<?> getColumnClass(int columnIndex) { -->
+    <suppress checks="ForbidWildcardAsReturnType"
+              files="ParseTreeTableModel\.java"
+              lines="106"/>
 </suppressions>

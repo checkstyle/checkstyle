@@ -85,9 +85,10 @@ public class HandlerFactory {
      *                type from TokenTypes
      * @param handlerClass
      *                the handler to register
+     * @param <T> type of the handler class object.
      */
-    private void register(int type, Class<?> handlerClass) {
-        final Constructor<?> ctor = CommonUtils.getConstructor(handlerClass,
+    private <T> void register(int type, Class<T> handlerClass) {
+        final Constructor<T> ctor = CommonUtils.getConstructor(handlerClass,
                 IndentationCheck.class,
                 // current AST
                 DetailAST.class,

@@ -103,5 +103,6 @@
             <property name="highlightAllDuplicates" value="true"/>
         </module>
         <module name="SimpleAccessorNameNotation"/>
+        <module name="ForbidWildcardAsReturnType"/>
     </module>
 </module>
