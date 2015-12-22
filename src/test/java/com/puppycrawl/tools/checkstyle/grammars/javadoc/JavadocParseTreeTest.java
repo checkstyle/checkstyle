@@ -278,6 +278,15 @@ public class JavadocParseTreeTest {
         compareTrees(expectedTree, generatedTree);
     }
 
+    @Test
+    public void dotCharacterInCustomTags()
+        throws IOException {
+        final String filename = getDocPath("InputCustomTagWithDot.txt");
+        final ParseTree generatedTree = parseJavadoc(getFileContent(new File(filename)));
+        final ParseTree expectedTree = ParseTreeBuilder.treeCustomTagWithDot();
+        compareTrees(expectedTree, generatedTree);
+    }
+
     private void compareTrees(ParseTree first, ParseTree second) {
         Assert.assertEquals(first.toStringTree(parser), second.toStringTree(parser));
     }
