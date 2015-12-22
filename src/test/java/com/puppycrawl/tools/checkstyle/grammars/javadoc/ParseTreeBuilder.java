@@ -5715,5 +5715,61 @@ final class ParseTreeBuilder {
         javadocContext0.addChild(eof0);
         return javadocContext0;
     }
+    
+    public static ParseTree treeCustomTagWithDot()
+    {
+        JavadocContext javadocContext0 = new JavadocContext(null, 0);
+        JavadocTagContext javadocTagContext0 = new JavadocTagContext(javadocContext0, 0);
+        CommonToken customName0 = new CommonToken(JavadocTokenTypes.CUSTOM_NAME, "@ejb:bean");
+        javadocTagContext0.addChild(customName0);
+        CommonToken newline0 = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
+        javadocTagContext0.addChild(newline0);
+        javadocContext0.addChild(javadocTagContext0);
+        JavadocTagContext javadocTagContext1 = new JavadocTagContext(javadocContext0, 0);
+        CommonToken customName1 = new CommonToken(JavadocTokenTypes.CUSTOM_NAME, "@hibernate.property");
+        javadocTagContext1.addChild(customName1);
+        CommonToken ws0 = new CommonToken(JavadocTokenTypes.WS, " ");
+        javadocTagContext1.addChild(ws0);
+        DescriptionContext descriptionContext0 = new DescriptionContext(javadocTagContext1, 0);
+        TextContext textContext0 = new TextContext(descriptionContext0, 0);
+        CommonToken char0 = new CommonToken(JavadocTokenTypes.CHAR, "m");
+        textContext0.addChild(char0);
+        CommonToken char1 = new CommonToken(JavadocTokenTypes.CHAR, "y");
+        textContext0.addChild(char1);
+        CommonToken char2 = new CommonToken(JavadocTokenTypes.CHAR, "p");
+        textContext0.addChild(char2);
+        CommonToken char3 = new CommonToken(JavadocTokenTypes.CHAR, "r");
+        textContext0.addChild(char3);
+        CommonToken char4 = new CommonToken(JavadocTokenTypes.CHAR, "o");
+        textContext0.addChild(char4);
+        CommonToken char5 = new CommonToken(JavadocTokenTypes.CHAR, "p");
+        textContext0.addChild(char5);
+        CommonToken char6 = new CommonToken(JavadocTokenTypes.CHAR, "e");
+        textContext0.addChild(char6);
+        CommonToken char7 = new CommonToken(JavadocTokenTypes.CHAR, "r");
+        textContext0.addChild(char7);
+        CommonToken char8 = new CommonToken(JavadocTokenTypes.CHAR, "t");
+        textContext0.addChild(char8);
+        CommonToken char9 = new CommonToken(JavadocTokenTypes.CHAR, "y");
+        textContext0.addChild(char9);
+        descriptionContext0.addChild(textContext0);
+        CommonToken newline1 = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
+        descriptionContext0.addChild(newline1);
+        javadocTagContext1.addChild(descriptionContext0);
+        javadocContext0.addChild(javadocTagContext1);
+        JavadocTagContext javadocTagContext2 = new JavadocTagContext(javadocContext0, 0);
+        CommonToken customName2 = new CommonToken(JavadocTokenTypes.CUSTOM_NAME, "@weblogic.cache-ref");
+        javadocTagContext2.addChild(customName2);
+        CommonToken newline2 = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
+        javadocTagContext2.addChild(newline2);
+        javadocContext0.addChild(javadocTagContext2);
+        JavadocTagContext javadocTagContext3 = new JavadocTagContext(javadocContext0, 0);
+        CommonToken customName3 = new CommonToken(JavadocTokenTypes.CUSTOM_NAME, "@my_tag");
+        javadocTagContext3.addChild(customName3);
+        javadocContext0.addChild(javadocTagContext3);
+        CommonToken eof0 = new CommonToken(JavadocTokenTypes.EOF, "<EOF>");
+        javadocContext0.addChild(eof0);
+        return javadocContext0;
+    }
 
 }

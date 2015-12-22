@@ -1,0 +1,4 @@
+@ejb:bean
+@hibernate.property myproperty
+@weblogic.cache-ref
+@my_tag
