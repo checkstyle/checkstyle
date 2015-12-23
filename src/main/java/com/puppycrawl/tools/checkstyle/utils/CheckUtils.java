@@ -68,6 +68,25 @@ public final class CheckUtils {
     }
 
     /**
+     * Creates {@code FullIdent} for given type node.
+     * @param typeAST a type node.
+     * @return {@code FullIdent} for given type.
+     */
+    public static FullIdent createFullType(DetailAST typeAST) {
+        final DetailAST arrayDeclaratorAST =
+            typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+        final FullIdent fullType;
+
+        if (arrayDeclaratorAST == null) {
+            fullType = createFullTypeNoArrays(typeAST);
+        }
+        else {
+            fullType = createFullTypeNoArrays(arrayDeclaratorAST);
+        }
+        return fullType;
+    }
+
+    /**
      * Tests whether a method definition AST defines an equals covariant.
      * @param ast the method definition AST to test.
      *     Precondition: ast is a TokenTypes.METHOD_DEF node.
@@ -126,25 +145,6 @@ public final class CheckUtils {
         return ast.getType() == TokenTypes.SLIST
             && ast.getChildCount() == 2
             && isElse(ast.getParent());
-    }
-
-    /**
-     * Creates {@code FullIdent} for given type node.
-     * @param typeAST a type node.
-     * @return {@code FullIdent} for given type.
-     */
-    public static FullIdent createFullType(DetailAST typeAST) {
-        final DetailAST arrayDeclaratorAST =
-            typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
-        final FullIdent fullType;
-
-        if (arrayDeclaratorAST == null) {
-            fullType = createFullTypeNoArrays(typeAST);
-        }
-        else {
-            fullType = createFullTypeNoArrays(arrayDeclaratorAST);
-        }
-        return fullType;
     }
 
     /**

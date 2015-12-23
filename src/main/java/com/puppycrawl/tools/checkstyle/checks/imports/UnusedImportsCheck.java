@@ -71,16 +71,16 @@ public class UnusedImportsCheck extends Check {
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
-    /** Flag to indicate when time to start collecting references. */
-    private boolean collect;
-    /** Flag whether to process Javadoc comments. */
-    private boolean processJavadoc = true;
-
     /** Set of the imports. */
     private final Set<FullIdent> imports = Sets.newHashSet();
 
     /** Set of references - possibly to imports or other things. */
     private final Set<String> referenced = Sets.newHashSet();
+
+    /** Flag to indicate when time to start collecting references. */
+    private boolean collect;
+    /** Flag whether to process Javadoc comments. */
+    private boolean processJavadoc = true;
 
     /**
      * Sets whether to process JavaDoc or not.

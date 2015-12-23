@@ -45,10 +45,11 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
      */
     public static final String MSG_PACKAGE_INFO = "javadoc.packageInfo";
 
-    /** Indicates if allow legacy "package.html" file to be used. */
-    private boolean allowLegacy;
     /** The directories checked. */
     private final Set<File> directoriesChecked = Sets.newHashSet();
+
+    /** Indicates if allow legacy "package.html" file to be used. */
+    private boolean allowLegacy;
 
     /**
      * Creates a new instance.

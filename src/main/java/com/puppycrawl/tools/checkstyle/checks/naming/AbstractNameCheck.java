@@ -53,6 +53,15 @@ public abstract class AbstractNameCheck
     }
 
     /**
+     * Decides whether the name of an AST should be checked against
+     * the format regexp.
+     * @param ast the AST to check.
+     * @return true if the IDENT subnode of ast should be checked against
+     *     the format regexp.
+     */
+    protected abstract boolean mustCheckName(DetailAST ast);
+
+    /**
      * Set the format to the specified regular expression.
      * @param format a {@code String} value
      * @throws org.apache.commons.beanutils.ConversionException unable to parse format
@@ -75,13 +84,4 @@ public abstract class AbstractNameCheck
             }
         }
     }
-
-    /**
-     * Decides whether the name of an AST should be checked against
-     * the format regexp.
-     * @param ast the AST to check.
-     * @return true if the IDENT subnode of ast should be checked against
-     *     the format regexp.
-     */
-    protected abstract boolean mustCheckName(DetailAST ast);
 }

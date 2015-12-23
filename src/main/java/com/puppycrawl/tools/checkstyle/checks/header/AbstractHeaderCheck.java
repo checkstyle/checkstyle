@@ -49,14 +49,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
     /** Pattern to detect occurrences of '\n' in text. */
     private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
+
+    /** The lines of the header file. */
+    private final List<String> readerLines = Lists.newArrayList();
+
     /** The file that contains the header to check against. */
     private String headerFile;
 
     /** Name of a charset to use for loading the header from a file. */
     private String charset = System.getProperty("file.encoding", "UTF-8");
-
-    /** The lines of the header file. */
-    private final List<String> readerLines = Lists.newArrayList();
 
     /**
      * Hook method for post processing header lines.

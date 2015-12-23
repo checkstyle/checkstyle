@@ -70,6 +70,15 @@ public class CheckstyleAntTask extends Task {
     /** Suffix for time string. */
     private static final String TIME_SUFFIX = " ms.";
 
+    /** Contains the filesets to process. */
+    private final List<FileSet> fileSets = Lists.newArrayList();
+
+    /** Contains the formatters to log to. */
+    private final List<Formatter> formatters = Lists.newArrayList();
+
+    /** Contains the Properties to override. */
+    private final List<Property> overrideProps = Lists.newArrayList();
+
     /** Class path to locate class files. */
     private Path classpath;
 
@@ -84,15 +93,6 @@ public class CheckstyleAntTask extends Task {
 
     /** Property to set on violations. */
     private String failureProperty;
-
-    /** Contains the filesets to process. */
-    private final List<FileSet> fileSets = Lists.newArrayList();
-
-    /** Contains the formatters to log to. */
-    private final List<Formatter> formatters = Lists.newArrayList();
-
-    /** Contains the Properties to override. */
-    private final List<Property> overrideProps = Lists.newArrayList();
 
     /** The name of the properties file. */
     private File properties;

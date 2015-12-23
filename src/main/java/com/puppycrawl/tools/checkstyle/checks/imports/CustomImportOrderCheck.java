@@ -355,6 +355,12 @@ public class CustomImportOrderCheck extends Check {
     /** Pattern used to separate groups of imports. */
     private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
 
+    /** List of order declaration customizing by user. */
+    private final List<String> customImportOrderRules = new ArrayList<>();
+
+    /** Contains objects with import attributes. */
+    private final List<ImportDetails> importToGroupList = new ArrayList<>();
+
     /** RegExp for SAME_PACKAGE group imports. */
     private String samePackageDomainsRegExp = "";
 
@@ -373,14 +379,8 @@ public class CustomImportOrderCheck extends Check {
     /** Force grouping alphabetically, in ASCII order. */
     private boolean sortImportsInGroupAlphabetically;
 
-    /** List of order declaration customizing by user. */
-    private final List<String> customImportOrderRules = new ArrayList<>();
-
     /** Number of first domains for SAME_PACKAGE group. */
     private int samePackageMatchingDepth = 2;
-
-    /** Contains objects with import attributes. */
-    private final List<ImportDetails> importToGroupList = new ArrayList<>();
 
     /**
      * Sets standardRegExp specified by user.
@@ -867,12 +867,12 @@ public class CustomImportOrderCheck extends Check {
      * @author ivanov-alex
      */
     private static class RuleMatchForImport {
-        /** Import group for current best match. */
-        private String group;
-        /** Length of matching string for current best match. */
-        private int matchLength;
         /** Position of matching string for current best match. */
         private final int matchPosition;
+        /** Length of matching string for current best match. */
+        private int matchLength;
+        /** Import group for current best match. */
+        private String group;
 
         /** Constructor to initialize the fields.
          * @param group

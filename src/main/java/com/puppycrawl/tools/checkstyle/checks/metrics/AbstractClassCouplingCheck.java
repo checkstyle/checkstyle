@@ -61,6 +61,10 @@ public abstract class AbstractClassCouplingCheck extends Check {
                 .add("Set", "HashSet", "SortedSet", "TreeSet")
                 .add("Map", "HashMap", "SortedMap", "TreeMap")
                 .build();
+
+    /** Stack of contexts. */
+    private final Deque<Context> contextStack = new ArrayDeque<>();
+
     /** User-configured class names to ignore. */
     private Set<String> excludedClasses = DEFAULT_EXCLUDED_CLASSES;
     /** Allowed complexity. */
@@ -68,8 +72,6 @@ public abstract class AbstractClassCouplingCheck extends Check {
     /** Package of the file we check. */
     private String packageName;
 
-    /** Stack of contexts. */
-    private final Deque<Context> contextStack = new ArrayDeque<>();
     /** Current context. */
     private Context context = new Context("", 0, 0);
 
@@ -80,6 +82,11 @@ public abstract class AbstractClassCouplingCheck extends Check {
     protected AbstractClassCouplingCheck(int defaultMax) {
         max = defaultMax;
     }
+
+    /**
+     * @return message key we use for log violations.
+     */
+    protected abstract String getLogMessageId();
 
     @Override
     public final int[] getDefaultTokens() {
@@ -113,11 +120,6 @@ public abstract class AbstractClassCouplingCheck extends Check {
     public final void beginTree(DetailAST ast) {
         packageName = "";
     }
-
-    /**
-     * @return message key we use for log violations.
-     */
-    protected abstract String getLogMessageId();
 
     @Override
     public void visitToken(DetailAST ast) {

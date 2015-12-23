@@ -44,6 +44,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 @Deprecated
 public abstract class AbstractTypeAwareCheck extends Check {
+    /** Stack of maps for type params. */
+    private final Deque<Map<String, AbstractClassInfo>> typeParams = new ArrayDeque<>();
+
     /** Imports details. **/
     private final Set<String> imports = Sets.newHashSet();
 
@@ -55,9 +58,6 @@ public abstract class AbstractTypeAwareCheck extends Check {
 
     /** {@code ClassResolver} instance for current tree. */
     private ClassResolver classResolver;
-
-    /** Stack of maps for type params. */
-    private final Deque<Map<String, AbstractClassInfo>> typeParams = new ArrayDeque<>();
 
     /**
      * Whether to log class loading errors to the checkstyle report
@@ -80,6 +80,20 @@ public abstract class AbstractTypeAwareCheck extends Check {
     private boolean suppressLoadErrors;
 
     /**
+     * Called to process an AST when visiting it.
+     * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
+     *             IMPORT tokens.
+     */
+    protected abstract void processAST(DetailAST ast);
+
+    /**
+     * Logs error if unable to load class information.
+     * Abstract, should be overridden in subclasses.
+     * @param ident class name for which we can no load class.
+     */
+    protected abstract void logLoadError(Token ident);
+
+    /**
      * Controls whether to log class loading errors to the checkstyle report
      * instead of throwing a RTE.
      *
@@ -97,13 +111,6 @@ public abstract class AbstractTypeAwareCheck extends Check {
     public final void setSuppressLoadErrors(boolean suppressLoadErrors) {
         this.suppressLoadErrors = suppressLoadErrors;
     }
-
-    /**
-     * Called to process an AST when visiting it.
-     * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
-     *             IMPORT tokens.
-     */
-    protected abstract void processAST(DetailAST ast);
 
     @Override
     public final int[] getRequiredTokens() {
@@ -243,13 +250,6 @@ public abstract class AbstractTypeAwareCheck extends Check {
         }
         return clazz;
     }
-
-    /**
-     * Logs error if unable to load class information.
-     * Abstract, should be overridden in subclasses.
-     * @param ident class name for which we can no load class.
-     */
-    protected abstract void logLoadError(Token ident);
 
     /**
      * Common implementation for logLoadError() method.
@@ -406,29 +406,29 @@ public abstract class AbstractTypeAwareCheck extends Check {
         }
 
         /**
+         * @return {@code Class} associated with an object.
+         */
+        public abstract Class<?> getClazz();
+
+        /**
          * Gets class name.
          * @return class name
          */
         public final Token getName() {
             return name;
         }
-
-        /**
-         * @return {@code Class} associated with an object.
-         */
-        public abstract Class<?> getClazz();
     }
 
     /** Represents regular classes/enums. */
     private static final class RegularClass extends AbstractClassInfo {
         /** Name of surrounding class. */
         private final String surroundingClass;
+        /** The check we use to resolve classes. */
+        private final AbstractTypeAwareCheck check;
         /** Is class loadable. */
         private boolean loadable = true;
         /** {@code Class} object of this class if it's loadable. */
         private Class<?> classObj;
-        /** The check we use to resolve classes. */
-        private final AbstractTypeAwareCheck check;
 
         /**
          * Creates new instance of of class information object.

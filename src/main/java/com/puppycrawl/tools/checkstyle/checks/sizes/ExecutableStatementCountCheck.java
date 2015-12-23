@@ -43,11 +43,11 @@ public final class ExecutableStatementCountCheck
     /** Default threshold. */
     private static final int DEFAULT_MAX = 30;
 
-    /** Threshold to report error for. */
-    private int max;
-
     /** Stack of method contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
+
+    /** Threshold to report error for. */
+    private int max;
 
     /** Current method context. */
     private Context context;

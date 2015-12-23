@@ -503,9 +503,6 @@ public class EqualsAvoidNullCheck extends Check {
      * Holds the names of fields of a type.
      */
     private static class FieldFrame {
-        /** Name of the class, enum or enum constant declaration. */
-        private String frameName;
-
         /** Parent frame. */
         private final FieldFrame parent;
 
@@ -517,6 +514,9 @@ public class EqualsAvoidNullCheck extends Check {
 
         /** Set of equals calls. */
         private final Set<DetailAST> methodCalls = Sets.newHashSet();
+
+        /** Name of the class, enum or enum constant declaration. */
+        private String frameName;
 
         /** Whether the frame is CLASS_DEF, ENUM_DEF or ENUM_CONST_DEF. */
         private boolean classOrEnumOrEnumConstDef;

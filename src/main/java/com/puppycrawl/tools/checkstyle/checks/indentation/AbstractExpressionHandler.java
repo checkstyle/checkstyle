@@ -91,6 +91,11 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
+     * Check the indentation of the expression we are handling.
+     */
+    public abstract void checkIndentation();
+
+    /**
      * Get the indentation amount for this handler. For performance reasons,
      * this value is cached. The first time this method is called, the
      * indentation amount is computed and stored. On further calls, the stored
@@ -514,11 +519,6 @@ public abstract class AbstractExpressionHandler {
             }
         }
     }
-
-    /**
-     * Check the indentation of the expression we are handling.
-     */
-    public abstract void checkIndentation();
 
     /**
      * Accessor for the IndentCheck attribute.

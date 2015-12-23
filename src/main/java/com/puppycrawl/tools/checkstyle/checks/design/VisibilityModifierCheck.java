@@ -296,12 +296,6 @@ public class VisibilityModifierCheck
         PROTECTED_ACCESS_MODIFIER,
     };
 
-    /** Whether protected members are allowed. */
-    private boolean protectedAllowed;
-
-    /** Whether package visible members are allowed. */
-    private boolean packageAllowed;
-
     /**
      * Pattern for public members that should be ignored.  Note:
      * Earlier versions of checkstyle used ^f[A-Z][a-zA-Z0-9]*$ as the
@@ -314,23 +308,29 @@ public class VisibilityModifierCheck
     /** Regexp for public members that should be ignored. */
     private Pattern publicMemberPattern = Pattern.compile(publicMemberFormat);
 
-    /** List of ignore annotations canonical names. */
-    private List<String> ignoreAnnotationCanonicalNames =
-            new ArrayList<>(DEFAULT_IGNORE_ANNOTATIONS);
-
     /** List of ignore annotations short names. */
     private final List<String> ignoreAnnotationShortNames =
             getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);
+
+    /** List of immutable classes short names. */
+    private final List<String> immutableClassShortNames =
+        getClassShortNames(DEFAULT_IMMUTABLE_TYPES);
+
+    /** List of ignore annotations canonical names. */
+    private List<String> ignoreAnnotationCanonicalNames =
+        new ArrayList<>(DEFAULT_IGNORE_ANNOTATIONS);
+
+    /** Whether protected members are allowed. */
+    private boolean protectedAllowed;
+
+    /** Whether package visible members are allowed. */
+    private boolean packageAllowed;
 
     /** Allows immutable fields to be declared as public. */
     private boolean allowPublicImmutableFields = true;
 
     /** List of immutable classes canonical names. */
     private List<String> immutableClassCanonicalNames = new ArrayList<>(DEFAULT_IMMUTABLE_TYPES);
-
-    /** List of immutable classes short names. */
-    private final List<String> immutableClassShortNames =
-            getClassShortNames(DEFAULT_IMMUTABLE_TYPES);
 
     /**
      * Set the list of ignore annotations.

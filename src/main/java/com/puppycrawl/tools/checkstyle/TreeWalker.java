@@ -63,21 +63,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  */
 public final class TreeWalker
     extends AbstractFileSetCheck {
-    /**
-     * State of AST.
-     * Indicates whether tree contains certain nodes.
-     */
-    private enum AstState {
-        /**
-         * Ordinary tree.
-         */
-        ORDINARY,
-
-        /**
-         * AST contains comment nodes.
-         */
-        WITH_COMMENTS
-    }
 
     /** Default distance between tab stops. */
     private static final int DEFAULT_TAB_WIDTH = 8;
@@ -698,4 +683,19 @@ public final class TreeWalker
         return new SimpleEntry<>(lines, columns);
     }
 
+    /**
+     * State of AST.
+     * Indicates whether tree contains certain nodes.
+     */
+    private enum AstState {
+        /**
+         * Ordinary tree.
+         */
+        ORDINARY,
+
+        /**
+         * AST contains comment nodes.
+         */
+        WITH_COMMENTS
+    }
 }

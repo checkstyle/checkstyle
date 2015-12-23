@@ -70,6 +70,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     /** Vector of fileset checks. */
     private final List<FileSetCheck> fileSetChecks = Lists.newArrayList();
 
+    /** The audit event filters. */
+    private final FilterSet filters = new FilterSet();
+
     /** Class loader to resolve classes with. **/
     private ClassLoader classLoader = Thread.currentThread()
             .getContextClassLoader();
@@ -90,9 +93,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
     /** The context of all child components. */
     private Context childContext;
-
-    /** The audit event filters. */
-    private final FilterSet filters = new FilterSet();
 
     /** The file extensions that are accepted. */
     private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;

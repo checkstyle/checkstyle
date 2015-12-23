@@ -38,11 +38,11 @@ public abstract class Check extends AbstractViolationReporter {
     /** Default tab width for column reporting. */
     private static final int DEFAULT_TAB_WIDTH = 8;
 
-    /** The current file contents. */
-    private FileContents fileContents;
-
     /** The tokens the check is interested in. */
     private final Set<String> tokens = Sets.newHashSet();
+
+    /** The current file contents. */
+    private FileContents fileContents;
 
     /** The object for collecting messages. */
     private LocalizedMessages messages;
@@ -57,20 +57,20 @@ public abstract class Check extends AbstractViolationReporter {
     private ClassLoader classLoader;
 
     /**
-     * Whether comment nodes are required or not.
-     * @return false as a default value.
-     */
-    public boolean isCommentNodesRequired() {
-        return false;
-    }
-
-    /**
      * Returns the default token a check is interested in. Only used if the
      * configuration for a check does not define the tokens.
      * @return the default tokens
      * @see TokenTypes
      */
     public abstract int[] getDefaultTokens();
+
+    /**
+     * Whether comment nodes are required or not.
+     * @return false as a default value.
+     */
+    public boolean isCommentNodesRequired() {
+        return false;
+    }
 
     /**
      * The configurable token set.

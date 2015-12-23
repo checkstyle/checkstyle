@@ -50,9 +50,6 @@ public final class LocalizedMessage
     implements Comparable<LocalizedMessage>, Serializable {
     private static final long serialVersionUID = 5675176836184862150L;
 
-    /** The locale to localise messages to. **/
-    private static Locale sLocale = Locale.getDefault();
-
     /**
      * A cache that maps bundle names to ResourceBundles.
      * Avoids repetitive calls to ResourceBundle.getBundle().
@@ -62,6 +59,9 @@ public final class LocalizedMessage
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
+
+    /** The locale to localise messages to. **/
+    private static Locale sLocale = Locale.getDefault();
 
     /** The line number. **/
     private final int lineNo;

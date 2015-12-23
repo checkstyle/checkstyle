@@ -52,6 +52,26 @@ public final class FullIdent {
     }
 
     /**
+     * Creates a new FullIdent starting from the specified node.
+     * @param ast the node to start from
+     * @return a {@code FullIdent} value
+     */
+    public static FullIdent createFullIdent(DetailAST ast) {
+        final FullIdent ident = new FullIdent();
+        extractFullIdent(ident, ast);
+        return ident;
+    }
+
+    /**
+     * Creates a new FullIdent starting from the child of the specified node.
+     * @param ast the parent node from where to start from
+     * @return a {@code FullIdent} value
+     */
+    public static FullIdent createFullIdentBelow(DetailAST ast) {
+        return createFullIdent(ast.getFirstChild());
+    }
+
+    /**
      * Gets the text.
      * @return the text
      */
@@ -73,6 +93,33 @@ public final class FullIdent {
      */
     public int getColumnNo() {
         return columnNo;
+    }
+
+    @Override
+    public String toString() {
+        return getText() + "[" + lineNo + "x" + columnNo + "]";
+    }
+
+    /**
+     * Recursively extract a FullIdent.
+     *
+     * @param full the FullIdent to add to
+     * @param ast the node to recurse from
+     */
+    private static void extractFullIdent(FullIdent full, DetailAST ast) {
+        if (ast == null) {
+            return;
+        }
+
+        if (ast.getType() == TokenTypes.DOT) {
+            extractFullIdent(full, ast.getFirstChild());
+            full.append(".");
+            extractFullIdent(
+                full, ast.getFirstChild().getNextSibling());
+        }
+        else {
+            full.append(ast);
+        }
     }
 
     /**
@@ -103,52 +150,4 @@ public final class FullIdent {
             columnNo = Math.min(columnNo, ast.getColumnNo());
         }
     }
-
-    /**
-     * Creates a new FullIdent starting from the specified node.
-     * @param ast the node to start from
-     * @return a {@code FullIdent} value
-     */
-    public static FullIdent createFullIdent(DetailAST ast) {
-        final FullIdent ident = new FullIdent();
-        extractFullIdent(ident, ast);
-        return ident;
-    }
-
-    /**
-     * Creates a new FullIdent starting from the child of the specified node.
-     * @param ast the parent node from where to start from
-     * @return a {@code FullIdent} value
-     */
-    public static FullIdent createFullIdentBelow(DetailAST ast) {
-        return createFullIdent(ast.getFirstChild());
-    }
-
-    /**
-     * Recursively extract a FullIdent.
-     *
-     * @param full the FullIdent to add to
-     * @param ast the node to recurse from
-     */
-    private static void extractFullIdent(FullIdent full, DetailAST ast) {
-        if (ast == null) {
-            return;
-        }
-
-        if (ast.getType() == TokenTypes.DOT) {
-            extractFullIdent(full, ast.getFirstChild());
-            full.append(".");
-            extractFullIdent(
-                full, ast.getFirstChild().getNextSibling());
-        }
-        else {
-            full.append(ast);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return getText() + "[" + lineNo + "x" + columnNo + "]";
-    }
-
 }

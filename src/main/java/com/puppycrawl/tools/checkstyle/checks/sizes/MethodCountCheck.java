@@ -70,6 +70,10 @@ public final class MethodCountCheck extends Check {
 
     /** Default maximum number of methods. */
     private static final int DEFAULT_MAX_METHODS = 100;
+
+    /** Maintains stack of counters, to support inner types. */
+    private final Deque<MethodCounter> counters = new ArrayDeque<>();
+
     /** Maximum private methods. */
     private int maxPrivate = DEFAULT_MAX_METHODS;
     /** Maximum package methods. */
@@ -80,8 +84,6 @@ public final class MethodCountCheck extends Check {
     private int maxPublic = DEFAULT_MAX_METHODS;
     /** Maximum total number of methods. */
     private int maxTotal = DEFAULT_MAX_METHODS;
-    /** Maintains stack of counters, to support inner types. */
-    private final Deque<MethodCounter> counters = new ArrayDeque<>();
 
     @Override
     public int[] getDefaultTokens() {

@@ -105,6 +105,13 @@ public abstract class AbstractJavadocCheck extends Check {
     public abstract int[] getDefaultJavadocTokens();
 
     /**
+     * Called to process a Javadoc token.
+     * @param ast
+     *        the token to process
+     */
+    public abstract void visitJavadocToken(DetailNode ast);
+
+    /**
      * Called before the starting to process a tree.
      * @param rootAst
      *        the root of the tree
@@ -121,13 +128,6 @@ public abstract class AbstractJavadocCheck extends Check {
     public void finishJavadocTree(DetailNode rootAst) {
         // No code by default, should be overridden only by demand at subclasses
     }
-
-    /**
-     * Called to process a Javadoc token.
-     * @param ast
-     *        the token to process
-     */
-    public abstract void visitJavadocToken(DetailNode ast);
 
     /**
      * Called after all the child nodes have been process.

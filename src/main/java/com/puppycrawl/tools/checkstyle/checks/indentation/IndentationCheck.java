@@ -83,6 +83,12 @@ public class IndentationCheck extends Check {
     /** Default indentation amount - based on Sun. */
     private static final int DEFAULT_INDENTATION = 4;
 
+    /** Handlers currently in use. */
+    private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
+
+    /** Factory from which handlers are distributed. */
+    private final HandlerFactory handlerFactory = new HandlerFactory();
+
     /** How many tabs or spaces to use. */
     private int basicOffset = DEFAULT_INDENTATION;
 
@@ -107,12 +113,6 @@ public class IndentationCheck extends Check {
      * have to be not less than lineWrappingIndentation parameter.
      */
     private boolean forceStrictCondition;
-
-    /** Handlers currently in use. */
-    private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
-
-    /** Factory from which handlers are distributed. */
-    private final HandlerFactory handlerFactory = new HandlerFactory();
 
     /**
      * Get forcing strict condition.

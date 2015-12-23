@@ -48,6 +48,12 @@ public abstract class AbstractSuperCheck
     /** Stack of methods. */
     private final Deque<MethodNode> methodStack = Lists.newLinkedList();
 
+    /**
+     * Returns the name of the overriding method.
+     * @return the name of the overriding method.
+     */
+    protected abstract String getMethodName();
+
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
@@ -65,12 +71,6 @@ public abstract class AbstractSuperCheck
     public int[] getRequiredTokens() {
         return getDefaultTokens();
     }
-
-    /**
-     * Returns the name of the overriding method.
-     * @return the name of the overriding method.
-     */
-    protected abstract String getMethodName();
 
     @Override
     public void beginTree(DetailAST rootAST) {

@@ -24,7 +24,7 @@
     <!-- These classes are deprecated and will be removed soon. -->
     <suppress checks="ForbidWildcardAsReturnType"
               files="AbstractTypeAwareCheck\.java"
-              lines="223,239,419"/>
+              lines="230,246,411"/>
     <suppress checks="ForbidWildcardAsReturnType"
               files="ClassResolver\.java"
               lines="72,184"/>
@@ -33,4 +33,13 @@
     <suppress checks="ForbidWildcardAsReturnType"
               files="ParseTreeTableModel\.java"
               lines="106"/>
+    <!-- If we change declaration order, Illegal forward reference will appear.
+    See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/415-->
+    <suppress checks="CustomDeclarationOrder"
+              files="JavadocTokenTypes.java"/>
+    <!--CustomDeclarationOrder does not treat groups of overloaded methods.
+    See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414-->
+    <suppress checks="CustomDeclarationOrder"
+              files="AbstractViolationReporter.java"
+              lines="155,167"/>
 </suppressions>

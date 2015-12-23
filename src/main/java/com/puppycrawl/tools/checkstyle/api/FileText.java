@@ -146,6 +146,18 @@ public final class FileText extends AbstractList<String> {
     }
 
     /**
+     * Copy constructor.
+     * @param fileText to make copy of
+     */
+    public FileText(FileText fileText) {
+        file = fileText.file;
+        charset = fileText.charset;
+        fullText = fileText.fullText;
+        lines = fileText.lines.clone();
+        lineBreaks = ArrayUtils.clone(fileText.lineBreaks);
+    }
+
+    /**
      * Compatibility constructor.
      *
      * <p>This constructor reconstructs the text of the file by joining
@@ -167,18 +179,6 @@ public final class FileText extends AbstractList<String> {
         charset = null;
         fullText = buf.toString();
         this.lines = lines.toArray(new String[lines.size()]);
-    }
-
-    /**
-     * Copy constructor.
-     * @param fileText to make copy of
-     */
-    public FileText(FileText fileText) {
-        file = fileText.file;
-        charset = fileText.charset;
-        fullText = fileText.fullText;
-        lines = fileText.lines.clone();
-        lineBreaks = ArrayUtils.clone(fileText.lineBreaks);
     }
 
     /**

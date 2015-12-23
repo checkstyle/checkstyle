@@ -58,15 +58,15 @@ public final class IllegalThrowsCheck extends Check {
      */
     public static final String MSG_KEY = "illegal.throw";
 
-    /** Property for ignoring overridden methods. */
-    private boolean ignoreOverriddenMethods = true;
-
     /** Methods which should be ignored. */
     private final Set<String> ignoredMethodNames = Sets.newHashSet("finalize");
 
     /** Illegal class names. */
     private final Set<String> illegalClassNames = Sets.newHashSet("Error", "RuntimeException",
-            "Throwable", "java.lang.Error", "java.lang.RuntimeException", "java.lang.Throwable");
+        "Throwable", "java.lang.Error", "java.lang.RuntimeException", "java.lang.Throwable");
+
+    /** Property for ignoring overridden methods. */
+    private boolean ignoreOverriddenMethods = true;
 
     /**
      * Set the list of illegal classes.

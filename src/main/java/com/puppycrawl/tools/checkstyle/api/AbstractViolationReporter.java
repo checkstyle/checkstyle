@@ -85,6 +85,15 @@ public abstract class AbstractViolationReporter
     }
 
     /**
+     * Returns an unmodifiable map instance containing the custom messages
+     * for this configuration.
+     * @return unmodifiable map containing custom messages
+     */
+    protected Map<String, String> getCustomMessages() {
+        return getConfiguration().getMessages();
+    }
+
+    /**
      * Returns the message bundle name resource bundle that contains the messages
      * used by this module.
      * <p>
@@ -120,15 +129,6 @@ public abstract class AbstractViolationReporter
         }
         final String packageName = className.substring(0, endIndex);
         return packageName + "." + messages;
-    }
-
-    /**
-     * Returns an unmodifiable map instance containing the custom messages
-     * for this configuration.
-     * @return unmodifiable map containing custom messages
-     */
-    protected Map<String, String> getCustomMessages() {
-        return getConfiguration().getMessages();
     }
 
     /**

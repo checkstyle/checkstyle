@@ -75,6 +75,9 @@ public class SuppressionCommentFilter
     /** Control all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
+    /** Tagged comments. */
+    private final List<Tag> tags = Lists.newArrayList();
+
     /** Whether to look in comments of the C type. */
     private boolean checkC = true;
 
@@ -92,9 +95,6 @@ public class SuppressionCommentFilter
 
     /** The message format to suppress. */
     private String messageFormat;
-
-    /** Tagged comments. */
-    private final List<Tag> tags = Lists.newArrayList();
 
     /**
      * References the current FileContents for this filter.

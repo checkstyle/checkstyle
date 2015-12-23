@@ -54,6 +54,40 @@ public final class CommonUtils {
     }
 
     /**
+     * Helper method to create a regular expression.
+     *
+     * @param pattern
+     *            the pattern to match
+     * @return a created regexp object
+     * @throws ConversionException
+     *             if unable to create Pattern object.
+     **/
+    public static Pattern createPattern(String pattern) {
+        return createPattern(pattern, 0);
+    }
+
+    /**
+     * Helper method to create a regular expression with a specific flags.
+     *
+     * @param pattern
+     *            the pattern to match
+     * @param flags
+     *            the flags to set
+     * @return a created regexp object
+     * @throws ConversionException
+     *             if unable to create Pattern object.
+     **/
+    public static Pattern createPattern(String pattern, int flags) {
+        try {
+            return Pattern.compile(pattern, flags);
+        }
+        catch (final PatternSyntaxException ex) {
+            throw new ConversionException(
+                "Failed to initialise regular expression " + pattern, ex);
+        }
+    }
+
+    /**
      * Returns whether the file extension matches what we are meant to process.
      *
      * @param file
@@ -172,40 +206,6 @@ public final class CommonUtils {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Helper method to create a regular expression.
-     *
-     * @param pattern
-     *            the pattern to match
-     * @return a created regexp object
-     * @throws ConversionException
-     *             if unable to create Pattern object.
-     **/
-    public static Pattern createPattern(String pattern) {
-        return createPattern(pattern, 0);
-    }
-
-    /**
-     * Helper method to create a regular expression with a specific flags.
-     *
-     * @param pattern
-     *            the pattern to match
-     * @param flags
-     *            the flags to set
-     * @return a created regexp object
-     * @throws ConversionException
-     *             if unable to create Pattern object.
-     **/
-    public static Pattern createPattern(String pattern, int flags) {
-        try {
-            return Pattern.compile(pattern, flags);
-        }
-        catch (final PatternSyntaxException ex) {
-            throw new ConversionException(
-                    "Failed to initialise regular expression " + pattern, ex);
-        }
     }
 
     /**

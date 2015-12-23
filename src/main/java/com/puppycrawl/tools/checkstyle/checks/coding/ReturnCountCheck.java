@@ -48,13 +48,14 @@ public final class ReturnCountCheck extends Check {
      */
     public static final String MSG_KEY = "return.count";
 
+    /** Stack of method contexts. */
+    private final Deque<Context> contextStack = new ArrayDeque<>();
+
     /** The format string of the regexp. */
     private String format = "^equals$";
     /** The regexp to match against. */
     private Pattern regexp = Pattern.compile(format);
 
-    /** Stack of method contexts. */
-    private final Deque<Context> contextStack = new ArrayDeque<>();
     /** Maximum allowed number of return statements. */
     private int max = 2;
     /** Current method context. */

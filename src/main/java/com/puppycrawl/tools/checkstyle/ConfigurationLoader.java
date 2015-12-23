@@ -102,11 +102,12 @@ public final class ConfigurationLoader {
     private final PropertyResolver overridePropsResolver;
     /** The loaded configurations. **/
     private final Deque<DefaultConfiguration> configStack = new ArrayDeque<>();
-    /** The Configuration that is being built. */
-    private Configuration configuration;
 
     /** Flags if modules with the severity 'ignore' should be omitted. */
     private final boolean omitIgnoredModules;
+
+    /** The Configuration that is being built. */
+    private Configuration configuration;
 
     /**
      * Creates a new {@code ConfigurationLoader} instance.

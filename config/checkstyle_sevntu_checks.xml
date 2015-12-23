@@ -104,5 +104,38 @@
         </module>
         <module name="SimpleAccessorNameNotation"/>
         <module name="ForbidWildcardAsReturnType"/>
+        <module name="CustomDeclarationOrder">
+            <property name="customDeclarationOrder"
+                      value="InnerEnum(public .*)
+                      ### Field(public static final)
+                      ### Field(public static .*)
+                      ### Field(protected static final)
+                      ### Field(protected static .*)
+                      ### Field(static final)
+                      ### Field(static .*)
+                      ### Field(private static final)
+                      ### Field(private static .*)
+                      ### DeclareAnnonClassField(public static final)
+                      ### DeclareAnnonClassField((private|protected) static final)
+                      ### Field(@Autowired.* public)
+                      ### Field(@Inject.* public)
+                      ### Field(public.*)
+                      ### Field(public)
+                      ### Field(private final)
+                      ### Field(private.*)
+                      ### Field(private)
+                      ### Field(.*)
+                      ### Ctor(public)
+                      ### Ctor(private)
+                      ### MainMethod(.*)
+                      ### Method((public|protected)?(\w*\s)?abstract\s)
+                      ### Method(public static .*(new|edit|create|open|clone).*)
+                      ### Method(@Autowired.* public)
+                      ### Method(@Inject.* public)
+                      ### Method(.*)
+                      ### InnerEnum(private .*)
+                      ### InnerInterface(.*)
+                      ### InnerClass(.*)"/>
+        </module>
     </module>
 </module>

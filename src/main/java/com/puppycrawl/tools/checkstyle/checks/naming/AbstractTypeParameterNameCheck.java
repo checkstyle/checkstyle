@@ -46,6 +46,15 @@ public abstract class AbstractTypeParameterNameCheck
         super(format);
     }
 
+    /**
+     * This method must be overridden to specify the
+     * location of the type parameter to check.
+     *
+     * @return {@code TokenTypes.CLASS_DEF }
+     *     or {@code TokenTypes.METHOD_DEF }
+     */
+    protected abstract int getLocation();
+
     @Override
     public final int[] getDefaultTokens() {
         return new int[] {
@@ -66,13 +75,4 @@ public abstract class AbstractTypeParameterNameCheck
             ast.getParent().getParent();
         return location.getType() == getLocation();
     }
-
-    /**
-     * This method must be overridden to specify the
-     * location of the type parameter to check.
-     *
-     * @return {@code TokenTypes.CLASS_DEF }
-     *     or {@code TokenTypes.METHOD_DEF }
-     */
-    protected abstract int getLocation();
 }

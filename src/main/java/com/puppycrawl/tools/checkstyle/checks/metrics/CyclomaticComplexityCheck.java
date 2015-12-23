@@ -60,11 +60,11 @@ public class CyclomaticComplexityCheck
     /** Default allowed complexity. */
     private static final int DEFAULT_COMPLEXITY_VALUE = 10;
 
-    /** Whether to treat the whole switch block as a single decision point.*/
-    private boolean switchBlockAsSingleDecisionPoint;
-
     /** Stack of values - all but the current value. */
     private final Deque<BigInteger> valueStack = new ArrayDeque<>();
+
+    /** Whether to treat the whole switch block as a single decision point.*/
+    private boolean switchBlockAsSingleDecisionPoint;
 
     /** The current value. */
     private BigInteger currentValue = INITIAL_VALUE;

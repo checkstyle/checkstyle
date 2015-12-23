@@ -37,14 +37,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
     implements FileSetCheck {
+
+    /** Collects the error messages. */
+    private final LocalizedMessages messageCollector = new LocalizedMessages();
+
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
 
     /** The file extensions that are accepted by this filter. */
     private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;
-
-    /** Collects the error messages. */
-    private final LocalizedMessages messageCollector = new LocalizedMessages();
 
     /**
      * Called to process a file that matches the specified file extensions.

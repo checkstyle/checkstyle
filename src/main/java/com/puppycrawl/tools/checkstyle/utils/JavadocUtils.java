@@ -43,6 +43,19 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
  * @author Lyle Hanson
  */
 public final class JavadocUtils {
+
+    /**
+     * The type of Javadoc tag we want returned.
+     */
+    public enum JavadocTagType {
+        /** Block type. */
+        BLOCK,
+        /** Inline type. */
+        INLINE,
+        /** All validTags. */
+        ALL
+    }
+
     /** Maps from a token name to value. */
     private static final ImmutableMap<String, Integer> TOKEN_NAME_TO_VALUE;
     /** Maps from a token value to name. */
@@ -214,18 +227,6 @@ public final class JavadocUtils {
                         tagName));
             }
         }
-    }
-
-    /**
-     * The type of Javadoc tag we want returned.
-     */
-    public enum JavadocTagType {
-        /** Block type. */
-        BLOCK,
-        /** Inline type. */
-        INLINE,
-        /** All validTags. */
-        ALL
     }
 
     /**

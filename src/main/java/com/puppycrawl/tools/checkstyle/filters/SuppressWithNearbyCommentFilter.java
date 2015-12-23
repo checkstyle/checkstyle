@@ -87,6 +87,9 @@ public class SuppressWithNearbyCommentFilter
     /** Default regex for lines that should be suppressed. */
     private static final String DEFAULT_INFLUENCE_FORMAT = "0";
 
+    /** Tagged comments. */
+    private final List<Tag> tags = Lists.newArrayList();
+
     /** Whether to look for trigger in C-style comments. */
     private boolean checkC = true;
 
@@ -104,9 +107,6 @@ public class SuppressWithNearbyCommentFilter
 
     /** The influence of the suppression comment. */
     private String influenceFormat;
-
-    /** Tagged comments. */
-    private final List<Tag> tags = Lists.newArrayList();
 
     /**
      * References the current FileContents for this filter.

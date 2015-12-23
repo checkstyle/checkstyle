@@ -102,6 +102,98 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Travis Schneeberger
  */
 public final class AnnotationUseStyleCheck extends Check {
+
+    /**
+     * Defines the styles for defining elements in an annotation.
+     * @author Travis Schneeberger
+     */
+    public enum ElementStyle {
+
+        /**
+         * Expanded example
+         *
+         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
+         */
+        EXPANDED,
+
+        /**
+         * Compact example
+         *
+         * <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+         * <br>or<br>
+         * <pre>@SuppressWarnings("unchecked")</pre>.
+         */
+        COMPACT,
+
+        /**
+         * Compact example.]
+         *
+         * <pre>@SuppressWarnings("unchecked")</pre>.
+         */
+        COMPACT_NO_ARRAY,
+
+        /**
+         * Mixed styles.
+         */
+        IGNORE,
+    }
+
+    /**
+     * Defines the two styles for defining
+     * elements in an annotation.
+     *
+     * @author Travis Schneeberger
+     */
+    public enum TrailingArrayComma {
+
+        /**
+         * With comma example
+         *
+         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
+         */
+        ALWAYS,
+
+        /**
+         * Without comma example
+         *
+         * <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>.
+         */
+        NEVER,
+
+        /**
+         * Mixed styles.
+         */
+        IGNORE,
+    }
+
+    /**
+     * Defines the two styles for defining
+     * elements in an annotation.
+     *
+     * @author Travis Schneeberger
+     */
+    public enum ClosingParens {
+
+        /**
+         * With parens example
+         *
+         * <pre>@Deprecated()</pre>.
+         */
+        ALWAYS,
+
+        /**
+         * Without parens example
+         *
+         * <pre>@Deprecated</pre>.
+         */
+        NEVER,
+
+        /**
+         * Mixed styles.
+         */
+        IGNORE,
+    }
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
@@ -415,96 +507,5 @@ public final class AnnotationUseStyleCheck extends Check {
             && parenExists) {
             log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
         }
-    }
-
-    /**
-     * Defines the styles for defining elements in an annotation.
-     * @author Travis Schneeberger
-     */
-    public enum ElementStyle {
-
-        /**
-         * Expanded example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
-         */
-        EXPANDED,
-
-        /**
-         * Compact example
-         *
-         * <pre>@SuppressWarnings({"unchecked","unused",})</pre>
-         * <br>or<br>
-         * <pre>@SuppressWarnings("unchecked")</pre>.
-         */
-        COMPACT,
-
-        /**
-         * Compact example.]
-         *
-         * <pre>@SuppressWarnings("unchecked")</pre>.
-         */
-        COMPACT_NO_ARRAY,
-
-        /**
-         * Mixed styles.
-         */
-        IGNORE,
-    }
-
-    /**
-     * Defines the two styles for defining
-     * elements in an annotation.
-     *
-     * @author Travis Schneeberger
-     */
-    public enum TrailingArrayComma {
-
-        /**
-         * With comma example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
-         */
-        ALWAYS,
-
-        /**
-         * Without comma example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>.
-         */
-        NEVER,
-
-        /**
-         * Mixed styles.
-         */
-        IGNORE,
-    }
-
-    /**
-     * Defines the two styles for defining
-     * elements in an annotation.
-     *
-     * @author Travis Schneeberger
-     */
-    public enum ClosingParens {
-
-        /**
-         * With parens example
-         *
-         * <pre>@Deprecated()</pre>.
-         */
-        ALWAYS,
-
-        /**
-         * Without parens example
-         *
-         * <pre>@Deprecated</pre>.
-         */
-        NEVER,
-
-        /**
-         * Mixed styles.
-         */
-        IGNORE,
     }
 }

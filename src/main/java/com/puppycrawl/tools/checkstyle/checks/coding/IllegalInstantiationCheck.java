@@ -76,9 +76,6 @@ public class IllegalInstantiationCheck
     /** Set of fully qualified class names. E.g. "java.lang.Boolean" */
     private final Set<String> illegalClasses = Sets.newHashSet();
 
-    /** Name of the package. */
-    private String pkgName;
-
     /** The imports for the file. */
     private final Set<FullIdent> imports = Sets.newHashSet();
 
@@ -87,6 +84,9 @@ public class IllegalInstantiationCheck
 
     /** The instantiations in the file. */
     private final Set<DetailAST> instantiations = Sets.newHashSet();
+
+    /** Name of the package. */
+    private String pkgName;
 
     @Override
     public int[] getDefaultTokens() {

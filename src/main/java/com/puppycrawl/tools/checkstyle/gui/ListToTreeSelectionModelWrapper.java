@@ -35,10 +35,10 @@ import javax.swing.tree.TreePath;
  */
 class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
     private static final long serialVersionUID = 2267930983939339510L;
-    /** Set to true when we are updating the ListSelectionModel. */
-    private boolean updatingListSelectionModel;
     /** JTreeTable to perform updates on. */
     private final JTreeTable treeTable;
+    /** Set to true when we are updating the ListSelectionModel. */
+    private boolean updatingListSelectionModel;
 
     /**
      * @param jTreeTable TreeTable to perform updates on.

@@ -39,11 +39,11 @@
     <!-- we can not change it as, Check property is part of API (used in configurations) -->
     <suppress checks="AbbreviationAsWordInName"
               files="SuppressWithNearbyCommentFilter.java"
-              lines="94,183"/>
+              lines="97,183"/>
     <!-- we can not change it as, Check property is part of API (used in configurations) -->
     <suppress checks="AbbreviationAsWordInName"
               files="SuppressionCommentFilter.java"
-              lines="82,172"/>
+              lines="85,172"/>
 
     <!-- should be removed at 7.0 version, we keep for some time to avoid braking compatibiilty -->
     <suppress checks="AbbreviationAsWordInName"

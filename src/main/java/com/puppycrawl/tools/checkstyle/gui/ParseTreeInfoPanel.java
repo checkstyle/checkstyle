@@ -61,16 +61,16 @@ public class ParseTreeInfoPanel extends JPanel {
     private final transient ParseTreeTableModel parseTreeTableModel;
     /** JTextArea component. */
     private final JTextArea textArea;
-    /** Last directory. */
-    private File lastDirectory;
-    /** Current file. */
-    private File currentFile;
     /** Reload action. */
     private final ReloadAction reloadAction;
     /** Lines to position map. */
     private final List<Integer> linesToPosition = new ArrayList<>();
     /** Tree table. */
     private final JTreeTable treeTable;
+    /** Last directory. */
+    private File lastDirectory;
+    /** Current file. */
+    private File currentFile;
 
     /**
      * Create a new ParseTreeInfoPanel instance.
