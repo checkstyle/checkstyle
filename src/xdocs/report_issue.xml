@@ -38,7 +38,8 @@
 
       <p>
         First and foremost, do not think that your issue is obvious and do not need details.<br/>
-        Even tiny issue need all details and context to be shared with us.
+        Even tiny issue need all details
+        (Check name, config with options, source file, Checkstyle version) and context to be shared with us.
       </p>
 
       <p>
@@ -56,19 +57,19 @@
       <p>
         We need minimized but compilable Java file and minimized config with one Check that cause problem.<br/>
         We do not need real source code. Any obfuscation of your super secret code is OK.<br/>
-        Link to your source code would be awesome.
+        Link to your source code would be awesome. 
+        Code has to be compilable, in other case behaviour could be strange.
       </p>
 
       <p>
         Example of report that we expect:
 
         <source><![CDATA[
-/var/tmp $ java -jar checkstyle-6.XX-all.jar -c config.xml test.java
-Starting audit...
-Audit done.
+/var/tmp $ javac Test.java
 
-/var/tmp $ cat test.java
-public class CheckstyleTest{ // Doesn't warn - incorrect
+
+/var/tmp $ cat Test.java
+public class Test{ // Doesn't warn - incorrect
 private static final int SOMETHING = 1;
 }
 
@@ -84,6 +85,11 @@ private static final int SOMETHING = 1;
         </module>
     </module>
 </module>
+
+/var/tmp $ java -jar checkstyle-6.XX-all.jar -c config.xml Test.java
+Starting audit...
+Audit done.
+
         ]]></source>
       </p>
 
@@ -92,7 +98,7 @@ private static final int SOMETHING = 1;
 
         <code>
           Expected: violation on first line.
-          /var/tmp/test.java:1:28: error: '{' is not preceded with whitespace.
+          /var/tmp/Test.java:1:28: error: '{' is not preceded with whitespace.
         </code>
       </p>
 
