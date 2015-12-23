@@ -57,7 +57,7 @@
       <p>
         We need minimized but compilable Java file and minimized config with one Check that cause problem.<br/>
         We do not need real source code. Any obfuscation of your super secret code is OK.<br/>
-        Link to your source code would be awesome. 
+        Link to your source code would be awesome.
         Code has to be compilable, in other case behaviour could be strange.
       </p>
 
@@ -66,7 +66,6 @@
 
         <source><![CDATA[
 /var/tmp $ javac Test.java
-
 
 /var/tmp $ cat Test.java
 public class Test{ // Doesn't warn - incorrect
