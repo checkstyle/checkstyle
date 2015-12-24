@@ -56,6 +56,16 @@
       <Bug pattern="BC_UNCONFIRMED_CAST" />
     </Match>
     <Match>
+      <!-- The structure of frames relies on the AST structure which relies on correct/compilable
+        java files. It is ok to have direct casts to subtypes there. Any problems at runtime do
+        mean serious problems in the algorithm or AST generation. -->
+      <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"/>
+      <Or>
+        <Bug pattern="BC_UNCONFIRMED_CAST"/>
+        <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
+      </Or>
+    </Match>
+    <Match>
       <!-- till SonarQube update Checkstyle version. Support both getFileName() and getFilename() -->
       <and>
         <Class name="com.puppycrawl.tools.checkstyle.api.FileContents" />

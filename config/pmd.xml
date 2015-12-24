@@ -44,6 +44,8 @@
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20"/>
+      <!-- Reducing the number of methods requires making excess hierarchy or duplicating code, or making existing methods too complex. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength">
