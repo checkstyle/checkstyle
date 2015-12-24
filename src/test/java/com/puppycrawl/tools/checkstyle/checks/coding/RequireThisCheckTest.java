@@ -48,15 +48,16 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RequireThisCheck.class);
         final String[] expected = {
-            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
-            "17:9: " + getCheckMessage(MSG_METHOD, "method1", "\"this\""),
-            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
-            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
-            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
-            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
-            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
-            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
-            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
+            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "17:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
+            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
+            "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),
@@ -69,9 +70,9 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkFields", "false");
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_METHOD, "method1", "\"this\""),
-            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
-            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "\"this\""),
+            "17:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
+            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),
@@ -84,12 +85,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("checkMethods", "false");
         final String[] expected = {
-            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
-            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
-            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
-            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", "\"this\""),
-            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
-            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", "\"this\""),
+            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),
@@ -109,8 +111,8 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RequireThisCheck.class);
         final String[] expected = {
-            "7:19: " + getCheckMessage(MSG_VARIABLE, "number", "\"this\""),
-            "8:16: " + getCheckMessage(MSG_METHOD, "other", "\"this\""),
+            "7:19: " + getCheckMessage(MSG_VARIABLE, "number", ""),
+            "8:16: " + getCheckMessage(MSG_METHOD, "other", ""),
         };
         verify(checkConfig,
                 getPath("InputRequireThis2.java"),

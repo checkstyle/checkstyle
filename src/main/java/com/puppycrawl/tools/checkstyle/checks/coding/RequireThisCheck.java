@@ -53,13 +53,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * &lt;/module&gt;
  * </pre>
  *
- * <p>Limitations: I'm not currently doing anything about static variables
+ * <p>Limitations: Nothing is currently done about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
  * both the class name and the method name have a DOT parent.
  * Non-static methods invoked on either this or a variable name seem to be
  * OK, likewise.</p>
- * <p>Much of the code for this check was cribbed from Rick Giles's
- * {@code HiddenFieldCheck}.</p>
  *
  * @author Stephen Bloch
  * @author o_sukhodolsky
@@ -77,7 +75,6 @@ public class RequireThisCheck extends Check {
      * file.
      */
     public static final String MSG_VARIABLE = "require.this.variable";
-
     /**
      * Set of all declaration tokens.
      */
@@ -95,12 +92,12 @@ public class RequireThisCheck extends Check {
     /**
      * Tree of all the parsed frames.
      */
-    private Map<DetailAST, LexicalFrame> frames;
+    private Map<DetailAST, AbstractFrame> frames;
 
     /**
      * Frame for the currently processed AST.
      */
-    private LexicalFrame current;
+    private AbstractFrame current;
 
     /** Whether we should check fields usage. */
     private boolean checkFields = true;
@@ -148,8 +145,7 @@ public class RequireThisCheck extends Check {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        final Deque<LexicalFrame> frameStack = Lists.newLinkedList();
-        frameStack.add(new GlobalFrame());
+        final Deque<AbstractFrame> frameStack = Lists.newLinkedList();
 
         frames = Maps.newHashMap();
 
@@ -204,15 +200,36 @@ public class RequireThisCheck extends Check {
                 break;
             case TokenTypes.METHOD_CALL:
                 // let's check method calls
-                if (checkMethods && isClassMethod(ast)) {
-                    log(ast, MSG_METHOD, ast.getText());
+                if (checkMethods) {
+                    final AbstractFrame frame = checkMethod(ast);
+                    if (frame != null) {
+                        logViolation(MSG_METHOD, ast, frame);
+                    }
                 }
                 break;
             default:
                 if (checkFields) {
-                    processField(ast, parentType);
+                    final AbstractFrame frame = processField(ast, parentType);
+                    if (frame != null) {
+                        logViolation(MSG_VARIABLE, ast, frame);
+                    }
                 }
                 break;
+        }
+    }
+
+    /**
+     * Helper method to log a LocalizedMessage.
+     * @param ast a node to get line id column numbers associated with the message.
+     * @param msgKey key to locale message format.
+     * @param frame the frame, where the violation is found.
+     */
+    private void logViolation(String msgKey, DetailAST ast, AbstractFrame frame) {
+        if (frame.getFrameName().equals(getNearestClassFrameName())) {
+            log(ast, msgKey, ast.getText(), "");
+        }
+        else {
+            log(ast, msgKey, ast.getText(), frame.getFrameName() + '.');
         }
     }
 
@@ -220,21 +237,23 @@ public class RequireThisCheck extends Check {
      * Process validation of Field.
      * @param ast field definition ast token
      * @param parentType type of the parent
+     * @return frame, where the field is declared, if the violation is found and null otherwise
      */
-    private void processField(DetailAST ast, int parentType) {
+    private AbstractFrame processField(DetailAST ast, int parentType) {
         final boolean importOrPackage = ScopeUtils.getSurroundingScope(ast) == null;
         final boolean methodNameInMethodCall = parentType == TokenTypes.DOT
                 && ast.getPreviousSibling() != null;
         final boolean typeName = parentType == TokenTypes.TYPE
                 || parentType == TokenTypes.LITERAL_NEW;
+        AbstractFrame frame = null;
 
         if (!importOrPackage
                 && !methodNameInMethodCall
                 && !typeName
-                && !isDeclarationToken(parentType)
-                && isClassField(ast)) {
-            log(ast, MSG_VARIABLE, ast.getText());
+                && !isDeclarationToken(parentType)) {
+            frame = checkField(ast);
         }
+        return frame;
     }
 
     /**
@@ -243,9 +262,9 @@ public class RequireThisCheck extends Check {
      * @param frameStack Stack containing the FrameTree being built
      * @param ast AST to parse
      */
-    private static void collectDeclarations(Deque<LexicalFrame> frameStack,
+    private static void collectDeclarations(Deque<AbstractFrame> frameStack,
         DetailAST ast) {
-        final LexicalFrame frame = frameStack.peek();
+        final AbstractFrame frame = frameStack.peek();
         switch (ast.getType()) {
             case TokenTypes.VARIABLE_DEF :
                 collectVariableDeclarations(ast, frame);
@@ -259,15 +278,14 @@ public class RequireThisCheck extends Check {
             case TokenTypes.ENUM_DEF :
             case TokenTypes.ANNOTATION_DEF :
                 final DetailAST classIdent = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addIdent(classIdent);
-                frameStack.addFirst(new ClassFrame(frame));
+                frameStack.addFirst(new ClassFrame(frame, classIdent.getText()));
                 break;
             case TokenTypes.SLIST :
                 frameStack.addFirst(new BlockFrame(frame));
                 break;
             case TokenTypes.METHOD_DEF :
                 final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
-                if (frame instanceof ClassFrame) {
+                if (frame.getType() == FrameType.CLASS_FRAME) {
                     final DetailAST mods =
                             ast.findFirstToken(TokenTypes.MODIFIERS);
                     if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
@@ -292,10 +310,9 @@ public class RequireThisCheck extends Check {
      * @param ast variable token
      * @param frame current frame
      */
-    private static void collectVariableDeclarations(DetailAST ast, LexicalFrame frame) {
-        final DetailAST ident =
-                ast.findFirstToken(TokenTypes.IDENT);
-        if (frame instanceof ClassFrame) {
+    private static void collectVariableDeclarations(DetailAST ast, AbstractFrame frame) {
+        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+        if (frame.getType() == FrameType.CLASS_FRAME) {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtils.isInInterfaceBlock(ast)
@@ -317,7 +334,7 @@ public class RequireThisCheck extends Check {
      * @param frameStack Stack containing the FrameTree being built
      * @param ast AST that was parsed
      */
-    private void endCollectingDeclarations(Queue<LexicalFrame> frameStack,
+    private void endCollectingDeclarations(Queue<AbstractFrame> frameStack,
         DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.CLASS_DEF :
@@ -336,33 +353,40 @@ public class RequireThisCheck extends Check {
 
     /**
      * Check if given name is a name for class field in current environment.
-     * @param ident an IDENT ast to check
-     * @return true is the given name is name of member.
+     * @param ast an IDENT ast to check
+     * @return frame, where the field is declared, if the violation is found and null otherwise
      */
-    private boolean isClassField(DetailAST ident) {
-        final LexicalFrame frame = findFrame(ident, false);
-        return frame instanceof ClassFrame
-                && ((ClassFrame) frame).hasInstanceMember(ident);
+    private AbstractFrame checkField(DetailAST ast) {
+        final AbstractFrame frame = findFrame(ast, false);
+        if (frame != null
+                && frame.getType() == FrameType.CLASS_FRAME
+                && ((ClassFrame) frame).hasInstanceMember(ast)) {
+            return frame;
+        }
+        return null;
     }
 
     /**
      * Check if given name is a name for class method in current environment.
-     * @param ident the IDENT ast of the name to check
-     * @return true is the given name is name of method.
+     * @param ast the IDENT ast of the name to check
+     * @return frame, where the method is declared, if the violation is found and null otherwise
      */
-    private boolean isClassMethod(DetailAST ident) {
-        final LexicalFrame frame = findFrame(ident, true);
-        return frame instanceof ClassFrame
-                && ((ClassFrame) frame).hasInstanceMethod(ident);
+    private AbstractFrame checkMethod(DetailAST ast) {
+        final AbstractFrame frame = findFrame(ast, true);
+        if (frame != null
+                && ((ClassFrame) frame).hasInstanceMethod(ast)) {
+            return frame;
+        }
+        return null;
     }
 
     /**
      * Find frame containing declaration.
      * @param name IDENT ast of the declaration to find.
      * @param lookForMethod whether we are looking for a method name.
-     * @return LexicalFrame containing declaration or null.
+     * @return AbstractFrame containing declaration or null.
      */
-    private LexicalFrame findFrame(DetailAST name, boolean lookForMethod) {
+    private AbstractFrame findFrame(DetailAST name, boolean lookForMethod) {
         if (current == null) {
             return null;
         }
@@ -381,27 +405,62 @@ public class RequireThisCheck extends Check {
     }
 
     /**
+     * Get the name of the nearest parent ClassFrame.
+     * @return the name of the nearest parent ClassFrame.
+     */
+    private String getNearestClassFrameName() {
+        AbstractFrame frame = current;
+        while (frame.getType() != FrameType.CLASS_FRAME) {
+            frame = frame.getParent();
+        }
+        return frame.getFrameName();
+    }
+
+    /** An AbstractFrame type. */
+    private enum FrameType {
+        /** Class frame type. */
+        CLASS_FRAME,
+        /** Method frame type. */
+        METHOD_FRAME,
+        /** Block frame type. */
+        BLOCK_FRAME,
+    }
+
+    /**
      * A declaration frame.
      * @author Stephen Bloch
      */
-    private static class LexicalFrame {
+    private abstract static class AbstractFrame {
         /** Set of name of variables declared in this frame. */
         private final Set<DetailAST> varIdents;
 
         /**
          * Parent frame.
          */
-        private final LexicalFrame parent;
+        private final AbstractFrame parent;
+
+        /**
+         * Frame name.
+         */
+        private final String frameName;
 
         /**
          * Constructor -- invokable only via super() from subclasses.
          *
          * @param parent parent frame
+         * @param frameName frame name
          */
-        protected LexicalFrame(LexicalFrame parent) {
+        protected AbstractFrame(AbstractFrame parent, String frameName) {
             this.parent = parent;
+            this.frameName = frameName;
             varIdents = Sets.newHashSet();
         }
+
+        /**
+         * Get the type of the frame.
+         * @return a FrameType.
+         */
+        protected abstract FrameType getType();
 
         /**
          * Add a name to the frame.
@@ -411,8 +470,12 @@ public class RequireThisCheck extends Check {
             varIdents.add(identToAdd);
         }
 
-        protected LexicalFrame getParent() {
+        protected AbstractFrame getParent() {
             return parent;
+        }
+
+        protected String getFrameName() {
+            return frameName;
         }
 
         /** Check whether the frame contains a given name.
@@ -428,14 +491,14 @@ public class RequireThisCheck extends Check {
          * @param lookForMethod whether we are looking for a method name.
          * @return whether it was found.
          */
-        protected LexicalFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
-            LexicalFrame frame = null;
+        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+            AbstractFrame frame;
 
             if (!lookForMethod
                 && contains(nameToFind)) {
                 frame = this;
             }
-            else if (parent != null) {
+            else {
                 frame = parent.getIfContains(nameToFind, lookForMethod);
             }
             return frame;
@@ -490,40 +553,29 @@ public class RequireThisCheck extends Check {
     }
 
     /**
-     * The global frame; should hold only class names.
-     * @author Stephen Bloch
-     */
-    private static class GlobalFrame extends LexicalFrame {
-
-        /**
-         * Constructor for the root of the FrameTree.
-         */
-        protected GlobalFrame() {
-            super(null);
-        }
-    }
-
-    /**
      * A frame initiated at method definition; holds parameter names.
      * @author Stephen Bloch
      */
-    private static class MethodFrame extends LexicalFrame {
+    private static class MethodFrame extends AbstractFrame {
         /**
          * Creates method frame.
          * @param parent parent frame
          */
-        protected MethodFrame(LexicalFrame parent) {
-            super(parent);
+        protected MethodFrame(AbstractFrame parent) {
+            super(parent, null);
+        }
+
+        @Override
+        protected FrameType getType() {
+            return FrameType.METHOD_FRAME;
         }
     }
 
     /**
-     * A frame initiated at class definition; holds instance variable
-     * names.  For the present, I'm not worried about other class names,
-     * method names, etc.
+     * A frame initiated at class< enum or interface definition; holds instance variable names.
      * @author Stephen Bloch
      */
-    private static class ClassFrame extends LexicalFrame {
+    private static class ClassFrame extends AbstractFrame {
         /** Set of idents of instance members declared in this frame. */
         private final Set<DetailAST> instanceMembers;
         /** Set of idents of instance methods declared in this frame. */
@@ -536,13 +588,19 @@ public class RequireThisCheck extends Check {
         /**
          * Creates new instance of ClassFrame.
          * @param parent parent frame
+         * @param frameName frame name
          */
-        ClassFrame(LexicalFrame parent) {
-            super(parent);
+        ClassFrame(AbstractFrame parent, String frameName) {
+            super(parent, frameName);
             instanceMembers = Sets.newHashSet();
             instanceMethods = Sets.newHashSet();
             staticMembers = Sets.newHashSet();
             staticMethods = Sets.newHashSet();
+        }
+
+        @Override
+        protected FrameType getType() {
+            return FrameType.CLASS_FRAME;
         }
 
         /**
@@ -599,8 +657,7 @@ public class RequireThisCheck extends Check {
 
         @Override
         boolean contains(DetailAST nameToFind) {
-            return super.contains(nameToFind)
-                    || containsName(instanceMembers, nameToFind)
+            return containsName(instanceMembers, nameToFind)
                     || containsName(instanceMethods, nameToFind)
                     || containsName(staticMembers, nameToFind)
                     || containsName(staticMethods, nameToFind);
@@ -613,13 +670,13 @@ public class RequireThisCheck extends Check {
         }
 
         @Override
-        protected LexicalFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
-            LexicalFrame frame;
+        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+            AbstractFrame frame = null;
 
             if (contains(nameToFind)) {
                 frame = this;
             }
-            else {
+            else if (getParent() != null) {
                 frame = getParent().getIfContains(nameToFind, lookForMethod);
             }
             return frame;
@@ -627,19 +684,22 @@ public class RequireThisCheck extends Check {
     }
 
     /**
-     * A frame initiated on entering a statement list; holds local variable
-     * names.  For the present, I'm not worried about other class names,
-     * method names, etc.
+     * A frame initiated on entering a statement list; holds local variable names.
      * @author Stephen Bloch
      */
-    private static class BlockFrame extends LexicalFrame {
+    private static class BlockFrame extends AbstractFrame {
 
         /**
          * Creates block frame.
          * @param parent parent frame
          */
-        protected BlockFrame(LexicalFrame parent) {
-            super(parent);
+        protected BlockFrame(AbstractFrame parent) {
+            super(parent, null);
+        }
+
+        @Override
+        protected FrameType getType() {
+            return FrameType.BLOCK_FRAME;
         }
     }
 }
