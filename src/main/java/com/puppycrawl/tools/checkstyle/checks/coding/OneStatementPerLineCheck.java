@@ -120,8 +120,8 @@ public final class OneStatementPerLineCheck extends Check {
                 if (isMultilineStatement(currentStatement)) {
                     currentStatement = ast.getPreviousSibling();
                 }
-                if (isOnTheSameLine(currentStatement, lastStatementEnd,
-                        forStatementEnd) && !inForHeader) {
+                if (!inForHeader
+                        && isOnTheSameLine(currentStatement, lastStatementEnd, forStatementEnd)) {
                     log(ast, MSG_KEY);
                 }
                 break;

@@ -501,10 +501,10 @@ public final class AnnotationUseStyleCheck extends Check {
             log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
         }
         else if (closingParens == ClosingParens.NEVER
-            && !ast.branchContains(TokenTypes.EXPR)
-            && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
-            && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)
-            && parenExists) {
+                 && parenExists
+                 && !ast.branchContains(TokenTypes.EXPR)
+                 && !ast.branchContains(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR)
+                 && !ast.branchContains(TokenTypes.ANNOTATION_ARRAY_INIT)) {
             log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
         }
     }

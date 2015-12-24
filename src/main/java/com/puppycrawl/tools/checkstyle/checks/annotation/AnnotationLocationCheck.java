@@ -253,9 +253,9 @@ public class AnnotationLocationCheck extends Check {
         else {
             allowingCondition = allowSamelineSingleParameterlessAnnotation;
         }
-        return allowingCondition && !hasNodeBefore(annotation)
-            || !allowingCondition && !hasNodeBeside(annotation)
-            || allowSamelineMultipleAnnotations;
+        return allowSamelineMultipleAnnotations
+            || allowingCondition && !hasNodeBefore(annotation)
+            || !allowingCondition && !hasNodeBeside(annotation);
     }
 
     /**

@@ -417,8 +417,8 @@ public class ImportOrderCheck
         final int groupIdx = getGroupNumber(name);
         final int line = ident.getLineNo();
 
-        if (!beforeFirstImport && isAlphabeticallySortableStaticImport(isStatic)
-                || groupIdx == lastGroup) {
+        if (groupIdx == lastGroup
+            || !beforeFirstImport && isAlphabeticallySortableStaticImport(isStatic)) {
             doVisitTokenInSameGroup(isStatic, previous, name, line);
         }
         else if (groupIdx > lastGroup) {
@@ -469,17 +469,17 @@ public class ImportOrderCheck
         }
         else {
             final boolean shouldFireError =
-                // current and previous static or current and
-                // previous non-static
-                lastImportStatic == isStatic
-                &&
-                        // and out of lexicographic order
-                        compare(lastImport, name, caseSensitive) > 0
-                ||
                 // previous non-static but current is static (above)
                 // or
                 // previous static but current is non-static (under)
-                previous;
+                previous
+                    ||
+                    // current and previous static or current and
+                    // previous non-static
+                    lastImportStatic == isStatic
+                &&
+                // and out of lexicographic order
+                compare(lastImport, name, caseSensitive) > 0;
 
             if (shouldFireError) {
                 log(line, MSG_ORDERING, name);

@@ -785,7 +785,7 @@ public class CustomImportOrderCheck extends Check {
         final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");
         int count = firstPackageDomainsCount;
 
-        while (tokens.hasMoreTokens() && count > 0) {
+        while (count > 0 && tokens.hasMoreTokens()) {
             builder.append(tokens.nextToken()).append('.');
             count--;
         }

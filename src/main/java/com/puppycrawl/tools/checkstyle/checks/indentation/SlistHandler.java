@@ -81,8 +81,8 @@ public class SlistHandler extends BlockParentHandler {
         // if our parent is a block handler we want to be transparent
         if (getParent() instanceof BlockParentHandler
                 && !(getParent() instanceof SlistHandler)
-            || getParent() instanceof CaseHandler
-                && child instanceof SlistHandler) {
+            || child instanceof SlistHandler
+                && getParent() instanceof CaseHandler) {
             return getParent().getSuggestedChildIndent(child);
         }
         return super.getSuggestedChildIndent(child);

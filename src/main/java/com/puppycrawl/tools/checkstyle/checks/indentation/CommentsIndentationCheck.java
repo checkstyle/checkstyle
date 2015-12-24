@@ -315,8 +315,8 @@ public class CommentsIndentationCheck extends Check {
      */
     private static boolean isFallThroughSingleLineComment(DetailAST prevStmt, DetailAST nextStmt) {
         return prevStmt != null
-            && prevStmt.getType() != TokenTypes.LITERAL_CASE
             && nextStmt != null
+            && prevStmt.getType() != TokenTypes.LITERAL_CASE
             && (nextStmt.getType() == TokenTypes.LITERAL_CASE
                 || nextStmt.getType() == TokenTypes.LITERAL_DEFAULT);
     }

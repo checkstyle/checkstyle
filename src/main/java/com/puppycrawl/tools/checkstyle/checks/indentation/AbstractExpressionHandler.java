@@ -577,8 +577,9 @@ public abstract class AbstractExpressionHandler {
             // or has <lparen level> + 1 indentation
             final int lparenLevel = expandedTabsColumnNo(lparen);
 
-            if (!getIndent().isAcceptable(rparenLevel) && isOnStartOfLine(rparen)
-                    && rparenLevel != lparenLevel + 1) {
+            if (rparenLevel != lparenLevel + 1
+                    && !getIndent().isAcceptable(rparenLevel)
+                    && isOnStartOfLine(rparen)) {
                 logError(rparen, "rparen", rparenLevel);
             }
         }

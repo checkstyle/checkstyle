@@ -385,8 +385,8 @@ public class LeftCurlyCheck
             nextToken = leftCurly.getFirstChild();
         }
         else {
-            if (leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF
-                    && !ignoreEnums) {
+            if (!ignoreEnums
+                    && leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF) {
                 nextToken = leftCurly.getNextSibling();
             }
         }

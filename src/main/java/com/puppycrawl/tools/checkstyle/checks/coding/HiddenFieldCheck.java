@@ -401,7 +401,7 @@ public class HiddenFieldCheck
      *     ignoreSetter is true and ast is the parameter of a setter method.
      */
     private boolean isIgnoredSetterParam(DetailAST ast, String name) {
-        if (ast.getType() == TokenTypes.PARAMETER_DEF && ignoreSetter) {
+        if (ignoreSetter && ast.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST methodAST = parametersAST.getParent();
             if (parametersAST.getChildCount() == 1
@@ -479,8 +479,8 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredConstructorParam(DetailAST ast) {
         boolean result = false;
-        if (ast.getType() == TokenTypes.PARAMETER_DEF
-            && ignoreConstructorParameter) {
+        if (ignoreConstructorParameter
+                && ast.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parametersAST = ast.getParent();
             final DetailAST constructorAST = parametersAST.getParent();
             result = constructorAST.getType() == TokenTypes.CTOR_DEF;
@@ -497,8 +497,8 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredParamOfAbstractMethod(DetailAST ast) {
         boolean result = false;
-        if (ast.getType() == TokenTypes.PARAMETER_DEF
-            && ignoreAbstractMethods) {
+        if (ignoreAbstractMethods
+                && ast.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
