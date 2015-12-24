@@ -262,8 +262,8 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
         final int parentType = ast.getParent().getType();
         final DetailAST modifiers = ast.getFirstChild();
 
-        if (!(parentType == TokenTypes.OBJBLOCK
-                || ignoreFinal && modifiers.branchContains(TokenTypes.FINAL))) {
+        if (parentType != TokenTypes.OBJBLOCK
+                && (!ignoreFinal || !modifiers.branchContains(TokenTypes.FINAL))) {
             final DetailAST variable = ast.findFirstToken(TokenTypes.IDENT);
 
             if (!isVariableMatchesIgnorePattern(variable.getText())) {

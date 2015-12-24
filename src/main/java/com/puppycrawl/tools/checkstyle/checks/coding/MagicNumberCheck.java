@@ -220,7 +220,7 @@ public class MagicNumberCheck extends Check {
         final DetailAST constantDefAST = findContainingConstantDef(ast);
 
         if (constantDefAST == null) {
-            if (!(ignoreFieldDeclaration && isFieldDeclaration(ast))) {
+            if (!ignoreFieldDeclaration || !isFieldDeclaration(ast)) {
                 reportMagicNumber(ast);
             }
         }

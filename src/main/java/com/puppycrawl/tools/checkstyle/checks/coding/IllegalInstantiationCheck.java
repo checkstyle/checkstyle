@@ -344,7 +344,7 @@ public class IllegalInstantiationCheck
             final boolean isSameFile = classNames.contains(className);
             final boolean isSamePackage = isSamePackage(className);
 
-            if (!(isSameFile || isSamePackage)) {
+            if (!isSameFile && !isSamePackage) {
                 return true;
             }
         }

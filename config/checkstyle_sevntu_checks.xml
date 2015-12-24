@@ -138,5 +138,6 @@
                       ### InnerClass(.*)"/>
         </module>
         <module name="LogicConditionNeedOptimizationCheck"/>
+        <module name="AvoidConditionInversionCheck"/>
     </module>
 </module>

@@ -93,7 +93,7 @@ public class Comment implements TextBlock {
         final long inStart = startLine * multiplier + startCol;
         final long inEnd = endLine * multiplier + endCol;
 
-        return !(thisEnd < inStart || inEnd < thisStart);
+        return thisEnd >= inStart && inEnd >= thisStart;
     }
 
     @Override
