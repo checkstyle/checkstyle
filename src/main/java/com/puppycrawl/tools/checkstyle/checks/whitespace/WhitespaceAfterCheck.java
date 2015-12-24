@@ -123,9 +123,9 @@ public class WhitespaceAfterCheck
 
         if (after < line.length()) {
             final char charAfter = line.charAt(after);
-            followedByWhitespace = Character.isWhitespace(charAfter)
-                || targetAST.getType() == TokenTypes.SEMI
-                    && (charAfter == ';' || charAfter == ')');
+            followedByWhitespace = charAfter == ';'
+                || charAfter == ')'
+                || Character.isWhitespace(charAfter);
         }
         return followedByWhitespace;
     }

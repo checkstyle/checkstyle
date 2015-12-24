@@ -137,5 +137,6 @@
                       ### InnerInterface(.*)
                       ### InnerClass(.*)"/>
         </module>
+        <module name="LogicConditionNeedOptimizationCheck"/>
     </module>
 </module>

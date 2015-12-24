@@ -307,10 +307,10 @@ public class GenericWhitespaceCheck extends Check {
      * @return checks if given character is valid
      */
     private static boolean isCharacterValidAfterGenericEnd(char charAfter) {
-        return Character.isWhitespace(charAfter)
-                || charAfter == '(' || charAfter == ')'
-                || charAfter == ',' || charAfter == '['
-                || charAfter == '.' || charAfter == ':'
-                || charAfter == ';';
+        return charAfter == '(' || charAfter == ')'
+            || charAfter == ',' || charAfter == '['
+            || charAfter == '.' || charAfter == ':'
+            || charAfter == ';'
+            || Character.isWhitespace(charAfter);
     }
 }

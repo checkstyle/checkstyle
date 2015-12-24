@@ -334,7 +334,7 @@ public class RedundantModifierCheck
         else {
             final DetailAST parentClassAst = ast.getParent().getParent();
 
-            if (parentClassAst.getType() == TokenTypes.INTERFACE_DEF || hasPublicModifier) {
+            if (hasPublicModifier || parentClassAst.getType() == TokenTypes.INTERFACE_DEF) {
                 isAccessibleFromPublic = isClassPublic(parentClassAst);
             }
         }

@@ -462,10 +462,11 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
         final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
 
-        return nodeScope.isIn(scope)
-                && surroundingScope.isIn(scope)
-                && (excludeScope == null || nodeScope != excludeScope
-                    && surroundingScope != excludeScope);
+        return (excludeScope == null
+                || nodeScope != excludeScope
+                && surroundingScope != excludeScope)
+            && nodeScope.isIn(scope)
+            && surroundingScope.isIn(scope);
     }
 
     /**
@@ -488,7 +489,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         else {
             // Check for inheritDoc
             boolean hasInheritDocTag = false;
-            while (it.hasNext() && !hasInheritDocTag) {
+            while (!hasInheritDocTag && it.hasNext()) {
                 hasInheritDocTag = it.next().isInheritDocTag();
             }
 
