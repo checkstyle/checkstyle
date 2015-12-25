@@ -763,7 +763,7 @@ thead: theadTagOpen
 singletonElement: singletonTag
             | areaTag
             | baseTag
-            | basefrontTag
+            | basefontTag
             | brTag
             | colTag
             | frameTag
@@ -801,7 +801,7 @@ singletonTag: OPEN
 
 areaTag: OPEN AREA_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
 baseTag: OPEN BASE_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-basefrontTag: OPEN BASEFRONT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
+basefontTag: OPEN BASEFONT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
 brTag: OPEN BR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
 colTag: OPEN COL_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
 frameTag: OPEN FRAME_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
@@ -817,7 +817,7 @@ wrongSinletonTag: OPEN SLASH singletonTagName CLOSE {notifyErrorListeners($singl
                   ;
 singletonTagName: (AREA_HTML_TAG_NAME
                   | BASE_HTML_TAG_NAME
-                  | BASEFRONT_HTML_TAG_NAME
+                  | BASEFONT_HTML_TAG_NAME
                   | BR_HTML_TAG_NAME
                   | COL_HTML_TAG_NAME
                   | FRAME_HTML_TAG_NAME

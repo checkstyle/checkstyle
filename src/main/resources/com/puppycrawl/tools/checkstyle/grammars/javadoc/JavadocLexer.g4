@@ -294,7 +294,7 @@ THEAD_HTML_TAG_NAME: T H E A D {!htmlTagNameCatched}? {htmlTagNameCatched=true;}
 // singleton tags
 AREA_HTML_TAG_NAME: A R E A {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 BASE_HTML_TAG_NAME: B A S E {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
-BASEFRONT_HTML_TAG_NAME: B A S E F R O N T {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
+BASEFONT_HTML_TAG_NAME: B A S E F O N T {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 BR_HTML_TAG_NAME: B R {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 COL_HTML_TAG_NAME: C O L {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
 FRAME_HTML_TAG_NAME: F R A M E {!htmlTagNameCatched}? {htmlTagNameCatched=true;};
