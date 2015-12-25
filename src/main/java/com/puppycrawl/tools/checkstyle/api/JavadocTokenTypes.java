@@ -1508,10 +1508,10 @@ public final class JavadocTokenTypes {
     /** Base tag name. */
     public static final int BASE_HTML_TAG_NAME = JavadocParser.BASE_HTML_TAG_NAME;
 
-    /** Basefront html tag. */
-    public static final int BASEFRONT_TAG = JavadocParser.RULE_basefrontTag + RULE_TYPES_OFFSET;
-    /** Basefront tag name. */
-    public static final int BASEFRONT_HTML_TAG_NAME = JavadocParser.BASEFRONT_HTML_TAG_NAME;
+    /** Basefont html tag. */
+    public static final int BASEFONT_TAG = JavadocParser.RULE_basefontTag + RULE_TYPES_OFFSET;
+    /** Basefont tag name. */
+    public static final int BASEFONT_HTML_TAG_NAME = JavadocParser.BASEFONT_HTML_TAG_NAME;
 
     /** Br html tag. */
     public static final int BR_TAG = JavadocParser.RULE_brTag + RULE_TYPES_OFFSET;
