@@ -35,13 +35,13 @@ import java.util.Locale;
  * @author Mehmet Can Cömert
  */
 public enum SeverityLevel {
-    /** Security level ignore. */
+    /** Severity level ignore. */
     IGNORE,
-    /** Security level info. */
+    /** Severity level info. */
     INFO,
-    /** Security level warning. */
+    /** Severity level warning. */
     WARNING,
-    /** Security level error. */
+    /** Severity level error. */
     ERROR;
 
     @Override

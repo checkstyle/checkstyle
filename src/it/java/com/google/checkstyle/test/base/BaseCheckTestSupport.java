@@ -41,6 +41,7 @@ import java.util.Properties;
 import java.util.regex.Pattern;
 
 import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -85,7 +86,7 @@ public class BaseCheckTestSupport {
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(dc);
-        checker.addListener(new BriefLogger(stream));
+        checker.addListener(new BriefUtLogger(stream));
         return checker;
     }
 

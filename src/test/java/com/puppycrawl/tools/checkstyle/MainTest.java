@@ -259,12 +259,12 @@ public class MainTest {
             public void checkAssertion() throws IOException {
                 final String expectedPath = getFilePath("InputMain.java");
                 assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
-                                + "%1$s:3:14: "
-                                + "warning: Name 'InputMain' must match pattern"
-                                + " '^[a-z0-9]*$'.%n"
-                                + "%1$s:5:7: "
-                                + "warning: Name 'InputMainInner' must match pattern"
-                                + " '^[a-z0-9]*$'.%n"
+                                + "[WARN] %1$s:3:14: "
+                                + "Name 'InputMain' must match pattern"
+                                + " '^[a-z0-9]*$'. [TypeName]%n"
+                                + "[WARN] %1$s:5:7: "
+                                + "Name 'InputMainInner' must match pattern"
+                                + " '^[a-z0-9]*$'. [TypeName]%n"
                                 + "Audit done.%n", expectedPath),
                         systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -283,10 +283,10 @@ public class MainTest {
             public void checkAssertion() throws IOException {
                 final String expectedPath = getFilePath("InputMain.java");
                 assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
-                        + "%1$s:3:14: error: "
-                        + "Name 'InputMain' must match pattern '^[a-z0-9]*$'.%n"
-                        + "%1$s:5:7: error: "
-                        + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'.%n"
+                        + "[ERROR] %1$s:3:14: "
+                        + "Name 'InputMain' must match pattern '^[a-z0-9]*$'. [TypeName]%n"
+                        + "[ERROR] %1$s:5:7: "
+                        + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'. [TypeName]%n"
                         + "Audit done.%n"
                         + "Checkstyle ends with 2 errors.%n", expectedPath), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -513,8 +513,8 @@ public class MainTest {
                 final String expectedPath = getFilePath("checks/metrics") + File.separator;
                 final StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
-                final String format = "%s.java:%s: warning: File length is %s lines "
-                    + "(max allowed is 170).";
+                final String format = "[WARN] %s.java:%s: File length is %s lines "
+                    + "(max allowed is 170). [FileLength]";
                 for (String[] outputValue : outputValues) {
                     final String line = String.format(Locale.ROOT, format,
                             expectedPath + outputValue[0], outputValue[1],

@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class BaseCheckTestSupport {
@@ -65,23 +63,7 @@ public class BaseCheckTestSupport {
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(dc);
-        checker.addListener(new BriefLogger(stream));
-        return checker;
-    }
-
-    protected Checker createChecker(Configuration checkConfig, boolean printSeverity)
-        throws Exception {
-
-        final DefaultConfiguration dc = createCheckerConfig(checkConfig);
-        final Checker checker = new Checker();
-        // make sure the tests always run with english error messages
-        // so the tests don't fail in supported locales like german
-        final Locale locale = Locale.ENGLISH;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(dc);
-        checker.addListener(new BriefLogger(stream, printSeverity));
+        checker.addListener(new BriefUtLogger(stream));
         return checker;
     }
 
@@ -119,11 +101,6 @@ public class BaseCheckTestSupport {
     protected void verify(Configuration aConfig, String fileName, String... expected)
             throws Exception {
         verify(createChecker(aConfig), fileName, fileName, expected);
-    }
-
-    protected void verify(Configuration aConfig, boolean printSeverity,
-                          String filename, String... expected) throws Exception {
-        verify(createChecker(aConfig, printSeverity), filename, filename, expected);
     }
 
     protected void verify(Checker checker, String fileName, String... expected)
@@ -275,23 +252,5 @@ public class BaseCheckTestSupport {
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
                 Locale.ROOT);
         return formatter.format(arguments);
-    }
-
-    /**
-     * A brief logger that only display info about errors.
-     */
-    protected static class BriefLogger
-            extends DefaultLogger {
-        public BriefLogger(OutputStream out) {
-            super(out, true, out, false, false);
-        }
-
-        public BriefLogger(OutputStream out, boolean printSeverity) {
-            super(out, true, out, false, printSeverity);
-        }
-
-        @Override
-        public void auditStarted(AuditEvent event) {
-        }
     }
 }

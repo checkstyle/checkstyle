@@ -17,19 +17,19 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.base;
+package com.puppycrawl.tools.checkstyle;
 
-import java.io.OutputStream;
-
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 
-/** A brief logger that only display info about errors. */
-class BriefLogger extends DefaultLogger {
-    BriefLogger(OutputStream out) {
-        super(out, true, out, false, false);
-    }
-
-    @Override
-    public void auditStarted(AuditEvent event) { }
+/**
+ * Represents the formatter interface for log message.
+ * @author Andrei Selkin
+ */
+public interface AuditEvemtFormatter {
+    /**
+     * Formats an error message.
+     * @param event audit event.
+     * @return string representation of error message.
+     */
+    String format(AuditEvent event);
 }

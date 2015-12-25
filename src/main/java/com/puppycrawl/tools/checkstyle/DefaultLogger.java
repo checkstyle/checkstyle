@@ -40,11 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @see XMLLogger
  */
-public class DefaultLogger
-    extends AutomaticBean
-    implements AuditListener {
-    /** Cushion for avoiding StringBuffer.expandCapacity */
-    private static final int BUFFER_CUSHION = 12;
+public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /** Where to write info messages. **/
     private final PrintWriter infoWriter;
@@ -56,8 +52,8 @@ public class DefaultLogger
     /** Close error stream after use. */
     private final boolean closeError;
 
-    /** Print severity level. */
-    private boolean printSeverity = true;
+    /** Formatter for the log message. */
+    private final AuditEvemtFormatter formatter;
 
     /**
      * Creates a new {@code DefaultLogger} instance.
@@ -75,15 +71,13 @@ public class DefaultLogger
      * @param closeInfoAfterUse auditFinished should close infoStream.
      * @param errorStream the {@code OutputStream} for error messages.
      * @param closeErrorAfterUse auditFinished should close errorStream
-     * @param printSeverity if severity level should be printed.
      */
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
-                         boolean closeErrorAfterUse,
-                         boolean printSeverity) {
-        this(infoStream, closeInfoAfterUse, errorStream, closeErrorAfterUse);
-        this.printSeverity = printSeverity;
+                         boolean closeErrorAfterUse) {
+        this(infoStream, closeInfoAfterUse, errorStream, closeErrorAfterUse,
+            new AuditEventDefaultFormatter());
     }
 
     /**
@@ -93,11 +87,13 @@ public class DefaultLogger
      * @param closeInfoAfterUse auditFinished should close infoStream
      * @param errorStream the {@code OutputStream} for error messages
      * @param closeErrorAfterUse auditFinished should close errorStream
+     * @param messageFormatter formatter for the log message.
      */
     public DefaultLogger(OutputStream infoStream,
                          boolean closeInfoAfterUse,
                          OutputStream errorStream,
-                         boolean closeErrorAfterUse) {
+                         boolean closeErrorAfterUse,
+                         AuditEvemtFormatter messageFormatter) {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
@@ -111,6 +107,7 @@ public class DefaultLogger
         else {
             errorWriter = new PrintWriter(errorStreamWriter);
         }
+        formatter = messageFormatter;
     }
 
     /**
@@ -122,25 +119,8 @@ public class DefaultLogger
     public void addError(AuditEvent event) {
         final SeverityLevel severityLevel = event.getSeverityLevel();
         if (severityLevel != SeverityLevel.IGNORE) {
-
-            final String fileName = event.getFileName();
-            final String message = event.getMessage();
-
-            // avoid StringBuffer.expandCapacity
-            final int bufLen = fileName.length() + message.length()
-                + BUFFER_CUSHION;
-            final StringBuilder sb = new StringBuilder(bufLen);
-
-            sb.append(fileName).append(':').append(event.getLine());
-            if (event.getColumn() > 0) {
-                sb.append(':').append(event.getColumn());
-            }
-            final String errorMessageSeparator = ": ";
-            if (printSeverity) {
-                sb.append(errorMessageSeparator).append(severityLevel.getName());
-            }
-            sb.append(errorMessageSeparator).append(message);
-            errorWriter.println(sb);
+            final String errorMessage = formatter.format(event);
+            errorWriter.println(errorMessage);
         }
     }
 
@@ -159,8 +139,9 @@ public class DefaultLogger
     }
 
     @Override
-    public void fileFinished(AuditEvent event) {
-        infoWriter.flush();
+    public void auditFinished(AuditEvent event) {
+        infoWriter.println("Audit done.");
+        closeStreams();
     }
 
     @Override
@@ -169,9 +150,8 @@ public class DefaultLogger
     }
 
     @Override
-    public void auditFinished(AuditEvent event) {
-        infoWriter.println("Audit done.");
-        closeStreams();
+    public void fileFinished(AuditEvent event) {
+        infoWriter.flush();
     }
 
     /**

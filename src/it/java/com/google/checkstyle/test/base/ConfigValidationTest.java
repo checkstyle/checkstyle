@@ -29,6 +29,7 @@ import java.util.Locale;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -42,7 +43,7 @@ public class ConfigValidationTest extends BaseCheckTestSupport {
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(stream));
+        checker.addListener(new BriefUtLogger(stream));
 
         final List<File> files = new ArrayList<>();
         listFiles(files, new File("src/it/"), "java");

@@ -202,7 +202,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(stream));
+        checker.addListener(new BriefUtLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -230,7 +230,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-        checker.addListener(new BriefLogger(stream));
+        checker.addListener(new BriefUtLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
@@ -246,7 +246,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         otherChecker.setLocaleLanguage(locale.getLanguage());
         otherChecker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         otherChecker.configure(checkerConfig);
-        otherChecker.addListener(new BriefLogger(stream));
+        otherChecker.addListener(new BriefUtLogger(stream));
         // here is diff with previous checker
         checkerConfig.addAttribute("fileExtensions", "java,javax");
 
