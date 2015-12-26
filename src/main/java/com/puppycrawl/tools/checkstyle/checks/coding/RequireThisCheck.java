@@ -38,7 +38,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * That is references to instance variables and methods of the present
  * object are explicitly of the form &quot;this.varName&quot; or
  * &quot;this.methodName(args)&quot;.
- *</p>
+ * </p>
+ *
+ * <p>Warning: the Check is very controversial and not that actual nowadays.</p>
  *
  * <p>Examples of use:
  * <pre>
@@ -52,6 +54,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *   &lt;property name=&quot;checkMethods&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * <p>Rationale:</p>
+ * <ol>
+ *   <li>
+ *     The same notation/habit for C++ and Java (C++ have global methods, so having
+ *     &quot;this.&quot; do make sense in it to distinguish call of method of class
+ *     instead of global).
+ *   </li>
+ *   <li>
+ *     Non-IDE development (ease of refactoring, some clearness to distinguish
+ *     static and non-static methods).
+ *   </li>
+ * </ol>
  *
  * <p>Limitations: Nothing is currently done about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
@@ -374,7 +389,8 @@ public class RequireThisCheck extends Check {
     private AbstractFrame checkMethod(DetailAST ast) {
         final AbstractFrame frame = findFrame(ast, true);
         if (frame != null
-                && ((ClassFrame) frame).hasInstanceMethod(ast)) {
+            && ((ClassFrame) frame).hasInstanceMethod(ast)
+            && !((ClassFrame) frame).hasStaticMethod(ast)) {
             return frame;
         }
         return null;
@@ -478,12 +494,12 @@ public class RequireThisCheck extends Check {
             return frameName;
         }
 
-        /** Check whether the frame contains a given name.
+        /** Check whether the frame contains a field or a variable with the given name.
          * @param nameToFind the IDENT ast of the name we're looking for
          * @return whether it was found
          */
-        boolean contains(DetailAST nameToFind) {
-            return containsName(varIdents, nameToFind);
+        boolean containsFieldOrVariable(DetailAST nameToFind) {
+            return containsFieldOrVariableDef(varIdents, nameToFind);
         }
 
         /** Check whether the frame contains a given name.
@@ -495,7 +511,7 @@ public class RequireThisCheck extends Check {
             AbstractFrame frame;
 
             if (!lookForMethod
-                && contains(nameToFind)) {
+                && containsFieldOrVariable(nameToFind)) {
                 frame = this;
             }
             else {
@@ -512,7 +528,7 @@ public class RequireThisCheck extends Check {
          * @return true if the set contains a declaration with the text of the specified
          *         IDENT ast and it is declared in a proper position.
          */
-        protected boolean containsName(Set<DetailAST> set, DetailAST ident) {
+        protected boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
             boolean result = false;
             for (DetailAST ast: set) {
                 if (isProperDefinition(ident, ast)) {
@@ -642,25 +658,33 @@ public class RequireThisCheck extends Check {
          *         instance member of the class
          */
         public boolean hasInstanceMember(final DetailAST ident) {
-            return containsName(instanceMembers, ident);
+            return containsFieldOrVariableDef(instanceMembers, ident);
         }
 
         /**
          * Checks if a given name is a known instance method of the class.
-         * @param ident the IDENT ast of the name to check
-         * @return true is the given name is a name of a known
+         * @param ident the IDENT ast of the method call to check
+         * @return true if the given ast is correspondent to a known
          *         instance method of the class
          */
         public boolean hasInstanceMethod(final DetailAST ident) {
-            return containsName(instanceMethods, ident);
+            return containsMethodDef(instanceMethods, ident);
+        }
+
+        /**
+         * Checks if a given name is a known static method of the class.
+         * @param ident the IDENT ast of the method call to check
+         * @return true is the given ast is correspondent to a known
+         *         instance method of the class
+         */
+        public boolean hasStaticMethod(final DetailAST ident) {
+            return containsMethodDef(staticMethods, ident);
         }
 
         @Override
-        boolean contains(DetailAST nameToFind) {
-            return containsName(instanceMembers, nameToFind)
-                    || containsName(instanceMethods, nameToFind)
-                    || containsName(staticMembers, nameToFind)
-                    || containsName(staticMethods, nameToFind);
+        boolean containsFieldOrVariable(DetailAST nameToFind) {
+            return containsFieldOrVariableDef(instanceMembers, nameToFind)
+                    || containsFieldOrVariableDef(staticMembers, nameToFind);
         }
 
         @Override
@@ -673,13 +697,62 @@ public class RequireThisCheck extends Check {
         protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
             AbstractFrame frame = null;
 
-            if (contains(nameToFind)) {
+            if (lookForMethod && containsMethod(nameToFind)
+                || containsFieldOrVariable(nameToFind)) {
                 frame = this;
             }
             else if (getParent() != null) {
                 frame = getParent().getIfContains(nameToFind, lookForMethod);
             }
             return frame;
+        }
+
+        /**
+         * Check whether the frame contains a given method.
+         * @param methodToFind the AST of the method to find.
+         * @return true, if a method with the same name and number of parameters is found.
+         */
+        private boolean containsMethod(DetailAST methodToFind) {
+            return containsMethodDef(instanceMethods, methodToFind)
+                || containsMethodDef(staticMethods, methodToFind);
+        }
+
+        /**
+         * Whether the set contains a method definition with the
+         *     same name and number of parameters.
+         * @param set the set of definitions.
+         * @param ident the specified method call IDENT ast.
+         * @return true if the set contains a definition with the
+         *     same name and number of parameters.
+         */
+        private boolean containsMethodDef(Set<DetailAST> set, DetailAST ident) {
+            boolean result = false;
+            for (DetailAST ast: set) {
+                if (isSimilarSignature(ident, ast)) {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Whether the method definition has the same name and number of parameters.
+         * @param ident the specified method call IDENT ast.
+         * @param ast the ast of a method definition to compare with.
+         * @return true if a method definition has the same name and number of parameters
+         *     as the method call.
+         */
+        private boolean isSimilarSignature(DetailAST ident, DetailAST ast) {
+            boolean result = false;
+            if (ident.getText().equals(ast.getText())) {
+                final int paramsNumber = ast.getParent().findFirstToken(TokenTypes.PARAMETERS)
+                    .getChildCount();
+                final int argsNumber = ident.getParent().findFirstToken(TokenTypes.ELIST)
+                    .getChildCount();
+                result = paramsNumber == argsNumber;
+            }
+            return result;
         }
     }
 

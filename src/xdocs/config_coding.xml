@@ -2773,6 +2773,25 @@ public void foo(int i, String s) {}
           &quot;this.methodName(args)&quot; and that those references don't
           rely on the default behavior when &quot;this.&quot; is absent.
         </p>
+
+        <p>
+          Warning: the Check is very controversial and not that actual nowadays.
+        </p>
+
+        <p>
+          Rationale:
+        </p>
+        <ol>
+          <li>
+            The same notation/habit for C++ and Java (C++ have global methods, so having
+            &quot;this.&quot; do make sense in it to distinguish call of method of class
+            instead of global).
+          </li>
+          <li>
+            Non-IDE development (ease of refactoring, some clearness to distinguish
+            static and non-static methods).
+          </li>
+        </ol>
       </subsection>
 
       <subsection name="Properties">
