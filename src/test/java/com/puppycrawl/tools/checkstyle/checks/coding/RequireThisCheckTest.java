@@ -58,6 +58,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
             "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
             "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
+            "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),
@@ -73,6 +74,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "17:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
             "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
             "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
+            "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThis.java"),

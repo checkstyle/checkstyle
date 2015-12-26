@@ -123,3 +123,14 @@ class Issue2240 {
         }
     }
 }
+
+class Issue2539{
+    void foo(int i) {}
+    static void foo(double i) {}
+    void foo() {}
+
+    void bar() {
+        foo(1);
+        foo();
+    }
+}
