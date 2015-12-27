@@ -256,13 +256,15 @@ public class RedundantModifierCheck
                 final DetailAST classModifiers =
                     parent.findFirstToken(TokenTypes.MODIFIERS);
                 checkFinal = checkFinal || classModifiers.branchContains(TokenTypes.FINAL);
-                break;
+                parent = null;
             }
-            if (parent.getType() == TokenTypes.LITERAL_NEW) {
+            else if (parent.getType() == TokenTypes.LITERAL_NEW) {
                 checkFinal = true;
-                break;
+                parent = null;
             }
-            parent = parent.getParent();
+            else {
+                parent = parent.getParent();
+            }
         }
         if (checkFinal && !isAnnotatedWithSafeVarargs(ast)) {
             DetailAST modifier = modifiers.getFirstChild();
