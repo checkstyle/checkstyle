@@ -34,6 +34,9 @@ public class AuditEventDefaultFormatter implements AuditEvemtFormatter {
     /** Length of all separators. */
     private static final int LENGTH_OF_ALL_SEPARATORS = 10;
 
+    /** Suffix of module names like XXXXCheck. */
+    private static final String SUFFIX = "Check";
+
     @Override
     public String format(AuditEvent event) {
         final String fileName = event.getFileName();
@@ -87,7 +90,25 @@ public class AuditEventDefaultFormatter implements AuditEvemtFormatter {
      */
     private static String getCheckShortName(AuditEvent event) {
         final String checkFullName = event.getSourceName();
-        return checkFullName.substring(checkFullName.lastIndexOf('.') + 1,
-            checkFullName.lastIndexOf("Check"));
+        final String checkShortName;
+        final int lastDotIndex = checkFullName.lastIndexOf('.');
+        if (lastDotIndex == -1) {
+            if (checkFullName.endsWith(SUFFIX)) {
+                checkShortName = checkFullName.substring(0, checkFullName.lastIndexOf(SUFFIX));
+            }
+            else {
+                checkShortName = checkFullName.substring(0, checkFullName.length());
+            }
+        }
+        else {
+            if (checkFullName.endsWith(SUFFIX)) {
+                checkShortName = checkFullName.substring(lastDotIndex + 1,
+                    checkFullName.lastIndexOf(SUFFIX));
+            }
+            else {
+                checkShortName = checkFullName.substring(lastDotIndex + 1, checkFullName.length());
+            }
+        }
+        return checkShortName;
     }
 }
