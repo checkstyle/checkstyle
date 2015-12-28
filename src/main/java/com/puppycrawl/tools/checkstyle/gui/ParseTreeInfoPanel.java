@@ -36,6 +36,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
@@ -81,7 +82,6 @@ public class ParseTreeInfoPanel extends JPanel {
         parseTreeTableModel = new ParseTreeTableModel(null);
         treeTable = new JTreeTable(parseTreeTableModel);
         final JScrollPane scrollPane = new JScrollPane(treeTable);
-        add(scrollPane, BorderLayout.PAGE_START);
 
         final JButton fileSelectionButton =
             new JButton(new FileSelectionAction());
@@ -96,7 +96,11 @@ public class ParseTreeInfoPanel extends JPanel {
         treeTable.setLinePositionMap(linesToPosition);
 
         final JScrollPane sp2 = new JScrollPane(textArea);
-        add(sp2, BorderLayout.CENTER);
+
+        final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
+                scrollPane, sp2);
+        add(splitPane, BorderLayout.CENTER);
+        splitPane.setResizeWeight(0.7);
 
         final JPanel pane = new JPanel(new GridLayout(1, 2));
         add(pane, BorderLayout.PAGE_END);
