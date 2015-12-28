@@ -15,6 +15,138 @@
 
   <body>
 
+    <section name="Release 6.14">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Remove parameters validation from LocalVariableName. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2549">#2549</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Print name of the Check after printing violation message. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2666">#2666</a>
+          </li>
+          <li>
+            WhitespaceAround should have an allowEmptyLambda parameter. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2603">#2603</a>
+          </li>
+          <li>
+            Add ENUM_CONSTANT_DEF support to MethodParamPad . Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2505">#2505</a>
+          </li>
+          <li>
+            new CatchParameterName Check: to validate names of catch-block parameters only. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2616">#2616</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            FinalLocalVariable false-positive in SWITCH. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/2405">#2405</a>
+          </li>
+          <li>
+            Typo in Javadoc tag name. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/2376">#2376</a>
+          </li>
+          <li>
+            Extend parsing rule of custom Javadoc tag name. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/461">#461</a>
+          </li>
+          <li>
+            Nesting Checks in each other in config does not produce any error. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2773">#2773</a>
+          </li>
+          <li>
+            RequireThis check message is not clear enough. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2239">#2239</a>
+          </li>
+          <li>
+            OneStatementPerLine: false match with try-with-resources. Author: Jon Bake <a href="https://github.com/checkstyle/checkstyle/issues/2211">#2211</a>
+          </li>
+          <li>
+            Performance issue in UnusedImportsCheck. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2631">#2631</a>
+          </li>
+          <li>
+            Remove unused message. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2756">#2756</a>
+          </li>
+          <li>
+            Create directory structure needed to store cache file. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2575">#2575</a>
+          </li>
+          <li>
+            AbbreviationAsWordInName incorrectly reports constants in annotations. Author: Abram Thielke <a href="https://github.com/checkstyle/checkstyle/issues/2694">#2694</a>
+          </li>
+          <li>
+            Inconsistent violations for NeedBraces/allowSingleLineStatement. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2291">#2291</a>
+          </li>
+          <li>
+            ParameterNameCheck: NullPointerException over checkstyle&#39;s input file. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2678">#2678</a>
+          </li>
+          <li>
+            @SuppressWarnings annotation does not suppress UncommentedMain. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2646">#2646</a>
+          </li>
+          <li>
+            UncommentedMain does not rise violations if main method has varargs as parameters. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2647">#2647</a>
+          </li>
+          <li>
+            Fix &#39;tokens&#39; property in JavadocStyle check. Author: Thomas Jensen <a href="https://github.com/checkstyle/checkstyle/issues/2644">#2644</a>
+          </li>
+          <li>
+            GenericWhitespace: violation on generic like &#39;...... instanceof Type&lt;?&gt;;&#39;. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2633">#2633</a>
+          </li>
+          <li>
+            AbbreviationAsWordInName: update message to print name that violates a format. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2640">#2640</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Use Nexus Staging Maven Plugin for release process. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2619">#2619</a>
+          </li>
+          <li>
+            Enforce Checks of sevntu.checkstyle (released version) over Checkstyle source code. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2661">#2661</a>
+          </li>
+          <li>
+            Make UT &#39;testNonAccessibleFile&#39; locale independent . Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2749">#2749</a>
+          </li>
+          <li>
+            Refactor gui package. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2609">#2609</a>
+          </li>
+          <li>
+            Make DetectorOptions as final and immutable. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2523">#2523</a>
+          </li>
+          <li>
+            Fix additional issues reported by IntelliJ IDEA inspections in Checkstyle code. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2080">#2080</a>
+          </li>
+          <li>
+            conf: update guava version to 19.0. Author: Roman Ivanov
+          </li>
+          <li>
+            doc: Correct regexp in configuration example for ParameterNameCheck. Author: Andrei Selkin
+          </li>
+          <li>
+            doc: Add example for ParameterName into xdoc. Author: Andrei Selkin
+          </li>
+          <li>
+            doc: Fix check name in CatchParameterName xdoc. Author: Andrei Selkin
+          </li>
+          <li>
+            doc: Update comment in google_checks.xml. Author: Michal Kordas
+          </li>
+          <li>
+            Reorganize token sets in UncommentedMain. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2671">#2671</a>
+          </li>
+          <li>
+            refactor internal tests. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2625">#2625</a>
+          </li>
+          <li>
+            Update configuration for XXXXName Checks at checkstyle_checks.xml. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2604">#2604</a>
+          </li>
+          <li>
+            Make validation of expected warnings in integration tests more strict. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2658">#2658</a>
+          </li>
+          <li>
+            spelling: fix typo in word &#39;Existing&#39; in google_style.xml. Author: liscju
+          </li>
+          <li>
+            Fix ParseTreeBuilder&#39;s variable names to be more readable. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/2642">#2642</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.13">
 
       <p>Breaking backward compatibility:</p>
