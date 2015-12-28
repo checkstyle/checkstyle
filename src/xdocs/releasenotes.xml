@@ -61,7 +61,7 @@
             Performance issue in UnusedImportsCheck. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2631">#2631</a>
           </li>
           <li>
-            Remove unused message. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2756">#2756</a>
+            Remove unused message. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/pull/2756">#2756</a>
           </li>
           <li>
             Create directory structure needed to store cache file. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2575">#2575</a>
@@ -82,7 +82,7 @@
             UncommentedMain does not rise violations if main method has varargs as parameters. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2647">#2647</a>
           </li>
           <li>
-            Fix &#39;tokens&#39; property in JavadocStyle check. Author: Thomas Jensen <a href="https://github.com/checkstyle/checkstyle/issues/2644">#2644</a>
+            Fix &#39;tokens&#39; property in JavadocStyle check. Author: Thomas Jensen <a href="https://github.com/checkstyle/checkstyle/pull/2644">#2644</a>
           </li>
           <li>
             GenericWhitespace: violation on generic like &#39;...... instanceof Type&lt;?&gt;;&#39;. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2633">#2633</a>
@@ -100,7 +100,7 @@
             Enforce Checks of sevntu.checkstyle (released version) over Checkstyle source code. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2661">#2661</a>
           </li>
           <li>
-            Make UT &#39;testNonAccessibleFile&#39; locale independent . Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2749">#2749</a>
+            Make UT &#39;testNonAccessibleFile&#39; locale independent . Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/pull/2749">#2749</a>
           </li>
           <li>
             Refactor gui package. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2609">#2609</a>
@@ -127,7 +127,7 @@
             doc: Update comment in google_checks.xml. Author: Michal Kordas
           </li>
           <li>
-            Reorganize token sets in UncommentedMain. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2671">#2671</a>
+            Reorganize token sets in UncommentedMain. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/pull/2671">#2671</a>
           </li>
           <li>
             refactor internal tests. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2625">#2625</a>
@@ -209,10 +209,10 @@
           create HTML web page to describe how to open issues against Checkstyle. Author: Michal Kordas, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2344">#2344</a>
         </li>
         <li>
-          Update JGit to 4.1.1.201511131810-r. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2607">#2607</a>
+          Update JGit to 4.1.1.201511131810-r. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2607">#2607</a>
         </li>
         <li>
-          Make methods private in RequireThisCheck. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2605">#2605</a>
+          Make methods private in RequireThisCheck. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/pull/2605">#2605</a>
         </li>
         <li>
           Tests for validating commit message should not allow period at the end of commit message. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2590">#2590</a>
@@ -233,10 +233,10 @@
           Create test for checkstyle-X.X-all.jar on Travis. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2516">#2516</a>
         </li>
         <li>
-          Update slf4j-simple to 1.7.13. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2586">#2586</a>
+          Update slf4j-simple to 1.7.13. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2586">#2586</a>
         </li>
         <li>
-          Update FindBugs Maven Plugin to 3.0.3. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/2585">#2585</a>
+          Update FindBugs Maven Plugin to 3.0.3. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2585">#2585</a>
         </li>
         <li>
           PMD: resolve problems from DefaultPackage rule. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/957">#957</a>
