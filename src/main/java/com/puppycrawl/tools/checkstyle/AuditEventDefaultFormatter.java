@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * Default log message format is: [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [CheckName]
  * @author Andrei Selkin
  */
-public class AuditEventDefaultFormatter implements AuditEvemtFormatter {
+public class AuditEventDefaultFormatter implements AuditEventFormatter {
 
     /** Length of all separators. */
     private static final int LENGTH_OF_ALL_SEPARATORS = 10;

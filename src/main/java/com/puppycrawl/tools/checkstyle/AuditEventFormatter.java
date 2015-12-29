@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
  * Represents the formatter interface for log message.
  * @author Andrei Selkin
  */
-public interface AuditEvemtFormatter {
+public interface AuditEventFormatter {
     /**
      * Formats an error message.
      * @param event audit event.

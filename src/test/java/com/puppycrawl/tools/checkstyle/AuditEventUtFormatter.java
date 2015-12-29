@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
  * Message format is: filePath:lineNo:columnNo: message.
  * @author Andrei Selkin
  */
-public class AuditEventUtFormatter implements AuditEvemtFormatter {
+public class AuditEventUtFormatter implements AuditEventFormatter {
 
     /** Length of all separators. */
     private static final int LENGTH_OF_ALL_SEPARATORS = 4;
