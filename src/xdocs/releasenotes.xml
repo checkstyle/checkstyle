@@ -15,6 +15,24 @@
 
   <body>
 
+    <section name="Release 6.14.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            JavaNCSSCheck: unknown format type: numero inteiro. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2728">#2728</a>
+          </li>
+          <li>
+            StringIndexOutOfBoundsException in getCheckShortName method of AuditEventDefaultFormatter. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2780">#2780</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            spelling: fix typo in AuditEventFormatter class name. Author: Andrei Selkin
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.14">
       <p>Breaking backward compatibility:</p>
         <ul>
