@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -44,6 +45,27 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public final class CommonUtils {
+
+    /**
+     * The empty String {@code ""}.
+     * @since 2.0
+     */
+    public static final String EMPTY = "";
+
+    /**
+     * An empty immutable {@code double} array.
+     */
+    public static final double[] EMPTY_DOUBLE_ARRAY = new double[0];
+
+    /**
+     * An empty immutable {@code int} array.
+     */
+    public static final int[] EMPTY_INT_ARRAY = new int[0];
+
+    /**
+     * An empty immutable {@code String} array.
+     */
+    public static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
@@ -177,8 +199,8 @@ public final class CommonUtils {
      * @return the length of string.substring(0, toIdx) with tabs expanded.
      */
     public static int lengthExpandedTabs(String inputString,
-            int toIdx,
-            int tabWidth) {
+                                         int toIdx,
+                                         int tabWidth) {
         int len = 0;
         for (int idx = 0; idx < toIdx; idx++) {
             if (inputString.charAt(idx) == '\t') {
@@ -390,7 +412,7 @@ public final class CommonUtils {
      * @return the string, based on template filled with given lines
      */
     public static String fillTemplateWithStringsByRegexp(
-        String template, String lineToPlaceInTemplate, Pattern regexp) {
+            String template, String lineToPlaceInTemplate, Pattern regexp) {
         final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
         String result = template;
         if (matcher.find()) {
@@ -400,5 +422,179 @@ public final class CommonUtils {
             }
         }
         return result;
+    }
+
+    /**
+     * <p>Clones an array returning a typecast result and handling
+     * {@code null}.</p>
+     *
+     * <p>This method returns {@code null} for a {@code null} input array.</p>
+     *
+     * @param array  the array to clone, may be {@code null}
+     * @return the cloned array, {@code null} if {@code null} input
+     */
+    public static int[] clone(final int... array) {
+        if (array == null) {
+            return array;
+        }
+        return array.clone();
+    }
+
+    /**
+     * <p>Converts an array of object Integers to primitives.</p>
+     *
+     * <p>This method returns {@code null} for a {@code null} input array.</p>
+     *
+     * @param array  a {@code Integer} array, may be {@code null}
+     * @return an {@code int} array, {@code null} if null array input
+     * @throws NullPointerException if array content is {@code null}
+     */
+    public static int[] toPrimitive(final Integer... array) {
+        final int[] result;
+
+        if (array.length == 0) {
+            return new int[0];
+        }
+        else {
+            result = new int[array.length];
+            System.arraycopy(result, 0, array, 0, 1);
+        }
+        return result;
+    }
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterator} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list.
+     * A {@code null} separator is the same as an empty String ("").</p>
+     *
+     * @param iterator  the {@code Iterator} of values to join together, may be null
+     * @param separator  the separator character to use, null treated as ""
+     * @return the joined String, {@code null} if null iterator input
+     */
+    public static String join(final Iterator<?> iterator, final String separator) {
+        String bufferString;
+
+        if (iterator.hasNext()) {
+            final Object first = iterator.next();
+            if (!iterator.hasNext()) {
+                return toString(first);
+            }
+
+            // two or more elements
+            final StringBuilder buf = new StringBuilder(256);
+            if (first != null) {
+                buf.append(first);
+            }
+
+            while (iterator.hasNext()) {
+                if (separator != null) {
+                    buf.append(separator);
+                }
+                final Object obj = iterator.next();
+                if (obj != null) {
+                    buf.append(obj);
+                }
+            }
+            bufferString = buf.toString();
+        }
+        else {
+            bufferString = EMPTY;
+        }
+        return bufferString;
+    }
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterable} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list.
+     * A {@code null} separator is the same as an empty String ("").</p>
+     *
+     * @param iterable  the {@code Iterable} providing the values to join together, may be null
+     * @param separator  the separator character to use, null treated as ""
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.3
+     */
+    public static String join(final Iterable<?> iterable, final String separator) {
+        if (iterable == null) {
+            return null;
+        }
+        return join(iterable.iterator(), separator);
+    }
+
+    /**
+     * <p>Checks if a CharSequence is not empty (""), not null and not whitespace only.</p>
+     *
+     * <pre>
+     * CommonUtils.isNotBlank(null)      = false
+     * CommonUtils.isNotBlank("")        = false
+     * CommonUtils.isNotBlank(" ")       = false
+     * CommonUtils.isNotBlank("bob")     = true
+     * CommonUtils.isNotBlank("  bob  ") = true
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is not empty and not null and not whitespace
+     */
+    public static boolean isNotBlank(final CharSequence cs) {
+        return !isBlank(cs);
+    }
+
+    /**
+     * <p>Checks if a CharSequence is whitespace, empty ("") or null.</p>
+     *
+     * <pre>
+     * CommonUtils.isBlank(null)      = true
+     * CommonUtils.isBlank("")        = true
+     * CommonUtils.isBlank(" ")       = true
+     * CommonUtils.isBlank("bob")     = false
+     * CommonUtils.isBlank("  bob  ") = false
+     * </pre>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is null, empty or whitespace
+     * @since 2.0
+     * @since 3.0 Changed signature from isBlank(String) to isBlank(CharSequence)
+     */
+    public static boolean isBlank(final CharSequence cs) {
+        boolean isBlank = true;
+        if (cs == null) {
+            return isBlank;
+        }
+        final int strLen = cs.length();
+        if (strLen != 0) {
+            for (int i = 0; i < strLen; i++) {
+                if (!Character.isWhitespace(cs.charAt(i))) {
+                    isBlank = false;
+                }
+            }
+        }
+        return isBlank;
+    }
+
+    // ToString
+    //-----------------------------------------------------------------------
+    /**
+     * <p>Gets the {@code toString} of an {@code Object} returning
+     * an empty string ("") if {@code null} input.</p>
+     *
+     * <pre>
+     * ObjectUtils.toString(null)         = ""
+     * ObjectUtils.toString("")           = ""
+     * ObjectUtils.toString("bat")        = "bat"
+     * ObjectUtils.toString(Boolean.TRUE) = "true"
+     * </pre>
+     * @param obj  the Object to {@code toString}, may be null
+     * @return the passed in Object's toString, or {@code ""} if {@code null} input
+     */
+    public static String toString(final Object obj) {
+        if (obj == null) {
+            return "";
+        }
+        else {
+            return obj.toString();
+        }
     }
 }
