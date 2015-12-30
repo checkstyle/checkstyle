@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
@@ -37,6 +38,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.primitives.Ints;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
@@ -96,6 +98,8 @@ public class JTreeTable extends JTable {
             setRowHeight(getRowHeight());
         }
 
+        setColumnsInitialWidth();
+
         final Action expand = new AbstractAction() {
             private static final long serialVersionUID = -5859674518660156121L;
 
@@ -118,6 +122,30 @@ public class JTreeTable extends JTable {
         final String command = "expand/collapse";
         getInputMap().put(stroke, command);
         getActionMap().put(command, expand);
+    }
+
+    /**
+     * Set initial value of width for columns in table.
+     */
+    private void setColumnsInitialWidth() {
+        final FontMetrics fontMetrics = getFontMetrics(getFont());
+        // Six character string to contain "Column" column.
+        final int widthOfSixCharacterString = fontMetrics.stringWidth("XXXXXX");
+        // Padding must be added to width for columns to make them fully
+        // visible in table header.
+        final int padding = 10;
+        final int widthOfColumnContainingSixCharacterString =
+                widthOfSixCharacterString + padding;
+        getColumn("Line").setMaxWidth(widthOfColumnContainingSixCharacterString);
+        getColumn("Column").setMaxWidth(widthOfColumnContainingSixCharacterString);
+        final int preferredTreeColumnWidth =
+                Ints.checkedCast(Math.round(getPreferredSize().getWidth() * 0.6));
+        getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
+        // Twenty eight character string to contain "Type" column
+        final int widthOfTwentyEightCharacterString =
+                fontMetrics.stringWidth("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        final int preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
+        getColumn("Type").setPreferredWidth(preferredTypeColumnWidth);
     }
 
     /**
