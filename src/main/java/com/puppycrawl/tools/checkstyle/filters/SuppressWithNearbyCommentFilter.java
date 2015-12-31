@@ -415,7 +415,13 @@ public class SuppressWithNearbyCommentFilter
                 if (tagMatcher.find()) {
                     match = true;
                 }
-                else if (tagMessageRegexp != null) {
+                else if (tagMessageRegexp == null) {
+                    if (event.getModuleId() != null) {
+                        final Matcher idMatcher = tagCheckRegexp.matcher(event.getModuleId());
+                        match = idMatcher.find();
+                    }
+                }
+                else {
                     final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
                     match = messageMatcher.find();
                 }

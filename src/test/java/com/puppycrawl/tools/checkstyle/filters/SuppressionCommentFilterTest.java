@@ -217,8 +217,13 @@ public class SuppressionCommentFilterTest
             new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
         checksConfig.addChild(createCheckConfig(FileContentsHolder.class));
-        checksConfig.addChild(createCheckConfig(MemberNameCheck.class));
-        checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
+        final DefaultConfiguration memberNameCheckConfig = createCheckConfig(MemberNameCheck.class);
+        memberNameCheckConfig.addAttribute("id", "ignore");
+        checksConfig.addChild(memberNameCheckConfig);
+        final DefaultConfiguration constantNameCheckConfig =
+            createCheckConfig(ConstantNameCheck.class);
+        constantNameCheckConfig.addAttribute("id", null);
+        checksConfig.addChild(constantNameCheckConfig);
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
         if (checkConfig != null) {
@@ -306,5 +311,28 @@ public class SuppressionCommentFilterTest
         final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         Assert.assertTrue(filter.accept(auditEvent));
+    }
+
+    @Test
+    public void testSuppressById() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
+        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addAttribute("checkFormat", "$1");
+        final String[] suppressedViolationMessages = {
+            "6:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "12:9: Name 'line_length' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            };
+        final String[] expectedViolationMessages = {
+            "6:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "9:30: Name 'abc' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "12:9: Name 'line_length' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "15:18: Name 'ID' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            };
+
+        verify(createChecker(filterConfig),
+            getPath("InputSuppressByIdWithCommentFilter.java"),
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
     }
 }

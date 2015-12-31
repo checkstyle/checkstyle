@@ -29,6 +29,7 @@ import org.apache.commons.beanutils.ConversionException;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -142,16 +143,17 @@ public class SuppressWarningsHolder
     /**
      * Checks for a suppression of a check with the given source name and
      * location in the last file processed.
-     * @param sourceName the source name of the check
-     * @param line the line number of the check
-     * @param column the column number of the check
+     * @param event audit event.
      * @return whether the check with the given name is suppressed at the given
      *         source location
      */
-    public static boolean isSuppressed(String sourceName, int line,
-        int column) {
+    public static boolean isSuppressed(AuditEvent event) {
         final List<Entry> entries = ENTRIES.get();
+        final String sourceName = event.getSourceName();
         final String checkAlias = getAlias(sourceName);
+        final int line = event.getLine();
+        final int column = event.getColumn();
+        boolean suppressed = false;
         for (Entry entry : entries) {
             final boolean afterStart =
                 entry.getFirstLine() < line
@@ -164,11 +166,13 @@ public class SuppressWarningsHolder
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(entry.getCheckName())
                     || entry.getCheckName().equalsIgnoreCase(checkAlias);
-            if (afterStart && beforeEnd && nameMatches) {
-                return true;
+            final boolean idMatches = event.getModuleId() != null
+                && event.getModuleId().equals(entry.getCheckName());
+            if (afterStart && beforeEnd && (nameMatches || idMatches)) {
+                suppressed = true;
             }
         }
-        return false;
+        return suppressed;
     }
 
     @Override

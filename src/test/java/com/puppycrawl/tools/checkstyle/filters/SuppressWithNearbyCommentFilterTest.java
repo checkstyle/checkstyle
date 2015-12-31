@@ -217,8 +217,13 @@ public class SuppressWithNearbyCommentFilterTest
             new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig = createCheckConfig(TreeWalker.class);
         checksConfig.addChild(createCheckConfig(FileContentsHolder.class));
-        checksConfig.addChild(createCheckConfig(MemberNameCheck.class));
-        checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
+        final DefaultConfiguration memberNameCheckConfig = createCheckConfig(MemberNameCheck.class);
+        memberNameCheckConfig.addAttribute("id", "ignore");
+        checksConfig.addChild(memberNameCheckConfig);
+        final DefaultConfiguration constantNameCheckConfig =
+            createCheckConfig(ConstantNameCheck.class);
+        constantNameCheckConfig.addAttribute("id", null);
+        checksConfig.addChild(constantNameCheckConfig);
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
         if (checkConfig != null) {
@@ -310,5 +315,28 @@ public class SuppressWithNearbyCommentFilterTest
         filterConfig.addAttribute("messageFormat", "^$1 ololo*$");
         final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
+    }
+
+    @Test
+    public void testSuppressById() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressWithNearbyCommentFilter.class);
+        filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
+        filterConfig.addAttribute("checkFormat", "$1");
+        filterConfig.addAttribute("influenceFormat", "0");
+        final String[] suppressedViolationMessages = {
+            "5:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "9:9: Name 'line_length' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+        final String[] expectedViolationMessages = {
+            "5:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "7:30: Name 'abc' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "9:9: Name 'line_length' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "11:18: Name 'ID' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        verify(createChecker(filterConfig),
+            getPath("InputSuppressByIdWithNearbyCommentFilter.java"),
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
     }
 }

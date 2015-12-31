@@ -451,6 +451,10 @@ public class SuppressionCommentFilter
                     match = messageMatcher.find();
                 }
             }
+            else if (event.getModuleId() != null) {
+                final Matcher idMatcher = tagCheckRegexp.matcher(event.getModuleId());
+                match = idMatcher.find();
+            }
             return match;
         }
 

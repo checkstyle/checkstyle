@@ -125,11 +125,19 @@ public class SuppressWarningsFilterTest
             "com.puppycrawl.tools.checkstyle.checks.sizes."
                 + "ParameterNumberCheck=paramnum");
         checksConfig.addChild(holderConfig);
-        checksConfig.addChild(createCheckConfig(MemberNameCheck.class));
-        checksConfig.addChild(createCheckConfig(ConstantNameCheck.class));
+        final DefaultConfiguration memberNameCheckConfig = createCheckConfig(MemberNameCheck.class);
+        memberNameCheckConfig.addAttribute("id", "ignore");
+        checksConfig.addChild(memberNameCheckConfig);
+        final DefaultConfiguration constantNameCheckConfig =
+            createCheckConfig(ConstantNameCheck.class);
+        constantNameCheckConfig.addAttribute("id", "");
+        checksConfig.addChild(constantNameCheckConfig);
         checksConfig.addChild(createCheckConfig(ParameterNumberCheck.class));
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
-        checksConfig.addChild(createCheckConfig(UncommentedMainCheck.class));
+        final DefaultConfiguration uncommentedMainCheckConfig =
+            createCheckConfig(UncommentedMainCheck.class);
+        uncommentedMainCheckConfig.addAttribute("id", "ignore");
+        checksConfig.addChild(uncommentedMainCheckConfig);
         checksConfig.addChild(createCheckConfig(JavadocTypeCheck.class));
         checkerConfig.addChild(checksConfig);
         if (checkConfig != null) {
@@ -151,5 +159,24 @@ public class SuppressWarningsFilterTest
             Lists.newArrayList(Arrays.asList(from));
         coll.removeAll(Arrays.asList(remove));
         return coll.toArray(new String[coll.size()]);
+    }
+
+    @Test
+    public void testSuppressById() throws Exception {
+        final DefaultConfiguration filterConfig =
+            createFilterConfig(SuppressWarningsFilter.class);
+        final String[] suppressedViolationMessages = {
+            "6:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "8: Uncommented main method found.",
+        };
+        final String[] expectedViolationMessages = {
+            "3: Missing a Javadoc comment.",
+            "6:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "8: Uncommented main method found.",
+        };
+
+        verify(createChecker(filterConfig),
+            getPath("InputSuppressByIdWithWarningsFilter.java"),
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
     }
 }

@@ -317,6 +317,53 @@ HashSet hashSet; // Warning here: Declaring variables, return values or paramete
 //resume
 ...
           </source>
+          <p>
+            It is possible to specify an ID of checks, so that it can be leveraged by the
+            SuppressionCommentFilter to skip validations. The following examples show how to skip
+            validations near code that is surrounded with <code>// CSOFF &lt;ID> (reason)</code>
+            and <code>// CSON &lt;ID></code>, where ID is the ID of checks you want to suppress.
+          </p>
+          <p>
+            Examples of Checkstyle checks configuration:
+          </p>
+          <source>
+&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+  &lt;property name=&quot;id&quot; value=&quot;ignore&quot;/&gt;
+  &lt;property name="format" value="^.*@Ignore\s*$"/&gt;
+  &lt;property name="message" value="@Ignore should have a reason."/&gt;
+&lt;/module&gt;
+
+&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+  &lt;property name=&quot;id&quot; value=&quot;systemout&quot;/&gt;
+  &lt;property name="format" value="^.*System\.(out|err).*$"/&gt;
+  &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
+&lt;/module&gt;
+          </source>
+          <p>
+            Example of SuppressionCommentFilter configuration (checkFormat which is set to '$1'
+            points that ID of the checks is in the first group of offCommentFormat and
+            onCommentFormat regular expressions):
+          </p>
+          <source>
+&lt;module name="SuppressionCommentFilter&quot;&gt;
+  &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
+  &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+&lt;/module&gt;
+          </source>
+          <source>
+// CSOFF ignore (test has not been emplemented yet)
+@Ignore // should NOT fail RegexpSinglelineJava
+@Test
+public void testMethod() { }
+// CSON ignore
+
+// CSOFF systemout (debug)
+public static void foo() {
+    System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
+}
+// CSON systemout
+          </source>
       </subsection>
       <subsection name="Example of Usage">
         <ul>
@@ -599,6 +646,45 @@ private int J; // should NOT fail MemberNameCheck
 @SuppressWarnings({"NoWhitespaceAfter"})
 private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCheck
           </source>
+          <p>
+            It is possible to specify an ID of checks, so that it can be leveraged by the
+            SuppressWarningsFilter to skip validations. The following examples show how to skip
+            validations near code that has  <code>@SuppressWarnings("checkstyle:&lt;ID>")</code> or
+            just <code>@SuppressWarnings("&lt;ID>")</code> annotation, where ID is the ID of checks
+            you want to suppress.
+          </p>
+          <p>
+            Example of Checkstyle check configuration:
+          </p>
+          <source>
+&lt;module name="RegexpSinglelineJava&quot;&gt;
+  &lt;property name="id" value="systemout"/&gt;
+  &lt;property name="format" value=&quot;^.*System\.(out|err).*$&quot;/&gt;
+  &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
+&lt;/module&gt;
+          </source>
+          <p>
+            To make the annotations available to the filter.
+          </p>
+          <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  ...
+  &lt;module name=&quot;SuppressWarningsHolder&quot; /&gt;
+  ...
+&lt;/module&gt;
+          </source>
+          <p>
+            To configure filter to suppress audit events for annotations add:
+          </p>
+          <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot; /&gt;
+          </source>
+          <source>
+@SuppressWarnings("checkstyle:systemout")
+public static void foo() {
+  System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
+}
+          </source>
       </subsection>
       <subsection name="Example of Usage">
         <ul>
@@ -789,6 +875,50 @@ private int D2;
             </source>
             <source>
 public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAfter
+            </source>
+            <p>
+              It is possible to specify an ID of checks, so that it can be leveraged by the
+              SuppressWithNearbyCommentFilter to skip validations. The following examples
+              show how to skip validations near code that has comment like
+              <code>// @cs-: &lt;ID/> (reason)</code>, where ID is the ID of checks you want to
+              suppress.
+            </p>
+            <p>
+              Examples of Checkstyle checks configuration:
+            </p>
+            <source>
+&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+  &lt;property name=&quot;id&quot; value=&quot;ignore&quot;/&gt;
+  &lt;property name="format" value="^.*@Ignore\s*$"/&gt;
+  &lt;property name="message" value="@Ignore should have a reason."/&gt;
+&lt;/module&gt;
+
+&lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+  &lt;property name=&quot;id&quot; value=&quot;systemout&quot;/&gt;
+  &lt;property name="format" value="^.*System\.(out|err).*$"/&gt;
+  &lt;property name="message" value="Don't use System.out/err, use SLF4J instead."/&gt;
+&lt;/module&gt;
+            </source>
+            <p>
+              Example of SuppressWithNearbyCommentFilter configuration (checkFormat which
+              is set to '$1' points that ID of the checks is in the first group of
+              commentFormat regular expressions):
+            </p>
+            <source>
+&lt;module name=&quot;SuppressWithNearbyCommentFilter&quot;&gt;
+  &lt;property name=&quot;commentFormat&quot; value=&quot;@cs-: (\w+) \(\w+\)"/&gt;
+  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+            </source>
+            <source>
+@Ignore // @cs-: ignore (test has not been implemented yet)
+@Test
+public void testMethod() { }
+
+public static void foo() {
+  System.out.println("Debug info."); // @cs-: systemout (should not fail RegexpSinglelineJava)
+}
             </source>
         </subsection>
         <subsection name="Example of Usage">
