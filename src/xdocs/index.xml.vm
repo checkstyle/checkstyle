@@ -273,6 +273,12 @@
                   <td><a href="http://www.jarchitect.com/">JArchitect Home Page</a></td>
                   <td>Imports XML result files from CheckStyle.</td>
               </tr>
+              <tr>
+                  <td><a href="http://www.scala-sbt.org/">SBT</a></td>
+                  <td>Andrew Johnson</td>
+                  <td><a href="https://github.com/etsy/sbt-checkstyle-plugin">sbt-checkstyle-plugin Project Page</a></td>
+                  <td>SBT plugin for running Checkstyle on Java source files in an SBT project</td>
+              </tr>
           </table>
       </subsection>
 
