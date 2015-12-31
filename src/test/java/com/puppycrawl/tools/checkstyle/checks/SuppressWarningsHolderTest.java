@@ -44,9 +44,13 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SuppressWarningsHolder.class, SuppressWarningsHolderTest.class })
@@ -140,7 +144,12 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
         entries.setAccessible(true);
         entries.set(holder, threadLocal);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed("SourceName", 100, 10));
+        final Checker source = new Checker();
+        final LocalizedMessage message =
+            new LocalizedMessage(100, 10, null, null, null, "id", MemberNameCheck.class, "message");
+        final AuditEvent event = new AuditEvent(source, "fileName", message);
+
+        assertFalse(SuppressWarningsHolder.isSuppressed(event));
     }
 
     @Test
@@ -164,11 +173,24 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
         entries.setAccessible(true);
         entries.set(holder, threadLocal);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed("SourceName", 100, 10));
+        final Checker source = new Checker();
+        final LocalizedMessage firstMessageForTest =
+            new LocalizedMessage(100, 10, null, null, null, "id", MemberNameCheck.class, "msg");
+        final AuditEvent firstEventForTest =
+            new AuditEvent(source, "fileName", firstMessageForTest);
+        assertFalse(SuppressWarningsHolder.isSuppressed(firstEventForTest));
 
-        assertTrue(SuppressWarningsHolder.isSuppressed("SourceName", 100, 150));
+        final LocalizedMessage secondMessageForTest =
+            new LocalizedMessage(100, 150, null, null, null, "id", MemberNameCheck.class, "msg");
+        final AuditEvent secondEventForTest =
+            new AuditEvent(source, "fileName", secondMessageForTest);
+        assertTrue(SuppressWarningsHolder.isSuppressed(secondEventForTest));
 
-        assertTrue(SuppressWarningsHolder.isSuppressed("SourceName", 200, 1));
+        final LocalizedMessage thirdMessageForTest =
+            new LocalizedMessage(200, 1, null, null, null, "id", MemberNameCheck.class, "msg");
+        final AuditEvent thirdEventForTest =
+            new AuditEvent(source, "fileName", thirdMessageForTest);
+        assertTrue(SuppressWarningsHolder.isSuppressed(thirdEventForTest));
     }
 
     @Test
