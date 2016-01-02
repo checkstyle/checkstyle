@@ -389,7 +389,8 @@ public static void foo() {
             audit events for Check errors according to
             a <a href="config.html#XML_Structure"><em>suppressions XML
             document</em></a> in a file. If there is no configured
-            suppressions file, the Filter accepts all audit events.
+            suppressions file or the optional is set to true and
+            suppressions file was not found the Filter accepts all audit events.
           </p>
       </subsection>
       <subsection name="Properties">
@@ -421,6 +422,18 @@ public static void foo() {
                <td><a href="property_types.html#string">string</a></td>
                <td><code>none</code></td>
              </tr>
+             <tr>
+               <td>optional</td>
+               <td>
+                   Tells what to do when the file is not existing. If
+                   optional is set to false the file must exist, or else
+                   it ends with error. On the other hand if optional is
+                   true and file is not found, the filter accept all
+                   audit events.
+               </td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
+               <td><code>false</code></td>
+             </tr>
           </table>
       </subsection>
       <subsection name="Examples">
@@ -433,6 +446,7 @@ public static void foo() {
           <source>
 &lt;module name=&quot;SuppressionFilter&quot;&gt;
   &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
+  &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
           </source>
           <p>
