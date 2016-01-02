@@ -72,7 +72,6 @@ public class CodeSelector {
         editor.requestFocusInWindow();
         editor.setCaretPosition(start);
         editor.moveCaretPosition(end);
-        editor.transferFocusBackward();
     }
 
     /**

@@ -23,6 +23,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
 import java.util.List;
@@ -103,25 +104,50 @@ public class JTreeTable extends JTable {
         final Action expand = new AbstractAction() {
             private static final long serialVersionUID = -5859674518660156121L;
 
-                @Override
-                public void actionPerformed(ActionEvent event) {
-                    final TreePath selected = tree.getSelectionPath();
-                    final DetailAST ast = (DetailAST) selected.getLastPathComponent();
-                    new CodeSelector(ast, editor, linePositionMap).select();
-
-                    if (tree.isExpanded(selected)) {
-                        tree.collapsePath(selected);
-                    }
-                    else {
-                        tree.expandPath(selected);
-                    }
-                    tree.setSelectionPath(selected);
-                }
-            };
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                doExpandByEnter();
+            }
+        };
         final KeyStroke stroke = KeyStroke.getKeyStroke("ENTER");
         final String command = "expand/collapse";
         getInputMap().put(stroke, command);
         getActionMap().put(command, expand);
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent event) {
+                if (event.getClickCount() == 2) {
+                    makeCodeSelection();
+                }
+            }
+        });
+    }
+
+    /**
+     * Do expansion of a tree node after pressing ENTER.
+     */
+    private void doExpandByEnter() {
+        final TreePath selected = makeCodeSelection();
+
+        if (tree.isExpanded(selected)) {
+            tree.collapsePath(selected);
+        }
+        else {
+            tree.expandPath(selected);
+        }
+        tree.setSelectionPath(selected);
+    }
+
+    /**
+     * Make selection of code in a text area.
+     * @return selected TreePath.
+     */
+    private TreePath makeCodeSelection() {
+        final TreePath selected = tree.getSelectionPath();
+        final DetailAST ast = (DetailAST) selected.getLastPathComponent();
+        new CodeSelector(ast, editor, linePositionMap).select();
+        return selected;
     }
 
     /**

@@ -89,9 +89,8 @@
     <suppress checks="VisibilityModifier" files="[\\/]BaseCheckTestSupport.java$"/>
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
-    <!--Classes FileDrop, Main, ParseTreeInfoPanel from gui-package contain Magic Numbers.
-    The Check generates too many violations, fixing them will make code unmanageable.-->
-    <suppress checks="MagicNumber" files=".*[\\/]checkstyle[\\/]gui[\\/]"/>
+    <!--The Check generates too many violations, fixing them will make code unmanageable.-->
+    <suppress checks="MagicNumber" files="(ParseTreeTableModel|MainFrame)\.java"/>
 
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
@@ -122,7 +121,7 @@
     <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|AbstractJavadocCheck)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport|XDocsPagesTest)\.java"/>
     <!-- a lot of GUI elements is OK -->
-    <suppress checks="ClassDataAbstractionCoupling" files="ParseTreeInfoPanel\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(JTreeTable|MainFrame)\.java"/>
 
     <!-- Should be fixed after moving https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java into the main repo -->
     <suppress checks="ReturnCount" files="(ClassResolver|ConfigurationLoader|IndentationCheckTest)\.java"/>
