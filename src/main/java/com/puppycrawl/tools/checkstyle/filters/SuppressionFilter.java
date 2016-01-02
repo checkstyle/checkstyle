@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 import java.util.Objects;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -26,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -33,21 +38,32 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  * column, as specified in a suppression file.
  * </p>
  * @author Rick Giles
+ * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
 public class SuppressionFilter
     extends AutomaticBean
     implements Filter {
+    /** Filename of supression file. */
+    private String file;
+    /** Tells whether config file existence is optional. */
+    private boolean optional;
     /** Set of individual suppresses. */
     private FilterSet filters = new FilterSet();
 
     /**
-     * Loads the suppressions for a file.
+     * Sets name of the supression file.
      * @param fileName name of the suppressions file.
-     * @throws CheckstyleException if there is an error.
      */
-    public void setFile(String fileName)
-        throws CheckstyleException {
-        filters = SuppressionsLoader.loadSuppressions(fileName);
+    public void setFile(String fileName) {
+        file = fileName;
+    }
+
+    /**
+     * Sets whether config file existence is optional.
+     * @param optional tells if config file existence is optional.
+     */
+    public void setOptional(boolean optional) {
+        this.optional = optional;
     }
 
     @Override
@@ -70,5 +86,51 @@ public class SuppressionFilter
     @Override
     public int hashCode() {
         return Objects.hash(filters);
+    }
+
+    @Override
+    protected void finishLocalSetup() throws CheckstyleException {
+        if (file != null) {
+            if (optional) {
+                if (suppressionSourceExists(file)) {
+                    filters = SuppressionsLoader.loadSuppressions(file);
+                }
+                else {
+                    filters = new FilterSet();
+                }
+            }
+            else {
+                filters = SuppressionsLoader.loadSuppressions(file);
+            }
+        }
+    }
+
+    /**
+     * Checks if suppression source with given fileName exists.
+     * @param fileName name of the suppressions file.
+     * @return true if suppression file exists, otherwise false
+     */
+    private static boolean suppressionSourceExists(String fileName) {
+        boolean suppressionSourceExists = true;
+        InputStream sourceInput = null;
+        try {
+            final URI uriByFilename = CommonUtils.getUriByFilename(fileName);
+            final URL url = uriByFilename.toURL();
+            sourceInput = url.openStream();
+        }
+        catch (CheckstyleException | IOException ignored) {
+            suppressionSourceExists = false;
+        }
+        finally {
+            if (sourceInput != null) {
+                try {
+                    sourceInput.close();
+                }
+                catch (IOException ignored) {
+                    suppressionSourceExists = false;
+                }
+            }
+        }
+        return suppressionSourceExists;
     }
 }
