@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Model for checkstyle frame.
  * @author Vladislav Lisetskiy
  */
-public class CheckstyleFrameModel {
+public class MainFrameModel {
 
     /** Lines to position map. */
     private final List<Integer> linesToPosition = new ArrayList<>();

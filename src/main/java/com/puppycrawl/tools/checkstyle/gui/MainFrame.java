@@ -52,7 +52,7 @@ public class MainFrame extends JFrame {
 
     private static final long serialVersionUID = 7970053543351871890L;
     /** Checkstyle frame model. */
-    private final transient CheckstyleFrameModel model = new CheckstyleFrameModel();
+    private final transient MainFrameModel model = new MainFrameModel();
     /** Reload action. */
     private final ReloadAction reloadAction = new ReloadAction();
     /** Parse tree model. */
