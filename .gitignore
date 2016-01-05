@@ -27,3 +27,6 @@ checkstyle.iml
 #Virtual machine crash logs
 hs_err_pid*
 replay_pid*
+
+#MAC hidden file
+.DS_Store
