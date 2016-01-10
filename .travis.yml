@@ -2,7 +2,7 @@ language: java
 sudo: false
 
 install:
-  - 
+  -
 
 matrix:
   fast_finish: true
@@ -32,14 +32,16 @@ matrix:
         - COVERAGE_CMD=""
 
     # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok, admins will use oracle8 version)
-    - jdk: oraclejdk8
-      env:
-        - DESC="site"
-        - CMD1="mvn clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
-        - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true "
-        - CMD3=" -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
-        - CMD=$CMD1$CMD2$CMD3
-        - COVERAGE_CMD=""
+    # moved to https://codeship.com/projects/124310/configure_tests
+    #- jdk: oraclejdk8
+    #  env:
+    #    - DESC="site"
+    #    - CMD1="mvn clean site -Dlinkcheck.skip=true -DskipTests -DskipITs "
+    #    - CMD2=" -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true "
+    #    - CMD3=" -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
+    #    - CMD=$CMD1$CMD2$CMD3
+    #    - COVERAGE_CMD=""
+
     # assembly (oraclejdk8)
     - jdk: oraclejdk8
       env:

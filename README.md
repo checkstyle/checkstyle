@@ -1,6 +1,7 @@
 [![][travis img]][travis]
 [![][appveyor img]][appveyor]
 [![][teamcity img]][teamcity]
+[![][codeship img]][codeship]
 [![][coverage img]][coverage]
 
 [![][mavenbadge img]][mavenbadge]
@@ -98,3 +99,6 @@ directory.
 
 [teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
 [teamcity img]:https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/Checkstyle_IdeaInspectionsMaster.svg?label=TeamCity%20inspections
+
+[codeship]: https://codeship.com/projects/124310
+[codeship img]:https://codeship.com/projects/67b814a0-8fee-0133-9b59-02a170289b8c/status?branch=master
