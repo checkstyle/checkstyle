@@ -327,7 +327,7 @@ public final class TreeWalker
      */
     private void notifyBegin(DetailAST rootAST, FileContents contents,
             AstState astState) {
-        Set<Check> checks;
+        final Set<Check> checks;
 
         if (astState == AstState.WITH_COMMENTS) {
             checks = commentChecks;
@@ -348,7 +348,7 @@ public final class TreeWalker
      * @param astState state of AST.
      */
     private void notifyEnd(DetailAST rootAST, AstState astState) {
-        Set<Check> checks;
+        final Set<Check> checks;
 
         if (astState == AstState.WITH_COMMENTS) {
             checks = commentChecks;

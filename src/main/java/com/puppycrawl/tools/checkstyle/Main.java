@@ -324,8 +324,8 @@ public final class Main {
             throws FileNotFoundException {
 
         // setup the output stream
-        OutputStream out;
-        boolean closeOutputStream;
+        final OutputStream out;
+        final boolean closeOutputStream;
         if (outputLocation == null) {
             out = System.out;
             closeOutputStream = false;
@@ -336,7 +336,7 @@ public final class Main {
         }
 
         // setup a listener
-        AuditListener listener;
+        final AuditListener listener;
         if (XML_FORMAT_NAME.equals(format)) {
             listener = new XMLLogger(out, closeOutputStream);
 

@@ -268,7 +268,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
 
             if (!isVariableMatchesIgnorePattern(variable.getText())) {
                 final DetailAST semicolonAst = ast.getNextSibling();
-                Entry<DetailAST, Integer> entry;
+                final Entry<DetailAST, Integer> entry;
                 if (validateBetweenScopes) {
                     entry = calculateDistanceBetweenScopes(semicolonAst, variable);
                 }
@@ -572,7 +572,7 @@ public class VariableDeclarationUsageDistanceCheck extends Check {
         DetailAST firstNodeInsideBlock = null;
 
         if (!isVariableInOperatorExpr(block, variable)) {
-            DetailAST currentNode;
+            final DetailAST currentNode;
 
             // Find currentNode for DO-WHILE block.
             if (block.getType() == TokenTypes.LITERAL_DO) {

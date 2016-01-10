@@ -43,7 +43,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     @Override
     protected IndentLevel getIndentImpl() {
-        IndentLevel indentLevel;
+        final IndentLevel indentLevel;
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
         if (getParent() instanceof MethodCallHandler) {

@@ -439,7 +439,7 @@ public final class JavadocUtils {
      * @return name, of the javadocTagSection's tag.
      */
     public static String getTagName(DetailNode javadocTagSection) {
-        String javadocTagName;
+        final String javadocTagName;
         if (javadocTagSection.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
             javadocTagName = getNextSibling(
                     getFirstChild(javadocTagSection)).getText();

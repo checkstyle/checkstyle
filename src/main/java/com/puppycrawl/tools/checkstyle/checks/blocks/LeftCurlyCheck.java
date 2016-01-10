@@ -177,7 +177,7 @@ public class LeftCurlyCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        DetailAST startToken;
+        final DetailAST startToken;
         DetailAST brace;
 
         switch (ast.getType()) {

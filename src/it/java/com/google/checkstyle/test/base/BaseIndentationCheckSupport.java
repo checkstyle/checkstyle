@@ -126,7 +126,7 @@ public class BaseIndentationCheckSupport extends BaseCheckTestSupport {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
 
-        boolean result;
+        final boolean result;
         final CommentType type = getCommentType(comment);
         switch (type) {
             case MULTILEVEL:

@@ -137,7 +137,7 @@ public class HandlerFactory {
      */
     public AbstractExpressionHandler getHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
-        AbstractExpressionHandler resultHandler;
+        final AbstractExpressionHandler resultHandler;
         final AbstractExpressionHandler handler =
             createdHandlers.get(ast);
         if (handler != null) {

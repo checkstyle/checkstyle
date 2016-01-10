@@ -166,8 +166,8 @@ public class TrailingCommentCheck extends Check {
 
         for (Integer lineNo : lines) {
             final String line = getLines()[lineNo - 1];
-            String lineBefore;
-            TextBlock comment;
+            final String lineBefore;
+            final TextBlock comment;
             if (cppComments.containsKey(lineNo)) {
                 comment = cppComments.get(lineNo);
                 lineBefore = line.substring(0, comment.getStartColNo());
@@ -197,7 +197,7 @@ public class TrailingCommentCheck extends Check {
      * @return true if the comment if legal.
      */
     private boolean isLegalComment(final TextBlock comment) {
-        boolean legal;
+        final boolean legal;
 
         // multi-line comment can not be legal
         if (legalComment == null || comment.getStartLineNo() != comment.getEndLineNo()) {

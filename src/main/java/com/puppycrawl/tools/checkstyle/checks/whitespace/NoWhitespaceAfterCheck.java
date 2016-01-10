@@ -145,7 +145,7 @@ public class NoWhitespaceAfterCheck extends Check {
      * @return node before ast.
      */
     private static DetailAST getWhitespaceFollowedNode(DetailAST ast) {
-        DetailAST whitespaceFollowedAst;
+        final DetailAST whitespaceFollowedAst;
         switch (ast.getType()) {
             case TokenTypes.TYPECAST:
                 whitespaceFollowedAst = ast.findFirstToken(TokenTypes.RPAREN);
@@ -277,7 +277,7 @@ public class NoWhitespaceAfterCheck extends Check {
      * @return previous node by text order.
      */
     private static DetailAST getIndexOpPreviousElement(DetailAST ast) {
-        DetailAST result;
+        final DetailAST result;
         final DetailAST firstChild = ast.getFirstChild();
         if (firstChild.getType() == TokenTypes.INDEX_OP) {
             // second or higher array index

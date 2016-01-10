@@ -649,7 +649,7 @@ public class VisibilityModifierCheck
      * @return String representation of given type's name.
      */
     private static String getTypeName(DetailAST type, boolean isCanonicalName) {
-        String typeName;
+        final String typeName;
         if (isCanonicalName) {
             typeName = getCanonicalName(type);
         }

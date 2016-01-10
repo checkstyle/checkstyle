@@ -112,7 +112,7 @@ class PkgControl {
      * @return an {@link AccessResult}.
      */
     AccessResult checkAccess(final String forImport, final String inPkg) {
-        AccessResult result;
+        final AccessResult result;
         final AccessResult returnValue = localCheckAccess(forImport, inPkg);
         if (returnValue != AccessResult.UNKNOWN) {
             result = returnValue;

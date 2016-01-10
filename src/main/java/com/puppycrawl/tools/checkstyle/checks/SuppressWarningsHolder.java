@@ -333,7 +333,7 @@ public class SuppressWarningsHolder
      * @return returns ast - parent of given
      */
     private static DetailAST getAcceptableParent(DetailAST child) {
-        DetailAST result;
+        final DetailAST result;
         final DetailAST parent = child.getParent();
         switch (parent.getType()) {
             case TokenTypes.ANNOTATION_DEF:
