@@ -81,6 +81,15 @@ public class FinalLocalVariableCheckTest
             "247:17: " + getCheckMessage(MSG_KEY, "n"),
             "259:17: " + getCheckMessage(MSG_KEY, "t"),
             "269:21: " + getCheckMessage(MSG_KEY, "foo"),
+            "288:13: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "300:13: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "344:13: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "357:13: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "360:21: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "375:13: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "386:13: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "418:13: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "421:21: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariable.java"), expected);
     }
