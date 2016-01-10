@@ -175,7 +175,7 @@ public abstract class AbstractJavadocCheck extends Check {
             final String treeCacheKey = blockCommentNode.getLineNo() + ":"
                     + blockCommentNode.getColumnNo();
 
-            ParseStatus result;
+            final ParseStatus result;
 
             if (TREE_CACHE.get().containsKey(treeCacheKey)) {
                 result = TREE_CACHE.get().get(treeCacheKey);
@@ -413,7 +413,7 @@ public abstract class AbstractJavadocCheck extends Check {
      * @return token type from JavadocTokenTypes
      */
     private static int getTokenType(ParseTree node) {
-        int tokenType;
+        final int tokenType;
 
         if (node.getChildCount() == 0) {
             tokenType = ((TerminalNode) node).getSymbol().getType();

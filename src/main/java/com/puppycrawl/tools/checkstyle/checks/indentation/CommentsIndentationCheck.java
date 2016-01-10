@@ -565,7 +565,7 @@ public class CommentsIndentationCheck extends Check {
      * @return token which begins the line.
      */
     private static DetailAST findTokenWhichBeginsTheLine(DetailAST root) {
-        DetailAST tokenWhichBeginsTheLine;
+        final DetailAST tokenWhichBeginsTheLine;
         if (isUsingOfObjectReferenceToInvokeMethod(root)) {
             tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);
         }
@@ -726,7 +726,7 @@ public class CommentsIndentationCheck extends Check {
      */
     private static boolean areSameLevelIndented(DetailAST comment, DetailAST prevStmt,
                                                 DetailAST nextStmt) {
-        boolean result;
+        final boolean result;
         if (prevStmt == null) {
             result = comment.getColumnNo() == nextStmt.getColumnNo();
         }

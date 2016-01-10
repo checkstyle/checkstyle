@@ -153,7 +153,7 @@ public class EmptyBlockCheck
 
         if (leftCurly != null) {
             if (option == BlockOption.STMT) {
-                boolean emptyBlock;
+                final boolean emptyBlock;
                 if (leftCurly.getType() == TokenTypes.LCURLY) {
                     emptyBlock = leftCurly.getNextSibling().getType() != TokenTypes.CASE_GROUP;
                 }

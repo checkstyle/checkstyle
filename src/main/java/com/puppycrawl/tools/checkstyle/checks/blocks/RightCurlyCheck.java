@@ -318,7 +318,7 @@ public class RightCurlyCheck extends Check {
         // Attempt to locate the tokens to do the check
         boolean shouldCheckLastRcurly = false;
         DetailAST rcurly = null;
-        DetailAST lcurly;
+        final DetailAST lcurly;
         DetailAST nextToken;
 
         switch (ast.getType()) {

@@ -225,7 +225,7 @@ public class XMLLogger
      */
     private static String encodeAmpersand(String value, int ampPosition) {
         final int nextSemi = value.indexOf(';', ampPosition);
-        String result;
+        final String result;
         if (nextSemi < 0
             || !isReference(value.substring(ampPosition, nextSemi + 1))) {
             result = "&amp;";

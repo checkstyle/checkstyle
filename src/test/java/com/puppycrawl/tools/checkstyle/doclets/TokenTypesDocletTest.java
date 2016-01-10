@@ -149,7 +149,7 @@ public class TokenTypesDocletTest {
     private static RootDoc getRootDoc(JavadocTool javadocTool, ListBuffer<String[]> options,
             ListBuffer<String> names) throws Exception {
         final Method getRootDocImpl = getMethodGetRootDocImplByReflection();
-        RootDoc rootDoc;
+        final RootDoc rootDoc;
         if (System.getProperty("java.version").startsWith("1.7.")) {
             rootDoc = (RootDoc) getRootDocImpl.invoke(javadocTool, "", "UTF-8",
                     new ModifierFilter(ModifierFilter.ALL_ACCESS),

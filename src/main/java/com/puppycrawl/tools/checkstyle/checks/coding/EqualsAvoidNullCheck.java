@@ -376,7 +376,7 @@ public class EqualsAvoidNullCheck extends Check {
      * @return true if the object is of String type.
      */
     private boolean isCalledOnStringFieldOrVariable(DetailAST objCalledOn) {
-        boolean result;
+        final boolean result;
         final DetailAST previousSiblingAst = objCalledOn.getPreviousSibling();
         if (previousSiblingAst == null) {
             result = isStringFieldOrVariable(objCalledOn);

@@ -104,7 +104,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @return the type for column number {@code column}.
      */
     public Class<?> getColumnClass(int column) {
-        Class<?> columnClass;
+        final Class<?> columnClass;
 
         switch (column) {
             case 0:
@@ -136,7 +136,7 @@ public class ParseTreeTableModel implements TreeModel {
      */
     public Object getValueAt(Object node, int column) {
         final DetailAST ast = (DetailAST) node;
-        Object value;
+        final Object value;
 
         switch (column) {
             case 1:

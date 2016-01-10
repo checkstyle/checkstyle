@@ -508,7 +508,7 @@ public class RequireThisCheck extends Check {
          * @return whether it was found.
          */
         protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
-            AbstractFrame frame;
+            final AbstractFrame frame;
 
             if (!lookForMethod
                 && containsFieldOrVariable(nameToFind)) {

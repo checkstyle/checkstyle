@@ -395,7 +395,7 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * @return Some javadoc.
      */
     private static int getMethodsNumberOfLine(DetailAST methodDef) {
-        int numberOfLines;
+        final int numberOfLines;
         final DetailAST lcurly = methodDef.getLastChild();
         final DetailAST rcurly = lcurly.getLastChild();
 

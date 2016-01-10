@@ -249,7 +249,7 @@ public class ImportOrderCheck
         for (int i = 0; i < packageGroups.length; i++) {
             String pkg = packageGroups[i];
             final StringBuilder pkgBuilder = new StringBuilder(pkg);
-            Pattern grp;
+            final Pattern grp;
 
             // if the pkg name is the wildcard, make it match zero chars
             // from any name, so it will always be used as last resort.
@@ -532,7 +532,7 @@ public class ImportOrderCheck
      */
     private static int compare(String string1, String string2,
             boolean caseSensitive) {
-        int result;
+        final int result;
         if (caseSensitive) {
             result = string1.compareTo(string2);
         }

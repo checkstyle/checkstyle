@@ -138,7 +138,7 @@ public class CommitValidationTest {
     }
 
     private static List<RevCommit> getCommitsToCheck() throws Exception {
-        List<RevCommit> commits;
+        final List<RevCommit> commits;
         try (Repository repo = new FileRepositoryBuilder().findGitDir().build()) {
             final RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);
             if (COMMITS_RESOLUTION_MODE == CommitsResolutionMode.BY_COUNTER) {
@@ -168,8 +168,8 @@ public class CommitValidationTest {
         RevCommitsPair revCommitIteratorPair;
 
         try (RevWalk revWalk = new RevWalk(repo)) {
-            Iterator<RevCommit> first;
-            Iterator<RevCommit> second;
+            final Iterator<RevCommit> first;
+            final Iterator<RevCommit> second;
             final ObjectId headId = repo.resolve(Constants.HEAD);
             final RevCommit headCommit = revWalk.parseCommit(headId);
 

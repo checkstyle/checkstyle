@@ -56,7 +56,7 @@ class CompareTreesWithComments extends Check {
     }
 
     private static boolean isAstEquals(DetailAST expected, DetailAST actual) {
-        boolean result;
+        final boolean result;
         if (expected == actual) {
             result = true;
         }

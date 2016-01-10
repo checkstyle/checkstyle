@@ -176,7 +176,7 @@ public final class FileContents implements CommentListener {
      **/
     private String[] extractCComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        String[] returnValue;
+        final String[] returnValue;
         if (startLineNo == endLineNo) {
             returnValue = new String[1];
             returnValue[0] = line(startLineNo - 1).substring(startColNo,

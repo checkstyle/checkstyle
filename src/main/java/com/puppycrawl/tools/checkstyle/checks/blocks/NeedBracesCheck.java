@@ -265,7 +265,7 @@ public class NeedBracesCheck extends Check {
      * @return true if current statement is single-line statement.
      */
     private static boolean isSingleLineStatement(DetailAST statement) {
-        boolean result;
+        final boolean result;
 
         switch (statement.getType()) {
             case TokenTypes.LITERAL_IF:
