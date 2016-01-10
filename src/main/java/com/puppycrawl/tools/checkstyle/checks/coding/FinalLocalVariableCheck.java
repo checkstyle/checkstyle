@@ -115,6 +115,10 @@ public class FinalLocalVariableCheck extends Check {
     /** Scope Deque. */
     private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
 
+    /** Uninitialized variables of previous scope. */
+    private final Deque<Deque<DetailAST>> prevScopeUninitializedVariables =
+            new ArrayDeque<>();
+
     /** Controls whether to check enhanced for-loop variable. */
     private boolean validateEnhancedForLoopVariable;
 
@@ -180,6 +184,7 @@ public class FinalLocalVariableCheck extends Check {
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
                     || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
                     == ast.getParent()) {
+                    storePrevScopeUninitializedVariableData();
                     scopeStack.push(new ScopeData());
                 }
                 break;
@@ -223,10 +228,17 @@ public class FinalLocalVariableCheck extends Check {
                 scope = scopeStack.pop().scope;
                 break;
             case TokenTypes.SLIST:
+                final Deque<DetailAST> prevScopeUnitializedVariableData =
+                    prevScopeUninitializedVariables.peek();
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
-                    || findLastToken(ast.getParent().getParent(), TokenTypes.CASE_GROUP,
-                        TokenTypes.SLIST) == ast.getParent()) {
+                    || findLastChildWhichContainsSpecifiedToken(ast.getParent().getParent(),
+                            TokenTypes.CASE_GROUP, TokenTypes.SLIST) == ast.getParent()) {
                     scope = scopeStack.pop().scope;
+                    prevScopeUninitializedVariables.pop();
+                }
+                final DetailAST parent = ast.getParent();
+                if (shouldUpdateUninitializedVariables(parent)) {
+                    updateUninitializedVariables(prevScopeUnitializedVariableData);
                 }
                 break;
             default:
@@ -240,6 +252,64 @@ public class FinalLocalVariableCheck extends Check {
     }
 
     /**
+     * Store un-initialized variables in a temporary stack for future use.
+     */
+    private void storePrevScopeUninitializedVariableData() {
+        final ScopeData scopeData = scopeStack.peek();
+        final Deque<DetailAST> prevScopeUnitializedVariableData =
+                new ArrayDeque<>();
+        for (DetailAST variable : scopeData.uninitializedVariables) {
+            prevScopeUnitializedVariableData.push(variable);
+        }
+        prevScopeUninitializedVariables.push(prevScopeUnitializedVariableData);
+    }
+
+    /**
+     * Update current scope data uninitialized variable according to the previous scope data.
+     * @param prevScopeUnitializedVariableData variable for previous stack of uninitialized
+     *     variables
+     */
+    private void updateUninitializedVariables(Deque<DetailAST>
+            prevScopeUnitializedVariableData) {
+        // Check for only previous scope
+        for (DetailAST variable : prevScopeUnitializedVariableData) {
+            for (ScopeData scopeData : scopeStack) {
+                final DetailAST storedVariable = scopeData.scope.get(variable.getText());
+                if (storedVariable != null && isSameVariables(storedVariable, variable)
+                        && !scopeData.uninitializedVariables.contains(storedVariable)) {
+                    scopeData.uninitializedVariables.push(variable);
+                }
+            }
+        }
+        // Check for rest of the scope
+        for (Deque<DetailAST> unitializedVariableData : prevScopeUninitializedVariables) {
+            for (DetailAST variable : unitializedVariableData) {
+                for (ScopeData scopeData : scopeStack) {
+                    final DetailAST storedVariable = scopeData.scope.get(variable.getText());
+                    if (storedVariable != null
+                            && isSameVariables(storedVariable, variable)
+                            && !scopeData.uninitializedVariables.contains(storedVariable)) {
+                        scopeData.uninitializedVariables.push(variable);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * If token is LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, or LITERAL_ELSE, then do not
+     * update the uninitialized variables.
+     * @param ast token to be checked
+     * @return true if should be updated, else false
+     */
+    private boolean shouldUpdateUninitializedVariables(DetailAST ast) {
+        return ast.getType() != TokenTypes.LITERAL_TRY
+                && ast.getType() != TokenTypes.LITERAL_CATCH
+                && ast.getType() != TokenTypes.LITERAL_FINALLY
+                && ast.getType() != TokenTypes.LITERAL_ELSE;
+    }
+
+    /**
      * Returns the last child token that makes a specified type and contains containType in
      * its branch.
      * @param ast token to be tested
@@ -247,7 +317,8 @@ public class FinalLocalVariableCheck extends Check {
      * @param containType the token type which has to be present in the branch
      * @return the matching token, or null if no match
      */
-    public DetailAST findLastToken(DetailAST ast, int childType, int containType) {
+    public DetailAST findLastChildWhichContainsSpecifiedToken(DetailAST ast, int childType,
+            int containType) {
         DetailAST returnValue = null;
         for (DetailAST astIterator = ast.getFirstChild(); astIterator != null;
                 astIterator = astIterator.getNextSibling()) {
