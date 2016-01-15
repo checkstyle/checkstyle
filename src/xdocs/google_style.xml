@@ -1201,6 +1201,11 @@
                                     src="images/ok_green.png"
                                     alt="" />
                                 <a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a>
+                                <br/>
+                                <img
+                                   src="images/ok_green.png"
+                                   alt="" />
+                                <a href="config_naming.html#InterfaceTypeParameterName">InterfaceTypeParameterName</a>
                             </td>
                             <td>
                                 <a
@@ -1214,6 +1219,12 @@
                                 <br />
                                 <a
                                     href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/ClassTypeParameterNameTest.java">test</a>
+                                <br />
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">config</a>
+                                <br />
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/InterfaceTypeParameterNameTest.java">test</a>
                             </td>
                         </tr>
                         <tr>
