@@ -106,8 +106,8 @@
       </p>
 
       <ul>
-        <li>An <a href="http://ant.apache.org/index.html">Ant</a> task.</li>
-        <li>A command line tool.</li>
+        <li>An <a href="anttask.html">Ant task</a>.</li>
+        <li>A <a href="cmdline.html">command line</a> interface (CLI).</li>
       </ul>
 
       <p>
