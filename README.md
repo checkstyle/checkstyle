@@ -104,5 +104,5 @@ directory.
 [codeship]: https://codeship.com/projects/124310
 [codeship img]:https://codeship.com/projects/67b814a0-8fee-0133-9b59-02a170289b8c/status?branch=master
 
-[circleci]: https://circleci.com/gh/checkstyle/checkstyle
-[circleci img]: https://circleci.com/gh/checkstyle/checkstyle.svg?style=svg
+[circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
+[circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
