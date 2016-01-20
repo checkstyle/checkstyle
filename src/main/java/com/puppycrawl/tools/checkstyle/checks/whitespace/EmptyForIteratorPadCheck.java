@@ -57,13 +57,13 @@ public class EmptyForIteratorPadCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_FOLLOWED = "ws.followed";
+    public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
+    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /** Semicolon literal. */
     private static final String SEMICOLON = ";";
@@ -111,11 +111,11 @@ public class EmptyForIteratorPadCheck
             if (after < line.length()) {
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, WS_FOLLOWED, SEMICOLON);
+                    log(semi.getLineNo(), after, MSG_WS_FOLLOWED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
                          && !Character.isWhitespace(line.charAt(after))) {
-                    log(semi.getLineNo(), after, WS_NOT_FOLLOWED, SEMICOLON);
+                    log(semi.getLineNo(), after, MSG_WS_NOT_FOLLOWED, SEMICOLON);
                 }
             }
         }

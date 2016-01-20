@@ -73,25 +73,25 @@ public class GenericWhitespaceCheck extends Check {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_PRECEDED = "ws.preceded";
+    public static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_FOLLOWED = "ws.followed";
+    public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_PRECEDED = "ws.notPreceded";
+    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_ILLEGAL_FOLLOW = "ws.illegalFollow";
+    public static final String MSG_WS_ILLEGAL_FOLLOW = "ws.illegalFollow";
 
     /** Open angle bracket literal. */
     private static final String OPEN_ANGLE_BRACKET = "<";
@@ -151,7 +151,7 @@ public class GenericWhitespaceCheck extends Check {
 
         if (before >= 0 && Character.isWhitespace(line.charAt(before))
                 && !CommonUtils.hasWhitespaceBefore(before, line)) {
-            log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_ANGLE_BRACKET);
+            log(ast.getLineNo(), before, MSG_WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
         if (after < line.length()) {
@@ -186,14 +186,14 @@ public class GenericWhitespaceCheck extends Check {
         if (indexOfAmp >= 0
             && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
-                log(ast.getLineNo(), after, WS_NOT_PRECEDED, "&");
+                log(ast.getLineNo(), after, MSG_WS_NOT_PRECEDED, "&");
             }
             else if (indexOfAmp - after != 1) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
+                log(ast.getLineNo(), after, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (line.charAt(after) == ' ') {
-            log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
+            log(ast.getLineNo(), after, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
         }
     }
 
@@ -212,11 +212,11 @@ public class GenericWhitespaceCheck extends Check {
         //                        +--- whitespace not allowed
         if (isGenericBeforeMethod(ast)) {
             if (Character.isWhitespace(charAfter)) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
+                log(ast.getLineNo(), after, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
         else if (!isCharacterValidAfterGenericEnd(charAfter)) {
-            log(ast.getLineNo(), after, WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
+            log(ast.getLineNo(), after, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
     }
 
@@ -266,19 +266,19 @@ public class GenericWhitespaceCheck extends Check {
                     || grandparent.getType() == TokenTypes.METHOD_DEF)) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
-                    log(ast.getLineNo(), before, WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
+                    log(ast.getLineNo(), before, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
                 && !CommonUtils.hasWhitespaceBefore(before, line)) {
-                log(ast.getLineNo(), before, WS_PRECEDED, OPEN_ANGLE_BRACKET);
+                log(ast.getLineNo(), before, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }
 
         if (after < line.length()
                 && Character.isWhitespace(line.charAt(after))) {
-            log(ast.getLineNo(), after, WS_FOLLOWED, OPEN_ANGLE_BRACKET);
+            log(ast.getLineNo(), after, MSG_WS_FOLLOWED, OPEN_ANGLE_BRACKET);
         }
     }
 

@@ -99,13 +99,13 @@ public class OperatorWrapCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String LINE_NEW = "line.new";
+    public static final String MSG_LINE_NEW = "line.new";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String LINE_PREVIOUS = "line.previous";
+    public static final String MSG_LINE_PREVIOUS = "line.previous";
 
     /** The policy to enforce. */
     private WrapOption option = WrapOption.NL;
@@ -222,11 +222,11 @@ public class OperatorWrapCheck
         if (option == WrapOption.NL
                 && !text.equals(currentLine.trim())
                 && StringUtils.isBlank(currentLine.substring(colNo + text.length()))) {
-            log(lineNo, colNo, LINE_NEW, text);
+            log(lineNo, colNo, MSG_LINE_NEW, text);
         }
         else if (option == WrapOption.EOL
                 && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
-            log(lineNo, colNo, LINE_PREVIOUS, text);
+            log(lineNo, colNo, MSG_LINE_PREVIOUS, text);
         }
     }
 }

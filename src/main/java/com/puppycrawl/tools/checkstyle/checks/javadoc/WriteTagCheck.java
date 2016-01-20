@@ -72,19 +72,19 @@ public class WriteTagCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MISSING_TAG = "type.missingTag";
+    public static final String MSG_MISSING_TAG = "type.missingTag";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WRITE_TAG = "javadoc.writeTag";
+    public static final String MSG_WRITE_TAG = "javadoc.writeTag";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String TAG_FORMAT = "type.tagFormat";
+    public static final String MSG_TAG_FORMAT = "type.tagFormat";
 
     /** Compiled regexp to match tag. **/
     private Pattern tagRegExp;
@@ -161,7 +161,7 @@ public class WriteTagCheck
         final TextBlock cmt =
             contents.getJavadocBefore(lineNo);
         if (cmt == null) {
-            log(lineNo, MISSING_TAG, tag);
+            log(lineNo, MSG_MISSING_TAG, tag);
         }
         else {
             checkTag(lineNo, cmt.getText());
@@ -190,12 +190,12 @@ public class WriteTagCheck
                     logTag(lineNo + i - comment.length, tag, content);
                 }
                 else {
-                    log(lineNo + i - comment.length, TAG_FORMAT, tag, tagFormat);
+                    log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat);
                 }
             }
         }
         if (tagCount == 0) {
-            log(lineNo, MISSING_TAG, tag);
+            log(lineNo, MSG_MISSING_TAG, tag);
         }
 
     }
@@ -213,7 +213,7 @@ public class WriteTagCheck
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverityLevel.getName());
 
-        log(line, WRITE_TAG, tagName, tagValue);
+        log(line, MSG_WRITE_TAG, tagName, tagValue);
 
         setSeverity(originalSeverity);
     }

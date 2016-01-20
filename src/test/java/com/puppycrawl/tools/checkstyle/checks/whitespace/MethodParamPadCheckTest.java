@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.LINE_PREVIOUS;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_NOT_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.WS_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_LINE_PREVIOUS;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_WS_PRECEDED;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -60,24 +60,24 @@ public class MethodParamPadCheckTest
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "11:32: " + getCheckMessage(WS_PRECEDED, "("),
-            "13:15: " + getCheckMessage(WS_PRECEDED, "("),
-            "17:9: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "20:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "27:24: " + getCheckMessage(WS_PRECEDED, "("),
-            "32:9: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "36:39: " + getCheckMessage(WS_PRECEDED, "("),
-            "38:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "42:16: " + getCheckMessage(WS_PRECEDED, "("),
-            "44:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "50:21: " + getCheckMessage(WS_PRECEDED, "("),
-            "52:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "56:18: " + getCheckMessage(WS_PRECEDED, "("),
-            "58:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "61:36: " + getCheckMessage(WS_PRECEDED, "("),
-            "63:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "74:15: " + getCheckMessage(WS_PRECEDED, "("),
-            "79:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "17:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "27:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "32:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "36:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "42:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "44:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "50:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "52:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "56:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "58:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "61:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "63:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "74:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "79:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
@@ -86,15 +86,15 @@ public class MethodParamPadCheckTest
     public void testAllowLineBreaks() throws Exception {
         checkConfig.addAttribute("allowLineBreaks", "true");
         final String[] expected = {
-            "11:32: " + getCheckMessage(WS_PRECEDED, "("),
-            "13:15: " + getCheckMessage(WS_PRECEDED, "("),
-            "27:24: " + getCheckMessage(WS_PRECEDED, "("),
-            "36:39: " + getCheckMessage(WS_PRECEDED, "("),
-            "42:16: " + getCheckMessage(WS_PRECEDED, "("),
-            "50:21: " + getCheckMessage(WS_PRECEDED, "("),
-            "56:18: " + getCheckMessage(WS_PRECEDED, "("),
-            "61:36: " + getCheckMessage(WS_PRECEDED, "("),
-            "74:15: " + getCheckMessage(WS_PRECEDED, "("),
+            "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "27:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "36:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "42:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "50:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "56:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "61:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "74:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
@@ -103,28 +103,28 @@ public class MethodParamPadCheckTest
     public void testSpaceOption() throws Exception {
         checkConfig.addAttribute("option", "space");
         final String[] expected = {
-            "6:31: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "8:14: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "17:9: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "20:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "23:23: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "32:9: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "35:58: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "38:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "41:15: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "44:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "47:28: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "49:20: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "52:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "54:56: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "55:17: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "58:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "60:35: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "63:13: " + getCheckMessage(LINE_PREVIOUS, "("),
-            "66:25: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "69:66: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "70:57: " + getCheckMessage(WS_NOT_PRECEDED, "("),
-            "79:13: " + getCheckMessage(LINE_PREVIOUS, "("),
+            "6:31: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "8:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "17:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "23:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "32:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "35:58: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "41:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "44:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "47:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "49:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "52:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "54:56: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "55:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "58:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "60:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "63:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "66:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "69:66: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "70:57: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "79:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }

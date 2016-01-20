@@ -152,13 +152,13 @@ public class WhitespaceAroundCheck extends Check {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_PRECEDED = "ws.notPreceded";
+    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
+    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /** Whether or not empty constructor bodies are allowed. */
     private boolean allowEmptyConstructors;
@@ -355,7 +355,7 @@ public class WhitespaceAroundCheck extends Check {
 
         if (before >= 0 && !Character.isWhitespace(line.charAt(before))) {
             log(ast.getLineNo(), ast.getColumnNo(),
-                    WS_NOT_PRECEDED, ast.getText());
+                    MSG_WS_NOT_PRECEDED, ast.getText());
         }
 
         if (after >= line.length()) {
@@ -370,7 +370,7 @@ public class WhitespaceAroundCheck extends Check {
             && !isAnonymousInnerClassEnd(currentType, nextChar)) {
 
             log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
-                    WS_NOT_FOLLOWED, ast.getText());
+                    MSG_WS_NOT_FOLLOWED, ast.getText());
         }
     }
 

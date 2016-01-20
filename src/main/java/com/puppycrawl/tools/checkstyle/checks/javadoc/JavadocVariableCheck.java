@@ -42,7 +42,7 @@ public class JavadocVariableCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String JAVADOC_MISSING = "javadoc.missing";
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
     /** The scope to check. */
     private Scope scope = Scope.PRIVATE;
@@ -110,7 +110,7 @@ public class JavadocVariableCheck
                 contents.getJavadocBefore(ast.getLineNo());
 
             if (textBlock == null) {
-                log(ast, JAVADOC_MISSING);
+                log(ast, MSG_JAVADOC_MISSING);
             }
         }
     }

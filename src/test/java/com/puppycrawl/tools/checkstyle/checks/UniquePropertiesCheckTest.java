@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.IO_EXCEPTION_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_IO_EXCEPTION_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
 import static org.junit.Assert.assertEquals;
 
@@ -124,7 +124,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
                 retrievedMessage);
         assertEquals("Message '" + message.getMessage()
                         + "' is not valid", message.getMessage(),
-                getCheckMessage(IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)));
+                getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)));
     }
 
     @Test

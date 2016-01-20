@@ -49,22 +49,22 @@ public class JavadocStyleCheck
     extends Check {
 
     /** Message property key for the Unclosed HTML message. */
-    public static final String JAVADOC_MISSING = "javadoc.missing";
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
     /** Message property key for the Unclosed HTML message. */
-    public static final String EMPTY = "javadoc.empty";
+    public static final String MSG_EMPTY = "javadoc.empty";
 
     /** Message property key for the Unclosed HTML message. */
-    public static final String NO_PERIOD = "javadoc.noPeriod";
+    public static final String MSG_NO_PERIOD = "javadoc.noPeriod";
 
     /** Message property key for the Unclosed HTML message. */
-    public static final String INCOMPLETE_TAG = "javadoc.incompleteTag";
+    public static final String MSG_INCOMPLETE_TAG = "javadoc.incompleteTag";
 
     /** Message property key for the Unclosed HTML message. */
-    public static final String UNCLOSED_HTML = "javadoc.unclosedHtml";
+    public static final String MSG_UNCLOSED_HTML = "javadoc.unclosedHtml";
 
     /** Message property key for the Extra HTML message. */
-    public static final String EXTRA_HTML = "javadoc.extraHtml";
+    public static final String MSG_EXTRA_HTML = "javadoc.extraHtml";
 
     /** HTML tags that do not require a close tag. */
     private static final Set<String> SINGLE_TAGS = ImmutableSortedSet.of(
@@ -200,7 +200,7 @@ public class JavadocStyleCheck
             // made sense to make another check just to ensure that the
             // package-info.java file actually contains package Javadocs.
             if (getFileContents().inPackageInfo()) {
-                log(ast.getLineNo(), JAVADOC_MISSING);
+                log(ast.getLineNo(), MSG_JAVADOC_MISSING);
             }
             return;
         }
@@ -235,7 +235,7 @@ public class JavadocStyleCheck
             && !getEndOfSentencePattern().matcher(commentText).find()
             && !(commentText.startsWith("{@inheritDoc}")
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
-            log(comment.getStartLineNo(), NO_PERIOD);
+            log(comment.getStartLineNo(), MSG_NO_PERIOD);
         }
     }
 
@@ -248,7 +248,7 @@ public class JavadocStyleCheck
         final String commentText = getCommentText(comment.getText());
 
         if (commentText.isEmpty()) {
-            log(comment.getStartLineNo(), EMPTY);
+            log(comment.getStartLineNo(), MSG_EMPTY);
         }
     }
 
@@ -351,7 +351,7 @@ public class JavadocStyleCheck
             final HtmlTag tag = parser.nextTag();
 
             if (tag.isIncompleteTag()) {
-                log(tag.getLineNo(), INCOMPLETE_TAG,
+                log(tag.getLineNo(), MSG_INCOMPLETE_TAG,
                     text[tag.getLineNo() - lineNo]);
                 return;
             }
@@ -365,7 +365,7 @@ public class JavadocStyleCheck
                     // No corresponding open tag was found on the stack.
                     log(tag.getLineNo(),
                         tag.getPosition(),
-                        EXTRA_HTML,
+                        MSG_EXTRA_HTML,
                         tag);
                 }
                 else {
@@ -390,7 +390,7 @@ public class JavadocStyleCheck
             if (!isSingleTag(htmlTag)
                 && !htmlTag.getId().equals(lastFound)
                 && !typeParameters.contains(htmlTag.getId())) {
-                log(htmlTag.getLineNo(), htmlTag.getPosition(), UNCLOSED_HTML, htmlTag);
+                log(htmlTag.getLineNo(), htmlTag.getPosition(), MSG_UNCLOSED_HTML, htmlTag);
                 lastFound = htmlTag.getId();
             }
         }
@@ -431,7 +431,7 @@ public class JavadocStyleCheck
             lastFound = lastOpenTag.getId();
             log(lastOpenTag.getLineNo(),
                 lastOpenTag.getPosition(),
-                UNCLOSED_HTML,
+                MSG_UNCLOSED_HTML,
                 lastOpenTag);
         }
     }

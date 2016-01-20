@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_FIRST_SENTENCE;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.SUMMARY_JAVADOC;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_FIRST_SENTENCE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -69,13 +69,13 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
-            "14: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
-            "37: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
-            "47: " + getCheckMessage(SUMMARY_JAVADOC),
-            "58: " + getCheckMessage(SUMMARY_JAVADOC),
-            "69: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
-            "83: " + getCheckMessage(SUMMARY_JAVADOC),
-            "103: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
+            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "47: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "83: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
         verify(checkConfig, getPath("InputIncorrectSummaryJavaDoc.java"), expected);
     }
@@ -84,8 +84,8 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     public void testPeriod() throws Exception {
         checkConfig.addAttribute("period", "_");
         final String[] expected = {
-            "5: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
-            "10: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
+            "5: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "10: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         verify(checkConfig, getPath("InputSummaryJavadocPeriod.java"), expected);
@@ -102,10 +102,10 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
-            "37: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
-            "69: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
-            "103: " + getCheckMessage(SUMMARY_FIRST_SENTENCE),
+            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         createChecker(checkConfig);

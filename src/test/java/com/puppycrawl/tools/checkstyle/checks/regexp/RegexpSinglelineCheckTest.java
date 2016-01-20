@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +51,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -77,7 +77,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("maximum", "0");
 
         final String[] expected = {
-            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -97,7 +97,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("minimum", "500");
         final String[] expected = {
-            "0: " + getCheckMessage(REGEXP_MINIMUM, "500", illegal),
+            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "500", illegal),
         };
 
         verify(checkConfig, getPath("InputSemantic.java"), expected);

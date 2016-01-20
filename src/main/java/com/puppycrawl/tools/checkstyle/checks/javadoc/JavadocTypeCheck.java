@@ -52,37 +52,37 @@ public class JavadocTypeCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String JAVADOC_MISSING = "javadoc.missing";
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String UNKNOWN_TAG = "javadoc.unknownTag";
+    public static final String MSG_UNKNOWN_TAG = "javadoc.unknownTag";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String TAG_FORMAT = "type.tagFormat";
+    public static final String MSG_TAG_FORMAT = "type.tagFormat";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MISSING_TAG = "type.missingTag";
+    public static final String MSG_MISSING_TAG = "type.missingTag";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String UNUSED_TAG = "javadoc.unusedTag";
+    public static final String MSG_UNUSED_TAG = "javadoc.unusedTag";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
+    public static final String MSG_UNUSED_TAG_GENERAL = "javadoc.unusedTagGeneral";
 
     /** Open angle bracket literal. */
     private static final String OPEN_ANGLE_BRACKET = "<";
@@ -189,7 +189,7 @@ public class JavadocTypeCheck
             final int lineNo = ast.getLineNo();
             final TextBlock textBlock = contents.getJavadocBefore(lineNo);
             if (textBlock == null) {
-                log(lineNo, JAVADOC_MISSING);
+                log(lineNo, MSG_JAVADOC_MISSING);
             }
             else {
                 final List<JavadocTag> tags = getJavadocTags(textBlock);
@@ -253,7 +253,7 @@ public class JavadocTypeCheck
             JavadocUtils.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
             for (final InvalidJavadocTag tag : tags.getInvalidTags()) {
-                log(tag.getLine(), tag.getCol(), UNKNOWN_TAG,
+                log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG,
                     tag.getName());
             }
         }
@@ -281,12 +281,12 @@ public class JavadocTypeCheck
             if (tag.getTagName().equals(tagName)) {
                 tagCount++;
                 if (!formatPattern.matcher(tag.getFirstArg()).find()) {
-                    log(lineNo, TAG_FORMAT, tagPrefix + tagName, format);
+                    log(lineNo, MSG_TAG_FORMAT, tagPrefix + tagName, format);
                 }
             }
         }
         if (tagCount == 0) {
-            log(lineNo, MISSING_TAG, tagPrefix + tagName);
+            log(lineNo, MSG_MISSING_TAG, tagPrefix + tagName);
         }
     }
 
@@ -309,7 +309,7 @@ public class JavadocTypeCheck
             }
         }
         if (!found) {
-            log(lineNo, MISSING_TAG, JavadocTagInfo.PARAM.getText()
+            log(lineNo, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
                 + " " + OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
         }
     }
@@ -332,7 +332,7 @@ public class JavadocTypeCheck
                     final String typeParamName = matcher.group(1).trim();
                     if (!typeParamNames.contains(typeParamName)) {
                         log(tag.getLineNo(), tag.getColumnNo(),
-                            UNUSED_TAG,
+                            MSG_UNUSED_TAG,
                             JavadocTagInfo.PARAM.getText(),
                             OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
                     }

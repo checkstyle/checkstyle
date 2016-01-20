@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_NEW;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.LINE_PREVIOUS;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_PREVIOUS;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,11 +52,11 @@ public class OperatorWrapCheckTest
     public void testDefault()
         throws Exception {
         final String[] expected = {
-            "15:19: " + getCheckMessage(LINE_NEW, "+"),
-            "16:15: " + getCheckMessage(LINE_NEW, "-"),
-            "24:18: " + getCheckMessage(LINE_NEW, "&&"),
-            "39:30: " + getCheckMessage(LINE_NEW, "&"),
-            "52:30: " + getCheckMessage(LINE_NEW, "&"),
+            "15:19: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "16:15: " + getCheckMessage(MSG_LINE_NEW, "-"),
+            "24:18: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "39:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
+            "52:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
         };
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
@@ -66,9 +66,9 @@ public class OperatorWrapCheckTest
         throws Exception {
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "18:13: " + getCheckMessage(LINE_PREVIOUS, "-"),
-            "22:13: " + getCheckMessage(LINE_PREVIOUS, "&&"),
-            "27:13: " + getCheckMessage(LINE_PREVIOUS, "&&"),
+            "18:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
+            "22:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
+            "27:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
         };
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
@@ -79,7 +79,7 @@ public class OperatorWrapCheckTest
         checkConfig.addAttribute("tokens", "ASSIGN");
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "33:13: " + getCheckMessage(LINE_PREVIOUS, "="),
+            "33:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
         };
         verify(checkConfig, getPath("InputOpWrap.java"), expected);
     }
