@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
@@ -160,6 +162,43 @@ public class AllChecksTest extends BaseCheckTestSupport {
         for (String moduleName : getSimpleNames(CheckUtil.getCheckstyleModules())) {
             Assert.assertTrue("checkstyle_checks.xml is missing module: " + moduleName,
                     configChecks.contains(moduleName));
+        }
+    }
+
+    @Test
+    public void testAllCheckstyleModulesHaveMessage() throws Exception {
+        for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
+            Assert.assertFalse(module.getSimpleName()
+                    + " should have atleast one 'MSG_*' field for error messages", CheckUtil
+                    .getCheckMessages(module).isEmpty());
+        }
+    }
+
+    @Test
+    public void testAllCheckstyleMessages() throws Exception {
+        for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
+            for (Field message : CheckUtil.getCheckMessages(module)) {
+                Assert.assertEquals(module.getSimpleName() + "." + message.getName()
+                        + " should be 'public static final'", Modifier.PUBLIC | Modifier.STATIC
+                        | Modifier.FINAL, message.getModifiers());
+
+                // below is required for package/private classes
+                if (!message.isAccessible()) {
+                    message.setAccessible(true);
+                }
+
+                final String result = CheckUtil.getCheckMessage(module, message.get(null)
+                        .toString());
+
+                Assert.assertNotNull(module.getSimpleName() + " should have text for the message '"
+                        + message.getName() + "'", result);
+                Assert.assertFalse(
+                        module.getSimpleName() + " should have non-empty text for the message '"
+                                + message.getName() + "'", result.trim().isEmpty());
+                Assert.assertFalse(module.getSimpleName()
+                        + " should have non-TODO text for the message '" + message.getName() + "'",
+                        result.trim().startsWith("TODO"));
+            }
         }
     }
 
