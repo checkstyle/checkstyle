@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </p>
  * @author Oliver Burn
  */
-abstract class AbstractParenPadCheck
+public abstract class AbstractParenPadCheck
     extends Check {
 
     /**
