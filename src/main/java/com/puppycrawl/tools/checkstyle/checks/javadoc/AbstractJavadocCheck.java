@@ -67,11 +67,11 @@ public abstract class AbstractJavadocCheck extends Check {
      * {@code "no viable alternative at input 'b \n *\n'"} and it is not
      * clear that error is about missed close HTML tag.
      */
-    static final String MSG_JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
+    public static final String MSG_JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
     /**
      * Message key of error message.
      */
-    static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
+    public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
         "javadoc.wrong.singleton.html.tag";
 
     /**

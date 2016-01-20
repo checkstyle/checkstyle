@@ -42,20 +42,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author o_sukhodolsky
  */
 public class RegexpHeaderCheck extends AbstractHeaderCheck {
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_HEADER_MISSING = "header.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_HEADER_MISMATCH = "header.mismatch";
+
     /** Empty array to avoid instantiations. */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    private static final String MSG_HEADER_MISSING = "header.missing";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    private static final String MSG_HEADER_MISMATCH = "header.mismatch";
 
     /** The compiled regular expressions. */
     private final List<Pattern> headerRegexps = Lists.newArrayList();
