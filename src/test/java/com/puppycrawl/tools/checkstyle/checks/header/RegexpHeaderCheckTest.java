@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
-import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
-import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
+import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -134,7 +134,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header"));
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
         verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
@@ -146,7 +146,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         final URI uri = new File(getPath("regexp.header")).toURI();
         checkConfig.addAttribute("headerFile", uri.toString());
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
         verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
@@ -157,7 +157,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                 createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("header", "^/*$\\n// .*\\n// Created: 2002\\n^//.*\\n^//.*");
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_MISMATCH, "// Created: 2002"),
+            "3: " + getCheckMessage(MSG_HEADER_MISMATCH, "// Created: 2002"),
         };
         verify(checkConfig, getPath("InputRegexpHeader7.java"), expected);
     }
@@ -236,7 +236,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "3");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_MISSING),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
         verify(checkConfig, getPath("InputRegexpHeader4.java"), expected);
     }
@@ -268,7 +268,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("headerFile", getPath("regexp.header2"));
         checkConfig.addAttribute("multiLines", "");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_MISSING),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
         verify(checkConfig, getPath("InputRegexpSmallHeader.java"), expected);
     }
@@ -279,7 +279,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("regexp.header3"));
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_MISSING),
+            "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
         verify(checkConfig, getPath("InputRegexpHeader5.java"), expected);
     }
