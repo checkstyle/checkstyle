@@ -21,9 +21,13 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Locale;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -38,6 +42,9 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public final class CheckUtil {
@@ -201,6 +208,65 @@ public final class CheckUtil {
         return Filter.class.isAssignableFrom(loadedClass)
             && AutomaticBean.class.isAssignableFrom(loadedClass)
             && className.endsWith("Filter");
+    }
+
+    /**
+     * Get's the check's messages.
+     * @param module class to examine.
+     * @return a set of checkstyle's module message fields.
+     * @throws ClassNotFoundException if the attempt to read a protected class fails.
+     */
+    public static Set<Field> getCheckMessages(Class<?> module) throws ClassNotFoundException {
+        final Set<Field> checkstyleMessages = new HashSet<>();
+
+        // get all fields from current class
+        final Field[] fields = module.getDeclaredFields();
+
+        for (Field field : fields) {
+            if (field.getName().startsWith("MSG_")) {
+                checkstyleMessages.add(field);
+            }
+        }
+
+        // deep scan class through hierarchy
+        final Class<?> superModule = module.getSuperclass();
+
+        if (superModule != null) {
+            checkstyleMessages.addAll(getCheckMessages(superModule));
+        }
+
+        // special cases that require additional classes
+        if (module == RegexpMultilineCheck.class) {
+            checkstyleMessages.addAll(getCheckMessages(Class
+                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector")));
+        }
+        else if (module == RegexpSinglelineCheck.class
+                || module == RegexpSinglelineJavaCheck.class) {
+            checkstyleMessages.addAll(getCheckMessages(Class
+                    .forName("com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector")));
+        }
+
+        return checkstyleMessages;
+    }
+
+    /**
+     * Gets the check message 'as is' from appropriate 'messages.properties'
+     * file.
+     *
+     * @param messageKey the key of message in 'messages.properties' file.
+     * @param arguments the arguments of message in 'messages.properties' file.
+     * @return the check's formatted message.
+     */
+    public static String getCheckMessage(Class<?> module, String messageKey, Object... arguments) {
+        final Properties pr = new Properties();
+        try {
+            pr.load(module.getResourceAsStream("messages.properties"));
+        }
+        catch (IOException ex) {
+            return null;
+        }
+        final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey), Locale.ROOT);
+        return formatter.format(arguments);
     }
 
     public static String getTokenText(int[] tokens, int... subtractions) {
