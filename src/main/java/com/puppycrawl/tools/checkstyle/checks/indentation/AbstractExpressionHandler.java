@@ -31,31 +31,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author jrichard
  */
 public abstract class AbstractExpressionHandler {
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_ERROR = "indentation.error";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_ERROR_MULTI = "indentation.error.multi";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_CHILD_ERROR = "indentation.child.error";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_CHILD_ERROR_MULTI = "indentation.child.error.multi";
-
     /**
      * The instance of {@code IndentationCheck} using this handler.
      */
@@ -162,9 +137,9 @@ public abstract class AbstractExpressionHandler {
         else {
             typeStr = " " + subtypeName;
         }
-        String messageKey = MSG_ERROR;
+        String messageKey = IndentationCheck.MSG_ERROR;
         if (expectedIndent.isMultiLevel()) {
-            messageKey = MSG_ERROR_MULTI;
+            messageKey = IndentationCheck.MSG_ERROR_MULTI;
         }
         indentCheck.indentationLog(ast.getLineNo(), messageKey,
             typeName + typeStr, actualIndent, expectedIndent);
@@ -180,9 +155,9 @@ public abstract class AbstractExpressionHandler {
     private void logChildError(int line,
                                int actualIndent,
                                IndentLevel expectedIndent) {
-        String messageKey = MSG_CHILD_ERROR;
+        String messageKey = IndentationCheck.MSG_CHILD_ERROR;
         if (expectedIndent.isMultiLevel()) {
-            messageKey = MSG_CHILD_ERROR_MULTI;
+            messageKey = IndentationCheck.MSG_CHILD_ERROR_MULTI;
         }
         indentCheck.indentationLog(line, messageKey,
             typeName, actualIndent, expectedIndent);
