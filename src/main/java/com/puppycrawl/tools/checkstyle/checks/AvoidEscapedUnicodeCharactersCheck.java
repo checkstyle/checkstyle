@@ -106,6 +106,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class AvoidEscapedUnicodeCharactersCheck
     extends Check {
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "forbid.escaped.unicode.char";
+
     /** Regular expression for Unicode chars. */
     private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
 
@@ -216,7 +222,7 @@ public class AvoidEscapedUnicodeCharactersCheck
                         && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
                 || allowNonPrintableEscapes
                         && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
-            log(ast.getLineNo(), "forbid.escaped.unicode.char");
+            log(ast.getLineNo(), MSG_KEY);
         }
     }
 

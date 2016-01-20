@@ -27,6 +27,18 @@ import java.util.regex.Matcher;
  * @author oliver
  */
 class SinglelineDetector {
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
+
     /** The detection options to use. */
     private final DetectorOptions options;
     /** Tracks the number of matches. */
@@ -58,7 +70,7 @@ class SinglelineDetector {
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(0, "regexp.minimum",
+                options.getReporter().log(0, MSG_REGEXP_MINIMUM,
                         options.getMinimum(), options.getFormat());
             }
             else {
@@ -107,7 +119,7 @@ class SinglelineDetector {
         currentMatches++;
         if (currentMatches > options.getMaximum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(lineNo, "regexp.exceeded",
+                options.getReporter().log(lineNo, MSG_REGEXP_EXCEEDED,
                         matcher.pattern().toString());
             }
             else {

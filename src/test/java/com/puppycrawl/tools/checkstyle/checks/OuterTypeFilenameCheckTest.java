@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -108,7 +109,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     public void testWrongDefault() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage("type.file.mismatch"),
+            "4: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputOuterTypeFilename5.java"), expected);
     }
