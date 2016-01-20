@@ -53,12 +53,12 @@ public abstract class AbstractJavadocCheck extends Check {
     /**
      * Error message key for common javadoc errors.
      */
-    public static final String PARSE_ERROR_MESSAGE_KEY = "javadoc.parse.error";
+    public static final String MSG_KEY_PARSE_ERROR = "javadoc.parse.error";
 
     /**
      * Unrecognized error from antlr parser.
      */
-    public static final String UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY =
+    public static final String MSG_KEY_UNRECOGNIZED_ANTLR_ERROR =
             "javadoc.unrecognized.antlr.error";
     /**
      * Message key of error message. Missed close HTML tag breaks structure
@@ -67,11 +67,11 @@ public abstract class AbstractJavadocCheck extends Check {
      * {@code "no viable alternative at input 'b \n *\n'"} and it is not
      * clear that error is about missed close HTML tag.
      */
-    static final String JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
+    static final String MSG_JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
     /**
      * Message key of error message.
      */
-    static final String JAVADOC_WRONG_SINGLETON_TAG =
+    static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
         "javadoc.wrong.singleton.html.tag";
 
     /**
@@ -242,7 +242,7 @@ public abstract class AbstractJavadocCheck extends Check {
             // There are cases when antlr error listener does not handle syntax error
             if (parseErrorMessage == null) {
                 parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
-                        UNRECOGNIZED_ANTLR_ERROR_MESSAGE_KEY,
+                        MSG_KEY_UNRECOGNIZED_ANTLR_ERROR,
                         javadocCommentAst.getColumnNo(), ex.getMessage());
             }
 
@@ -558,7 +558,7 @@ public abstract class AbstractJavadocCheck extends Check {
         /**
          * Parse error while rule recognition.
          */
-        private static final String JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
+        private static final String MSG_JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
 
         /**
          * Offset is line number of beginning of the Javadoc comment. Log
@@ -609,15 +609,15 @@ public abstract class AbstractJavadocCheck extends Check {
             final int lineNumber = offset + line;
             final Token token = (Token) offendingSymbol;
 
-            if (JAVADOC_MISSED_HTML_CLOSE.equals(msg)) {
+            if (MSG_JAVADOC_MISSED_HTML_CLOSE.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
+                        MSG_JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
 
                 throw new ParseCancellationException(msg);
             }
-            else if (JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
+            else if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
+                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
 
                 throw new ParseCancellationException(msg);
             }
@@ -628,7 +628,7 @@ public abstract class AbstractJavadocCheck extends Check {
                         CaseFormat.UPPER_UNDERSCORE, ruleName);
 
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
+                        MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
             }
         }
     }

@@ -48,7 +48,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     /**
      * Localization key for IO exception occurred on file open.
      */
-    public static final String IO_EXCEPTION_KEY = "unable.open.cause";
+    public static final String MSG_IO_EXCEPTION_KEY = "unable.open.cause";
 
     /**
      * Pattern matching single space.
@@ -77,7 +77,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
             }
         }
         catch (IOException ex) {
-            log(0, IO_EXCEPTION_KEY, file.getPath(),
+            log(0, MSG_IO_EXCEPTION_KEY, file.getPath(),
                     ex.getLocalizedMessage());
         }
 

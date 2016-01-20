@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_ILLEGAL_FOLLOW;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_NOT_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.WS_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_ILLEGAL_FOLLOW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_PRECEDED;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -80,32 +80,32 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "16:13: " + getCheckMessage(WS_PRECEDED, "<"),
-            "16:15: " + getCheckMessage(WS_FOLLOWED, "<"),
-            "16:23: " + getCheckMessage(WS_PRECEDED, ">"),
-            "16:43: " + getCheckMessage(WS_PRECEDED, "<"),
-            "16:45: " + getCheckMessage(WS_FOLLOWED, "<"),
-            "16:53: " + getCheckMessage(WS_PRECEDED, ">"),
-            "17:13: " + getCheckMessage(WS_PRECEDED, "<"),
-            "17:15: " + getCheckMessage(WS_FOLLOWED, "<"),
-            "17:20: " + getCheckMessage(WS_PRECEDED, "<"),
-            "17:22: " + getCheckMessage(WS_FOLLOWED, "<"),
-            "17:30: " + getCheckMessage(WS_PRECEDED, ">"),
-            "17:32: " + getCheckMessage(WS_FOLLOWED, ">"),
-            "17:32: " + getCheckMessage(WS_PRECEDED, ">"),
-            "17:52: " + getCheckMessage(WS_PRECEDED, "<"),
-            "17:54: " + getCheckMessage(WS_FOLLOWED, "<"),
-            "17:59: " + getCheckMessage(WS_PRECEDED, "<"),
-            "17:61: " + getCheckMessage(WS_FOLLOWED, "<"),
-            "17:69: " + getCheckMessage(WS_PRECEDED, ">"),
-            "17:71: " + getCheckMessage(WS_FOLLOWED, ">"),
-            "17:71: " + getCheckMessage(WS_PRECEDED, ">"),
-            "30:17: " + getCheckMessage(WS_NOT_PRECEDED, "<"),
-            "30:21: " + getCheckMessage(WS_ILLEGAL_FOLLOW, ">"),
-            "42:21: " + getCheckMessage(WS_PRECEDED, "<"),
-            "42:30: " + getCheckMessage(WS_FOLLOWED, ">"),
-            "60:60: " + getCheckMessage(WS_NOT_PRECEDED, "&"),
-            "63:60: " + getCheckMessage(WS_FOLLOWED, ">"),
+            "16:13: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "16:15: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "16:23: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "16:43: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "16:45: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "16:53: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "17:13: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "17:15: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "17:20: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "17:22: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "17:30: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "17:32: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "17:32: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "17:52: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "17:54: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "17:59: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "17:61: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "17:69: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "17:71: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "17:71: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "30:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "30:21: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
+            "42:21: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "42:30: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "60:60: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "63:60: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verify(checkConfig, getPath("InputGenericWhitespace.java"), expected);
     }
@@ -131,7 +131,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testMethodReferences2() throws Exception {
         final String[] expected = {
-            "7:69: " + getCheckMessage(WS_FOLLOWED, ">"),
+            "7:69: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verify(checkConfig, getNonCompilablePath("InputGenericWhitespaceMethodRef.java"), expected);
     }

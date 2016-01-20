@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.EMPTY;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.STACKOVERFLOW;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_EMPTY;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_STACKOVERFLOW;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +60,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -84,7 +84,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
-            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -103,9 +103,9 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         final String illegal = "^import";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "7: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
-            "8: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
-            "9: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "7: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "8: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "9: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -116,8 +116,8 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("maximum", "0");
         final String[] expected = {
-            "1: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
-            "3: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "1: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
+            "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
 
         final File file = temporaryFolder.newFile();
@@ -136,7 +136,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     public void testEmptyFormat() throws Exception {
         checkConfig.addAttribute("format", null);
         final String[] expected = {
-            "0: " + getCheckMessage(EMPTY),
+            "0: " + getCheckMessage(MSG_EMPTY),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -147,7 +147,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("format", "(x|y)*");
 
         final String[] expected = {
-            "0: " + getCheckMessage(STACKOVERFLOW),
+            "0: " + getCheckMessage(MSG_STACKOVERFLOW),
         };
 
         final File file = temporaryFolder.newFile();
@@ -162,7 +162,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("minimum", "5");
         final String[] expected = {
-            "0: " + getCheckMessage(REGEXP_MINIMUM, "5", illegal),
+            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "5", illegal),
         };
 
         final File file = temporaryFolder.newFile();

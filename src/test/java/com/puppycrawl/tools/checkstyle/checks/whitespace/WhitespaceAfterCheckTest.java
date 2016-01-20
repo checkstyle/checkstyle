@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.WS_TYPECAST;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.MSG_WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.MSG_WS_TYPECAST;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -57,8 +57,8 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "42:40: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
-            "71:30: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
+            "42:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "71:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -66,7 +66,7 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testCast() throws Exception {
         final String[] expected = {
-            "88:21: " + getCheckMessage(WS_TYPECAST),
+            "88:21: " + getCheckMessage(MSG_WS_TYPECAST),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
@@ -74,9 +74,9 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testSemi() throws Exception {
         final String[] expected = {
-            "54:23: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
-            "54:29: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
-            "103:19: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
+            "54:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "54:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "103:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputBraces.java"), expected);
     }
@@ -84,8 +84,8 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testEmptyForIterator() throws Exception {
         final String[] expected = {
-            "14:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
-            "17:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
+            "14:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "17:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
@@ -93,9 +93,9 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testTypeArgumentAndParameterCommas() throws Exception {
         final String[] expected = {
-            "11:21: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
-            "11:23: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
-            "11:41: " + getCheckMessage(WS_NOT_FOLLOWED, ","),
+            "11:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "11:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "11:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
         verify(checkConfig, getPath("InputGenerics.java"), expected);
     }

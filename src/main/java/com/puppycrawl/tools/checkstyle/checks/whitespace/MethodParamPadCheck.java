@@ -74,19 +74,19 @@ public class MethodParamPadCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String LINE_PREVIOUS = "line.previous";
+    public static final String MSG_LINE_PREVIOUS = "line.previous";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_PRECEDED = "ws.preceded";
+    public static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_PRECEDED = "ws.notPreceded";
+    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /**
      * Whether whitespace is allowed if the method identifier is at a
@@ -136,18 +136,18 @@ public class MethodParamPadCheck
         final String line = getLines()[parenAST.getLineNo() - 1];
         if (CommonUtils.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
             if (!allowLineBreaks) {
-                log(parenAST, LINE_PREVIOUS, parenAST.getText());
+                log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
             }
         }
         else {
             final int before = parenAST.getColumnNo() - 1;
             if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))) {
-                log(parenAST, WS_PRECEDED, parenAST.getText());
+                log(parenAST, MSG_WS_PRECEDED, parenAST.getText());
             }
             else if (option == PadOption.SPACE
                      && !Character.isWhitespace(line.charAt(before))) {
-                log(parenAST, WS_NOT_PRECEDED, parenAST.getText());
+                log(parenAST, MSG_WS_NOT_PRECEDED, parenAST.getText());
             }
         }
     }

@@ -41,25 +41,25 @@ abstract class AbstractParenPadCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_FOLLOWED = "ws.followed";
+    public static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
+    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_PRECEDED = "ws.preceded";
+    public static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_PRECEDED = "ws.notPreceded";
+    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /** Open parenthesis literal. */
     private static final char OPEN_PARENTHESIS = '(';
@@ -94,12 +94,12 @@ abstract class AbstractParenPadCheck
         if (after < line.length()) {
             if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(after))) {
-                log(ast.getLineNo(), after, WS_FOLLOWED, OPEN_PARENTHESIS);
+                log(ast.getLineNo(), after, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
             }
             else if (option == PadOption.SPACE
                      && !Character.isWhitespace(line.charAt(after))
                      && line.charAt(after) != CLOSE_PARENTHESIS) {
-                log(ast.getLineNo(), after, WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
+                log(ast.getLineNo(), after, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
             }
         }
     }
@@ -115,13 +115,13 @@ abstract class AbstractParenPadCheck
             if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))
                 && !CommonUtils.hasWhitespaceBefore(before, line)) {
-                log(ast.getLineNo(), before, WS_PRECEDED, CLOSE_PARENTHESIS);
+                log(ast.getLineNo(), before, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
             }
             else if (option == PadOption.SPACE
                 && !Character.isWhitespace(line.charAt(before))
                 && line.charAt(before) != OPEN_PARENTHESIS) {
                 log(ast.getLineNo(), ast.getColumnNo(),
-                    WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
+                    MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
         }
     }

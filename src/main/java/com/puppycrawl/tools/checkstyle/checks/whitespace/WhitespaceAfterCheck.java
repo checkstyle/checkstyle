@@ -61,13 +61,13 @@ public class WhitespaceAfterCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_NOT_FOLLOWED = "ws.notFollowed";
+    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String WS_TYPECAST = "ws.typeCast";
+    public static final String MSG_WS_TYPECAST = "ws.typeCast";
 
     @Override
     public int[] getDefaultTokens() {
@@ -96,7 +96,7 @@ public class WhitespaceAfterCheck
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST.getLineNo(),
                     targetAST.getColumnNo() + targetAST.getText().length(),
-                    WS_TYPECAST);
+                    MSG_WS_TYPECAST);
             }
         }
         else {
@@ -104,7 +104,7 @@ public class WhitespaceAfterCheck
                 final Object[] message = {ast.getText()};
                 log(ast.getLineNo(),
                     ast.getColumnNo() + ast.getText().length(),
-                    WS_NOT_FOLLOWED,
+                    MSG_WS_NOT_FOLLOWED,
                     message);
             }
         }

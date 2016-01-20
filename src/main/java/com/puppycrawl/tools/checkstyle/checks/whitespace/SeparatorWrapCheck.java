@@ -89,13 +89,13 @@ public class SeparatorWrapCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String LINE_PREVIOUS = "line.previous";
+    public static final String MSG_LINE_PREVIOUS = "line.previous";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String LINE_NEW = "line.new";
+    public static final String MSG_LINE_NEW = "line.new";
 
     /** The policy to enforce. */
     private WrapOption option = WrapOption.EOL;
@@ -155,11 +155,11 @@ public class SeparatorWrapCheck
 
         if (option == WrapOption.EOL
                 && substringBeforeToken.isEmpty()) {
-            log(lineNo, colNo, LINE_PREVIOUS, text);
+            log(lineNo, colNo, MSG_LINE_PREVIOUS, text);
         }
         else if (option == WrapOption.NL
                  && substringAfterToken.isEmpty()) {
-            log(lineNo, colNo, LINE_NEW, text);
+            log(lineNo, colNo, MSG_LINE_NEW, text);
         }
     }
 }

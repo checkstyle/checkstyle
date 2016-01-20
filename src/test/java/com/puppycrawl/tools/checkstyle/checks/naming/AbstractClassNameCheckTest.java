@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.ILLEGAL_ABSTRACT_CLASS_NAME;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.NO_ABSTRACT_CLASS_MODIFIER;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.MSG_NO_ABSTRACT_CLASS_MODIFIER;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,10 +49,11 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         final String pattern = "^Abstract.+$";
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+            "3:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
-            "6:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName", pattern),
-            "10:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
+            "6:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
+                pattern),
+            "10:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
                 pattern),
         };
 
@@ -69,10 +70,11 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", pattern);
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+            "3:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
-            "9:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOther", pattern),
-            "21:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2",
+            "9:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOther",
+                pattern),
+            "21:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2",
                 pattern),
         };
 
@@ -86,8 +88,8 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
-            "18:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
-            "22:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
+            "18:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "22:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
         verify(checkConfig, getPath("InputAbstractClassName.java"), expected);
@@ -102,13 +104,14 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         final String pattern = "^Abstract.+$";
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+            "3:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
-            "6:1: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName", pattern),
-            "10:5: " + getCheckMessage(ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
+            "6:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
                 pattern),
-            "18:1: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
-            "22:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
+            "10:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
+                pattern),
+            "18:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "22:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
         verify(checkConfig, getPath("InputAbstractClassName.java"), expected);
@@ -119,7 +122,7 @@ public class AbstractClassNameCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(AbstractClassNameCheck.class);
 
         final String[] expected = {
-            "9:5: " + getCheckMessage(NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "9:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
         };
 
         verify(checkConfig, getPath("InputAbstractClassNameFormerFalsePositive.java"), expected);

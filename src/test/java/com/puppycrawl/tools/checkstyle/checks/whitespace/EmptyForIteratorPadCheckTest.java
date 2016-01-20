@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_NOT_FOLLOWED;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -60,9 +60,9 @@ public class EmptyForIteratorPadCheckTest
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "27:31: " + getCheckMessage(WS_FOLLOWED, ";"),
-            "43:32: " + getCheckMessage(WS_FOLLOWED, ";"),
-            "55:11: " + getCheckMessage(WS_FOLLOWED, ";"),
+            "27:31: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "43:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "55:11: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }
@@ -71,7 +71,7 @@ public class EmptyForIteratorPadCheckTest
     public void testSpaceOption() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "23:31: " + getCheckMessage(WS_NOT_FOLLOWED, ";"),
+            "23:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }

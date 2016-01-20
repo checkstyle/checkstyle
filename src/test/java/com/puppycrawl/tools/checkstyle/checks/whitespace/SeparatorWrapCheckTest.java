@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_NEW;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.LINE_PREVIOUS;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_PREVIOUS;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,7 +56,7 @@ public class SeparatorWrapCheckTest
         checkConfig.addAttribute("option", "NL");
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
-            "31:10: " + getCheckMessage(LINE_NEW, "."),
+            "31:10: " + getCheckMessage(MSG_LINE_NEW, "."),
         };
         verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
     }
@@ -66,7 +66,7 @@ public class SeparatorWrapCheckTest
         checkConfig.addAttribute("option", "EOL");
         checkConfig.addAttribute("tokens", "COMMA");
         final String[] expected = {
-            "39:17: " + getCheckMessage(LINE_PREVIOUS, ","),
+            "39:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
         verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
     }

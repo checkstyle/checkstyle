@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.CONTAINS_TAB;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.FILE_CONTAINS_TAB;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +51,7 @@ public class FileTabCharacterCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(false);
         final String[] expected = {
-            "19:25: " + getCheckMessage(FILE_CONTAINS_TAB),
+            "19:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
         final File[] files = {
             new File(getPath("InputSimple.java")),
@@ -64,14 +64,14 @@ public class FileTabCharacterCheckTest
     public void testVerbose() throws Exception {
         final DefaultConfiguration checkConfig = createConfig(true);
         final String[] expected = {
-            "19:25: " + getCheckMessage(CONTAINS_TAB),
-            "145:35: " + getCheckMessage(CONTAINS_TAB),
-            "146:64: " + getCheckMessage(CONTAINS_TAB),
-            "154:9: " + getCheckMessage(CONTAINS_TAB),
-            "155:10: " + getCheckMessage(CONTAINS_TAB),
-            "156:1: " + getCheckMessage(CONTAINS_TAB),
-            "157:3: " + getCheckMessage(CONTAINS_TAB),
-            "158:3: " + getCheckMessage(CONTAINS_TAB),
+            "19:25: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "145:35: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "146:64: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "154:9: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "155:10: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "156:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "157:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "158:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
         final File[] files = {
             new File(getPath("InputSimple.java")),

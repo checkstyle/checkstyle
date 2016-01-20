@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -58,7 +58,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String[] expected = {
-            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -82,7 +82,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "true");
         final String[] expected = {
-            "69: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -113,7 +113,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "4: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "4: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -134,7 +134,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "false");
         final String[] expected = {
-            "19: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "19: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -173,7 +173,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "22: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "22: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -184,7 +184,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "true");
         final String[] expected = {
-            "23: " + getCheckMessage(REGEXP_EXCEEDED, illegal),
+            "23: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -236,7 +236,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("minimum", "1");
         checkConfig.addAttribute("maximum", "1000");
         final String[] expected = {
-            "0: " + getCheckMessage(REGEXP_MINIMUM, 1, required),
+            "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, required),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }

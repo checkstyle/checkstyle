@@ -48,13 +48,13 @@ public final class AbstractClassNameCheck extends Check {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String ILLEGAL_ABSTRACT_CLASS_NAME = "illegal.abstract.class.name";
+    public static final String MSG_ILLEGAL_ABSTRACT_CLASS_NAME = "illegal.abstract.class.name";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String NO_ABSTRACT_CLASS_MODIFIER = "no.abstract.class.modifier";
+    public static final String MSG_NO_ABSTRACT_CLASS_MODIFIER = "no.abstract.class.modifier";
 
     /** Whether to ignore checking the modifier. */
     private boolean ignoreModifier;
@@ -125,12 +125,12 @@ public final class AbstractClassNameCheck extends Check {
             // if class has abstract modifier
             if (!ignoreName && !isMatchingClassName(className)) {
                 log(ast.getLineNo(), ast.getColumnNo(),
-                    ILLEGAL_ABSTRACT_CLASS_NAME, className, format);
+                    MSG_ILLEGAL_ABSTRACT_CLASS_NAME, className, format);
             }
         }
         else if (!ignoreModifier && isMatchingClassName(className)) {
             log(ast.getLineNo(), ast.getColumnNo(),
-                NO_ABSTRACT_CLASS_MODIFIER, className);
+                MSG_NO_ABSTRACT_CLASS_MODIFIER, className);
         }
     }
 

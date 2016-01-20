@@ -67,13 +67,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String SUMMARY_FIRST_SENTENCE = "summary.first.sentence";
+    public static final String MSG_SUMMARY_FIRST_SENTENCE = "summary.first.sentence";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String SUMMARY_JAVADOC = "summary.javaDoc";
+    public static final String MSG_SUMMARY_JAVADOC = "summary.javaDoc";
     /**
      * This regexp is used to convert multiline javadoc to single line without stars.
      */
@@ -131,12 +131,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         String firstSentence = getFirstSentence(ast);
         final int endOfSentence = firstSentence.lastIndexOf(period);
         if (endOfSentence == -1) {
-            log(ast.getLineNumber(), SUMMARY_FIRST_SENTENCE);
+            log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
         }
         else {
             firstSentence = firstSentence.substring(0, endOfSentence);
             if (containsForbiddenFragment(firstSentence)) {
-                log(ast.getLineNumber(), SUMMARY_JAVADOC);
+                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
     }
