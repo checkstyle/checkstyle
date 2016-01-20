@@ -80,6 +80,30 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author maxvetrenko
  */
 public class IndentationCheck extends Check {
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ERROR = "indentation.error";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ERROR_MULTI = "indentation.error.multi";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CHILD_ERROR = "indentation.child.error";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CHILD_ERROR_MULTI = "indentation.child.error.multi";
+
     /** Default indentation amount - based on Sun. */
     private static final int DEFAULT_INDENTATION = 4;
 

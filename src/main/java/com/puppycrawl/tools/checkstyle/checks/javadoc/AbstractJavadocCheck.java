@@ -75,6 +75,11 @@ public abstract class AbstractJavadocCheck extends Check {
         "javadoc.wrong.singleton.html.tag";
 
     /**
+     * Parse error while rule recognition.
+     */
+    public static final String MSG_JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
+
+    /**
      * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
      * to guarantee basic thread safety and avoid shared, mutable state when not necessary.
      */
@@ -554,11 +559,6 @@ public abstract class AbstractJavadocCheck extends Check {
      * Custom error listener for JavadocParser that prints user readable errors.
      */
     private static class DescriptiveErrorListener extends BaseErrorListener {
-
-        /**
-         * Parse error while rule recognition.
-         */
-        private static final String MSG_JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
 
         /**
          * Offset is line number of beginning of the Javadoc comment. Log
