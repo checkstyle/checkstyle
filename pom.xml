@@ -1105,7 +1105,7 @@
         <artifactId>maven-report</artifactId>
         <version>0.1</version>
         <configuration>
-          <sonarHostURL>http://nemo.sonarqube.org</sonarHostURL>
+          <sonarHostURL>https://nemo.sonarqube.org</sonarHostURL>
         </configuration>
       </plugin>
 
@@ -1200,7 +1200,7 @@
             by sonar's developers. It is not allowed to open issue against sonar's maven report plugin
             at sonar's issue tracker: http://jira.codehaus.org/browse/MSONAR
             Sonar's mailing lists: http://www.mojohaus.org/sonar-maven-plugin/mail-lists.html-->
-            <excludedLink>http://nemo.sonarqube.org/project/index/com.puppycrawl.tools:checkstyle</excludedLink>
+            <excludedLink>https://nemo.sonarqube.org/project/index/com.puppycrawl.tools:checkstyle</excludedLink>
             <!-- skip validating SNAPSHOTs on sourceforge when ${projectVersion} is SNAPSHOT-->
             <excludedLink>http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/*-SNAPSHOT/checkstyle-*-SNAPSHOT-all.jar</excludedLink>
             <!-- skip validating released "-all" jar on sourceforge as it is uploaded after site generation-->
