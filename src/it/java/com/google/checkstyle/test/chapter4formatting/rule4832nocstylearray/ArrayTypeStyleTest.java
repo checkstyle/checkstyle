@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4832nocstylearray;
 
+import static com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck.MSG_KEY;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -39,15 +41,13 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport {
     @Test
     public void arrayTypeStyleTest() throws Exception {
 
-        final String msg = getCheckMessage(ArrayTypeStyleCheck.class, "array.type.style");
-
         final String[] expected = {
-            "9:23: " + msg,
-            "15:44: " + msg,
-            "21:20: " + msg,
-            "22:23: " + msg,
-            "41:16: " + msg,
-            "42:19: " + msg,
+            "9:23: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "15:44: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "21:20: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "22:23: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "41:16: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "42:19: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
         };
 
         final Configuration checkConfig = getCheckConfig("ArrayTypeStyle");

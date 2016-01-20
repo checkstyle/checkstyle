@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
+import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_KEY;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -65,7 +67,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
     public void outerTypeFilenameTest3() throws Exception {
 
         final String[] expected = {
-            "3: " + getCheckMessage(OuterTypeFilenameCheck.class, "type.file.mismatch"),
+            "3: " + getCheckMessage(OuterTypeFilenameCheck.class, MSG_KEY),
         };
 
         final Configuration checkConfig = getCheckConfig("OuterTypeFilename");

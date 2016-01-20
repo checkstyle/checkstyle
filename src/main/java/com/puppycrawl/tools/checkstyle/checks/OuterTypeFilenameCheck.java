@@ -32,6 +32,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  */
 public class OuterTypeFilenameCheck extends Check {
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "type.file.mismatch";
+
     /** Pattern matching any file extension with dot included. */
     private static final Pattern FILE_EXTENSION_PATTERN = Pattern.compile("\\.[^\\.]*$");
 
@@ -102,7 +108,7 @@ public class OuterTypeFilenameCheck extends Check {
     @Override
     public void finishTree(DetailAST rootAST) {
         if (!validFirst && !hasPublic && wrongType != null) {
-            log(wrongType.getLineNo(), "type.file.mismatch");
+            log(wrongType.getLineNo(), MSG_KEY);
         }
     }
 

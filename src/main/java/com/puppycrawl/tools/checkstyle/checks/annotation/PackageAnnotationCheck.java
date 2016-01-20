@@ -46,6 +46,12 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  */
 public class PackageAnnotationCheck extends Check {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "annotation.package.location";
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -71,7 +77,7 @@ public class PackageAnnotationCheck extends Check {
             getFileContents().inPackageInfo();
 
         if (containsAnnotation && !inPackageInfo) {
-            log(ast.getLine(), "annotation.package.location");
+            log(ast.getLine(), MSG_KEY);
         }
     }
 }

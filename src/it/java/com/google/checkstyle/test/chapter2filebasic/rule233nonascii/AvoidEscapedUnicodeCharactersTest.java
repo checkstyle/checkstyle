@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter2filebasic.rule233nonascii;
 
+import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -39,16 +41,13 @@ public class AvoidEscapedUnicodeCharactersTest extends BaseCheckTestSupport {
     @Test
     public void unicodeEscapesTest() throws Exception {
 
-        final String msg = getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class,
-            "forbid.escaped.unicode.char");
-
         final String[] expected = {
-            "5: " + msg,
-            "15: " + msg,
-            "25: " + msg,
-            "33: " + msg,
-            "35: " + msg,
-            "36: " + msg,
+            "5: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "15: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "25: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "33: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "35: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "36: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final Configuration checkConfig = getCheckConfig("AvoidEscapedUnicodeCharacters");

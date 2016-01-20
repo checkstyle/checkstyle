@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck.MSG_KEY;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -77,7 +79,7 @@ public class PackageAnnotationCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(PackageAnnotationCheck.class);
 
         final String[] expected = {
-            "0: Package annotations must be in the package-info.java info.",
+            "0: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getNonCompilablePath("InputPackageAnnotation2.java"), expected);

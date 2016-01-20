@@ -32,6 +32,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author lkuehne
  */
 public class ArrayTypeStyleCheck extends Check {
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY = "array.type.style";
+
     /** Controls whether to use Java or C style. */
     private boolean javaStyle = true;
 
@@ -70,7 +76,7 @@ public class ArrayTypeStyleCheck extends Check {
                 || variableAST.getColumnNo() > ast.getColumnNo();
 
             if (isJavaStyle != javaStyle) {
-                log(ast.getLineNo(), ast.getColumnNo(), "array.type.style");
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
             }
         }
     }
