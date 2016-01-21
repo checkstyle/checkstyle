@@ -65,4 +65,13 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         verify(checkConfig, getNonCompilablePath("InputMethodReferences3.java"), expected);
 
     }
+
+    @Test
+    public void testGenericInArrayBeforeReference()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences4.java"), expected);
+
+    }
 }

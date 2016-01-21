@@ -510,8 +510,8 @@ annotationMemberArrayInitializer
 // The two things that can initialize an annotation array element are a conditional expression
 //   and an annotation (nested annotation array initialisers are not valid)
 annotationMemberArrayValueInitializer
-    :    annotationExpression
-    |   annotation
+    :    (annotation) => annotation
+    | annotationExpression
     ;
 
 annotationExpression
@@ -1461,7 +1461,8 @@ postfixExpression
 
 // the basic element of an expression
 primaryExpression
-    :   IDENT ((typeArguments[false] DOUBLE_COLON)=>typeArguments[false])?
+    :    (typeSpec[false] DOUBLE_COLON) => typeSpec[false]
+    |    IDENT
     |    constant
     |    "true"
     |    "false"
