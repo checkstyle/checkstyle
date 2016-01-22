@@ -25,6 +25,7 @@ import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -296,7 +297,7 @@ public class XDocsPagesTest {
     }
 
     private static void validateCheckSection(ModuleFactory moduleFactory, String fileName,
-            String sectionName, Node section) {
+            String sectionName, Node section) throws Exception {
         Object instance = null;
 
         try {
@@ -317,8 +318,13 @@ public class XDocsPagesTest {
                 continue;
             }
 
+            // optional sections that can be skipped if they have nothing to report
             if (subSectionPos == 1 && !"Properties".equals(subSectionName)) {
                 validatePropertySection(fileName, sectionName, null, instance);
+                subSectionPos++;
+            }
+            if (subSectionPos == 4 && !"Error Messages".equals(subSectionName)) {
+                validateErrorSection(fileName, sectionName, null, instance);
                 subSectionPos++;
             }
 
@@ -338,9 +344,12 @@ public class XDocsPagesTest {
                     validateUsageExample(fileName, sectionName, subSection);
                     break;
                 case 4:
-                    validatePackageSection(fileName, sectionName, subSection, instance);
+                    validateErrorSection(fileName, sectionName, subSection, instance);
                     break;
                 case 5:
+                    validatePackageSection(fileName, sectionName, subSection, instance);
+                    break;
+                case 6:
                     validateParentSection(fileName, sectionName, subSection);
                     break;
                 default:
@@ -368,9 +377,12 @@ public class XDocsPagesTest {
                 result = "Example of Usage";
                 break;
             case 4:
-                result = "Package";
+                result = "Error Messages";
                 break;
             case 5:
+                result = "Package";
+                break;
+            case 6:
                 result = "Parent Module";
                 break;
             default:
@@ -476,6 +488,64 @@ public class XDocsPagesTest {
                         + "' should have a type for " + propertyName, columns.get(2)
                         .getTextContent().trim().isEmpty());
                 // default can be empty string
+            }
+        }
+    }
+
+    private static void validateErrorSection(String fileName, String sectionName, Node subSection,
+            Object instance) throws Exception {
+        final Class<?> clss = instance.getClass();
+        final Set<Field> fields = CheckUtil.getCheckMessages(clss);
+        final Set<String> list = new TreeSet<>();
+
+        for (Field field : fields) {
+            // below is required for package/private classes
+            if (!field.isAccessible()) {
+                field.setAccessible(true);
+            }
+
+            list.add(field.get(null).toString());
+        }
+
+        final StringBuilder expectedText = new StringBuilder();
+
+        for (String s : list) {
+            expectedText.append(s);
+            expectedText.append("\n");
+        }
+
+        if (expectedText.length() > 0) {
+            expectedText.append("All messages can be customized if the default message doesn't "
+                    + "suite you.\nPlease see the documentation to learn how to.");
+        }
+
+        if (subSection == null) {
+            Assert.assertEquals(fileName + " section '" + sectionName
+                    + "' should have the expected error keys", "", expectedText.toString());
+        }
+        else {
+            Assert.assertEquals(fileName + " section '" + sectionName
+                    + "' should have the expected error keys", expectedText.toString().trim(),
+                    subSection.getTextContent().replaceAll("\n\\s+", "\n").trim());
+
+            for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
+                final String url = node.getAttributes().getNamedItem("href").getTextContent();
+                final String linkText = node.getTextContent().trim();
+                final String expectedUrl;
+
+                if ("see the documentation".equals(linkText)) {
+                    expectedUrl = "config.html#Custom_messages";
+                }
+                else {
+                    expectedUrl = "https://github.com/search?q="
+                            + "path%3Asrc%2Fmain%2Fresources%2F"
+                            + clss.getPackage().getName().replace(".", "%2F")
+                            + "+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22"
+                            + linkText + "%22";
+                }
+
+                Assert.assertEquals(fileName + " section '" + sectionName
+                        + "' should have matching url for '" + linkText + "'", expectedUrl, url);
             }
         }
     }
