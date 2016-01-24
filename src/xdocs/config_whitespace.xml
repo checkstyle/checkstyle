@@ -81,6 +81,25 @@ for (
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+            ws.notPreceded</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+            ws.preceded</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
@@ -156,6 +175,25 @@ for (Iterator foo = very.long.line.iterator();
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+            ws.followed</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+            ws.notFollowed</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -305,6 +343,27 @@ class Foo
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator%22">
+            empty.line.separator</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines%22">
+            empty.line.separator.multiple.lines</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines.after%22">
+            empty.line.separator.multiple.lines.after</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
@@ -400,6 +459,23 @@ class Foo
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22containsTab%22">
+            containsTab</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22file.containsTab%22">
+            file.containsTab</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
@@ -474,6 +550,31 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+            ws.followed</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.illegalFollow%22">
+            ws.illegalFollow</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+            ws.notPreceded</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+            ws.preceded</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -605,6 +706,27 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
+            line.previous</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+            ws.notPreceded</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+            ws.preceded</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
@@ -708,6 +830,19 @@ import com.puppycrawl.tools.checkstyle.api.Check;
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22no.line.wrap%22">
+            no.line.wrap</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -847,6 +982,19 @@ import com.puppycrawl.tools.checkstyle.api.Check;
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+            ws.followed</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
@@ -941,6 +1089,19 @@ import com.puppycrawl.tools.checkstyle.api.Check;
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+            ws.preceded</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1083,6 +1244,25 @@ import com.puppycrawl.tools.checkstyle.api.Check;
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
+            line.new</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
+            line.previous</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1253,6 +1433,31 @@ import com.puppycrawl.tools.checkstyle.api.Check;
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+            ws.followed</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+            ws.notFollowed</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+            ws.notPreceded</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+            ws.preceded</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
@@ -1373,6 +1578,23 @@ foo(i,
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
+            line.new</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
+            line.previous</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
@@ -1441,6 +1663,31 @@ foo(i,
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+            ws.followed</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+            ws.notFollowed</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+            ws.notPreceded</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+            ws.preceded</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1526,6 +1773,25 @@ foo(i,
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+            ws.notFollowed</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.typeCast%22">
+            ws.typeCast</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1763,6 +2029,25 @@ public @interface Beta {} // empty annotation type
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+            ws.notFollowed</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+            ws.notPreceded</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">

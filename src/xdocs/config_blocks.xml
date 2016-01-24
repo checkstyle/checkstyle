@@ -125,6 +125,19 @@ switch (a)
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.nested%22">
+            block.nested</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
@@ -225,6 +238,23 @@ switch (a)
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.empty%22">
+            block.empty</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.noStmt%22">
+            block.noStmt</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -355,6 +385,19 @@ try {
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22catch.block.empty%22">
+            catch.block.empty</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -496,6 +539,27 @@ try {
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.after%22">
+            line.break.after</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
+            line.new</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
+            line.previous</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -650,6 +714,19 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22needBraces%22">
+            needBraces</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
@@ -770,6 +847,31 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
+            line.alone</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.before%22">
+            line.break.before</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
+            line.new</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.same%22">
+            line.same</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">

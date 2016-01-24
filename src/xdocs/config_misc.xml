@@ -84,6 +84,19 @@
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22array.type.style%22">
+            array.type.style</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -225,6 +238,19 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22forbid.escaped.unicode.char%22">
+            forbid.escaped.unicode.char</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -454,6 +480,23 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
+            comments.indentation.block</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.single%22">
+            comments.indentation.single</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -740,6 +783,31 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22descendant.token.max%22">
+            descendant.token.max</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22descendant.token.min%22">
+            descendant.token.min</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22descendant.token.sum.max%22">
+            descendant.token.sum.max</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22descendant.token.sum.min%22">
+            descendant.token.sum.min</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -886,6 +954,19 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22final.parameter%22">
+            final.parameter</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -1024,6 +1105,31 @@ void foo(String aFooString,
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error%22">
+            indentation.child.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error.multi%22">
+            indentation.child.error.multi</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.error%22">
+            indentation.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.error.multi%22">
+            indentation.error.multi</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
@@ -1119,6 +1225,23 @@ void foo(String aFooString,
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22noNewlineAtEOF%22">
+            noNewlineAtEOF</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open%22">
+            unable.open</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -1161,6 +1284,19 @@ void foo(String aFooString,
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.file.mismatch%22">
+            type.file.mismatch</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1242,6 +1378,19 @@ void foo(String aFooString,
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22todo.match%22">
+            todo.match</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1371,6 +1520,19 @@ d = e / f;        // Another comment for this line
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22trailing.comments%22">
+            trailing.comments</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1505,6 +1667,23 @@ messages.properties: Key 'ok' missing.
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
+            translation.missingKey</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingTranslationFile%22">
+            translation.missingTranslationFile</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -1580,6 +1759,19 @@ messages.properties: Key 'ok' missing.
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22uncommented.main%22">
+            uncommented.main</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -1644,6 +1836,23 @@ messages.properties: Key 'ok' missing.
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.duplicate.property%22">
+            properties.duplicate.property</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open.cause%22">
+            unable.open.cause</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
@@ -1696,6 +1905,19 @@ messages.properties: Key 'ok' missing.
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22upperEll%22">
+            upperEll</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">

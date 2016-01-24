@@ -106,6 +106,18 @@
           </li>
         </ul>
       </subsection>
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStar%22">
+            import.avoidStar</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
       </subsection>
@@ -182,6 +194,19 @@
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStatic%22">
+            import.avoidStatic</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -515,6 +540,35 @@ import android.*;
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order%22">
+            custom.import.order</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.lex%22">
+            custom.import.order.lex</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.line.separator%22">
+            custom.import.order.line.separator</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.nonGroup.expected%22">
+            custom.import.order.nonGroup.expected</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.nonGroup.import%22">
+            custom.import.order.nonGroup.import</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
@@ -585,6 +639,19 @@ import android.*;
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
+            import.illegal</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -696,6 +763,27 @@ import android.*;
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
+            import.control.disallowed</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.missing.file%22">
+            import.control.missing.file</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.pkg%22">
+            import.control.unknown.pkg</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -930,6 +1018,23 @@ public class SomeClass { ... }
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering%22">
+            import.ordering</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.separation%22">
+            import.separation</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
@@ -985,6 +1090,27 @@ public class SomeClass { ... }
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.duplicate%22">
+            import.duplicate</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.lang%22">
+            import.lang</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.same%22">
+            import.same</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1095,6 +1221,19 @@ class FooBar {
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">
+            import.unused</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">

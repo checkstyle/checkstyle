@@ -446,6 +446,27 @@
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22duplicate.regexp%22">
+            duplicate.regexp</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.regexp%22">
+            illegal.regexp</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22required.regexp%22">
+            required.regexp</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
@@ -539,6 +560,31 @@
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.StackOverflowError%22">
+            regexp.StackOverflowError</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.empty%22">
+            regexp.empty</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
+            regexp.exceeded</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
+            regexp.minimum</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -669,6 +715,25 @@
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
+            regexp.exceeded</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
+            regexp.minimum</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
@@ -771,6 +836,25 @@
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
+            regexp.exceeded</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
+            regexp.minimum</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
