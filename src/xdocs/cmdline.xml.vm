@@ -38,6 +38,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
+     [-t] [-v] \
      file...
       </source>
       </p>
@@ -71,6 +72,13 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <code>-o file</code> - specify the file to output
           to.
+        </li>
+        <li>
+          <code>-t</code> - print Abstract Syntax Tree(AST) of the checked file. The option
+          cannot be used other options and requires exactly one file to run on to be specified.
+        </li>
+        <li>
+          <code>-v</code> - print product version and exit. Any other option is ignored.
         </li>
       </ul>
 

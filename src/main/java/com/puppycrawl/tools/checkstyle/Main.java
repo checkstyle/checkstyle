@@ -67,6 +67,9 @@ public final class Main {
     /** Name for the option 'o'. */
     private static final String OPTION_O_NAME = "o";
 
+    /** Name for the option 't'. */
+    private static final String OPTION_T_NAME = "t";
+
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
 
@@ -81,10 +84,10 @@ public final class Main {
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
      * @param args the command line arguments.
-     * @throws FileNotFoundException if there is a problem with files access
+     * @throws IOException if there is a problem with files access
      * @noinspection CallToPrintStackTrace
      **/
-    public static void main(String... args) throws FileNotFoundException {
+    public static void main(String... args) throws IOException {
         int errorCounter = 0;
         boolean cliViolations = false;
         // provide proper exit code based on results.
@@ -115,9 +118,18 @@ public final class Main {
                 else {
                     // create config helper object
                     final CliOptions config = convertCliToPojo(commandLine);
-                    // run Checker
-                    errorCounter = runCheckstyle(config);
-                    exitStatus = errorCounter;
+
+                    if (commandLine.hasOption(OPTION_T_NAME)) {
+                        // print AST
+                        final File file = config.files.get(0);
+                        final String stringAst = AstTreeStringPrinter.printFileAst(file);
+                        System.out.print(stringAst);
+                    }
+                    else {
+                        // run Checker
+                        errorCounter = runCheckstyle(config);
+                        exitStatus = errorCounter;
+                    }
                 }
             }
         }
@@ -168,8 +180,23 @@ public final class Main {
      */
     private static List<String> validateCli(CommandLine cmdLine) {
         final List<String> result = new ArrayList<>();
+        final List<File> filesToProcess = getFilesToProcess(cmdLine.getArgs());
+
+        if (filesToProcess.isEmpty()) {
+            result.add("Files to process must be specified, found 0.");
+        }
+        // ensure there is no conflicting options
+        else if (cmdLine.hasOption(OPTION_T_NAME)) {
+            if (cmdLine.hasOption(OPTION_C_NAME) || cmdLine.hasOption(OPTION_P_NAME)
+                    || cmdLine.hasOption(OPTION_F_NAME) || cmdLine.hasOption(OPTION_O_NAME)) {
+                result.add("Option '-t' cannot be used with other options.");
+            }
+            else if (filesToProcess.size() > 1) {
+                result.add("Printing AST is allowed for only one file.");
+            }
+        }
         // ensure a configuration file is specified
-        if (cmdLine.hasOption(OPTION_C_NAME)) {
+        else if (cmdLine.hasOption(OPTION_C_NAME)) {
             final String configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
             try {
                 // test location only
@@ -201,10 +228,6 @@ public final class Main {
                 if (file.exists() && !file.canWrite()) {
                     result.add(String.format("Permission denied : '%s'.", outputLocation));
                 }
-            }
-            final List<File> files = getFilesToProcess(cmdLine.getArgs());
-            if (files.isEmpty()) {
-                result.add("Must specify files to process, found 0.");
             }
         }
         else {
@@ -421,6 +444,7 @@ public final class Main {
                 "Sets the output format. (%s|%s). Defaults to %s",
                 PLAIN_FORMAT_NAME, XML_FORMAT_NAME, PLAIN_FORMAT_NAME));
         options.addOption(OPTION_V_NAME, false, "Print product version and exit");
+        options.addOption(OPTION_T_NAME, false, "Print Abstract Syntax Tree(AST) of the file");
         return options;
     }
 

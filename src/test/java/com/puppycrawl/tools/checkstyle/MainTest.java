@@ -101,6 +101,7 @@ public class MainTest {
                     + " -f <arg>   Sets the output format. (plain|xml). Defaults to plain%n"
                     + " -o <arg>   Sets the output file. Defaults to stdout%n"
                     + " -p <arg>   Loads the properties file%n"
+                    + " -t         Print Abstract Syntax Tree(AST) of the file%n"
                     + " -v         Print product version and exit%n");
 
                 assertEquals(usage, systemOut.getLog());
@@ -132,8 +133,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                assertEquals("Must specify files to process, found 0." + System.lineSeparator(),
-                        systemOut.getLog());
+                assertEquals("Files to process must be specified, found 0."
+                    + System.lineSeparator(), systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
         });
@@ -586,4 +587,122 @@ public class MainTest {
                 getNonCompilablePath("InputIncorrectClass.java"));
     }
 
+    @Test
+    public void testPrintTreeOnMoreThanOneFile() throws Exception {
+
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals("Printing AST is allowed for only one file."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        Main.main("-t", getPath("checks/metrics"));
+    }
+
+    @Test
+    public void testPrintTreeOption() throws Exception {
+        final String expected = "PACKAGE_DEF -> package [1:0]\n"
+            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]\n"
+            + "|--DOT -> . [1:28]\n"
+            + "|   |--DOT -> . [1:22]\n"
+            + "|   |   |--DOT -> . [1:11]\n"
+            + "|   |   |   |--IDENT -> com [1:8]\n"
+            + "|   |   |   `--IDENT -> puppycrawl [1:12]\n"
+            + "|   |   `--IDENT -> tools [1:23]\n"
+            + "|   `--IDENT -> checkstyle [1:29]\n"
+            + "`--SEMI -> ; [1:39]\n"
+            + "CLASS_DEF -> CLASS_DEF [3:0]\n"
+            + "|--MODIFIERS -> MODIFIERS [3:0]\n"
+            + "|   `--LITERAL_PUBLIC -> public [3:0]\n"
+            + "|--LITERAL_CLASS -> class [3:7]\n"
+            + "|--IDENT -> InputMain [3:13]\n"
+            + "`--OBJBLOCK -> OBJBLOCK [3:23]\n"
+            + "    |--LCURLY -> { [3:23]\n"
+            + "    `--RCURLY -> } [4:0]\n"
+            + "CLASS_DEF -> CLASS_DEF [5:0]\n"
+            + "|--MODIFIERS -> MODIFIERS [5:0]\n"
+            + "|--LITERAL_CLASS -> class [5:0]\n"
+            + "|--IDENT -> InputMainInner [5:6]\n"
+            + "`--OBJBLOCK -> OBJBLOCK [5:21]\n"
+            + "    |--LCURLY -> { [5:21]\n"
+            + "    `--RCURLY -> } [6:0]\n";
+
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals(expected, systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+        Main.main("-t", getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testConflictingOptionsTvsC() throws Exception {
+
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals("Option '-t' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        Main.main("-c", "/google_checks.xml", "-t", getPath("checks/metrics"));
+    }
+
+    @Test
+    public void testConflictingOptionsTvsP() throws Exception {
+
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals("Option '-t' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        Main.main("-p", getPath("mycheckstyle.properties"), "-t", getPath("checks/metrics"));
+    }
+
+    @Test
+    public void testConflictingOptionsTvsF() throws Exception {
+
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals("Option '-t' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        Main.main("-f", "plain", "-t", getPath("checks/metrics"));
+    }
+
+    @Test
+    public void testConflictingOptionsTvsO() throws Exception {
+        final File file = temporaryFolder.newFile("file.output");
+
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals("Option '-t' cannot be used with other options."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+
+        Main.main("-o", file.getCanonicalPath(), "-t", getPath("checks/metrics"));
+    }
 }
