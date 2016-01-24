@@ -95,6 +95,39 @@
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22at.clause.order%22">
+            at.clause.order</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.error%22">
+            javadoc.parse.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
+            javadoc.unrecognized.antlr.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
@@ -399,6 +432,47 @@ public boolean isSomething()
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.classInfo%22">
+            javadoc.classInfo</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.duplicateTag%22">
+            javadoc.duplicateTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.expectedTag%22">
+            javadoc.expectedTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.invalidInheritDoc%22">
+            javadoc.invalidInheritDoc</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
+            javadoc.missing</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.return.expected%22">
+            javadoc.return.expected</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unusedTag%22">
+            javadoc.unusedTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unusedTagGeneral%22">
+            javadoc.unusedTagGeneral</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
@@ -472,6 +546,23 @@ public boolean isSomething()
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.legacyPackageHtml%22">
+            javadoc.legacyPackageHtml</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.packageInfo%22">
+            javadoc.packageInfo</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -567,6 +658,51 @@ public boolean isSomething()
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.paragraph.line.before%22">
+            javadoc.paragraph.line.before</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.paragraph.misplaced.tag%22">
+            javadoc.paragraph.misplaced.tag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.paragraph.redundant.paragraph%22">
+            javadoc.paragraph.redundant.paragraph</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.paragraph.tag.after%22">
+            javadoc.paragraph.tag.after</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.error%22">
+            javadoc.parse.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
+            javadoc.unrecognized.antlr.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -772,6 +908,39 @@ public boolean isSomething()
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.empty%22">
+            javadoc.empty</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.extraHtml%22">
+            javadoc.extraHtml</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.incompleteTag%22">
+            javadoc.incompleteTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
+            javadoc.missing</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.noPeriod%22">
+            javadoc.noPeriod</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+            javadoc.unclosedHtml</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
@@ -831,6 +1000,39 @@ public boolean isSomething()
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.error%22">
+            javadoc.parse.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
+            javadoc.unrecognized.antlr.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22tag.continuation.indent%22">
+            tag.continuation.indent</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -995,6 +1197,39 @@ public boolean isSomething()
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
+            javadoc.missing</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unknownTag%22">
+            javadoc.unknownTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unusedTag%22">
+            javadoc.unusedTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unusedTagGeneral%22">
+            javadoc.unusedTagGeneral</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingTag%22">
+            type.missingTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.tagFormat%22">
+            type.tagFormat</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
@@ -1109,6 +1344,19 @@ public boolean isSomething()
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
+            javadoc.missing</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
@@ -1150,6 +1398,39 @@ public boolean isSomething()
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.error%22">
+            javadoc.parse.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
+            javadoc.unrecognized.antlr.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22non.empty.atclause%22">
+            non.empty.atclause</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1226,6 +1507,39 @@ public boolean isSomething()
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.error%22">
+            javadoc.parse.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
+            javadoc.unrecognized.antlr.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22singleline.javadoc%22">
+            singleline.javadoc</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1308,6 +1622,43 @@ public boolean isSomething()
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.error%22">
+            javadoc.parse.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unrecognized.antlr.error%22">
+            javadoc.unrecognized.antlr.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.first.sentence%22">
+            summary.first.sentence</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.javaDoc%22">
+            summary.javaDoc</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -1419,6 +1770,27 @@ public boolean isSomething()
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.writeTag%22">
+            javadoc.writeTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingTag%22">
+            type.missingTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.tagFormat%22">
+            type.tagFormat</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">

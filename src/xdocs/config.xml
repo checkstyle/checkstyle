@@ -619,7 +619,7 @@
       </source>
 
       <p>
-        Each check configuration element can zero or more <code>message</code> elements. Every check uses one or
+        Each check configuration element can have zero or more <code>message</code> elements. Every check uses one or
         more distinct message keys to log violations. If you want to
         customize a certain message you need to specify the message key
         in the <code>key</code> attribute of the <code>message</code> element.
@@ -637,12 +637,11 @@
 
       <p>
         The obvious question is how do you know which message keys a
-        Check uses, so that you can override them? Well, that is the
-        tricky part. To find out which keys a Check uses you currently
-        need to look into the Check's source code, in conjunction with
-        the Check's <code>messages.properties</code> file.
-        Tools/plugins might come to the rescue on this topic, so have a
-        look there.
+        Check uses, so that you can override them? You can examine all
+        keys in the check's specific <a href="checks.html">configuration
+        documentation</a>. Each check has a section called 'Error Messages'.
+        This section lists every key the check uses and links to the default
+        message used by checkstyle.
       </p>
     </section>
 

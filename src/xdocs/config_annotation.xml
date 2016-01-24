@@ -160,6 +160,23 @@ public String getNameIfPresent() { ... }
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.location%22">
+            annotation.location</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.location.alone%22">
+            annotation.location.alone</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
@@ -252,6 +269,35 @@ public String getNameIfPresent() { ... }
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.incorrect.style%22">
+            annotation.incorrect.style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.parens.missing%22">
+            annotation.parens.missing</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.parens.present%22">
+            annotation.parens.present</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.trailing.comma.missing%22">
+            annotation.trailing.comma.missing</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.trailing.comma.present%22">
+            annotation.trailing.comma.present</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
@@ -280,6 +326,27 @@ public String getNameIfPresent() { ... }
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.deprecated%22">
+            annotation.missing.deprecated</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.duplicateTag%22">
+            javadoc.duplicateTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
+            javadoc.missing</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -350,6 +417,23 @@ public String getNameIfPresent() { ... }
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.override%22">
+            annotation.missing.override</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22tag.not.valid.on%22">
+            tag.not.valid.on</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
@@ -379,6 +463,7 @@ public String getNameIfPresent() { ... }
             Java Language Specification, section 7.4.1</a>.
         </p>
       </subsection>
+
       <subsection name="Examples">
         <p> To configure the check:</p>
         <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt;
@@ -392,6 +477,19 @@ public String getNameIfPresent() { ... }
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
+            annotation.package.location</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
@@ -513,6 +611,19 @@ public String getNameIfPresent() { ... }
         </ul>
       </subsection>
 
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
+            suppressed.warning.not.allowed</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
       <subsection name="Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
@@ -606,6 +717,19 @@ public String getNameIfPresent() { ... }
             Checkstyle Style</a>
           </li>
         </ul>
+      </subsection>
+
+      <subsection name="Error Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppress.warnings.invalid.target%22">
+            suppress.warnings.invalid.target</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suite you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
       </subsection>
 
       <subsection name="Package">
