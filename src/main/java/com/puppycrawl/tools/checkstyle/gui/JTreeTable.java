@@ -211,6 +211,8 @@ public class JTreeTable extends JTable {
 
     /**
      * Overridden to pass the new rowHeight to the tree.
+     *
+     * @param newRowHeight new row height
      */
     @Override
     public final void setRowHeight(int newRowHeight) {
@@ -277,6 +279,9 @@ public class JTreeTable extends JTable {
          * <p>By returning false we are also enforcing the policy that
          * the tree will never be editable (at least by a key sequence).
          *
+         * @param event the event the editor should use to consider
+         *              whether to begin editing or not
+         * @return true if editing can be started
          * @see TableCellEditor
          */
         @Override
