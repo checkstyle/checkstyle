@@ -571,4 +571,14 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
+
+    @Test
+    public void testMethodsNotSkipWrittenJavadocs() throws Exception {
+        checkConfig.addAttribute("allowedAnnotations", "MyAnnotation");
+        final String[] expected = {
+            "7:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
+            "17:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
+        };
+        verify(checkConfig, getPath("InputJavadocMethodsNotSkipWritten.java"), expected);
+    }
 }

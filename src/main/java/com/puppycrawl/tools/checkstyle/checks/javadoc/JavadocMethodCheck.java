@@ -346,11 +346,6 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     @Override
     protected final void processAST(DetailAST ast) {
-        if ((ast.getType() == TokenTypes.METHOD_DEF || ast.getType() == TokenTypes.CTOR_DEF)
-            && getMethodsNumberOfLine(ast) <= minLineCount
-            || hasAllowedAnnotations(ast)) {
-            return;
-        }
         final Scope theScope = calculateScope(ast);
         if (shouldCheck(ast, theScope)) {
             final FileContents contents = getFileContents();
@@ -430,7 +425,20 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         return allowMissingJavadoc
             || allowMissingPropertyJavadoc
                 && (CheckUtils.isSetterMethod(ast) || CheckUtils.isGetterMethod(ast))
-            || matchesSkipRegex(ast);
+            || matchesSkipRegex(ast)
+            || isContentsAllowMissingJavadoc(ast);
+    }
+
+    /**
+     * Checks if the Javadoc can be missing if the method or constructor is
+     * below the minimum line count or has a special annotation.
+     *
+     * @param ast the tree node for the method or constructor.
+     * @return True if this method or constructor doesn't need Javadoc.
+     */
+    private boolean isContentsAllowMissingJavadoc(DetailAST ast) {
+        return (ast.getType() == TokenTypes.METHOD_DEF || ast.getType() == TokenTypes.CTOR_DEF)
+                && (getMethodsNumberOfLine(ast) <= minLineCount || hasAllowedAnnotations(ast));
     }
 
     /**
