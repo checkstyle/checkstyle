@@ -433,6 +433,46 @@ public class MainTest {
     }
 
     @Test
+    public void testExistingIncorrectChildrenInConfigFile()
+            throws Exception {
+        exit.expectSystemExitWithStatus(-2);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                final String output = String.format(Locale.ROOT,
+                        "Checkstyle ends with 1 errors.%n");
+                assertEquals(output, systemOut.getLog());
+                final String errorOuput = "com.puppycrawl.tools.checkstyle.api."
+                        + "CheckstyleException: cannot initialize module RegexpSingleline"
+                        + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
+                assertTrue(systemErr.getLog().startsWith(errorOuput));
+            }
+        });
+        Main.main("-c", getPath("config-incorrectChildren.xml"),
+            getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testExistingIncorrectChildrenInConfigFile2()
+            throws Exception {
+        exit.expectSystemExitWithStatus(-2);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                final String output = String.format(Locale.ROOT,
+                        "Checkstyle ends with 1 errors.%n");
+                assertEquals(output, systemOut.getLog());
+                final String errorOuput = "com.puppycrawl.tools.checkstyle.api."
+                        + "CheckstyleException: cannot initialize module TreeWalker"
+                        + " - JavadocVariable is not allowed as a child in JavadocMethod";
+                assertTrue(systemErr.getLog().startsWith(errorOuput));
+            }
+        });
+        Main.main("-c", getPath("config-incorrectChildren2.xml"),
+            getPath("InputMain.java"));
+    }
+
+    @Test
     public void testLoadPropertiesIoException() throws Exception {
         final Class<?>[] param = new Class<?>[1];
         param[0] = File.class;

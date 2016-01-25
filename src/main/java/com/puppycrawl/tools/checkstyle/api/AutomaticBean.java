@@ -225,15 +225,21 @@ public class AutomaticBean
     /**
      * Called by configure() for every child of this component's Configuration.
      * <p>
-     * The default implementation does nothing.
+     * The default implementation throws {@link CheckstyleException} if
+     * {@code childConf} is {@code null} because it doesn't support children. It
+     * must be overridden to validate and support children that are wanted.
      * </p>
+     *
      * @param childConf a child of this component's Configuration
      * @throws CheckstyleException if there is a configuration error.
      * @see Configuration#getChildren
      */
     protected void setupChild(Configuration childConf)
         throws CheckstyleException {
-        // No code by default, should be overridden only by demand at subclasses
+        if (childConf != null) {
+            throw new CheckstyleException(childConf.getName() + " is not allowed as a child in "
+                    + getConfiguration().getName());
+        }
     }
 
     /**

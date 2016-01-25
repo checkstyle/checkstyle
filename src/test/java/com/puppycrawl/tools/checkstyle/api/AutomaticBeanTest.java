@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.ConversionException;
@@ -65,6 +67,25 @@ public class AutomaticBeanTest {
     public void testSetupChildFromBaseClass() throws CheckstyleException {
         final TestBean testBean = new TestBean();
         testBean.setupChild(null);
+    }
+
+    @Test
+    public void testSetupInvalidChildFromBaseClass() throws Exception {
+        final TestBean testBean = new TestBean();
+        final DefaultConfiguration parentConf = new DefaultConfiguration("parentConf");
+        final DefaultConfiguration childConf = new DefaultConfiguration("childConf");
+        final Field field = AutomaticBean.class.getDeclaredField("configuration");
+        field.setAccessible(true);
+        field.set(testBean, parentConf);
+
+        try {
+            testBean.setupChild(childConf);
+            fail("expecting checkstyle exception");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("expected exception", "childConf is not allowed as a child in parentConf",
+                    ex.getMessage());
+        }
     }
 
     @Test
