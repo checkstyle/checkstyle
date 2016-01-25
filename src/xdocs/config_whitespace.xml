@@ -1833,6 +1833,12 @@ public @interface Beta {} // empty annotation type
         </code>, <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code> and
         <code>allowEmptyLambdas</code> properties.
         </p>
+        <p>This check does not flag as violation double brace initialization like:</p>
+        <pre><code>
+new Properties() {{
+    setProperty("key", "value");
+}};
+        </code></pre>
       </subsection>
 
       <subsection name="Properties">

@@ -93,7 +93,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="WhitespaceAround"&gt;
  *     &lt;property name="tokens"
- *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
+ *               value="ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,
+ *                      MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,
+ *                      BOR_ASSIGN,BAND_ASSIGN"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>An example of how to configure the check for whitespace only around
+ * curly braces is:
+ * <pre>
+ * &lt;module name="WhitespaceAround"&gt;
+ *     &lt;property name="tokens"
+ *               value="LCURLY,RCURLY"/&gt;
  * &lt;/module&gt;
  * </pre>
  *
@@ -114,6 +125,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Runnable noop = () -> {}; // empty lambda
  * public @interface Beta {} // empty annotation type
  * }</pre>
+ *
+ * <p>This check does not flag as violation double brace initialization like:</p>
+ * <pre>
+ *   new Properties() {{
+ *     setProperty("key", "value");
+ *   }};
+ * </pre>
  *
  * <p>To configure the check to allow empty method blocks use
  *
@@ -353,39 +371,23 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + ast.getText().length();
 
-        if (before >= 0 && !Character.isWhitespace(line.charAt(before))) {
-            log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_WS_NOT_PRECEDED, ast.getText());
+        if (before >= 0) {
+            final char prevChar = line.charAt(before);
+            if (shouldCheckSeparationFromPreviousToken(ast)
+                    && !Character.isWhitespace(prevChar)) {
+                log(ast.getLineNo(), ast.getColumnNo(),
+                        MSG_WS_NOT_PRECEDED, ast.getText());
+            }
         }
 
-        if (after >= line.length()) {
-            return;
+        if (after < line.length()) {
+            final char nextChar = line.charAt(after);
+            if (shouldCheckSeparationFromNextToken(ast, nextChar)
+                    && !Character.isWhitespace(nextChar)) {
+                log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
+                        MSG_WS_NOT_FOLLOWED, ast.getText());
+            }
         }
-
-        final char nextChar = line.charAt(after);
-        if (!Character.isWhitespace(nextChar)
-            // Check for "return;"
-            && !(currentType == TokenTypes.LITERAL_RETURN
-                && ast.getFirstChild().getType() == TokenTypes.SEMI)
-            && !isAnonymousInnerClassEnd(currentType, nextChar)) {
-
-            log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
-                    MSG_WS_NOT_FOLLOWED, ast.getText());
-        }
-    }
-
-    /**
-     * Check for "})" or "};" or "},". Happens with anon-inners
-     * @param currentType token
-     * @param nextChar next symbol
-     * @return true is that is end of anon inner class
-     */
-    private static boolean isAnonymousInnerClassEnd(int currentType, char nextChar) {
-        return currentType == TokenTypes.RCURLY
-            && (nextChar == ')'
-                || nextChar == ';'
-                || nextChar == ','
-                || nextChar == '.');
     }
 
     /**
@@ -404,14 +406,65 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final boolean starImportOrSlistInsideCaseGroup = starImport || slistInsideCaseGroup;
         final boolean colonOfCaseOrDefaultOrForEach =
                 isColonOfCaseOrDefault(currentType, parentType)
-                || isColonOfForEach(currentType, parentType);
-        final boolean emptyBlockOrType = isEmptyBlock(ast, parentType)
-                || allowEmptyTypes && isEmptyType(ast);
+                        || isColonOfForEach(currentType, parentType);
+        final boolean emptyBlockOrType =
+                isEmptyBlock(ast, parentType)
+                    || allowEmptyTypes && isEmptyType(ast);
 
         return starImportOrSlistInsideCaseGroup
                 || colonOfCaseOrDefaultOrForEach
                 || emptyBlockOrType
                 || isArrayInitialization(currentType, parentType);
+    }
+
+    /**
+     * Check if it should be checked if previous token is separated from current by
+     * whitespace.
+     * This function is needed to recognise double brace initialization as valid,
+     * unfortunately its not possible to implement this functionality
+     * in isNotRelevantSituation method, because in this method when we return
+     * true(is not relevant) ast is later doesnt check at all. For example:
+     * new Properties() {{setProperty("double curly braces", "are not a style error");
+     * }};
+     * For second left curly brace in first line when we would return true from
+     * isNotRelevantSituation it wouldn't later check that the next token(setProperty)
+     * is not separated from previous token.
+     * @param ast current AST.
+     * @return true if it should be checked if previous token is separated by whitespace,
+     *      false otherwise.
+     */
+    private static boolean shouldCheckSeparationFromPreviousToken(DetailAST ast) {
+        return !isPartOfDoubleBraceInitializerForPreviousToken(ast);
+    }
+
+    /**
+     * Check if it should be checked if next token is separated from current by
+     * whitespace. Explanation why this method is needed is identical to one
+     * included in shouldCheckSeparationFromPreviousToken method.
+     * @param ast current AST.
+     * @param nextChar next character.
+     * @return true if it should be checked if next token is separated by whitespace,
+     *      false otherwise.
+     */
+    private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
+        return !(ast.getType() == TokenTypes.LITERAL_RETURN
+                    && ast.getFirstChild().getType() == TokenTypes.SEMI)
+                && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
+                && !isPartOfDoubleBraceInitializerForNextToken(ast);
+    }
+
+    /**
+     * Check for "})" or "};" or "},". Happens with anon-inners
+     * @param currentType token
+     * @param nextChar next symbol
+     * @return true is that is end of anon inner class
+     */
+    private static boolean isAnonymousInnerClassEnd(int currentType, char nextChar) {
+        return currentType == TokenTypes.RCURLY
+                && (nextChar == ')'
+                        || nextChar == ';'
+                        || nextChar == ','
+                        || nextChar == '.');
     }
 
     /**
@@ -448,13 +501,13 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             final DetailAST parent = ast.getParent();
             final DetailAST grandParent = ast.getParent().getParent();
             return parentType == TokenTypes.SLIST
-                && parent.getFirstChild().getType() == TokenTypes.RCURLY
-                && grandParent.getType() == match;
+                    && parent.getFirstChild().getType() == TokenTypes.RCURLY
+                    && grandParent.getType() == match;
         }
 
         return type == TokenTypes.SLIST
-            && parentType == match
-            && ast.getFirstChild().getType() == TokenTypes.RCURLY;
+                && parentType == match
+                && ast.getFirstChild().getType() == TokenTypes.RCURLY;
     }
 
     /**
@@ -466,7 +519,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private static boolean isColonOfCaseOrDefault(int currentType, int parentType) {
         return currentType == TokenTypes.COLON
                 && (parentType == TokenTypes.LITERAL_DEFAULT
-                    || parentType == TokenTypes.LITERAL_CASE);
+                        || parentType == TokenTypes.LITERAL_CASE);
     }
 
     /**
@@ -477,8 +530,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isColonOfForEach(int currentType, int parentType) {
         return currentType == TokenTypes.COLON
-            && parentType == TokenTypes.FOR_EACH_CLAUSE
-            && ignoreEnhancedForColon;
+                && parentType == TokenTypes.FOR_EACH_CLAUSE
+                && ignoreEnhancedForColon;
     }
 
     /**
@@ -488,10 +541,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true is current token inside array initialization
      */
     private static boolean isArrayInitialization(int currentType, int parentType) {
-        return (currentType == TokenTypes.RCURLY
-                || currentType == TokenTypes.LCURLY)
-            && (parentType == TokenTypes.ARRAY_INIT
-                || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
+        return (currentType == TokenTypes.RCURLY || currentType == TokenTypes.LCURLY)
+                && (parentType == TokenTypes.ARRAY_INIT
+                        || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
     }
 
     /**
@@ -504,7 +556,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyMethodBlock(DetailAST ast, int parentType) {
         return allowEmptyMethods
-            && isEmptyBlock(ast, parentType, TokenTypes.METHOD_DEF);
+                && isEmptyBlock(ast, parentType, TokenTypes.METHOD_DEF);
     }
 
     /**
@@ -517,7 +569,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyCtorBlock(DetailAST ast, int parentType) {
         return allowEmptyConstructors
-            && isEmptyBlock(ast, parentType, TokenTypes.CTOR_DEF);
+                && isEmptyBlock(ast, parentType, TokenTypes.CTOR_DEF);
     }
 
     /**
@@ -529,11 +581,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyLoop(DetailAST ast, int parentType) {
         return allowEmptyLoops
-            && (isEmptyBlock(ast, parentType, TokenTypes.LITERAL_FOR)
-                    || isEmptyBlock(ast,
-                            parentType, TokenTypes.LITERAL_WHILE)
-                            || isEmptyBlock(ast,
-                                    parentType, TokenTypes.LITERAL_DO));
+                && (isEmptyBlock(ast, parentType, TokenTypes.LITERAL_FOR)
+                        || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_WHILE)
+                        || isEmptyBlock(ast, parentType, TokenTypes.LITERAL_DO));
     }
 
     /**
@@ -565,9 +615,42 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final DetailAST nextSibling = ast.getNextSibling();
         final DetailAST previousSibling = ast.getPreviousSibling();
         return type == TokenTypes.LCURLY
-                && nextSibling.getType() == TokenTypes.RCURLY
-            || type == TokenTypes.RCURLY
-                && previousSibling != null
-                && previousSibling.getType() == TokenTypes.LCURLY;
+                    && nextSibling.getType() == TokenTypes.RCURLY
+                || type == TokenTypes.RCURLY
+                    && previousSibling != null
+                    && previousSibling.getType() == TokenTypes.LCURLY;
+    }
+
+    /**
+     * Check if given ast is part of double brace initializer and if it
+     * should omit checking if previous token is separated by whitespace.
+     * @param ast ast to check
+     * @return true if it should omit checking for previous token, false otherwise
+     */
+    private static boolean isPartOfDoubleBraceInitializerForPreviousToken(DetailAST ast) {
+        final boolean initializerBeginsAfterClassBegins = ast.getType() == TokenTypes.SLIST
+                && ast.getParent().getType() == TokenTypes.INSTANCE_INIT;
+        final boolean classEndsAfterInitializerEnds = ast.getType() == TokenTypes.RCURLY
+                && ast.getPreviousSibling() != null
+                && ast.getPreviousSibling().getType() == TokenTypes.INSTANCE_INIT;
+        return initializerBeginsAfterClassBegins || classEndsAfterInitializerEnds;
+    }
+
+    /**
+     * Check if given ast is part of double brace initializer and if it
+     * should omit checking if next token is separated by whitespace.
+     * See <a href="https://github.com/checkstyle/checkstyle/pull/2845">
+     * PR#2845</a> for more information why this function was needed.
+     * @param ast ast to check
+     * @return true if it should omit checking for next token, false otherwise
+     */
+    private static boolean isPartOfDoubleBraceInitializerForNextToken(DetailAST ast) {
+        final boolean classBeginBeforeInitializerBegin = ast.getType() == TokenTypes.LCURLY
+            && ast.getNextSibling().getType() == TokenTypes.INSTANCE_INIT;
+        final boolean initalizerEndsBeforeClassEnds = ast.getType() == TokenTypes.RCURLY
+            && ast.getParent().getType() == TokenTypes.SLIST
+            && ast.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
+            && ast.getParent().getParent().getNextSibling().getType() == TokenTypes.RCURLY;
+        return classBeginBeforeInitializerBegin || initalizerEndsBeforeClassEnds;
     }
 }

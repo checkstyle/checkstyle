@@ -165,6 +165,20 @@ public class WhitespaceAroundCheckTest
     }
 
     @Test
+    public void testAllowDoubleBraceInitialization() throws Exception {
+        final String[] expected = {
+            "11:73: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "12:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "14:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "14:88: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "17:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "17:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verify(checkConfig, getPath("InputDoubleBraceInitialization.java"),
+                expected);
+    }
+
+    @Test
     public void testIgnoreEnhancedForColon() throws Exception {
         checkConfig.addAttribute("ignoreEnhancedForColon", "false");
         final String[] expected = {
