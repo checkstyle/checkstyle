@@ -29,6 +29,10 @@ class test6
     public test6() {}
 }
 
+final class test7 {
+    private test7() {}
+}
+
 // Typesafe enum with operation
 // abstract classes cannot be final, see bug #837012
 abstract class Operation
