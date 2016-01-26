@@ -131,7 +131,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         String firstSentence = getFirstSentence(ast);
         final int endOfSentence = firstSentence.lastIndexOf(period);
         if (endOfSentence == -1) {
-            log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+            if (!firstSentence.trim().startsWith("{@inheritDoc}")) {
+                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+            }
         }
         else {
             firstSentence = firstSentence.substring(0, endOfSentence);
