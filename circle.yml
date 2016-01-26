@@ -2,6 +2,7 @@ checkout:
   post:
     - git clone https://github.com/checkstyle/contribution
 dependencies:
+  # we to override as 'mvn dependecy:go-ofline' does not download all dependencies
   override:
     - mvn install -Passembly
     - eval $TESTER_DEPENDENCIES
