@@ -2,20 +2,21 @@ checkout:
   post:
     - git clone https://github.com/checkstyle/contribution
 dependencies:
-  post:
-    - (cd contribution/checkstyle-tester && mvn dependency:go-offline)
+  override:
+    - mvn install -Passembly
+    - eval $TESTER_DEPENDENCIES
 machine:
   java:
     version: oraclejdk8
   environment:
     CMD1: "cd contribution/checkstyle-tester"
+    DEP1: " && sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties"
+    DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
+    DEP3: " && ./launch.sh -Dcheckstyle.config.location=my_check.xml"
+    TESTER_DEPENDENCIES: $CMD1$DEP1$DEP2$DEP3
     CMD2: " && sed -i.'' 's/^openjdk/#openjdk/' projects-for-circle.properties"
     CMD3: " && sed -i.'' s/projects-to-test-on.properties/projects-for-circle.properties/ launch.sh"
-    CMD4: " && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true"
-    CMD5: "                  -Dpmd.skip=true -Dfindbugs.skip=true"
-    CMD6: "                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
-    CMD7: " && cd contribution/checkstyle-tester"
-    CMD8: " && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+    CMD4: " && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
     OPENJDK: " && sed -i.'' 's/#openjdk/openjdk/' projects-for-circle.properties"
     INFINISPAN: " && sed -i.'' 's/#infinispan/infinispan/' projects-for-circle.properties"
     PROTONPACK: " && sed -i.'' 's/#protonpack/protonpack/' projects-for-circle.properties"
@@ -29,13 +30,13 @@ machine:
     SCOUTER: " && sed -i.'' 's/#scouter/scouter/' projects-for-circle.properties"
     GROOVY: " && sed -i.'' 's/#groovy/groovy/' projects-for-circle.properties"
     # Test over openjdk7
-    TEST_1: $CMD1$CMD2$OPENJDK$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
+    TEST_1: $CMD1$CMD2$OPENJDK$CMD3$CMD4
     # Test over infinispan, protonpack, jOOL, lucene-solr
-    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
+    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$CMD3$CMD4
     # Test over tapestry5, storm, cassandra
-    TEST_3: $CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
+    TEST_3: $CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3$CMD4
     # Test over apache-commons, hadoop, scouter, groovy
-    TEST_4: $CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
+    TEST_4: $CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3$CMD4
 test:
   override:
     - case $CIRCLE_NODE_INDEX in 0) eval $TEST_1 ;; 1) eval $TEST_2 ;; 2) eval $TEST_3 ;;  3) eval $TEST_4 ;; esac:
