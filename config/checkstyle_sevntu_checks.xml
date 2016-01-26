@@ -5,6 +5,7 @@
         "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
+    <!-- All checks are from https://github.com/sevntu-checkstyle/sevntu.checkstyle project -->
 
     <!-- Filters -->
     <module name="SuppressionFilter">
