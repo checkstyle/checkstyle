@@ -71,7 +71,7 @@ matrix:
         - DESC="NoErrorTest - Orekit"
         - CMD1="mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD2="              -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD3="              -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
+        - CMD3="              -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
         - CMD4=" && git clone https://github.com/checkstyle/Orekit.git && cd Orekit"
         - CMD5=" && sed -i.'' 's/<orekit\.checkstyle\.version>6\.6</<orekit.checkstyle.version>"
         - CMD6="$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)</"
@@ -91,7 +91,7 @@ matrix:
         - CMD5=" && sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
         - CMD6=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD7="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD8="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD8="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
         - CMD9=" && cd contribution/checkstyle-tester "
         - CMD10=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10
@@ -106,7 +106,7 @@ matrix:
         - CMD4=" && sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh"
         - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true"
         - CMD6="                   -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD7="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
         - CMD8=" && cd contribution/checkstyle-tester "
         - CMD9=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
@@ -121,7 +121,7 @@ matrix:
         - CMD4="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
         - CMD5="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD6="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD7="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
         - CMD8="&& cd contribution/checkstyle-tester "
         - CMD9="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
@@ -136,7 +136,7 @@ matrix:
         - CMD4="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
         - CMD5="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD6="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD7="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
         - CMD8="&& cd contribution/checkstyle-tester "
         - CMD9="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
@@ -153,7 +153,7 @@ matrix:
         - CMD6="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
         - CMD7="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD8="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD9="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD9="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
         - CMD10="&& cd contribution/checkstyle-tester "
         - CMD11="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11
@@ -173,7 +173,7 @@ matrix:
         - CMD09="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
         - CMD10="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD11="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD12="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD12="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
         - CMD13="&& cd contribution/checkstyle-tester "
         - CMD14="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD01$CMD02$CMD03$CMD04$CMD05$CMD06$CMD07$CMD08$CMD09$CMD10$CMD11$CMD12$CMD13$CMD14
@@ -188,7 +188,7 @@ matrix:
         - CMD4=" && sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
         - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD6="                   -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD7="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
         - CMD8=" && cd contribution/checkstyle-tester "
         - CMD9=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
@@ -203,7 +203,7 @@ matrix:
         - CMD4="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
         - CMD5="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
         - CMD6="                 -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                 -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true "
+        - CMD7="                 -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
         - CMD8="&& cd contribution/checkstyle-tester "
         - CMD9="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
@@ -213,7 +213,7 @@ matrix:
       env:
         - DESC="release dry run"
         - CMD1="mvn release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs "
-        - CMD2="    -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD2="    -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true  -Dxml.skip=true"
         - CMD3="    -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'"
         - CMD=$CMD1$CMD2$CMD3
         - COVERAGE_CMD=""
