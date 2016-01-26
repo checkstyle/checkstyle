@@ -3,7 +3,7 @@ checkout:
     - git clone https://github.com/checkstyle/contribution
 dependencies:
   post:
-    - (cd contribution/checkstyle-tester && mvn dependency:resolve)
+    - (cd contribution/checkstyle-tester && mvn dependency:go-offline)
 machine:
   java:
     version: oraclejdk8
