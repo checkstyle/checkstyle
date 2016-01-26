@@ -282,5 +282,5 @@ after_success:
     then
         mvn -s config/deploy-settings.xml deploy \
           -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true \
-          -Dcobertura.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true ;
+          -Dcobertura.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true ;
     fi
