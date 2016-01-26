@@ -1,6 +1,14 @@
 language: java
 sudo: false
 
+cache:
+  directories:
+  - ~/.m2
+
+branches:
+  only:
+    - master
+
 install:
   -
 
@@ -276,11 +284,3 @@ after_success:
           -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true \
           -Dcobertura.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true ;
     fi
-
-cache:
-  directories:
-  - ~/.m2
-
-branches:
-  only:
-    - master
