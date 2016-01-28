@@ -183,13 +183,10 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      * @return parent type.
      */
     private static int getParentType(DetailAST commentBlock) {
-        int type = 0;
         final DetailAST parentNode = commentBlock.getParent();
-        if (parentNode != null) {
-            type = parentNode.getType();
-            if (type == TokenTypes.TYPE || type == TokenTypes.MODIFIERS) {
-                type = parentNode.getParent().getType();
-            }
+        int type = parentNode.getType();
+        if (type == TokenTypes.TYPE || type == TokenTypes.MODIFIERS) {
+            type = parentNode.getParent().getType();
         }
         return type;
     }
