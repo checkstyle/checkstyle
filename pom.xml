@@ -474,6 +474,7 @@
           <logViolationsToConsole>true</logViolationsToConsole>
           <maxAllowedViolations>0</maxAllowedViolations>
           <violationSeverity>error</violationSeverity>
+          <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
           <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
         </configuration>
         <executions>
