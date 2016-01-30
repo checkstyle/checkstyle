@@ -193,7 +193,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
     public void testNotMatchFolderAndFileNotMatchesFolder() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("match", "false");
-        checkConfig.addAttribute("folderPattern", ".*[\\\\/]java[\\\\/].*");
+        checkConfig.addAttribute("folderPattern", ".*[\\\\/]javastrangefolder[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.dat");
         verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
     }
@@ -202,7 +202,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
     public void testNotMatchFolderAndFileNotMatchesFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("match", "false");
-        checkConfig.addAttribute("folderPattern", ".*[\\\\/]gov[\\\\/].*");
+        checkConfig.addAttribute("folderPattern", ".*[\\\\/]govstrangefolder[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
     }
