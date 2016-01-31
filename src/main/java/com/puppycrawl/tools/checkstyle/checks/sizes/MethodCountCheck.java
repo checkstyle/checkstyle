@@ -24,7 +24,7 @@ import java.util.Deque;
 import java.util.EnumMap;
 import java.util.Map;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author Alexander Jesse
  * @author Oliver Burn
  */
-public final class MethodCountCheck extends Check {
+public final class MethodCountCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

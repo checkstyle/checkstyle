@@ -31,7 +31,7 @@ import org.junit.Test;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -54,7 +54,7 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
         Assert.assertTrue(ALL_COMMENTS.isEmpty());
     }
 
-    private static class BlockCommentListenerCheck extends Check {
+    private static class BlockCommentListenerCheck extends AbstractCheck {
         @Override
         public boolean isCommentNodesRequired() {
             return true;

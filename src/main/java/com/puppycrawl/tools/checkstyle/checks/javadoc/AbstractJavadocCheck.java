@@ -36,7 +36,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.google.common.base.CaseFormat;
 import com.google.common.primitives.Ints;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * Base class for Checks that process Javadoc comments.
  * @author Baratali Izmailov
  */
-public abstract class AbstractJavadocCheck extends Check {
+public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * Error message key for common javadoc errors.
      */

@@ -33,7 +33,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 
@@ -46,7 +46,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             final DefaultConfiguration checkConfig = createCheckConfig(check);
             final Checker checker;
-            if (Check.class.isAssignableFrom(check)) {
+            if (AbstractCheck.class.isAssignableFrom(check)) {
                 // Checks which have Check as a parent.
                 if (check.equals(ImportControlCheck.class)) {
                     // ImportControlCheck must have the import control configuration file to avoid
@@ -74,8 +74,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultTokensAreSubsetOfAcceptableTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
-            if (Check.class.isAssignableFrom(check)) {
-                final Check testedCheck = (Check) check.getDeclaredConstructor().newInstance();
+            if (AbstractCheck.class.isAssignableFrom(check)) {
+                final AbstractCheck testedCheck = (AbstractCheck) check.getDeclaredConstructor()
+                        .newInstance();
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
@@ -92,8 +93,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testRequiredTokensAreSubsetOfAcceptableTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
-            if (Check.class.isAssignableFrom(check)) {
-                final Check testedCheck = (Check) check.getDeclaredConstructor().newInstance();
+            if (AbstractCheck.class.isAssignableFrom(check)) {
+                final AbstractCheck testedCheck = (AbstractCheck) check.getDeclaredConstructor()
+                        .newInstance();
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
@@ -110,8 +112,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testRequiredTokensAreSubsetOfDefaultTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
-            if (Check.class.isAssignableFrom(check)) {
-                final Check testedCheck = (Check) check.getDeclaredConstructor().newInstance();
+            if (AbstractCheck.class.isAssignableFrom(check)) {
+                final AbstractCheck testedCheck = (AbstractCheck) check.getDeclaredConstructor()
+                        .newInstance();
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 

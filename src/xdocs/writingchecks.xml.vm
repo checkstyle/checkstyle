@@ -48,7 +48,7 @@
         and one of them happens to be the <a
         href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>. A
         TreeWalker supports submodules that are derived from the <a
-        href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html">Check</a>
+        href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
         class. The TreeWalker operates by separately transforming each of
         the Java input files into an abstract syntax tree and then handing
         the result over to each of the Check submodules which in turn have
@@ -185,12 +185,12 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       Checkstyle&#39;s <a
       href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
       takes a set of objects that conform to a <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html">Check</a>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
       interface. OK, you&#39;re right - actually it&#39;s not an interface
       but an abstract class to provide some helper methods. A Check provides
       methods that take an AST as an argument and perform the checking process
       for that AST, most prominently <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>visitToken()</code></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>visitToken()</code></a>.  </p>
 
       <p> It is important to understand that the individual
       Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
@@ -202,16 +202,16 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
 
       <p> Before any visitor method is called, the TreeWalker
       will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>beginTree()</code></a> to give the Check a chance to do
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>beginTree()</code></a> to give the Check a chance to do
       some initialization. Then, when performing the recursive descend from
       the root to the leaf nodes, the <code>visitToken()</code>
       method is called. Unlike the basic examples in the pattern book, there
       is a <code>visitToken()</code> counterpart called <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>leaveToken()</code></a>. The TreeWalker will call that
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>leaveToken()</code></a>. The TreeWalker will call that
       method to signal that the subtree below the node has been processed and
       the TreeWalker is backtracking from the node. After the root node has
       been left, the TreeWalker will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>finishTree()</code></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>finishTree()</code></a>.  </p>
 
     </section>
 
@@ -240,7 +240,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
 package com.mycompany.checks;
 import com.puppycrawl.tools.checkstyle.api.*;
 
-public class MethodLimitCheck extends Check
+public class MethodLimitCheck extends AbstractCheck
 {
     private static final int DEFAULT_MAX = 30;
     private int max = DEFAULT_MAX;
@@ -278,15 +278,15 @@ public class MethodLimitCheck extends Check
         There are four methods in Check class to control the processed
         <a href="http://checkstyle.sourceforge.net/apidocs/index.html">TokenTypes</a> -
         one setter
-        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#setTokens-java.lang.String...-">
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#setTokens-java.lang.String...-">
         setTokens()</a>, which is used to define a custom set (which is different
         from the default one) of the processed TokenTypes via config file and
         three getters, which have to be overridden:
-        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#getDefaultTokens--">
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#getDefaultTokens--">
         getDefaultTokens()</a>,
-        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#getAcceptableTokens--">
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#getAcceptableTokens--">
         getAcceptableTokens()</a>,
-        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#getRequiredTokens--">
+        <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#getRequiredTokens--">
         getRequiredTokens()</a>.
       </p>
 
@@ -294,7 +294,7 @@ public class MethodLimitCheck extends Check
 
         <li>
           getDefaultTokens() - returns a set of TokenTypes which are processed in
-          <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/Check.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+          <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
           visitToken()</a> method by default.
         </li>
 
@@ -358,7 +358,7 @@ public class MethodLimitCheck extends Check
       </p>
 
       <source>
-public class MethodLimitCheck extends Check
+public class MethodLimitCheck extends AbstractCheck
 {
     // code from above omitted for brevity
     public void setMax(int limit)

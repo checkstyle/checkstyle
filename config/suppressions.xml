@@ -53,7 +53,7 @@
     <!-- should be removed at 7.0 version, we keep for some time to avoid braking compatibiilty -->
     <suppress checks="AbbreviationAsWordInName"
               files="AbstractComplexityCheck.java"
-              lines="64"/>
+              lines="65"/>
 
     <!-- illegal words are part of Javadoc -->
     <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
@@ -71,7 +71,7 @@
               files="AbstractClassNameCheck.java"/>
     <!-- test should be named as their main class -->
     <suppress checks="AbstractClassNameCheck"
-              files="AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java"/>
+              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractTypeAwareCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java"/>
 
     <!-- Tone down the checking for test code -->
     <suppress checks="CyclomaticComplexity" files="[\\/]XDocsPagesTest\.java"/>

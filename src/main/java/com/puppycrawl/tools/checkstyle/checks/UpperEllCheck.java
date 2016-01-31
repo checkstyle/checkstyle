@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * @author Oliver Burn
  */
-public class UpperEllCheck extends Check {
+public class UpperEllCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

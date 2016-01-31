@@ -54,8 +54,8 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -70,6 +70,7 @@ public class XDocsPagesTest {
 
     private static final List<String> CHECKS_ON_PAGE_IGNORE_LIST = Arrays.asList(
             "AbstractAccessControlNameCheck.java",
+            "AbstractCheck.java",
             "AbstractClassCouplingCheck.java",
             "AbstractComplexityCheck.java",
             "AbstractFileSetCheck.java",
@@ -109,7 +110,7 @@ public class XDocsPagesTest {
             "name=\"FileTabCharacter\""
     );
 
-    private static final Set<String> CHECK_PROPERTIES = getProperties(Check.class);
+    private static final Set<String> CHECK_PROPERTIES = getProperties(AbstractCheck.class);
     private static final Set<String> FILESET_PROPERTIES = getProperties(AbstractFileSetCheck.class);
 
     private static final List<String> UNDOCUMENTED_PROPERTIES = Arrays.asList(
@@ -417,10 +418,10 @@ public class XDocsPagesTest {
             }
         }
 
-        final Check check;
+        final AbstractCheck check;
 
-        if (Check.class.isAssignableFrom(clss)) {
-            check = (Check) instance;
+        if (AbstractCheck.class.isAssignableFrom(clss)) {
+            check = (AbstractCheck) instance;
 
             if (!Arrays.equals(check.getAcceptableTokens(), check.getDefaultTokens())
                     || !Arrays.equals(check.getAcceptableTokens(), check.getRequiredTokens())) {
@@ -444,7 +445,7 @@ public class XDocsPagesTest {
     }
 
     private static void validatePropertySectionProperties(String fileName, String sectionName,
-            Node subSection, Check check, Set<String> properties) {
+            Node subSection, AbstractCheck check, Set<String> properties) {
         boolean skip = true;
         boolean didTokens = false;
 

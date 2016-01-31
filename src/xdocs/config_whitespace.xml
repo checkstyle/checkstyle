@@ -793,7 +793,7 @@ package com.puppycrawl.
     tools.checkstyle.checks;
 
 import com.puppycrawl.tools.
-    checkstyle.api.Check;
+    checkstyle.api.AbstractCheck;
       </source>
       <p>
         To configure the check to force no line-wrapping
@@ -815,7 +815,7 @@ import com.puppycrawl.tools.
         Examples of not line-wrapped statements (good case):
       </p>
       <source>
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
       </source>
       </subsection>
 

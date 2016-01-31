@@ -26,7 +26,7 @@ import antlr.collections.AST;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author lkuehne
  */
 public class EqualsHashCodeCheck
-        extends Check {
+        extends AbstractCheck {
     // implementation note: we have to use the following members to
     // keep track of definitions in different inner classes
 

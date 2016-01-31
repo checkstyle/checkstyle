@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * @author John Sirois
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public final class IllegalThrowsCheck extends Check {
+public final class IllegalThrowsCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

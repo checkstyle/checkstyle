@@ -22,16 +22,17 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 /**
  * Support for checks that look for usage of illegal types.
- * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
+ * @deprecated Checkstyle will not support abstract checks anymore. Use
+ *             {@link AbstractCheck} instead.
  * @author Oliver Burn
  * @noinspection AbstractClassNeverImplemented
  */
 @Deprecated
-public abstract class AbstractIllegalCheck extends Check {
+public abstract class AbstractIllegalCheck extends AbstractCheck {
     /** Illegal class names. */
     private final Set<String> illegalClassNames = Sets.newHashSet();
 

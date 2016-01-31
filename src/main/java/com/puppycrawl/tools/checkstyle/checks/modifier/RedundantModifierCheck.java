@@ -24,7 +24,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -97,7 +97,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Vladislav Lisetskiy
  */
 public class RedundantModifierCheck
-    extends Check {
+    extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

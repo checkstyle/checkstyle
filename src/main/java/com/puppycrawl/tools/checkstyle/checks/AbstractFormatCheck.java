@@ -24,20 +24,21 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 /**
  * <p> Abstract class for checks that verify strings using a
  * {@link Pattern regular expression}.  It
  * provides support for setting the regular
  * expression using the property name {@code format}.  </p>
- * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
+ * @deprecated Checkstyle will not support abstract checks anymore. Use
+ *             {@link AbstractCheck} instead.
  * @author Oliver Burn
  * @noinspection AbstractClassNeverImplemented
  */
 @Deprecated
 public abstract class AbstractFormatCheck
-    extends Check {
+    extends AbstractCheck {
     /** The flags to create the regular expression with. */
     private int compileFlags;
     /** The regexp to match against. */

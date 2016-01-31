@@ -25,7 +25,7 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
-public abstract class AbstractClassCouplingCheck extends Check {
+public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Class names to ignore. */
     private static final Set<String> DEFAULT_EXCLUDED_CLASSES =
                 ImmutableSet.<String>builder()
