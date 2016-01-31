@@ -418,7 +418,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     }
 
     @Test(expected = IllegalStateException.class)
-    public void testVisitTokenSwitchReflection() throws Exception {
+    public void testVisitTokenSwitchReflection() {
         // Create mock ast
         final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
         final DetailAST astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);

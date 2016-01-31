@@ -175,7 +175,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void testImproperToken() throws Exception {
+    public void testImproperToken() {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
 
         final DetailAST lambdaAst = new DetailAST();

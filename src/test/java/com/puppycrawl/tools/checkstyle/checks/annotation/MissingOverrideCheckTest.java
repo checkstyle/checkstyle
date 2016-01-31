@@ -237,7 +237,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() throws Exception {
+    public void testGetAcceptableTokens() {
         final int[] expectedTokens = {TokenTypes.METHOD_DEF };
         final MissingOverrideCheck check = new MissingOverrideCheck();
         final int[] actual = check.getAcceptableTokens();

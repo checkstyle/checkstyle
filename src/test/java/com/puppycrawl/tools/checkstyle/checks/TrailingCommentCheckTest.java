@@ -87,7 +87,7 @@ public class TrailingCommentCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testCallVisitToken() throws Exception {
+    public void testCallVisitToken() {
         final TrailingCommentCheck check = new TrailingCommentCheck();
         try {
             check.visitToken(new DetailAST());

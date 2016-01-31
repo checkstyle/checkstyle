@@ -648,7 +648,7 @@ public class CommentsTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testToString() throws Exception {
+    public void testToString() {
         final Comment comment = new Comment(new String[]{"value"}, 1, 2, 3);
         Assert.assertEquals("Comment[2:1-2:3]", comment.toString());
     }

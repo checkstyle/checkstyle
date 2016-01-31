@@ -180,7 +180,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testImproperToken() throws Exception {
+    public void testImproperToken() {
         final FinalLocalVariableCheck check = new FinalLocalVariableCheck();
 
         final DetailAST lambdaAst = new DetailAST();

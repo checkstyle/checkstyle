@@ -56,7 +56,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Test
-    public void testDestroy() throws Exception {
+    public void testDestroy() {
         final DebugChecker checker = new DebugChecker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
@@ -82,7 +82,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAddListener() throws Exception {
+    public void testAddListener() {
         final DebugChecker checker = new DebugChecker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
@@ -112,7 +112,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testRemoveListener() throws Exception {
+    public void testRemoveListener() {
         final DebugChecker checker = new DebugChecker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
@@ -155,7 +155,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAddFilter() throws Exception {
+    public void testAddFilter() {
         final DebugChecker checker = new DebugChecker();
         final DebugFilter filter = new DebugFilter();
 
@@ -170,7 +170,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testRemoveFilter() throws Exception {
+    public void testRemoveFilter() {
         final DebugChecker checker = new DebugChecker();
         final DebugFilter filter = new DebugFilter();
         final DebugFilter f2 = new DebugFilter();
@@ -214,7 +214,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @SuppressWarnings("deprecation")
     @Test
-    public void testSetters() throws Exception {
+    public void testSetters() {
         // all  that is set by reflection, so just make code coverage be happy
         final Checker checker = new Checker();
         checker.setClassLoader(getClass().getClassLoader());
@@ -239,7 +239,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNoClassLoaderNoModuleFactory() throws Exception {
+    public void testNoClassLoaderNoModuleFactory() {
         final Checker checker = new Checker();
 
         try {
@@ -272,7 +272,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSetupChildExceptions() throws Exception {
+    public void testSetupChildExceptions() {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
                 new HashSet<String>(), Thread.currentThread().getContextClassLoader());

@@ -62,8 +62,7 @@ public class CommonUtilsTest {
      * Test CommonUtils.countCharInString.
      */
     @Test
-    public void testLengthExpandedTabs()
-        throws Exception {
+    public void testLengthExpandedTabs() {
         final String s1 = "\t";
         assertEquals(8, CommonUtils.lengthExpandedTabs(s1, s1.length(), 8));
 

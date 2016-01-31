@@ -63,7 +63,7 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testImproperToken() throws Exception {
+    public void testImproperToken() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
 
         final DetailAST classDefAst = new DetailAST();

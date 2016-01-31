@@ -85,7 +85,7 @@ public class ClassResolverTest {
     }
 
     @Test
-    public void testExistedImportCantBeResolved() throws Exception {
+    public void testExistedImportCantBeResolved() {
         final Set<String> imports = Sets.newHashSet();
         imports.add("java.applet.someClass");
         final ClassResolver classResolver = new ClassResolver(
@@ -114,7 +114,7 @@ public class ClassResolverTest {
     }
 
     @Test
-    public void testResolveInnerClassWithEmptyPackage() throws Exception {
+    public void testResolveInnerClassWithEmptyPackage() {
         final Set<String> imports = Sets.newHashSet();
         final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(),

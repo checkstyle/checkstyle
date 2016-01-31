@@ -107,7 +107,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testCommitMessageHasProperStructure() throws Exception {
+    public void testCommitMessageHasProperStructure() {
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitId = commit.getId().getName();
             final String commitMessage = commit.getFullMessage();
@@ -118,7 +118,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testCommitMessageHasSingleLine() throws Exception {
+    public void testCommitMessageHasSingleLine() {
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitId = commit.getId().getName();
             final String commitMessage = commit.getFullMessage();

@@ -106,7 +106,7 @@ public class FileLengthCheckTest
     }
 
     @Test
-    public void testExtensions() throws Exception {
+    public void testExtensions() {
         final FileLengthCheck check = new FileLengthCheck();
         check.setFileExtensions("java");
         assertEquals("extension should be the same", ".java", check.getFileExtensions()[0]);

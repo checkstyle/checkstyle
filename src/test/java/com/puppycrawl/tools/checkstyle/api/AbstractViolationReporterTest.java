@@ -50,7 +50,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testCustomId() throws Exception {
+    public void testCustomId() {
         emptyCheck.setId("MyId");
         assertEquals("MyId", emptyCheck.getId());
     }

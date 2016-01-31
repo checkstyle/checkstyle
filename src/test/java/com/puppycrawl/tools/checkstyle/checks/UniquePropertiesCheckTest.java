@@ -92,7 +92,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
      * method return value.
      */
     @Test
-    public void testNotFoundKey() throws Exception {
+    public void testNotFoundKey() {
         final List<String> testStrings = new ArrayList<>(3);
         testStrings.add("");
         testStrings.add("0 = 0");
