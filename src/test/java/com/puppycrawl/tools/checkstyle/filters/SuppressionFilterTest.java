@@ -81,7 +81,7 @@ public class SuppressionFilterTest {
     }
 
     @Test
-    public void testNonExistanceSuppressionFileWithFalseOptional() throws Exception {
+    public void testNonExistanceSuppressionFileWithFalseOptional() {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
                 + "non_existance_suppresion_file.xml";
         try {
@@ -95,7 +95,7 @@ public class SuppressionFilterTest {
     }
 
     @Test
-    public void testExistanceInvalidSuppressionFileWithTrueOptional() throws Exception {
+    public void testExistanceInvalidSuppressionFileWithTrueOptional() {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
                 + "suppressions_invalid_file.xml";
         try {

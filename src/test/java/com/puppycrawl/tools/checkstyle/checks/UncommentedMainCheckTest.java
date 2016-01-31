@@ -72,7 +72,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testTokens() throws Exception {
+    public void testTokens() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
         Assert.assertNotNull(check.getRequiredTokens());
         Assert.assertNotNull(check.getAcceptableTokens());
@@ -102,7 +102,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testIllegalStateException() throws Exception {
+    public void testIllegalStateException() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
         final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));

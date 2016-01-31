@@ -36,13 +36,13 @@ public class CheckUtilsTest {
     }
 
     @Test
-    public void testParseDoubleWithIncorrectToken() throws Exception {
+    public void testParseDoubleWithIncorrectToken() {
         final double parsedDouble = CheckUtils.parseDouble("1_02", TokenTypes.ASSIGN);
         assertEquals(0.0, parsedDouble, 0.0);
     }
 
     @Test
-    public void testElseWithCurly() throws Exception {
+    public void testElseWithCurly() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.ASSIGN);
         ast.setText("ASSIGN");
@@ -75,7 +75,7 @@ public class CheckUtilsTest {
     }
 
     @Test
-    public void testEquals() throws Exception {
+    public void testEquals() {
         final DetailAST litStatic = new DetailAST();
         litStatic.setType(TokenTypes.LITERAL_STATIC);
 

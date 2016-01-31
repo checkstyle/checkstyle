@@ -186,7 +186,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testVisitToken() throws Exception {
+    public void testVisitToken() {
         final CommentsIndentationCheck check = new CommentsIndentationCheck();
         final DetailAST methodDef = new DetailAST();
         methodDef.setType(TokenTypes.METHOD_DEF);

@@ -52,7 +52,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAcceptableTokens() throws Exception {
+    public void testAcceptableTokens() {
         final OneTopLevelClassCheck check =  new OneTopLevelClassCheck();
         check.getAcceptableTokens();
         // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to

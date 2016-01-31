@@ -116,7 +116,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testImproperToken() throws Exception {
+    public void testImproperToken() {
         final ReturnCountCheck check = new ReturnCountCheck();
 
         final DetailAST classDefAst = new DetailAST();

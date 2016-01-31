@@ -261,7 +261,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testGetOption() throws Exception {
+    public void testGetOption() {
         final AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
         try {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");

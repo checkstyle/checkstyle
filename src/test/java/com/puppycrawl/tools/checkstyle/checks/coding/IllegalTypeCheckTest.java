@@ -202,7 +202,7 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testImproperToken() throws Exception {
+    public void testImproperToken() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
 
         final DetailAST classDefAst = new DetailAST();

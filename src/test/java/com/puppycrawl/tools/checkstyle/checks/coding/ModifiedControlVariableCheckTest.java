@@ -90,7 +90,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    public void testImproperToken() throws Exception {
+    public void testImproperToken() {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
 
         final DetailAST classDefAst = new DetailAST();
