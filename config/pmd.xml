@@ -170,6 +170,12 @@
     or @Image='AbstractCheck' or @Image='AbstractJavadocCheck']"/>
     </properties>
   </rule>
+  <rule ref="rulesets/java/design.xml/AbstractClassWithoutAnyMethod">
+    <properties>
+     <!-- Can not change API -->
+    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Check']"/>
+    </properties>
+  </rule>
 
   <rule ref="rulesets/java/design.xml/AvoidDeeplyNestedIfStmts">
     <properties>
