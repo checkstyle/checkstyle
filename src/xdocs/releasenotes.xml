@@ -15,6 +15,75 @@
 
   <body>
 
+    <section name="Release 6.15">
+      <p>New:</p>
+        <ul>
+          <li>
+            new Check: RegexpOnFilename. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2546">#2546</a>
+          </li>
+          <li>
+            SuppressionFilter: new option &#39;optional&#39; to allow skip SuppressionFilter if config file does not exist. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/1002">#1002</a>
+          </li>
+          <li>
+            Add possibility to specify a unique ID to all Regexp checks. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/1008">#1008</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            StringIndexOutOfBoundsException in Indentation check. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2645">#2645</a>
+          </li>
+          <li>
+            AbstractJavadocCheck should process only doc comments placed before class, interface, constructor, method, or field declarations. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/325">#325</a>
+          </li>
+          <li>
+            SummaryJavadoc: false &quot;end with a period&quot; reports when inheritDoc is used . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2805">#2805</a>
+          </li>
+          <li>
+            JavadocMethod: allowedAnnotations hides bad javadocs. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2806">#2806</a>
+          </li>
+          <li>
+            FinalLocalVariable doesn&#39;t report variable when condition separates 2 assignments. Author: Bhavik Patel <a href="https://github.com/checkstyle/checkstyle/issues/2807">#2807</a>
+          </li>
+          <li>
+            Config of Google Style does not include InterfaceTypeParameterName check. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2792">#2792</a>
+          </li>
+          <li>
+            Indentation on annotation parameters is wrong. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/1349">#1349</a>
+          </li>
+          <li>
+            OneStatementPerLine check and lambda expression. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2688">#2688</a>
+          </li>
+          <li>
+            Gui should have a splitter bettween tree and code and prefered columns size. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2767">#2767</a>
+          </li>
+          <li>
+            RequireThis reports false-positive when an instance method is overloaded with a static one. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2539">#2539</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add checkstyle messages to xdocs. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2836">#2836</a>
+          </li>
+          <li>
+            Setup &#39;Circle CI&#39; to run checkstyle-tester project on JDK sources. Author: Vladislav Lisetskiy, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2815">#2815</a>
+          </li>
+          <li>
+            Enforce Checks of sevntu.checkstyle (released version) over Checkstyle source code. Author: Yasser Aziza <a href="https://github.com/checkstyle/checkstyle/issues/2661">#2661</a>
+          </li>
+          <li>
+            Use Codeship CI for testing. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2727">#2727</a>
+          </li>
+          <li>
+            Refactor gui package. Author: Vladislav Lisetskiy, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2609">#2609</a>
+          </li>
+          <li>
+            doc: Add sbt-checkstyle-plugin to list of active tools. Author: Andrew Johnson
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.14.1">
       <p>Bug fixes:</p>
         <ul>
