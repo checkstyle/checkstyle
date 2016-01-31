@@ -19,17 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
  * Abstract class which provides helpers functionality for nested checks.
- * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
+ * @deprecated Checkstyle will not support abstract checks anymore. Use
+ *             {@link AbstractCheck} instead.
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @noinspection AbstractClassNeverImplemented
  */
 @Deprecated
-public abstract class AbstractNestedDepthCheck extends Check {
+public abstract class AbstractNestedDepthCheck extends AbstractCheck {
     /** Maximum allowed nesting depth. */
     private int max;
     /** Current nesting depth. */

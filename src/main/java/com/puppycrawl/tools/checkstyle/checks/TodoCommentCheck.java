@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Baratali Izmailov
  */
 public class TodoCommentCheck
-        extends Check {
+        extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

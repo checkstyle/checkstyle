@@ -22,10 +22,10 @@ package com.puppycrawl.tools.checkstyle.grammars.comments;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-class CompareTreesWithComments extends Check {
+class CompareTreesWithComments extends AbstractCheck {
     private static DetailAST expectedTree;
 
     @Override

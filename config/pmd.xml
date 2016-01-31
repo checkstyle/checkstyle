@@ -167,7 +167,7 @@
     <properties>
      <!-- Can not change API -->
     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck' 
-    or @Image='Check' or @Image='AbstractJavadocCheck']"/>
+    or @Image='AbstractCheck' or @Image='AbstractJavadocCheck']"/>
     </properties>
   </rule>
 

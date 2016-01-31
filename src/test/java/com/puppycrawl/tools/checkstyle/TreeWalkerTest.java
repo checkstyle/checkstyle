@@ -44,7 +44,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
@@ -372,7 +372,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         }
     }
 
-    private static class BadJavaDocCheck extends Check {
+    private static class BadJavaDocCheck extends AbstractCheck {
         @Override
         public int[] getDefaultTokens() {
             return getAcceptableTokens();
@@ -389,7 +389,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         }
     }
 
-    private static class RequiredTokenIsNotInDefaultsCheck extends Check {
+    private static class RequiredTokenIsNotInDefaultsCheck extends AbstractCheck {
         @Override
         public int[] getRequiredTokens() {
             return new int[] {TokenTypes.ASSIGN};
@@ -406,7 +406,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         }
     }
 
-    private static class RequiredTokenIsEmptyIntArray extends Check {
+    private static class RequiredTokenIsEmptyIntArray extends AbstractCheck {
         @Override
         public int[] getRequiredTokens() {
             return ArrayUtils.EMPTY_INT_ARRAY;

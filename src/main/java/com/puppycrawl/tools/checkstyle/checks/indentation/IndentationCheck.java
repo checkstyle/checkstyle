@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
@@ -79,7 +79,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @author Maikel Steneker
  * @author maxvetrenko
  */
-public class IndentationCheck extends Check {
+public class IndentationCheck extends AbstractCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.

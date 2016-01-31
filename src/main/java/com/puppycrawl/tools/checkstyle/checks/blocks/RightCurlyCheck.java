@@ -24,7 +24,7 @@ import java.util.Locale;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * @author Andrei Selkin
  * @author <a href="mailto:piotr.listkiewicz@gmail.com">liscju</a>
  */
-public class RightCurlyCheck extends Check {
+public class RightCurlyCheck extends AbstractCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.

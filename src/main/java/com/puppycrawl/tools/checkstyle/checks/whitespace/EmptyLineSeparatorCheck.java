@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -146,7 +146,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author maxvetrenko
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
-public class EmptyLineSeparatorCheck extends Check {
+public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message empty.line.separator in "messages.properties"

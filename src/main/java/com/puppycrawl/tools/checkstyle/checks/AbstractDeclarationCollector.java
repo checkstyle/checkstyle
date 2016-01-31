@@ -27,7 +27,7 @@ import java.util.Set;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
@@ -35,12 +35,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Abstract class for checks which need to collect information about
  * declared members/parameters/variables.
- * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
+ * @deprecated Checkstyle will not support abstract checks anymore. Use
+ *             {@link AbstractCheck} instead.
  * @author o_sukhodolsky
  * @noinspection AbstractClassNeverImplemented
  */
 @Deprecated
-public abstract class AbstractDeclarationCollector extends Check {
+public abstract class AbstractDeclarationCollector extends AbstractCheck {
     /**
      * Tree of all the parsed frames.
      */

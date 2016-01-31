@@ -26,7 +26,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import antlr.collections.AST;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
@@ -167,7 +167,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author Tim Tyler &lt;tim@tt1.org&gt;
  * @author Rick Giles
  */
-public class DescendantTokenCheck extends Check {
+public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * By default, any warning specified will be disallowed on
  * all legal TokenTypes unless otherwise specified via
  * the
- * {@link Check#setTokens(String[]) tokens}
+ * {@link AbstractCheck#setTokens(String[]) tokens}
  * property.
  *
  * Also, by default warnings that are empty strings or all
@@ -91,7 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * </pre>
  * @author Travis Schneeberger
  */
-public class SuppressWarningsCheck extends Check {
+public class SuppressWarningsCheck extends AbstractCheck {
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.

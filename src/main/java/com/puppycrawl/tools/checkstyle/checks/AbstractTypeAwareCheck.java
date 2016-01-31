@@ -27,7 +27,7 @@ import java.util.Set;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     class are potentially unstable.
  */
 @Deprecated
-public abstract class AbstractTypeAwareCheck extends Check {
+public abstract class AbstractTypeAwareCheck extends AbstractCheck {
     /** Stack of maps for type params. */
     private final Deque<Map<String, AbstractClassInfo>> typeParams = new ArrayDeque<>();
 

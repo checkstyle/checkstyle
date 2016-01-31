@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *
  * @author Daniel Grenner
  */
-public class MultipleStringLiteralsCheck extends Check {
+public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

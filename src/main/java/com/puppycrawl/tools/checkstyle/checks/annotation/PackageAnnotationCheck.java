@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * </p>
  * @author Travis Schneeberger
  */
-public class PackageAnnotationCheck extends Check {
+public class PackageAnnotationCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

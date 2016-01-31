@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
  * @author lkuehne
  */
 public class AbstractViolationReporterTest extends BaseCheckTestSupport {
-    private final Check emptyCheck = new EmptyCheck();
+    private final AbstractCheck emptyCheck = new EmptyCheck();
 
     @Test
     public void testGetMessageBundleWithPackage() {
@@ -109,7 +109,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         messages.first().getMessage();
     }
 
-    private static class EmptyCheck extends Check {
+    private static class EmptyCheck extends AbstractCheck {
         @Override
         public int[] getDefaultTokens() {
             return ArrayUtils.EMPTY_INT_ARRAY;

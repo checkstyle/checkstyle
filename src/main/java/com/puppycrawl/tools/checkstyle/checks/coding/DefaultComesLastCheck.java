@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * @author o_sukhodolsky
  */
-public class DefaultComesLastCheck extends Check {
+public class DefaultComesLastCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

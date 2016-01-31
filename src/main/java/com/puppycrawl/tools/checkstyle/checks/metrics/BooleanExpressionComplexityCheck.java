@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
-public final class BooleanExpressionComplexityCheck extends Check {
+public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

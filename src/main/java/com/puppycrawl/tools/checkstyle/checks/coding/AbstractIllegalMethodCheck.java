@@ -19,19 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Provide support for checking for a method with a specified name and no
  * arguments.
- * @deprecated Checkstyle will not support abstract checks anymore. Use {@link Check} instead.
+ * @deprecated Checkstyle will not support abstract checks anymore. Use
+ *             {@link AbstractCheck} instead.
  * @author Oliver Burn
  * @noinspection AbstractClassNeverImplemented
  */
 @Deprecated
-public abstract class AbstractIllegalMethodCheck extends Check {
+public abstract class AbstractIllegalMethodCheck extends AbstractCheck {
     /** Name of method to disallow. */
     private final String methodName;
     /** The error key to report with. */
