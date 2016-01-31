@@ -28,7 +28,9 @@
         <module name="InterfaceTypeParameterNameCheck"/>
         <module name="ForbidThrowAnonymousExceptionsCheck"/>
         <module name="ForbidReturnInFinallyBlock"/>
-        <module name="ForbidInstantiation"/>
+        <module name="ForbidInstantiation">
+            <property name="forbiddenClasses" value="java.lang.NullPointerException,java.util.Vector,java.util.Stack"/>
+        </module>
         <module name="ForbidCCommentsInMethods"/>
         <module name="FinalizeImplementationCheck"/>
         <module name="RequiredParameterForAnnotation"/>
@@ -89,7 +91,7 @@
         </module>
         <module name="ForbidCertainImports">
             <property name="packageNameRegexp" value="^.*(api|utils).*$"/>
-            <property name="forbiddenImportsRegexp" value="^.*checks.*$"/>
+            <property name="forbiddenImportsRegexp" value="^.*checks.*|java\.util\.Vector|java\.util\.Stack$"/>
         </module>
         <module name="LineLengthExtended">
             <property name="max" value="100"/>

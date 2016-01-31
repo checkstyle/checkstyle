@@ -19,8 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Locale;
-import java.util.Stack;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -497,11 +498,11 @@ public class CommentsIndentationCheck extends Check {
      */
     private static DetailAST getOneLinePreviousStatementOfSingleLineComment(DetailAST comment) {
         DetailAST previousStatement = null;
-        final Stack<DetailAST> stack = new Stack<>();
+        final Deque<DetailAST> stack = new ArrayDeque<>();
         DetailAST root = comment.getParent();
 
-        while (root != null || !stack.empty()) {
-            if (!stack.empty()) {
+        while (root != null || !stack.isEmpty()) {
+            if (!stack.isEmpty()) {
                 root = stack.pop();
             }
             while (root != null) {
