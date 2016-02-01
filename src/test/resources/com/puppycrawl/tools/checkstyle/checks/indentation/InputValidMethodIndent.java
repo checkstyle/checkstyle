@@ -194,4 +194,10 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
         getArray()[0] = 2; //indent:8 exp:8
     } //indent:4 exp:4
 
+    // the following lines have tabs //indent:4 exp:4
+	@SuppressWarnings( //indent:4 exp:4
+		value="" //indent:8 exp:8
+	) //indent:4 exp:4
+	public void testStartOfSequence() { //indent:4 exp:4
+	} //indent:4 exp:4
 } //indent:0 exp:0
