@@ -414,4 +414,13 @@ public class InputJavadocStyle
          * @throws IllegalArgumentException with errMsg as its message
          */
         void inheritDocWithThrows() {}
+        
+        /**
+         * /
+         *
+         **
+         * @param s
+         * @return Return
+         */
+        public int test(String s) { return 0; }
 }

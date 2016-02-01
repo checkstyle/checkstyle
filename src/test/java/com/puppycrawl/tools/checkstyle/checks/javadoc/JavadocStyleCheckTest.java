@@ -98,6 +98,7 @@ public class JavadocStyleCheckTest
             "386: " + getCheckMessage(MSG_NO_PERIOD),
             "393: " + getCheckMessage(MSG_NO_PERIOD),
             "405: " + getCheckMessage(MSG_NO_PERIOD),
+            "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
@@ -122,6 +123,7 @@ public class JavadocStyleCheckTest
             "386: " + getCheckMessage(MSG_NO_PERIOD),
             "393: " + getCheckMessage(MSG_NO_PERIOD),
             "405: " + getCheckMessage(MSG_NO_PERIOD),
+            "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
@@ -150,6 +152,7 @@ public class JavadocStyleCheckTest
             "386: " + getCheckMessage(MSG_NO_PERIOD),
             "393: " + getCheckMessage(MSG_NO_PERIOD),
             "405: " + getCheckMessage(MSG_NO_PERIOD),
+            "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
@@ -217,6 +220,7 @@ public class JavadocStyleCheckTest
             "335:33: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
             "382: " + getCheckMessage(MSG_NO_PERIOD),
             "386: " + getCheckMessage(MSG_NO_PERIOD),
+            "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
@@ -244,6 +248,7 @@ public class JavadocStyleCheckTest
             "335:33: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
             "382: " + getCheckMessage(MSG_NO_PERIOD),
             "386: " + getCheckMessage(MSG_NO_PERIOD),
+            "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
@@ -276,6 +281,7 @@ public class JavadocStyleCheckTest
             "386: " + getCheckMessage(MSG_NO_PERIOD),
             "393: " + getCheckMessage(MSG_NO_PERIOD),
             "405: " + getCheckMessage(MSG_NO_PERIOD),
+            "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
@@ -404,6 +410,7 @@ public class JavadocStyleCheckTest
         final String[] expected = {
             "88: " + getCheckMessage(MSG_NO_PERIOD),
             "386: " + getCheckMessage(MSG_NO_PERIOD),
+            "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
     }
