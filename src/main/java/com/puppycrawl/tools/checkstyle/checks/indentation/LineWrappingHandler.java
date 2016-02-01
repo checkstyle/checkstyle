@@ -26,6 +26,7 @@ import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * This class checks line-wrapping into definitions and expressions. The
@@ -127,8 +128,8 @@ public class LineWrappingHandler {
      *            first node.
      * @return indentation of first node.
      */
-    private static int getFirstNodeIndent(DetailAST node) {
-        int indentLevel = node.getColumnNo();
+    private int getFirstNodeIndent(DetailAST node) {
+        final int result;
 
         if (node.getType() == TokenTypes.LITERAL_IF
                 && node.getParent().getType() == TokenTypes.LITERAL_ELSE) {
@@ -137,13 +138,16 @@ public class LineWrappingHandler {
 
             if (lcurly.getType() == TokenTypes.SLIST
                     && rcurly.getLineNo() == node.getLineNo()) {
-                indentLevel = rcurly.getColumnNo();
+                result = expandedTabsColumnNo(rcurly);
             }
             else {
-                indentLevel = node.getParent().getColumnNo();
+                result = expandedTabsColumnNo(node.getParent());
             }
         }
-        return indentLevel;
+        else {
+            result = expandedTabsColumnNo(node);
+        }
+        return result;
     }
 
     /**
@@ -169,7 +173,7 @@ public class LineWrappingHandler {
                 final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
 
                 if (firstTokenOnLine == null
-                    || firstTokenOnLine.getColumnNo() >= curNode.getColumnNo()) {
+                    || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
                     result.put(curNode.getLineNo(), curNode);
                 }
                 curNode = getNextCurNode(curNode);
@@ -206,8 +210,8 @@ public class LineWrappingHandler {
      */
     private void checkAnnotationIndentation(DetailAST atNode,
             NavigableMap<Integer, DetailAST> firstNodesOnLines) {
-        final int currentIndent = atNode.getColumnNo() + indentLevel;
-        final int firstNodeIndent = atNode.getColumnNo();
+        final int firstNodeIndent = expandedTabsColumnNo(atNode);
+        final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = getLastAnnotationNode(atNode);
         final int lastAnnotationLine = lastAnnotationNode.getLineNo();
@@ -238,6 +242,22 @@ public class LineWrappingHandler {
     }
 
     /**
+     * Get the column number for the start of a given expression, expanding
+     * tabs out into spaces in the process.
+     *
+     * @param ast   the expression to find the start of
+     *
+     * @return the column number for the start of the expression
+     */
+    private int expandedTabsColumnNo(DetailAST ast) {
+        final String line =
+            indentCheck.getLine(ast.getLineNo() - 1);
+
+        return CommonUtils.lengthExpandedTabs(line, ast.getColumnNo(),
+            indentCheck.getIndentationTabWidth());
+    }
+
+    /**
      * Finds and returns last annotation node.
      * @param atNode first at-clause node.
      * @return last annotation node.
@@ -261,17 +281,17 @@ public class LineWrappingHandler {
      */
     private void logWarningMessage(DetailAST currentNode, int currentIndent) {
         if (forceStrictCondition) {
-            if (currentNode.getColumnNo() != currentIndent) {
+            if (expandedTabsColumnNo(currentNode) != currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),
                         IndentationCheck.MSG_ERROR, currentNode.getText(),
-                        currentNode.getColumnNo(), currentIndent);
+                        expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
         else {
-            if (currentNode.getColumnNo() < currentIndent) {
+            if (expandedTabsColumnNo(currentNode) < currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),
                         IndentationCheck.MSG_ERROR, currentNode.getText(),
-                        currentNode.getColumnNo(), currentIndent);
+                        expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
     }
