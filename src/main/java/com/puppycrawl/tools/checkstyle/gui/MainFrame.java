@@ -120,7 +120,7 @@ public class MainFrame extends JFrame {
     public void openFile(File sourceFile) {
         if (sourceFile != null) {
             try {
-                setTitle("Checkstyle : " + sourceFile.getName());
+                setTitle("Checkstyle GUI : " + sourceFile.getName());
                 final DetailAST parseTree = model.parseFile(sourceFile);
                 parseTreeTableModel.setParseTree(parseTree);
                 reloadAction.setEnabled(true);

@@ -50,7 +50,7 @@ public final class Main {
                     final File sourceFile = new File(args[0]);
                     mainFrame.openFile(sourceFile);
                 }
-                mainFrame.setTitle("Checkstyle");
+                mainFrame.setTitle("Checkstyle GUI");
                 mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 mainFrame.setVisible(true);
             }

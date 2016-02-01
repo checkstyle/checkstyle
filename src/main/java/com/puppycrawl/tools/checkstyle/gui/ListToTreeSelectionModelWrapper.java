@@ -45,7 +45,12 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      */
     ListToTreeSelectionModelWrapper(JTreeTable jTreeTable) {
         treeTable = jTreeTable;
-        getListSelectionModel().addListSelectionListener(createListSelectionListener());
+        getListSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                updateSelectedPathsFromSelectedRows();
+            }
+        });
     }
 
     /**
@@ -80,15 +85,6 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
         // updatingListSelectionModel is true, it implies the
         // ListSelectionModel has already been updated and the
         // paths are the only thing that needs to be updated.
-    }
-
-    /**
-     * Creates an instance of ListSelectionHandler.
-     *
-     * @return An instance of ListSelectionHandler
-     */
-    private ListSelectionListener createListSelectionListener() {
-        return new ListSelectionHandler();
     }
 
     /**
@@ -129,17 +125,6 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
             if (selPath != null) {
                 addSelectionPath(selPath);
             }
-        }
-    }
-
-    /**
-     * Class responsible for calling updateSelectedPathsFromSelectedRows
-     * when the selection of the list changes.
-     */
-    private class ListSelectionHandler implements ListSelectionListener {
-        @Override
-        public void valueChanged(ListSelectionEvent event) {
-            updateSelectedPathsFromSelectedRows();
         }
     }
 }
