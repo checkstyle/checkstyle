@@ -314,7 +314,7 @@ public class JavadocStyleCheck
             if (Character.isWhitespace(builder.charAt(index))) {
                 builder.deleteCharAt(index);
             }
-            else if (builder.charAt(index) == '/'
+            else if (index > 0 && builder.charAt(index) == '/'
                     && builder.charAt(index - 1) == '*') {
                 builder.deleteCharAt(index);
                 builder.deleteCharAt(index - 1);
