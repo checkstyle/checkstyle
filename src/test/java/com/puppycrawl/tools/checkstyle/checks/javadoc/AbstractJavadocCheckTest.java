@@ -67,9 +67,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     @Test
     public void testCustomTag() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
-        final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY_UNRECOGNIZED_ANTLR_ERROR, 4, "null"),
-        };
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputCustomTag.java"), expected);
     }
 
@@ -172,7 +170,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return null;
+            return ArrayUtils.EMPTY_INT_ARRAY;
         }
 
         @Override
