@@ -5,4 +5,7 @@ public class InputCustomTag {
      * {@customTag}
      */
     void customTag() {}
+
+    /** {@customTag} */
+    void customTag2() {}
 }

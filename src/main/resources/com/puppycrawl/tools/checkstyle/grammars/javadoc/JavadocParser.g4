@@ -893,7 +893,7 @@ javadocInlineTag:
             | LINKPLAIN_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* reference description?
             | LITERAL_LITERAL (WS | NEWLINE | LEADING_ASTERISK | text)*
             | VALUE_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* reference?
-            | CUSTOM_NAME (WS | NEWLINE | LEADING_ASTERISK)+ description?
+            | CUSTOM_NAME (WS | NEWLINE | LEADING_ASTERISK)* description?
       )
       JAVADOC_INLINE_TAG_END
       ;
