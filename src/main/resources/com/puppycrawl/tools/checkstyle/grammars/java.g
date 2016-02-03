@@ -260,7 +260,7 @@ typeSpec[boolean addImagNode]
 // - generic type arguments after
 classTypeSpec[boolean addImagNode]
     :   classOrInterfaceType[addImagNode]
-        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+        (options{greedy=true;}: (annotation)* lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
         {
             if ( addImagNode ) {
                 #classTypeSpec = #(#[TYPE,"TYPE"], #classTypeSpec);
@@ -370,7 +370,7 @@ builtInTypeArraySpec[boolean addImagNode]
 // A builtin type specification is a builtin type with possible brackets
 // afterwards (which would make it an array type).
 builtInTypeSpec[boolean addImagNode]
-    :    builtInType (lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+    :    builtInType ((annotation)* lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
         {
             if ( addImagNode ) {
                 #builtInTypeSpec = #(#[TYPE,"TYPE"], #builtInTypeSpec);

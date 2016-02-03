@@ -9,6 +9,17 @@ public class InputAnnotations4 {
 	public static void methodName(@NotNull String args) {
 		
 	}
+
+
+    public static <T> T[] checkNotNullContents(T @Nullable [] array) {
+        return null;
+    }
+    public static int checkNotNullContents(int @Nullable [] array) {
+        return 0;
+    }
+    public static int checkNotNullContents(String @Nullable [] array) {
+        return 0;
+    }
 	
 	@Target(ElementType.TYPE_USE)
 	@interface NotNull {
