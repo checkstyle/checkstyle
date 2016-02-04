@@ -28,11 +28,8 @@ import com.google.common.annotations.VisibleForTesting;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
- * An extension of the CommonAST that records the line and column
- * number.  The idea was taken from <a target="_top"
- * href="http://www.jguru.com/faq/view.jsp?EID=62654">Java Guru
- * FAQ: How can I include line numbers in automatically generated
- * ASTs?</a>.
+ * An extension of the CommonAST that records the line and column number.
+ *
  * @author Oliver Burn
  * @author lkuehne
  * @see <a href="http://www.antlr.org/">ANTLR Website</a>
