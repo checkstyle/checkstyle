@@ -130,10 +130,9 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                "Unable to parse " + fn + " - Attribute \"files\" is required and must be"
-                    + " specified for element type \"suppress\".",
-                ex.getMessage());
+            assertTrue(ex.getMessage().startsWith("Unable to parse " + fn));
+            assertTrue(ex.getMessage().contains("\"files\""));
+            assertTrue(ex.getMessage().contains("\"suppress\""));
         }
     }
 
@@ -144,10 +143,9 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                "Unable to parse " + fn + " - Attribute \"checks\" is required and must be"
-                    + " specified for element type \"suppress\".",
-                ex.getMessage());
+            assertTrue(ex.getMessage().startsWith("Unable to parse " + fn));
+            assertTrue(ex.getMessage().contains("\"checks\""));
+            assertTrue(ex.getMessage().contains("\"suppress\""));
         }
     }
 

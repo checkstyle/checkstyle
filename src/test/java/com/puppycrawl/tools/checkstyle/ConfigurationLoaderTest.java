@@ -92,10 +92,9 @@ public class ConfigurationLoaderTest {
             fail("missing property name");
         }
         catch (CheckstyleException ex) {
-            assertTrue(
-                ex.getMessage().endsWith(
-                    "Attribute \"name\" is required and must be specified "
-                        + "for element type \"property\".:8:41"));
+            assertTrue(ex.getMessage().contains("\"name\""));
+            assertTrue(ex.getMessage().contains("\"property\""));
+            assertTrue(ex.getMessage().endsWith(":8:41"));
         }
     }
 
@@ -106,10 +105,9 @@ public class ConfigurationLoaderTest {
             fail("missing property value");
         }
         catch (CheckstyleException ex) {
-            assertTrue(
-                ex.getMessage().endsWith(
-                    "Attribute \"value\" is required and must be specified "
-                        + "for element type \"property\".:8:41"));
+            assertTrue(ex.getMessage().contains("\"value\""));
+            assertTrue(ex.getMessage().contains("\"property\""));
+            assertTrue(ex.getMessage().endsWith(":8:41"));
         }
     }
 
@@ -120,10 +118,9 @@ public class ConfigurationLoaderTest {
             fail("missing module name");
         }
         catch (CheckstyleException ex) {
-            assertTrue(
-                ex.getMessage().endsWith(
-                    "Attribute \"name\" is required and must be specified "
-                        + "for element type \"module\".:7:23"));
+            assertTrue(ex.getMessage().contains("\"name\""));
+            assertTrue(ex.getMessage().contains("\"module\""));
+            assertTrue(ex.getMessage().endsWith(":7:23"));
         }
     }
 
@@ -134,10 +131,9 @@ public class ConfigurationLoaderTest {
             fail("missing module parent");
         }
         catch (CheckstyleException ex) {
-            assertTrue(
-                ex.getMessage().endsWith(
-                    "Document root element \"property\", must match DOCTYPE "
-                        + "root \"module\".:8:38"));
+            assertTrue(ex.getMessage().contains("\"property\""));
+            assertTrue(ex.getMessage().contains("\"module\""));
+            assertTrue(ex.getMessage().endsWith(":8:38"));
         }
     }
 
