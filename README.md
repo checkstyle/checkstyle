@@ -6,6 +6,7 @@
 [![][coverage img]][coverage]
 
 [![][mavenbadge img]][mavenbadge]
+[![][javadocbadge img]][javadocbadge]
 [![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
 
@@ -85,6 +86,9 @@ directory.
 
 [mavenbadge]:http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
 [mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
+
+[javadocbadge]:http://www.javadoc.io/doc/com.puppycrawl.tools/checkstyle
+[javadocbadge img]:https://javadoc-emblem.rhcloud.com/doc/com.puppycrawl.tools/checkstyle/badge.svg
 
 [versioneye]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a
 [versioneye img]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a/badge.svg
