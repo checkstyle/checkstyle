@@ -113,7 +113,7 @@ java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.jav
         <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">google_checks.xml</a>
       </p>
       <p>
-          To run Checkstyle UI viewer for AST tree directly from the JAR file using
+          To run <a href="writingchecks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a> for AST tree directly from the JAR file using
           the <code>-jar</code> option. Download latest <a href="http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/${projectVersion}/checkstyle-${projectVersion}-all.jar">
           checkstyle-${projectVersion}-all.jar</a>.
           An example of run would be (path to java file is optional):
