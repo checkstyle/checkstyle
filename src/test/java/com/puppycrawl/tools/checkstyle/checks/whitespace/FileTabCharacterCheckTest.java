@@ -29,7 +29,9 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class FileTabCharacterCheckTest
     extends BaseCheckTestSupport {
@@ -85,9 +87,12 @@ public class FileTabCharacterCheckTest
         final DefaultConfiguration checkConfig = createConfig(false);
         final String path = getPath("Claira");
         final String exceptionMessage = " (No such file or directory)";
+        final LocalizedMessage localizedMessage = new LocalizedMessage(0,
+                Definitions.CHECKSTYLE_BUNDLE, "general.exception",
+                new String[] {path + exceptionMessage}, null, getClass(), null);
 
         final String[] expected = {
-            "0: Got an exception - " + path + exceptionMessage,
+            "0: " + localizedMessage.getMessage(),
         };
         final File[] files = {
             new File(path),

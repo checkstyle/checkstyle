@@ -44,6 +44,7 @@ import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class MainTest {
     @Rule
@@ -184,9 +185,7 @@ public class MainTest {
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
 
                 final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
-                        + " cannot initialize module TreeWalker - "
-                        + "Unable to instantiate 'NonExistingClass' class, "
-                        + "it is also not possible to instantiate it as ";
+                        + " cannot initialize module TreeWalker - ";
                 assertTrue(systemErr.getLog().startsWith(cause));
             }
         });
@@ -421,10 +420,8 @@ public class MainTest {
                 final String output = String.format(Locale.ROOT,
                         "Checkstyle ends with 1 errors.%n");
                 assertEquals(output, systemOut.getLog());
-                final String errorOuput = String.format(Locale.ROOT,
-                        "com.puppycrawl.tools.checkstyle.api."
-                        + "CheckstyleException: unable to parse configuration stream"
-                        + " - Content is not allowed in prolog.:7:1%n");
+                final String errorOuput = "com.puppycrawl.tools.checkstyle.api."
+                    + "CheckstyleException: unable to parse configuration stream - ";
                 assertTrue(systemErr.getLog().startsWith(errorOuput));
             }
         });
@@ -504,8 +501,12 @@ public class MainTest {
 
         // we just reference there all violations
         final String[][] outputValues = {
-            {"InputComplexityOverflow", "1", "172"},
+                {"InputComplexityOverflow", "1", "172"},
         };
+
+        final int allowedLength = 170;
+        final String msgKey = "maxLen.file";
+        final String bundle = "com.puppycrawl.tools.checkstyle.checks.sizes.messages";
 
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
@@ -513,12 +514,13 @@ public class MainTest {
                 final String expectedPath = getFilePath("checks/metrics") + File.separator;
                 final StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
-                final String format = "[WARN] %s.java:%s: File length is %s lines "
-                    + "(max allowed is 170). [FileLength]";
+                final String format = "[WARN] %s.java:%s: %s [FileLength]";
                 for (String[] outputValue : outputValues) {
+                    final String localizedMessage = new LocalizedMessage(0, bundle,
+                            msgKey, new Integer[] {Integer.valueOf(outputValue[2]), allowedLength},
+                            null, getClass(), null).getMessage();
                     final String line = String.format(Locale.ROOT, format,
-                            expectedPath + outputValue[0], outputValue[1],
-                            outputValue[2]);
+                            expectedPath + outputValue[0], outputValue[1], localizedMessage);
                     sb.append(line).append(System.getProperty("line.separator"));
                 }
                 sb.append("Audit done.").append(System.getProperty("line.separator"));

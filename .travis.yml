@@ -227,7 +227,25 @@ matrix:
         - COVERAGE_CMD=""
     # unit tests in German locale (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE'" COVERAGE_CMD=""
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE -XX:-UseSplitVerifier'" COVERAGE_CMD=""
+    # unit tests in Spanish locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=es -Duser.country=ES -XX:-UseSplitVerifier'" COVERAGE_CMD=""
+    # unit tests in Finnish locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=fi -Duser.country=FI -XX:-UseSplitVerifier'" COVERAGE_CMD=""
+    # unit tests in French locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=fr -Duser.country=FR -XX:-UseSplitVerifier'" COVERAGE_CMD=""
+    # unit tests in Japanese locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=ja -Duser.country=JP -XX:-UseSplitVerifier'" COVERAGE_CMD=""
+    # unit tests in Portuguese locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=pt -Duser.country=PT -XX:-UseSplitVerifier'" COVERAGE_CMD=""
+    # unit tests in Turkish locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=tr -Duser.country=TR -XX:-UseSplitVerifier'" COVERAGE_CMD=""
     # unit tests (openjdk7, oraclejdk7)
     - jdk: openjdk7
       env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
