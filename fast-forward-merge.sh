@@ -1,8 +1,8 @@
 #!/usr/bin/env bash 
 
-# Guthub does not support fast-forward merge.
-# This scipt is intended to simplify merge of Pull Request to keep history liner (fast-forwarded)
-# All Pull Request from Github to our project has to be applied to our code by this script.
+# GitHub does not support fast-forward merge.
+# This script is intended to simplify merge of Pull Requests to keep history linear (fast-forwarded)
+# All Pull Requests from GitHub to our project has to be applied to our code by this script.
 
 set -e
 
