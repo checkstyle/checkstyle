@@ -171,4 +171,21 @@ public class DeclarationOrderCheckTest
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
         check.visitToken(array);
     }
+
+    @Test
+    public void testForwardReference() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(DeclarationOrderCheck.class);
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_ACCESS),
+            "13:5: " + getCheckMessage(MSG_ACCESS),
+            "14:5: " + getCheckMessage(MSG_ACCESS),
+            "15:5: " + getCheckMessage(MSG_ACCESS),
+            "16:5: " + getCheckMessage(MSG_ACCESS),
+            "17:5: " + getCheckMessage(MSG_ACCESS),
+            "23:5: " + getCheckMessage(MSG_ACCESS),
+            "41:5: " + getCheckMessage(MSG_STATIC),
+            "41:5: " + getCheckMessage(MSG_ACCESS),
+        };
+        verify(checkConfig, getPath("InputDeclarationOrderForwardReference.java"), expected);
+    }
 }

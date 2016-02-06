@@ -267,6 +267,17 @@ public final class ScopeUtils {
     }
 
     /**
+     * Determines whether a node is a class field definition.
+     * I.e. if it is not declared in a code block, a for initializer,
+     * or a catch parameter.
+     * @param node the node to check.
+     * @return whether a node is a class field definition.
+     */
+    public static boolean isClassFieldDef(DetailAST node) {
+        return !isLocalVariableDef(node);
+    }
+
+    /**
      * Checks whether ast node is in a specific scope.
      * @param ast the node to check.
      * @param scope a {@code Scope} value.

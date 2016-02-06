@@ -21,14 +21,16 @@
     <properties>
       <property name="showClassesComplexity" value="false"/>
       <property name="reportLevel" value="11"/>
-      <!-- validateCli is not reasonable to split as encapsulation of logic will be damaged
+      <!-- DeclarationOrder - 'visitToken' has just big SWITCH block which contains IF blocks.
+           If we split the block to several methods it will demage readibility.
+           validateCli is not reasonable to split as encapsulation of logic will be damaged
            getDetails - huge Switch, it has to be monolithic
            JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated
            FinalLocalVariableCheck.visitToken() - it is just big switch , not could be done
            GenericWhitespaceCheck.processSingleGeneric() - it contains a lot of similar to each other and very simple condition
            VariableDeclarationUsageDistanceCheck, CustomImportOrderCheck - it is not OK to have such a complicated logic need to be refactored.
       -->
-      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //MethodDeclaration[@Name='processSingleGeneric' and ../../..[@Image='GenericWhitespaceCheck']] | //MethodDeclaration[@Name='visitToken' and ../../..[@Image='FinalLocalVariableCheck']] | //MethodDeclaration[@Name='getJavadocTags' and ../../..[@Image='JavadocUtils']] | //MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck' or @Image='VariableDeclarationUsageDistanceCheck' or @Image='CustomImportOrderCheck']"/>
+      <property name="violationSuppressXPath" value="//DeclarationOrder[@Name='visitToken'] and //MethodDeclaration[@Name='validateCli' and ../../..[@Image='Main']] | //MethodDeclaration[@Name='processSingleGeneric' and ../../..[@Image='GenericWhitespaceCheck']] | //MethodDeclaration[@Name='visitToken' and ../../..[@Image='FinalLocalVariableCheck']] | //MethodDeclaration[@Name='getJavadocTags' and ../../..[@Image='JavadocUtils']] | //MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']] | //ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck' or @Image='JavadocStyleCheck' or @Image='VariableDeclarationUsageDistanceCheck' or @Image='CustomImportOrderCheck']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/NPathComplexity">

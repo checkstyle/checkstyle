@@ -143,6 +143,10 @@
     <!-- SWITCH was transformed into IF-ELSE -->
     <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="344"/>
 
+    <!-- Just big SWITCH block which contains IF blocks in 'visitToken'.
+     If we split the block to several methods it will demage readibility. -->
+    <suppress checks="CyclomaticComplexity" files="DeclarationOrderCheck\.java" lines="189"/>
+
     <!-- LocalizedMessage class is immutable, we need that amount of arguments. -->
     <suppress checks="ParameterNumber"
               files="LocalizedMessage.java"

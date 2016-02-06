@@ -300,6 +300,20 @@ class Test {
         <p>
           Purpose of <b>ignore*</b> option is to ignore related violations, however it still impacts on other class members.
         </p>
+
+        <p>
+          ATTENTION: the check skips class fields which have
+          <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">forward references</a>
+           from validation due to the fact that we have Checkstyle's limitations to clearly
+          detect user intention of fields location and grouping. For example,
+          <source>
+public class A {
+    private double x = 1.0;
+    private double y = 2.0;
+    public double slope = x / y; // will be skipped from validation due to forward reference
+}
+          </source>
+        </p>
       </subsection>
 
       <subsection name="Properties">

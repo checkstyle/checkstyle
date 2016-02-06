@@ -19,9 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Set;
 
+import com.google.common.collect.Queues;
+import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -31,9 +33,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * Checks that the parts of a class or interface declaration
  * appear in the order suggested by the
- * <a
- * href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852"
- * >Code Conventions for the Java Programming Language</a>.
+ * <a href=
+ * "http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
+ * Code Conventions for the Java Programming Language</a>.
  *
  *
  * <ol>
@@ -46,6 +48,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * <li> Constructors </li>
  * <li> Methods </li>
  * </ol>
+ *
+ * <p>ATTENTION: the check skips class fields which have
+ * <a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.3">
+ * forward references </a> from validation due to the fact that we have Checkstyle's limitations
+ * to clearly detect user intention of fields location and grouping. For example,
+ * <pre>{@code
+ *      public class A {
+ *          private double x = 1.0;
+ *          private double y = 2.0;
+ *          public double slope = x / y; // will be skipped from validation due to forward reference
+ *      }
+ * }</pre>
  *
  * <p>Available options:
  * <ul>
@@ -133,9 +147,12 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
     /**
      * List of Declaration States. This is necessary due to
-     * inner classes that have their own state
+     * inner classes that have their own state.
      */
-    private final Deque<ScopeState> scopeStates = new ArrayDeque<>();
+    private Deque<ScopeState> scopeStates;
+
+    /** Set of all class field names.*/
+    private Set<String> classFieldNames;
 
     /** If true, ignores the check to constructors. */
     private boolean ignoreConstructors;
@@ -154,12 +171,19 @@ public class DeclarationOrderCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
+            TokenTypes.VARIABLE_DEF,
         };
     }
 
     @Override
     public int[] getRequiredTokens() {
         return getAcceptableTokens();
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        scopeStates = Queues.newArrayDeque();
+        classFieldNames = Sets.newHashSet();
     }
 
     @Override
@@ -188,14 +212,20 @@ public class DeclarationOrderCheck extends AbstractCheck {
                     state.currentScopeState = STATE_METHOD_DEF;
                 }
                 break;
+            case TokenTypes.VARIABLE_DEF:
+                if (ScopeUtils.isClassFieldDef(ast)) {
+                    final DetailAST fieldDef = ast.findFirstToken(TokenTypes.IDENT);
+                    classFieldNames.add(fieldDef.getText());
+                }
+                break;
             default:
                 break;
         }
     }
 
     /**
-     * Process constructor.
-     * @param ast constructor AST
+     * Processes constructor.
+     * @param ast constructor AST.
      */
     private void processConstructor(DetailAST ast) {
 
@@ -211,8 +241,8 @@ public class DeclarationOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Process modifiers.
-     * @param ast ast of Modifiers
+     * Processes modifiers.
+     * @param ast ast of Modifiers.
      */
     private void processModifiers(DetailAST ast) {
 
@@ -240,13 +270,59 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
         final Scope access = ScopeUtils.getScopeFromMods(ast);
         if (state.declarationAccess.compareTo(access) > 0) {
-            if (!ignoreModifiers) {
+            if (!ignoreModifiers
+                    && !isForwardReference(ast.getParent())) {
                 log(ast, MSG_ACCESS);
             }
         }
         else {
             state.declarationAccess = access;
         }
+    }
+
+    /**
+     * Checks whether an identifier references a field which has been already defined in class.
+     * @param fieldDef a field definition.
+     * @return true if an identifier references a field which has been already defined in class.
+     */
+    private boolean isForwardReference(DetailAST fieldDef) {
+        final DetailAST exprStartIdent = fieldDef.findFirstToken(TokenTypes.IDENT);
+        final Set<DetailAST> exprIdents = getAllTokensOfType(exprStartIdent, TokenTypes.IDENT);
+        boolean forwardReference = false;
+        for (DetailAST ident : exprIdents) {
+            if (classFieldNames.contains(ident.getText())) {
+                forwardReference = true;
+                break;
+            }
+        }
+        return forwardReference;
+    }
+
+    /**
+     * Collects all tokens of specific type starting with the current ast node.
+     * @param ast ast node.
+     * @param tokenType token type.
+     * @return a set of all tokens of specific type starting with the current ast node.
+     */
+    private static Set<DetailAST> getAllTokensOfType(DetailAST ast, int tokenType) {
+        DetailAST vertex = ast;
+        final Set<DetailAST> result = Sets.newHashSet();
+        final Deque<DetailAST> stack = Queues.newArrayDeque();
+        while (vertex != null || !stack.isEmpty()) {
+            if (!stack.isEmpty()) {
+                vertex = stack.pop();
+            }
+            while (vertex != null) {
+                if (vertex.getType() == tokenType && !vertex.equals(ast)) {
+                    result.add(vertex);
+                }
+                if (vertex.getNextSibling() != null) {
+                    stack.push(vertex.getNextSibling());
+                }
+                vertex = vertex.getFirstChild();
+            }
+        }
+        return result;
     }
 
     @Override
