@@ -1,7 +1,7 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class InputIllegalInstantiation2
 {
@@ -11,11 +11,11 @@ public class InputIllegalInstantiation2
 
         Supplier<InputMethodReferencesTest2> supplier = InputMethodReferencesTest2::new;
         Supplier<InputMethodReferencesTest2> suppl = InputMethodReferencesTest2::<Integer> new;
-        Function<Integer, Message[]> messageArrayFactory = Message[]::new;
+        Function<Integer, String[]> messageArrayFactory = String[]::new;
 
     }
 
-    private class Bar<T>
+    private static class InputMethodReferencesTest2<T>
     {
 
     }

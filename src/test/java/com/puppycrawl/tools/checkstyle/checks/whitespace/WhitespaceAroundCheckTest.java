@@ -345,7 +345,7 @@ public class WhitespaceAroundCheckTest
             "12:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "12:30: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             "13:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "13:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "13:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verify(checkConfig, getNonCompilablePath("InputAllowEmptyLambdaExpressions.java"),
             expected);
@@ -358,7 +358,7 @@ public class WhitespaceAroundCheckTest
             "12:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "12:30: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             "13:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "13:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "13:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verify(checkConfig, getNonCompilablePath("InputAllowEmptyLambdaExpressions.java"),
                 expected);

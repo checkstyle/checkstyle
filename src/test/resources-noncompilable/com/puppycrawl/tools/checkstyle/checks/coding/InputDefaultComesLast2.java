@@ -1,16 +1,16 @@
 //Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
-public interface JsonTranslator {
+public interface InputDefaultComesLast2 {
 
-    String toJson(Response one, Response two, Response three);
+    String toJson(Object one, Object two, Object three);
 
-    String toJson(Document document);
+    String toJson(String document);
 
-    default String toJson(Response one) {
+    default String toJson(Object one) {
       return toJson(one, one, one);
     }
 
-    default String toJson(Response one, Response two) {
+    default String toJson(Object one, Object two) {
       return toJson(one, one, two);
     }
   }

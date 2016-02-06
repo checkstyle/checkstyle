@@ -131,7 +131,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testMethodReferences2() throws Exception {
         final String[] expected = {
-            "7:69: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "10:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verify(checkConfig, getNonCompilablePath("InputGenericWhitespaceMethodRef.java"), expected);
     }

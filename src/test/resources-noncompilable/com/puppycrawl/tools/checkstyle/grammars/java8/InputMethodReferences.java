@@ -2,9 +2,8 @@
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
-
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 
 public class InputMethodReferences<T> extends ParentClass
 {
@@ -22,9 +21,9 @@ public class InputMethodReferences<T> extends ParentClass
 		numbers.forEach(this::println);
 		
 		numbers.forEach(super::println);
-        Supplier<InputMethodReferences2> supplier = InputMethodReferences2::new;
+        Supplier<InputMethodReferences2> supplier2 = InputMethodReferences2::new;
         Supplier<InputMethodReferences2> suppl = InputMethodReferences2::<Integer> new;
-        Function<Integer, Message[]> messageArrayFactory = Message[]::new;
+        Function<Integer, String[]> messageArrayFactory = String[]::new;
 		
 	}
 }

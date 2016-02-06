@@ -13,5 +13,5 @@ import java.util.concurrent.locks.LockSupport; //#6
 import java.util.regex.Pattern; //#7
 import java.util.regex.Matcher; //#8
 
-public class InputCustomImportOrderSamePackage2 {
+public class InputCustomImportOrderSamePackageDepth25 {
 }

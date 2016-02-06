@@ -172,8 +172,8 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     public void testFileInUnnamedPackage() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "4:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "5:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "6:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
         verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
             expected);

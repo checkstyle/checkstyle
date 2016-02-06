@@ -407,7 +407,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
             "14: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.regex.Matcher"),
             };
 
-        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth2-5.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth25.java"),
             expected);
     }
 
@@ -427,7 +427,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "java.util.concurrent.locks.LockSupport"),
             };
 
-        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth2-5.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth25.java"),
             expected);
     }
 
@@ -444,7 +444,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "java.util.concurrent.locks.LockSupport"),
             };
 
-        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth2-5.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth25.java"),
             expected);
     }
 
@@ -458,7 +458,7 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
                 "SAME_PACKAGE(5)");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth2-5.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSamePackageDepth25.java"),
                 expected);
     }
 
