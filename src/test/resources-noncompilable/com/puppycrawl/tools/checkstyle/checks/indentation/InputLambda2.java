@@ -1,3 +1,4 @@
+//Compilable with Java8 //indent:0 exp:0
 package com.puppycrawl.tools.checkstyle.checks.indentation; //indent:0 exp:0
 
 import java.util.function.BinaryOperator; //indent:0 exp:0

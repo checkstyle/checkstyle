@@ -10,5 +10,5 @@ public class InputAllowEmptyLambdaExpressions {
     };
     BinaryOperator<Integer> sum = (x, y) -> x + y;
     Runnable noop3 = () -> {;};
-    Runnable noop4 = () -> {new Integer();};
+    Runnable noop4 = () -> {new String();};
 }

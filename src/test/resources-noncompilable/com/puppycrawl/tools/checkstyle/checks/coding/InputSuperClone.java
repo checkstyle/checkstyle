@@ -24,6 +24,7 @@ class B{
 class C {
   void method() {
     super();
+    Object asd = null;
     super.clone(asd,asd);
     super.clone();
   }

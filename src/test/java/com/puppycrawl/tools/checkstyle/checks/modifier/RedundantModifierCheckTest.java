@@ -97,7 +97,7 @@ public class RedundantModifierCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
-            "3:9: " + getCheckMessage(MSG_KEY, "final"),
+            "5:9: " + getCheckMessage(MSG_KEY, "final"),
         };
         verify(checkConfig, getNonCompilablePath("InputFinalInDefaultMethods.java"), expected);
     }

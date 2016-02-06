@@ -1,8 +1,11 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.lang.Integer;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class InputHiddenFieldLambdas {
@@ -53,7 +56,7 @@ public class InputHiddenFieldLambdas {
      * hides a field 'number' on line 55.
      */
     int number = 1;
-    Optional<Boolean> foo1(int i) {
+    Optional<Object> foo1(int i) {
         return Optional.of(5).map(number -> { // violation
             if (number == 1) return true;
             else if (number == 2) return true;
@@ -66,7 +69,7 @@ public class InputHiddenFieldLambdas {
      * hides a field 'id' on line 68.
      */
     static long id = 1;
-    Optional<Boolean> foo2(int i) {
+    Optional<Object> foo2(int i) {
         return Optional.of(5).map(id -> { // violation
             if (id == 1) return true;
             else if (id == 2) return true;
@@ -80,7 +83,7 @@ public class InputHiddenFieldLambdas {
      * because field 'age' can not be referenced from a static context.
      */
     int age = 21;
-    static Optional<Boolean> foo3(int i) {
+    static Optional<Object> foo3(int i) {
         return Optional.of(5).map(age -> {
             if (age == 1) return true;
             else if (age == 2) return true;

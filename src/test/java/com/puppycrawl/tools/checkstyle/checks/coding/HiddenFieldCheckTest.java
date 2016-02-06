@@ -49,22 +49,22 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(HiddenFieldCheck.class);
         final String[] expected = {
-            "16:34: " + getCheckMessage(MSG_KEY, "value"),
-            "48:31: " + getCheckMessage(MSG_KEY, "languageCode"),
-            "57:35: " + getCheckMessage(MSG_KEY, "number"),
-            "70:35: " + getCheckMessage(MSG_KEY, "id"),
-            "98:33: " + getCheckMessage(MSG_KEY, "note"),
-            "123:57: " + getCheckMessage(MSG_KEY, "stringValue"),
-            "123:78: " + getCheckMessage(MSG_KEY, "intValue"),
-            "134:74: " + getCheckMessage(MSG_KEY, "doubleValue"),
-            "146:51: " + getCheckMessage(MSG_KEY, "firstString"),
-            "146:64: " + getCheckMessage(MSG_KEY, "secondString"),
-            "162:49: " + getCheckMessage(MSG_KEY, "first"),
-            "188:62: " + getCheckMessage(MSG_KEY, "mPi"),
-            "204:27: " + getCheckMessage(MSG_KEY, "justSomeList"),
-            "204:61: " + getCheckMessage(MSG_KEY, "justSomeMap"),
-            "216:55: " + getCheckMessage(MSG_KEY, "someObject"),
-            "224:52: " + getCheckMessage(MSG_KEY, "someObject"),
+            "19:34: " + getCheckMessage(MSG_KEY, "value"),
+            "51:31: " + getCheckMessage(MSG_KEY, "languageCode"),
+            "60:35: " + getCheckMessage(MSG_KEY, "number"),
+            "73:35: " + getCheckMessage(MSG_KEY, "id"),
+            "101:33: " + getCheckMessage(MSG_KEY, "note"),
+            "126:57: " + getCheckMessage(MSG_KEY, "stringValue"),
+            "126:78: " + getCheckMessage(MSG_KEY, "intValue"),
+            "137:74: " + getCheckMessage(MSG_KEY, "doubleValue"),
+            "149:51: " + getCheckMessage(MSG_KEY, "firstString"),
+            "149:64: " + getCheckMessage(MSG_KEY, "secondString"),
+            "165:49: " + getCheckMessage(MSG_KEY, "first"),
+            "191:62: " + getCheckMessage(MSG_KEY, "mPi"),
+            "207:27: " + getCheckMessage(MSG_KEY, "justSomeList"),
+            "207:61: " + getCheckMessage(MSG_KEY, "justSomeMap"),
+            "219:55: " + getCheckMessage(MSG_KEY, "someObject"),
+            "227:52: " + getCheckMessage(MSG_KEY, "someObject"),
         };
         verify(checkConfig, getNonCompilablePath("InputHiddenFieldLambdas.java"), expected);
     }

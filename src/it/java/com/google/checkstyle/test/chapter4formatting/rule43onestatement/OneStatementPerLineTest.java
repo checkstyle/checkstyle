@@ -80,12 +80,12 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
             "multiple.statements.line");
 
         final String[] expected = {
-            "31:6: "  + msg,
-            "36:58: " + msg,
+            "32:6: "  + msg,
             "37:58: " + msg,
-            "37:74: " + msg,
-            "38:50: " + msg,
-            "42:91: " + msg,
+            "38:58: " + msg,
+            "38:74: " + msg,
+            "39:50: " + msg,
+            "43:91: " + msg,
         };
 
         final Configuration checkConfig = getCheckConfig("OneStatementPerLine");

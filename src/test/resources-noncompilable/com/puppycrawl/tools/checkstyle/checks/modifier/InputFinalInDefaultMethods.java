@@ -1,5 +1,7 @@
 //Compilable with Java8
-public interface MyInterface {
+package com.puppycrawl.tools.checkstyle.checks.modifier;
+
+public interface InputFinalInDefaultMethods {
 	final int k = 5; // violation
 	
     default int defaultMethod(final int x) {

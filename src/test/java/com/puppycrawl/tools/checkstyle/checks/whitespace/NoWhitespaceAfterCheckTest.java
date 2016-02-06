@@ -182,8 +182,8 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testMethodReference() throws Exception {
         final String[] expected = {
-            "10:40: " + getCheckMessage(MSG_KEY, "int"),
-            "11:63: " + getCheckMessage(MSG_KEY, "Message"),
+            "9:40: " + getCheckMessage(MSG_KEY, "int"),
+            "10:61: " + getCheckMessage(MSG_KEY, "String"),
         };
         verify(checkConfig,
             getNonCompilablePath("InputNoWhitespaceAfterMethodRef.java"),

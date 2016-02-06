@@ -1612,17 +1612,17 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("basicOffset", "2");
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         final String[] expected = {
-            "45: " + getCheckMessage(MSG_ERROR, "block lcurly", 5, 4),
-            "46: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
-            "49: " + getCheckMessage(MSG_ERROR, "lambda arguments", 9, 8),
-            "50: " + getCheckMessage(MSG_ERROR, "lambda", 11, 12),
-            "51: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
-            "63: " + getCheckMessage(MSG_CHILD_ERROR, "block", 7, 6),
-            "64: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
-            "174: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
-            "174: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 9, 10),
-            "175: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
-            "180: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
+            "46: " + getCheckMessage(MSG_ERROR, "block lcurly", 5, 4),
+            "47: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
+            "50: " + getCheckMessage(MSG_ERROR, "lambda arguments", 9, 8),
+            "51: " + getCheckMessage(MSG_ERROR, "lambda", 11, 12),
+            "52: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
+            "64: " + getCheckMessage(MSG_CHILD_ERROR, "block", 7, 6),
+            "65: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
+            "175: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
+            "175: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 9, 10),
+            "176: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
+            "181: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
         };
         verifyWarns(checkConfig, getNonCompilablePath("InputLambda1.java"), expected, 1);
     }

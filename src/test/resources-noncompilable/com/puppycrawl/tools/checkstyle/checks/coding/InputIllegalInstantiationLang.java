@@ -6,6 +6,7 @@ class Input {
 }
 
 class Boolean{}
+class Integer{}
 
 class Input2 {
 	String a = new String();

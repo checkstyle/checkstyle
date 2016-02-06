@@ -12,8 +12,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  */
 import java.awt.event.ActionEvent;
 import java.lang.annotation.Annotation;
-;
+; // non-compilable by eclipse
 import java.lang.String;
+import java.lang.Integer;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -48,11 +49,11 @@ public class InputOneStatementPerLine {
                     });
         });
         ints.stream().map( t -> {
-            int k = 0;
-            for (int i = 0;i < 10;i++) {
-                k = i + k;
+            int l = 0;
+            for (int j = 0;j < 10;j++) {
+                l = j + l;
             }
-            return k;
+            return l;
         });
     }
 

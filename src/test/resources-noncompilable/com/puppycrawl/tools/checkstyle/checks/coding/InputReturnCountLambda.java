@@ -1,6 +1,7 @@
 //Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.lang.Integer;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
@@ -29,7 +30,7 @@ public class InputReturnCountLambda {
         });
     }
 
-    Optional<Boolean> methodWithThreeReturnInLambda(int number) {
+    Optional<Object> methodWithThreeReturnInLambda(int number) {
         return Optional.of(number).map(i -> {
             if (i == 42) return true;
             else if (i == 7) return true;

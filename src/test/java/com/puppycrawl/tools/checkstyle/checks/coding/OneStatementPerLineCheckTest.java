@@ -92,12 +92,12 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     public void oneStatementNonCompilableInputTest() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
-            "31:6: " + getCheckMessage(MSG_KEY),
-            "36:58: " + getCheckMessage(MSG_KEY),
+            "32:6: " + getCheckMessage(MSG_KEY),
             "37:58: " + getCheckMessage(MSG_KEY),
-            "37:74: " + getCheckMessage(MSG_KEY),
-            "38:50: " + getCheckMessage(MSG_KEY),
-            "42:91: " + getCheckMessage(MSG_KEY),
+            "38:58: " + getCheckMessage(MSG_KEY),
+            "38:74: " + getCheckMessage(MSG_KEY),
+            "39:50: " + getCheckMessage(MSG_KEY),
+            "43:91: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
