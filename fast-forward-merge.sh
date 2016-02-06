@@ -8,17 +8,17 @@ set -e
 
 if [ $# -eq 0 ]
   then
-    echo "$(basename "$0") GIT_REPO FORK_USER_NAME USER_BRANCH
+    echo "$(basename "$0") FORK_USER_NAME USER_BRANCH
 example:
 
-    ./$(basename "$0") checkstyle konstantinos issue73
+    ./$(basename "$0") konstantinos issue73
 "
     exit 0;
 fi
 
-GIT_REPO=$1
-FORK_USER_NAME=$2
-USER_BRANCH=$3
+GIT_REPO=checkstyle
+FORK_USER_NAME=$1
+USER_BRANCH=$2
 REPO=${FORK_USER_NAME}-fork
 LOCAL_USER_BRANCH=${FORK_USER_NAME}-${USER_BRANCH}
 
