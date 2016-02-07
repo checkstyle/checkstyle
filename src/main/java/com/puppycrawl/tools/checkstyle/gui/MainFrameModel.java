@@ -23,11 +23,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import antlr.ANTLRException;
 
 import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -41,32 +43,43 @@ public class MainFrameModel {
     /** Lines to position map. */
     private final List<Integer> linesToPosition = new ArrayList<>();
 
+    /** Parse tree model. */
+    private final ParseTreeTableModel parseTreeTableModel;
+
     /** The file which is being parsed. */
     private File currentFile;
 
-    /**
-     * Parse a file and return the parse tree.
-     * @param file the file to parse.
-     * @return the root node of the parse tree.
-     * @throws IOException if the file could not be read.
-     * @throws ANTLRException if the file is not a Java source.
-     */
-    public DetailAST parseFile(File file) throws IOException, ANTLRException {
-        currentFile = file;
-        final FileText text = getFileText(file);
-        final FileContents contents = new FileContents(text);
-        return TreeWalker.parse(contents);
+    /** Text for a frame's text area. */
+    private String text;
+
+    /** Instantiate the model. */
+    public MainFrameModel() {
+        parseTreeTableModel = new ParseTreeTableModel(null);
     }
 
     /**
-     * Get FileText from a file.
-     * @param file the file to get the FileText from.
-     * @return the FileText.
-     * @throws IOException if the file could not be read.
+     * Get parse tree table model.
+     * @return parse tree table model.
      */
-    public FileText getFileText(File file) throws IOException {
-        return new FileText(file.getAbsoluteFile(),
-                System.getProperty("file.encoding", "UTF-8"));
+    public ParseTreeTableModel getParseTreeTableModel() {
+        return parseTreeTableModel;
+    }
+
+    /**
+     * Get text to display in a text area.
+     * @return text to display in a text area.
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Whether a file chooser should accept the file as a source file.
+     * @param file the file to check.
+     * @return true if the file should be accepted.
+     */
+    public static boolean shouldAcceptFile(File file) {
+        return file.isDirectory() || file.getName().endsWith(".java");
     }
 
     /**
@@ -98,16 +111,59 @@ public class MainFrameModel {
     }
 
     /**
-     * Add a new value into lines to position map.
-     * @param value Value to be added into position map.
+     * Open file and load the file.
+     * @param file the file to open.
+     * @throws CheckstyleException if the file can not be parsed.
      */
-    public void addLineToPosition(int value) {
-        linesToPosition.add(value);
+    public void openFile(File file) throws CheckstyleException {
+        try {
+            currentFile = file;
+            final DetailAST parseTree = parseFile(file);
+            parseTreeTableModel.setParseTree(parseTree);
+            final String[] sourceLines = getFileText(file).toLinesArray();
+
+            // clear for each new file
+            linesToPosition.clear();
+            // starts line counting at 1
+            linesToPosition.add(0);
+
+            final StringBuilder sb = new StringBuilder();
+            // insert the contents of the file to the text area
+            for (final String element : sourceLines) {
+                linesToPosition.add(sb.length());
+                sb.append(element).append(System.lineSeparator());
+            }
+            text = sb.toString();
+        }
+        catch (IOException | ANTLRException ex) {
+            final String exceptionMsg = String.format(Locale.ROOT,
+                "%s occurred while opening file %s.",
+                ex.getClass().getSimpleName(), file.getPath());
+            throw new CheckstyleException(exceptionMsg, ex);
+        }
     }
 
-    /** Clear lines to position map. */
-    public void clearLinesToPosition() {
-        linesToPosition.clear();
+    /**
+     * Parse a file and return the parse tree.
+     * @param file the file to parse.
+     * @return the root node of the parse tree.
+     * @throws IOException if the file could not be read.
+     * @throws ANTLRException if the file is not a Java source.
+     */
+    public DetailAST parseFile(File file) throws IOException, ANTLRException {
+        final FileText fileText = getFileText(file);
+        final FileContents contents = new FileContents(fileText);
+        return TreeWalker.parse(contents);
     }
 
+    /**
+     * Get FileText from a file.
+     * @param file the file to get the FileText from.
+     * @return the FileText.
+     * @throws IOException if the file could not be read.
+     */
+    public FileText getFileText(File file) throws IOException {
+        return new FileText(file.getAbsoluteFile(),
+                System.getProperty("file.encoding", "UTF-8"));
+    }
 }
