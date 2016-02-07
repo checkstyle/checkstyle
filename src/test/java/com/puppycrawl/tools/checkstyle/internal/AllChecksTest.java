@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testAllChecksWithDefaultConfiguration() throws Exception {
-        final String inputFilePath = getNonCompilablePath("InputDefaultConfig.java");
+        final String inputFilePath = getPath("InputDefaultConfig.java");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
