@@ -90,6 +90,14 @@ public class JavadocTypeCheck
     /** Close angle bracket literal. */
     private static final String CLOSE_ANGLE_BRACKET = ">";
 
+    /** Pattern to match type name within angle brackets in javadoc param tag. */
+    private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
+            Pattern.compile("\\s*<([^>]+)>.*");
+
+    /** Pattern to split type name field in javadoc param tag. */
+    private static final Pattern TYPE_NAME_IN_JAVADOC_TAG_SPLITTER =
+            Pattern.compile("\\s+");
+
     /** The scope to check for. */
     private Scope scope = Scope.PRIVATE;
     /** The visibility scope where Javadoc comments shouldn't be checked. **/
@@ -322,22 +330,37 @@ public class JavadocTypeCheck
     private void checkUnusedTypeParamTags(
         final List<JavadocTag> tags,
         final List<String> typeParamNames) {
-        final Pattern pattern = Pattern.compile("\\s*<([^>]+)>.*");
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()) {
 
-                final Matcher matcher = pattern.matcher(tag.getFirstArg());
-                if (matcher.find()) {
-                    final String typeParamName = matcher.group(1).trim();
-                    if (!typeParamNames.contains(typeParamName)) {
-                        log(tag.getLineNo(), tag.getColumnNo(),
+                final String typeParamName = extractTypeParamNameFromTag(tag);
+
+                if (!typeParamNames.contains(typeParamName)) {
+                    log(tag.getLineNo(), tag.getColumnNo(),
                             MSG_UNUSED_TAG,
                             JavadocTagInfo.PARAM.getText(),
                             OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
-                    }
                 }
             }
         }
+    }
+
+    /**
+     * Extracts type parameter name from tag.
+     * @param tag javadoc tag to extract parameter name
+     * @return extracts type parameter name from tag
+     */
+    private static String extractTypeParamNameFromTag(JavadocTag tag) {
+        final String typeParamName;
+        final Matcher matchInAngleBrackets =
+                TYPE_NAME_IN_JAVADOC_TAG.matcher(tag.getFirstArg());
+        if (matchInAngleBrackets.find()) {
+            typeParamName = matchInAngleBrackets.group(1).trim();
+        }
+        else {
+            typeParamName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
+        }
+        return typeParamName;
     }
 }
