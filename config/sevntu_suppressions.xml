@@ -32,7 +32,10 @@
     public Class<?> getColumnClass(int columnIndex) { -->
     <suppress checks="ForbidWildcardAsReturnType"
               files="ParseTreeTableModel\.java"
-              lines="106"/>
+              lines="83"/>
+    <suppress checks="ForbidWildcardAsReturnType"
+              files="ParseTreeTablePModel\.java"
+              lines="90"/>
     <!-- If we change declaration order, Illegal forward reference will appear.
     See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/415-->
     <suppress checks="CustomDeclarationOrder"
