@@ -113,17 +113,15 @@ public class MainFrame extends JFrame {
      * @param sourceFile the file to open.
      */
     public void openFile(File sourceFile) {
-        if (sourceFile != null) {
-            try {
-                setTitle("Checkstyle GUI : " + sourceFile.getName());
-                model.openFile(sourceFile);
-                reloadAction.setEnabled(true);
-                textArea.setText(model.getText());
-                treeTable.setLinePositionMap(model.getLinesToPosition());
-            }
-            catch (final CheckstyleException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-            }
+        try {
+            model.openFile(sourceFile);
+            setTitle(model.getTitle());
+            reloadAction.setEnabled(model.isReloadActionEnabled());
+            textArea.setText(model.getText());
+            treeTable.setLinePositionMap(model.getLinesToPosition());
+        }
+        catch (final CheckstyleException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
 

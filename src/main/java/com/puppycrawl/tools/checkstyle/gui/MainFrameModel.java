@@ -52,6 +52,12 @@ public class MainFrameModel {
     /** Text for a frame's text area. */
     private String text;
 
+    /** Title for the main frame. */
+    private String title = "Checkstyle GUI";
+
+    /** Whether the reload action is enabled. */
+    private boolean reloadActionEnabled;
+
     /** Instantiate the model. */
     public MainFrameModel() {
         parseTreeTableModel = new ParseTreeTableModel(null);
@@ -71,6 +77,20 @@ public class MainFrameModel {
      */
     public String getText() {
         return text;
+    }
+
+    /**
+     * @return title for the main frame.
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @return true if the reload action is enabled.
+     */
+    public boolean isReloadActionEnabled() {
+        return reloadActionEnabled;
     }
 
     /**
@@ -116,30 +136,34 @@ public class MainFrameModel {
      * @throws CheckstyleException if the file can not be parsed.
      */
     public void openFile(File file) throws CheckstyleException {
-        try {
-            currentFile = file;
-            final DetailAST parseTree = parseFile(file);
-            parseTreeTableModel.setParseTree(parseTree);
-            final String[] sourceLines = getFileText(file).toLinesArray();
+        if (file != null) {
+            try {
+                currentFile = file;
+                title = "Checkstyle GUI : " + file.getName();
+                reloadActionEnabled = true;
+                final DetailAST parseTree = parseFile(file);
+                parseTreeTableModel.setParseTree(parseTree);
+                final String[] sourceLines = getFileText(file).toLinesArray();
 
-            // clear for each new file
-            linesToPosition.clear();
-            // starts line counting at 1
-            linesToPosition.add(0);
+                // clear for each new file
+                linesToPosition.clear();
+                // starts line counting at 1
+                linesToPosition.add(0);
 
-            final StringBuilder sb = new StringBuilder();
-            // insert the contents of the file to the text area
-            for (final String element : sourceLines) {
-                linesToPosition.add(sb.length());
-                sb.append(element).append(System.lineSeparator());
+                final StringBuilder sb = new StringBuilder();
+                // insert the contents of the file to the text area
+                for (final String element : sourceLines) {
+                    linesToPosition.add(sb.length());
+                    sb.append(element).append(System.lineSeparator());
+                }
+                text = sb.toString();
             }
-            text = sb.toString();
-        }
-        catch (IOException | ANTLRException ex) {
-            final String exceptionMsg = String.format(Locale.ROOT,
-                "%s occurred while opening file %s.",
-                ex.getClass().getSimpleName(), file.getPath());
-            throw new CheckstyleException(exceptionMsg, ex);
+            catch (IOException | ANTLRException ex) {
+                final String exceptionMsg = String.format(Locale.ROOT,
+                    "%s occurred while opening file %s.",
+                    ex.getClass().getSimpleName(), file.getPath());
+                throw new CheckstyleException(exceptionMsg, ex);
+            }
         }
     }
 
