@@ -25,12 +25,7 @@ import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-import antlr.ASTFactory;
-import antlr.collections.AST;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * The model that backs the parse tree in the GUI.
@@ -38,16 +33,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author Lars Kühne
  */
 public class ParseTreeTableModel implements TreeModel {
-
-    /** Column names. */
-    private static final String[] COLUMN_NAMES = {
-        "Tree", "Type", "Line", "Column", "Text",
-    };
-
-    /**
-     * The root node of the tree table model.
-     */
-    private final Object root;
+    /** Presentation model. */
+    private final ParseTreeTablePModel pModel;
 
     /**
      * A list of event listeners for the tree model.
@@ -58,18 +45,8 @@ public class ParseTreeTableModel implements TreeModel {
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTableModel(DetailAST parseTree) {
-        root = createArtificialTreeRoot();
+        pModel = new ParseTreeTablePModel(parseTree);
         setParseTree(parseTree);
-    }
-
-    /**
-     * Creates artificial tree root.
-     * @return Artificial tree root.
-     */
-    private static DetailAST createArtificialTreeRoot() {
-        final ASTFactory factory = new ASTFactory();
-        factory.setASTNodeClass(DetailAST.class.getName());
-        return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 
     /**
@@ -77,8 +54,8 @@ public class ParseTreeTableModel implements TreeModel {
      * @param parseTree DetailAST parse tree.
      */
     final void setParseTree(DetailAST parseTree) {
-        ((AST) root).setFirstChild(parseTree);
-        final Object[] path = {root};
+        pModel.setParseTree(parseTree);
+        final Object[] path = {pModel.getRoot()};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
         fireTreeStructureChanged(this, path, null, (Object[]) null);
@@ -88,7 +65,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @return the number of available column.
      */
     public int getColumnCount() {
-        return COLUMN_NAMES.length;
+        return pModel.getColumnCount();
     }
 
     /**
@@ -96,7 +73,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @return the name for column number {@code column}.
      */
     public String getColumnName(int column) {
-        return COLUMN_NAMES[column];
+        return pModel.getColumnName(column);
     }
 
     /**
@@ -104,28 +81,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @return the type for column number {@code column}.
      */
     public Class<?> getColumnClass(int column) {
-        final Class<?> columnClass;
-
-        switch (column) {
-            case 0:
-                columnClass = ParseTreeTableModel.class;
-                break;
-            case 1:
-                columnClass = String.class;
-                break;
-            case 2:
-                columnClass = Integer.class;
-                break;
-            case 3:
-                columnClass = Integer.class;
-                break;
-            case 4:
-                columnClass = String.class;
-                break;
-            default:
-                columnClass = Object.class;
-        }
-        return columnClass;
+        return pModel.getColumnClass(column);
     }
 
     /**
@@ -135,70 +91,38 @@ public class ParseTreeTableModel implements TreeModel {
      *     at column number {@code column}.
      */
     public Object getValueAt(Object node, int column) {
-        final DetailAST ast = (DetailAST) node;
-        final Object value;
-
-        switch (column) {
-            case 1:
-                value = TokenUtils.getTokenName(ast.getType());
-                break;
-            case 2:
-                value = ast.getLineNo();
-                break;
-            case 3:
-                value = ast.getColumnNo();
-                break;
-            case 4:
-                value = ast.getText();
-                break;
-            default:
-                value = null;
-        }
-        return value;
+        return pModel.getValueAt(node, column);
     }
 
     @Override
     public Object getChild(Object parent, int index) {
-        final DetailAST ast = (DetailAST) parent;
-        int currentIndex = 0;
-        AST child = ast.getFirstChild();
-        while (currentIndex < index) {
-            child = child.getNextSibling();
-            currentIndex++;
-        }
-        return child;
+        return pModel.getChild(parent, index);
     }
 
     @Override
     public int getChildCount(Object parent) {
-        final DetailAST ast = (DetailAST) parent;
-        return ast.getChildCount();
+        return pModel.getChildCount(parent);
     }
 
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
-        //No Code, as tree is read-only
+        // No Code, as tree is read-only
     }
 
     @Override
     public Object getRoot() {
-        return root;
+        return pModel.getRoot();
     }
 
     @Override
     public boolean isLeaf(Object node) {
-        return getChildCount(node) == 0;
+        return pModel.isLeaf(node);
     }
 
     // This is not called in the JTree's default mode: use a naive implementation.
     @Override
     public int getIndexOfChild(Object parent, Object child) {
-        for (int i = 0; i < getChildCount(parent); i++) {
-            if (getChild(parent, i).equals(child)) {
-                return i;
-            }
-        }
-        return -1;
+        return pModel.getIndexOfChild(parent, child);
     }
 
     @Override
@@ -250,6 +174,6 @@ public class ParseTreeTableModel implements TreeModel {
      * @return true if editable
      */
     public boolean isCellEditable(int column) {
-        return getColumnClass(column) == ParseTreeTableModel.class;
+        return pModel.isCellEditable(column);
     }
 }

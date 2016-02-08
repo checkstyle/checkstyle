@@ -90,7 +90,7 @@
     <suppress checks="WriteTag" files=".*[\\/]src[\\/](test|it)[\\/]"/>
 
     <!--The Check generates too many violations, fixing them will make code unmanageable.-->
-    <suppress checks="MagicNumber" files="(ParseTreeTableModel|MainFrame)\.java"/>
+    <suppress checks="MagicNumber" files="(ParseTreeTablePModel|MainFrame)\.java"/>
 
     <!-- Methods that build fake AST are very long-->
     <suppress checks="MethodLength" files="src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammars[\\/]comments[\\/]CommentsTest\.java"/>
