@@ -260,7 +260,10 @@ typeSpec[boolean addImagNode]
 // - generic type arguments after
 classTypeSpec[boolean addImagNode]
     :   classOrInterfaceType[addImagNode]
-        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+        (options{greedy=true; }:
+            ({LA(1) == AT}? annotations
+            | )
+                lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
         {
             if ( addImagNode ) {
                 #classTypeSpec = #(#[TYPE,"TYPE"], #classTypeSpec);
@@ -269,21 +272,26 @@ classTypeSpec[boolean addImagNode]
     ;
 
 classOrInterfaceType[boolean addImagNode]
-    : ({LA(1) == AT}? annotations
-            | )
-    IDENT (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
-        (options{greedy=true; }: // match as many as possible
-            DOT^
-            IDENT (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
-        )*
-    ;
+    :   ({LA(1) == AT}? annotations
+             | )
+            IDENT
+            (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
+
+            (options{greedy=true; }: // match as many as possible
+                DOT^
+                ({LA(1) == AT}? annotations
+                    | )
+                    IDENT
+                    (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
+            )*
+     ;
 
 // A generic type argument is a class type, a possibly bounded wildcard type or a built-in type array
 typeArgument[boolean addImagNode]
 :   (   ({LA(1) == AT}? annotations
          | ) (
         classTypeSpec[addImagNode]
-        |   builtInTypeArraySpec[addImagNode]
+        |   builtInTypeSpec[addImagNode]
         |   wildcardType[addImagNode])
         )
         {#typeArgument = #(#[TYPE_ARGUMENT,"TYPE_ARGUMENT"], #typeArgument);}
@@ -356,21 +364,15 @@ typeArgumentBounds[boolean addImagNode]
         (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
     ;
 
-// A builtin type array specification is a builtin type with brackets afterwards
-builtInTypeArraySpec[boolean addImagNode]
-    :    builtInType
-        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)+
-        {
-            if ( addImagNode ) {
-                #builtInTypeArraySpec = #(#[TYPE,"TYPE"], #builtInTypeArraySpec);
-            }
-        }
-    ;
 
 // A builtin type specification is a builtin type with possible brackets
 // afterwards (which would make it an array type).
 builtInTypeSpec[boolean addImagNode]
-    :    builtInType (lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+     :    builtInType
+         (options{greedy=true; }:
+            ({LA(1) == AT}? annotations
+            | )
+                lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
         {
             if ( addImagNode ) {
                 #builtInTypeSpec = #(#[TYPE,"TYPE"], #builtInTypeSpec);
