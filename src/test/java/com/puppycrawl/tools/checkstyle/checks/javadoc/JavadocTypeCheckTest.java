@@ -340,6 +340,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             "11: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
             "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
             "47: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
+            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
     }
@@ -352,8 +353,22 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
             "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
         };
         verify(checkConfig, getPath("InputTypeParamsTags.java"), expected);
+    }
+
+    @Test
+    public void testDontAllowUnusedParameterTag() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(JavadocTypeCheck.class);
+        final String[] expected = {
+            "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
+            "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
+        };
+        verify(checkConfig,
+                getPath("InputUnusedParamInJavadocForClass.java"),
+                expected);
     }
 
     @Test
