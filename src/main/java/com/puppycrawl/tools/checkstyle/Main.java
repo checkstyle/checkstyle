@@ -105,8 +105,10 @@ public final class Main {
                 exitStatus = 0;
             }
             else {
+                final List<File> filesToProcess = getFilesToProcess(commandLine.getArgs());
+
                 // return error if something is wrong in arguments
-                final List<String> messages = validateCli(commandLine);
+                final List<String> messages = validateCli(commandLine, filesToProcess);
                 cliViolations = !messages.isEmpty();
                 if (cliViolations) {
                     exitStatus = exitWithCliViolation;
@@ -117,7 +119,7 @@ public final class Main {
                 }
                 else {
                     // create config helper object
-                    final CliOptions config = convertCliToPojo(commandLine);
+                    final CliOptions config = convertCliToPojo(commandLine, filesToProcess);
 
                     if (commandLine.hasOption(OPTION_T_NAME)) {
                         // print AST
@@ -176,11 +178,11 @@ public final class Main {
     /**
      * Do validation of Command line options.
      * @param cmdLine command line object
+     * @param filesToProcess List of files to process found from the command line.
      * @return list of violations
      */
-    private static List<String> validateCli(CommandLine cmdLine) {
+    private static List<String> validateCli(CommandLine cmdLine, List<File> filesToProcess) {
         final List<String> result = new ArrayList<>();
-        final List<File> filesToProcess = getFilesToProcess(cmdLine.getArgs());
 
         if (filesToProcess.isEmpty()) {
             result.add("Files to process must be specified, found 0.");
@@ -240,9 +242,10 @@ public final class Main {
     /**
      * Util method to convert CommandLine type to POJO object.
      * @param cmdLine command line object
+     * @param filesToProcess List of files to process found from the command line.
      * @return command line option as POJO object
      */
-    private static CliOptions convertCliToPojo(CommandLine cmdLine) {
+    private static CliOptions convertCliToPojo(CommandLine cmdLine, List<File> filesToProcess) {
         final CliOptions conf = new CliOptions();
         conf.format = cmdLine.getOptionValue(OPTION_F_NAME);
         if (conf.format == null) {
@@ -251,7 +254,7 @@ public final class Main {
         conf.outputLocation = cmdLine.getOptionValue(OPTION_O_NAME);
         conf.configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
         conf.propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
-        conf.files = getFilesToProcess(cmdLine.getArgs());
+        conf.files = filesToProcess;
         return conf;
     }
 
