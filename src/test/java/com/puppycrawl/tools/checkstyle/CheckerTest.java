@@ -19,26 +19,42 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.InvalidPathException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.SortedSet;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.junit.Assume;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 
-public class CheckerTest {
+public class CheckerTest extends BaseCheckTestSupport {
+
+    @Rule
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+
     @Test
     public void testDestroy() throws Exception {
         final DebugChecker checker = new DebugChecker();
@@ -174,7 +190,14 @@ public class CheckerTest {
 
     @Test
     public void testFileExtensions() throws Exception {
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+
         final List<File> files = new ArrayList<>();
         final File file = new File("file.pdf");
         files.add(file);
@@ -182,6 +205,7 @@ public class CheckerTest {
         files.add(otherFile);
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
+        checker.setCacheFile(temporaryFolder.newFile().getPath());
         final int counter = checker.process(files);
 
         // comparing to 1 as there is only one legal file in input
@@ -274,5 +298,198 @@ public class CheckerTest {
         final Configuration config = new DefaultConfiguration(
             DebugAuditAdapter.class.getCanonicalName());
         checker.setupChild(config);
+    }
+
+    @Test
+    public void testDestroyNonExistingCache() throws Exception {
+        // We use assumption to satisfy coverage rate on OS Windows, since persist() method of
+        // class PropertyCacheFile does not throw IOException on OS Linux when path to a cache
+        // directory is invalid on OS Windows.
+        Assume.assumeTrue(System.getProperty("os.name")
+            .toLowerCase(Locale.ENGLISH).startsWith("windows"));
+
+        final Checker checker = new Checker();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        checker.setModuleFactory(factory);
+        checker.configure(new DefaultConfiguration("default config"));
+        final String tempFilePath = temporaryFolder.newFile().getPath() + ".\\\'";
+        checker.setCacheFile(tempFilePath);
+        try {
+            checker.destroy();
+            fail("Exception did not happen");
+        }
+        catch (IllegalStateException ex) {
+            assertTrue(ex.getCause() instanceof IOException);
+        }
+    }
+
+    @Test
+    public void testDestroyCacheFileWithInvalidPath() throws Exception {
+        final Checker checker = new Checker();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        checker.setModuleFactory(factory);
+        checker.configure(new DefaultConfiguration("default config"));
+        if (System.getProperty("os.name")
+            .toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+            // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
+            // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
+            final File file = new File("C\\:invalid");
+            checker.setCacheFile(file.getAbsolutePath());
+        }
+        else {
+            checker.setCacheFile(File.separator + ":invalid");
+        }
+        try {
+            checker.destroy();
+            fail("Exception did not happen");
+        }
+        catch (IllegalStateException ex) {
+            assertThat(ex.getCause(), anyOf(instanceOf(IOException.class),
+                instanceOf(InvalidPathException.class)));
+        }
+    }
+
+    @Test
+    public void testCacheFile() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyleConfig");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addChild(treeWalkerConfig);
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        // one more time to reuse cache
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testCacheFileChangeInConfig() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addChild(treeWalkerConfig);
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+
+        // update Checker config
+        checker.destroy();
+        checker.configure(checkerConfig);
+
+        final Checker otherChecker = new Checker();
+        otherChecker.setLocaleCountry(locale.getCountry());
+        otherChecker.setLocaleLanguage(locale.getLanguage());
+        otherChecker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        otherChecker.configure(checkerConfig);
+        otherChecker.addListener(new BriefUtLogger(stream));
+        // here is diff with previous checker
+        checkerConfig.addAttribute("fileExtensions", "java,javax");
+
+        // one more time on updated config
+        verify(otherChecker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testWithCacheWithNoViolation() throws Exception {
+        final Checker checker = new Checker();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        checker.setModuleFactory(factory);
+        checker.configure(createCheckConfig(TranslationCheck.class));
+        checker.setCacheFile(temporaryFolder.newFile().getPath());
+        checker.setupChild(createCheckConfig(TranslationCheck.class));
+        final File file = temporaryFolder.newFile("file.java");
+        final List<File> files = new ArrayList<>();
+        files.add(file);
+        checker.process(files);
+    }
+
+    @Test
+    public void testClearExistingCache() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addChild(treeWalkerConfig);
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        checker.clearCache();
+        // one more time, but file that should be audited is not in cache
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testClearNonexistentCache() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("simpleConfig");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addChild(treeWalkerConfig);
+
+        final Checker checker = new Checker();
+        final Locale locale = Locale.ROOT;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        checker.clearCache();
+        // one more time, but cache does not exist
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
     }
 }

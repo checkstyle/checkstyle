@@ -155,6 +155,13 @@ final class PropertyCacheFile {
     }
 
     /**
+     * Clears the cache.
+     */
+    void clear() {
+        details.clear();
+    }
+
+    /**
      * Flushes and closes output stream.
      * @param stream the output stream
      * @throws IOException  when there is a problems with file flush and close

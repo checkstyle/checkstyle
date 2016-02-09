@@ -298,6 +298,13 @@
           <td><code>null</code></td>
         </tr>
         <tr>
+          <td>cacheFile</td>
+          <td>caches information about files that have checked OK; used
+              to avoid repeated checks of the same files</td>
+          <td><a href="property_types.html#string">string</a></td>
+          <td><code>null</code> (no cache file)</td>
+        </tr>
+        <tr>
           <td>localeCountry</td>
           <td>locale country for messages</td>
           <td><a href="property_types.html#string">string</a>: either
@@ -327,13 +334,14 @@
 
       <p>
         For example, the following configuration fragment specifies base
-        directory <code>src/checkstyle</code> and German
+        directory <code>src/checkstyle</code>, cache file <code>target/cachefile</code> and German
         locale for all modules:
       </p>
 
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
     &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
+    &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
     &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
     &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
     &lt;module name=&quot;JavadocPackage&quot;/&gt;
@@ -404,13 +412,6 @@
           <th>default value</th>
         </tr>
         <tr>
-          <td>cacheFile</td>
-          <td>caches information about files that have checked OK; used
-          to avoid repeated checks of the same files</td>
-          <td><a href="property_types.html#string">string</a></td>
-          <td><code>null</code> (no cache file)</td>
-        </tr>
-        <tr>
           <td>tabWidth</td>
           <td>number of expanded spaces for a tab character (<code>'\t'</code>); used in messages and Checks that
           require a tab width, such as <a
@@ -431,13 +432,12 @@
 
       <p>
         For example, the following configuration fragment specifies
-        <code>TreeWalker</code> cache file <code>target/cachefile</code>, and a <code>tabWidth</code> of <code>4</code>:
+        <code>TreeWalker</code> a <code>tabWidth</code> of <code>4</code>:
       </p>
 
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
     &lt;module name=&quot;TreeWalker&quot;&gt;
-        &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
         &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
         ...
     &lt;/module&gt;

@@ -112,12 +112,26 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     /** Name of a charset. */
     private String charset = System.getProperty("file.encoding", "UTF-8");
 
+    /** Cache file. **/
+    private PropertyCacheFile cache;
+
     /**
      * Creates a new {@code Checker} instance.
      * The instance needs to be contextualized and configured.
      */
     public Checker() {
         addListener(counter);
+    }
+
+    /**
+     * Sets cache file.
+     * @param fileName the cache file.
+     * @throws IOException if there are some problems with file loading.
+     */
+    public void setCacheFile(String fileName) throws IOException {
+        final Configuration configuration = getConfiguration();
+        cache = new PropertyCacheFile(configuration, fileName);
+        cache.load();
     }
 
     @Override
@@ -216,6 +230,14 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     public void destroy() {
         listeners.clear();
         filters.clear();
+        if (cache != null) {
+            try {
+                cache.persist();
+            }
+            catch (IOException ex) {
+                throw new IllegalStateException("Unable to persist cache file.", ex);
+            }
+        }
     }
 
     /**
@@ -250,38 +272,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
             fsc.beginProcessing(charset);
         }
 
-        // Process each file
-        for (final File file : files) {
-            try {
-                if (!CommonUtils.matchesFileExtension(file, fileExtensions)) {
-                    continue;
-                }
-                final String fileName = file.getAbsolutePath();
-                fireFileStarted(fileName);
-                final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
-                try {
-                    final FileText theText = new FileText(file.getAbsoluteFile(),
-                            charset);
-                    for (final FileSetCheck fsc : fileSetChecks) {
-                        fileMessages.addAll(fsc.process(file, theText));
-                    }
-                }
-                catch (final IOException ioe) {
-                    LOG.debug("IOException occurred.", ioe);
-                    fileMessages.add(new LocalizedMessage(0,
-                            Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                            new String[] {ioe.getMessage()}, null, getClass(),
-                            null));
-                }
-                fireErrors(fileName, fileMessages);
-                fireFileFinished(fileName);
-            }
-            catch (Exception ex) {
-                // We need to catch all exception to put a reason failure(file name) in exception
-                throw new CheckstyleException("Exception was thrown while processing "
-                        + file.getPath(), ex);
-            }
-        }
+        processFiles(files);
 
         // Finish up
         for (final FileSetCheck fsc : fileSetChecks) {
@@ -297,6 +288,48 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         final int errorCount = counter.getCount();
         fireAuditFinished();
         return errorCount;
+    }
+
+    /**
+     * Processes a list of files with all FileSetChecks.
+     * @param files a list of files to process.
+     * @throws CheckstyleException if error condition within Checkstyle occurs.
+     */
+    private void processFiles(List<File> files) throws CheckstyleException {
+        for (final File file : files) {
+            try {
+                final String fileName = file.getAbsolutePath();
+                fireFileStarted(fileName);
+                final long timestamp = file.lastModified();
+                if (cache != null && cache.isInCache(fileName, timestamp)
+                    || !CommonUtils.matchesFileExtension(file, fileExtensions)) {
+                    continue;
+                }
+                final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
+                try {
+                    final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+                    for (final FileSetCheck fsc : fileSetChecks) {
+                        fileMessages.addAll(fsc.process(file, theText));
+                    }
+                }
+                catch (final IOException ioe) {
+                    LOG.debug("IOException occurred.", ioe);
+                    fileMessages.add(new LocalizedMessage(0,
+                        Definitions.CHECKSTYLE_BUNDLE, "general.exception",
+                        new String[] {ioe.getMessage()}, null, getClass(), null));
+                }
+                fireErrors(fileName, fileMessages);
+                fireFileFinished(fileName);
+                if (cache != null && fileMessages.isEmpty()) {
+                    cache.put(fileName, timestamp);
+                }
+            }
+            catch (Exception ex) {
+                // We need to catch all exception to put a reason failure(file name) in exception
+                throw new CheckstyleException("Exception was thrown while processing "
+                    + file.getPath(), ex);
+            }
+        }
     }
 
     /**
@@ -479,5 +512,14 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
             throw new UnsupportedEncodingException(message);
         }
         this.charset = charset;
+    }
+
+    /**
+     * Clears the cache.
+     */
+    public void clearCache() {
+        if (cache != null) {
+            cache.clear();
+        }
     }
 }
