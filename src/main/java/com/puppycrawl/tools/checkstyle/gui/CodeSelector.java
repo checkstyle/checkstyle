@@ -24,21 +24,17 @@ import java.util.List;
 
 import javax.swing.JTextArea;
 
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
  * Helper class to select a code.
  * @author unknown
  */
 public class CodeSelector {
-    /** DetailAST node. */
-    private final DetailAST ast;
     /** Editor. */
     private final JTextArea editor;
-    /** Mapping. */
-    private final List<Integer> lines2position;
+    /** Presentation model. */
+    private final CodeSelectorPModel pModel;
 
     /**
      * Constructor.
@@ -48,44 +44,18 @@ public class CodeSelector {
      */
     public CodeSelector(final DetailAST ast, final JTextArea editor,
                         final List<Integer> lines2position) {
-        this.ast = ast;
         this.editor = editor;
-        this.lines2position = ImmutableList.copyOf(lines2position);
+        pModel = new CodeSelectorPModel(ast, lines2position);
     }
 
     /**
-     * Set a selection position from AST line and Column.
+     * Set selection.
      */
     public void select() {
-        final int start = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
-        final int end;
-
-        if (ast.getChildCount() == 0
-            && TokenUtils.getTokenName(ast.getType()).equals(ast.getText())) {
-            end = start;
-        }
-        else {
-            end = findLastPosition(ast);
-        }
-
+        pModel.findSelectionPositions();
         editor.setSelectedTextColor(Color.blue);
         editor.requestFocusInWindow();
-        editor.setCaretPosition(start);
-        editor.moveCaretPosition(end);
-    }
-
-    /**
-     * Finds the last position of node without children.
-     * @param astNode DetailAST node.
-     * @return Last position of node without children.
-     */
-    private int findLastPosition(final DetailAST astNode) {
-        if (astNode.getChildCount() == 0) {
-            return lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
-                + astNode.getText().length();
-        }
-        else {
-            return findLastPosition(astNode.getLastChild());
-        }
+        editor.setCaretPosition(pModel.getSelectionStart());
+        editor.moveCaretPosition(pModel.getSelectionEnd());
     }
 }
