@@ -82,6 +82,12 @@ public final class Main {
     /** Name for the option '--treeWithComments'. */
     private static final String OPTION_TREE_COMMENT_NAME = "treeWithComments";
 
+    /** Name for the option '-j'. */
+    private static final String OPTION_J_NAME = "j";
+
+    /** NAme for the option '--javadocTree'. */
+    private static final String OPTION_JAVADOC_TREE_NAME = "javadocTree";
+
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
 
@@ -141,6 +147,11 @@ public final class Main {
                     else if (commandLine.hasOption(OPTION_CAPITAL_T_NAME)) {
                         final File file = config.files.get(0);
                         final String stringAst = AstTreeStringPrinter.printFileAst(file, true);
+                        System.out.print(stringAst);
+                    }
+                    else if (commandLine.hasOption(OPTION_J_NAME)) {
+                        final File file = config.files.get(0);
+                        final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
                         System.out.print(stringAst);
                     }
                     else {
@@ -204,7 +215,8 @@ public final class Main {
             result.add("Files to process must be specified, found 0.");
         }
         // ensure there is no conflicting options
-        else if (cmdLine.hasOption(OPTION_T_NAME) || cmdLine.hasOption(OPTION_CAPITAL_T_NAME)) {
+        else if (cmdLine.hasOption(OPTION_T_NAME) || cmdLine.hasOption(OPTION_CAPITAL_T_NAME)
+                || cmdLine.hasOption(OPTION_J_NAME)) {
             if (cmdLine.hasOption(OPTION_C_NAME) || cmdLine.hasOption(OPTION_P_NAME)
                     || cmdLine.hasOption(OPTION_F_NAME) || cmdLine.hasOption(OPTION_O_NAME)) {
                 result.add("Option '-t' cannot be used with other options.");
@@ -468,6 +480,8 @@ public final class Main {
                 "Print Abstract Syntax Tree(AST) of the file");
         options.addOption(OPTION_CAPITAL_T_NAME, OPTION_TREE_COMMENT_NAME, false,
                 "Print Abstract Syntax Tree(AST) of the file including comments");
+        options.addOption(OPTION_J_NAME, OPTION_JAVADOC_TREE_NAME, false,
+                "Print Parse tree of the Javadoc comment");
         return options;
     }
 
