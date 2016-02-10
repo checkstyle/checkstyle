@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -29,25 +32,28 @@ import java.util.Properties;
  */
 public final class PropertiesExpander
     implements PropertyResolver {
-    /** The underlying Properties object. */
-    private final Properties properties = new Properties();
+    /** The underlying values. */
+    private final Map<String, String> values;
 
     /**
      * Creates a new PropertiesExpander.
      * @param properties the underlying properties to use for
      *     property resolution.
      * @throws IllegalArgumentException indicates null was passed
-     * @noinspection CollectionDeclaredAsConcreteClass
      */
     public PropertiesExpander(Properties properties) {
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
         }
-        this.properties.putAll(properties);
+        values = new HashMap<>(properties.size());
+        for (Enumeration<?> e = properties.propertyNames(); e.hasMoreElements();) {
+            final String name = (String) e.nextElement();
+            values.put(name, properties.getProperty(name));
+        }
     }
 
     @Override
     public String resolve(String name) {
-        return properties.getProperty(name);
+        return values.get(name);
     }
 }
