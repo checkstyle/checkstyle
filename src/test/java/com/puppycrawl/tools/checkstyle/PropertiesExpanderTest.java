@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Properties;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 public class PropertiesExpanderTest {
@@ -28,4 +31,15 @@ public class PropertiesExpanderTest {
         new PropertiesExpander(null);
     }
 
+    @Test
+    public void testDefaultProperties() {
+        final Properties properties = new Properties(System.getProperties());
+        properties.setProperty("test", "checkstyle");
+        Assert.assertEquals(System.getProperty("user.home"), properties.getProperty("user.home"));
+        Assert.assertEquals("checkstyle", properties.getProperty("test"));
+
+        final PropertiesExpander expander = new PropertiesExpander(properties);
+        Assert.assertEquals(System.getProperty("user.home"), expander.resolve("user.home"));
+        Assert.assertEquals("checkstyle", expander.resolve("test"));
+    }
 }
