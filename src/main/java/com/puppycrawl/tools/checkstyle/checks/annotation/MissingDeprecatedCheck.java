@@ -70,6 +70,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;module name="JavadocDeprecated"/&gt;
  * </pre>
  *
+ * <p>
+ * In addition you can configure this check with skipNoJavadoc
+ * option to allow it to ignore cases when JavaDoc is missing,
+ * but still warns when JavaDoc is present but either
+ * {@link Deprecated Deprecated} is missing from JavaDoc or
+ * {@link Deprecated Deprecated} is missing from the element.
+ * To configure this check to allow it use:
+ * </p>
+ *
+ * <pre>   &lt;property name="skipNoJavadoc" value="true" /&gt;</pre>
+ *
+ * <p>Examples of validating source code with skipNoJavadoc:</p>
+ *
+ * <pre>
+ * <code>
+ * {@literal @}deprecated
+ * public static final int MY_CONST = 123456; // no violation
+ *
+ * &#47;** This javadoc is missing deprecated tag. *&#47;
+ * {@literal @}deprecated
+ * public static final int COUNTER = 10; // violation as javadoc exists
+ * </code>
+ * </pre>
+ *
  * @author Travis Schneeberger
  */
 public final class MissingDeprecatedCheck extends AbstractCheck {
@@ -116,6 +140,17 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
     /** Multiline finished at next Javadoc. */
     private static final String NEXT_TAG = "@";
 
+    /** Is deprecated element valid without javadoc. */
+    private boolean skipNoJavadoc;
+
+    /**
+     * Set skipJavadoc value.
+     * @param skipNoJavadoc user's value of skipJavadoc
+     */
+    public void setSkipNoJavadoc(boolean skipNoJavadoc) {
+        this.skipNoJavadoc = skipNoJavadoc;
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -152,7 +187,7 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
 
         final boolean containsJavadocTag = containsJavadocTag(javadoc);
 
-        if (containsAnnotation ^ containsJavadocTag) {
+        if (containsAnnotation ^ containsJavadocTag && !(skipNoJavadoc && javadoc == null)) {
             log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
         }
     }

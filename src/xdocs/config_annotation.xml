@@ -313,9 +313,45 @@ public String getNameIfPresent() { ... }
             present and the @deprecated Javadoc tag is present when
             either is present.</p>
       </subsection>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>skipNoJavadoc</td>
+            <td>When this property is set to true check ignore cases
+            when JavaDoc is missing, but still warns when JavaDoc is
+            present but either @deprecated is missing from JavaDoc or
+            @deprecated is missing from the element.
+            </td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td>false</td>
+          </tr>
+        </table>
+      </subsection>
       <subsection name="Examples">
         <p> To configure the check:</p>
-        <source> &lt;module name=&quot;MissingDeprecated&quot;/&gt;
+        <source>
+&lt;module name=&quot;MissingDeprecated&quot;/&gt;
+        </source>
+        <p> In addition you can configure this check with skipNoJavadoc option: </p>
+        <source>
+&lt;module name=&quot;MissingDeprecated&quot;&gt;
+    &lt;property name="skipNoJavadoc" value="true" /&gt;
+&lt;/module&gt;
+        </source>
+        <p>Examples of validating source code with skipNoJavadoc:</p>
+        <source>
+@deprecated
+public static final int MY_CONST = 123456; // no violation
+
+/** This javadoc is missing deprecated tag. */
+@deprecated
+public static final int COUNTER = 10; // violation as javadoc exists
         </source>
       </subsection>
 
