@@ -38,7 +38,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
-     [-t | --tree] [-T | --treeWithComments] [-v] \
+     [-t | --tree] [-T | --treeWithComments] [-j | --javadocTree] [-v] \
      file...
       </source>
       </p>
@@ -79,6 +79,20 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </li>
         <li>
           <code>-T, --treeWithComments</code> - print Abstract Syntax Tree(AST) with comment nodes of the checked file. The option
+          cannot be used other options and requires exactly one file to run on to be specified.
+        </li>
+        <li>
+          <code>-j, --javadocTree</code> - print Parse Tree of the Javadoc comment.
+          The file have to contain <b>only Javadoc comment content</b> without including '/**' and '*/' at the beginning and at the end respectively.
+          For example:
+          MyTestFile.javadoc
+          <source>
+          
+           * Test method.
+           * @return true
+           
+          </source>
+          The option
           cannot be used other options and requires exactly one file to run on to be specified.
         </li>
         <li>

@@ -44,6 +44,8 @@ import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
@@ -109,13 +111,13 @@ public class MainTest {
                     + " -c <arg>                Sets the check configuration file to use.%n"
                     + " -f <arg>                Sets the output format. (plain|xml). Defaults to"
                     + " plain%n"
+                    + " -j,--javadocTree        Print Parse tree of the Javadoc comment%n"
                     + " -o <arg>                Sets the output file. Defaults to stdout%n"
                     + " -p <arg>                Loads the properties file%n"
                     + " -t,--tree               Print Abstract Syntax Tree(AST) of the file%n"
                     + " -T,--treeWithComments   Print Abstract Syntax Tree(AST) of the file"
                     + " including comments%n"
                     + " -v                      Print product version and exit%n");
-
                 assertEquals(usage, systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -732,6 +734,22 @@ public class MainTest {
             }
         });
         Main.main("-T", getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testPrintTreeJavadocOption() throws Exception {
+        final String expected = Files.toString(new File(
+                getPath("astprinter/expectedInputJavadocComment.txt")), Charsets.UTF_8)
+                    .replaceAll("\\\\r\\\\n", "\\\\n");
+
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals(expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));
+                assertEquals("", systemErr.getLog());
+            }
+        });
+        Main.main("-j", getPath("astprinter/InputJavadocComment.javadoc"));
     }
 
     @Test

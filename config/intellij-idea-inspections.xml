@@ -1981,6 +1981,7 @@
                 <!-- There is no other way to deliver filename that was under processing.
                      See https://github.com/checkstyle/checkstyle/issues/2285-->
                 <option value="ProhibitedExceptionThrown" />
+                <option value="MismatchedQueryAndUpdateOfCollection" />
             </list>
         </option>
     </inspection_tool>
