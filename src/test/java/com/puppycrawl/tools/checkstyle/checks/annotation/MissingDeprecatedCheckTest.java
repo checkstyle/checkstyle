@@ -169,4 +169,17 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("InputMissingDeprecated2.java"), expected);
     }
+
+    @Test
+    public void testSkipNoJavadocOption() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(MissingDeprecatedCheck.class);
+        checkConfig.addAttribute("skipNoJavadoc", "true");
+
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verify(checkConfig, getPath("InputMissingDeprecatedSkipNoJavadoc.java"), expected);
+    }
 }
