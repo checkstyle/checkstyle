@@ -1158,6 +1158,9 @@
             <excludedLink>https://travis-ci.org/</excludedLink>
             <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
+            <!-- we did too much requests to github, now github reject all requests "429 Too Many Requests"
+                 https://codeship.com/projects/124310/builds/12027213  -->
+            <excludedLink>https://github.com/*</excludedLink>
             <excludedLink>http://search.maven.org/*</excludedLink>
             <excludedLink>http://junit.org</excludedLink>
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
