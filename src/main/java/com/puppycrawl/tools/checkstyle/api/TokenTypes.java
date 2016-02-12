@@ -485,6 +485,9 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      *
+     * <pre>
+     * extends java.util.LinkedList
+     * </pre>
      *
      * <p>parses as:</p>
      * <pre>
