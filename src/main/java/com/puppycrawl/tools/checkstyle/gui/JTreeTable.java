@@ -106,7 +106,7 @@ public class JTreeTable extends JTable {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                doExpandByEnter();
+                expandSelectedNode();
             }
         };
         final KeyStroke stroke = KeyStroke.getKeyStroke("ENTER");
@@ -118,16 +118,16 @@ public class JTreeTable extends JTable {
             @Override
             public void mouseClicked(MouseEvent event) {
                 if (event.getClickCount() == 2) {
-                    makeCodeSelection();
+                    expandSelectedNode();
                 }
             }
         });
     }
 
     /**
-     * Do expansion of a tree node after pressing ENTER.
+     * Do expansion of a tree node.
      */
-    private void doExpandByEnter() {
+    private void expandSelectedNode() {
         final TreePath selected = makeCodeSelection();
 
         if (tree.isExpanded(selected)) {
