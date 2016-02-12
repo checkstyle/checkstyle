@@ -40,7 +40,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * LITERAL_IF},  {@link TokenTypes#LITERAL_SWITCH LITERAL_SWITCH},  {@link
  * TokenTypes#LITERAL_SYNCHRONIZED LITERAL_SYNCHRONIZED},  {@link
  * TokenTypes#LITERAL_TRY LITERAL_TRY},  {@link TokenTypes#LITERAL_WHILE
- * LITERAL_WHILE},  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
+ * LITERAL_WHILE},  {@link TokenTypes#STATIC_INIT STATIC_INIT},
+ * {@link TokenTypes#LAMBDA LAMBDA}.
  * </p>
  *
  * <p>
@@ -167,6 +168,7 @@ public class LeftCurlyCheck
             TokenTypes.LITERAL_FOR,
             TokenTypes.STATIC_INIT,
             TokenTypes.OBJBLOCK,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -208,6 +210,7 @@ public class LeftCurlyCheck
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
             case TokenTypes.STATIC_INIT:
+            case TokenTypes.LAMBDA:
                 startToken = ast;
                 brace = ast.findFirstToken(TokenTypes.SLIST);
                 break;
