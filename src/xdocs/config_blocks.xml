@@ -471,7 +471,8 @@ try {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">LITERAL_FOR</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">STATIC_INIT</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">OBJBLOCK</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">OBJBLOCK</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
             </td>
 
             <td>
@@ -493,7 +494,8 @@ try {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">LITERAL_FOR</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">STATIC_INIT</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">OBJBLOCK</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">OBJBLOCK</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
             </td>
           </tr>
         </table>
