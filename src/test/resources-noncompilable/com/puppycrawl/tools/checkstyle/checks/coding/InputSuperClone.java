@@ -1,4 +1,4 @@
-// Requires Java8
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 interface InputSuperClone {
@@ -6,26 +6,34 @@ interface InputSuperClone {
 }
 
 class A {
-  static{
-      Runnable a = () -> super.clone();
-  }
-  
-  void clone() {
-      obj.super();
+  public Object clone() {
+      return null;
   }
 }
 
 class B{
-  void clone() {
-      (super).clone();
+  public Object clone() throws CloneNotSupportedException {
+      super.clone();
+      return null;
+  }
+  void clone(Object asd, Object asd2) {
   }
 }
 
-class C {
-  void method() {
-    super();
+class C extends B {
+  void method() throws CloneNotSupportedException {
     Object asd = null;
     super.clone(asd,asd);
     super.clone();
+    Runnable a = () -> super.clone(null, null);
+  }
+
+  void method2() {
+    new Runnable() {
+      @Override
+      public void run() {
+        C.super.clone(null, null);
+      }
+    };
   }
 }

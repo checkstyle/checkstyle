@@ -101,8 +101,7 @@ public abstract class AbstractSuperCheck
             // dot operator?
             final DetailAST dotAst = literalSuperAst.getParent();
 
-            if (dotAst.getType() == TokenTypes.DOT
-                && !isSameNameMethod(literalSuperAst)
+            if (!isSameNameMethod(literalSuperAst)
                 && !hasArguments(dotAst)) {
                 superCall = isSuperCallInOverridingMethod(dotAst);
             }
@@ -120,8 +119,7 @@ public abstract class AbstractSuperCheck
         boolean inOverridingMethod = false;
         DetailAST dotAst = ast;
 
-        while (dotAst != null
-                && dotAst.getType() != TokenTypes.CTOR_DEF
+        while (dotAst.getType() != TokenTypes.CTOR_DEF
                 && dotAst.getType() != TokenTypes.INSTANCE_INIT) {
 
             if (dotAst.getType() == TokenTypes.METHOD_DEF) {
@@ -157,7 +155,7 @@ public abstract class AbstractSuperCheck
             && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {
             sibling = sibling.getNextSibling();
         }
-        if (sibling == null || sibling.getType() != TokenTypes.IDENT) {
+        if (sibling == null) {
             return true;
         }
         final String name = sibling.getText();
