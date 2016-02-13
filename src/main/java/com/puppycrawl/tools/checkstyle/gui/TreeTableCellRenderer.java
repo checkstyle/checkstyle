@@ -81,8 +81,6 @@ class TreeTableCellRenderer extends JTree implements
     /**
      * Sets the row height of the tree, and forwards the row height to
      * the table.
-     *
-     * @param newRowHeight the height of each cell, in pixels
      */
     @Override
     public void setRowHeight(int newRowHeight) {
@@ -97,11 +95,6 @@ class TreeTableCellRenderer extends JTree implements
 
     /**
      * This is overridden to set the height to match that of the JTable.
-     *
-     * @param x the new <i>x</i>-coordinate of this component
-     * @param y the new <i>y</i>-coordinate of this component
-     * @param w the new <code>width</code> of this component
-     * @param h the new <code>height</code> of this component
      */
     @Override
     public void setBounds(int x, int y, int w, int h) {
@@ -111,8 +104,6 @@ class TreeTableCellRenderer extends JTree implements
     /**
      * Subclassed to translate the graphics such that the last visible
      * row will be drawn at 0,0.
-     *
-     * @param graph  the <code>Graphics</code> context in which to paint
      */
     @Override
     public void paint(Graphics graph) {
@@ -122,16 +113,6 @@ class TreeTableCellRenderer extends JTree implements
 
     /**
      * TreeCellRenderer method. Overridden to update the visible row.
-     *
-     * @param   table           the <code>JTable</code> that is asking the
-     *                          renderer to draw; can be <code>null</code>
-     * @param   value           the value of the cell to be rendered.
-     * @param   isSelected      true if the cell is to be rendered with the
-     *                          selection highlighted; otherwise false
-     * @param   hasFocus        if true, render cell appropriately.
-     * @param   row             the row index of the cell being drawn.
-     * @param   column          the column index of the cell being drawn
-     * @return The component used for drawing the cell.
      * @see TableCellRenderer
      */
     @Override
