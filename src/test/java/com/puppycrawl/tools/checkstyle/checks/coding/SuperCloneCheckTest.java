@@ -61,8 +61,7 @@ public class SuperCloneCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(SuperCloneCheck.class);
         final String[] expected = {
-            "13:8: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
-            "19:8: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+            "9:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
         verify(checkConfig, getNonCompilablePath("InputSuperClone.java"), expected);
     }
