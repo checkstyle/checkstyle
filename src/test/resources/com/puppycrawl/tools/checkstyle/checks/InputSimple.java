@@ -222,4 +222,6 @@ enum MyEnum1
 
     /** Should be mSomeMemeber */
     private int someMember;
+
+    public final int blah = 5;
 }
