@@ -1232,6 +1232,7 @@
           <name>java.vendor</name>
           <value>Oracle Corporation</value>
         </property>
+        <jdk>[,1.9)</jdk>
       </activation>
       <dependencies>
         <dependency>
