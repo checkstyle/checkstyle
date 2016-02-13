@@ -116,8 +116,6 @@ public class AutomaticBean
      * is called for each {@link Configuration#getChildren child Configuration}
      * of {@code configuration}.
      *
-     * @param config the configuration to use.
-     * @throws CheckstyleException if there is a configuration error.
      * @see Configurable
      */
     @Override
@@ -189,9 +187,6 @@ public class AutomaticBean
 
     /**
      * Implements the Contextualizable interface using bean introspection.
-     *
-     * @param context the context.
-     * @throws CheckstyleException if there is a contextualization error.
      * @see Contextualizable
      */
     @Override
