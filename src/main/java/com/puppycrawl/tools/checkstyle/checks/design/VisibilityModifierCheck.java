@@ -575,7 +575,8 @@ public class VisibilityModifierCheck
     private boolean isImmutableFieldDefinedInFinalClass(DetailAST variableDef) {
         final DetailAST classDef = variableDef.getParent().getParent();
         final Set<String> classModifiers = getModifiers(classDef);
-        return classModifiers.contains(FINAL_KEYWORD) && isImmutableField(variableDef);
+        return (classModifiers.contains(FINAL_KEYWORD) || classDef.getType() == TokenTypes.ENUM_DEF)
+                && isImmutableField(variableDef);
     }
 
     /**
