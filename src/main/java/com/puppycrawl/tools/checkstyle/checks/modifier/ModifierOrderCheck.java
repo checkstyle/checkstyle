@@ -154,8 +154,10 @@ public class ModifierOrderCheck
                     && offendingModifier == null) {
 
                 if (modifier.getType() == TokenTypes.ANNOTATION) {
-                    //Annotation not at start of modifiers, bad
-                    offendingModifier = modifier;
+                    if (!isAnnotationOnType(modifier)) {
+                        //Annotation not at start of modifiers, bad
+                        offendingModifier = modifier;
+                    }
                     break;
                 }
 
@@ -192,5 +194,21 @@ public class ModifierOrderCheck
         }
         while (modifierIterator.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
         return modifier;
+    }
+
+    /**
+     * Checks whether annotation on type takes place.
+     * @param modifier modifier token.
+     * @return true if annotation on type takes place.
+     */
+    private static boolean isAnnotationOnType(DetailAST modifier) {
+        boolean annotationOnType = false;
+        final DetailAST modifiers = modifier.getParent();
+        final int definitionTokenType = modifiers.getParent().getType();
+        if (definitionTokenType == TokenTypes.VARIABLE_DEF
+                || definitionTokenType == TokenTypes.PARAMETER_DEF) {
+            annotationOnType = true;
+        }
+        return annotationOnType;
     }
 }
