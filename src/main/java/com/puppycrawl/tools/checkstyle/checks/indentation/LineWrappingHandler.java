@@ -162,22 +162,20 @@ public class LineWrappingHandler {
         result.put(firstNode.getLineNo(), firstNode);
         DetailAST curNode = firstNode.getFirstChild();
 
-        while (curNode != null && curNode != lastNode) {
+        while (curNode != lastNode) {
 
             if (curNode.getType() == TokenTypes.OBJBLOCK
                     || curNode.getType() == TokenTypes.SLIST) {
-                curNode = curNode.getNextSibling();
+                curNode = curNode.getLastChild();
             }
 
-            if (curNode != null) {
-                final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
+            final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
 
-                if (firstTokenOnLine == null
-                    || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
-                    result.put(curNode.getLineNo(), curNode);
-                }
-                curNode = getNextCurNode(curNode);
+            if (firstTokenOnLine == null
+                || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
+                result.put(curNode.getLineNo(), curNode);
             }
+            curNode = getNextCurNode(curNode);
         }
         return result;
     }

@@ -914,15 +914,17 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "132: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 10, 8),
             "133: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 8, "10, 14"),
             "137: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 8, "10, 14"),
+            "137: " + getCheckMessage(MSG_ERROR, "}", 8, 10),
             "141: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 6, "8, 12"),
             "142: " + getCheckMessage(MSG_ERROR, "method def modifier", 12, 10),
             "144: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 10),
             "145: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 6, "8, 12"),
+            "145: " + getCheckMessage(MSG_ERROR, "}", 6, 8),
             "150: " + getCheckMessage(MSG_ERROR, "method def modifier", 10, 12),
             "152: " + getCheckMessage(MSG_ERROR, "method def rcurly", 10, 12),
             "188: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
         };
-        verifyWarns(checkConfig, fileName, expected);
+        verifyWarns(checkConfig, fileName, expected, 2);
     }
 
     @Test
@@ -1619,10 +1621,10 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "52: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
             "64: " + getCheckMessage(MSG_CHILD_ERROR, "block", 7, 6),
             "65: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
-            "175: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
-            "175: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 9, 10),
-            "176: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
-            "181: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
+            "179: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
+            "179: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 9, 10),
+            "180: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
+            "185: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
         };
         verifyWarns(checkConfig, getNonCompilablePath("InputLambda1.java"), expected, 1);
     }
