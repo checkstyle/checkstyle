@@ -24,9 +24,8 @@
     <section name="Description">
 
       <p>
-        This task runs Checkstyle over specified Java files. The task has been
-        tested using ANT 1.5.  The latest version of checkstyle can be found
-        at
+        This task runs Checkstyle over specified Java files.
+        The latest version of checkstyle can be found at
         <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a>.
 
         This task is included in the checkstyle distribution.
@@ -311,6 +310,11 @@
     </section>
 
     <section name="Examples">
+
+      <p>
+        An example project can be found
+        <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">here</a>.
+      </p>
 
       <p>
         <b>
