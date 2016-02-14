@@ -91,6 +91,10 @@ public class InputLambda1 { //indent:0 exp:0
           x.run(); //indent:10 exp:10
         }); //indent:8 exp:8
 
+    Object o2 = new Thread(() -> { //indent:4 exp:4
+      x.run(); //indent:6 exp:6
+    }).toString(); //indent:4 exp:4
+
     SomeInterface i1 = (LongTypeName //indent:4 exp:4
         arg) -> { //indent:8 exp:8
       System.out.print(arg.toString()); //indent:6 exp:6
