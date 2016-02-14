@@ -66,6 +66,12 @@
             <code>strictfp</code>
           </li>
         </ol>
+
+        <p>
+          ATTENTION: We skip <a href="https://blogs.oracle.com/java-platform-group/entry/java_8_s_new_type">
+          type annotations</a> from validation.
+        </p>
+
       </subsection>
 
       <subsection name="Examples">
