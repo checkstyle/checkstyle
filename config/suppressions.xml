@@ -75,6 +75,7 @@
 
     <!-- Tone down the checking for test code -->
     <suppress checks="CyclomaticComplexity" files="[\\/]XDocsPagesTest\.java"/>
+    <suppress checks="NPathComplexity" files="[\\/]XDocsPagesTest\.java"/>
     <suppress checks="IllegalCatch" files="[\\/]internal[\\/]\w+Util\.java"/>
     <suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
     <suppress checks="ImportControl" files=".*[\\/]src[\\/](test|it)[\\/]"/>
