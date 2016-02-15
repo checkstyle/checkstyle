@@ -268,13 +268,6 @@
     <!--not configurable, decreases readability-->
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
-  <rule ref="rulesets/java/strictexception.xml"/>
-  <rule ref="rulesets/java/strictexception.xml/ExceptionAsFlowControl">
-    <properties>
-      <!-- till #1159 -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']"/>
-    </properties>
-  </rule>
   <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException">
     <properties>
       <!-- There is no other way to deliver filename that was under processing -->

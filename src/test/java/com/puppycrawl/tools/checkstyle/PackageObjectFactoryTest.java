@@ -59,14 +59,4 @@ public class PackageObjectFactoryTest {
                         "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName");
         assertNotNull(check);
     }
-
-    @Test
-    public void testMakeObjectFromList()
-        throws CheckstyleException {
-        factory.addPackage("com.");
-        final Checker checker =
-                (Checker) factory.createModule(
-                        "puppycrawl.tools.checkstyle.Checker");
-        assertNotNull(checker);
-    }
 }
