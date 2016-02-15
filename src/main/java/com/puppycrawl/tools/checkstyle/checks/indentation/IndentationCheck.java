@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -112,6 +114,9 @@ public class IndentationCheck extends AbstractCheck {
 
     /** Factory from which handlers are distributed. */
     private final HandlerFactory handlerFactory = new HandlerFactory();
+
+    /** Lines logged as having incorrect indentation. */
+    private Set<Integer> incorrectIndentationLines;
 
     /** How many tabs or spaces to use. */
     private int basicOffset = DEFAULT_INDENTATION;
@@ -272,7 +277,10 @@ public class IndentationCheck extends AbstractCheck {
      * @see java.text.MessageFormat
      */
     public void indentationLog(int line, String key, Object... args) {
-        log(line, key, args);
+        if (!incorrectIndentationLines.contains(line)) {
+            incorrectIndentationLines.add(line);
+            log(line, key, args);
+        }
     }
 
     /**
@@ -306,6 +314,7 @@ public class IndentationCheck extends AbstractCheck {
         final PrimordialHandler primordialHandler = new PrimordialHandler(this);
         handlers.push(primordialHandler);
         primordialHandler.checkIndentation();
+        incorrectIndentationLines = new HashSet<>();
     }
 
     @Override
