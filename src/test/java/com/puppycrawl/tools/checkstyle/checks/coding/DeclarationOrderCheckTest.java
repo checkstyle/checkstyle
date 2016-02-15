@@ -54,25 +54,20 @@ public class DeclarationOrderCheckTest
             "18:5: " + getCheckMessage(MSG_ACCESS),
             "21:5: " + getCheckMessage(MSG_ACCESS),
             "27:5: " + getCheckMessage(MSG_STATIC),
-            "27:5: " + getCheckMessage(MSG_ACCESS),
             "34:9: " + getCheckMessage(MSG_ACCESS),
             "45:9: " + getCheckMessage(MSG_STATIC),
-            "45:9: " + getCheckMessage(MSG_ACCESS),
             "54:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "80:5: " + getCheckMessage(MSG_INSTANCE),
 
             "92:9: " + getCheckMessage(MSG_ACCESS),
             "100:9: " + getCheckMessage(MSG_STATIC),
-            "100:9: " + getCheckMessage(MSG_ACCESS),
             "106:5: " + getCheckMessage(MSG_ACCESS),
             "111:5: " + getCheckMessage(MSG_ACCESS),
             "116:5: " + getCheckMessage(MSG_ACCESS),
             "119:5: " + getCheckMessage(MSG_ACCESS),
             "125:5: " + getCheckMessage(MSG_STATIC),
-            "125:5: " + getCheckMessage(MSG_ACCESS),
             "132:9: " + getCheckMessage(MSG_ACCESS),
             "143:9: " + getCheckMessage(MSG_STATIC),
-            "143:9: " + getCheckMessage(MSG_ACCESS),
             "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "178:5: " + getCheckMessage(MSG_INSTANCE),
             "182:9: " + getCheckMessage(MSG_ACCESS),
@@ -112,24 +107,19 @@ public class DeclarationOrderCheckTest
             "18:5: " + getCheckMessage(MSG_ACCESS),
             "21:5: " + getCheckMessage(MSG_ACCESS),
             "27:5: " + getCheckMessage(MSG_STATIC),
-            "27:5: " + getCheckMessage(MSG_ACCESS),
             "34:9: " + getCheckMessage(MSG_ACCESS),
             "45:9: " + getCheckMessage(MSG_STATIC),
-            "45:9: " + getCheckMessage(MSG_ACCESS),
             "80:5: " + getCheckMessage(MSG_INSTANCE),
 
             "92:9: " + getCheckMessage(MSG_ACCESS),
             "100:9: " + getCheckMessage(MSG_STATIC),
-            "100:9: " + getCheckMessage(MSG_ACCESS),
             "106:5: " + getCheckMessage(MSG_ACCESS),
             "111:5: " + getCheckMessage(MSG_ACCESS),
             "116:5: " + getCheckMessage(MSG_ACCESS),
             "119:5: " + getCheckMessage(MSG_ACCESS),
             "125:5: " + getCheckMessage(MSG_STATIC),
-            "125:5: " + getCheckMessage(MSG_ACCESS),
             "132:9: " + getCheckMessage(MSG_ACCESS),
             "143:9: " + getCheckMessage(MSG_STATIC),
-            "143:9: " + getCheckMessage(MSG_ACCESS),
             "178:5: " + getCheckMessage(MSG_INSTANCE),
             "182:9: " + getCheckMessage(MSG_ACCESS),
         };
@@ -184,8 +174,18 @@ public class DeclarationOrderCheckTest
             "17:5: " + getCheckMessage(MSG_ACCESS),
             "23:5: " + getCheckMessage(MSG_ACCESS),
             "41:5: " + getCheckMessage(MSG_STATIC),
-            "41:5: " + getCheckMessage(MSG_ACCESS),
         };
         verify(checkConfig, getPath("InputDeclarationOrderForwardReference.java"), expected);
+    }
+
+    @Test
+    public void testAvoidDuplicatesForStaticFinalFields() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(DeclarationOrderCheck.class);
+        final String[] expected = {
+            "6:5: " + getCheckMessage(MSG_STATIC),
+        };
+        verify(checkConfig,
+                getPath("InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"),
+                expected);
     }
 }
