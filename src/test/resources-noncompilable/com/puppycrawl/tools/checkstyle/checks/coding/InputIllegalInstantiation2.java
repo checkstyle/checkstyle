@@ -1,3 +1,4 @@
+//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.function.Function;
@@ -10,7 +11,6 @@ public class InputIllegalInstantiation2
     {
 
         Supplier<InputMethodReferencesTest2> supplier = InputMethodReferencesTest2::new;
-        Supplier<InputMethodReferencesTest2> suppl = InputMethodReferencesTest2::<Integer> new;
         Function<Integer, String[]> messageArrayFactory = String[]::new;
 
     }
