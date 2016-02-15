@@ -245,11 +245,26 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * @param ast ast of Modifiers.
      */
     private void processModifiers(DetailAST ast) {
-
         final ScopeState state = scopeStates.peek();
-        if (ast.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+        final boolean isStateValid = processModifiersState(ast, state);
+        processModifiersSubState(ast, state, isStateValid);
+    }
+
+    /**
+     * Process if given modifiers are appropriate in given state
+     * ({@code STATE_STATIC_VARIABLE_DEF}, {@code STATE_INSTANCE_VARIABLE_DEF},
+     * ({@code STATE_CTOR_DEF}, {@code STATE_METHOD_DEF}), if it is
+     * it updates states where appropriate or logs violation.
+     * @param modifierAst modifiers to process
+     * @param state current state
+     * @return true if modifierAst is valid in given state, false otherwise
+     */
+    private boolean processModifiersState(DetailAST modifierAst, ScopeState state) {
+        boolean isStateValid = true;
+        if (modifierAst.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
             if (state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                log(ast, MSG_INSTANCE);
+                isStateValid = false;
+                log(modifierAst, MSG_INSTANCE);
             }
             else if (state.currentScopeState == STATE_STATIC_VARIABLE_DEF) {
                 state.declarationAccess = Scope.PUBLIC;
@@ -260,19 +275,33 @@ public class DeclarationOrderCheck extends AbstractCheck {
             if (state.currentScopeState > STATE_STATIC_VARIABLE_DEF) {
                 if (!ignoreModifiers
                         || state.currentScopeState > STATE_INSTANCE_VARIABLE_DEF) {
-                    log(ast, MSG_STATIC);
+                    isStateValid = false;
+                    log(modifierAst, MSG_STATIC);
                 }
             }
             else {
                 state.currentScopeState = STATE_STATIC_VARIABLE_DEF;
             }
         }
+        return isStateValid;
+    }
 
-        final Scope access = ScopeUtils.getScopeFromMods(ast);
+    /**
+     * Checks if given modifiers are valid in substate of given
+     * state({@code Scope}), if it is it updates substate or else it
+     * logs violation.
+     * @param modifiersAst modifiers to process
+     * @param state curent state
+     * @param isStateValid is main state for given modifiers is valid
+     */
+    private void processModifiersSubState(DetailAST modifiersAst, ScopeState state,
+                                          boolean isStateValid) {
+        final Scope access = ScopeUtils.getScopeFromMods(modifiersAst);
         if (state.declarationAccess.compareTo(access) > 0) {
-            if (!ignoreModifiers
-                    && !isForwardReference(ast.getParent())) {
-                log(ast, MSG_ACCESS);
+            if (isStateValid
+                    && !ignoreModifiers
+                    && !isForwardReference(modifiersAst.getParent())) {
+                log(modifiersAst, MSG_ACCESS);
             }
         }
         else {
