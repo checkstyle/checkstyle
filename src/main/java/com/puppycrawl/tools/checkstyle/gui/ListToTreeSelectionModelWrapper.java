@@ -60,7 +60,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      *
      * @return the list selection model
      */
-    final ListSelectionModel getListSelectionModel() {
+    protected final ListSelectionModel getListSelectionModel() {
         return listSelectionModel;
     }
 

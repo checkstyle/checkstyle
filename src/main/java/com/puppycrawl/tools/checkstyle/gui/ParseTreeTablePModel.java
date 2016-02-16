@@ -64,7 +64,7 @@ public class ParseTreeTablePModel {
      * Set parse tree.
      * @param parseTree DetailAST parse tree.
      */
-    final void setParseTree(DetailAST parseTree) {
+    protected final void setParseTree(DetailAST parseTree) {
         ((AST) root).setFirstChild(parseTree);
     }
 
