@@ -1977,6 +1977,9 @@
                 <option value="deprecation" />
                 <option value="unchecked" />
                 <option value="rawtypes" />
+                <!-- There is no other way to deliver filename that was under processing.
+                     See https://github.com/checkstyle/checkstyle/issues/2285-->
+                <option value="ProhibitedExceptionThrown" />
             </list>
         </option>
     </inspection_tool>

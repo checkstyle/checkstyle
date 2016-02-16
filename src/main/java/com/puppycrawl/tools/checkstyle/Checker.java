@@ -294,6 +294,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * Processes a list of files with all FileSetChecks.
      * @param files a list of files to process.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
+     * @noinspection ProhibitedExceptionThrown
      */
     private void processFiles(List<File> files) throws CheckstyleException {
         for (final File file : files) {
@@ -302,22 +303,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                 fireFileStarted(fileName);
                 final long timestamp = file.lastModified();
                 if (cache != null && cache.isInCache(fileName, timestamp)
-                    || !CommonUtils.matchesFileExtension(file, fileExtensions)) {
+                        || !CommonUtils.matchesFileExtension(file, fileExtensions)) {
                     continue;
                 }
-                final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
-                try {
-                    final FileText theText = new FileText(file.getAbsoluteFile(), charset);
-                    for (final FileSetCheck fsc : fileSetChecks) {
-                        fileMessages.addAll(fsc.process(file, theText));
-                    }
-                }
-                catch (final IOException ioe) {
-                    LOG.debug("IOException occurred.", ioe);
-                    fileMessages.add(new LocalizedMessage(0,
-                        Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                        new String[] {ioe.getMessage()}, null, getClass(), null));
-                }
+                final SortedSet<LocalizedMessage> fileMessages = processFile(file);
                 fireErrors(fileName, fileMessages);
                 fireFileFinished(fileName);
                 if (cache != null && fileMessages.isEmpty()) {
@@ -325,11 +314,38 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                 }
             }
             catch (Exception ex) {
-                // We need to catch all exception to put a reason failure(file name) in exception
+                // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException("Exception was thrown while processing "
                     + file.getPath(), ex);
             }
+            catch (Error error) {
+                // We need to catch all errors to put a reason failure (file name) in error
+                throw new Error("Error was thrown while processing " + file.getPath(), error);
+            }
         }
+    }
+
+    /**
+     * Processes a file with all FileSetChecks.
+     * @param file a file to process.
+     * @return a sorted set of messages to be logged.
+     * @throws CheckstyleException if error condition within Checkstyle occurs.
+     */
+    private SortedSet<LocalizedMessage> processFile(File file) throws CheckstyleException {
+        final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
+        try {
+            final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+            for (final FileSetCheck fsc : fileSetChecks) {
+                fileMessages.addAll(fsc.process(file, theText));
+            }
+        }
+        catch (final IOException ioe) {
+            LOG.debug("IOException occurred.", ioe);
+            fileMessages.add(new LocalizedMessage(0,
+                Definitions.CHECKSTYLE_BUNDLE, "general.exception",
+                new String[] {ioe.getMessage()}, null, getClass(), null));
+        }
+        return fileMessages;
     }
 
     /**

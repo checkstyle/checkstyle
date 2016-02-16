@@ -270,8 +270,16 @@
   </rule>
   <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException">
     <properties>
-      <!-- There is no other way to deliver filename that was under processing -->
-      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='process' and ../../..[@Image='Checker']]"/>
+      <!-- There is no other way to deliver filename that was under processing.
+           See https://github.com/checkstyle/checkstyle/issues/2285-->
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='processFiles' and ../../..[@Image='Checker']]"/>
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/strictexception.xml/AvoidThrowingRawExceptionTypes">
+    <properties>
+      <!-- There is no other way to deliver filename that was under processing.
+           See https://github.com/checkstyle/checkstyle/issues/2285-->
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='processFiles' and ../../..[@Image='Checker']]"/>
     </properties>
   </rule>
 

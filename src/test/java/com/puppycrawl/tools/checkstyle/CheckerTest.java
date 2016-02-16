@@ -26,8 +26,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.IOError;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.InvalidPathException;
@@ -42,7 +44,9 @@ import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.powermock.api.mockito.PowerMockito;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -491,5 +495,32 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.clearCache();
         // one more time, but cache does not exist
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testCatchErrorInProcessFilesMethod() throws Exception {
+        // The idea of the test is to satisfy coverage rate.
+        // An Error indicates serious problems that a reasonable application should not try to
+        // catch, but due to issue https://github.com/checkstyle/checkstyle/issues/2285
+        // we catch errors in 'processFiles' method. Most such errors are abnormal conditions,
+        // that is why we use PowerMockito to reproduse them.
+        final File mock = PowerMockito.mock(File.class);
+        // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
+        final String errorMessage = "Java Virtual Machine is broken"
+            + " or has run out of resources necessary for it to continue operating.";
+        final Error expectedError = new IOError(new InternalError(errorMessage));
+        when(mock.lastModified()).thenThrow(expectedError);
+        final Checker checker = new Checker();
+        final List<File> filesToProcess = Lists.newArrayList();
+        filesToProcess.add(mock);
+        try {
+            checker.process(filesToProcess);
+            fail("IOError is expected!");
+        }
+        catch (Error error) {
+            assertThat(error.getCause(), instanceOf(IOError.class));
+            assertThat(error.getCause().getCause(), instanceOf(InternalError.class));
+            assertEquals(errorMessage, error.getCause().getCause().getMessage());
+        }
     }
 }
