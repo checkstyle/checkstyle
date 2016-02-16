@@ -202,11 +202,9 @@ public class TranslationCheck
      */
     private void checkExistenceOfRequiredTranslations(Set<File> filesInResourceBundle) {
         final String fullBundleName = getFullBundleName(filesInResourceBundle);
-        final String extension = getFileExtensions()[0];
 
         for (String languageCode : requiredTranslations) {
-            final String translationFileName =
-                fullBundleName + '_' + languageCode + extension;
+            final String translationFileName = fullBundleName + '_' + languageCode;
 
             final boolean missing = isMissing(translationFileName, filesInResourceBundle);
             if (missing) {
@@ -255,7 +253,7 @@ public class TranslationCheck
         boolean missing = false;
         for (File file : filesInResourceBundle) {
             final String currentFileName = file.getPath();
-            missing = !currentFileName.equals(fileName);
+            missing = !currentFileName.contains(fileName);
             if (!missing) {
                 break;
             }
