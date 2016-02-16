@@ -230,4 +230,44 @@ public class TranslationCheckTest
             getPath("app-dev.properties"),
             expected);
     }
+
+    @Test
+    public void testTranslationFileWithLanguageCountryVariantIsMissing() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "es, de");
+
+        final File[] propertyFiles = {
+            new File(getPath("messages_home.properties")),
+            new File(getPath("messages_home_es_US.properties")),
+            new File(getPath("messages_home_fr_CA_UNIX.properties")),
+            };
+
+        final String[] expected = {
+            "0: Properties file 'messages_home_de.properties' is missing.",
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
+
+    @Test
+    public void testTranslationFileWithLanguageCountryVariantArePresent() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "es, fr");
+
+        final File[] propertyFiles = {
+            new File(getPath("messages_home.properties")),
+            new File(getPath("messages_home_es_US.properties")),
+            new File(getPath("messages_home_fr_CA_UNIX.properties")),
+            };
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
 }

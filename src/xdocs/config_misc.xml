@@ -1615,11 +1615,15 @@ messages.properties: Key 'ok' missing.
                  Allows to specify language codes of required translations which must exist in project.
                  The check looks only for messages bundles which names contain the word 'messages'.
                  Language code is composed of the lowercase, two-letter codes as defined by
-                 <a href="http://www.fatbellyman.com/webstuff/language_codes_639-1/">ISO 639-1</a>.
+                 <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
                  Default value is empty String Set which means that only the existence
                  of default translation is checked.
                  Note, if you specify language codes (or just one language code) of required translations
                  the check will also check for existence of default translation files in project.
+                 ATTENTION: the check will not perform the validation of ISO codes if the option
+                 is set to true. So, if you specify, for example, "mm" for language code,
+                 TranslationCheck will not warn about the incorrect language code and will use it
+                 for validation.
              </td>
               <td><a href="property_types.html#stringSet">String Set</a></td>
              <td><code>empty String Set</code></td>
@@ -1640,7 +1644,7 @@ messages.properties: Key 'ok' missing.
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;basenameSeparator&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+    &lt;property name=&quot;basenameSeparator&quot; value=&quot;-&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1649,9 +1653,34 @@ messages.properties: Key 'ok' missing.
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
-&lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
+    &lt;property name=&quot;requiredTranslations&quot; value=&quot;ja, fr&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          The following example shows how the check works if there is a message bundle which
+          element name contains language code, county code, platform name.
+          Consider that we have the below configuration:
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;requiredTranslations&quot; value=&quot;es, fr, de&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+        </p>
+        <p>
+          As we can see from the configuration, the TranslationCheck was configured to check for
+          'es', 'fr' and 'de' translations. Lets assume that we have the resource bunbdle:
+        </p>
+        <source>
+messages_home.properties
+messages_home_es_US.properties
+messages_home_fr_CA_UNIX.properties
+        </source>
+        <p>
+          Than the check will rise the following violation:
+          "0: Properties file 'messages_home_de.properties' is missing."
+        </p>
       </subsection>
 
       <subsection name="Example of Usage">
