@@ -46,22 +46,24 @@ public class PullRequestDescriptionTest {
     public void testPullRequestDescription() throws Exception {
         final FileRepositoryBuilder builder = new FileRepositoryBuilder();
         try (Git git = new Git(builder.findGitDir().build())) {
-            final Matcher matcher = Pattern.compile("#\\d+").matcher(
-                git.log().call().iterator().next().getShortMessage());
+            final String shortMessage = git.log().call().iterator().next().getShortMessage();
+            System.out.println("shortMessage = " + shortMessage);
+            final Matcher matcher = Pattern.compile("#\\d+").matcher(shortMessage);
             final String travisPullRequest = System.getenv("TRAVIS_PULL_REQUEST");
             System.out.println("travisPullRequest = " + travisPullRequest);
-            final Optional<String> pullRequestId =
-                Optional.fromNullable(travisPullRequest);
+            final Optional<String> pullRequestId = Optional.fromNullable(travisPullRequest);
+            System.out.println("pullRequestId = " + pullRequestId);
             if (matcher.find() && pullRequestId.isPresent()) {
                 final String issueId = matcher.group();
-                final int pullRequestNumber =
-                    Integer.parseInt(pullRequestId.get());
+                final int pullRequestNumber = Integer.parseInt(pullRequestId.get());
+                final String body = GitHub.connectAnonymously()
+                    .getRepository("checkstyle/checkstyle")
+                    .getPullRequest(pullRequestNumber)
+                    .getBody();
+                System.out.println("body = " + body);
                 Assert.assertTrue("Description of pull request does not"
                         + " contain reference to issue " + issueId,
-                    GitHub.connectAnonymously()
-                        .getRepository("checkstyle/checkstyle")
-                        .getPullRequest(pullRequestNumber)
-                        .getBody().contains(issueId)
+                    body.contains(issueId)
                 );
             }
         }
