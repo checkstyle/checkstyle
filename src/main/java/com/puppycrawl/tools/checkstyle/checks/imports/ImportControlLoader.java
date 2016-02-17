@@ -142,7 +142,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @return the root {@link PkgControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    static PkgControl load(final URI uri) throws CheckstyleException {
+    public static PkgControl load(final URI uri) throws CheckstyleException {
         final InputStream inputStream;
         try {
             inputStream = uri.toURL().openStream();
