@@ -88,7 +88,7 @@ class Guard {
      * @param forImport the package to check.
      * @return a result {@link AccessResult} indicating whether it can be used.
      */
-    AccessResult verifyImport(final String forImport) {
+    public AccessResult verifyImport(final String forImport) {
         if (className != null) {
             final boolean classMatch;
 
@@ -125,7 +125,7 @@ class Guard {
     /**
      * @return returns whether the guard is to only be applied locally.
      */
-    boolean isLocalOnly() {
+    public boolean isLocalOnly() {
         return localOnly;
     }
 
