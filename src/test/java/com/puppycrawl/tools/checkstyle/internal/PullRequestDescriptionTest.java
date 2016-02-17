@@ -39,9 +39,11 @@ import com.google.common.base.Optional;
  */
 public class PullRequestDescriptionTest {
 
+    /**
+     * @noinspection CallToSystemGetenv
+     */
     @Test
-    public void testPullRequestDescription() throws IOException,
-        GitAPIException {
+    public void testPullRequestDescription() throws Exception {
         final FileRepositoryBuilder builder = new FileRepositoryBuilder();
         try (Git git = new Git(builder.findGitDir().build())) {
             final Matcher matcher = Pattern.compile("#\\d+").matcher(
