@@ -92,6 +92,7 @@
     <menu name="Developers">
       <item name="Extending Checkstyle" href="extending.html">
         <item name="Writing Checks" href="writingchecks.html"/>
+        <item name="Writing Javadoc Checks" href="writingjavadocchecks.html"/>
         <item name="Writing Filters" href="writingfilters.html"/>
         <item name="Writing Listeners" href="writinglisteners.html"/>
       </item>
