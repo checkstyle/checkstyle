@@ -311,6 +311,11 @@
       <scope>test</scope>
       <classifier>runtime</classifier>
     </dependency>
+    <dependency>
+      <groupId>org.kohsuke</groupId>
+      <artifactId>github-api</artifactId>
+      <version>1.70</version>
+    </dependency>
   </dependencies>
 
   <build>
