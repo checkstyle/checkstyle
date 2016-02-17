@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -60,6 +61,7 @@ public class PullRequestDescriptionTest {
                             .getPullRequest(Integer.parseInt(pullRequestId.get())).getBody();
                         Assert.assertTrue(
                             String.format(
+                                Locale.ENGLISH,
                                 "Issue %s is not mentioned description of pull request #%s: '%s'",
                                 issueId, pullRequestId.get(), body
                             ),
