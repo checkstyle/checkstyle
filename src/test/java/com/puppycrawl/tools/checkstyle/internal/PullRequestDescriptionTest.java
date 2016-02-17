@@ -19,18 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import java.io.IOException;
+import com.google.common.base.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.kohsuke.github.GitHub;
-
-import com.google.common.base.Optional;
 
 /**
  * Verifies that pull request description contains issue number.
@@ -44,27 +41,32 @@ public class PullRequestDescriptionTest {
      */
     @Test
     public void testPullRequestDescription() throws Exception {
-        final FileRepositoryBuilder builder = new FileRepositoryBuilder();
-        try (Git git = new Git(builder.findGitDir().build())) {
-            final String shortMessage = git.log().call().iterator().next().getShortMessage();
-            System.out.println("shortMessage = " + shortMessage);
-            final Matcher matcher = Pattern.compile("#\\d+").matcher(shortMessage);
+        try (Git git = new Git(new FileRepositoryBuilder().findGitDir().build())) {
             final String travisPullRequest = System.getenv("TRAVIS_PULL_REQUEST");
-            System.out.println("travisPullRequest = " + travisPullRequest);
+            final Pattern pattern = Pattern.compile("#\\d+");
             final Optional<String> pullRequestId = Optional.fromNullable(travisPullRequest);
-            System.out.println("pullRequestId = " + pullRequestId);
-            if (matcher.find() && pullRequestId.isPresent()) {
-                final String issueId = matcher.group();
-                final int pullRequestNumber = Integer.parseInt(pullRequestId.get());
-                final String body = GitHub.connectAnonymously()
-                    .getRepository("checkstyle/checkstyle")
-                    .getPullRequest(pullRequestNumber)
-                    .getBody();
-                System.out.println("body = " + body);
-                Assert.assertTrue("Description of pull request does not"
-                        + " contain reference to issue " + issueId,
-                    body.contains(issueId)
-                );
+            final Iterable<RevCommit> commits = git.log().call();
+            if (pullRequestId.isPresent()) {
+                for (RevCommit commit : commits) {
+                    final String shortMessage = commit.getShortMessage();
+                    System.out.println("shortMessage = " + shortMessage);
+                    final Matcher matcher = pattern.matcher(shortMessage);
+                    System.out.println("pullRequestId = " + pullRequestId);
+                    if (matcher.find()) {
+                        final String issueId = matcher.group();
+                        final String body = GitHub.connectAnonymously()
+                            .getRepository("checkstyle/checkstyle")
+                            .getPullRequest(Integer.parseInt(pullRequestId.get())).getBody();
+                        Assert.assertTrue(
+                            String.format(
+                                "Issue %s is not mentioned in pull request %s description: '%s'",
+                                issueId, pullRequestId, body
+                            ),
+                            body.contains(issueId)
+                        );
+                        break;
+                    }
+                }
             }
         }
     }
