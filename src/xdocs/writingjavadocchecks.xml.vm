@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <head>
-    <title>Extending Checkstyle</title>
+    <title>Writing Javadoc Checks</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
@@ -14,18 +14,34 @@
   </head>
 
   <body>
-    <section name="Extending Checkstyle">
-      <p>
-        This section covers the ways that Checkstyle's behaviour can be
-        extended, including writing your own checks.
-      </p>
-
-      <ul>
-        <li><a href="writingchecks.html">Writing Checks</a>;</li>
-        <li><a href="writingjavadocchecks.html">Writing Javadoc Checks</a>;</li>
-        <li><a href="writingfilters.html">Writing filters</a>;</li>
-        <li><a href="writinglisteners.html">Writing listeners</a>.</li>
-      </ul>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
     </section>
+
+    <section name="Overview">
+    </section>
+
+    <section name="Difference between Java Grammar and Javadoc comments Grammar">
+    </section>
+
+    <section name="Javadoc tree structure">
+    </section>
+
+    <section name="Token types">
+    </section>
+
+    <section name="Checkstyle SDK GUI">
+    </section>
+
+    <section name="Access Java AST from Javadoc Check">
+    </section>
+
+    <section name="Integrating new Javadoc Check">
+    </section>
+
   </body>
 </document>
+
