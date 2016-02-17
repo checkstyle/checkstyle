@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import com.google.common.base.Optional;
+
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
@@ -44,14 +46,16 @@ public class PullRequestDescriptionTest {
         try (Git git = new Git(builder.findGitDir().build())) {
             final Matcher matcher = Pattern.compile("#\\d+").matcher(
                 git.log().call().iterator().next().getShortMessage());
+            final String travisPullRequest = System.getenv("TRAVIS_PULL_REQUEST");
+            System.out.println("travisPullRequest = " + travisPullRequest);
             final Optional<String> pullRequestId =
-                Optional.fromNullable(System.getenv("TRAVIS_PULL_REQUEST"));
+                Optional.fromNullable(travisPullRequest);
             if (matcher.find() && pullRequestId.isPresent()) {
                 final String issueId = matcher.group();
                 final int pullRequestNumber =
-                    Integer.parseInt(pullRequestId.get().substring(1));
-                Assert.assertTrue("Description of pull request does not" +
-                        " contain reference to issue " + issueId,
+                    Integer.parseInt(pullRequestId.get());
+                Assert.assertTrue("Description of pull request does not"
+                        + " contain reference to issue " + issueId,
                     GitHub.connectAnonymously()
                         .getRepository("checkstyle/checkstyle")
                         .getPullRequest(pullRequestNumber)
