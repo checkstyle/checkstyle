@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import com.google.common.base.Optional;
-
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +29,8 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.kohsuke.github.GitHub;
+
+import com.google.common.base.Optional;
 
 /**
  * Verifies that pull request description contains issue number.
