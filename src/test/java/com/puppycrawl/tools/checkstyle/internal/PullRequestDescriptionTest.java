@@ -43,7 +43,7 @@ public class PullRequestDescriptionTest {
     public void testPullRequestDescription() throws Exception {
         try (Git git = new Git(new FileRepositoryBuilder().findGitDir().build())) {
             final String travisPullRequest = System.getenv("TRAVIS_PULL_REQUEST");
-            final Pattern pattern = Pattern.compile("#\\d+");
+            final Pattern pattern = Pattern.compile("Issue (#\\d+)");
             final Optional<String> pullRequestId = Optional.fromNullable(travisPullRequest);
             final Iterable<RevCommit> commits = git.log().call();
             if (pullRequestId.isPresent()) {
@@ -51,16 +51,15 @@ public class PullRequestDescriptionTest {
                     final String shortMessage = commit.getShortMessage();
                     System.out.println("shortMessage = " + shortMessage);
                     final Matcher matcher = pattern.matcher(shortMessage);
-                    System.out.println("pullRequestId = " + pullRequestId);
                     if (matcher.find()) {
-                        final String issueId = matcher.group();
+                        final String issueId = matcher.group(1);
                         final String body = GitHub.connectAnonymously()
                             .getRepository("checkstyle/checkstyle")
                             .getPullRequest(Integer.parseInt(pullRequestId.get())).getBody();
                         Assert.assertTrue(
                             String.format(
-                                "Issue %s is not mentioned in pull request %s description: '%s'",
-                                issueId, pullRequestId, body
+                                "Issue %s is not mentioned description of pull request #%s: '%s'",
+                                issueId, pullRequestId.get(), body
                             ),
                             body.contains(issueId)
                         );
