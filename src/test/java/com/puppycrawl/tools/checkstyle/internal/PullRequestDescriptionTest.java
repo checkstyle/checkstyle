@@ -52,7 +52,6 @@ public class PullRequestDescriptionTest {
             if (pullRequestId.isPresent()) {
                 for (RevCommit commit : commits) {
                     final String shortMessage = commit.getShortMessage();
-                    System.out.println("shortMessage = " + shortMessage);
                     final Matcher matcher = pattern.matcher(shortMessage);
                     if (matcher.find()) {
                         final String issueId = matcher.group(1);
