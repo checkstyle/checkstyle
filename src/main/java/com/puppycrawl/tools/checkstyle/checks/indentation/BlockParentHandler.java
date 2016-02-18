@@ -162,7 +162,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             return;
         }
 
-        logError(lcurly, "lcurly", lcurlyPos);
+        logError(lcurly, "lcurly", lcurlyPos, curlyIndent());
     }
 
     /**
