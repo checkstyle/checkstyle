@@ -61,7 +61,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Test
     public void testDestroy() {
-        final DebugChecker checker = new DebugChecker();
+        final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
         final DebugFilter filter = new DebugFilter();
@@ -87,7 +87,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Test
     public void testAddListener() {
-        final DebugChecker checker = new DebugChecker();
+        final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
@@ -117,7 +117,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Test
     public void testRemoveListener() {
-        final DebugChecker checker = new DebugChecker();
+        final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
@@ -160,7 +160,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Test
     public void testAddFilter() {
-        final DebugChecker checker = new DebugChecker();
+        final Checker checker = new Checker();
         final DebugFilter filter = new DebugFilter();
 
         checker.addFilter(filter);
@@ -175,7 +175,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Test
     public void testRemoveFilter() {
-        final DebugChecker checker = new DebugChecker();
+        final Checker checker = new Checker();
         final DebugFilter filter = new DebugFilter();
         final DebugFilter f2 = new DebugFilter();
         checker.addFilter(filter);

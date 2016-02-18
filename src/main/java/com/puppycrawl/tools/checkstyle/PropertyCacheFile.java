@@ -104,7 +104,7 @@ final class PropertyCacheFile {
      * Load cached values from file.
      * @throws IOException when there is a problems with file read
      */
-    void load() throws IOException {
+    public void load() throws IOException {
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
         final String currentConfigHash = getConfigHashCode(config);
@@ -134,7 +134,7 @@ final class PropertyCacheFile {
      * Cleans up the object and updates the cache file.
      * @throws IOException  when there is a problems with file save
      */
-    void persist() throws IOException {
+    public void persist() throws IOException {
         try {
             final Path directory = Paths.get(fileName).getParent();
             if (directory != null) {
@@ -157,7 +157,7 @@ final class PropertyCacheFile {
     /**
      * Clears the cache.
      */
-    void clear() {
+    public void clear() {
         details.clear();
     }
 
@@ -179,7 +179,7 @@ final class PropertyCacheFile {
      * @param timestamp the timestamp of the file to check
      * @return whether the specified file has already been checked ok
      */
-    boolean isInCache(String uncheckedFileName, long timestamp) {
+    public boolean isInCache(String uncheckedFileName, long timestamp) {
         final String lastChecked = details.getProperty(uncheckedFileName);
         return lastChecked != null
             && lastChecked.equals(Long.toString(timestamp));
@@ -190,7 +190,7 @@ final class PropertyCacheFile {
      * @param checkedFileName name of the file that checked ok
      * @param timestamp the timestamp of the file
      */
-    void put(String checkedFileName, long timestamp) {
+    public void put(String checkedFileName, long timestamp) {
         details.setProperty(checkedFileName, Long.toString(timestamp));
     }
 
