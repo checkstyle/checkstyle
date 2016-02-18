@@ -498,7 +498,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param nameToFind the IDENT ast of the name we're looking for
          * @return whether it was found
          */
-        boolean containsFieldOrVariable(DetailAST nameToFind) {
+        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
             return containsFieldOrVariableDef(varIdents, nameToFind);
         }
 
@@ -682,7 +682,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        boolean containsFieldOrVariable(DetailAST nameToFind) {
+        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
             return containsFieldOrVariableDef(instanceMembers, nameToFind)
                     || containsFieldOrVariableDef(staticMembers, nameToFind);
         }

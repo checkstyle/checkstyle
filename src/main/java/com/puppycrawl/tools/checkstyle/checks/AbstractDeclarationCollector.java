@@ -257,7 +257,7 @@ public abstract class AbstractDeclarationCollector extends AbstractCheck {
          * @param nameToFind the name we're looking for
          * @return whether it was found
          */
-        boolean contains(String nameToFind) {
+        protected boolean contains(String nameToFind) {
             return varNames.contains(nameToFind);
         }
 
@@ -387,7 +387,7 @@ public abstract class AbstractDeclarationCollector extends AbstractCheck {
         }
 
         @Override
-        boolean contains(String nameToFind) {
+        protected boolean contains(String nameToFind) {
             return super.contains(nameToFind)
                     || instanceMembers.contains(nameToFind)
                     || instanceMethods.contains(nameToFind)

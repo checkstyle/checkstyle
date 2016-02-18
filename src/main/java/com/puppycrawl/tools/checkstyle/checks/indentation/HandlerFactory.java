@@ -178,7 +178,7 @@ public class HandlerFactory {
     }
 
     /** Clears cache of created handlers. */
-    void clearCreatedHandlers() {
+    public void clearCreatedHandlers() {
         createdHandlers.clear();
     }
 }
