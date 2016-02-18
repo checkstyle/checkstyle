@@ -96,14 +96,17 @@ public class MainTest {
             @Override
             public void checkAssertion() {
                 final String usage = String.format(Locale.ROOT, "Unrecognized option: -w%n"
-                    + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>%n"
-                    + "            file...%n"
-                    + " -c <arg>   Sets the check configuration file to use.%n"
-                    + " -f <arg>   Sets the output format. (plain|xml). Defaults to plain%n"
-                    + " -o <arg>   Sets the output file. Defaults to stdout%n"
-                    + " -p <arg>   Loads the properties file%n"
-                    + " -t         Print Abstract Syntax Tree(AST) of the file%n"
-                    + " -v         Print product version and exit%n");
+                    + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
+                    + " file...%n"
+                    + " -c <arg>                Sets the check configuration file to use.%n"
+                    + " -f <arg>                Sets the output format. (plain|xml). Defaults to"
+                    + " plain%n"
+                    + " -o <arg>                Sets the output file. Defaults to stdout%n"
+                    + " -p <arg>                Loads the properties file%n"
+                    + " -t,--tree               Print Abstract Syntax Tree(AST) of the file%n"
+                    + " -T,--treeWithComments   Print Abstract Syntax Tree(AST) of the file"
+                    + " including comments%n"
+                    + " -v                      Print product version and exit%n");
 
                 assertEquals(usage, systemOut.getLog());
                 assertEquals("", systemErr.getLog());
@@ -647,31 +650,31 @@ public class MainTest {
 
     @Test
     public void testPrintTreeOption() throws Exception {
-        final String expected = "PACKAGE_DEF -> package [1:0]\n"
-            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]\n"
-            + "|--DOT -> . [1:28]\n"
-            + "|   |--DOT -> . [1:22]\n"
-            + "|   |   |--DOT -> . [1:11]\n"
-            + "|   |   |   |--IDENT -> com [1:8]\n"
-            + "|   |   |   `--IDENT -> puppycrawl [1:12]\n"
-            + "|   |   `--IDENT -> tools [1:23]\n"
-            + "|   `--IDENT -> checkstyle [1:29]\n"
-            + "`--SEMI -> ; [1:39]\n"
-            + "CLASS_DEF -> CLASS_DEF [3:0]\n"
-            + "|--MODIFIERS -> MODIFIERS [3:0]\n"
-            + "|   `--LITERAL_PUBLIC -> public [3:0]\n"
-            + "|--LITERAL_CLASS -> class [3:7]\n"
-            + "|--IDENT -> InputMain [3:13]\n"
-            + "`--OBJBLOCK -> OBJBLOCK [3:23]\n"
-            + "    |--LCURLY -> { [3:23]\n"
-            + "    `--RCURLY -> } [4:0]\n"
-            + "CLASS_DEF -> CLASS_DEF [5:0]\n"
-            + "|--MODIFIERS -> MODIFIERS [5:0]\n"
-            + "|--LITERAL_CLASS -> class [5:0]\n"
-            + "|--IDENT -> InputMainInner [5:6]\n"
-            + "`--OBJBLOCK -> OBJBLOCK [5:21]\n"
-            + "    |--LCURLY -> { [5:21]\n"
-            + "    `--RCURLY -> } [6:0]\n";
+        final String expected = String.format(Locale.ROOT, "PACKAGE_DEF -> package [1:0]%n"
+            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]%n"
+            + "|--DOT -> . [1:28]%n"
+            + "|   |--DOT -> . [1:22]%n"
+            + "|   |   |--DOT -> . [1:11]%n"
+            + "|   |   |   |--IDENT -> com [1:8]%n"
+            + "|   |   |   `--IDENT -> puppycrawl [1:12]%n"
+            + "|   |   `--IDENT -> tools [1:23]%n"
+            + "|   `--IDENT -> checkstyle [1:29]%n"
+            + "`--SEMI -> ; [1:39]%n"
+            + "CLASS_DEF -> CLASS_DEF [3:0]%n"
+            + "|--MODIFIERS -> MODIFIERS [3:0]%n"
+            + "|   `--LITERAL_PUBLIC -> public [3:0]%n"
+            + "|--LITERAL_CLASS -> class [3:7]%n"
+            + "|--IDENT -> InputMain [3:13]%n"
+            + "`--OBJBLOCK -> OBJBLOCK [3:23]%n"
+            + "    |--LCURLY -> { [3:23]%n"
+            + "    `--RCURLY -> } [4:0]%n"
+            + "CLASS_DEF -> CLASS_DEF [5:0]%n"
+            + "|--MODIFIERS -> MODIFIERS [5:0]%n"
+            + "|--LITERAL_CLASS -> class [5:0]%n"
+            + "|--IDENT -> InputMainInner [5:6]%n"
+            + "`--OBJBLOCK -> OBJBLOCK [5:21]%n"
+            + "    |--LCURLY -> { [5:21]%n"
+            + "    `--RCURLY -> } [6:0]%n");
 
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
@@ -681,6 +684,47 @@ public class MainTest {
             }
         });
         Main.main("-t", getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testPrintTreeCommentsOption() throws Exception {
+        final String expected = String.format(Locale.ROOT, "PACKAGE_DEF -> package [1:0]%n"
+            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]%n"
+            + "|--DOT -> . [1:28]%n"
+            + "|   |--DOT -> . [1:22]%n"
+            + "|   |   |--DOT -> . [1:11]%n"
+            + "|   |   |   |--IDENT -> com [1:8]%n"
+            + "|   |   |   `--IDENT -> puppycrawl [1:12]%n"
+            + "|   |   `--IDENT -> tools [1:23]%n"
+            + "|   `--IDENT -> checkstyle [1:29]%n"
+            + "`--SEMI -> ; [1:39]%n"
+            + "CLASS_DEF -> CLASS_DEF [3:0]%n"
+            + "|--MODIFIERS -> MODIFIERS [3:0]%n"
+            + "|   |--BLOCK_COMMENT_BEGIN -> /* [2:0]%n"
+            + "|   |   |--COMMENT_CONTENT -> comment [2:2]%n"
+            + "|   |   `--BLOCK_COMMENT_END -> */ [2:8]%n"
+            + "|   `--LITERAL_PUBLIC -> public [3:0]%n"
+            + "|--LITERAL_CLASS -> class [3:7]%n"
+            + "|--IDENT -> InputMain [3:13]%n"
+            + "`--OBJBLOCK -> OBJBLOCK [3:23]%n"
+            + "    |--LCURLY -> { [3:23]%n"
+            + "    `--RCURLY -> } [4:0]%n"
+            + "CLASS_DEF -> CLASS_DEF [5:0]%n"
+            + "|--MODIFIERS -> MODIFIERS [5:0]%n"
+            + "|--LITERAL_CLASS -> class [5:0]%n"
+            + "|--IDENT -> InputMainInner [5:6]%n"
+            + "`--OBJBLOCK -> OBJBLOCK [5:21]%n"
+            + "    |--LCURLY -> { [5:21]%n"
+            + "    `--RCURLY -> } [6:0]%n");
+
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals(expected, systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+        Main.main("-T", getPath("InputMain.java"));
     }
 
     @Test

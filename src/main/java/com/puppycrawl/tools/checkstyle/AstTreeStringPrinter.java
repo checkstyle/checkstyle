@@ -45,6 +45,9 @@ public final class AstTreeStringPrinter {
     /** Tab pattern. */
     private static final Pattern TAB = Pattern.compile("\t");
 
+    /** OS specific line separator. */
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
     /** Prevent instances. */
     private AstTreeStringPrinter() {
         // no code
@@ -53,12 +56,14 @@ public final class AstTreeStringPrinter {
     /**
      * Parse a file and print the parse tree.
      * @param file the file to print.
+     * @param withComments true to include comments to AST
      * @return the AST of the file in String form.
      * @throws IOException if the file could not be read.
      * @throws CheckstyleException if the file is not a Java source.
      */
-    public static String printFileAst(File file) throws IOException, CheckstyleException {
-        return printTree(parseFile(file));
+    public static String printFileAst(File file, boolean withComments)
+            throws IOException, CheckstyleException {
+        return printTree(parseFile(file, withComments));
     }
 
     /**
@@ -73,7 +78,8 @@ public final class AstTreeStringPrinter {
             messageBuilder.append(getIndentation(node))
                     .append(TokenUtils.getTokenName(node.getType())).append(" -> ")
                     .append(excapeAllControlChars(node.getText())).append(" [")
-                    .append(node.getLineNo()).append(':').append(node.getColumnNo()).append("]\n")
+                    .append(node.getLineNo()).append(':').append(node.getColumnNo()).append(']')
+                    .append(LINE_SEPARATOR)
                     .append(printTree(node.getFirstChild()));
             node = node.getNextSibling();
         }
@@ -127,16 +133,24 @@ public final class AstTreeStringPrinter {
     /**
      * Parse a file and return the parse tree.
      * @param file the file to parse.
+     * @param withComments true to include comment nodes to the tree
      * @return the root node of the parse tree.
      * @throws IOException if the file could not be read.
      * @throws CheckstyleException if the file is not a Java source.
      */
-    private static DetailAST parseFile(File file) throws IOException, CheckstyleException {
+    private static DetailAST parseFile(File file, boolean withComments)
+            throws IOException, CheckstyleException {
         final FileText text = new FileText(file.getAbsoluteFile(),
             System.getProperty("file.encoding", "UTF-8"));
         final FileContents contents = new FileContents(text);
+        final DetailAST result;
         try {
-            return TreeWalker.parse(contents);
+            if (withComments) {
+                result = TreeWalker.parseWithComments(contents);
+            }
+            else {
+                result = TreeWalker.parse(contents);
+            }
         }
         catch (RecognitionException | TokenStreamException ex) {
             final String exceptionMsg = String.format(Locale.ROOT,
@@ -144,5 +158,7 @@ public final class AstTreeStringPrinter {
                 ex.getClass().getSimpleName(), file.getPath());
             throw new CheckstyleException(exceptionMsg, ex);
         }
+
+        return result;
     }
 }

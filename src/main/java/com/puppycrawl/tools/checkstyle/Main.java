@@ -49,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  **/
 public final class Main {
+    /** Width of CLI help option. */
+    private static final int HELP_WIDTH = 100;
+
     /** Exit code returned when execution finishes with {@link CheckstyleException}. */
     private static final int EXIT_WITH_CHECKSTYLE_EXCEPTION_CODE = -2;
 
@@ -69,6 +72,15 @@ public final class Main {
 
     /** Name for the option 't'. */
     private static final String OPTION_T_NAME = "t";
+
+    /** Name for the option '--tree'. */
+    private static final String OPTION_TREE_NAME = "tree";
+
+    /** Name for the option '-T'. */
+    private static final String OPTION_CAPITAL_T_NAME = "T";
+
+    /** Name for the option '--treeWithComments'. */
+    private static final String OPTION_TREE_COMMENT_NAME = "treeWithComments";
 
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
@@ -120,11 +132,15 @@ public final class Main {
                 else {
                     // create config helper object
                     final CliOptions config = convertCliToPojo(commandLine, filesToProcess);
-
                     if (commandLine.hasOption(OPTION_T_NAME)) {
                         // print AST
                         final File file = config.files.get(0);
-                        final String stringAst = AstTreeStringPrinter.printFileAst(file);
+                        final String stringAst = AstTreeStringPrinter.printFileAst(file, false);
+                        System.out.print(stringAst);
+                    }
+                    else if (commandLine.hasOption(OPTION_CAPITAL_T_NAME)) {
+                        final File file = config.files.get(0);
+                        final String stringAst = AstTreeStringPrinter.printFileAst(file, true);
                         System.out.print(stringAst);
                     }
                     else {
@@ -188,7 +204,7 @@ public final class Main {
             result.add("Files to process must be specified, found 0.");
         }
         // ensure there is no conflicting options
-        else if (cmdLine.hasOption(OPTION_T_NAME)) {
+        else if (cmdLine.hasOption(OPTION_T_NAME) || cmdLine.hasOption(OPTION_CAPITAL_T_NAME)) {
             if (cmdLine.hasOption(OPTION_C_NAME) || cmdLine.hasOption(OPTION_P_NAME)
                     || cmdLine.hasOption(OPTION_F_NAME) || cmdLine.hasOption(OPTION_O_NAME)) {
                 result.add("Option '-t' cannot be used with other options.");
@@ -430,6 +446,7 @@ public final class Main {
     /** Prints the usage information. **/
     private static void printUsage() {
         final HelpFormatter formatter = new HelpFormatter();
+        formatter.setWidth(HELP_WIDTH);
         formatter.printHelp(String.format("java %s [options] -c <config.xml> file...",
                 Main.class.getName()), buildOptions());
     }
@@ -447,7 +464,10 @@ public final class Main {
                 "Sets the output format. (%s|%s). Defaults to %s",
                 PLAIN_FORMAT_NAME, XML_FORMAT_NAME, PLAIN_FORMAT_NAME));
         options.addOption(OPTION_V_NAME, false, "Print product version and exit");
-        options.addOption(OPTION_T_NAME, false, "Print Abstract Syntax Tree(AST) of the file");
+        options.addOption(OPTION_T_NAME, OPTION_TREE_NAME, false,
+                "Print Abstract Syntax Tree(AST) of the file");
+        options.addOption(OPTION_CAPITAL_T_NAME, OPTION_TREE_COMMENT_NAME, false,
+                "Print Abstract Syntax Tree(AST) of the file including comments");
         return options;
     }
 

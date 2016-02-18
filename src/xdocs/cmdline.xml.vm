@@ -38,7 +38,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
-     [-t] [-v] \
+     [-t | --tree] [-T | --treeWithComments] [-v] \
      file...
       </source>
       </p>
@@ -74,7 +74,11 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           to.
         </li>
         <li>
-          <code>-t</code> - print Abstract Syntax Tree(AST) of the checked file. The option
+          <code>-t, --tree</code> - print Abstract Syntax Tree(AST) of the checked file. The option
+          cannot be used other options and requires exactly one file to run on to be specified.
+        </li>
+        <li>
+          <code>-T, --treeWithComments</code> - print Abstract Syntax Tree(AST) with comment nodes of the checked file. The option
           cannot be used other options and requires exactly one file to run on to be specified.
         </li>
         <li>

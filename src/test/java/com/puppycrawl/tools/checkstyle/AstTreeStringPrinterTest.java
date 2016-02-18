@@ -23,14 +23,21 @@ import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClas
 
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class AstTreeStringPrinterTest {
 
     private static String getNonCompilablePath(String filename) {
         return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/" + filename;
+    }
+
+    private static String getPath(String filename) {
+        return "src/test/resources/com/puppycrawl/tools/checkstyle/astprinter/" + filename;
     }
 
     @Test
@@ -41,6 +48,26 @@ public class AstTreeStringPrinterTest {
     @Test(expected = CheckstyleException.class)
     public void testParseFileThrowable() throws Exception {
         AstTreeStringPrinter.printFileAst(
-            new File(getNonCompilablePath("InputAstTreeStringPrinter.java")));
+            new File(getNonCompilablePath("InputAstTreeStringPrinter.java")), false);
+    }
+
+    @Test
+    public void testParseFile() throws Exception {
+        final String actual = AstTreeStringPrinter.printFileAst(
+            new File(getPath("InputAstTreeStringPrinterComments.java")), false);
+        final String expected = Files.toString(new File(
+                getPath("expectedInputAstTreeStringPrinter.txt")), Charsets.UTF_8);
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testParseFileWithComments() throws Exception {
+        final String actual = AstTreeStringPrinter.printFileAst(
+            new File(getPath("InputAstTreeStringPrinterComments.java")), true)
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = Files.toString(new File(
+                getPath("expectedInputAstTreeStringPrinterComments.txt")), Charsets.UTF_8)
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        Assert.assertEquals(expected, actual);
     }
 }

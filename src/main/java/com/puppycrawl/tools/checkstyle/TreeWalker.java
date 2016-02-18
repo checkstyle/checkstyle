@@ -443,6 +443,18 @@ public final class TreeWalker
         return (DetailAST) parser.getAST();
     }
 
+    /**
+     * Parses Java source file. Result AST contains comment nodes.
+     * @param contents source file content
+     * @return DetailAST tree
+     * @throws RecognitionException if parser failed
+     * @throws TokenStreamException if lexer failed
+     */
+    public static DetailAST parseWithComments(FileContents contents)
+            throws RecognitionException, TokenStreamException {
+        return appendHiddenCommentNodes(parse(contents));
+    }
+
     @Override
     public void destroy() {
         for (AbstractCheck check : ordinaryChecks) {
