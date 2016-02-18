@@ -96,7 +96,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
         level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndentation());
 
         if (!level.isAcceptable(rcurlyPos) && isOnStartOfLine(rcurly)) {
-            logError(rcurly, "rcurly", rcurlyPos, curlyIndent());
+            logError(rcurly, "rcurly", rcurlyPos, level);
         }
     }
 
