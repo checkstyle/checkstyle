@@ -22,14 +22,25 @@ public class InputInvalidThrowsIndent { //indent:0 exp:0
 
     // This should pass for our reconfigured throwsIndent test. //indent:4 exp:4
     private void myFunc() //indent:4 exp:4
-            throws Exception //indent:12 exp:12
+            throws Exception //indent:12 exp:>=12
     { //indent:4 exp:4
     } //indent:4 exp:4
 
     // This is the out of the box default configuration, but should fail //indent:4 exp:4
     // for our reconfigured test. //indent:4 exp:4
     private void myFunc2() //indent:4 exp:4
-        throws Exception //indent:8 exp:8
+            throws Exception //indent:12 exp:>=12
+    { //indent:4 exp:4
+    } //indent:4 exp:4
+
+    private void myFunc3() //indent:4 exp:4
+            throws //indent:12 exp:>=12
+            Exception //indent:12 exp:>=12
+    { //indent:4 exp:4
+    } //indent:4 exp:4
+
+    private void myFunc4() throws //indent:4 exp:4
+                Exception //indent:16 exp:>=12
     { //indent:4 exp:4
     } //indent:4 exp:4
 } //indent:0 exp:0

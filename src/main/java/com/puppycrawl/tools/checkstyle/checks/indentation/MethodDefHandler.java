@@ -57,9 +57,59 @@ public class MethodDefHandler extends BlockParentHandler {
         }
     }
 
+    /**
+     * Check the indentation level of the throws clause.
+     */
+    private void checkThrows() {
+        final DetailAST throwsAst = getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
+
+        if (throwsAst != null) {
+            checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getIndentCheck()
+                    .getThrowsIndent(), getLineStart(getMethodDefLineStart(getMainAst())),
+                    !isOnStartOfLine(throwsAst));
+        }
+    }
+
+    /**
+     * Gets the start line of the method, excluding any annotations. This is required because the
+     * current {@link TokenTypes#METHOD_DEF} may not always be the start as seen in
+     * https://github.com/checkstyle/checkstyle/issues/3145.
+     *
+     * @param mainAst
+     *            The method definition ast.
+     * @return The start column position of the method.
+     */
+    private int getMethodDefLineStart(DetailAST mainAst) {
+        // get first type position
+        int lineStart = mainAst.findFirstToken(TokenTypes.IDENT).getLineNo();
+
+        // check if there is a type before the indent
+        final DetailAST typeNode = mainAst.findFirstToken(TokenTypes.TYPE);
+        if (typeNode != null) {
+            lineStart = getFirstLine(lineStart, typeNode);
+        }
+
+        // check if there is a modifier before the type
+        for (DetailAST node = mainAst.findFirstToken(TokenTypes.MODIFIERS).getFirstChild();
+                node != null;
+                node = node.getNextSibling()) {
+            // skip annotations as we check them else where as outside the method
+            if (node.getType() == TokenTypes.ANNOTATION) {
+                continue;
+            }
+
+            if (node.getLineNo() < lineStart) {
+                lineStart = node.getLineNo();
+            }
+        }
+
+        return lineStart;
+    }
+
     @Override
     public void checkIndentation() {
         checkModifiers();
+        checkThrows();
 
         checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
         if (getLCurly() == null) {

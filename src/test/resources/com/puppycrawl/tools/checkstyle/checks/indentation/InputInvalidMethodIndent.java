@@ -161,7 +161,7 @@ public class InputInvalidMethodIndent { //indent:0 exp:0
     } //indent:4 exp:4
 
     private void myFunc() //indent:4 exp:4
-      throws Exception //indent:6 exp:6
+        throws Exception //indent:8 exp:8
     { //indent:4 exp:4
     } //indent:4 exp:4
 

@@ -74,6 +74,20 @@ public class LineWrappingHandler {
      * @param indentLevel Indentation all wrapped lines should use.
      */
     public void checkIndentation(DetailAST firstNode, DetailAST lastNode, int indentLevel) {
+        checkIndentation(firstNode, lastNode, indentLevel, -1, true);
+    }
+
+    /**
+     * Checks line wrapping into expressions and definitions.
+     *
+     * @param firstNode First node to start examining.
+     * @param lastNode Last node to examine inclusively.
+     * @param indentLevel Indentation all wrapped lines should use.
+     * @param startIndent Indentation first line before wrapped lines used.
+     * @param ignoreFirstLine Test if first line's indentation should be checked or not.
+     */
+    public void checkIndentation(DetailAST firstNode, DetailAST lastNode, int indentLevel,
+            int startIndent, boolean ignoreFirstLine) {
         final NavigableMap<Integer, DetailAST> firstNodesOnLines = collectFirstNodes(firstNode,
                 lastNode);
 
@@ -82,9 +96,18 @@ public class LineWrappingHandler {
             checkAnnotationIndentation(firstLineNode, firstNodesOnLines, indentLevel);
         }
 
-        // First node should be removed because it was already checked before.
-        firstNodesOnLines.remove(firstNodesOnLines.firstKey());
-        final int firstNodeIndent = getLineStart(firstLineNode);
+        if (ignoreFirstLine) {
+            // First node should be removed because it was already checked before.
+            firstNodesOnLines.remove(firstNodesOnLines.firstKey());
+        }
+
+        final int firstNodeIndent;
+        if (startIndent == -1) {
+            firstNodeIndent = getLineStart(firstLineNode);
+        }
+        else {
+            firstNodeIndent = startIndent;
+        }
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {

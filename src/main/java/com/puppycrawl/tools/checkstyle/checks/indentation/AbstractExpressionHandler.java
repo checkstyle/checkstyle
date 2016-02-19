@@ -215,8 +215,18 @@ public abstract class AbstractExpressionHandler {
      * @return the start of the line for the given expression
      */
     protected final int getLineStart(DetailAST ast) {
-        final String line = indentCheck.getLine(ast.getLineNo() - 1);
-        return getLineStart(line);
+        return getLineStart(ast.getLineNo());
+    }
+
+    /**
+     * Get the start of the line for the given line number.
+     *
+     * @param lineNo   the line number to find the start for
+     *
+     * @return the start of the line for the given expression
+     */
+    protected final int getLineStart(int lineNo) {
+        return getLineStart(indentCheck.getLine(lineNo - 1));
     }
 
     /**
@@ -367,6 +377,22 @@ public abstract class AbstractExpressionHandler {
      */
     protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode) {
         indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode);
+    }
+
+    /**
+     * Checks indentation on wrapped lines between and including
+     * {@code firstNode} and {@code lastNode}.
+     *
+     * @param firstNode First node to start examining.
+     * @param lastNode Last node to examine inclusively.
+     * @param wrappedIndentLevel Indentation all wrapped lines should use.
+     * @param startIndent Indentation first line before wrapped lines used.
+     * @param ignoreFirstLine Test if first line's indentation should be checked or not.
+     */
+    protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode,
+            int wrappedIndentLevel, int startIndent, boolean ignoreFirstLine) {
+        indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode,
+                wrappedIndentLevel, startIndent, ignoreFirstLine);
     }
 
     /**
