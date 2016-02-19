@@ -130,39 +130,44 @@ public class AnnotationLocationCheck extends AbstractCheck {
     public static final String MSG_KEY_ANNOTATION_LOCATION = "annotation.location";
 
     /**
-     * Some javadoc.
+     * If true, it allows single prameterless annotation to be located on the same line as
+     * target element.
      */
     private boolean allowSamelineSingleParameterlessAnnotation = true;
 
     /**
-     * Some javadoc.
+     * If true, it allows parameterized annotation to be located on the same line as
+     * target element.
      */
     private boolean allowSamelineParameterizedAnnotation;
 
     /**
-     * Some javadoc.
+     * If true, it allows annotation to be located on the same line as
+     * target element.
      */
     private boolean allowSamelineMultipleAnnotations;
 
     /**
-     * Some javadoc.
-     * @param allow Some javadoc.
+     * Sets if allow same line single parameterless annotation.
+     * @param allow User's value of allowSamelineSingleParameterlessAnnotation.
      */
     public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow) {
         allowSamelineSingleParameterlessAnnotation = allow;
     }
 
     /**
-     * Some javadoc.
-     * @param allow Some javadoc.
+     * Sets if allow parameterized annotation to be located on the same line as
+     * target element.
+     * @param allow User's value of allowSamelineParameterizedAnnotation.
      */
     public final void setAllowSamelineParameterizedAnnotation(boolean allow) {
         allowSamelineParameterizedAnnotation = allow;
     }
 
     /**
-     * Some javadoc.
-     * @param allow Some javadoc.
+     * Sets if allow annotation to be located on the same line as
+     * target element.
+     * @param allow User's value of allowSamelineMultipleAnnotations.
      */
     public final void setAllowSamelineMultipleAnnotations(boolean allow) {
         allowSamelineMultipleAnnotations = allow;
