@@ -94,10 +94,7 @@ public class IfHandler extends BlockParentHandler {
     public void checkIndentation() {
         super.checkIndentation();
         checkCondExpr();
-        final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst(),
-                    getIfStatementRightParen(getMainAst()));
-        lineWrap.checkIndentation();
+        checkWrappingIndentation(getMainAst(), getIfStatementRightParen(getMainAst()));
     }
 
     /**

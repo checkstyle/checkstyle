@@ -344,7 +344,6 @@ public abstract class AbstractExpressionHandler {
      * @param indentLevel   the indentation level
      * @param mustMatch     whether or not the indentation level must match
      */
-
     private void checkLineIndent(int lineNum, int colNum,
         IndentLevel indentLevel, boolean mustMatch) {
         final String line = indentCheck.getLine(lineNum - 1);
@@ -357,6 +356,17 @@ public abstract class AbstractExpressionHandler {
                 || !mustMatch && colNum == start && indentLevel.isGreaterThan(start)) {
             logChildError(lineNum, start, indentLevel);
         }
+    }
+
+    /**
+     * Checks indentation on wrapped lines between and including
+     * {@code firstNode} and {@code lastNode}.
+     *
+     * @param firstNode First node to start examining.
+     * @param lastNode Last node to examine inclusively.
+     */
+    protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode) {
+        indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode);
     }
 
     /**

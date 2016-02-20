@@ -61,10 +61,7 @@ public class MethodDefHandler extends BlockParentHandler {
     public void checkIndentation() {
         checkModifiers();
 
-        final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst(),
-                getMethodDefParamRightParen(getMainAst()));
-        lineWrap.checkIndentation();
+        checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
         if (getLCurly() == null) {
             // abstract method def -- no body
             return;

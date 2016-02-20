@@ -53,10 +53,8 @@ public class SynchronizedHandler extends BlockParentHandler {
         if (!methodModifier) {
             super.checkIndentation();
             checkSynchronizedExpr();
-            final LineWrappingHandler lineWrap =
-                    new LineWrappingHandler(getIndentCheck(), getMainAst(),
-                            getSynchronizedStatementRightParen(getMainAst()));
-            lineWrap.checkIndentation();
+            checkWrappingIndentation(getMainAst(),
+                    getSynchronizedStatementRightParen(getMainAst()));
         }
     }
 
