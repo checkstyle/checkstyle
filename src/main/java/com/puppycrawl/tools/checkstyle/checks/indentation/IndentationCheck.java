@@ -112,6 +112,9 @@ public class IndentationCheck extends AbstractCheck {
     /** Handlers currently in use. */
     private final Deque<AbstractExpressionHandler> handlers = new ArrayDeque<>();
 
+    /** Instance of line wrapping handler to use. */
+    private final LineWrappingHandler lineWrappingHandler = new LineWrappingHandler(this);
+
     /** Factory from which handlers are distributed. */
     private final HandlerFactory handlerFactory = new HandlerFactory();
 
@@ -328,6 +331,15 @@ public class IndentationCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         handlers.pop();
+    }
+
+    /**
+     * Accessor for the line wrapping handler.
+     *
+     * @return the line wrapping handler
+     */
+    public LineWrappingHandler getLineWrappingHandler() {
+        return lineWrappingHandler;
     }
 
     /**

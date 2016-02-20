@@ -72,10 +72,7 @@ public class ForHandler extends BlockParentHandler {
     public void checkIndentation() {
         checkForParams();
         super.checkIndentation();
-        final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst(),
-                getForLoopRightParen(getMainAst()));
-        lineWrap.checkIndentation();
+        checkWrappingIndentation(getMainAst(), getForLoopRightParen(getMainAst()));
     }
 
     /**

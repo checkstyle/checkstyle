@@ -80,9 +80,7 @@ public class ClassDefHandler extends BlockParentHandler {
             checkModifiers();
         }
 
-        final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst(), getMainAst().getLastChild());
-        lineWrap.checkIndentation();
+        checkWrappingIndentation(getMainAst(), getMainAst().getLastChild());
         super.checkIndentation();
     }
 

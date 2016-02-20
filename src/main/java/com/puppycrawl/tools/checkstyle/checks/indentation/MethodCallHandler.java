@@ -168,10 +168,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             false, true);
 
         checkRParen(lparen, rparen);
-        final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst(),
-                    getMethodCallLastNode(getMainAst()));
-        lineWrap.checkIndentation();
+        checkWrappingIndentation(getMainAst(), getMethodCallLastNode(getMainAst()));
     }
 
     @Override

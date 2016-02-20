@@ -50,11 +50,11 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         else {
             checkModifiers();
         }
-        final LineWrappingHandler lineWrap =
-            new LineWrappingHandler(getIndentCheck(), getMainAst(),
-                getVarDefStatementSemicolon(getMainAst()));
-        if (lineWrap.getLastNode() != null && !isArrayDeclaration(getMainAst())) {
-            lineWrap.checkIndentation();
+        final DetailAST firstNode = getMainAst();
+        final DetailAST lastNode = getVarDefStatementSemicolon(firstNode);
+
+        if (lastNode != null && !isArrayDeclaration(firstNode)) {
+            checkWrappingIndentation(firstNode, lastNode);
         }
     }
 

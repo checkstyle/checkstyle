@@ -46,60 +46,40 @@ public class LineWrappingHandler {
     private final IndentationCheck indentCheck;
 
     /**
-     * Root node for current expression.
-     */
-    private final DetailAST firstNode;
-
-    /**
-     * Last node for current expression.
-     */
-    private final DetailAST lastNode;
-
-    /**
-     * User's value of line wrapping indentation.
-     */
-    private final int indentLevel;
-
-    /**
-     * Force strict condition in line wrapping case.
-     */
-    private final boolean forceStrictCondition;
-
-    /**
      * Sets values of class field, finds last node and calculates indentation level.
      *
      * @param instance
      *            instance of IndentationCheck.
-     * @param firstNode
-     *            root node for current expression.
-     * @param lastNode
-     *            last node for current expression.
      */
-    public LineWrappingHandler(IndentationCheck instance, DetailAST firstNode, DetailAST lastNode) {
+    public LineWrappingHandler(IndentationCheck instance) {
         indentCheck = instance;
-        this.firstNode = firstNode;
-        this.lastNode = lastNode;
-        indentLevel = indentCheck.getLineWrappingIndentation();
-        forceStrictCondition = indentCheck.isForceStrictCondition();
     }
 
     /**
-     *  Getter for lastNode field.
-     *  @return lastNode field
+     * Checks line wrapping into expressions and definitions using property
+     * 'lineWrappingIndentation'.
+     *
+     * @param firstNode First node to start examining.
+     * @param lastNode Last node to examine inclusively.
      */
-    protected final DetailAST getLastNode() {
-        return lastNode;
+    public void checkIndentation(DetailAST firstNode, DetailAST lastNode) {
+        checkIndentation(firstNode, lastNode, indentCheck.getLineWrappingIndentation());
     }
 
     /**
      * Checks line wrapping into expressions and definitions.
+     *
+     * @param firstNode First node to start examining.
+     * @param lastNode Last node to examine inclusively.
+     * @param indentLevel Indentation all wrapped lines should use.
      */
-    public void checkIndentation() {
-        final NavigableMap<Integer, DetailAST> firstNodesOnLines = collectFirstNodes();
+    public void checkIndentation(DetailAST firstNode, DetailAST lastNode, int indentLevel) {
+        final NavigableMap<Integer, DetailAST> firstNodesOnLines = collectFirstNodes(firstNode,
+                lastNode);
 
         final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
         if (firstLineNode.getType() == TokenTypes.AT) {
-            checkAnnotationIndentation(firstLineNode, firstNodesOnLines);
+            checkAnnotationIndentation(firstLineNode, firstNodesOnLines, indentLevel);
         }
 
         // First node should be removed because it was already checked before.
@@ -153,10 +133,13 @@ public class LineWrappingHandler {
     /**
      * Finds first nodes on line and puts them into Map.
      *
+     * @param firstNode First node to start examining.
+     * @param lastNode Last node to examine inclusively.
      * @return NavigableMap which contains lines numbers as a key and first
      *         nodes on lines as a values.
      */
-    private NavigableMap<Integer, DetailAST> collectFirstNodes() {
+    private NavigableMap<Integer, DetailAST> collectFirstNodes(DetailAST firstNode,
+            DetailAST lastNode) {
         final NavigableMap<Integer, DetailAST> result = new TreeMap<>();
 
         result.put(firstNode.getLineNo(), firstNode);
@@ -205,9 +188,10 @@ public class LineWrappingHandler {
      * @param atNode at-clause node.
      * @param firstNodesOnLines map which contains
      *     first nodes as values and line numbers as keys.
+     * @param indentLevel line wrapping indentation.
      */
     private void checkAnnotationIndentation(DetailAST atNode,
-            NavigableMap<Integer, DetailAST> firstNodesOnLines) {
+            NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
         final int firstNodeIndent = expandedTabsColumnNo(atNode);
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
@@ -278,7 +262,7 @@ public class LineWrappingHandler {
      *            correct indentation.
      */
     private void logWarningMessage(DetailAST currentNode, int currentIndent) {
-        if (forceStrictCondition) {
+        if (indentCheck.isForceStrictCondition()) {
             if (expandedTabsColumnNo(currentNode) != currentIndent) {
                 indentCheck.indentationLog(currentNode.getLineNo(),
                         IndentationCheck.MSG_ERROR, currentNode.getText(),
