@@ -95,8 +95,6 @@
     <exclude name="AtLeastOneConstructor"/>
     <!-- deprecated by PMD -->
     <exclude name="BooleanInversion"/>
-    <!-- till #957 -->
-    <exclude name="DefaultPackage"/>
     <!-- that rule is too buggy, too much false positives-->
     <exclude name="DataflowAnomalyAnalysis"/>
     <!-- turning local variables to fields create design problems and extend scope of variable -->
@@ -107,6 +105,12 @@
     <exclude name="AvoidLiteralsInIfCondition"/>
     <!-- Checkstyle is not thread safe -->
     <exclude name="UseConcurrentHashMap"/>
+  </rule>
+  <rule ref="rulesets/java/controversial.xml/DefaultPackage">
+    <properties>
+      <!--  -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='DetectorOptions' or @Image='NeverSuppress']"/>
+    </properties>
   </rule>
   <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType">
     <properties>
