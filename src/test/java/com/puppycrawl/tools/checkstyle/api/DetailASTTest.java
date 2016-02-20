@@ -24,6 +24,7 @@ import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Locale;
 
@@ -36,8 +37,16 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
  * @author Oliver Burn
  */
 public class DetailASTTest {
+    private static Method getSetParentMethod() throws Exception {
+        final Class<DetailAST> detailAstClass = DetailAST.class;
+        final Method setParentMethod =
+            detailAstClass.getDeclaredMethod("setParent", DetailAST.class);
+        setParentMethod.setAccessible(true);
+        return setParentMethod;
+    }
+
     @Test
-    public void testGetChildCount() {
+    public void testGetChildCount() throws Exception {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
         final DetailAST firstLevelB = new DetailAST();
@@ -45,13 +54,14 @@ public class DetailASTTest {
 
         root.setFirstChild(firstLevelA);
 
-        firstLevelA.setParent(root);
+        final Method setParentMethod = getSetParentMethod();
+        setParentMethod.invoke(firstLevelA, root);
         firstLevelA.setFirstChild(secondLevelA);
         firstLevelA.setNextSibling(firstLevelB);
 
-        firstLevelB.setParent(root);
+        setParentMethod.invoke(firstLevelB, root);
 
-        secondLevelA.setParent(firstLevelA);
+        setParentMethod.invoke(secondLevelA, root);
 
         assertEquals(0, secondLevelA.getChildCount());
         assertEquals(0, firstLevelB.getChildCount());
@@ -66,7 +76,7 @@ public class DetailASTTest {
     }
 
     @Test
-    public void testSetSiblingNull() {
+    public void testSetSiblingNull() throws Exception {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
 
@@ -74,7 +84,7 @@ public class DetailASTTest {
 
         assertEquals(1, root.getChildCount());
 
-        firstLevelA.setParent(root);
+        getSetParentMethod().invoke(firstLevelA, root);
         firstLevelA.addPreviousSibling(null);
         firstLevelA.addNextSibling(null);
 
@@ -82,7 +92,7 @@ public class DetailASTTest {
     }
 
     @Test
-    public void testInsertSiblingBetween() {
+    public void testInsertSiblingBetween() throws Exception {
         final DetailAST root = new DetailAST();
         final DetailAST firstLevelA = new DetailAST();
         final DetailAST firstLevelB = new DetailAST();
@@ -91,17 +101,18 @@ public class DetailASTTest {
         assertEquals(0, root.getChildCount());
 
         root.setFirstChild(firstLevelA);
-        firstLevelA.setParent(root);
+        final Method setParentMethod = getSetParentMethod();
+        setParentMethod.invoke(firstLevelA, root);
 
         assertEquals(1, root.getChildCount());
 
         firstLevelA.addNextSibling(firstLevelB);
-        firstLevelB.setParent(root);
+        setParentMethod.invoke(firstLevelB, root);
 
         assertEquals(firstLevelB, firstLevelA.getNextSibling());
 
         firstLevelA.addNextSibling(firstLevelC);
-        firstLevelC.setParent(root);
+        setParentMethod.invoke(firstLevelC, root);
 
         assertEquals(firstLevelC, firstLevelA.getNextSibling());
     }

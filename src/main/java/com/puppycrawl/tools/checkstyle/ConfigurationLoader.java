@@ -38,7 +38,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
@@ -247,8 +246,6 @@ public final class ConfigurationLoader {
      * Replaces {@code ${xxx}} style constructions in the given value
      * with the string value of the corresponding data types.
      *
-     * <p>The method is package visible to facilitate testing.
-     *
      * <p>Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      *
@@ -266,8 +263,7 @@ public final class ConfigurationLoader {
      *                           {@code ${} without a closing
      *                           {@code }}
      */
-    @VisibleForTesting
-    static String replaceProperties(
+    private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
         throws CheckstyleException {
         if (value == null) {

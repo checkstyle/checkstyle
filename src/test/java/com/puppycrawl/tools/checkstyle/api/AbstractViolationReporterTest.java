@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
 
+import java.lang.reflect.Method;
 import java.util.SortedSet;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -37,16 +38,25 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 public class AbstractViolationReporterTest extends BaseCheckTestSupport {
     private final AbstractCheck emptyCheck = new EmptyCheck();
 
-    @Test
-    public void testGetMessageBundleWithPackage() {
-        assertEquals("com.mycompany.checks.messages",
-            AbstractViolationReporter.getMessageBundle("com.mycompany.checks.MyCoolCheck"));
+    private static Method getGetMessageBundleMethod() throws Exception {
+        final Class<AbstractViolationReporter> abstractViolationReporterClass =
+            AbstractViolationReporter.class;
+        final Method getMessageBundleMethod =
+            abstractViolationReporterClass.getDeclaredMethod("getMessageBundle", String.class);
+        getMessageBundleMethod.setAccessible(true);
+        return getMessageBundleMethod;
     }
 
     @Test
-    public void testGetMessageBundleWithoutPackage() {
+    public void testGetMessageBundleWithPackage() throws Exception {
+        assertEquals("com.mycompany.checks.messages",
+            getGetMessageBundleMethod().invoke(null, "com.mycompany.checks.MyCoolCheck"));
+    }
+
+    @Test
+    public void testGetMessageBundleWithoutPackage() throws Exception {
         assertEquals("messages",
-            AbstractViolationReporter.getMessageBundle("MyCoolCheck"));
+            getGetMessageBundleMethod().invoke(null, "MyCoolCheck"));
     }
 
     @Test

@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.IOError;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
 import java.nio.file.InvalidPathException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -59,8 +60,22 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
+    private static Method getFireAuditFinished() throws NoSuchMethodException {
+        final Class<Checker> checkerClass = Checker.class;
+        final Method fireAuditFinished = checkerClass.getDeclaredMethod("fireAuditFinished");
+        fireAuditFinished.setAccessible(true);
+        return fireAuditFinished;
+    }
+
+    private static Method getFireAuditStartedMethod() throws NoSuchMethodException {
+        final Class<Checker> checkerClass = Checker.class;
+        final Method fireAuditStarted = checkerClass.getDeclaredMethod("fireAuditStarted");
+        fireAuditStarted.setAccessible(true);
+        return fireAuditStarted;
+    }
+
     @Test
-    public void testDestroy() {
+    public void testDestroy() throws Exception {
         final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
@@ -71,8 +86,8 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.destroy();
 
         // Let's try fire some events
-        checker.fireAuditStarted();
-        checker.fireAuditFinished();
+        getFireAuditStartedMethod().invoke(checker);
+        getFireAuditFinished().invoke(checker);
         checker.fireFileStarted("Some File Name");
         checker.fireFileFinished("Some File Name");
 
@@ -86,17 +101,17 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAddListener() {
+    public void testAddListener() throws Exception {
         final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
         // Let's try fire some events
-        checker.fireAuditStarted();
+        getFireAuditStartedMethod().invoke(checker);
         assertTrue("Checker.fireAuditStarted() doesn't call listener", auditAdapter.wasCalled());
 
         auditAdapter.resetListener();
-        checker.fireAuditFinished();
+        getFireAuditFinished().invoke(checker);
         assertTrue("Checker.fireAuditFinished() doesn't call listener", auditAdapter.wasCalled());
 
         auditAdapter.resetListener();
@@ -116,7 +131,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testRemoveListener() {
+    public void testRemoveListener() throws Exception {
         final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
@@ -125,13 +140,13 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.removeListener(auditAdapter);
 
         // Let's try fire some events
-        checker.fireAuditStarted();
+        getFireAuditStartedMethod().invoke(checker);
         assertTrue("Checker.fireAuditStarted() doesn't call listener", aa2.wasCalled());
         assertFalse("Checker.fireAuditStarted() does call removed listener",
                 auditAdapter.wasCalled());
 
         aa2.resetListener();
-        checker.fireAuditFinished();
+        getFireAuditFinished().invoke(checker);
         assertTrue("Checker.fireAuditFinished() doesn't call listener", aa2.wasCalled());
         assertFalse("Checker.fireAuditFinished() does call removed listener",
                 auditAdapter.wasCalled());

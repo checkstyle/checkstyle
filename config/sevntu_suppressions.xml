@@ -44,5 +44,5 @@
     See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414-->
     <suppress checks="CustomDeclarationOrder"
               files="AbstractViolationReporter.java"
-              lines="155,167"/>
+              lines="152,164"/>
 </suppressions>

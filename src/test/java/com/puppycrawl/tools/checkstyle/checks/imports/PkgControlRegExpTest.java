@@ -39,12 +39,6 @@ public class PkgControlRegExpTest {
     }
 
     @Test
-    public void testFullPkg() {
-        assertEquals("com.kazgroup.courtlink", pcRoot.getFullPackage());
-        assertEquals("com.kazgroup.courtlink.common", pcCommon.getFullPackage());
-    }
-
-    @Test
     public void testLocateFinest() {
         assertEquals(pcRoot, pcRoot
                 .locateFinest("com.kazgroup.courtlink.domain"));

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.Deque;
 import java.util.List;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 
 /**
@@ -68,14 +67,6 @@ class PkgControl {
      */
     protected void addGuard(final Guard thug) {
         guards.addFirst(thug);
-    }
-
-    /**
-     * @return the full package name represented by the node.
-     */
-    @VisibleForTesting
-    String getFullPackage() {
-        return fullPackage;
     }
 
     /**

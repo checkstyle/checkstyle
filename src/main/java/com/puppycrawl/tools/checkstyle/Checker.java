@@ -32,7 +32,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -358,8 +357,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /** Notify all listeners about the audit start. */
-    @VisibleForTesting
-    void fireAuditStarted() {
+    private void fireAuditStarted() {
         final AuditEvent event = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
             listener.auditStarted(event);
@@ -367,8 +365,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /** Notify all listeners about the audit end. */
-    @VisibleForTesting
-    void fireAuditFinished() {
+    private void fireAuditFinished() {
         final AuditEvent event = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
             listener.auditFinished(event);
