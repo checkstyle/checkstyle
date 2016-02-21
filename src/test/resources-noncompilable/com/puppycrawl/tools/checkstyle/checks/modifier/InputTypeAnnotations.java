@@ -1,4 +1,3 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.io.File;
@@ -6,13 +5,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class InputTypeAnnotations {
+public class InputTypeAnnotations extends MyClass {
 
     // Simple type definitions with type annotations
     private @TypeAnnotation String hello = "Hello, World!";
@@ -78,9 +76,52 @@ public class InputTypeAnnotations {
     class Nested { }
 
     class T { }
+
+    // Type annotation on method return type
+    @Override
+    public @TypeAnnotation String toString() { return ""; }
+
+    @Override
+    @TypeAnnotation public int hashCode() { return 1; }
+
+    public @TypeAnnotation int foo8() { return 1; }
+
+    public @TypeAnnotation boolean equals(Object obj) { return super.equals(obj); }
+
+//    @TypeAnnotation void foo9() { } <-- Compiletime error: void type cannot be annotated with type annotation
+
+    @Override
+    void foo10() {
+        super.foo10();
+    }
 }
 
-@Target({ElementType.FIELD, ElementType.LOCAL_VARIABLE, ElementType.PARAMETER,
-         ElementType.TYPE_PARAMETER, ElementType.TYPE_USE})
+class MyClass {
+
+    // It is annotation on method, but not on type!
+    @MethodAnnotation void foo10() {}
+    private @MethodAnnotation void foo11() {}
+
+    public @TypeAnnotation MyClass() {}
+    @ConstructorAnnotation public MyClass(String name) {}
+}
+
+enum MyEnum {
+    @TypeAnnotation A;
+}
+
+interface IInterfacable {
+    default @TypeAnnotation String foo() {
+        return null;
+    }
+}
+
+@Target({
+    ElementType.FIELD, ElementType.LOCAL_VARIABLE, ElementType.PARAMETER,
+    ElementType.TYPE_PARAMETER, ElementType.TYPE_USE})
 @interface TypeAnnotation {
 }
+
+@interface MethodAnnotation {}
+
+@interface ConstructorAnnotation {}

@@ -116,9 +116,19 @@ public class ModifierOrderCheckTest
         // Type Annotations are avaliable only in Java 8
         // We skip type annotations from validation
         // See https://github.com/checkstyle/checkstyle/issues/903#issuecomment-172228013
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(ModifierOrderCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig = createCheckConfig(ModifierOrderCheck.class);
+        final String[] expected = {
+            "103:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+        };
         verify(checkConfig, getNonCompilablePath("InputTypeAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationOnAnnotationDeclaration() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ModifierOrderCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
+        };
+        verify(checkConfig, getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
     }
 }
