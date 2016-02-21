@@ -106,12 +106,6 @@
     <!-- Checkstyle is not thread safe -->
     <exclude name="UseConcurrentHashMap"/>
   </rule>
-  <rule ref="rulesets/java/controversial.xml/DefaultPackage">
-    <properties>
-      <!--  -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='DetectorOptions' or @Image='NeverSuppress']"/>
-    </properties>
-  </rule>
   <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType">
     <properties>
       <!-- that class integrates checkstyle and antlr that is why it has a lot of imports -->
@@ -172,7 +166,7 @@
   <rule ref="rulesets/java/design.xml/EmptyMethodInAbstractClassShouldBeAbstract">
     <properties>
      <!-- Can not change API -->
-    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck' 
+    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
     or @Image='AbstractCheck' or @Image='AbstractJavadocCheck']"/>
     </properties>
   </rule>
@@ -215,7 +209,7 @@
   </rule>
 
   <rule ref="rulesets/java/migrating.xml"/>
-  
+
   <rule ref="rulesets/java/naming.xml">
     <!-- we use CheckstyleCustomShortVariable, to control lenght (will be fixed in PMD 5.4) and skip Override methods -->
     <exclude name="ShortVariable"/>
@@ -261,7 +255,7 @@
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
     </properties>
   </rule>
-  
+
   <rule ref="rulesets/java/optimizations.xml">
     <!--produces more false-positives than real problems-->
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
