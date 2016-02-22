@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -32,15 +36,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * static initializers and instance initializers.
  *
  * <p> By default the check will check the following statements:
- *  {@link TokenTypes#PACKAGE_DEF PACKAGE_DEF},
- *  {@link TokenTypes#IMPORT IMPORT},
- *  {@link TokenTypes#CLASS_DEF CLASS_DEF},
- *  {@link TokenTypes#INTERFACE_DEF INTERFACE_DEF},
- *  {@link TokenTypes#STATIC_INIT STATIC_INIT},
- *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT},
- *  {@link TokenTypes#METHOD_DEF METHOD_DEF},
- *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
- *  {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}.
+ * {@link TokenTypes#PACKAGE_DEF PACKAGE_DEF},
+ * {@link TokenTypes#IMPORT IMPORT},
+ * {@link TokenTypes#CLASS_DEF CLASS_DEF},
+ * {@link TokenTypes#INTERFACE_DEF INTERFACE_DEF},
+ * {@link TokenTypes#STATIC_INIT STATIC_INIT},
+ * {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT},
+ * {@link TokenTypes#METHOD_DEF METHOD_DEF},
+ * {@link TokenTypes#CTOR_DEF CTOR_DEF},
+ * {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}.
  * </p>
  *
  * <p>
@@ -156,7 +160,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message empty.line.separator.multiple.lines
-     *  in "messages.properties"
+     * in "messages.properties"
      * file.
      */
     public static final String MSG_MULTIPLE_LINES = "empty.line.separator.multiple.lines";
@@ -168,16 +172,32 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     public static final String MSG_MULTIPLE_LINES_AFTER =
             "empty.line.separator.multiple.lines.after";
 
-    /** Allows no empty line between fields. */
+    /**
+     * A key is pointing to the warning message empty.line.separator.multiple.lines.inside
+     * in "messages.properties" file.
+     */
+    public static final String MSG_MULTIPLE_LINES_INSIDE =
+            "empty.line.separator.multiple.lines.inside";
+
+    /**
+     * Allows no empty line between fields.
+     */
     private boolean allowNoEmptyLineBetweenFields;
 
-    /** Allows multiple empty lines between class members. */
+    /**
+     * Allows multiple empty lines between class members.
+     */
     private boolean allowMultipleEmptyLines = true;
 
     /**
+     * Allows multiple empty lines inside class members.
+     */
+    private boolean allowMultipleEmptyLinesInsideClassMembers;
+
+    /**
      * Allow no empty line between fields.
-     * @param allow
-     *        User's value.
+     *
+     * @param allow User's value.
      */
     public final void setAllowNoEmptyLineBetweenFields(boolean allow) {
         allowNoEmptyLineBetweenFields = allow;
@@ -185,10 +205,20 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Allow multiple empty lines between class members.
+     *
      * @param allow User's value.
      */
     public void setAllowMultipleEmptyLines(boolean allow) {
         allowMultipleEmptyLines = allow;
+    }
+
+    /**
+     * Allow multiple empty lines inside class members.
+     *
+     * @param allow User's value.
+     */
+    public void setAllowMultipleEmptyLinesInsideClassMembers(boolean allow) {
+        allowMultipleEmptyLinesInsideClassMembers = allow;
     }
 
     @Override
@@ -222,6 +252,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (hasMultipleLinesBefore(ast)) {
             log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
         }
+        if (!allowMultipleEmptyLinesInsideClassMembers) {
+            checkForMultipleLinesInside(ast);
+        }
 
         final DetailAST nextToken = ast.getNextSibling();
         if (nextToken != null) {
@@ -251,7 +284,111 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
+     * Log violation in case there are multiple empty lines inside constructor,
+     * initialization block or constructor.
+     *
+     * @param ast the ast to check.
+     */
+    private void checkForMultipleLinesInside(DetailAST ast) {
+        final int astType = ast.getType();
+        if (astType == TokenTypes.STATIC_INIT
+                || astType == TokenTypes.INSTANCE_INIT
+                || astType == TokenTypes.METHOD_DEF
+                || astType == TokenTypes.CTOR_DEF) {
+            final List<Integer> emptyLines = getEmptyLines(ast);
+            final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
+            logEmptyLines(emptyLinesToLog);
+        }
+    }
+
+    /**
+     * Get list of empty lines.
+     *
+     * @param ast the ast to check.
+     * @return list of line numbers for empty lines.
+     */
+    private List<Integer> getEmptyLines(DetailAST ast) {
+        final DetailAST lastToken = ast.getLastChild().getLastChild();
+        int lastTokenLineNo = 0;
+        if (lastToken != null) {
+            lastTokenLineNo = lastToken.getLineNo();
+        }
+        final List<Integer> emptyLines = new ArrayList<>();
+        final FileContents fileContents = getFileContents();
+
+        for (int lineNo = ast.getLineNo(); lineNo < lastTokenLineNo; lineNo++) {
+            if (fileContents.lineIsBlank(lineNo)) {
+                emptyLines.add(lineNo);
+            }
+        }
+        return emptyLines;
+    }
+
+    /**
+     * Get list of empty lines to log.
+     * E.g. if there are the following empty lines: 1,2,3,4,8,9 then 1 and 8 will be returned.
+     *
+     * @param emptyLines list of empty lines.
+     * @return list of empty lines to log.
+     */
+    private static List<Integer> getEmptyLinesToLog(List<Integer> emptyLines) {
+        if (emptyLines.size() < 2) {
+            return new ArrayList<>();
+        }
+
+        final List<Integer> emptyLinesToLog = new ArrayList<>();
+        final Iterator<Integer> emptyLineIterator = emptyLines.iterator();
+
+        int firstEmptyLineNo = emptyLineIterator.next();
+        while (emptyLineIterator.hasNext()) {
+            int currentEmptyLineNo = emptyLineIterator.next();
+            if (firstEmptyLineNo + 1 == currentEmptyLineNo) {
+                emptyLinesToLog.add(firstEmptyLineNo);
+                currentEmptyLineNo = getNextSequenceStartNo(emptyLineIterator, currentEmptyLineNo);
+            }
+            firstEmptyLineNo = currentEmptyLineNo;
+        }
+        return emptyLinesToLog;
+    }
+
+    /**
+     * Get first number from next sequence of numbers.
+     * E.g. if there are the following numbers: 1,2,3,4,8,9
+     * and currentNumber 2 then 8 will be returned.
+     *
+     * @param numberIterator iterator over sorted numbers.
+     * @param currentNumber  current number.
+     * @return number from next sequence or current number if it's end of iteration.
+     */
+    private static int getNextSequenceStartNo(Iterator<Integer> numberIterator, int currentNumber) {
+        int previousSequenceNumber = currentNumber;
+        while (numberIterator.hasNext()) {
+            final int currentSequenceNumber = numberIterator.next();
+            if (currentSequenceNumber == previousSequenceNumber + 1) {
+                previousSequenceNumber = currentSequenceNumber;
+            }
+            else {
+                return currentSequenceNumber;
+            }
+        }
+        return previousSequenceNumber;
+    }
+
+    /**
+     * Log violations for multiply empty lines inside class members.
+     *
+     * @param emptyLinesToLog list of empty lines to log.
+     */
+    private void logEmptyLines(List<Integer> emptyLinesToLog) {
+        for (Integer lineNo : emptyLinesToLog) {
+            // Checkstyle counts line numbers from 0 but IDE from 1
+            log(lineNo + 1, MSG_MULTIPLE_LINES_INSIDE);
+        }
+    }
+
+    /**
      * Whether the token has not allowed multiple empty lines before.
+     *
      * @param ast the ast to check.
      * @return true if the token has not allowed multiple empty lines before.
      */
@@ -267,7 +404,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Process Package.
-     * @param ast token
+     *
+     * @param ast       token
      * @param nextToken next token
      */
     private void processPackage(DetailAST ast, DetailAST nextToken) {
@@ -281,9 +419,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Process Import.
-     * @param ast token
+     *
+     * @param ast       token
      * @param nextToken next token
-     * @param astType token Type
+     * @param astType   token Type
      */
     private void processImport(DetailAST ast, DetailAST nextToken, int astType) {
         if (astType != nextToken.getType() && !hasEmptyLineAfter(ast)) {
@@ -293,7 +432,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Process Variable.
-     * @param ast token
+     *
+     * @param ast       token
      * @param nextToken next Token
      */
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
@@ -306,19 +446,21 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks whether token placement violates policy of empty line between fields.
+     *
      * @param detailAST token to be analyzed
      * @return true if policy is violated and warning should be raised; false otherwise
      */
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return allowNoEmptyLineBetweenFields
-                    && detailAST.getType() != TokenTypes.VARIABLE_DEF
-                    && detailAST.getType() != TokenTypes.RCURLY
+                && detailAST.getType() != TokenTypes.VARIABLE_DEF
+                && detailAST.getType() != TokenTypes.RCURLY
                 || !allowNoEmptyLineBetweenFields
-                    && detailAST.getType() != TokenTypes.RCURLY;
+                && detailAST.getType() != TokenTypes.RCURLY;
     }
 
     /**
      * Checks if a token has empty two previous lines and multiple empty lines is not allowed.
+     *
      * @param token DetailAST token
      * @return true, if token has empty two lines before and allowMultipleEmptyLines is false
      */
@@ -329,6 +471,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if a token has empty pre-previous line.
+     *
      * @param token DetailAST token.
      * @return true, if token has empty lines before.
      */
@@ -346,6 +489,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if token have empty line after.
+     *
      * @param token token.
      * @return true if token have empty line after.
      */
@@ -364,6 +508,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     /**
      * Checks, whether there are empty lines within the specified line range. Line numbering is
      * started from 1 for parameter values
+     *
      * @param startLine number of the first line in the range
      * @param endLine number of the second line in the range
      * @return <code>true</code> if found any blank line within the range, <code>false</code>
@@ -387,6 +532,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if a token has a empty line before.
+     *
      * @param token token.
      * @return true, if token have empty line before.
      */
@@ -402,6 +548,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * If variable definition is a type field.
+     *
      * @param variableDef variable definition.
      * @return true variable definition is a type field.
      */
