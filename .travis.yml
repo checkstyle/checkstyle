@@ -292,6 +292,24 @@ matrix:
         - DESC="java 8 compile"
         - CMD="javac \$(grep -rl --include='*.java' '//Compilable with Java8' src/test/resources-noncompilable)"
         - COVERAGE_CMD=""
+    # testing of PR format
+    - env:
+        - DESC="test Issue ref in PR description"
+        - CMD0="if [[ ! $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi "
+        - CMD1=" && LINK_COMMITS=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST/commits "
+        - CMD2=" && COMMITS=\$(curl -s -i \$LINK_COMMITS | grep message) "
+        - CMD3=" && echo 'Messages from github:'\$COMMITS "
+        - CMD4=" && ISSUE_NUMBER=\$( echo \$COMMITS | head -n 1 | sed -e 's/^.*Issue //' | sed -e 's/:.*//') "
+        - CMD5=" && echo 'Issue number:'\$ISSUE_NUMBER "
+        - CMD6=" && if [[ \$ISSUE_NUMBER =~ ^#[0-9]+$ ]]; then "
+        - CMD7="      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST  "
+        - CMD8="      && RESULT=\$(curl -s -i \$LINK_PR | grep body | grep \$ISSUE_NUMBER) "
+        - CMD9="      && echo 'PR Description grepped:'\$RESULT  "
+        - CMD10="     && if [[ -z \$RESULT ]]; then exit 1; fi "
+        - CMD11="    fi "
+        - CMD12="    && echo 'PR validation succeed.'"
+        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12
+        - COVERAGE_CMD=""
 
 
 script: eval $CMD
