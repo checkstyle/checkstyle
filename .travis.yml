@@ -305,7 +305,7 @@ matrix:
         - CMD7="      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST  "
         - CMD8="      && RESULT=\$(curl -s -H 'Authorization: token $GITHUB_AUTH_TOKEN' \$LINK_PR | jq '.body' | grep \$ISSUE_NUMBER) "
         - CMD9="      && echo 'PR Description grepped:'\$RESULT  "
-        - CMD10="     && if [[ -z \$RESULT ]]; then exit 1; fi "
+        - CMD10="     && if [[ -z \$RESULT ]]; then echo 'Please put a reference of Issue #'\$ISSUE_NUMBER' to PR description, this will bind Issue and PR in Github'; exit 1; fi "
         - CMD11="    fi "
         - CMD12="    && echo 'PR validation succeed.'"
         - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12
