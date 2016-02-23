@@ -38,11 +38,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.collect.Maps;
+import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class BaseCheckTestSupport {
@@ -96,6 +98,22 @@ public class BaseCheckTestSupport {
     protected String getNonCompilablePath(String filename) throws IOException {
         return new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
                 + filename).getCanonicalPath();
+    }
+
+    protected void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
+            throws Exception {
+        verifyAst(expectedTextPrintFileName, actualJavaFileName, false);
+    }
+
+    protected void verifyAst(String expectedTextPrintFileName, String actualJavaFileName,
+            boolean withComments) throws Exception {
+        final String expectedContents = Files.toString(new File(expectedTextPrintFileName),
+                Charsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");
+        final String actualContents = AstTreeStringPrinter.printFileAst(
+                new File(actualJavaFileName), withComments).replaceAll("\\\\r\\\\n", "\\\\n");
+
+        assertEquals("Generated AST from Java file should match pre-defined AST", expectedContents,
+                actualContents);
     }
 
     protected void verify(Configuration aConfig, String fileName, String... expected)

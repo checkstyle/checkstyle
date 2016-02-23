@@ -54,6 +54,12 @@ public class AllBlockCommentsTest extends BaseCheckTestSupport {
         Assert.assertTrue(ALL_COMMENTS.isEmpty());
     }
 
+    @Test
+    public void testAstTree() throws Exception {
+        verifyAst(getPath("InputFullOfBlockCommentsAst.txt"),
+                getPath("InputFullOfBlockComments.java"), true);
+    }
+
     private static class BlockCommentListenerCheck extends AbstractCheck {
         @Override
         public boolean isCommentNodesRequired() {
