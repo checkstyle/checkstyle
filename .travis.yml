@@ -324,8 +324,8 @@ matrix:
         - CMD11=" && if [[ -z \$RESULT ]]; then "
         - CMD12="      echo 'Please put a reference of Issue to PR description, this will bind Issue and PR in Github' && false "
         - CMD13="    else echo 'PR validation succeed.'
-        - CMD13="    fi "
-        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12$CMD13
+        - CMD14="    fi "
+        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12$CMD13$CMD14
         - COVERAGE_CMD=""
 
 
