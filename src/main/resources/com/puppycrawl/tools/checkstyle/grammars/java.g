@@ -100,7 +100,7 @@ tokens {
     // we need to put it to the end to maintain binary compatibility
     // with previous versions
     DO_WHILE;
-    
+
     //Tokens for Java 1.7 language enhancements
     RESOURCE_SPECIFICATION; RESOURCES; RESOURCE;
 
@@ -440,8 +440,7 @@ modifiers
             //Semantic check that we aren't matching @interface as this is not an annotation
             //A nicer way to do this would be, um, nice
             {LA(1)==AT && !LT(2).getText().equals("interface")}? annotation
-            
-            
+
         )*
 
         {#modifiers = #([MODIFIERS, "MODIFIERS"], #modifiers);}
@@ -1212,7 +1211,7 @@ resource
     : modifiers typeSpec[true] IDENT resource_assign
       {#resource = #([RESOURCE, "RESOURCE"], #resource);}
 ;
- 
+
 resource_assign
     : ASSIGN^ expression
     ;
@@ -1882,11 +1881,11 @@ VOCAB
     ;
 
 protected ID_START:
-        '_' | '$' | 
-        (            
+        '_' | '$' |
+        (
             {Character.isJavaIdentifierStart(LA(1))}?
             ~(
-                '_' | '$' | '/' | '*' | '0'..'9' | 
+                '_' | '$' | '/' | '*' | '0'..'9' |
                 '.' | '\'' | '\\' | '"' | '\t' | '\n' |
                 '\r' | ' ' | '\f' | '(' | ')' |
                 '{' | '}' | '[' | ']'| ';' | ',' | '=' |
@@ -1906,7 +1905,7 @@ protected ID_START:
     }
 
 protected ID_PART :
-        '_' | '$' | 
+        '_' | '$' |
         (
             {Character.isJavaIdentifierPart(LA(1))}?
             ~(
