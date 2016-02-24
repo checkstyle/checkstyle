@@ -318,6 +318,14 @@
 
       <p>
         <b>
+          Checkstyle use ant configuration to validate its own code. See example is our git repository -
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
+            config/ant-phase-verify.xml</a>.
+        </b>
+      </p>
+
+      <p>
+        <b>
           Run checkstyle with configuration file
           <code>docs/sun_checks.xml</code> on a single file
         </b>
