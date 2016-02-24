@@ -784,12 +784,12 @@ singletonTag: OPEN
                   | P_HTML_TAG_NAME
                   | LI_HTML_TAG_NAME
                   | TR_HTML_TAG_NAME
-                  | TD_HTML_TAG_NAME 
-                  | TH_HTML_TAG_NAME 
+                  | TD_HTML_TAG_NAME
+                  | TH_HTML_TAG_NAME
                   | BODY_HTML_TAG_NAME
                   | COLGROUP_HTML_TAG_NAME
                   | DD_HTML_TAG_NAME
-                  | DT_HTML_TAG_NAME 
+                  | DT_HTML_TAG_NAME
                   | HEAD_HTML_TAG_NAME
                   | HTML_HTML_TAG_NAME
                   | OPTION_HTML_TAG_NAME

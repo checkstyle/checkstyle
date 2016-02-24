@@ -65,7 +65,7 @@ AUTHOR_LITERAL : '@author' {isJavadocTagAvailable}?;
 DEPRECATED_LITERAL : '@deprecated' {isJavadocTagAvailable}?;
 EXCEPTION_LITERAL : '@exception' {isJavadocTagAvailable}? -> pushMode(exception);
 PARAM_LITERAL : '@param' {isJavadocTagAvailable}? -> pushMode(param);
-RETURN_LITERAL : '@return' {isJavadocTagAvailable}?; 
+RETURN_LITERAL : '@return' {isJavadocTagAvailable}?;
 SEE_LITERAL : '@see' {isJavadocTagAvailable}? -> pushMode(seeLink);
 SERIAL_LITERAL : '@serial' {isJavadocTagAvailable}?;
 SERIAL_FIELD_LITERAL : '@serialField' {isJavadocTagAvailable}? -> pushMode(serialField);
@@ -93,7 +93,7 @@ CHAR        :   . ;
 mode param;
 Space0: WS -> type(WS);
 PARAMETER_NAME: [a-zA-Z0-9<>_$]+ -> mode(DEFAULT_MODE);
-Char1: . 
+Char1: .
       {
             skipCurrentTokenConsuming();
       } -> skip, mode(DEFAULT_MODE);
@@ -131,7 +131,7 @@ End20: JAVADOC_INLINE_TAG_END
       -> type(JAVADOC_INLINE_TAG_END), mode(DEFAULT_MODE)
       ;
 // exit from 'seeLink' mode without consuming current character
-Char2: . 
+Char2: .
       {
             skipCurrentTokenConsuming();
             referenceCatched = false;
@@ -177,7 +177,7 @@ End2: JAVADOC_INLINE_TAG_END
       }
       -> type(JAVADOC_INLINE_TAG_END), mode(DEFAULT_MODE)
       ;
-Char20: . 
+Char20: .
       {
             skipCurrentTokenConsuming();
             referenceCatched = false;
@@ -187,7 +187,7 @@ Char20: .
 mode serialField;
 Space2: WS -> type(WS);
 FIELD_NAME: [a-zA-Z0-9_$]+ -> mode(serialFieldFieldType);
-Char3: . 
+Char3: .
       {
             skipCurrentTokenConsuming();
             referenceCatched = false;
@@ -328,7 +328,7 @@ DIGIT       :   [0-9] ;
 
 fragment
 NAME_CHAR    :   NAME_START_CHAR
-            |   '-' | '_' | '.' | DIGIT 
+            |   '-' | '_' | '.' | DIGIT
             |   '\u00B7'
             |   '\u0300'..'\u036F'
             |   '\u203F'..'\u2040'
@@ -337,10 +337,10 @@ NAME_CHAR    :   NAME_START_CHAR
 fragment
 NAME_START_CHAR
             :   [:a-zA-Z]
-            |   '\u2070'..'\u218F' 
-            |   '\u2C00'..'\u2FEF' 
-            |   '\u3001'..'\uD7FF' 
-            |   '\uF900'..'\uFDCF' 
+            |   '\u2070'..'\u218F'
+            |   '\u2C00'..'\u2FEF'
+            |   '\u3001'..'\uD7FF'
+            |   '\uF900'..'\uFDCF'
             |   '\uFDF0'..'\uFFFD'
             ;
 
