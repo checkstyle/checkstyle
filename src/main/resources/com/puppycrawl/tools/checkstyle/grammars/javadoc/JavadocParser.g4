@@ -104,7 +104,9 @@ htmlElement: htmlTag
 
 htmlElementOpen:  OPEN HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 htmlElementClose: OPEN SLASH HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
-attribute:    HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* EQUALS (NEWLINE | LEADING_ASTERISK | WS)* (ATTR_VALUE | text | HTML_TAG_NAME);
+attribute:    HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)*
+              EQUALS (NEWLINE | LEADING_ASTERISK | WS)*
+              (ATTR_VALUE | text | HTML_TAG_NAME);
 
 htmlTag: htmlElementOpen (htmlElement
                               | ({!isNextJavadocTag()}? LEADING_ASTERISK)
@@ -112,7 +114,8 @@ htmlTag: htmlElementOpen (htmlElement
                               | CDATA
                               | NEWLINE
                               | text
-                              | javadocInlineTag)* htmlElementClose //{isSameTagNames($htmlElementOpen.ctx, $htmlElementClose.ctx)}?
+                               //{isSameTagNames($htmlElementOpen.ctx, $htmlElementClose.ctx)}?
+                              | javadocInlineTag)* htmlElementClose
 
             | htmlElementOpen (htmlElement
                               | ({!isNextJavadocTag()}? LEADING_ASTERISK)
@@ -121,7 +124,8 @@ htmlTag: htmlElementOpen (htmlElement
                               | NEWLINE
                               | text
                               | javadocInlineTag)*
-            {notifyErrorListeners($htmlElementOpen.ctx.getToken(HTML_TAG_NAME, 0).getSymbol(), "javadoc.missed.html.close", null);}
+            {notifyErrorListeners($htmlElementOpen.ctx.getToken(HTML_TAG_NAME, 0).getSymbol()
+                                         , "javadoc.missed.html.close", null);}
             ;
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -799,21 +803,32 @@ singletonTag: OPEN
                   )
                   (attribute | NEWLINE | LEADING_ASTERISK | WS)* SLASH_CLOSE;
 
-areaTag: OPEN AREA_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-baseTag: OPEN BASE_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-basefontTag: OPEN BASEFONT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
+areaTag: OPEN AREA_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
+baseTag: OPEN BASE_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
+basefontTag: OPEN BASEFONT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
 brTag: OPEN BR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
 colTag: OPEN COL_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-frameTag: OPEN FRAME_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
+frameTag: OPEN FRAME_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
 hrTag: OPEN HR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
 imgTag: OPEN IMG_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-inputTag: OPEN INPUT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-isindexTag: OPEN ISINDEX_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-linkTag: OPEN LINK_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-metaTag: OPEN META_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
-paramTag: OPEN PARAM_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* (SLASH_CLOSE | CLOSE);
+inputTag: OPEN INPUT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
+isindexTag: OPEN ISINDEX_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
+linkTag: OPEN LINK_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
+metaTag: OPEN META_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
+paramTag: OPEN PARAM_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)*
+         (SLASH_CLOSE | CLOSE);
 
-wrongSinletonTag: OPEN SLASH singletonTagName CLOSE {notifyErrorListeners($singletonTagName.start, "javadoc.wrong.singleton.html.tag", null);}
+wrongSinletonTag: OPEN SLASH singletonTagName
+                  CLOSE {notifyErrorListeners($singletonTagName.start,
+                             "javadoc.wrong.singleton.html.tag", null);}
                   ;
 singletonTagName: (AREA_HTML_TAG_NAME
                   | BASE_HTML_TAG_NAME
@@ -870,7 +885,8 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* description?
 
       | SERIAL_DATA_LITERAL (WS | NEWLINE)* description?
 
-      | SERIAL_FIELD_LITERAL (WS | NEWLINE)* FIELD_NAME? (WS | NEWLINE)* FIELD_TYPE? (WS | NEWLINE)* description?
+      | SERIAL_FIELD_LITERAL (WS | NEWLINE)* FIELD_NAME? (WS | NEWLINE)* FIELD_TYPE?
+              (WS | NEWLINE)* description?
 
       | SINCE_LITERAL (WS | NEWLINE)* description?
 

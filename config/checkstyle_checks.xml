@@ -93,6 +93,11 @@
       <property name="fileExtensions" value="java"/>
       <property name="message" value="First sentence in a comment should start with a capital letter"/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="^(?!(.*http|import)).{101,}$"/>
+    <property name="fileExtensions" value="g, g4"/>
+    <property name="message" value="Line should not be longer then 100 symbols"/>
+  </module>
   <module name="RegexpOnFilename" />
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
@@ -375,11 +380,6 @@
 
     <!-- Regexp -->
     <module name="Regexp"/>
-    <module name="Regexp">
-      <property name="format" value="^(?!(.*http|import)).{101,}$"/>
-      <property name="illegalPattern" value="true"/>
-      <property name="message" value="Line should not be longer then 100 symbols"/>
-    </module>
     <module name="RegexpSinglelineJava"/>
     <module name="RegexpSinglelineJava">
       <property name="format" value="[^\p{ASCII}]"/>

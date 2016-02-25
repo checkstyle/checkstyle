@@ -74,7 +74,8 @@ SINCE_LITERAL : '@since' {isJavadocTagAvailable}?;
 THROWS_LITERAL : '@throws' {isJavadocTagAvailable}? -> pushMode(exception);
 VERSION_LITERAL : '@version' {isJavadocTagAvailable}?;
 
-JAVADOC_INLINE_TAG_START: '{' {_input.LA(1) == '@'}? {insideJavadocInlineTag++;} -> pushMode(javadocInlineTag);
+JAVADOC_INLINE_TAG_START:
+      '{' {_input.LA(1) == '@'}? {insideJavadocInlineTag++;} -> pushMode(javadocInlineTag);
 
 JAVADOC_INLINE_TAG_END: '}' {insideJavadocInlineTag>0}?
       {insideJavadocInlineTag--; recognizeXmlTags=true;}
