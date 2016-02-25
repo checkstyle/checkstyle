@@ -1794,13 +1794,24 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>100</totalBranchRate>
-                <totalLineRate>100</totalLineRate>
+                <totalBranchRate>90</totalBranchRate>
+                <totalLineRate>90</totalLineRate>
+                <regexes>
+                  <regex>
+                    <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</pattern>
+                    <branchRate>71</branchRate>
+                    <lineRate>95</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</pattern>
+                    <branchRate>75</branchRate>
+                    <lineRate>92</lineRate>
+                  </regex>
+                </regexes>
               </check>
               <instrumentation>
                 <excludes>
                   <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/grammars/*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
                   <!-- deprecated classes -->
