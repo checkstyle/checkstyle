@@ -81,7 +81,7 @@ tokens {
     INC;DEC;BNOT;LNOT;LITERAL_true="true";LITERAL_false="false";
     LITERAL_null="null";LITERAL_new="new";NUM_INT;CHAR_LITERAL;
     STRING_LITERAL;NUM_FLOAT;NUM_LONG;NUM_DOUBLE;WS;SINGLE_LINE_COMMENT;
-    BLOCK_COMMENT_BEGIN;ESC;HEX_DIGIT;VOCAB;EXPONENT;FLOAT_SUFFIX;
+    BLOCK_COMMENT_BEGIN;ESC;HEX_DIGIT;VOCAB;EXPONENT;
 
     //Please add new tokens only in the end of list! Otherwise you break compatibility!
     //Token for Java 1.4 language enhancements
@@ -2060,11 +2060,6 @@ EXPONENT
 protected
 SIGNED_INTEGER
     :   ('+'|'-')? (('0'..'9')(('0'..'9'|'_')*('0'..'9'))?)
-    ;
-
-protected
-FLOAT_SUFFIX
-    :    'f'|'F'|'d'|'D'
     ;
 
 protected
