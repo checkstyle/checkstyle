@@ -105,8 +105,8 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport {
             createCheckConfig(FinalParametersCheck.class);
         checkConfig.addAttribute("tokens", "FOR_EACH_CLAUSE");
         final String[] expected = {
-            "150:13: " + getCheckMessage(MSG_KEY, "s"),
-            "158:13: " + getCheckMessage(MSG_KEY, "s"),
+            "152:13: " + getCheckMessage(MSG_KEY, "s"),
+            "160:13: " + getCheckMessage(MSG_KEY, "s"),
         };
         verify(checkConfig, getPath("InputFinalParameters.java"), expected);
     }

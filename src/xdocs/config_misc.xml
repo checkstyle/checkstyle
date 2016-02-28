@@ -866,8 +866,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       <subsection name="Description">
         <p>
           Check that parameters for methods, constructors, and catch blocks are
-          final. Interface and abstract methods are not checked: the final
-          keyword does not make sense for interface and abstract method
+          final. Interface, abstract, and native methods are not checked: the final
+          keyword does not make sense for interface, abstract, and native method
           parameters as there is no code that could modify the parameter.
         </p>
 

@@ -135,6 +135,8 @@ class InputFinalParameters
             e.printStackTrace();
         }
     }
+
+    native void method(int i);
 }
 
 abstract class AbstractClass
