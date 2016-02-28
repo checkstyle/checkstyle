@@ -1867,14 +1867,6 @@ BINARY_DIGIT
     :    ('0'|'1')
     ;
 
-
-// a dummy rule to force vocabulary to be all characters (except special
-//   ones that ANTLR uses internally (0 to 2)
-protected
-VOCAB
-    :    '\3'..'\377'
-    ;
-
 protected ID_START:
         '_' | '$' |
         (
