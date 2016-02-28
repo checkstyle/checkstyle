@@ -13,7 +13,8 @@
     </module>
 
     <module name="TreeWalker">
-        <module name="StaticMethodCandidate"/>
+        <!-- till https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/429
+          <module name="StaticMethodCandidate"/>-->
         <module name="UselessSingleCatchCheck"/>
         <module name="NestedSwitchCheck"/>
         <module name="CauseParameterInException"/>
@@ -71,9 +72,10 @@
         <module name="RedundantReturn"/>
         <module name="WhitespaceBeforeArrayInitializer"/>
         <module name="InnerClass"/>
+        <!-- till https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/429
         <module name="EnumValueNameCheck">
             <property name="objFormat" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
-        </module>
+        </module>-->
         <module name="OverridableMethodInConstructor">
             <property name="checkCloneMethod" value="true"/>
             <property name="checkReadObjectMethod" value="true"/>
