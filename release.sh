@@ -45,6 +45,7 @@ mvn -Passembly clean package
 #Publish them to sourceforce
 FRS_PATH=/home/frs/project/checkstyle/checkstyle/$RELEASE
 ssh $SF_USER,checkstyle@shell.sourceforge.net "mkdir -p $FRS_PATH"
+# !!! THIS WILL AS A PASSWORD !!
 scp target/*.jar $SF_USER@frs.sourceforge.net:$FRS_PATH
 scp target/*.tar.gz $SF_USER@frs.sourceforge.net:$FRS_PATH
 scp target/*.zip $SF_USER@frs.sourceforge.net:$FRS_PATH
