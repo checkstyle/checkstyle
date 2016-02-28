@@ -15,6 +15,150 @@
 
   <body>
 
+    <section name="Release 6.16">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Move Treewalker cache to Checker. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/569">#569</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Make CLI option to be able to print Javadoc tree as plain text. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/652">#652</a>
+          </li>
+          <li>
+            copy Check class to AbstractCheck class to let deprecate Check class. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2551">#2551</a>
+          </li>
+          <li>
+            Print parse tree from CLI to terminal. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2638">#2638</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Skip type annotations from validation of ModifierOrderCheck. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/903">#903</a>
+          </li>
+          <li>
+            Probable typo in com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2762">#2762</a>
+          </li>
+          <li>
+            Indentation check reports some incorrect indentation levels on errors. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2941">#2941</a>
+          </li>
+          <li>
+            6.15 complains about missing @return tag in a overridden method. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2869">#2869</a>
+          </li>
+          <li>
+            Nesting Checks in each other in config does not produce any error. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2773">#2773</a>
+          </li>
+          <li>
+            Forbid multiple violation for the same line in IndentaitonCheck. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/676">#676</a>
+          </li>
+          <li>
+            LeftCurly not working correctly with lambdas. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2818">#2818</a>
+          </li>
+          <li>
+            Duplicate error message for static final field in DeclarationOrder check. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/1048">#1048</a>
+          </li>
+          <li>
+            Translation Check: wrong support for resources with language, country, variant. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2251">#2251</a>
+          </li>
+          <li>
+            Checkstyle internal exceptions lack contextual information. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2285">#2285</a>
+          </li>
+          <li>
+            Changed semantics of PropertyExpander. Author: Petr Hejl <a href="https://github.com/checkstyle/checkstyle/issues/2886">#2886</a>
+          </li>
+          <li>
+            Indentation properties not applied properly to lambdas. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/281">#281</a>
+          </li>
+          <li>
+            VisibilityModifier.allowPublicImmutableFields should allow public immutable fields in enums. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2887">#2887</a>
+          </li>
+          <li>
+            FinalClass is over aggressive when extending happen inside class. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2822">#2822</a>
+          </li>
+          <li>
+            WhitespaceAround should have an option allow double-brace initialization. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2838">#2838</a>
+          </li>
+          <li>
+            Exception when using method reference in lamba &quot;Class&lt;?&gt;[]::new&quot;. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/2729">#2729</a>
+          </li>
+          <li>
+            Wasted disk access. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2103">#2103</a>
+          </li>
+          <li>
+            JavadocType doesn&#39;t report unused param tag. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/2811">#2811</a>
+          </li>
+          <li>
+            DeclarationOrder check enforces order that is not possible. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/924">#924</a>
+          </li>
+          <li>
+            Tabs are wrongly handled in Indentation check when line is wrapped. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2795">#2795</a>
+          </li>
+          <li>
+            custom javadoc inline tags cause parse error. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/1184">#1184</a>
+          </li>
+          <li>
+            JavadocStyleCheck: String index out of range: -1. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2788">#2788</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Strive for 100% line coverage for java grammar. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2973">#2973</a>
+          </li>
+          <li>
+            Refactor Comments AST Test. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2396">#2396</a>
+          </li>
+          <li>
+            doc: example to checkstyle&#39;s Ant configuration was added to anttask.html. Author: Roman Ivanov
+          </li>
+          <li>
+            Travis: add xwiki project to regeression testing. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2938">#2938</a>
+          </li>
+          <li>
+            PMD: resolve problems from DefaultPackage rule. Author: Vladislav Lisetskiy, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/957">#957</a>
+          </li>
+          <li>
+            doc: Improve javadoc of parameters of AnnotationLocationCheck.. Author: liscju
+          </li>
+          <li>
+            fix java8 compilation broblems in Inputs. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2904">#2904</a>
+          </li>
+          <li>
+            Create web-page with instructions: how to create Javadoc Check. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/410">#410</a>
+          </li>
+          <li>
+            PMD ExceptionAsFlowControl: Do not use exceptions as flow control to create objects in PackageObjectFactory. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/1159">#1159</a>
+          </li>
+          <li>
+            ant with failOnViolation=&quot;false&quot; will FAIL. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2185">#2185</a>
+          </li>
+          <li>
+            Checkstyle cannot be built using JDK9 as tools.jar has been dropped . Author: Peter Wong <a href="https://github.com/checkstyle/checkstyle/issues/2905">#2905</a>
+          </li>
+          <li>
+            CS&#39; java 8 code isn&#39;t compilable. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2880">#2880</a>
+          </li>
+          <li>
+            doc: NPath documentation is extended. Author: Roman Ivanov
+          </li>
+          <li>
+            Refactor gui package. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2609">#2609</a>
+          </li>
+          <li>
+            spelling: Correct spelling for fast-forward-merge.sh. Author: Thomas Paul Mann
+          </li>
+          <li>
+            UTs should be launched in default locale. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2783">#2783</a>
+          </li>
+          <li>
+            Disallow usage of java.util.Stack and java.util.Vector in code. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2859">#2859</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.15">
       <p>New:</p>
         <ul>
