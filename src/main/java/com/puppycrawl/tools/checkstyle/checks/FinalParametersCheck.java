@@ -141,10 +141,11 @@ public class FinalParametersCheck extends AbstractCheck {
             return;
         }
 
-        // ignore abstract method
+        // ignore abstract and native methods
         final DetailAST modifiers =
             method.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.branchContains(TokenTypes.ABSTRACT)) {
+        if (modifiers.branchContains(TokenTypes.ABSTRACT)
+                || modifiers.branchContains(TokenTypes.LITERAL_NATIVE)) {
             return;
         }
 
