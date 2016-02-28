@@ -1606,15 +1606,11 @@ lambdaExpression
 lambdaParameters
     :    IDENT
     |    LPAREN (parameterDeclarationList)? RPAREN
-    |    LPAREN inferredParameterList RPAREN
     ;
 
 lambdaBody
     :    (options{generateAmbigWarnings=false;}: expression
     |    statement)
-    ;
-inferredParameterList
-    :    IDENT (COMMA IDENT)*
     ;
 
 
