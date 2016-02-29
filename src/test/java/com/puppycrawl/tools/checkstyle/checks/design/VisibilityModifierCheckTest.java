@@ -198,12 +198,12 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         final String[] expected = {
-            "39:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
-            "42:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
-            "45:22: " + getCheckMessage(MSG_KEY, "customAnnotatedProtected"),
-            "47:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
-            "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
-            "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+            "40:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
+            "43:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
+            "46:22: " + getCheckMessage(MSG_KEY, "customAnnotatedProtected"),
+            "48:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
+            "49:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
+            "50:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
         };
         verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
     }
@@ -216,17 +216,19 @@ public class VisibilityModifierCheckTest
                 "com.puppycrawl.tools.checkstyle.checks.design."
                     + "InputAnnotatedVisibility.CustomAnnotation");
         final String[] expected = {
-            "15:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
-            "18:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
-            "21:19: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPublic"),
-            "24:12: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPackage"),
-            "27:22: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedProtected"),
-            "30:19: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPublic"),
-            "33:12: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPackage"),
-            "36:22: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedProtected"),
-            "47:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
-            "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
-            "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+            "16:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+            "19:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
+            "22:19: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPublic"),
+            "25:12: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPackage"),
+            "28:22: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedProtected"),
+            "31:19: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPublic"),
+            "34:12: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPackage"),
+            "37:22: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedProtected"),
+            "48:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
+            "49:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
+            "50:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+            "59:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
+            "62:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
         verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
     }
@@ -237,20 +239,22 @@ public class VisibilityModifierCheckTest
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("ignoreAnnotationCanonicalNames", "");
         final String[] expected = {
-            "15:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
-            "18:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
-            "21:19: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPublic"),
-            "24:12: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPackage"),
-            "27:22: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedProtected"),
-            "30:19: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPublic"),
-            "33:12: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPackage"),
-            "36:22: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedProtected"),
-            "39:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
-            "42:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
-            "45:22: " + getCheckMessage(MSG_KEY, "customAnnotatedProtected"),
-            "47:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
-            "48:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
-            "49:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+            "16:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+            "19:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
+            "22:19: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPublic"),
+            "25:12: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedPackage"),
+            "28:22: " + getCheckMessage(MSG_KEY, "googleCommonsAnnotatedProtected"),
+            "31:19: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPublic"),
+            "34:12: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedPackage"),
+            "37:22: " + getCheckMessage(MSG_KEY, "fqGoogleCommonsAnnotatedProtected"),
+            "40:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
+            "43:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
+            "46:22: " + getCheckMessage(MSG_KEY, "customAnnotatedProtected"),
+            "48:19: " + getCheckMessage(MSG_KEY, "unannotatedPublic"),
+            "49:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
+            "50:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
+            "59:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
+            "62:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
         verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
     }
@@ -260,7 +264,8 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         final String[] expected = {
-            "10:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+            "11:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
+            "14:28: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
         };
         verify(checkConfig, getPath("InputAnnotatedVisibilitySameTypeName.java"), expected);
     }

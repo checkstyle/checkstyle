@@ -857,7 +857,7 @@ public class Foo{
             <td>ignoreAnnotationCanonicalNames</td>
             <td>ignore annotations canonical names</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td>org.junit.Rule, com.google.common.annotations.VisibleForTesting</td>
+            <td>org.junit.Rule, org.junit.ClassRule, com.google.common.annotations.VisibleForTesting</td>
           </tr>
         </table>
       </subsection>
@@ -971,7 +971,7 @@ class SomeClass
         </source>
 
         <p>
-          To configure the Check passing fields annotated with @org.junit.Rule and
+          To configure the Check passing fields annotated with @org.junit.Rule, @org.junit.ClassRule and
           @com.google.common.annotations.VisibleForTesting annotations:
         </p>
         <source>
@@ -985,6 +985,8 @@ class SomeClass
 {
     @org.junit.Rule
     public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // no warning
+    @org.junit.ClassRule
+    public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // no warning
     @com.google.common.annotations.VisibleForTesting
     public String testString = ""; // no warning
 }

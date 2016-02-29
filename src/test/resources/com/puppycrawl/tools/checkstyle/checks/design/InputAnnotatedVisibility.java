@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import com.google.common.annotations.VisibleForTesting;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 
@@ -53,4 +54,10 @@ public class InputAnnotatedVisibility {
     @Target(value={ElementType.FIELD})
     public @interface CustomAnnotation {
     }
+
+    @ClassRule
+    public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder();
+
+    @org.junit.ClassRule
+    public static TemporaryFolder fqPublicJUnitClassRule = new TemporaryFolder();
 }
