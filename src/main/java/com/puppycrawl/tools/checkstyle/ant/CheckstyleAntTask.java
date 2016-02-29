@@ -115,7 +115,7 @@ public class CheckstyleAntTask extends Task {
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Tells this task to set the named property to "true" when there
+     * Tells this task to write failure message to the named property when there
      * is a violation.
      * @param propertyName the name of the property to set
      *                      in the event of an failure.
@@ -540,7 +540,7 @@ public class CheckstyleAntTask extends Task {
      */
     public static class Formatter {
         /** The formatter type. */
-        private FormatterType formatterType;
+        private FormatterType type;
         /** The file to output to. */
         private File toFile;
         /** Whether or not the write to the named file. */
@@ -551,12 +551,7 @@ public class CheckstyleAntTask extends Task {
          * @param type the type
          */
         public void setType(FormatterType type) {
-            final String val = type.getValue();
-            if (!E_XML.equals(val) && !E_PLAIN.equals(val)) {
-                throw new BuildException("Invalid formatter type: " + val);
-            }
-
-            formatterType = type;
+            this.type = type;
         }
 
         /**
@@ -582,8 +577,8 @@ public class CheckstyleAntTask extends Task {
          * @throws IOException if an error occurs
          */
         public AuditListener createListener(Task task) throws IOException {
-            if (formatterType != null
-                    && E_XML.equals(formatterType.getValue())) {
+            if (type != null
+                    && E_XML.equals(type.getValue())) {
                 return createXmlLogger(task);
             }
             return createDefaultLogger(task);
