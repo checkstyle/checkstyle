@@ -1807,11 +1807,15 @@
                     <branchRate>75</branchRate>
                     <lineRate>92</lineRate>
                   </regex>
+                  <regex>
+                    <pattern>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</pattern>
+                    <branchRate>97</branchRate>
+                    <lineRate>100</lineRate>
+                  </regex>
                 </regexes>
               </check>
               <instrumentation>
                 <excludes>
-                  <exclude>com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
                   <!-- deprecated classes -->

@@ -130,7 +130,7 @@
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
     <!-- they are aggregators of logic, usage a several of classes are ok -->
     <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|AbstractJavadocCheck)\.java"/>
-    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport|XDocsPagesTest)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport|XDocsPagesTest|CheckstyleAntTaskTest)\.java"/>
     <!-- a lot of GUI elements is OK -->
     <suppress checks="ClassDataAbstractionCoupling" files="(JTreeTable|MainFrame)\.java"/>
 
