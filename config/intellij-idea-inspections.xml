@@ -1648,6 +1648,7 @@
         <option name="ignorableAnnotations">
             <value>
                 <item value="org.junit.Rule" />
+                <item value="org.junit.ClassRule" />
             </value>
         </option>
     </inspection_tool>

@@ -58,6 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </p>
  * <ul>
  * <li>org.junit.Rule</li>
+ * <li>org.junit.ClassRule</li>
  * <li>com.google.common.annotations.VisibleForTesting</li>
  * </ul>
  * <p>
@@ -268,6 +269,7 @@ public class VisibilityModifierCheck
     /** Default ignore annotations canonical names. */
     private static final List<String> DEFAULT_IGNORE_ANNOTATIONS = ImmutableList.of(
         "org.junit.Rule",
+        "org.junit.ClassRule",
         "com.google.common.annotations.VisibleForTesting"
     );
 

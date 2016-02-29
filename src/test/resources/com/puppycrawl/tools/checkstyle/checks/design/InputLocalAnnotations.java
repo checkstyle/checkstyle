@@ -5,4 +5,8 @@ public class InputLocalAnnotations
     public @interface Rule {
         
     }
+
+    public @interface ClassRule {
+
+    }
 }
