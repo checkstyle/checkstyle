@@ -675,11 +675,49 @@ public class XDocsPagesTest {
                                     lastRuleName.toLowerCase(Locale.ENGLISH)) >= 0);
                 }
 
+                if (!"--".equals(ruleName)) {
+                    validateStyleAnchors(XmlUtil.findChildElementsByTag(columns.get(0), "a"),
+                            fileName, ruleName);
+                }
+
                 validateStyleChecks(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
                         XmlUtil.findChildElementsByTag(columns.get(3), "a"), fileName, ruleName);
 
                 lastRuleName = ruleName;
             }
+        }
+    }
+
+    private static void validateStyleAnchors(Set<Node> anchors, String fileName, String ruleName) {
+        Assert.assertEquals(fileName + " rule '" + ruleName + "' must have two row anchors", 2,
+                anchors.size());
+
+        final int space = ruleName.indexOf(' ');
+        Assert.assertTrue(fileName + " rule '" + ruleName
+                + "' must have have a space between the rule's number and the rule's name",
+                space != -1);
+
+        final String ruleNumber = ruleName.substring(0, space);
+
+        int position = 1;
+
+        for (Node anchor : anchors) {
+            final String actualUrl;
+            final String expectedUrl;
+
+            if (position == 1) {
+                actualUrl = anchor.getAttributes().getNamedItem("name").getTextContent();
+                expectedUrl = ruleNumber;
+            }
+            else {
+                actualUrl = anchor.getAttributes().getNamedItem("href").getTextContent();
+                expectedUrl = "#" + ruleNumber;
+            }
+
+            Assert.assertEquals(fileName + " rule '" + ruleName + "' anchor " + position
+                    + " shoud have matching name/url", expectedUrl, actualUrl);
+
+            position++;
         }
     }
 
