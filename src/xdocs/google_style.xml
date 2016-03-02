@@ -67,7 +67,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td/>
+                            <td><a name="1"/><a href="#1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s1-introduction">
@@ -78,7 +78,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="1.1"/><a href="#1.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s1.1-terminology">1.1 Terminology notes</a>
@@ -87,7 +87,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="1.2"/><a href="#1.2"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s1.2-guide-notes">1.2 Guide notes</a>
@@ -97,7 +97,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="2"/><a href="#2"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s2-source-file-basics">
@@ -228,7 +228,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="3.1"/><a href="#3.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s3.1-copyright-statement">3.1 License or copyright information, if present</a>
@@ -270,7 +270,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="3.3"/><a href="#3.3"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s3.3-import-statements">
@@ -356,7 +356,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="3.4"/><a href="#3.4"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s3.4-class-declaration">
@@ -387,7 +387,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="3.4.2"/><a href="#3.4.2"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s3.4.2-class-member-ordering">3.4.2 Class member ordering</a>
@@ -416,7 +416,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4"/><a href="#4"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4-formatting">
@@ -427,7 +427,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.1"/><a href="#4.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.1-braces">
@@ -588,7 +588,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.5"/><a href="#4.5"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.5-line-wrapping">
@@ -651,7 +651,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.6"/><a href="#4.6"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.6-whitespace">
@@ -715,7 +715,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.6.3"/><a href="#4.6.3"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.6.3-horizontal-alignment">4.6.3 Horizontal alignment: never required</a>
@@ -724,7 +724,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.7"/><a href="#4.7"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.7-grouping-parentheses">4.7 Grouping parentheses: recommended</a>
@@ -733,7 +733,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.8"/><a href="#4.8"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8-specific-constructs">
@@ -744,7 +744,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.8.1"/><a href="#4.8.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.1-enum-classes">4.8.1 Enum classes</a>
@@ -753,7 +753,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.8.2"/><a href="#4.8.2"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.2-variable-declarations">4.8.2 Variable declarations</a>
@@ -806,7 +806,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.8.3"/><a href="#4.8.3"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.3-arrays">4.8.3 Arrays</a>
@@ -815,7 +815,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.8.3.1"/><a href="#4.8.3.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.3.1-array-initializers">4.8.3.1 Array initializers: can be "block-like"</a>
@@ -845,7 +845,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.8.4"/><a href="#4.8.4"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.4-switch">4.8.4 Switch statements</a>
@@ -936,7 +936,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="4.8.6"/><a href="#4.8.6"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.6-comments">4.8.6 Comments</a>
@@ -1007,7 +1007,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="5"/><a href="#5"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s5-naming">
@@ -1018,7 +1018,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="5.1"/><a href="#5.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s5.1-identifier-names">5.1 Rules common to all identifiers</a>
@@ -1028,7 +1028,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="5.2"/><a href="#5.2"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s5.2-specific-identifier-names">
@@ -1100,7 +1100,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="5.2.4"/><a href="#5.2.4"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s5.2.4-constant-names">5.2.4 Constant names</a>
@@ -1251,7 +1251,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="6"/><a href="#6"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s6-programming-practices">
@@ -1262,7 +1262,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="6.1"/><a href="#6.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s6.1-override-annotation">6.1 @Override: always used</a>
@@ -1300,7 +1300,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="6.3"/><a href="#6.3"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s6.3-static-members">6.3 Static members: qualified using class</a>
@@ -1335,7 +1335,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="7"/><a href="#7"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s7-javadoc">
@@ -1346,7 +1346,7 @@
                             <td/>
                         </tr>
                         <tr>
-                            <td/>
+                            <td><a name="7.1"/><a href="#7.1"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
                                     href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s7.1-javadoc-formatting">
