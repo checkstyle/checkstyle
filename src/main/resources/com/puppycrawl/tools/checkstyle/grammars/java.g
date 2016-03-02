@@ -1432,7 +1432,6 @@ postfixExpression
               )
             | "class"
             | newExpression
-            | annotations
             )
 
             //Java 8 method references.
