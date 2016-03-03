@@ -228,15 +228,7 @@
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
     <module name="ParameterAssignment"/>
-    <module name="RequireThis">
-      <!--
-        till https://github.com/checkstyle/checkstyle/issues/2362
-        we will not use that fanatic validation, extra modifiers pollute a code
-        it is better to use different names for arguments, or expect IDE to highlight field.
-        But this Check will exists as it was created by community demand.
-      -->
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="RequireThis"/>
     <module name="ReturnCount"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>

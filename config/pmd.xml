@@ -54,7 +54,7 @@
     <properties>
       <!-- *TokenTypes are special classes that a big due to a lot of description comments -->
       <!-- JavadocMethodCheck is deprecated class, till it is redone to use JavadocAst -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes' or @Image='TokenTypes' or @Image='JavadocMethodCheck']"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes' or @Image='TokenTypes' or @Image='JavadocMethodCheck' or @Image='RequireThisCheck']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
