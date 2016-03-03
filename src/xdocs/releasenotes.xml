@@ -15,6 +15,33 @@
 
   <body>
 
+    <section name="Release 6.16.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            fix TokenTypes compatibility problems between 6.15 and 6.16. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2997">#2997</a>
+          </li>
+          <li>
+            Allow JUnit ClassRule to be public. Author: Andrej Vano <a href="https://github.com/checkstyle/checkstyle/issues/2987">#2987</a>
+          </li>
+          <li>
+            FinalParameters should not warn for non-final parameters of native methods . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2981">#2981</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Revert &quot;Issue #2973: removed unused FLOAT_SUFFIX from java.g&quot;. Author: Roman Ivanov
+          </li>
+          <li>
+            all rows in coerage table google_style.html shoudl have anchor. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2975">#2975</a>
+          </li>
+          <li>
+            Strive for 100% line coverage for java grammar. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2973">#2973</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.16">
       <p>Breaking backward compatibility:</p>
         <ul>
