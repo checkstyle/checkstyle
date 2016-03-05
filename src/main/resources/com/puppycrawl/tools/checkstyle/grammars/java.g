@@ -2058,11 +2058,6 @@ SIGNED_INTEGER
     ;
 
 protected
-FLOAT_SUFFIX
-    :    'f'|'F'|'d'|'D'
-    ;
-
-protected
 BINARY_EXPONENT
     :   ('p'|'P') SIGNED_INTEGER
     ;
