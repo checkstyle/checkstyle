@@ -251,6 +251,9 @@ matrix:
     # unit tests in French locale (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="tests fr" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=fr -Duser.country=FR -XX:-UseSplitVerifier'" COVERAGE_CMD=""
+    # unit tests in Chinese locale (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="tests zh" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=zh -Duser.country=CN -XX:-UseSplitVerifier'" COVERAGE_CMD=""
     # unit tests in Japanese locale (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="tests ja" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=ja -Duser.country=JP -XX:-UseSplitVerifier'" COVERAGE_CMD=""

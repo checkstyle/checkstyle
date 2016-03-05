@@ -67,7 +67,7 @@
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile"/>
   <module name="Translation">
-    <property name="requiredTranslations" value="de, fr, fi, es, pt, ja, tr"/>
+    <property name="requiredTranslations" value="de, fr, fi, es, pt, ja, tr, zh"/>
   </module>
   <module name="UniqueProperties"/>
 

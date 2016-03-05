@@ -35,6 +35,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.Assertion;
@@ -66,6 +67,13 @@ public class MainTest {
 
     private static String getFilePath(String filename) throws IOException {
         return new File(getPath(filename)).getCanonicalPath();
+    }
+
+    @BeforeClass
+    public static void init() {
+        // Set locale to root to prevent check message fail
+        // in other language environment.
+        Locale.setDefault(Locale.ROOT);
     }
 
     @Test
@@ -256,7 +264,6 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFileWithViolations() throws Exception {
-
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
