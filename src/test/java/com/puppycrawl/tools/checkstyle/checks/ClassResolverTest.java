@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -147,6 +148,34 @@ public class ClassResolverTest {
         catch (IllegalStateException ex) {
             // expected
             assertTrue(ex.getCause() instanceof ClassNotFoundException);
+            assertTrue(ex.getMessage().endsWith("expected exception"));
+        }
+    }
+
+    /**
+     * This test exists to prevent any possible regression and let of
+     * https://github.com/checkstyle/checkstyle/issues/1192 to be persistent
+     * event is not very obvious
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testIsLoadableWithNoClassDefFoundError() throws Exception {
+        final Set<String> imports = Sets.newHashSet();
+        imports.add("java.applet.someClass");
+
+        final ClassResolver classResolver = PowerMockito.spy(new ClassResolver(Thread
+                .currentThread().getContextClassLoader(), "", imports));
+
+        PowerMockito.doThrow(new NoClassDefFoundError("expected exception"))
+                .when(classResolver, "safeLoad", anyObject());
+
+        try {
+            boolean result = classResolver.isLoadable("someClass");
+            assertFalse("result should be false", result);
+        }
+        catch (NoClassDefFoundError ex) {
+            fail("NoClassDefFoundError is not expected");
             assertTrue(ex.getMessage().endsWith("expected exception"));
         }
     }
