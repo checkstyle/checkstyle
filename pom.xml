@@ -40,17 +40,10 @@
 
   <developers>
     <developer>
-      <id>oburn</id>
-      <name>Oliver Burn</name>
-      <roles>
-        <role>founder (retired)</role>
-      </roles>
-    </developer>
-    <developer>
       <id>romani</id>
       <name>Roman Ivanov</name>
       <roles>
-        <role>lead developer</role>
+        <role>project admin, lead developer</role>
       </roles>
     </developer>
     <developer>
@@ -79,6 +72,13 @@
       <name>Ilja Dubinin</name>
       <roles>
         <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>oburn</id>
+      <name>Oliver Burn</name>
+      <roles>
+        <role>founder (retired)</role>
       </roles>
     </developer>
     <developer>
