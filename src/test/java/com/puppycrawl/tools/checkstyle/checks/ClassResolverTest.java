@@ -157,7 +157,7 @@ public class ClassResolverTest {
      * https://github.com/checkstyle/checkstyle/issues/1192 to be persistent
      * event is not very obvious
      *
-     * @throws Exception
+     * @throws Exception when smth is not expected
      */
     @Test
     public void testIsLoadableWithNoClassDefFoundError() throws Exception {
@@ -171,7 +171,7 @@ public class ClassResolverTest {
                 .when(classResolver, "safeLoad", anyObject());
 
         try {
-            boolean result = classResolver.isLoadable("someClass");
+            final boolean result = classResolver.isLoadable("someClass");
             assertFalse("result should be false", result);
         }
         catch (NoClassDefFoundError ex) {
