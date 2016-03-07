@@ -493,7 +493,7 @@ annotationMemberValuePair!
 
 annotationMemberValueInitializer
     :
-        annotationExpression | annotation | annotationMemberArrayInitializer
+        (annotationExpression)=>annotationExpression | annotation | annotationMemberArrayInitializer
     ;
 
 // This is an initializer used to set up an annotation member array.
@@ -519,7 +519,7 @@ annotationMemberArrayInitializer
 // The two things that can initialize an annotation array element are a conditional expression
 //   and an annotation (nested annotation array initialisers are not valid)
 annotationMemberArrayValueInitializer
-    :    annotationExpression
+    :    (annotationExpression)=>annotationExpression
     |   annotation
     ;
 
@@ -1039,7 +1039,7 @@ traditionalStatement
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
         // side-effects.
-        |    {LA(2) != COLON}? expression (SEMI)?
+        |    ({LA(2) != COLON}? expression (SEMI)?)=> {LA(2) != COLON}? expression (SEMI)?
 
         // class definition
         |    m:modifiers! classDefinition[#m]
@@ -1426,7 +1426,7 @@ postfixExpression
         (options{warnWhenFollowAmbig=false;} :    // qualified id (id.id.id.id...) -- build the name
             DOT^
             ( (typeArguments[false])?
-              ( IDENT ((typeArguments[false] DOUBLE_COLON)=>typeArguments[false])?
+              ( IDENT
               | "this"
               | "super" // ClassName.super.field
               )
@@ -1480,7 +1480,8 @@ postfixExpression
 
 // the basic element of an expression
 primaryExpression
-    :   IDENT ((typeArguments[false] DOUBLE_COLON)=>typeArguments[false])?
+    :   (typeSpec[false] DOUBLE_COLON) => typeSpec[false]
+    |    IDENT
     |    constant
     |    "true"
     |    "false"
