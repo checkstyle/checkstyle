@@ -1,7 +1,19 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 /**
- * Some Javadoc A {@code Foo} is a simple Javadoc.
+ * Checks comment block indentations over surrounding code.
+ * e.g.:
+ * <p>
+ * {@code
+ * /* some comment *&#47; - this is ok
+ * double d = 3.14;
+ *     /* some comment *&#47; - this is <b>not</b> ok.
+ * double d1 = 5.0;
+ * }
+ * </p>
+ * @param blockComment {@link TokenTypes#BLOCK_COMMENT_BEGIN block comment begin}.
  */
 class InputCorrectSummaryJavaDoc {
 
@@ -10,15 +22,21 @@ class InputCorrectSummaryJavaDoc {
      */
     public static final byte NUL = 0;
     
+    /** Single line Javadoc with 2 tail astrisks. **/
+    void foo1() {}
     /**
-     * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
-     */
+     * Multiple line Javadoc with 2 tail astrisks. *
+     **/
+    void foo2() {}
+    /**
+     * Multiple line Javadoc with 2 tail astrisks.
+     **/
     void foo3() {}
     
     /**
-     * @throws Exception if an error occurs.
+     * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
      */
-    void foo4() throws Exception {}
+    void foo4() {}
     
     /** An especially This method returns short bit of Javadoc. */
     void foo5() {}
@@ -33,7 +51,7 @@ class InputCorrectSummaryJavaDoc {
     void foo7() {}
 
     /** 
-     * <a href="mailto:vlad@htmlbook.ru"/> 
+     * <a href="mailto:vlad@htmlbook.ru"/>.
      */
      class InnerInputCorrectJavaDocParagraphCheck {
 
@@ -63,11 +81,6 @@ class InputCorrectSummaryJavaDoc {
          * replaced by {@link #setBounds(int,int,int,int)}. This method returns.
          */
         void foo3() {}
-        
-        /**
-         * @throws Exception if an error occurs.
-         */
-        void foo4() throws Exception {}
         
         /** 
          * JAXB Provider Use Only: Provides partial default
@@ -107,11 +120,6 @@ class InputCorrectSummaryJavaDoc {
          */
         void foo3() {}
         
-        /**
-         * @throws Exception if an error occurs.
-         */
-        void foo4() throws Exception {}
-        
         /** An especially short bit of Javadoc. */
         void foo5() {}
 
@@ -130,14 +138,5 @@ class InputCorrectSummaryJavaDoc {
          */
         boolean emulated1() {return false;}
         
-        /**
-         * @return Some Javadoc the customer ID.
-         */
-        int geId() {return 666;} 
-        
-        /**
-         * @return Sentence one. Sentence two.
-         */
-        String twoSentences() {return "Sentence one. Sentence two.";} 
     };
 }

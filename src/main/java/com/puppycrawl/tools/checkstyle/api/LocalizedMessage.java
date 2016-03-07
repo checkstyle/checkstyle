@@ -387,7 +387,7 @@ public final class LocalizedMessage
     /**
      * <p>
      * Custom ResourceBundle.Control implementation which allows explicitly read
-     * the properties files as UTF-8
+     * the properties files as UTF-8.
      * </p>
      *
      * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>

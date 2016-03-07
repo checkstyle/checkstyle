@@ -88,7 +88,7 @@ public final class TreeWalker
     /** Context of child components. */
     private Context childContext;
 
-    /** A factory for creating submodules (i.e. the Checks) */
+    /** A factory for creating submodules (i.e. the Checks). */
     private ModuleFactory moduleFactory;
 
     /**

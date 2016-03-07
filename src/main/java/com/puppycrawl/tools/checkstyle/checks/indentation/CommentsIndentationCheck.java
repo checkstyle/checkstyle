@@ -121,7 +121,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks single line comment indentations over surrounding code, e.g.:
+     * Checks single line comment indentations over surrounding code.
+     * e.g.:
      * <p>
      * {@code
      * // some comment - this is ok
@@ -702,7 +703,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Checks if comment and next code statement
-     * (or previous code stmt like <b>case</b> in switch block) are indented at the same level,
+     * (or previous code stmt like <b>case</b> in switch block) are indented at the same level.
      * e.g.:
      * <p>
      * <pre>
@@ -737,7 +738,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current single line comment is trailing comment, e.g.:
+     * Checks if current single line comment is trailing comment. e.g.:
      * <p>
      * {@code
      * double d = 3.14; // some comment
@@ -753,7 +754,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks comment block indentations over surrounding code, e.g.:
+     * Checks comment block indentations over surrounding code.
+     * e.g.:
      * <p>
      * {@code
      * /* some comment *&#47; - this is ok
@@ -778,7 +780,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current comment block is trailing comment, e.g.:
+     * Checks if current comment block is trailing comment. e.g.:
      * <p>
      * {@code
      * double d = 3.14; /* some comment *&#47;

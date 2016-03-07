@@ -58,7 +58,7 @@ public class SuppressWarningsHolder
      */
     public static final String CHECKSTYLE_PREFIX = "checkstyle:";
 
-    /** Java.lang namespace prefix, which is stripped from SuppressWarnings */
+    /** Java.lang namespace prefix, which is stripped from SuppressWarnings. */
     private static final String JAVA_LANG_PREFIX = "java.lang.";
 
     /** Suffix to be removed from subclasses of Check. */

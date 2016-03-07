@@ -69,12 +69,17 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
+            "9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "32: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "47: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "53: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "64: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "83: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "98: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
         verify(checkConfig, getPath("InputIncorrectSummaryJavaDoc.java"), expected);
@@ -92,9 +97,22 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testChinesePeriod() throws Exception {
+        //Chinese period.
+        checkConfig.addAttribute("period", "\u3002");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verify(checkConfig, getPath("InputSummaryJavadocChinesePeriod.java"), expected);
+    }
+
+    @Test
     public void testNoPeriod() throws Exception {
         checkConfig.addAttribute("period", "");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
 
         verify(checkConfig, getPath("InputSummaryJavadocNoPeriod.java"), expected);
     }
@@ -102,9 +120,14 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
+            "9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "32: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "53: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "64: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "98: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 

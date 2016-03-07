@@ -1559,7 +1559,7 @@ public boolean isSomething()
       <subsection name="Description">
         <p>
           Checks that <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
-          Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
+          Javadoc summary sentence</a> do exist, end with proper period, and does not contain phrases that are not recommended to use.
         </p>
       </subsection>
 
@@ -1579,7 +1579,7 @@ public boolean isSomething()
           </tr>
           <tr>
             <td>period</td>
-            <td>period symbol at the end of first javadoc sentence</td>
+            <td>period symbol at the end of first javadoc sentence, should be a punctuation</td>
             <td><a href="property_types.html#string">String literal</a></td>
             <td><code>.</code></td>
           </tr>
@@ -1588,7 +1588,7 @@ public boolean isSomething()
 
       <subsection name="Examples">
         <p>
-          By default Check validate that first sentence is not empty:
+          By default Check validate that first sentence is not empty, and end with period:
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
@@ -1602,11 +1602,11 @@ public boolean isSomething()
 &lt;/module&gt;
         </source>
         <p>
-          To specify period symbol at the end of first javadoc sentence:
+          To specify period symbol at the end of first javadoc sentence, say chinese period('。', Unicode \u3002):
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-    &lt;property name=&quot;period&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+    &lt;property name=&quot;period&quot; value=&quot;。&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

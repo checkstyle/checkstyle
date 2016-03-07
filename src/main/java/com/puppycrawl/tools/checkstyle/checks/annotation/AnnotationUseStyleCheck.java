@@ -126,7 +126,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         COMPACT,
 
         /**
-         * Compact example.]
+         * Compact example
          *
          * <pre>@SuppressWarnings("unchecked")</pre>.
          */

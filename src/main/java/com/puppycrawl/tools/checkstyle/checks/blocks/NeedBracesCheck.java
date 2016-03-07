@@ -223,7 +223,8 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current loop statement does not have body, e.g.:
+     * Checks if current loop statement does not have body.
+     * e.g.:
      * <p>
      * {@code
      *   while (value.incrementValue() < 5);
@@ -317,7 +318,8 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current do-while statement is single-line statement, e.g.:
+     * Checks if current do-while statement is single-line statement.
+     * e.g.:
      * <p>
      * {@code
      * do this.notify(); while (o != null);
@@ -337,7 +339,7 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current for statement is single-line statement, e.g.:
+     * Checks if current for statement is single-line statement. e.g.:
      * <p>
      * {@code
      * for (int i = 0; ; ) this.notify();
@@ -359,7 +361,8 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current if statement is single-line statement, e.g.:
+     * Checks if current if statement is single-line statement.
+     * e.g.:
      * <p>
      * {@code
      * if (obj.isValid()) return true;
@@ -386,7 +389,8 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current lambda statement is single-line statement, e.g.:
+     * Checks if current lambda statement is single-line statement.
+     * e.g.:
      * <p>
      * {@code
      * Runnable r = () -> System.out.println("Hello, world!");
