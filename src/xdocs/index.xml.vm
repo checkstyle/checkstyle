@@ -216,12 +216,6 @@
                   <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">example report</a></td>
               </tr>
               <tr>
-                  <td><a href="http://tide.olympe.in/">tIDE</a></td>
-                  <td/>
-                  <td>Built in</td>
-                  <td/>
-              </tr>
-              <tr>
                   <td><a href="https://netbeans.org/">NetBeans</a></td>
                   <td>Petr Hejl</td>
                   <td>
