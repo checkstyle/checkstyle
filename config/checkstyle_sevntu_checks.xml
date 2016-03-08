@@ -145,5 +145,6 @@
         <module name="LogicConditionNeedOptimizationCheck"/>
         <module name="AvoidConditionInversionCheck"/>
         <module name="SingleBreakOrContinueCheck"/>
+        <module name="NumericLiteralNeedsUnderscoreCheck"/>
     </module>
 </module>
