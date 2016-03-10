@@ -19,7 +19,7 @@ machine:
     CMD2: " && sed -i.'' 's/^openjdk/#openjdk/' projects-for-circle.properties"
     CMD3: " && sed -i.'' s/projects-to-test-on.properties/projects-for-circle.properties/ launch.sh"
     CMD4: " && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-    OPENJDK: " && sed -i.'' 's/#openjdk/openjdk/' projects-for-circle.properties"
+    OPENJDK: " && sed -i.'' 's/#openjdk7/openjdk7/' projects-for-circle.properties"
     INFINISPAN: " && sed -i.'' 's/#infinispan/infinispan/' projects-for-circle.properties"
     PROTONPACK: " && sed -i.'' 's/#protonpack/protonpack/' projects-for-circle.properties"
     JOOL: " && sed -i.'' 's/#jOOL/jOOL/' projects-for-circle.properties"
