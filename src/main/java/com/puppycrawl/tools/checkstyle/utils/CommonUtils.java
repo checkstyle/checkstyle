@@ -564,8 +564,7 @@ public final class CommonUtils {
         }
         final Object first = iterator.next();
         if (!iterator.hasNext()) {
-            @SuppressWarnings( "deprecation" ) // ObjectUtils.toString(Object) has been deprecated in 3.2
-                final String result = toString(first);
+            final String result = Objects.toString(first);
             return result;
         }
 
@@ -608,33 +607,6 @@ public final class CommonUtils {
             return null;
         }
         return join(iterable.iterator(), separator);
-    }
-
-    /**
-     * <p>Gets the {@code toString} of an {@code Object} returning
-     * an empty string ("") if {@code null} input.</p>
-     *
-     * <pre>
-     * ObjectUtils.toString(null)         = ""
-     * ObjectUtils.toString("")           = ""
-     * ObjectUtils.toString("bat")        = "bat"
-     * ObjectUtils.toString(Boolean.TRUE) = "true"
-     * </pre>
-     *
-     * <p>Copied from org.apache.commons.lang3.ObjectUtils.</p>
-     *
-     * @see StringUtils#defaultString(String)
-     * @see String#valueOf(Object)
-     * @param obj  the Object to {@code toString}, may be null
-     * @return the passed in Object's toString, or {@code ""} if {@code null} input
-     * @since 2.0
-     * @deprecated this method has been replaced by {@code java.util.Objects.toString(Object)} in Java 7 and will be
-     * removed in future releases. Note however that said method will return "null" for null references, while this
-     * method returns and empty String. To preserve behavior use {@code java.util.Objects.toString(myObject, "")}
-     */
-    @Deprecated
-    public static String toString(final Object obj) {
-        return obj == null ? "" : obj.toString();
     }
 
     /**
