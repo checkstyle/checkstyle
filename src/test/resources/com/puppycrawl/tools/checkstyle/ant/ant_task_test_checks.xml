@@ -10,6 +10,9 @@
       <property name="severity"
                 value="${lineLength.severity}"
                 default="error"/>
+      <!-- special message just to avoid problem with UTs in different locale -->
+      <message key="maxLineLen"
+            value="Line is longer than {0,number,integer} characters (found {1,number,integer})."/>
     </module>
     <module name="EmptyLineSeparator">
       <property name="severity" value="warning"/>
