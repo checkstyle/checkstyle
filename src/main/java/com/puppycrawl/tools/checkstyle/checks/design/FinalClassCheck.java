@@ -24,12 +24,11 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -161,7 +160,7 @@ public class FinalClassCheck
                 qualifiedNameParts.add(0, traverse.findFirstToken(TokenTypes.IDENT).getText());
                 traverse = traverse.findFirstToken(TokenTypes.DOT);
             }
-            className = StringUtils.join(qualifiedNameParts, PACKAGE_SEPARATOR);
+            className = CommonUtils.join(qualifiedNameParts, PACKAGE_SEPARATOR);
         }
         else {
             className = classExtend.findFirstToken(TokenTypes.IDENT).getText();

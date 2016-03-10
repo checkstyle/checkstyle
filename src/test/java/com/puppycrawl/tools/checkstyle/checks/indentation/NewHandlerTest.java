@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Unit test for IndentationCheck.
@@ -42,7 +42,7 @@ public class NewHandlerTest extends BaseCheckTestSupport {
     @Test
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputNewHandler.java"), expected);
     }
 

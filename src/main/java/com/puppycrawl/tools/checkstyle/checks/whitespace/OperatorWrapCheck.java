@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -198,7 +196,7 @@ public class OperatorWrapCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -222,7 +220,7 @@ public class OperatorWrapCheck
         // itself.
         if (option == WrapOption.NL
                 && !text.equals(currentLine.trim())
-                && StringUtils.isBlank(currentLine.substring(colNo + text.length()))) {
+                && CommonUtils.isBlank(currentLine.substring(colNo + text.length()))) {
             log(lineNo, colNo, MSG_LINE_NEW, text);
         }
         else if (option == WrapOption.EOL

@@ -28,7 +28,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -70,7 +70,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final LeftCurlyCheck checkObj = new LeftCurlyCheck();
-        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
 
     }
 
@@ -272,7 +272,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     public void testIgnoreEnumsOptionTrue() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
         checkConfig.addAttribute("ignoreEnums", "true");
-        final String[] expectedWhileTrue = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expectedWhileTrue = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLeftCurlyEnums.java"), expectedWhileTrue);
     }
 
@@ -340,7 +340,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     public void testFirstLine() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
         checkConfig.addAttribute("maxLineLength", "100");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLeftCurlyAllInOneLine.java"), expected);
     }
 
@@ -364,7 +364,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     @Test(expected = CheckstyleException.class)
     public void testInvalidOption() throws Exception {
         checkConfig.addAttribute("option", "invalid_option");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputScopeInnerInterfaces.java"), expected);
     }

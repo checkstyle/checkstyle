@@ -27,7 +27,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class EmptyForInitializerPadCheckTest
     extends BaseCheckTestSupport {
@@ -109,7 +109,7 @@ public class EmptyForInitializerPadCheckTest
     @Test(expected = CheckstyleException.class)
     public void testInvalidOption() throws Exception {
         checkConfig.addAttribute("option", "invalid_option");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputForWhitespace.java"), expected);
     }

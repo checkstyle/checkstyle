@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -38,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class FileSetCheckLifecycleTest
     extends BaseCheckTestSupport {
@@ -57,14 +57,14 @@ public class FileSetCheckLifecycleTest
     @Test
     public void testGetRequiredTokens() {
         final FileContentsHolder checkObj = new FileContentsHolder();
-        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testTranslation() throws Exception {
         final Configuration checkConfig =
             createCheckConfig(TestFileSetCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
@@ -90,7 +90,7 @@ public class FileSetCheckLifecycleTest
 
         checker.addFileSetCheck(new TestFileSetCheck());
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, getPath("InputIllegalTokens.java"), expected);
 

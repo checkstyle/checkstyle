@@ -25,13 +25,13 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class CatchParameterNameCheckTest extends BaseCheckTestSupport {
     @Override
@@ -51,7 +51,7 @@ public class CatchParameterNameCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultConfigurationOnCorrectFile() throws Exception {
         final Configuration checkConfig = createCheckConfig(CatchParameterNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
@@ -95,7 +95,7 @@ public class CatchParameterNameCheckTest extends BaseCheckTestSupport {
         final String format = "[a-z]";
         checkConfig.addAttribute("format", format);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputCatchParameterName.java"), expected);
     }

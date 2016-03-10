@@ -24,12 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class OuterTypeFilenameTest extends BaseCheckTestSupport {
 
@@ -42,7 +42,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
     @Test
     public void outerTypeFilenameTest1() throws Exception {
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("OuterTypeFilename");
         final String filePath = getPath("InputOuterTypeFilename1.java");
@@ -54,7 +54,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
     @Test
     public void outerTypeFilenameTest2() throws Exception {
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("OuterTypeFilename");
         final String filePath = getPath("InputOuterTypeFilename2.java");

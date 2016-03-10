@@ -21,13 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Set;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Check that method/constructor/catch/foreach parameters are final.
@@ -109,7 +108,7 @@ public class FinalParametersCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

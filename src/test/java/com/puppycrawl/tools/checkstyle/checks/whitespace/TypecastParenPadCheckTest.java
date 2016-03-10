@@ -27,13 +27,13 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TypecastParenPadCheckTest
     extends BaseCheckTestSupport {
@@ -79,7 +79,7 @@ public class TypecastParenPadCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }

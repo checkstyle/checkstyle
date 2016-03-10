@@ -25,13 +25,13 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TranslationCheckTest
     extends BaseCheckTestSupport {
@@ -87,7 +87,7 @@ public class TranslationCheckTest
     @Test
     public void testOnePropertyFileSet() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         final File[] propertyFiles = {
             new File(getPath("app-dev.properties")),
         };
@@ -223,7 +223,7 @@ public class TranslationCheckTest
             new File(getPath("app-stage.properties")),
         };
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
             propertyFiles,
@@ -263,7 +263,7 @@ public class TranslationCheckTest
             new File(getPath("messages_home_fr_CA_UNIX.properties")),
             };
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
             propertyFiles,

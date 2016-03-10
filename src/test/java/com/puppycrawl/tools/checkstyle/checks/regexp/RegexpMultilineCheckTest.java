@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MS
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -37,6 +36,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     @Rule
@@ -94,7 +94,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         final String illegal = "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "false");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -128,7 +128,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 
@@ -202,7 +202,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         final String illegal = "^import";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("maximum", "5000");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
 }

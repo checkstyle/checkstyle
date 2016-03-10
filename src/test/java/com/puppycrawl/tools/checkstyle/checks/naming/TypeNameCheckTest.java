@@ -25,13 +25,13 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.DEFAUL
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TypeNameCheckTest
     extends BaseCheckTestSupport {
@@ -47,7 +47,7 @@ public class TypeNameCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(TypeNameCheck.class);
         checkConfig.addAttribute("format", "^inputHe");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 

@@ -26,13 +26,13 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ModifierOrderCheckTest
     extends BaseCheckTestSupport {
@@ -75,7 +75,7 @@ public class ModifierOrderCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputModifier2.java"), expected);
     }
 
@@ -84,7 +84,7 @@ public class ModifierOrderCheckTest
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getDefaultTokens();
         final int[] expected = {TokenTypes.MODIFIERS};
-        final int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
+        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
         final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
@@ -100,7 +100,7 @@ public class ModifierOrderCheckTest
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.MODIFIERS};
-        final int[] unexpectedEmptyArray = ArrayUtils.EMPTY_INT_ARRAY;
+        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
         final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,

@@ -25,12 +25,12 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ParameterNameCheckTest
     extends BaseCheckTestSupport {
@@ -53,7 +53,7 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputCatchOnly.java"), expected);
     }
 
@@ -79,7 +79,7 @@ public class ParameterNameCheckTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputSimple.java"), expected);
     }
 
@@ -144,7 +144,7 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]*$");
         checkConfig.addAttribute("ignoreOverridden", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOverrideAnnotationNoNPE.java"), expected);
     }
 }

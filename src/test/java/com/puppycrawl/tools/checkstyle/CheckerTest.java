@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.SortedSet;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
@@ -54,6 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class CheckerTest extends BaseCheckTestSupport {
 
@@ -391,7 +391,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefUtLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
         // one more time to reuse cache
@@ -419,7 +419,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefUtLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
 
@@ -476,7 +476,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefUtLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
         checker.clearCache();
@@ -504,7 +504,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefUtLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
         checker.clearCache();
