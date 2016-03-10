@@ -46,9 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 public final class CommonUtils {
 
-    /** Prefix for the exception when unable to find resource. */
-    private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
-
     /** Copied from org.apache.commons.lang3.ArrayUtils. */
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
     /** Copied from org.apache.commons.lang3.ArrayUtils. */
@@ -68,6 +65,9 @@ public final class CommonUtils {
      * <p>Copied from org.apache.commons.lang3.SystemUtils.</p>
      */
     public static final boolean IS_OS_WINDOWS = getSystemProperty("os.name").startsWith("Windows");
+
+    /** Prefix for the exception when unable to find resource. */
+    private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
     /** Stop instances being created. **/
     private CommonUtils() {
@@ -106,6 +106,24 @@ public final class CommonUtils {
             throw new ConversionException(
                 "Failed to initialise regular expression " + pattern, ex);
         }
+    }
+
+    /**
+     * <p>Clones an array returning a typecast result and handling
+     * <code>null</code>.</p>
+     *
+     * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
+     *
+     * Copied from org.apache.commons.lang3.ArrayUtils.
+     *
+     * @param array  the array to clone, may be <code>null</code>
+     * @return the cloned array, <code>null</code> if <code>null</code> input
+     */
+    public static int[] clone(int[] array) {
+	if (array == null) {
+	    return null;
+	}
+	return (int[]) array.clone();
     }
 
     /**
@@ -421,24 +439,6 @@ public final class CommonUtils {
             }
         }
         return result;
-    }
-
-    /**
-     * <p>Clones an array returning a typecast result and handling
-     * <code>null</code>.</p>
-     *
-     * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
-     *
-     * Copied from org.apache.commons.lang3.ArrayUtils.
-     *
-     * @param array  the array to clone, may be <code>null</code>
-     * @return the cloned array, <code>null</code> if <code>null</code> input
-     */
-    public static int[] clone(int[] array) {
-	if (array == null) {
-	    return null;
-	}
-	return (int[]) array.clone();
     }
 
     /**
