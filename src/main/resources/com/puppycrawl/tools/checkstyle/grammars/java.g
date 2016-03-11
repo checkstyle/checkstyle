@@ -1208,7 +1208,8 @@ resources
 
 
 resource
-    : modifiers typeSpec[true] IDENT resource_assign
+    : IDENT
+      | modifiers typeSpec[true] IDENT resource_assign
       {#resource = #([RESOURCE, "RESOURCE"], #resource);}
 ;
 
