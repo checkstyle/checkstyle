@@ -19,7 +19,9 @@ machine:
     CMD2: " && sed -i.'' 's/^openjdk/#openjdk/' projects-for-circle.properties"
     CMD3: " && sed -i.'' s/projects-to-test-on.properties/projects-for-circle.properties/ launch.sh"
     CMD4: " && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-    OPENJDK: " && sed -i.'' 's/#openjdk7/openjdk7/' projects-for-circle.properties"
+    OPENJDK7: " && sed -i.'' 's/#openjdk7/openjdk7/' projects-for-circle.properties"
+    OPENJDK8: " && sed -i.'' 's/#openjdk8/openjdk8/' projects-for-circle.properties"
+    OPENJDK9: " && sed -i.'' 's/#openjdk9/openjdk9/' projects-for-circle.properties"
     INFINISPAN: " && sed -i.'' 's/#infinispan/infinispan/' projects-for-circle.properties"
     PROTONPACK: " && sed -i.'' 's/#protonpack/protonpack/' projects-for-circle.properties"
     JOOL: " && sed -i.'' 's/#jOOL/jOOL/' projects-for-circle.properties"
@@ -31,8 +33,8 @@ machine:
     CASSANDRA: " && sed -i.'' 's/#cassandra/cassandra/' projects-for-circle.properties"
     SCOUTER: " && sed -i.'' 's/#scouter/scouter/' projects-for-circle.properties"
     GROOVY: " && sed -i.'' 's/#groovy/groovy/' projects-for-circle.properties"
-    # Test over openjdk7
-    TEST_1: $CMD1$CMD2$OPENJDK$CMD3$CMD4
+    # Test over openjdk7,8,9
+    TEST_1: $CMD1$CMD2$OPENJDK7$OPENJDK8$OPENJDK9$CMD3$CMD4
     # Test over infinispan, protonpack, jOOL, lucene-solr
     TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$CMD3$CMD4
     # Test over tapestry5, storm, cassandra
