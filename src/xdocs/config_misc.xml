@@ -1555,7 +1555,8 @@ d = e / f;        // Another comment for this line
           the correct translation of code by checking property files for
           consistency regarding their keys. Two property files
           describing one and the same context are consistent if they
-          contain the same keys.
+          contain the same keys. TranslationCheck also can check an existence of required
+          translations which must exist in project, if 'requiredTranslations' option is used.
         </p>
 
         <p>
@@ -1595,7 +1596,7 @@ messages.properties: Key 'ok' missing.
           <tr>
             <td>fileExtensions</td>
             <td>
-              file type extension to identify translation files. Setting
+              File type extension to identify translation files. Setting
               this property is typically only required if your
               translation files are preprocessed and the original files
               do not have the extension <code>.properties</code>
@@ -1604,47 +1605,55 @@ messages.properties: Key 'ok' missing.
             <td><code>properties</code></td>
           </tr>
           <tr>
-            <td>basenameSeparator</td>
-            <td>Allows setting file names separator</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>_</code></td>
+            <td>baseName</td>
+            <td><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ResourceBundle.html">
+              Base name</a> of resource bundles which contain message resources. It helps
+              the check to distinguish config and localization resources.</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><code>^messages.*$</code></td>
           </tr>
           <tr>
-             <td>requiredTranslations</td>
-             <td>
-                 Allows to specify language codes of required translations which must exist in project.
-                 The check looks only for messages bundles which names contain the word 'messages'.
-                 Language code is composed of the lowercase, two-letter codes as defined by
-                 <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
-                 Default value is empty String Set which means that only the existence
-                 of default translation is checked.
-                 Note, if you specify language codes (or just one language code) of required translations
-                 the check will also check for existence of default translation files in project.
-                 ATTENTION: the check will not perform the validation of ISO codes if the option
-                 is set to true. So, if you specify, for example, "mm" for language code,
-                 TranslationCheck will not warn about the incorrect language code and will use it
-                 for validation.
-             </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
-             <td><code>empty String Set</code></td>
+            <td>requiredTranslations</td>
+            <td>
+              Allows to specify language codes of required translations which must exist in project.
+              Language code is composed of the lowercase, two-letter codes as defined by
+              <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
+              Default value is empty String Set which means that only the existence
+              of default translation is checked. Note, if you specify language codes (or just
+              one language code) of required translations the check will also check for
+              existence of default translation files in project.
+              ATTENTION: the check will not perform the validation of ISO codes if the option
+              is set to true. So, if you specify, for example, "mm" for language code,
+              TranslationCheck will not warn about the incorrect language code and will use it
+              for validation.
+            </td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>empty String Set</code></td>
           </tr>
         </table>
       </subsection>
 
       <subsection name="Examples">
         <p>
-          To configure the check for files with '_' name separator:
-        </p>
-        <source>
-&lt;module name=&quot;Translation&quot;/&gt;
-        </source>
-
-        <p>
-          To configure the check for files with user-set name separator:
+          To configure the check to check only files which have '.properties' and '.translations'
+          extensions:
         </p>
         <source>
 &lt;module name=&quot;Translation&quot;&gt;
-    &lt;property name=&quot;basenameSeparator&quot; value=&quot;-&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, translations&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Note, that files with the same path and base name but which have different
+          extensions will be considered as files that belong to different resource bundles.
+        </p>
+        <p>
+          An example of how to configure the check to validate only bundles which base names
+          start with "ButtonLabels":
+        </p>
+        <source>
+&lt;module name=&quot;Translation&quot;&gt;
+    &lt;property name=&quot;baseName&quot; value=&quot;^ButtonLabels.*$&quot;/&gt;
 &lt;/module&gt;
         </source>
 
@@ -1669,8 +1678,9 @@ messages.properties: Key 'ok' missing.
         <p>
         </p>
         <p>
-          As we can see from the configuration, the TranslationCheck was configured to check for
-          'es', 'fr' and 'de' translations. Lets assume that we have the resource bunbdle:
+          As we can see from the configuration, the TranslationCheck was configured to check
+          an existence of 'es', 'fr' and 'de' translations. Lets assume that we have the resource
+          bunbdle:
         </p>
         <source>
 messages_home.properties

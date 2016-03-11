@@ -25,7 +25,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -37,24 +36,26 @@ import java.util.regex.Pattern;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 import com.google.common.collect.HashMultimap;
-import com.google.common.collect.ImmutableSortedSet;
-import com.google.common.collect.Lists;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
+import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
  * The TranslationCheck class helps to ensure the correct translation of code by
- * checking property files for consistency regarding their keys.
- * Two property files describing one and the same context are consistent if they
- * contain the same keys.
+ * checking locale-specific resource files for consistency regarding their keys.
+ * Two locale-specific resource files describing one and the same context are consistent if they
+ * contain the same keys. TranslationCheck also can check an existence of required translations
+ * which must exist in project, if 'requiredTranslations' option is used.
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -62,36 +63,42 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
  * <pre>
  * &lt;module name="Translation"/&gt;
  * </pre>
- * Check has the following properties:
+ * Check has the following options:
  *
- * <p><b>basenameSeparator</b> which allows setting separator in file names,
- * default value is '_'.
- * <p>
- * E.g.:
+ * <p><b>baseName</b> - a base name regexp for resource bundles which contain message resources. It
+ * helps the check to distinguish config and localization resources. Default value is
+ * <b>^messages.*$</b>
+ * <p>An example of how to configure the check to validate only bundles which base names start with
+ * "ButtonLabels":
  * </p>
- * <p>
- * messages_test.properties //separator is '_'
+ * <pre>
+ * &lt;module name="Translation"&gt;
+ *     &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
+ * &lt;module/&gt;
+ * </pre>
+ * <p>To configure the check to check only files which have '.properties' and '.translations'
+ * extensions:
  * </p>
- * <p>
- * app-dev.properties //separator is '-'
- * </p>
+ * <pre>
+ * &lt;module name="Translation"&gt;
+ *     &lt;property name="fileExtensions" value="properties, translations"/&gt;
+ * &lt;module/&gt;
+ * </pre>
  *
- * <p><b>requiredTranslations</b> which allows to specify language codes of
- * required translations which must exist in project. The check looks only for
- * messages bundles which names contain the word 'messages'.
- * Language code is composed of the lowercase, two-letter codes as defined by
- * <a href="http://www.fatbellyman.com/webstuff/language_codes_639-1/">ISO 639-1</a>.
+ * <p><b>requiredTranslations</b> which allows to specify language codes of required translations
+ * which must exist in project. Language code is composed of the lowercase, two-letter codes as
+ * defined by <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
  * Default value is <b>empty String Set</b> which means that only the existence of
- * default translation is checked.
- * Note, if you specify language codes (or just one language code) of required translations
- * the check will also check for existence of default translation files in project.
+ * default translation is checked. Note, if you specify language codes (or just one language
+ * code) of required translations the check will also check for existence of default translation
+ * files in project.
  * <br>
+ *
  * @author Alexandra Bunge
  * @author lkuehne
  * @author Andrei Selkin
  */
-public class TranslationCheck
-    extends AbstractFileSetCheck {
+public class TranslationCheck extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text for missing key
@@ -109,23 +116,67 @@ public class TranslationCheck
     /** Logger for TranslationCheck. */
     private static final Log LOG = LogFactory.getLog(TranslationCheck.class);
 
-    /** The property files to process. */
-    private final List<File> propertyFiles = Lists.newArrayList();
+    /**
+     * Regexp string for default tranlsation files.
+     * For example, messages.properties.
+     */
+    private static final String DEFAULT_TRANSLATION_REGEXP = "^.+\\..+$";
 
-    /** The separator string used to separate translation files. */
-    private String basenameSeparator;
+    /**
+     * Regexp pattern for bundles names wich end with language code, followed by country code and
+     * variant suffix. For example, messages_es_ES_UNIX.properties.
+     */
+    private static final Pattern LANGUAGE_COUNTRY_VARIANT_PATTERN =
+        CommonUtils.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\_[A-Za-z]+\\..+$");
+    /**
+     * Regexp pattern for bundles names wich end with language code, followed by country code
+     * suffix. For example, messages_es_ES.properties.
+     */
+    private static final Pattern LANGUAGE_COUNTRY_PATTERN =
+        CommonUtils.createPattern("^.+\\_[a-z]{2}\\_[A-Z]{2}\\..+$");
+    /**
+     * Regexp pattern for bundles names wich end with language code suffix.
+     * For example, messages_es.properties.
+     */
+    private static final Pattern LANGUAGE_PATTERN =
+        CommonUtils.createPattern("^.+\\_[a-z]{2}\\..+$");
+
+    /** File name format for default translation. */
+    private static final String DEFAULT_TRANSLATION_FILE_NAME_FORMATTER = "%s.%s";
+    /** File name format with language code. */
+    private static final String FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER = "%s_%s.%s";
+
+    /** Formatting string to form regexp to validate required tranlsations file names. */
+    private static final String REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS =
+        "^%1$s\\_%2$s(\\_[A-Z]{2})?\\.%3$s$|^%1$s\\_%2$s\\_[A-Z]{2}\\_[A-Za-z]+\\.%3$s$";
+    /** Formatting string to form regexp to validate default tranlsations file names. */
+    private static final String REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS = "^%s\\.%s$";
+
+    /** The files to process. */
+    private final Set<File> filesToProcess = Sets.newHashSet();
+
+    /** The base name regexp pattern. */
+    private Pattern baseNamePattern;
 
     /**
      * Language codes of required translations for the check (de, pt, ja, etc).
      */
-    private SortedSet<String> requiredTranslations = ImmutableSortedSet.of();
+    private SortedSet<String> requiredTranslations = Sets.newTreeSet();
 
     /**
      * Creates a new {@code TranslationCheck} instance.
      */
     public TranslationCheck() {
         setFileExtensions("properties");
-        basenameSeparator = "_";
+        baseNamePattern = CommonUtils.createPattern("^messages.*$");
+    }
+
+    /**
+     * Sets the base name regexp pattern.
+     * @param baseName base name regexp.
+     */
+    public void setBaseName(String baseName) {
+        baseNamePattern = CommonUtils.createPattern(baseName);
     }
 
     /**
@@ -140,253 +191,218 @@ public class TranslationCheck
     @Override
     public void beginProcessing(String charset) {
         super.beginProcessing(charset);
-        propertyFiles.clear();
+        filesToProcess.clear();
     }
 
     @Override
     protected void processFiltered(File file, List<String> lines) {
-        propertyFiles.add(file);
+        // We just collecting files for processing at finishProcessing()
+        filesToProcess.add(file);
     }
 
     @Override
     public void finishProcessing() {
         super.finishProcessing();
-        final SetMultimap<String, File> propFilesMap =
-            arrangePropertyFiles(propertyFiles, basenameSeparator);
-        checkExistenceOfTranslations(propFilesMap);
-        checkPropertyFileSets(propFilesMap);
+
+        final Set<ResourceBundle> bundles = groupFilesIntoBundles(filesToProcess, baseNamePattern);
+        for (ResourceBundle currentBundle : bundles) {
+            checkExistenceOfDefaultTranslation(currentBundle);
+            checkExistenceOfRequiredTranslations(currentBundle);
+            checkTranslationKeys(currentBundle);
+        }
     }
 
     /**
-     * Checks existence of translation files (arranged in a map)
-     * for each resource bundle in project.
-     * @param translations the translation files bundles organized as Map.
+     * Groups a set of files into bundles.
+     * Only files, which names match base name regexp pattern will be grouped.
+     * @param files set of files.
+     * @param baseNameRegexp base name regexp pattern.
+     * @return set of ResourceBundles.
      */
-    private void checkExistenceOfTranslations(SetMultimap<String, File> translations) {
-        for (String fullyQualifiedBundleName : translations.keySet()) {
-            final String bundleBaseName = extractName(fullyQualifiedBundleName);
-            if (bundleBaseName.contains("messages")) {
-                final Set<File> filesInBundle = translations.get(fullyQualifiedBundleName);
-                checkExistenceOfDefaultTranslation(filesInBundle);
-                checkExistenceOfRequiredTranslations(filesInBundle);
+    private Set<ResourceBundle> groupFilesIntoBundles(Set<File> files, Pattern baseNameRegexp) {
+        final Set<ResourceBundle> resourceBundles = Sets.newHashSet();
+        for (File currentFile : files) {
+            final String fileName = currentFile.getName();
+            final String baseName = extractBaseName(fileName);
+            final Matcher baseNameMatcher = baseNameRegexp.matcher(baseName);
+            if (baseNameMatcher.matches()) {
+                final String extension = Files.getFileExtension(fileName);
+                final String path = getPath(currentFile.getAbsolutePath());
+                final ResourceBundle newBundle = new ResourceBundle(baseName, path, extension);
+                final Optional<ResourceBundle> bundle = findBundle(resourceBundles, newBundle);
+                if (bundle.isPresent()) {
+                    bundle.get().addFile(currentFile);
+                }
+                else {
+                    newBundle.addFile(currentFile);
+                    resourceBundles.add(newBundle);
+                }
             }
         }
+        return resourceBundles;
     }
 
     /**
-     * Checks an existence of default translation file in
-     * a set of files in resource bundle. The name of this file
-     * begins with the full name of the resource bundle and ends
-     * with the extension suffix.
-     * @param filesInResourceBundle a set of files in resource bundle.
+     * Checks an existence of default translation file in the resource bundle.
+     * @param bundle resource bundle.
      */
-    private void checkExistenceOfDefaultTranslation(Set<File> filesInResourceBundle) {
-        final String fullBundleName = getFullBundleName(filesInResourceBundle);
-        final String extension = getFileExtensions()[0];
-        final String defaultTranslationFileName = fullBundleName + extension;
-
-        final boolean missing = isMissing(defaultTranslationFileName, filesInResourceBundle);
-        if (missing) {
-            logMissingTranslation(defaultTranslationFileName);
+    private void checkExistenceOfDefaultTranslation(ResourceBundle bundle) {
+        final Optional<String> fileName = getMissingFileName(bundle, null);
+        if (fileName.isPresent()) {
+            logMissingTranslation(bundle.getPath(), fileName.get());
         }
     }
 
     /**
-     * Checks existence of translation files in a set of files
-     * in resource bundle. If there is no translation file
-     * with required language code, there will be a violation.
-     * The name of translation file begins with the full name
-     * of resource bundle which is followed by '_' and language code,
-     * it ends with the extension suffix.
-     * @param filesInResourceBundle a set of files in resource bundle.
+     * Checks an existence of translation files in the resource bundle.
+     * The name of translation file begins with the base name of resource bundle which is followed
+     * by '_' and a language code (country and variant are optional), it ends with the extension
+     * suffix.
+     * @param bundle resource bundle.
      */
-    private void checkExistenceOfRequiredTranslations(Set<File> filesInResourceBundle) {
-        final String fullBundleName = getFullBundleName(filesInResourceBundle);
-
+    private void checkExistenceOfRequiredTranslations(ResourceBundle bundle) {
         for (String languageCode : requiredTranslations) {
-            final String translationFileName = fullBundleName + '_' + languageCode;
-
-            final boolean missing = isMissing(translationFileName, filesInResourceBundle);
-            if (missing) {
-                final String missingTranslationFileName =
-                    formMissingTranslationName(fullBundleName, languageCode);
-                logMissingTranslation(missingTranslationFileName);
+            final Optional<String> fileName = getMissingFileName(bundle, languageCode);
+            if (fileName.isPresent()) {
+                logMissingTranslation(bundle.getPath(), fileName.get());
             }
         }
     }
 
     /**
-     * Gets full name of resource bundle.
-     * Full name of resource bundle consists of bundle path and
-     * full base name.
-     * @param filesInResourceBundle a set of files in resource bundle.
-     * @return full name of resource bundle.
+     * Checks resource files in bundle for consistency regarding their keys.
+     * All files in bundle must have the same key set. If this is not the case
+     * an error message is posted giving information which key misses in which file.
+     * @param bundle resource bundle.
      */
-    private String getFullBundleName(Set<File> filesInResourceBundle) {
-        final String fullBundleName;
-
-        final File firstTranslationFile = Collections.min(filesInResourceBundle);
-        final String translationPath = firstTranslationFile.getPath();
-        final String extension = getFileExtensions()[0];
-
-        final Pattern pattern = Pattern.compile("^.+_[a-z]{2}"
-            + extension + "$");
-        final Matcher matcher = pattern.matcher(translationPath);
-        if (matcher.matches()) {
-            fullBundleName = translationPath
-                .substring(0, translationPath.lastIndexOf('_'));
+    private void checkTranslationKeys(ResourceBundle bundle) {
+        final Set<File> filesInBundle = bundle.getFiles();
+        if (filesInBundle.size() > 1) {
+            // build a map from files to the keys they contain
+            final Set<String> allTranslationKeys = Sets.newHashSet();
+            final SetMultimap<File, String> filesAssociatedWithKeys = HashMultimap.create();
+            for (File currentFile : filesInBundle) {
+                final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
+                allTranslationKeys.addAll(keysInCurrentFile);
+                filesAssociatedWithKeys.putAll(currentFile, keysInCurrentFile);
+            }
+            checkFilesForConsistencyRegardingTheirKeys(filesAssociatedWithKeys, allTranslationKeys);
         }
-        else {
-            fullBundleName = translationPath
-                .substring(0, translationPath.lastIndexOf('.'));
-        }
-        return fullBundleName;
     }
 
     /**
-     * Checks whether file is missing in resource bundle.
-     * @param fileName file name.
-     * @param filesInResourceBundle a set of files in resource bundle.
-     * @return true if file is missing.
+     * Searches for specific resource bundle in a set of resource bundles.
+     * @param bundles set of resource bundles.
+     * @param targetBundle target bundle to search for.
+     * @return Guava's Optional of resource bundle (present if target bundle is found).
      */
-    private static boolean isMissing(String fileName, Set<File> filesInResourceBundle) {
-        boolean missing = false;
-        for (File file : filesInResourceBundle) {
-            final String currentFileName = file.getPath();
-            missing = !currentFileName.contains(fileName);
-            if (!missing) {
+    private static Optional<ResourceBundle> findBundle(Set<ResourceBundle> bundles,
+                                                       final ResourceBundle targetBundle) {
+        Optional<ResourceBundle> result = Optional.absent();
+        for (ResourceBundle currentBundle : bundles) {
+            if (targetBundle.getBaseName().equals(currentBundle.getBaseName())
+                    && targetBundle.getExtension().equals(currentBundle.getExtension())
+                    && targetBundle.getPath().equals(currentBundle.getPath())) {
+                result = Optional.of(currentBundle);
                 break;
             }
         }
-        return missing;
+        return result;
     }
 
     /**
-     * Forms a name of translation file which is missing.
-     * @param fullBundleName full bundle name.
+     * Returns the name of translation file which is absent in resource bundle or Guava's Optional,
+     * if there is not missing translation.
+     * @param bundle resource bundle.
      * @param languageCode language code.
-     * @return name of translation file which is missing.
+     * @return the name of translation file which is absent in resource bundle or Guava's Optional,
+     *         if there is not missing translation.
      */
-    private String formMissingTranslationName(String fullBundleName, String languageCode) {
-        final String extension = getFileExtensions()[0];
-        return String.format(Locale.ROOT, "%s_%s%s", fullBundleName, languageCode, extension);
-    }
-
-    /**
-     * Logs that translation file is missing.
-     * @param fullyQualifiedFileName fully qualified file name.
-     */
-    private void logMissingTranslation(String fullyQualifiedFileName) {
-        final String filePath = extractPath(fullyQualifiedFileName);
-
-        final MessageDispatcher dispatcher = getMessageDispatcher();
-        dispatcher.fireFileStarted(filePath);
-
-        log(0, MSG_KEY_MISSING_TRANSLATION_FILE, extractName(fullyQualifiedFileName));
-
-        fireErrors(filePath);
-        dispatcher.fireFileFinished(filePath);
-    }
-
-    /**
-     * Extracts path from fully qualified file name.
-     * @param fullyQualifiedFileName fully qualified file name.
-     * @return file path.
-     */
-    private static String extractPath(String fullyQualifiedFileName) {
-        return fullyQualifiedFileName
-            .substring(0, fullyQualifiedFileName.lastIndexOf(File.separator));
-    }
-
-    /**
-     * Extracts short file name from fully qualified file name.
-     * @param fullyQualifiedFileName fully qualified file name.
-     * @return short file name.
-     */
-    private static String extractName(String fullyQualifiedFileName) {
-        return fullyQualifiedFileName
-            .substring(fullyQualifiedFileName.lastIndexOf(File.separator) + 1);
-    }
-
-    /**
-     * Gets the basename (the unique prefix) of a property file. For example
-     * "xyz/messages" is the basename of "xyz/messages.properties",
-     * "xyz/messages_de_AT.properties", "xyz/messages_en.properties", etc.
-     *
-     * @param file the file
-     * @param basenameSeparator the basename separator
-     * @return the extracted basename
-     */
-    private static String extractPropertyIdentifier(File file, String basenameSeparator) {
-        final String filePath = file.getPath();
-        final int dirNameEnd = filePath.lastIndexOf(File.separatorChar);
-        final int baseNameStart = dirNameEnd + 1;
-        final int underscoreIdx = filePath.indexOf(basenameSeparator,
-            baseNameStart);
-        final int dotIdx = filePath.indexOf('.', baseNameStart);
-        final int cutoffIdx;
-
-        if (underscoreIdx == -1) {
-            cutoffIdx = dotIdx;
+    private static Optional<String> getMissingFileName(ResourceBundle bundle, String languageCode) {
+        final String fileNameRegexp;
+        final boolean searchForDefaultTranslation;
+        final String extension = bundle.getExtension();
+        final String baseName = bundle.getBaseName();
+        if (languageCode == null) {
+            searchForDefaultTranslation = true;
+            fileNameRegexp = String.format(Locale.ROOT, REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS,
+                baseName, extension);
         }
         else {
-            cutoffIdx = underscoreIdx;
+            searchForDefaultTranslation = false;
+            fileNameRegexp = String.format(Locale.ROOT,
+                REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS, baseName, languageCode, extension);
         }
-        return filePath.substring(0, cutoffIdx);
-    }
-
-    /**
-     * Sets the separator used to determine the basename of a property file.
-     * This defaults to "_"
-     *
-     * @param basenameSeparator the basename separator
-     */
-    public final void setBasenameSeparator(String basenameSeparator) {
-        this.basenameSeparator = basenameSeparator;
-    }
-
-    /**
-     * Arranges a set of property files by their prefix.
-     * The method returns a Map object. The filename prefixes
-     * work as keys each mapped to a set of files.
-     * @param propFiles the set of property files
-     * @param basenameSeparator the basename separator
-     * @return a Map object which holds the arranged property file sets
-     */
-    private static SetMultimap<String, File> arrangePropertyFiles(
-        List<File> propFiles, String basenameSeparator) {
-        final SetMultimap<String, File> propFileMap = HashMultimap.create();
-
-        for (final File file : propFiles) {
-            final String identifier = extractPropertyIdentifier(file,
-                basenameSeparator);
-
-            final Set<File> fileSet = propFileMap.get(identifier);
-            fileSet.add(file);
-        }
-        return propFileMap;
-    }
-
-    /**
-     * Loads the keys of the specified property file into a set.
-     * @param file the property file
-     * @return a Set object which holds the loaded keys
-     */
-    private Set<Object> loadKeys(File file) {
-        final Set<Object> keys = Sets.newHashSet();
-        InputStream inStream = null;
-
-        try {
-            // Load file and properties.
-            inStream = new FileInputStream(file);
-            final Properties props = new Properties();
-            props.load(inStream);
-
-            // Gather the keys and put them into a set
-            final Enumeration<?> element = props.propertyNames();
-            while (element.hasMoreElements()) {
-                keys.add(element.nextElement());
+        Optional<String> missingFileName = Optional.absent();
+        if (!bundle.containsFile(fileNameRegexp)) {
+            if (searchForDefaultTranslation) {
+                missingFileName = Optional.of(String.format(Locale.ROOT,
+                    DEFAULT_TRANSLATION_FILE_NAME_FORMATTER, baseName, extension));
             }
+            else {
+                missingFileName = Optional.of(String.format(Locale.ROOT,
+                    FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER, baseName, languageCode, extension));
+            }
+        }
+        return missingFileName;
+    }
+
+    /**
+     * Extracts the base name (the unique prefix) of resource bundle from translation file name.
+     * For example "messages" is the base name of "messages.properties",
+     * "messages_de_AT.properties", "messages_en.properties", etc.
+     * @param fileName the fully qualified name of the translation file.
+     * @return the extracted base name.
+     */
+    private static String extractBaseName(String fileName) {
+        final String regexp;
+        final Matcher languageCountryVariantMatcher =
+            LANGUAGE_COUNTRY_VARIANT_PATTERN.matcher(fileName);
+        final Matcher languageCountryMatcher = LANGUAGE_COUNTRY_PATTERN.matcher(fileName);
+        final Matcher languageMatcher = LANGUAGE_PATTERN.matcher(fileName);
+        if (languageCountryVariantMatcher.matches()) {
+            regexp = LANGUAGE_COUNTRY_VARIANT_PATTERN.pattern();
+        }
+        else if (languageCountryMatcher.matches()) {
+            regexp = LANGUAGE_COUNTRY_PATTERN.pattern();
+        }
+        else if (languageMatcher.matches()) {
+            regexp = LANGUAGE_PATTERN.pattern();
+        }
+        else {
+            regexp = DEFAULT_TRANSLATION_REGEXP;
+        }
+        // We use substring(...) insead of replace(...), so that the regular expression does
+        // not have to be compiled each time it is used inside 'replace' method.
+        final String removePattern = regexp.substring("^.+".length(), regexp.length());
+        return fileName.replaceAll(removePattern, "");
+    }
+
+    /**
+     * Extracts path from a file name which contains the path.
+     * For example, if file nam is /xyz/messages.properties, then the method
+     * will return /xyz/.
+     * @param fileNameWithPath file name which contains the path.
+     * @return file path.
+     */
+    private static String getPath(String fileNameWithPath) {
+        return fileNameWithPath
+            .substring(0, fileNameWithPath.lastIndexOf(File.separator));
+    }
+
+    /**
+     * Loads the keys from the specified translation file into a set.
+     * @param file translation file.
+     * @return a Set object which holds the loaded keys.
+     */
+    private Set<String> getTranslationKeys(File file) {
+        Set<String> keys = Sets.newHashSet();
+        InputStream inStream = null;
+        try {
+            inStream = new FileInputStream(file);
+            final Properties translations = new Properties();
+            translations.load(inStream);
+            keys = translations.stringPropertyNames();
         }
         catch (final IOException ex) {
             logIoException(ex, file);
@@ -395,6 +411,43 @@ public class TranslationCheck
             Closeables.closeQuietly(inStream);
         }
         return keys;
+    }
+
+    /**
+     * Compares th the specified key set with the key sets of the given translation files (arranged
+     * in a map). All missing keys are reported.
+     * @param fileKeys a Map from translation files to their key sets.
+     * @param keysThatMustExist the set of keys to compare with.
+     */
+    private void checkFilesForConsistencyRegardingTheirKeys(SetMultimap<File, String> fileKeys,
+                                                            Set<String> keysThatMustExist) {
+        for (File currentFile : fileKeys.keySet()) {
+            final MessageDispatcher dispatcher = getMessageDispatcher();
+            final String path = currentFile.getPath();
+            dispatcher.fireFileStarted(path);
+            final Set<String> currentFileKeys = fileKeys.get(currentFile);
+            final Set<String> missingKeys = Sets.difference(keysThatMustExist, currentFileKeys);
+            if (!missingKeys.isEmpty()) {
+                for (Object key : missingKeys) {
+                    log(0, MSG_KEY, key);
+                }
+            }
+            fireErrors(path);
+            dispatcher.fireFileFinished(path);
+        }
+    }
+
+    /**
+     * Logs that translation file is missing.
+     * @param filePath file path.
+     * @param fileName file name.
+     */
+    private void logMissingTranslation(String filePath, String fileName) {
+        final MessageDispatcher dispatcher = getMessageDispatcher();
+        dispatcher.fireFileStarted(filePath);
+        log(0, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
+        fireErrors(filePath);
+        dispatcher.fireFileFinished(filePath);
     }
 
     /**
@@ -423,65 +476,68 @@ public class TranslationCheck
         LOG.debug("IOException occurred.", exception);
     }
 
-    /**
-     * Compares the key sets of the given property files (arranged in a map)
-     * with the specified key set. All missing keys are reported.
-     * @param keys the set of keys to compare with
-     * @param fileMap a Map from property files to their key sets
-     */
-    private void compareKeySets(Set<Object> keys,
-            SetMultimap<File, Object> fileMap) {
+    /** Class which represents a resource bundle. */
+    private static class ResourceBundle {
+        /** Bundle base name. */
+        private final String baseName;
+        /** Common extension of files which are included in the resource bundle. */
+        private final String extension;
+        /** Common path of files which are included in the resource bundle. */
+        private final String path;
+        /** Set of files which are included in the resource bundle. */
+        private final Set<File> files;
 
-        for (File currentFile : fileMap.keySet()) {
-            final MessageDispatcher dispatcher = getMessageDispatcher();
-            final String path = currentFile.getPath();
-            dispatcher.fireFileStarted(path);
-            final Set<Object> currentKeys = fileMap.get(currentFile);
-
-            // Clone the keys so that they are not lost
-            final Set<Object> keysClone = Sets.newHashSet(keys);
-            keysClone.removeAll(currentKeys);
-
-            // Remaining elements in the key set are missing in the current file
-            if (!keysClone.isEmpty()) {
-                for (Object key : keysClone) {
-                    log(0, MSG_KEY, key);
-                }
-            }
-            fireErrors(path);
-            dispatcher.fireFileFinished(path);
+        /**
+         * Creates a ResourceBundle object with specific base name, common files extension.
+         * @param baseName bundle base name.
+         * @param path common path of files which are included in the resource bundle.
+         * @param extension common extension of files which are included in the resource bundle.
+         */
+        ResourceBundle(String baseName, String path, String extension) {
+            this.baseName = baseName;
+            this.path = path;
+            this.extension = extension;
+            files = Sets.newHashSet();
         }
-    }
 
-    /**
-     * Tests whether the given property files (arranged by their prefixes
-     * in a Map) contain the proper keys.
-     *
-     * <p>Each group of files must have the same keys. If this is not the case
-     * an error message is posted giving information which key misses in
-     * which file.
-     *
-     * @param propFiles the property files organized as Map
-     */
-    private void checkPropertyFileSets(SetMultimap<String, File> propFiles) {
+        public String getBaseName() {
+            return baseName;
+        }
 
-        for (String key : propFiles.keySet()) {
-            final Set<File> files = propFiles.get(key);
+        public String getPath() {
+            return path;
+        }
 
-            if (files.size() >= 2) {
-                // build a map from files to the keys they contain
-                final Set<Object> keys = Sets.newHashSet();
-                final SetMultimap<File, Object> fileMap = HashMultimap.create();
+        public String getExtension() {
+            return extension;
+        }
 
-                for (File file : files) {
-                    final Set<Object> fileKeys = loadKeys(file);
-                    keys.addAll(fileKeys);
-                    fileMap.putAll(file, fileKeys);
+        public Set<File> getFiles() {
+            return Collections.unmodifiableSet(files);
+        }
+
+        /**
+         * Adds a file into resource bundle.
+         * @param file file which should be added into resource bundle.
+         */
+        public void addFile(File file) {
+            files.add(file);
+        }
+
+        /**
+         * Checks whether a resource bundle contains a file which name matches file name regexp.
+         * @param fileNameRegexp file name regexp.
+         * @return true if a resource bundle contains a file which name matches file name regexp.
+         */
+        public boolean containsFile(final String fileNameRegexp) {
+            boolean containsFile = false;
+            for (File currentFile : files) {
+                if (Pattern.matches(fileNameRegexp, currentFile.getName())) {
+                    containsFile = true;
+                    break;
                 }
-
-                // check the map for consistency
-                compareKeySets(keys, fileMap);
             }
+            return containsFile;
         }
     }
 }
