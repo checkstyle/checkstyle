@@ -26,13 +26,13 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class FileLengthCheckTest
     extends BaseCheckTestSupport {
@@ -68,7 +68,7 @@ public class FileLengthCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("max", "2000");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
                 getPath("InputSimple.java"),
                 getPath("InputSimple.java"), expected);
@@ -98,7 +98,7 @@ public class FileLengthCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(FileLengthCheck.class);
         checkConfig.addAttribute("fileExtensions", "txt");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(createChecker(checkConfig),
                 getPath("InputSimple.java"),

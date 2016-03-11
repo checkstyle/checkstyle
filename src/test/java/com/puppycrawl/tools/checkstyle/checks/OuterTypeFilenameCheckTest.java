@@ -25,12 +25,12 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     @Override
@@ -59,7 +59,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     public void testGood1() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
 
@@ -67,7 +67,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     public void testGood2() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input15Extensions.java"), expected);
     }
 
@@ -87,21 +87,21 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     @Test
     public void testNestedClass() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeFilename1.java"), expected);
     }
 
     @Test
     public void testFinePublic() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeFilename2.java"), expected);
     }
 
     @Test
     public void testFineDefault() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeFilename3.java"), expected);
     }
 
@@ -118,7 +118,7 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
     public void testPackageAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(OuterTypeFilenameCheck.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
     }

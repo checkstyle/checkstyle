@@ -25,13 +25,13 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RightCurlyTest extends BaseCheckTestSupport {
 
@@ -65,7 +65,7 @@ public class RightCurlyTest extends BaseCheckTestSupport {
         final DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
         newCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final String filePath = getPath("InputRightCurlySame.java");
         final Integer[] warnList = getLinesWithWarn(filePath);

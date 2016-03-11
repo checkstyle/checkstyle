@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -92,7 +91,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
      * @throws CheckstyleException if fileName is empty.
      */
     public void setHeaderFile(String fileName) throws CheckstyleException {
-        if (StringUtils.isBlank(fileName)) {
+        if (CommonUtils.isBlank(fileName)) {
             throw new CheckstyleException(
                 "property 'headerFile' is missing or invalid in module "
                     + getConfiguration().getName());
@@ -142,7 +141,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
      * @throws ConversionException if the header cannot be interpreted
      */
     public void setHeader(String header) {
-        if (StringUtils.isBlank(header)) {
+        if (CommonUtils.isBlank(header)) {
             return;
         }
 

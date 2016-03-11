@@ -21,9 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Options for a detector.
@@ -228,8 +227,8 @@ public final class DetectorOptions {
          * @return DetectorOptions instance.
          */
         public DetectorOptions build() {
-            message = ObjectUtils.defaultIfNull(message, "");
-            suppressor = ObjectUtils.defaultIfNull(suppressor, NeverSuppress.INSTANCE);
+            message = CommonUtils.defaultIfNull(message, "");
+            suppressor = CommonUtils.defaultIfNull(suppressor, NeverSuppress.INSTANCE);
             return DetectorOptions.this;
         }
     }

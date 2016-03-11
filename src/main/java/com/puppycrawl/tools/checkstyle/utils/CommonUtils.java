@@ -30,6 +30,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -44,6 +46,26 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
 public final class CommonUtils {
+
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final String[] EMPTY_STRING_ARRAY = new String[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final Integer[] EMPTY_INTEGER_OBJECT_ARRAY = new Integer[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final int[] EMPTY_INT_ARRAY = new int[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final double[] EMPTY_DOUBLE_ARRAY = new double[0];
+
+    /**
+     * <p>Is {@code true} if this is Windows.</p>
+     *
+     * <p>Copied from org.apache.commons.lang3.SystemUtils.</p>
+     */
+    public static final boolean IS_OS_WINDOWS = getSystemProperty("os.name").startsWith("Windows");
 
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
@@ -85,6 +107,24 @@ public final class CommonUtils {
             throw new ConversionException(
                 "Failed to initialise regular expression " + pattern, ex);
         }
+    }
+
+    /**
+     * <p>Clones an array returning a typecast result and handling
+     * <code>null</code>.</p>
+     *
+     * <p>This method returns <code>null</code> for a <code>null</code> input array.</p>
+     *
+     * Copied from org.apache.commons.lang3.ArrayUtils.
+     *
+     * @param array  the array to clone, may be <code>null</code>
+     * @return the cloned array, <code>null</code> if <code>null</code> input
+     */
+    public static int[] clone(int[] array) {
+	if (array == null) {
+	    return null;
+	}
+	return (int[]) array.clone();
     }
 
     /**
@@ -400,5 +440,195 @@ public final class CommonUtils {
             }
         }
         return result;
+    }
+
+    /**
+     * <p>Checks if a String is whitespace, empty ("") or null.</p>
+     *
+     * <pre>
+     * StringUtils.isBlank(null)      = true
+     * StringUtils.isBlank("")        = true
+     * StringUtils.isBlank(" ")       = true
+     * StringUtils.isBlank("bob")     = false
+     * StringUtils.isBlank("  bob  ") = false
+     * </pre>
+     *
+     * Copied from org.apache.commons.lang3.StringUtils.
+     *
+     * @param str  the String to check, may be null
+     * @return <code>true</code> if the String is null, empty or whitespace
+     * @since 2.0
+     */
+    public static boolean isBlank(String str) {
+	int strLen;
+	if (str == null || (strLen = str.length()) == 0) {
+	    return true;
+	}
+	for (int i = 0; i < strLen; i++) {
+	    if ((Character.isWhitespace(str.charAt(i)) == false)) {
+		return false;
+	    }
+	}
+	return true;
+    }
+
+    /**
+     * <p>Checks if a String is not empty (""), not null and not whitespace only.</p>
+     *
+     * <pre>
+     * StringUtils.isNotBlank(null)      = false
+     * StringUtils.isNotBlank("")        = false
+     * StringUtils.isNotBlank(" ")       = false
+     * StringUtils.isNotBlank("bob")     = true
+     * StringUtils.isNotBlank("  bob  ") = true
+     * </pre>
+     *
+     * Copied from org.apache.commons.lang3.StringUtils.
+     *
+     * @param str  the String to check, may be null
+     * @return <code>true</code> if the String is
+     *  not empty and not null and not whitespace
+     * @since 2.0
+     */
+    public static boolean isNotBlank(String str) {
+	return !isBlank(str);
+    }
+
+    /**
+     * <p>Converts an array of object Integers to primitives.</p>
+     *
+     * <p>This method returns <code>null</code> for a <code>null</code> inputay.</p>
+     *
+     * @param array  a <code>Integer</code> array, may be <code>null</code>
+     * @return an <code>int</code> array, <code>null</code> if null array input
+     * @throws NullPointerException if array content is <code>null</code>
+     */
+    public static int[] toPrimitive(Integer[] array) {
+        if (array == null) {
+            return null;
+        } else if (array.length == 0) {
+            return EMPTY_INT_ARRAY;
+        }
+        final int[] result = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = array[i].intValue();
+        }
+        return result;
+    }
+
+    /**
+     * <p>Returns a default value if the object passed is {@code null}.</p>
+     *
+     * <pre>
+     * ObjectUtils.defaultIfNull(null, null)      = null
+     * ObjectUtils.defaultIfNull(null, "")        = ""
+     * ObjectUtils.defaultIfNull(null, "zz")      = "zz"
+     * ObjectUtils.defaultIfNull("abc", *)        = "abc"
+     * ObjectUtils.defaultIfNull(Boolean.TRUE, *) = Boolean.TRUE
+     * </pre>
+     *
+     * <p>Copied from org.apache.commons.lang3.ObjectUtils.</p>
+     *
+     * @param <T> the type of the object
+     * @param object  the {@code Object} to test, may be {@code null}
+     * @param defaultValue  the default value to return, may be {@code null}
+     * @return {@code object} if it is not {@code null}, defaultValue otherwise
+     */
+    public static <T> T defaultIfNull(final T object, final T defaultValue) {
+        return object != null ? object : defaultValue;
+    }
+
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterator} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list.
+     * A {@code null} separator is the same as an empty String ("").</p>
+     *
+     * <p>See the examples here: {@link #join(Object[],String)}. </p>
+     *
+     * <p>Copied from org.apache.commons.lang3.StringUtils.</p>
+     *
+     * @param iterator  the {@code Iterator} of values to join together, may be null
+     * @param separator  the separator character to use, null treated as ""
+     * @return the joined String, {@code null} if null iterator input
+     */
+    public static String join(final Iterator<?> iterator, final String separator) {
+
+        // handle null, zero and one elements before building a buffer
+        if (iterator == null) {
+            return null;
+        }
+        if (!iterator.hasNext()) {
+            return "";
+        }
+        final Object first = iterator.next();
+        if (!iterator.hasNext()) {
+            final String result = Objects.toString(first);
+            return result;
+        }
+
+        // two or more elements
+        final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small
+        if (first != null) {
+            buf.append(first);
+        }
+
+        while (iterator.hasNext()) {
+            if (separator != null) {
+                buf.append(separator);
+            }
+            final Object obj = iterator.next();
+            if (obj != null) {
+                buf.append(obj);
+            }
+        }
+        return buf.toString();
+    }
+
+    /**
+     * <p>Joins the elements of the provided {@code Iterable} into
+     * a single String containing the provided elements.</p>
+     *
+     * <p>No delimiter is added before or after the list.
+     * A {@code null} separator is the same as an empty String ("").</p>
+     *
+     * <p>See the examples here: {@link #join(Object[],String)}. </p>
+     *
+     * <p>Copied from org.apache.commons.lang3.StringUtils.</p>
+     *
+     * @param iterable  the {@code Iterable} providing the values to join together, may be null
+     * @param separator  the separator character to use, null treated as ""
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.3
+     */
+    public static String join(final Iterable<?> iterable, final String separator) {
+        if (iterable == null) {
+            return null;
+        }
+        return join(iterable.iterator(), separator);
+    }
+
+    /**
+     * <p>Gets a System property, defaulting to {@code null} if the property cannot be read.</p>
+     *
+     * <p>If a {@code SecurityException} is caught, the return value is {@code null} and a message is written to
+     * {@code System.err}.</p>
+     *
+     * <p>Copied from org.apache.commons.lang3.ObjectUtils.</p>
+     *
+     * @param property the system property name
+     * @return the system property value or {@code null} if a security problem occurs
+     */
+    private static String getSystemProperty(final String property) {
+        try {
+            return System.getProperty(property);
+        } catch (final SecurityException ex) {
+            // we are not allowed to look at this property
+            System.err.println("Caught a SecurityException reading the system property '" + property
+                               + "'; the SystemUtils property value will default to null.");
+            return null;
+        }
     }
 }

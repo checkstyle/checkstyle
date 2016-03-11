@@ -25,7 +25,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -42,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SuppressWarningsFilterTest
     extends BaseCheckTestSupport {
@@ -78,7 +78,7 @@ public class SuppressWarningsFilterTest
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 

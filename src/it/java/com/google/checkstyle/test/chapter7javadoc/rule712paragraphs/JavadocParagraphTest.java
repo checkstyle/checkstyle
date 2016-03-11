@@ -22,12 +22,12 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocParagraphTest extends BaseCheckTestSupport {
 
@@ -40,7 +40,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport {
     @Test
     public void javadocParagraphCorrectTest() throws Exception {
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("JavadocParagraph");
         final String filePath = getPath("InputCorrectJavadocParagraphCheck.java");

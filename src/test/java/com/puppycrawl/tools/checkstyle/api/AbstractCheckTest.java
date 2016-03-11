@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AbstractCheckTest {
 
@@ -30,12 +30,12 @@ public class AbstractCheckTest {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return ArrayUtils.EMPTY_INT_ARRAY;
+                return CommonUtils.EMPTY_INT_ARRAY;
             }
 
         };
         // Eventually it will become clear abstract method
-        Assert.assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
+        Assert.assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
     }
 
     @Test
@@ -43,12 +43,12 @@ public class AbstractCheckTest {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return ArrayUtils.EMPTY_INT_ARRAY;
+                return CommonUtils.EMPTY_INT_ARRAY;
             }
 
         };
         // Eventually it will become clear abstract method
-        Assert.assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());
+        Assert.assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());
     }
 
     @Test
@@ -56,17 +56,17 @@ public class AbstractCheckTest {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return  ArrayUtils.EMPTY_INT_ARRAY;
+                return  CommonUtils.EMPTY_INT_ARRAY;
             }
 
             @Override
             public int[] getAcceptableTokens() {
-                return  ArrayUtils.EMPTY_INT_ARRAY;
+                return  CommonUtils.EMPTY_INT_ARRAY;
             }
 
             @Override
             public int[] getRequiredTokens() {
-                return  ArrayUtils.EMPTY_INT_ARRAY;
+                return  CommonUtils.EMPTY_INT_ARRAY;
             }
         };
         // Eventually it will become clear abstract method

@@ -29,7 +29,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class GenericWhitespaceCheckTest
     extends BaseCheckTestSupport {
@@ -112,19 +112,19 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testGh47() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGh47.java"), expected);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceInnerClass.java"), expected);
     }
 
     @Test
     public void testMethodReferences() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences3.java"), expected);
     }
 
@@ -138,7 +138,7 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testGenericEndsTheLine() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputGenericWhitespaceEndsTheLine.java"), expected);
     }
 

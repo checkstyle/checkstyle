@@ -22,13 +22,13 @@ package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class NoLineWrapTest extends BaseCheckTestSupport {
 
@@ -56,7 +56,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
     @Test
     public void goodLineWrapTest() throws Exception {
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("NoLineWrap");
         final String filePath = getPath("InputNoLineWrapGood.java");
