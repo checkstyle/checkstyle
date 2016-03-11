@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class TranslationCheckTest
-    extends BaseCheckTestSupport {
+public class TranslationCheckTest extends BaseCheckTestSupport {
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {
@@ -44,9 +43,13 @@ public class TranslationCheckTest
     }
 
     @Override
-    protected String getPath(String filename)
-            throws IOException {
+    protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator + filename);
+    }
+
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator + filename);
     }
 
     @Test
@@ -63,24 +66,6 @@ public class TranslationCheckTest
             createChecker(checkConfig),
             propertyFiles,
             getPath("messages_test_de.properties"),
-            expected);
-    }
-
-    @Test
-    public void testBaseNameSeparator() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
-        checkConfig.addAttribute("basenameSeparator", "-");
-        final String[] expected = {
-            "0: " + getCheckMessage(MSG_KEY, "only.english"),
-        };
-        final File[] propertyFiles = {
-            new File(getPath("app-dev.properties")),
-            new File(getPath("app-stage.properties")),
-        };
-        verify(
-            createChecker(checkConfig),
-            propertyFiles,
-            getPath("app-dev.properties"),
             expected);
     }
 
@@ -109,7 +94,8 @@ public class TranslationCheckTest
         final Checker checker = createChecker(checkConfig);
         check.setMessageDispatcher(checker);
 
-        final Method loadKeys = check.getClass().getDeclaredMethod("loadKeys", File.class);
+        final Method loadKeys =
+            check.getClass().getDeclaredMethod("getTranslationKeys", File.class);
         loadKeys.setAccessible(true);
         loadKeys.invoke(check, new File(""));
 
@@ -173,10 +159,9 @@ public class TranslationCheckTest
     }
 
     @Test
-    public void testBaseNameSeparatorDefaultTranslationIsMissing() throws Exception {
+    public void testBaseNameWithSeparatorDefaultTranslationIsMissing() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "fr");
-        checkConfig.addAttribute("basenameSeparator", "-");
 
         final File[] propertyFiles = {
             new File(getPath("messages-translation_fr.properties")),
@@ -193,10 +178,9 @@ public class TranslationCheckTest
     }
 
     @Test
-    public void testBaseNameSeparatorTranslationsAreMissing() throws Exception {
+    public void testBaseNameWithSeparatorTranslationsAreMissing() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
         checkConfig.addAttribute("requiredTranslations", "fr, tr");
-        checkConfig.addAttribute("basenameSeparator", "-");
 
         final File[] propertyFiles = {
             new File(getPath("messages-translation.properties")),
@@ -264,6 +248,140 @@ public class TranslationCheckTest
             };
 
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
+
+    @Test
+    public void testBaseNameOption() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
+        checkConfig.addAttribute("baseName", "^.*Labels$");
+
+        final File[] propertyFiles = {
+            new File(getPath("ButtonLabels.properties")),
+            new File(getPath("ButtonLabels_de.properties")),
+            new File(getPath("ButtonLabels_es.properties")),
+            new File(getPath("ButtonLabels_fr_CA_UNIX.properties")),
+            new File(getPath("messages_home.properties")),
+            new File(getPath("messages_home_es_US.properties")),
+            new File(getPath("messages_home_fr_CA_UNIX.properties")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'ButtonLabels_ja.properties' is missing.",
+        };
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
+
+    @Test
+    public void testFileExtensions() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
+        checkConfig.addAttribute("fileExtensions", "properties,translation");
+        checkConfig.addAttribute("baseName", "^.*(Titles|Labels)$");
+
+        final File[] propertyFiles = {
+            new File(getPath("ButtonLabels.properties")),
+            new File(getPath("ButtonLabels_de.properties")),
+            new File(getPath("ButtonLabels_es.properties")),
+            new File(getPath("ButtonLabels_fr_CA_UNIX.properties")),
+            new File(getPath("PageTitles.translation")),
+            new File(getPath("PageTitles_de.translation")),
+            new File(getPath("PageTitles_es.translation")),
+            new File(getPath("PageTitles_fr.translation")),
+            new File(getPath("PageTitles_ja.translation")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'ButtonLabels_ja.properties' is missing.",
+        };
+
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
+
+    @Test
+    public void testEqualBaseNamesButDifferentExtensions() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
+        checkConfig.addAttribute("fileExtensions", "properties,translations");
+        checkConfig.addAttribute("baseName", "^.*Labels$");
+
+        final File[] propertyFiles = {
+            new File(getPath("ButtonLabels.properties")),
+            new File(getPath("ButtonLabels_de.properties")),
+            new File(getPath("ButtonLabels_es.properties")),
+            new File(getPath("ButtonLabels_fr_CA_UNIX.properties")),
+            new File(getPath("ButtonLabels.translations")),
+            new File(getPath("ButtonLabels_ja.translations")),
+            new File(getPath("ButtonLabels_es.translations")),
+            new File(getPath("ButtonLabels_fr_CA_UNIX.translations")),
+            new File(getPath("ButtonLabels_de.translations")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'ButtonLabels_ja.properties' is missing.",
+        };
+
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
+
+    @Test
+    public void testRegexpToMatchPartOfBaseName() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "de, es, fr, ja");
+        checkConfig.addAttribute("fileExtensions", "properties,translations");
+        checkConfig.addAttribute("baseName", "^.*Labels.*");
+
+        final File[] propertyFiles = {
+            new File(getPath("MyLabelsI18.properties")),
+            new File(getPath("MyLabelsI18_de.properties")),
+            new File(getPath("MyLabelsI18_es.properties")),
+        };
+
+        final String[] expected = {
+            "0: Properties file 'MyLabelsI18_fr.properties' is missing.",
+            "0: Properties file 'MyLabelsI18_ja.properties' is missing.",
+            };
+
+        verify(
+            createChecker(checkConfig),
+            propertyFiles,
+            getPath(""),
+            expected);
+    }
+
+    @Test
+    public void testBundlesWithSameNameButDifferentPaths() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        checkConfig.addAttribute("requiredTranslations", "de");
+        checkConfig.addAttribute("fileExtensions", "properties");
+        checkConfig.addAttribute("baseName", "^.*Labels.*");
+
+        final File[] propertyFiles = {
+            new File(getPath("MyLabelsI18.properties")),
+            new File(getPath("MyLabelsI18_de.properties")),
+            new File(getNonCompilablePath("MyLabelsI18.properties")),
+            new File(getNonCompilablePath("MyLabelsI18_de.properties")),
+        };
+
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+
         verify(
             createChecker(checkConfig),
             propertyFiles,
