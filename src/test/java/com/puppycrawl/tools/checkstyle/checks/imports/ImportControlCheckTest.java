@@ -30,13 +30,13 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ImportControlCheckTest extends BaseCheckTestSupport {
     @Override
@@ -109,11 +109,19 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testNull() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", null);
+        final String[] expected = {"1:47: " + getCheckMessage(MSG_MISSING_FILE)};
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
     public void testUnknown() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", "unknown-file");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }
@@ -127,8 +135,8 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testBroken() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", getPath("import-control_broken.xml"));
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }
@@ -193,12 +201,21 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testUrlNull() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("url", null);
+        final String[] expected = {"1:47: " + getCheckMessage(MSG_MISSING_FILE)};
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
     public void testUrlUnableToLoad() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("url", "https://UnableToLoadThisURL");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }
@@ -212,9 +229,9 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testUrlIncorrectUrl() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("url", "https://{WrongCharsInURL}");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }

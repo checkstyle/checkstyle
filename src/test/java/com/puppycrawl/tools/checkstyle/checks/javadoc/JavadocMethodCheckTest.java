@@ -32,7 +32,6 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -112,7 +112,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
 
         final DefaultConfiguration config = createCheckConfig(JavadocMethodCheck.class);
         config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(config, getPath("InputAllowedAnnotations.java"), expected);
     }
 
@@ -210,7 +210,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void testNoJavadoc() throws Exception {
         checkConfig.addAttribute("scope", Scope.NOTHING.getName());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputPublicOnly.java"), expected);
     }
 
@@ -240,7 +240,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void testScopeAnonInnerPrivate() throws Exception {
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
@@ -257,7 +257,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void testScopeAnonInnerWithResolver() throws Exception {
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputScopeAnonInner.java"), expected);
     }
 
@@ -387,7 +387,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void testAllowMissingJavadoc() throws Exception {
         checkConfig.addAttribute("allowMissingJavadoc", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
     }
 
@@ -396,7 +396,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowMissingParamTags", "true");
         checkConfig.addAttribute("allowMissingThrowsTags", "true");
         checkConfig.addAttribute("allowMissingReturnTag", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMissingJavadocTags.java"), expected);
     }
 
@@ -472,13 +472,13 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void test11684081() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input_01.java"), expected);
     }
 
     @Test
     public void test11684082() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input_02.java"), expected);
     }
 
@@ -486,7 +486,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     public void test11684083() throws Exception {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input_03.java"), expected);
     }
 
@@ -537,7 +537,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     public void test1379666() throws Exception {
         checkConfig.addAttribute("allowThrowsTagsForSubclasses", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("Input_1379666.java"), expected);
     }
 
@@ -557,7 +557,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     @Test
     public void testSkipCertainMethods() throws Exception {
         checkConfig.addAttribute("ignoreMethodNamesRegex", "^foo.*$");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodIgnoreNameRegex.java"), expected);
     }
 

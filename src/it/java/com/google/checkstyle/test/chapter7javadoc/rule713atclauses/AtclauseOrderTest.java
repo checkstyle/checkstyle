@@ -22,12 +22,12 @@ package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AtclauseOrderTest extends BaseCheckTestSupport {
 
@@ -40,7 +40,7 @@ public class AtclauseOrderTest extends BaseCheckTestSupport {
     @Test
     public void testCorrect() throws Exception {
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("AtclauseOrder");
         final String filePath = getPath("InputCorrectAtClauseOrderCheck.java");

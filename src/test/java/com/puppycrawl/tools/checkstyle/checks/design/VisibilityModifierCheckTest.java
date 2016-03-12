@@ -25,7 +25,6 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
@@ -35,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VisibilityModifierCheckTest
     extends BaseCheckTestSupport {
@@ -179,7 +179,7 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.Arrays");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImmutableStarImport.java"), expected);
     }
 
@@ -189,7 +189,7 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames",
                  "com.google.common.collect.ImmutableSet");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImmutableStarImport2.java"), expected);
     }
 

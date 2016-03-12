@@ -21,10 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Arrays;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>Checks the padding of parentheses; that is whether a space is required
@@ -110,7 +109,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

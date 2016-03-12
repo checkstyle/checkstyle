@@ -27,7 +27,6 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodParamPadCheckTest
     extends BaseCheckTestSupport {
@@ -54,7 +54,7 @@ public class MethodParamPadCheckTest
     @Test
     public void testGetRequiredTokens() {
         final MethodParamPadCheck checkObj = new MethodParamPadCheck();
-        assertArrayEquals(ArrayUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -132,7 +132,7 @@ public class MethodParamPadCheckTest
     @Test
     public void test1322879() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
@@ -155,7 +155,7 @@ public class MethodParamPadCheckTest
     @Test(expected = CheckstyleException.class)
     public void testInvalidOption() throws Exception {
         checkConfig.addAttribute("option", "invalid_option");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }

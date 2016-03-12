@@ -34,7 +34,6 @@ import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
@@ -43,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class NewlineAtEndOfFileCheckTest
     extends BaseCheckTestSupport {
@@ -64,7 +64,7 @@ public class NewlineAtEndOfFileCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
             getPath("InputNewlineLfAtEndOfFile.java"),
@@ -76,7 +76,7 @@ public class NewlineAtEndOfFileCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CRLF.toString());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
             getPath("InputNewlineCrlfAtEndOfFile.java"),
@@ -88,7 +88,7 @@ public class NewlineAtEndOfFileCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.CR.toString());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
             getPath("InputNewlineCrAtEndOfFile.java"),
@@ -100,7 +100,7 @@ public class NewlineAtEndOfFileCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
             getPath("InputNewlineCrlfAtEndOfFile.java"),

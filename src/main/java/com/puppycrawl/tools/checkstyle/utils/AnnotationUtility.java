@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
+import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -147,7 +146,7 @@ public final class AnnotationUtility {
             throw new IllegalArgumentException("the annotation is null");
         }
 
-        if (StringUtils.isBlank(annotation)) {
+        if (CharMatcher.WHITESPACE.matchesAllOf(annotation)) {
             throw new IllegalArgumentException(
                     "the annotation is empty or spaces");
         }

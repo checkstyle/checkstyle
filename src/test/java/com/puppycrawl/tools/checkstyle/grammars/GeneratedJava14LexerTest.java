@@ -22,14 +22,13 @@ package com.puppycrawl.tools.checkstyle.grammars;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.SystemUtils;
 import org.junit.Assume;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests GeneratedJava14Lexer.
@@ -37,6 +36,14 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
  */
 public class GeneratedJava14LexerTest
     extends BaseCheckTestSupport {
+
+    /**
+     * <p>Is {@code true} if this is Windows.</p>
+     *
+     * <p>Adapted from org.apache.commons.lang3.SystemUtils.</p>
+     */
+    private static final boolean IS_WINDOWS = System.getProperty("os.name").startsWith("Windows");
+
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("grammars" + File.separator + filename);
@@ -50,7 +57,7 @@ public class GeneratedJava14LexerTest
     @Test
     public void testUnexpectedChar() throws Exception {
         // Encoding problems can occur in Windows
-        Assume.assumeFalse(SystemUtils.IS_OS_WINDOWS);
+        Assume.assumeFalse(IS_WINDOWS);
 
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
@@ -66,7 +73,7 @@ public class GeneratedJava14LexerTest
     public void testSemicolonBetweenImports() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);
     }
 }

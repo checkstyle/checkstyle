@@ -27,12 +27,12 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
     @Override
@@ -43,7 +43,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testDefaultConfigurationOnValidInput() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("match", "true");
         checkConfig.addAttribute("fileNamePattern", "BAD.*");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("match", "false");
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -113,7 +113,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("match", "true");
         checkConfig.addAttribute("folderPattern", "BAD.*");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("match", "false");
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]resources[\\\\/].*");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -155,7 +155,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("match", "true");
         checkConfig.addAttribute("folderPattern", "BAD.*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.properties");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("match", "true");
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]resources[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.properties");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -173,7 +173,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("match", "true");
         checkConfig.addAttribute("folderPattern", "BAD.*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -195,7 +195,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("match", "false");
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]javastrangefolder[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.dat");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -204,7 +204,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("match", "false");
         checkConfig.addAttribute("folderPattern", ".*[\\\\/]govstrangefolder[\\\\/].*");
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -212,7 +212,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("fileNamePattern", ".*\\.java");
         checkConfig.addAttribute("ignoreFileNameExtensions", "true");
-        verify(checkConfig, getPath("InputSemantic.java"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputSemantic.java"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -220,7 +220,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(RegexpOnFilenameCheck.class);
         checkConfig.addAttribute("fileNamePattern", "\\.");
         checkConfig.addAttribute("ignoreFileNameExtensions", "true");
-        verify(checkConfig, getPath("InputNoExtension"), ArrayUtils.EMPTY_STRING_ARRAY);
+        verify(checkConfig, getPath("InputNoExtension"), CommonUtils.EMPTY_STRING_ARRAY);
     }
 
     @Test

@@ -28,7 +28,6 @@ import java.util.Collection;
 import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -47,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
@@ -80,7 +80,7 @@ public class SuppressionCommentFilterTest
     @Test
     public void testNone() throws Exception {
         final DefaultConfiguration filterConfig = null;
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
 
@@ -265,9 +265,9 @@ public class SuppressionCommentFilterTest
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("checkFormat", "e[l");
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
+            final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, suppressed);
         }
         catch (CheckstyleException ex) {
@@ -282,9 +282,9 @@ public class SuppressionCommentFilterTest
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressionCommentFilter.class);
         filterConfig.addAttribute("messageFormat", "e[l");
-        final String[] suppressed = ArrayUtils.EMPTY_STRING_ARRAY;
 
         try {
+            final String[] suppressed = CommonUtils.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, suppressed);
         }
         catch (CheckstyleException ex) {

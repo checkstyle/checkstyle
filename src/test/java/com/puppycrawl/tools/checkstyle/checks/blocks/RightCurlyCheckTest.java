@@ -28,13 +28,13 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RightCurlyCheckTest extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
@@ -88,7 +88,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     @Test
     public void testSameOmitOneLiners() throws Exception {
         checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyNameForOneLiners.java"), expected);
     }
 
@@ -151,7 +151,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testForceLineBreakBefore2() throws Exception {
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyLineBreakBefore.java"), expected);
     }
 
@@ -160,7 +160,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
         checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, "
             + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRightCurlyEmptyAbstractMethod.java"), expected);
     }
 
@@ -278,7 +278,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     @Test(expected = CheckstyleException.class)
     public void testInvalidOption() throws Exception {
         checkConfig.addAttribute("option", "invalid_option");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputRightCurly.java"), expected);
     }

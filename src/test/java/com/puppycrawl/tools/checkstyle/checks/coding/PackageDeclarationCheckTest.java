@@ -24,12 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCh
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
     @Override
@@ -70,7 +70,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
     public void testCorrectFile() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputPackageDeclaration.java"), expected);
     }

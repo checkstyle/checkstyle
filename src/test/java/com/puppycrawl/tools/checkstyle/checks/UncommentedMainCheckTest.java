@@ -25,7 +25,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class UncommentedMainCheckTest
     extends BaseCheckTestSupport {
@@ -83,21 +83,21 @@ public class UncommentedMainCheckTest
     @Test
     public void testDeepDepth() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUncommentedMain2.java"), expected);
     }
 
     @Test
     public void testWrongName() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUncommentedMain3.java"), expected);
     }
 
     @Test
     public void testWrongArrayType() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UncommentedMainCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUncommentedMain4.java"), expected);
     }
 

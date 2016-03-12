@@ -24,8 +24,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.SortedSet;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -45,7 +43,7 @@ public abstract class AbstractFileSetCheck
     private MessageDispatcher messageDispatcher;
 
     /** The file extensions that are accepted by this filter. */
-    private String[] fileExtensions = ArrayUtils.EMPTY_STRING_ARRAY;
+    private String[] fileExtensions = CommonUtils.EMPTY_STRING_ARRAY;
 
     /**
      * Called to process a file that matches the specified file extensions.

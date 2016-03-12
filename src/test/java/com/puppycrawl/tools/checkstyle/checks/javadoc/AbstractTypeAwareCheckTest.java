@@ -31,7 +31,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.AbstractTypeAwareCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @SuppressWarnings("deprecation")
 public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
@@ -177,7 +177,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     public void testWithSuppressLoadErrors() throws Exception {
         checkConfig.addAttribute("suppressLoadErrors", "true");
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputLoadErrors.java"), expected);
     }
