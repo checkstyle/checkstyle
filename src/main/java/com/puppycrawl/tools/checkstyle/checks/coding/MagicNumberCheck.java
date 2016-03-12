@@ -21,12 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
@@ -203,7 +202,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -399,7 +398,7 @@ public class MagicNumberCheck extends AbstractCheck {
      */
     public void setIgnoreNumbers(double... list) {
         if (list.length == 0) {
-            ignoreNumbers = ArrayUtils.EMPTY_DOUBLE_ARRAY;
+            ignoreNumbers = CommonUtils.EMPTY_DOUBLE_ARRAY;
         }
         else {
             ignoreNumbers = new double[list.length];

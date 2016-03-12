@@ -26,7 +26,6 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,12 +35,13 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testAllChecksWithDefaultConfiguration() throws Exception {
         final String inputFilePath = getPath("InputDefaultConfig.java");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             final DefaultConfiguration checkConfig = createCheckConfig(check);

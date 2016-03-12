@@ -22,12 +22,12 @@ package com.puppycrawl.tools.checkstyle.grammars.java8;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodReferencesTest extends BaseCheckTestSupport {
     @Override
@@ -41,7 +41,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences.java"), expected);
 
     }
@@ -51,7 +51,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences2.java"), expected);
 
     }
@@ -61,7 +61,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences3.java"), expected);
 
     }
@@ -70,7 +70,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
     public void testArrayAfterGeneric()
             throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences4.java"), expected);
 
     }
@@ -79,7 +79,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
     public void testFromHiernate()
             throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences5.java"), expected);
 
     }
@@ -88,7 +88,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
     public void testFromSpring()
             throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences6.java"), expected);
 
     }

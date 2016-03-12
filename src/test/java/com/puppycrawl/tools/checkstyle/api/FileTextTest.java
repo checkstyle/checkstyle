@@ -49,4 +49,23 @@ public class FileTextTest {
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
         assertEquals(charsetName, o.getCharset().name());
     }
+
+    @Test
+    public void testLineColumnBeforeCopyConstructor() throws IOException {
+        final String charsetName = "ISO-8859-1";
+        final FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+                 + "checkstyle/api/import-control_complete.xml"), charsetName);
+        final LineColumn lineColumn = o.lineColumn(100);
+        final FileText copy = new FileText(o);
+        assertEquals(lineColumn, copy.lineColumn(100));
+    }
+
+    @Test
+    public void testLineColumnAfterCopyConstructor() throws IOException {
+        final String charsetName = "ISO-8859-1";
+        final FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+                 + "checkstyle/api/import-control_complete.xml"), charsetName);
+        final FileText copy = new FileText(o);
+        assertEquals(3, copy.lineColumn(100).getLine());
+    }
 }

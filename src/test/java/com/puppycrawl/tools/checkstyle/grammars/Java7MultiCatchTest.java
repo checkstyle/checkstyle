@@ -22,12 +22,12 @@ package com.puppycrawl.tools.checkstyle.grammars;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Tests Java 7 multi-catch can be parsed.
@@ -45,7 +45,7 @@ public class Java7MultiCatchTest
         throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJava7MultiCatch.java"), expected);
     }
 }

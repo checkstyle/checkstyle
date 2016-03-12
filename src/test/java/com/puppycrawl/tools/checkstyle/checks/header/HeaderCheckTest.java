@@ -32,7 +32,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -42,6 +41,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ HeaderCheck.class, HeaderCheckTest.class, AbstractHeaderCheck.class })
@@ -72,7 +72,22 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         try {
             createChecker(checkConfig);
-            final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
+        }
+        catch (CheckstyleException ex) {
+            // Exception is not expected
+            fail("Exception is not expected");
+        }
+    }
+
+    @Test
+    public void testWhitespaceHeader() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("header", "\n    \n");
+        try {
+            createChecker(checkConfig);
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
         }
         catch (CheckstyleException ex) {
@@ -134,6 +149,23 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Test
+    public void testNullFilename() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", null);
+        try {
+            createChecker(checkConfig);
+            fail("Checker creation should not succeed with null headerFile");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("cannot initialize module"
+                    + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
+                    + " - Cannot set property 'headerFile' to 'null' in module"
+                    + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
+                    ex.getMessage());
+        }
+    }
+
+    @Test
     public void testNotMatch() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
@@ -150,7 +182,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
         checkConfig.addAttribute("ignoreLines", "2");
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getConfigPath("java2.header"), expected);
     }
 

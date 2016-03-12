@@ -13,10 +13,10 @@
          See https://github.com/checkstyle/checkstyle/issues/2285-->
     <suppress checks="IllegalCatch"
               files="Checker.java"
-              lines="316"/>
+              lines="315"/>
     <suppress checks="IllegalCatch"
               files="Checker.java"
-              lines="321"/>
+              lines="320"/>
     <!--Test to reproduce error catching in Checker and satisfy coverage rate. -->
     <suppress checks="IllegalCatch"
               files="CheckerTest.java"
@@ -122,9 +122,9 @@
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
 
     <!-- getDetails() method - huge Switch, it has to be monolithic -->
-    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="317"/>
-    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="317"/>
-    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="317"/>
+    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="316"/>
+    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="316"/>
+    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="316"/>
 
     <!-- we need that set of converters -->
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>

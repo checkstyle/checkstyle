@@ -22,12 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.util.Arrays;
 import java.util.Set;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import antlr.collections.AST;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -204,7 +203,7 @@ public class DescendantTokenCheck extends AbstractCheck {
     /** Whether to sum the number of tokens found. */
     private boolean sumTokenCounts;
     /** Limited tokens. */
-    private int[] limitedTokens = ArrayUtils.EMPTY_INT_ARRAY;
+    private int[] limitedTokens = CommonUtils.EMPTY_INT_ARRAY;
     /** Error message when minimum count not reached. */
     private String minimumMessage;
     /** Error message when maximum count exceeded. */
@@ -214,16 +213,16 @@ public class DescendantTokenCheck extends AbstractCheck {
      * Counts of descendant tokens.
      * Indexed by (token ID - 1) for performance.
      */
-    private int[] counts = ArrayUtils.EMPTY_INT_ARRAY;
+    private int[] counts = CommonUtils.EMPTY_INT_ARRAY;
 
     @Override
     public int[] getDefaultTokens() {
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return ArrayUtils.EMPTY_INT_ARRAY;
+        return CommonUtils.EMPTY_INT_ARRAY;
     }
 
     @Override

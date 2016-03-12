@@ -45,6 +45,19 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 public final class CommonUtils {
 
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final String[] EMPTY_STRING_ARRAY = new String[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final Integer[] EMPTY_INTEGER_OBJECT_ARRAY = new Integer[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final int[] EMPTY_INT_ARRAY = new int[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+    /** Copied from org.apache.commons.lang3.ArrayUtils. */
+    public static final double[] EMPTY_DOUBLE_ARRAY = new double[0];
+
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 

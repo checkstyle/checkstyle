@@ -24,7 +24,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Joiner;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -161,7 +161,7 @@ public class FinalClassCheck
                 qualifiedNameParts.add(0, traverse.findFirstToken(TokenTypes.IDENT).getText());
                 traverse = traverse.findFirstToken(TokenTypes.DOT);
             }
-            className = StringUtils.join(qualifiedNameParts, PACKAGE_SEPARATOR);
+            className = Joiner.on(PACKAGE_SEPARATOR).join(qualifiedNameParts);
         }
         else {
             className = classExtend.findFirstToken(TokenTypes.IDENT).getText();

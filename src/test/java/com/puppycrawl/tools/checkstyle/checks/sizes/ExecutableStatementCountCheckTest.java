@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCo
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
@@ -33,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ExecutableStatementCountCheckTest
     extends BaseCheckTestSupport {
@@ -155,9 +155,9 @@ public class ExecutableStatementCountCheckTest
     public void testDefaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ExecutableStatementCountCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
 
         createChecker(checkConfig);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 }

@@ -24,12 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.M
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
     @Override
@@ -58,7 +58,7 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
             createCheckConfig(NestedIfDepthCheck.class);
         checkConfig.addAttribute("max", "2");
 
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputNestedIfDepth.java"), expected);
     }

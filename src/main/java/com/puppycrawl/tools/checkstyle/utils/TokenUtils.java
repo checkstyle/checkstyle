@@ -22,10 +22,8 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.lang.reflect.Field;
 import java.util.ResourceBundle;
 
-import org.apache.commons.lang3.ArrayUtils;
-
-import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.primitives.Ints;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -54,7 +52,7 @@ public final class TokenUtils {
         final ImmutableMap.Builder<String, Integer> builder =
                 ImmutableMap.builder();
         final Field[] fields = TokenTypes.class.getDeclaredFields();
-        String[] tempTokenValueToName = ArrayUtils.EMPTY_STRING_ARRAY;
+        String[] tempTokenValueToName = CommonUtils.EMPTY_STRING_ARRAY;
         for (final Field field : fields) {
             // Only process the int declarations.
             if (field.getType() != Integer.TYPE) {
@@ -75,9 +73,7 @@ public final class TokenUtils {
 
         TOKEN_NAME_TO_VALUE = builder.build();
         TOKEN_VALUE_TO_NAME = tempTokenValueToName;
-        final ImmutableCollection<Integer> values = TOKEN_NAME_TO_VALUE.values();
-        final Integer[] ids = values.toArray(new Integer[values.size()]);
-        TOKEN_IDS = ArrayUtils.toPrimitive(ids);
+        TOKEN_IDS = Ints.toArray(TOKEN_NAME_TO_VALUE.values());
     }
 
     /** Stop instances being created. **/

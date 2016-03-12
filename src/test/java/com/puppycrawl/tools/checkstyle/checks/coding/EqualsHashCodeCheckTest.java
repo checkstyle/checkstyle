@@ -24,12 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class EqualsHashCodeCheckTest
     extends BaseCheckTestSupport {
@@ -55,7 +55,7 @@ public class EqualsHashCodeCheckTest
     public void testBooleanMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
-        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEqualsHashCode.java"), expected);
     }
 
