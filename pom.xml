@@ -1807,11 +1807,6 @@
                     <branchRate>75</branchRate>
                     <lineRate>92</lineRate>
                   </regex>
-                  <regex>
-                    <pattern>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</pattern>
-                    <branchRate>97</branchRate>
-                    <lineRate>100</lineRate>
-                  </regex>
                 </regexes>
               </check>
               <instrumentation>

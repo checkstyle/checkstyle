@@ -331,9 +331,18 @@ public class CheckstyleAntTask extends Task {
             processFiles(checker, warningCounter, checkstyleVersion);
         }
         finally {
-            if (checker != null) {
-                checker.destroy();
-            }
+            destroyChecker(checker);
+        }
+    }
+
+    /**
+     * Destroy Checker. This method exists only due to bug in cobertura library
+     * https://github.com/cobertura/cobertura/issues/170
+     * @param checker Checker that was used to process files
+     */
+    private void destroyChecker(Checker checker) {
+        if (checker != null) {
+            checker.destroy();
         }
     }
 
