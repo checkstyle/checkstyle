@@ -74,7 +74,12 @@ public class SuppressWarningsHolder
      * A thread-local holder for the list of suppression entries for the last
      * file parsed.
      */
-    private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<>();
+    private static final ThreadLocal<List<Entry>> ENTRIES = new ThreadLocal<List<Entry>>() {
+        @Override
+        protected List<Entry> initialValue() {
+            return new LinkedList<>();
+        }
+    };
 
     /**
      * Returns the default alias for the source name of a check, which is the
@@ -192,7 +197,7 @@ public class SuppressWarningsHolder
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        ENTRIES.set(new LinkedList<Entry>());
+        ENTRIES.get().clear();
     }
 
     @Override
