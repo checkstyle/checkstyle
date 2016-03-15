@@ -219,7 +219,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param baseNameRegexp base name regexp pattern.
      * @return set of ResourceBundles.
      */
-    private Set<ResourceBundle> groupFilesIntoBundles(Set<File> files, Pattern baseNameRegexp) {
+    private static Set<ResourceBundle> groupFilesIntoBundles(Set<File> files,
+                                                             Pattern baseNameRegexp) {
         final Set<ResourceBundle> resourceBundles = Sets.newHashSet();
         for (File currentFile : files) {
             final String fileName = currentFile.getName();
@@ -297,7 +298,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @return Guava's Optional of resource bundle (present if target bundle is found).
      */
     private static Optional<ResourceBundle> findBundle(Set<ResourceBundle> bundles,
-                                                       final ResourceBundle targetBundle) {
+                                                       ResourceBundle targetBundle) {
         Optional<ResourceBundle> result = Optional.absent();
         for (ResourceBundle currentBundle : bundles) {
             if (targetBundle.getBaseName().equals(currentBundle.getBaseName())
@@ -529,7 +530,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          * @param fileNameRegexp file name regexp.
          * @return true if a resource bundle contains a file which name matches file name regexp.
          */
-        public boolean containsFile(final String fileNameRegexp) {
+        public boolean containsFile(String fileNameRegexp) {
             boolean containsFile = false;
             for (File currentFile : files) {
                 if (Pattern.matches(fileNameRegexp, currentFile.getName())) {
