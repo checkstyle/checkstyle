@@ -88,6 +88,12 @@ public final class Main {
     /** NAme for the option '--javadocTree'. */
     private static final String OPTION_JAVADOC_TREE_NAME = "javadocTree";
 
+    /** Name for the option '-J'. */
+    private static final String OPTION_CAPITAL_J_NAME = "J";
+
+    /** Name for the option '--treeWithJavadoc'. */
+    private static final String OPTION_TREE_JAVADOC_NAME = "treeWithJavadoc";
+
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
 
@@ -154,6 +160,11 @@ public final class Main {
                         final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
                         System.out.print(stringAst);
                     }
+                    else if (commandLine.hasOption(OPTION_CAPITAL_J_NAME)) {
+                        final File file = config.files.get(0);
+                        final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
+                        System.out.print(stringAst);
+                    }
                     else {
                         // run Checker
                         errorCounter = runCheckstyle(config);
@@ -216,7 +227,7 @@ public final class Main {
         }
         // ensure there is no conflicting options
         else if (cmdLine.hasOption(OPTION_T_NAME) || cmdLine.hasOption(OPTION_CAPITAL_T_NAME)
-                || cmdLine.hasOption(OPTION_J_NAME)) {
+                || cmdLine.hasOption(OPTION_J_NAME) || cmdLine.hasOption(OPTION_CAPITAL_J_NAME)) {
             if (cmdLine.hasOption(OPTION_C_NAME) || cmdLine.hasOption(OPTION_P_NAME)
                     || cmdLine.hasOption(OPTION_F_NAME) || cmdLine.hasOption(OPTION_O_NAME)) {
                 result.add("Option '-t' cannot be used with other options.");
@@ -482,6 +493,8 @@ public final class Main {
                 "Print Abstract Syntax Tree(AST) of the file including comments");
         options.addOption(OPTION_J_NAME, OPTION_JAVADOC_TREE_NAME, false,
                 "Print Parse tree of the Javadoc comment");
+        options.addOption(OPTION_CAPITAL_J_NAME, OPTION_TREE_JAVADOC_NAME, false,
+                "Print full Abstract Syntax Tree of the file");
         return options;
     }
 

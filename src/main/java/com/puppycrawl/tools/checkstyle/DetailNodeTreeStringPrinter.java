@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
@@ -57,7 +58,7 @@ public final class DetailNodeTreeStringPrinter {
      * @throws IOException if the file could not be read.
      */
     public static String printFileAst(File file) throws IOException {
-        return printTree(parseFile(file));
+        return printTree(parseFile(file), "", "");
     }
 
     /**
@@ -74,18 +75,26 @@ public final class DetailNodeTreeStringPrinter {
     /**
      * Print AST.
      * @param ast the root AST node.
+     * @param rootPrefix prefix for the root node
+     * @param prefix prefix for other nodes
      * @return string AST.
      */
-    private static String printTree(DetailNode ast) {
+    public static String printTree(DetailNode ast, String rootPrefix, String prefix) {
         final StringBuilder messageBuilder = new StringBuilder();
         DetailNode node = ast;
         while (node != null) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC) {
+                messageBuilder.append(rootPrefix);
+            }
+            else {
+                messageBuilder.append(prefix);
+            }
             messageBuilder.append(getIndentation(node))
                     .append(JavadocUtils.getTokenName(node.getType())).append(" -> ")
                     .append(excapeAllControlChars(node.getText())).append(" [")
                     .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
                     .append(']').append(LINE_SEPARATOR)
-                    .append(printTree(JavadocUtils.getFirstChild(node)));
+                    .append(printTree(JavadocUtils.getFirstChild(node), rootPrefix, prefix));
             node = JavadocUtils.getNextSibling(node);
         }
         return messageBuilder.toString();

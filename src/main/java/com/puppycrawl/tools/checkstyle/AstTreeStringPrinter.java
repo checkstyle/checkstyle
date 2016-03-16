@@ -26,10 +26,14 @@ import java.util.regex.Pattern;
 
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -67,6 +71,58 @@ public final class AstTreeStringPrinter {
     }
 
     /**
+     * Prints full AST (java + comments + javadoc) of the java file.
+     * @param file java file
+     * @return Full tree
+     * @throws IOException Failed to open a file
+     * @throws CheckstyleException error while parsing the file
+     */
+    public static String printJavaAndJavadocTree(File file)
+            throws IOException, CheckstyleException {
+        final DetailAST tree = parseFile(file, true);
+        return printJavaAndJavadocTree(tree);
+    }
+
+    /**
+     * Prints full tree (java + comments + javadoc) of the DetailAST.
+     * @param ast root DetailAST
+     * @return Full tree
+     */
+    private static String printJavaAndJavadocTree(DetailAST ast) {
+        final StringBuilder messageBuilder = new StringBuilder();
+        DetailAST node = ast;
+        while (node != null) {
+            if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && JavadocUtils.isJavadocComment(node)) {
+                final String javadocTree = parseAndPrintJavadocTree(node);
+                messageBuilder.append(javadocTree);
+            }
+            else {
+                messageBuilder.append(getIndentation(node))
+                    .append(getNodeInfo(node))
+                    .append(LINE_SEPARATOR)
+                    .append(printJavaAndJavadocTree(node.getFirstChild()));
+            }
+            node = node.getNextSibling();
+        }
+        return messageBuilder.toString();
+    }
+
+    /**
+     * Parses block comment as javadoc and prints its tree.
+     * @param node block comment begin
+     * @return string javadoc tree
+     */
+    private static String parseAndPrintJavadocTree(DetailAST node) {
+        final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
+        final DetailNode tree = parser.parseJavadocAsDetailNode(node).getTree();
+
+        final String rootPrefix = getIndentation(node);
+        final String prefix = rootPrefix.substring(0, rootPrefix.length() - 2) + "   ";
+        return DetailNodeTreeStringPrinter.printTree(tree, rootPrefix, prefix);
+    }
+
+    /**
      * Parse a file and print the parse tree.
      * @param text the text to parse.
      * @param withComments true to include comments to AST
@@ -87,14 +143,24 @@ public final class AstTreeStringPrinter {
         DetailAST node = ast;
         while (node != null) {
             messageBuilder.append(getIndentation(node))
-                    .append(TokenUtils.getTokenName(node.getType())).append(" -> ")
-                    .append(excapeAllControlChars(node.getText())).append(" [")
-                    .append(node.getLineNo()).append(':').append(node.getColumnNo()).append(']')
+                    .append(getNodeInfo(node))
                     .append(LINE_SEPARATOR)
                     .append(printTree(node.getFirstChild()));
             node = node.getNextSibling();
         }
         return messageBuilder.toString();
+    }
+
+    /**
+     * Get string representation of the node as token name,
+     * node text, line number and column number.
+     * @param node DetailAST
+     * @return node info
+     */
+    private static String getNodeInfo(DetailAST node) {
+        return TokenUtils.getTokenName(node.getType())
+                + " -> " + excapeAllControlChars(node.getText())
+                + " [" + node.getLineNo() + ':' + node.getColumnNo() + ']';
     }
 
     /**
