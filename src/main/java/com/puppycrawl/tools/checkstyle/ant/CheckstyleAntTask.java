@@ -340,7 +340,7 @@ public class CheckstyleAntTask extends Task {
      * https://github.com/cobertura/cobertura/issues/170
      * @param checker Checker that was used to process files
      */
-    private void destroyChecker(Checker checker) {
+    private static void destroyChecker(Checker checker) {
         if (checker != null) {
             checker.destroy();
         }
