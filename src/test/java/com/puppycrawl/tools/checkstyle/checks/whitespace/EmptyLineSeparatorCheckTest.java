@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_INSIDE;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED;
 import static org.junit.Assert.assertArrayEquals;
 
@@ -163,5 +164,31 @@ public class EmptyLineSeparatorCheckTest
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputPrePreviousLineEmptiness.java"), expected);
+    }
+
+    @Test
+    public void testDisAllowMultipleEmptyLinesInsideClassMembers() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        final String[] expected = {
+            "26: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "38: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "44: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "49: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "54: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "60: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorMultipleEmptyLinesInside.java"),
+                expected);
+    }
+
+    @Test
+    public void testAllowMultipleEmptyLinesInsideClassMembers() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorMultipleEmptyLinesInside.java"),
+                expected);
     }
 }
