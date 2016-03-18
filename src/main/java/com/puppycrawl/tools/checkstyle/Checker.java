@@ -299,12 +299,12 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         for (final File file : files) {
             try {
                 final String fileName = file.getAbsolutePath();
-                fireFileStarted(fileName);
                 final long timestamp = file.lastModified();
                 if (cache != null && cache.isInCache(fileName, timestamp)
                         || !CommonUtils.matchesFileExtension(file, fileExtensions)) {
                     continue;
                 }
+                fireFileStarted(fileName);
                 final SortedSet<LocalizedMessage> fileMessages = processFile(file);
                 fireErrors(fileName, fileMessages);
                 fireFileFinished(fileName);

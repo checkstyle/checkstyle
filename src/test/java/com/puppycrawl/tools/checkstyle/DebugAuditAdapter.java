@@ -23,8 +23,22 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 
 class DebugAuditAdapter implements AuditListener {
-    /** Keeps track of the number of errors. */
+    /** Keeps track whether this {@code AuditListener} was called. */
     private boolean called;
+
+    /** Keeps track of the number of files started. */
+    private int numFilesStarted;
+
+    /** Keeps track of the number of files finished. */
+    private int numFilesFinished;
+
+    public int getNumFilesStarted() {
+        return numFilesStarted;
+    }
+
+    public int getNumFilesFinished() {
+        return numFilesFinished;
+    }
 
     public boolean wasCalled() {
         return called;
@@ -52,6 +66,7 @@ class DebugAuditAdapter implements AuditListener {
     @Override
     public void fileStarted(AuditEvent event) {
         called = true;
+        numFilesStarted++;
     }
 
     @Override
@@ -62,5 +77,6 @@ class DebugAuditAdapter implements AuditListener {
     @Override
     public void fileFinished(AuditEvent event) {
         called = true;
+        numFilesFinished++;
     }
 }
