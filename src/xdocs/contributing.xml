@@ -36,7 +36,7 @@
         checkstyle and that you are familiar with some standard
         development tools (
 
-        <a href="http://git-scm.com/">GIT</a>,
+        <a href="https://git-scm.com/">GIT</a>,
         <a href="http://maven.apache.org">Maven</a>,
         <a href="http://junit.org">JUnit</a>).
       </p>
