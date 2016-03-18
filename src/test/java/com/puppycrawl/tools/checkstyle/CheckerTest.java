@@ -217,6 +217,9 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
 
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.addListener(auditAdapter);
+
         final List<File> files = new ArrayList<>();
         final File file = new File("file.pdf");
         files.add(file);
@@ -228,7 +231,38 @@ public class CheckerTest extends BaseCheckTestSupport {
         final int counter = checker.process(files);
 
         // comparing to 1 as there is only one legal file in input
-        assertEquals(1, counter);
+        final int numLegalFiles = 1;
+        assertEquals(numLegalFiles, counter);
+        assertEquals(numLegalFiles, auditAdapter.getNumFilesStarted());
+        assertEquals(numLegalFiles, auditAdapter.getNumFilesFinished());
+    }
+
+    @Test
+    public void testIgnoredFileExtensions() throws Exception {
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.addListener(auditAdapter);
+
+        final List<File> allIgnoredFiles = new ArrayList<>();
+        final File ignoredFile = new File("file.pdf");
+        allIgnoredFiles.add(ignoredFile);
+        final String[] fileExtensions = {"java", "xml", "properties"};
+        checker.setFileExtensions(fileExtensions);
+        checker.setCacheFile(temporaryFolder.newFile().getPath());
+        final int counter = checker.process(allIgnoredFiles);
+
+        // comparing to 0 as there is no legal file in input
+        final int numLegalFiles = 0;
+        assertEquals(numLegalFiles, counter);
+        assertEquals(numLegalFiles, auditAdapter.getNumFilesStarted());
+        assertEquals(numLegalFiles, auditAdapter.getNumFilesFinished());
     }
 
     @SuppressWarnings("deprecation")
