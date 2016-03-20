@@ -425,12 +425,14 @@ public class SuppressionCommentFilter
             return Objects.equals(line, tag.line)
                     && Objects.equals(column, tag.column)
                     && Objects.equals(reportingOn, tag.reportingOn)
-                    && Objects.equals(text, tag.text);
+                    && Objects.equals(text, tag.text)
+                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(text, line, column, reportingOn);
+            return Objects.hash(text, line, column, reportingOn, tagCheckRegexp, tagMessageRegexp);
         }
 
         /**

@@ -187,6 +187,7 @@ public class SuppressElementTest {
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(SuppressElement.class)
                 .usingGetClass()
+                .withIgnoredFields("fileRegexp", "checkRegexp", "columnFilter", "lineFilter")
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }
