@@ -24,12 +24,12 @@ import java.net.URI;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Check that controls what packages can be imported in each package. Useful
@@ -143,7 +143,7 @@ public class ImportControlCheck extends AbstractCheck {
      */
     public void setFile(final String name) {
         // Handle empty param
-        if (name == null || CharMatcher.WHITESPACE.matchesAllOf(name)) {
+        if (CommonUtils.isBlank(name)) {
             return;
         }
 
@@ -163,7 +163,7 @@ public class ImportControlCheck extends AbstractCheck {
      */
     public void setUrl(final String url) {
         // Handle empty param
-        if (url == null || CharMatcher.WHITESPACE.matchesAllOf(url)) {
+        if (CommonUtils.isBlank(url)) {
             return;
         }
         final URI uri;

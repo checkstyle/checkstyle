@@ -27,7 +27,6 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.base.CharMatcher;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -172,7 +171,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      */
     @Override
     public void setHeader(String header) {
-        if (header == null || CharMatcher.WHITESPACE.matchesAllOf(header)) {
+        if (CommonUtils.isBlank(header)) {
             return;
         }
         if (!CommonUtils.isPatternValid(header)) {

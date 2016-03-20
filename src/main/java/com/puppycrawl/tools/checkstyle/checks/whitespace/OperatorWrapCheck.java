@@ -23,7 +23,6 @@ import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -221,8 +220,7 @@ public class OperatorWrapCheck
         // itself.
         if (option == WrapOption.NL
                 && !text.equals(currentLine.trim())
-                && CharMatcher.WHITESPACE.matchesAllOf(
-                    currentLine.substring(colNo + text.length()))) {
+                && CommonUtils.isBlank(currentLine.substring(colNo + text.length()))) {
             log(lineNo, colNo, MSG_LINE_NEW, text);
         }
         else if (option == WrapOption.EOL

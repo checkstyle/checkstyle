@@ -36,6 +36,7 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
+import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
@@ -413,5 +414,16 @@ public final class CommonUtils {
             }
         }
         return result;
+    }
+
+    /**
+     * Check if a string is blank.
+     * A string is considered blank if it is null, empty or contains only  whitespace characters,
+     * as determined by {@link CharMatcher#WHITESPACE}.
+     * @param str the string to check
+     * @return true if str is either null, empty or whitespace-only.
+     */
+    public static boolean isBlank(String str) {
+        return str == null || CharMatcher.WHITESPACE.matchesAllOf(str);
     }
 }

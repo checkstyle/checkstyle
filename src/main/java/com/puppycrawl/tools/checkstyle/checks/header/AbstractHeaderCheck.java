@@ -33,7 +33,6 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.base.CharMatcher;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.io.Closeables;
@@ -92,7 +91,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
      * @throws CheckstyleException if fileName is empty.
      */
     public void setHeaderFile(String fileName) throws CheckstyleException {
-        if (fileName == null || CharMatcher.WHITESPACE.matchesAllOf(fileName)) {
+        if (CommonUtils.isBlank(fileName)) {
             throw new CheckstyleException(
                 "property 'headerFile' is missing or invalid in module "
                     + getConfiguration().getName());
@@ -142,7 +141,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
      * @throws ConversionException if the header cannot be interpreted
      */
     public void setHeader(String header) {
-        if (header == null || CharMatcher.WHITESPACE.matchesAllOf(header)) {
+        if (CommonUtils.isBlank(header)) {
             return;
         }
 

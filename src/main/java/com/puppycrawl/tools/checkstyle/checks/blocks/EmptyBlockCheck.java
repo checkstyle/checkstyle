@@ -23,7 +23,6 @@ import java.util.Locale;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -200,7 +199,7 @@ public class EmptyBlockCheck
             // Handle braces on the same line
             final String txt = lines[slistLineNo - 1]
                     .substring(slistColNo + 1, rcurlyColNo);
-            if (!CharMatcher.WHITESPACE.matchesAllOf(txt)) {
+            if (!CommonUtils.isBlank(txt)) {
                 returnValue = true;
             }
         }
