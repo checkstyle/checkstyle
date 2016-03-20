@@ -53,6 +53,7 @@ public class SuppressionFilterTest {
         EqualsVerifier
                 .forClass(SuppressionFilter.class)
                 .usingGetClass()
+                .withIgnoredFields("file", "optional", "configuration")
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }
