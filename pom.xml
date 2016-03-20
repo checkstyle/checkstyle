@@ -1211,6 +1211,8 @@
             <excludedLink>http://www.kclee.com/clemens/java/javancss</excludedLink>
             <!-- It is not a strict link, no needt ovalidate, github gives "429 Too Many Requests" for it -->
             <excludedLink>https://github.com/search*</excludedLink>
+            <!-- till https://github.com/apache/maven-plugins/pull/81 -->
+            <excludedLink>http://git-scm.com*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
