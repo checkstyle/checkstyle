@@ -90,6 +90,15 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputMethodReferences6.java"), expected);
+    }
+
+    @Test
+    public void testMethodReferences7()
+        throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(MemberNameCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences7.java"), expected);
 
     }
 }
