@@ -917,4 +917,10 @@ javadocInlineTag:
 
 htmlComment: HTML_COMMENT_START (text | NEWLINE | LEADING_ASTERISK)* HTML_COMMENT_END;
 
-text : (CHAR | WS)+ ;
+text : ((CHAR | WS)
+ {
+  _la = _input.LA(1);
+  if ((_la != WS) && (_la != CHAR)) return _localctx;
+  else if (_alt == 1) continue;
+ }
+       )+;
