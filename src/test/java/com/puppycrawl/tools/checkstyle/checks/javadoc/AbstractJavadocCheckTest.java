@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_MISSED_HTML_CLOSE;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_WRONG_SINGLETON_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_PARSE_ERROR;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNRECOGNIZED_ANTLR_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.JAVADOC_MISSED_HTML_CLOSE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.JAVADOC_WRONG_SINGLETON_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.KEY_PARSE_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.KEY_UNRECOGNIZED_ANTLR_ERROR;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 
@@ -57,7 +57,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     public void testNumberFormatException() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY_PARSE_ERROR, 52, "no viable "
+            "3: " + getCheckMessage(KEY_PARSE_ERROR, 52, "no viable "
                 + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;' "
                 + "while parsing HTML_TAG"),
         };
@@ -75,8 +75,8 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     public void testParsingErrors() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
+            "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "8: " + getCheckMessage(JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
         };
         verify(checkConfig, getPath("InputParsingErrors.java"), expected);
     }
@@ -99,7 +99,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     public void testAntlrError() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY_UNRECOGNIZED_ANTLR_ERROR, 0, null),
+            "3: " + getCheckMessage(KEY_UNRECOGNIZED_ANTLR_ERROR, 0, null),
         };
         verify(checkConfig, getPath("InputTestInvalidAtSeeReference.java"), expected);
     }
@@ -109,11 +109,11 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
         expectedMessages.put(getPath("InputParsingErrors.java"), asList(
-            "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
+            "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "8: " + getCheckMessage(JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
         ));
         expectedMessages.put(getPath("InputTestInvalidAtSeeReference.java"), singletonList(
-            "3: " + getCheckMessage(MSG_KEY_UNRECOGNIZED_ANTLR_ERROR, 0, null)
+            "3: " + getCheckMessage(KEY_UNRECOGNIZED_ANTLR_ERROR, 0, null)
         ));
         verify(createChecker(checkConfig), new File[] {
             new File(getPath("InputParsingErrors.java")),
@@ -125,8 +125,8 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "7: " + getCheckMessage(MSG_KEY_UNRECOGNIZED_ANTLR_ERROR, 4, null),
+            "4: " + getCheckMessage(JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "7: " + getCheckMessage(KEY_UNRECOGNIZED_ANTLR_ERROR, 4, null),
         };
         verify(checkConfig, getPath("InputTestUnclosedTagAndInvalidAtSeeReference.java"), expected);
     }

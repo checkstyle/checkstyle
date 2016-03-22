@@ -47,31 +47,31 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * {@code "no viable alternative at input 'b \n *\n'"} and it is not
      * clear that error is about missed close HTML tag.
      */
-    public static final String MSG_JAVADOC_MISSED_HTML_CLOSE =
-            JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
+    public static final String JAVADOC_MISSED_HTML_CLOSE =
+            JavadocDetailNodeParser.JAVADOC_MISSED_HTML_CLOSE;
 
     /**
      * Message key of error message.
      */
-    public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
-            JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
+    public static final String JAVADOC_WRONG_SINGLETON_TAG =
+            JavadocDetailNodeParser.JAVADOC_WRONG_SINGLETON_TAG;
 
     /**
      * Parse error while rule recognition.
      */
-    public static final String MSG_JAVADOC_PARSE_RULE_ERROR =
-            JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
+    public static final String JAVADOC_PARSE_RULE_ERROR =
+            JavadocDetailNodeParser.JAVADOC_PARSE_RULE_ERROR;
 
     /**
      * Error message key for common javadoc errors.
      */
-    public static final String MSG_KEY_PARSE_ERROR =
-            JavadocDetailNodeParser.MSG_KEY_PARSE_ERROR;
+    public static final String KEY_PARSE_ERROR =
+            JavadocDetailNodeParser.KEY_PARSE_ERROR;
     /**
      * Unrecognized error from antlr parser.
      */
-    public static final String MSG_KEY_UNRECOGNIZED_ANTLR_ERROR =
-            JavadocDetailNodeParser.MSG_KEY_UNRECOGNIZED_ANTLR_ERROR;
+    public static final String KEY_UNRECOGNIZED_ANTLR_ERROR =
+            JavadocDetailNodeParser.KEY_UNRECOGNIZED_ANTLR_ERROR;
 
     /**
      * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
