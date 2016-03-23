@@ -67,6 +67,17 @@ public final class AstTreeStringPrinter {
     }
 
     /**
+     * Parse a file and print the parse tree.
+     * @param text the text to parse.
+     * @param withComments true to include comments to AST
+     * @return the AST of the file in String form.
+     * @throws CheckstyleException if the file is not a Java source.
+     */
+    public static String printAst(FileText text, boolean withComments) throws CheckstyleException {
+        return printTree(parseFileText(text, withComments));
+    }
+
+    /**
      * Print AST.
      * @param ast the root AST node.
      * @return string AST.
@@ -142,6 +153,18 @@ public final class AstTreeStringPrinter {
             throws IOException, CheckstyleException {
         final FileText text = new FileText(file.getAbsoluteFile(),
             System.getProperty("file.encoding", "UTF-8"));
+        return parseFileText(text, withComments);
+    }
+
+    /**
+     * Parse a text and return the parse tree.
+     * @param text the text to parse.
+     * @param withComments true to include comment nodes to the tree
+     * @return the root node of the parse tree.
+     * @throws CheckstyleException if the file is not a Java source.
+     */
+    private static DetailAST parseFileText(FileText text, boolean withComments)
+            throws CheckstyleException {
         final FileContents contents = new FileContents(text);
         final DetailAST result;
         try {
@@ -155,7 +178,7 @@ public final class AstTreeStringPrinter {
         catch (RecognitionException | TokenStreamException ex) {
             final String exceptionMsg = String.format(Locale.ROOT,
                 "%s occurred during the analysis of file %s.",
-                ex.getClass().getSimpleName(), file.getPath());
+                ex.getClass().getSimpleName(), text.getFile().getPath());
             throw new CheckstyleException(exceptionMsg, ex);
         }
 

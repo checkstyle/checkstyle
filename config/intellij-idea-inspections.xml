@@ -1982,6 +1982,8 @@
                      See https://github.com/checkstyle/checkstyle/issues/2285-->
                 <option value="ProhibitedExceptionThrown" />
                 <option value="MismatchedQueryAndUpdateOfCollection" />
+                <!-- Till https://github.com/checkstyle/checkstyle/issues/3066 -->
+                <option value="ProhibitedExceptionCaught" />
             </list>
         </option>
     </inspection_tool>

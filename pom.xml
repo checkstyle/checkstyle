@@ -1811,18 +1811,18 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>90</totalBranchRate>
-                <totalLineRate>90</totalLineRate>
+                <totalBranchRate>92</totalBranchRate>
+                <totalLineRate>98</totalLineRate>
                 <regexes>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</pattern>
-                    <branchRate>71</branchRate>
-                    <lineRate>95</lineRate>
+                    <branchRate>72</branchRate>
+                    <lineRate>96</lineRate>
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaLexer</pattern>
-                    <branchRate>75</branchRate>
-                    <lineRate>92</lineRate>
+                    <branchRate>79</branchRate>
+                    <lineRate>97</lineRate>
                   </regex>
                 </regexes>
               </check>

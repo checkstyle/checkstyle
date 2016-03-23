@@ -19,14 +19,29 @@
 
 package com.puppycrawl.tools.checkstyle.grammars;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import org.junit.Test;
 
+import antlr.NoViableAltForCharException;
+import antlr.ParserSharedInputState;
+import antlr.SemanticException;
+import antlr.TokenBuffer;
+
+import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 public class AstRegressionTest extends BaseCheckTestSupport {
     @Override
@@ -94,10 +109,199 @@ public class AstRegressionTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testUnusedMethods() throws Exception {
+    public void testUnusedConstructors1() throws Exception {
         final Class<?> clss = GeneratedJavaLexer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(InputStream.class);
 
         constructor.newInstance((InputStream) null);
+    }
+
+    @Test
+    public void testUnusedConstructors2() throws Exception {
+        final Class<?> clss = GeneratedJavaRecognizer.class;
+        final Constructor<?> constructor = clss
+                .getDeclaredConstructor(ParserSharedInputState.class);
+
+        constructor.newInstance((ParserSharedInputState) null);
+    }
+
+    @Test
+    public void testUnusedConstructors3() throws Exception {
+        final Class<?> clss = GeneratedJavaRecognizer.class;
+        final Constructor<?> constructor = clss.getDeclaredConstructor(TokenBuffer.class);
+
+        constructor.newInstance((TokenBuffer) null);
+    }
+
+    @Test
+    public void testCustomAstTree() throws Exception {
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\t");
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\r\n");
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\n");
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\r\r");
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\r");
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\u000c\f");
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "// \n", true);
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "// \r", true);
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "// \r\n", true);
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \n */", true);
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \r\n */", true);
+        // noinspection ProhibitedExceptionCaught
+        try {
+            verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
+                    true);
+            fail("Expected Exception");
+        }
+        catch (ArrayIndexOutOfBoundsException ex) {
+            // expected, as 'FileContents.extractCComment' is confused if the
+            // comment is a 1 line comment or 2. Part of FileContents thinks it
+            // is 1 line while other parts think it is 2 lines. The exception
+            // occurs when trying to retrieve the non-existent second line.
+            assertEquals("expected exception", "1", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testImpossibleExceptions() throws Exception {
+        AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
+        AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);
+        AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '4', (char) 0xFFFF);
+        AssertGeneratedJavaLexer.verifyFail("mCHAR_LITERAL", '\'', '\'');
+        AssertGeneratedJavaLexer.verifyFail("mHEX_DIGIT", ';');
+        AssertGeneratedJavaLexer.verifyFail("mEXPONENT", ';');
+        AssertGeneratedJavaLexer.verifyFail("mBINARY_DIGIT", '2');
+        AssertGeneratedJavaLexer.verifyFail("mSIGNED_INTEGER", 'a');
+        AssertGeneratedJavaLexer.verifyFail("mID_START", '%');
+        AssertGeneratedJavaLexer.verifyFail("mID_START", (char) 0xBF);
+        AssertGeneratedJavaLexer.verifyFailNoGuessing("mID_START", (char) 0xBF);
+        AssertGeneratedJavaLexer.verifyFail("mID_PART", '%');
+        AssertGeneratedJavaLexer.verifyFail("mID_PART", (char) 0xBF);
+        AssertGeneratedJavaLexer.verifyFailNoGuessing("mID_PART", (char) 0xBF);
+        AssertGeneratedJavaLexer.verifyFail("mESC", '\\', 'a');
+        AssertGeneratedJavaLexer.verifyFail("mLONG_LITERAL", '0', ';');
+        AssertGeneratedJavaLexer.verifyFail("mLONG_LITERAL", '1', ';');
+        AssertGeneratedJavaLexer.verifyFail("mLONG_LITERAL", ';');
+        AssertGeneratedJavaLexer.verifyFail("mINT_LITERAL", ';');
+        AssertGeneratedJavaLexer.verifyFail("mHEX_DOUBLE_LITERAL", '0', 'a');
+        AssertGeneratedJavaLexer.verifyFail("mHEX_FLOAT_LITERAL", '0', 'a');
+    }
+
+    @Test
+    public void testImpossibleValid() throws Exception {
+        AssertGeneratedJavaLexer.verifyPass("mSTD_ESC", 'n');
+        AssertGeneratedJavaLexer.verifyPass("mELLIPSIS", '.', '.', '.');
+        AssertGeneratedJavaLexer.verifyPass("mDOT", '.');
+        AssertGeneratedJavaLexer.verifyPass("mBINARY_EXPONENT", 'p', '0', ';');
+        AssertGeneratedJavaLexer.verifyPass("mHEX_DIGIT", '0');
+        AssertGeneratedJavaLexer.verifyPass("mEXPONENT", 'e', '0', ';');
+        AssertGeneratedJavaLexer.verifyPass("mBINARY_DIGIT", '0');
+        AssertGeneratedJavaLexer.verifyPass("mSIGNED_INTEGER", '0', ';');
+        AssertGeneratedJavaLexer.verifyPass("mWS", ' ', ';');
+        AssertGeneratedJavaLexer.verifyPass("mID_START", '$');
+        AssertGeneratedJavaLexer.verifyPass("mID_PART", '$');
+        AssertGeneratedJavaLexer.verifyPass("mESC", '\\', '\\');
+        AssertGeneratedJavaLexer.verifyPass("mLONG_LITERAL", '1', 'L');
+        AssertGeneratedJavaLexer.verifyPass("mINT_LITERAL", '0', ';');
+        AssertGeneratedJavaLexer.verifyPass("mFLOAT_LITERAL", '0', 'f');
+        AssertGeneratedJavaLexer.verifyPass("mDOUBLE_LITERAL", '0', 'd');
+        AssertGeneratedJavaLexer.verifyPass("mHEX_FLOAT_LITERAL", '0', 'x', '2', '_', '4', '.',
+                '4', '4', '.', '4', 'P', '4', ';');
+        AssertGeneratedJavaLexer.verifyPass("mHEX_DOUBLE_LITERAL", '0', 'x', '2', '_', '4', '.',
+                '4', '4', '.', '4', 'P', '4', 'D', ';');
+    }
+
+    private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava)
+            throws Exception {
+        verifyAstRaw(expectedTextPrintFileName, actualJava, false);
+    }
+
+    private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava,
+            boolean withComments) throws Exception {
+        final File expectedFile = new File(expectedTextPrintFileName);
+        final String expectedContents = new FileText(expectedFile, System.getProperty(
+                "file.encoding", "UTF-8")).getFullText().toString().replace("\r", "");
+
+        final FileText actualFileContents = FileText.fromLines(new File(""),
+                Arrays.asList(actualJava.split("\\n")));
+        final String actualContents = AstTreeStringPrinter.printAst(actualFileContents,
+                withComments);
+
+        assertEquals("Generated AST from Java code should match pre-defined AST", expectedContents,
+                actualContents);
+    }
+
+    private static final class AssertGeneratedJavaLexer extends GeneratedJavaLexer {
+        private int laPosition;
+        private char[] laResults;
+
+        private AssertGeneratedJavaLexer() {
+            super((InputStream) null);
+        }
+
+        public static void verifyFailNoGuessing(String methodName, char... laResults)
+                throws Exception {
+            verify(methodName, false, 0, laResults);
+        }
+
+        public static void verifyPass(String methodName, char... laResults) throws Exception {
+            verify(methodName, true, 1, laResults);
+        }
+
+        public static void verifyFail(String methodName, char... laResults) throws Exception {
+            verify(methodName, false, 1, laResults);
+        }
+
+        public static void verify(String methodName, boolean expectPass, int guessing,
+                char... laResults) throws Exception {
+            final AssertGeneratedJavaLexer instance = new AssertGeneratedJavaLexer();
+            instance.laPosition = 0;
+            instance.laResults = laResults.clone();
+            instance.inputState.guessing = guessing;
+
+            final Method method = GeneratedJavaLexer.class.getDeclaredMethod(methodName,
+                    boolean.class);
+            boolean exception;
+
+            try {
+                method.invoke(instance, true);
+                exception = false;
+            }
+            catch (InvocationTargetException ex) {
+                if (expectPass) {
+                    throw ex;
+                }
+
+                final Class<?> clss = ex.getTargetException().getClass();
+                if (clss != NoViableAltForCharException.class
+                        && clss != SemanticException.class) {
+                    throw ex;
+                }
+                exception = true;
+            }
+
+            if (expectPass) {
+                assertFalse("Call to GeneratedJavaLexer." + methodName
+                        + " resulted in an exception", exception);
+            }
+            else {
+                assertTrue("Call to GeneratedJavaLexer." + methodName
+                        + " did not result in an exception", exception);
+            }
+        }
+
+        @Override
+        public char LA(int i) {
+            return laResults[laPosition + i - 1];
+        }
+
+        @Override
+        public void consume() {
+            laPosition++;
+        }
+
+        @Override
+        public int mark() {
+            return 1;
+        }
     }
 }
