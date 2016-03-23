@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -142,6 +145,45 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * &lt;/module&gt;
  * </pre>
  *
+ * <p>
+ * An example how to disallow multiple empty line inside methods, constructors, etc.:
+ * </p>
+ * <pre>
+ * &lt;module name="EmptyLineSeparator"&gt;
+ *    &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p> The check is valid only for statements that have body:
+ * {@link TokenTypes#CLASS_DEF},
+ * {@link TokenTypes#INTERFACE_DEF},
+ * {@link TokenTypes#ENUM_DEF},
+ * {@link TokenTypes#STATIC_INIT},
+ * {@link TokenTypes#INSTANCE_INIT},
+ * {@link TokenTypes#METHOD_DEF},
+ * {@link TokenTypes#CTOR_DEF}
+ * </p>
+ * <p>
+ * Example of declarations with multiple empty lines inside method:
+ * </p>
+ *
+ * <pre>
+ * ///////////////////////////////////////////////////
+ * //HEADER
+ * ///////////////////////////////////////////////////
+ *
+ * package com.puppycrawl.tools.checkstyle.whitespace;
+ *
+ * class Foo
+ * {
+ *
+ *     public void foo() {
+ *
+ *
+ *          System.out.println(1); // violation since method has 2 empty lines subsequently
+ *     }
+ * }
+ * </pre>
  * @author maxvetrenko
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
  */
@@ -167,11 +209,21 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     public static final String MSG_MULTIPLE_LINES_AFTER =
             "empty.line.separator.multiple.lines.after";
 
+    /**
+     * A key is pointing to the warning message empty.line.separator.multiple.lines.inside
+     * in "messages.properties" file.
+     */
+    public static final String MSG_MULTIPLE_LINES_INSIDE =
+            "empty.line.separator.multiple.lines.inside";
+
     /** Allows no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
     /** Allows multiple empty lines between class members. */
     private boolean allowMultipleEmptyLines = true;
+
+    /** Allows multiple empty lines inside class members. */
+    private boolean allowMultipleEmptyLinesInsideClassMembers = true;
 
     /**
      * Allow no empty line between fields.
@@ -188,6 +240,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     public void setAllowMultipleEmptyLines(boolean allow) {
         allowMultipleEmptyLines = allow;
+    }
+
+    /**
+     * Allow multiple empty lines inside class members.
+     * @param allow User's value.
+     */
+    public void setAllowMultipleEmptyLinesInsideClassMembers(boolean allow) {
+        allowMultipleEmptyLinesInsideClassMembers = allow;
     }
 
     @Override
@@ -221,6 +281,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (hasMultipleLinesBefore(ast)) {
             log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
         }
+        if (!allowMultipleEmptyLinesInsideClassMembers) {
+            processMultipleLinesInside(ast);
+        }
 
         final DetailAST nextToken = ast.getNextSibling();
         if (nextToken != null) {
@@ -247,6 +310,77 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                     }
             }
         }
+    }
+
+    /**
+     * Log violation in case there are multiple empty lines inside constructor,
+     * initialization block or method.
+     * @param ast the ast to check.
+     */
+    private void processMultipleLinesInside(DetailAST ast) {
+        final int astType = ast.getType();
+        if (isClassMemberBlock(astType)) {
+            final List<Integer> emptyLines = getEmptyLines(ast);
+            final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
+
+            for (Integer lineNo : emptyLinesToLog) {
+                // Checkstyle counts line numbers from 0 but IDE from 1
+                log(lineNo + 1, MSG_MULTIPLE_LINES_INSIDE);
+            }
+        }
+    }
+
+    /**
+     * Whether the AST is a class member block.
+     * @param astType the AST to check.
+     * @return true if the AST is a class member block.
+     */
+    private static boolean isClassMemberBlock(int astType) {
+        return astType == TokenTypes.STATIC_INIT
+                || astType == TokenTypes.INSTANCE_INIT
+                || astType == TokenTypes.METHOD_DEF
+                || astType == TokenTypes.CTOR_DEF;
+    }
+
+    /**
+     * Get list of empty lines.
+     * @param ast the ast to check.
+     * @return list of line numbers for empty lines.
+     */
+    private List<Integer> getEmptyLines(DetailAST ast) {
+        final DetailAST lastToken = ast.getLastChild().getLastChild();
+        int lastTokenLineNo = 0;
+        if (lastToken != null) {
+            lastTokenLineNo = lastToken.getLineNo();
+        }
+        final List<Integer> emptyLines = new ArrayList<>();
+        final FileContents fileContents = getFileContents();
+
+        for (int lineNo = ast.getLineNo(); lineNo < lastTokenLineNo; lineNo++) {
+            if (fileContents.lineIsBlank(lineNo)) {
+                emptyLines.add(lineNo);
+            }
+        }
+        return emptyLines;
+    }
+
+    /**
+     * Get list of empty lines to log.
+     * @param emptyLines list of empty lines.
+     * @return list of empty lines to log.
+     */
+    private static List<Integer> getEmptyLinesToLog(List<Integer> emptyLines) {
+        final List<Integer> emptyLinesToLog = new ArrayList<>();
+        if (emptyLines.size() > 1) {
+            int previousEmptyLineNo = emptyLines.get(0);
+            for (int emptyLineNo : emptyLines) {
+                if (previousEmptyLineNo + 1 == emptyLineNo) {
+                    emptyLinesToLog.add(emptyLineNo);
+                }
+                previousEmptyLineNo = emptyLineNo;
+            }
+        }
+        return emptyLinesToLog;
     }
 
     /**
