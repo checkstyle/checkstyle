@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Sponsoring</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <script type="text/javascript" src="js/anchors.js"/>
+    <script type="text/javascript" src="js/google-analytics.js"/>
+    <link rel="icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
+  </head>
+
+  <body>
+
+    <section name="Sponsoring">
+
+      <p>
+        If want to speed up a fixing and issue and want to encourage somebody in internet to resolve any issue:
+      </p>
+
+      <p>
+        <a href="https://freedomsponsors.org/search/?project_name=checkstyle">freedomsponsors</a>
+        <br/>
+        <a href="https://www.bountysource.com/teams/checkstyle_java">bountysource</a>
+        <br/>
+      </p>
+
+      <p>
+        For any other proposal please do not hesitate to contact me (Roman Ivanov) by email "ivanov-jr['a']mail[dot]ru".
+      </p>
+
+    </section>
+
+  </body>
+</document>
