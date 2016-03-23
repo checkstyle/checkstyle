@@ -238,6 +238,12 @@ for (Iterator foo = very.long.line.iterator();
              <td><a href="property_types.html#boolean">boolean</a></td>
              <td>true</td>
           </tr>
+            <tr>
+                <td>allowMultipleEmptyLinesInsideClassMembers</td>
+                <td>Allow multiple empty lines inside class members</td>
+                <td><a href="property_types.html#boolean">boolean</a></td>
+                <td>true</td>
+            </tr>
           <tr>
             <td>tokens</td>
             <td>tokens to check</td>
@@ -328,6 +334,45 @@ class Foo
     &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
 &lt;/module&gt;
       </source>
+      <p>
+          An example how to disallow multiple empty lines inside constructor, initialization block and method:
+      </p>
+      <source>
+          &lt;module name="EmptyLineSeparator"&gt;
+          &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
+          &lt;/module&gt;
+      </source>
+
+      <p>
+          The check is valid only for statements that have body:
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">INTERFACE_DEF</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">STATIC_INIT</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+      </p>
+      <p>
+          Example of declarations with multiple empty lines inside method:
+      </p>
+      <source>
+          ///////////////////////////////////////////////////
+          //HEADER
+          ///////////////////////////////////////////////////
+
+          package com.puppycrawl.tools.checkstyle.whitespace;
+
+          class Foo
+          {
+
+              public void foo() {
+              <br/>
+
+                  System.out.println(1); // violation since method has 2 empty lines subsequently
+              }
+          }
+      </source>
       </subsection>
 
       <subsection name="Example of Usage">
@@ -356,6 +401,10 @@ class Foo
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines.after%22">
             empty.line.separator.multiple.lines.after</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator.multiple.lines.inside%22">
+            empty.line.separator.multiple.lines.inside</a>
           </li>
         </ul>
         <p>

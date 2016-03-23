@@ -399,6 +399,7 @@
     <module name="EmptyForIteratorPad"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
+      <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
     </module>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
