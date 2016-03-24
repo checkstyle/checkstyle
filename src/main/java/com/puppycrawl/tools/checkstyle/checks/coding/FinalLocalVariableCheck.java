@@ -414,7 +414,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // if the variable is declared outside the loop and initialized inside
                 // the loop, then it cannot be declared final, as it can be initialized
                 // more than once in this case
-                if (isInTheSameLoop(variable, ast)) {
+                if (isInTheSameLoop(variable, ast)
+                        || !isUseOfExternalVariableInsideLoop(ast)) {
                     shouldRemove = false;
                 }
                 scopeData.uninitializedVariables.remove(variable);
@@ -422,6 +423,30 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
         }
         return shouldRemove;
+    }
+
+    /**
+     * Checks whether a variable which is declared ouside loop is used inside loop.
+     * For example:
+     * <p>
+     * {@code
+     * int x;
+     * for (int i = 0, j = 0; i < j; i++) {
+     *     x = 5;
+     * }
+     * }
+     * </p>
+     * @param variable variable.
+     * @return true if a variable which is declared ouside loop is used inside loop.
+     */
+    private static boolean isUseOfExternalVariableInsideLoop(DetailAST variable) {
+        boolean result = true;
+        DetailAST loop2 = variable.getParent();
+        while (loop2 != null
+            && !isLoopAst(loop2.getType())) {
+            loop2 = loop2.getParent();
+        }
+        return loop2 != null;
     }
 
     /**
