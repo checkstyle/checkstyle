@@ -194,4 +194,14 @@ public class FinalLocalVariableCheckTest
             // it is OK
         }
     }
+
+    @Test
+    public void testVariavleWhichIsAssignedMultipleTimes() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
+
+        final String[] expected = {
+            "44:13: " + "Variable 'i' should be declared final.",
+        };
+        verify(checkConfig, getPath("InputFinalLocalVariableAssignedMultipleTimes.java"), expected);
+    }
 }
