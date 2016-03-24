@@ -84,7 +84,7 @@ public class LineWrappingHandler {
 
         // First node should be removed because it was already checked before.
         firstNodesOnLines.remove(firstNodesOnLines.firstKey());
-        final int firstNodeIndent = getFirstNodeIndent(firstLineNode);
+        final int firstNodeIndent = getLineStart(firstLineNode);
         final int currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
@@ -97,35 +97,6 @@ public class LineWrappingHandler {
                 logWarningMessage(node, currentIndent);
             }
         }
-    }
-
-    /**
-     * Calculates indentation of first node.
-     *
-     * @param node
-     *            first node.
-     * @return indentation of first node.
-     */
-    private int getFirstNodeIndent(DetailAST node) {
-        final int result;
-
-        if (node.getType() == TokenTypes.LITERAL_IF
-                && node.getParent().getType() == TokenTypes.LITERAL_ELSE) {
-            final DetailAST lcurly = node.getParent().getPreviousSibling();
-            final DetailAST rcurly = lcurly.getLastChild();
-
-            if (lcurly.getType() == TokenTypes.SLIST
-                    && rcurly.getLineNo() == node.getLineNo()) {
-                result = expandedTabsColumnNo(rcurly);
-            }
-            else {
-                result = expandedTabsColumnNo(node.getParent());
-            }
-        }
-        else {
-            result = expandedTabsColumnNo(node);
-        }
-        return result;
     }
 
     /**
@@ -190,7 +161,7 @@ public class LineWrappingHandler {
      */
     private void checkAnnotationIndentation(DetailAST atNode,
             NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
-        final int firstNodeIndent = expandedTabsColumnNo(atNode);
+        final int firstNodeIndent = getLineStart(atNode);
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = getLastAnnotationNode(atNode);
@@ -235,6 +206,33 @@ public class LineWrappingHandler {
 
         return CommonUtils.lengthExpandedTabs(line, ast.getColumnNo(),
             indentCheck.getIndentationTabWidth());
+    }
+
+    /**
+     * Get the start of the line for the given expression.
+     *
+     * @param ast   the expression to find the start of the line for
+     *
+     * @return the start of the line for the given expression
+     */
+    private int getLineStart(DetailAST ast) {
+        final String line = indentCheck.getLine(ast.getLineNo() - 1);
+        return getLineStart(line);
+    }
+
+    /**
+     * Get the start of the specified line.
+     *
+     * @param line the specified line number
+     *
+     * @return the start of the specified line
+     */
+    private int getLineStart(String line) {
+        int index = 0;
+        while (Character.isWhitespace(line.charAt(index))) {
+            index++;
+        }
+        return CommonUtils.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
     }
 
     /**
