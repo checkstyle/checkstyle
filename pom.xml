@@ -1246,6 +1246,24 @@
 
     <profile>
       <!-- To be used during development. Run the command-->
+      <!-- mvn -Psite-only site -->
+      <id>site-only</id>
+      <properties>
+        <skipTests>true</skipTests>
+        <linkcheck.skip>true</linkcheck.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <checkstyle.skip>true</checkstyle.skip>
+        <pmd.skip>true</pmd.skip>
+        <xml.skip>true</xml.skip>
+        <forbiddenapis.skip>true</forbiddenapis.skip>
+        <findbugs.skip>true</findbugs.skip>
+        <checkstyle.ant.skip>true</checkstyle.ant.skip>
+        <cobertura.skip>true</cobertura.skip>
+      </properties>
+    </profile>
+
+    <profile>
+      <!-- To be used during development. Run the command-->
       <!-- mvn -Passembly package -->
       <id>assembly</id>
       <properties>
@@ -1254,6 +1272,8 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
+        <xml.skip>true</xml.skip>
+        <forbiddenapis.skip>true</forbiddenapis.skip>
         <findbugs.skip>true</findbugs.skip>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <cobertura.skip>true</cobertura.skip>
