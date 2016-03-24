@@ -1151,8 +1151,15 @@ void foo(String aFooString,
 
         <p>
           Rationale: Any source files and text files in general should
-          end with a line separator, especially when using source control management
-          systems such as CVS. CVS will even print a warning when it
+          end with a line separator to let other easily add new content
+          at the end of file and "diff" command does not show previous lines as changed.
+          <br/>
+          Example (line 36 should not be in diff):
+          <img src="https://cloud.githubusercontent.com/assets/812984/13894408/afd965b8-ed24-11e5-8bfd-e9edf56a6fe6.png" alt="example of diff"/>
+        </p>
+        <p>
+          Old Ratinale: CVS source control management
+          systems will even print a warning when it
           encounters a file that doesn't end with a line separator.
         </p>
       </subsection>
