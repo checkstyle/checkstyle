@@ -4,8 +4,8 @@ set -e
 #https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release
 
 SF_USER=romanivanov
-PREV_RELEASE=6.15
-RELEASE=6.16
+PREV_RELEASE=6.16.1
+RELEASE=6.17
 
 #############################
 
