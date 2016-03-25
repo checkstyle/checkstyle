@@ -5,7 +5,10 @@ set -e
 
 SF_USER=romanivanov
 PREV_RELEASE=6.16.1
-RELEASE=6.17
+RELEASE=$(git describe $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
+
+echo "PREVIOUS RELESE version:"$PREV_RELEASE
+echo "RELESE version:"$RELEASE
 
 #############################
 
