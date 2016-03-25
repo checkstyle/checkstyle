@@ -15,6 +15,81 @@
 
   <body>
 
+    <section name="Release 6.17">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Add &#39;baseName&#39; option and remove &#39;basenameSeparator&#39; option of TranslationCheck. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2204">#2204</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Make CLI option to be able to print Javadoc tree as plain text. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/652">#652</a>
+          </li>
+          <li>
+            java9: try structure is not parsable when only name is used. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3025">#3025</a>
+          </li>
+          <li>
+            All messages translated to Chinese. Author: ybbpgfjtey <a href="https://github.com/checkstyle/checkstyle/issues/3001">#3001</a>
+          </li>
+          <li>
+            RequireThis: new option validateOnlyOverlapping. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2362">#2362</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Bad german translation of summary.first.sentence. Author: Christian H. Kuhn <a href="https://github.com/checkstyle/checkstyle/issues/3013">#3013</a>
+          </li>
+          <li>
+            Ignored file extensions will output unterminated &lt;file&gt; tags in XML. Author: idarmans <a href="https://github.com/checkstyle/checkstyle/issues/3022">#3022</a>
+          </li>
+          <li>
+            NPE when running CS with cache with Maven plugin using NewlineAtEndOfFile. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2218">#2218</a>
+          </li>
+          <li>
+            Exception when using method reference in lamba &quot;Class&lt;?&gt;[]::new&quot;. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/2729">#2729</a>
+          </li>
+          <li>
+            ClassNotFoundException when using inherited exception (regression to issue #1192 fix). Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3008">#3008</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: extending Rationale of NewlineAtEndOfFile with example. Author: Roman Ivanov
+          </li>
+          <li>
+            Fund raising pages for checkstyle. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3057">#3057</a>
+          </li>
+          <li>
+            java8: Create compilable test inputs with all possible cases for method references. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2968">#2968</a>
+          </li>
+          <li>
+            upgrade equalsverifier to version 2.0. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3035">#3035</a>
+          </li>
+          <li>
+            remove dependency to commons-lang3 library. Author: Rasmus Kaj <a href="https://github.com/checkstyle/checkstyle/issues/2428">#2428</a>
+          </li>
+          <li>
+            reenable two sevntu checks. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3042">#3042</a>
+          </li>
+          <li>
+            Use Collections.addAll() instead of adding elements individually. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/625">#625</a>
+          </li>
+          <li>
+            Make coverage 100% for all classes at package com.puppycrawl.tools.checkstyle.ant. Author: Vladislav Lisetskiy, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/1487">#1487</a>
+          </li>
+          <li>
+            Localed UTs are failing at CheckstyleAntTaskTest.testXmlOutput. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3023">#3023</a>
+          </li>
+          <li>
+            Strive for 100% line coverage for java grammar. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2973">#2973</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.16.1">
       <p>Bug fixes:</p>
         <ul>
