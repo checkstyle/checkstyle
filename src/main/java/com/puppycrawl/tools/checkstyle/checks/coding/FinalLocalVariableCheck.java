@@ -209,17 +209,20 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 final int parentType = ast.getParent().getType();
                 if (isAssignOperator(parentType)
                         && isFirstChild(ast)) {
-                    if (isInIfBlock(ast))
+                    if (isInSpecificCodeBlock(ast, TokenTypes.LITERAL_IF))
                     {
-                        markFinalVariableCandidateAsAssignInIfBlock(ast);
+                        markFinalVariableCandidateAsAssignedInIfBlock(ast);
+                        if (isInSpecificCodeBlock(ast, TokenTypes.CASE_GROUP)) {
+                            markFinalVariableCandidateAsAssignedInCaseBlock(ast);
+                        }
                     }
-                    else if (isInElseBlock(ast))
+                    else if (isInSpecificCodeBlock(ast, TokenTypes.LITERAL_ELSE))
                     {
-                        markFinalVariableCandidateAsAssignInElseBlock(ast);
+                        markFinalVariableCandidateAsAssignedInElseBlock(ast);
                     }
                     else
                     {
-                        markFinalVariableCandidateAsAssignOutsideIfOrElseBlock(ast);
+                        markFinalVariableCandidateAsAssignedOutsideIfOrElseBlock(ast);
                     }
                     removeVariable(ast);
                 }
@@ -230,11 +233,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         }
     }
 
-    private boolean isInIfBlock(DetailAST node) {
+    private boolean isInSpecificCodeBlock(DetailAST node, int blockType) {
         boolean returnValue = false;
         for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.LITERAL_IF) {
+            if (type == blockType) {
                 returnValue = true;
                 break;
             }
@@ -242,19 +245,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         return returnValue;
     }
 
-    private boolean isInElseBlock(DetailAST node) {
-        boolean returnValue = false;
-        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
-            final int type = token.getType();
-            if (type == TokenTypes.LITERAL_ELSE) {
-                returnValue = true;
-                break;
-            }
-        }
-        return returnValue;
-    }
-
-    private void markFinalVariableCandidateAsAssignInIfBlock(DetailAST ast) {
+    private void markFinalVariableCandidateAsAssignedInIfBlock(DetailAST ast) {
         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
         while (iterator.hasNext()) {
             final ScopeData scopeData = iterator.next();
@@ -271,7 +262,24 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         }
     }
 
-    private void markFinalVariableCandidateAsAssignInElseBlock(DetailAST ast) {
+    private void markFinalVariableCandidateAsAssignedInCaseBlock(DetailAST ast) {
+        final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+        while (iterator.hasNext()) {
+            final ScopeData scopeData = iterator.next();
+            final Map<String, FinalVariableCandidate> scope = scopeData.scope;
+            DetailAST storedVariable = null;
+            final FinalVariableCandidate candidate = scope.get(ast.getText());
+            if (candidate != null) {
+                storedVariable = candidate.variableIdent;
+            }
+            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+                candidate.assignInIfBlockWhichIsInsideCaseBlock = true;
+                break;
+            }
+        }
+    }
+
+    private void markFinalVariableCandidateAsAssignedInElseBlock(DetailAST ast) {
         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
         while (iterator.hasNext()) {
             final ScopeData scopeData = iterator.next();
@@ -288,7 +296,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         }
     }
 
-    private void markFinalVariableCandidateAsAssignOutsideIfOrElseBlock(DetailAST ast) {
+    private void markFinalVariableCandidateAsAssignedOutsideIfOrElseBlock(DetailAST ast) {
         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
         while (iterator.hasNext()) {
             final ScopeData scopeData = iterator.next();
@@ -520,7 +528,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         shouldRemove = true;
                     }
                     else if (isAssignInIfBlock(scopeData, ast)
-                        && isAssignOutsideIfOrElseBlock(scopeData, ast)) {
+                        && isAssignOutsideIfOrElseBlock(scopeData, ast)
+                        && !isAssignInIfBlockWhichIsInsideCaseBlock(scopeData, ast)) {
                         shouldRemove = true;
                     }
                     else {
@@ -533,6 +542,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
         }
         return shouldRemove;
+    }
+
+    private static boolean isAssignInIfBlockWhichIsInsideCaseBlock(ScopeData scopeData,
+                                                                   DetailAST ast) {
+        boolean assignInIfElseBlock = false;
+        FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
+        if (candidate != null)
+        {
+            assignInIfElseBlock = candidate.assignInIfBlockWhichIsInsideCaseBlock;
+        }
+        return assignInIfElseBlock;
     }
 
     private static boolean isAssignInIfBlock(ScopeData scopeData, DetailAST ast) {
@@ -720,6 +740,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         private boolean assignInElseBlock;
 
         private boolean assignOutsideIfOrElseBlock;
+
+        private boolean assignInIfBlockWhichIsInsideCaseBlock;
 
         public FinalVariableCandidate(DetailAST variableIdent) {
             this.variableIdent = variableIdent;
