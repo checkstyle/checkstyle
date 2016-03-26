@@ -209,6 +209,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 final int parentType = ast.getParent().getType();
                 if (isAssignOperator(parentType)
                         && isFirstChild(ast)) {
+                    if (isInIfBlock(ast))
+                    {
+                        markFinalVariableCandidateAsAssignInIfBlock(ast);
+                    }
+                    else if (isInElseBlock(ast))
+                    {
+                        markFinalVariableCandidateAsAssignInElseBlock(ast);
+                    }
+                    else
+                    {
+                        markFinalVariableCandidateAsAssignOutsideIfOrElseBlock(ast);
+                    }
                     removeVariable(ast);
                 }
                 break;
@@ -218,9 +230,84 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         }
     }
 
+    private boolean isInIfBlock(DetailAST node) {
+        boolean returnValue = false;
+        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+            final int type = token.getType();
+            if (type == TokenTypes.LITERAL_IF) {
+                returnValue = true;
+                break;
+            }
+        }
+        return returnValue;
+    }
+
+    private boolean isInElseBlock(DetailAST node) {
+        boolean returnValue = false;
+        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+            final int type = token.getType();
+            if (type == TokenTypes.LITERAL_ELSE) {
+                returnValue = true;
+                break;
+            }
+        }
+        return returnValue;
+    }
+
+    private void markFinalVariableCandidateAsAssignInIfBlock(DetailAST ast) {
+        final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+        while (iterator.hasNext()) {
+            final ScopeData scopeData = iterator.next();
+            final Map<String, FinalVariableCandidate> scope = scopeData.scope;
+            DetailAST storedVariable = null;
+            final FinalVariableCandidate candidate = scope.get(ast.getText());
+            if (candidate != null) {
+                storedVariable = candidate.variableIdent;
+            }
+            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+                candidate.assignInIfBlock = true;
+                break;
+            }
+        }
+    }
+
+    private void markFinalVariableCandidateAsAssignInElseBlock(DetailAST ast) {
+        final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+        while (iterator.hasNext()) {
+            final ScopeData scopeData = iterator.next();
+            final Map<String, FinalVariableCandidate> scope = scopeData.scope;
+            DetailAST storedVariable = null;
+            final FinalVariableCandidate candidate = scope.get(ast.getText());
+            if (candidate != null) {
+                storedVariable = candidate.variableIdent;
+            }
+            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+                candidate.assignInElseBlock = true;
+                break;
+            }
+        }
+    }
+
+    private void markFinalVariableCandidateAsAssignOutsideIfOrElseBlock(DetailAST ast) {
+        final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+        while (iterator.hasNext()) {
+            final ScopeData scopeData = iterator.next();
+            final Map<String, FinalVariableCandidate> scope = scopeData.scope;
+            DetailAST storedVariable = null;
+            final FinalVariableCandidate candidate = scope.get(ast.getText());
+            if (candidate != null) {
+                storedVariable = candidate.variableIdent;
+            }
+            if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+                candidate.assignOutsideIfOrElseBlock = true;
+                break;
+            }
+        }
+    }
+
     @Override
     public void leaveToken(DetailAST ast) {
-        Map<String, DetailAST> scope = null;
+        Map<String, FinalVariableCandidate> scope = null;
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.CTOR_DEF:
@@ -245,8 +332,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // do nothing
         }
         if (scope != null) {
-            for (DetailAST node : scope.values()) {
-                log(node.getLineNo(), node.getColumnNo(), MSG_KEY, node.getText());
+            for (FinalVariableCandidate candidate : scope.values()) {
+                DetailAST ident = candidate.variableIdent;
+                log(ident.getLineNo(), ident.getColumnNo(), MSG_KEY, ident.getText());
             }
         }
     }
@@ -274,7 +362,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         // Check for only previous scope
         for (DetailAST variable : prevScopeUnitializedVariableData) {
             for (ScopeData scopeData : scopeStack) {
-                final DetailAST storedVariable = scopeData.scope.get(variable.getText());
+                final FinalVariableCandidate candidate = scopeData.scope.get(variable.getText());
+                DetailAST storedVariable = null;
+                if (candidate != null) {
+                    storedVariable = candidate.variableIdent;
+                }
                 if (storedVariable != null && isSameVariables(storedVariable, variable)
                         && !scopeData.uninitializedVariables.contains(storedVariable)) {
                     scopeData.uninitializedVariables.push(variable);
@@ -285,7 +377,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         for (Deque<DetailAST> unitializedVariableData : prevScopeUninitializedVariables) {
             for (DetailAST variable : unitializedVariableData) {
                 for (ScopeData scopeData : scopeStack) {
-                    final DetailAST storedVariable = scopeData.scope.get(variable.getText());
+                    final FinalVariableCandidate candidate = scopeData.scope.get(variable.getText());
+                    DetailAST storedVariable = null;
+                    if (candidate != null) {
+                        storedVariable = candidate.variableIdent;
+                    }
                     if (storedVariable != null
                             && isSameVariables(storedVariable, variable)
                             && !scopeData.uninitializedVariables.contains(storedVariable)) {
@@ -344,9 +440,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast the variable to insert.
      */
     private void insertParameter(DetailAST ast) {
-        final Map<String, DetailAST> scope = scopeStack.peek().scope;
+        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
         final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
-        scope.put(astNode.getText(), astNode);
+        scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
     }
 
     /**
@@ -354,9 +450,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast the variable to insert.
      */
     private void insertVariable(DetailAST ast) {
-        final Map<String, DetailAST> scope = scopeStack.peek().scope;
+        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
         final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
-        scope.put(astNode.getText(), astNode);
+        scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
         if (!isInitialized(astNode)) {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
@@ -388,8 +484,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
         while (iterator.hasNext()) {
             final ScopeData scopeData = iterator.next();
-            final Map<String, DetailAST> scope = scopeData.scope;
-            final DetailAST storedVariable = scope.get(ast.getText());
+            final Map<String, FinalVariableCandidate> scope = scopeData.scope;
+            final FinalVariableCandidate candidate = scope.get(ast.getText());
+            DetailAST storedVariable = null;
+            if (candidate != null) {
+                storedVariable = candidate.variableIdent;
+            }
             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
                 if (shouldRemoveVariable(scopeData, ast)) {
                     scope.remove(ast.getText());
@@ -416,13 +516,53 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // more than once in this case
                 if (isInTheSameLoop(variable, ast)
                         || !isUseOfExternalVariableInsideLoop(ast)) {
-                    shouldRemove = false;
+                    if (isAssignInIfBlock(scopeData, ast) && isAssignInElseBlock(scopeData, ast)) {
+                        shouldRemove = true;
+                    }
+                    else if (isAssignInIfBlock(scopeData, ast)
+                        && isAssignOutsideIfOrElseBlock(scopeData, ast)) {
+                        shouldRemove = true;
+                    }
+                    else {
+                        shouldRemove = false;
+                    }
                 }
+
                 scopeData.uninitializedVariables.remove(variable);
                 break;
             }
         }
         return shouldRemove;
+    }
+
+    private static boolean isAssignInIfBlock(ScopeData scopeData, DetailAST ast) {
+        boolean assignInIfElseBlock = false;
+        FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
+        if (candidate != null)
+        {
+            assignInIfElseBlock = candidate.assignInIfBlock;
+        }
+        return assignInIfElseBlock;
+    }
+
+    private static boolean isAssignInElseBlock(ScopeData scopeData, DetailAST ast) {
+        boolean assignInIfElseBlock = false;
+        FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
+        if (candidate != null)
+        {
+            assignInIfElseBlock = candidate.assignInElseBlock;
+        }
+        return assignInIfElseBlock;
+    }
+
+    private static boolean isAssignOutsideIfOrElseBlock(ScopeData scopeData, DetailAST ast) {
+        boolean assignInIfElseBlock = false;
+        FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
+        if (candidate != null)
+        {
+            assignInIfElseBlock = candidate.assignOutsideIfOrElseBlock;
+        }
+        return assignInIfElseBlock;
     }
 
     /**
@@ -565,9 +705,24 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static class ScopeData {
         /** Contains variable definitions. */
-        private final Map<String, DetailAST> scope = new HashMap<>();
+        private final Map<String, FinalVariableCandidate> scope = new HashMap<>();
 
         /** Contains definitions of uninitialized variables. */
         private final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
+    }
+
+    private static class FinalVariableCandidate {
+
+        private DetailAST variableIdent;
+
+        private boolean assignInIfBlock;
+
+        private boolean assignInElseBlock;
+
+        private boolean assignOutsideIfOrElseBlock;
+
+        public FinalVariableCandidate(DetailAST variableIdent) {
+            this.variableIdent = variableIdent;
+        }
     }
 }
