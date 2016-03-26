@@ -200,7 +200,12 @@ public class FinalLocalVariableCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
 
         final String[] expected = {
-            "44:13: " + "Variable 'i' should be declared final.",
+            "49:13: " + "Variable 'i' should be declared final.",
+            "122:16: " + "Variable 'path' should be declared final.",
+            "126:20: " + "Variable 'relativePath' should be declared final.",
+            "202:17: " + "Variable 'kind' should be declared final.",
+            "207:24: " + "Variable 'm' should be declared final.",
+            "409:17: " + "Variable 'increment' should be declared final.",
         };
         verify(checkConfig, getPath("InputFinalLocalVariableAssignedMultipleTimes.java"), expected);
     }
