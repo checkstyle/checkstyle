@@ -266,6 +266,7 @@ public class WhitespaceAroundCheckTest
             TokenTypes.EQUAL,
             TokenTypes.GE,
             TokenTypes.GT,
+            TokenTypes.LAMBDA,
             TokenTypes.LAND,
             TokenTypes.LCURLY,
             TokenTypes.LE,
@@ -376,5 +377,14 @@ public class WhitespaceAroundCheckTest
         };
         verify(checkConfig, getNonCompilablePath("InputAllowEmptyLambdaExpressions.java"),
                 expected);
+    }
+
+    @Test
+    public void testWhitespaceAroundLambda() throws Exception {
+        final String[] expected = {
+            "8:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "->"),
+            "8:50: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputWhitespaceAroundLambda.java"), expected);
     }
 }
