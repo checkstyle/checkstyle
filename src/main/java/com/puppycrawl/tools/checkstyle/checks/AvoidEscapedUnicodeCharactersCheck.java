@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -121,10 +124,6 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|180(e|E)|200[b-fB-F]|202[b-eB-E]|206[0-4a-fA-F]"
             + "|[fF]{3}[9a-bA-B]|[fF][eE][fF]{2})");
 
-    /** Regular expression for trail comment. */
-    private static final Pattern COMMENT_REGEXP = Pattern.compile(";[ ]*//+"
-            + "[a-zA-Z0-9 ]*|;[ ]*/[*]+[a-zA-Z0-9 ]*");
-
     /** Regular expression for all escaped chars. */
     private static final Pattern ALL_ESCAPED_CHARS =
             Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
@@ -151,6 +150,11 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u2001|\\\\u202(f|F)|\\\\u00(a|A)0|\\\\u000(c|C)|\\\\u2009|\\\\u2004|\\\\u2028"
             + "|\\\\u2028|\\\\u2007|\\\\u2004|\\\\u2028|\\\\u2007|\\\\u2025"
             + "|\\\\u(f|F){2}0(e|E)|\\\\u(f|F){2}61");
+
+    /** Cpp style comments. */
+    private Map<Integer, TextBlock> singlelineComments;
+    /** C style comments. */
+    private Map<Integer, List<TextBlock>> blockComments;
 
     /** Allow use escapes for non-printable(control) characters.  */
     private boolean allowEscapesForControlCharacters;
@@ -212,6 +216,12 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        singlelineComments = getFileContents().getCppComments();
+        blockComments = getFileContents().getCComments();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
 
         final String literal = ast.getText();
@@ -255,31 +265,31 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true if trail comment is present after ast token.
      */
     private boolean hasTrailComment(DetailAST ast) {
-        final DetailAST variableDef = getVariableDef(ast);
-        DetailAST semi;
-
-        if (variableDef == null) {
-            semi = getSemi(ast);
+        boolean result = false;
+        final int lineNo = ast.getLineNo();
+        if (singlelineComments.containsKey(lineNo)) {
+            result = true;
         }
         else {
-            semi = variableDef.getNextSibling();
-
-            if (semi.getType() != TokenTypes.SEMI) {
-                semi = variableDef.getLastChild();
+            final String line = getLines()[lineNo - 1];
+            final List<TextBlock> commentList = blockComments.get(lineNo);
+            if (commentList != null) {
+                final TextBlock comment = commentList.get(commentList.size() - 1);
+                result = isTrailingCComent(comment, line);
             }
         }
-
-        boolean result = false;
-        if (semi != null) {
-            final int lineNo = semi.getLineNo();
-            final String currentLine = getLine(lineNo - 1);
-
-            if (COMMENT_REGEXP.matcher(currentLine).find()) {
-                result = true;
-            }
-        }
-
         return result;
+    }
+
+    /**
+     * Whether the C style comment is trailing.
+     * @param comment the comment to check.
+     * @param line the line where the comment starts.
+     * @return true if the comment is trailing.
+     */
+    private static boolean isTrailingCComent(TextBlock comment, String line) {
+        return comment.getText().length != 1
+            || line.substring(comment.getEndColNo() + 1).trim().isEmpty();
     }
 
     /**
@@ -295,37 +305,6 @@ public class AvoidEscapedUnicodeCharactersCheck
             matcherCounter++;
         }
         return matcherCounter;
-    }
-
-    /**
-     * Get variable definition.
-     * @param ast current token.
-     * @return variable definition.
-     */
-    private static DetailAST getVariableDef(DetailAST ast) {
-        DetailAST result = ast.getParent();
-        while (result != null
-                && result.getType() != TokenTypes.VARIABLE_DEF) {
-            result = result.getParent();
-        }
-        return result;
-    }
-
-    /**
-     * Get semi token.
-     * @param ast current token.
-     * @return semi token or null.
-     */
-    private static DetailAST getSemi(DetailAST ast) {
-        DetailAST result = ast.getParent();
-        while (result != null
-                && result.getLastChild().getType() != TokenTypes.SEMI) {
-            result = result.getParent();
-        }
-        if (result != null) {
-            result = result.getLastChild();
-        }
-        return result;
     }
 
     /**
