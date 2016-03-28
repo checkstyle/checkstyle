@@ -69,7 +69,7 @@ public class InputAvoidEscapedUnicodeCharacters {
 	          case '\f':
 	          case '\r':
 	          case ' ':
-	          case '\u0085':
+	          case '\u0085': // some comment
 	          case '\u1680':
 	          case '\u2028':
 	          case '\u2029':
@@ -82,4 +82,18 @@ public class InputAvoidEscapedUnicodeCharacters {
 	          return c >= '\u2000' && c <= '\u200a';
 	      }
 	 }
+
+	private String unitAbbrev5 = "\u03bcs"; 	// comment is separated by space + tab
+	private String unitAbbrev6 = "\u03bcs";	// comment is separated by tab
+	private String unitAbbrev7 = "\u03bcs";	/* comment is separated by tab */
+	private String unitAbbrev8 = "\u03bcs"; /* comment
+	                                           has 2 lines */
+	void foo() {
+		for (char c = '\u0000'; c < '\uffff'; c++) {
+			if (c == '\u001b' ||     // ESC
+					c == '\u2014')   // Em-Dash?
+				continue;
+		}
+	}
+	private String unitAbbrev9 = "\u03bcs"; /* comment */ int i;
 }
