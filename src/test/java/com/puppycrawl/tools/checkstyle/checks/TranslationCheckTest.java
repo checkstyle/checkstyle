@@ -20,6 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.endsWith;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -387,5 +391,19 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
             propertyFiles,
             getPath(""),
             expected);
+    }
+
+    @Test
+    public void testWrongUserSpecifiedLanguageCodes() throws Exception {
+        final TranslationCheck check = new TranslationCheck();
+        try {
+            check.setRequiredTranslations("11");
+            fail("IllegalArgumentException is expected. Specified language code is incorrect.");
+        }
+        catch (IllegalArgumentException ex) {
+            final String exceptionMessage = ex.getMessage();
+            assertThat(exceptionMessage, containsString("11"));
+            assertThat(exceptionMessage, endsWith("[TranslationCheck]"));
+        }
     }
 }

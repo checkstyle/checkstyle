@@ -91,7 +91,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Default value is <b>empty String Set</b> which means that only the existence of
  * default translation is checked. Note, if you specify language codes (or just one language
  * code) of required translations the check will also check for existence of default translation
- * files in project.
+ * files in project. ATTENTION: the check will perform the validation of ISO codes if the option
+ * is used. So, if you specify, for example, "mm" for language code, TranslationCheck will rise
+ * violation that the language code is incorrect.
  * <br>
  *
  * @author Alexandra Bunge
@@ -112,6 +114,16 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     public static final String MSG_KEY_MISSING_TRANSLATION_FILE =
         "translation.missingTranslationFile";
+
+    /** Resource bundle which contains messages for TranslationCheck. */
+    private static final String TRANSLATION_BUNDLE =
+        "com.puppycrawl.tools.checkstyle.checks.messages";
+
+    /**
+     * A key is pointing to the warning message text for wrong language code
+     * in "messages.properties" file.
+     */
+    private static final String WRONG_LANGUAGE_CODE_KEY = "translation.wrongLanguageCode";
 
     /** Logger for TranslationCheck. */
     private static final Log LOG = LogFactory.getLog(TranslationCheck.class);
@@ -186,6 +198,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     public void setRequiredTranslations(String translationCodes) {
         requiredTranslations = Sets.newTreeSet(Splitter.on(',')
             .trimResults().omitEmptyStrings().split(translationCodes));
+        validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
     @Override
@@ -210,6 +223,39 @@ public class TranslationCheck extends AbstractFileSetCheck {
             checkExistenceOfRequiredTranslations(currentBundle);
             checkTranslationKeys(currentBundle);
         }
+    }
+
+    /**
+     * Validates the correctness of user specififed language codes for the check.
+     * @param languageCodes user specified language codes for the check.
+     */
+    private void validateUserSpecifiedLanguageCodes(SortedSet<String> languageCodes) {
+        for (String code : languageCodes) {
+            if (!isValidLanguageCode(code)) {
+                final LocalizedMessage msg = new LocalizedMessage(0, TRANSLATION_BUNDLE,
+                    WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
+                final String exceptionMessage = String.format(Locale.ROOT,
+                    "%s [%s]", msg.getMessage(), TranslationCheck.class.getSimpleName());
+                throw new IllegalArgumentException(exceptionMessage);
+            }
+        }
+    }
+
+    /**
+     * Checks whether user specified language code is correct (is contained in available locales).
+     * @param userSpecifiedLanguageCode user specified language code.
+     * @return true if user specified language code is correct.
+     */
+    private static boolean isValidLanguageCode(final String userSpecifiedLanguageCode) {
+        boolean valid = false;
+        final Locale[] locales = Locale.getAvailableLocales();
+        for (Locale locale : locales) {
+            if (userSpecifiedLanguageCode.equals(locale.toString())) {
+                valid = true;
+                break;
+            }
+        }
+        return valid;
     }
 
     /**

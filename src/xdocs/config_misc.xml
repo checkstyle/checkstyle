@@ -1629,10 +1629,9 @@ messages.properties: Key 'ok' missing.
               of default translation is checked. Note, if you specify language codes (or just
               one language code) of required translations the check will also check for
               existence of default translation files in project.
-              ATTENTION: the check will not perform the validation of ISO codes if the option
-              is set to true. So, if you specify, for example, "mm" for language code,
-              TranslationCheck will not warn about the incorrect language code and will use it
-              for validation.
+              ATTENTION: the check will perform the validation of ISO codes if the option
+              is used. So, if you specify, for example, "mm" for language code, TranslationCheck
+              will rise violation that the language code is incorrect.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty String Set</code></td>
