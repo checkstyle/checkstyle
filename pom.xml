@@ -1213,6 +1213,9 @@
             <excludedLink>https://github.com/search*</excludedLink>
             <!-- till https://github.com/apache/maven-plugins/pull/81 -->
             <excludedLink>http://git-scm.com*</excludedLink>
+            <!-- reason described at https://github.com/checkstyle/checkstyle/issues/3080 -->
+            <excludedLink>https://gratipay.com/checkstyle/</excludedLink>
+            <excludedLink>https://www.scm-manager.org/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
