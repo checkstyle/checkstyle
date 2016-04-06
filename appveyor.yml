@@ -66,31 +66,19 @@ environment:
       CMD1: "mvn -e site -Dlinkcheck.skip=true -Dmaven.javadoc.skip=true -DskipTests"
       CMD2: "   -DskipITs -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true "
       CMD3: "   -Dcheckstyle.ant.skip=true -Dxml.skip=true"
-    # checkstyle-tester
-    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      DESC: "checkstyle-tester on guava"
-      CMD1: "mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-      CMD2: "    -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
-      CMD3: " && git clone -q --depth=10 --branch=master "
-      CMD4: "      https://github.com/checkstyle/contribution C:\\projects\\checkstyle\\contribution "
-      CMD5: " && cd contribution\\checkstyle-tester "
-      CMD6: " && move /Y projects-for-travis.properties projects-to-test-on.properties "
-      CMD7: " && C:\\cygwin\\bin\\bash.exe -lc "
-      CMD8: "          \"cd $APPVEYOR_BUILD_FOLDER/contribution/checkstyle-tester/ ;"
-      CMD9: "               ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml\""
 
 build_script:
   - ps: >
-       (get-content env:CMD1) 
-       + (get-content env:CMD2) 
-       + (get-content env:CMD3) 
-       + (get-content env:CMD4) 
-       + (get-content env:CMD5) 
-       + (get-content env:CMD6) 
-       + (get-content env:CMD7) 
-       + (get-content env:CMD8) 
-       + (get-content env:CMD9) 
-       + (get-content env:CMD10) 
+       (get-content env:CMD1)
+       + (get-content env:CMD2)
+       + (get-content env:CMD3)
+       + (get-content env:CMD4)
+       + (get-content env:CMD5)
+       + (get-content env:CMD6)
+       + (get-content env:CMD7)
+       + (get-content env:CMD8)
+       + (get-content env:CMD9)
+       + (get-content env:CMD10)
        | Out-File appveyor.cmd -encoding ASCII
   - ps: get-content appveyor.cmd
   # We need to use cmd there as ps1 is failing each time error output appear from any command line
