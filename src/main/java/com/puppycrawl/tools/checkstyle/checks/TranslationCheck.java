@@ -201,6 +201,39 @@ public class TranslationCheck extends AbstractFileSetCheck {
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
+    /**
+     * Validates the correctness of user specififed language codes for the check.
+     * @param languageCodes user specified language codes for the check.
+     */
+    private void validateUserSpecifiedLanguageCodes(SortedSet<String> languageCodes) {
+        for (String code : languageCodes) {
+            if (!isValidLanguageCode(code)) {
+                final LocalizedMessage msg = new LocalizedMessage(0, TRANSLATION_BUNDLE,
+                        WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
+                final String exceptionMessage = String.format(Locale.ROOT,
+                        "%s [%s]", msg.getMessage(), TranslationCheck.class.getSimpleName());
+                throw new IllegalArgumentException(exceptionMessage);
+            }
+        }
+    }
+
+    /**
+     * Checks whether user specified language code is correct (is contained in available locales).
+     * @param userSpecifiedLanguageCode user specified language code.
+     * @return true if user specified language code is correct.
+     */
+    private static boolean isValidLanguageCode(final String userSpecifiedLanguageCode) {
+        boolean valid = false;
+        final Locale[] locales = Locale.getAvailableLocales();
+        for (Locale locale : locales) {
+            if (userSpecifiedLanguageCode.equals(locale.toString())) {
+                valid = true;
+                break;
+            }
+        }
+        return valid;
+    }
+
     @Override
     public void beginProcessing(String charset) {
         super.beginProcessing(charset);
@@ -226,36 +259,80 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Validates the correctness of user specififed language codes for the check.
-     * @param languageCodes user specified language codes for the check.
+     * Checks an existence of default translation file in the resource bundle.
+     * @param bundle resource bundle.
      */
-    private void validateUserSpecifiedLanguageCodes(SortedSet<String> languageCodes) {
-        for (String code : languageCodes) {
-            if (!isValidLanguageCode(code)) {
-                final LocalizedMessage msg = new LocalizedMessage(0, TRANSLATION_BUNDLE,
-                    WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
-                final String exceptionMessage = String.format(Locale.ROOT,
-                    "%s [%s]", msg.getMessage(), TranslationCheck.class.getSimpleName());
-                throw new IllegalArgumentException(exceptionMessage);
+    private void checkExistenceOfDefaultTranslation(ResourceBundle bundle) {
+        final Optional<String> fileName = getMissingFileName(bundle, null);
+        if (fileName.isPresent()) {
+            logMissingTranslation(bundle.getPath(), fileName.get());
+        }
+    }
+
+    /**
+     * Checks an existence of translation files in the resource bundle.
+     * The name of translation file begins with the base name of resource bundle which is followed
+     * by '_' and a language code (country and variant are optional), it ends with the extension
+     * suffix.
+     * @param bundle resource bundle.
+     */
+    private void checkExistenceOfRequiredTranslations(ResourceBundle bundle) {
+        for (String languageCode : requiredTranslations) {
+            final Optional<String> fileName = getMissingFileName(bundle, languageCode);
+            if (fileName.isPresent()) {
+                logMissingTranslation(bundle.getPath(), fileName.get());
             }
         }
     }
 
     /**
-     * Checks whether user specified language code is correct (is contained in available locales).
-     * @param userSpecifiedLanguageCode user specified language code.
-     * @return true if user specified language code is correct.
+     * Returns the name of translation file which is absent in resource bundle or Guava's Optional,
+     * if there is not missing translation.
+     * @param bundle resource bundle.
+     * @param languageCode language code.
+     * @return the name of translation file which is absent in resource bundle or Guava's Optional,
+     *         if there is not missing translation.
      */
-    private static boolean isValidLanguageCode(final String userSpecifiedLanguageCode) {
-        boolean valid = false;
-        final Locale[] locales = Locale.getAvailableLocales();
-        for (Locale locale : locales) {
-            if (userSpecifiedLanguageCode.equals(locale.toString())) {
-                valid = true;
-                break;
+    private static Optional<String> getMissingFileName(ResourceBundle bundle, String languageCode) {
+        final String fileNameRegexp;
+        final boolean searchForDefaultTranslation;
+        final String extension = bundle.getExtension();
+        final String baseName = bundle.getBaseName();
+        if (languageCode == null) {
+            searchForDefaultTranslation = true;
+            fileNameRegexp = String.format(Locale.ROOT, REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS,
+                    baseName, extension);
+        }
+        else {
+            searchForDefaultTranslation = false;
+            fileNameRegexp = String.format(Locale.ROOT,
+                REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS, baseName, languageCode, extension);
+        }
+        Optional<String> missingFileName = Optional.absent();
+        if (!bundle.containsFile(fileNameRegexp)) {
+            if (searchForDefaultTranslation) {
+                missingFileName = Optional.of(String.format(Locale.ROOT,
+                        DEFAULT_TRANSLATION_FILE_NAME_FORMATTER, baseName, extension));
+            }
+            else {
+                missingFileName = Optional.of(String.format(Locale.ROOT,
+                        FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER, baseName, languageCode, extension));
             }
         }
-        return valid;
+        return missingFileName;
+    }
+
+    /**
+     * Logs that translation file is missing.
+     * @param filePath file path.
+     * @param fileName file name.
+     */
+    private void logMissingTranslation(String filePath, String fileName) {
+        final MessageDispatcher dispatcher = getMessageDispatcher();
+        dispatcher.fireFileStarted(filePath);
+        log(0, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
+        fireErrors(filePath);
+        dispatcher.fireFileFinished(filePath);
     }
 
     /**
@@ -290,54 +367,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Checks an existence of default translation file in the resource bundle.
-     * @param bundle resource bundle.
-     */
-    private void checkExistenceOfDefaultTranslation(ResourceBundle bundle) {
-        final Optional<String> fileName = getMissingFileName(bundle, null);
-        if (fileName.isPresent()) {
-            logMissingTranslation(bundle.getPath(), fileName.get());
-        }
-    }
-
-    /**
-     * Checks an existence of translation files in the resource bundle.
-     * The name of translation file begins with the base name of resource bundle which is followed
-     * by '_' and a language code (country and variant are optional), it ends with the extension
-     * suffix.
-     * @param bundle resource bundle.
-     */
-    private void checkExistenceOfRequiredTranslations(ResourceBundle bundle) {
-        for (String languageCode : requiredTranslations) {
-            final Optional<String> fileName = getMissingFileName(bundle, languageCode);
-            if (fileName.isPresent()) {
-                logMissingTranslation(bundle.getPath(), fileName.get());
-            }
-        }
-    }
-
-    /**
-     * Checks resource files in bundle for consistency regarding their keys.
-     * All files in bundle must have the same key set. If this is not the case
-     * an error message is posted giving information which key misses in which file.
-     * @param bundle resource bundle.
-     */
-    private void checkTranslationKeys(ResourceBundle bundle) {
-        final Set<File> filesInBundle = bundle.getFiles();
-        if (filesInBundle.size() > 1) {
-            // build a map from files to the keys they contain
-            final Set<String> allTranslationKeys = Sets.newHashSet();
-            final SetMultimap<File, String> filesAssociatedWithKeys = HashMultimap.create();
-            for (File currentFile : filesInBundle) {
-                final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
-                allTranslationKeys.addAll(keysInCurrentFile);
-                filesAssociatedWithKeys.putAll(currentFile, keysInCurrentFile);
-            }
-            checkFilesForConsistencyRegardingTheirKeys(filesAssociatedWithKeys, allTranslationKeys);
-        }
-    }
-
-    /**
      * Searches for specific resource bundle in a set of resource bundles.
      * @param bundles set of resource bundles.
      * @param targetBundle target bundle to search for.
@@ -355,43 +384,6 @@ public class TranslationCheck extends AbstractFileSetCheck {
             }
         }
         return result;
-    }
-
-    /**
-     * Returns the name of translation file which is absent in resource bundle or Guava's Optional,
-     * if there is not missing translation.
-     * @param bundle resource bundle.
-     * @param languageCode language code.
-     * @return the name of translation file which is absent in resource bundle or Guava's Optional,
-     *         if there is not missing translation.
-     */
-    private static Optional<String> getMissingFileName(ResourceBundle bundle, String languageCode) {
-        final String fileNameRegexp;
-        final boolean searchForDefaultTranslation;
-        final String extension = bundle.getExtension();
-        final String baseName = bundle.getBaseName();
-        if (languageCode == null) {
-            searchForDefaultTranslation = true;
-            fileNameRegexp = String.format(Locale.ROOT, REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS,
-                baseName, extension);
-        }
-        else {
-            searchForDefaultTranslation = false;
-            fileNameRegexp = String.format(Locale.ROOT,
-                REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS, baseName, languageCode, extension);
-        }
-        Optional<String> missingFileName = Optional.absent();
-        if (!bundle.containsFile(fileNameRegexp)) {
-            if (searchForDefaultTranslation) {
-                missingFileName = Optional.of(String.format(Locale.ROOT,
-                    DEFAULT_TRANSLATION_FILE_NAME_FORMATTER, baseName, extension));
-            }
-            else {
-                missingFileName = Optional.of(String.format(Locale.ROOT,
-                    FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER, baseName, languageCode, extension));
-            }
-        }
-        return missingFileName;
     }
 
     /**
@@ -438,26 +430,24 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Loads the keys from the specified translation file into a set.
-     * @param file translation file.
-     * @return a Set object which holds the loaded keys.
+     * Checks resource files in bundle for consistency regarding their keys.
+     * All files in bundle must have the same key set. If this is not the case
+     * an error message is posted giving information which key misses in which file.
+     * @param bundle resource bundle.
      */
-    private Set<String> getTranslationKeys(File file) {
-        Set<String> keys = Sets.newHashSet();
-        InputStream inStream = null;
-        try {
-            inStream = new FileInputStream(file);
-            final Properties translations = new Properties();
-            translations.load(inStream);
-            keys = translations.stringPropertyNames();
+    private void checkTranslationKeys(ResourceBundle bundle) {
+        final Set<File> filesInBundle = bundle.getFiles();
+        if (filesInBundle.size() > 1) {
+            // build a map from files to the keys they contain
+            final Set<String> allTranslationKeys = Sets.newHashSet();
+            final SetMultimap<File, String> filesAssociatedWithKeys = HashMultimap.create();
+            for (File currentFile : filesInBundle) {
+                final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
+                allTranslationKeys.addAll(keysInCurrentFile);
+                filesAssociatedWithKeys.putAll(currentFile, keysInCurrentFile);
+            }
+            checkFilesForConsistencyRegardingTheirKeys(filesAssociatedWithKeys, allTranslationKeys);
         }
-        catch (final IOException ex) {
-            logIoException(ex, file);
-        }
-        finally {
-            Closeables.closeQuietly(inStream);
-        }
-        return keys;
     }
 
     /**
@@ -485,16 +475,26 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Logs that translation file is missing.
-     * @param filePath file path.
-     * @param fileName file name.
+     * Loads the keys from the specified translation file into a set.
+     * @param file translation file.
+     * @return a Set object which holds the loaded keys.
      */
-    private void logMissingTranslation(String filePath, String fileName) {
-        final MessageDispatcher dispatcher = getMessageDispatcher();
-        dispatcher.fireFileStarted(filePath);
-        log(0, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
-        fireErrors(filePath);
-        dispatcher.fireFileFinished(filePath);
+    private Set<String> getTranslationKeys(File file) {
+        Set<String> keys = Sets.newHashSet();
+        InputStream inStream = null;
+        try {
+            inStream = new FileInputStream(file);
+            final Properties translations = new Properties();
+            translations.load(inStream);
+            keys = translations.stringPropertyNames();
+        }
+        catch (final IOException ex) {
+            logIoException(ex, file);
+        }
+        finally {
+            Closeables.closeQuietly(inStream);
+        }
+        return keys;
     }
 
     /**
