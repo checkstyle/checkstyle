@@ -697,7 +697,7 @@
         </p>
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\\.gif$&quot;/&gt;
+  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.gif$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -714,7 +714,7 @@
         </p>
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]\\w+[\\/]resources[\\/]&quot;/&gt;
+  &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
 &lt;/module&gt;
@@ -724,7 +724,7 @@
         </p>
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\\.(java|xml)$&quot;/&gt;
+  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -737,7 +737,7 @@
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;
   &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\\.(java|xml)$&quot;/&gt;
+  &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
