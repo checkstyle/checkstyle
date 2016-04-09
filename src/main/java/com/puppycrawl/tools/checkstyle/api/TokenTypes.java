@@ -3382,6 +3382,13 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * Module definition (Java 9). PARSING IS NOT SUPPORTED FOR NOW.
+     *
+     */
+    public static final int MODULE_DEF =
+            GeneratedJavaTokenTypes.MODULE_DEF;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }

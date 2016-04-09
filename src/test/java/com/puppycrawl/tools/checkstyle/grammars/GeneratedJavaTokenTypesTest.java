@@ -229,24 +229,42 @@ public class GeneratedJavaTokenTypesTest {
         Assert.assertEquals(message, 181, GeneratedJavaTokenTypes.LAMBDA);
         Assert.assertEquals(message, 182, GeneratedJavaTokenTypes.BLOCK_COMMENT_END);
         Assert.assertEquals(message, 183, GeneratedJavaTokenTypes.COMMENT_CONTENT);
-        Assert.assertEquals(message, 184, GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT_CONTENT);
-        Assert.assertEquals(message, 185, GeneratedJavaTokenTypes.BLOCK_COMMENT_CONTENT);
-        Assert.assertEquals(message, 186, GeneratedJavaTokenTypes.STD_ESC);
-        Assert.assertEquals(message, 187, GeneratedJavaTokenTypes.BINARY_DIGIT);
-        Assert.assertEquals(message, 188, GeneratedJavaTokenTypes.ID_START);
-        Assert.assertEquals(message, 189, GeneratedJavaTokenTypes.ID_PART);
-        Assert.assertEquals(message, 190, GeneratedJavaTokenTypes.INT_LITERAL);
-        Assert.assertEquals(message, 191, GeneratedJavaTokenTypes.LONG_LITERAL);
-        Assert.assertEquals(message, 192, GeneratedJavaTokenTypes.FLOAT_LITERAL);
-        Assert.assertEquals(message, 193, GeneratedJavaTokenTypes.DOUBLE_LITERAL);
-        Assert.assertEquals(message, 194, GeneratedJavaTokenTypes.HEX_FLOAT_LITERAL);
-        Assert.assertEquals(message, 195, GeneratedJavaTokenTypes.HEX_DOUBLE_LITERAL);
-        Assert.assertEquals(message, 196, GeneratedJavaTokenTypes.SIGNED_INTEGER);
-        Assert.assertEquals(message, 197, GeneratedJavaTokenTypes.BINARY_EXPONENT);
+        Assert.assertEquals(message, 184, GeneratedJavaTokenTypes.LITERAL_module);
+        Assert.assertEquals(message, 185, GeneratedJavaTokenTypes.MODULE_DEF);
+        // all following are not in TokenTypes, not a API for us
+        // we mention them here just to catch easily a diff
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT_CONTENT,
+            GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT_CONTENT);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.BLOCK_COMMENT_CONTENT,
+            GeneratedJavaTokenTypes.BLOCK_COMMENT_CONTENT);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.STD_ESC,
+            GeneratedJavaTokenTypes.STD_ESC);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.BINARY_DIGIT,
+            GeneratedJavaTokenTypes.BINARY_DIGIT);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.ID_START,
+            GeneratedJavaTokenTypes.ID_START);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.ID_PART,
+            GeneratedJavaTokenTypes.ID_PART);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.INT_LITERAL,
+            GeneratedJavaTokenTypes.INT_LITERAL);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.LONG_LITERAL,
+            GeneratedJavaTokenTypes.LONG_LITERAL);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.FLOAT_LITERAL,
+            GeneratedJavaTokenTypes.FLOAT_LITERAL);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.DOUBLE_LITERAL,
+            GeneratedJavaTokenTypes.DOUBLE_LITERAL);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.HEX_FLOAT_LITERAL,
+            GeneratedJavaTokenTypes.HEX_FLOAT_LITERAL);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.HEX_DOUBLE_LITERAL,
+            GeneratedJavaTokenTypes.HEX_DOUBLE_LITERAL);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.SIGNED_INTEGER,
+            GeneratedJavaTokenTypes.SIGNED_INTEGER);
+        Assert.assertEquals(message, GeneratedJavaTokenTypes.BINARY_EXPONENT,
+            GeneratedJavaTokenTypes.BINARY_EXPONENT);
         // Read JavaDoc before changing
         Assert.assertEquals("all tokens must be added to list in"
                 + " 'GeneratedJavaTokenTypesTest' and verified"
-                + " that their old numbering didn't change", 196,
+                + " that their old numbering didn't change", 198,
                 GeneratedJavaTokenTypes.class.getDeclaredFields().length);
     }
 }

@@ -42,10 +42,18 @@ public class Java9TryWithResourcesTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testCanParse() throws Exception {
+    public void testCanParseTry() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath("InputJava9TryWithResources.java"), expected);
+    }
+
+    @Test
+    public void testCanParseModule() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MemberNameCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("module-info.java"), expected);
     }
 }

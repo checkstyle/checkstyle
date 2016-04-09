@@ -109,6 +109,9 @@ tokens {
 
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
+
+    //Support of java 1.9 - modules (Jigsaw)
+    LITERAL_module="module"; MODULE_DEF;
 }
 
 {
@@ -202,19 +205,25 @@ tokens {
 // Compilation Unit: In Java, this is a single file.  This is the start
 //   rule for this parser
 compilationUnit
-    :    // A compilation unit starts with an optional package definition
-        // semantic check because package definitions can be annotated
-        // which causes possible non-determinism in Antrl
-        (    (annotations "package")=> packageDefinition
-        |    /* nothing */
+    :
+        // Java file
+        (
+	        // A compilation unit starts with an optional package definition
+	        // semantic check because package definitions can be annotated
+	        // which causes possible non-determinism in Antrl
+	        (    (annotations "package")=> packageDefinition
+	        |    /* nothing */
+	        )
+
+	        // Next we have a series of zero or more import statements
+	        ( options{generateAmbigWarnings=false;}:importDefinition )*
+
+	        // Wrapping things up with any number of class or interface
+	        //    definitions
+	        ( typeDefinition )*
         )
-
-        // Next we have a series of zero or more import statements
-        ( options{generateAmbigWarnings=false;}:importDefinition )*
-
-        // Wrapping things up with any number of class or interface
-        //    definitions
-        ( typeDefinition )*
+        // Java modules
+        | moduleDefinition
 
         EOF!
     ;
@@ -1614,6 +1623,21 @@ lambdaBody
     |    statement)
     ;
 
+// Definition of a Module
+moduleDefinition
+    :   m:"module" IDENT
+        mb:moduleBlock
+        {#moduleDefinition = #(#[MODULE_DEF,"MODULE_DEF"], m, IDENT, mb);}
+    ;
+
+moduleBlock
+    :   LCURLY
+            ( moduleField | SEMI )*
+        RCURLY
+        {#moduleBlock = #([OBJBLOCK, "OBJBLOCK"], #moduleBlock);}
+    ;
+
+moduleField: (IDENT | WS )* ;
 
 //----------------------------------------------------------------------------
 // The Java scanner
