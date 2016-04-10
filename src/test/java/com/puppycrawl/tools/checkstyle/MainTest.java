@@ -50,6 +50,21 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class MainTest {
+    private static final String USAGE = String.format(Locale.ROOT,
+          "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
+        + " file...%n"
+        + " -c <arg>                Sets the check configuration file to use.%n"
+        + " -f <arg>                Sets the output format. (plain|xml). Defaults to"
+        + " plain%n"
+        + " -j,--javadocTree        Print Parse tree of the Javadoc comment%n"
+        + " -J,--treeWithJavadoc    Print full Abstract Syntax Tree of the file%n"
+        + " -o <arg>                Sets the output file. Defaults to stdout%n"
+        + " -p <arg>                Loads the properties file%n"
+        + " -t,--tree               Print Abstract Syntax Tree(AST) of the file%n"
+        + " -T,--treeWithComments   Print Abstract Syntax Tree(AST) of the file"
+        + " including comments%n"
+        + " -v                      Print product version and exit%n");
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
     @Rule
@@ -105,19 +120,8 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() {
-                final String usage = String.format(Locale.ROOT, "Unrecognized option: -w%n"
-                    + "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
-                    + " file...%n"
-                    + " -c <arg>                Sets the check configuration file to use.%n"
-                    + " -f <arg>                Sets the output format. (plain|xml). Defaults to"
-                    + " plain%n"
-                    + " -j,--javadocTree        Print Parse tree of the Javadoc comment%n"
-                    + " -o <arg>                Sets the output file. Defaults to stdout%n"
-                    + " -p <arg>                Loads the properties file%n"
-                    + " -t,--tree               Print Abstract Syntax Tree(AST) of the file%n"
-                    + " -T,--treeWithComments   Print Abstract Syntax Tree(AST) of the file"
-                    + " including comments%n"
-                    + " -v                      Print product version and exit%n");
+                final String usage = String.format(Locale.ROOT, "Unrecognized option: -w%n")
+                        + USAGE;
                 assertEquals(usage, systemOut.getLog());
                 assertEquals("", systemErr.getLog());
             }
@@ -750,6 +754,22 @@ public class MainTest {
             }
         });
         Main.main("-j", getPath("astprinter/InputJavadocComment.javadoc"));
+    }
+
+    @Test
+    public void testPrintFullTreeOption() throws Exception {
+        final String expected = Files.toString(new File(
+                getPath("astprinter/expectedInputAstTreeStringPrinterJavadoc.txt")),
+                Charsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");
+
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals(expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));
+                assertEquals("", systemErr.getLog());
+            }
+        });
+        Main.main("-J", getPath("astprinter/InputAstTreeStringPrinterJavadoc.java"));
     }
 
     @Test

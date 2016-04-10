@@ -70,4 +70,15 @@ public class AstTreeStringPrinterTest {
                 .replaceAll("\\\\r\\\\n", "\\\\n");
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testParseFileWithJavadoc() throws Exception {
+        final String actual = AstTreeStringPrinter.printJavaAndJavadocTree(
+                new File(getPath("InputAstTreeStringPrinterJavadoc.java")))
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = Files.toString(new File(
+                getPath("expectedInputAstTreeStringPrinterJavadoc.txt")), Charsets.UTF_8)
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        Assert.assertEquals(expected, actual);
+    }
 }
