@@ -36,6 +36,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
+import javax.xml.bind.DatatypeConverter;
+
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -61,18 +63,6 @@ final class PropertyCacheFile {
      * valid file name.
      */
     private static final String CONFIG_HASH_KEY = "configuration*?";
-
-    /** Hex digits. */
-    private static final char[] HEX_CHARS = {
-        '0', '1', '2', '3', '4', '5', '6', '7',
-        '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-    };
-
-    /** Mask for last byte. */
-    private static final int MASK_0X0F = 0x0F;
-
-    /** Bit shift. */
-    private static final int SHIFT_4 = 4;
 
     /** The details on files. **/
     private final Properties details = new Properties();
@@ -221,27 +211,11 @@ final class PropertyCacheFile {
             final MessageDigest digest = MessageDigest.getInstance("SHA-1");
             digest.update(outputStream.toByteArray());
 
-            return hexEncode(digest.digest());
+            return DatatypeConverter.printHexBinary(digest.digest());
         }
         catch (final IOException | NoSuchAlgorithmException ex) {
             // rethrow as unchecked exception
             throw new IllegalStateException("Unable to calculate hashcode.", ex);
         }
-    }
-
-    /**
-     * Hex-encodes a byte array.
-     * @param byteArray the byte array
-     * @return hex encoding of {@code byteArray}
-     */
-    private static String hexEncode(byte... byteArray) {
-        final StringBuilder buf = new StringBuilder(2 * byteArray.length);
-        for (final byte b : byteArray) {
-            final int low = b & MASK_0X0F;
-            final int high = b >> SHIFT_4 & MASK_0X0F;
-            buf.append(HEX_CHARS[high]);
-            buf.append(HEX_CHARS[low]);
-        }
-        return buf.toString();
     }
 }
