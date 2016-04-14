@@ -137,6 +137,20 @@
                   <td/>
               </tr>
               <tr>
+                  <td>
+                      <a href="https://www.codacy.com/">Codacy</a>
+                  </td>
+                  <td>João Machado</td>
+                  <td>
+                      <a href="https://github.com/codacy/codacy-checkstyle/">
+                          codacy-checkstyle
+                      </a>
+                  </td>
+                  <td>
+                      Provides analysis per commit and per pull request. Supports CheckStyle config files.
+                  </td>
+              </tr>
+              <tr>
                   <td><a href="http://www.eclipse.org">Eclipse/RAD/RDz</a></td>
                   <td>David Schneider</td>
                   <td>
