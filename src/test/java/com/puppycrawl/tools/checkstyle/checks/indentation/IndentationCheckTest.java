@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -42,7 +43,10 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -52,56 +56,41 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class IndentationCheckTest extends BaseCheckTestSupport {
     private static final Pattern LINE_WITH_COMMENT_REGEX =
-                    Pattern.compile(".*?(//indent:(\\d+)"
-                        + " exp:((>=\\d+)|(\\d+(,\\d+)*?))( warn)?)$");
+                    Pattern.compile(".*?//indent:(\\d+)(?: ioffset:(\\d+))?"
+                        + " exp:(>=)?(\\d+(?:,\\d+)*?)( warn)?$");
 
-    private static final Pattern GET_INDENT_FROM_COMMENT_REGEX =
-                    Pattern.compile("//indent:(\\d+).*?");
-
-    private static final Pattern MULTILEVEL_COMMENT_REGEX =
-                    Pattern.compile("//indent:\\d+ exp:(\\d+(,\\d+)+?)( warn)?");
-
-    private static final Pattern SINGLE_LEVEL_COMMENT_REGEX =
-                    Pattern.compile("//indent:\\d+ exp:(\\d+)( warn)?");
-
-    private static final Pattern NON_STRICT_LEVEL_COMMENT_REGEX =
-                    Pattern.compile("//indent:\\d+ exp:>=(\\d+)( warn)?");
-
-    private static final String[] EMPTY_EXPECTED = {};
-
-    private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
+    private static IndentComment[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
                     throws IOException {
-        final List<Integer> result = new ArrayList<>();
+        final List<IndentComment> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(aFileName), StandardCharsets.UTF_8))) {
             int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
                 if (match.matches()) {
-                    final String comment = match.group(1);
-                    final int indentInComment = getIndentFromComment(comment);
+                    final IndentComment warn = new IndentComment(match, lineNumber);
                     final int actualIndent = getLineStart(line, tabWidth);
 
-                    if (actualIndent != indentInComment) {
+                    if (actualIndent != warn.getIndent()) {
                         throw new IllegalStateException(String.format(Locale.ROOT,
-                                        "File \"%1$s\" has incorrect indentation in comment."
+                                        "File \"%1$s\" has incorrect indentation in comment. "
                                                         + "Line %2$d: comment:%3$d, actual:%4$d.",
                                         aFileName,
                                         lineNumber,
-                                        indentInComment,
+                                        warn.getIndent(),
                                         actualIndent));
                     }
 
-                    if (isWarnComment(comment)) {
-                        result.add(lineNumber);
-                    }
-
-                    if (!isCommentConsistent(comment)) {
+                    if (!isCommentConsistent(warn)) {
                         throw new IllegalStateException(String.format(Locale.ROOT,
                                         "File \"%1$s\" has inconsistent comment on line %2$d",
                                         aFileName,
                                         lineNumber));
+                    }
+
+                    if (warn.isWarning()) {
+                        result.add(warn);
                     }
                 }
                 else if (!line.isEmpty()) {
@@ -114,55 +103,34 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                 lineNumber++;
             }
         }
-        return result.toArray(new Integer[result.size()]);
+        return result.toArray(new IndentComment[result.size()]);
     }
 
-    private static int getIndentFromComment(String comment) {
-        final Matcher match = GET_INDENT_FROM_COMMENT_REGEX.matcher(comment);
-        match.matches();
-        return Integer.parseInt(match.group(1));
-    }
+    private static boolean isCommentConsistent(IndentComment comment) {
+        final String[] levels = comment.getExpectedWarning().split(", ");
+        final int indent = comment.getIndent() + comment.getIndentOffset();
 
-    private static boolean isWarnComment(String comment) {
-        return comment.endsWith(" warn");
-    }
-
-    private static boolean isCommentConsistent(String comment) {
-        final int indentInComment = getIndentFromComment(comment);
-        final boolean isWarnComment = isWarnComment(comment);
-
-        final Matcher multilevelMatch = MULTILEVEL_COMMENT_REGEX.matcher(comment);
-        if (multilevelMatch.matches()) {
-            final String[] levels = multilevelMatch.group(1).split(",");
-            final String indentInCommentStr = String.valueOf(indentInComment);
+        if (levels.length > 1) {
+            // multi
             final boolean containsActualLevel =
-                            Arrays.asList(levels).contains(indentInCommentStr);
+                            Arrays.asList(levels).contains(String.valueOf(indent));
 
-            return containsActualLevel && !isWarnComment
-                    || !containsActualLevel && isWarnComment;
+            return containsActualLevel != comment.isWarning();
         }
+        else {
+            final int expectedWarning = Integer.parseInt(comment.getExpectedWarning());
 
-        final Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
-        if (singleLevelMatch.matches()) {
-            final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
-            return isSingleLevelCommentConsistent(indentInComment, isWarnComment, expectedLevel);
+            if (comment.isExpectedNonStrict()) {
+                // non-strict
+                final boolean test = indent >= expectedWarning;
+                return test != comment.isWarning();
+            }
+            else {
+                // single
+                final boolean test = expectedWarning == indent;
+                return test != comment.isWarning();
+            }
         }
-
-        final Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
-        if (nonStrictLevelMatch.matches()) {
-            final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
-
-            return indentInComment >= expectedMinimalIndent && !isWarnComment
-                    || indentInComment < expectedMinimalIndent && isWarnComment;
-        }
-
-        throw new IllegalStateException("Comments are not consistent");
-    }
-
-    private static boolean isSingleLevelCommentConsistent(int indentInComment,
-            boolean isWarnComment, int expectedLevel) {
-        return expectedLevel == indentInComment && !isWarnComment
-                || expectedLevel != indentInComment && isWarnComment;
     }
 
     private static int getLineStart(String line, final int tabWidth) {
@@ -175,22 +143,29 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     private void verifyWarns(Configuration config, String filePath,
+                    String... expected)
+                    throws Exception {
+        verifyWarns(config, filePath, expected, 0);
+    }
+
+    private void verifyWarns(Configuration config, String filePath,
                     String[] expected, int warnCountCorrection)
                     throws Exception {
         final int tabWidth = Integer.parseInt(config.getAttribute("tabWidth"));
-        final Integer[] linesWithWarn =
+        final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
         assertEquals("Expected warning count in UT does not match warn"
                         + " comment count in input file", linesWithWarn.length
                         + warnCountCorrection,
                         expected.length);
-        verify(config, filePath, expected);
+        verify(config, filePath, expected, linesWithWarn);
     }
 
-    private void verifyWarns(Configuration config, String filePath,
-                    String... expected)
-                    throws Exception {
-        verifyWarns(config, filePath, expected, 0);
+    private void verify(Configuration config, String filePath, String[] expected,
+            final IndentComment... linesWithWarn) throws Exception {
+        final Checker checker = createChecker(config);
+        checker.addListener(new IndentAudit(linesWithWarn));
+        verify(checker, new File[] {new File(filePath)}, filePath, expected);
     }
 
     @Override
@@ -1587,7 +1562,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("basicOffset", "4");
         checkConfig.addAttribute("lineWrappingIndentation", "8");
-        final String[] expected = EMPTY_EXPECTED;
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getNonCompilablePath("InputLambda2.java"), expected, 0);
     }
 
@@ -1607,5 +1582,112 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final String fileName = getPath("InputSeparatedStatementWithSpaces.java");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, fileName, expected);
+    }
+
+    private static final class IndentAudit implements AuditListener {
+        private final IndentComment[] comments;
+        private int position;
+
+        private IndentAudit(IndentComment... comments) {
+            this.comments = comments;
+        }
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+            final int line = event.getLine();
+            final String message = event.getMessage();
+            final IndentComment comment = comments[position];
+            position++;
+
+            assertTrue(
+                    "input expected warning #" + position + " at line " + comment.getLineNumber()
+                            + " to report '" + comment.getExpectedMessage() + "' but got instead: "
+                            + line + ": " + message,
+                    message.endsWith(comment.getExpectedMessage()));
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+            // No code needed
+        }
+    }
+
+    private static final class IndentComment {
+        private final int lineNumber;
+        private final int indent;
+        /** Used for when violations report nodes not first on the line. */
+        private final int indentOffset;
+        private final boolean expectedNonStrict;
+        private final String expectedWarning;
+        private final boolean warning;
+
+        private IndentComment(Matcher match, int lineNumber) {
+            this.lineNumber = lineNumber;
+            indent = Integer.parseInt(match.group(1));
+            if (match.group(2) == null) {
+                indentOffset = 0;
+            }
+            else {
+                indentOffset = Integer.parseInt(match.group(2));
+            }
+            expectedNonStrict = match.group(3) != null;
+            expectedWarning = match.group(4).replace(",", ", ");
+            warning = match.group(5) != null;
+        }
+
+        public String getExpectedMessage() {
+            if (expectedWarning.contains(",")) {
+                return "incorrect indentation level " + (indent + indentOffset)
+                        + ", expected level should be one of the following: " + expectedWarning
+                        + ".";
+            }
+
+            return "incorrect indentation level " + (indent + indentOffset)
+                    + ", expected level should be " + expectedWarning + ".";
+        }
+
+        public int getLineNumber() {
+            return lineNumber;
+        }
+
+        public int getIndent() {
+            return indent;
+        }
+
+        public int getIndentOffset() {
+            return indentOffset;
+        }
+
+        public boolean isExpectedNonStrict() {
+            return expectedNonStrict;
+        }
+
+        public String getExpectedWarning() {
+            return expectedWarning;
+        }
+
+        public boolean isWarning() {
+            return warning;
+        }
     }
 }
