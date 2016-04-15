@@ -26,7 +26,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
- * Checks that classes are designed for inheritance.
+ * Checks find classes that are designed for inheritance.
+ *
+ * <p>
+ * Nothing wrong could be with founded classes
+ * this Check make sence only for library project (not a application projects)
+ * who care about ideal OOP design to make sure clas work in all cases even misusage.
+ * Even in library projects this Check most likely find classes that are not required to check.
+ * User need to use suppressions extensively to got a benefit from this Check and avoid
+ * false positives.
+ * </p>
+ *
+ * <p>
+ * ATTENTION: Only user can deside whether class is designed for extension or not.
+ * Check just show all possible. If smth inappropriate is found please use supporession.
+ * </p>
  *
  * <p>
  * More specifically, it enforces a programming style
