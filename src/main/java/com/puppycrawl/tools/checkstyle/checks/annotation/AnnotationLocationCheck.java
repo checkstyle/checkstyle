@@ -225,7 +225,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * @return Some javadoc.
      */
     private static boolean hasAnnotations(DetailAST modifierNode) {
-        return modifierNode.findFirstToken(TokenTypes.ANNOTATION) != null;
+        return modifierNode != null && modifierNode.findFirstToken(TokenTypes.ANNOTATION) != null;
     }
 
     /**

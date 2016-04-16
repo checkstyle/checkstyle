@@ -148,4 +148,14 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("InputAnnotationLocation2.java"), expected);
     }
 
+    @Test
+    public void testAllTokens() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
+        checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
+                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
+                + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
+                + "ANNOTATION_FIELD_DEF");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputAnnotationLocation3.java"), expected);
+    }
 }
