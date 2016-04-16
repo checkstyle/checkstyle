@@ -253,19 +253,27 @@ public final class CheckUtil {
      * Gets the check message 'as is' from appropriate 'messages.properties'
      * file.
      *
-     * @param messageKey the key of message in 'messages.properties' file.
-     * @param arguments the arguments of message in 'messages.properties' file.
+     * @param locale the locale to get the message for.
+     * @param messageKey the key of message in 'messages*.properties' file.
+     * @param arguments the arguments of message in 'messages*.properties' file.
      * @return the check's formatted message.
      */
-    public static String getCheckMessage(Class<?> module, String messageKey, Object... arguments) {
+    public static String getCheckMessage(Class<?> module, Locale locale, String messageKey,
+            Object... arguments) {
         final Properties pr = new Properties();
         try {
-            pr.load(module.getResourceAsStream("messages.properties"));
+            if (locale == Locale.ENGLISH) {
+                pr.load(module.getResourceAsStream("messages.properties"));
+            }
+            else {
+                pr.load(module
+                        .getResourceAsStream("messages_" + locale.getLanguage() + ".properties"));
+            }
         }
         catch (IOException ex) {
             return null;
         }
-        final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey), Locale.ROOT);
+        final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey), locale);
         return formatter.format(arguments);
     }
 

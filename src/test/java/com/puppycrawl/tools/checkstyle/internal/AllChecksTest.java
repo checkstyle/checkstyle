@@ -38,6 +38,18 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AllChecksTest extends BaseCheckTestSupport {
+    private static final Locale[] ALL_LOCALES = {
+        Locale.GERMAN,
+        new Locale("es"),
+        new Locale("fi"),
+        Locale.FRENCH,
+        Locale.JAPANESE,
+        new Locale("pt"),
+        new Locale("tr"),
+        Locale.CHINESE,
+        Locale.ENGLISH,
+    };
+
     @Test
     public void testAllChecksWithDefaultConfiguration() throws Exception {
         final String inputFilePath = getPath("InputDefaultConfig.java");
@@ -190,17 +202,33 @@ public class AllChecksTest extends BaseCheckTestSupport {
                     message.setAccessible(true);
                 }
 
-                final String result = CheckUtil.getCheckMessage(module, message.get(null)
-                        .toString());
+                for (Locale locale : ALL_LOCALES) {
+                    final String messageString = message.get(null).toString();
+                    String result = null;
 
-                Assert.assertNotNull(module.getSimpleName() + " should have text for the message '"
-                        + message.getName() + "'", result);
-                Assert.assertFalse(
-                        module.getSimpleName() + " should have non-empty text for the message '"
-                                + message.getName() + "'", result.trim().isEmpty());
-                Assert.assertFalse(module.getSimpleName()
-                        + " should have non-TODO text for the message '" + message.getName() + "'",
-                        result.trim().startsWith("TODO"));
+                    try {
+                        result = CheckUtil.getCheckMessage(module, locale, messageString);
+                    }
+                    catch (IllegalArgumentException ex) {
+                        Assert.fail(module.getSimpleName() + " with the message '" + messageString
+                                + "' in locale '" + locale.getLanguage() + "' failed with: "
+                                + ex.getClass().getSimpleName() + " - " + ex.getMessage());
+                    }
+
+                    Assert.assertNotNull(
+                            module.getSimpleName() + " should have text for the message '"
+                                    + messageString + "' in locale " + locale.getLanguage() + "'",
+                            result);
+                    Assert.assertFalse(
+                            module.getSimpleName() + " should have non-empty text for the message '"
+                                    + messageString + "' in locale '" + locale.getLanguage() + "'",
+                            result.trim().isEmpty());
+                    Assert.assertFalse(
+                            module.getSimpleName() + " should have non-TODO text for the message '"
+                                    + messageString + "' in locale " + locale.getLanguage() + "'",
+                            !"todo.match".equals(messageString)
+                                    && result.trim().startsWith("TODO"));
+                }
             }
         }
     }
