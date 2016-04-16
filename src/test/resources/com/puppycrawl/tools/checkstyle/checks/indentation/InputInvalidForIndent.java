@@ -74,7 +74,7 @@ public class InputInvalidForIndent { //indent:0 exp:0
         } //indent:8 exp:8
 
         for (int i=0; i<10; i++) { //indent:8 exp:8
-            System.getProperty("foo"); } //indent:12 exp:8 warn
+            System.getProperty("foo"); } //indent:12 ioffset:27 exp:8 warn
 
         for (int i=0;  //indent:8 exp:8
             i<10; i++ //indent:12 exp:>=12

@@ -90,7 +90,7 @@ public class InputInvalidIfIndent { //indent:0 exp:0
          if (test)  //indent:9 exp:8 warn
          { //indent:9 exp:8 warn
          } else  //indent:9 exp:8 warn
-       { //indent:7 exp:9 warn
+       { //indent:7 exp:8 warn
           } //indent:10 exp:8 warn
 
         // lcurly for if and else on same line -- mixed braces //indent:8 exp:8
@@ -230,7 +230,7 @@ System.getProperty("blah"); //indent:0 exp:12 warn
                 } //indent:16 exp:16
 
         if (test) { //indent:8 exp:8
-            System.getProperty("blah"); } //indent:12 exp:8 warn
+            System.getProperty("blah"); } //indent:12 ioffset:28 exp:8 warn
     } //indent:4 exp:4
 
     public void parenIfTest() { //indent:4 exp:4
@@ -248,7 +248,7 @@ System.getProperty("blah"); //indent:0 exp:12 warn
         } //indent:8 exp:8
 
         if  //indent:8 exp:8
-      ( //indent:6 exp:8,12 warn
+      ( //indent:6 exp:8 warn
             test //indent:12 exp:12
       ) { //indent:6 exp:8 warn
             System.getProperty("blah");  //indent:12 exp:12
