@@ -162,81 +162,53 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "21:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "22:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
             "23:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-
             "27:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "28:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
             "29:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-
             "33:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "37:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-
             "41:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "43:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "45:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-
             "49:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
             "50:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-
             "60:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "61:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-
             "80:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "84:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-
             "119:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "128:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "132:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-
             "168:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "169:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
             "170:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
             "172:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "176:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "177:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
             "178:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
             "180:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "185:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "189:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "210:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "215:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "225:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "228:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "238:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "253:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
-
             "262:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "270:18: " + getCheckMessage(MSG_METHOD, "addSuffixToField", ""),
-
             "275:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "275:18: " + getCheckMessage(MSG_METHOD, "addSuffixToField", ""),
-
             "301:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "340:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-
             "360:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-
             "374:40: " + getCheckMessage(MSG_METHOD, "getServletRelativeAction", ""),
             "376:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
             "383:9: " + getCheckMessage(MSG_VARIABLE, "servletRelativeAction", ""),
             "384:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-
             "443:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
             "447:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
             "451:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-
             "455:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
             "459:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
             "463:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
