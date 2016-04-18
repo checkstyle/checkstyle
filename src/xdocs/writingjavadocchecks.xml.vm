@@ -22,9 +22,27 @@
     </section>
 
     <section name="Overview">
+      <p>
+      To start implementing your own Check create new class and extend AbstractJavadocCheck. It has two abstract methods:
+      </p>
+      <ul>
+        <li>getDefaultJavadocTokens() - return array of token types that your new Check requires to process (see "Token Types" section)</li>
+        <li>visitJavadocToken(DetailNode) - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described 
+          before in getDefaultJavadocTokens() method.</li>
+      </ul>
+      <p>
+        Javadoc parser requires XHTML to be used in Javadoc comments, i.e. if there is some open tag(for example &lt;div&gt;) then there have to be its close tag &lt;/div&gt;.
+        This means that if Javadoc comment has incorrect XHTML structure then Javadoc Parser will fail processing the comment, therefore, your new Check can't get its parse tree and process anything from this Javadoc comment. For more details and examples go to "HTML code in Javadoc comments" section.
+      </p>
     </section>
 
     <section name="Difference between Java Grammar and Javadoc comments Grammar">
+      <p>
+        Java grammar parses java file due to language specifications. So, there are singleline comments and multiline/block comments in it. Java compiler doesn't know about Javadoc because it is just a multiline comment.
+        To parse multiline comment as a Javadoc comment, checkstyle has second grammar - Javadoc grammar. So, it's supposed to proccess block comments and parse them to Abstract Syntax Tree.
+        The problem is that Java grammar is old one and uses ANTLR v2, while Javadoc grammar uses ANTLR v4. Because of that, these two grammars and their trees are not compatible.
+        Java AST consists of DetailAST objects, while Javadoc AST consists of DetailNode objects.
+      </p>
     </section>
 
     <section name="Tools to see Javadoc tree structure">
@@ -142,11 +160,12 @@ JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
 |       `--CLASS -> AbstractClass [1:8]
 `--EOF -> <EOF> [1:21]
       ]]></source>
-
-
     </section>
 
     <section name="Token types">
+    </section>
+
+    <section name="HTML code in Javadoc comments">
     </section>
 
     <section name="Checkstyle SDK GUI">
