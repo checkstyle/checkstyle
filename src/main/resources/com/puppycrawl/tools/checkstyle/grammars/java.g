@@ -111,7 +111,7 @@ tokens {
     BLOCK_COMMENT_END;COMMENT_CONTENT;
 
     //Support of java 1.9 - modules (Jigsaw)
-    LITERAL_module="module"; MODULE_DEF;
+    LITERAL_module="module";
 }
 
 {
@@ -1625,19 +1625,15 @@ lambdaBody
 
 // Definition of a Module
 moduleDefinition
-    :   m:"module" IDENT
-        mb:moduleBlock
-        {#moduleDefinition = #(#[MODULE_DEF,"MODULE_DEF"], m, IDENT, mb);}
+    :   "module" identifier
+        moduleBlock
     ;
 
 moduleBlock
     :   LCURLY
-            ( moduleField | SEMI )*
+            (~RCURLY)*
         RCURLY
-        {#moduleBlock = #([OBJBLOCK, "OBJBLOCK"], #moduleBlock);}
     ;
-
-moduleField: (IDENT | WS )* ;
 
 //----------------------------------------------------------------------------
 // The Java scanner

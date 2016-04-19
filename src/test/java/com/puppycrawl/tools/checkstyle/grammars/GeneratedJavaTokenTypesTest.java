@@ -230,7 +230,6 @@ public class GeneratedJavaTokenTypesTest {
         Assert.assertEquals(message, 182, GeneratedJavaTokenTypes.BLOCK_COMMENT_END);
         Assert.assertEquals(message, 183, GeneratedJavaTokenTypes.COMMENT_CONTENT);
         Assert.assertEquals(message, 184, GeneratedJavaTokenTypes.LITERAL_module);
-        Assert.assertEquals(message, 185, GeneratedJavaTokenTypes.MODULE_DEF);
         // all following are not in TokenTypes, not a API for us
         // we mention them here just to catch easily a diff
         Assert.assertEquals(message, GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT_CONTENT,
@@ -264,7 +263,7 @@ public class GeneratedJavaTokenTypesTest {
         // Read JavaDoc before changing
         Assert.assertEquals("all tokens must be added to list in"
                 + " 'GeneratedJavaTokenTypesTest' and verified"
-                + " that their old numbering didn't change", 198,
+                + " that their old numbering didn't change", 197,
                 GeneratedJavaTokenTypes.class.getDeclaredFields().length);
     }
 }
