@@ -90,12 +90,10 @@ public class LineWrappingHandler {
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
 
-            if (currentType == TokenTypes.RCURLY
-                    || currentType == TokenTypes.RPAREN
-                    || currentType == TokenTypes.ARRAY_INIT) {
+            if (currentType == TokenTypes.RPAREN) {
                 logWarningMessage(node, firstNodeIndent);
             }
-            else {
+            else if (currentType != TokenTypes.RCURLY && currentType != TokenTypes.ARRAY_INIT) {
                 logWarningMessage(node, currentIndent);
             }
         }

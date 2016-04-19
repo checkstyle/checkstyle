@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -203,6 +204,21 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         indentationCheck.setThrowsIndent(1);
 
         assertEquals(1, indentationCheck.getThrowsIndent());
+    }
+
+    @Test
+    public void testStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "4");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputStrictCondition.java"), expected);
     }
 
     @Test
@@ -870,11 +886,11 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "127: " + getCheckMessage(MSG_ERROR, "member def type", 10, 12),
             "132: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 10, 8),
             "133: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 8, "10, 14"),
-            "137: " + getCheckMessage(MSG_ERROR, "}", 8, 10),
+            "137: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 8, "10, 14"),
             "141: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 6, "8, 12"),
             "142: " + getCheckMessage(MSG_ERROR, "method def modifier", 12, 10),
             "144: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 10),
-            "145: " + getCheckMessage(MSG_ERROR, "}", 6, 8),
+            "145: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 6, "8, 12"),
             "150: " + getCheckMessage(MSG_ERROR, "method def modifier", 10, 12),
             "152: " + getCheckMessage(MSG_ERROR, "method def rcurly", 10, 12),
             "188: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
@@ -1616,6 +1632,12 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         public void addError(AuditEvent event) {
             final int line = event.getLine();
             final String message = event.getMessage();
+
+            if (position >= comments.length) {
+                fail("found a warning when none was expected for #" + position + " at line " + line
+                        + " with message " + message);
+            }
+
             final IndentComment comment = comments[position];
             position++;
 
