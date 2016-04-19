@@ -134,7 +134,7 @@ final class InputValidClassDefIndent66 extends java.awt.event.MouseAdapter imple
             public void actionPerformed(ActionEvent e) { //indent:12 exp:12
 
             } //indent:12 exp:12
-        }); //indent:8 exp:10 warn
+        }); //indent:8 exp:10,14 warn
 
 
         new JButton().addActionListener(new ActionListener()  //indent:8 exp:8
@@ -142,7 +142,7 @@ final class InputValidClassDefIndent66 extends java.awt.event.MouseAdapter imple
             public void actionPerformed(ActionEvent e) { //indent:12 exp:10 warn
 
             } //indent:12 exp:10 warn
-      }); //indent:6 exp:8 warn
+      }); //indent:6 exp:8,12 warn
 
 
         new JButton().addActionListener(new ActionListener()  //indent:8 exp:8
