@@ -3386,8 +3386,15 @@ public final class TokenTypes {
      * Module definition (Java 9). PARSING IS NOT SUPPORTED FOR NOW.
      *
      */
-    public static final int LITERAL_MODULE =
+    public static final int LIERAL_MODULE =
             GeneratedJavaTokenTypes.LITERAL_module;
+
+    /**
+     * Module definition (Java 9). PARSING IS NOT SUPPORTED FOR NOW.
+     *
+     */
+    public static final int MODULE_DEF =
+            GeneratedJavaTokenTypes.MODULE_DEF;
 
     /** Prevent instantiation. */
     private TokenTypes() {

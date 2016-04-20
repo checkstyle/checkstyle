@@ -110,8 +110,8 @@ tokens {
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
 
-    //Support of java 1.9 - modules (Jigsaw)
-    LITERAL_module="module";
+    //Support of java 1.9 - module (Jigsaw)
+    LITERAL_module="module";MODULE_DEF;
 }
 
 {
@@ -222,7 +222,7 @@ compilationUnit
 	        //    definitions
 	        ( typeDefinition )*
         )
-        // Java modules
+        // Java module
         | moduleDefinition
 
         EOF!
@@ -1627,12 +1627,14 @@ lambdaBody
 moduleDefinition
     :   "module" identifier
         moduleBlock
+        {#moduleDefinition = #([MODULE_DEF, "MODULE_DEF"], #moduleDefinition);}
     ;
 
 moduleBlock
     :   LCURLY
-            (~RCURLY)*
+            ( IDENT | DOT | SEMI )*
         RCURLY
+        {#moduleBlock = #([OBJBLOCK, "OBJBLOCK"], #moduleBlock);}
     ;
 
 //----------------------------------------------------------------------------
