@@ -318,6 +318,7 @@ public final class CommonUtils {
     }
 
     /**
+     * Invoke a constructor.
      * @param constructor
      *            to invoke
      * @param parameters

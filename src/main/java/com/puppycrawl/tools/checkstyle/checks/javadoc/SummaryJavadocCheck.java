@@ -19,6 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.text.BreakIterator;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import com.google.common.base.CharMatcher;
@@ -26,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * <p>
@@ -60,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  *
  * @author max
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
+ * @author <a href="mailto:ybbpgfjtey@126.com">Guo Yuhang</a>
  */
 public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
@@ -79,6 +84,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
+
+    /** This regexp is used to trim and remove asterisks at the end of a sentence. */
+    private static final Pattern REMOVE_TAIL_ASTERISKS_PATTERN =
+            Pattern.compile("[\\s*]+$");
 
     /** Period literal. */
     private static final String PERIOD = ".";
@@ -128,17 +137,18 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        String firstSentence = getFirstSentence(ast);
-        final int endOfSentence = firstSentence.lastIndexOf(period);
-        if (endOfSentence == -1) {
-            if (!firstSentence.trim().startsWith("{@inheritDoc}")) {
-                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+        final String firstSentence = getFirstSentence(ast);
+        if (firstSentence.isEmpty()) {
+            log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+        }
+        else if (firstSentence.endsWith(period)) {
+            if (containsForbiddenFragment(firstSentence)) {
+                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
         else {
-            firstSentence = firstSentence.substring(0, endOfSentence);
-            if (containsForbiddenFragment(firstSentence)) {
-                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+            if (!firstSentence.startsWith("{@inheritDoc}")) {
+                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
         }
     }
@@ -147,38 +157,78 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Finds and returns first sentence.
      * @param ast Javadoc root node.
      * @return first sentence.
+     * @see BreakIterator
      */
     private static String getFirstSentence(DetailNode ast) {
+        final String sentences = trimAndRemoveTailAsterisks(getPlainJavadoc(ast));
+        final BreakIterator cutter = BreakIterator.getSentenceInstance(Locale.getDefault());
+        cutter.setText(sentences);
+        final int firstBreakIndex = cutter.next();
+        final String firstSentence;
+        if (firstBreakIndex == BreakIterator.DONE) {
+            // If there's no senetence breaker ( period, question mark, exclamation mark, etc...)
+            // then return full text;
+            firstSentence = sentences;
+        }
+        else {
+            // Cut and get first sentence.
+            firstSentence = trimAndRemoveTailAsterisks(sentences.substring(0, firstBreakIndex));
+        }
+        return firstSentence;
+    }
+
+    /**
+     * Get plain text of full javadoc.
+     *
+     * <p>Will remove html tag, remove leading asterisks.
+     * @param ast Javadoc root node.
+     * @return plain text.
+     */
+    private static String getPlainJavadoc(DetailNode ast) {
         final StringBuilder result = new StringBuilder();
-        final String periodSuffix = PERIOD + ' ';
-        for (DetailNode child : ast.getChildren()) {
-            if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
-                && child.getText().contains(periodSuffix)) {
-                result.append(getCharsTillDot(child));
-                break;
+        final Deque<DetailNode> astVisitor =
+                new ArrayDeque<>(Arrays.asList(ast.getChildren()));
+        DetailNode node = astVisitor.poll();
+        while (node != null) {
+            // Get all text
+            if (node.getType() == JavadocTokenTypes.TEXT
+                    || node.getType() == JavadocTokenTypes.NEWLINE
+                    || node.getType() == JavadocTokenTypes.WS) {
+                result.append(node.getText());
+            }
+            else if (node.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+                // For compatbility, accept text in javadoc tag.
+                // add tag name, and unfold other children.
+                result.append(node.getChildren()[0].getText());
+                final DetailNode[] children = node.getChildren();
+                for (int i = children.length - 1; i >= 1; i--) {
+                    astVisitor.addFirst(children[i]);
+                }
+            }
+            else if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                // Special treatment of inline tag, remove period in it.
+                result.append(node.getText().replace('.', '#').replace('!', '#').replace('?', '#'));
             }
             else {
-                result.append(child.getText());
+                // Unfold html content, but keep in order.
+                // Other element that doesn't has children will be ignored.
+                final DetailNode[] children = node.getChildren();
+                for (int i = children.length - 1; i >= 0; i--) {
+                    astVisitor.addFirst(children[i]);
+                }
             }
+            node = astVisitor.poll();
         }
         return result.toString();
     }
 
     /**
-     * Finds and returns chars till first dot.
-     * @param textNode node with javadoc text.
-     * @return String with chars till first dot.
+     * Trim and remove tail astrisks of a sentence.
+     * @param sentence String to be trimed.
+     * @return String without astrisk in the end.
      */
-    private static String getCharsTillDot(DetailNode textNode) {
-        final StringBuilder result = new StringBuilder();
-        for (DetailNode child : textNode.getChildren()) {
-            result.append(child.getText());
-            if (PERIOD.equals(child.getText())
-                && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS) {
-                break;
-            }
-        }
-        return result.toString();
+    private static String trimAndRemoveTailAsterisks(String sentence) {
+        return REMOVE_TAIL_ASTERISKS_PATTERN.matcher(sentence).replaceAll("").trim();
     }
 
     /**

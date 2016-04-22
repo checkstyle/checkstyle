@@ -185,12 +185,12 @@ public final class NPathComplexityCheck extends AbstractCheck {
         currentValue = currentValue.subtract(BigInteger.ONE).add(popValue());
     }
 
-    /** Visits while, do, for, if, try, ? (in ?::) or switch. */
+    /** Visits while, do, for, if, try, &#063; (in &#063;::) or switch. */
     private void visitMultiplyingConditional() {
         pushValue();
     }
 
-    /** Leaves while, do, for, if, try, ? (in ?::) or switch. */
+    /** Leaves while, do, for, if, try, &#063; (in &#063;::) or switch. */
     private void leaveMultiplyingConditional() {
         currentValue = currentValue.add(BigInteger.ONE).multiply(popValue());
     }

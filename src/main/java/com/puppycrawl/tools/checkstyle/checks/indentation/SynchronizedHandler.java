@@ -70,7 +70,7 @@ public class SynchronizedHandler extends BlockParentHandler {
     }
 
     /**
-     * Checks if given synchronized is modifier of method*
+     * Checks if given synchronized is modifier of method.
      * @param ast synchronized(TokenTypes.LITERAL_SYNCHRONIZED) to check
      * @return true if synchronized only modifies method
      */
