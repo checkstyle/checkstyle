@@ -223,7 +223,7 @@ compilationUnit
 	        ( typeDefinition )*
         )
         // Java module
-        | moduleDefinition
+        //| moduleDefinition
 
         EOF!
     ;
@@ -1624,18 +1624,18 @@ lambdaBody
     ;
 
 // Definition of a Module
-moduleDefinition
-    :   "module" identifier
-        moduleBlock
-        {#moduleDefinition = #([MODULE_DEF, "MODULE_DEF"], #moduleDefinition);}
-    ;
+//moduleDefinition
+//    :   "module" identifier
+//        moduleBlock
+//        {#moduleDefinition = #([MODULE_DEF, "MODULE_DEF"], #moduleDefinition);}
+//    ;
 
-moduleBlock
-    :   LCURLY
-            ( IDENT | DOT | SEMI )*
-        RCURLY
-        {#moduleBlock = #([OBJBLOCK, "OBJBLOCK"], #moduleBlock);}
-    ;
+//moduleBlock
+//    :   LCURLY
+//            ( IDENT | DOT | SEMI )*
+//        RCURLY
+//        {#moduleBlock = #([OBJBLOCK, "OBJBLOCK"], #moduleBlock);}
+//    ;
 
 //----------------------------------------------------------------------------
 // The Java scanner
