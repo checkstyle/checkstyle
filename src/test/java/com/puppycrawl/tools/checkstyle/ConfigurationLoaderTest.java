@@ -49,7 +49,7 @@ public class ConfigurationLoaderTest {
     }
 
     private static Configuration loadConfiguration(String name)
-        throws CheckstyleException {
+            throws CheckstyleException {
         return loadConfiguration(name, new Properties());
     }
 

@@ -43,7 +43,7 @@ public class NoCloneCheckTest
 
     @Test
     public void testHasClone()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoCloneCheck.class);
         final String[] expected = {

@@ -44,7 +44,7 @@ public class PackageObjectFactoryTest {
 
     @Test
     public void testMakeObjectFromName()
-        throws CheckstyleException {
+            throws CheckstyleException {
         final Checker checker =
             (Checker) factory.createModule(
                         "com.puppycrawl.tools.checkstyle.Checker");
@@ -53,7 +53,7 @@ public class PackageObjectFactoryTest {
 
     @Test
     public void testMakeCheckFromName()
-        throws CheckstyleException {
+            throws CheckstyleException {
         final ConstantNameCheck check =
                 (ConstantNameCheck) factory.createModule(
                         "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName");

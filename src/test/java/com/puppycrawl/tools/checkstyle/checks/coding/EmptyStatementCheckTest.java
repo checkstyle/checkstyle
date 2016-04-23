@@ -40,7 +40,7 @@ public class EmptyStatementCheckTest
 
     @Test
     public void testEmptyStatements()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyStatementCheck.class);
         final String[] expected = {

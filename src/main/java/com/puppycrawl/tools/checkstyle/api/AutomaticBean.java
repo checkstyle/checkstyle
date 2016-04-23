@@ -120,7 +120,7 @@ public class AutomaticBean
      */
     @Override
     public final void configure(Configuration config)
-        throws CheckstyleException {
+            throws CheckstyleException {
         configuration = config;
 
         final String[] attributes = config.getAttributeNames();
@@ -191,7 +191,7 @@ public class AutomaticBean
      */
     @Override
     public final void contextualize(Context context)
-        throws CheckstyleException {
+            throws CheckstyleException {
 
         final Collection<String> attributes = context.getAttributeNames();
 
@@ -235,7 +235,7 @@ public class AutomaticBean
      * @see Configuration#getChildren
      */
     protected void setupChild(Configuration childConf)
-        throws CheckstyleException {
+            throws CheckstyleException {
         if (childConf != null) {
             throw new CheckstyleException(childConf.getName() + " is not allowed as a child in "
                     + getConfiguration().getName());

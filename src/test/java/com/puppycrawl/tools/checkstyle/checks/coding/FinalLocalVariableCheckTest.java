@@ -156,7 +156,7 @@ public class FinalLocalVariableCheckTest
 
     @Test
     public void testLambda()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
@@ -169,7 +169,7 @@ public class FinalLocalVariableCheckTest
 
     @Test
     public void testVariableNameShadowing()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");

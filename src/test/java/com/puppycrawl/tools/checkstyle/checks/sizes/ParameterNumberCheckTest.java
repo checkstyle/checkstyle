@@ -61,7 +61,7 @@ public class ParameterNumberCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         final String[] expected = {
@@ -72,7 +72,7 @@ public class ParameterNumberCheckTest
 
     @Test
     public void testNum()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addAttribute("max", "2");
@@ -85,7 +85,7 @@ public class ParameterNumberCheckTest
 
     @Test
     public void shouldLogActualParameterNumber()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNumberCheck.class);
         checkConfig.addMessage("maxParam", "{0},{1}");

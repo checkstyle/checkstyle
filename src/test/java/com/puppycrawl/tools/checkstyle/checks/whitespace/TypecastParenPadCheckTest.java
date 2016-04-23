@@ -45,7 +45,7 @@ public class TypecastParenPadCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypecastParenPadCheck.class);
         final String[] expected = {
@@ -57,7 +57,7 @@ public class TypecastParenPadCheckTest
 
     @Test
     public void testSpace()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());

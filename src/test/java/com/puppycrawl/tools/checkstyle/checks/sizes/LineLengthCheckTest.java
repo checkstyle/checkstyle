@@ -58,7 +58,7 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testSimple()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");
@@ -72,7 +72,7 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void shouldLogActualLineLength()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LineLengthCheck.class);
         checkConfig.addAttribute("max", "80");

@@ -49,7 +49,7 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalFinalVariableNameCheck.class);
 
@@ -63,7 +63,7 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testSet()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalFinalVariableNameCheck.class);
         checkConfig.addAttribute("format", "[A-Z]+");
@@ -78,7 +78,7 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testInnerClass()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

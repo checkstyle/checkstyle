@@ -53,7 +53,7 @@ public class EmptyBlockCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         final String[] expected = {
@@ -71,7 +71,7 @@ public class EmptyBlockCheckTest
 
     @Test
     public void testText()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
@@ -87,7 +87,7 @@ public class EmptyBlockCheckTest
 
     @Test
     public void testStatement()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STMT.toString());

@@ -49,7 +49,7 @@ public class ParameterNameCheckTest
 
     @Test
     public void testCatch()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
@@ -59,7 +59,7 @@ public class ParameterNameCheckTest
 
     @Test
     public void testSpecified()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^a[A-Z][a-zA-Z0-9]*$");
@@ -76,7 +76,7 @@ public class ParameterNameCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -95,7 +95,7 @@ public class ParameterNameCheckTest
 
     @Test
     public void testSkipMethodsWithOverrideAnnotationTrue()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^h$");
@@ -117,7 +117,7 @@ public class ParameterNameCheckTest
 
     @Test
     public void testSkipMethodsWithOverrideAnnotationFalse()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^h$");
@@ -140,7 +140,7 @@ public class ParameterNameCheckTest
 
     @Test
     public void testIsOverriddenNoNullPointerException()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]*$");
         checkConfig.addAttribute("ignoreOverridden", "true");

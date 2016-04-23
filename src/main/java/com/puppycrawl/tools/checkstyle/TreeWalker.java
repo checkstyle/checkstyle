@@ -147,7 +147,7 @@ public final class TreeWalker
 
     @Override
     public void setupChild(Configuration childConf)
-        throws CheckstyleException {
+            throws CheckstyleException {
         final String name = childConf.getName();
         final Object module = moduleFactory.createModule(name);
         if (!(module instanceof AbstractCheck)) {
@@ -202,7 +202,7 @@ public final class TreeWalker
      * @throws CheckstyleException if an error occurs
      */
     private void registerCheck(AbstractCheck check)
-        throws CheckstyleException {
+            throws CheckstyleException {
         validateDefaultTokens(check);
         final int[] tokens;
         final Set<String> checkTokens = check.getTokenNames();
@@ -419,7 +419,7 @@ public final class TreeWalker
      *                 if parsing failed
      */
     public static DetailAST parse(FileContents contents)
-        throws RecognitionException, TokenStreamException {
+            throws RecognitionException, TokenStreamException {
         final String fullText = contents.getText().getFullText().toString();
         final Reader reader = new StringReader(fullText);
         final GeneratedJavaLexer lexer = new GeneratedJavaLexer(reader);

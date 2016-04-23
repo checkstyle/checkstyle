@@ -93,7 +93,7 @@ final class ImportControlLoader extends AbstractLoader {
                              final String localName,
                              final String qName,
                              final Attributes attributes)
-        throws SAXException {
+            throws SAXException {
         if ("import-control".equals(qName)) {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             stack.push(new PkgControl(pkg));
@@ -196,7 +196,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @throws SAXException if the attribute does not exist.
      */
     private static String safeGet(final Attributes attributes, final String name)
-        throws SAXException {
+            throws SAXException {
         final String returnValue = attributes.getValue(name);
         if (returnValue == null) {
             throw new SAXException("missing attribute " + name);

@@ -66,7 +66,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -80,7 +80,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -93,7 +93,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother2()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
@@ -103,7 +103,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother3()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -120,7 +120,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testAnother4()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
@@ -242,7 +242,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testIgnoredVariableNames()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("ignoreNamePattern", "log|logger");
@@ -291,7 +291,7 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testDoNotIgnoreAnythingWhenIgnoreNamePatternIsEmpty()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("ignoreNamePattern", "");

@@ -122,7 +122,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
@@ -133,7 +133,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testPosition()
-        throws Exception {
+            throws Exception {
         JavadocCatchCheck.clearCounter();
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -143,7 +143,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testPositionWithSinglelineComments()
-        throws Exception {
+            throws Exception {
         JavadocCatchCheck.clearCounter();
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -153,7 +153,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testPositionOnlyComments()
-        throws Exception {
+            throws Exception {
         JavadocCatchCheck.clearCounter();
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocCatchCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

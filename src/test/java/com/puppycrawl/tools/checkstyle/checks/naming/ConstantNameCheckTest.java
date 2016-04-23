@@ -59,7 +59,7 @@ public class ConstantNameCheckTest
 
     @Test
     public void testIllegalRegexp()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         checkConfig.addAttribute("format", "\\");
@@ -78,7 +78,7 @@ public class ConstantNameCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
 
@@ -93,7 +93,7 @@ public class ConstantNameCheckTest
 
     @Test
     public void testAccessControlTuning()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         checkConfig.addAttribute("applyToPublic", "false");
@@ -110,7 +110,7 @@ public class ConstantNameCheckTest
 
     @Test
     public void testInterfaceAndAnnotation()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
 
@@ -125,7 +125,7 @@ public class ConstantNameCheckTest
 
     @Test
     public void testDefault1()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -154,7 +154,7 @@ public class ConstantNameCheckTest
 
     @Test
     public void testStaticMethodInInterface()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

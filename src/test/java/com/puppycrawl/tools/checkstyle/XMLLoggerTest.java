@@ -50,7 +50,7 @@ public class XMLLoggerTest {
 
     @Test
     public void testEncode()
-        throws IOException {
+            throws IOException {
         new XMLLogger(outStream, false);
         final String[][] encodings = {
             {"<", "&lt;"},
@@ -73,7 +73,7 @@ public class XMLLoggerTest {
 
     @Test
     public void testIsReference()
-        throws IOException {
+            throws IOException {
         new XMLLogger(outStream, false);
         final String[] references = {
             "&#0;",
@@ -103,7 +103,7 @@ public class XMLLoggerTest {
 
     @Test
     public void testCloseStream()
-        throws IOException {
+            throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         logger.auditFinished(null);
@@ -113,7 +113,7 @@ public class XMLLoggerTest {
 
     @Test
     public void testNoCloseStream()
-        throws IOException {
+            throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, false);
         logger.auditStarted(null);
         logger.auditFinished(null);
@@ -124,7 +124,7 @@ public class XMLLoggerTest {
 
     @Test
     public void testFileStarted()
-        throws IOException {
+            throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
@@ -136,7 +136,7 @@ public class XMLLoggerTest {
 
     @Test
     public void testFileFinished()
-        throws IOException {
+            throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
@@ -199,7 +199,7 @@ public class XMLLoggerTest {
 
     @Test
     public void testAddException()
-        throws IOException {
+            throws IOException {
         final XMLLogger logger = new XMLLogger(outStream, true);
         logger.auditStarted(null);
         final LocalizedMessage message =
@@ -219,7 +219,7 @@ public class XMLLoggerTest {
     }
 
     private String[] getOutStreamLines()
-        throws IOException {
+            throws IOException {
         final byte[] bytes = outStream.toByteArray();
         final ByteArrayInputStream inStream =
             new ByteArrayInputStream(bytes);
@@ -243,7 +243,7 @@ public class XMLLoggerTest {
      * @param expectedLines expected error report lines
      */
     private void verifyLines(String... expectedLines)
-        throws IOException {
+            throws IOException {
         final String[] lines = getOutStreamLines();
         assertEquals("length.", expectedLines.length + 3, lines.length);
         assertEquals("first line.",

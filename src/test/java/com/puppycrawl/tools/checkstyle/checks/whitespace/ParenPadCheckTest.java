@@ -44,7 +44,7 @@ public class ParenPadCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParenPadCheck.class);
         final String[] expected = {
@@ -63,7 +63,7 @@ public class ParenPadCheckTest
 
     @Test
     public void testSpace()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
@@ -107,7 +107,7 @@ public class ParenPadCheckTest
 
     @Test
     public void testDefaultForIterator()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParenPadCheck.class);
         final String[] expected = {
@@ -124,7 +124,7 @@ public class ParenPadCheckTest
 
     @Test
     public void testSpaceEmptyForIterator()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());

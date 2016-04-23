@@ -41,7 +41,7 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterAssignmentCheck.class);
         final String[] expected = {

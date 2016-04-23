@@ -40,7 +40,7 @@ public class LocalVariableNameCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalVariableNameCheck.class);
 
@@ -57,7 +57,7 @@ public class LocalVariableNameCheckTest
 
     @Test
     public void testInnerClass()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -66,7 +66,7 @@ public class LocalVariableNameCheckTest
 
     @Test
     public void testLoopVariables()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalVariableNameCheck.class);
         checkConfig.addAttribute("format", "^[a-z]{2,}[a-zA-Z0-9]*$");

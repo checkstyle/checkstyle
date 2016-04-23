@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 public class PackageNamesLoaderTest {
     @Test
     public void testDefault()
-        throws CheckstyleException {
+            throws CheckstyleException {
         final Set<String> packageNames = PackageNamesLoader
                 .getPackageNames(Thread.currentThread()
                         .getContextClassLoader());

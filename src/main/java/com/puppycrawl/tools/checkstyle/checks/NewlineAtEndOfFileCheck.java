@@ -125,7 +125,7 @@ public class NewlineAtEndOfFileCheck
      *         provided reader
      */
     private boolean endsWithNewline(RandomAccessFile randomAccessFile)
-        throws IOException {
+            throws IOException {
         final int len = lineSeparator.length();
         if (randomAccessFile.length() < len) {
             return false;

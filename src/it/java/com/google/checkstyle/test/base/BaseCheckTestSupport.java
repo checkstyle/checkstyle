@@ -118,7 +118,7 @@ public class BaseCheckTestSupport {
             String messageFileName,
             String[] expected,
             Integer... warnsExpected)
-        throws Exception {
+            throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);

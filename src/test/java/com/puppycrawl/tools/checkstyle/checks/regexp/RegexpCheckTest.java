@@ -149,7 +149,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMessagePropertyGood()
-        throws Exception {
+            throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -165,7 +165,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMessagePropertyBad()
-        throws Exception {
+            throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);

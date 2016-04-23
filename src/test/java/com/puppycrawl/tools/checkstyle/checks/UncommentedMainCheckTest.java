@@ -45,7 +45,7 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testDefaults()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UncommentedMainCheck.class);
         final String[] expected = {
@@ -59,7 +59,7 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testExcludedClasses()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UncommentedMainCheck.class);
         checkConfig.addAttribute("excludedClasses", "\\.Main.*$");

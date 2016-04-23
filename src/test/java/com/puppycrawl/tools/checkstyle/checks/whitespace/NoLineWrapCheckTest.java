@@ -57,7 +57,7 @@ public class NoLineWrapCheckTest
 
     @Test
     public void testCustomTokensLineWrapping()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
         checkConfig.addAttribute("tokens", "IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF");
         final String[] expected = {

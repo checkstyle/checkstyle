@@ -45,7 +45,7 @@ public class NoFinalizerCheckTest
 
     @Test
     public void testHasFinalizer()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = {
@@ -56,7 +56,7 @@ public class NoFinalizerCheckTest
 
     @Test
     public void testHasNoFinalizer()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

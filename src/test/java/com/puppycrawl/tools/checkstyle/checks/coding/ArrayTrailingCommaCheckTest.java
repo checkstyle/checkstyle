@@ -40,7 +40,7 @@ public class ArrayTrailingCommaCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ArrayTrailingCommaCheck.class);
         final String[] expected = {

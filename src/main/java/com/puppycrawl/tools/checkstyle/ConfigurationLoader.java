@@ -118,7 +118,7 @@ public final class ConfigurationLoader {
      */
     private ConfigurationLoader(final PropertyResolver overrideProps,
                                 final boolean omitIgnoredModules)
-        throws ParserConfigurationException, SAXException {
+            throws ParserConfigurationException, SAXException {
         saxHandler = new InternalLoader();
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
@@ -148,7 +148,7 @@ public final class ConfigurationLoader {
      * @throws SAXException if an error occurs
      */
     private void parseInputSource(InputSource source)
-        throws IOException, SAXException {
+            throws IOException, SAXException {
         saxHandler.parseInputSource(source);
     }
 
@@ -176,7 +176,7 @@ public final class ConfigurationLoader {
      */
     public static Configuration loadConfiguration(String config,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
-        throws CheckstyleException {
+            throws CheckstyleException {
         // figure out if this is a File or a URL
         final URI uri = CommonUtils.getUriByFilename(config);
         final InputSource source = new InputSource(uri.toString());
@@ -204,7 +204,7 @@ public final class ConfigurationLoader {
     @Deprecated
     public static Configuration loadConfiguration(InputStream configStream,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
-        throws CheckstyleException {
+            throws CheckstyleException {
         return loadConfiguration(new InputSource(configStream),
                                  overridePropsResolver, omitIgnoredModules);
     }
@@ -223,7 +223,7 @@ public final class ConfigurationLoader {
      */
     public static Configuration loadConfiguration(InputSource configSource,
             PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
-        throws CheckstyleException {
+            throws CheckstyleException {
         try {
             final ConfigurationLoader loader =
                 new ConfigurationLoader(overridePropsResolver,
@@ -265,7 +265,7 @@ public final class ConfigurationLoader {
      */
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
-        throws CheckstyleException {
+            throws CheckstyleException {
         if (value == null) {
             return null;
         }
@@ -319,7 +319,7 @@ public final class ConfigurationLoader {
     private static void parsePropertyString(String value,
                                            List<String> fragments,
                                            List<String> propertyRefs)
-        throws CheckstyleException {
+            throws CheckstyleException {
         int prev = 0;
         //search for the next instance of $ from the 'prev' position
         int pos = value.indexOf(DOLLAR_SIGN, prev);
@@ -401,7 +401,7 @@ public final class ConfigurationLoader {
          * @throws ParserConfigurationException if an error occurs
          */
         InternalLoader()
-            throws SAXException, ParserConfigurationException {
+                throws SAXException, ParserConfigurationException {
             super(createIdToResourceNameMap());
         }
 
@@ -410,7 +410,7 @@ public final class ConfigurationLoader {
                                  String localName,
                                  String qName,
                                  Attributes attributes)
-            throws SAXException {
+                throws SAXException {
             if (qName.equals(MODULE)) {
                 //create configuration
                 final String name = attributes.getValue(NAME);

@@ -48,7 +48,7 @@ public class AvoidStaticImportCheckTest
 
     @Test
     public void testDefaultOperation()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         final String[] expected = {
@@ -70,7 +70,7 @@ public class AvoidStaticImportCheckTest
 
     @Test
     public void testStarExcludes()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         checkConfig.addAttribute("excludes", "java.io.File.*,sun.net.ftpclient.FtpClient.*");
@@ -90,7 +90,7 @@ public class AvoidStaticImportCheckTest
 
     @Test
     public void testMemberExcludes()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
         checkConfig.addAttribute("excludes", "java.io.File.listRoots");
@@ -112,7 +112,7 @@ public class AvoidStaticImportCheckTest
 
     @Test
     public void testBogusMemberExcludes()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
 
@@ -140,7 +140,7 @@ public class AvoidStaticImportCheckTest
 
     @Test
     public void testInnerClassMemberExcludesStar()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStaticImportCheck.class);
 

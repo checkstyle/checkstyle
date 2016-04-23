@@ -38,7 +38,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
 
     @Test
     public void testCanParse()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -48,7 +48,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
 
     @Test
     public void testFromSpec()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -58,7 +58,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
 
     @Test
     public void testGenericInPostfixExpressionBeforeReference()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -94,7 +94,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
 
     @Test
     public void testMethodReferences7()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

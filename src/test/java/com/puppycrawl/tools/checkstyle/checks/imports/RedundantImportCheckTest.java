@@ -60,7 +60,7 @@ public class RedundantImportCheckTest
 
     @Test
     public void testWithChecker()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantImportCheck.class);
         final String[] expected = {
@@ -77,7 +77,7 @@ public class RedundantImportCheckTest
 
     @Test
     public void testUnnamedPackage()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantImportCheck.class);
         final String[] expected = {

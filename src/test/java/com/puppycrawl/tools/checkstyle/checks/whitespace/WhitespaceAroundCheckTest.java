@@ -63,7 +63,7 @@ public class WhitespaceAroundCheckTest
 
     @Test
     public void testIt()
-        throws Exception {
+            throws Exception {
         final String[] expected = {
             "16:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
             "16:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
@@ -107,7 +107,7 @@ public class WhitespaceAroundCheckTest
 
     @Test
     public void testIt2()
-        throws Exception {
+            throws Exception {
         final String[] expected = {
             "153:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "154:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
@@ -121,7 +121,7 @@ public class WhitespaceAroundCheckTest
 
     @Test
     public void testIt3()
-        throws Exception {
+            throws Exception {
         final String[] expected = {
             "37:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
             "54:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
@@ -137,7 +137,7 @@ public class WhitespaceAroundCheckTest
 
     @Test
     public void testIt4()
-        throws Exception {
+            throws Exception {
         checkConfig.addAttribute("allowEmptyMethods", "true");
         checkConfig.addAttribute("allowEmptyConstructors", "true");
         final String[] expected = {
@@ -149,7 +149,7 @@ public class WhitespaceAroundCheckTest
 
     @Test
     public void testGenericsTokensAreFlagged()
-        throws Exception {
+            throws Exception {
         final String[] expected = {
             "6:67: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
             "6:68: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),

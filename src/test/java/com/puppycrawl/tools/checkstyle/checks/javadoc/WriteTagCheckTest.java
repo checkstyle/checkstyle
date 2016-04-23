@@ -163,7 +163,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testRegularEx()
-        throws Exception {
+            throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "0*");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -172,7 +172,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testRegularExError()
-        throws Exception {
+            throws Exception {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "ABC");
         final String[] expected = {
@@ -206,7 +206,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
                           File[] processedFiles,
                           String messageFileName,
                           String... expected)
-        throws Exception {
+            throws Exception {
         stream.flush();
         final List<File> theFiles = Lists.newArrayList();
         Collections.addAll(theFiles, processedFiles);

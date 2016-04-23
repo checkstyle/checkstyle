@@ -40,7 +40,7 @@ public class AvoidInlineConditionalsCheckTest
 
     @Test
     public void testIt()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidInlineConditionalsCheck.class);
         final String[] expected = {

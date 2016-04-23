@@ -48,7 +48,7 @@ public class UpperEllCheckTest
 
     @Test
     public void testWithChecker()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UpperEllCheck.class);
         final String[] expected = {

@@ -70,7 +70,7 @@ public class ClassResolver {
      * @throws ClassNotFoundException if unable to resolve the class
      */
     public Class<?> resolve(String name, String currentClass)
-        throws ClassNotFoundException {
+            throws ClassNotFoundException {
         // See if the class is full qualified
         Class<?> clazz = resolveQualifiedName(name);
         if (clazz != null) {

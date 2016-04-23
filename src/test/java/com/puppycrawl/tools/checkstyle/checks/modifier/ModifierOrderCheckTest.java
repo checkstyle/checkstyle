@@ -72,7 +72,7 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testDefaultMethods()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

@@ -59,7 +59,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testDefaultMethodsInJava8()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

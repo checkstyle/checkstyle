@@ -49,7 +49,7 @@ public class InterfaceTypeParameterNameCheckTest
 
     @Test
     public void testInterfaceDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InterfaceTypeParameterNameCheck.class);
 
@@ -63,7 +63,7 @@ public class InterfaceTypeParameterNameCheckTest
 
     @Test
     public void testInterfaceFooName()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(InterfaceTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");

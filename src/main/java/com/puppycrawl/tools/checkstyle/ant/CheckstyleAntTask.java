@@ -600,7 +600,7 @@ public class CheckstyleAntTask extends Task {
          * @throws IOException if an error occurs
          */
         private AuditListener createDefaultLogger(Task task)
-            throws IOException {
+                throws IOException {
             if (toFile == null || !useFile) {
                 return new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),

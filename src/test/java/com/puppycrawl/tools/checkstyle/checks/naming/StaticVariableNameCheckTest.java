@@ -49,7 +49,7 @@ public class StaticVariableNameCheckTest
 
     @Test
     public void testSpecified()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(StaticVariableNameCheck.class);
         checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
@@ -64,7 +64,7 @@ public class StaticVariableNameCheckTest
 
     @Test
     public void testAccessTuning()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(StaticVariableNameCheck.class);
         checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
@@ -78,7 +78,7 @@ public class StaticVariableNameCheckTest
 
     @Test
     public void testInterfaceOrAnnotationBlock()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(StaticVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

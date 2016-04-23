@@ -39,7 +39,7 @@ public class IllegalTokenCheckTest
 
     @Test
     public void testCheckWithDefaultSettings()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenCheck.class);
         final String[] expected = {
@@ -51,7 +51,7 @@ public class IllegalTokenCheckTest
 
     @Test
     public void testPreviouslyIllegalTokens()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_SWITCH,POST_INC,POST_DEC");

@@ -49,7 +49,7 @@ public class MethodTypeParameterNameCheckTest
 
     @Test
     public void testMethodDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodTypeParameterNameCheck.class);
 
@@ -67,7 +67,7 @@ public class MethodTypeParameterNameCheckTest
 
     @Test
     public void testMethodFooName()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodTypeParameterNameCheck.class);
         checkConfig.addAttribute("format", "^foo$");

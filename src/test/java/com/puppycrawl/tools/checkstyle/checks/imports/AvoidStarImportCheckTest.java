@@ -41,7 +41,7 @@ public class AvoidStarImportCheckTest
 
     @Test
     public void testDefaultOperation()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStarImportCheck.class);
         final String[] expected = {
@@ -59,7 +59,7 @@ public class AvoidStarImportCheckTest
 
     @Test
     public void testExcludes()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidStarImportCheck.class);
         checkConfig.addAttribute("excludes",

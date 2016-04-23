@@ -49,7 +49,7 @@ public class PackageNameCheckTest
 
     @Test
     public void testSpecified()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(PackageNameCheck.class);
         checkConfig.addAttribute("format", "[A-Z]+");
@@ -65,7 +65,7 @@ public class PackageNameCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(PackageNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

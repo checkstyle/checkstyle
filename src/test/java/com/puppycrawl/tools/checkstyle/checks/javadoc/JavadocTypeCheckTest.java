@@ -183,7 +183,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testAuthorRegularEx()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "0*");
@@ -197,7 +197,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testAuthorRegularExError()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "ABC");
@@ -217,7 +217,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testVersionRequired()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\S");
@@ -229,7 +229,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testVersionRegularEx()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
@@ -243,7 +243,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testVersionRegularExError()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");

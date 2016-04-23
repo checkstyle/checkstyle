@@ -171,7 +171,7 @@ public class SuppressionFilterTest {
     }
 
     private static SuppressionFilter createSupressionFilter(String fileName, boolean optional)
-        throws CheckstyleException {
+            throws CheckstyleException {
         final SuppressionFilter suppressionFilter = new SuppressionFilter();
         suppressionFilter.setFile(fileName);
         suppressionFilter.setOptional(optional);

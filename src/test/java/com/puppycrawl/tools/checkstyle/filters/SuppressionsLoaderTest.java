@@ -57,7 +57,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testNoSuppressions()
-        throws CheckstyleException {
+            throws CheckstyleException {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
@@ -100,7 +100,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testMultipleSuppression()
-        throws CheckstyleException {
+            throws CheckstyleException {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_multiple.xml"));
         final FilterSet fc2 = new FilterSet();
@@ -268,7 +268,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
 
     @Test
     public void testLoadFromClasspath()
-        throws CheckstyleException {
+            throws CheckstyleException {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();

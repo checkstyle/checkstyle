@@ -40,7 +40,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testCaseSensitive()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
@@ -54,7 +54,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testCaseInSensitive()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
@@ -69,7 +69,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testCustomMessage()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");
@@ -85,7 +85,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testNullCustomMessage()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalTokenTextCheck.class);
         checkConfig.addAttribute("tokens", "STRING_LITERAL");

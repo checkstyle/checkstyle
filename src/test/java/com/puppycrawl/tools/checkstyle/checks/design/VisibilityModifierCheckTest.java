@@ -63,7 +63,7 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testInner()
-        throws Exception {
+            throws Exception {
         final String[] expected = {
             "30:24: " + getCheckMessage(MSG_KEY, "rData"),
             "33:27: " + getCheckMessage(MSG_KEY, "protectedVariable"),
@@ -77,7 +77,7 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testIgnoreAccess()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("publicMemberPattern", "^r[A-Z]");

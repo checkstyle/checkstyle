@@ -204,7 +204,7 @@ public class SuppressionCommentFilterTest
 
     private void verifySuppressed(Configuration aFilterConfig,
             String... aSuppressed)
-        throws Exception {
+            throws Exception {
         verify(createChecker(aFilterConfig),
                getPath("InputSuppressionCommentFilter.java"),
                removeSuppressed(ALL_MESSAGES, aSuppressed));

@@ -145,7 +145,7 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test(expected = CheckstyleException.class)
     public void testSetLineSeparatorFailure()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addAttribute("lineSeparator", "ct");

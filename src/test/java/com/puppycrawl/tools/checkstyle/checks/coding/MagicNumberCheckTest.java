@@ -39,7 +39,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         final String[] expected = {
@@ -90,7 +90,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreSome()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "0, 1, 3.0, 8, 16, 3000");
@@ -136,7 +136,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreNone()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("ignoreNumbers", "");
@@ -210,7 +210,7 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIntegersOnly()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MagicNumberCheck.class);
         checkConfig.addAttribute("tokens", "NUM_INT, NUM_LONG");

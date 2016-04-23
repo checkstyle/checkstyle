@@ -50,7 +50,7 @@ public class OperatorWrapCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_LINE_NEW, "+"),
             "16:15: " + getCheckMessage(MSG_LINE_NEW, "-"),
@@ -63,7 +63,7 @@ public class OperatorWrapCheckTest
 
     @Test
     public void testOpWrapEol()
-        throws Exception {
+            throws Exception {
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {
             "18:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
@@ -75,7 +75,7 @@ public class OperatorWrapCheckTest
 
     @Test
     public void testAssignEol()
-        throws Exception {
+            throws Exception {
         checkConfig.addAttribute("tokens", "ASSIGN");
         checkConfig.addAttribute("option", WrapOption.EOL.toString());
         final String[] expected = {

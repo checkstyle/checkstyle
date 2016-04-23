@@ -114,7 +114,7 @@ public class SuppressWarningsFilterTest
 
     @Override
     public Checker createChecker(Configuration checkConfig)
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkerConfig =
             new DefaultConfiguration("configuration");
         final DefaultConfiguration checksConfig =

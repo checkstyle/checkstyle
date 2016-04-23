@@ -38,7 +38,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testLambdaInVariableInitialization()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -48,7 +48,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithoutArgsOneLineLambdaBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -58,7 +58,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithoutArgsFullLambdaBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -68,7 +68,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithOneArgWithOneLineBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -78,7 +78,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithOneArgWithFullBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -88,7 +88,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithOneArgWithoutTypeOneLineBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -98,7 +98,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithOneArgWithoutTypeFullBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -108,7 +108,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithFewArgsWithoutTypeOneLineBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -118,7 +118,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithFewArgsWithoutTypeFullBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -128,7 +128,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithOneArgWithoutParenthesesWithoutTypeOneLineBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -138,7 +138,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithOneArgWithoutParenthesesWithoutTypeFullBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -148,7 +148,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithFewArgWIthTypeOneLine()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -158,7 +158,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithFewArgWithTypeFullBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -168,7 +168,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWIthMultilineBody()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -178,7 +178,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testCasesFromSpec()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -188,7 +188,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithTypecast()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -198,7 +198,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testInAssignment()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -208,7 +208,7 @@ public class LambdaTest extends BaseCheckTestSupport {
 
     @Test
     public void testInTernary()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

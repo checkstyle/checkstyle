@@ -52,7 +52,7 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testDot()
-        throws Exception {
+            throws Exception {
         checkConfig.addAttribute("option", "NL");
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {

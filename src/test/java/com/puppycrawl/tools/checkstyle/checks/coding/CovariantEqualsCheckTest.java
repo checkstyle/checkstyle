@@ -40,7 +40,7 @@ public class CovariantEqualsCheckTest
 
     @Test
     public void testDefault()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CovariantEqualsCheck.class);
         final String[] expected = {

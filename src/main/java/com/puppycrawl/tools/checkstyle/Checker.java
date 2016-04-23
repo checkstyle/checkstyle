@@ -521,7 +521,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * @throws UnsupportedEncodingException if charset is unsupported.
      */
     public void setCharset(String charset)
-        throws UnsupportedEncodingException {
+            throws UnsupportedEncodingException {
         if (!Charset.isSupported(charset)) {
             final String message = "unsupported charset: '" + charset + "'";
             throw new UnsupportedEncodingException(message);

@@ -84,7 +84,7 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testStaticMethodInInterface()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
@@ -93,7 +93,7 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testFinalInInterface()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {
@@ -190,7 +190,7 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testFinalInAnonymousClass()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = {

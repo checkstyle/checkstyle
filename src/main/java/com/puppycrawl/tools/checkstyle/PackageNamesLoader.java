@@ -76,7 +76,7 @@ public final class PackageNamesLoader
      * @throws SAXException if an error occurs
      */
     private PackageNamesLoader()
-        throws ParserConfigurationException, SAXException {
+            throws ParserConfigurationException, SAXException {
         super(DTD_PUBLIC_ID, DTD_RESOURCE_NAME);
     }
 

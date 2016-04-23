@@ -48,7 +48,7 @@ public class AvoidNestedBlocksCheckTest
 
     @Test
     public void testStrictSettings()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidNestedBlocksCheck.class);
         final String[] expected = {
@@ -62,7 +62,7 @@ public class AvoidNestedBlocksCheckTest
 
     @Test
     public void testAllowSwitchInCase()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(AvoidNestedBlocksCheck.class);
         checkConfig.addAttribute("allowInSwitchCase", "true");

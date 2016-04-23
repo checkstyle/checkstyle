@@ -65,7 +65,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testMessageProperty()
-        throws Exception {
+            throws Exception {
         final String illegal = "System\\.(out)|(err)\\.print(ln)?\\(";
         checkConfig.addAttribute("format", illegal);
         final String message = "Bad line :(";

@@ -68,7 +68,7 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testDefaultSettings()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = {
@@ -203,7 +203,7 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testScopePublic()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
@@ -228,7 +228,7 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testScopeProtected()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
@@ -256,7 +256,7 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testScopePackage()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("checkFirstSentence", "true");
@@ -306,7 +306,7 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testExcludeScope()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("scope", "private");
@@ -400,7 +400,7 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testRestrictedTokenSet()
-        throws Exception {
+            throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_DEF");
         checkConfig.addAttribute("scope", "public");

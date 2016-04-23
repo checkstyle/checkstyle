@@ -204,7 +204,7 @@ public class SuppressWithNearbyCommentFilterTest
 
     private void verifySuppressed(Configuration filterConfig,
             String... suppressed)
-        throws Exception {
+            throws Exception {
         verify(createChecker(filterConfig),
                getPath("InputSuppressWithNearbyCommentFilter.java"),
                removeSuppressed(ALL_MESSAGES, suppressed));
