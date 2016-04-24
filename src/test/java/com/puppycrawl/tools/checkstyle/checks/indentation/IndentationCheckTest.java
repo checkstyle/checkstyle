@@ -1467,7 +1467,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("basicOffset", "8");
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_CHILD_ERROR, "import", 2, 8),
+            "4: " + getCheckMessage(MSG_ERROR, ".", 2, 4),
+            "5: " + getCheckMessage(MSG_ERROR, "import", 1, 0),
         };
         verifyWarns(checkConfig, getPath("InputInvalidImportIndent.java"), expected);
     }
@@ -1605,6 +1606,24 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "1: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
         };
         verifyWarns(checkConfig, getPath("InputPackageDeclaration.java"), expected);
+    }
+
+    @Test
+    public void testPackageDeclaration2() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "2: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
+        };
+        verifyWarns(checkConfig, getNonCompilablePath("InputPackageDeclaration2.java"), expected);
+    }
+
+    @Test
+    public void testPackageDeclaration3() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputPackageDeclaration3.java"), expected);
     }
 
     @Test
