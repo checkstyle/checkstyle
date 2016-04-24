@@ -146,20 +146,13 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     private void verifyWarns(Configuration config, String filePath,
                     String... expected)
                     throws Exception {
-        verifyWarns(config, filePath, expected, 0);
-    }
-
-    private void verifyWarns(Configuration config, String filePath,
-                    String[] expected, int warnCountCorrection)
-                    throws Exception {
         final int tabWidth = Integer.parseInt(config.getAttribute("tabWidth"));
         final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
-        assertEquals("Expected warning count in UT does not match warn"
-                        + " comment count in input file", linesWithWarn.length
-                        + warnCountCorrection,
-                        expected.length);
         verify(config, filePath, expected, linesWithWarn);
+        assertEquals("Expected warning count in UT does not match warn"
+                        + " comment count in input file", linesWithWarn.length,
+                        expected.length);
     }
 
     private void verify(Configuration config, String filePath, String[] expected,
@@ -508,7 +501,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "19: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "8, 12"),
         };
         verifyWarns(checkConfig, getPath("InputInvalidLabelWithWhileLoopIndent.java"),
-            expected, -1);
+            expected);
     }
 
     @Test
@@ -634,7 +627,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "180: " + getCheckMessage(MSG_ERROR, "method9", 4, 8),
             "190: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
         };
-        verifyWarns(checkConfig, fileName, expected, 0);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -677,7 +670,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "95: " + getCheckMessage(MSG_ERROR, "switch lcurly", 10, 8),
             "96: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
         };
-        verifyWarns(checkConfig, fileName, expected, 0);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -840,7 +833,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "77: " + getCheckMessage(MSG_ERROR, "catch rcurly", 10, 8),
             "80: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
         };
-        verifyWarns(checkConfig, fileName, expected, 0);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -895,7 +888,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "152: " + getCheckMessage(MSG_ERROR, "method def rcurly", 10, 12),
             "188: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
         };
-        verifyWarns(checkConfig, fileName, expected, 0);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -960,7 +953,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "147: " + getCheckMessage(MSG_ERROR, "block rcurly", 2, 4),
             "150: " + getCheckMessage(MSG_CHILD_ERROR, "block", 6, 8),
         };
-        verifyWarns(checkConfig, fileName, expected, 0);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -1052,7 +1045,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "251: " + getCheckMessage(MSG_ERROR, "if lparen", 6, 8),
             "253: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
         };
-        verifyWarns(checkConfig, fileName, expected, 0);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -1163,7 +1156,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "77: " + getCheckMessage(MSG_ERROR, "for rcurly", 39, 8),
             "81: " + getCheckMessage(MSG_ERROR, "for rparen", 12, 8),
         };
-        verifyWarns(checkConfig, fileName, expected, 0);
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -1569,7 +1562,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "180: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
             "185: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
         };
-        verifyWarns(checkConfig, getNonCompilablePath("InputLambda1.java"), expected, 0);
+        verifyWarns(checkConfig, getNonCompilablePath("InputLambda1.java"), expected);
     }
 
     @Test
@@ -1579,7 +1572,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("basicOffset", "4");
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getNonCompilablePath("InputLambda2.java"), expected, 0);
+        verifyWarns(checkConfig, getNonCompilablePath("InputLambda2.java"), expected);
     }
 
     @Test
