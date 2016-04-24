@@ -80,6 +80,9 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "322: " + getCheckMessage(MSG_KEY_SINGLE, 323, 0, 4),
             "336: " + getCheckMessage(MSG_KEY_SINGLE, 337, 0, 4),
             "355: " + getCheckMessage(MSG_KEY_SINGLE, 352, 9, 8),
+            "380: " + getCheckMessage(MSG_KEY_BLOCK, 381, 12, 8),
+            "393: " + getCheckMessage(MSG_KEY_SINGLE, 392, 12, 8),
+            "400: " + getCheckMessage(MSG_KEY_SINGLE, 401, 8, 10),
         };
         final String testInputFile = "InputCommentsIndentationCommentIsAtTheEndOfBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);

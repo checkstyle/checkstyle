@@ -149,7 +149,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 handleSingleLineCommentInEmptyCodeBlock(singleLineComment, nextStmt);
             }
             else if (isSingleLineCommentAtTheEndOfTheCodeBlock(nextStmt)) {
-                handleSIngleLineCommentAtTheEndOfTheCodeBlock(prevStmt, singleLineComment,
+                handleSingleLineCommentAtTheEndOfTheCodeBlock(prevStmt, singleLineComment,
                     nextStmt);
             }
             else if (nextStmt != null
@@ -200,7 +200,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private static boolean isDistributedMethodChainOrConcatenationStatement(
         DetailAST comment, DetailAST commentPreviousSibling) {
-        boolean destributed = false;
+        boolean isDistributed = false;
         if (commentPreviousSibling != null
                 && commentPreviousSibling.getType() == TokenTypes.SEMI
                 && comment.getLineNo() - commentPreviousSibling.getLineNo() == 1) {
@@ -208,12 +208,18 @@ public class CommentsIndentationCheck extends AbstractCheck {
             while (currentToken.getFirstChild() != null) {
                 currentToken = currentToken.getFirstChild();
             }
-            if (currentToken.getType() != TokenTypes.COMMENT_CONTENT
-                    && commentPreviousSibling.getLineNo() != currentToken.getLineNo()) {
-                destributed = true;
+            if (currentToken.getType() == TokenTypes.COMMENT_CONTENT) {
+                currentToken = currentToken.getParent();
+                while (currentToken.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                        || currentToken.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                    currentToken = currentToken.getNextSibling();
+                }
+            }
+            if (commentPreviousSibling.getLineNo() != currentToken.getLineNo()) {
+                isDistributed = true;
             }
         }
-        return destributed;
+        return isDistributed;
     }
 
     /**
@@ -224,16 +230,16 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *         statement.
      */
     private static boolean isDistributedReturnStatement(DetailAST commentPreviousSibling) {
-        boolean destributed = false;
+        boolean isDistributed = false;
         if (commentPreviousSibling != null
                 && commentPreviousSibling.getType() == TokenTypes.LITERAL_RETURN) {
             final DetailAST firstChild = commentPreviousSibling.getFirstChild();
             final DetailAST nextSibling = firstChild.getNextSibling();
             if (nextSibling != null) {
-                destributed = true;
+                isDistributed = true;
             }
         }
-        return destributed;
+        return isDistributed;
     }
 
     /**
@@ -244,16 +250,16 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *         statement.
      */
     private static boolean isDistributedThrowStatement(DetailAST commentPreviousSibling) {
-        boolean destributed = false;
+        boolean isDistributed = false;
         if (commentPreviousSibling != null
                 && commentPreviousSibling.getType() == TokenTypes.LITERAL_THROW) {
             final DetailAST firstChild = commentPreviousSibling.getFirstChild();
             final DetailAST nextSibling = firstChild.getNextSibling();
             if (nextSibling.getLineNo() != commentPreviousSibling.getLineNo()) {
-                destributed = true;
+                isDistributed = true;
             }
         }
-        return destributed;
+        return isDistributed;
     }
 
     /**
@@ -440,7 +446,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param comment single line statement.
      * @param nextStmt next statement.
      */
-    private void handleSIngleLineCommentAtTheEndOfTheCodeBlock(DetailAST prevStmt,
+    private void handleSingleLineCommentAtTheEndOfTheCodeBlock(DetailAST prevStmt,
                                                                DetailAST comment,
                                                                DetailAST nextStmt) {
         if (prevStmt != null) {
@@ -454,8 +460,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 }
             }
             else if (!areSameLevelIndented(comment, prevStmt, prevStmt)) {
-                log(comment.getLineNo(), MSG_KEY_SINGLE, prevStmt.getLineNo(),
-                    comment.getColumnNo(), prevStmt.getColumnNo());
+                final int prevStmtLineNo = prevStmt.getLineNo();
+                log(comment.getLineNo(), MSG_KEY_SINGLE, prevStmtLineNo,
+                    comment.getColumnNo(), getLineStart(prevStmtLineNo));
             }
         }
 
@@ -552,7 +559,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
             tokenWhichBeginsTheLine = root;
         }
         if (tokenWhichBeginsTheLine != null
-                && isOnPreviousLine(comment, tokenWhichBeginsTheLine)) {
+                && isOnPreviousLine(comment, tokenWhichBeginsTheLine)
+            ) {
             previousStatement = tokenWhichBeginsTheLine;
         }
         return previousStatement;
@@ -615,8 +623,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     /**
      * Logs comment which can have the same indentation level as next or previous statement.
      * @param comment comment.
-     * @param nextStmt previous statement.
-     * @param prevStmt next statement.
+     * @param nextStmt next statement.
+     * @param prevStmt previous statement.
      */
     private void logMultilineIndentation(DetailAST prevStmt, DetailAST comment,
                                          DetailAST nextStmt) {
@@ -723,17 +731,31 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param nextStmt next code statement.
      * @return true if comment and next code statement are indented at the same level.
      */
-    private static boolean areSameLevelIndented(DetailAST comment, DetailAST prevStmt,
+    private boolean areSameLevelIndented(DetailAST comment, DetailAST prevStmt,
                                                 DetailAST nextStmt) {
         final boolean result;
         if (prevStmt == null) {
-            result = comment.getColumnNo() == nextStmt.getColumnNo();
+            result = comment.getColumnNo() == getLineStart(nextStmt.getLineNo());
         }
         else {
-            result = comment.getColumnNo() == nextStmt.getColumnNo()
-                || comment.getColumnNo() == prevStmt.getColumnNo();
+            result = comment.getColumnNo() == getLineStart(nextStmt.getLineNo())
+                    || comment.getColumnNo() == getLineStart(prevStmt.getLineNo());
         }
         return result;
+    }
+
+    /**
+     * Get a column number where a code starts.
+     * @param lineNo the line number to get column number in.
+     * @return the column number where a code starts.
+     */
+    private int getLineStart(int lineNo) {
+        final char[] line = getLines()[lineNo - 1].toCharArray();
+        int lineStart = 0;
+        while (Character.isWhitespace(line[lineStart])) {
+            lineStart++;
+        }
+        return lineStart;
     }
 
     /**

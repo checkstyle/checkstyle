@@ -362,6 +362,46 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         // comment
     }
 
+    void foo53() {
+        // comment
+        new Object()
+            .toString();
+        // comment
+    }
+
+    void foo54() {
+        /* comment */
+        new Object()
+            .toString();
+        // comment
+    }
+
+    void foo55() {
+            /* violation */
+        new Object()
+            .toString();
+            // comment
+    }
+
+    void foo56() {
+        new Object().toString();
+        // comment
+    }
+
+    void foo57() {
+        new Object().toString();
+            // violation
+    }
+
+    void foo58() {
+        /*
+           comment
+           */
+        // comment
+          foo1();
+          // comment
+    }
+
     // We almost reached the end of the class here.
 }
 // The END of the class.
