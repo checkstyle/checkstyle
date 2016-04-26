@@ -125,5 +125,21 @@ public class InputCommentsIndentationSurroundingCode
         };
     }
 
+    public void foo11() {
+
+            /* empty */
+        hashCode();
+    }
+
+    public void foo12() {
+    /* empty */
+        hashCode();
+    }
+
+    public void foo13() {
+        hashCode();
+    /* empty */
+    }
+
 } // The Check should not throw NPE here!
 // The Check should not throw NPE here!

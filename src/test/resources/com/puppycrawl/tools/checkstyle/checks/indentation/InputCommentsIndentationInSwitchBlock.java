@@ -16,7 +16,7 @@ public class InputCommentsIndentationInSwitchBlock {
                 // comment
                 break;
             case "3":
-            /* com */
+            /* violation */
                 foo1();
                 /* com */
                 break;
@@ -263,6 +263,43 @@ public class InputCommentsIndentationInSwitchBlock {
         switch (a) {
             // comment
             case 1:
+        }
+    }
+
+    public void foo13() {
+        int a = 5;
+        switch (a) {
+            case 1:
+                /* comment */
+            case 2:
+                hashCode();
+           /*
+            violation
+            */
+            case 3: // comment
+                hashCode();
+           // violation
+            case 4: // comment
+                if (true) {
+
+                }
+                else {
+
+                }
+                // comment
+            case 5:
+                String s = ""
+                    + 1
+                    + "123";
+                break;
+                // comment
+            case 6:
+                String q = ""
+                    + 1
+                    + "123";
+                // comment
+            case 7:
+                break;
         }
     }
 }

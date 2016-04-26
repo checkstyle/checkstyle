@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
 *
 * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
-* @author <a href="mailto:andreyselkin@gmail.com">Aleksey Nesterenko</a>
+* @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
 *
 */
 public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
@@ -57,7 +57,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "33: " + getCheckMessage(MSG_KEY_SINGLE, 35, 5, 4),
             "37: " + getCheckMessage(MSG_KEY_SINGLE, 36, 0, 8),
             "47: " + getCheckMessage(MSG_KEY_SINGLE, 46, 15, 12),
-            "49: " + getCheckMessage(MSG_KEY_SINGLE, 48, 10, 8),
+            "49: " + getCheckMessage(MSG_KEY_SINGLE, 45, 10, 8),
             "54: " + getCheckMessage(MSG_KEY_SINGLE, 53, 13, 8),
             "74: " + getCheckMessage(MSG_KEY_SINGLE, 70, 18, 8),
             "88: " + getCheckMessage(MSG_KEY_SINGLE, 85, 31, 8),
@@ -78,11 +78,24 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "277: " + getCheckMessage(MSG_KEY_SINGLE, 276, 9, 8),
             "316: " + getCheckMessage(MSG_KEY_SINGLE, 315, 9, 8),
             "322: " + getCheckMessage(MSG_KEY_SINGLE, 323, 0, 4),
-            "336: " + getCheckMessage(MSG_KEY_SINGLE, 337, 0, 4),
+            "336: " + getCheckMessage(MSG_KEY_SINGLE, 333, 0, 8),
             "355: " + getCheckMessage(MSG_KEY_SINGLE, 352, 9, 8),
             "380: " + getCheckMessage(MSG_KEY_BLOCK, 381, 12, 8),
             "393: " + getCheckMessage(MSG_KEY_SINGLE, 392, 12, 8),
             "400: " + getCheckMessage(MSG_KEY_SINGLE, 401, 8, 10),
+            "457: " + getCheckMessage(MSG_KEY_SINGLE, 455, 0, 8),
+            "473: " + getCheckMessage(MSG_KEY_BLOCK, 469, 10, 8),
+            "483: " + getCheckMessage(MSG_KEY_BLOCK, 477, 10, 8),
+            "491: " + getCheckMessage(MSG_KEY_BLOCK, 487, 10, 8),
+            "499: " + getCheckMessage(MSG_KEY_BLOCK, 495, 10, 8),
+            "507: " + getCheckMessage(MSG_KEY_BLOCK, 503, 10, 8),
+            "518: " + getCheckMessage(MSG_KEY_SINGLE, 511, 10, 8),
+            "525: " + getCheckMessage(MSG_KEY_SINGLE, 522, 0, 8),
+            "532: " + getCheckMessage(MSG_KEY_SINGLE, 529, 0, 8),
+            "538: " + getCheckMessage(MSG_KEY_SINGLE, 536, 0, 8),
+            "546: " + getCheckMessage(MSG_KEY_SINGLE, 542, 4, 8),
+            "551: " + getCheckMessage(MSG_KEY_SINGLE, 550, 12, 8),
+            "557: " + getCheckMessage(MSG_KEY_SINGLE, 555, 0, 8),
         };
         final String testInputFile = "InputCommentsIndentationCommentIsAtTheEndOfBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);
@@ -93,6 +106,7 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(CommentsIndentationCheck.class);
         final String[] expected = {
+            "19: " + getCheckMessage(MSG_KEY_BLOCK, 20, 12, 16),
             "25: " + getCheckMessage(MSG_KEY_SINGLE, "24, 26", 19, "16, 12"),
             "31: " + getCheckMessage(MSG_KEY_SINGLE, "30, 32", 19, "16, 12"),
             "48: " + getCheckMessage(MSG_KEY_SINGLE, 49, 6, 16),
@@ -109,6 +123,8 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "204: " + getCheckMessage(MSG_KEY_SINGLE, 205, 20, 17),
             "205: " + getCheckMessage(MSG_KEY_SINGLE, "202, 206", 17, "16, 12"),
             "229: " + getCheckMessage(MSG_KEY_SINGLE, "228, 230", 6, "12, 12"),
+            "276: " + getCheckMessage(MSG_KEY_BLOCK, "275, 279", 11, "16, 12"),
+            "281: " + getCheckMessage(MSG_KEY_SINGLE, "280, 282", 11, "16, 12"),
         };
         final String testInputFile = "InputCommentsIndentationInSwitchBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);
@@ -143,6 +159,9 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "90: " + getCheckMessage(MSG_KEY_SINGLE, 91, 14, 8),
             "98: " + getCheckMessage(MSG_KEY_SINGLE, 99, 13, 8),
             "108: " + getCheckMessage(MSG_KEY_SINGLE, 109, 33, 8),
+            "130: " + getCheckMessage(MSG_KEY_BLOCK, 131, 12, 8),
+            "135: " + getCheckMessage(MSG_KEY_BLOCK, 136, 4, 8),
+            "141: " + getCheckMessage(MSG_KEY_BLOCK, 140, 4, 8),
         };
         final String testInputFile = "InputCommentsIndentationSurroundingCode.java";
         verify(checkConfig, getPath(testInputFile), expected);
@@ -183,7 +202,10 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "25: " + getCheckMessage(MSG_KEY_BLOCK, 27, 16, 12),
             "28: " + getCheckMessage(MSG_KEY_BLOCK, 31, 16, 12),
             "51: " + getCheckMessage(MSG_KEY_BLOCK, 53, 23, 36),
-            };
+            "130: " + getCheckMessage(MSG_KEY_BLOCK, 131, 12, 8),
+            "135: " + getCheckMessage(MSG_KEY_BLOCK, 136, 4, 8),
+            "141: " + getCheckMessage(MSG_KEY_BLOCK, 140, 4, 8),
+        };
         final String testInputFile = "InputCommentsIndentationSurroundingCode.java";
         verify(checkConfig, getPath(testInputFile), expected);
     }
@@ -203,4 +225,18 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             Assert.assertEquals("Unexpected token type: methodStub", msg);
         }
     }
+
+    @Test
+    public void testJavadoc() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(CommentsIndentationCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY_BLOCK, 6, 2, 0),
+            "8: " + getCheckMessage(MSG_KEY_BLOCK, 9, 0, 4),
+            "11: " + getCheckMessage(MSG_KEY_BLOCK, 14, 8, 4),
+            "17: " + getCheckMessage(MSG_KEY_BLOCK, 18, 10, 8),
+        };
+        final String testInputFile = "InputCommentsIndentationJavadoc.java";
+        verify(checkConfig, getPath(testInputFile), expected);
+    }
+
 }

@@ -397,9 +397,164 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         /*
            comment
            */
-        // comment
+        // violation
           foo1();
           // comment
+    }
+
+    void foo59() {
+        foo1();
+        /*
+         comment */
+        // comment
+    }
+
+
+    void foo61() {
+        foo1();
+        /*
+         * comment
+         */
+        /*
+         * comment
+         */
+    }
+
+    void foo62() {
+        if (true) {
+            System.out.println();
+          }
+        else {
+
+          }
+        /*
+         comment
+         */
+        /*
+         comment
+         */
+    }
+
+    void foo63() {
+        try {
+            System.out.println();
+          }
+        catch (Exception e){
+
+          }
+
+        /*
+         comment
+         */
+        /*
+         comment
+         */
+    }
+
+    void foo64()  {
+        foo1();
+
+//  violation
+    }
+
+    void foo65() {
+        int i = 1
+            + 1
+            + 1;
+        // comment
+        // comment
+    }
+
+    void foo66()  {
+        if (true) {
+            getClass();
+        }
+
+          /* violation */
+    }
+
+    void foo67()  {
+        try {
+            getClass();
+        } finally {
+            hashCode();
+        }
+
+          /* violation */
+    }
+
+    void foo68()  {
+        for (int i = 0; i < 0; i++) {
+            getClass();
+        }
+
+          /* violation */
+    }
+
+    void foo69()  {
+        while (true) {
+            getClass();
+        }
+
+          /* violation */
+    }
+
+    void foo70()  {
+        do {
+            getClass();
+        } while (true);
+
+          /* violation */
+    }
+
+    void foo71() {
+        switch("") {
+            case "!":
+                break;
+            default:
+                break;
+        }
+
+          // violation
+    }
+
+    void foo72() {
+        int u = 1;
+
+/* comment */
+// violation
+    }
+
+    void foo73() {
+        class Foo { }
+
+/* comment */
+// violation
+    }
+
+    interface Bar1 {
+        interface NestedBar { }
+
+// violation
+    }
+
+    static class Bar2 {
+        enum Foo {
+            A;
+        }
+
+    // violation
+    }
+
+    static class Bar3 {
+        @interface Foo { }
+            // violation
+    }
+
+    void foo74() {
+        getClass(); // comment
+// comment
+// comment
     }
 
     // We almost reached the end of the class here.
