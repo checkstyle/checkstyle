@@ -109,10 +109,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     public void visitToken(DetailAST commentAst) {
         switch (commentAst.getType()) {
             case TokenTypes.SINGLE_LINE_COMMENT:
-                visitSingleLineComment(commentAst);
-                break;
             case TokenTypes.BLOCK_COMMENT_BEGIN:
-                visitBlockComment(commentAst);
+                visitComment(commentAst);
                 break;
             default:
                 final String exceptionMsg = "Unexpected token type: " + commentAst.getText();
@@ -121,7 +119,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks single line comment indentations over surrounding code, e.g.:
+     * Checks comment indentations over surrounding code, e.g.:
      * <p>
      * {@code
      * // some comment - this is ok
@@ -130,104 +128,128 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * double d1 = 5.0;
      * }
      * </p>
-     * @param singleLineComment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
+     * @param comment comment to check.
      */
-    private void visitSingleLineComment(DetailAST singleLineComment) {
-        final DetailAST prevStmt = getPreviousStatementOfSingleLineComment(singleLineComment);
-        final DetailAST nextStmt = singleLineComment.getNextSibling();
+    private void visitComment(DetailAST comment) {
+        final DetailAST prevStmt = getPreviousStatement(comment);
+        final DetailAST nextStmt = comment.getNextSibling();
 
-        if (!isTrailingSingleLineComment(singleLineComment)) {
+        if (!isTrailingComment(comment)) {
             if (isInEmptyCaseBlock(prevStmt, nextStmt)) {
-                handleSingleLineCommentInEmptyCaseBlock(prevStmt, singleLineComment,
-                    nextStmt);
+                handleCommentInEmptyCaseBlock(prevStmt, comment, nextStmt);
             }
-            else if (isFallThroughSingleLineComment(prevStmt, nextStmt)) {
-                handleFallThroughtSingleLineComment(prevStmt, singleLineComment,
-                    nextStmt);
+            else if (isFallThroughComment(prevStmt, nextStmt)) {
+                handleFallThroughtComment(prevStmt, comment, nextStmt);
             }
             else if (isInEmptyCodeBlock(prevStmt, nextStmt)) {
-                handleSingleLineCommentInEmptyCodeBlock(singleLineComment, nextStmt);
+                handleCommentInEmptyCodeBlock(comment, nextStmt);
             }
-            else if (isSingleLineCommentAtTheEndOfTheCodeBlock(nextStmt)) {
-                handleSingleLineCommentAtTheEndOfTheCodeBlock(prevStmt, singleLineComment,
-                    nextStmt);
+            else if (isCommentAtTheEndOfTheCodeBlock(nextStmt)) {
+                handleCommentAtTheEndOfTheCodeBlock(prevStmt, comment, nextStmt);
             }
-            else if (nextStmt != null
-                        && !areSameLevelIndented(singleLineComment, nextStmt, nextStmt)) {
-                log(singleLineComment.getLineNo(), MSG_KEY_SINGLE, nextStmt.getLineNo(),
-                    singleLineComment.getColumnNo(), nextStmt.getColumnNo());
+            else if (nextStmt != null && !areSameLevelIndented(comment, nextStmt, nextStmt)) {
+                log(comment.getLineNo(), getMessageKey(comment), nextStmt.getLineNo(),
+                    comment.getColumnNo(), nextStmt.getColumnNo());
             }
         }
     }
 
     /**
-     * Returns the previous statement of a single line comment.
-     * @param comment single line comment.
-     * @return the previous statement of a single line comment.
+     * Returns the previous statement of a comment.
+     * @param comment comment.
+     * @return the previous statement of a comment.
      */
-    private static DetailAST getPreviousStatementOfSingleLineComment(DetailAST comment) {
+    private DetailAST getPreviousStatement(DetailAST comment) {
         final DetailAST prevStatement;
         if (isDistributedPreviousStatement(comment)) {
-            prevStatement = getDistributedPreviousStatementOfSingleLineComment(comment);
+            prevStatement = getDistributedPreviousStatement(comment);
         }
         else {
-            prevStatement = getOneLinePreviousStatementOfSingleLineComment(comment);
+            prevStatement = getOneLinePreviousStatement(comment);
         }
         return prevStatement;
     }
 
     /**
-     * Checks whether the previous statement of a single line comment is distributed over two or
-     * more lines.
-     * @param singleLineComment single line comment.
-     * @return true if the previous statement of a single line comment is distributed over two or
-     *         more lines.
+     * Checks whether the previous statement of a comment is distributed over two or more lines.
+     * @param comment comment to check.
+     * @return true if the previous statement of a comment is distributed over two or more lines.
      */
-    private static boolean isDistributedPreviousStatement(DetailAST singleLineComment) {
-        final DetailAST previousSibling = singleLineComment.getPreviousSibling();
-        return isDistributedMethodChainOrConcatenationStatement(singleLineComment, previousSibling)
+    private boolean isDistributedPreviousStatement(DetailAST comment) {
+        final DetailAST previousSibling = comment.getPreviousSibling();
+        return isDistributedExpression(comment)
             || isDistributedReturnStatement(previousSibling)
             || isDistributedThrowStatement(previousSibling);
     }
 
     /**
-     * Checks whether the previous statement of a single line comment is a method call chain or
+     * Checks whether the previous statement of a comment is a method call chain or
      * string concatenation statemen distributed over two ore more lines.
-     * @param comment single line comment.
-     * @param commentPreviousSibling previous sibling of the sinle line comment.
-     * @return if the previous statement of a single line comment is a method call chain or
-     *         string concatenation statemen distributed over two ore more lines.
+     * @param comment comment to check.
+     * @return true if the previous statement is a distributed expression.
      */
-    private static boolean isDistributedMethodChainOrConcatenationStatement(
-        DetailAST comment, DetailAST commentPreviousSibling) {
+    private boolean isDistributedExpression(DetailAST comment) {
+        DetailAST previousSibling = comment.getPreviousSibling();
+        while (previousSibling != null && isComment(previousSibling)) {
+            previousSibling = previousSibling.getPreviousSibling();
+        }
         boolean isDistributed = false;
-        if (commentPreviousSibling != null
-                && commentPreviousSibling.getType() == TokenTypes.SEMI
-                && comment.getLineNo() - commentPreviousSibling.getLineNo() == 1) {
-            DetailAST currentToken = commentPreviousSibling.getPreviousSibling();
-            while (currentToken.getFirstChild() != null) {
-                currentToken = currentToken.getFirstChild();
-            }
-            if (currentToken.getType() == TokenTypes.COMMENT_CONTENT) {
-                currentToken = currentToken.getParent();
-                while (currentToken.getType() == TokenTypes.SINGLE_LINE_COMMENT
-                        || currentToken.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
-                    currentToken = currentToken.getNextSibling();
+        if (previousSibling != null) {
+            if (previousSibling.getType() == TokenTypes.SEMI
+                    && isOnPreviousLineIgnoringComments(comment, previousSibling)) {
+                DetailAST currentToken = previousSibling.getPreviousSibling();
+                while (currentToken.getFirstChild() != null) {
+                    currentToken = currentToken.getFirstChild();
+                }
+                if (currentToken.getType() == TokenTypes.COMMENT_CONTENT) {
+                    currentToken = currentToken.getParent();
+                    while (isComment(currentToken)) {
+                        currentToken = currentToken.getNextSibling();
+                    }
+                }
+                if (previousSibling.getLineNo() != currentToken.getLineNo()) {
+                    isDistributed = true;
                 }
             }
-            if (commentPreviousSibling.getLineNo() != currentToken.getLineNo()) {
-                isDistributed = true;
+            else {
+                isDistributed = isStatementWithPossibleCurlies(previousSibling);
             }
         }
         return isDistributed;
     }
 
     /**
-     * Checks whether the previous statement of a single line comment is a destributed return
-     * statement.
-     * @param commentPreviousSibling previous sibling of the single line comment.
-     * @return true if the previous statement of a single line comment is a destributed return
-     *         statement.
+     * Whether the statement can have or always have curly brackets.
+     * @param previousSibling the statement to check.
+     * @return true if the statement can have or always have curly brackets.
+     */
+    private boolean isStatementWithPossibleCurlies(DetailAST previousSibling) {
+        return previousSibling.getType() == TokenTypes.LITERAL_IF
+            || previousSibling.getType() == TokenTypes.LITERAL_TRY
+            || previousSibling.getType() == TokenTypes.LITERAL_FOR
+            || previousSibling.getType() == TokenTypes.LITERAL_DO
+            || previousSibling.getType() == TokenTypes.LITERAL_WHILE
+            || previousSibling.getType() == TokenTypes.LITERAL_SWITCH
+            || isDefinition(previousSibling);
+    }
+
+    /**
+     * Whether the statement is a kind of definition (method, class etc.).
+     * @param previousSibling the statement to check.
+     * @return true if the statement is a kind of definition.
+     */
+    private boolean isDefinition(DetailAST previousSibling) {
+        return previousSibling.getType() == TokenTypes.METHOD_DEF
+            || previousSibling.getType() == TokenTypes.CLASS_DEF
+            || previousSibling.getType() == TokenTypes.INTERFACE_DEF
+            || previousSibling.getType() == TokenTypes.ENUM_DEF
+            || previousSibling.getType() == TokenTypes.ANNOTATION_DEF;
+    }
+
+    /**
+     * Checks whether the previous statement of a comment is a destributed return statement.
+     * @param commentPreviousSibling previous sibling of the comment.
+     * @return true if the previous statement of a comment is a destributed return statement.
      */
     private static boolean isDistributedReturnStatement(DetailAST commentPreviousSibling) {
         boolean isDistributed = false;
@@ -243,11 +265,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether the previous statement of a single line comment is a destributed throw
-     * statement.
-     * @param commentPreviousSibling previous sibling of the single line comment.
-     * @return true if the previous statement of a single line comment is a destributed throw
-     *         statement.
+     * Checks whether the previous statement of a comment is a destributed throw statement.
+     * @param commentPreviousSibling previous sibling of the comment.
+     * @return true if the previous statement of a comment is a destributed throw statement.
      */
     private static boolean isDistributedThrowStatement(DetailAST commentPreviousSibling) {
         boolean isDistributed = false;
@@ -263,22 +283,24 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Returns the first token of the destributed previous statement of single line comment.
-     * @param comment single line comment.
-     * @return the first token of the destributed previous statement of single line comment.
+     * Returns the first token of the destributed previous statement of comment.
+     * @param comment comment to check.
+     * @return the first token of the destributed previous statement of comment.
      */
-    private static DetailAST getDistributedPreviousStatementOfSingleLineComment(DetailAST comment) {
-        final DetailAST previousStatement;
+    private static DetailAST getDistributedPreviousStatement(DetailAST comment) {
         DetailAST currentToken = comment.getPreviousSibling();
-        if (currentToken.getType() == TokenTypes.LITERAL_RETURN
-                || currentToken.getType() == TokenTypes.LITERAL_THROW) {
-            previousStatement = currentToken;
+        while (isComment(currentToken)) {
+            currentToken = currentToken.getPreviousSibling();
         }
-        else {
+        final DetailAST previousStatement;
+        if (currentToken.getType() == TokenTypes.SEMI) {
             currentToken = currentToken.getPreviousSibling();
             while (currentToken.getFirstChild() != null) {
                 currentToken = currentToken.getFirstChild();
             }
+            previousStatement = currentToken;
+        }
+        else {
             previousStatement = currentToken;
         }
         return previousStatement;
@@ -300,7 +322,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether single line comment is a 'fall through' comment.
+     * Checks whether comment is a 'fall through' comment.
      * For example:
      * <p>
      * {@code
@@ -316,9 +338,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * </p>
      * @param prevStmt previous statement.
      * @param nextStmt next statement.
-     * @return true if a single line comment is a 'fall through' comment.
+     * @return true if a comment is a 'fall through' comment.
      */
-    private static boolean isFallThroughSingleLineComment(DetailAST prevStmt, DetailAST nextStmt) {
+    private static boolean isFallThroughComment(DetailAST prevStmt, DetailAST nextStmt) {
         return prevStmt != null
             && nextStmt != null
             && prevStmt.getType() != TokenTypes.LITERAL_CASE
@@ -327,11 +349,11 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a single line comment is placed at the end of the code block.
+     * Checks whether a comment is placed at the end of the code block.
      * @param nextStmt next statement.
-     * @return true if a single line comment is placed at the end of the block.
+     * @return true if a comment is placed at the end of the block.
      */
-    private static boolean isSingleLineCommentAtTheEndOfTheCodeBlock(DetailAST nextStmt) {
+    private static boolean isCommentAtTheEndOfTheCodeBlock(DetailAST nextStmt) {
         return nextStmt != null
             && nextStmt.getType() == TokenTypes.RCURLY;
     }
@@ -355,12 +377,13 @@ public class CommentsIndentationCheck extends AbstractCheck {
         return prevStmt != null
             && nextStmt != null
             && (prevStmt.getType() == TokenTypes.SLIST
+                || prevStmt.getType() == TokenTypes.LCURLY
                 || prevStmt.getType() == TokenTypes.OBJBLOCK)
             && nextStmt.getType() == TokenTypes.RCURLY;
     }
 
     /**
-     * Handles a single line comment which is plased within empty case block.
+     * Handles a comment which is plased within empty case block.
      * Note, if comment is placed at the end of the empty case block, we have Checkstyle's
      * limitations to clearly detect user intention of explanation target - above or below. The
      * only case we can assume as a violation is when a single line comment within the empty case
@@ -379,8 +402,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param comment single line comment.
      * @param nextStmt next statement.
      */
-    private void handleSingleLineCommentInEmptyCaseBlock(DetailAST prevStmt, DetailAST comment,
-                                                         DetailAST nextStmt) {
+    private void handleCommentInEmptyCaseBlock(DetailAST prevStmt, DetailAST comment,
+                                               DetailAST nextStmt) {
 
         if (comment.getColumnNo() < prevStmt.getColumnNo()
                 || comment.getColumnNo() < nextStmt.getColumnNo()) {
@@ -421,17 +444,16 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param comment single line comment.
      * @param nextStmt next statement.
      */
-    private void handleFallThroughtSingleLineComment(DetailAST prevStmt, DetailAST comment,
-                                                     DetailAST nextStmt) {
+    private void handleFallThroughtComment(DetailAST prevStmt, DetailAST comment,
+                                           DetailAST nextStmt) {
 
         if (!areSameLevelIndented(comment, prevStmt, nextStmt)) {
             logMultilineIndentation(prevStmt, comment, nextStmt);
         }
-
     }
 
     /**
-     * Hendles a single line comment which is placed at the end of non empty code block.
+     * Handles a comment which is placed at the end of non empty code block.
      * Note, if single line comment is plcaed at the end of non empty block the comment should have
      * the same indentation level as the previous statement. For example:
      * <p>
@@ -443,25 +465,23 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * }
      * </p>
      * @param prevStmt previous statement.
-     * @param comment single line statement.
+     * @param comment comment to check.
      * @param nextStmt next statement.
      */
-    private void handleSingleLineCommentAtTheEndOfTheCodeBlock(DetailAST prevStmt,
-                                                               DetailAST comment,
-                                                               DetailAST nextStmt) {
+    private void handleCommentAtTheEndOfTheCodeBlock(DetailAST prevStmt, DetailAST comment,
+                                                     DetailAST nextStmt) {
         if (prevStmt != null) {
             if (prevStmt.getType() == TokenTypes.LITERAL_CASE
                     || prevStmt.getType() == TokenTypes.CASE_GROUP
-                    || prevStmt.getType() == TokenTypes.LITERAL_DEFAULT
-                    || prevStmt.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                    || prevStmt.getType() == TokenTypes.LITERAL_DEFAULT) {
                 if (comment.getColumnNo() < nextStmt.getColumnNo()) {
-                    log(comment.getLineNo(), MSG_KEY_SINGLE, nextStmt.getLineNo(),
+                    log(comment.getLineNo(), getMessageKey(comment), nextStmt.getLineNo(),
                         comment.getColumnNo(), nextStmt.getColumnNo());
                 }
             }
             else if (!areSameLevelIndented(comment, prevStmt, prevStmt)) {
                 final int prevStmtLineNo = prevStmt.getLineNo();
-                log(comment.getLineNo(), MSG_KEY_SINGLE, prevStmtLineNo,
+                log(comment.getLineNo(), getMessageKey(comment), prevStmtLineNo,
                     comment.getColumnNo(), getLineStart(prevStmtLineNo));
             }
         }
@@ -469,7 +489,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Handles a single line comment which is placed within the empty code block.
+     * Handles a comment which is placed within the empty code block.
      * Note, if comment is placed at the end of the empty code block, we have Checkstyle's
      * limitations to clearly detect user intention of explanation target - above or below. The
      * only case we can assume as a violation is when a single line comment within the empty
@@ -483,35 +503,38 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * }
      * </p>
      *
-     * @param comment single line comment.
+     * @param comment comment to check.
      * @param nextStmt next statement.
      */
-    private void handleSingleLineCommentInEmptyCodeBlock(DetailAST comment, DetailAST nextStmt) {
+    private void handleCommentInEmptyCodeBlock(DetailAST comment, DetailAST nextStmt) {
         if (comment.getColumnNo() < nextStmt.getColumnNo()) {
-            log(comment.getLineNo(), MSG_KEY_SINGLE, nextStmt.getLineNo(),
+            log(comment.getLineNo(), getMessageKey(comment), nextStmt.getLineNo(),
                 comment.getColumnNo(), nextStmt.getColumnNo());
         }
     }
 
     /**
      * Does pre-order traverse of abstract syntax tree to find the previous statement of the
-     * single line comment. If previous statement of the comment is found, then the traverse will
+     * comment. If previous statement of the comment is found, then the traverse will
      * be finished.
      * @param comment current statement.
      * @return previous statement of the comment or null if the comment does not have previous
      *         statement.
      */
-    private static DetailAST getOneLinePreviousStatementOfSingleLineComment(DetailAST comment) {
-        DetailAST previousStatement = null;
-        final Deque<DetailAST> stack = new ArrayDeque<>();
+    private DetailAST getOneLinePreviousStatement(DetailAST comment) {
         DetailAST root = comment.getParent();
+        while (root != null && !isBlockStart(root)) {
+            root = root.getParent();
+        }
 
+        final Deque<DetailAST> stack = new ArrayDeque<>();
+        DetailAST previousStatement = null;
         while (root != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
                 root = stack.pop();
             }
             while (root != null) {
-                previousStatement = findPreviousStatementOfSingleLineComment(comment, root);
+                previousStatement = findPreviousStatement(comment, root);
                 if (previousStatement != null) {
                     root = null;
                     stack.clear();
@@ -527,15 +550,37 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Finds a previous statement of the single line comment.
-     * Uses root token of the line while searching.
-     * @param comment single line comment.
-     * @param root root token of the line.
-     * @return previous statement of the single line comment or null if previous statement was not
-     *         found.
+     * Whether the ast is a comment.
+     * @param ast the ast to check.
+     * @return true if the ast is a comment.
      */
-    private static DetailAST findPreviousStatementOfSingleLineComment(DetailAST comment,
-                                                                      DetailAST root) {
+    private static boolean isComment(DetailAST ast) {
+        final int astType = ast.getType();
+        return astType == TokenTypes.SINGLE_LINE_COMMENT
+            || astType == TokenTypes.BLOCK_COMMENT_BEGIN
+            || astType == TokenTypes.COMMENT_CONTENT
+            || astType == TokenTypes.BLOCK_COMMENT_END;
+    }
+
+    /**
+     * Whether the AST node starts a block.
+     * @param root the AST node to check.
+     * @return true if the AST node starts a block.
+     */
+    private static boolean isBlockStart(DetailAST root) {
+        return root.getType() == TokenTypes.SLIST
+                || root.getType() == TokenTypes.OBJBLOCK
+                || root.getType() == TokenTypes.CASE_GROUP;
+    }
+
+    /**
+     * Finds a previous statement of the comment.
+     * Uses root token of the line while searching.
+     * @param comment comment.
+     * @param root root token of the line.
+     * @return previous statement of the comment or null if previous statement was not found.
+     */
+    private DetailAST findPreviousStatement(DetailAST comment, DetailAST root) {
         DetailAST previousStatement = null;
         if (root.getLineNo() >= comment.getLineNo()) {
             // ATTENTION: parent of the comment is below the comment in case block
@@ -559,8 +604,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
             tokenWhichBeginsTheLine = root;
         }
         if (tokenWhichBeginsTheLine != null
-                && isOnPreviousLine(comment, tokenWhichBeginsTheLine)
-            ) {
+                && !isComment(tokenWhichBeginsTheLine)
+                && isOnPreviousLineIgnoringComments(comment, tokenWhichBeginsTheLine)) {
             previousStatement = tokenWhichBeginsTheLine;
         }
         return previousStatement;
@@ -610,14 +655,67 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether the checked statement is on previous line.
+     * Checks whether the checked statement is on the previous line ignoring empty lines
+     * and lines which contain only comments.
      * @param currentStatement current statement.
      * @param checkedStatement checked statement.
-     * @return true if checked statement is on the line which is previous to current statement.
+     * @return true if checked statement is on the line which is previous to current statement
+     *     ignoring empty lines and lines which contain only comments.
      */
-    private static boolean isOnPreviousLine(DetailAST currentStatement,
-                                            DetailAST checkedStatement) {
-        return currentStatement.getLineNo() - checkedStatement.getLineNo() == 1;
+    private boolean isOnPreviousLineIgnoringComments(DetailAST currentStatement,
+                                                     DetailAST checkedStatement) {
+        DetailAST nextToken = getNextToken(checkedStatement);
+        int distanceAim = 1;
+        if (nextToken != null && isComment(nextToken)) {
+            distanceAim += countEmptyLines(checkedStatement, currentStatement);
+        }
+
+        while (nextToken != null && nextToken != currentStatement && isComment(nextToken)) {
+            if (nextToken.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                distanceAim += nextToken.getLastChild().getLineNo() - nextToken.getLineNo();
+            }
+            distanceAim++;
+            nextToken = nextToken.getNextSibling();
+        }
+        return currentStatement.getLineNo() - checkedStatement.getLineNo() == distanceAim;
+    }
+
+    /**
+     * Get the token to start counting the number of lines to add to the distance aim from.
+     * @param checkedStatement the checked statement.
+     * @return the token to start counting the number of lines to add to the distance aim from.
+     */
+    private DetailAST getNextToken(DetailAST checkedStatement) {
+        DetailAST nextToken;
+        if (checkedStatement.getType() == TokenTypes.SLIST
+                || checkedStatement.getType() == TokenTypes.CASE_GROUP) {
+            nextToken = checkedStatement.getFirstChild();
+        }
+        else {
+            nextToken = checkedStatement.getNextSibling();
+        }
+        if (nextToken != null && isComment(nextToken) && isTrailingComment(nextToken)) {
+            nextToken = nextToken.getNextSibling();
+        }
+        return nextToken;
+    }
+
+    /**
+     * Count the number of empty lines between statements.
+     * @param startStatement start statement.
+     * @param endStatement end statement.
+     * @return the number of empty lines between statements.
+     */
+    private int countEmptyLines(DetailAST startStatement, DetailAST endStatement) {
+        int emptyLinesNumber = 0;
+        final String[] lines = getLines();
+        final int endLineNo = endStatement.getLineNo();
+        for (int lineNo = startStatement.getLineNo(); lineNo < endLineNo; lineNo++) {
+            if (CommonUtils.isBlank(lines[lineNo])) {
+                emptyLinesNumber++;
+            }
+        }
+        return emptyLinesNumber;
     }
 
     /**
@@ -629,11 +727,27 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private void logMultilineIndentation(DetailAST prevStmt, DetailAST comment,
                                          DetailAST nextStmt) {
         final String multilineNoTemplate = "%d, %d";
-        log(comment.getLineNo(), MSG_KEY_SINGLE,
+        log(comment.getLineNo(), getMessageKey(comment),
             String.format(Locale.getDefault(), multilineNoTemplate, prevStmt.getLineNo(),
                 nextStmt.getLineNo()), comment.getColumnNo(),
-            String.format(Locale.getDefault(), multilineNoTemplate, prevStmt.getColumnNo(),
-                nextStmt.getColumnNo()));
+            String.format(Locale.getDefault(), multilineNoTemplate,
+                    getLineStart(prevStmt.getLineNo()), getLineStart(nextStmt.getLineNo())));
+    }
+
+    /**
+     * Get a message key depending on a comment type.
+     * @param comment the comment to process.
+     * @return a message key.
+     */
+    private String getMessageKey(DetailAST comment) {
+        final String msgKey;
+        if (comment.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            msgKey = MSG_KEY_SINGLE;
+        }
+        else {
+            msgKey = MSG_KEY_BLOCK;
+        }
+        return msgKey;
     }
 
     /**
@@ -642,15 +756,13 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return comment's previous statement or null if previous statement is absent.
      */
     private static DetailAST getPrevStatementFromSwitchBlock(DetailAST comment) {
-        DetailAST prevStmt = null;
+        final DetailAST prevStmt;
         final DetailAST parentStatement = comment.getParent();
-        if (parentStatement != null) {
-            if (parentStatement.getType() == TokenTypes.CASE_GROUP) {
-                prevStmt = getPrevStatementWhenCommentIsUnderCase(parentStatement);
-            }
-            else {
-                prevStmt = getPrevCaseToken(parentStatement);
-            }
+        if (parentStatement.getType() == TokenTypes.CASE_GROUP) {
+            prevStmt = getPrevStatementWhenCommentIsUnderCase(parentStatement);
+        }
+        else {
+            prevStmt = getPrevCaseToken(parentStatement);
         }
         return prevStmt;
     }
@@ -665,7 +777,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final DetailAST prevBlock = parentStatement.getPreviousSibling();
         if (prevBlock.getLastChild() != null) {
             DetailAST blockBody = prevBlock.getLastChild().getLastChild();
-            if (blockBody.getPreviousSibling() != null) {
+            if (blockBody.getType() == TokenTypes.SEMI) {
                 blockBody = blockBody.getPreviousSibling();
             }
             if (blockBody.getType() == TokenTypes.EXPR) {
@@ -684,6 +796,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
                     prevStmt = blockBody;
                 }
             }
+            if (isComment(prevStmt)) {
+                prevStmt = prevStmt.getNextSibling();
+            }
         }
         return prevStmt;
     }
@@ -696,7 +811,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static DetailAST getPrevCaseToken(DetailAST parentStatement) {
         final DetailAST prevCaseToken;
         final DetailAST parentBlock = parentStatement.getParent();
-        if (parentBlock != null && parentBlock.getParent() != null
+        if (parentBlock.getParent() != null
                 && parentBlock.getParent().getPreviousSibling() != null
                 && parentBlock.getParent().getPreviousSibling().getType()
                     == TokenTypes.LITERAL_CASE) {
@@ -733,15 +848,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean areSameLevelIndented(DetailAST comment, DetailAST prevStmt,
                                                 DetailAST nextStmt) {
-        final boolean result;
-        if (prevStmt == null) {
-            result = comment.getColumnNo() == getLineStart(nextStmt.getLineNo());
-        }
-        else {
-            result = comment.getColumnNo() == getLineStart(nextStmt.getLineNo())
-                    || comment.getColumnNo() == getLineStart(prevStmt.getLineNo());
-        }
-        return result;
+
+        return comment.getColumnNo() == getLineStart(nextStmt.getLineNo())
+            || comment.getColumnNo() == getLineStart(prevStmt.getLineNo());
     }
 
     /**
@@ -756,6 +865,22 @@ public class CommentsIndentationCheck extends AbstractCheck {
             lineStart++;
         }
         return lineStart;
+    }
+
+    /**
+     * Checks if current comment is a trailing comment.
+     * @param comment comment to check.
+     * @return true if current comment is a trailing comment.
+     */
+    private boolean isTrailingComment(DetailAST comment) {
+        final boolean isTrailingComment;
+        if (comment.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            isTrailingComment = isTrailingSingleLineComment(comment);
+        }
+        else {
+            isTrailingComment = isTrailingBlockComment(comment);
+        }
+        return isTrailingComment;
     }
 
     /**
@@ -775,31 +900,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks comment block indentations over surrounding code, e.g.:
-     * <p>
-     * {@code
-     * /* some comment *&#47; - this is ok
-     * double d = 3.14;
-     *     /* some comment *&#47; - this is <b>not</b> ok.
-     * double d1 = 5.0;
-     * }
-     * </p>
-     * @param blockComment {@link TokenTypes#BLOCK_COMMENT_BEGIN block comment begin}.
-     */
-    private void visitBlockComment(DetailAST blockComment) {
-        final DetailAST nextStatement = blockComment.getNextSibling();
-        final DetailAST prevStatement = getPrevStatementFromSwitchBlock(blockComment);
-
-        if (nextStatement != null
-                && nextStatement.getType() != TokenTypes.RCURLY
-                && !isTrailingBlockComment(blockComment)
-                && !areSameLevelIndented(blockComment, prevStatement, nextStatement)) {
-            log(blockComment.getLineNo(), MSG_KEY_BLOCK, nextStatement.getLineNo(),
-                blockComment.getColumnNo(), nextStatement.getColumnNo());
-        }
-    }
-
-    /**
      * Checks if current comment block is trailing comment, e.g.:
      * <p>
      * {@code
@@ -813,7 +913,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private boolean isTrailingBlockComment(DetailAST blockComment) {
         final String commentLine = getLine(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
+        final DetailAST nextSibling = blockComment.getNextSibling();
         return !CommonUtils.hasWhitespaceBefore(commentColumnNo, commentLine)
-            || blockComment.getNextSibling().getLineNo() == blockComment.getLineNo();
+            || nextSibling != null && nextSibling.getLineNo() == blockComment.getLineNo();
     }
 }

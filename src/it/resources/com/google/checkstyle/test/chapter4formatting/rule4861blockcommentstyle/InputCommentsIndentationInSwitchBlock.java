@@ -16,7 +16,7 @@ public class InputCommentsIndentationInSwitchBlock {
                 // comment
                 break;
             case "3":
-            /* com */
+            /* // warn */
                 foo1();
                 /* com */
                 break;
