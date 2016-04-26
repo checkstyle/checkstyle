@@ -13,10 +13,10 @@
          See https://github.com/checkstyle/checkstyle/issues/2285-->
     <suppress checks="IllegalCatch"
               files="Checker.java"
-              lines="315"/>
+              lines="247"/>
     <suppress checks="IllegalCatch"
               files="Checker.java"
-              lines="320"/>
+              lines="252"/>
     <!--Test to reproduce error catching in Checker and satisfy coverage rate. -->
     <suppress checks="IllegalCatch"
               files="CheckerTest.java"
