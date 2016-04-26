@@ -21,9 +21,19 @@
       </macro>
     </section>
 
+    <section name="What is Javadoc comment">
+      <p>
+      Javadoc comment is multiline comment that starts with <b>*</b> character and placed under class definition, interface definition, enum definition, method definition or field definition. 
+      The comment should be written in XHTML to be correctly processed by Checkstyle. This means that every HTML tag should have matching closed HTML tag or it is self-closed one (singlton tag). 
+      The only exceptions are &lt;p&gt;, &lt;li&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;, &lt;body&gt;, &lt;colgroup&gt;, &lt;dd&gt;, &lt;dt&gt;, &lt;head&gt;, &lt;html&gt;, &lt;option&gt;, 
+      &lt;tbody&gt;, &lt;thead&gt;, &lt;tfoot&gt; and Checkstyle won't show error about missing closing tag, however, it leads to broken XHTML structure and, therefore, 
+      incorrect Abstract Syntax Tree of the Javadoc comment anyway. See examples at "HTML Code In Javadoc Comments" chapter.
+      </p>
+    </section>
+
     <section name="Overview">
       <p>
-      To start implementing your own Check create new class and extend AbstractJavadocCheck. It has two abstract methods:
+      To start implementing your own Check create new class and extend <a href='http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. It has two abstract methods:
       </p>
       <ul>
         <li>getDefaultJavadocTokens() - return array of token types that your new Check requires to process (see "Token Types" section)</li>
@@ -165,8 +175,98 @@ JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
     <section name="Token types">
     </section>
 
-    <section name="HTML code in Javadoc comments">
+    <section name="HTML Code In Javadoc Comments">
+    <p>
+    Examples:
+    1) Unclosed paragraph HTML tag. As you see in the tree, content of the paragraph tag is not nested to this tag. That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires XHTML to correctly parse Javadoc comments.
+    </p>
+    <source><![CDATA[
+<p> First
+<p> Second
+    ]]></source>
+    <source><![CDATA[
+JAVADOC -> <p> First\r\n<p> Second<EOF> [0:0]
+|--HTML_ELEMENT -> <p> [0:0]
+|   `--P_TAG_OPEN -> <p> [0:0]
+|       |--OPEN -> < [0:0]
+|       |--P_HTML_TAG_NAME -> p [0:1]
+|       `--CLOSE -> > [0:2]
+|--TEXT ->  First [0:3]
+|   |--WS ->   [0:3]
+|   |--CHAR -> F [0:4]
+|   |--CHAR -> i [0:5]
+|   |--CHAR -> r [0:6]
+|   |--CHAR -> s [0:7]
+|   `--CHAR -> t [0:8]
+|--NEWLINE -> \r\n [0:9]
+|--HTML_ELEMENT -> <p> [1:0]
+|   `--P_TAG_OPEN -> <p> [1:0]
+|       |--OPEN -> < [1:0]
+|       |--P_HTML_TAG_NAME -> p [1:1]
+|       `--CLOSE -> > [1:2]
+|--TEXT ->  Second [1:3]
+|   |--WS ->   [1:3]
+|   |--CHAR -> S [1:4]
+|   |--CHAR -> e [1:5]
+|   |--CHAR -> c [1:6]
+|   |--CHAR -> o [1:7]
+|   |--CHAR -> n [1:8]
+|   `--CHAR -> d [1:9]
+`--EOF -> <EOF> [1:10]
+    ]]></source>
+    <p>
+    2) Here is correct version with open and closed HTML tags. 
+    </p>
+    <source><![CDATA[
+<p> First </p>
+<p> Second </p>
+    ]]></source>
+    <source><![CDATA[
+JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
+|--HTML_ELEMENT -> <p> First </p> [0:0]
+|   `--PARAGRAPH -> <p> First </p> [0:0]
+|       |--P_TAG_OPEN -> <p> [0:0]
+|       |   |--OPEN -> < [0:0]
+|       |   |--P_HTML_TAG_NAME -> p [0:1]
+|       |   `--CLOSE -> > [0:2]
+|       |--TEXT ->  First  [0:3]
+|       |   |--WS ->   [0:3]
+|       |   |--CHAR -> F [0:4]
+|       |   |--CHAR -> i [0:5]
+|       |   |--CHAR -> r [0:6]
+|       |   |--CHAR -> s [0:7]
+|       |   |--CHAR -> t [0:8]
+|       |   `--WS ->   [0:9]
+|       `--P_TAG_CLOSE -> </p> [0:10]
+|           |--OPEN -> < [0:10]
+|           |--SLASH -> / [0:11]
+|           |--P_HTML_TAG_NAME -> p [0:12]
+|           `--CLOSE -> > [0:13]
+|--NEWLINE -> \r\n [0:14]
+|--HTML_ELEMENT -> <p> Second </p> [1:0]
+|   `--PARAGRAPH -> <p> Second </p> [1:0]
+|       |--P_TAG_OPEN -> <p> [1:0]
+|       |   |--OPEN -> < [1:0]
+|       |   |--P_HTML_TAG_NAME -> p [1:1]
+|       |   `--CLOSE -> > [1:2]
+|       |--TEXT ->  Second  [1:3]
+|       |   |--WS ->   [1:3]
+|       |   |--CHAR -> S [1:4]
+|       |   |--CHAR -> e [1:5]
+|       |   |--CHAR -> c [1:6]
+|       |   |--CHAR -> o [1:7]
+|       |   |--CHAR -> n [1:8]
+|       |   |--CHAR -> d [1:9]
+|       |   `--WS ->   [1:10]
+|       `--P_TAG_CLOSE -> </p> [1:11]
+|           |--OPEN -> < [1:11]
+|           |--SLASH -> / [1:12]
+|           |--P_HTML_TAG_NAME -> p [1:13]
+|           `--CLOSE -> > [1:14]
+`--EOF -> <EOF> [1:15]
+    ]]></source>
     </section>
+
 
     <section name="Checkstyle SDK GUI">
     </section>
