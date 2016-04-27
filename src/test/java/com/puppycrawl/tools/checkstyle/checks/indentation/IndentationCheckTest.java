@@ -1203,6 +1203,42 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testInvalidDoWhileWithChecker()
+        throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputInvalidDoWhileIndent.java");
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "8: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "9: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "10: " + getCheckMessage(MSG_ERROR, "do..while rcurly", 0, 8),
+            "11: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "12: " + getCheckMessage(MSG_ERROR, "do..while while", 0, 8),
+            "13: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "14: " + getCheckMessage(MSG_ERROR, "do..while lcurly", 0, 8),
+            "15: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "16: " + getCheckMessage(MSG_ERROR, "do..while while", 0, 8),
+            "17: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
+            "18: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "19: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
+            "20: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "21: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
+            "22: " + getCheckMessage(MSG_CHILD_ERROR, "do..while", 0, 8),
+            "23: " + getCheckMessage(MSG_ERROR, "do..while rparen", 0, 8),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testValidBlockWithChecker()
         throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
@@ -1655,7 +1691,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     "input expected warning #" + position + " at line " + comment.getLineNumber()
                             + " to report '" + comment.getExpectedMessage() + "' but got instead: "
                             + line + ": " + message,
-                    message.endsWith(comment.getExpectedMessage()));
+                    line == comment.getLineNumber()
+                            && message.endsWith(comment.getExpectedMessage()));
         }
 
         @Override
