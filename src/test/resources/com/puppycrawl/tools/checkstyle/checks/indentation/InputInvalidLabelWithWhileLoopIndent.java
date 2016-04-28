@@ -17,7 +17,7 @@ public class InputInvalidLabelWithWhileLoopIndent { //indent:0 exp:0
     public InputInvalidLabelWithWhileLoopIndent() { //indent:4 exp:4
          LOOP://indent:9 exp:4,8 warn
          while (true) { //indent:9 exp:8,12 warn
-            break LOOP; //indent:12 exp:13 warn
+            break LOOP; //indent:12 exp:12
         } //indent:8 exp:8
     } //indent:4 exp:4
 } //indent:0 exp:0
