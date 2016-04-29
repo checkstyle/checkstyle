@@ -25,3 +25,12 @@ public class InputFinalLocalVariableNameLambda {
                     (t, u) -> t.add(u.getAmount()));
  }
 }
+interface Operation {
+    public Object apply();
+
+    public static final Operation OPERATION = () -> {
+        Object result;
+        result = null;
+        return result;
+    };
+}

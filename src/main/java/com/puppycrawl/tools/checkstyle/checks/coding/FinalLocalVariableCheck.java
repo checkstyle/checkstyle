@@ -562,7 +562,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Find the Class, Constructor, Enum or Method in which it is defined.
+     * Find the Class, Constructor, Enum, Method, or Field in which it is defined.
      * @param ast Variable for which we want to find the scope in which it is defined
      * @return ast The Class or Constructor or Method in which it is defined.
      */
@@ -571,7 +571,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         while (astTraverse.getType() != TokenTypes.METHOD_DEF
                 && astTraverse.getType() != TokenTypes.CLASS_DEF
                 && astTraverse.getType() != TokenTypes.ENUM_DEF
-                && astTraverse.getType() != TokenTypes.CTOR_DEF) {
+                && astTraverse.getType() != TokenTypes.CTOR_DEF
+                && (astTraverse.getType() != TokenTypes.VARIABLE_DEF
+                        || !ScopeUtils.isClassFieldDef(astTraverse))) {
             astTraverse = astTraverse.getParent();
         }
         return astTraverse;
