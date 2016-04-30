@@ -196,7 +196,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       but an abstract class to provide some helper methods. A Check provides
       methods that take an AST as an argument and perform the checking process
       for that AST, most prominently <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>visitToken()</code></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>visitToken()</code></a>.  </p>
 
       <p> It is important to understand that the individual
       Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
@@ -208,16 +208,16 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
 
       <p> Before any visitor method is called, the TreeWalker
       will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>beginTree()</code></a> to give the Check a chance to do
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>beginTree()</code></a> to give the Check a chance to do
       some initialization. Then, when performing the recursive descend from
       the root to the leaf nodes, the <code>visitToken()</code>
       method is called. Unlike the basic examples in the pattern book, there
       is a <code>visitToken()</code> counterpart called <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>leaveToken()</code></a>. The TreeWalker will call that
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>leaveToken()</code></a>. The TreeWalker will call that
       method to signal that the subtree below the node has been processed and
       the TreeWalker is backtracking from the node. After the root node has
       been left, the TreeWalker will call <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree(com.puppycrawl.tools.checkstyle.api.DetailAST)"><code>finishTree()</code></a>.  </p>
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree-com.puppycrawl.tools.checkstyle.api.DetailAST-"><code>finishTree()</code></a>.  </p>
 
     </section>
 
@@ -550,7 +550,7 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
       inherit from <a
       href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">AbstractFileSetCheck</a>
       and override the abstract <a
-      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered(java.io.File,%20java.util.List)"><code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
+      href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-java.util.List-"><code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
       done. A very simple example could fire an error if the number of files
       exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
 
