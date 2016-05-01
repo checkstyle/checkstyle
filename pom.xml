@@ -604,7 +604,8 @@
         <version>${maven.site.plugin.version}</version>
         <configuration>
           <xdocDirectory>${basedir}/src/xdocs</xdocDirectory>
-          <validate>true</validate>
+          <!-- false till https://issues.apache.org/jira/browse/MSITE-774 -->
+          <validate>false</validate>
         </configuration>
         <dependencies>
           <dependency>
@@ -612,12 +613,6 @@
             <groupId>org.apache.maven.wagon</groupId>
             <artifactId>wagon-ssh</artifactId>
             <version>2.10</version>
-          </dependency>
-          <dependency>
-            <!-- add SAX2 driver, as since 3.5 site-plugin does not include it -->
-            <groupId>xerces</groupId>
-            <artifactId>xercesImpl</artifactId>
-            <version>2.11.0</version>
           </dependency>
         </dependencies>
       </plugin>
