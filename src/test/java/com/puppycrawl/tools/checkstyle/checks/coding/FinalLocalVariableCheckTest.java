@@ -160,7 +160,9 @@ public class FinalLocalVariableCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "32:16: " + "Variable 'result' should be declared final.",
+        };
         verify(checkConfig, getNonCompilablePath("InputFinalLocalVariableNameLambda.java"),
             expected);
     }
