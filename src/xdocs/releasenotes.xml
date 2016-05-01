@@ -15,6 +15,99 @@
 
   <body>
 
+    <section name="Release 6.18">
+      <p>New:</p>
+        <ul>
+          <li>
+            Make CLI option to print full parsing tree (java + comments + javadoc comments). Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/3040">#3040</a>
+          </li>
+          <li>
+            Add the ability to validate language codes by TranslationCheck. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2969">#2969</a>
+          </li>
+          <li>
+            EmptyLineSeparator to check empty lines inside methods. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2944">#2944</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            NullPointerException in FinalLocalVariableCheck with Lambdas. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3144">#3144</a>
+          </li>
+          <li>
+            Serious performance problem in All Javadoc Check that are based on ANTLR parser. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/1064">#1064</a>
+          </li>
+          <li>
+            CommentsIndentation Check - False Positive at End-of-Method. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2998">#2998</a>
+          </li>
+          <li>
+            Indentation: fix line wrap hanlding. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2950">#2950</a>
+          </li>
+          <li>
+            Indentation module regression in 6.16 and 6.17.. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3103">#3103</a>
+          </li>
+          <li>
+            NPE in AnnotationLocationCheck.hasAnnotations. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3106">#3106</a>
+          </li>
+          <li>
+            Execution of checkstyle audit failed caused by inherited javadoc tag. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3065">#3065</a>
+          </li>
+          <li>
+            AvoidEscapedUnicodeCharacters: Tail comment check failed if there&#39;s tabs before tail comment.. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3005">#3005</a>
+          </li>
+          <li>
+            FinalLocalVariable: false positive when variable is assigned multiple times. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3006">#3006</a>
+          </li>
+          <li>
+            Support for LAMDA token in WhitespaceAround check. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/2924">#2924</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            maven-site-plugin:3.5 has problem to build our website. Author: Vladislav Lisetskiy, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2966">#2966</a>
+          </li>
+          <li>
+            RegexpOnFilename example from documentation does not work on checkstyle source. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3085">#3085</a>
+          </li>
+          <li>
+            Create web-page with instructions: how to create Javadoc Check. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/410">#410</a>
+          </li>
+          <li>
+            IndentationCheckTest: &#39;exp&#39; in input files are out of sync with test. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3105">#3105</a>
+          </li>
+          <li>
+            Some redundant messages.. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3000">#3000</a>
+          </li>
+          <li>
+            doc: added Codacy to the list of active tools. Author: JosÃ© Castro
+          </li>
+          <li>
+            Fix all issues for Java found by Codacy static analysis tool. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2271">#2271</a>
+          </li>
+          <li>
+            Use Distelli CI for testing of Javadoc Checks. Author: Baratali Izmailov, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/2825">#2825</a>
+          </li>
+          <li>
+            doc: DesignForExtension documentation is extended to warn user about possible misusage of this Check. Author: Roman Ivanov
+          </li>
+          <li>
+            Fund raising pages for checkstyle. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3057">#3057</a>
+          </li>
+          <li>
+            Use DatatypeConverter#printHexBinary to convert byte array to hex String in PropertyCacheFile. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3093">#3093</a>
+          </li>
+          <li>
+            SSLHandshakeException exception during linkcheck-maven-plugin . Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3080">#3080</a>
+          </li>
+          <li>
+            Speed up google_check validation test. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3070">#3070</a>
+          </li>
+          <li>
+            Strive for 100% line coverage for java grammar. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2973">#2973</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.17">
       <p>Breaking backward compatibility:</p>
         <ul>
