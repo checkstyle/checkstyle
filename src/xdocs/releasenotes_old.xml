@@ -381,10 +381,7 @@
           <a href="dependencies.html">Project Dependencies</a> for details.
         </li>
         <li>
-          Made the method
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.html#hasText%28com.puppycrawl.tools.checkstyle.api.DetailAST%29">
-            EmptyBlockCheck.hasText(DetailAST)
-         </a>
+          Made the method EmptyBlockCheck.hasText(DetailAST) as
           <code>protected</code> so that it is accessible to subclasses.
           Requested by Steve McKay.
         </li>
