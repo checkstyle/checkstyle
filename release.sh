@@ -11,7 +11,7 @@ echo "PREVIOUS RELESE version:"$PREV_RELEASE
 echo "RELESE version:"$RELEASE
 
 #############################
-
+echo "Please provide password for $SF_USER,checkstyle@shell.sourceforge.net"
 echo "exit" | ssh -t $SF_USER,checkstyle@shell.sourceforge.net create
 
 # Version bump in pom.xml - https://github.com/checkstyle/checkstyle/commits/master
@@ -48,7 +48,7 @@ mvn -Passembly clean package
 #Publish them to sourceforce
 FRS_PATH=/home/frs/project/checkstyle/checkstyle/$RELEASE
 ssh $SF_USER,checkstyle@shell.sourceforge.net "mkdir -p $FRS_PATH"
-# !!! THIS WILL AS A PASSWORD !!
+# !!! THIS WILL ASK A SOURCEFORGE PASSWORD !!
 scp target/*.jar $SF_USER@frs.sourceforge.net:$FRS_PATH
 scp target/*.tar.gz $SF_USER@frs.sourceforge.net:$FRS_PATH
 scp target/*.zip $SF_USER@frs.sourceforge.net:$FRS_PATH
