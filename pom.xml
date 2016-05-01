@@ -613,12 +613,6 @@
             <artifactId>wagon-ssh</artifactId>
             <version>2.10</version>
           </dependency>
-          <dependency>
-            <!-- add SAX2 driver, as since 3.5 site-plugin does not include it -->
-            <groupId>xerces</groupId>
-            <artifactId>xercesImpl</artifactId>
-            <version>2.11.0</version>
-          </dependency>
         </dependencies>
       </plugin>
 
