@@ -4,7 +4,7 @@ set -e
 #https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release
 
 SF_USER=romanivanov
-PREV_RELEASE=6.17
+PREV_RELEASE=6.18
 RELEASE=$(git describe $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
 
 echo "PREVIOUS RELESE version:"$PREV_RELEASE
