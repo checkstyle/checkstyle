@@ -315,7 +315,7 @@ public class MethodLimitCheck extends AbstractCheck
           can be processed by the check. Both DefaultTokens and RequiredTokens and any custom
           set of TokenTypes are subsets of AcceptableTokens.
         </li>
-        
+
       </ul>
 
     </section>
@@ -527,7 +527,7 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
         href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
         <a href="http://findbugs.sourceforge.net/">FindBugs</a>,
         <a href="http://pmd.sourceforge.net/">PMD</a>,
-        <a href="http://www.sonarqube.org/">Sonarqube</a>. 
+        <a href="http://www.sonarqube.org/">Sonarqube</a>.
       </p>
 
       <p>
@@ -541,7 +541,7 @@ java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
     </section>
 
     <section name="Writing FileSetChecks">
-      
+
       <p>Writing a FileSetCheck usually required when you do not need parse Java file
       to get inner structure, or you are going to validate non "*.java" files.
       </p>
