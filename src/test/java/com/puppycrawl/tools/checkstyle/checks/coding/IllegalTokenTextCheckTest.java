@@ -104,5 +104,22 @@ public class IllegalTokenTextCheckTest
         Assert.assertNotNull(check.getAcceptableTokens());
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
+        Assert.assertTrue("Comments are also TokenType token", check.isCommentNodesRequired());
     }
+
+    @Test
+    public void testCommentToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenTextCheck.class);
+        checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
+        checkConfig.addAttribute("format", "a href");
+
+        checkConfig.addAttribute("message", null);
+        final String[] expected = {
+            "35:28: " + getCheckMessage(MSG_KEY, "a href"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
 }

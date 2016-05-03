@@ -28,11 +28,11 @@ public class InputIllegalTokens
     public void methodWithLabels() {
         label:
         {
-            anotherLabel:
+            anotherLabel: // some comment href
             do {
                 continue anotherLabel;
             } while (false);
-            break label;
+            break label; // some a href
         }
     }
 }

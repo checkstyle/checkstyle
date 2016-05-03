@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 public class IllegalTokenCheckTest
     extends BaseCheckTestSupport {
@@ -70,6 +71,69 @@ public class IllegalTokenCheckTest
         checkConfig.addAttribute("tokens", "LITERAL_NATIVE");
         final String[] expected = {
             "20:12: " + getCheckMessage(MSG_KEY, "native"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testCommentContentToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
+
+        final String[] expected = {
+            "3:3: " + getCheckMessage(MSG_KEY,
+                        JavadocUtils.excapeAllControlChars(
+                            "*" + System.lineSeparator()
+                            + " * Test for illegal tokens"
+                            + System.lineSeparator() + " ")),
+            "31:29: " + getCheckMessage(MSG_KEY,
+                        JavadocUtils.excapeAllControlChars(
+                            " some comment href" + System.lineSeparator())),
+            "35:28: " + getCheckMessage(MSG_KEY,
+                        JavadocUtils.excapeAllControlChars(
+                            " some a href" + System.lineSeparator())),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testBlockCommentBeginToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "BLOCK_COMMENT_BEGIN");
+
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_KEY, "/*"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testBlockCommentEndToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "BLOCK_COMMENT_END");
+
+        final String[] expected = {
+            "5:2: " + getCheckMessage(MSG_KEY, "*/"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineCommentToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "SINGLE_LINE_COMMENT");
+
+        final String[] expected = {
+            "31:27: " + getCheckMessage(MSG_KEY, "//"),
+            "35:26: " + getCheckMessage(MSG_KEY, "//"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
