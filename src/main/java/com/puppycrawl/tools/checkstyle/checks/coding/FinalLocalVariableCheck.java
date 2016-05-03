@@ -572,8 +572,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 && astTraverse.getType() != TokenTypes.CLASS_DEF
                 && astTraverse.getType() != TokenTypes.ENUM_DEF
                 && astTraverse.getType() != TokenTypes.CTOR_DEF
-                && (astTraverse.getType() != TokenTypes.VARIABLE_DEF
-                        || !ScopeUtils.isClassFieldDef(astTraverse))) {
+                && !ScopeUtils.isClassFieldDef(astTraverse)) {
             astTraverse = astTraverse.getParent();
         }
         return astTraverse;
