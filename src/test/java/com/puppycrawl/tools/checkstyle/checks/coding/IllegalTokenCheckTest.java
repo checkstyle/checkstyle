@@ -73,4 +73,22 @@ public class IllegalTokenCheckTest
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
+
+    @Test
+    public void testCommentToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
+
+        final String[] expected = {
+                "3:3: " + getCheckMessage(MSG_KEY, "*\n" +
+                        " * Test for illegal tokens\n" +
+                        " "),
+                "31:30: " + getCheckMessage(MSG_KEY, " some comment href"),
+                "35:28: " + getCheckMessage(MSG_KEY, " some a href"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
 }

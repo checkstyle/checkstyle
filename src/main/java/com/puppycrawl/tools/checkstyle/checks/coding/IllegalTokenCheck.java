@@ -79,6 +79,11 @@ public class IllegalTokenCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         log(
             ast.getLineNo(),
