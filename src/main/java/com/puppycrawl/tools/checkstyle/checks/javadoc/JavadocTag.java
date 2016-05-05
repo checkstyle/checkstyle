@@ -142,6 +142,7 @@ public class JavadocTag {
     public boolean canReferenceImports() {
         return tagInfo == JavadocTagInfo.SEE
                 || tagInfo == JavadocTagInfo.LINK
+                || tagInfo == JavadocTagInfo.VALUE
                 || tagInfo == JavadocTagInfo.LINKPLAIN
                 || tagInfo == JavadocTagInfo.THROWS
                 || tagInfo == JavadocTagInfo.EXCEPTION;
