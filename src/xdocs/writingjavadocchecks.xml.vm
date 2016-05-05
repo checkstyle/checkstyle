@@ -33,10 +33,11 @@
 
     <section name="Overview">
       <p>
-      To start implementing your own Check create new class and extend <a href='http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. It has two abstract methods:
+      To start implementing your own Check create new class and extend <a href='http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. It has two abstract methods you should implement:
       </p>
       <ul>
-        <li>getDefaultJavadocTokens() - return array of token types that your new Check requires to process (see "Token Types" section)</li>
+        <li>getDefaultJavadocTokens() - return int array of token types your Check is going to process. The array should contain int constants from JavadocTokenTypes class. 
+          There is also TokenTypes class in Checkstyle. Make sure you use JavadocTokenTypes class in your Check, because the second one is used to describe standard Java DetailAST token type.</li>
         <li>visitJavadocToken(DetailNode) - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described 
           before in getDefaultJavadocTokens() method.</li>
       </ul>
@@ -172,7 +173,9 @@ JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
       ]]></source>
     </section>
 
-    <section name="Token types">
+    <section name="Access Java AST from Javadoc Check">
+      As you alreasy know Javadoc parse tree is result of parsing block comment. There is a method to get the original block comment. 
+      You may need this block comment to check its position or something else in main DetailAST tree. For example, to write a JavadocCheck that verifies @param tags in Javadoc comment of a method definition, you also need all method's parameter names. To get method definition AST you should access main DetailAST tree throuth block comment AST. For this purpose use <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">getBlockCommentAst()</a> method that returns DetailAST node.
     </section>
 
     <section name="HTML Code In Javadoc Comments">
@@ -267,16 +270,13 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
     ]]></source>
     </section>
 
-
     <section name="Checkstyle SDK GUI">
-    </section>
-
-    <section name="Access Java AST from Javadoc Check">
+      Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/408">Github Issue #408</a>.
     </section>
 
     <section name="Integrating new Javadoc Check">
+      Javadoc Checks as well as regular Checks extend <a href="http://checkstyle.sourceforge.net/apidocs/index.html">AbstractCheck</a> class. So integrating new Javadoc Check is similar to <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
     </section>
 
   </body>
 </document>
-
