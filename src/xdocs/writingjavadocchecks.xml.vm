@@ -40,9 +40,9 @@ public class MyClass {
  * @see AbstractClass
       ]]></source>
       </p>
-      Attention that java comment is start with <source>/*</source>, following with Identificator of comment type. Javadoc Identificator is <source>*</source>. All symbols after Javadoc Identificator till <source>*/</source> are part of javadoc comment. In internet you can find different types of documentation
+      Attention that java comment is start with <code>/*</code>, following with Identificator of comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc Identificator till <code>*/</code> are part of javadoc comment. In internet you can find different types of documentation
       generation tools similar to javadoc. Such tools reply on different Identificators: "!", "#", "$".
-      Comments looks like "/*! some comment */" , "/*# some comment */" , "/*$ some comment */". Such multiline comments are not a javadoc.
+      Comments looks like <code>"/*! some comment */"</code> , <code>"/*# some comment */"</code> , <code>"/*$ some comment */"</code>. Such multiline comments are not a javadoc.
     </section>
 
     <section name="Limitations">
