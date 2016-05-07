@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 public class IllegalTokenCheckTest
     extends BaseCheckTestSupport {
@@ -82,9 +83,17 @@ public class IllegalTokenCheckTest
         checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
 
         final String[] expected = {
-            "3:3: " + getCheckMessage(MSG_KEY, "*\\n * Test for illegal tokens\\n "),
-            "31:29: " + getCheckMessage(MSG_KEY, " some comment href\\n"),
-            "35:28: " + getCheckMessage(MSG_KEY, " some a href\\n"),
+            "3:3: " + getCheckMessage(MSG_KEY,
+                        JavadocUtils.excapeAllControlChars(
+                            "*" + System.lineSeparator()
+                            + " * Test for illegal tokens"
+                            + System.lineSeparator() + " ")),
+            "31:29: " + getCheckMessage(MSG_KEY,
+                        JavadocUtils.excapeAllControlChars(
+                            " some comment href" + System.lineSeparator())),
+            "35:28: " + getCheckMessage(MSG_KEY,
+                        JavadocUtils.excapeAllControlChars(
+                            " some a href" + System.lineSeparator())),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
