@@ -1006,19 +1006,19 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>basicOffset</td>
-            <td>how many spaces to use for new indentation level</td>
+            <td>how far new indentation level should be indented when on the next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
           <tr>
             <td>braceAdjustment</td>
-            <td>how far braces should be indented when on the next line</td>
+            <td>how far a braces should be indented when on the next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>0</td>
           </tr>
           <tr>
             <td>caseIndent</td>
-            <td>how much to indent a case label</td>
+            <td>how far a case label should be indented when on next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
@@ -1030,7 +1030,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>arrayInitIndent</td>
-            <td>how much to indent an array initialisation when on next line</td>
+            <td>how far an array initialisation should be indented when on next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
           </tr>
@@ -1042,8 +1042,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           </tr>
           <tr>
             <td>forceStrictCondition</td>
-            <td>force strict condition in line wrapping case. If value is true, line wrap indent
-                have to be same as lineWrappingIndentation parameter</td>
+            <td>force strict indent level in line wrapping case. If value is true, line wrap indent
+                have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
