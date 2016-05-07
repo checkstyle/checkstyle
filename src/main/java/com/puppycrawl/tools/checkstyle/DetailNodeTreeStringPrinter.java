@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -38,13 +37,6 @@ public final class DetailNodeTreeStringPrinter {
 
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-
-    /** Newline pattern. */
-    private static final Pattern NEWLINE = Pattern.compile("\n");
-    /** Return pattern. */
-    private static final Pattern RETURN = Pattern.compile("\r");
-    /** Tab pattern. */
-    private static final Pattern TAB = Pattern.compile("\t");
 
     /** Prevent instances. */
     private DetailNodeTreeStringPrinter() {
@@ -91,24 +83,13 @@ public final class DetailNodeTreeStringPrinter {
             }
             messageBuilder.append(getIndentation(node))
                     .append(JavadocUtils.getTokenName(node.getType())).append(" -> ")
-                    .append(excapeAllControlChars(node.getText())).append(" [")
+                    .append(JavadocUtils.excapeAllControlChars(node.getText())).append(" [")
                     .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
                     .append(']').append(LINE_SEPARATOR)
                     .append(printTree(JavadocUtils.getFirstChild(node), rootPrefix, prefix));
             node = JavadocUtils.getNextSibling(node);
         }
         return messageBuilder.toString();
-    }
-
-    /**
-     * Replace all control chars with excaped symbols.
-     * @param text the String to process.
-     * @return the processed String with all control chars excaped.
-     */
-    private static String excapeAllControlChars(String text) {
-        final String textWithoutNewlines = NEWLINE.matcher(text).replaceAll("\\\\n");
-        final String textWithoutReturns = RETURN.matcher(textWithoutNewlines).replaceAll("\\\\r");
-        return TAB.matcher(textWithoutReturns).replaceAll("\\\\t");
     }
 
     /**

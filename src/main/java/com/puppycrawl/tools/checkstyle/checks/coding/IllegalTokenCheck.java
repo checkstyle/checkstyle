@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -100,11 +101,17 @@ public class IllegalTokenCheck
      */
     private static String convertToString(DetailAST ast) {
         final String tokenText;
-        if (ast.getType() == TokenTypes.LABELED_STAT) {
-            tokenText = ast.getFirstChild().getText() + ast.getText();
-        }
-        else {
-            tokenText = ast.getText();
+        switch (ast.getType()) {
+            case TokenTypes.LABELED_STAT:
+                tokenText = ast.getFirstChild().getText() + ast.getText();
+                break;
+            // multyline tokens need to become singlelined
+            case TokenTypes.COMMENT_CONTENT:
+                tokenText = JavadocUtils.excapeAllControlChars(ast.getText());
+                break;
+            default:
+                tokenText = ast.getText();
+                break;
         }
         return tokenText;
     }

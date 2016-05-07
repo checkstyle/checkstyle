@@ -79,6 +79,15 @@ public final class JavadocUtils {
     private static final Pattern INLINE_TAG_PATTERN = Pattern.compile(
         ".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
 
+    /** Newline pattern. */
+    private static final Pattern NEWLINE = Pattern.compile("\n");
+
+    /** Return pattern. */
+    private static final Pattern RETURN = Pattern.compile("\r");
+
+    /** Tab pattern. */
+    private static final Pattern TAB = Pattern.compile("\t");
+
     // Using reflection gets all token names and values from JavadocTokenTypes class
     // and saves to TOKEN_NAME_TO_VALUE and TOKEN_VALUE_TO_NAME collections.
     static {
@@ -448,4 +457,14 @@ public final class JavadocUtils {
         return javadocTagName;
     }
 
+    /**
+     * Replace all control chars with excaped symbols.
+     * @param text the String to process.
+     * @return the processed String with all control chars excaped.
+     */
+    public static String excapeAllControlChars(String text) {
+        final String textWithoutNewlines = NEWLINE.matcher(text).replaceAll("\\\\n");
+        final String textWithoutReturns = RETURN.matcher(textWithoutNewlines).replaceAll("\\\\r");
+        return TAB.matcher(textWithoutReturns).replaceAll("\\\\t");
+    }
 }

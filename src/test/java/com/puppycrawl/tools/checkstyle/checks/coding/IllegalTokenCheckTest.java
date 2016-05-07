@@ -75,20 +75,57 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void testCommentToken()
+    public void testCommentContentToken()
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(IllegalTokenCheck.class);
         checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
 
         final String[] expected = {
-                "3:3: " + getCheckMessage(MSG_KEY, "*\n" +
-                        " * Test for illegal tokens\n" +
-                        " "),
-                "31:30: " + getCheckMessage(MSG_KEY, " some comment href"),
-                "35:28: " + getCheckMessage(MSG_KEY, " some a href"),
+            "3:3: " + getCheckMessage(MSG_KEY, "*\\n * Test for illegal tokens\\n "),
+            "31:29: " + getCheckMessage(MSG_KEY, " some comment href\\n"),
+            "35:28: " + getCheckMessage(MSG_KEY, " some a href\\n"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
 
+    @Test
+    public void testBlockCommentBeginToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "BLOCK_COMMENT_BEGIN");
+
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_KEY, "/*"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testBlockCommentEndToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "BLOCK_COMMENT_END");
+
+        final String[] expected = {
+            "5:2: " + getCheckMessage(MSG_KEY, "*/"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineCommentToken()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(IllegalTokenCheck.class);
+        checkConfig.addAttribute("tokens", "SINGLE_LINE_COMMENT");
+
+        final String[] expected = {
+            "31:27: " + getCheckMessage(MSG_KEY, "//"),
+            "35:26: " + getCheckMessage(MSG_KEY, "//"),
+        };
+        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+    }
 }
