@@ -232,6 +232,21 @@
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.2</version>
+      <!--Upgrading to commons-collections 3.2.2 to fix security vulnerability CVE-2015-6420.
+       This change can be reverted when upgrading to commons-beanutils 1.9.3
+       https://issues.apache.org/jira/browse/BEANUTILS-482-->
+      <exclusions>
+        <exclusion>
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- remove commons-collections dependency after commons-beanutils 1.9.3 -->
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.2</version>
     </dependency>
     <dependency>
       <groupId>commons-cli</groupId>
