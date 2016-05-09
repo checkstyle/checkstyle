@@ -196,7 +196,9 @@
         <property name="ignoreSetter" value="true"/>
         <property name="setterCanReturnItsClass" value="true"/>
     </module>
-    <module name="IllegalCatch"/>
+    <module name="IllegalCatch">
+        <property name="illegalClassNames" value="java.lang.Exception, java.lang.Throwable, java.lang.RuntimeException, java.lang.NullPointerException"/>
+    </module>
     <module name="IllegalInstantiation"/>
     <module name="IllegalThrows"/>
     <module name="IllegalToken"/>
