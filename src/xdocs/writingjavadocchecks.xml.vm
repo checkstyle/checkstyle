@@ -47,7 +47,7 @@ public class MyClass {
 
     <section name="Limitations">
       <p>
-      Javadoc by specification could contain any HTML tags that to let user generate content hi needs.
+      Javadoc by specification could contain any HTML tags that to let user generate content he needs.
       Checkstyle can not parse something that looks like an HTML, so limitation appear.
       The comment should be written in XHTML to be correctly processed by Checkstyle. This means that every HTML tag should have matching closed HTML tag or it is self-closed one (singlton tag).
       The only exceptions are &lt;p&gt;, &lt;li&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;, &lt;body&gt;, &lt;colgroup&gt;, &lt;dd&gt;, &lt;dt&gt;, &lt;head&gt;, &lt;html&gt;, &lt;option&gt;,
@@ -57,6 +57,10 @@ public class MyClass {
       <p>
         Javadoc parser requires XHTML to be used in Javadoc comments, i.e. if there is some open tag(for example &lt;div&gt;) then there have to be its close tag &lt;/div&gt;.
         This means that if Javadoc comment has incorrect XHTML structure then Javadoc Parser will fail processing the comment, therefore, your new Check can't get its parse tree and process anything from this Javadoc comment. For more details and examples go to "HTML code in Javadoc comments" section.
+      </p>
+      <p>
+        Javadoc grammar requires XHTML, but it can also parse some parts of HTML code (like some unclosed tags). However result tree will be unpredictable. 
+        It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
       </p>
     </section>
 
@@ -70,6 +74,12 @@ public class MyClass {
         <li>visitJavadocToken(DetailNode) - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described
           before in getDefaultJavadocTokens() method.</li>
       </ul>
+
+      <p>
+        In Javadoc comment every whitespace matters, so parse tree contains whitespace nodes (WS javadoc token type). 
+        So do CHAR javadoc token that presents single character. The only redundancy Javadoc tree has because of this is that TEXT node 
+        consists of CHAR and WS nodes which is useless, but it is implementation nuance. (In future we will try to resolve this).
+      </p>
     </section>
 
     <section name="Difference between Java Grammar and Javadoc comments Grammar">
@@ -208,18 +218,70 @@ JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
       <p>
       For example, to write a JavadocCheck that verifies @param tags in Javadoc comment of a method definition, you also need all method's parameter names. To get method definition AST you should access main DetailAST tree throuth block comment AST. For this purpose use <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">getBlockCommentAst()</a> method that returns DetailAST node.
       </p>
+      <p>
+        Example:
+      </p>
+      <source>
+class MyCheck extends AbstractJavadocCheck {
+
+    @Override
+    public int[] getDefaultJavadocTokens() {
+        return new int[]{JavadocTokenTypes.PARAMETER_NAME};
+    }
+
+    @Override
+    public void visitJavadocToken(DetailNode paramNameNode) {
+        String javadocParamName = paramNameNode.getText();
+        DetailAST blockCommentAst = getBlockCommentAst();
+
+        if (BlockCommentPosition.isOnMethod(blockCommentAst)) {
+
+            DetailAST methodDef = blockCommentAst.getParent();
+            DetailAST methodParam = findMethodParameter(methodDef);
+            String methodParamName = methodParam.getText();
+
+            if (!javadocParamName.equals(methodParamName)) {
+                log(methodParam, "params.dont.match");
+            }
+
+        }
+    }
+}
+      </source>
     </section>
 
     <section name="HTML Code In Javadoc Comments">
-    <p>
-    Examples:
-    1) Unclosed paragraph HTML tag. As you see in the tree, content of the paragraph tag is not nested to this tag. That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires XHTML to predictably parse Javadoc comments.
-    </p>
-    <source><![CDATA[
+    <p>Examples:</p>
+
+    <table style="table-layout: fixed;">
+      <tr>
+        <td>
+          1) Unclosed paragraph HTML tag. As you see in the tree, content of the paragraph tag is not nested to this tag. 
+          That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires XHTML to predictably parse Javadoc comments.
+        </td>
+        <td>
+          2) Here is correct version with open and closed HTML tags.
+        </td>  
+      </tr>
+
+      <tr>
+        <td>
+          <source><![CDATA[
 <p> First
 <p> Second
-    ]]></source>
-    <source><![CDATA[
+          ]]></source>
+        </td>
+        <td>
+          <source><![CDATA[
+<p> First </p>
+<p> Second </p>
+          ]]></source>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <source><![CDATA[
 JAVADOC -> <p> First\r\n<p> Second<EOF> [0:0]
 |--HTML_ELEMENT -> <p> [0:0]
 |   `--P_TAG_OPEN -> <p> [0:0]
@@ -248,15 +310,10 @@ JAVADOC -> <p> First\r\n<p> Second<EOF> [0:0]
 |   |--CHAR -> n [1:8]
 |   `--CHAR -> d [1:9]
 `--EOF -> <EOF> [1:10]
-    ]]></source>
-    <p>
-    2) Here is correct version with open and closed HTML tags.
-    </p>
-    <source><![CDATA[
-<p> First </p>
-<p> Second </p>
-    ]]></source>
-    <source><![CDATA[
+          ]]></source>
+        </td>
+        <td>
+          <source><![CDATA[
 JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
 |--HTML_ELEMENT -> <p> First </p> [0:0]
 |   `--PARAGRAPH -> <p> First </p> [0:0]
@@ -299,7 +356,10 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
 |           |--P_HTML_TAG_NAME -> p [1:13]
 |           `--CLOSE -> > [1:14]
 `--EOF -> <EOF> [1:15]
-    ]]></source>
+          ]]></source>
+        </td>
+      </tr>
+    </table>
     </section>
 
     <section name="Checkstyle SDK GUI">
