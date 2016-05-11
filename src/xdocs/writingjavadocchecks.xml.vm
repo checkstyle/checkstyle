@@ -366,6 +366,10 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
       Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/408">Github Issue #408</a>.
     </section>
 
+    <section name="Customize token types in Javadoc Checks">
+      Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/2427">Github Issue #2427</a>.
+    </section>
+
     <section name="Integrating new Javadoc Check">
       Javadoc Checks as well as regular Checks extend <a href="http://checkstyle.sourceforge.net/apidocs/index.html">AbstractCheck</a> class. So integrating new Javadoc Check is similar to <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
     </section>
