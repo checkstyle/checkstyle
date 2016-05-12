@@ -75,8 +75,14 @@ public class MyClass {
       </ul>
 
       <p>
-        In Javadoc comment every whitespace matters, so parse tree contains whitespace nodes (<a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> javadoc token type). 
-        So do <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> javadoc token that presents single character. The only redundancy Javadoc tree has because of this is that <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXT">TEXT</a> node consists of <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> and <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> nodes which is useless, but it is implementation nuance. (In future we will try to resolve this).
+        In Javadoc comment every whitespace matters, so parse tree contains whitespace nodes 
+        (<a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> javadoc token type). 
+        So do <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> javadoc token that presents single character. 
+        The only redundancy Javadoc tree has because of this is that 
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXT">TEXT</a> node consists of 
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> and 
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> nodes which is useless, but it is implementation nuance. 
+        (In future we will try to resolve this. See <a href="https://github.com/checkstyle/checkstyle/issues/3170">Github Issue #3170</a>).
       </p>
     </section>
 
