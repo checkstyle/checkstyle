@@ -66,19 +66,17 @@ public class MyClass {
 
     <section name="Overview">
       <p>
-      To start implementing new Check create new class and extend <a href='http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. It has two abstract methods you should implement:
+      To start implementing new Check create new class and extend <a href='apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. It has two abstract methods you should implement:
       </p>
       <ul>
-        <li>getDefaultJavadocTokens() - return int array of javadoc token types your Check is going to process. The array should contain int constants from JavadocTokenTypes class.
-          There is also TokenTypes class in Checkstyle. Make sure you use JavadocTokenTypes class in your Check, because the TokenTypes is used to describe standard Java DetailAST token type.</li>
-        <li>visitJavadocToken(DetailNode) - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described
-          before in getDefaultJavadocTokens() method.</li>
+        <li>getDefaultJavadocTokens() - return int array of javadoc token types your Check is going to process. The array should contain int constants from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class.
+          There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> token type.</li>
+        <li>visitJavadocToken(<a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailNode.html">DetailNode</a>) - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in getDefaultJavadocTokens() method.</li>
       </ul>
 
       <p>
-        In Javadoc comment every whitespace matters, so parse tree contains whitespace nodes (WS javadoc token type). 
-        So do CHAR javadoc token that presents single character. The only redundancy Javadoc tree has because of this is that TEXT node 
-        consists of CHAR and WS nodes which is useless, but it is implementation nuance. (In future we will try to resolve this).
+        In Javadoc comment every whitespace matters, so parse tree contains whitespace nodes (<a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> javadoc token type). 
+        So do <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> javadoc token that presents single character. The only redundancy Javadoc tree has because of this is that <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXT">TEXT</a> node consists of <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> and <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> nodes which is useless, but it is implementation nuance. (In future we will try to resolve this).
       </p>
     </section>
 
@@ -91,7 +89,7 @@ public class MyClass {
       </p>
       <p>
         The problem is that Java grammar is old one and uses ANTLR v2, while Javadoc grammar uses ANTLR v4. Because of that, these two grammars and their trees are not compatible.
-        Java AST consists of DetailAST objects, while Javadoc AST consists of DetailNode objects.
+        Java AST consists of <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> objects, while Javadoc AST consists of <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailNode.html">DetailNode</a> objects.
       </p>
     </section>
 
@@ -110,7 +108,7 @@ public class MyClass {
 }
       ]]></source>
       <p>Command:</p>
-      <source>java -jar checkstyle-6.18-all.jar -J MyClass.java</source>
+      <source>java -jar checkstyle-X.XX-all.jar -J MyClass.java</source>
       <p>Output:</p>
       <source><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
@@ -171,7 +169,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
  * @see AbstractClass
       ]]></source>
       <p>Command:</p>
-      <source>java -jar checkstyle-6.18-SNAPSHOT-all.jar -j MyJavadocComment.javadoc</source>
+      <source>java -jar checkstyle-X.XX-all.jar -j MyJavadocComment.javadoc</source>
       <p>Output:</p>
       <source><![CDATA[
 JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
@@ -214,9 +212,9 @@ JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
 
     <section name="Access Java AST from Javadoc Check">
       As you alreasy know Javadoc parse tree is result of parsing block comment. There is a method to get the original block comment from Javadoc Check.
-      You may need this block comment to check its position or something else in main DetailAST tree.
+      You may need this block comment to check its position or something else in main <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree.
       <p>
-      For example, to write a JavadocCheck that verifies @param tags in Javadoc comment of a method definition, you also need all method's parameter names. To get method definition AST you should access main DetailAST tree throuth block comment AST. For this purpose use <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">getBlockCommentAst()</a> method that returns DetailAST node.
+      For example, to write a JavadocCheck that verifies @param tags in Javadoc comment of a method definition, you also need all method's parameter names. To get method definition AST you should access main <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree throuth block comment AST. For this purpose use <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">getBlockCommentAst()</a> method that returns <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> node.
       </p>
       <p>
         Example:
@@ -371,7 +369,7 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
     </section>
 
     <section name="Integrating new Javadoc Check">
-      Javadoc Checks as well as regular Checks extend <a href="http://checkstyle.sourceforge.net/apidocs/index.html">AbstractCheck</a> class. So integrating new Javadoc Check is similar to <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
+      Javadoc Checks as well as regular Checks extend <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">AbstractCheck</a> class. So integrating new Javadoc Check is similar to <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
     </section>
 
     <section name="Examples of Javadoc Checks">
