@@ -130,7 +130,7 @@ public class RedundantModifierCheckTest
                 createCheckConfig(RedundantModifierCheck.class);
 
         final String[] expected = {
-            "18:5: "  + getCheckMessage(MSG_KEY, "public"),
+            "18:5: " + getCheckMessage(MSG_KEY, "public"),
         };
         verify(checkConfig, getPath("InputRedundantPublicModifierInNotPublicClass.java"), expected);
     }

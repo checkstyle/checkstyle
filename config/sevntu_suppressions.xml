@@ -11,6 +11,8 @@
               files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
     <suppress checks="MultipleStringLiteralsExtended"
               files=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <suppress checks="LineLengthExtended"
+              files="ParseTreeBuilder\.java"/>
 
     <!-- Override methods from base class.
     Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166-->
@@ -45,4 +47,8 @@
     <suppress checks="CustomDeclarationOrder"
               files="AbstractViolationReporter.java"
               lines="152,164"/>
+
+    <!-- Tone down the checking for test code -->
+    <suppress checks="CauseParameterInException|ForbidCCommentsInMethods|IllegalCatchExtended"
+              files=".*[\\/]src[\\/](test|it)[\\/]"/>
 </suppressions>

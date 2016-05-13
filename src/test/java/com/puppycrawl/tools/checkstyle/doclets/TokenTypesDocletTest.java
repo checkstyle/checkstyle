@@ -92,8 +92,8 @@ public class TokenTypesDocletTest {
         // a lot of different places, must not be changed and an int value is used to encrypt
         // a token type.
         final ListBuffer<String[]> options = new ListBuffer<>();
-        options.add(new String[]{"-doclet", "TokenTypesDoclet"});
-        options.add(new String[]{"-destfile", "target/tokentypes.properties"});
+        options.add(new String[] {"-doclet", "TokenTypesDoclet"});
+        options.add(new String[] {"-destfile", "target/tokentypes.properties"});
 
         final ListBuffer<String> names = new ListBuffer<>();
         names.add(getPath("InputTokenTypesDocletNotConstants.java"));
@@ -109,7 +109,7 @@ public class TokenTypesDocletTest {
     @Test
     public void testEmptyJavadoc() throws Exception {
         final ListBuffer<String[]> options = new ListBuffer<>();
-        options.add(new String[]{"-destfile", "target/tokentypes.properties"});
+        options.add(new String[] {"-destfile", "target/tokentypes.properties"});
 
         final ListBuffer<String> names = new ListBuffer<>();
         names.add(getPath("InputTokenTypesDocletEmptyJavadoc.java"));
@@ -133,7 +133,7 @@ public class TokenTypesDocletTest {
     @Test
     public void testCorrect() throws Exception {
         final ListBuffer<String[]> options = new ListBuffer<>();
-        options.add(new String[]{"-destfile", "target/tokentypes.properties"});
+        options.add(new String[] {"-destfile", "target/tokentypes.properties"});
 
         final ListBuffer<String> names = new ListBuffer<>();
         names.add(getPath("InputTokenTypesDocletCorrect.java"));

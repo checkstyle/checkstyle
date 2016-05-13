@@ -99,7 +99,7 @@
             <property name="ignoreConstructor" value="true"/>
             <property name="ignoreField" value="true"/>
             <property name="ignoreMethod" value="true"/>
-            <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+            <property name="ignorePattern" value="^( *\* *[^ ]+)|((package|import) .*)$"/>
         </module>
         <module name="AvoidHidingCauseException"/>
         <module name="MultipleStringLiteralsExtended">

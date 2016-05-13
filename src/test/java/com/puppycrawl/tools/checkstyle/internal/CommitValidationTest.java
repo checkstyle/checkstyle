@@ -92,10 +92,6 @@ public class CommitValidationTest {
 
     private static final int PREVIOUS_COMMITS_TO_CHECK_COUNT = 10;
 
-    private enum CommitsResolutionMode {
-        BY_COUNTER, BY_LAST_COMMIT_AUTHOR
-    }
-
     private static final CommitsResolutionMode COMMITS_RESOLUTION_MODE =
             CommitsResolutionMode.BY_LAST_COMMIT_AUTHOR;
 
@@ -220,8 +216,8 @@ public class CommitValidationTest {
             commits.add(lastCommit);
 
             boolean wasLastCheckedCommitAuthorSameAsLastCommit = true;
-            while (previousCommitsIterator.hasNext()
-                    && wasLastCheckedCommitAuthorSameAsLastCommit) {
+            while (wasLastCheckedCommitAuthorSameAsLastCommit
+                    && previousCommitsIterator.hasNext()) {
                 final RevCommit currentCommit = previousCommitsIterator.next();
                 final String currentCommitAuthor = currentCommit.getAuthorIdent().getName();
                 if (currentCommitAuthor.equals(lastCommitAuthor)) {
@@ -249,6 +245,10 @@ public class CommitValidationTest {
             String commitMessage) {
         return "Commit " + commitId + " message: \"" + commitMessage + "\" is invalid\n"
                 + getRulesForCommitMessageFormatting();
+    }
+
+    private enum CommitsResolutionMode {
+        BY_COUNTER, BY_LAST_COMMIT_AUTHOR
     }
 
     private static class RevCommitsPair {

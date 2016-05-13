@@ -38,8 +38,8 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 
 public class JavadocParseTreeTest {
-    private JavadocParser parser;
     private final BaseErrorListener errorListener = new FailOnErrorListener();
+    private JavadocParser parser;
 
     private ParseTree parseJavadoc(String aBlockComment)
             throws IOException {

@@ -278,7 +278,7 @@ public final class CheckUtil {
     }
 
     public static String getTokenText(int[] tokens, int... subtractions) {
-        if (Arrays.equals(tokens, TokenUtils.getAllTokenIds()) && subtractions.length == 0) {
+        if (subtractions.length == 0 && Arrays.equals(tokens, TokenUtils.getAllTokenIds())) {
             return "TokenTypes.";
         }
         else {

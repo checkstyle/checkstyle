@@ -631,7 +631,7 @@ public class MainTest {
                                 + "Checkstyle ends with 1 errors.%n");
                 assertEquals(expectedExceptionMessage, systemOut.getLog());
 
-                final String exceptionFirstLine =  String.format(Locale.ROOT,
+                final String exceptionFirstLine = String.format(Locale.ROOT,
                         "com.puppycrawl.tools.checkstyle.api."
                         + "CheckstyleException: Exception was thrown while processing "
                         + new File(getNonCompilablePath("InputIncorrectClass.java")).getPath()

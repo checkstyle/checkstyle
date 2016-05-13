@@ -40,7 +40,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        final IllegalImportCheck checkObj = new  IllegalImportCheck();
+        final IllegalImportCheck checkObj = new IllegalImportCheck();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }

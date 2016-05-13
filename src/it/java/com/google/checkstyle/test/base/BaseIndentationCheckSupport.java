@@ -59,10 +59,6 @@ public class BaseIndentationCheckSupport extends BaseCheckTestSupport {
         return getLinesWithWarnAndCheckComments(fileName, TAB_WIDTH);
     }
 
-    private enum CommentType {
-        MULTILEVEL, SINGLE_LEVEL, NON_STRICT_LEVEL, UNKNOWN
-    }
-
     private static Integer[] getLinesWithWarnAndCheckComments(String aFileName,
             final int tabWidth)
                     throws IOException {
@@ -212,5 +208,9 @@ public class BaseIndentationCheckSupport extends BaseCheckTestSupport {
             }
         }
         return 0;
+    }
+
+    private enum CommentType {
+        MULTILEVEL, SINGLE_LEVEL, NON_STRICT_LEVEL, UNKNOWN
     }
 }

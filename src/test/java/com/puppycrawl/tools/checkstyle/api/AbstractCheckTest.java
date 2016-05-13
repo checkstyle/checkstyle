@@ -57,17 +57,17 @@ public class AbstractCheckTest {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
-                return  CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtils.EMPTY_INT_ARRAY;
             }
 
             @Override
             public int[] getAcceptableTokens() {
-                return  CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtils.EMPTY_INT_ARRAY;
             }
 
             @Override
             public int[] getRequiredTokens() {
-                return  CommonUtils.EMPTY_INT_ARRAY;
+                return CommonUtils.EMPTY_INT_ARRAY;
             }
         };
         // Eventually it will become clear abstract method

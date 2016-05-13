@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.api;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+
 public class CheckTest {
     @SuppressWarnings("deprecation")
     @Test
@@ -29,7 +31,7 @@ public class CheckTest {
         final Object module = new Check() {
             @Override
             public int[] getDefaultTokens() {
-                return null;
+                return CommonUtils.EMPTY_INT_ARRAY;
             }
         };
 

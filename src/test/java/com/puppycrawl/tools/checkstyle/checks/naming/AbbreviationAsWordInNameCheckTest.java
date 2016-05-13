@@ -50,7 +50,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("ignoreOverriddenMethods", "true");
 
         final String[] expected = {
-            "9: "  + getWarningMessage("FactoryWithBADNAme", expectedCapitalCount),
+            "9: " + getWarningMessage("FactoryWithBADNAme", expectedCapitalCount),
             "12: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
             "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
             "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),

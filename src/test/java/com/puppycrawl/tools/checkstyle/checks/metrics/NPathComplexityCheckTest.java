@@ -71,7 +71,7 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
 
         checkConfig.addAttribute("max", "0");
 
-        final long largerThanMaxInt = 3486784401L;
+        final long largerThanMaxInt = 3_486_784_401L;
 
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),

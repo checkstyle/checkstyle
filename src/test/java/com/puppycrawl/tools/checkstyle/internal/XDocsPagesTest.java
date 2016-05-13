@@ -159,12 +159,9 @@ public class XDocsPagesTest {
                         .replace("...", "").trim();
 
                 if (unserializedSource.charAt(0) != '<'
-                        || unserializedSource.charAt(unserializedSource.length() - 1) != '>') {
-                    continue;
-                }
-
-                // no dtd testing yet
-                if (unserializedSource.contains("<!")) {
+                        || unserializedSource.charAt(unserializedSource.length() - 1) != '>'
+                        // no dtd testing yet
+                        || unserializedSource.contains("<!")) {
                     continue;
                 }
 

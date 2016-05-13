@@ -253,7 +253,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return new int[]{TokenTypes.SINGLE_LINE_COMMENT};
+            return new int[] {TokenTypes.SINGLE_LINE_COMMENT};
         }
 
         @Override

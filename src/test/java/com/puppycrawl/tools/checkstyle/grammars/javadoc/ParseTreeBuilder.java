@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser.TrTagOpenC
  * It is located in 'contribution' repository:
  * <a href="https://github.com/checkstyle/contribution/blob/master/javadoc-expected-tree-generator/ExpectedParseTreeGenerator.java">Link</a>
  */
-@Generated("ExpectedParseTreeGenerator")
+@Generated(value="ExpectedParseTreeGenerator")
 //@formatter:off
 final class ParseTreeBuilder {
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");

@@ -321,7 +321,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = {
             "19: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
-            "22: " + getCheckMessage(MSG_ERROR, ")",  8, 4),
+            "22: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
         };
 
         verifyWarns(checkConfig,
@@ -1583,7 +1583,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "20: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 16, 4),
             "21: " + getCheckMessage(MSG_ERROR_MULTI, "method def modifier", 24, "18, 20, 22"),
             "23: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "method def", 32, "20, 22, 24"),
-            "24: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly",  24, "18, 20, 22"),
+            "24: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 24, "18, 20, 22"),
             "26: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 2),
         };
         verifyWarns(checkConfig, getPath("InputAnonymousClassInMethod.java"), expected);
