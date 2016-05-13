@@ -23,6 +23,9 @@
     <suppress checks="SimpleAccessorNameNotation"
               files="ClassFanOutComplexityCheck\.java"
               lines="76"/>
+    <suppress checks="SimpleAccessorNameNotation"
+              files="SingleSpaceSeparatorCheck\.java"
+              lines="110"/>
 
     <!-- These classes are deprecated and will be removed soon. -->
     <suppress checks="ForbidWildcardAsReturnType"

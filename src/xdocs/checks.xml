@@ -674,6 +674,11 @@
          Checks that a JavaDoc block which can fit on a single line and doesn't contain at-clauses</td>
       </tr>
       <tr>
+        <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>
+        <td>
+         Checks that non-whitespace characters are separated by no more than one whitespace.</td>
+      </tr>
+      <tr>
         <td><a href="config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
         <td>
         Checks for overly complicated boolean expressions.</td>
