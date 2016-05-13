@@ -485,7 +485,8 @@
           <maxAllowedViolations>0</maxAllowedViolations>
           <violationSeverity>error</violationSeverity>
           <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
-          <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+          <sourceDirectory>${project.basedir}/src</sourceDirectory>
+          <excludes>**/it/resources/**/*,**/test/resources/**/*,**/test/resources-noncompilable/**/*</excludes>
         </configuration>
         <executions>
           <execution>
