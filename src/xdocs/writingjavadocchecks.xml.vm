@@ -256,7 +256,50 @@ class MyCheck extends AbstractJavadocCheck {
     </section>
 
     <section name="HTML Code In Javadoc Comments">
-    <p>Examples:</p>
+      <p>
+        Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">all HTML4 elements</a>. 
+        However if Checkstyle meets unknown tag (for example HTML5 tag) 
+        it doesn't fail and parses this tag as <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#HTML_TAG">HTML_TAG</a> Javadoc token type. 
+        Just follow XHTML rules to make Checkstyle happy, even though tags are unknown. 
+        
+        <source><![CDATA[
+<audio><source src="horse.ogg" type="audio/ogg"/></audio>
+        ]]></source>
+
+        <source><![CDATA[
+JAVADOC -> <audio><source src="horse.ogg" type="audio/ogg"/></audio><EOF> [0:0]
+|--HTML_ELEMENT -> <audio><source src="horse.ogg" type="audio/ogg"/></audio> [0:0]
+|   `--HTML_TAG -> <audio><source src="horse.ogg" type="audio/ogg"/></audio> [0:0]
+|       |--HTML_ELEMENT_OPEN -> <audio> [0:0]
+|       |   |--OPEN -> < [0:0]
+|       |   |--HTML_TAG_NAME -> audio [0:1]
+|       |   `--CLOSE -> > [0:6]
+|       |--HTML_ELEMENT -> <source src="horse.ogg" type="audio/ogg"/> [0:7]
+|       |   `--SINGLETON_ELEMENT -> <source src="horse.ogg" type="audio/ogg"/> [0:7]
+|       |       `--SINGLETON_TAG -> <source src="horse.ogg" type="audio/ogg"/> [0:7]
+|       |           |--OPEN -> < [0:7]
+|       |           |--HTML_TAG_NAME -> source [0:8]
+|       |           |--WS ->   [0:14]
+|       |           |--ATTRIBUTE -> src="horse.ogg" [0:15]
+|       |           |   |--HTML_TAG_NAME -> src [0:15]
+|       |           |   |--EQUALS -> = [0:18]
+|       |           |   `--ATTR_VALUE -> "horse.ogg" [0:19]
+|       |           |--WS ->   [0:31]
+|       |           |--ATTRIBUTE -> type="audio/ogg" [0:32]
+|       |           |   |--HTML_TAG_NAME -> type [0:32]
+|       |           |   |--EQUALS -> = [0:36]
+|       |           |   `--ATTR_VALUE -> "audio/ogg" [0:37]
+|       |           `--SLASH_CLOSE -> /> [0:49]
+|       `--HTML_ELEMENT_CLOSE -> </audio> [0:51]
+|           |--OPEN -> < [0:51]
+|           |--SLASH -> / [0:52]
+|           |--HTML_TAG_NAME -> audio [0:53]
+|           `--CLOSE -> > [0:58]
+`--EOF -> <EOF> [0:59]
+        ]]></source>
+      </p>
+
+    <p>More examples:</p>
 
     <table style="table-layout: fixed;">
       <tr>
