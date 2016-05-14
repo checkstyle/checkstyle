@@ -52,14 +52,15 @@ public class MyClass {
       The comment should be written in XHTML to be correctly processed by Checkstyle. This means that every HTML tag should have matching closed HTML tag or it is self-closed one (singlton tag).
       The only exceptions are &lt;p&gt;, &lt;li&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;, &lt;body&gt;, &lt;colgroup&gt;, &lt;dd&gt;, &lt;dt&gt;, &lt;head&gt;, &lt;html&gt;, &lt;option&gt;,
       &lt;tbody&gt;, &lt;thead&gt;, &lt;tfoot&gt; and Checkstyle won't show error about missing closing tag, however, it leads to broken XHTML structure and, therefore,
-      incorrect Abstract Syntax Tree of the Javadoc comment anyway. See examples at "HTML Code In Javadoc Comments" chapter.
+      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment. See examples at "HTML Code In Javadoc Comments" chapter.
       </p>
       <p>
         Javadoc parser requires XHTML to be used in Javadoc comments, i.e. if there is some open tag(for example &lt;div&gt;) then there have to be its close tag &lt;/div&gt;.
         This means that if Javadoc comment has incorrect XHTML structure then Javadoc Parser will fail processing the comment, therefore, your new Check can't get its parse tree and process anything from this Javadoc comment. For more details and examples go to "HTML code in Javadoc comments" section.
       </p>
       <p>
-        Javadoc grammar requires XHTML, but it can also parse some parts of HTML code (like some unclosed tags). However result tree will be unpredictable. 
+        Javadoc grammar requires XHTML, but it can also parse some parts of HTML code (like some unclosed tags). If HTML tags are not closed Javadoc grammar cannot determine content of these tags, 
+        so structure of the parse tree will not be nested like it is while using XHTML.
         It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
       </p>
     </section>
@@ -73,17 +74,6 @@ public class MyClass {
           There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> token type.</li>
         <li>visitJavadocToken(<a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailNode.html">DetailNode</a>) - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in getDefaultJavadocTokens() method.</li>
       </ul>
-
-      <p>
-        In Javadoc comment every whitespace matters, so parse tree contains whitespace nodes 
-        (<a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> javadoc token type). 
-        So do <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> javadoc token that presents single character. 
-        The only redundancy Javadoc tree has because of this is that 
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXT">TEXT</a> node consists of 
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> and 
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> nodes which is useless, but it is implementation nuance. 
-        (In future we will try to resolve this. See <a href="https://github.com/checkstyle/checkstyle/issues/3170">Github Issue #3170</a>).
-      </p>
     </section>
 
     <section name="Difference between Java Grammar and Javadoc comments Grammar">
@@ -96,6 +86,17 @@ public class MyClass {
       <p>
         The problem is that Java grammar is old one and uses ANTLR v2, while Javadoc grammar uses ANTLR v4. Because of that, these two grammars and their trees are not compatible.
         Java AST consists of <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> objects, while Javadoc AST consists of <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailNode.html">DetailNode</a> objects.
+      </p>
+      <p>
+        Main Java grammar skips any whitespaces and newlines, so in Java Abstract Syntax Tree there are no whitespace/newline nodes.
+        In Javadoc comment every whitespace matters, and Javadoc Checks need all those whitespaces and newline nodes to verify format and content of the Javadoc comment.
+        Because of that Javadoc grammar includes all whitespaces, newlines to the parse tree
+        (<a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a>, <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#NEWLINE">NEWLINE</a>). 
+        As you may notice there is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> javadoc token that presents single character. 
+        It is quite useless and is used for building only <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXT">TEXT</a> node which consists of 
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CHAR">CHAR</a> and 
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a> nodes, but it is implementation nuance. 
+        (In future we will try to resolve this. See <a href="https://github.com/checkstyle/checkstyle/issues/3170">Github Issue #3170</a>).
       </p>
     </section>
 
