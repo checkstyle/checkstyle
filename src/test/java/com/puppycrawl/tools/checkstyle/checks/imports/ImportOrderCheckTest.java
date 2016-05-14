@@ -243,10 +243,6 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     public void testWildcardUnspecified() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
 
-        /*
-        <property name="ordered" value="true"/>
-        <property name="separated" value="true"/>
-        */
         checkConfig.addAttribute("groups", "java,javax,org");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

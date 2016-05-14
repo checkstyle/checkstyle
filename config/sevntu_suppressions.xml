@@ -49,7 +49,8 @@
               files="AbstractViolationReporter.java"
               lines="152,164"/>
 
-    <!-- Tone down the checking for test code -->
-    <suppress checks="CauseParameterInException|ForbidCCommentsInMethods|IllegalCatchExtended"
-              files=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <!-- testing for catch Error is part of 100% coverage -->
+    <suppress checks="IllegalCatchExtended"
+              files="CheckerTest\.java"
+              lines="569"/>
 </suppressions>

@@ -206,7 +206,7 @@ public class XMLLoggerTest {
             new LocalizedMessage(1, 1,
                 "messages.properties", null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
-        logger.addException(ev, new TestException());
+        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
         final String[] expectedLines = {
             "&lt;exception&gt;",
@@ -260,6 +260,10 @@ public class XMLLoggerTest {
     private static class TestException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
+
+        TestException(String msg, Throwable cause) {
+            super(msg, cause);
+        }
 
         @Override
         public void printStackTrace(PrintWriter printWriter) {
