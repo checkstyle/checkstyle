@@ -11,6 +11,7 @@
               files="JavadocStyleCheck\.java|AbstractTypeAwareCheck\.java|XMLLogger\.java"/>
     <suppress checks="MultipleStringLiteralsExtended"
               files=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <!-- ParseTreeBuilder is generated, to keep ease of generation violations are suppressed -->
     <suppress checks="LineLengthExtended"
               files="ParseTreeBuilder\.java"/>
 
