@@ -51,8 +51,10 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ReturnCountCheck.class);
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_KEY, 7, 2),
-            "35:17: " + getCheckMessage(MSG_KEY, 6, 2),
+            "18:5: " + getCheckMessage(MSG_KEY, 7, 1),
+            "30:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
+            "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
         verify(checkConfig, getPath("InputReturnCount.java"), expected);
     }
@@ -64,8 +66,10 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("format", "^$");
         final String[] expected = {
             "5:5: " + getCheckMessage(MSG_KEY, 7, 2),
-            "18:5: " + getCheckMessage(MSG_KEY, 7, 2),
-            "35:17: " + getCheckMessage(MSG_KEY, 6, 2),
+            "18:5: " + getCheckMessage(MSG_KEY, 7, 1),
+            "30:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
+            "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
         verify(checkConfig, getPath("InputReturnCount.java"), expected);
     }
@@ -137,5 +141,19 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         catch (IllegalStateException ex) {
             // it is OK
         }
+    }
+
+    @Test
+    public void testMaxForVoid() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
+        checkConfig.addAttribute("max", "2");
+        checkConfig.addAttribute("maxForVoid", "0");
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "8:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "30:5: " + getCheckMessage(MSG_KEY, 3, 2),
+        };
+        verify(checkConfig, getPath("InputReturnCountVoid.java"), expected);
     }
 }

@@ -3455,6 +3455,18 @@ public static class B {
         </p>
 
         <p>
+          <b>max</b> property will only check returns in methods and lambdas that return a specific value (Ex: 'return 1;').
+        </p>
+
+        <p>
+          <b>maxForVoid</b> property will only check returns in methods, constructors, and lambdas that have no return type (IE
+          'return;').
+          It will only count visible return statements. Return statements not normally written, but implied, at
+          the end of the method/constructor definition will not be taken into account.
+          To disallow "return;" in void return type methods, use a value of 0.
+        </p>
+
+        <p>
           Rationale: Too many return points can mean that code is
           attempting to do too much or may be difficult to understand.
         </p>
@@ -3470,9 +3482,15 @@ public static class B {
           </tr>
           <tr>
             <td>max</td>
-            <td>maximum allowed number of return statements</td>
+            <td>maximum allowed number of return statements in non-void methods/lambdas</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>2</code></td>
+          </tr>
+          <tr>
+            <td>maxForVoid</td>
+            <td>maximum allowed number of return statements in void methods/constructors/lambdas</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><code>1</code></td>
           </tr>
           <tr>
             <td>format</td>
@@ -3507,6 +3525,28 @@ public static class B {
         <source>
 &lt;module name=&quot;ReturnCount&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it doesn't allow any
+          return statements per void method:
+        </p>
+        <source>
+&lt;module name=&quot;ReturnCount&quot;&gt;
+    &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check so that it doesn't allow more than 2
+          return statements per method (ignoring the <code>equals()</code>
+          method) and more than 1 return statements per void method:
+        </p>
+        <source>
+&lt;module name=&quot;ReturnCount&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
 &lt;/module&gt;
         </source>
 
