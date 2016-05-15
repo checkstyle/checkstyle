@@ -492,10 +492,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
     @Override
     public void finishTree(DetailAST rootAST) {
 
-        if (importToGroupList.isEmpty()) {
-            return;
+        if (!importToGroupList.isEmpty()) {
+            finishImportList();
         }
+    }
 
+    /** Examine the order of all the imports and log any violations. */
+    private void finishImportList() {
         final ImportDetails firstImport = importToGroupList.get(0);
         String currentGroup = getImportGroup(firstImport.isStaticImport(),
                 firstImport.getImportFullPath());

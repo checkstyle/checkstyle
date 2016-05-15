@@ -70,22 +70,21 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     protected void processFiltered(File file, List<String> lines) {
         // Check if already processed directory
         final File dir = file.getParentFile();
-        if (directoriesChecked.contains(dir)) {
-            return;
-        }
-        directoriesChecked.add(dir);
+        if (!directoriesChecked.contains(dir)) {
+            directoriesChecked.add(dir);
 
-        // Check for the preferred file.
-        final File packageInfo = new File(dir, "package-info.java");
-        final File packageHtml = new File(dir, "package.html");
+            // Check for the preferred file.
+            final File packageInfo = new File(dir, "package-info.java");
+            final File packageHtml = new File(dir, "package.html");
 
-        if (packageInfo.exists()) {
-            if (packageHtml.exists()) {
-                log(0, MSG_LEGACY_PACKAGE_HTML);
+            if (packageInfo.exists()) {
+                if (packageHtml.exists()) {
+                    log(0, MSG_LEGACY_PACKAGE_HTML);
+                }
             }
-        }
-        else if (!allowLegacy || !packageHtml.exists()) {
-            log(0, MSG_PACKAGE_INFO);
+            else if (!allowLegacy || !packageHtml.exists()) {
+                log(0, MSG_PACKAGE_INFO);
+            }
         }
     }
 

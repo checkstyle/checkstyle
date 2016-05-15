@@ -211,40 +211,38 @@ public class SuppressWarningsHolder
         if ("SuppressWarnings".equals(identifier)) {
 
             final List<String> values = getAllAnnotationValues(ast);
-            if (isAnnotationEmpty(values)) {
-                return;
-            }
+            if (!isAnnotationEmpty(values)) {
+                final DetailAST targetAST = getAnnotationTarget(ast);
 
-            final DetailAST targetAST = getAnnotationTarget(ast);
+                if (targetAST == null) {
+                    log(ast.getLineNo(), MSG_KEY);
+                }
+                else {
+                    // get text range of target
+                    final int firstLine = targetAST.getLineNo();
+                    final int firstColumn = targetAST.getColumnNo();
+                    final DetailAST nextAST = targetAST.getNextSibling();
+                    final int lastLine;
+                    final int lastColumn;
+                    if (nextAST == null) {
+                        lastLine = Integer.MAX_VALUE;
+                        lastColumn = Integer.MAX_VALUE;
+                    }
+                    else {
+                        lastLine = nextAST.getLineNo();
+                        lastColumn = nextAST.getColumnNo() - 1;
+                    }
 
-            if (targetAST == null) {
-                log(ast.getLineNo(), MSG_KEY);
-                return;
-            }
-
-            // get text range of target
-            final int firstLine = targetAST.getLineNo();
-            final int firstColumn = targetAST.getColumnNo();
-            final DetailAST nextAST = targetAST.getNextSibling();
-            final int lastLine;
-            final int lastColumn;
-            if (nextAST == null) {
-                lastLine = Integer.MAX_VALUE;
-                lastColumn = Integer.MAX_VALUE;
-            }
-            else {
-                lastLine = nextAST.getLineNo();
-                lastColumn = nextAST.getColumnNo() - 1;
-            }
-
-            // add suppression entries for listed checks
-            final List<Entry> entries = ENTRIES.get();
-            for (String value : values) {
-                String checkName = value;
-                // strip off the checkstyle-only prefix if present
-                checkName = removeCheckstylePrefixIfExists(checkName);
-                entries.add(new Entry(checkName, firstLine, firstColumn,
-                        lastLine, lastColumn));
+                    // add suppression entries for listed checks
+                    final List<Entry> entries = ENTRIES.get();
+                    for (String value : values) {
+                        String checkName = value;
+                        // strip off the checkstyle-only prefix if present
+                        checkName = removeCheckstylePrefixIfExists(checkName);
+                        entries.add(new Entry(checkName, firstLine, firstColumn,
+                                lastLine, lastColumn));
+                    }
+                }
             }
         }
     }

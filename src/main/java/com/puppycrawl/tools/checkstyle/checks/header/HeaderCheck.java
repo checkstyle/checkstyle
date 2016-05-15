@@ -78,12 +78,12 @@ public class HeaderCheck extends AbstractHeaderCheck {
     public void setIgnoreLines(int... list) {
         if (list.length == 0) {
             ignoreLines = EMPTY_INT_ARRAY;
-            return;
         }
-
-        ignoreLines = new int[list.length];
-        System.arraycopy(list, 0, ignoreLines, 0, list.length);
-        Arrays.sort(ignoreLines);
+        else {
+            ignoreLines = new int[list.length];
+            System.arraycopy(list, 0, ignoreLines, 0, list.length);
+            Arrays.sort(ignoreLines);
+        }
     }
 
     @Override

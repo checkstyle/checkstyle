@@ -276,23 +276,21 @@ public class JavadocTypeCheck
      */
     private void checkTag(int lineNo, List<JavadocTag> tags, String tagName,
                           Pattern formatPattern, String format) {
-        if (formatPattern == null) {
-            return;
-        }
-
-        int tagCount = 0;
-        final String tagPrefix = "@";
-        for (int i = tags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = tags.get(i);
-            if (tag.getTagName().equals(tagName)) {
-                tagCount++;
-                if (!formatPattern.matcher(tag.getFirstArg()).find()) {
-                    log(lineNo, MSG_TAG_FORMAT, tagPrefix + tagName, format);
+        if (formatPattern != null) {
+            int tagCount = 0;
+            final String tagPrefix = "@";
+            for (int i = tags.size() - 1; i >= 0; i--) {
+                final JavadocTag tag = tags.get(i);
+                if (tag.getTagName().equals(tagName)) {
+                    tagCount++;
+                    if (!formatPattern.matcher(tag.getFirstArg()).find()) {
+                        log(lineNo, MSG_TAG_FORMAT, tagPrefix + tagName, format);
+                    }
                 }
             }
-        }
-        if (tagCount == 0) {
-            log(lineNo, MSG_MISSING_TAG, tagPrefix + tagName);
+            if (tagCount == 0) {
+                log(lineNo, MSG_MISSING_TAG, tagPrefix + tagName);
+            }
         }
     }
 

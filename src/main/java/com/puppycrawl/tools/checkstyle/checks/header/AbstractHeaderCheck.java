@@ -145,24 +145,22 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * @throws ConversionException if the header cannot be interpreted
      */
     public void setHeader(String header) {
-        if (CommonUtils.isBlank(header)) {
-            return;
-        }
+        if (!CommonUtils.isBlank(header)) {
+            checkHeaderNotInitialized();
 
-        checkHeaderNotInitialized();
+            final String headerExpandedNewLines = ESCAPED_LINE_FEED_PATTERN
+                    .matcher(header).replaceAll("\n");
 
-        final String headerExpandedNewLines = ESCAPED_LINE_FEED_PATTERN
-                .matcher(header).replaceAll("\n");
-
-        final Reader headerReader = new StringReader(headerExpandedNewLines);
-        try {
-            loadHeader(headerReader);
-        }
-        catch (final IOException ex) {
-            throw new ConversionException("unable to load header", ex);
-        }
-        finally {
-            Closeables.closeQuietly(headerReader);
+            final Reader headerReader = new StringReader(headerExpandedNewLines);
+            try {
+                loadHeader(headerReader);
+            }
+            catch (final IOException ex) {
+                throw new ConversionException("unable to load header", ex);
+            }
+            finally {
+                Closeables.closeQuietly(headerReader);
+            }
         }
     }
 

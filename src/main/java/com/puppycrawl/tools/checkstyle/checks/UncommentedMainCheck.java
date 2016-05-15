@@ -153,16 +153,13 @@ public class UncommentedMainCheck
      * @param method method definition node
      */
     private void visitMethodDef(DetailAST method) {
-        if (classDepth != 1) {
-            // method in inner class or in interface definition
-            return;
-        }
-
-        if (checkClassName()
-            && checkName(method)
-            && checkModifiers(method)
-            && checkType(method)
-            && checkParams(method)) {
+        if (classDepth == 1
+                // method not in inner class or in interface definition
+                && checkClassName()
+                && checkName(method)
+                && checkModifiers(method)
+                && checkType(method)
+                && checkParams(method)) {
             log(method.getLineNo(), MSG_KEY);
         }
     }

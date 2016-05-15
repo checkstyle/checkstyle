@@ -207,26 +207,21 @@ public class MagicNumberCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ignoreAnnotation && isChildOf(ast, TokenTypes.ANNOTATION)) {
-            return;
-        }
+        if ((!ignoreAnnotation || !isChildOf(ast, TokenTypes.ANNOTATION))
+                && !isInIgnoreList(ast)
+                && (!ignoreHashCodeMethod || !isInHashCodeMethod(ast))) {
+            final DetailAST constantDefAST = findContainingConstantDef(ast);
 
-        if (isInIgnoreList(ast)
-            || ignoreHashCodeMethod && isInHashCodeMethod(ast)) {
-            return;
-        }
-
-        final DetailAST constantDefAST = findContainingConstantDef(ast);
-
-        if (constantDefAST == null) {
-            if (!ignoreFieldDeclaration || !isFieldDeclaration(ast)) {
-                reportMagicNumber(ast);
+            if (constantDefAST == null) {
+                if (!ignoreFieldDeclaration || !isFieldDeclaration(ast)) {
+                    reportMagicNumber(ast);
+                }
             }
-        }
-        else {
-            final boolean found = isMagicNumberExists(ast, constantDefAST);
-            if (found) {
-                reportMagicNumber(ast);
+            else {
+                final boolean found = isMagicNumberExists(ast, constantDefAST);
+                if (found) {
+                    reportMagicNumber(ast);
+                }
             }
         }
     }

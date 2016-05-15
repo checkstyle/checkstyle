@@ -74,18 +74,17 @@ public class SimplifyBooleanReturnCheck
         // don't bother if this is not if then else
         final AST elseLiteral =
             ast.findFirstToken(TokenTypes.LITERAL_ELSE);
-        if (elseLiteral == null) {
-            return;
-        }
-        final AST elseStatement = elseLiteral.getFirstChild();
+        if (elseLiteral != null) {
+            final AST elseStatement = elseLiteral.getFirstChild();
 
-        // skip '(' and ')'
-        final AST condition = ast.getFirstChild().getNextSibling();
-        final AST thenStatement = condition.getNextSibling().getNextSibling();
+            // skip '(' and ')'
+            final AST condition = ast.getFirstChild().getNextSibling();
+            final AST thenStatement = condition.getNextSibling().getNextSibling();
 
-        if (canReturnOnlyBooleanLiteral(thenStatement)
-            && canReturnOnlyBooleanLiteral(elseStatement)) {
-            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+            if (canReturnOnlyBooleanLiteral(thenStatement)
+                && canReturnOnlyBooleanLiteral(elseStatement)) {
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+            }
         }
     }
 

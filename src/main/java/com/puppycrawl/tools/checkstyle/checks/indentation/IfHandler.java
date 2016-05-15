@@ -72,11 +72,9 @@ public class IfHandler extends BlockParentHandler {
 
     @Override
     protected void checkTopLevelToken() {
-        if (isIfAfterElse()) {
-            return;
+        if (!isIfAfterElse()) {
+            super.checkTopLevelToken();
         }
-
-        super.checkTopLevelToken();
     }
 
     /**

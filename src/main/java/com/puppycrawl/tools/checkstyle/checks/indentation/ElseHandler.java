@@ -49,14 +49,16 @@ public class ElseHandler extends BlockParentHandler {
 
         final DetailAST ifAST = getMainAst().getParent();
         final DetailAST slist = ifAST.findFirstToken(TokenTypes.SLIST);
-        if (slist != null) {
+        if (slist == null) {
+            super.checkTopLevelToken();
+        }
+        else {
             final DetailAST lcurly = slist.getLastChild();
-            if (lcurly.getLineNo() == getMainAst().getLineNo()) {
-                // indentation checked as part of LITERAL IF check
-                return;
+            // indentation checked as part of LITERAL IF check
+            if (lcurly.getLineNo() != getMainAst().getLineNo()) {
+                super.checkTopLevelToken();
             }
         }
-        super.checkTopLevelToken();
     }
 
     @Override

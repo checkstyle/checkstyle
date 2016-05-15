@@ -127,26 +127,25 @@ public class MethodParamPadCheck
         else {
             parenAST = ast.findFirstToken(TokenTypes.LPAREN);
             // array construction => parenAST == null
-            if (parenAST == null) {
-                return;
-            }
         }
 
-        final String line = getLines()[parenAST.getLineNo() - 1];
-        if (CommonUtils.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
-            if (!allowLineBreaks) {
-                log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
+        if (parenAST != null) {
+            final String line = getLines()[parenAST.getLineNo() - 1];
+            if (CommonUtils.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
+                if (!allowLineBreaks) {
+                    log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
+                }
             }
-        }
-        else {
-            final int before = parenAST.getColumnNo() - 1;
-            if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(before))) {
-                log(parenAST, MSG_WS_PRECEDED, parenAST.getText());
-            }
-            else if (option == PadOption.SPACE
-                     && !Character.isWhitespace(line.charAt(before))) {
-                log(parenAST, MSG_WS_NOT_PRECEDED, parenAST.getText());
+            else {
+                final int before = parenAST.getColumnNo() - 1;
+                if (option == PadOption.NOSPACE
+                    && Character.isWhitespace(line.charAt(before))) {
+                    log(parenAST, MSG_WS_PRECEDED, parenAST.getText());
+                }
+                else if (option == PadOption.SPACE
+                         && !Character.isWhitespace(line.charAt(before))) {
+                    log(parenAST, MSG_WS_NOT_PRECEDED, parenAST.getText());
+                }
             }
         }
     }

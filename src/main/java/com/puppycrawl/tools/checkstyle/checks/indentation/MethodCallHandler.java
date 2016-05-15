@@ -148,27 +148,24 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         final DetailAST exprNode = getMainAst().getParent();
-        if (exprNode.getParent().getType() != TokenTypes.SLIST) {
-            return;
+        if (exprNode.getParent().getType() == TokenTypes.SLIST) {
+            final DetailAST methodName = getMainAst().getFirstChild();
+            checkExpressionSubtree(methodName, getIndent(), false, false);
+
+            final DetailAST lparen = getMainAst();
+            final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+            checkLParen(lparen);
+
+            if (rparen.getLineNo() != lparen.getLineNo()) {
+                checkExpressionSubtree(
+                    getMainAst().findFirstToken(TokenTypes.ELIST),
+                    new IndentLevel(getIndent(), getBasicOffset()),
+                    false, true);
+
+                checkRParen(lparen, rparen);
+                checkWrappingIndentation(getMainAst(), getMethodCallLastNode(getMainAst()));
+            }
         }
-        final DetailAST methodName = getMainAst().getFirstChild();
-        checkExpressionSubtree(methodName, getIndent(), false, false);
-
-        final DetailAST lparen = getMainAst();
-        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
-        checkLParen(lparen);
-
-        if (rparen.getLineNo() == lparen.getLineNo()) {
-            return;
-        }
-
-        checkExpressionSubtree(
-            getMainAst().findFirstToken(TokenTypes.ELIST),
-            new IndentLevel(getIndent(), getBasicOffset()),
-            false, true);
-
-        checkRParen(lparen, rparen);
-        checkWrappingIndentation(getMainAst(), getMethodCallLastNode(getMainAst()));
     }
 
     @Override

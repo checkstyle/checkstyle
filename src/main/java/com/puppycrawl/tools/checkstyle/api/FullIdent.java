@@ -107,18 +107,16 @@ public final class FullIdent {
      * @param ast the node to recurse from
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
-        if (ast == null) {
-            return;
-        }
-
-        if (ast.getType() == TokenTypes.DOT) {
-            extractFullIdent(full, ast.getFirstChild());
-            full.append(".");
-            extractFullIdent(
-                full, ast.getFirstChild().getNextSibling());
-        }
-        else {
-            full.append(ast);
+        if (ast != null) {
+            if (ast.getType() == TokenTypes.DOT) {
+                extractFullIdent(full, ast.getFirstChild());
+                full.append(".");
+                extractFullIdent(
+                    full, ast.getFirstChild().getNextSibling());
+            }
+            else {
+                full.append(ast);
+            }
         }
     }
 

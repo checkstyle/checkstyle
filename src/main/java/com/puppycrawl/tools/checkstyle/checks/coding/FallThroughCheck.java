@@ -133,20 +133,17 @@ public class FallThroughCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST nextGroup = ast.getNextSibling();
         final boolean isLastGroup = nextGroup.getType() != TokenTypes.CASE_GROUP;
-        if (isLastGroup && !checkLastCaseGroup) {
-            // we do not need to check last group
-            return;
-        }
+        if (!isLastGroup || checkLastCaseGroup) {
+            final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
-
-        if (slist != null && !isTerminated(slist, true, true)
-            && !hasFallThroughComment(ast, nextGroup)) {
-            if (isLastGroup) {
-                log(ast, MSG_FALL_THROUGH_LAST);
-            }
-            else {
-                log(nextGroup, MSG_FALL_THROUGH);
+            if (slist != null && !isTerminated(slist, true, true)
+                && !hasFallThroughComment(ast, nextGroup)) {
+                if (isLastGroup) {
+                    log(ast, MSG_FALL_THROUGH_LAST);
+                }
+                else {
+                    log(nextGroup, MSG_FALL_THROUGH);
+                }
             }
         }
     }

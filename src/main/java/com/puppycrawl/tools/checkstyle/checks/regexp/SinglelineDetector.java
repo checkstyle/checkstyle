@@ -96,34 +96,32 @@ class SinglelineDetector {
     private void checkLine(int lineNo, String line, Matcher matcher,
             int startPosition) {
         final boolean foundMatch = matcher.find(startPosition);
-        if (!foundMatch) {
-            return;
-        }
-
-        // match is found, check for intersection with comment
-        final int startCol = matcher.start(0);
-        final int endCol = matcher.end(0);
-        // Note that Matcher.end(int) returns the offset AFTER the
-        // last matched character, but shouldSuppress()
-        // needs column number of the last character.
-        // So we need to use (endCol - 1) here.
-        if (options.getSuppressor()
-                .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
-            if (endCol < line.length()) {
-                // check if the expression is on the rest of the line
-                checkLine(lineNo, line, matcher, endCol);
-            }
-            return;
-        }
-
-        currentMatches++;
-        if (currentMatches > options.getMaximum()) {
-            if (options.getMessage().isEmpty()) {
-                options.getReporter().log(lineNo, MSG_REGEXP_EXCEEDED,
-                        matcher.pattern().toString());
+        if (foundMatch) {
+            // match is found, check for intersection with comment
+            final int startCol = matcher.start(0);
+            final int endCol = matcher.end(0);
+            // Note that Matcher.end(int) returns the offset AFTER the
+            // last matched character, but shouldSuppress()
+            // needs column number of the last character.
+            // So we need to use (endCol - 1) here.
+            if (options.getSuppressor()
+                    .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
+                if (endCol < line.length()) {
+                    // check if the expression is on the rest of the line
+                    checkLine(lineNo, line, matcher, endCol);
+                }
             }
             else {
-                options.getReporter().log(lineNo, options.getMessage());
+                currentMatches++;
+                if (currentMatches > options.getMaximum()) {
+                    if (options.getMessage().isEmpty()) {
+                        options.getReporter().log(lineNo, MSG_REGEXP_EXCEEDED,
+                                matcher.pattern().toString());
+                    }
+                    else {
+                        options.getReporter().log(lineNo, options.getMessage());
+                    }
+                }
             }
         }
     }

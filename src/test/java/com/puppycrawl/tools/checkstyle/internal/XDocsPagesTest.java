@@ -216,37 +216,36 @@ public class XDocsPagesTest {
     private static void validateCheckstyleXml(String fileName, String code,
             String unserializedSource) throws IOException {
         // can't process non-existent examples, or out of context snippets
-        if (code.contains("com.mycompany") || code.contains("checkstyle-packages")
-                || code.contains("MethodLimit") || code.contains("<suppress ")
-                || code.contains("<import-control ") || unserializedSource.startsWith("<property ")
-                || unserializedSource.startsWith("<taskdef ")) {
-            return;
-        }
-
-        // validate checkstyle structure and contents
-        try {
-            final Properties properties = new Properties();
-
-            properties.setProperty("checkstyle.header.file",
-                    new File("config/java.header").getCanonicalPath());
-
-            final PropertiesExpander expander = new PropertiesExpander(properties);
-            final Configuration config = ConfigurationLoader.loadConfiguration(new InputSource(
-                    new StringReader(code)), expander, false);
-            final Checker checker = new Checker();
-
+        if (!code.contains("com.mycompany") && !code.contains("checkstyle-packages")
+                && !code.contains("MethodLimit") && !code.contains("<suppress ")
+                && !code.contains("<import-control ")
+                && !unserializedSource.startsWith("<property ")
+                && !unserializedSource.startsWith("<taskdef ")) {
+            // validate checkstyle structure and contents
             try {
-                final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
-                checker.setModuleClassLoader(moduleClassLoader);
-                checker.configure(config);
+                final Properties properties = new Properties();
+
+                properties.setProperty("checkstyle.header.file",
+                        new File("config/java.header").getCanonicalPath());
+
+                final PropertiesExpander expander = new PropertiesExpander(properties);
+                final Configuration config = ConfigurationLoader.loadConfiguration(new InputSource(
+                        new StringReader(code)), expander, false);
+                final Checker checker = new Checker();
+
+                try {
+                    final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
+                    checker.setModuleClassLoader(moduleClassLoader);
+                    checker.configure(config);
+                }
+                finally {
+                    checker.destroy();
+                }
             }
-            finally {
-                checker.destroy();
+            catch (CheckstyleException ex) {
+                Assert.fail(fileName + " has invalid Checkstyle xml (" + ex.getMessage() + "): "
+                        + unserializedSource);
             }
-        }
-        catch (CheckstyleException ex) {
-            Assert.fail(fileName + " has invalid Checkstyle xml (" + ex.getMessage() + "): "
-                    + unserializedSource);
         }
     }
 

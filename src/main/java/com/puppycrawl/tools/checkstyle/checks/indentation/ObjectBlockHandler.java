@@ -81,11 +81,9 @@ public class ObjectBlockHandler extends BlockParentHandler {
         // only do this if we have a new for a parent (anonymous inner
         // class)
         final DetailAST parentAST = getMainAst().getParent();
-        if (parentAST.getType() != TokenTypes.LITERAL_NEW) {
-            return;
+        if (parentAST.getType() == TokenTypes.LITERAL_NEW) {
+            super.checkIndentation();
         }
-
-        super.checkIndentation();
     }
 
     @Override

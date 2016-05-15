@@ -27,7 +27,7 @@
     <!-- These classes are deprecated and will be removed soon. -->
     <suppress checks="ForbidWildcardAsReturnType"
               files="AbstractTypeAwareCheck\.java"
-              lines="230,246,411"/>
+              lines="230,246,409"/>
     <suppress checks="ForbidWildcardAsReturnType"
               files="ClassResolver\.java"
               lines="72,184"/>

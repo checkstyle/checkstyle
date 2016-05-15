@@ -201,31 +201,28 @@ public class OperatorWrapCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.COLON) {
-            final DetailAST parent = ast.getParent();
-            if (parent.getType() == TokenTypes.LITERAL_DEFAULT
-                || parent.getType() == TokenTypes.LITERAL_CASE) {
-                //we do not want to check colon for cases and defaults
-                return;
+        final DetailAST parent = ast.getParent();
+        //we do not want to check colon for cases and defaults
+        if (ast.getType() != TokenTypes.COLON
+                || parent.getType() != TokenTypes.LITERAL_DEFAULT
+                    && parent.getType() != TokenTypes.LITERAL_CASE) {
+            final String text = ast.getText();
+            final int colNo = ast.getColumnNo();
+            final int lineNo = ast.getLineNo();
+            final String currentLine = getLine(lineNo - 1);
+
+            // Check if rest of line is whitespace, and not just the operator
+            // by itself. This last bit is to handle the operator on a line by
+            // itself.
+            if (option == WrapOption.NL
+                    && !text.equals(currentLine.trim())
+                    && CommonUtils.isBlank(currentLine.substring(colNo + text.length()))) {
+                log(lineNo, colNo, MSG_LINE_NEW, text);
             }
-        }
-
-        final String text = ast.getText();
-        final int colNo = ast.getColumnNo();
-        final int lineNo = ast.getLineNo();
-        final String currentLine = getLine(lineNo - 1);
-
-        // Check if rest of line is whitespace, and not just the operator
-        // by itself. This last bit is to handle the operator on a line by
-        // itself.
-        if (option == WrapOption.NL
-                && !text.equals(currentLine.trim())
-                && CommonUtils.isBlank(currentLine.substring(colNo + text.length()))) {
-            log(lineNo, colNo, MSG_LINE_NEW, text);
-        }
-        else if (option == WrapOption.EOL
-                && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
-            log(lineNo, colNo, MSG_LINE_PREVIOUS, text);
+            else if (option == WrapOption.EOL
+                    && CommonUtils.hasWhitespaceBefore(colNo - 1, currentLine)) {
+                log(lineNo, colNo, MSG_LINE_PREVIOUS, text);
+            }
         }
     }
 }

@@ -122,10 +122,9 @@ public class SlistHandler extends BlockParentHandler {
     public void checkIndentation() {
         // only need to check this if parent is not
         // an if, else, while, do, ctor, method
-        if (hasBlockParent() || isSameLineCaseGroup()) {
-            return;
+        if (!hasBlockParent() && !isSameLineCaseGroup()) {
+            super.checkIndentation();
         }
-        super.checkIndentation();
     }
 
     /**

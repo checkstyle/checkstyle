@@ -154,16 +154,14 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      */
     public void setFile(final String name) {
         // Handle empty param
-        if (CommonUtils.isBlank(name)) {
-            return;
-        }
-
-        try {
-            root = ImportControlLoader.load(new File(name).toURI());
-            fileLocation = name;
-        }
-        catch (final CheckstyleException ex) {
-            throw new ConversionException(UNABLE_TO_LOAD + name, ex);
+        if (!CommonUtils.isBlank(name)) {
+            try {
+                root = ImportControlLoader.load(new File(name).toURI());
+                fileLocation = name;
+            }
+            catch (final CheckstyleException ex) {
+                throw new ConversionException(UNABLE_TO_LOAD + name, ex);
+            }
         }
     }
 
@@ -175,22 +173,21 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      */
     public void setUrl(final String url) {
         // Handle empty param
-        if (CommonUtils.isBlank(url)) {
-            return;
-        }
-        final URI uri;
-        try {
-            uri = URI.create(url);
-        }
-        catch (final IllegalArgumentException ex) {
-            throw new ConversionException("Syntax error in url " + url, ex);
-        }
-        try {
-            root = ImportControlLoader.load(uri);
-            fileLocation = url;
-        }
-        catch (final CheckstyleException ex) {
-            throw new ConversionException(UNABLE_TO_LOAD + url, ex);
+        if (!CommonUtils.isBlank(url)) {
+            final URI uri;
+            try {
+                uri = URI.create(url);
+            }
+            catch (final IllegalArgumentException ex) {
+                throw new ConversionException("Syntax error in url " + url, ex);
+            }
+            try {
+                root = ImportControlLoader.load(uri);
+                fileLocation = url;
+            }
+            catch (final CheckstyleException ex) {
+                throw new ConversionException(UNABLE_TO_LOAD + url, ex);
+            }
         }
     }
 }

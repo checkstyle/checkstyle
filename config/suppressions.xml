@@ -123,9 +123,9 @@
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
 
     <!-- getDetails() method - huge Switch, it has to be monolithic -->
-    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="316"/>
-    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="316"/>
-    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="316"/>
+    <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="313"/>
+    <suppress checks="JavaNCSS" files="RightCurlyCheck\.java" lines="313"/>
+    <suppress checks="CyclomaticComplexity" files="RightCurlyCheck\.java" lines="313"/>
 
     <!-- we need that set of converters -->
     <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
@@ -168,4 +168,8 @@
     <!-- Not reasonable to split as encapsulation of logic will be damaged. -->
     <suppress checks="ExecutableStatementCount" files="Main\.java" lines="128"/>
     <suppress checks="JavaNCSS" files="Main\.java"  lines="128"/>
+
+    <!-- too complex to break apart -->
+    <suppress checks="CyclomaticComplexity" files="MissingOverrideCheck\.java"  lines="144"/>
+    <suppress checks="ReturnCount" files="JavadocStyleCheck\.java"  lines="342"/>
 </suppressions>

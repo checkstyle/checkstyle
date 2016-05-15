@@ -70,12 +70,12 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     public void setMultiLines(int... list) {
         if (list.length == 0) {
             multiLines = EMPTY_INT_ARRAY;
-            return;
         }
-
-        multiLines = new int[list.length];
-        System.arraycopy(list, 0, multiLines, 0, list.length);
-        Arrays.sort(multiLines);
+        else {
+            multiLines = new int[list.length];
+            System.arraycopy(list, 0, multiLines, 0, list.length);
+            Arrays.sort(multiLines);
+        }
     }
 
     @Override
@@ -171,13 +171,12 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      */
     @Override
     public void setHeader(String header) {
-        if (CommonUtils.isBlank(header)) {
-            return;
+        if (!CommonUtils.isBlank(header)) {
+            if (!CommonUtils.isPatternValid(header)) {
+                throw new ConversionException("Unable to parse format: " + header);
+            }
+            super.setHeader(header);
         }
-        if (!CommonUtils.isPatternValid(header)) {
-            throw new ConversionException("Unable to parse format: " + header);
-        }
-        super.setHeader(header);
     }
 
 }

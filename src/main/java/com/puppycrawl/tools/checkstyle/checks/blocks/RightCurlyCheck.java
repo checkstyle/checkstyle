@@ -175,22 +175,19 @@ public class RightCurlyCheck extends AbstractCheck {
         final Details details = getDetails(ast);
         final DetailAST rcurly = details.rcurly;
 
-        if (rcurly == null || rcurly.getType() != TokenTypes.RCURLY) {
-            // we need to have both tokens to perform the check
-            return;
-        }
+        if (rcurly != null && rcurly.getType() == TokenTypes.RCURLY) {
+            final String violation;
+            if (shouldStartLine) {
+                final String targetSourceLine = getLines()[rcurly.getLineNo() - 1];
+                violation = validate(details, option, true, targetSourceLine);
+            }
+            else {
+                violation = validate(details, option, false, "");
+            }
 
-        final String violation;
-        if (shouldStartLine) {
-            final String targetSourceLine = getLines()[rcurly.getLineNo() - 1];
-            violation = validate(details, option, true, targetSourceLine);
-        }
-        else {
-            violation = validate(details, option, false, "");
-        }
-
-        if (!violation.isEmpty()) {
-            log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
+            if (!violation.isEmpty()) {
+                log(rcurly, violation, "}", rcurly.getColumnNo() + 1);
+            }
         }
     }
 

@@ -58,34 +58,33 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (isAbstract(ast)) {
-            // abstract class could not have private constructor
-            return;
-        }
-        final boolean hasStaticModifier = isStatic(ast);
+        // abstract class could not have private constructor
+        if (!isAbstract(ast)) {
+            final boolean hasStaticModifier = isStatic(ast);
 
-        final Details details = new Details(ast);
-        details.invoke();
+            final Details details = new Details(ast);
+            details.invoke();
 
-        final boolean hasDefaultCtor = details.isHasDefaultCtor();
-        final boolean hasPublicCtor = details.isHasPublicCtor();
-        final boolean hasMethodOrField = details.isHasMethodOrField();
-        final boolean hasNonStaticMethodOrField = details.isHasNonStaticMethodOrField();
-        final boolean hasNonPrivateStaticMethodOrField =
-                details.isHasNonPrivateStaticMethodOrField();
+            final boolean hasDefaultCtor = details.isHasDefaultCtor();
+            final boolean hasPublicCtor = details.isHasPublicCtor();
+            final boolean hasMethodOrField = details.isHasMethodOrField();
+            final boolean hasNonStaticMethodOrField = details.isHasNonStaticMethodOrField();
+            final boolean hasNonPrivateStaticMethodOrField =
+                    details.isHasNonPrivateStaticMethodOrField();
 
-        final boolean hasAccessibleCtor = hasDefaultCtor || hasPublicCtor;
+            final boolean hasAccessibleCtor = hasDefaultCtor || hasPublicCtor;
 
-        // figure out if class extends java.lang.object directly
-        // keep it simple for now and get a 99% solution
-        final boolean extendsJlo =
-            ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
+            // figure out if class extends java.lang.object directly
+            // keep it simple for now and get a 99% solution
+            final boolean extendsJlo =
+                ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null;
 
-        final boolean isUtilClass = extendsJlo && hasMethodOrField
-            && !hasNonStaticMethodOrField && hasNonPrivateStaticMethodOrField;
+            final boolean isUtilClass = extendsJlo && hasMethodOrField
+                && !hasNonStaticMethodOrField && hasNonPrivateStaticMethodOrField;
 
-        if (isUtilClass && hasAccessibleCtor && !hasStaticModifier) {
-            log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+            if (isUtilClass && hasAccessibleCtor && !hasStaticModifier) {
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+            }
         }
     }
 

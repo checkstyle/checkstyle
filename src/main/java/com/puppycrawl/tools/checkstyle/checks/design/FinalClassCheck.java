@@ -125,20 +125,18 @@ public class FinalClassCheck
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (ast.getType() != TokenTypes.CLASS_DEF) {
-            return;
-        }
-
-        final ClassDesc desc = classes.pop();
-        if (desc.isWithPrivateCtor()
-            && !desc.isDeclaredAsAbstract()
-            && !desc.isDeclaredAsFinal()
-            && !desc.isWithNonPrivateCtor()
-            && !desc.isWithNestedSubclass()
-            && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
-            final String qualifiedName = desc.getQualifiedName();
-            final String className = getClassNameFromQualifiedName(qualifiedName);
-            log(ast.getLineNo(), MSG_KEY, className);
+        if (ast.getType() == TokenTypes.CLASS_DEF) {
+            final ClassDesc desc = classes.pop();
+            if (desc.isWithPrivateCtor()
+                && !desc.isDeclaredAsAbstract()
+                && !desc.isDeclaredAsFinal()
+                && !desc.isWithNonPrivateCtor()
+                && !desc.isWithNestedSubclass()
+                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+                final String qualifiedName = desc.getQualifiedName();
+                final String className = getClassNameFromQualifiedName(qualifiedName);
+                log(ast.getLineNo(), MSG_KEY, className);
+            }
         }
     }
 

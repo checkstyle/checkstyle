@@ -201,19 +201,19 @@ public class JavadocStyleCheck
             if (getFileContents().inPackageInfo()) {
                 log(ast.getLineNo(), MSG_JAVADOC_MISSING);
             }
-            return;
         }
+        else {
+            if (checkFirstSentence) {
+                checkFirstSentenceEnding(ast, comment);
+            }
 
-        if (checkFirstSentence) {
-            checkFirstSentenceEnding(ast, comment);
-        }
+            if (checkHtml) {
+                checkHtmlTags(ast, comment);
+            }
 
-        if (checkHtml) {
-            checkHtmlTags(ast, comment);
-        }
-
-        if (checkEmptyJavadoc) {
-            checkJavadocIsNotEmpty(comment);
+            if (checkEmptyJavadoc) {
+                checkJavadocIsNotEmpty(comment);
+            }
         }
     }
 

@@ -76,42 +76,38 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         DetailAST nextNode = ast.getNextSibling();
 
-        if (nextNode == null) {
-            // no next statement - no check
-            return;
-        }
+        if (nextNode != null) {
+            final boolean isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
 
-        final boolean isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
+            if (isCommaSeparated
+                || nextNode.getType() == TokenTypes.SEMI) {
+                nextNode = nextNode.getNextSibling();
+            }
 
-        if (isCommaSeparated
-            || nextNode.getType() == TokenTypes.SEMI) {
-            nextNode = nextNode.getNextSibling();
-        }
-
-        if (nextNode != null
-                && nextNode.getType() == TokenTypes.VARIABLE_DEF) {
-            final DetailAST firstNode = CheckUtils.getFirstNode(ast);
-            if (isCommaSeparated) {
-                // Check if the multiple variable declarations are in a
-                // for loop initializer. If they are, then no warning
-                // should be displayed. Declaring multiple variables in
-                // a for loop initializer is a good way to minimize
-                // variable scope. Refer Feature Request Id - 2895985
-                // for more details
-                if (ast.getParent().getType() != TokenTypes.FOR_INIT) {
-                    log(firstNode, MSG_MULTIPLE_COMMA);
+            if (nextNode != null
+                    && nextNode.getType() == TokenTypes.VARIABLE_DEF) {
+                final DetailAST firstNode = CheckUtils.getFirstNode(ast);
+                if (isCommaSeparated) {
+                    // Check if the multiple variable declarations are in a
+                    // for loop initializer. If they are, then no warning
+                    // should be displayed. Declaring multiple variables in
+                    // a for loop initializer is a good way to minimize
+                    // variable scope. Refer Feature Request Id - 2895985
+                    // for more details
+                    if (ast.getParent().getType() != TokenTypes.FOR_INIT) {
+                        log(firstNode, MSG_MULTIPLE_COMMA);
+                    }
                 }
-                return;
-            }
+                else {
+                    final DetailAST lastNode = getLastNode(ast);
+                    final DetailAST firstNextNode = CheckUtils.getFirstNode(nextNode);
 
-            final DetailAST lastNode = getLastNode(ast);
-            final DetailAST firstNextNode = CheckUtils.getFirstNode(nextNode);
-
-            if (firstNextNode.getLineNo() == lastNode.getLineNo()) {
-                log(firstNode, MSG_MULTIPLE);
+                    if (firstNextNode.getLineNo() == lastNode.getLineNo()) {
+                        log(firstNode, MSG_MULTIPLE);
+                    }
+                }
             }
         }
-
     }
 
     /**

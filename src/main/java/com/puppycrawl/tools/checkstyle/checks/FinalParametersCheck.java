@@ -115,18 +115,16 @@ public class FinalParametersCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         // don't flag interfaces
         final DetailAST container = ast.getParent().getParent();
-        if (container.getType() == TokenTypes.INTERFACE_DEF) {
-            return;
-        }
-
-        if (ast.getType() == TokenTypes.LITERAL_CATCH) {
-            visitCatch(ast);
-        }
-        else if (ast.getType() == TokenTypes.FOR_EACH_CLAUSE) {
-            visitForEachClause(ast);
-        }
-        else {
-            visitMethod(ast);
+        if (container.getType() != TokenTypes.INTERFACE_DEF) {
+            if (ast.getType() == TokenTypes.LITERAL_CATCH) {
+                visitCatch(ast);
+            }
+            else if (ast.getType() == TokenTypes.FOR_EACH_CLAUSE) {
+                visitForEachClause(ast);
+            }
+            else {
+                visitMethod(ast);
+            }
         }
     }
 
@@ -135,29 +133,25 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param method method or ctor to check.
      */
     private void visitMethod(final DetailAST method) {
-        // exit on fast lane if there is nothing to check here
-        if (!method.branchContains(TokenTypes.PARAMETER_DEF)) {
-            return;
-        }
-
-        // ignore abstract and native methods
         final DetailAST modifiers =
             method.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.branchContains(TokenTypes.ABSTRACT)
-                || modifiers.branchContains(TokenTypes.LITERAL_NATIVE)) {
-            return;
-        }
+        // exit on fast lane if there is nothing to check here
 
-        // we can now be sure that there is at least one parameter
-        final DetailAST parameters =
-            method.findFirstToken(TokenTypes.PARAMETERS);
-        DetailAST child = parameters.getFirstChild();
-        while (child != null) {
-            // children are PARAMETER_DEF and COMMA
-            if (child.getType() == TokenTypes.PARAMETER_DEF) {
-                checkParam(child);
+        if (method.branchContains(TokenTypes.PARAMETER_DEF)
+                // ignore abstract and native methods
+                && !modifiers.branchContains(TokenTypes.ABSTRACT)
+                && !modifiers.branchContains(TokenTypes.LITERAL_NATIVE)) {
+            // we can now be sure that there is at least one parameter
+            final DetailAST parameters =
+                method.findFirstToken(TokenTypes.PARAMETERS);
+            DetailAST child = parameters.getFirstChild();
+            while (child != null) {
+                // children are PARAMETER_DEF and COMMA
+                if (child.getType() == TokenTypes.PARAMETER_DEF) {
+                    checkParam(child);
+                }
+                child = child.getNextSibling();
             }
-            child = child.getNextSibling();
         }
     }
 

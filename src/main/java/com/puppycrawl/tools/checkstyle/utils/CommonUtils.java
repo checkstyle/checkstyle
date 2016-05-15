@@ -343,14 +343,13 @@ public final class CommonUtils {
      *            Closeable object
      */
     public static void close(Closeable closeable) {
-        if (closeable == null) {
-            return;
-        }
-        try {
-            closeable.close();
-        }
-        catch (IOException ex) {
-            throw new IllegalStateException("Cannot close the stream", ex);
+        if (closeable != null) {
+            try {
+                closeable.close();
+            }
+            catch (IOException ex) {
+                throw new IllegalStateException("Cannot close the stream", ex);
+            }
         }
     }
 

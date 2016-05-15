@@ -364,29 +364,27 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
-        if (isNotRelevantSituation(ast, currentType)) {
-            return;
-        }
+        if (!isNotRelevantSituation(ast, currentType)) {
+            final String line = getLine(ast.getLineNo() - 1);
+            final int before = ast.getColumnNo() - 1;
+            final int after = ast.getColumnNo() + ast.getText().length();
 
-        final String line = getLine(ast.getLineNo() - 1);
-        final int before = ast.getColumnNo() - 1;
-        final int after = ast.getColumnNo() + ast.getText().length();
-
-        if (before >= 0) {
-            final char prevChar = line.charAt(before);
-            if (shouldCheckSeparationFromPreviousToken(ast)
-                    && !Character.isWhitespace(prevChar)) {
-                log(ast.getLineNo(), ast.getColumnNo(),
-                        MSG_WS_NOT_PRECEDED, ast.getText());
+            if (before >= 0) {
+                final char prevChar = line.charAt(before);
+                if (shouldCheckSeparationFromPreviousToken(ast)
+                        && !Character.isWhitespace(prevChar)) {
+                    log(ast.getLineNo(), ast.getColumnNo(),
+                            MSG_WS_NOT_PRECEDED, ast.getText());
+                }
             }
-        }
 
-        if (after < line.length()) {
-            final char nextChar = line.charAt(after);
-            if (shouldCheckSeparationFromNextToken(ast, nextChar)
-                    && !Character.isWhitespace(nextChar)) {
-                log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
-                        MSG_WS_NOT_FOLLOWED, ast.getText());
+            if (after < line.length()) {
+                final char nextChar = line.charAt(after);
+                if (shouldCheckSeparationFromNextToken(ast, nextChar)
+                        && !Character.isWhitespace(nextChar)) {
+                    log(ast.getLineNo(), ast.getColumnNo() + ast.getText().length(),
+                            MSG_WS_NOT_FOLLOWED, ast.getText());
+                }
             }
         }
     }

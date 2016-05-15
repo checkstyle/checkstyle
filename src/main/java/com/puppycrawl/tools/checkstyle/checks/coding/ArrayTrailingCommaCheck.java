@@ -68,14 +68,12 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
 
         // if curlies are on the same line
         // or array is empty then check nothing
-        if (arrayInit.getLineNo() == rcurly.getLineNo()
-            || arrayInit.getChildCount() == 1) {
-            return;
-        }
-
-        final DetailAST prev = rcurly.getPreviousSibling();
-        if (prev.getType() != TokenTypes.COMMA) {
-            log(rcurly.getLineNo(), MSG_KEY);
+        if (arrayInit.getLineNo() != rcurly.getLineNo()
+            && arrayInit.getChildCount() != 1) {
+            final DetailAST prev = rcurly.getPreviousSibling();
+            if (prev.getType() != TokenTypes.COMMA) {
+                log(rcurly.getLineNo(), MSG_KEY);
+            }
         }
     }
 }

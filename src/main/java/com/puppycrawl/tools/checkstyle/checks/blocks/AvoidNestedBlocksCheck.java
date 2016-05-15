@@ -115,12 +115,10 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
-        if (parent.getType() == TokenTypes.SLIST) {
-            if (allowInSwitchCase
-                    && parent.getParent().getType() == TokenTypes.CASE_GROUP
-                    && parent.getNumberOfChildren() == 1) {
-                return;
-            }
+        if (parent.getType() == TokenTypes.SLIST
+                && (!allowInSwitchCase
+                    || parent.getParent().getType() != TokenTypes.CASE_GROUP
+                    || parent.getNumberOfChildren() != 1)) {
             log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY_BLOCK_NESTED);
         }
     }

@@ -150,23 +150,26 @@ public final class MissingOverrideCheck extends AbstractCheck {
         if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
             log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
-            return;
         }
+        else {
+            boolean check = true;
 
-        if (javaFiveCompatibility) {
-            final DetailAST defOrNew = ast.getParent().getParent();
+            if (javaFiveCompatibility) {
+                final DetailAST defOrNew = ast.getParent().getParent();
 
-            if (defOrNew.branchContains(TokenTypes.EXTENDS_CLAUSE)
-                || defOrNew.branchContains(TokenTypes.IMPLEMENTS_CLAUSE)
-                || defOrNew.getType() == TokenTypes.LITERAL_NEW) {
-                return;
+                if (defOrNew.branchContains(TokenTypes.EXTENDS_CLAUSE)
+                    || defOrNew.branchContains(TokenTypes.IMPLEMENTS_CLAUSE)
+                    || defOrNew.getType() == TokenTypes.LITERAL_NEW) {
+                    check = false;
+                }
             }
-        }
 
-        if (containsTag
-            && !AnnotationUtility.containsAnnotation(ast, OVERRIDE)
-            && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)) {
-            log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
+            if (check
+                && containsTag
+                && !AnnotationUtility.containsAnnotation(ast, OVERRIDE)
+                && !AnnotationUtility.containsAnnotation(ast, FQ_OVERRIDE)) {
+                log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
+            }
         }
     }
 

@@ -172,30 +172,27 @@ public class WriteTagCheck
      * @param comment the Javadoc comment for the type definition.
      */
     private void checkTag(int lineNo, String... comment) {
-        if (tagRegExp == null) {
-            return;
-        }
-
-        int tagCount = 0;
-        for (int i = 0; i < comment.length; i++) {
-            final String commentValue = comment[i];
-            final Matcher matcher = tagRegExp.matcher(commentValue);
-            if (matcher.find()) {
-                tagCount += 1;
-                final int contentStart = matcher.start(1);
-                final String content = commentValue.substring(contentStart);
-                if (tagFormatRegExp == null || tagFormatRegExp.matcher(content).find()) {
-                    logTag(lineNo + i - comment.length, tag, content);
-                }
-                else {
-                    log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat);
+        if (tagRegExp != null) {
+            int tagCount = 0;
+            for (int i = 0; i < comment.length; i++) {
+                final String commentValue = comment[i];
+                final Matcher matcher = tagRegExp.matcher(commentValue);
+                if (matcher.find()) {
+                    tagCount += 1;
+                    final int contentStart = matcher.start(1);
+                    final String content = commentValue.substring(contentStart);
+                    if (tagFormatRegExp == null || tagFormatRegExp.matcher(content).find()) {
+                        logTag(lineNo + i - comment.length, tag, content);
+                    }
+                    else {
+                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat);
+                    }
                 }
             }
+            if (tagCount == 0) {
+                log(lineNo, MSG_MISSING_TAG, tag);
+            }
         }
-        if (tagCount == 0) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-
     }
 
     /**

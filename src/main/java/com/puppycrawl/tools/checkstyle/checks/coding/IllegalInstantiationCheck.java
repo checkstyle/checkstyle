@@ -200,18 +200,16 @@ public class IllegalInstantiationCheck
     private void postProcessLiteralNew(DetailAST newTokenAst) {
         final DetailAST typeNameAst = newTokenAst.getFirstChild();
         final AST nameSibling = typeNameAst.getNextSibling();
-        if (nameSibling.getType() == TokenTypes.ARRAY_DECLARATOR) {
-            // ast == "new Boolean[]"
-            return;
-        }
-
-        final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAst);
-        final String typeName = typeIdent.getText();
-        final int lineNo = newTokenAst.getLineNo();
-        final int colNo = newTokenAst.getColumnNo();
-        final String fqClassName = getIllegalInstantiation(typeName);
-        if (fqClassName != null) {
-            log(lineNo, colNo, MSG_KEY, fqClassName);
+        if (nameSibling.getType() != TokenTypes.ARRAY_DECLARATOR) {
+            // ast != "new Boolean[]"
+            final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAst);
+            final String typeName = typeIdent.getText();
+            final int lineNo = newTokenAst.getLineNo();
+            final int colNo = newTokenAst.getColumnNo();
+            final String fqClassName = getIllegalInstantiation(typeName);
+            if (fqClassName != null) {
+                log(lineNo, colNo, MSG_KEY, fqClassName);
+            }
         }
     }
 

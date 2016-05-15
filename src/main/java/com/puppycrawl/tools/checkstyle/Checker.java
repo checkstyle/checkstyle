@@ -460,17 +460,17 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     public final void setFileExtensions(String... extensions) {
         if (extensions == null) {
             fileExtensions = null;
-            return;
         }
-
-        fileExtensions = new String[extensions.length];
-        for (int i = 0; i < extensions.length; i++) {
-            final String extension = extensions[i];
-            if (CommonUtils.startsWithChar(extension, '.')) {
-                fileExtensions[i] = extension;
-            }
-            else {
-                fileExtensions[i] = "." + extension;
+        else {
+            fileExtensions = new String[extensions.length];
+            for (int i = 0; i < extensions.length; i++) {
+                final String extension = extensions[i];
+                if (CommonUtils.startsWithChar(extension, '.')) {
+                    fileExtensions[i] = extension;
+                }
+                else {
+                    fileExtensions[i] = "." + extension;
+                }
             }
         }
     }

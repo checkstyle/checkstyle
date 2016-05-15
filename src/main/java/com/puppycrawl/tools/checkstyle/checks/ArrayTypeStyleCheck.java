@@ -59,24 +59,19 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST typeAST = ast.getParent();
-        if (typeAST.getType() != TokenTypes.TYPE) {
-            return;
-        }
-        final DetailAST parentAst = typeAST.getParent();
-        if (parentAst.getType() == TokenTypes.METHOD_DEF) {
-            // Do not check method's return type.
-            // We have no alternatives here.
-            return;
-        }
+        if (typeAST.getType() == TokenTypes.TYPE
+                // Do not check method's return type.
+                // We have no alternatives here.
+                && typeAST.getParent().getType() != TokenTypes.METHOD_DEF) {
+            final DetailAST variableAST = typeAST.getNextSibling();
+            if (variableAST != null) {
+                final boolean isJavaStyle =
+                    variableAST.getLineNo() > ast.getLineNo()
+                    || variableAST.getColumnNo() > ast.getColumnNo();
 
-        final DetailAST variableAST = typeAST.getNextSibling();
-        if (variableAST != null) {
-            final boolean isJavaStyle =
-                variableAST.getLineNo() > ast.getLineNo()
-                || variableAST.getColumnNo() > ast.getColumnNo();
-
-            if (isJavaStyle != javaStyle) {
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+                if (isJavaStyle != javaStyle) {
+                    log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+                }
             }
         }
     }

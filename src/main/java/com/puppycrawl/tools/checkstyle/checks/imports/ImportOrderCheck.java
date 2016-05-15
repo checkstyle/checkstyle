@@ -457,32 +457,30 @@ public class ImportOrderCheck
      */
     private void doVisitTokenInSameGroup(boolean isStatic,
             boolean previous, String name, int line) {
-        if (!ordered) {
-            return;
-        }
-
-        if (option == ImportOrderOption.INFLOW) {
-            // out of lexicographic order
-            if (compare(lastImport, name, caseSensitive) > 0) {
-                log(line, MSG_ORDERING, name);
+        if (ordered) {
+            if (option == ImportOrderOption.INFLOW) {
+                // out of lexicographic order
+                if (compare(lastImport, name, caseSensitive) > 0) {
+                    log(line, MSG_ORDERING, name);
+                }
             }
-        }
-        else {
-            final boolean shouldFireError =
-                // previous non-static but current is static (above)
-                // or
-                // previous static but current is non-static (under)
-                previous
-                    ||
-                    // current and previous static or current and
-                    // previous non-static
-                    lastImportStatic == isStatic
-                &&
-                // and out of lexicographic order
-                compare(lastImport, name, caseSensitive) > 0;
+            else {
+                final boolean shouldFireError =
+                    // previous non-static but current is static (above)
+                    // or
+                    // previous static but current is non-static (under)
+                    previous
+                        ||
+                        // current and previous static or current and
+                        // previous non-static
+                        lastImportStatic == isStatic
+                    &&
+                    // and out of lexicographic order
+                    compare(lastImport, name, caseSensitive) > 0;
 
-            if (shouldFireError) {
-                log(line, MSG_ORDERING, name);
+                if (shouldFireError) {
+                    log(line, MSG_ORDERING, name);
+                }
             }
         }
     }

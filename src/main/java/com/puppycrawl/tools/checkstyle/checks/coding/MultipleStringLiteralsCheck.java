@@ -130,19 +130,18 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (isInIgnoreOccurrenceContext(ast)) {
-            return;
-        }
-        final String currentString = ast.getText();
-        if (pattern == null || !pattern.matcher(currentString).find()) {
-            List<StringInfo> hitList = stringMap.get(currentString);
-            if (hitList == null) {
-                hitList = Lists.newArrayList();
-                stringMap.put(currentString, hitList);
+        if (!isInIgnoreOccurrenceContext(ast)) {
+            final String currentString = ast.getText();
+            if (pattern == null || !pattern.matcher(currentString).find()) {
+                List<StringInfo> hitList = stringMap.get(currentString);
+                if (hitList == null) {
+                    hitList = Lists.newArrayList();
+                    stringMap.put(currentString, hitList);
+                }
+                final int line = ast.getLineNo();
+                final int col = ast.getColumnNo();
+                hitList.add(new StringInfo(line, col));
             }
-            final int line = ast.getLineNo();
-            final int col = ast.getColumnNo();
-            hitList.add(new StringInfo(line, col));
         }
     }
 

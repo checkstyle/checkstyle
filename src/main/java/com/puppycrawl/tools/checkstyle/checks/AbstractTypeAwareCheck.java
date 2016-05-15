@@ -307,24 +307,22 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
         final Map<String, AbstractClassInfo> paramsMap = Maps.newHashMap();
         typeParams.push(paramsMap);
 
-        if (params == null) {
-            return;
-        }
-
-        for (DetailAST child = params.getFirstChild();
-             child != null;
-             child = child.getNextSibling()) {
-            if (child.getType() == TokenTypes.TYPE_PARAMETER) {
-                final String alias =
-                    child.findFirstToken(TokenTypes.IDENT).getText();
-                final DetailAST bounds =
-                    child.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
-                if (bounds != null) {
-                    final FullIdent name =
-                        FullIdent.createFullIdentBelow(bounds);
-                    final AbstractClassInfo classInfo =
-                        createClassInfo(new Token(name), currentClassName);
-                    paramsMap.put(alias, classInfo);
+        if (params != null) {
+            for (DetailAST child = params.getFirstChild();
+                 child != null;
+                 child = child.getNextSibling()) {
+                if (child.getType() == TokenTypes.TYPE_PARAMETER) {
+                    final String alias =
+                        child.findFirstToken(TokenTypes.IDENT).getText();
+                    final DetailAST bounds =
+                        child.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
+                    if (bounds != null) {
+                        final FullIdent name =
+                            FullIdent.createFullIdentBelow(bounds);
+                        final AbstractClassInfo classInfo =
+                            createClassInfo(new Token(name), currentClassName);
+                        paramsMap.put(alias, classInfo);
+                    }
                 }
             }
         }

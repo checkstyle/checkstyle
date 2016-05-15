@@ -231,38 +231,36 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
 
-        if (type == TokenTypes.ASSIGN
-            && parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-            // shouldn't process assign in annotation pairs
-            return;
-        }
+        // shouldn't process assign in annotation pairs
+        if (type != TokenTypes.ASSIGN
+            || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+            // An expression is surrounded by parentheses.
+            if (type == TokenTypes.EXPR) {
 
-        // An expression is surrounded by parentheses.
-        if (type == TokenTypes.EXPR) {
+                // If 'parentToSkip' == 'ast', then we've already logged a
+                // warning about an immediate child node in visitToken, so we don't
+                // need to log another one here.
 
-            // If 'parentToSkip' == 'ast', then we've already logged a
-            // warning about an immediate child node in visitToken, so we don't
-            // need to log another one here.
+                if (parentToSkip != ast && isExprSurrounded(ast)) {
+                    if (assignDepth >= 1) {
+                        log(ast, MSG_ASSIGN);
+                    }
+                    else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
+                        log(ast, MSG_RETURN);
+                    }
+                    else {
+                        log(ast, MSG_EXPR);
+                    }
+                }
 
-            if (parentToSkip != ast && isExprSurrounded(ast)) {
-                if (assignDepth >= 1) {
-                    log(ast, MSG_ASSIGN);
-                }
-                else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
-                    log(ast, MSG_RETURN);
-                }
-                else {
-                    log(ast, MSG_EXPR);
-                }
+                parentToSkip = null;
+            }
+            else if (isInTokenList(type, ASSIGNMENTS)) {
+                assignDepth--;
             }
 
-            parentToSkip = null;
+            super.leaveToken(ast);
         }
-        else if (isInTokenList(type, ASSIGNMENTS)) {
-            assignDepth--;
-        }
-
-        super.leaveToken(ast);
     }
 
     /**
