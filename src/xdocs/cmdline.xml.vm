@@ -100,6 +100,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           cannot be used other options and requires exactly one file to run on to be specified.
         </li>
         <li>
+          <code>-d, --debug</code> - Print all debug logging of CheckStyle utility.
+        </li>
+        <li>
           <code>-v</code> - print product version and exit. Any other option is ignored.
         </li>
       </ul>

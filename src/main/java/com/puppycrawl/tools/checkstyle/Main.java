@@ -28,6 +28,11 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Filter;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -35,6 +40,8 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.Closeables;
@@ -49,6 +56,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  **/
 public final class Main {
+    /** Logger for Main. */
+    private static final Log LOG = LogFactory.getLog(Main.class);
+
     /** Width of CLI help option. */
     private static final int HELP_WIDTH = 100;
 
@@ -93,6 +103,12 @@ public final class Main {
 
     /** Name for the option '--treeWithJavadoc'. */
     private static final String OPTION_TREE_JAVADOC_NAME = "treeWithJavadoc";
+
+    /** Name for the option '-d'. */
+    private static final String OPTION_D_NAME = "d";
+
+    /** Name for the option '--debug'. */
+    private static final String OPTION_DEBUG_NAME = "debug";
 
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
@@ -142,34 +158,8 @@ public final class Main {
                     }
                 }
                 else {
-                    // create config helper object
-                    final CliOptions config = convertCliToPojo(commandLine, filesToProcess);
-                    if (commandLine.hasOption(OPTION_T_NAME)) {
-                        // print AST
-                        final File file = config.files.get(0);
-                        final String stringAst = AstTreeStringPrinter.printFileAst(file, false);
-                        System.out.print(stringAst);
-                    }
-                    else if (commandLine.hasOption(OPTION_CAPITAL_T_NAME)) {
-                        final File file = config.files.get(0);
-                        final String stringAst = AstTreeStringPrinter.printFileAst(file, true);
-                        System.out.print(stringAst);
-                    }
-                    else if (commandLine.hasOption(OPTION_J_NAME)) {
-                        final File file = config.files.get(0);
-                        final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
-                        System.out.print(stringAst);
-                    }
-                    else if (commandLine.hasOption(OPTION_CAPITAL_J_NAME)) {
-                        final File file = config.files.get(0);
-                        final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
-                        System.out.print(stringAst);
-                    }
-                    else {
-                        // run Checker
-                        errorCounter = runCheckstyle(config);
-                        exitStatus = errorCounter;
-                    }
+                    errorCounter = runCli(commandLine, filesToProcess);
+                    exitStatus = errorCounter;
                 }
             }
         }
@@ -273,6 +263,71 @@ public final class Main {
         }
         else {
             result.add("Must specify a config XML file.");
+        }
+
+        return result;
+    }
+
+    /**
+     * Do execution of CheckStyle based on Command line options.
+     * @param commandLine command line object
+     * @param filesToProcess List of files to process found from the command line.
+     * @return number of violations
+     * @throws IOException if a file could not be read.
+     * @throws CheckstyleException if something happens processing the files.
+     */
+    private static int runCli(CommandLine commandLine, List<File> filesToProcess)
+            throws IOException, CheckstyleException {
+        int result = 0;
+
+        // create config helper object
+        final CliOptions config = convertCliToPojo(commandLine, filesToProcess);
+        if (commandLine.hasOption(OPTION_T_NAME)) {
+            // print AST
+            final File file = config.files.get(0);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file, false);
+            System.out.print(stringAst);
+        }
+        else if (commandLine.hasOption(OPTION_CAPITAL_T_NAME)) {
+            final File file = config.files.get(0);
+            final String stringAst = AstTreeStringPrinter.printFileAst(file, true);
+            System.out.print(stringAst);
+        }
+        else if (commandLine.hasOption(OPTION_J_NAME)) {
+            final File file = config.files.get(0);
+            final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
+            System.out.print(stringAst);
+        }
+        else if (commandLine.hasOption(OPTION_CAPITAL_J_NAME)) {
+            final File file = config.files.get(0);
+            final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
+            System.out.print(stringAst);
+        }
+        else {
+            if (commandLine.hasOption(OPTION_D_NAME)) {
+                final Logger parentLogger = Logger.getLogger(Main.class.getName()).getParent();
+                final ConsoleHandler handler = new ConsoleHandler();
+
+                parentLogger.setLevel(Level.FINEST);
+                handler.setLevel(Level.FINEST);
+                parentLogger.addHandler(handler);
+                handler.setFilter(new Filter() {
+                    private final String packageName = Main.class.getPackage().getName();
+
+                    @Override
+                    public boolean isLoggable(LogRecord record) {
+                        return record.getLoggerName().startsWith(packageName);
+                    }
+                });
+            }
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Checkstyle debug logging enabled");
+                LOG.debug("Running Checkstyle with version: "
+                        + Main.class.getPackage().getImplementationVersion());
+            }
+
+            // run Checker
+            result = runCheckstyle(config);
         }
 
         return result;
@@ -495,6 +550,8 @@ public final class Main {
                 "Print Parse tree of the Javadoc comment");
         options.addOption(OPTION_CAPITAL_J_NAME, OPTION_TREE_JAVADOC_NAME, false,
                 "Print full Abstract Syntax Tree of the file");
+        options.addOption(OPTION_D_NAME, OPTION_DEBUG_NAME, false,
+                "Print all debug logging of CheckStyle utility");
         return options;
     }
 
