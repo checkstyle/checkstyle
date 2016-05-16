@@ -209,7 +209,8 @@ public class PropertyCacheFileTest {
 
         final Class<?>[] param = new Class<?>[1];
         param[0] = Serializable.class;
-        final Method method = PropertyCacheFile.class.getDeclaredMethod("getConfigHashCode", param);
+        final Method method =
+            PropertyCacheFile.class.getDeclaredMethod("getHashCodeBasedOnObjectContent", param);
         method.setAccessible(true);
         try {
             method.invoke(cache, config);

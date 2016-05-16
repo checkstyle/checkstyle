@@ -29,15 +29,18 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -45,7 +48,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Provides support for header and headerFile properties.
  * @author o_sukhosolsky
  */
-public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
+public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
+    implements ExternalResourceHolder {
     /** Pattern to detect occurrences of '\n' in text. */
     private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
 
@@ -188,5 +192,10 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck {
         if (readerLines.isEmpty()) {
             setHeader(null);
         }
+    }
+
+    @Override
+    public Set<String> getExternalResourceLocations() {
+        return ImmutableSet.of(headerFile);
     }
 }

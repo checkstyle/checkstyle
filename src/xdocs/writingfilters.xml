@@ -99,6 +99,12 @@ public class FilesFilter
       </source>
     </section>
 
+    <section name="Declare check's external resource locations">
+      <p>
+        See <a href="http://checkstyle.sourceforge.net/writingchecks.html#Declare_check's_external_resource_locations">Declare check's external resource locations</a>.
+      </p>
+    </section>
+
     <section name="Using Filters">
       <p>
         To incorporate a <code>Filter</code> in the filter set

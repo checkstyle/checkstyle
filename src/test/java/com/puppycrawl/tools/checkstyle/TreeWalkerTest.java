@@ -295,5 +295,4 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             return CommonUtils.EMPTY_INT_ARRAY;
         }
     }
-
 }
