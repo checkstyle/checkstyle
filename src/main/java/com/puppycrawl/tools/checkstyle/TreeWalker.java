@@ -25,6 +25,7 @@ import java.io.StringReader;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
@@ -45,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -59,8 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *
  * @author Oliver Burn
  */
-public final class TreeWalker
-    extends AbstractFileSetCheck {
+public final class TreeWalker extends AbstractFileSetCheck implements ExternalResourceHolder {
 
     /** Default distance between tab stops. */
     private static final int DEFAULT_TAB_WIDTH = 8;
@@ -464,6 +465,34 @@ public final class TreeWalker
             check.destroy();
         }
         super.destroy();
+    }
+
+    @Override
+    public Set<String> getExternalResourceLocations() {
+        final Set<String> orinaryChecksResources = getExternalResourceLocations(ordinaryChecks);
+        final Set<String> commentChecksResources = getExternalResourceLocations(commentChecks);
+        final int resultListSize = orinaryChecksResources.size() + commentChecksResources.size();
+        final Set<String> resourceLocations = new HashSet<>(resultListSize);
+        resourceLocations.addAll(orinaryChecksResources);
+        resourceLocations.addAll(commentChecksResources);
+        return resourceLocations;
+    }
+
+    /**
+     * Returns a set of external configuration resource locations which are used by the checks set.
+     * @param checks a set of checks.
+     * @return a set of external configuration resource locations which are used by the checks set.
+     */
+    private Set<String> getExternalResourceLocations(Set<AbstractCheck> checks) {
+        final Set<String> externalConfigurationResources = Sets.newHashSet();
+        for (AbstractCheck check : checks) {
+            if (check instanceof ExternalResourceHolder) {
+                final Set<String> checkExternalResources =
+                    ((ExternalResourceHolder) check).getExternalResourceLocations();
+                externalConfigurationResources.addAll(checkExternalResources);
+            }
+        }
+        return externalConfigurationResources;
     }
 
     /**

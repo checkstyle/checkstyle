@@ -32,13 +32,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.apache.commons.beanutils.ConversionException;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BriefUtLogger;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -46,6 +50,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ HeaderCheck.class, HeaderCheckTest.class, AbstractHeaderCheck.class })
 public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
+
+    @Rule
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
@@ -235,5 +243,29 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             assertEquals("unable to load header file "
                     + getPath("InputRegexpHeader1.java"), ex.getCause().getMessage());
         }
+    }
+
+    @Test
+    public void testCacheHeaderFile() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
+        checkerConfig.addChild(checkConfig);
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISSING),
+        };
+
+        verify(checker, getPath("InputHeader.java"), expected);
+        // One more time to use cache.
+        verify(checker, getPath("InputHeader.java"), expected);
+
     }
 }

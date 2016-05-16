@@ -608,7 +608,31 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
 
     </section>
 
-    <section name="Huh? I can&#39;t figure it out!">
+      <section name="Declare check's external resource locations">
+       <p>
+         Checkstyle can cache external configuration resources of any kind which are used by your
+         check. If you want to do such a thing, you should implement
+         <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html">ExternalResourceHolder</a>
+         interface. Such module must declare external resource locations as a set of Strings
+         which will be returned from <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
+         method. This will allow Checkstyle to invalidate (clear) cache when the content of at
+         least one external configuration resource of your check is changed.
+       </p>
+       <p>
+         ATTENTION!
+         <li>
+           If <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
+           return null, there will be NullPointerException in <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/Checker.html#getExternalResourceLocations--">Checker</a>.
+           Such behaviour will signal that your module (check or filter) is designed incorrectrly.
+         </li>
+         <li>
+           It make sence to return an empty set from <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
+           only for composite modules like <a href="http://checkstyle.sourceforge.net/apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>.
+         </li>
+       </p>
+      </section>
+
+      <section name="Huh? I can&#39;t figure it out!">
       <p>
         That&#39;s probably our fault, and it means that we have to provide
         better documentation. Please do not hesitate to ask questions on

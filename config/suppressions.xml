@@ -13,14 +13,14 @@
          See https://github.com/checkstyle/checkstyle/issues/2285-->
     <suppress checks="IllegalCatch"
               files="Checker.java"
-              lines="247"/>
+              lines="278"/>
     <suppress checks="IllegalCatch"
               files="Checker.java"
-              lines="252"/>
+              lines="388"/>
     <!--Test to reproduce error catching in Checker and satisfy coverage rate. -->
     <suppress checks="IllegalCatch"
               files="CheckerTest.java"
-              lines="569"/>
+              lines="576"/>
 
     <!-- we can not change it as, Check name is part of API (used in configurations) -->
     <suppress checks="AbbreviationAsWordInName"
@@ -132,6 +132,7 @@
     <!-- they are aggregators of logic, usage a several of classes are ok -->
     <suppress checks="ClassDataAbstractionCoupling" files="(Checker|TreeWalker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport|XDocsPagesTest|CheckstyleAntTaskTest)\.java"/>
+    <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFile\.java"/>
     <!-- a lot of GUI elements is OK -->
     <suppress checks="ClassDataAbstractionCoupling" files="(JTreeTable|MainFrame)\.java"/>
 

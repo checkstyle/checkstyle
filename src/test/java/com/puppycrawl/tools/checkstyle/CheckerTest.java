@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.SortedSet;
 
 import org.junit.Assume;
@@ -48,11 +49,18 @@ import org.powermock.api.mockito.PowerMockito;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
+import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
+import com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
+import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class CheckerTest extends BaseCheckTestSupport {
@@ -570,6 +578,216 @@ public class CheckerTest extends BaseCheckTestSupport {
             assertThat(error.getCause(), instanceOf(IOError.class));
             assertThat(error.getCause().getCause(), instanceOf(InternalError.class));
             assertEquals(errorMessage, error.getCause().getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testExternalConfigurationResourceDoesNotExist() throws Exception {
+        final Checker mockChecker = createMockCheckerWithCacheForModule(DummyFileSetCheck.class);
+
+        final String pathToEmptyFile = temporaryFolder.newFile("EmptyFile.java").getPath();
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        // We invoke 'verify' twice to invalidate cache
+        // and have two identical exceptions which happen on the same line between runs
+        final int numberOfRuns = 2;
+        for (int i = 0; i < numberOfRuns; i++) {
+            verify(mockChecker, pathToEmptyFile, expected);
+        }
+    }
+
+    @Test
+    public void testInvalidateCacheDueToDifferentExceptionsBetweenRuns() throws Exception {
+        final Checker mockChecker = createMockCheckerWithCacheForModule(DummyFileSetCheck.class);
+
+        final String pathToEmptyFile = temporaryFolder.newFile("TestFile.java").getPath();
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(mockChecker, pathToEmptyFile, expected);
+        // Once again to invalidate cache because in the second run exception will happen
+        // on different line
+        verify(mockChecker, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testCacheIoExceptionWhenReadingExternalResource() throws Exception {
+        final SuppressionFilter mock = PowerMockito.mock(SuppressionFilter.class);
+        final Set<String> mockResourceLocations = new HashSet<>(1);
+        mockResourceLocations.add("http://mock.sourceforge.net/suppressions_none.xml");
+        when(mock.getExternalResourceLocations()).thenReturn(mockResourceLocations);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        checker.addFilter(mock);
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        // One more time to use cahce.
+        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testMultipleConfigs() throws Exception {
+        final DefaultConfiguration headerCheckConfig = createCheckConfig(HeaderCheck.class);
+        headerCheckConfig.addAttribute("headerFile",
+            getPath("configs" + File.separator + "java.header"));
+
+        final DefaultConfiguration dummyFileSetCheckConfig =
+            createCheckConfig(DummyFileSetCheck.class);
+
+        final DefaultConfiguration regexpHeaderCheckConfig =
+            createCheckConfig(RegexpHeaderCheck.class);
+        regexpHeaderCheckConfig.addAttribute("headerFile",
+            getPath("checks" + File.separator + "header" + File.separator + "regexp.header"));
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+        checkerConfig.addChild(headerCheckConfig);
+        checkerConfig.addChild(dummyFileSetCheckConfig);
+        checkerConfig.addChild(regexpHeaderCheckConfig);
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = {
+            "1: " + "Missing a header - not enough lines in file.",
+        };
+
+        verify(checker, pathToEmptyFile, expected);
+        // Once again to invalidate cache because in the second run IOException will happen
+        // on different line for DummyFileSetCheck and it will change the content
+        verify(checker, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testFilterWhichDoesNotImplementExternalResourceHolderInterface() throws Exception {
+        final DefaultConfiguration filterConfig = createCheckConfig(DummyFilter.class);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
+        checkerConfig.addChild(filterConfig);
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        verify(checker, pathToEmptyFile, expected);
+        // One more time to use cache.
+        verify(checker, pathToEmptyFile, expected);
+    }
+
+    @Test
+    public void testCheckAddsNewResourceLocationButKeepsSameCheckerInstance() throws Exception {
+
+        // Use case (https://github.com/checkstyle/checkstyle/pull/3092#issuecomment-218162436):
+        // Imagine that cache exists in a file. New version of Checkstyle appear.
+        // New release contains update to a some check to have additional external resource.
+        // User update his configuration and run validation as usually.
+        // Cache should not be reused.
+
+        final DynamicalResourceHolderCheck check = new DynamicalResourceHolderCheck();
+        check.setFirstExternalResourceLocation(getPath("checks" + File.separator
+            + "imports" + File.separator + "import-control_one.xml"));
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
+        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.addFileSetCheck(check);
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, pathToEmptyFile, expected);
+
+        // Change a list of external resources which are used by the check
+        check.setSecondExternalResourceLocation("checks" + File.separator
+            + "imports" + File.separator + "import-control_one-re.xml");
+
+        verify(checker, pathToEmptyFile, expected);
+    }
+
+    private Checker createMockCheckerWithCacheForModule(
+        Class<? extends ExternalResourceHolder> mockClass) throws IOException, CheckstyleException {
+
+        final DefaultConfiguration mockConfig = createCheckConfig(mockClass);
+
+        final DefaultConfiguration defaultConfig = new DefaultConfiguration("defaultConfiguration");
+        defaultConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+        defaultConfig.addChild(mockConfig);
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.addListener(new BriefUtLogger(stream));
+        checker.configure(defaultConfig);
+        return checker;
+    }
+
+    private static class DummyFilter implements Filter {
+
+        @Override
+        public boolean accept(AuditEvent event) {
+            return false;
+        }
+    }
+
+    private static class DummyFileSetCheck extends AbstractFileSetCheck
+        implements ExternalResourceHolder {
+
+        @Override
+        protected void processFiltered(File file, List<String> lines) throws CheckstyleException { }
+
+        @Override
+        public Set<String> getExternalResourceLocations() {
+            final Set<String> externalResourceLocation = new HashSet<>(1);
+            externalResourceLocation.add("non_existing_external_resource.xml");
+            return externalResourceLocation;
+        }
+    }
+
+    private static class DynamicalResourceHolderCheck extends AbstractFileSetCheck
+        implements ExternalResourceHolder {
+
+        private String firstExternalResourceLocation;
+        private String secondExternalResourceLocation;
+
+        public void setFirstExternalResourceLocation(String firstExternalResourceLocation) {
+            this.firstExternalResourceLocation = firstExternalResourceLocation;
+        }
+
+        public void setSecondExternalResourceLocation(String secondExternalResourceLocation) {
+            this.secondExternalResourceLocation = secondExternalResourceLocation;
+        }
+
+        @Override
+        protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+            // there is no need in implementation of the method
+        }
+
+        @Override
+        public Set<String> getExternalResourceLocations() {
+            final Set<String> locations = new HashSet<>();
+            locations.add(firstExternalResourceLocation);
+            // Attempt to change the behaviour of the check dynamically
+            if (secondExternalResourceLocation != null) {
+                locations.add(secondExternalResourceLocation);
+            }
+            return locations;
         }
     }
 }

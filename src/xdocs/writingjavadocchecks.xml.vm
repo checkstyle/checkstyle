@@ -425,6 +425,12 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
       Javadoc Checks as well as regular Checks extend <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">AbstractCheck</a> class. So integrating new Javadoc Check is similar to <a href="writingchecks.html#Integrate_your_Check">integrating other Checks</a>.
     </section>
 
+    <section name="Declare check's external resource locations">
+      <p>
+        See <a href="http://checkstyle.sourceforge.net/writingchecks.html#Declare_check's_external_resource_locations">Declare check's external resource locations</a>.
+      </p>
+    </section>
+
     <section name="Examples of Javadoc Checks">
       The best source knowledge about how to write Javadoc Checks
       could be taken from

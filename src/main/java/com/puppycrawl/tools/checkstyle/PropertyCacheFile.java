@@ -19,14 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.URI;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -35,12 +38,18 @@ import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.xml.bind.DatatypeConverter;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * This class maintains a persistent(on file-system) store of the files
@@ -53,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  * configuration has changed.
  *
  * @author Oliver Burn
+ * @author Andrei Selkin
  */
 final class PropertyCacheFile {
 
@@ -63,6 +73,9 @@ final class PropertyCacheFile {
      * valid file name.
      */
     private static final String CONFIG_HASH_KEY = "configuration*?";
+
+    /** Size of buffer which is used to read external configuration resources. */
+    private static final int BUFFER_SIZE = 1024;
 
     /** The details on files. **/
     private final Properties details = new Properties();
@@ -97,7 +110,7 @@ final class PropertyCacheFile {
     public void load() throws IOException {
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
-        final String currentConfigHash = getConfigHashCode(config);
+        final String currentConfigHash = getHashCodeBasedOnObjectContent(config);
         if (new File(fileName).exists()) {
             FileInputStream inStream = null;
             try {
@@ -185,12 +198,11 @@ final class PropertyCacheFile {
     }
 
     /**
-     * Calculates the hashcode for a GlobalProperties.
-     *
-     * @param object the GlobalProperties
-     * @return the hashcode for {@code object}
+     * Calculates the hashcode for the serializable object based on its content.
+     * @param object serializable object.
+     * @return the hashcode for serializable object.
      */
-    private static String getConfigHashCode(Serializable object) {
+    private static String getHashCodeBasedOnObjectContent(Serializable object) {
         try {
             // im-memory serialization of Configuration
 
@@ -216,6 +228,146 @@ final class PropertyCacheFile {
         catch (final IOException | NoSuchAlgorithmException ex) {
             // rethrow as unchecked exception
             throw new IllegalStateException("Unable to calculate hashcode.", ex);
+        }
+    }
+
+    /**
+     * Puts external resources in cache.
+     * If at least one external resource changed, clears the cache.
+     * @param locations locations of external resources.
+     */
+    public void putExternalResources(Set<String> locations) {
+        final Set<ExternalResource> resources = loadExternalResources(locations);
+        if (areExternalResourcesChanged(resources)) {
+            details.clear();
+        }
+        fillCacheWithExternalResources(resources);
+    }
+
+    /**
+     * Loads a set of {@link ExternalResource} based on their locations.
+     * @param resourceLocations locations of external configuration resources.
+     * @return a set of {@link ExternalResource}.
+     */
+    private Set<ExternalResource> loadExternalResources(Set<String> resourceLocations) {
+        final Set<ExternalResource> resources = Sets.newHashSet();
+        for (String location : resourceLocations) {
+            String contentHashSum = null;
+            try {
+                final byte[] content = loadExternalResource(location);
+                contentHashSum = getHashCodeBasedOnObjectContent(content);
+            }
+            catch (CheckstyleException ex) {
+                // if exception happened (configuration resource was not found, connection is not
+                // available, resouce is broken, etc), we need to calculate hash sum based on
+                // exception object content in order to check whether problem is resolved later
+                // and/or the configuration is changed.
+                contentHashSum = getHashCodeBasedOnObjectContent(ex);
+            }
+            finally {
+                resources.add(new ExternalResource(location, contentHashSum));
+            }
+        }
+        return resources;
+    }
+
+    /**
+     * Loads the content of external resource.
+     * @param location external resource location.
+     * @return array of bytes which respresents the content of external resource in binary form.
+     * @throws CheckstyleException if error while loading occurs.
+     */
+    private byte[] loadExternalResource(String location) throws CheckstyleException {
+        byte[] content = null;
+        final URI uri = CommonUtils.getUriByFilename(location);
+        InputStream resourceReader = null;
+        try {
+            resourceReader = new BufferedInputStream(uri.toURL().openStream());
+            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            final byte[] data = new byte[BUFFER_SIZE];
+            int bytesRead = resourceReader.read(data, 0, data.length);
+            while (bytesRead != -1) {
+                outputStream.write(data, 0, bytesRead);
+                bytesRead = resourceReader.read(data, 0, data.length);
+            }
+            outputStream.flush();
+            content = outputStream.toByteArray();
+        }
+        catch (IOException ex) {
+            throw new CheckstyleException("Unable to load external resource file " + location, ex);
+        }
+        finally {
+            Closeables.closeQuietly(resourceReader);
+        }
+        return content;
+    }
+
+    /**
+     * Checks whether the contents of external configuration resources were changed.
+     * @param resources a set of {@link ExternalResource}.
+     * @return true if the contents of external configuration resources were changed.
+     */
+    private boolean areExternalResourcesChanged(Set<ExternalResource> resources) {
+        return Iterables.tryFind(resources, new Predicate<ExternalResource>() {
+            @Override
+            public boolean apply(ExternalResource resource) {
+                boolean changed = false;
+                if (isResourceLocationInCache(resource.location)) {
+                    final String contentHashSum = resource.contentHashSum;
+                    final String cachedHashSum = details.getProperty(resource.location);
+                    if (!cachedHashSum.equals(contentHashSum)) {
+                        changed = true;
+                    }
+                }
+                else {
+                    changed = true;
+                }
+                return changed;
+            }
+        }).isPresent();
+    }
+
+    /**
+     * Fills cache with a set of {@link ExternalResource}.
+     * If external resource from the set is already in cache, it will be skipped.
+     * @param externalResources a set of {@link ExternalResource}.
+     */
+    private void fillCacheWithExternalResources(Set<ExternalResource> externalResources) {
+        for (ExternalResource resource : externalResources) {
+            if (!isResourceLocationInCache(resource.location)) {
+                details.setProperty(resource.location, resource.contentHashSum);
+            }
+        }
+    }
+
+    /**
+     * Checks whether resource location is in cache.
+     * @param location resource location.
+     * @return true if resource location is in cache.
+     */
+    private boolean isResourceLocationInCache(String location) {
+        final String cachedHashSum = details.getProperty(location);
+        return cachedHashSum != null;
+    }
+
+    /**
+     * Class which represents external resource.
+     * @author Andrei Selkin
+     */
+    private static class ExternalResource {
+        /** Location of resource. */
+        private final String location;
+        /** Hash sum which is calculated based on resource content. */
+        private final String contentHashSum;
+
+        /**
+         * Creates an instance.
+         * @param location resource location.
+         * @param contentHashSum content hash sum.
+         */
+        ExternalResource(String location, String contentHashSum) {
+            this.location = location;
+            this.contentHashSum = contentHashSum;
         }
     }
 }

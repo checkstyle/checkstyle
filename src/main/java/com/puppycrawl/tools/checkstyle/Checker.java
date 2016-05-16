@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -54,6 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Oliver Burn
  * @author <a href="mailto:stephane.bailliez@wanadoo.fr">Stephane Bailliez</a>
  * @author lkuehne
+ * @author Andrei Selkin
  */
 public class Checker extends AutomaticBean implements MessageDispatcher {
     /** Logger for Checker. */
@@ -181,6 +183,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * @see #destroy()
      */
     public int process(List<File> files) throws CheckstyleException {
+        if (cache != null) {
+            cache.putExternalResources(getExternalResourceLocations());
+        }
+
         // Prepare to start
         fireAuditStarted();
         for (final FileSetCheck fsc : fileSetChecks) {
@@ -203,6 +209,31 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         final int errorCount = counter.getCount();
         fireAuditFinished();
         return errorCount;
+    }
+
+    /**
+     * Returns a set of external configuration resource locations which are used by all file set
+     * checks and filters.
+     * @return a set of external configuration resource locations which are used by all file set
+     *         checks and filters.
+     */
+    private Set<String> getExternalResourceLocations() {
+        final Set<String> externalResources = Sets.newHashSet();
+        for (FileSetCheck check : fileSetChecks) {
+            if (check instanceof ExternalResourceHolder) {
+                final Set<String> locations =
+                    ((ExternalResourceHolder) check).getExternalResourceLocations();
+                externalResources.addAll(locations);
+            }
+        }
+        for (Filter filter : filters.getFilters()) {
+            if (filter instanceof ExternalResourceHolder) {
+                final Set<String> locations =
+                    ((ExternalResourceHolder) filter).getExternalResourceLocations();
+                externalResources.addAll(locations);
+            }
+        }
+        return externalResources;
     }
 
     /** Notify all listeners about the audit start. */
