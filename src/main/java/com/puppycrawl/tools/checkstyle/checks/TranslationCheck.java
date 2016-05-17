@@ -37,7 +37,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.google.common.base.Optional;
-import com.google.common.base.Splitter;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
@@ -173,7 +172,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /**
      * Language codes of required translations for the check (de, pt, ja, etc).
      */
-    private SortedSet<String> requiredTranslations = Sets.newTreeSet();
+    private Set<String> requiredTranslations = Sets.newHashSet();
 
     /**
      * Creates a new {@code TranslationCheck} instance.
@@ -195,9 +194,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * Sets language codes of required translations for the check.
      * @param translationCodes a comma separated list of language codes.
      */
-    public void setRequiredTranslations(String translationCodes) {
-        requiredTranslations = Sets.newTreeSet(Splitter.on(',')
-            .trimResults().omitEmptyStrings().split(translationCodes));
+    public void setRequiredTranslations(String... translationCodes) {
+        requiredTranslations = Sets.newHashSet(translationCodes);
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
@@ -205,7 +203,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * Validates the correctness of user specififed language codes for the check.
      * @param languageCodes user specified language codes for the check.
      */
-    private void validateUserSpecifiedLanguageCodes(SortedSet<String> languageCodes) {
+    private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
                 final LocalizedMessage msg = new LocalizedMessage(0, TRANSLATION_BUNDLE,
