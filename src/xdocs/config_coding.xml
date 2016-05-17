@@ -585,7 +585,7 @@ String nullString = null;
           <tr>
             <td>ignoreEqualsIgnoreCase</td>
             <td>whether to ignore <code>String.equalsIgnoreCase()</code> invocations</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
         </table>
@@ -1280,7 +1280,7 @@ class SomeClass
           <tr>
             <td>illegalClassNames</td>
             <td>exception class names to reject</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>&quot;java.lang.Exception,
             java.lang.Throwable, java.lang.RuntimeException&quot;</code></td>
           </tr>
@@ -1467,7 +1467,7 @@ class SomeClass
           <tr>
             <td>illegalClassNames</td>
             <td>throw class names to reject</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>
               <code>&quot;java.lang.Throwable,
               java.lang.Error, java.lang.RuntimeException&quot;</code>
@@ -1476,7 +1476,7 @@ class SomeClass
           <tr>
             <td>ignoredMethodNames</td>
             <td>names of methods to ignore</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>finalize</code></td>
           </tr>
           <tr>
@@ -1770,7 +1770,7 @@ class SomeClass
           <tr>
             <td>validateAbstractClassNames</td>
             <td>Whether to validate abstract class names</td>
-            <td>boolean</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
           <tr>
@@ -1996,44 +1996,32 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
           <tr>
             <td>ignoreNumbers</td>
             <td>non-magic numbers</td>
-            <td>list of numbers</td>
+            <td><a href="property_types.html#intSet">Number Set</a></td>
             <td>-1, 0, 1, 2</td>
           </tr>
           <tr>
             <td>ignoreHashCodeMethod</td>
             <td>ignore magic numbers in hashCode methods</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
           <tr>
             <td>ignoreAnnotation</td>
             <td>ignore magic numbers in annotation declarations.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><span class="default">false</span></td>
           </tr>
           <tr>
               <td>ignoreFieldDeclaration</td>
               <td>ignore magic numbers in field declarations.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
               <td><span class="default">false</span></td>
           </tr>
           <tr>
               <td>constantWaiverParentToken</td>
               <td>Token that are allowed in the AST path from the number literal to the enclosing constant definition.</td>
               <td>subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">ARRAY_INIT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">EXPR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">UNARY_PLUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">UNARY_MINUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">TYPECAST</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">ELIST</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">LITERAL_NEW</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">METHOD_CALL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">STAR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">DIV</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">PLUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">MINUS</a>.
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">ASSIGN</a>,
@@ -2473,9 +2461,8 @@ class MyClass {
               annotations or static initializers from the check.
             </td>
             <td>
-              <a href="property_types.html#stringSet">list</a> of
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">token type</a>
-              names
+              subset of tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
             </td>
             <td>
               <code>ANNOTATION</code>
@@ -3286,19 +3273,19 @@ public void foo(int i, String s) {}
           <tr>
             <td>checkFields</td>
             <td>Whether to check references to fields.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
             <td>checkMethods</td>
             <td>Whether to check references to methods.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
             <td>validateOnlyOverlapping</td>
             <td>Whether to check only overlapping by variables or arguments.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
         </table>
@@ -4061,7 +4048,7 @@ if (&quot;something&quot;.equals(x))
           <tr>
             <td>allowedDistance</td>
             <td>A distance between declaration of variable and its first usage</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>3</td>
           </tr>
 

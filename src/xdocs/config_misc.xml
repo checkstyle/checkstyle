@@ -539,8 +539,10 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
           <tr>
             <td>limitedTokens</td>
             <td>set of tokens with limited occurrences as descendants</td>
-            <td>subset of tokens declared in <a
-            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+            <td>
+             subset of tokens
+             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+            </td>
             <td>empty set</td>
           </tr>
           <tr>

@@ -54,8 +54,8 @@
             <td>allowedAbbreviationLength</td>
             <td>indicates on the allowed amount of capital letters in targeted identifiers
              (abbreviations in the classes, interfaces, variables and methods names, ... ).</td>
-            <td><a href="property_types.html#integer">3</a></td>
-            <td>true</td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td>3</td>
           </tr>
           <tr>
             <td>allowedAbbreviations</td>

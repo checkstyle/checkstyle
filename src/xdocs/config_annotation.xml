@@ -55,19 +55,19 @@ public String getNameIfPresent() { ... }
           <tr>
             <td>allowSamelineMultipleAnnotations</td>
             <td>To allow annotation to be located on the same line as target element.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
            <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowSamelineSingleParameterlessAnnotation</td>
             <td>To allow single prameterless annotation to be located on the same line as target element.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
             <td>allowSamelineParameterizedAnnotation</td>
             <td>To allow parameterized annotation to be located on the same line as target element.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -334,7 +334,7 @@ public String getNameIfPresent() { ... }
             present but either @deprecated is missing from JavaDoc or
             @deprecated is missing from the element.
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
         </table>
@@ -425,7 +425,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
                 check. It is recommended to only use it on Java 5 source </b>
             </td>
             <td>
-              <a href="property_types.html#boolean">boolean</a>
+              <a href="property_types.html#boolean">Boolean</a>
             </td>
             <td>
               <code>false</code>

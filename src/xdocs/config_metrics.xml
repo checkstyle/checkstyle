@@ -63,7 +63,7 @@
               the maximum allowed number of boolean operations in one
               expression.
             </td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>3</code></td>
           </tr>
           <tr>
@@ -177,7 +177,7 @@
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>7</code></td>
           </tr>
           <tr>
@@ -274,7 +274,7 @@
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>20</code></td>
           </tr>
           <tr>
@@ -391,13 +391,13 @@
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>10</code></td>
           </tr>
           <tr>
             <td>switchBlockAsSingleDecisionPoint</td>
             <td>whether to treat the whole switch block as a single decision point</td>
-            <td><a href="property_types.html#integer">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
 
@@ -597,7 +597,7 @@ class SwitchExample {
               the maximum allowed number of non commenting lines in a
               method.
             </td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#Integer">Integer</a></td>
             <td><code>50</code></td>
           </tr>
           <tr>
@@ -606,7 +606,7 @@ class SwitchExample {
               the maximum allowed number of non commenting lines in a
               class.
             </td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1500</code></td>
           </tr>
           <tr>
@@ -615,7 +615,7 @@ class SwitchExample {
               the maximum allowed number of non commenting lines in a
               file including all top level and nested classes.
             </td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>2000</code></td>
           </tr>
         </table>
@@ -765,7 +765,7 @@ class SwitchExample {
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>200</code></td>
           </tr>
 

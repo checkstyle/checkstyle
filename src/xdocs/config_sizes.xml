@@ -47,7 +47,7 @@
           <tr>
             <td>max</td>
             <td>maximum allowable number of lines</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>20</td>
           </tr>
         </table>
@@ -117,7 +117,7 @@
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>30</code></td>
           </tr>
           <tr>
@@ -219,7 +219,7 @@
           <tr>
             <td>max</td>
             <td>maximum allowable number of lines</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>2000</td>
           </tr>
           <tr>
@@ -312,7 +312,7 @@
           <tr>
             <td>max</td>
             <td>maximum allowable line length</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>80</td>
           </tr>
         </table>
@@ -419,31 +419,31 @@
           <tr>
             <td>maxTotal</td>
             <td>maximum allowable number of methods at all scope levels</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>100</td>
           </tr>
           <tr>
             <td>maxPrivate</td>
             <td>maximum allowable number of <code>private</code> methods</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>100</td>
           </tr>
           <tr>
             <td>maxPackage</td>
             <td>maximum allowable number of <code>package</code> methods</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>100</td>
           </tr>
           <tr>
             <td>maxProtected</td>
             <td>maximum allowable number of <code>protected</code> methods</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>100</td>
           </tr>
           <tr>
             <td>maxPublic</td>
             <td>maximum allowable number of <code>public</code> methods</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>100</td>
           </tr>
 
@@ -563,7 +563,7 @@
           <tr>
             <td>max</td>
             <td>maximum allowable number of lines</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>150</td>
           </tr>
           <tr>
@@ -572,7 +572,7 @@
               whether to count empty lines and single line comments of the
               form <code>//</code>
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
@@ -691,7 +691,7 @@
           <tr>
             <td>max</td>
             <td>maximum allowable number of outer types</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>1</td>
           </tr>
         </table>
@@ -769,13 +769,13 @@
           <tr>
             <td>max</td>
             <td>maximum allowable number of parameters</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td>7</td>
           </tr>
           <tr>
             <td>ignoreOverriddenMethods</td>
             <td>Ignore number of parameters for methods with @Override annotation</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
           <tr>
