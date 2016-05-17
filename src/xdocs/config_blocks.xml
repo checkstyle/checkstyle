@@ -99,7 +99,7 @@ switch (a)
           <tr>
             <td>allowInSwitchCase</td>
             <td>Allow nested blocks in case statements</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
         </table>
@@ -437,7 +437,7 @@ try {
           <tr>
             <td>ignoreEnums</td>
             <td>If true, Check will ignore enums when left curly brace policy is EOL</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
           </tr>
           <tr>
@@ -445,7 +445,7 @@ try {
             <td>maximum number of characters in a line. ATTENTION:
                 The option has been marked as <b>deprecated</b>
                 since checkstyle 6.10 release.</td>
-            <td><a href="property_types.html#integer">integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>80</code></td>
           </tr>
           <tr>
@@ -589,13 +589,13 @@ try {
           <tr>
             <td>allowSingleLineStatement</td>
             <td>allows single-line statements without braces</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
           <tr>
             <td>allowEmptyLoopBody</td>
             <td>allows loops with empty bodies</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
           <tr>
@@ -767,7 +767,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
             <td>shouldStartLine</td>
             <td>should we check if <code>'}'</code>
             starts line.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>

@@ -226,7 +226,7 @@ public int checkReturnTag(final int aTagIndex,
           <tr>
             <td>validateThrows</td>
             <td>Allows validating throws tags.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -245,21 +245,21 @@ public int checkReturnTag(final int aTagIndex,
             <td>allowUndeclaredRTE</td>
             <td>whether to allow documented exceptions that
             are not declared if they are a subclass of <code>java.lang.RuntimeException</code></td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowThrowsTagsForSubclasses</td>
             <td>whether to allow documented exceptions that
             are subclass of one of declared exception.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
             <td>whether to ignore errors when a method has parameters
             but does not have matching param tags in the javadoc.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -267,20 +267,20 @@ public int checkReturnTag(final int aTagIndex,
             <td>whether to ignore errors when a method declares
             that it throws exceptions but does have matching throws tags
             in the javadoc.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowMissingReturnTag</td>
             <td>whether to ignore errors when a method returns
             non-void type does have a return tag in the javadoc.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowMissingJavadoc</td>
             <td>whether to ignore errors when a method javadoc is missed.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -307,7 +307,7 @@ public boolean isSomething()
 }
               </pre>
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -322,7 +322,7 @@ public boolean isSomething()
             typo or refactoring problem in the
             javadoc and logs the problem in the normal checkstyle report
             (potentially masking a configuration error).</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
@@ -334,7 +334,7 @@ public boolean isSomething()
             logLoadErrors is set true are suppressed from being reported as
             violations in the checkstyle report.
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -514,7 +514,7 @@ public boolean isSomething()
               If set then allow the use of a
               <code>package.html</code> file.
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -797,7 +797,7 @@ public boolean isSomething()
             <td>
               Whether to check the first sentence for proper end of sentence.
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
@@ -813,13 +813,13 @@ public boolean isSomething()
             <td>
               Whether to check if the Javadoc is missing a describing text.
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>checkHtml</td>
             <td>Whether to check for incomplete HTML tags.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
@@ -1109,13 +1109,13 @@ public boolean isSomething()
             <td>allowMissingParamTags</td>
             <td>whether to ignore errors when a class has type parameters
                 but does not have matching param tags in the javadoc.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowUnknownTags</td>
             <td>whether to ignore errors when a Javadoc tag is not recognised.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>

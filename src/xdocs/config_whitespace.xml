@@ -229,19 +229,19 @@ for (Iterator foo = very.long.line.iterator();
           <tr>
             <td>allowNoEmptyLineBetweenFields</td>
             <td>Allow no empty line between fields</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
           <tr>
              <td>allowMultipleEmptyLines</td>
              <td>Allow multiple empty lines between class members</td>
-             <td><a href="property_types.html#boolean">boolean</a></td>
+             <td><a href="property_types.html#boolean">Boolean</a></td>
              <td>true</td>
           </tr>
             <tr>
                 <td>allowMultipleEmptyLinesInsideClassMembers</td>
                 <td>Allow multiple empty lines inside class members</td>
-                <td><a href="property_types.html#boolean">boolean</a></td>
+                <td><a href="property_types.html#boolean">Boolean</a></td>
                 <td>true</td>
             </tr>
           <tr>
@@ -461,7 +461,7 @@ class Foo
           <tr>
             <td>eachLine</td>
             <td>whether to report on each line containing a tab, or just the first instance</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -668,7 +668,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
               whether a line break between the identifier and left parenthesis
               is allowed
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -941,7 +941,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
             <td>
               whether whitespace is allowed if the token is at a linebreak
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
@@ -1081,7 +1081,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
             <td>
               whether whitespace is allowed if the token is at a linebreak
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
@@ -1903,37 +1903,37 @@ new Properties() {{
           <tr>
             <td>allowEmptyConstructors</td>
             <td>allow empty constructor bodies</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowEmptyMethods</td>
             <td>allow empty method bodies</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowEmptyTypes</td>
             <td>allow empty class, interface and enum bodies</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowEmptyLoops</td>
             <td>allow empty loop bodies</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>allowEmptyLambdas</td>
             <td>allow empty lambda bodies</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
           <tr>
             <td>ignoreEnhancedForColon</td>
             <td>ignore whitespace around colon in for-each loops</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>

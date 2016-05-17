@@ -50,7 +50,7 @@
               is not recursive, subpackages of excluded packages are not
               automatically excluded.
             </td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty list</code></td>
           </tr>
           <tr>
@@ -167,7 +167,7 @@
               import of each static member in the Math class
               individually like <code>java.lang.Math.PI</code>.
             </td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty list</code></td>
           </tr>
         </table>
@@ -356,7 +356,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <tr>
             <td>separateLineBetweenGroups</td>
             <td>Force empty line separator between import groups.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
           <tr>
@@ -364,7 +364,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <td>Force grouping alphabetically, in
                 <a href="https://en.wikipedia.org/wiki/ASCII#Order">
                    ASCII sort order</a>.</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
         </table>
@@ -604,7 +604,7 @@ import android.*;
           <tr>
             <td>illegalPkgs</td>
             <td>packages to reject</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>sun</code></td>
           </tr>
         </table>
@@ -844,7 +844,7 @@ import android.*;
               common prefix string, or by a regular expression enclosed
               in forward slashes (e.g. <code>/regexp/</code>)
             </td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty list</code></td>
           </tr>
           <tr>
@@ -1195,7 +1195,7 @@ class FooBar {
           <tr>
             <td>processJavadoc</td>
             <td>whether to process Javadoc</td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
         </table>

@@ -54,7 +54,7 @@
                accepts an audit event if and only if there is not a match
                between the event's severity level and property severity.
             </td>
-            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
         </table>
@@ -146,13 +146,13 @@
               <tr>
                   <td>checkCPP</td>
                   <td>whether to check C++ style comments (<code>//</code>)</td>
-                  <td><a href="property_types.html#boolean">boolean</a></td>
+                  <td><a href="property_types.html#boolean">Boolean</a></td>
                   <td><code>true</code></td>
               </tr>
               <tr>
                   <td>checkC</td>
                   <td>whether to check C style comments (<code>/* ... */</code>)</td>
-                  <td><a href="property_types.html#boolean">boolean</a></td>
+                  <td><a href="property_types.html#boolean">Boolean</a></td>
                   <td><code>true</code></td>
               </tr>
           </table>
@@ -431,7 +431,7 @@ public static void foo() {
                    true and file is not found, the filter accept all
                    audit events.
                </td>
-               <td><a href="property_types.html#boolean">boolean</a></td>
+               <td><a href="property_types.html#boolean">Boolean</a></td>
                <td><code>false</code></td>
              </tr>
           </table>
@@ -774,13 +774,13 @@ public static void foo() {
                 <tr>
                     <td>checkCPP</td>
                     <td>whether to check C++ style comments (<code>//</code>)</td>
-                    <td><a href="property_types.html#boolean">boolean</a></td>
+                    <td><a href="property_types.html#boolean">Boolean</a></td>
                     <td><code>true</code></td>
                 </tr>
                 <tr>
                     <td>checkC</td>
                     <td>whether to check C style comments (<code>/* ... */</code>)</td>
-                    <td><a href="property_types.html#boolean">boolean</a></td>
+                    <td><a href="property_types.html#boolean">Boolean</a></td>
                     <td><code>true</code></td>
                 </tr>
             </table>

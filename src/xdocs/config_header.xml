@@ -86,7 +86,7 @@ line 5: ////////////////////////////////////////////////////////////////////
           <tr>
             <td>ignoreLines</td>
             <td>line numbers to ignore</td>
-            <td><a href="property_types.html#intSet">list of integers</a></td>
+            <td><a href="property_types.html#intSet">Integer Set</a></td>
             <td><code>{}</code></td>
           </tr>
           <tr>
@@ -285,7 +285,7 @@ line 6: ^\W*$
           <tr>
             <td>multiLines</td>
             <td>line numbers to repeat (zero or more times)</td>
-            <td><a href="property_types.html#intSet">list of integers</a></td>
+            <td><a href="property_types.html#intSet">Integer Set</a></td>
             <td><code>{}</code></td>
           </tr>
           <tr>
