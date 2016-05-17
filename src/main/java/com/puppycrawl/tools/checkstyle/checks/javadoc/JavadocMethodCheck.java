@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -220,15 +221,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * Sets list of annotations.
      * @param userAnnotations user's value.
      */
-    public void setAllowedAnnotations(String userAnnotations) {
-        final List<String> annotations = new ArrayList<>();
-        final String[] sAnnotations = userAnnotations.split(",");
-        for (int i = 0; i < sAnnotations.length; i++) {
-            sAnnotations[i] = sAnnotations[i].trim();
-        }
-
-        Collections.addAll(annotations, sAnnotations);
-        allowedAnnotations = annotations;
+    public void setAllowedAnnotations(String... userAnnotations) {
+        allowedAnnotations = Arrays.asList(userAnnotations);
     }
 
     /**

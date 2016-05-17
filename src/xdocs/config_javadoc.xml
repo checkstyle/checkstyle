@@ -220,7 +220,7 @@ public int checkReturnTag(final int aTagIndex,
           <tr>
             <td>allowedAnnotations</td>
             <td>List of annotations that could allow missed documentation.</td>
-            <td><a href="property_types.html#stringSet">list of strings</a></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>Override</code></td>
           </tr>
           <tr>
