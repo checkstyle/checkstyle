@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -73,10 +74,10 @@ public class CommitValidationTest {
     private static final List<String> USERS_EXCLUDED_FROM_VALIDATION =
             Collections.singletonList("Roman Ivanov");
 
-    private static final String ISSUE_COMMIT_MESSAGE_REGEX_PATTERN = "^Issue #\\d*: .*[^\\.]$";
-    private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d*: .*[^\\.]$";
+    private static final String ISSUE_COMMIT_MESSAGE_REGEX_PATTERN = "^Issue #\\d*: .*[^\\.\\s]$";
+    private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d*: .*[^\\.\\s]$";
     private static final String OTHER_COMMIT_MESSAGE_REGEX_PATTERN =
-            "^(minor|config|infra|doc|spelling): .*[^\\.]$";
+            "^(minor|config|infra|doc|spelling): .*[^\\.\\s]$";
 
     private static final String ACCEPTED_COMMIT_MESSAGE_REGEX_PATTERN =
               "(" + ISSUE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
@@ -100,6 +101,28 @@ public class CommitValidationTest {
     @BeforeClass
     public static void setUp() throws Exception {
         lastCommits = getCommitsToCheck();
+    }
+
+    @Test
+    public void testHasCommits() {
+        assertTrue("must have atleast one commit to validate",
+                lastCommits != null && !lastCommits.isEmpty());
+    }
+
+    @Test
+    public void testCommitMessage() {
+        assertFalse("should not accept commit message with periods on end",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test. Test.").matches());
+        assertFalse("should not accept commit message with spaces on end",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test. ").matches());
+        assertFalse("should not accept commit message with tabs on end",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test.\t").matches());
+        assertFalse("should not accept commit message with newline on end",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test.\n").matches());
+        assertFalse("should not accept commit message with missing prefix",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("Test. Test").matches());
+        assertTrue("should accept commit message that ends properly",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test. Test").matches());
     }
 
     @Test
