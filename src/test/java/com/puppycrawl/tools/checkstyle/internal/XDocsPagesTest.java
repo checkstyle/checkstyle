@@ -393,7 +393,7 @@ public class XDocsPagesTest {
     }
 
     private static void validatePropertySection(String fileName, String sectionName,
-            Node subSection, Object instance) {
+            Node subSection, Object instance) throws Exception {
         final Set<String> properties = getProperties(instance.getClass());
         final Class<?> clss = instance.getClass();
 
@@ -415,25 +415,20 @@ public class XDocsPagesTest {
             }
         }
 
-        final AbstractCheck check;
-
         if (AbstractCheck.class.isAssignableFrom(clss)) {
-            check = (AbstractCheck) instance;
+            final AbstractCheck check = (AbstractCheck) instance;
 
             if (!Arrays.equals(check.getAcceptableTokens(), check.getDefaultTokens())
                     || !Arrays.equals(check.getAcceptableTokens(), check.getRequiredTokens())) {
                 properties.add("tokens");
             }
         }
-        else {
-            check = null;
-        }
 
         if (subSection != null) {
             Assert.assertTrue(fileName + " section '" + sectionName
                     + "' should have no properties to show", !properties.isEmpty());
 
-            validatePropertySectionProperties(fileName, sectionName, subSection, check,
+            validatePropertySectionProperties(fileName, sectionName, subSection, instance,
                     properties);
         }
 
@@ -442,7 +437,7 @@ public class XDocsPagesTest {
     }
 
     private static void validatePropertySectionProperties(String fileName, String sectionName,
-            Node subSection, AbstractCheck check, Set<String> properties) {
+            Node subSection, Object instance, Set<String> properties) throws Exception {
         boolean skip = true;
         boolean didTokens = false;
 
@@ -462,6 +457,8 @@ public class XDocsPagesTest {
                     properties.remove(propertyName));
 
             if ("tokens".equals(propertyName)) {
+                final AbstractCheck check = (AbstractCheck) instance;
+
                 Assert.assertEquals(fileName + " section '" + sectionName
                         + "' should have the basic token description", "tokens to check", columns
                         .get(1).getTextContent());
@@ -483,12 +480,56 @@ public class XDocsPagesTest {
                 Assert.assertFalse(fileName + " section '" + sectionName
                         + "' should have a description for " + propertyName, columns.get(1)
                         .getTextContent().trim().isEmpty());
+
+                final String actualTypeName = columns.get(2).getTextContent().replace("\n", "")
+                        .replace("\r", "").replaceAll(" +", " ").trim();
+
                 Assert.assertFalse(fileName + " section '" + sectionName
-                        + "' should have a type for " + propertyName, columns.get(2)
-                        .getTextContent().trim().isEmpty());
-                // default can be empty string
+                        + "' should have a type for " + propertyName, actualTypeName.isEmpty());
+
+                final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
+                        propertyName);
+                final Class<?> clss = descriptor.getPropertyType();
+                final String expectedTypeName = getExpectedTypeName(clss, propertyName);
+
+                if (expectedTypeName != null) {
+                    Assert.assertEquals(fileName + " section '" + sectionName
+                            + "' should have the type for " + propertyName, expectedTypeName,
+                            actualTypeName);
+                }
             }
         }
+    }
+
+    private static String getExpectedTypeName(Class<?> clss, String propertyName) {
+        String result = null;
+
+        if (clss == boolean.class) {
+            result = "Boolean";
+        }
+        else if (clss == int.class) {
+            result = "Integer";
+        }
+        else if (clss == int[].class) {
+            result = "Integer Set";
+        }
+        else if (clss == double[].class) {
+            result = "Number Set";
+        }
+        else if (clss == String[].class) {
+            if (propertyName.endsWith("Tokens") || propertyName.endsWith("Token")
+                    || "ignoreOccurrenceContext".equals(propertyName)) {
+                result = "subset of tokens TokenTypes";
+            }
+            else {
+                result = "String Set";
+            }
+        }
+        else if (clss != String.class) {
+            Assert.fail("Unknown property type: " + clss.getSimpleName());
+        }
+
+        return result;
     }
 
     private static void validateErrorSection(String fileName, String sectionName, Node subSection,
