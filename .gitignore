@@ -1,32 +1,33 @@
-#Eclipse project files
-#.classpath till https://issues.apache.org/jira/browse/MECLIPSE-735
-#.project till https://issues.apache.org/jira/browse/MECLIPSE-735
+# Eclipse project files
 .settings
 .externalToolBuilders
 .classpath
 .project
 
-# Eclipse-CS Checkstyle Plug-In IDE configuration files
+# m2e-code-quality Eclipse IDE plugin temporary configuration files for Eclipse CS Checkstyle / PMD / FindBugs Plug-Ins
 .checkstyle
+.pmd
+.pmdruleset.xml
+.fbExcludeFilterFile
  
-#NetBeans project files
+# NetBeans project files
 nbactions.xml
 nb-configuration.xml
 
-#Maven build folder
+# Maven build folder
 target
 bin
 
-#Idea project files
+# IDEA project files
 checkstyle.iml
 .idea
 
-#Temp files
+# Temp files
 *~
 
-#Virtual machine crash logs
+# Java Virtual machine crash logs
 hs_err_pid*
 replay_pid*
 
-#MAC hidden file
+# Apple MAC OSX hidden file
 .DS_Store
