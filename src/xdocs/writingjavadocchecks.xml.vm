@@ -54,11 +54,11 @@ public class MyClass {
       The comment should be written in XHTML to be correctly processed by Checkstyle. This means that every HTML tag should have matching closed HTML tag or it is self-closed one (singlton tag).
       The only exceptions are &lt;p&gt;, &lt;li&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;, &lt;body&gt;, &lt;colgroup&gt;, &lt;dd&gt;, &lt;dt&gt;, &lt;head&gt;, &lt;html&gt;, &lt;option&gt;,
       &lt;tbody&gt;, &lt;thead&gt;, &lt;tfoot&gt; and Checkstyle won't show error about missing closing tag, however, it leads to broken XHTML structure and to
-      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment. See examples at <a href="HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
+      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment. See examples at <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
       </p>
       <p>
         Javadoc parser requires XHTML to be used in Javadoc comments, i.e. if there is some open tag(for example &lt;div&gt;) then there have to be its close tag &lt;/div&gt;.
-        This means that if Javadoc comment has incorrect XHTML structure then Javadoc Parser will fail processing the comment, therefore, your new Check can't get its parse tree and process anything from this Javadoc comment. For more details and examples go to <a href="HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
+        This means that if Javadoc comment has incorrect XHTML structure then Javadoc Parser will fail processing the comment, therefore, your new Check can't get its parse tree and process anything from this Javadoc comment. For more details and examples go to <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
       </p>
       <p>
         Javadoc grammar requires XHTML, but it can also parse some parts of HTML code (like some unclosed tags). If HTML tags are not closed Javadoc grammar cannot determine content of these tags,
