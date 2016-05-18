@@ -198,7 +198,6 @@
     <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.20.0</maven.sevntu.checkstyle.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
-    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
     <java.version>1.7</java.version>
     <checkstyle.version>6.18</checkstyle.version>
   </properties>
@@ -1241,6 +1240,35 @@
 
   <profiles>
 
+    <!-- For https://github.com/checkstyle/checkstyle/issues/3191
+         Solution inspired by http://stackoverflow.com/questions/3080437/jdk-tools-jar-as-maven-dependency
+         found via https://bugs.eclipse.org/bugs/show_bug.cgi?id=397293
+    -->
+    <profile>
+        <id>default-tools.jar</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+            <file>
+                <exists>${java.home}/../lib/tools.jar</exists>
+            </file>
+        </activation>
+        <properties>
+            <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
+        </properties>
+    </profile>
+    <profile>
+        <id>mac-tools.jar</id>
+        <activation>
+            <activeByDefault>false</activeByDefault>
+            <file>
+                <exists>${java.home}/../Classes/classes.jar</exists>
+            </file>
+        </activation>
+        <properties>
+            <tools.jar.path>${java.home}/../Classes/classes.jar</tools.jar.path>
+        </properties>
+    </profile>
+    
     <!-- Bring in tools.jar for platforms which provide it
     that is required for javadoc doclets that are in use -->
     <profile>
