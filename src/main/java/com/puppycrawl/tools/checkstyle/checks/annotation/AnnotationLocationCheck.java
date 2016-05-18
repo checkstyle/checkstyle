@@ -32,7 +32,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <p>
  * Attention: Annotations among modifiers are ignored (looks like false-negative)
  * as there might be a problem with annotations for return types
+ * </p>
  * <pre>public @Nullable Long getStartTimeOrNull() { ... }</pre>.
+ * <p>
  * Such annotations are better to keep close to type.
  * Due to limitations Checkstyle can not examin target of annotation.
  * </p>
