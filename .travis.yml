@@ -343,7 +343,8 @@ matrix:
     # testing of PR format
     - env:
         - DESC="test Issue ref in PR description"
-        - CMD0="if [[ ! $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi "
+        - CMD_="set -e"
+        - CMD0=" && if [[ ! $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi "
         - CMD1=" && LINK_COMMITS=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST/commits "
         - CMD2=" && COMMITS=\$(curl -s -H 'Authorization: token $GITHUB_AUTH_TOKEN' \$LINK_COMMITS | jq '.[0] | .commit.message') "
         - CMD3=" && echo 'Messages from github:'\${COMMITS:0:60}... "
@@ -368,7 +369,7 @@ matrix:
         - CMD22="   else "
         - CMD23="       echo 'PR validation failed.' && false; "
         - CMD24="   fi "
-        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12$CMD13$CMD14$CMD15
+        - CMD=$CMD_$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12$CMD13$CMD14$CMD15
         - CMD=$CMD$CMD16$CMD17$CMD18$CMD19$CMD20$CMD21$CMD22$CMD23$CMD24
         - COVERAGE_CMD=""
 
