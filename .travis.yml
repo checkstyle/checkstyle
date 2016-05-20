@@ -313,8 +313,8 @@ matrix:
     # MacOS verify (till cache is not working, we can not do verify)
     - os: osx
       env:
-        - DESC="MacOS "
-        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn clean verify "
+        - DESC="MacOS verify, site, assembly"
+        - CMD="export JAVA_HOME=$(/usr/libexec/java_home) && mvn package -Dlinkcheck.skip=true && mvn package -Passembly "
         - COVERAGE_CMD=""
 
     # Releasenotes generation - validaton
