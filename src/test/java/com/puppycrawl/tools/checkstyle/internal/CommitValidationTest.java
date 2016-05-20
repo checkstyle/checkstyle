@@ -112,17 +112,26 @@ public class CommitValidationTest {
     @Test
     public void testCommitMessage() {
         assertFalse("should not accept commit message with periods on end",
-                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test. Test.").matches());
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(fixCommitMessage("minor: Test. Test."))
+                        .matches());
         assertFalse("should not accept commit message with spaces on end",
-                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test. ").matches());
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(fixCommitMessage("minor: Test. "))
+                        .matches());
         assertFalse("should not accept commit message with tabs on end",
-                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test.\t").matches());
-        assertFalse("should not accept commit message with newline on end",
-                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test.\n").matches());
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(fixCommitMessage("minor: Test.\t"))
+                        .matches());
+        assertFalse("should not accept commit message with period on end, ignoring new line",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(fixCommitMessage("minor: Test.\n"))
+                        .matches());
         assertFalse("should not accept commit message with missing prefix",
-                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("Test. Test").matches());
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(fixCommitMessage("Test. Test")).matches());
+        // test 'testCommitMessageHasSingleLine' verifies that nothing is pass that new line
+        assertTrue("should accept commit message with new line on end and no period before it",
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(fixCommitMessage("minor: Test\n"))
+                        .matches());
         assertTrue("should accept commit message that ends properly",
-                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher("minor: Test. Test").matches());
+                ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(fixCommitMessage("minor: Test. Test"))
+                        .matches());
     }
 
     @Test
@@ -130,10 +139,15 @@ public class CommitValidationTest {
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitId = commit.getId().getName();
             final String commitMessage = commit.getFullMessage();
-            final Matcher matcher = ACCEPTED_COMMIT_MESSAGE_PATTERN.matcher(commitMessage);
+            final Matcher matcher = ACCEPTED_COMMIT_MESSAGE_PATTERN
+                    .matcher(fixCommitMessage(commitMessage));
             assertTrue(getInvalidCommitMessageFormattingError(commitId, commitMessage),
                     matcher.matches());
         }
+    }
+
+    private static String fixCommitMessage(String fullMessage) {
+        return fullMessage.split("\\r?\\n")[0];
     }
 
     @Test
