@@ -117,6 +117,25 @@ public class VisibilityModifierCheckTest
     public void testAllowPublicFinalFieldsInImmutableClass() throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicImmutableFields", "true");
+        checkConfig.addAttribute("allowPublicFinalFields", "false");
+        final String[] expected = {
+            "12:39: " + getCheckMessage(MSG_KEY, "includes"),
+            "13:39: " + getCheckMessage(MSG_KEY, "excludes"),
+            "16:23: " + getCheckMessage(MSG_KEY, "list"),
+            "34:20: " + getCheckMessage(MSG_KEY, "value"),
+            "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
+            "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
+        };
+        verify(checkConfig, getPath("InputImmutable.java"), expected);
+    }
+
+    @Test
+    public void testAllowPublicFinalFieldsInNonFinalClass() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicImmutableFields", "false");
+        checkConfig.addAttribute("allowPublicFinalFields", "true");
         final String[] expected = {
             "12:39: " + getCheckMessage(MSG_KEY, "includes"),
             "13:39: " + getCheckMessage(MSG_KEY, "excludes"),
@@ -134,6 +153,8 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.List,"
                 + "com.google.common.collect.ImmutableSet");
+        checkConfig.addAttribute("allowPublicImmutableFields", "true");
+        checkConfig.addAttribute("allowPublicFinalFields", "false");
         final String[] expected = {
             "14:35: " + getCheckMessage(MSG_KEY, "notes"),
             "15:29: " + getCheckMessage(MSG_KEY, "value"),
@@ -285,6 +306,7 @@ public class VisibilityModifierCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("allowPublicImmutableFields", "false");
+        checkConfig.addAttribute("allowPublicFinalFields", "false");
         final String[] expected = {
             "10:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "11:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -293,6 +315,50 @@ public class VisibilityModifierCheckTest
             "14:23: " + getCheckMessage(MSG_KEY, "list"),
         };
         verify(checkConfig, getPath("InputPublicImmutable.java"), expected);
+    }
+
+    @Test
+    public void testPublicFinalFieldsNotAllowed() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicImmutableFields", "true");
+        checkConfig.addAttribute("allowPublicFinalFields", "false");
+        final String[] expected = {
+            "10:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
+            "11:39: " + getCheckMessage(MSG_KEY, "includes"),
+            "12:35: " + getCheckMessage(MSG_KEY, "notes"),
+            "13:29: " + getCheckMessage(MSG_KEY, "value"),
+            "14:23: " + getCheckMessage(MSG_KEY, "list"),
+        };
+        verify(checkConfig, getPath("InputPublicImmutable.java"), expected);
+    }
+
+    @Test
+    public void testPublicFinalFieldsAllowed() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("immutableClassCanonicalNames",
+            "com.google.common.collect.ImmutableSet");
+        checkConfig.addAttribute("allowPublicImmutableFields", "false");
+        checkConfig.addAttribute("allowPublicFinalFields", "true");
+        final String[] expected = {
+            "12:35: " + getCheckMessage(MSG_KEY, "notes"),
+            "13:29: " + getCheckMessage(MSG_KEY, "value"),
+            "14:23: " + getCheckMessage(MSG_KEY, "list"),
+        };
+        verify(checkConfig, getPath("InputPublicImmutable.java"), expected);
+    }
+
+    @Test
+    public void testPublicFinalFieldInEnum() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicImmutableFields", "true");
+        checkConfig.addAttribute("allowPublicFinalFields", "false");
+        final String[] expected = {
+            "15:23: " + getCheckMessage(MSG_KEY, "hole"),
+        };
+        verify(checkConfig, getPath("InputEnumIsSealed.java"), expected);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -307,6 +373,7 @@ public class VisibilityModifierCheckTest
     public void testNullModifiers() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicFinalFields", "false");
         final String[] expected = {
             "11:50: " + getCheckMessage(MSG_KEY, "i"),
         };

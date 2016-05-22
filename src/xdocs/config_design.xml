@@ -793,6 +793,10 @@ public class Foo{
           named the same type without consideration of package
         </p>
         <p>
+          <b>allowPublicFinalFields</b> - which allows immutable fields be declared as
+          public. Default value is <b>true</b>
+        </p>
+        <p>
           <b>allowPublicImmutableFields</b> - which allows immutable fields be declared as
           public if defined in final class. Default value is <b>true</b>
         </p>
@@ -814,7 +818,8 @@ public class Foo{
         <p>
           <b>Restriction</b>: Check doesn't check if class is immutable, there's no
           checking if accessory methods are missing and all fields are immutable, we only check
-          <b>if current field is immutable and defined in final class</b>
+          <b>if current field is immutable</b>. Under the flag <b>allowPublicImmutableFields</b>,
+          the enclosing class must also be final, to encourage immutability.
         </p>
         <p>
           Star imports are out of scope of this Check. So if one of type imported via
@@ -848,6 +853,12 @@ public class Foo{
             <td>pattern for public members that should be ignored</td>
             <td><a href="property_types.html#regexp">regular expression</a></td>
             <td><code>^serialVersionUID$</code></td>
+          </tr>
+          <tr>
+            <td>allowPublicFinalFields</td>
+            <td>allows immutable fields be declared as public</td>
+            <td><a href="property_types.html#boolean">boolean</a></td>
+            <td><code>true</code></td>
           </tr>
           <tr>
             <td>allowPublicImmutableFields</td>

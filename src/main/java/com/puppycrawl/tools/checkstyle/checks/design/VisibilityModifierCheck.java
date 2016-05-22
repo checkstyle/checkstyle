@@ -72,6 +72,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </pre>
  *
  * <p>
+ * <b>allowPublicFinalFields</b> - which allows immutable fields be
+ * declared as public. Default value is <b>true</b>
+ * </p>
+ * <p>
  * <b>allowPublicImmutableFields</b> - which allows immutable fields be
  * declared as public if defined in final class. Default value is <b>true</b>
  * </p>
@@ -328,8 +332,11 @@ public class VisibilityModifierCheck
     /** Whether package visible members are allowed. */
     private boolean packageAllowed;
 
-    /** Allows immutable fields to be declared as public. */
+    /** Allows immutable fields of final classes to be declared as public. */
     private boolean allowPublicImmutableFields = true;
+
+    /** Allows final fields to be declared as public. */
+    private boolean allowPublicFinalFields = true;
 
     /** List of immutable classes canonical names. */
     private List<String> immutableClassCanonicalNames = new ArrayList<>(DEFAULT_IMMUTABLE_TYPES);
@@ -371,11 +378,19 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Sets whether public immutable are allowed.
+     * Sets whether public immutable fields are allowed.
      * @param allow user's value.
      */
     public void setAllowPublicImmutableFields(boolean allow) {
         allowPublicImmutableFields = allow;
+    }
+
+    /**
+     * Sets whether public final fields are allowed.
+     * @param allow user's value.
+     */
+    public void setAllowPublicFinalFields(boolean allow) {
+        allowPublicFinalFields = allow;
     }
 
     /**
@@ -540,8 +555,7 @@ public class VisibilityModifierCheck
                 || packageAllowed && PACKAGE_ACCESS_MODIFIER.equals(variableScope)
                 || protectedAllowed && PROTECTED_ACCESS_MODIFIER.equals(variableScope)
                 || isIgnoredPublicMember(variableName, variableScope)
-                   || allowPublicImmutableFields
-                      && isImmutableFieldDefinedInFinalClass(variableDef);
+                || isAllowedPublicField(variableDef);
         }
 
         return result;
@@ -567,6 +581,16 @@ public class VisibilityModifierCheck
     private boolean isIgnoredPublicMember(String variableName, String variableScope) {
         return PUBLIC_ACCESS_MODIFIER.equals(variableScope)
             && publicMemberPattern.matcher(variableName).find();
+    }
+
+    /**
+     * Checks whether the variable satisfies the public field check.
+     * @param variableDef Variable definition node.
+     * @return true if allowed
+     */
+    private boolean isAllowedPublicField(DetailAST variableDef) {
+        return allowPublicFinalFields && isImmutableField(variableDef)
+            || allowPublicImmutableFields && isImmutableFieldDefinedInFinalClass(variableDef);
     }
 
     /**
@@ -597,7 +621,6 @@ public class VisibilityModifierCheck
             }
         }
         return modifiersSet;
-
     }
 
     /**
