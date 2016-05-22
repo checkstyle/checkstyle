@@ -51,9 +51,9 @@ public class MyClass {
       <p>
       Javadoc by specification could contain any HTML tags that let user generate content he needs.
       Checkstyle can not parse something that looks like an HTML, so limitation appear.
-      The comment should be written in XHTML to be correctly processed by Checkstyle. This means that every HTML tag should have matching closed HTML tag or it is self-closed one (singlton tag).
+      The comment should be written in XHTML to build nested AST Tree that most Checks expect. This means that every HTML tag should have matching closed HTML tag or it is self-closed tag (singleton tag).
       The only exceptions are HTML 4 tags that don't require closing tag and HTML 4 singleton tags, so, Checkstyle won't show error about missing closing tag, however, it leads to broken XHTML structure and to
-      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment. More details about HTML at <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
+      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment. For More details about HTML in AST read <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
       </p>
       <p>
         Javadoc grammar requires XHTML, but it can also parse some parts of HTML code (like some unclosed tags). If HTML tags are not closed Javadoc grammar cannot determine content of these tags,
@@ -219,7 +219,7 @@ JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
     </section>
 
     <section name="Access Java AST from Javadoc Check">
-      As you alreasy know Javadoc parse tree is result of parsing block comment. There is a method to get the original block comment from Javadoc Check.
+      As you already know Javadoc parse tree is result of parsing block comment. There is a method to get the original block comment from Javadoc Check.
       You may need this block comment to check its position or something else in java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree.
       <p>
       For example, to write a JavadocCheck that verifies @param tags in Javadoc comment of a method definition, you also need all method's parameter names. To get method definition AST you should access java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree from javadoc Check. For this purpose use <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">getBlockCommentAst()</a> method that returns <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> node.
@@ -264,17 +264,17 @@ class MyCheck extends AbstractJavadocCheck {
         HTML 4 is picked just to have a list of tags that don't require closing tag and a list of singleton tags that don't need closing tag at all.
       </p>
       <p>
-        Tags that don't require closing tag: &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;, 
+        Tags that don't require closing tag: &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
         &lt;DT&gt;, &lt;HEAD&gt;, &lt;HTML&gt;, &lt;OPTION&gt;, &lt;TBODY&gt;, &lt;THEAD&gt;, &lt;TFOOT&gt;.
       </p>
       <p>
-        Singleton tags that don't need closing tag: &lt;AREA&gt;, &lt;BASE&gt;, &lt;BASEFONT&gt;, &lt;BR&gt;, &lt;COL&gt;, &lt;FRAME&gt;, 
+        Singleton tags that don't need closing tag: &lt;AREA&gt;, &lt;BASE&gt;, &lt;BASEFONT&gt;, &lt;BR&gt;, &lt;COL&gt;, &lt;FRAME&gt;,
         &lt;HR&gt;, &lt;IMG&gt;, &lt;INPUT&gt;, &lt;ISINDEX&gt;, &lt;LINK&gt;, &lt;META&gt;, &lt;PARAM&gt;.
       </p>
       <p>
         If Checkstyle meets unknown tag (for example HTML5 tag)
         it doesn't fail and parses this tag as <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#HTML_TAG">HTML_TAG</a> Javadoc token type.
-        Just follow XHTML rules to make Checkstyle javadoc parser happy, even though tags are unknown.
+        Just follow XHTML rules to make Checkstyle javadoc parser make nested AST, even though tags are unknown.
 
         <source><![CDATA[
 <audio><source src="horse.ogg" type="audio/ogg"/></audio>
