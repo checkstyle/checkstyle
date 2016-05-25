@@ -70,9 +70,9 @@ public class MyClass {
       To start implementing new Check create new class and extend <a href='apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. It has two abstract methods you should implement:
       </p>
       <ul>
-        <li>getDefaultJavadocTokens() - return int array of javadoc token types your Check is going to process. The array should contain int constants from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class.
+        <li><a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> - return int array of javadoc token types your Check is going to process. The array should contain int constants from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class.
           There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> token type.</li>
-        <li>visitJavadocToken(<a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailNode.html">DetailNode</a>) - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in getDefaultJavadocTokens() method.</li>
+        <li><a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#visitJavadocToken-com.puppycrawl.tools.checkstyle.api.DetailNode-">visitJavadocToken(DetailNode)</a> - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in getDefaultJavadocTokens() method.</li>
       </ul>
     </section>
 
