@@ -235,7 +235,7 @@ public class MainTest {
             public void checkAssertion() throws IOException {
                 final String expectedPath = getFilePath("InputMain.java");
                 final ResourceBundle compilationProperties =
-                        ResourceBundle.getBundle("checkstylecompilation");
+                        ResourceBundle.getBundle("checkstylecompilation", Locale.ROOT);
                 final String version = compilationProperties
                     .getString("checkstyle.compile.version");
                 assertEquals(String.format(Locale.ROOT,

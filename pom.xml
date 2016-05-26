@@ -968,12 +968,12 @@
       <version>2.1</version>
       <configuration>
         <targetVersion>${java.version}</targetVersion>
-        <internalRuntimeForbidden>true</internalRuntimeForbidden>
         <failOnUnsupportedJava>false</failOnUnsupportedJava>
         <bundledSignatures>
           <bundledSignature>jdk-unsafe</bundledSignature>
           <bundledSignature>jdk-deprecated</bundledSignature>
           <bundledSignature>jdk-system-out</bundledSignature>
+          <bundledSignature>jdk-non-portable</bundledSignature>
         </bundledSignatures>
         <excludes>
           <!-- system-out is ok there, that is CLI -->
