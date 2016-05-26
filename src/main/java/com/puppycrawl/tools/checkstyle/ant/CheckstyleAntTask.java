@@ -283,7 +283,7 @@ public class CheckstyleAntTask extends Task {
         try {
             // output version info in debug mode
             final ResourceBundle compilationProperties = ResourceBundle
-                    .getBundle("checkstylecompilation");
+                    .getBundle("checkstylecompilation", Locale.ROOT);
             final String version = compilationProperties
                     .getString("checkstyle.compile.version");
             final String compileTimestamp = compilationProperties

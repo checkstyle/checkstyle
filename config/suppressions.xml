@@ -34,7 +34,7 @@
     <!-- we can not change it as, Check name is part of API (used in configurations) -->
     <suppress checks="AbbreviationAsWordInName"
               files="XMLLogger.java"
-              lines="43"/>
+              lines="44"/>
     <!-- test should be named as their main class -->
     <suppress checks="AbbreviationAsWordInName"
               files="XMLLoggerTest.java"

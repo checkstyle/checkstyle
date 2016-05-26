@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.lang.reflect.Field;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.google.common.collect.ImmutableMap;
@@ -150,7 +151,7 @@ public final class TokenUtils {
 
         final String tokenTypes =
             "com.puppycrawl.tools.checkstyle.api.tokentypes";
-        final ResourceBundle bundle = ResourceBundle.getBundle(tokenTypes);
+        final ResourceBundle bundle = ResourceBundle.getBundle(tokenTypes, Locale.ROOT);
         return bundle.getString(name);
     }
 
