@@ -25,7 +25,7 @@ public class InputInvalidAnonymousClassIndent { //indent:0 exp:0
                     return new Thread(); //indent:20 exp:20
                 } else { //indent:16 exp:16
                     return new Thread(); //indent:20 exp:20
-                }}}); //indent:16 ioffset:1 exp:12,16 warn
+                }}}); //indent:16 exp:16
         return; //indent:8 exp:8
     } //indent:4 exp:4
 } //indent:0 exp:0
