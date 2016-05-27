@@ -33,10 +33,10 @@ machine:
     CASSANDRA: " && sed -i.'' 's/#cassandra/cassandra/' projects-for-circle.properties"
     SCOUTER: " && sed -i.'' 's/#scouter/scouter/' projects-for-circle.properties"
     GROOVY: " && sed -i.'' 's/#groovy/groovy/' projects-for-circle.properties"
-    # Test over openjdk7,8,9
-    TEST_1: $CMD1$CMD2$OPENJDK7$OPENJDK8$OPENJDK9$CMD3$CMD4
-    # Test over infinispan, protonpack, jOOL, lucene-solr
-    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$CMD3$CMD4
+    # Test over openjdk7,8
+    TEST_1: $CMD1$CMD2$OPENJDK7$OPENJDK8$CMD3$CMD4
+    # Test over infinispan, protonpack, jOOL, lucene-solr, openjdk9
+    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$OPENJDK9$CMD3$CMD4
     # Test over tapestry5, storm, cassandra
     TEST_3: $CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3$CMD4
     # Test over apache-commons, hadoop, scouter, groovy
