@@ -97,7 +97,7 @@ matrix:
         - CMD4=" && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
         - CMD5=" && echo CS_version:\$CS_POM_VERSION"
         - CMD6=" && git clone https://github.com/checkstyle/xwiki-commons/ "
-        - CMD7=" && cd xwiki-commons && git checkout checkstyle-regression "
+        - CMD7=" && cd xwiki-commons && git checkout 4992e06ac8edf2b7357e459f650aa42ec5e12f74 "
         - CS_CMD="  && mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=\$CS_POM_VERSION"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CS_CMD
         - COVERAGE_CMD=""
