@@ -162,6 +162,12 @@ public class AstRegressionTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testNewlineCr() throws Exception {
+        verifyAst(super.getPath("/checks/InputNewlineCrAtEndOfFileAst.txt"),
+                super.getPath("/checks/InputNewlineCrAtEndOfFile.java"), true);
+    }
+
+    @Test
     public void testImpossibleExceptions() throws Exception {
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);
