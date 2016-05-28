@@ -22,10 +22,13 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.io.IOException;
 
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
@@ -54,14 +57,44 @@ public final class DetailNodeTreeStringPrinter {
     }
 
     /**
+     * Parse block comment DetailAST as Javadoc DetailNode tree.
+     * @param blockComment DetailAST
+     * @return DetailNode tree
+     */
+    public static DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
+        final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
+        final ParseStatus status = parser.parseJavadocAsDetailNode(blockComment);
+        if (status.getParseErrorMessage() != null) {
+            throw new IllegalArgumentException(getParseErrorMessage(status.getParseErrorMessage()));
+        }
+        return status.getTree();
+    }
+
+    /**
      * Parse javadoc comment to DetailNode tree.
      * @param javadocComment javadoc comment content
      * @return tree
      */
     private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
-        final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
-        return parser.parseJavadocAsDetailNode(createFakeBlockComment(javadocComment))
-                .getTree();
+        final DetailAST blockComment = createFakeBlockComment(javadocComment);
+        return parseJavadocAsDetailNode(blockComment);
+    }
+
+    /**
+     * Builds error message base on ParseErrorMessage's message key, its arguments, etc.
+     * @param parseErrorMessage ParseErrorMessage
+     * @return error message
+     */
+    private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
+        final LocalizedMessage lmessage = new LocalizedMessage(
+                parseErrorMessage.getLineNumber(),
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
+                parseErrorMessage.getMessageKey(),
+                parseErrorMessage.getMessageArguments(),
+                "",
+                DetailNodeTreeStringPrinter.class,
+                null);
+        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + lmessage.getMessage();
     }
 
     /**
