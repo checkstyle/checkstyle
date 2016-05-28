@@ -450,6 +450,9 @@
       <property name="tokens" value="COMMA"/>
       <property name="option" value="EOL"/>
     </module>
+    <module name="SingleSpaceSeparator">
+      <property name="validateComments" value="false"/>
+    </module>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround"/>
