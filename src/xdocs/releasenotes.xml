@@ -15,6 +15,78 @@
 
   <body>
 
+    <section name="Release 6.19">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Issue #3187: aligned setters with String collection fields and broke old compatibility. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3189">#3189</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            new Check: SingleSpaceSeparator. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3173">#3173</a>
+          </li>
+          <li>
+            ReturnCount: special option for methods with void return type. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3143">#3143</a>
+          </li>
+          <li>
+            new CLI argument: provide abililty to show debug level of logs from checkstyle code. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3086">#3086</a>
+          </li>
+          <li>
+            Fix cache usage in presence of filters. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/407">#407</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            CLI Javadoc tree printer doesn&#39;t show errors. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/3219">#3219</a>
+          </li>
+          <li>
+            Block Comments: CR lines not handled the same as LF lines. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3225">#3225</a>
+          </li>
+          <li>
+            IllegalTokenTextCheck and IllegalTokenCheck does not work with COMMENT_CONTENT token. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3153">#3153</a>
+          </li>
+          <li>
+            Indentation: throwsIndent should configure indentation of `throws` on next line. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2763">#2763</a>
+          </li>
+          <li>
+            UnusedImports: value javadoc tag does not reference imports. Author: Konstantin Lutovich <a href="https://github.com/checkstyle/checkstyle/issues/3157">#3157</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            FileContents confused about number of lines in comment separated by &#39;\r&#39;. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3066">#3066</a>
+          </li>
+          <li>
+            Create web-page with instructions: how to create Javadoc Check. Author: Baratali Izmailov, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/410">#410</a>
+          </li>
+          <li>
+            XDoc Config: create unit test to verify property types and default values. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3187">#3187</a>
+          </li>
+          <li>
+            Some PullRequests validation for commit mesage miss some cases. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3168">#3168</a>
+          </li>
+          <li>
+            AnnotationLocation: unclear behavior when annotation is among modifiers. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3164">#3164</a>
+          </li>
+          <li>
+            Documentation for ANT property config is incorrect. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3119">#3119</a>
+          </li>
+          <li>
+            Sevntu CS not running on all CS code. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3175">#3175</a>
+          </li>
+          <li>
+            Update version of commons-collections to 3.2.2(from 3.2.1) to fix security vulnerability CVE-2015-6420. Author: akhil <a href="https://github.com/checkstyle/checkstyle/issues/3162">#3162</a>
+          </li>
+          <li>
+            doc: Indentation property description become worded in the same way. Author: Roman Ivanov
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.18">
       <p>New:</p>
         <ul>
