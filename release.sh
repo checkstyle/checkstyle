@@ -1,14 +1,15 @@
 #!/usr/bin/bash
 set -e
 
+# Make sure you prepared your PC for automative deployment
 #https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release
 
 SF_USER=romanivanov
-RELEASE=6.19
+RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
 PREV_RELEASE=$(git describe $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
 
-echo "PREVIOUS RELESE version:"$PREV_RELEASE
-echo "RELESE version:"$RELEASE
+echo "PREVIOUS RELEASE version:"$PREV_RELEASE
+echo "RELEASE version:"$RELEASE
 
 #############################
 echo "Please provide password for $SF_USER,checkstyle@shell.sourceforge.net"
