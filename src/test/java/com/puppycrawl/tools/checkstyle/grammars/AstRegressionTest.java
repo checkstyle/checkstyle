@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.grammars;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -146,19 +145,8 @@ public class AstRegressionTest extends BaseCheckTestSupport {
         verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "// \r\n", true);
         verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \n */", true);
         verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \r\n */", true);
-        // noinspection ProhibitedExceptionCaught
-        try {
-            verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
-                    true);
-            fail("Expected Exception");
-        }
-        catch (ArrayIndexOutOfBoundsException ex) {
-            // expected, as 'FileContents.extractCComment' is confused if the
-            // comment is a 1 line comment or 2. Part of FileContents thinks it
-            // is 1 line while other parts think it is 2 lines. The exception
-            // occurs when trying to retrieve the non-existent second line.
-            assertEquals("expected exception", "1", ex.getMessage());
-        }
+        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
+            true);
     }
 
     @Test
@@ -228,7 +216,7 @@ public class AstRegressionTest extends BaseCheckTestSupport {
                 "file.encoding", "UTF-8")).getFullText().toString().replace("\r", "");
 
         final FileText actualFileContents = FileText.fromLines(new File(""),
-                Arrays.asList(actualJava.split("\\n")));
+                Arrays.asList(actualJava.split("\\n|\\r\\n?")));
         final String actualContents = AstTreeStringPrinter.printAst(actualFileContents,
                 withComments);
 
