@@ -63,8 +63,8 @@ matrix:
         - CMD7=" && if grep 'warning' output.log ; then exit 1; fi"
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7
         - COVERAGE_CMD=""
-    # nemo.sonarqube.com (oraclejdk7)
-    - jdk: oraclejdk7
+    # nemo.sonarqube.com (oraclejd8)
+    - jdk: oraclejdk8
       env:
         - DESC="nemo.sonarqube.com"
         - CMD1="mvn clean install cobertura:cobertura -Dcobertura.report.format=xml "
@@ -293,22 +293,6 @@ matrix:
     # unit tests in Turkish locale (oraclejdk8)
     - jdk: oraclejdk8
       env: DESC="tests tr" CMD="mvn clean integration-test failsafe:verify -DargLine='-Duser.language=tr -Duser.country=TR -XX:-UseSplitVerifier'" COVERAGE_CMD=""
-    # unit tests (openjdk7, oraclejdk7)
-    - jdk: openjdk7
-      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
-    - jdk: oraclejdk7
-      env: DESC="tests" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD=""
-    # checkstyle (openjdk7, oraclejdk7)
-    - jdk: openjdk7
-      env:
-        - DESC="checkstyle and sevntu-checkstyle"
-        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
-        - COVERAGE_CMD=""
-    - jdk: oraclejdk7
-      env:
-        - DESC="checkstyle and sevntu-checkstyle"
-        - CMD="mvn clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true -Dcobertura.skip=true"
-        - COVERAGE_CMD=""
 
     # MacOS verify (till cache is not working, we can not do verify)
     - os: osx
