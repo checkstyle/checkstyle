@@ -1708,7 +1708,7 @@
         <option name="ignoreEmptySuperMethods" value="false" />
         <option name="onlyReportWhenAnnotated" value="true" />
     </inspection_tool>
-    <inspection_tool class="RemoveExplicitTypeArguments" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="RemoveExplicitTypeArguments" enabled="false" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReplaceAllDot" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReplaceAssignmentWithOperatorAssignment" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreLazyOperators" value="true" />
