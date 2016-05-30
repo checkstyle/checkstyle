@@ -597,7 +597,7 @@ class SwitchExample {
               the maximum allowed number of non commenting lines in a
               method.
             </td>
-            <td><a href="property_types.html#Integer">Integer</a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>50</code></td>
           </tr>
           <tr>

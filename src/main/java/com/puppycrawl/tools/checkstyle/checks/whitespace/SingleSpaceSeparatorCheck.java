@@ -29,11 +29,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * whitespace. Separating characters by tabs or multiple spaces will be
  * reported. Currently the check doesn't permit horizontal alignment. To inspect
  * whitespaces before and after comments, set the property
- * {@link #validateComments} to true.
+ * <b>validateComments</b> to true.
  * </p>
  *
  * <p>
- * Setting {@link #validateComments} to false will ignore cases like:
+ * Setting <b>validateComments</b> to false will ignore cases like:
  * </p>
  *
  * <pre>
