@@ -51,14 +51,20 @@ public class MyClass {
       <p>
       Javadoc by specification could contain any HTML tags that let user generate content he needs.
       Checkstyle can not parse something that looks like an HTML, so limitation appear.
-      The comment should be written in XHTML to build nested AST Tree that most Checks expect. This means that every HTML tag should have matching closed HTML tag or it is self-closed tag (singleton tag).
-      The only exceptions are HTML 4 tags that don't require closing tag and HTML 4 singleton tags, so, Checkstyle won't show error about missing closing tag, however, it leads to broken XHTML structure and to
-      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment. For More details about HTML in AST read <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
       </p>
       <p>
-        Javadoc grammar requires XHTML, but it can also parse some parts of HTML code (like some unclosed tags). If HTML tags are not closed Javadoc grammar cannot determine content of these tags,
-        so structure of the parse tree will not be nested like it is while using XHTML.
-        It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
+      The comment should be written in XHTML to build nested AST Tree that most Checks expect. This means that every HTML tag should have matching closed HTML tag or it is self-closed tag.
+      </p>
+      <p>
+      The only exceptions are HTML 4 tags that are "don't require closing" tag, so, Checkstyle won't show error about missing closing tag, however, it leads to broken XHTML structure and as result leads to
+      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
+      <br/>
+      In other words if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
+      so structure of the parse tree will not be nested like it is while using XHTML.
+      It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
+      </p>
+      <p>
+        For More details about HTML in AST read <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
       </p>
     </section>
 
@@ -72,7 +78,7 @@ public class MyClass {
       <ul>
         <li><a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> - return int array of javadoc token types your Check is going to process. The array should contain int constants from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class.
           There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> token type.</li>
-        <li><a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#visitJavadocToken-com.puppycrawl.tools.checkstyle.api.DetailNode-">visitJavadocToken(DetailNode)</a> - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in getDefaultJavadocTokens() method.</li>
+        <li><a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#visitJavadocToken-com.puppycrawl.tools.checkstyle.api.DetailNode-">visitJavadocToken(DetailNode)</a> - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> method.</li>
       </ul>
     </section>
 
@@ -261,10 +267,10 @@ class MyCheck extends AbstractJavadocCheck {
         Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">all HTML4 elements</a>.
       </p>
       <p>
-        HTML 4 is picked just to have a list of tags with optional end tag and a list of tags whose end tag is forbidden (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
+        HTML 4 is picked just to have a list of tags that are "don't require closing tag" and a list of tags whose end tag is forbidden (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
       </p>
       <p>
-        HTML tags with optional end tag: &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
+        HTML tags with "don't require closing tag" tag: &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
         &lt;DT&gt;, &lt;HEAD&gt;, &lt;HTML&gt;, &lt;OPTION&gt;, &lt;TBODY&gt;, &lt;THEAD&gt;, &lt;TFOOT&gt;.
       </p>
       <p>
