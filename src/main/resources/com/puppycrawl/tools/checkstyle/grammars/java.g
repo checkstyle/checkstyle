@@ -262,6 +262,7 @@ typeSpec[boolean addImagNode]
 // - generic type arguments after
 classTypeSpec[boolean addImagNode]
     :   classOrInterfaceType[addImagNode]
+        ({LA(1) == AT}? annotations | )
         (options{greedy=true; }:
             ({LA(1) == AT}? annotations
             | )
@@ -606,6 +607,7 @@ typeParameters
 typeParameter
     :
         // I'm pretty sure Antlr generates the right thing here:
+        ({LA(1) == AT}? annotations | )
         (id:IDENT) ( options{generateAmbigWarnings=false;}: typeParameterBounds )?
         {#typeParameter = #(#[TYPE_PARAMETER,"TYPE_PARAMETER"], #typeParameter);}
     ;
@@ -944,7 +946,7 @@ ctorHead
 // This is a list of exception classes that the method is declared to throw
 throwsClause
     :    "throws"^ ({LA(1) == AT}? annotations
-                    | ) identifier ( COMMA identifier )*
+                    | ) identifier ( COMMA ({LA(1) == AT}? annotations | ) identifier )*
     ;
 
 
@@ -983,11 +985,16 @@ parameterModifier
 
 // A formal parameter.
 parameterDeclaration!
-    :    pm:parameterModifier (t:typeSpec[false])? id:IDENT
-        pd:declaratorBrackets[#t]
+    :    pm:parameterModifier (t:typeSpec[false])?
+        id:parameterIdent pd:declaratorBrackets[#t]
         {#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
                                     pm, #([TYPE,"TYPE"],pd), id);}
     ;
+
+parameterIdent
+    :    LITERAL_this | (IDENT (DOT^ LITERAL_this)?)
+    ;
+
 //Added for support Java7's "multi-catch", several types separated by '|'
 catchParameterDeclaration!
     :   pm:parameterModifier mct:multiCatchTypes id:IDENT

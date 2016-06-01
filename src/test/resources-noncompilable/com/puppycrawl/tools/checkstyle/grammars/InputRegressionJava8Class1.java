@@ -22,6 +22,10 @@ public class InputRegressionJava8Class1 {
     public static void sm() {}
     void m1() throws @Nullable Exception {}
     public static <T> void m2(T @Nullable [] array) {}
+    public void m3() throws NullPointerException, @Nullable ArrayIndexOutOfBoundsException {}
+    public void m4(InputRegressionJava8Class1 this) {}
+    public void m5(@Nullable InputRegressionJava8Class1 this, @Nullable String @Nullable ... vararg) {}
+    public Object @Nullable [][] @Nullable [] m6() { return null; }
 
     {
         List<String> vlist = new ArrayList<String>();
@@ -56,8 +60,14 @@ public class InputRegressionJava8Class1 {
     }
 
     static final Comparator<?> f = (Comparator<?>) (dateTime1, dateTime2) -> { return 0; };
+
+    private class Inner {
+        public Inner(InputRegressionJava8Class1 InputRegressionJava8Class1.this) {}
+    }
 }
 ;
+class InputRegressionJava8TypeParam <@Nullable T> {
+}
 @Retention(RetentionPolicy.CLASS)
 @Target({ ElementType.TYPE_USE })
 @interface Nullable {
