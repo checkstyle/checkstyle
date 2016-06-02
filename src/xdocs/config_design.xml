@@ -793,8 +793,12 @@ public class Foo{
           named the same type without consideration of package
         </p>
         <p>
-          <b>allowPublicImmutableFields</b> - which allows immutable fields be declared as
-          public if defined in final class. Default value is <b>true</b>
+          <b>allowPublicFinalFields</b> - which allows public final fields.
+          Default value is <b>false</b>
+        </p>
+        <p>
+          <b>allowPublicImmutableFields</b> - which allows immutable fields to be declared as
+          public if defined in final class. Default value is <b>false</b>
         </p>
         <p>
           Field is known to be immutable if:
@@ -814,7 +818,10 @@ public class Foo{
         <p>
           <b>Restriction</b>: Check doesn't check if class is immutable, there's no
           checking if accessory methods are missing and all fields are immutable, we only check
-          <b>if current field is immutable and defined in final class</b>
+          <b>if current field is immutable or final</b>. Under the flag
+          <b>allowPublicImmutableFields</b>, the enclosing class must also be final, to encourage
+          immutability. Under the flag <b>allowPublicFinalFields</b>, the final modifier on
+          the enclosing class is optional.
         </p>
         <p>
           Star imports are out of scope of this Check. So if one of type imported via
@@ -850,10 +857,16 @@ public class Foo{
             <td><code>^serialVersionUID$</code></td>
           </tr>
           <tr>
-            <td>allowPublicImmutableFields</td>
-            <td>allows immutable fields be declared as public if defined in final class</td>
+            <td>allowPublicFinalFields</td>
+            <td>allows public final fields</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowPublicImmutableFields</td>
+            <td>allows immutable fields to be declared as public if defined in final class</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
           </tr>
           <tr>
             <td>immutableClassCanonicalNames</td>
@@ -904,7 +917,9 @@ public class Foo{
           (mostly for immutable classes):
         </p>
         <source>
-&lt;module name=&quot;VisibilityModifier&quot;/&gt;
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+    &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+ &lt;/module&gt;
         </source>
         <p>
           Example of allowed public immutable fields:
@@ -928,10 +943,11 @@ public class ImmutableClass
 }
         </source>
         <p>
-          To configure the Check which allows user specified immutable class names:
+          To configure the Check in order to allow user specified immutable class names:
         </p>
         <source>
 &lt;module name=&quot;VisibilityModifier&quot;&gt;
+    &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;
     com.google.common.collect.ImmutableSet&quot;/&gt;
 &lt;/module&gt;
@@ -1026,6 +1042,69 @@ class SomeClass
     @mypackage.annotation.CustomAnnotation
     String customAnnotatedAnotherPackage; // another package but short name matches
                                           // so no violation
+}
+        </source>
+
+        <p>
+          To understand the difference between allowPublicImmutableFields and
+          allowPublicFinalFields options, please, study the following examples.
+        </p>
+        <p>
+           1) To configure the check to use only 'allowPublicImmutableFields' option:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Code example:
+        </p>
+        <source>
+public class InputPublicImmutable {
+  public final int someIntValue; // violation
+  public final ImmutableSet&lt;String&gt; includes; // violation
+  public final java.lang.String notes; // violation
+  public final BigDecimal value; // violation
+  public final List list; // violation
+
+  public InputPublicImmutable(Collection&lt;String&gt; includes,
+        BigDecimal value, String notes, int someValue, List l) {
+    this.includes = ImmutableSet.copyOf(includes);
+    this.value = value;
+    this.notes = notes;
+    this.someIntValue = someValue;
+    this.list = l;
+  }
+}
+        </source>
+        <p>
+          2) To configure the check to use only 'allowPublicFinalFields' option:
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;allowPublicFinalFields&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Code example:
+        </p>
+        <source>
+public class InputPublicImmutable {
+  public final int someIntValue;
+  public final ImmutableSet&lt;String&gt; includes;
+  public final java.lang.String notes;
+  public final BigDecimal value;
+  public final List list;
+
+  public InputPublicImmutable(Collection&lt;String&gt; includes,
+        BigDecimal value, String notes, int someValue, List l) {
+    this.includes = ImmutableSet.copyOf(includes);
+    this.value = value;
+    this.notes = notes;
+    this.someIntValue = someValue;
+    this.list = l;
+  }
 }
         </source>
       </subsection>

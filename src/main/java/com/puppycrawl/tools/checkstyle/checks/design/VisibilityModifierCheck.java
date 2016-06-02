@@ -72,8 +72,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </pre>
  *
  * <p>
- * <b>allowPublicImmutableFields</b> - which allows immutable fields be
- * declared as public if defined in final class. Default value is <b>true</b>
+ * <b>allowPublicFinalFields</b> - which allows public final fields. Default value is <b>false</b>.
+ * </p>
+ * <p>
+ * <b>allowPublicImmutableFields</b> - which allows immutable fields to be
+ * declared as public if defined in final class. Default value is <b>false</b>
  * </p>
  * <p>
  * Field is known to be immutable if:
@@ -131,21 +134,21 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </p>
  * Examples:
  * <p>
- * Default Check's configuration will pass the code below:
+ * The check will rise 3 violations if it is run with default configuration against the following
+ * code example:
  * </p>
  *
  * <pre>
  * {@code
- * public final class ImmutableClass
+ * public class ImmutableClass
  * {
- *     public final int intValue; // No warning
- *     public final java.lang.String notes; // No warning
- *     public final BigDecimal value; // No warning
+ *     public int intValue; // violation
+ *     public java.lang.String notes; // violation
+ *     public BigDecimal value; // violation
  *
  *     public ImmutableClass(int intValue, BigDecimal value, String notes)
  *     {
- *         this.includes = ImmutableSet.copyOf(includes);
- *         this.excludes = ImmutableSet.copyOf(excludes);
+ *         this.intValue = intValue;
  *         this.value = value;
  *         this.notes = notes;
  *     }
@@ -159,6 +162,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  * </p>
  * <p>
  * &lt;module name=&quot;VisibilityModifier&quot;&gt;
+ *   &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
  *   &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;java.util.List,
  *   com.google.common.collect.ImmutableSet&quot;/&gt;
  * &lt;/module&gt;
@@ -328,8 +332,11 @@ public class VisibilityModifierCheck
     /** Whether package visible members are allowed. */
     private boolean packageAllowed;
 
-    /** Allows immutable fields to be declared as public. */
-    private boolean allowPublicImmutableFields = true;
+    /** Allows immutable fields of final classes to be declared as public. */
+    private boolean allowPublicImmutableFields;
+
+    /** Allows final fields to be declared as public. */
+    private boolean allowPublicFinalFields;
 
     /** List of immutable classes canonical names. */
     private List<String> immutableClassCanonicalNames = new ArrayList<>(DEFAULT_IMMUTABLE_TYPES);
@@ -371,11 +378,19 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Sets whether public immutable are allowed.
+     * Sets whether public immutable fields are allowed.
      * @param allow user's value.
      */
     public void setAllowPublicImmutableFields(boolean allow) {
         allowPublicImmutableFields = allow;
+    }
+
+    /**
+     * Sets whether public final fields are allowed.
+     * @param allow user's value.
+     */
+    public void setAllowPublicFinalFields(boolean allow) {
+        allowPublicFinalFields = allow;
     }
 
     /**
@@ -540,8 +555,7 @@ public class VisibilityModifierCheck
                 || packageAllowed && PACKAGE_ACCESS_MODIFIER.equals(variableScope)
                 || protectedAllowed && PROTECTED_ACCESS_MODIFIER.equals(variableScope)
                 || isIgnoredPublicMember(variableName, variableScope)
-                   || allowPublicImmutableFields
-                      && isImmutableFieldDefinedInFinalClass(variableDef);
+                || isAllowedPublicField(variableDef);
         }
 
         return result;
@@ -567,6 +581,16 @@ public class VisibilityModifierCheck
     private boolean isIgnoredPublicMember(String variableName, String variableScope) {
         return PUBLIC_ACCESS_MODIFIER.equals(variableScope)
             && publicMemberPattern.matcher(variableName).find();
+    }
+
+    /**
+     * Checks whether the variable satisfies the public field check.
+     * @param variableDef Variable definition node.
+     * @return true if allowed.
+     */
+    private boolean isAllowedPublicField(DetailAST variableDef) {
+        return allowPublicFinalFields && isFinalField(variableDef)
+            || allowPublicImmutableFields && isImmutableFieldDefinedInFinalClass(variableDef);
     }
 
     /**
@@ -597,7 +621,6 @@ public class VisibilityModifierCheck
             }
         }
         return modifiersSet;
-
     }
 
     /**
@@ -628,10 +651,7 @@ public class VisibilityModifierCheck
      */
     private boolean isImmutableField(DetailAST variableDef) {
         boolean result = false;
-
-        final DetailAST modifiers = variableDef.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isFinal = modifiers.branchContains(TokenTypes.FINAL);
-        if (isFinal) {
+        if (isFinalField(variableDef)) {
             final DetailAST type = variableDef.findFirstToken(TokenTypes.TYPE);
             final boolean isCanonicalName = type.getFirstChild().getType() == TokenTypes.DOT;
             final String typeName = getTypeName(type, isCanonicalName);
@@ -641,6 +661,16 @@ public class VisibilityModifierCheck
                      || isCanonicalName && immutableClassCanonicalNames.contains(typeName);
         }
         return result;
+    }
+
+    /**
+     * Checks whether current field is final.
+     * @param variableDef field in consideration.
+     * @return true if current field is final.
+     */
+    private boolean isFinalField(DetailAST variableDef) {
+        final DetailAST modifiers = variableDef.findFirstToken(TokenTypes.MODIFIERS);
+        return modifiers.branchContains(TokenTypes.FINAL);
     }
 
     /**
