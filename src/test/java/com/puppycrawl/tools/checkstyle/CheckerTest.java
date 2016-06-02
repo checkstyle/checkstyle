@@ -47,6 +47,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.powermock.api.mockito.PowerMockito;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -400,7 +401,8 @@ public class CheckerTest extends BaseCheckTestSupport {
             checker.setCacheFile(file.getAbsolutePath());
         }
         else {
-            checker.setCacheFile(File.separator + ":invalid");
+            final int wrongFileNameLength = 300;
+            checker.setCacheFile(Strings.padEnd(File.separator, wrongFileNameLength, '*'));
         }
         try {
             checker.destroy();
