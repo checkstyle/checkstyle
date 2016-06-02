@@ -142,4 +142,13 @@ public class AnnotationTest extends BaseCheckTestSupport {
 
     }
 
+    @Test
+    public void testAnnotationInTypeParameters()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(MemberNameCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputAnnotations11.java"), expected);
+
+    }
 }
