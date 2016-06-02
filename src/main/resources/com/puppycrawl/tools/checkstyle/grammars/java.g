@@ -606,6 +606,7 @@ typeParameters
 typeParameter
     :
         // I'm pretty sure Antlr generates the right thing here:
+        ({LA(1) == AT}? annotations | )
         (id:IDENT) ( options{generateAmbigWarnings=false;}: typeParameterBounds )?
         {#typeParameter = #(#[TYPE_PARAMETER,"TYPE_PARAMETER"], #typeParameter);}
     ;

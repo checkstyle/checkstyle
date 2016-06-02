@@ -58,6 +58,8 @@ public class InputRegressionJava8Class1 {
     static final Comparator<?> f = (Comparator<?>) (dateTime1, dateTime2) -> { return 0; };
 }
 ;
+class InputRegressionJava8TypeParam <@Nullable T> {
+}
 @Retention(RetentionPolicy.CLASS)
 @Target({ ElementType.TYPE_USE })
 @interface Nullable {
