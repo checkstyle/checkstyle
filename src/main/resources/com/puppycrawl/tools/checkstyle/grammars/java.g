@@ -945,7 +945,7 @@ ctorHead
 // This is a list of exception classes that the method is declared to throw
 throwsClause
     :    "throws"^ ({LA(1) == AT}? annotations
-                    | ) identifier ( COMMA identifier )*
+                    | ) identifier ( COMMA ({LA(1) == AT}? annotations | ) identifier )*
     ;
 
 
