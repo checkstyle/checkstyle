@@ -505,7 +505,7 @@ public class MainTest {
                 method.invoke(null, new File(file.getAbsolutePath()));
             }
             else {
-                method.invoke(null, new File(File.separator + ":invalid"));
+                method.invoke(null, new File(File.separator + "\0:invalid"));
             }
             fail("Exception was expected");
         }
