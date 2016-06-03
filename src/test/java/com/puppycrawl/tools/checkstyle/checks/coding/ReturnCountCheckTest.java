@@ -85,7 +85,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "41:5: " + getCheckMessage(MSG_KEY, 2, 1),
             "49:57: " + getCheckMessage(MSG_KEY, 2, 1),
         };
-        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "34:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "41:5: " + getCheckMessage(MSG_KEY, 4, 2),
             "56:5: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(ReturnCountCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_RETURN");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputReturnCountLambda.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
     }
 
     @Test

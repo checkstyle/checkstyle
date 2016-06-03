@@ -88,7 +88,7 @@ public class RedundantModifierCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(RedundantModifierCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputStaticModifierInInterface.java"), expected);
+        verify(checkConfig, getPath("InputStaticModifierInInterface.java"), expected);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "5:9: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verify(checkConfig, getNonCompilablePath("InputFinalInDefaultMethods.java"), expected);
+        verify(checkConfig, getPath("InputFinalInDefaultMethods.java"), expected);
     }
 
     @Test
