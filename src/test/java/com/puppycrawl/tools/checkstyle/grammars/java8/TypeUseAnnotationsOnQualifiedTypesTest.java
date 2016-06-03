@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TypeUseAnnotationsOnQualifiedTypesTest extends BaseCheckTestSupport {
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("grammars" + File.separator
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("grammars" + File.separator
                 + "java8" + File.separator + filename);
     }
 
@@ -42,7 +42,7 @@ public class TypeUseAnnotationsOnQualifiedTypesTest extends BaseCheckTestSupport
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputTypeUseAnnotationsOnQualifiedTypes.java"),
+        verify(checkConfig, getPath("InputTypeUseAnnotationsOnQualifiedTypes.java"),
                 expected);
 
     }

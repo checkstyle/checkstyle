@@ -125,7 +125,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testMethodReferences() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences3.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences3.java"), expected);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class GenericWhitespaceCheckTest
         final String[] expected = {
             "10:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
-        verify(checkConfig, getNonCompilablePath("InputGenericWhitespaceMethodRef.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceMethodRef.java"), expected);
     }
 
     @Test

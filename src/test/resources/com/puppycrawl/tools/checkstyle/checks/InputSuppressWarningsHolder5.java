@@ -6,7 +6,7 @@ import java.lang.annotation.Target;
 import java.util.List;
 import java.util.Map;
 
-public class InputSuppressWarningsHolder{
+public class InputSuppressWarningsHolder5{
 
     public static Object foo1(@SuppressWarnings("unsused") Object str) {
         String myString = (@SuppressWarnings("unsused") String) str;

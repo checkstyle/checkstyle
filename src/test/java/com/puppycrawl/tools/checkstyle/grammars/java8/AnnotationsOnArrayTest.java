@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AnnotationsOnArrayTest extends BaseCheckTestSupport {
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("grammars" + File.separator
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("grammars" + File.separator
                 + "java8" + File.separator + filename);
     }
 
@@ -42,7 +42,7 @@ public class AnnotationsOnArrayTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotationsOnArray.java"),
+        verify(checkConfig, getPath("InputAnnotationsOnArray.java"),
                 expected);
 
     }
