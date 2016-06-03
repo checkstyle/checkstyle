@@ -8,14 +8,14 @@ import java.util.function.Supplier;
  *
  * @author IljaDubinin
  */
-public class InputNewHandler 
+public class InputNewHandler
 {
-    
+
     public static void test() {
         method(ArrayList::new);
     }
 
     private static void method(Supplier<?> s) {
     }
-    
+
 }

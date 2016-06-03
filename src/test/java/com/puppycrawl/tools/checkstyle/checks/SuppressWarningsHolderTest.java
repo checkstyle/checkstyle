@@ -87,7 +87,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getNonCompilablePath("InputSuppressWarningsHolder.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsHolder5.java"), expected);
     }
 
     @Test
