@@ -236,9 +236,9 @@ public abstract class AbstractExpressionHandler {
      *
      * @return the start of the specified line
      */
-    protected final int getLineStart(String line) {
+    private int getLineStart(String line) {
         int index = 0;
-        while (index < line.length() && Character.isWhitespace(line.charAt(index))) {
+        while (Character.isWhitespace(line.charAt(index))) {
             index++;
         }
         return CommonUtils.lengthExpandedTabs(
@@ -253,27 +253,6 @@ public abstract class AbstractExpressionHandler {
      */
     protected boolean shouldIncreaseIndent() {
         return true;
-    }
-
-    /**
-     * Check the indentation of consecutive lines for the expression we are
-     * handling.
-     *
-     * @param startLine     the first line to check
-     * @param endLine       the last line to check
-     * @param indentLevel   the required indent level
-     */
-    protected final void checkLinesIndent(int startLine, int endLine,
-        IndentLevel indentLevel) {
-        // check first line
-        checkLineIndent(startLine, indentLevel);
-
-        // check following lines
-        final IndentLevel offsetLevel =
-            new IndentLevel(indentLevel, getBasicOffset());
-        for (int i = startLine + 1; i <= endLine; i++) {
-            checkLineIndent(i, offsetLevel);
-        }
     }
 
     /**
@@ -324,22 +303,6 @@ public abstract class AbstractExpressionHandler {
                 if (col != null) {
                     checkLineIndent(i, col, theLevel, false);
                 }
-            }
-        }
-    }
-
-    /**
-     * Check the indent level for a single line.
-     *
-     * @param lineNum       the line number to check
-     * @param indentLevel   the required indent level
-     */
-    private void checkLineIndent(int lineNum, IndentLevel indentLevel) {
-        final String line = indentCheck.getLine(lineNum - 1);
-        if (!line.isEmpty()) {
-            final int start = getLineStart(line);
-            if (indentLevel.isGreaterThan(start)) {
-                logChildError(lineNum, start, indentLevel);
             }
         }
     }
