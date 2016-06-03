@@ -22,6 +22,7 @@ public class InputRegressionJava8Class1 {
     public static void sm() {}
     void m1() throws @Nullable Exception {}
     public static <T> void m2(T @Nullable [] array) {}
+    public void m3() throws NullPointerException, @Nullable ArrayIndexOutOfBoundsException {}
 
     {
         List<String> vlist = new ArrayList<String>();
