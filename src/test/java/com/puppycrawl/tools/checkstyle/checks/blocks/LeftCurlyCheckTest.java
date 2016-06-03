@@ -293,7 +293,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             "12:32: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 32),
             "15:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
-        verify(checkConfig, getNonCompilablePath("InputLeftCurlyNewLineOptionWithLambda.java"),
+        verify(checkConfig, getPath("InputLeftCurlyNewLineOptionWithLambda.java"),
                 expected);
     }
 
@@ -304,7 +304,7 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
             "6:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
             "12:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
         };
-        verify(checkConfig, getNonCompilablePath("InputLeftCurlyNewLineOptionWithLambda.java"),
+        verify(checkConfig, getPath("InputLeftCurlyNewLineOptionWithLambda.java"),
                 expected);
     }
 

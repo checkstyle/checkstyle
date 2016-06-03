@@ -185,9 +185,7 @@ public class NoWhitespaceAfterCheckTest
             "9:40: " + getCheckMessage(MSG_KEY, "int"),
             "10:61: " + getCheckMessage(MSG_KEY, "String"),
         };
-        verify(checkConfig,
-            getNonCompilablePath("InputNoWhitespaceAfterMethodRef.java"),
-                 expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterMethodRef.java"), expected);
     }
 
     @Test

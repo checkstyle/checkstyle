@@ -163,7 +163,7 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "32:16: " + "Variable 'result' should be declared final.",
         };
-        verify(checkConfig, getNonCompilablePath("InputFinalLocalVariableNameLambda.java"),
+        verify(checkConfig, getPath("InputFinalLocalVariableNameLambda.java"),
             expected);
     }
 

@@ -63,7 +63,7 @@ public class SuperCloneCheckTest
         final String[] expected = {
             "9:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verify(checkConfig, getNonCompilablePath("InputSuperClone.java"), expected);
+        verify(checkConfig, getPath("InputSuperClone.java"), expected);
     }
 
     @Test

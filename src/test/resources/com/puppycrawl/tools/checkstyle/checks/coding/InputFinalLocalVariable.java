@@ -164,7 +164,7 @@ class class1
     }
 }
 
-class A {
+class AA {
     {
         int y = 0;
         y = 9;

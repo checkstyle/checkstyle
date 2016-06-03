@@ -66,7 +66,7 @@ public class HiddenFieldCheckTest
             "219:55: " + getCheckMessage(MSG_KEY, "someObject"),
             "227:52: " + getCheckMessage(MSG_KEY, "someObject"),
         };
-        verify(checkConfig, getNonCompilablePath("InputHiddenFieldLambdas.java"), expected);
+        verify(checkConfig, getPath("InputHiddenFieldLambdas.java"), expected);
     }
 
     @Test
