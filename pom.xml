@@ -199,7 +199,7 @@
     <maven.sevntu.checkstyle.plugin.version>1.20.0</maven.sevntu.checkstyle.plugin.version>
     <tools.jar.version>1.7.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
     <checkstyle.version>6.18</checkstyle.version>
   </properties>
 
@@ -1174,7 +1174,7 @@
             <!-- SSLHandshakeException but page is opening -->
             <excludedLink>http://www.sickboy.cz/checkstyle/</excludedLink>
             <!-- Excluded due to Checkstyle's issue #549 until https://issues.apache.org/jira/browse/MJAVADOC-428 will be fixed -->
-            <excludedLink>http://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers.DefaultHandler.html?*</excludedLink>
+            <excludedLink>http://docs.oracle.com/javase/8/docs/api/org/xml/sax/helpers.DefaultHandler.html?*</excludedLink>
             <!-- Excluded due to Maven Enforcer Plugin's issue #234: https://issues.apache.org/jira/browse/MENFORCER-234-->
             <excludedLink>http://maven.apache.org/enforcer/maven-enforcer-plugin</excludedLink>
             <!-- Excluded due to Maven Surefire Plugin's issue #1173: https://issues.apache.org/jira/browse/SUREFIRE-1173-->
