@@ -1039,7 +1039,6 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
 
             "225: " + getCheckMessage(MSG_ERROR, "if", 10, 12),
             "229: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 20),
-            "233: " + getCheckMessage(MSG_ERROR, "if rcurly", 40, 8),
             "240: " + getCheckMessage(MSG_ERROR, "if rparen", 10, 8),
             "245: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
             "251: " + getCheckMessage(MSG_ERROR, "if lparen", 6, 8),
@@ -1112,9 +1111,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputInvalidAnonymousClassIndent.java");
-        final String[] expected = {
-            "28: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 17, "12, 16"),
-        };
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fileName, expected);
     }
 
@@ -1153,7 +1150,6 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "70: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
             "71: " + getCheckMessage(MSG_CHILD_ERROR, "for", 14, 16),
             "72: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
-            "77: " + getCheckMessage(MSG_ERROR, "for rcurly", 39, 8),
             "81: " + getCheckMessage(MSG_ERROR, "for rparen", 12, 8),
         };
         verifyWarns(checkConfig, fileName, expected);

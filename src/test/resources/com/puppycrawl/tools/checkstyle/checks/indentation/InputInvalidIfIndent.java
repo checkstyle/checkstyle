@@ -230,7 +230,7 @@ System.getProperty("blah"); //indent:0 exp:12 warn
                 } //indent:16 exp:16
 
         if (test) { //indent:8 exp:8
-            System.getProperty("blah"); } //indent:12 ioffset:28 exp:8 warn
+            System.getProperty("blah"); } //indent:12 exp:12
     } //indent:4 exp:4
 
     public void parenIfTest() { //indent:4 exp:4

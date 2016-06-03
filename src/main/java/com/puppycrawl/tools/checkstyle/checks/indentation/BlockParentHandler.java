@@ -171,15 +171,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * Determines if the right curly brace must be at the start of the line.
-     *
-     * @return true
-     */
-    protected boolean shouldStartWithRCurly() {
-        return true;
-    }
-
-    /**
      * Determines if child elements within the expression may be nested.
      *
      * @return false
@@ -192,15 +183,11 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * Check the indentation of the right curly brace.
      */
     protected void checkRCurly() {
-        // the rcurly can either be at the correct indentation, or
-        // on the same line as the lcurly
-        final DetailAST lcurly = getLCurly();
         final DetailAST rcurly = getRCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
         if (!curlyIndent().isAcceptable(rcurlyPos)
-                && (shouldStartWithRCurly() || isOnStartOfLine(rcurly))
-                && !areOnSameLine(rcurly, lcurly)) {
+                && isOnStartOfLine(rcurly)) {
             logError(rcurly, "rcurly", rcurlyPos, curlyIndent());
         }
     }
