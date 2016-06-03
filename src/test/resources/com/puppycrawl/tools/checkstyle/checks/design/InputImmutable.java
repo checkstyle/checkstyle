@@ -12,14 +12,14 @@ public final class InputImmutable
     public final ImmutableSet<String> includes;
     public final ImmutableSet<String> excludes;
     public final java.lang.String notes;
-    public final BigDecimal value;
+    public final BigDecimal money;
     public final List list;
 
     public InputImmutable(Collection<String> includes, Collection<String> excludes,
              BigDecimal value, String notes, int someValue, List l) {
         this.includes = ImmutableSet.copyOf(includes);
         this.excludes = ImmutableSet.copyOf(excludes);
-        this.value = value;
+        this.money = value;
         this.notes = notes;
         this.someIntValue = someValue;
         this.list = l;
