@@ -1,9 +1,21 @@
 //Compilable with Java8
-package com.puppycrawl.tools.checkstyle.checks.modifier;
-import java.util.Comparator;
-public interface InputModifier2 extends Comparator<Integer> {
-    @Override
-    default int compare(Integer a, Integer b) {
-     return 0;
+package com.puppycrawl.tools.checkstyle.checks.indentation;
+
+import java.util.ArrayList;
+import java.util.function.Supplier;
+
+/**
+ *
+ * @author IljaDubinin
+ */
+public class InputNewHandler
+{
+
+    public static void test() {
+        method(ArrayList::new);
     }
-  }
+
+    private static void method(Supplier<?> s) {
+    }
+
+}

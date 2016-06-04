@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodReferencesTest extends BaseCheckTestSupport {
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("grammars" + File.separator
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("grammars" + File.separator
                 + "java8" + File.separator + filename);
     }
 
@@ -42,7 +42,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences.java"), expected);
 
     }
 
@@ -52,7 +52,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences2.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences2.java"), expected);
 
     }
 
@@ -62,7 +62,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences3.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences3.java"), expected);
 
     }
 
@@ -71,7 +71,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences4.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences4.java"), expected);
 
     }
 
@@ -80,7 +80,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences5.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences5.java"), expected);
 
     }
 
@@ -89,7 +89,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences6.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences6.java"), expected);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputMethodReferences7.java"), expected);
+        verify(checkConfig, getPath("InputMethodReferences7.java"), expected);
 
     }
 }

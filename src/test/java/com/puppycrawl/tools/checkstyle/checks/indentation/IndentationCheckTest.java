@@ -1625,7 +1625,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "180: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
             "185: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
         };
-        verifyWarns(checkConfig, getNonCompilablePath("InputLambda1.java"), expected);
+        verifyWarns(checkConfig, getPath("InputLambda1.java"), expected);
     }
 
     @Test
@@ -1635,7 +1635,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("basicOffset", "4");
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getNonCompilablePath("InputLambda2.java"), expected);
+        verifyWarns(checkConfig, getPath("InputLambda2.java"), expected);
     }
 
     @Test

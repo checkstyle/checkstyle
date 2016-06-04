@@ -67,8 +67,8 @@ public class AstRegressionTest extends BaseCheckTestSupport {
 
     @Test
     public void testJava8ClassAstTree1() throws Exception {
-        verifyAst(getNonCompilablePath("InputRegressionJava8Class1Ast.txt"),
-                getNonCompilablePath("InputRegressionJava8Class1.java"));
+        verifyAst(getPath("InputRegressionJava8Class1Ast.txt"),
+                getPath("InputRegressionJava8Class1.java"));
     }
 
     @Test
@@ -85,8 +85,8 @@ public class AstRegressionTest extends BaseCheckTestSupport {
 
     @Test
     public void testJava8InterfaceAstTree1() throws Exception {
-        verifyAst(getNonCompilablePath("InputRegressionJava8Interface1Ast.txt"),
-                getNonCompilablePath("InputRegressionJava8Interface1.java"));
+        verifyAst(getPath("InputRegressionJava8Interface1Ast.txt"),
+                getPath("InputRegressionJava8Interface1.java"));
     }
 
     @Test

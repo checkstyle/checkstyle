@@ -10,7 +10,7 @@ import java.util.stream.Collectors; //indent:0 exp:0
 import java.util.stream.IntStream; //indent:0 exp:0
 import java.util.stream.Stream; //indent:0 exp:0
 
-public class InputLambda1 { //indent:0 exp:0
+public class InputFinalInDefaultMethods { //indent:0 exp:0
 
   interface Printer //indent:2 exp:2
   { //indent:2 exp:2
