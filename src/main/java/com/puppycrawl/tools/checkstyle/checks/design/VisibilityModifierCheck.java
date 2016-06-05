@@ -27,8 +27,9 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import antlr.collections.AST;
-
+import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -653,14 +654,88 @@ public class VisibilityModifierCheck
         boolean result = false;
         if (isFinalField(variableDef)) {
             final DetailAST type = variableDef.findFirstToken(TokenTypes.TYPE);
-            final boolean isCanonicalName = type.getFirstChild().getType() == TokenTypes.DOT;
+            final boolean isCanonicalName = isCanonicalName(type);
             final String typeName = getTypeName(type, isCanonicalName);
-
-            result = !isCanonicalName && isPrimitive(type)
-                     || immutableClassShortNames.contains(typeName)
-                     || isCanonicalName && immutableClassCanonicalNames.contains(typeName);
+            final DetailAST typeArgs = getGenericTypeArgs(type, isCanonicalName);
+            if (typeArgs == null) {
+                result = !isCanonicalName && isPrimitive(type)
+                    || immutableClassShortNames.contains(typeName)
+                    || isCanonicalName && immutableClassCanonicalNames.contains(typeName);
+            }
+            else {
+                final List<String> argsClassNames = getTypeArgsClassNames(typeArgs);
+                result = (immutableClassShortNames.contains(typeName)
+                    || isCanonicalName && immutableClassCanonicalNames.contains(typeName))
+                    && areImmutableTypeArguments(argsClassNames);
+            }
         }
         return result;
+    }
+
+    /**
+     * Checks whether type definition is in canonical form.
+     * @param type type definition token.
+     * @return true if type definition is in canonical form.
+     */
+    private static boolean isCanonicalName(DetailAST type) {
+        return type.getFirstChild().getType() == TokenTypes.DOT;
+    }
+
+    /**
+     * Returns generic type arguments token.
+     * @param type type token.
+     * @param isCanonicalName whether type name is in canonical form.
+     * @return generic type arguments token.
+     */
+    private DetailAST getGenericTypeArgs(DetailAST type, boolean isCanonicalName) {
+        final DetailAST typeArgs;
+        if (isCanonicalName) {
+            // if type class name is in canonical form, abstract tree has specific structure
+            typeArgs = type.getFirstChild().findFirstToken(TokenTypes.TYPE_ARGUMENTS);
+        }
+        else {
+            typeArgs = type.findFirstToken(TokenTypes.TYPE_ARGUMENTS);
+        }
+        return typeArgs;
+    }
+
+    /**
+     * Returns a list of type parameters class names.
+     * @param typeArgs type arguments token.
+     * @return a list of type parameters class names.
+     */
+    private static List<String> getTypeArgsClassNames(DetailAST typeArgs) {
+        final List<String> typeClassNames = new ArrayList<>();
+        DetailAST type = typeArgs.findFirstToken(TokenTypes.TYPE_ARGUMENT);
+        boolean isCanonicalName = isCanonicalName(type);
+        String typeName = getTypeName(type, isCanonicalName);
+        typeClassNames.add(typeName);
+        DetailAST sibling = type.getNextSibling();
+        while (sibling.getType() == TokenTypes.COMMA) {
+            type = sibling.getNextSibling();
+            isCanonicalName = isCanonicalName(type);
+            typeName = getTypeName(type, isCanonicalName);
+            typeClassNames.add(typeName);
+            sibling = type.getNextSibling();
+        }
+        return typeClassNames;
+    }
+
+    /**
+     * Checks whether all of generic type arguments are immutable.
+     * If at least one argument is mutable, we assume that the whole list of type arguments
+     * is mutable.
+     * @param typeArgsClassNames type arguments class names.
+     * @return true if all of generic type arguments are immutable.
+     */
+    private boolean areImmutableTypeArguments(List<String> typeArgsClassNames) {
+        return !Iterables.tryFind(typeArgsClassNames, new Predicate<String>() {
+            @Override
+            public boolean apply(String typeName) {
+                return !immutableClassShortNames.contains(typeName)
+                    && !immutableClassCanonicalNames.contains(typeName);
+            }
+        }).isPresent();
     }
 
     /**
@@ -717,9 +792,11 @@ public class VisibilityModifierCheck
             toVisit = getNextSubTreeNode(toVisit, type);
             if (toVisit != null && toVisit.getType() == TokenTypes.IDENT) {
                 canonicalNameBuilder.append(toVisit.getText());
-                final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit,
-                         type);
+                final DetailAST nextSubTreeNode = getNextSubTreeNode(toVisit, type);
                 if (nextSubTreeNode != null) {
+                    if (nextSubTreeNode.getType() == TokenTypes.TYPE_ARGUMENTS) {
+                        break;
+                    }
                     canonicalNameBuilder.append('.');
                 }
             }

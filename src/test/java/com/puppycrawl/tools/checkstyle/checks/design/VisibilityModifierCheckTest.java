@@ -171,9 +171,8 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.List,"
-                + "com.google.common.collect.ImmutableSet");
+                + "com.google.common.collect.ImmutableSet, java.lang.String");
         final String[] expected = {
-            "14:35: " + getCheckMessage(MSG_KEY, "notes"),
             "15:29: " + getCheckMessage(MSG_KEY, "money"),
             "32:35: " + getCheckMessage(MSG_KEY, "uri"),
             "33:35: " + getCheckMessage(MSG_KEY, "file"),
@@ -230,7 +229,7 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames",
-                 "com.google.common.collect.ImmutableSet");
+            "java.lang.String, com.google.common.collect.ImmutableSet");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputImmutableStarImport2.java"), expected);
     }
@@ -389,5 +388,39 @@ public class VisibilityModifierCheckTest
             "11:50: " + getCheckMessage(MSG_KEY, "i"),
         };
         verify(checkConfig, getPath("InputNullModifiers.java"), expected);
+    }
+
+    @Test
+    public void testVisibilityModifiersOfGenericFields() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(VisibilityModifierCheck.class);
+        checkConfig.addAttribute("allowPublicImmutableFields", "true");
+        checkConfig.addAttribute("immutableClassCanonicalNames",
+            "com.google.common.collect.ImmutableMap,"
+            + "java.lang.String,"
+            + "com.google.common.base.Optional,"
+            + "java.math.BigDecimal");
+        final String[] expected = {
+            "16:56: " + getCheckMessage(MSG_KEY, "perfSeries"),
+            "17:66: " + getCheckMessage(MSG_KEY, "peopleMap"),
+            "18:66: " + getCheckMessage(MSG_KEY, "someMap"),
+            "19:76: " + getCheckMessage(MSG_KEY, "newMap"),
+            "21:45: " + getCheckMessage(MSG_KEY, "optionalOfObject"),
+            "22:35: " + getCheckMessage(MSG_KEY, "obj"),
+            "24:19: " + getCheckMessage(MSG_KEY, "rqUID"),
+            "25:29: " + getCheckMessage(MSG_KEY, "rqTime"),
+            "26:45: " + getCheckMessage(MSG_KEY, "rates"),
+            "27:50: " + getCheckMessage(MSG_KEY, "loans"),
+            "28:60: " + getCheckMessage(MSG_KEY, "cards"),
+            "29:60: " + getCheckMessage(MSG_KEY, "values"),
+            "30:70: " + getCheckMessage(MSG_KEY, "permissions"),
+            "32:38: " + getCheckMessage(MSG_KEY, "mapOfStrings"),
+            "33:48: " + getCheckMessage(MSG_KEY, "names"),
+            "34:48: " + getCheckMessage(MSG_KEY, "links"),
+            "35:38: " + getCheckMessage(MSG_KEY, "presentations"),
+            "36:48: " + getCheckMessage(MSG_KEY, "collection"),
+            "39:73: " + getCheckMessage(MSG_KEY, "exceptions"),
+        };
+        verify(checkConfig, getPath("InputVisibilityModifierGenerics.java"), expected);
     }
 }

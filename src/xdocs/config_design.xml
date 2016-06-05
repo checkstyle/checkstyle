@@ -977,6 +977,36 @@ public class ImmutableClass
         </source>
 
         <p>
+          Note, if allowPublicImmutableFields is set to true, the check will also check whether
+          generic type parameters are immutable. If at least one generic type parameter is mutable,
+          there will be a violation.
+        </p>
+        <source>
+&lt;module name=&quot;VisibilityModifier&quot;&gt;
+  &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;immutableClassCanonicalNames&quot; value=&quot;
+  com.google.common.collect.ImmutableSet, com.google.common.collect.ImmutableMap,java.lang.String&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of how the check works:
+        </p>
+        <source>
+public final class Test {
+    public final String s;
+    public final ImmutableSet&lt;String&gt; names;
+    public final ImmutableSet&lt;Object&gt; objects; // violation (Object class is mutable)
+    public final ImmutableMap&lt;String, Object&gt; links; // violation (Object class is mutable)
+
+    public Test() {
+        s = "Hello!";
+        names = ImmutableSet.of();
+        objects = ImmutableSet.of();
+        links = ImmutableMap.of();
+    }
+}
+        </source>
+        <p>
           To configure the Check passing fields annotated with @com.annotation.CustomAnnotation:
         </p>
         <source>
