@@ -482,6 +482,8 @@ public class XDocsPagesTest {
 
                 final String actualTypeName = columns.get(2).getTextContent().replace("\n", "")
                         .replace("\r", "").replaceAll(" +", " ").trim();
+                final String actualValue = columns.get(3).getTextContent().replace("\n", "")
+                        .replace("\r", "").replaceAll(" +", " ").trim();
 
                 Assert.assertFalse(fileName + " section '" + sectionName
                         + "' should have a type for " + propertyName, actualTypeName.isEmpty());
@@ -489,18 +491,26 @@ public class XDocsPagesTest {
                 final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
                         propertyName);
                 final Class<?> clss = descriptor.getPropertyType();
-                final String expectedTypeName = getExpectedTypeName(clss, propertyName);
+                final String expectedTypeName =
+                        getCheckPropertyExpectedTypeName(clss, propertyName);
+                final String expectedValue = getCheckPropertyExpectedValue(clss, instance,
+                        propertyName);
 
                 if (expectedTypeName != null) {
                     Assert.assertEquals(fileName + " section '" + sectionName
                             + "' should have the type for " + propertyName, expectedTypeName,
                             actualTypeName);
+                    if (expectedValue != null) {
+                        Assert.assertEquals(fileName + " section '" + sectionName
+                                + "' should have the value for " + propertyName, expectedValue,
+                                actualValue);
+                    }
                 }
             }
         }
     }
 
-    private static String getExpectedTypeName(Class<?> clss, String propertyName) {
+    private static String getCheckPropertyExpectedTypeName(Class<?> clss, String propertyName) {
         String result = null;
 
         if (clss == boolean.class) {
@@ -526,6 +536,63 @@ public class XDocsPagesTest {
         }
         else if (clss != String.class) {
             Assert.fail("Unknown property type: " + clss.getSimpleName());
+        }
+
+        return result;
+    }
+
+    private static String getCheckPropertyExpectedValue(Class<?> clss, Object instance,
+            String propertyName) throws Exception {
+        final Field field = getField(instance.getClass(), propertyName);
+        String result = null;
+
+        if (field != null) {
+            final Object value = field.get(instance);
+
+            if (clss == boolean.class) {
+                result = value.toString();
+            }
+            else if (clss == int.class) {
+                if (value.equals(Integer.MAX_VALUE)) {
+                    result = "java.lang.Integer.MAX_VALUE";
+                }
+                else {
+                    result = value.toString();
+                }
+            }
+            else if (clss == int[].class) {
+                result = Arrays.toString((int[]) value).replace("[", "").replace("]", "");
+                if (result.isEmpty()) {
+                    result = "{}";
+                }
+            }
+            else if (clss == double[].class) {
+                result = Arrays.toString((double[]) value).replace("[", "").replace("]", "")
+                        .replace(".0", "");
+                if (result.isEmpty()) {
+                    result = "{}";
+                }
+            }
+
+            if (clss != String.class && clss != String[].class && result == null) {
+                result = "null";
+            }
+        }
+
+        return result;
+    }
+
+    private static Field getField(Class<?> clss, String propertyName) {
+        Field result = null;
+
+        if (clss != null) {
+            try {
+                result = clss.getDeclaredField(propertyName);
+                result.setAccessible(true);
+            }
+            catch (NoSuchFieldException ex) {
+                result = getField(clss.getSuperclass(), propertyName);
+            }
         }
 
         return result;
