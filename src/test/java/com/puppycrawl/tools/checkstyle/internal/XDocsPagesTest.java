@@ -492,7 +492,7 @@ public class XDocsPagesTest {
                         propertyName);
                 final Class<?> clss = descriptor.getPropertyType();
                 final String expectedTypeName =
-                        getCheckPropertyExpectedTypeName(clss, propertyName);
+                        getCheckPropertyExpectedTypeName(clss, instance, propertyName);
                 final String expectedValue = getCheckPropertyExpectedValue(clss, instance,
                         propertyName);
 
@@ -510,7 +510,9 @@ public class XDocsPagesTest {
         }
     }
 
-    private static String getCheckPropertyExpectedTypeName(Class<?> clss, String propertyName) {
+    private static String getCheckPropertyExpectedTypeName(Class<?> clss, Object instance,
+            String propertyName) {
+        final String instanceName = instance.getClass().getSimpleName();
         String result = null;
 
         if (clss == boolean.class) {
@@ -527,7 +529,9 @@ public class XDocsPagesTest {
         }
         else if (clss == String[].class) {
             if (propertyName.endsWith("Tokens") || propertyName.endsWith("Token")
-                    || "ignoreOccurrenceContext".equals(propertyName)) {
+                    || "AtclauseOrderCheck".equals(instanceName) && "target".equals(propertyName)
+                    || "MultipleStringLiteralsCheck".equals(instanceName)
+                            && "ignoreOccurrenceContext".equals(propertyName)) {
                 result = "subset of tokens TokenTypes";
             }
             else {
@@ -536,6 +540,11 @@ public class XDocsPagesTest {
         }
         else if (clss != String.class) {
             Assert.fail("Unknown property type: " + clss.getSimpleName());
+        }
+
+        if ("SuppressWarningsHolder".equals(instanceName)) {
+            result = result + " in a format of comma separated attribute=value entries. The "
+                    + "attribute is the fully qualified name of the Check and value is its alias.";
         }
 
         return result;

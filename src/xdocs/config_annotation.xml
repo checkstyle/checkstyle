@@ -698,7 +698,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
           <tr>
             <td>aliasList</td>
             <td>Aliases for check names that can be used in code within <code>SuppressWarnings</code></td>
-            <td><a href="property_types.html#string">String</a> in a format of comma separated attribute=value entries.
+            <td><a href="property_types.html#stringSet">String Set</a> in a format of comma separated attribute=value entries.
             The attribute is the fully qualified name of the Check and value is its alias.</td>
             <td>null</td>
           </tr>
