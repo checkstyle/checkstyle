@@ -131,8 +131,8 @@ public class SuppressWarningsHolder
      * paramnum}.
      * @param aliasList the list of comma-separated alias assignments
      */
-    public void setAliasList(String aliasList) {
-        for (String sourceAlias : aliasList.split(",")) {
+    public void setAliasList(String... aliasList) {
+        for (String sourceAlias : aliasList) {
             final int index = sourceAlias.indexOf('=');
             if (index > 0) {
                 registerAlias(sourceAlias.substring(0, index), sourceAlias

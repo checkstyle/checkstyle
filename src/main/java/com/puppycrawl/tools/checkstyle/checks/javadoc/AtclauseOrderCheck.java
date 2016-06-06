@@ -70,8 +70,6 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_KEY = "at.clause.order";
 
-    /** Comma literal. */
-    private static final String COMMA_SEPARATOR = ",";
     /**
      * Default order of atclauses.
      */
@@ -103,26 +101,24 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     /**
      * Sets custom targets.
-     * @param target user's targets.
+     * @param targets user's targets.
      */
-    public void setTarget(String target) {
+    public void setTarget(String... targets) {
         final List<Integer> customTarget = new ArrayList<>();
-        final String[] sTarget = target.split(COMMA_SEPARATOR);
-        for (String aSTarget : sTarget) {
-            customTarget.add(TokenUtils.getTokenId(aSTarget.trim()));
+        for (String temp : targets) {
+            customTarget.add(TokenUtils.getTokenId(temp.trim()));
         }
-        this.target = customTarget;
+        target = customTarget;
     }
 
     /**
      * Sets custom order of atclauses.
-     * @param order user's order.
+     * @param orders user's orders.
      */
-    public void setTagOrder(String order) {
+    public void setTagOrder(String... orders) {
         final List<String> customOrder = new ArrayList<>();
-        final String[] sOrder = order.split(COMMA_SEPARATOR);
-        for (String aSOrder : sOrder) {
-            customOrder.add(aSOrder.trim());
+        for (String order : orders) {
+            customOrder.add(order.trim());
         }
         tagOrder = customOrder;
     }
