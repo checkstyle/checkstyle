@@ -103,7 +103,7 @@
               value is used as the maximum number of allowed duplicates, if the
               limit is exceeded errors will be logged.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>-1</code></td>
+            <td><code>0</code></td>
           </tr>
           <tr>
             <td>errorLimit</td>
