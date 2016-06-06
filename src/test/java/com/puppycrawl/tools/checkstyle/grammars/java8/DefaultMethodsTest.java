@@ -48,7 +48,7 @@ public class DefaultMethodsTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputDefaultMethods.java"), expected);
+        verify(checkConfig, getPath("InputDefaultMethods.java"), expected);
 
     }
 

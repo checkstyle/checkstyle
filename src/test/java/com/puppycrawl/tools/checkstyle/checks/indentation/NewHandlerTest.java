@@ -34,8 +34,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class NewHandlerTest extends BaseCheckTestSupport {
     @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("checks" + File.separator
                 + "indentation" + File.separator + filename);
     }
 
@@ -43,7 +43,7 @@ public class NewHandlerTest extends BaseCheckTestSupport {
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputNewHandler.java"), expected);
+        verify(checkConfig, getPath("InputNewHandler.java"), expected);
     }
 
 }

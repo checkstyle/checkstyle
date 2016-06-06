@@ -158,7 +158,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputStaticModifierInInterface.java"), expected);
+        verify(checkConfig, getPath("InputStaticModifierInInterface.java"), expected);
     }
 
     @Test

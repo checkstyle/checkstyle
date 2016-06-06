@@ -362,7 +362,7 @@ public class WhitespaceAroundCheckTest
             "13:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "13:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verify(checkConfig, getNonCompilablePath("InputAllowEmptyLambdaExpressions.java"),
+        verify(checkConfig, getPath("InputAllowEmptyLambdaExpressions.java"),
             expected);
     }
 
@@ -375,7 +375,7 @@ public class WhitespaceAroundCheckTest
             "13:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "13:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verify(checkConfig, getNonCompilablePath("InputAllowEmptyLambdaExpressions.java"),
+        verify(checkConfig, getPath("InputAllowEmptyLambdaExpressions.java"),
                 expected);
     }
 
@@ -385,6 +385,6 @@ public class WhitespaceAroundCheckTest
             "8:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "->"),
             "8:50: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
         };
-        verify(checkConfig, getNonCompilablePath("InputWhitespaceAroundLambda.java"), expected);
+        verify(checkConfig, getPath("InputWhitespaceAroundLambda.java"), expected);
     }
 }

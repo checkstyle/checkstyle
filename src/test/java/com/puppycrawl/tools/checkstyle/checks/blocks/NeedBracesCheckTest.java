@@ -99,7 +99,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
-        verify(checkConfig, getNonCompilablePath("InputSingleLineLambda.java"), expected);
+        verify(checkConfig, getPath("InputSingleLineLambda.java"), expected);
     }
 
     @Test
