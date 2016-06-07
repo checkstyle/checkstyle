@@ -64,7 +64,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
                 createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getNonCompilablePath("InputDefaultComesLast2.java"),
+                getPath("InputDefaultComesLast2.java"),
                 expected);
     }
 

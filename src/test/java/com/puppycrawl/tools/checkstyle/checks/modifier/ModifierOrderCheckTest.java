@@ -76,7 +76,7 @@ public class ModifierOrderCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputModifier2.java"), expected);
+        verify(checkConfig, getPath("InputModifier2.java"), expected);
     }
 
     @Test

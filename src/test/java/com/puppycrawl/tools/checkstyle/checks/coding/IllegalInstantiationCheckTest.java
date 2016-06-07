@@ -78,7 +78,7 @@ public class IllegalInstantiationCheckTest
                 createCheckConfig(IllegalInstantiationCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getNonCompilablePath("InputIllegalInstantiation2.java"),
+                getPath("InputIllegalInstantiation2.java"),
                 expected);
     }
 
