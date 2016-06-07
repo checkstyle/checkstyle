@@ -140,6 +140,8 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
             "33: " + getCheckMessage(MSG_KEY_SINGLE, 34, 0, 8),
             "57: " + getCheckMessage(MSG_KEY_SINGLE, 58, 0, 8),
             "71: " + getCheckMessage(MSG_KEY_SINGLE, 72, 0, 8),
+            "103: " + getCheckMessage(MSG_KEY_SINGLE, 104, 0, 8),
+            "107: " + getCheckMessage(MSG_KEY_SINGLE, 108, 0, 8),
         };
         final String testInputFile = "InputCommentsIndentationInEmptyBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);

@@ -88,4 +88,23 @@ public class InputCommentsIndentationInEmptyBlock {
 
            // no members
     }
+
+    public void foo8() {
+        String[] array1 = {
+                // comment
+        };
+        String[] array2 = {
+                    // comment
+        };
+        String[] array3 = {
+        // comment
+        };
+        String[] array4 = {
+// violation
+        };
+        String[] array5 = {
+
+// violation
+        };
+    }
 }
