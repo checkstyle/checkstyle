@@ -325,8 +325,8 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="java 8 inputs should NOT be in resources-noncompilable"
-        - CMD1="if [ $(grep -rl --include='*.java' '//Compilable with Java8' src/test/resources-noncompilable | wc -l) -eq 0 ];"
-        - CMD2="  then echo "OK"; else echo "please move all java8 resources to src/test/resources" && false; fi"
+        - CMD1="if [ \$(grep -rl --include='*.java' '//Compilable with Java8' src/test/resources-noncompilable | wc -l) -eq 0 ];"
+        - CMD2="  then echo 'OK'; else echo 'please move all java8 resources to src/test/resources' && false; fi"
         - CMD=$CMD1$CMD2
         - COVERAGE_CMD=""
     # testing of PR format
