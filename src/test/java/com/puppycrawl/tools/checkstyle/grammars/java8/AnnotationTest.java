@@ -148,7 +148,7 @@ public class AnnotationTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputAnnotations11.java"), expected);
+        verify(checkConfig, getPath("InputAnnotations11.java"), expected);
 
     }
 }
