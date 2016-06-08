@@ -141,5 +141,6 @@
         <module name="AvoidConditionInversionCheck"/>
         <module name="SingleBreakOrContinueCheck"/>
         <module name="NumericLiteralNeedsUnderscoreCheck"/>
+        <module name="UniformEnumConstantNameCheck" >
     </module>
 </module>
