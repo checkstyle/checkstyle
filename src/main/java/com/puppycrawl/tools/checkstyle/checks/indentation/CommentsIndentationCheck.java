@@ -378,6 +378,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             && nextStmt != null
             && (prevStmt.getType() == TokenTypes.SLIST
                 || prevStmt.getType() == TokenTypes.LCURLY
+                || prevStmt.getType() == TokenTypes.ARRAY_INIT
                 || prevStmt.getType() == TokenTypes.OBJBLOCK)
             && nextStmt.getType() == TokenTypes.RCURLY;
     }
@@ -570,6 +571,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static boolean isBlockStart(DetailAST root) {
         return root.getType() == TokenTypes.SLIST
                 || root.getType() == TokenTypes.OBJBLOCK
+                || root.getType() == TokenTypes.ARRAY_INIT
                 || root.getType() == TokenTypes.CASE_GROUP;
     }
 
@@ -688,6 +690,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private DetailAST getNextToken(DetailAST checkedStatement) {
         DetailAST nextToken;
         if (checkedStatement.getType() == TokenTypes.SLIST
+                || checkedStatement.getType() == TokenTypes.ARRAY_INIT
                 || checkedStatement.getType() == TokenTypes.CASE_GROUP) {
             nextToken = checkedStatement.getFirstChild();
         }
