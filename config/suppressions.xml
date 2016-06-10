@@ -123,6 +123,8 @@
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
     <!-- Apart from a complex logic there is a lot of small methods for a better readability.  -->
     <suppress checks="MethodCount" files="[\\/]CommentsIndentationCheck.java$"/>
+    <!--VisibilityModifierCheck has 7 options which require 7 additional methods (setters)-->
+    <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
 
     <!-- getDetails() method - huge Switch, it has to be monolithic -->
     <suppress checks="ExecutableStatementCount" files="RightCurlyCheck\.java" lines="313"/>
