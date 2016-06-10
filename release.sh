@@ -2,7 +2,7 @@
 set -e
 
 # Make sure you prepared your PC for automative deployment
-#https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release
+# https://github.com/checkstyle/checkstyle/wiki/How-to-make-a-release
 
 SF_USER=romanivanov
 RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
