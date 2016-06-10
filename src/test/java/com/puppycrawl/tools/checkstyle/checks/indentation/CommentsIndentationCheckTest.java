@@ -241,4 +241,31 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath(testInputFile), expected);
     }
 
+    @Test
+    public void testMultiblockStructures() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(CommentsIndentationCheck.class);
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_KEY_SINGLE, 11, 8, 12),
+            "18: " + getCheckMessage(MSG_KEY_SINGLE, "17, 19", 16, "12, 8"),
+            "23: " + getCheckMessage(MSG_KEY_SINGLE, "22, 24", 0, "12, 8"),
+            "33: " + getCheckMessage(MSG_KEY_SINGLE, 32, 8, 12),
+            "39: " + getCheckMessage(MSG_KEY_SINGLE, "38, 40", 0, "12, 8"),
+            "44: " + getCheckMessage(MSG_KEY_SINGLE, "43, 45", 16, "12, 8"),
+            "54: " + getCheckMessage(MSG_KEY_SINGLE, 53, 8, 12),
+            "60: " + getCheckMessage(MSG_KEY_SINGLE, "59, 61", 0, "12, 8"),
+            "65: " + getCheckMessage(MSG_KEY_SINGLE, "64, 66", 16, "12, 8"),
+            "75: " + getCheckMessage(MSG_KEY_SINGLE, 74, 8, 12),
+            "81: " + getCheckMessage(MSG_KEY_SINGLE, "80, 82", 0, "12, 8"),
+            "86: " + getCheckMessage(MSG_KEY_SINGLE, "85, 87", 16, "12, 8"),
+            "96: " + getCheckMessage(MSG_KEY_SINGLE, 95, 8, 12),
+            "102: " + getCheckMessage(MSG_KEY_SINGLE, "101, 103", 0, "12, 8"),
+            "107: " + getCheckMessage(MSG_KEY_SINGLE, "106, 108", 16, "12, 8"),
+            "117: " + getCheckMessage(MSG_KEY_SINGLE, 116, 8, 12),
+            "123: " + getCheckMessage(MSG_KEY_SINGLE, "122, 124", 16, "12, 8"),
+            "128: " + getCheckMessage(MSG_KEY_SINGLE, "127, 129", 0, "12, 8"),
+        };
+        final String testInputFile = "InputCommentsIndentationInMultiblockStructures.java";
+        verify(checkConfig, getPath(testInputFile), expected);
+    }
+
 }
