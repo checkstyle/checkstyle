@@ -365,9 +365,14 @@ public class RightCurlyCheck extends AbstractCheck {
                 rcurly = lcurly.getLastChild();
                 nextToken = getNextToken(ast);
                 break;
+            case TokenTypes.LITERAL_DO:
+                nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
+                lcurly = ast.findFirstToken(TokenTypes.SLIST);
+                rcurly = lcurly.getLastChild();
+                break;
             default:
                 // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
-                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
+                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, only.
                 // It has been done to improve coverage to 100%. I couldn't replace it with
                 // if-else-if block because code was ugly and didn't pass pmd check.
 
