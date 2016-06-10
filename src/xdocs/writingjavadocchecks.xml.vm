@@ -53,14 +53,14 @@ public class MyClass {
       Checkstyle can not parse something that looks like an HTML, so limitation appear.
       </p>
       <p>
-      The comment should be written in <a href="#XHTML-style_rules">XHTML-style</a> to build nested AST Tree that most Checks expect. This means that every HTML tag should have matching end HTML tag or it is a void tag.
+      The comment should be written in <a href="#XHTML-style_rules">XHTML-style</a> to build nested AST Tree that most Checks expect. This means that every HTML tag should have matching end HTML tag or it is a <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void element</a>.
       </p>
       <p>
       The only exceptions are HTML 4 tags whose end tag is optional, so, Checkstyle won't show error about missing end tag, however, it leads to broken XHTML structure and as result leads to
       not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
       <br/>
       In other words if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
-      so structure of the parse tree will not be nested like it is while using XHTML-style code.
+      so structure of the parse tree will not be nested like it is while using <a href="#XHTML-style_rules">XHTML-style</a> code.
       It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
       </p>
       <p>
@@ -71,7 +71,7 @@ public class MyClass {
     <section name="XHTML-style rules">
       <ul>
         <li>Document Structure elements (DOCTYPE, &lt;html&gt;, &lt;body&gt;, etc) are not mandatory.</li>
-        <li>Elements must always be closed, except HTML4 elements whose end tag is optional and HTML4 void elements. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
+        <li>Elements must always be closed, except HTML4 elements whose end tag is optional and HTML4 <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
         <li>XHTML elements can be either in lowercase or in uppercase</li>
         <li>Attribute names can be either in lowercase or in uppercase</li>
         <li>Attribute values can be either quoted or not be quoted</li>
@@ -290,7 +290,7 @@ class MyCheck extends AbstractJavadocCheck {
       <p>
         If Checkstyle meets unknown tag (for example HTML5 tag)
         it doesn't fail and parses this tag as <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#HTML_TAG">HTML_TAG</a> Javadoc token type.
-        Just follow XHTML-style rules to make Checkstyle javadoc parser make nested AST, even though tags are unknown.
+        Just follow <a href="#XHTML-style_rules">XHTML-style rules</a> to make Checkstyle javadoc parser make nested AST, even though tags are unknown.
 
         <source><![CDATA[
 <audio><source src="horse.ogg" type="audio/ogg"/></audio>
@@ -344,7 +344,7 @@ JAVADOC -> <audio><source src="horse.ogg" type="audio/ogg"/></audio><EOF> [0:0]
       <tr>
         <td>
           1) Unclosed paragraph HTML tag. As you see in the tree, content of the paragraph tag is not nested to this tag.
-          That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires XHTML-style code to predictably parse Javadoc comments.
+          That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires <a href="#XHTML-style_rules">XHTML-style</a> code to predictably parse Javadoc comments.
         </td>
         <td>
           2) Here is correct version with open and closed HTML tags.
