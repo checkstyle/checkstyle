@@ -341,11 +341,6 @@
         by the format property.</td>
       </tr>
       <tr>
-        <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
-        <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
-        Java source files and methods.</td>
-      </tr>
-      <tr>
         <td><a href="config_javadoc.html#JavadocMethod">JavadocMethod</a></td>
         <td>Checks the Javadoc of a method or constructor.</td>
       </tr>
@@ -372,6 +367,11 @@
       <tr>
         <td><a href="config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
         <td>Checks that a variable has Javadoc comment.</td>
+      </tr>
+      <tr>
+        <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
+        <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
+        Java source files and methods.</td>
       </tr>
       <tr>
         <td><a href="config_blocks.html#LeftCurly">LeftCurly</a></td>
@@ -490,10 +490,6 @@
         to some regular expression) are immutable.</td>
       </tr>
       <tr>
-        <td><a href="config_metrics.html#NPathComplexity">NPathComplexity</a></td>
-        <td>Checks the npath complexity against a specified limit (default = 200).</td>
-      </tr>
-      <tr>
         <td><a href="config_blocks.html#NeedBraces">NeedBraces</a></td>
         <td>
         Checks for braces around code blocks.</td>
@@ -532,6 +528,11 @@
         Checks that chosen statements are not line-wrapped.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
+        <td>
+        Checks that the at-clause tag is followed by description .</td>
+      </tr>
+      <tr>
         <td><a href="config_whitespace.html#NoWhitespaceAfter">NoWhitespaceAfter</a></td>
         <td>
         Checks that there is no whitespace after a token.</td>
@@ -542,9 +543,8 @@
         Checks that there is no whitespace before a token.</td>
       </tr>
       <tr>
-        <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
-        <td>
-        Checks that the at-clause tag is followed by description .</td>
+        <td><a href="config_metrics.html#NPathComplexity">NPathComplexity</a></td>
+        <td>Checks the npath complexity against a specified limit (default = 200).</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
@@ -748,14 +748,14 @@
         checking property files for consistency regarding their keys.</td>
       </tr>
       <tr>
+        <td><a href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
+        <td>Checks the padding of parentheses for typecasts.</td>
+      </tr>
+      <tr>
         <td><a href="config_naming.html#TypeName">TypeName</a></td>
         <td>
           Checks that type names conform to a format specified
         by the format property.</td>
-      </tr>
-      <tr>
-        <td><a href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
-        <td>Checks the padding of parentheses for typecasts.</td>
       </tr>
       <tr>
         <td><a href="config_misc.html#UncommentedMain">UncommentedMain</a></td>
