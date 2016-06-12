@@ -21,6 +21,7 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,5 +71,20 @@ public class RightCurlyTest extends BaseCheckTestSupport {
         final String filePath = getPath("InputRightCurlySame.java");
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(newCheckConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testRightCurlySameAndLiteralDo() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_DO");
+        final String[] expected = {
+            "62:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
+            "67:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
+            "83:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
+        };
+        final String filePath = getPath("InputRightCurlyDoWhile.java");
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
     }
 }

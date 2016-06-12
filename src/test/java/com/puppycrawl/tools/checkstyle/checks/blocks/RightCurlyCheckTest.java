@@ -282,4 +282,16 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("InputRightCurly.java"), expected);
     }
+
+    @Test
+    public void testRightCurlySameAndLiteralDo() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_DO");
+        final String[] expected = {
+            "62:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "67:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "83:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlyDoWhile.java"), expected);
+    }
 }
