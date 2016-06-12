@@ -480,13 +480,35 @@ public class CommentsIndentationCheck extends AbstractCheck {
                         comment.getColumnNo(), nextStmt.getColumnNo());
                 }
             }
+            else if (isCommentForMultiblock(nextStmt)) {
+                if (!areSameLevelIndented(comment, prevStmt, nextStmt)) {
+                    logMultilineIndentation(prevStmt, comment, nextStmt);
+                }
+            }
             else if (!areSameLevelIndented(comment, prevStmt, prevStmt)) {
                 final int prevStmtLineNo = prevStmt.getLineNo();
                 log(comment.getLineNo(), getMessageKey(comment), prevStmtLineNo,
-                    comment.getColumnNo(), getLineStart(prevStmtLineNo));
+                        comment.getColumnNo(), getLineStart(prevStmtLineNo));
             }
         }
 
+    }
+
+    /**
+     * Whether the comment might have been used for the next block in a multi-block structure.
+     * @param endBlockStmt the end of the current block.
+     * @return true, if the comment might have been used for the next
+     *     block in a multi-block structure.
+     */
+    private static boolean isCommentForMultiblock(DetailAST endBlockStmt) {
+        final DetailAST nextBlock = endBlockStmt.getParent().getNextSibling();
+        final int endBlockLineNo = endBlockStmt.getLineNo();
+        final DetailAST catchAst = endBlockStmt.getParent().getParent();
+        final DetailAST finallyAst = catchAst.getNextSibling();
+        return nextBlock != null && nextBlock.getLineNo() == endBlockLineNo
+                || finallyAst != null
+                    && catchAst.getType() == TokenTypes.LITERAL_CATCH
+                    && finallyAst.getLineNo() == endBlockLineNo;
     }
 
     /**
