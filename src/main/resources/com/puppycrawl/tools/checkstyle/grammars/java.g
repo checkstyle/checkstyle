@@ -984,11 +984,16 @@ parameterModifier
 
 // A formal parameter.
 parameterDeclaration!
-    :    pm:parameterModifier (t:typeSpec[false])? id:IDENT
-        pd:declaratorBrackets[#t]
+    :    pm:parameterModifier (t:typeSpec[false])?
+        id:parameterIdent pd:declaratorBrackets[#t]
         {#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
                                     pm, #([TYPE,"TYPE"],pd), id);}
     ;
+
+parameterIdent
+    :    LITERAL_this | (IDENT (DOT^ LITERAL_this)?)
+    ;
+
 //Added for support Java7's "multi-catch", several types separated by '|'
 catchParameterDeclaration!
     :   pm:parameterModifier mct:multiCatchTypes id:IDENT
