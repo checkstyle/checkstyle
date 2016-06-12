@@ -114,12 +114,12 @@
         </td>
       </tr>
       <tr>
-        <td><a href="config_naming.html#ConstantName">ConstantName</a></td>
-        <td>Checks that constant names conform to a format specified by the format property.</td>
-      </tr>
-      <tr>
         <td><a href="config_misc.html#CommentsIndentation">CommentsIndentation</a></td>
         <td>Controls the indentation between comments and surrounding code.</td>
+      </tr>
+      <tr>
+        <td><a href="config_naming.html#ConstantName">ConstantName</a></td>
+        <td>Checks that constant names conform to a format specified by the format property.</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#CovariantEquals">CovariantEquals</a></td>
@@ -341,21 +341,12 @@
         by the format property.</td>
       </tr>
       <tr>
-        <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
-        <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
-        Java source files and methods.</td>
-      </tr>
-      <tr>
         <td><a href="config_javadoc.html#JavadocMethod">JavadocMethod</a></td>
         <td>Checks the Javadoc of a method or constructor.</td>
       </tr>
       <tr>
         <td><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></td>
         <td>Checks that all packages have a package documentation.</td>
-      </tr>
-      <tr>
-        <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">JavadocTagContinuationIndentation</a></td>
-        <td>Checks the indentation of the continuation lines in at-clauses.</td>
       </tr>
       <tr>
         <td><a href="config_javadoc.html#JavadocParagraph">JavadocParagraph</a></td>
@@ -366,12 +357,21 @@
         <td>Custom Checkstyle Check to validate Javadoc.</td>
       </tr>
       <tr>
+        <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">JavadocTagContinuationIndentation</a></td>
+        <td>Checks the indentation of the continuation lines in at-clauses.</td>
+      </tr>
+      <tr>
         <td><a href="config_javadoc.html#JavadocType">JavadocType</a></td>
         <td>Checks the Javadoc of a type.</td>
       </tr>
       <tr>
         <td><a href="config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
         <td>Checks that a variable has Javadoc comment.</td>
+      </tr>
+      <tr>
+        <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
+        <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
+        Java source files and methods.</td>
       </tr>
       <tr>
         <td><a href="config_blocks.html#LeftCurly">LeftCurly</a></td>
@@ -490,10 +490,6 @@
         to some regular expression) are immutable.</td>
       </tr>
       <tr>
-        <td><a href="config_metrics.html#NPathComplexity">NPathComplexity</a></td>
-        <td>Checks the npath complexity against a specified limit (default = 200).</td>
-      </tr>
-      <tr>
         <td><a href="config_blocks.html#NeedBraces">NeedBraces</a></td>
         <td>
         Checks for braces around code blocks.</td>
@@ -527,14 +523,14 @@
         using the name <em>finalize</em>.</td>
       </tr>
       <tr>
-        <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
-        <td>
-        Checks that the at-clause tag is followed by description .</td>
-      </tr>
-      <tr>
         <td><a href="config_whitespace.html#NoLineWrap">NoLineWrap</a></td>
         <td>
         Checks that chosen statements are not line-wrapped.</td>
+      </tr>
+      <tr>
+        <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">NonEmptyAtclauseDescription</a></td>
+        <td>
+        Checks that the at-clause tag is followed by description .</td>
       </tr>
       <tr>
         <td><a href="config_whitespace.html#NoWhitespaceAfter">NoWhitespaceAfter</a></td>
@@ -545,6 +541,10 @@
         <td><a href="config_whitespace.html#NoWhitespaceBefore">NoWhitespaceBefore</a></td>
         <td>
         Checks that there is no whitespace before a token.</td>
+      </tr>
+      <tr>
+        <td><a href="config_metrics.html#NPathComplexity">NPathComplexity</a></td>
+        <td>Checks the npath complexity against a specified limit (default = 200).</td>
       </tr>
       <tr>
         <td><a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
@@ -669,16 +669,6 @@
         Checks line wrapping with separators.</td>
       </tr>
       <tr>
-        <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
-        <td>
-         Checks that a JavaDoc block which can fit on a single line and doesn't contain at-clauses</td>
-      </tr>
-      <tr>
-        <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>
-        <td>
-         Checks that non-whitespace characters are separated by no more than one whitespace.</td>
-      </tr>
-      <tr>
         <td><a href="config_coding.html#SimplifyBooleanExpression">SimplifyBooleanExpression</a></td>
         <td>
         Checks for overly complicated boolean expressions.</td>
@@ -687,6 +677,16 @@
         <td><a href="config_coding.html#SimplifyBooleanReturn">SimplifyBooleanReturn</a></td>
         <td>
         Checks for overly complicated boolean return statements.</td>
+      </tr>
+      <tr>
+        <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
+        <td>
+         Checks that a JavaDoc block which can fit on a single line and doesn't contain at-clauses</td>
+      </tr>
+      <tr>
+        <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>
+        <td>
+         Checks that non-whitespace characters are separated by no more than one whitespace.</td>
       </tr>
       <tr>
         <td><a href="config_naming.html#StaticVariableName">StaticVariableName</a></td>
@@ -748,14 +748,14 @@
         checking property files for consistency regarding their keys.</td>
       </tr>
       <tr>
+        <td><a href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
+        <td>Checks the padding of parentheses for typecasts.</td>
+      </tr>
+      <tr>
         <td><a href="config_naming.html#TypeName">TypeName</a></td>
         <td>
           Checks that type names conform to a format specified
         by the format property.</td>
-      </tr>
-      <tr>
-        <td><a href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
-        <td>Checks the padding of parentheses for typecasts.</td>
       </tr>
       <tr>
         <td><a href="config_misc.html#UncommentedMain">UncommentedMain</a></td>
