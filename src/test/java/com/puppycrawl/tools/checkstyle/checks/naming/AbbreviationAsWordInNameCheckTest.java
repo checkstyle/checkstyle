@@ -319,4 +319,13 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     private String getWarningMessage(String typeName, int expectedCapitalCount) {
         return getCheckMessage(MSG_KEY, typeName, expectedCapitalCount);
     }
+
+    @Test
+    public void testReceiver() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(AbbreviationAsWordInNameCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputAbbreviationAsWordReceiver.java"), expected);
+    }
 }

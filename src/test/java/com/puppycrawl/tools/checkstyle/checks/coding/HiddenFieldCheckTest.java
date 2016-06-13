@@ -29,6 +29,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class HiddenFieldCheckTest
     extends BaseCheckTestSupport {
@@ -401,5 +402,12 @@ public class HiddenFieldCheckTest
             "290:19: " + getCheckMessage(MSG_KEY, "i"),
         };
         verify(checkConfig, getPath("InputHiddenField.java"), expected);
+    }
+
+    @Test
+    public void testReceiverParameter() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputHiddenFieldReceiver.java"), expected);
     }
 }

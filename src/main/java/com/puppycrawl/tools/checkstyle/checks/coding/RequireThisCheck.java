@@ -32,6 +32,7 @@ import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
@@ -321,8 +322,10 @@ public class RequireThisCheck extends AbstractCheck {
                 collectVariableDeclarations(ast, frame);
                 break;
             case TokenTypes.PARAMETER_DEF :
-                final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
-                frame.addIdent(parameterIdent);
+                if (!CheckUtils.isReceiverParameter(ast)) {
+                    final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
+                    frame.addIdent(parameterIdent);
+                }
                 break;
             case TokenTypes.CLASS_DEF :
             case TokenTypes.INTERFACE_DEF :
