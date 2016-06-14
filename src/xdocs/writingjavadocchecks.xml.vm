@@ -235,7 +235,7 @@ JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
     </section>
 
     <section name="Access Java AST from Javadoc Check">
-      As you already know Javadoc parse tree is result of parsing block comment. There is a method to get the original block comment from Javadoc Check.
+      As you already know Javadoc parse tree is a result of parsing block comment. There is a method to get the original block comment from Javadoc Check.
       You may need this block comment to check its position or something else in java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree.
       <p>
       For example, to write a JavadocCheck that verifies @param tags in Javadoc comment of a method definition, you also need all method's parameter names. To get method definition AST you should access java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree from javadoc Check. For this purpose use <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">getBlockCommentAst()</a> method that returns <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> node.
@@ -336,6 +336,45 @@ JAVADOC -> <audio><source src="horse.ogg" type="audio/ogg"/></audio><EOF> [0:0]
       Output:
       <source>[ERROR:0] Javadoc comment at column 1 has parse error. Missed HTML close tag 'audio'. Sometimes it means that close tag missed for one of previous tags.</source>
       As you see Javadoc parser prints error and doesn't build AST if unknown HTML tag doesn't have matching end tag.
+    </p>
+
+    <p>
+      There are also HTML tags that are marked as "Not supported in HTML5" (<a href='http://www.w3schools.com/tags/default.asp'>HTML Element Reference</a>). 
+      Checkstyle Javadoc parser can parse those tags too if they are written in <a href="#XHTML-style_rules">XHTML-style</a>.
+      <br/>
+      Example.
+      <br/>
+      Input:
+      <source><![CDATA[
+<acronym title="as soon as possible">ASAP</acronym>
+      ]]></source>
+      <br/>
+      Output:
+      <source><![CDATA[
+JAVADOC -> <acronym title="as soon as possible">ASAP</acronym><EOF> [0:0]
+|--HTML_ELEMENT -> <acronym title="as soon as possible">ASAP</acronym> [0:0]
+|   `--HTML_TAG -> <acronym title="as soon as possible">ASAP</acronym> [0:0]
+|       |--HTML_ELEMENT_OPEN -> <acronym title="as soon as possible"> [0:0]
+|       |   |--OPEN -> < [0:0]
+|       |   |--HTML_TAG_NAME -> acronym [0:1]
+|       |   |--WS ->   [0:8]
+|       |   |--ATTRIBUTE -> title="as soon as possible" [0:9]
+|       |   |   |--HTML_TAG_NAME -> title [0:9]
+|       |   |   |--EQUALS -> = [0:14]
+|       |   |   `--ATTR_VALUE -> "as soon as possible" [0:15]
+|       |   `--CLOSE -> > [0:37]
+|       |--TEXT -> ASAP [0:38]
+|       |   |--CHAR -> A [0:38]
+|       |   |--CHAR -> S [0:39]
+|       |   |--CHAR -> A [0:40]
+|       |   `--CHAR -> P [0:41]
+|       `--HTML_ELEMENT_CLOSE -> </acronym> [0:42]
+|           |--OPEN -> < [0:42]
+|           |--SLASH -> / [0:43]
+|           |--HTML_TAG_NAME -> acronym [0:44]
+|           `--CLOSE -> > [0:51]
+`--EOF -> <EOF> [0:52]
+      ]]></source>
     </p>
 
     <p>More examples:</p>
