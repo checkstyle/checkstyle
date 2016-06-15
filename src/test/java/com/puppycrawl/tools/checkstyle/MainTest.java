@@ -34,8 +34,12 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -67,6 +71,10 @@ public class MainTest {
         + " including comments%n"
         + " -v                      Print product version and exit%n");
 
+    private static Logger logger;
+    private static Handler[] handlers;
+    private static Level originalLogLevel;
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
     @Rule
@@ -93,6 +101,32 @@ public class MainTest {
         // Set locale to root to prevent check message fail
         // in other language environment.
         Locale.setDefault(Locale.ROOT);
+
+        logger = Logger.getLogger(MainTest.class.getName()).getParent();
+        handlers = logger.getHandlers();
+        originalLogLevel = logger.getLevel();
+    }
+
+    @Before
+    public void setUp() {
+        // restore original logging level and handlers to prevent bleeding into other tests
+
+        logger.setLevel(originalLogLevel);
+
+        for (Handler handler : logger.getHandlers()) {
+            boolean found = false;
+
+            for (Handler savedHandler : handlers) {
+                if (handler == savedHandler) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                logger.removeHandler(handler);
+            }
+        }
     }
 
     @Test
