@@ -287,6 +287,13 @@ class MyCheck extends AbstractJavadocCheck {
         Void HTML elements: &lt;AREA&gt;, &lt;BASE&gt;, &lt;BASEFONT&gt;, &lt;BR&gt;, &lt;COL&gt;, &lt;FRAME&gt;,
         &lt;HR&gt;, &lt;IMG&gt;, &lt;INPUT&gt;, &lt;ISINDEX&gt;, &lt;LINK&gt;, &lt;META&gt;, &lt;PARAM&gt;.
       </p>
+
+      <p>
+        To make Checkstyle support HTML5 tags whose end tag is optional and HTML5 void elements we should update Javadoc Parser 
+        bacause each element that breaks <a href="#XHTML-style_rules">XHTML-style rules</a> have to be defined in Javadoc grammar. 
+        In future we should update Javadoc grammar if those tag lists extend (new tags, new HTML standard, etc.).
+      </p>
+
       <p>
         If Checkstyle meets unknown tag (for example HTML5 tag)
         it doesn't fail and parses this tag as <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#HTML_TAG">HTML_TAG</a> Javadoc token type.
