@@ -132,7 +132,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private void visitComment(DetailAST comment) {
         final DetailAST prevStmt = getPreviousStatement(comment);
-        final DetailAST nextStmt = comment.getNextSibling();
+        final DetailAST nextStmt = getNextStmt(comment);
 
         if (!isTrailingComment(comment)) {
             if (isInEmptyCaseBlock(prevStmt, nextStmt)) {
@@ -152,6 +152,21 @@ public class CommentsIndentationCheck extends AbstractCheck {
                     comment.getColumnNo(), nextStmt.getColumnNo());
             }
         }
+    }
+
+    /**
+     * Returns the next statement of a comment.
+     * @param comment comment.
+     * @return the next statement of a comment.
+     */
+    private static DetailAST getNextStmt(DetailAST comment) {
+        DetailAST nextStmt = comment.getNextSibling();
+        while (nextStmt != null
+                && isComment(nextStmt)
+                && comment.getColumnNo() != nextStmt.getColumnNo()) {
+            nextStmt = nextStmt.getNextSibling();
+        }
+        return nextStmt;
     }
 
     /**

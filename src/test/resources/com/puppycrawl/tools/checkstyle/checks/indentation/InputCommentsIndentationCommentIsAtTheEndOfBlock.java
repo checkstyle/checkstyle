@@ -557,6 +557,12 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 // comment
     }
 
+    void foo75() {
+        getClass();
+// comment
+        // comment
+    }
+
     // We almost reached the end of the class here.
 }
 // The END of the class.
