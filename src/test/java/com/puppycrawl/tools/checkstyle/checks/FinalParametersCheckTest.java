@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class FinalParametersCheckTest extends BaseCheckTestSupport {
     @Override
@@ -126,5 +127,13 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport {
             "10:32: " + getCheckMessage(MSG_KEY, "s"),
         };
         verify(checkConfig, getPath("InputFinalParametersPrimitiveTypes.java"), expected);
+    }
+
+    @Test
+    public void testRecieverParameters() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FinalParametersCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputFinalParametersReceiver.java"), expected);
     }
 }

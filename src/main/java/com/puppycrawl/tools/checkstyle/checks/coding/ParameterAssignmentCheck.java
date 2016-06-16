@@ -28,6 +28,7 @@ import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
  * <p>
@@ -236,7 +237,8 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             ast.findFirstToken(TokenTypes.PARAMETER_DEF);
 
         while (parameterDefAST != null) {
-            if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF) {
+            if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF
+                    && !CheckUtils.isReceiverParameter(parameterDefAST)) {
                 final DetailAST param =
                     parameterDefAST.findFirstToken(TokenTypes.IDENT);
                 parameterNames.add(param.getText());

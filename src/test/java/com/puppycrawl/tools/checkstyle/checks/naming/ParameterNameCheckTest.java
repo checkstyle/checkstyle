@@ -147,4 +147,11 @@ public class ParameterNameCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOverrideAnnotationNoNPE.java"), expected);
     }
+
+    @Test
+    public void testReceiverParameter() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ParameterNameCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputParameterNameReceiver.java"), expected);
+    }
 }

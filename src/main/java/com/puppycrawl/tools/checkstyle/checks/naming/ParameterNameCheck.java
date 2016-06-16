@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.google.common.base.Optional;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 
 /**
 * <p>
@@ -105,7 +106,8 @@ public class ParameterNameCheck
     protected boolean mustCheckName(DetailAST ast) {
         boolean checkName = true;
         if (ignoreOverridden && isOverriddenMethod(ast)
-                || ast.getParent().getType() == TokenTypes.LITERAL_CATCH) {
+                || ast.getParent().getType() == TokenTypes.LITERAL_CATCH
+                || CheckUtils.isReceiverParameter(ast)) {
             checkName = false;
         }
         return checkName;

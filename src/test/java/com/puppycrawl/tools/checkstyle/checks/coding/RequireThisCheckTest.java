@@ -240,4 +240,11 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputValidateOnlyOverlappingTrue.java"), expected);
     }
+
+    @Test
+    public void testReceiverParameter() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRequireThisReceiver.java"), expected);
+    }
 }

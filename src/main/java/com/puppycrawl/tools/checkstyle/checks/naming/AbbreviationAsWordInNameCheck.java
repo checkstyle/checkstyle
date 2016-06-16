@@ -28,6 +28,7 @@ import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -220,7 +221,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private boolean isIgnoreSituation(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
 
-        boolean result = false;
+        final boolean result;
         if (ast.getType() == TokenTypes.VARIABLE_DEF) {
             if ((ignoreFinal || ignoreStatic)
                     && isInterfaceDeclaration(ast)) {
@@ -237,6 +238,9 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
             result = ignoreOverriddenMethods
                     && hasOverrideAnnotation(modifiers);
+        }
+        else {
+            result = CheckUtils.isReceiverParameter(ast);
         }
         return result;
     }

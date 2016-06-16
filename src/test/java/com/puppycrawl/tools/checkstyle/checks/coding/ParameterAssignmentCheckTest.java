@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
     @Override
@@ -52,6 +53,13 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputParameterAssignment.java"),
                expected);
+    }
+
+    @Test
+    public void testReceiverParameter() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ParameterAssignmentCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputParameterAssignmentReceiver.java"), expected);
     }
 
     @Test
