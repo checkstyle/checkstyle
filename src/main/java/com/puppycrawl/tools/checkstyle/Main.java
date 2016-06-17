@@ -253,13 +253,6 @@ public final class Main {
                     result.add(String.format("Could not find file '%s'.", propertiesLocation));
                 }
             }
-            if (cmdLine.hasOption(OPTION_O_NAME)) {
-                final String outputLocation = cmdLine.getOptionValue(OPTION_O_NAME);
-                final File file = new File(outputLocation);
-                if (file.exists() && !file.canWrite()) {
-                    result.add(String.format("Permission denied : '%s'.", outputLocation));
-                }
-            }
         }
         else {
             result.add("Must specify a config XML file.");
