@@ -54,7 +54,7 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineMultipleAnnotations</td>
-            <td>To allow annotation to be located on the same line as target element.</td>
+            <td>To allow annotation(s) to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
            <td><code>false</code></td>
           </tr>
@@ -66,7 +66,7 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineParameterizedAnnotation</td>
-            <td>To allow parameterized annotation to be located on the same line as target element.</td>
+            <td>To allow one and only parameterized annotation to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
@@ -104,10 +104,27 @@ public String getNameIfPresent() { ... }
 
       <subsection name="Examples">
         <p>
-          Example to allow single parameterless annotation on the same line
+          Example to allow multiple annotations on the same line
         </p>
         <source>
-@Override public int hashCode() { ... }
+@SuppressWarnings("deprecation") @Mock DataLoader loader; // no violations
+        </source>
+        <p>
+          Use following configuration:
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationLocation&quot;&gt;
+    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example to allow one single parameterless annotation on the same line
+        </p>
+        <source>
+@Override public int hashCode() { ... } // no violations
+@SuppressWarnings("deprecation") public int foo() { ... } // violation
         </source>
         <p>
           Use following configuration:
@@ -120,35 +137,20 @@ public String getNameIfPresent() { ... }
 &lt;/module&gt;
         </source>
         <p>
-          Example to allow multiple parameterized annotations on the same line
+          Example to allow only one and only pametrized annotation on the same line
         </p>
         <source>
-@SuppressWarnings("deprecation") @Mock DataLoader loader;
+@SuppressWarnings("deprecation") DataLoader loader; // no violations
+@Mock DataLoader loader; // violation
         </source>
         <p>
           Use following configuration:
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
     &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example to allow multiple parameterless annotations on the same line
-        </p>
-        <source>
-@Partial @Mock DataLoader loader;
-        </source>
-        <p>
-          Use following configuration:
-        </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;true&quot;/&gt;
-    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
