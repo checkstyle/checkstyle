@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -33,7 +32,6 @@ import java.io.IOError;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
-import java.nio.file.InvalidPathException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -41,7 +39,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 
-import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -363,54 +360,23 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testDestroyNonExistingCache() throws Exception {
-        // We use assumption to satisfy coverage rate on OS Windows, since persist() method of
-        // class PropertyCacheFile does not throw IOException on OS Linux when path to a cache
-        // directory is invalid on OS Windows.
-        Assume.assumeTrue(System.getProperty("os.name")
-            .toLowerCase(Locale.ENGLISH).startsWith("windows"));
-
+    public void testDestroyCacheWithWrongFileNameLength() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+            new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.configure(new DefaultConfiguration("default config"));
-        final String tempFilePath = temporaryFolder.newFile().getPath() + ".\\\'";
-        checker.setCacheFile(tempFilePath);
+        // We set wrong file name length in order to reproduce IOException on OS Linux, OS Windows.
+        // The maximum file name length which is allowed in most UNIX, Windows file systems is 255.
+        // See https://en.wikipedia.org/wiki/Filename
+        final int wrongFileNameLength = 300;
+        checker.setCacheFile(Strings.padEnd("fileName", wrongFileNameLength, 'e'));
         try {
             checker.destroy();
             fail("Exception did not happen");
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getCause() instanceof IOException);
-        }
-    }
-
-    @Test
-    public void testDestroyCacheFileWithInvalidPath() throws Exception {
-        final Checker checker = new Checker();
-        final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
-        checker.setModuleFactory(factory);
-        checker.configure(new DefaultConfiguration("default config"));
-        if (System.getProperty("os.name")
-            .toLowerCase(Locale.ENGLISH).startsWith("windows")) {
-            // https://support.microsoft.com/en-us/kb/177506 but this only for NTFS
-            // WindowsServer 2012 use Resilient File System (ReFS), so any name is ok
-            final File file = new File("C\\:invalid");
-            checker.setCacheFile(file.getAbsolutePath());
-        }
-        else {
-            final int wrongFileNameLength = 300;
-            checker.setCacheFile(Strings.padEnd(File.separator, wrongFileNameLength, '*'));
-        }
-        try {
-            checker.destroy();
-            fail("Exception did not happen");
-        }
-        catch (IllegalStateException ex) {
-            assertThat(ex.getCause(), anyOf(instanceOf(IOException.class),
-                instanceOf(InvalidPathException.class)));
         }
     }
 
