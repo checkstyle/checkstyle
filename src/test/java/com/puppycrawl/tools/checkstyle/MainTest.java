@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -384,49 +385,14 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFilePlainOutputToFileWithoutRwPermissions()
-            throws Exception {
-        final File file = temporaryFolder.newFile("file.output");
-        assertTrue(file.setReadable(true, true));
-        assertTrue(file.setWritable(false, false));
-        exit.expectSystemExitWithStatus(-1);
-        exit.checkAssertionAfterwards(new Assertion() {
-            @Override
-            public void checkAssertion() throws IOException {
-                assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
-                        + System.lineSeparator(), systemOut.getLog());
-                assertEquals("", systemErr.getLog());
-            }
-        });
+    public void testCreateNonExistingOutputFile() throws Exception {
+        final String outputFile = temporaryFolder.getRoot().getCanonicalPath() + "nonexisting.out";
+        assertFalse(new File(outputFile).exists());
         Main.main("-c", getPath("config-classname.xml"),
                 "-f", "plain",
-                "-o", file.getCanonicalPath(),
+                "-o", outputFile,
                 getPath("InputMain.java"));
-    }
-
-    @Test
-    public void testExistingFilePlainOutputToFileWithoutReadAndRwPermissions()
-            throws Exception {
-        final File file = temporaryFolder.newFile("file.output");
-        // That works fine on Linux/Unix, but ....
-        // It's not possible to make a file unreadable in Windows NTFS for owner.
-        // http://stackoverflow.com/a/4354686
-        // https://github.com/google/google-oauth-java-client/issues/55#issuecomment-69403681
-        //assertTrue(file.setReadable(false, false));
-        assertTrue(file.setWritable(false, false));
-        exit.expectSystemExitWithStatus(-1);
-        exit.checkAssertionAfterwards(new Assertion() {
-            @Override
-            public void checkAssertion() throws IOException {
-                assertEquals("Permission denied : '" + file.getCanonicalPath() + "'."
-                        + System.lineSeparator(), systemOut.getLog());
-                assertEquals("", systemErr.getLog());
-            }
-        });
-        Main.main("-c", getPath("config-classname.xml"),
-                "-f", "plain",
-                "-o", file.getCanonicalPath(),
-                getPath("InputMain.java"));
+        assertTrue(new File(outputFile).exists());
     }
 
     @Test
