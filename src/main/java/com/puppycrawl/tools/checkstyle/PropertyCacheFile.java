@@ -30,9 +30,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URI;
-import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
@@ -138,14 +136,9 @@ final class PropertyCacheFile {
      * @throws IOException  when there is a problems with file save
      */
     public void persist() throws IOException {
-        try {
-            final Path directory = Paths.get(fileName).getParent();
-            if (directory != null) {
-                Files.createDirectories(directory);
-            }
-        }
-        catch (InvalidPathException | AccessDeniedException ex) {
-            throw new IllegalStateException(ex.getMessage(), ex);
+        final Path directory = Paths.get(fileName).getParent();
+        if (directory != null) {
+            Files.createDirectories(directory);
         }
         FileOutputStream out = null;
         try {
