@@ -1809,7 +1809,7 @@
     <profile>
       <id>cobertura-check</id>
       <activation>
-        <jdk>${java.version}</jdk>
+        <jdk>[1.8,)</jdk>
       </activation>
       <build>
         <plugins>
