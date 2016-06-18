@@ -331,7 +331,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.10.4</version>
           <configuration>
-            <source>1.7</source>
+            <source>1.8</source>
             <failOnError>true</failOnError>
             <linksource>true</linksource>
             <tags>
