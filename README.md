@@ -72,7 +72,7 @@ directory.
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
-[sonar]:http://nemo.sonarqube.org/dashboard/index/com.puppycrawl.tools:checkstyle
+[sonar]:https://sonarqube.com/overview?id=com.puppycrawl.tools%3Acheckstyle
 [sonar img]:https://img.shields.io/sonar/http/nemo.sonarqube.org/com.puppycrawl.tools:checkstyle/tech_debt.svg?label=Sonarqube%20tech%20debt
 
 [codacy]:https://www.codacy.com/app/checkstyle/checkstyle
