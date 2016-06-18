@@ -33,6 +33,7 @@ import java.util.logging.Filter;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -110,6 +111,18 @@ public final class Main {
     /** Name for the option '--debug'. */
     private static final String OPTION_DEBUG_NAME = "debug";
 
+    /** Name for the option 'e'. */
+    private static final String OPTION_E_NAME = "e";
+
+    /** Name for the option '--exclude'. */
+    private static final String OPTION_EXCLUDE_NAME = "exclude";
+
+    /** Name for the option 'x'. */
+    private static final String OPTION_X_NAME = "x";
+
+    /** Name for the option '--exclude-regexp'. */
+    private static final String OPTION_EXCLUDE_REGEXP_NAME = "exclude-regexp";
+
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
 
@@ -145,7 +158,8 @@ public final class Main {
                 exitStatus = 0;
             }
             else {
-                final List<File> filesToProcess = getFilesToProcess(commandLine.getArgs());
+                final List<File> filesToProcess = getFilesToProcess(getExclusions(commandLine),
+                        commandLine.getArgs());
 
                 // return error if something is wrong in arguments
                 final List<String> messages = validateCli(commandLine, filesToProcess);
@@ -201,6 +215,29 @@ public final class Main {
         final CommandLineParser clp = new DefaultParser();
         // always returns not null value
         return clp.parse(buildOptions(), args);
+    }
+
+    /**
+     * Gets the list of exclusions provided through the command line argument.
+     * @param commandLine command line object
+     * @return List of exclusion patterns.
+     */
+    private static List<Pattern> getExclusions(CommandLine commandLine) {
+        final List<Pattern> result = new ArrayList<>();
+
+        if (commandLine.hasOption(OPTION_E_NAME)) {
+            for (String value : commandLine.getOptionValues(OPTION_E_NAME)) {
+                result.add(Pattern.compile("^" + Pattern.quote(new File(value).getAbsolutePath())
+                        + "$"));
+            }
+        }
+        if (commandLine.hasOption(OPTION_X_NAME)) {
+            for (String value : commandLine.getOptionValues(OPTION_X_NAME)) {
+                result.add(Pattern.compile(value));
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -471,14 +508,16 @@ public final class Main {
 
     /**
      * Determines the files to process.
+     * @param patternsToExclude The list of directory patterns to exclude from searching.
      * @param filesToProcess
      *        arguments that were not processed yet but shall be
      * @return list of files to process
      */
-    private static List<File> getFilesToProcess(String... filesToProcess) {
+    private static List<File> getFilesToProcess(List<Pattern> patternsToExclude,
+            String... filesToProcess) {
         final List<File> files = Lists.newLinkedList();
         for (String element : filesToProcess) {
-            files.addAll(listFiles(new File(element)));
+            files.addAll(listFiles(new File(element), patternsToExclude));
         }
 
         return files;
@@ -489,20 +528,23 @@ public final class Main {
      * list. Subdirectories are also traversed.
      * @param node
      *        the node to process
+     * @param patternsToExclude The list of directory patterns to exclude from searching.
      * @return found files
      */
-    private static List<File> listFiles(File node) {
+    private static List<File> listFiles(File node, List<Pattern> patternsToExclude) {
         // could be replaced with org.apache.commons.io.FileUtils.list() method
         // if only we add commons-io library
         final List<File> result = Lists.newLinkedList();
 
         if (node.canRead()) {
             if (node.isDirectory()) {
-                final File[] files = node.listFiles();
-                // listFiles() can return null, so we need to check it
-                if (files != null) {
-                    for (File element : files) {
-                        result.addAll(listFiles(element));
+                if (!isDirectoryExcluded(node.getAbsolutePath(), patternsToExclude)) {
+                    final File[] files = node.listFiles();
+                    // listFiles() can return null, so we need to check it
+                    if (files != null) {
+                        for (File element : files) {
+                            result.addAll(listFiles(element, patternsToExclude));
+                        }
                     }
                 }
             }
@@ -510,6 +552,26 @@ public final class Main {
                 result.add(node);
             }
         }
+        return result;
+    }
+
+    /**
+     * Checks if a directory {@code path} should be excluded based on if it matches one of the
+     * patterns supplied.
+     * @param path The path of the directory to check
+     * @param patternsToExclude The list of directory patterns to exclude from searching.
+     * @return True if the directory matches one of the patterns.
+     */
+    private static boolean isDirectoryExcluded(String path, List<Pattern> patternsToExclude) {
+        boolean result = false;
+
+        for (Pattern pattern : patternsToExclude) {
+            if (pattern.matcher(path).find()) {
+                result = true;
+                break;
+            }
+        }
+
         return result;
     }
 
@@ -544,6 +606,10 @@ public final class Main {
                 "Print full Abstract Syntax Tree of the file");
         options.addOption(OPTION_D_NAME, OPTION_DEBUG_NAME, false,
                 "Print all debug logging of CheckStyle utility");
+        options.addOption(OPTION_E_NAME, OPTION_EXCLUDE_NAME, true,
+                "Directory path to exclude from CheckStyle");
+        options.addOption(OPTION_X_NAME, OPTION_EXCLUDE_REGEXP_NAME, true,
+                "Regular expression of directory to exclude from CheckStyle");
         return options;
     }
 

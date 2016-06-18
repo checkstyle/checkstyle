@@ -32,12 +32,14 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
@@ -59,18 +61,21 @@ public class MainTest {
     private static final String USAGE = String.format(Locale.ROOT,
           "usage: java com.puppycrawl.tools.checkstyle.Main [options] -c <config.xml>"
         + " file...%n"
-        + " -c <arg>                Sets the check configuration file to use.%n"
-        + " -d,--debug              Print all debug logging of CheckStyle utility%n"
-        + " -f <arg>                Sets the output format. (plain|xml). Defaults to"
+        + " -c <arg>                    Sets the check configuration file to use.%n"
+        + " -d,--debug                  Print all debug logging of CheckStyle utility%n"
+        + " -e,--exclude <arg>          Directory path to exclude from CheckStyle%n"
+        + " -f <arg>                    Sets the output format. (plain|xml). Defaults to"
         + " plain%n"
-        + " -j,--javadocTree        Print Parse tree of the Javadoc comment%n"
-        + " -J,--treeWithJavadoc    Print full Abstract Syntax Tree of the file%n"
-        + " -o <arg>                Sets the output file. Defaults to stdout%n"
-        + " -p <arg>                Loads the properties file%n"
-        + " -t,--tree               Print Abstract Syntax Tree(AST) of the file%n"
-        + " -T,--treeWithComments   Print Abstract Syntax Tree(AST) of the file"
+        + " -j,--javadocTree            Print Parse tree of the Javadoc comment%n"
+        + " -J,--treeWithJavadoc        Print full Abstract Syntax Tree of the file%n"
+        + " -o <arg>                    Sets the output file. Defaults to stdout%n"
+        + " -p <arg>                    Loads the properties file%n"
+        + " -t,--tree                   Print Abstract Syntax Tree(AST) of the file%n"
+        + " -T,--treeWithComments       Print Abstract Syntax Tree(AST) of the file"
         + " including comments%n"
-        + " -v                      Print product version and exit%n");
+        + " -v                          Print product version and exit%n"
+        + " -x,--exclude-regexp <arg>   Regular expression of directory to exclude from"
+        + " CheckStyle%n");
 
     private static Logger logger;
     private static Handler[] handlers;
@@ -595,7 +600,7 @@ public class MainTest {
     @Test
     @SuppressWarnings("unchecked")
     public void testListFilesNotFile() throws Exception {
-        final Method method = Main.class.getDeclaredMethod("listFiles", File.class);
+        final Method method = Main.class.getDeclaredMethod("listFiles", File.class, List.class);
         method.setAccessible(true);
 
         final File fileMock = mock(File.class);
@@ -603,14 +608,14 @@ public class MainTest {
         when(fileMock.isDirectory()).thenReturn(false);
         when(fileMock.isFile()).thenReturn(false);
 
-        final List<File> result = (List<File>) method.invoke(null, fileMock);
+        final List<File> result = (List<File>) method.invoke(null, fileMock, null);
         assertEquals(0, result.size());
     }
 
     @Test
     @SuppressWarnings("unchecked")
     public void testListFilesDirectoryWithNull() throws Exception {
-        final Method method = Main.class.getDeclaredMethod("listFiles", File.class);
+        final Method method = Main.class.getDeclaredMethod("listFiles", File.class, List.class);
         method.setAccessible(true);
 
         final File fileMock = mock(File.class);
@@ -618,7 +623,8 @@ public class MainTest {
         when(fileMock.isDirectory()).thenReturn(true);
         when(fileMock.listFiles()).thenReturn(null);
 
-        final List<File> result = (List<File>) method.invoke(null, fileMock);
+        final List<File> result = (List<File>) method.invoke(null, fileMock,
+                new ArrayList<Pattern>());
         assertEquals(0, result.size());
     }
 
@@ -848,5 +854,46 @@ public class MainTest {
             }
         });
         Main.main("-c", "/google_checks.xml", getPath("InputMain.java"), "-d");
+    }
+
+    @Test
+    public void testExcludeOption() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals("Files to process must be specified, found 0."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+        Main.main("-c", "/google_checks.xml", getFilePath(""), "-e", getFilePath(""));
+    }
+
+    @Test
+    public void testExcludeRegexpOption() throws Exception {
+        exit.expectSystemExitWithStatus(-1);
+        exit.checkAssertionAfterwards(new Assertion() {
+            @Override
+            public void checkAssertion() {
+                assertEquals("Files to process must be specified, found 0."
+                    + System.lineSeparator(), systemOut.getLog());
+                assertEquals("", systemErr.getLog());
+            }
+        });
+        Main.main("-c", "/google_checks.xml", getFilePath(""), "-x", ".");
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testExcludeDirectoryNotMatch() throws Exception {
+        final Method method = Main.class.getDeclaredMethod("listFiles", File.class, List.class);
+        method.setAccessible(true);
+        final List<Pattern> list = new ArrayList<>();
+        list.add(Pattern.compile("BAD_PATH"));
+
+        final List<File> result = (List<File>) method.invoke(null, new File(getFilePath("")),
+                list);
+        assertNotEquals(0, result.size());
     }
 }
