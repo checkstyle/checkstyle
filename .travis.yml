@@ -69,7 +69,7 @@ matrix:
         - DESC="sonarqube.com"
         - CMD1="mvn clean package cobertura:cobertura sonar:sonar "
         - CMD2=" -Dsonar.host.url=https://sonarqube.com "
-        - CMD3=" -Dsonar.login=$SONAR_TOKEN "
+        - CMD3=" -Dsonar.login=\$SONAR_TOKEN "
         - CMD4=" -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true "
         - CMD5=" -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true "
         - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5
