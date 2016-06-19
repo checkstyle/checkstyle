@@ -153,6 +153,34 @@ public String getNameIfPresent() { ... }
     &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+       <p>
+         The following example demonstrates how the check validates annotations of method parameters,
+         catch parameters, foreach, for-loop variable definitions.
+       </p>
+       <p>Configuration:</p>
+       <source>
+&lt;module name=&quot;AnnotationLocation&quot;&gt;
+    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, PARAMETER_DEF&quot;/&gt;
+ &lt;/module&gt;
+       </source>
+       <p>Code example:</p>
+       <source>
+public void test(&#64;MyAnnotation String s) { // OK
+  ...
+  for (&#64;MyAnnotation char c : s.toCharArray()) { ... }  // OK
+  ...
+  try { ... }
+  catch (&#64;MyAnnotation Exception ex) { ... } // OK
+  ...
+  for (&#64;MyAnnotation int i = 0; i &lt; 10; i++) { ... } // OK
+  ...
+  MathOperation c = (&#64;MyAnnotation int a, &#64;MyAnnotation int b) -&gt; a + b; // OK
+  ...
+}
+       </source>
       </subsection>
 
       <subsection name="Example of Usage">
