@@ -1,0 +1,13 @@
+box: maven:3.3.9-jdk-8
+build:
+  steps:
+  - script:
+      name: setup mvn local repo
+      code: |-
+        export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
+
+  # unit tests (oraclejdk8)
+  - script:
+      name: tests
+      code: |-
+        mvn clean integration-test failsafe:verify
