@@ -3,6 +3,7 @@
 [![][teamcity img]][teamcity]
 [![][codeship img]][codeship]
 [![][circleci img]][circleci]
+[![][wercker img]][wercker]
 [![][coverage img]][coverage]
 
 [![][mavenbadge img]][mavenbadge]
@@ -107,3 +108,6 @@ directory.
 
 [circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
 [circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
+
+[wercker]: https://app.wercker.com/project/bykey/cd383127330ff96f89f1a78e8fd1a557
+[wercker img]: https://app.wercker.com/status/cd383127330ff96f89f1a78e8fd1a557/s/master
