@@ -67,12 +67,13 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="sonarqube.com"
-        - CMD1="mvn clean package cobertura:cobertura sonar:sonar "
-        - CMD2=" -Dsonar.host.url=https://sonarqube.com "
-        - CMD3=" -Dsonar.login=\$SONAR_TOKEN "
-        - CMD4=" -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true "
-        - CMD5=" -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true "
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5
+        - CMD1="if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi "
+        - CMD2=" && mvn clean package cobertura:cobertura sonar:sonar "
+        - CMD3="     -Dsonar.host.url=https://sonarqube.com "
+        - CMD4="     -Dsonar.login=\$SONAR_TOKEN "
+        - CMD5="     -Dcobertura.report.format=xml -Dmaven.test.failure.ignore=true "
+        - CMD6="     -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true "
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6
         - COVERAGE_CMD=""
 
     # NoErrorTest - Orekit (oraclejdk8)
