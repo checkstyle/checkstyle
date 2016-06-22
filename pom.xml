@@ -200,7 +200,6 @@
     <java.version>1.8</java.version>
     <tools.jar.version>${java.version}.0</tools.jar.version>
     <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
-    <checkstyle.version>6.18</checkstyle.version>
   </properties>
 
   <!-- that repositories are required for testing plugin's snapshot version -->
