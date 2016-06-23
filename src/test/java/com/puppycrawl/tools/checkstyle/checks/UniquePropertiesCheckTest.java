@@ -114,7 +114,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
                 getPath("InputUniquePropertiesCheckNotExisting.properties");
         final File file = new File(fileName);
         final SortedSet<LocalizedMessage> messages =
-                check.process(file, Collections.<String>emptyList());
+                check.process(file, Collections.emptyList());
         assertEquals("Wrong messages count: " + messages.size(),
                 1, messages.size());
         final LocalizedMessage message = messages.iterator().next();
