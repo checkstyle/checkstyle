@@ -2082,7 +2082,8 @@
     <inspection_tool class="ThrowCaughtLocally" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignoreRethrownExceptions" value="false" />
     </inspection_tool>
-    <inspection_tool class="ThrowFromFinallyBlock" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- disabled till https://github.com/checkstyle/checkstyle/issues/3301 -->
+    <inspection_tool class="ThrowFromFinallyBlock" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ThrowFromFinallyBlockJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ThrowableInstanceNeverThrown" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ThrowablePrintStackTrace" enabled="true" level="ERROR" enabled_by_default="true" />
