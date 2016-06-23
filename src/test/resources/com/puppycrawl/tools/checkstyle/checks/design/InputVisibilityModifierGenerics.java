@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
 public final class InputVisibilityModifierGenerics {
@@ -40,15 +40,15 @@ public final class InputVisibilityModifierGenerics {
 
     public InputVisibilityModifierGenerics() {
         this.name = "John Doe";
-        this.keyword = Optional.absent();
+        this.keyword = Optional.empty();
         this.perfSeries = ImmutableMap.of();
         this.uuidMap = ImmutableMap.of();
         this.peopleMap = ImmutableMap.of();
         this.someMap = ImmutableMap.of();
         this.newMap = ImmutableMap.of();
         this.orders = ImmutableMap.of();
-        this.optionalOfObject = Optional.absent();
-        this.obj = Optional.absent();
+        this.optionalOfObject = Optional.empty();
+        this.obj = Optional.empty();
         this.mapOfStrings = new HashMap<>(1);
         this.names = new HashMap<>(1);
         this.links = new HashMap<>(1);

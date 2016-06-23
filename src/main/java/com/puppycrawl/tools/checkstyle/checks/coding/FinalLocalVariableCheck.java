@@ -25,8 +25,8 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
 
-import com.google.common.base.Optional;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -288,7 +288,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return Optional of {@link FinalVariableCandidate} for ast from scopeStack.
      */
     private Optional<FinalVariableCandidate> getFinalCandidate(DetailAST ast) {
-        Optional<FinalVariableCandidate> result = Optional.absent();
+        Optional<FinalVariableCandidate> result = Optional.empty();
         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
         while (iterator.hasNext() && !result.isPresent()) {
             final ScopeData scopeData = iterator.next();
@@ -635,10 +635,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
          * @return Optional of {@link FinalVariableCandidate}.
          */
         public Optional<FinalVariableCandidate> findFinalVariableCandidateForAst(DetailAST ast) {
-            Optional<FinalVariableCandidate> result = Optional.absent();
+            Optional<FinalVariableCandidate> result = Optional.empty();
             DetailAST storedVariable = null;
             final Optional<FinalVariableCandidate> candidate =
-                Optional.fromNullable(scope.get(ast.getText()));
+                Optional.ofNullable(scope.get(ast.getText()));
             if (candidate.isPresent()) {
                 storedVariable = candidate.get().variableIdent;
             }
