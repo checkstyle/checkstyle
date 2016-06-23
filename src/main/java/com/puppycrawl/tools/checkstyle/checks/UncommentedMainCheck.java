@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Optional;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -217,9 +217,9 @@ public class UncommentedMainCheck
 
         if (params.getChildCount() == 1) {
             final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
-            final Optional<DetailAST> arrayDecl = Optional.fromNullable(
+            final Optional<DetailAST> arrayDecl = Optional.ofNullable(
                 parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR));
-            final Optional<DetailAST> varargs = Optional.fromNullable(
+            final Optional<DetailAST> varargs = Optional.ofNullable(
                 params.getFirstChild().findFirstToken(TokenTypes.ELLIPSIS));
 
             if (arrayDecl.isPresent()) {
