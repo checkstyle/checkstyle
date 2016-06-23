@@ -166,7 +166,7 @@ public final class DetailNodeTreeStringPrinter {
      */
     private static DetailNode parseFile(File file) throws IOException {
         // Details: https://github.com/checkstyle/checkstyle/issues/3034
-        // noinspection MismatchedQueryAndUpdateOfCollection
+        //noinspection MismatchedQueryAndUpdateOfCollection
         final FileText text = new FileText(file.getAbsoluteFile(),
             System.getProperty("file.encoding", "UTF-8"));
         return parseJavadocAsDetailNode(text.getFullText().toString());

@@ -28,7 +28,6 @@ package com.puppycrawl.tools.checkstyle.api;
  * @author Oliver Burn
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing your
  *      own checks</a>
- * @noinspection EmptyClass
  */
 @Deprecated
 public abstract class Check extends AbstractCheck {
