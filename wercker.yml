@@ -34,8 +34,8 @@ build:
         -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true
         && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
         && echo CS_version: ${CS_POM_VERSION}
-        && git clone https://github.com/checkstyle/xwiki-commons/
-        && cd xwiki-commons && git checkout checkstyle-regression
+        && git clone https://github.com/xwiki/xwiki-commons/
+        && cd xwiki-commons/xwiki-commons-core && git checkout xwiki-commons-8.2-milestone-1
         && mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
 
   # NoErrorTest - Apache Apex (oraclejdk8)
