@@ -52,9 +52,9 @@ javadoc: (
          EOF;
 
 htmlElement: htmlTag
-        | singletonElement
-        | paragraph
-        | li
+            | singletonElement
+            | paragraph
+            | li
             | tr
             | td
             | th
@@ -134,9 +134,9 @@ htmlTag: htmlElementOpen (htmlElement
 pTagOpen: OPEN P_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 pTagClose: OPEN SLASH P_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* CLOSE;
 paragraph: pTagOpen
-        (htmlTag
-        | singletonTag
-        | li
+            (htmlTag
+            | singletonTag
+            | li
             | tr
             | td
             | th
@@ -179,39 +179,39 @@ li: liTagOpen
     (htmlTag
         | singletonTag
         | paragraph
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     liTagClose
     ;
 
@@ -222,38 +222,38 @@ tr: trTagOpen
         | singletonTag
         | paragraph
         | li
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     trTagClose
     ;
 
@@ -264,38 +264,38 @@ td: tdTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     tdTagClose
     ;
 
@@ -306,38 +306,38 @@ th: thTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     thTagClose
     ;
 
@@ -348,38 +348,38 @@ body: bodyTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     bodyTagClose
     ;
 
@@ -390,38 +390,38 @@ colgroup: colgroupTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     colgroupTagClose
     ;
 
@@ -432,38 +432,38 @@ dd: ddTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     ddTagClose
     ;
 
@@ -474,38 +474,38 @@ dt: dtTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     dtTagClose
     ;
 
@@ -516,38 +516,38 @@ head: headTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | html
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | html
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     headTagClose
     ;
 
@@ -558,38 +558,38 @@ html: htmlTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | option
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | option
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     htmlTagClose
     ;
 
@@ -600,38 +600,38 @@ option: optionTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | tbody
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | tbody
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     optionTagClose
     ;
 
@@ -642,38 +642,38 @@ tbody: tbodyTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | thead
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | theadTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | thead
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | theadTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     tbodyTagClose
     ;
 
@@ -684,38 +684,38 @@ tfoot: tfootTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | thead
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | theadTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | thead
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | theadTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     tfootTagClose
     ;
 
@@ -726,38 +726,38 @@ thead: theadTagOpen
         | singletonTag
         | paragraph
         | li
-            | tr
-            | td
-            | th
-            | body
-            | colgroup
-            | dd
-            | dt
-            | head
-            | html
-            | option
-            | tbody
-            | tfoot
-            | pTagOpen
-            | liTagOpen
-            | trTagOpen
-            | tdTagOpen
-            | thTagOpen
-            | bodyTagOpen
-            | colgroupTagOpen
-            | ddTagOpen
-            | dtTagOpen
-            | headTagOpen
-            | htmlTagOpen
-            | optionTagOpen
-            | tbodyTagOpen
-            | tfootTagOpen
-            | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-            | htmlComment
-            | CDATA
-            | NEWLINE
-            | text
-            | javadocInlineTag)*
+        | tr
+        | td
+        | th
+        | body
+        | colgroup
+        | dd
+        | dt
+        | head
+        | html
+        | option
+        | tbody
+        | tfoot
+        | pTagOpen
+        | liTagOpen
+        | trTagOpen
+        | tdTagOpen
+        | thTagOpen
+        | bodyTagOpen
+        | colgroupTagOpen
+        | ddTagOpen
+        | dtTagOpen
+        | headTagOpen
+        | htmlTagOpen
+        | optionTagOpen
+        | tbodyTagOpen
+        | tfootTagOpen
+        | ({!isNextJavadocTag()}? LEADING_ASTERISK)
+        | htmlComment
+        | CDATA
+        | NEWLINE
+        | text
+        | javadocInlineTag)*
     theadTagClose
     ;
 
@@ -778,8 +778,7 @@ singletonElement: singletonTag
             | linkTag
             | metaTag
             | paramTag
-
-                  | wrongSinletonTag
+            | wrongSinletonTag
             ;
 
 singletonTag: OPEN
