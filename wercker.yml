@@ -63,55 +63,6 @@ build:
         && cd contribution/checkstyle-tester
         && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml
 
-  # unit tests in German locale (oraclejdk8)
-  - script:
-      name: tests de
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=de -Duser.country=DE'
-
-  # unit tests in Spanish locale (oraclejdk8)
-  - script:
-      name: tests es
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=es -Duser.country=ES'
-
-  # unit tests in Finnish locale (oraclejdk8)
-  - script:
-      name: tests fi
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=fi -Duser.country=FI'
-
-  # unit tests in French locale (oraclejdk8)
-  - script:
-      name: tests fr
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=fr -Duser.country=FR'
-
-  # unit tests in Chinese locale (oraclejdk8)
-  - script:
-      name: tests zh
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=zh -Duser.country=CN'
-
-  # unit tests in Japanese locale (oraclejdk8)
-  - script:
-      name: tests ja
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=ja -Duser.country=JP'
-
-  # unit tests in Portuguese locale (oraclejdk8)
-  - script:
-      name: tests pt
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=pt -Duser.country=PT'
-
-  # unit tests in Turkish locale (oraclejdk8)
-  - script:
-      name: tests tr
-      code: >
-        mvn clean integration-test failsafe:verify -DargLine='-Duser.language=tr -Duser.country=TR'
-
-
   # java 8 compile (oraclejdk8)
   - script:
       name: java 8 inputs should NOT be in resources-noncompilable
