@@ -1683,6 +1683,7 @@ public final class TokenTypes {
      *                     +--RPAREN ())
      *         +--SEMI (;)
      *         +--RCURLY (})
+     *     +--DO_WHILE (while)
      *     +--LPAREN (()
      *     +--EXPR
      *         |
