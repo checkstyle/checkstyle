@@ -194,6 +194,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.ASSIGN,
+            TokenTypes.ARRAY_INIT,
             TokenTypes.BAND,
             TokenTypes.BAND_ASSIGN,
             TokenTypes.BOR,
@@ -251,6 +252,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.ASSIGN,
+            TokenTypes.ARRAY_INIT,
             TokenTypes.BAND,
             TokenTypes.BAND_ASSIGN,
             TokenTypes.BOR,

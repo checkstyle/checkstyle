@@ -283,4 +283,11 @@ class SpecialCasesInForLoop
 )
 ;
     }
+
+    public void arrayInitTest() {
+        // missing WS before "{"
+        final int[] COLORS = new int[]{5 };
+        // valid
+        final int[] COLORS1 = new int[] {5 };
+    }
 }

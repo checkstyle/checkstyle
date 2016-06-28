@@ -101,6 +101,7 @@ public class WhitespaceAroundCheckTest
             "156:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
             "156:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ":"),
             "262:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "2892:46: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
         };
         verify(checkConfig, getPath("InputWhitespace.java"), expected);
     }
