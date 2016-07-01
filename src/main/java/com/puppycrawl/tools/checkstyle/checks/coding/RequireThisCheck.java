@@ -481,15 +481,19 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST blockStartToken = definitionToken.findFirstToken(TokenTypes.SLIST);
         final DetailAST blockEndToken = getBlockEndToken(blockFrameNameIdent, blockStartToken);
 
-        final Set<DetailAST> variableUsagesInsideBlock =
-            getAllTokensWhichAreEqualToCurrent(definitionToken, ident, blockEndToken.getLineNo());
-
         boolean userDefinedArrangementOfThis = false;
-        for (DetailAST variableUsage : variableUsagesInsideBlock) {
-            final DetailAST prevSibling = variableUsage.getPreviousSibling();
-            if (prevSibling != null
-                    && prevSibling.getType() == TokenTypes.LITERAL_THIS) {
-                userDefinedArrangementOfThis = true;
+
+        if (blockEndToken != null) {
+            final Set<DetailAST> variableUsagesInsideBlock =
+                getAllTokensWhichAreEqualToCurrent(definitionToken, ident,
+                    blockEndToken.getLineNo());
+
+            for (DetailAST variableUsage : variableUsagesInsideBlock) {
+                final DetailAST prevSibling = variableUsage.getPreviousSibling();
+                if (prevSibling != null
+                        && prevSibling.getType() == TokenTypes.LITERAL_THIS) {
+                    userDefinedArrangementOfThis = true;
+                }
             }
         }
         return userDefinedArrangementOfThis;
