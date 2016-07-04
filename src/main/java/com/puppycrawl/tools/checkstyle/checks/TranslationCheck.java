@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <pre>
  * &lt;module name="Translation"&gt;
  *     &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
- * &lt;module/&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p>To configure the check to check only files which have '.properties' and '.translations'
  * extensions:
@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <pre>
  * &lt;module name="Translation"&gt;
  *     &lt;property name="fileExtensions" value="properties, translations"/&gt;
- * &lt;module/&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * <p><b>requiredTranslations</b> which allows to specify language codes of required translations
