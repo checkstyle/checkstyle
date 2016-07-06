@@ -1683,6 +1683,7 @@ public final class TokenTypes {
      *                     +--RPAREN ())
      *         +--SEMI (;)
      *         +--RCURLY (})
+     *     +--DO_WHILE (while)
      *     +--LPAREN (()
      *     +--EXPR
      *         |
@@ -2856,6 +2857,37 @@ public final class TokenTypes {
      * A for-each clause.  This is a child of
      * <code>LITERAL_FOR</code>.  The children of this element may be
      * a parameter definition, the colon literal and an expression.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * for (int value : values) {
+     *     doSmth();
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_FOR (for)
+     *    |--LPAREN (()
+     *    |--FOR_EACH_CLAUSE
+     *    |   |--VARIABLE_DEF
+     *    |   |   |--MODIFIERS
+     *    |   |   |--TYPE
+     *    |   |   |   `--LITERAL_INT (int)
+     *    |   |   `--IDENT (value)
+     *    |   |--COLON (:)
+     *    |   `--EXPR
+     *    |       `--IDENT (values
+     *    |--RPAREN ())
+     *    `--SLIST ({)
+     *        |--EXPR
+     *        |   `--METHOD_CALL (()
+     *        |       |--IDENT (doSmth)
+     *        |       |--ELIST
+     *        |       `--RPAREN ())
+     *        |--SEMI (;)
+     *        `--RCURLY (})
+     *
+     * </pre>
      *
      * @see #VARIABLE_DEF
      * @see #ELIST

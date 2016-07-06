@@ -247,4 +247,12 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRequireThisReceiver.java"), expected);
     }
+
+    @Test
+    public void testBraceAlone() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRequireThisBraceAlone.java"), expected);
+    }
 }

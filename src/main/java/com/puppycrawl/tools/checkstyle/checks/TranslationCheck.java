@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
@@ -36,7 +37,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <pre>
  * &lt;module name="Translation"&gt;
  *     &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
- * &lt;module/&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p>To configure the check to check only files which have '.properties' and '.translations'
  * extensions:
@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * <pre>
  * &lt;module name="Translation"&gt;
  *     &lt;property name="fileExtensions" value="properties, translations"/&gt;
- * &lt;module/&gt;
+ * &lt;/module&gt;
  * </pre>
  *
  * <p><b>requiredTranslations</b> which allows to specify language codes of required translations
@@ -306,7 +306,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             fileNameRegexp = String.format(Locale.ROOT,
                 REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS, baseName, languageCode, extension);
         }
-        Optional<String> missingFileName = Optional.absent();
+        Optional<String> missingFileName = Optional.empty();
         if (!bundle.containsFile(fileNameRegexp)) {
             if (searchForDefaultTranslation) {
                 missingFileName = Optional.of(String.format(Locale.ROOT,
@@ -372,7 +372,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     private static Optional<ResourceBundle> findBundle(Set<ResourceBundle> bundles,
                                                        ResourceBundle targetBundle) {
-        Optional<ResourceBundle> result = Optional.absent();
+        Optional<ResourceBundle> result = Optional.empty();
         for (ResourceBundle currentBundle : bundles) {
             if (targetBundle.getBaseName().equals(currentBundle.getBaseName())
                     && targetBundle.getExtension().equals(currentBundle.getExtension())

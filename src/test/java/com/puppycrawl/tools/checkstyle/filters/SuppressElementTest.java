@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -160,27 +161,32 @@ public class SuppressElementTest {
 
     @Test
     public void testEquals() {
+        // filterBased is used instead of filter field only to satisfy IntelijIdea Inspection
+        // Inspection "Arguments to assertEquals() in wrong order "
+        final SuppressElement filterBased = new SuppressElement("Test");
+        filterBased.setChecks("Test");
+
         final SuppressElement filter2 = new SuppressElement("Test");
         filter2.setChecks("Test");
-        assertEquals("filter, filter2", filter, filter2);
+        assertEquals("filter, filter2", filterBased, filter2);
         final SuppressElement filter3 = new SuppressElement("Test");
         filter3.setChecks("Test3");
-        assertFalse("filter, filter3", filter.equals(filter3));
-        filter.setColumns("1-10");
-        assertFalse("filter, filter2", filter.equals(filter2));
+        assertNotEquals("filter, filter3", filterBased, filter3);
+        filterBased.setColumns("1-10");
+        assertNotEquals("filter, filter2", filterBased, filter2);
         filter2.setColumns("1-10");
-        assertEquals("filter, filter2", filter, filter2);
-        filter.setColumns(null);
-        assertFalse("filter, filter2", filter.equals(filter2));
+        assertEquals("filter, filter2", filterBased, filter2);
+        filterBased.setColumns(null);
+        assertNotEquals("filter, filter2", filterBased, filter2);
         filter2.setColumns(null);
-        filter.setLines("3,4");
-        assertFalse("filter, filter2", filter.equals(filter2));
+        filterBased.setLines("3,4");
+        assertNotEquals("filter, filter2", filterBased, filter2);
         filter2.setLines("3,4");
-        assertEquals("filter, filter2", filter, filter2);
-        filter.setColumns("1-10");
-        assertFalse("filter, filter2", filter.equals(filter2));
+        assertEquals("filter, filter2", filterBased, filter2);
+        filterBased.setColumns("1-10");
+        assertNotEquals("filter, filter2", filterBased, filter2);
         filter2.setColumns("1-10");
-        assertEquals("filter, filter2", filter, filter2);
+        assertEquals("filter, filter2", filterBased, filter2);
     }
 
     @Test

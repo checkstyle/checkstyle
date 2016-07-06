@@ -158,4 +158,18 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAnnotationLocation3.java"), expected);
     }
+
+    @Test
+    public void testAnnotationInForEachLoopParameterAndVariableDef() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
+        checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
+            + " CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, LITERAL_THROWS,"
+            + " IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, ANNOTATION_FIELD_DEF,"
+            + " TYPE_ARGUMENT");
+        checkConfig.addAttribute("allowSamelineMultipleAnnotations", "false");
+        checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
+        checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "false");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputAnnotationLocation4.java"), expected);
+    }
 }

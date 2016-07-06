@@ -65,7 +65,7 @@ public abstract class AbstractLoader
      */
     protected AbstractLoader(String publicId, String dtdResourceName)
             throws SAXException, ParserConfigurationException {
-        this(new HashMap<String, String>(1));
+        this(new HashMap<>(1));
         publicIdToResourceNameMap.put(publicId, dtdResourceName);
     }
 

@@ -878,6 +878,12 @@ import android.*;
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
+          <tr>
+            <td>useContainerOrderingForStatic</td>
+            <td>whether to use container ordering (Eclipse IDE term) for static imports or not</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
 
           <tr>
             <td>tokens</td>
@@ -1007,6 +1013,56 @@ import java.util.Set; //  Wrong order for 'java.util.Set' import.
 public class SomeClass { ... }
         </source>
 
+        <p>
+          The following example shows the idea of 'useContainerOrderingForStatic' option that is
+          useful for Eclipse IDE users to match ordering validation.
+          This is how the import comparison works for static imports: we first compare
+          the container of the static import, container is the type enclosing the static element
+          being imported. When the result of the comparison is 0 (containers are equal),
+          we compare the fully qualified import names.
+          For e.g. this is what is considered to be container names for the given example:
+
+          import static HttpConstants.COLON     => HttpConstants
+          import static HttpHeaders.addHeader   => HttpHeaders
+          import static HttpHeaders.setHeader   => HttpHeaders
+          import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+
+          According to this logic, HttpHeaders.Names should come after HttpHeaders.
+        </p>
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+import static io.netty.handler.codec.http.HttpConstants.COLON;
+import static io.netty.handler.codec.http.HttpHeaders.addHeader;
+import static io.netty.handler.codec.http.HttpHeaders.setHeader;
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
+
+public class InputEclipseStaticImportsOrder { }
+        </source>
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+    &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+    &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+import static io.netty.handler.codec.http.HttpConstants.COLON;
+import static io.netty.handler.codec.http.HttpHeaders.addHeader;
+import static io.netty.handler.codec.http.HttpHeaders.setHeader;
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
+
+public class InputEclipseStaticImportsOrder { }
+        </source>
       </subsection>
 
       <subsection name="Example of Usage">

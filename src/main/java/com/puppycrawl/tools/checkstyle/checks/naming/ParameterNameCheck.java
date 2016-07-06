@@ -19,7 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
@@ -123,11 +124,11 @@ public class ParameterNameCheck
 
         final DetailAST parent = ast.getParent().getParent();
         final Optional<DetailAST> annotation =
-            Optional.fromNullable(parent.getFirstChild().getFirstChild());
+            Optional.ofNullable(parent.getFirstChild().getFirstChild());
 
         if (annotation.isPresent() && annotation.get().getType() == TokenTypes.ANNOTATION) {
             final Optional<DetailAST> overrideToken =
-                Optional.fromNullable(annotation.get().findFirstToken(TokenTypes.IDENT));
+                Optional.ofNullable(annotation.get().findFirstToken(TokenTypes.IDENT));
             if (overrideToken.isPresent() && "Override".equals(overrideToken.get().getText())) {
                 overridden = true;
             }

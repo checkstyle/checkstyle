@@ -121,6 +121,40 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    /&gt;
  * &lt;/module&gt;
  * </pre>
+ * <br>
+ * <p>
+ * The following example demonstrates how the check validates annotation of method parameters,
+ * catch parameters, foreach, for-loop variable definitions.
+ * </p>
+ *
+ * <p>Configuration:
+ * <pre>
+ * &lt;module name=&quot;AnnotationLocation&quot;&gt;
+ *    &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+ *    &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+ *    value=&quot;false&quot;/&gt;
+ *    &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;
+ *    /&gt;
+ *    &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF, PARAMETER_DEF&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>Code example
+ * {@code
+ * ...
+ * public void test(&#64;MyAnnotation String s) { // OK
+ *   ...
+ *   for (&#64;MyAnnotation char c : s.toCharArray()) { ... }  // OK
+ *   ...
+ *   try { ... }
+ *   catch (&#64;MyAnnotation Exception ex) { ... } // OK
+ *   ...
+ *   for (&#64;MyAnnotation int i = 0; i &lt; 10; i++) { ... } // OK
+ *   ...
+ *   MathOperation c = (&#64;MyAnnotation int a, &#64;MyAnnotation int b) -&gt; a + b; // OK
+ *   ...
+ * }
+ * }
  *
  * @author maxvetrenko
  */
@@ -136,6 +170,11 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY_ANNOTATION_LOCATION = "annotation.location";
+
+    /** Array of single line annotation parents. */
+    private static final int[] SINGLELINE_ANNOTATION_PARENTS = {TokenTypes.FOR_EACH_CLAUSE,
+                                                                TokenTypes.PARAMETER_DEF,
+                                                                TokenTypes.FOR_INIT, };
 
     /**
      * If true, it allows single prameterless annotation to be located on the same line as
@@ -308,7 +347,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
         }
         return allowSamelineMultipleAnnotations
             || allowingCondition && !hasNodeBefore(annotation)
-            || !allowingCondition && !hasNodeBeside(annotation);
+            || !allowingCondition && (!hasNodeBeside(annotation)
+            || isAllowedPosition(annotation, SINGLELINE_ANNOTATION_PARENTS));
     }
 
     /**
@@ -346,5 +386,40 @@ public class AnnotationLocationCheck extends AbstractCheck {
         }
 
         return annotationLineNo == nextNode.getLineNo();
+    }
+
+    /**
+     * Checks whether position of annotation is allowed.
+     * @param annotation annotation token.
+     * @param allowedPositions an array of allowed annotation positions.
+     * @return true if position of annotation is allowed.
+     */
+    public static boolean isAllowedPosition(DetailAST annotation, int... allowedPositions) {
+        boolean allowed = false;
+        for (int position : allowedPositions) {
+            if (isInSpecificCodeBlock(annotation, position)) {
+                allowed = true;
+                break;
+            }
+        }
+        return allowed;
+    }
+
+    /**
+     * Checks whether the scope of a node is restricted to a specific code block.
+     * @param node node.
+     * @param blockType block type.
+     * @return true if the scope of a node is restricted to a specific code block.
+     */
+    private static boolean isInSpecificCodeBlock(DetailAST node, int blockType) {
+        boolean returnValue = false;
+        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+            final int type = token.getType();
+            if (type == blockType) {
+                returnValue = true;
+                break;
+            }
+        }
+        return returnValue;
     }
 }

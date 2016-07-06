@@ -15,6 +15,102 @@
 
   <body>
 
+    <section name="Release 7.0">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            update checkstyle to jdk8 as runtime jdk. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3229">#3229</a>
+          </li>
+          <li>
+            Modules and XDocs: changed setter methods to recieve similar types with field type for easier xdoc validation. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3212">#3212</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            VisibilityModifier: allow public final fields. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2971">#2971</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Ability to differentiate annotation placement in for each loop from variable declaration.. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3117">#3117</a>
+          </li>
+          <li>
+            Java 8 Grammar: Parsing of explicit receiver parameters. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3239">#3239</a>
+          </li>
+          <li>
+            Java 8 Grammar: annotation on throws types. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3237">#3237</a>
+          </li>
+          <li>
+            Java 8 Grammar: annotation on generic type. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3240">#3240</a>
+          </li>
+          <li>
+            CommentsIndentation : Check incorrect work with subsequent comments. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/3166">#3166</a>
+          </li>
+          <li>
+            CommentsIndentation : allow upper comments for following block at multi-block structures. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3220">#3220</a>
+          </li>
+          <li>
+            CommentsIndentation : false-positive in empty array declarations. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3127">#3127</a>
+          </li>
+          <li>
+            CommentsIndentation: false-positive when a singleline comment follows a block comment. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3126">#3126</a>
+          </li>
+          <li>
+            RightCurly rule should properly enforce same rule for LITERAL_DO. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3090">#3090</a>
+          </li>
+          <li>
+            Proper support for generics in visibility modifier check. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3142">#3142</a>
+          </li>
+          <li>
+            Indentation: incorrect validation for imports and package. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2618">#2618</a>
+          </li>
+          <li>
+            Indentation: remove requirement right curlies to be first on line. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3116">#3116</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: fixed checkstyle download url (#3304). Author: rnveach
+          </li>
+          <li>
+            Reduce the number of tasks performed by Travis CI. Author: Andrei Selkin, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3159">#3159</a>
+          </li>
+          <li>
+            Cut down on Checkstyle&#39;s dependencies on Guava. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3293">#3293</a>
+          </li>
+          <li>
+            doc: update for AnnotationLocation examples to be more exact. Author: Roman Ivanov
+          </li>
+          <li>
+            6 tests in Checkstyle master branch fail at clean Ubuntu 14.04 Docker container (Java 8, Maven 3). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3177">#3177</a>
+          </li>
+          <li>
+            Avoid catching of InvalidPathException and AccessDeniedException in PropertyCacheFile#persist. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3259">#3259</a>
+          </li>
+          <li>
+            Review all French translations. Author: Vincent Privat <a href="https://github.com/checkstyle/checkstyle/issues/3282">#3282</a>
+          </li>
+          <li>
+            Improve French translation for annotations warnings. Author: Vincent Privat <a href="https://github.com/checkstyle/checkstyle/issues/3278">#3278</a>
+          </li>
+          <li>
+            Create web-page with instructions: how to create Javadoc Check. Author: Baratali Izmailov, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/410">#410</a>
+          </li>
+          <li>
+            corrected alphabetical order of the checks. Author: Claus Schrammel <a href="https://github.com/checkstyle/checkstyle/issues/3263">#3263</a>
+          </li>
+          <li>
+            CommitValidationTest.testCommitMessageHasSingleLine to support github default format. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3266">#3266</a>
+          </li>
+          <li>
+            XDoc Config: create unit test to verify property types and default values. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3187">#3187</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 6.19">
       <p>Breaking backward compatibility:</p>
         <ul>

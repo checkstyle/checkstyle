@@ -232,7 +232,7 @@ public class JavadocDetailNodeParser {
             final ParseTree currentParseTreeNodeChild = parseTreeParent.getChild(i);
             final JavadocNodeImpl[] subChildren =
                     createChildrenNodes(currentJavadocNode, currentParseTreeNodeChild);
-            currentJavadocNode.setChildren(subChildren);
+            currentJavadocNode.setChildren((DetailNode[]) subChildren);
         }
     }
 
@@ -272,7 +272,7 @@ public class JavadocDetailNodeParser {
                     rootJavadocNode, i);
             children[i] = child;
         }
-        rootJavadocNode.setChildren(children);
+        rootJavadocNode.setChildren((DetailNode[]) children);
         return rootJavadocNode;
     }
 
@@ -292,7 +292,7 @@ public class JavadocDetailNodeParser {
         node.setIndex(index);
         node.setType(getTokenType(parseTree));
         node.setParent(parent);
-        node.setChildren(new JavadocNodeImpl[parseTree.getChildCount()]);
+        node.setChildren((DetailNode[]) new JavadocNodeImpl[parseTree.getChildCount()]);
         return node;
     }
 

@@ -22,7 +22,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>7.0-SNAPSHOT</version>
+  <version>7.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -197,10 +197,9 @@
     <maven.jacoco.plugin.version>0.7.7.201606060606</maven.jacoco.plugin.version>
     <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.21.0</maven.sevntu.checkstyle.plugin.version>
-    <tools.jar.version>1.7.0</tools.jar.version>
-    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
     <java.version>1.8</java.version>
-    <checkstyle.version>6.18</checkstyle.version>
+    <tools.jar.version>${java.version}.0</tools.jar.version>
+    <tools.jar.path>${java.home}/../lib/tools.jar</tools.jar.path>
   </properties>
 
   <!-- that repositories are required for testing plugin's snapshot version -->
@@ -281,7 +280,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>2.1</version>
+      <version>2.1.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -305,7 +304,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>4.3.1.201605051710-r</version>
+      <version>4.4.0.201606070830-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -331,7 +330,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.10.4</version>
           <configuration>
-            <source>1.7</source>
+            <source>${java.version}</source>
             <failOnError>true</failOnError>
             <linksource>true</linksource>
             <tags>
@@ -347,7 +346,7 @@
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${maven.pmd.plugin.version}</version>
           <configuration>
-            <targetJdk>1.7</targetJdk>
+            <targetJdk>${java.version}</targetJdk>
             <minimumTokens>20</minimumTokens>
             <skipEmptyReport>false</skipEmptyReport>
             <failOnViolation>true</failOnViolation>
@@ -467,6 +466,11 @@
             <groupId>com.github.sevntu.checkstyle</groupId>
             <artifactId>sevntu-checkstyle-maven-plugin</artifactId>
             <version>${maven.sevntu.checkstyle.plugin.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>7.0</version>
           </dependency>
         </dependencies>
         <!-- Specifying configuration here will take effect on the execution of "mvn checkstyle:checkstyle",
@@ -856,7 +860,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
         <configuration>
           <archive>
             <manifest>
@@ -960,7 +964,7 @@
       <plugin>
       <groupId>de.thetaphi</groupId>
       <artifactId>forbiddenapis</artifactId>
-      <version>2.1</version>
+      <version>2.2</version>
       <configuration>
         <targetVersion>${java.version}</targetVersion>
         <failOnUnsupportedJava>false</failOnUnsupportedJava>
@@ -1011,14 +1015,18 @@
         </reportSets>
       </plugin>
 
-      <plugin>
-        <groupId>com.github.sevntu-checkstyle</groupId>
-        <artifactId>dsm-maven-plugin</artifactId>
-        <version>2.1.4</version>
-        <configuration>
-          <obfuscatePackageNames>true</obfuscatePackageNames>
-        </configuration>
-      </plugin>
+      <!--
+       dsm-maven plugin does not support Java 1.8
+       Deactivated until https://github.com/sevntu-checkstyle/dsm-maven-plugin/issues/31
+       -->
+      <!--<plugin>-->
+        <!--<groupId>com.github.sevntu-checkstyle</groupId>-->
+        <!--<artifactId>dsm-maven-plugin</artifactId>-->
+        <!--<version>2.1.4</version>-->
+        <!--<configuration>-->
+          <!--<obfuscatePackageNames>true</obfuscatePackageNames>-->
+        <!--</configuration>-->
+      <!--</plugin>-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -1209,9 +1217,9 @@
             Sonar's mailing lists: http://www.mojohaus.org/sonar-maven-plugin/mail-lists.html-->
             <excludedLink>https://nemo.sonarqube.org/project/index/com.puppycrawl.tools:checkstyle</excludedLink>
             <!-- skip validating SNAPSHOTs on sourceforge when ${projectVersion} is SNAPSHOT-->
-            <excludedLink>http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/*-SNAPSHOT/checkstyle-*-SNAPSHOT-all.jar</excludedLink>
+            <excludedLink>http://downloads.sourceforge.net/project/checkstyle/checkstyle/*-SNAPSHOT/checkstyle-*-SNAPSHOT-all.jar</excludedLink>
             <!-- skip validating released "-all" jar on sourceforge as it is uploaded after site generation-->
-            <excludedLink>http://iweb.dl.sourceforge.net/project/checkstyle/checkstyle/*/checkstyle-*-all.jar</excludedLink>
+            <excludedLink>http://downloads.sourceforge.net/project/checkstyle/checkstyle/*/checkstyle-*-all.jar</excludedLink>
             <!-- Excluded due to linkcheck's issue #22: https://issues.apache.org/jira/browse/MLINKCHECK-22-->
             <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
             <!-- Excluded due to linkcheck's issue #23: https://issues.apache.org/jira/browse/MLINKCHECK-23-->
@@ -1230,6 +1238,20 @@
             <excludedLink>http://dl.acm.org/*</excludedLink>
           </excludedLinks>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.2</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependency-updates-report</report>
+              <report>plugin-updates-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
 
     </plugins>
@@ -1809,7 +1831,7 @@
     <profile>
       <id>cobertura-check</id>
       <activation>
-        <jdk>1.8</jdk>
+        <jdk>[1.8,)</jdk>
       </activation>
       <build>
         <plugins>

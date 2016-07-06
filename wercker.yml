@@ -1,0 +1,75 @@
+box: maven:3.3.9-jdk-8
+build:
+  steps:
+  - script:
+      name: setup mvn local repo
+      code: |-
+        export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
+        mvn -version
+
+  # unit tests (oraclejdk8)
+  - script:
+      name: tests
+      code: |-
+        mvn clean integration-test failsafe:verify
+
+  # NoErrorTest - Orekit (oraclejdk8)
+  - script:
+      name: NoErrorTest - Orekit
+      code: >
+        mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true
+        -Dpmd.skip=true -Dfindbugs.skip=true
+        -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true
+        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        && echo CS_version: ${CS_POM_VERSION}
+        && git clone https://github.com/CS-SI/Orekit.git && cd Orekit
+        && git checkout 942785a5c79b5470baec3d41cab18f3adc78280e
+        && mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
+
+  # NoErrorTest - XWiki (oraclejdk8)
+  - script:
+      name: NoErrorTest - XWiki
+      code: >
+        mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true
+        -Dpmd.skip=true -Dfindbugs.skip=true
+        -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true
+        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        && echo CS_version: ${CS_POM_VERSION}
+        && git clone https://github.com/xwiki/xwiki-commons/
+        && cd xwiki-commons/xwiki-commons-core && git checkout xwiki-commons-8.2-milestone-1
+        && mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+
+  # NoErrorTest - Apache Apex (oraclejdk8)
+  - script:
+      name: NoErrorTest - Apache Apex
+      code: >
+        mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true
+        -Dpmd.skip=true -Dfindbugs.skip=true
+        -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true
+        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        && echo CS_version: ${CS_POM_VERSION}
+        && git clone https://github.com/apache/incubator-apex-core/ && cd incubator-apex-core
+        && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+
+  # NoExceptiontest - Apache Struts (oraclejdk8)
+  - script:
+      name: NoExceptiontest - Apache Struts
+      code: >
+        rm -rf contribution
+        && git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
+        && sed -i.'' 's/projects-to-test-on.properties/projects-for-wercker.properties/' launch.sh
+        && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true
+        -Dpmd.skip=true -Dfindbugs.skip=true
+        -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true
+        && cd contribution/checkstyle-tester
+        && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml
+
+  # java 8 compile (oraclejdk8)
+  - script:
+      name: java 8 inputs should NOT be in resources-noncompilable
+      code: >
+        if [ $(grep -rl --include='*.java' '//Compilable with Java8' src/test/resources-noncompilable | wc -l) -eq 0 ]; then
+        echo 'OK';
+        else
+        echo 'please move all java8 resources to src/test/resources' && false;
+        fi

@@ -166,7 +166,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         // clear data
         variableStack.clear();
-        variableStack.push(new ArrayDeque<String>());
+        variableStack.push(new ArrayDeque<>());
     }
 
     @Override
@@ -250,7 +250,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * Enters an inner class, which requires a new variable set.
      */
     private void enterBlock() {
-        variableStack.push(new ArrayDeque<String>());
+        variableStack.push(new ArrayDeque<>());
     }
 
     /**

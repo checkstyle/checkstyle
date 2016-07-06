@@ -28,7 +28,6 @@ import java.io.IOException;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
-
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -398,7 +397,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("immutableClassCanonicalNames",
             "com.google.common.collect.ImmutableMap,"
             + "java.lang.String,"
-            + "com.google.common.base.Optional,"
+            + "java.util.Optional,"
             + "java.math.BigDecimal");
         final String[] expected = {
             "16:56: " + getCheckMessage(MSG_KEY, "perfSeries"),

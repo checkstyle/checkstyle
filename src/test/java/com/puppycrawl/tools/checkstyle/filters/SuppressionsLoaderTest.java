@@ -61,7 +61,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertEquals(fc, fc2);
+        assertEquals(fc2, fc);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         se3.setLines("1,2-3");
         se3.setColumns("1,2-3");
         fc2.addFilter(se3);
-        assertEquals(fc, fc2);
+        assertEquals(fc2, fc);
     }
 
     @Test
@@ -272,6 +272,6 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertEquals(fc, fc2);
+        assertEquals(fc2, fc);
     }
 }
