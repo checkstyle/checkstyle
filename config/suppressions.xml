@@ -158,7 +158,7 @@
     <!-- equals() - a lot of fields to check -->
     <suppress checks="CyclomaticComplexity" files="LocalizedMessage\.java" lines="210"/>
     <!-- SWITCH was transformed into IF-ELSE -->
-    <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="344"/>
+    <suppress checks="CyclomaticComplexity" files="ImportOrderCheck\.java" lines="357"/>
 
     <!-- Just big SWITCH block which contains IF blocks in 'visitToken'.
      If we split the block to several methods it will demage readibility. -->
