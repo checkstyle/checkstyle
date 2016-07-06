@@ -483,4 +483,51 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("InputImportOrder_EclipseDefaultNegative.java"), expected);
     }
+
+    @Test
+    public void testUseContainerOrderingForStaticTrue() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/^javax?\\./,org");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("caseSensitive", "false");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("useContainerOrderingForStatic", "true");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
+    }
+
+    @Test
+    public void testUseContainerOrderingForStaticFalse() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/^javax?\\./,org");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("caseSensitive", "false");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("useContainerOrderingForStatic", "false");
+        final String[] expected = {
+            "6: " + getCheckMessage(MSG_ORDERING,
+                "io.netty.handler.codec.http.HttpHeaders.Names.addDate"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
+    }
+
+    @Test
+    public void testUseContainerOrderingForStaticTrueCaseSensitive() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/^javax?\\./,org");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("option", "top");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("useContainerOrderingForStatic", "true");
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_ORDERING,
+                "io.netty.handler.codec.http.HttpHeaders.Names.DATE"),
+            };
+        verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
+    }
 }

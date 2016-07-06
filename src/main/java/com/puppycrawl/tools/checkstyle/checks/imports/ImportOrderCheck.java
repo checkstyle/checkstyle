@@ -64,6 +64,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *       Case sensitive sorting is in ASCII sort order</td><td>Boolean</td><td>true</td></tr>
  *   <tr><td>sortStaticImportsAlphabetically</td><td>whether static imports grouped by top or
  *       bottom option are sorted alphabetically or not</td><td>Boolean</td><td>false</td></tr>
+ *   <tr><td>useContainerOrderingForStatic</td><td>whether to use container ordering
+ *       (Eclipse IDE term) for static imports or not</td><td>Boolean</td><td>false</td></tr>
  * </table>
  *
  * <p>
@@ -176,6 +178,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author David DIDIER
  * @author Steve McKay
  * @author <a href="mailto:nesterenko-aleksey@list.ru">Aleksey Nesterenko</a>
+ * @author Andrei Selkin
  */
 public class ImportOrderCheck
     extends AbstractCheck {
@@ -219,6 +222,8 @@ public class ImportOrderCheck
     private boolean beforeFirstImport;
     /** Whether static imports should be sorted alphabetically or not. */
     private boolean sortStaticImportsAlphabetically;
+    /** Whether to use container ordering (Eclipse IDE term) for static imports or not. */
+    private boolean useContainerOrderingForStatic;
 
     /** The policy to enforce. */
     private ImportOrderOption option = ImportOrderOption.UNDER;
@@ -315,6 +320,14 @@ public class ImportOrderCheck
      */
     public void setSortStaticImportsAlphabetically(boolean sortAlphabetically) {
         sortStaticImportsAlphabetically = sortAlphabetically;
+    }
+
+    /**
+     * Sets whether to use container ordering (Eclipse IDE term) for static imports or not.
+     * @param useContainerOrdering whether to use container ordering for static imports or not.
+     */
+    public void setUseContainerOrderingForStatic(boolean useContainerOrdering) {
+        useContainerOrderingForStatic = useContainerOrdering;
     }
 
     @Override
@@ -459,8 +472,7 @@ public class ImportOrderCheck
             boolean previous, String name, int line) {
         if (ordered) {
             if (option == ImportOrderOption.INFLOW) {
-                // out of lexicographic order
-                if (compare(lastImport, name, caseSensitive) > 0) {
+                if (isWrongOrder(name, isStatic)) {
                     log(line, MSG_ORDERING, name);
                 }
             }
@@ -474,15 +486,97 @@ public class ImportOrderCheck
                         // current and previous static or current and
                         // previous non-static
                         lastImportStatic == isStatic
-                    &&
-                    // and out of lexicographic order
-                    compare(lastImport, name, caseSensitive) > 0;
+                    && isWrongOrder(name, isStatic);
 
                 if (shouldFireError) {
                     log(line, MSG_ORDERING, name);
                 }
             }
         }
+    }
+
+    /**
+     * Checks whether import name is in wrong order.
+     * @param name import name.
+     * @param isStatic whether it is a static import name.
+     * @return true if import name is in wrong order.
+     */
+    private boolean isWrongOrder(String name, boolean isStatic) {
+        final boolean result;
+        if (isStatic && useContainerOrderingForStatic) {
+            result = compareContainerOrder(lastImport, name, caseSensitive) > 0;
+        }
+        else {
+            // out of lexicographic order
+            result = compare(lastImport, name, caseSensitive) > 0;
+        }
+        return result;
+    }
+
+    /**
+     * Compares two import strings.
+     * We first compare the container of the static import, container being the type enclosing
+     * the static element being imported. When this returns 0, we compare the qualified
+     * import name. For e.g. this is what is considered to be container names:
+     * <p>
+     * import static HttpConstants.COLON     => HttpConstants
+     * import static HttpHeaders.addHeader   => HttpHeaders
+     * import static HttpHeaders.setHeader   => HttpHeaders
+     * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+     * </p>
+     * <p>
+     * According to this logic, HttpHeaders.Names would come after HttpHeaders.
+     *
+     * For more details, see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=473629#c3">
+     * static imports comparison method</a> in Eclipse.
+     * </p>
+     *
+     * @param importName1 first import name.
+     * @param importName2 second import name.
+     * @param caseSensitive whether the comparison of fully qualified import names is case
+     *                      sensitive.
+     * @return the value {@code 0} if str1 is equal to str2; a value
+     *         less than {@code 0} if str is less than the str2 (container order
+     *         or lexicographical); and a value greater than {@code 0} if str1 is greater than str2
+     *         (container order or lexicographically).
+     */
+    private static int compareContainerOrder(String importName1, String importName2,
+                                             boolean caseSensitive) {
+        final String container1 = getImportContainer(importName1);
+        final String container2 = getImportContainer(importName2);
+        final int compareContainersOrderResult;
+        if (caseSensitive) {
+            compareContainersOrderResult = container1.compareTo(container2);
+        }
+        else {
+            compareContainersOrderResult = container1.compareToIgnoreCase(container2);
+        }
+        final int result;
+        if (compareContainersOrderResult == 0) {
+            result = compare(importName1, importName2, caseSensitive);
+        }
+        else {
+            result = compareContainersOrderResult;
+        }
+        return result;
+    }
+
+    /**
+     * Extracts import container name from fully qualified import name.
+     * An import container name is the type which encloses the static element being imported.
+     * For example, HttpConstants, HttpHeaders, HttpHeaders.Names are import container names:
+     * <p>
+     * import static HttpConstants.COLON     => HttpConstants
+     * import static HttpHeaders.addHeader   => HttpHeaders
+     * import static HttpHeaders.setHeader   => HttpHeaders
+     * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+     * </p>
+     * @param qualifiedImportName fully qualified import name.
+     * @return import container name.
+     */
+    private static String getImportContainer(String qualifiedImportName) {
+        final int lastDotIndex = qualifiedImportName.lastIndexOf('.');
+        return qualifiedImportName.substring(0, lastDotIndex);
     }
 
     /**
