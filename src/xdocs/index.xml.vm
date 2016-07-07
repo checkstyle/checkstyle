@@ -164,7 +164,7 @@
                   </td>
               </tr>
               <tr>
-                  <td><a href="http://gradle.org/">Gradle</a></td>
+                  <td><a href="https://gradle.org">Gradle</a></td>
                   <td>Hans Dockter (initial author)</td>
                   <td>Checkstyle supported out of the box</td>
                   <td><a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Gradle Checkstyle docs</a></td>
