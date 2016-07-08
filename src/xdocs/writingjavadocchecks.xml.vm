@@ -520,5 +520,139 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
         existing Checks</a>.
     </section>
 
+    <section name="ANTRL4 grammar update: new HTML version">
+      <p>Tags with optional end tag:</p>
+      <table style="table-layout: fixed;">
+        <tr>
+          <th>Input</th>
+          <th>Current standard (HTML4)</th>
+          <th>Current standard with hasUnclosedTags flag</th>
+          <th>New standard (HTML5)</th>
+          <th>New standard with hasUnclosedTags flag</th>
+        </tr>
+        <tr>
+          <td><![CDATA[<p>text</p>]]></td>
+          <td><![CDATA[No errors, Nested tree]]></td>
+          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+          <td><![CDATA[No errors, Nested tree]]></td>
+          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+        </tr>
+        <tr>
+          <td><![CDATA[<p>text]]></td>
+          <td><![CDATA[No errors, Non-nested tree]]></td>
+          <td><![CDATA[No errors, Non-nested tree, hasUnclosedTags=true]]></td>
+          <td><![CDATA[No errors, Non-nested tree]]></td>
+          <td><![CDATA[No errors, Non-nested tree, hasUnclosedTags=true]]></td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<rb>text</rb>]]>
+            <br/><i>New HTML5 tag with optional end tag</i>
+          </td>
+          <td><![CDATA[No errors, Nested tree]]></td>
+          <td><![CDATA[No errors, Nested tree]]></td>
+          <td><![CDATA[No errors, Nested tree]]></td>
+          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<rb>text]]>
+            <br/><i>New HTML5 tag with optional end tag</i>
+          </td>
+          <td><![CDATA[Parse error]]></td>
+          <td><![CDATA[Parse error]]></td>
+          <td><![CDATA[No errors, Non-nested tree]]></td>
+          <td><![CDATA[No errors, Non-nested tree, hasUnclosedTags=true]]></td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<qwerty>text</qwerty>]]>
+            <br/><i>Unknown HTML tag</i>
+          </td>
+          <td><![CDATA[No errors, Nested tree]]></td>
+          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+          <td><![CDATA[No errors, Nested tree]]></td>
+          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<qwerty>text]]>
+            <br/><i>Unknown HTML tag</i>
+          </td>
+          <td><![CDATA[Parse error]]></td>
+          <td><![CDATA[Parse error]]></td>
+          <td><![CDATA[Parse error]]></td>
+          <td><![CDATA[Parse error]]></td>
+        </tr>
+      </table>
+
+      <p>Void tags:</p>
+      <table style="table-layout: fixed;">
+        <tr>
+          <th>Input</th>
+          <th>Current standard (HTML4)</th>
+          <th>New standard (HTML5)</th>
+        </tr>
+        <tr>
+          <td><![CDATA[<br/>]]></td>
+          <td>No errors</td>
+          <td>No errors</td>
+        </tr>
+        <tr>
+          <td><![CDATA[<br>]]></td>
+          <td>No errors</td>
+          <td>No errors</td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<embed/>]]>
+            <br/><i>New HTML5 tag</i>
+          </td>
+          <td>No errors</td>
+          <td>No errors</td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<embed>]]>
+            <br/><i>New HTML5 tag</i>
+          </td>
+          <td>Parse Error</td>
+          <td>No errors</td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<basefont/>]]>
+            <br/><i>Not supported tag in HTML5</i>
+          </td>
+          <td>No errors</td>
+          <td>No errors</td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<basefont>]]>
+            <br/><i>Not supported tag in HTML5</i>
+          </td>
+          <td>No errors</td>
+          <td>No errors</td>
+        </tr>
+        <tr>
+          <td>
+            <![CDATA[<qwerty/>]]>
+            <br/><i>Unknown HTML tag</i>
+          </td>
+          <td>No errors</td>
+          <td>No errors</td>
+          </tr>
+        <tr>
+          <td>
+            <![CDATA[<qwerty>]]>
+            <br/><i>Unknown HTML tag</i>
+          </td>
+          <td>Parse Error</td>
+          <td>Parse Error</td>
+        </tr>
+      </table>
+
+    </section>
   </body>
 </document>
