@@ -1,4 +1,4 @@
-Mandatory to underdand:
+Mandatory to understand and do:
 0) Issue you are tryining to fix/resolve has to have "approved" label.
 1) Put in description of Pull Request reference to issue if it exists. Example: "Issue: #XXXXXX"
 2) Commit message should adhere to the following rules:
