@@ -100,7 +100,7 @@ public class BaseCheckTestSupport {
                 + filename).getCanonicalPath();
     }
 
-    protected void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
+    protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
             throws Exception {
         verifyAst(expectedTextPrintFileName, actualJavaFileName, false);
     }
