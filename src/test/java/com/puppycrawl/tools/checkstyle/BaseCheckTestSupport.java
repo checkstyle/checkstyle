@@ -90,7 +90,7 @@ public class BaseCheckTestSupport {
                 .toString();
     }
 
-    protected String getSrcPath(String filename) throws IOException {
+    protected static String getSrcPath(String filename) throws IOException {
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename)
                 .getCanonicalPath();
     }
@@ -105,7 +105,7 @@ public class BaseCheckTestSupport {
         verifyAst(expectedTextPrintFileName, actualJavaFileName, false);
     }
 
-    protected void verifyAst(String expectedTextPrintFileName, String actualJavaFileName,
+    protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName,
             boolean withComments) throws Exception {
         final String expectedContents = Files.toString(new File(expectedTextPrintFileName),
                 Charsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");

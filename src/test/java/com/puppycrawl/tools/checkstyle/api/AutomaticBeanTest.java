@@ -146,5 +146,9 @@ public class AutomaticBeanTest {
             throw new IllegalStateException(privateField + "," + wrong + "," + val + "," + value);
         }
 
+        public void doSmth() {
+            privateField = "some value, just for fun";
+        }
+
     }
 }
