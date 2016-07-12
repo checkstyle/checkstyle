@@ -40,7 +40,7 @@ public class MyClass {
  * @see AbstractClass
       ]]></source>
       </p>
-      Attention that java comment is start with <code>/*</code>, following with Identificator of comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc Identificator till <code>*/</code> are part of javadoc comment.
+      Attention that java comment starts with <code>/*</code>, following with Identificator of comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc Identificator till <code>*/</code> are part of javadoc comment.
       <p>In internet you can find different types of documentation
       generation tools similar to javadoc. Such tools rely on specific Identificator: "!", "#", "$".
       Comments looks like <code>"/*! some comment */"</code> , <code>"/*# some comment */"</code> , <code>"/*$ some comment */"</code>. Such multiline comments are not a javadoc.
@@ -50,21 +50,21 @@ public class MyClass {
     <section name="Limitations">
       <p>
       Javadoc by specification could contain any HTML tags that let user generate content he needs.
-      Checkstyle can not parse something that looks like an HTML, so limitation appear.
+      Checkstyle can not parse something that looks like an HTML, so limitation appears.
       </p>
       <p>
       The comment should be written in <a href="#XHTML-style_rules">XHTML-style</a> to build nested AST Tree that most Checks expect. This means that every HTML tag should have matching end HTML tag or it is a <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void element</a>.
       </p>
       <p>
-      The only exceptions are HTML 4 tags whose end tag is optional, so, Checkstyle won't show error about missing end tag, however, it leads to broken XHTML structure and as result leads to
-      not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
+      The only exceptions are HTML 4 tags whose end tag is optional, so, Checkstyle won't show error about missing end tag, however, it leads to broken XHTML structure and as a result
+      leads to not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
       <br/>
-      In other words if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
+      In other words, if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
       so structure of the parse tree will not be nested like it is while using <a href="#XHTML-style_rules">XHTML-style</a> code.
       It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
       </p>
       <p>
-        For More details about HTML in AST read <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
+        For more details about HTML in AST read <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
       </p>
     </section>
 
@@ -83,18 +83,30 @@ public class MyClass {
         Principle of writing Javadoc Checks is similar to writing regular Checks. You just extend another class and use another token types.
       </p>
       <p>
-      To start implementing new Check create new class and extend <a href='apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. It has two abstract methods you should implement:
+      To start implementing new Check create a new class and extend <a href='apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. 
+      It has two abstract methods you should implement:
       </p>
       <ul>
-        <li><a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> - return int array of javadoc token types your Check is going to process. The array should contain int constants from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class.
-          There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> token type.</li>
-        <li><a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#visitJavadocToken-com.puppycrawl.tools.checkstyle.api.DetailNode-">visitJavadocToken(DetailNode)</a> - it's the place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> method.</li>
+        <li>
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> - return int array of
+          javadoc token types your Check is going to process. The array should contain int constants from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">
+          JavadocTokenTypes</a> class. (There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use 
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the 
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java 
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> token type.)
+        </li>
+        <li>
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#visitJavadocToken-com.puppycrawl.tools.checkstyle.api.DetailNode-">
+          visitJavadocToken(DetailNode)</a> - it's a place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in 
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> method.
+        </li>
       </ul>
     </section>
 
     <section name="Difference between Java Grammar and Javadoc comments Grammar">
       <p>
-        Java grammar parses java file base on Java language specifications. So, there are singleline comments and multiline/block comments in it. Java compiler doesn't know about Javadoc because it is just a multiline comment.
+        Java grammar parses java file base on Java language specifications. So, there are singleline comments and multiline/block comments in it. 
+        Java compiler doesn't know about Javadoc because it is just a multiline comment.
         To parse multiline comment as a Javadoc comment, checkstyle has special Parser
         that is based on ANTLR Javadoc grammar. So, it's supposed to proccess block comments
         that start with Javadoc Identificator and parse them to Abstract Syntax Tree (AST).
@@ -277,14 +289,14 @@ class MyCheck extends AbstractJavadocCheck {
         Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">all HTML4 elements</a>.
       </p>
       <p>
-        HTML 4 is picked just to have a list of elements whose end tag is optional and a list of <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a> (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
+        HTML4 is picked just to have a list of elements whose end tag is optional and a list of <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a> (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
       </p>
       <p>
-        HTML elements whose end tag is optional: &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
+        HTML4 elements whose end tag is optional: &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
         &lt;DT&gt;, &lt;HEAD&gt;, &lt;HTML&gt;, &lt;OPTION&gt;, &lt;TBODY&gt;, &lt;THEAD&gt;, &lt;TFOOT&gt;.
       </p>
       <p>
-        Void HTML elements: &lt;AREA&gt;, &lt;BASE&gt;, &lt;BASEFONT&gt;, &lt;BR&gt;, &lt;COL&gt;, &lt;FRAME&gt;,
+        Void HTML4 elements: &lt;AREA&gt;, &lt;BASE&gt;, &lt;BASEFONT&gt;, &lt;BR&gt;, &lt;COL&gt;, &lt;FRAME&gt;,
         &lt;HR&gt;, &lt;IMG&gt;, &lt;INPUT&gt;, &lt;ISINDEX&gt;, &lt;LINK&gt;, &lt;META&gt;, &lt;PARAM&gt;.
       </p>
 
@@ -292,6 +304,7 @@ class MyCheck extends AbstractJavadocCheck {
         To make Checkstyle support HTML5 tags whose end tag is optional and HTML5 void elements we should update Javadoc Parser 
         bacause each element that breaks <a href="#XHTML-style_rules">XHTML-style rules</a> have to be defined in Javadoc grammar. 
         In future we should update Javadoc grammar if those tag lists extend (new tags, new HTML standard, etc.).
+        (We already have an <a href='https://github.com/checkstyle/checkstyle/issues/3332'>issue on updating Javadoc grammar to HTML5</a>)
       </p>
 
       <p>
@@ -495,6 +508,10 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
     </table>
     </section>
 
+    <section name="Boolean flag indicating the presence of unclosed HTML tags">
+      Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/3311">Github Issue #3311</a>.
+    </section>    
+
     <section name="Checkstyle SDK GUI">
       Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/408">Github Issue #408</a>.
     </section>
@@ -508,9 +525,7 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
     </section>
 
     <section name="Declare check's external resource locations">
-      <p>
         See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's external resource locations</a>.
-      </p>
     </section>
 
     <section name="Examples of Javadoc Checks">
@@ -520,7 +535,7 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
         existing Checks</a>.
     </section>
 
-    <section name="ANTRL4 grammar update: new HTML version">
+    <section name="ANTRL4 grammar update reminder: new HTML version">
       <p>Tags with optional end tag:</p>
       <table style="table-layout: fixed;">
         <tr>
@@ -652,7 +667,7 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
           <td>Parse Error</td>
         </tr>
       </table>
-
     </section>
+
   </body>
 </document>
