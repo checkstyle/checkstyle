@@ -97,14 +97,14 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
         closeInfo = closeInfoAfterUse;
         closeError = closeErrorAfterUse;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
-        final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
-            StandardCharsets.UTF_8);
         infoWriter = new PrintWriter(infoStreamWriter);
 
         if (infoStream == errorStream) {
             errorWriter = infoWriter;
         }
         else {
+            final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
+                    StandardCharsets.UTF_8);
             errorWriter = new PrintWriter(errorStreamWriter);
         }
         formatter = messageFormatter;

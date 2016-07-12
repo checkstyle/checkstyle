@@ -93,9 +93,7 @@ class TagParser {
      */
     private void parseTags(String[] text, int lineNo) {
         final int nLines = text.length;
-        Point position = new Point(0, 0);
-
-        position = findChar(text, '<', position);
+        Point position = findChar(text, '<', new Point(0, 0));
         while (position.getLineNo() < nLines) {
             // if this is html comment then skip it
             if (isCommentTag(text, position)) {

@@ -300,10 +300,7 @@ public final class Main {
             if (commandLine.hasOption(OPTION_D_NAME)) {
                 final Logger parentLogger = Logger.getLogger(Main.class.getName()).getParent();
                 final ConsoleHandler handler = new ConsoleHandler();
-
-                parentLogger.setLevel(Level.FINEST);
                 handler.setLevel(Level.FINEST);
-                parentLogger.addHandler(handler);
                 handler.setFilter(new Filter() {
                     private final String packageName = Main.class.getPackage().getName();
 
@@ -312,6 +309,8 @@ public final class Main {
                         return record.getLoggerName().startsWith(packageName);
                     }
                 });
+                parentLogger.addHandler(handler);
+                parentLogger.setLevel(Level.FINEST);
             }
             if (LOG.isDebugEnabled()) {
                 LOG.debug("Checkstyle debug logging enabled");

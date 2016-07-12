@@ -50,8 +50,8 @@ public final class XDocUtil {
      */
     public static Set<Path> getXdocsFilePaths() throws IOException {
         final Path directory = Paths.get(DIRECTORY_PATH);
-        final Set<Path> xdocs = new HashSet<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory, "*.xml")) {
+            final Set<Path> xdocs = new HashSet<>();
             for (Path entry : stream) {
                 xdocs.add(entry);
             }

@@ -165,11 +165,11 @@ public class HandlerFactory {
      */
     private AbstractExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
-        AbstractExpressionHandler theParent = parent;
         DetailAST astNode = ast.getFirstChild();
         while (astNode.getType() == TokenTypes.DOT) {
             astNode = astNode.getFirstChild();
         }
+        AbstractExpressionHandler theParent = parent;
         if (isHandledType(astNode.getType())) {
             theParent = getHandler(indentCheck, astNode, theParent);
             createdHandlers.put(astNode, theParent);

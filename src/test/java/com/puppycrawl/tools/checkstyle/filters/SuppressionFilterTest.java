@@ -272,9 +272,9 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
             int attemptCount = 0;
 
             while (attemptCount <= attemptLimit) {
-                final URL addres = new URL(url);
                 InputStream stream = null;
                 try {
+                    final URL addres = new URL(url);
                     stream = addres.openStream();
                     // Attemt to read a byte in order to check wtether file content is available
                     available = stream.read() != -1;
