@@ -276,8 +276,8 @@ matrix:
         - CMD5=" && CS_RELEASE_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//' ) "
         - CMD6=" && echo LATEST_RELEASE_TAG=\$LATEST_RELEASE_TAG && echo CS_RELEASE_VERSION=\$CS_RELEASE_VERSION "
         - CMD7=" && java -jar contribution/releasenotes-xdoc-builder/target/releasenotes-xdoc-builder-1.0-all.jar "
-        - CMD8="        -localRepoPath checkstyle -startRef \$LATEST_RELEASE_TAG -releaseNumber \$CS_RELEASE_VERSION -authToken $GITHUB_AUTH_TOKEN"
-        - CMD9=" && cat releasenotes.xml "
+        - CMD8="        -localRepoPath checkstyle -startRef \$LATEST_RELEASE_TAG -releaseNumber \$CS_RELEASE_VERSION -authToken $GITHUB_AUTH_TOKEN -generateAll"
+        - CMD9=" && cat xdoc.xml && cat twitter.txt && cat gplus.txt && cat rss.txt && cat sourceforge.txt && cat mailing_list.txt"
         - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
         - COVERAGE_CMD=""
 
