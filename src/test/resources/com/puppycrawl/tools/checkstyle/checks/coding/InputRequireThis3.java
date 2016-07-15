@@ -1,6 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 public class InputRequireThis3 {
+
+    private int bar;
+
     interface AnonWithEmpty {
         public void fooEmpty();
     }
@@ -17,7 +20,30 @@ public class InputRequireThis3 {
             }
 
             public int doSideEffect() {
-                return 1;
+                return bar;
+            }
+        };
+
+        new AnonWithEmpty() {
+            int anonMember = 0;
+
+            @Override
+            public void fooEmpty() {
+                new AnonWithEmpty() {
+
+                    @Override
+                    public void fooEmpty() {
+                        anonMember++;
+                    }
+                };
+            }
+        };
+
+        new AnonWithEmpty() {
+            int foobar = 1;
+            @Override
+            public void fooEmpty() {
+                foobar++;
             }
         };
     }
