@@ -283,7 +283,7 @@ public class RequireThisCheck extends AbstractCheck {
         if (frame.getFrameName().equals(getNearestClassFrameName())) {
             log(ast, msgKey, ast.getText(), "");
         }
-        else {
+        else if (!(frame instanceof AnonymousClassFrame)) {
             log(ast, msgKey, ast.getText(), frame.getFrameName() + '.');
         }
     }
@@ -361,6 +361,12 @@ public class RequireThisCheck extends AbstractCheck {
                 final DetailAST ctorFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ConstructorFrame(frame, ctorFrameNameIdent));
                 break;
+            case TokenTypes.LITERAL_NEW:
+                if (isAnonymousClassDef(ast)) {
+                    frameStack.addFirst(new AnonymousClassFrame(frame,
+                            ast.getFirstChild().toString()));
+                }
+                break;
             default:
                 // do nothing
         }
@@ -405,9 +411,24 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CTOR_DEF :
                 frames.put(ast, frameStack.poll());
                 break;
+            case TokenTypes.LITERAL_NEW :
+                if (isAnonymousClassDef(ast)) {
+                    frames.put(ast, frameStack.poll());
+                }
+                break;
             default :
                 // do nothing
         }
+    }
+
+    /**
+     * Whether the AST is a definition of an anonymous class.
+     * @param ast the AST to process.
+     * @return true if the AST is a definition of an anonymous class.
+     */
+    private static boolean isAnonymousClassDef(DetailAST ast) {
+        final DetailAST lastChild = ast.getLastChild();
+        return lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK;
     }
 
     /**
@@ -1062,7 +1083,7 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
-     * A frame initiated at class< enum or interface definition; holds instance variable names.
+     * A frame initiated at class, enum or interface definition; holds instance variable names.
      * @author Stephen Bloch
      * @author Andrei Selkin
      */
@@ -1245,6 +1266,30 @@ public class RequireThisCheck extends AbstractCheck {
                 result = paramsNumber == argsNumber;
             }
             return result;
+        }
+    }
+
+    /**
+     * An anonymous class frame; holds instance variable names.
+     */
+    private static class AnonymousClassFrame extends ClassFrame {
+
+        /** The name of the frame. */
+        private final String frameName;
+
+        /**
+         * Creates anonymous class frame.
+         * @param parent parent frame.
+         * @param frameName name of the frame.
+         */
+        protected AnonymousClassFrame(AbstractFrame parent, String frameName) {
+            super(parent, null);
+            this.frameName = frameName;
+        }
+
+        @Override
+        protected String getFrameName() {
+            return frameName;
         }
     }
 
