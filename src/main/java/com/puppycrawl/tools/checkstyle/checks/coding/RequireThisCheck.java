@@ -305,7 +305,11 @@ public class RequireThisCheck extends AbstractCheck {
                 && !methodNameInMethodCall
                 && !typeName
                 && !isDeclarationToken(parentType)) {
-            frame = getClassFrameWhereViolationIsFound(ast);
+            final AbstractFrame fieldFrame = findClassFrame(ast, false);
+
+            if (fieldFrame != null && ((ClassFrame) fieldFrame).hasInstanceMember(ast)) {
+                frame = getClassFrameWhereViolationIsFound(ast);
+            }
         }
         return frame;
     }
@@ -412,56 +416,53 @@ public class RequireThisCheck extends AbstractCheck {
     private AbstractFrame getClassFrameWhereViolationIsFound(DetailAST ast) {
         AbstractFrame frameWhereViolationIsFound = null;
         final AbstractFrame variableDeclarationFrame = findFrame(ast, false);
-        if (variableDeclarationFrame != null) {
-            final FrameType variableDeclarationFrameType = variableDeclarationFrame.getType();
-            final DetailAST prevSibling = ast.getPreviousSibling();
-            if (variableDeclarationFrameType == FrameType.CLASS_FRAME
-                    && !validateOnlyOverlapping
-                    && prevSibling == null
-                    && !ScopeUtils.isInInterfaceBlock(ast)
-                    && canBeReferencedFromStaticContext(ast)) {
-                frameWhereViolationIsFound = variableDeclarationFrame;
-            }
-            else if (variableDeclarationFrameType == FrameType.METHOD_FRAME) {
-                if (isOverlappingByArgument(ast)) {
-                    if (!isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                            && !isReturnedVariable(variableDeclarationFrame, ast)
-                            && canBeReferencedFromStaticContext(ast)
-                            && canAssignValueToClassField(ast)) {
-                        frameWhereViolationIsFound = findFrame(ast, true);
-                    }
-                }
-                else if (!validateOnlyOverlapping
-                         && prevSibling == null
-                         && isAssignToken(ast.getParent().getType())
-                         && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                         && canBeReferencedFromStaticContext(ast)
-                         && canAssignValueToClassField(ast)) {
+        final FrameType variableDeclarationFrameType = variableDeclarationFrame.getType();
+        final DetailAST prevSibling = ast.getPreviousSibling();
+        if (variableDeclarationFrameType == FrameType.CLASS_FRAME
+                && !validateOnlyOverlapping
+                && prevSibling == null
+                && canBeReferencedFromStaticContext(ast)) {
+            frameWhereViolationIsFound = variableDeclarationFrame;
+        }
+        else if (variableDeclarationFrameType == FrameType.METHOD_FRAME) {
+            if (isOverlappingByArgument(ast)) {
+                if (!isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                        && !isReturnedVariable(variableDeclarationFrame, ast)
+                        && canBeReferencedFromStaticContext(ast)
+                        && canAssignValueToClassField(ast)) {
                     frameWhereViolationIsFound = findFrame(ast, true);
-
                 }
             }
-            else if (variableDeclarationFrameType == FrameType.CTOR_FRAME
-                     && isOverlappingByArgument(ast)
-                     && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)) {
+            else if (!validateOnlyOverlapping
+                     && prevSibling == null
+                     && isAssignToken(ast.getParent().getType())
+                     && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                     && canBeReferencedFromStaticContext(ast)
+                     && canAssignValueToClassField(ast)) {
                 frameWhereViolationIsFound = findFrame(ast, true);
+
             }
-            else if (variableDeclarationFrameType == FrameType.BLOCK_FRAME) {
-                if (isOverlappingByLocalVariable(ast)) {
-                    if (canAssignValueToClassField(ast)
-                            && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                            && !isReturnedVariable(variableDeclarationFrame, ast)
-                            && canBeReferencedFromStaticContext(ast)) {
-                        frameWhereViolationIsFound = findFrame(ast, true);
-                    }
-                }
-                else if (!validateOnlyOverlapping
-                         && prevSibling == null
-                         && isAssignToken(ast.getParent().getType())
-                         && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                         && canBeReferencedFromStaticContext(ast)) {
+        }
+        else if (variableDeclarationFrameType == FrameType.CTOR_FRAME
+                 && isOverlappingByArgument(ast)
+                 && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)) {
+            frameWhereViolationIsFound = findFrame(ast, true);
+        }
+        else if (variableDeclarationFrameType == FrameType.BLOCK_FRAME) {
+            if (isOverlappingByLocalVariable(ast)) {
+                if (canAssignValueToClassField(ast)
+                        && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                        && !isReturnedVariable(variableDeclarationFrame, ast)
+                        && canBeReferencedFromStaticContext(ast)) {
                     frameWhereViolationIsFound = findFrame(ast, true);
                 }
+            }
+            else if (!validateOnlyOverlapping
+                     && prevSibling == null
+                     && isAssignToken(ast.getParent().getType())
+                     && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                     && canBeReferencedFromStaticContext(ast)) {
+                frameWhereViolationIsFound = findFrame(ast, true);
             }
         }
         return frameWhereViolationIsFound;
@@ -483,17 +484,15 @@ public class RequireThisCheck extends AbstractCheck {
 
         boolean userDefinedArrangementOfThis = false;
 
-        if (blockEndToken != null) {
-            final Set<DetailAST> variableUsagesInsideBlock =
-                getAllTokensWhichAreEqualToCurrent(definitionToken, ident,
-                    blockEndToken.getLineNo());
+        final Set<DetailAST> variableUsagesInsideBlock =
+            getAllTokensWhichAreEqualToCurrent(definitionToken, ident,
+                blockEndToken.getLineNo());
 
-            for (DetailAST variableUsage : variableUsagesInsideBlock) {
-                final DetailAST prevSibling = variableUsage.getPreviousSibling();
-                if (prevSibling != null
-                        && prevSibling.getType() == TokenTypes.LITERAL_THIS) {
-                    userDefinedArrangementOfThis = true;
-                }
+        for (DetailAST variableUsage : variableUsagesInsideBlock) {
+            final DetailAST prevSibling = variableUsage.getPreviousSibling();
+            if (prevSibling != null
+                    && prevSibling.getType() == TokenTypes.LITERAL_THIS) {
+                userDefinedArrangementOfThis = true;
             }
         }
         return userDefinedArrangementOfThis;
@@ -611,10 +610,7 @@ public class RequireThisCheck extends AbstractCheck {
         final boolean fieldUsageInConstructor = isInsideConstructorFrame(fieldUsageFrame);
 
         final AbstractFrame declarationFrame = findFrame(ast, true);
-        boolean finalField = false;
-        if (declarationFrame != null) {
-            finalField = ((ClassFrame) declarationFrame).hasFinalField(ast);
-        }
+        final boolean finalField = ((ClassFrame) declarationFrame).hasFinalField(ast);
 
         return fieldUsageInConstructor || !finalField;
     }
@@ -649,14 +645,12 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST sibling = ast.getNextSibling();
         if (sibling != null && isAssignToken(parent.getType())) {
             final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
-            if (classFrame != null) {
-                final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
-                if (isCompoundAssignToken(parent.getType())) {
-                    overlapping = true;
-                }
-                else {
-                    overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
-                }
+            final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
+            if (isCompoundAssignToken(parent.getType())) {
+                overlapping = true;
+            }
+            else {
+                overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
             }
         }
         return overlapping;
@@ -673,12 +667,8 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST sibling = ast.getNextSibling();
         if (sibling != null && isAssignToken(parent.getType())) {
             final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
-            if (classFrame != null) {
-                final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
-                if (classFrame.hasInstanceMember(ast)) {
-                    overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
-                }
-            }
+            final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
+            overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
         }
         return overlapping;
     }
@@ -794,18 +784,52 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
+     * Find the class frame containing declaration.
+     * @param name IDENT ast of the declaration to find.
+     * @param lookForMethod whether we are looking for a method name.
+     * @return AbstractFrame containing declaration or null.
+     */
+    private AbstractFrame findClassFrame(DetailAST name, boolean lookForMethod) {
+        AbstractFrame frame = current;
+
+        while (true) {
+            frame = findFrame(frame, name, lookForMethod);
+
+            if (frame == null || frame instanceof ClassFrame) {
+                break;
+            }
+
+            frame = frame.getParent();
+        }
+
+        return frame;
+    }
+
+    /**
      * Find frame containing declaration.
      * @param name IDENT ast of the declaration to find.
      * @param lookForMethod whether we are looking for a method name.
      * @return AbstractFrame containing declaration or null.
      */
     private AbstractFrame findFrame(DetailAST name, boolean lookForMethod) {
+        return findFrame(current, name, lookForMethod);
+    }
+
+    /**
+     * Find frame containing declaration.
+     * @param frame The parent frame to searching in.
+     * @param name IDENT ast of the declaration to find.
+     * @param lookForMethod whether we are looking for a method name.
+     * @return AbstractFrame containing declaration or null.
+     */
+    private static AbstractFrame findFrame(AbstractFrame frame, DetailAST name,
+            boolean lookForMethod) {
         final AbstractFrame result;
-        if (current == null) {
+        if (frame == null) {
             result = null;
         }
         else {
-            result = current.getIfContains(name, lookForMethod);
+            result = frame.getIfContains(name, lookForMethod);
         }
         return result;
     }
