@@ -81,7 +81,7 @@ public class InputValidateOnlyOverlappingFalse {
     }
 
     void foo4(String methodParam) {
-        fieldStatic = methodParam; // violation
+        fieldStatic = methodParam;
     }
 
     void foo5(String methodParam) {
@@ -357,7 +357,7 @@ public class InputValidateOnlyOverlappingFalse {
     }
 
     void foo43(String fieldStatic) {
-        fieldStatic = fieldStatic; // violation
+        fieldStatic = fieldStatic;
     }
 
     void foo44(String fieldStatic) {
@@ -440,27 +440,27 @@ public class InputValidateOnlyOverlappingFalse {
     }
 
     void foo50(String fieldStatic) {
-        fieldStatic = fieldStatic; // violation
+        fieldStatic = fieldStatic;
     }
 
     void foo51(String methodParam) {
-        fieldStatic = methodParam; // violation
+        fieldStatic = methodParam;
     }
 
     void foo52(String fieldStatic) {
-        fieldStatic += fieldStatic; // violation
+        fieldStatic += fieldStatic;
     }
 
     void foo53(String fieldStatic) {
-        fieldStatic += fieldStatic; // violation
+        fieldStatic += fieldStatic;
     }
 
     void foo54(String methodParam) {
-        fieldStatic += methodParam; // violation
+        fieldStatic += methodParam;
     }
 
     void foo55(String methodParam) {
-        fieldStatic += fieldStatic; // violation
+        fieldStatic += fieldStatic;
     }
 
     void foo56(boolean booleanField) { booleanField = this.booleanField; }
