@@ -60,7 +60,6 @@ public final class DetectorOptions {
     /**
      * Returns new Builder object.
      * @return Builder object.
-     * @noinspection ReturnOfInnerClass
      */
     public static Builder newBuilder() {
         return new DetectorOptions().new Builder();

@@ -39,7 +39,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     public static final String MSG_KEY = "type.file.mismatch";
 
     /** Pattern matching any file extension with dot included. */
-    private static final Pattern FILE_EXTENSION_PATTERN = Pattern.compile("\\.[^\\.]*$");
+    private static final Pattern FILE_EXTENSION_PATTERN = Pattern.compile("\\.[^.]*$");
 
     /** Indicates whether the first token has been seen in the file. */
     private boolean seenFirstToken;

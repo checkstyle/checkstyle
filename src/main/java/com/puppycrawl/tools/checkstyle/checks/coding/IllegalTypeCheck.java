@@ -133,7 +133,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private List<Integer> memberModifiers;
 
     /** The format string of the regexp. */
-    private String format = "^(.*[\\.])?Abstract.*$";
+    private String format = "^(.*[.])?Abstract.*$";
 
     /** The regexp to match against. */
     private Pattern regexp = Pattern.compile(format);

@@ -87,7 +87,7 @@ public class CommitValidationTest {
     private static final Pattern ACCEPTED_COMMIT_MESSAGE_PATTERN =
             Pattern.compile(ACCEPTED_COMMIT_MESSAGE_REGEX_PATTERN);
 
-    private static final Pattern INVALID_POSTFIX_PATTERN = Pattern.compile("^.*[\\. \\t]$");
+    private static final Pattern INVALID_POSTFIX_PATTERN = Pattern.compile("^.*[. \\t]$");
 
     private static final int PREVIOUS_COMMITS_TO_CHECK_COUNT = 10;
 
