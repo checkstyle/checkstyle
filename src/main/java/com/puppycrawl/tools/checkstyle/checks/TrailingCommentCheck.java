@@ -109,7 +109,7 @@ public class TrailingCommentCheck extends AbstractCheck {
     private Pattern legalComment;
 
     /** The format string of the regexp. */
-    private String format = "^[\\s\\}\\);]*$";
+    private String format = "^[\\s\\});]*$";
 
     /** The regexp to match against. */
     private Pattern regexp = Pattern.compile(format);
