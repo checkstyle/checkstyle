@@ -53,7 +53,6 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "31:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "49:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "56:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "86:16: " + getCheckMessage(MSG_VARIABLE, "CONST", ""),
             "113:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
@@ -94,7 +93,6 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "31:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "49:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "56:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "86:16: " + getCheckMessage(MSG_VARIABLE, "CONST", ""),
             "113:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
@@ -175,7 +173,6 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "60:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
             "61:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
             "80:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "84:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
             "119:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "128:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "132:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
@@ -201,18 +198,10 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "275:18: " + getCheckMessage(MSG_METHOD, "addSuffixToField", ""),
             "301:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "340:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "360:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
             "374:40: " + getCheckMessage(MSG_METHOD, "getServletRelativeAction", ""),
             "376:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
             "383:9: " + getCheckMessage(MSG_VARIABLE, "servletRelativeAction", ""),
             "384:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "443:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "447:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "451:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "455:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "459:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "463:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-
         };
         verify(checkConfig, getPath("InputValidateOnlyOverlappingFalse.java"), expected);
     }
@@ -233,10 +222,6 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "275:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "301:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "339:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "359:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "442:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "450:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
-            "454:9: " + getCheckMessage(MSG_VARIABLE, "fieldStatic", ""),
         };
         verify(checkConfig, getPath("InputValidateOnlyOverlappingTrue.java"), expected);
     }
@@ -254,5 +239,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateOnlyOverlapping", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRequireThisBraceAlone.java"), expected);
+    }
+
+    @Test
+    public void testStatic() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRequireThisStatic.java"), expected);
     }
 }

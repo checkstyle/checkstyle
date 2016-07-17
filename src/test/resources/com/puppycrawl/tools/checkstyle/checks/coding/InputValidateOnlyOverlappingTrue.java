@@ -356,7 +356,7 @@ public class InputValidateOnlyOverlappingTrue {
     }
 
     void foo43(String fieldStatic) {
-        fieldStatic = fieldStatic; // violation
+        fieldStatic = fieldStatic;
     }
 
     void foo44(String fieldStatic) {
@@ -439,7 +439,7 @@ public class InputValidateOnlyOverlappingTrue {
     }
 
     void foo50(String fieldStatic) {
-        fieldStatic = fieldStatic; // violation
+        fieldStatic = fieldStatic;
     }
 
     void foo51(String methodParam) {
@@ -447,11 +447,11 @@ public class InputValidateOnlyOverlappingTrue {
     }
 
     void foo52(String fieldStatic) {
-        fieldStatic += fieldStatic; // violation
+        fieldStatic += fieldStatic;
     }
 
     void foo53(String fieldStatic) {
-        fieldStatic += fieldStatic; // violation
+        fieldStatic += fieldStatic;
     }
 
     void foo54(String methodParam) {
