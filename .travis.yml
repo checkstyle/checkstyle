@@ -284,7 +284,8 @@ matrix:
         - CMD13=" && echo RSS post && echo && cat rss.txt"
         - CMD14=" && echo sourceforge post && echo && cat sourceforge.txt"
         - CMD15=" && echo mailing list post && echo && cat mailing_list.txt"
-        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD9$CMD11$CMD9$CMD12$CMD9$CMD13$CMD9$CMD14$$CMD9CMD15
+        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD9$CMD11$CMD9$CMD12$CMD9$CMD13$CMD9
+        - CMD=$CMD$CMD14$CMD9$CMD15
         - COVERAGE_CMD=""
 
     # testing of PR format
