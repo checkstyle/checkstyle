@@ -41,6 +41,9 @@ public class MyClass {
       ]]></source>
       </p>
       Attention that java comment starts with <code>/*</code>, following with Identificator of comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc Identificator till <code>*/</code> are part of javadoc comment.
+      <p>Please not that javadoc-like comment inside a method is not a javadoc comment and skiped by
+      	Sun/Oracle javadoc tool and by our parser.
+      </p>
       <p>In internet you can find different types of documentation
       generation tools similar to javadoc. Such tools rely on specific Identificator: "!", "#", "$".
       Comments looks like <code>"/*! some comment */"</code> , <code>"/*# some comment */"</code> , <code>"/*$ some comment */"</code>. Such multiline comments are not a javadoc.
@@ -50,29 +53,37 @@ public class MyClass {
     <section name="Limitations">
       <p>
       Javadoc by specification could contain any HTML tags that let user generate content he needs.
-      Checkstyle can not parse something that looks like an HTML, so limitation appears.
+      All tags are copied as is to result javadoc html pages by Sun/Oracle javadoc tool.
+      All bad formatting is responsibility of user and web-browser. To validate Chekcstyle to parse
+      input to predictable structure - Abstract Syntax Tree(AST). It is very difficult to parse free style
+      format, so input text need to follow some format, so limitation appears.
       </p>
       <p>
-      The comment should be written in <a href="#XHTML-style_rules">XHTML-style</a> to build nested AST Tree that most Checks expect. This means that every HTML tag should have matching end HTML tag or it is a <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void element</a>.
+      The comment should be written in <a href="#Tight-HTML_rules">Tight-HTML</a> to build nested AST Tree that most Checks expect.
       </p>
       <p>
-      The only exceptions are HTML 4 tags whose end tag is optional, so, Checkstyle won't show error about missing end tag, however, it leads to broken XHTML structure and as a result
-      leads to not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
-      <br/>
-      In other words, if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
-      so structure of the parse tree will not be nested like it is while using <a href="#XHTML-style_rules">XHTML-style</a> code.
-      It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
-      </p>
-      <p>
-        For more details about HTML in AST read <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section.
+        For more details about parsing of HTML into AST read <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> and <a href="#Javadoc_parser_behavior_for_current_HTML_version_and_new_HTML_version">Javadoc parser behavior
+        </a>  section.
       </p>
     </section>
 
-    <section name="XHTML-style rules">
+    <section name="Tight-HTML rules">
+      <p>
+      Every HTML tag should have matching end HTML tag or it is a <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void element</a>.
+      </p>
+      <p>
+      The only exceptions are HTML 4 tags whose end tag is optional(ommitable) by HTML specification (example is <a href="https://www.w3.org/TR/html5/tabular-data.html#the-tr-element">TR</a>), so, Checkstyle won't show error about missing end tag, however, it leads to broken Tight-HTML structure and as a result
+      leads to not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
+      <br/>
+      In other words, if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
+      so structure of the parse tree will not be nested like it is while using <a href="#Tight-HTML_rules">Tight-HTML</a> code.
+      It is done just to not fail on every Javadoc comment, because there are tons of using unclosed tags, etc.
+      </p>
+      Other rules:
       <ul>
         <li>Document Structure elements (DOCTYPE, &lt;html&gt;, &lt;body&gt;, etc) are not mandatory.</li>
-        <li>Elements must always be closed, except HTML4 elements whose end tag is optional and HTML4 <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
-        <li>XHTML elements can be either in lowercase or in uppercase</li>
+        <li>Elements must always be closed, except HTML4 elements whose end tag is optional(ommitable) and HTML4 <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
+        <li>HTML elements can be either in lowercase or in uppercase</li>
         <li>Attribute names can be either in lowercase or in uppercase</li>
         <li>Attribute values can be either quoted or not be quoted</li>
       </ul>
@@ -80,24 +91,24 @@ public class MyClass {
 
     <section name="How to create Javadoc Check">
       <p>
-        Principle of writing Javadoc Checks is similar to writing regular Checks. You just extend another class and use another token types.
+        Principle of writing Javadoc Checks is similar to writing regular Checks. You just extend another abstract class and use another token types.
       </p>
       <p>
-      To start implementing new Check create a new class and extend <a href='apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>. 
+      To start implementing new Check create a new class and extend <a href='apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html'>AbstractJavadocCheck</a>.
       It has two abstract methods you should implement:
       </p>
       <ul>
         <li>
           <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> - return int array of
           javadoc token types your Check is going to process. The array should contain int constants from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">
-          JavadocTokenTypes</a> class. (There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use 
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the 
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java 
+          JavadocTokenTypes</a> class. (There is also <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> class in Checkstyle. Make sure you use
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html">JavadocTokenTypes</a> class in your Check, because the
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> is used to describe standard Java
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> token type.)
         </li>
         <li>
           <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#visitJavadocToken-com.puppycrawl.tools.checkstyle.api.DetailNode-">
-          visitJavadocToken(DetailNode)</a> - it's a place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in 
+          visitJavadocToken(DetailNode)</a> - it's a place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in
           <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> method.
         </li>
       </ul>
@@ -105,7 +116,7 @@ public class MyClass {
 
     <section name="Difference between Java Grammar and Javadoc comments Grammar">
       <p>
-        Java grammar parses java file base on Java language specifications. So, there are singleline comments and multiline/block comments in it. 
+        Java grammar parses java file base on Java language specifications. So, there are singleline comments and multiline/block comments in it.
         Java compiler doesn't know about Javadoc because it is just a multiline comment.
         To parse multiline comment as a Javadoc comment, checkstyle has special Parser
         that is based on ANTLR Javadoc grammar. So, it's supposed to proccess block comments
@@ -289,10 +300,10 @@ class MyCheck extends AbstractJavadocCheck {
         Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">all HTML4 elements</a>.
       </p>
       <p>
-        HTML4 is picked just to have a list of elements whose end tag is optional and a list of <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a> (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
+        HTML4 is picked just to have a list of elements whose end tag is optional(ommitable) and a list of <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a> (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
       </p>
       <p>
-        HTML4 elements whose end tag is optional: &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
+        HTML4 elements whose end tag is optional(ommitable): &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
         &lt;DT&gt;, &lt;HEAD&gt;, &lt;HTML&gt;, &lt;OPTION&gt;, &lt;TBODY&gt;, &lt;THEAD&gt;, &lt;TFOOT&gt;.
       </p>
       <p>
@@ -301,8 +312,8 @@ class MyCheck extends AbstractJavadocCheck {
       </p>
 
       <p>
-        To make Checkstyle support HTML5 tags whose end tag is optional and HTML5 void elements we should update Javadoc Parser 
-        bacause each element that breaks <a href="#XHTML-style_rules">XHTML-style rules</a> have to be defined in Javadoc grammar. 
+        To make Checkstyle support HTML5 tags whose end tag is optional(ommitable) and HTML5 void elements we should update Javadoc Parser
+        bacause each element that breaks <a href="#Tight-HTML_rules">Tight-HTML rules</a> have to be defined in Javadoc grammar.
         In future we should update Javadoc grammar if those tag lists extend (new tags, new HTML standard, etc.).
         (We already have an <a href='https://github.com/checkstyle/checkstyle/issues/3332'>issue on updating Javadoc grammar to HTML5</a>)
       </p>
@@ -310,7 +321,7 @@ class MyCheck extends AbstractJavadocCheck {
       <p>
         If Checkstyle meets unknown tag (for example HTML5 tag)
         it doesn't fail and parses this tag as <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#HTML_TAG">HTML_TAG</a> Javadoc token type.
-        Just follow <a href="#XHTML-style_rules">XHTML-style rules</a> to make Checkstyle javadoc parser make nested AST, even though tags are unknown.
+        Just follow <a href="#Tight-HTML_rules">Tight-HTML rules</a> to make Checkstyle javadoc parser make nested AST, even though tags are unknown.
 
         <source><![CDATA[
 <audio><source src="horse.ogg" type="audio/ogg"/></audio>
@@ -355,12 +366,12 @@ JAVADOC -> <audio><source src="horse.ogg" type="audio/ogg"/></audio><EOF> [0:0]
       <source>&lt;audio&gt;test</source>
       Output:
       <source>[ERROR:0] Javadoc comment at column 1 has parse error. Missed HTML close tag 'audio'. Sometimes it means that close tag missed for one of previous tags.</source>
-      As you see Javadoc parser prints error and doesn't build AST if unknown HTML tag doesn't have matching end tag.
+      As you see Javadoc parser prints error and doesn't build AST if unknown HTML tag doesn't have matching end tag. If that a case please create an issue against Checkstyle to upgrade parser.
     </p>
 
     <p>
-      There are also HTML tags that are marked as "Not supported in HTML5" (<a href='http://www.w3schools.com/tags/default.asp'>HTML Element Reference</a>). 
-      Checkstyle Javadoc parser can parse those tags too if they are written in <a href="#XHTML-style_rules">XHTML-style</a>.
+      There are also HTML tags that are marked as "Not supported in HTML5" (<a href='http://www.w3schools.com/tags/default.asp'>HTML Element Reference</a>).
+      Checkstyle Javadoc parser can parse those tags too if they are written in <a href="#Tight-HTML_rules">Tight-HTML</a>.
       <br/>
       Example.
       <br/>
@@ -403,7 +414,7 @@ JAVADOC -> <acronym title="as soon as possible">ASAP</acronym><EOF> [0:0]
       <tr>
         <td>
           1) Unclosed paragraph HTML tag. As you see in the tree, content of the paragraph tag is not nested to this tag.
-          That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires <a href="#XHTML-style_rules">XHTML-style</a> code to predictably parse Javadoc comments.
+          That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires <a href="#Tight-HTML_rules">Tight-HTML</a> code to predictably parse Javadoc comments.
         </td>
         <td>
           2) Here is correct version with open and closed HTML tags.
@@ -509,8 +520,9 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
     </section>
 
     <section name="Boolean flag indicating the presence of unclosed HTML tags">
-      Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/3311">Github Issue #3311</a>.
-    </section>    
+      Not implemented yet, will be named "hasUnclosedTag". See <a href="https://github.com/checkstyle/checkstyle/issues/3311">Github Issue #3311</a>.
+      For expected behavior please read <a href="#Javadoc_parser_behavior_for_current_HTML_version_and_new_HTML_version">Javadoc parser behavior</a> section.
+    </section>
 
     <section name="Checkstyle SDK GUI">
       Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/408">Github Issue #408</a>.
@@ -535,59 +547,62 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
         existing Checks</a>.
     </section>
 
-    <section name="ANTRL4 grammar update reminder: new HTML version">
-      <p>Tags with optional end tag:</p>
+    <section name="Javadoc parser behavior for current HTML version and new HTML version">
+      This section shows how parser should/will behave during parsing of current HTML versoin and any new HTML version. Current version is HTML4, new version that need to be supported is HTML5.
+      GeneralToken - mean that after parsing there will be general AstToken - HTML_TAG.
+      SpecialToken - mean that after parsing there will be special AstToken - PARAGRAPH, .... .
+      <p><b>Tags with optional(ommitable) end tag:</b></p>
       <table style="table-layout: fixed;">
         <tr>
           <th>Input</th>
           <th>Current standard (HTML4)</th>
-          <th>Current standard with hasUnclosedTags flag</th>
-          <th>New standard (HTML5)</th>
-          <th>New standard with hasUnclosedTags flag</th>
+          <th>Current standard with hasUnclosedTag flag</th>
+          <th>After parser update for new standard (HTML5)</th>
+          <th>After parser update for new standard with hasUnclosedTag flag</th>
         </tr>
         <tr>
           <td><![CDATA[<p>text</p>]]></td>
-          <td><![CDATA[No errors, Nested tree]]></td>
-          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
-          <td><![CDATA[No errors, Nested tree]]></td>
-          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+          <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
+          <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
+          <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
+          <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
         </tr>
         <tr>
           <td><![CDATA[<p>text]]></td>
-          <td><![CDATA[No errors, Non-nested tree]]></td>
-          <td><![CDATA[No errors, Non-nested tree, hasUnclosedTags=true]]></td>
-          <td><![CDATA[No errors, Non-nested tree]]></td>
-          <td><![CDATA[No errors, Non-nested tree, hasUnclosedTags=true]]></td>
+          <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
+          <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
+          <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
+          <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
         </tr>
         <tr>
           <td>
             <![CDATA[<rb>text</rb>]]>
-            <br/><i>New HTML5 tag with optional end tag</i>
+            <br/><i>New HTML5 tag with optional(ommitable) end tag</i>
           </td>
-          <td><![CDATA[No errors, Nested tree]]></td>
-          <td><![CDATA[No errors, Nested tree]]></td>
-          <td><![CDATA[No errors, Nested tree]]></td>
-          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+          <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
+          <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
+          <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
+          <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
         </tr>
         <tr>
           <td>
             <![CDATA[<rb>text]]>
-            <br/><i>New HTML5 tag with optional end tag</i>
+            <br/><i>New HTML5 tag with optional(ommitable) end tag</i>
           </td>
           <td><![CDATA[Parse error]]></td>
           <td><![CDATA[Parse error]]></td>
-          <td><![CDATA[No errors, Non-nested tree]]></td>
-          <td><![CDATA[No errors, Non-nested tree, hasUnclosedTags=true]]></td>
+          <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
+          <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
         </tr>
         <tr>
           <td>
             <![CDATA[<qwerty>text</qwerty>]]>
             <br/><i>Unknown HTML tag</i>
           </td>
-          <td><![CDATA[No errors, Nested tree]]></td>
-          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
-          <td><![CDATA[No errors, Nested tree]]></td>
-          <td><![CDATA[No errors, Nested tree, hasUnclosedTags=false]]></td>
+          <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
+          <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
+          <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
+          <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
         </tr>
         <tr>
           <td>
@@ -600,31 +615,32 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
           <td><![CDATA[Parse error]]></td>
         </tr>
       </table>
-
-      <p>Void tags:</p>
+      <br/>
+      <p><b>Void tags:</b></p>
+      Note: "Nested"/"Non-Nested" is not applicable for this type of tags - all of them are looks like Non-Nested. Flas "hasUnclosedTag" is "false" for all cases.
       <table style="table-layout: fixed;">
         <tr>
           <th>Input</th>
           <th>Current standard (HTML4)</th>
-          <th>New standard (HTML5)</th>
+          <th>After parser update for new standard (HTML5)</th>
         </tr>
         <tr>
           <td><![CDATA[<br/>]]></td>
-          <td>No errors</td>
-          <td>No errors</td>
+          <td>No errors, SpecialToken</td>
+          <td>No errors, SpecialToken</td>
         </tr>
         <tr>
           <td><![CDATA[<br>]]></td>
-          <td>No errors</td>
-          <td>No errors</td>
+          <td>No errors, SpecialToken</td>
+          <td>No errors, SpecialToken</td>
         </tr>
         <tr>
           <td>
             <![CDATA[<embed/>]]>
             <br/><i>New HTML5 tag</i>
           </td>
-          <td>No errors</td>
-          <td>No errors</td>
+          <td>No errors, GeneralToken</td>
+          <td>No errors, SpecialToken</td>
         </tr>
         <tr>
           <td>
@@ -632,31 +648,31 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
             <br/><i>New HTML5 tag</i>
           </td>
           <td>Parse Error</td>
-          <td>No errors</td>
+          <td>No errors, SpecialToken</td>
         </tr>
         <tr>
           <td>
             <![CDATA[<basefont/>]]>
-            <br/><i>Not supported tag in HTML5</i>
+            <br/><i>Supported in HTML4. Not supported tag in HTML5</i>
           </td>
-          <td>No errors</td>
-          <td>No errors</td>
+          <td>No errors, SpecialToken</td>
+          <td>No errors, SpecialToken</td>
         </tr>
         <tr>
           <td>
             <![CDATA[<basefont>]]>
-            <br/><i>Not supported tag in HTML5</i>
+            <br/><i>Supported in HTML4. Not supported tag in HTML5</i>
           </td>
-          <td>No errors</td>
-          <td>No errors</td>
+          <td>No errors, SpecialToken</td>
+          <td>No errors, SpecialToken</td>
         </tr>
         <tr>
           <td>
             <![CDATA[<qwerty/>]]>
             <br/><i>Unknown HTML tag</i>
           </td>
-          <td>No errors</td>
-          <td>No errors</td>
+          <td>No errors, GeneralToken</td>
+          <td>No errors, GeneralToken</td>
           </tr>
         <tr>
           <td>
