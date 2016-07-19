@@ -129,7 +129,7 @@ public class BaseCheckTestSupport {
         // process each of the lines
         final ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
-        try (final LineNumberReader lnr = new LineNumberReader(
+        try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
             int previousLineNumber = 0;
