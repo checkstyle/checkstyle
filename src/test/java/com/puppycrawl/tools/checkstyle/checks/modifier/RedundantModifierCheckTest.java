@@ -164,6 +164,7 @@ public class RedundantModifierCheckTest
             TokenTypes.CTOR_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.RESOURCE,
         };
         Assert.assertArrayEquals(expected, actual);
     }
@@ -197,5 +198,16 @@ public class RedundantModifierCheckTest
             "14:20: " + getCheckMessage(MSG_KEY, "final"),
         };
         verify(checkConfig, getPath("InputFinalInAnonymousClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalInTryWithResource() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "22:14: " + getCheckMessage(MSG_KEY, "final"),
+            "27:14: " + getCheckMessage(MSG_KEY, "final"),
+            "28:17: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verify(checkConfig, getPath("InputFinalInTryWithResource.java"), expected);
     }
 }

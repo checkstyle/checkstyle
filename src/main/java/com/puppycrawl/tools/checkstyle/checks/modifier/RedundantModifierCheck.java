@@ -132,6 +132,7 @@ public class RedundantModifierCheck
             TokenTypes.CTOR_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.RESOURCE,
         };
     }
 
@@ -156,6 +157,9 @@ public class RedundantModifierCheck
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
             processMethods(ast);
+        }
+        else if (ast.getType() == TokenTypes.RESOURCE) {
+            processResources(ast);
         }
     }
 
@@ -287,6 +291,26 @@ public class RedundantModifierCheck
         final DetailAST classDef = classCtorAst.getParent().getParent();
         if (!isClassPublic(classDef) && !isClassProtected(classDef)) {
             checkForRedundantPublicModifier(classCtorAst);
+        }
+    }
+
+    /**
+     * Checks if given resource has redundant modifiers.
+     * @param ast ast
+     */
+    private void processResources(DetailAST ast) {
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        DetailAST modifier = modifiers.getFirstChild();
+
+        while (modifier != null) {
+            final int type = modifier.getType();
+
+            if (type == TokenTypes.FINAL) {
+                log(modifier.getLineNo(), modifier.getColumnNo(), MSG_KEY, modifier.getText());
+                break;
+            }
+
+            modifier = modifier.getNextSibling();
         }
     }
 
