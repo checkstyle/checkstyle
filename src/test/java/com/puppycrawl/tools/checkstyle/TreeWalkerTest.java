@@ -54,7 +54,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final File file = temporaryFolder.newFile("file.java");
-        try (final Writer writer = new BufferedWriter(
+        try (Writer writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
             final String content = "public class Main { public static final int k = 5 + 4; }";
             writer.write(content);
@@ -70,7 +70,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final File file = temporaryFolder.newFile("file.pdf");
-        try (final BufferedWriter writer = new BufferedWriter(
+        try (BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
             final String content = "public class Main { public static final int k = 5 + 4; }";
             writer.write(content);

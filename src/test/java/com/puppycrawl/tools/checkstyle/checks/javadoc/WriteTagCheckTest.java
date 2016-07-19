@@ -215,7 +215,7 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
         // process each of the lines
         final ByteArrayInputStream localStream =
             new ByteArrayInputStream(stream.toByteArray());
-        try (final LineNumberReader lnr = new LineNumberReader(
+        try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
 
             for (int i = 0; i < expected.length; i++) {
