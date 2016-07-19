@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -67,7 +69,7 @@ public class IllegalImportCheck
     public static final String MSG_KEY = "import.illegal";
 
     /** List of illegal packages. */
-    private String[] illegalPkgs;
+    private Pattern[] illegalPkgs;
 
     /**
      * Creates a new {@code IllegalImportCheck} instance.
@@ -81,7 +83,11 @@ public class IllegalImportCheck
      * @param from array of illegal packages
      */
     public final void setIllegalPkgs(String... from) {
-        illegalPkgs = from.clone();
+        illegalPkgs = new Pattern[from.length];
+        for (int i = 0; i < from.length; ++i) {
+            illegalPkgs[i] =
+                Pattern.compile("^" + Pattern.quote(from[i]) + "(\\..*|$)");
+        }
     }
 
     @Override
@@ -123,8 +129,8 @@ public class IllegalImportCheck
      * @return if {@code importText} contains an illegal package prefix
      */
     private boolean isIllegalImport(String importText) {
-        for (String element : illegalPkgs) {
-            if (importText.startsWith(element + ".")) {
+        for (Pattern element : illegalPkgs) {
+            if (element.matcher(importText).matches()) {
                 return true;
             }
         }

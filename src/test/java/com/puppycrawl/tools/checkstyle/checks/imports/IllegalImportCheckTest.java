@@ -50,11 +50,12 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalImportCheck.class);
-        checkConfig.addAttribute("illegalPkgs", "java.io");
+        checkConfig.addAttribute("illegalPkgs", "java.io,java.util.Date");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "23:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "27:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "34:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
         };
         verify(checkConfig, getPath("InputIllegalImport.java"), expected);
     }
