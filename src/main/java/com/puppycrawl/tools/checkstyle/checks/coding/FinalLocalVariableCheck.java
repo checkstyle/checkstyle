@@ -485,7 +485,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a variable which is declared ouside loop is used inside loop.
+     * Checks whether a variable which is declared outside loop is used inside loop.
      * For example:
      * <p>
      * {@code
