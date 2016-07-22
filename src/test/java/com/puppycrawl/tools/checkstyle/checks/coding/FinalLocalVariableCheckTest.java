@@ -211,4 +211,32 @@ public class FinalLocalVariableCheckTest
         };
         verify(checkConfig, getPath("InputFinalLocalVariableAssignedMultipleTimes.java"), expected);
     }
+
+    @Test
+    public void testVariableIsAssignedInsideAndOutsideSwitchBlock() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "31:13: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verify(checkConfig, getPath("InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableFalsePositives() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "341:16: " + getCheckMessage(MSG_KEY, "c2"),
+            "2184:16: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verify(checkConfig, getPath("InputFinalLocalVariableFalsePositives.java"), expected);
+    }
+
+    @Test
+    public void testMultipleAndNestedConditions() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputFinalLocalVariableMultipleAndNestedConditions.java"),
+            expected);
+    }
 }

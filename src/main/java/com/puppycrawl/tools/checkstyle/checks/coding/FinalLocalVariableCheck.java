@@ -211,15 +211,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 if (isAssignOperator(parentType) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
-                        if (isInSpecificCodeBlock(ast, TokenTypes.LITERAL_IF)) {
-                            candidate.get().assignInIfBlock = true;
-                            if (isInSpecificCodeBlock(ast, TokenTypes.CASE_GROUP)) {
-                                candidate.get().assignInIfBlockWhichIsInsideCaseBlock = true;
-                            }
-                        }
-                        else {
-                            candidate.get().assignOutsideConditionalBlock = true;
-                        }
+                        determineAssignmentConditions(ast, candidate.get());
                     }
                     removeFinalVariableCandidateFromStack(ast);
                 }
@@ -261,6 +253,24 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 final DetailAST ident = candidate.variableIdent;
                 log(ident.getLineNo(), ident.getColumnNo(), MSG_KEY, ident.getText());
             }
+        }
+    }
+
+    /**
+     * Determines identifier assignment conditions (assigned or already assigned).
+     * @param ident identifier.
+     * @param candidate final local variable candidate.
+     */
+    private static void determineAssignmentConditions(DetailAST ident,
+                                                      FinalVariableCandidate candidate) {
+        if (candidate.assigned) {
+            if (!isInSpecificCodeBlock(ident, TokenTypes.LITERAL_ELSE)
+                    && !isInSpecificCodeBlock(ident, TokenTypes.CASE_GROUP)) {
+                candidate.alreadyAssigned = true;
+            }
+        }
+        else {
+            candidate.assigned = true;
         }
     }
 
@@ -473,9 +483,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // more than once in this case
                 if (isInTheSameLoop(variable, ast) || !isUseOfExternalVariableInsideLoop(ast)) {
                     final FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
-                    shouldRemove = candidate.assignInIfBlock
-                        && candidate.assignOutsideConditionalBlock
-                        && !candidate.assignInIfBlockWhichIsInsideCaseBlock;
+                    shouldRemove = candidate.alreadyAssigned;
                 }
                 scopeData.uninitializedVariables.remove(variable);
                 break;
@@ -653,12 +661,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static class FinalVariableCandidate {
         /** Identifier token. */
         private final DetailAST variableIdent;
-        /** Whether variable is assigned in if block. */
-        private boolean assignInIfBlock;
-        /** Whether variable is assigned outside conditional block. */
-        private boolean assignOutsideConditionalBlock;
-        /** Whether variable is assigned in if block which is located inside case block. */
-        private boolean assignInIfBlockWhichIsInsideCaseBlock;
+        /** Whether the variable is assigned. */
+        private boolean assigned;
+        /** Whether the variable is already assigned. */
+        private boolean alreadyAssigned;
 
         /**
          * Creates new instance.
