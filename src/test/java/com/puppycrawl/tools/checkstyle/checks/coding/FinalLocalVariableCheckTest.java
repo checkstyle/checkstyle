@@ -135,8 +135,8 @@ public class FinalLocalVariableCheckTest
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
         checkConfig.addAttribute("validateEnhancedForLoopVariable", "true");
         final String[] expected = {
-            "8:20: " + "Variable 'a' should be declared final.",
-            "15:13: " + "Variable 'x' should be declared final.",
+            "8:20: " + getCheckMessage(MSG_KEY, "a"),
+            "15:13: " + getCheckMessage(MSG_KEY, "x"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
             expected);
@@ -148,7 +148,7 @@ public class FinalLocalVariableCheckTest
                 createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
         final String[] expected = {
-            "15:13: " + "Variable 'x' should be declared final.",
+            "15:13: " + getCheckMessage(MSG_KEY, "x"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
             expected);
@@ -161,7 +161,7 @@ public class FinalLocalVariableCheckTest
             createCheckConfig(FinalLocalVariableCheck.class);
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = {
-            "32:16: " + "Variable 'result' should be declared final.",
+            "32:16: " + getCheckMessage(MSG_KEY, "result"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableNameLambda.java"),
             expected);
@@ -175,8 +175,8 @@ public class FinalLocalVariableCheckTest
         checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
 
         final String[] expected = {
-            "4:28: " + "Variable 'text' should be declared final.",
-            "17:13: " + "Variable 'x' should be declared final.",
+            "4:28: " + getCheckMessage(MSG_KEY, "text"),
+            "17:13: " + getCheckMessage(MSG_KEY, "x"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableNameShadowing.java"), expected);
     }
@@ -198,16 +198,16 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testVariavleWhichIsAssignedMultipleTimes() throws Exception {
+    public void testVariableWhichIsAssignedMultipleTimes() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
 
         final String[] expected = {
-            "49:13: " + "Variable 'i' should be declared final.",
-            "122:16: " + "Variable 'path' should be declared final.",
-            "126:20: " + "Variable 'relativePath' should be declared final.",
-            "202:17: " + "Variable 'kind' should be declared final.",
-            "207:24: " + "Variable 'm' should be declared final.",
-            "409:17: " + "Variable 'increment' should be declared final.",
+            "49:13: " + getCheckMessage(MSG_KEY, "i"),
+            "122:16: " + getCheckMessage(MSG_KEY, "path"),
+            "126:20: " + getCheckMessage(MSG_KEY, "relativePath"),
+            "202:17: " + getCheckMessage(MSG_KEY, "kind"),
+            "207:24: " + getCheckMessage(MSG_KEY, "m"),
+            "409:17: " + getCheckMessage(MSG_KEY, "increment"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableAssignedMultipleTimes.java"), expected);
     }
