@@ -55,5 +55,5 @@
     <!-- testing for catch Error is part of 100% coverage -->
     <suppress checks="IllegalCatchExtended"
               files="CheckerTest\.java"
-              lines="545"/>
+              lines="543"/>
 </suppressions>
