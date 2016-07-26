@@ -177,17 +177,23 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
+        final int[] requiredTokens = checkObj.getRequiredTokens();
         final HandlerFactory handlerFactory = new HandlerFactory();
         final int[] expected = handlerFactory.getHandledTypes();
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        Arrays.sort(expected);
+        Arrays.sort(requiredTokens);
+        assertArrayEquals(expected, requiredTokens);
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
+        final int[] acceptableTokens = checkObj.getAcceptableTokens();
         final HandlerFactory handlerFactory = new HandlerFactory();
         final int[] expected = handlerFactory.getHandledTypes();
-        assertArrayEquals(expected, checkObj.getAcceptableTokens());
+        Arrays.sort(expected);
+        Arrays.sort(acceptableTokens);
+        assertArrayEquals(expected, acceptableTokens);
     }
 
     @Test
