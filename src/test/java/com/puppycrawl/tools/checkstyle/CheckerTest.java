@@ -56,8 +56,6 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
-import com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
-import com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -602,23 +600,16 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Test
     public void testMultipleConfigs() throws Exception {
-        final DefaultConfiguration headerCheckConfig = createCheckConfig(HeaderCheck.class);
-        headerCheckConfig.addAttribute("headerFile",
-            getPath("configs" + File.separator + "java.header"));
+        final DefaultConfiguration headerCheckConfig =
+            createCheckConfig(MockMissingExternalResourcesFileSetCheck.class);
 
         final DefaultConfiguration dummyFileSetCheckConfig =
             createCheckConfig(DummyFileSetCheck.class);
-
-        final DefaultConfiguration regexpHeaderCheckConfig =
-            createCheckConfig(RegexpHeaderCheck.class);
-        regexpHeaderCheckConfig.addAttribute("headerFile",
-            getPath("checks" + File.separator + "header" + File.separator + "regexp.header"));
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
         checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
         checkerConfig.addChild(headerCheckConfig);
         checkerConfig.addChild(dummyFileSetCheckConfig);
-        checkerConfig.addChild(regexpHeaderCheckConfig);
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -626,9 +617,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addListener(new BriefUtLogger(stream));
 
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = {
-            "1: " + "Missing a header - not enough lines in file.",
-        };
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, expected);
         // Once again to invalidate cache because in the second run IOException will happen
@@ -724,6 +713,20 @@ public class CheckerTest extends BaseCheckTestSupport {
         public Set<String> getExternalResourceLocations() {
             final Set<String> externalResourceLocation = new HashSet<>(1);
             externalResourceLocation.add("non_existing_external_resource.xml");
+            return externalResourceLocation;
+        }
+    }
+
+    private static class MockMissingExternalResourcesFileSetCheck extends AbstractFileSetCheck
+        implements ExternalResourceHolder {
+
+        @Override
+        protected void processFiltered(File file, List<String> lines) throws CheckstyleException { }
+
+        @Override
+        public Set<String> getExternalResourceLocations() {
+            final Set<String> externalResourceLocation = new HashSet<>(1);
+            externalResourceLocation.add("missing_external_resource.xml");
             return externalResourceLocation;
         }
     }
