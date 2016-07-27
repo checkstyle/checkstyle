@@ -417,8 +417,15 @@ public class XDocsPagesTest {
         if (AbstractCheck.class.isAssignableFrom(clss)) {
             final AbstractCheck check = (AbstractCheck) instance;
 
-            if (!Arrays.equals(check.getAcceptableTokens(), check.getDefaultTokens())
-                    || !Arrays.equals(check.getAcceptableTokens(), check.getRequiredTokens())) {
+            final int[] acceptableTokens = check.getAcceptableTokens();
+            Arrays.sort(acceptableTokens);
+            final int[] defaultTokens = check.getDefaultTokens();
+            Arrays.sort(defaultTokens);
+            final int[] requiredTokens = check.getRequiredTokens();
+            Arrays.sort(requiredTokens);
+
+            if (!Arrays.equals(acceptableTokens, defaultTokens)
+                    || !Arrays.equals(acceptableTokens, requiredTokens)) {
                 properties.add("tokens");
             }
         }
