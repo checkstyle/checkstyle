@@ -19,6 +19,10 @@ matrix:
     - jdk: oraclejdk8
       env: DESC="tests and deploy" CMD="mvn clean integration-test failsafe:verify" COVERAGE_CMD="" DEPLOY="true"
 
+    # NonDex (oraclejdk8)
+    - jdk: oraclejdk8
+      env: DESC="NonDex" CMD="mvn clean nondex:nondex" COVERAGE_CMD="" DEPLOY="false"
+
     # checkstyle (oraclejdk8)
     - jdk: oraclejdk8
       env:
