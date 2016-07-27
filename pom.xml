@@ -1236,6 +1236,10 @@
             <!-- Too unstable sites to keep validate them -->
             <excludedLink>http://tide.olympe.in/*</excludedLink>
             <excludedLink>http://dl.acm.org/*</excludedLink>
+            <!-- permanent SSLHandshakeException -->
+            <excludedLink>https://www.codacy.com/</excludedLink>
+            <!-- permanent SSLException -->
+            <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
