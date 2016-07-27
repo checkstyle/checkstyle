@@ -1,0 +1,231 @@
+[INFO] Scanning for projects...
+[INFO] Inspecting build with total of 1 modules...
+[INFO] Installing Nexus Staging features:
+[INFO]   ... total of 1 executions of maven-deploy-plugin replaced with nexus-staging-maven-plugin
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building checkstyle 7.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> nondex-maven-plugin:1.0.1:nondex (default-cli) > test-compile @ checkstyle >>>
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-maven) @ checkstyle ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.4.1:enforce (enforce-versions) @ checkstyle ---
+[INFO] 
+[INFO] --- antlr-maven-plugin:2.2:generate (default) @ checkstyle ---
+[INFO] grammar [java.g] was up-to-date; skipping
+[INFO] 
+[INFO] --- antlr4-maven-plugin:4.5.3:antlr4 (default) @ checkstyle ---
+[INFO] No grammars to process
+[INFO] ANTLR 4: Processing source directory /home/ben/research/pullrequests/checkstyle/src/main/resources
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.11:add-source (add-source) @ checkstyle ---
+[INFO] Source directory: /home/ben/research/pullrequests/checkstyle/target/generated-sources/antlr added.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.1:resources (default-resources) @ checkstyle ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 161 resources
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.11:add-test-source (add-test-source) @ checkstyle ---
+[INFO] Test Source directory: /home/ben/research/pullrequests/checkstyle/src/test/resources added.
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.11:add-test-source (add-it-test-source) @ checkstyle ---
+[INFO] Test Source directory: /home/ben/research/pullrequests/checkstyle/src/it/java added.
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.11:add-test-source (add-it-test-resource) @ checkstyle ---
+[INFO] Test Source directory: /home/ben/research/pullrequests/checkstyle/src/it/resources added.
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5.1:compile (default-compile) @ checkstyle ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 345 source files to /home/ben/research/pullrequests/checkstyle/target/classes
+[INFO] /home/ben/research/pullrequests/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java: /home/ben/research/pullrequests/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java uses or overrides a deprecated API.
+[INFO] /home/ben/research/pullrequests/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java: Recompile with -Xlint:deprecation for details.
+[INFO] /home/ben/research/pullrequests/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java: Some input files use unchecked or unsafe operations.
+[INFO] /home/ben/research/pullrequests/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/AutomaticBean.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-antrun-plugin:1.8:run (ant-phase-compile) @ checkstyle ---
+[INFO] Executing tasks
+
+main:
+
+execute:
+[propertyfile] Updating property file: /home/ben/research/pullrequests/checkstyle/target/classes/checkstylecompilation.properties
+  [javadoc] Generating Javadoc
+  [javadoc] Javadoc execution
+  [javadoc] Loading source file /home/ben/research/pullrequests/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/api/TokenTypes.java...
+  [javadoc] Constructing Javadoc information...
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.1:testResources (default-testResources) @ checkstyle ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 711 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.5.1:testCompile (default-testCompile) @ checkstyle ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 999 source files to /home/ben/research/pullrequests/checkstyle/target/test-classes
+[INFO] /home/ben/research/pullrequests/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractTypeAwareCheckTest.java: Some input files use or override a deprecated API.
+[INFO] /home/ben/research/pullrequests/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractTypeAwareCheckTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] <<< nondex-maven-plugin:1.0.1:nondex (default-cli) < test-compile @ checkstyle <<<
+[INFO] 
+[INFO] --- nondex-maven-plugin:1.0.1:nondex (default-cli) @ checkstyle ---
+CONFIG: nondex.filter=.*
+nondex.mode=FULL
+nondex.seed=9928532
+nondex.start=0
+nondex.end=9223372036854775807
+nondex.printstack=false
+nondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.jar.dir=.nondex
+nondex.execid=clean_MySh1SFKhcLaaaWvaqC2tUiMtFyTOe09rPz7yHpeV6g=
+test=
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.017 sec - in com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+
+Results :
+
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0
+
+CONFIG: nondex.filter=.*
+nondex.mode=FULL
+nondex.seed=9928532
+nondex.start=0
+nondex.end=9223372036854775807
+nondex.printstack=false
+nondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.execid=mvOnG9wN3xR5jXohLaGl3zjAXVUyHQzWiyQE0AKAkg=
+test=
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.579 sec - in com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+
+Results :
+
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0
+
+CONFIG: nondex.filter=.*
+nondex.mode=FULL
+nondex.seed=9969976
+nondex.start=0
+nondex.end=9223372036854775807
+nondex.printstack=false
+nondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.execid=ZXAcokPn+D1yWp6mm0KjFaw9OFb5mG2i2TZGY9Wx+IA=
+test=
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.47 sec - in com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+
+Results :
+
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0
+
+CONFIG: nondex.filter=.*
+nondex.mode=FULL
+nondex.seed=10011420
+nondex.start=0
+nondex.end=9223372036854775807
+nondex.printstack=false
+nondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.execid=EYbMvZtxdK2W9yjzN+dSLTfX+8+OCfg9wWOjruk0G8=
+test=
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.443 sec - in com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+
+Results :
+
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0
+
+CONFIG: nondex.filter=.*
+nondex.mode=FULL
+nondex.seed=10052864
+nondex.start=0
+nondex.end=9223372036854775807
+nondex.printstack=false
+nondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.execid=iCxlu3E5JdTSpYi5pPAfoTEXHe0t7BY0dLlPmkLHg=
+test=
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.41 sec - in com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+
+Results :
+
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0
+
+CONFIG: nondex.filter=.*
+nondex.mode=FULL
+nondex.seed=10094308
+nondex.start=0
+nondex.end=9223372036854775807
+nondex.printstack=false
+nondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex
+nondex.execid=+CJ+BddNRs5VK7bAY3g9DOiAXz6EdWUfobDZ9cAUDQc=
+test=
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.425 sec - in com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
+
+Results :
+
+Tests run: 70, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] NonDex SUMMARY:
+[INFO] *********
+[INFO] mvn nondex:nondex  -Dnondex.filter='.*' -Dnondex.mode=FULL -Dnondex.seed=9928532 -Dnondex.start=0 -Dnondex.end=9223372036854775807 -Dnondex.printstack=false -Dnondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.execid=mvOnG9wN3xR5jXohLaGl3zjAXVUyHQzWiyQE0AKAkg=
+[INFO] No Test Failed with this configuration.
+[INFO] *********
+[INFO] *********
+[INFO] mvn nondex:nondex  -Dnondex.filter='.*' -Dnondex.mode=FULL -Dnondex.seed=9969976 -Dnondex.start=0 -Dnondex.end=9223372036854775807 -Dnondex.printstack=false -Dnondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.execid=ZXAcokPn+D1yWp6mm0KjFaw9OFb5mG2i2TZGY9Wx+IA=
+[INFO] No Test Failed with this configuration.
+[INFO] *********
+[INFO] *********
+[INFO] mvn nondex:nondex  -Dnondex.filter='.*' -Dnondex.mode=FULL -Dnondex.seed=10011420 -Dnondex.start=0 -Dnondex.end=9223372036854775807 -Dnondex.printstack=false -Dnondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.execid=EYbMvZtxdK2W9yjzN+dSLTfX+8+OCfg9wWOjruk0G8=
+[INFO] No Test Failed with this configuration.
+[INFO] *********
+[INFO] *********
+[INFO] mvn nondex:nondex  -Dnondex.filter='.*' -Dnondex.mode=FULL -Dnondex.seed=10052864 -Dnondex.start=0 -Dnondex.end=9223372036854775807 -Dnondex.printstack=false -Dnondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.execid=iCxlu3E5JdTSpYi5pPAfoTEXHe0t7BY0dLlPmkLHg=
+[INFO] No Test Failed with this configuration.
+[INFO] *********
+[INFO] *********
+[INFO] mvn nondex:nondex  -Dnondex.filter='.*' -Dnondex.mode=FULL -Dnondex.seed=10094308 -Dnondex.start=0 -Dnondex.end=9223372036854775807 -Dnondex.printstack=false -Dnondex.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.jar.dir=/home/ben/research/pullrequests/checkstyle/.nondex -Dnondex.execid=+CJ+BddNRs5VK7bAY3g9DOiAXz6EdWUfobDZ9cAUDQc=
+[INFO] No Test Failed with this configuration.
+[INFO] *********
+[INFO] Across all seeds:
+[INFO] Test results can be found at: 
+[INFO] file:///home/ben/research/pullrequests/checkstyle/.nondex/mvOnG9wN3xR5jXohLaGl3zjAXVUyHQzWiyQE0AKAkg=/test_results.html
+[INFO] [NonDex] The id of this run is: mvOnG9wN3xR5jXohLaGl3zjAXVUyHQzWiyQE0AKAkg=
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 21.530 s
+[INFO] Finished at: 2016-07-25T17:05:23-05:00
+[INFO] Final Memory: 32M/317M
+[INFO] ------------------------------------------------------------------------
