@@ -50,7 +50,8 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             final MethodCallHandler container =
                     (MethodCallHandler) getParent();
             if (areOnSameLine(container.getMainAst(), getMainAst())
-                    || isChainedMethodCallWrapped()) {
+                    || isChainedMethodCallWrapped()
+                    || areMethodsChained(container.getMainAst(), getMainAst())) {
                 indentLevel = container.getIndent();
             }
             // we should increase indentation only if this is the first
@@ -74,6 +75,27 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             }
         }
         return indentLevel;
+    }
+
+    /**
+     * Checks if ast2 is a chained method call that starts on the same level as ast1 ends.
+     * In other words, if the right paren of ast1 is on the same level as the lparen of ast2:
+     *
+     * <code>
+     *     value.methodOne(
+     *         argument1
+     *     ).methodTwo(
+     *         argument2
+     *     );
+     * </code>
+     *
+     * @param ast1 Ast1
+     * @param ast2 Ast2
+     * @return True if ast2 begins on the same level that ast1 ends
+     */
+    private boolean areMethodsChained(DetailAST ast1, DetailAST ast2) {
+        final DetailAST rparen = ast1.findFirstToken(TokenTypes.RPAREN);
+        return rparen.getLineNo() == ast2.getLineNo();
     }
 
     /**
