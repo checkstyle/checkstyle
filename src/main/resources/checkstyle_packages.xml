@@ -22,6 +22,7 @@
       <package name="sizes"/>
       <package name="whitespace"/>
     </package>
+    <package name="filefilters"/>
     <package name="filters"/>
   </package>
 </checkstyle-packages>

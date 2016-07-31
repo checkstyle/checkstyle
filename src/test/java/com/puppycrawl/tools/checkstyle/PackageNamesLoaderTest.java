@@ -79,8 +79,8 @@ public class PackageNamesLoaderTest {
             "com.puppycrawl.tools.checkstyle.checks.regexp.",
             "com.puppycrawl.tools.checkstyle.checks.sizes.",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.",
+            "com.puppycrawl.tools.checkstyle.filefilters.",
             "com.puppycrawl.tools.checkstyle.filters.",
-
         };
 
         assertEquals("pkgNames.length.", checkstylePackages.length,

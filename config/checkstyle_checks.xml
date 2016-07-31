@@ -18,6 +18,9 @@
 
   <property name="fileExtensions" value="java, properties, xml, g, g4"/>
 
+  <!-- BeforeExecutionFileFilters -->
+  <module name="BeforeExecutionExclusionFileFilter" />
+
   <!-- Filters -->
   <module name="SeverityMatchFilter">
     <!-- report all violations except ignore -->

@@ -60,6 +60,7 @@
       <item name="Configuration" href="config.html">
         <item name="Property Types" href="property_types.html"/>
         <item name="Filters" href="config_filters.html"/>
+        <item name="File Filters" href="config_filefilters.html"/>
       </item>
 
       <item name="Running" href="running.html">
@@ -95,6 +96,7 @@
         <item name="Writing Checks" href="writingchecks.html"/>
         <item name="Writing Javadoc Checks" href="writingjavadocchecks.html"/>
         <item name="Writing Filters" href="writingfilters.html"/>
+        <item name="Writing File Filters" href="writingfilefilters.html"/>
         <item name="Writing Listeners" href="writinglisteners.html"/>
       </item>
       <item name="Contributing" href="contributing.html"/>

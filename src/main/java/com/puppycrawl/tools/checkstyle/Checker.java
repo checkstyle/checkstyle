@@ -37,6 +37,8 @@ import org.apache.commons.logging.LogFactory;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -71,6 +73,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
 
     /** Vector of fileset checks. */
     private final List<FileSetCheck> fileSetChecks = new ArrayList<>();
+
+    /** The audit event before execution file filters. */
+    private final BeforeExecutionFileFilterSet beforeExecutionFileFilters =
+            new BeforeExecutionFileFilterSet();
 
     /** The audit event filters. */
     private final FilterSet filters = new FilterSet();
@@ -137,6 +143,14 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     }
 
     /**
+     * Removes before execution file filter.
+     * @param filter before execution file filter to remove.
+     */
+    public void removeBeforeExecutionFileFilter(BeforeExecutionFileFilter filter) {
+        beforeExecutionFileFilters.removeBeforeExecutionFileFilter(filter);
+    }
+
+    /**
      * Removes filter.
      * @param filter filter to remove.
      */
@@ -147,6 +161,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     /** Cleans up the object. **/
     public void destroy() {
         listeners.clear();
+        beforeExecutionFileFilters.clear();
         filters.clear();
         if (cache != null) {
             try {
@@ -259,7 +274,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                 final String fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
                 if (cache != null && cache.isInCache(fileName, timestamp)
-                        || !CommonUtils.matchesFileExtension(file, fileExtensions)) {
+                        || !CommonUtils.matchesFileExtension(file, fileExtensions)
+                        || !acceptFileStarted(fileName)) {
                     continue;
                 }
                 fireFileStarted(fileName);
@@ -305,6 +321,18 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                     new String[] {ioe.getMessage()}, null, getClass(), null));
         }
         return fileMessages;
+    }
+
+    /**
+     * Check if all before execution file filters accept starting the file.
+     *
+     * @param fileName
+     *            the file to be audited
+     * @return {@code true} if the file is accepted.
+     */
+    private boolean acceptFileStarted(String fileName) {
+        final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
+        return beforeExecutionFileFilters.accept(stripped);
     }
 
     /**
@@ -408,6 +436,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
             fsc.init();
             addFileSetCheck(fsc);
         }
+        else if (child instanceof BeforeExecutionFileFilter) {
+            final BeforeExecutionFileFilter filter = (BeforeExecutionFileFilter) child;
+            addBeforeExecutionFileFilter(filter);
+        }
         else if (child instanceof Filter) {
             final Filter filter = (Filter) child;
             addFilter(filter);
@@ -430,6 +462,14 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
     public void addFileSetCheck(FileSetCheck fileSetCheck) {
         fileSetCheck.setMessageDispatcher(this);
         fileSetChecks.add(fileSetCheck);
+    }
+
+    /**
+     * Adds a before execution file filter to the end of the event chain.
+     * @param filter the additional filter
+     */
+    public void addBeforeExecutionFileFilter(BeforeExecutionFileFilter filter) {
+        beforeExecutionFileFilters.addBeforeExecutionFileFilter(filter);
     }
 
     /**

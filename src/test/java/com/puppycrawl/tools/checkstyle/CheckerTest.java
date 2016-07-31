@@ -65,6 +65,14 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
+    private static Method getAcceptFileStarted() throws NoSuchMethodException {
+        final Class<Checker> checkerClass = Checker.class;
+        final Method acceptFileStarted = checkerClass.getDeclaredMethod("acceptFileStarted",
+                String.class);
+        acceptFileStarted.setAccessible(true);
+        return acceptFileStarted;
+    }
+
     private static Method getFireAuditFinished() throws NoSuchMethodException {
         final Class<Checker> checkerClass = Checker.class;
         final Method fireAuditFinished = checkerClass.getDeclaredMethod("fireAuditFinished");
@@ -176,6 +184,33 @@ public class CheckerTest extends BaseCheckTestSupport {
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed listener", auditAdapter.wasCalled());
 
+    }
+
+    @Test
+    public void testAddBeforeExecutionFileFilter() throws Exception {
+        final Checker checker = new Checker();
+        final TestBeforeExecutionFileFilter filter = new TestBeforeExecutionFileFilter();
+
+        checker.addBeforeExecutionFileFilter(filter);
+
+        filter.resetFilter();
+        getAcceptFileStarted().invoke(checker, "Test.java");
+        assertTrue("Checker.acceptFileStarted() doesn't call filter", filter.wasCalled());
+    }
+
+    @Test
+    public void testRemoveBeforeExecutionFileFilter() throws Exception {
+        final Checker checker = new Checker();
+        final TestBeforeExecutionFileFilter filter = new TestBeforeExecutionFileFilter();
+        final TestBeforeExecutionFileFilter f2 = new TestBeforeExecutionFileFilter();
+        checker.addBeforeExecutionFileFilter(filter);
+        checker.addBeforeExecutionFileFilter(f2);
+        checker.removeBeforeExecutionFileFilter(filter);
+
+        f2.resetFilter();
+        getAcceptFileStarted().invoke(checker, "Test.java");
+        assertTrue("Checker.acceptFileStarted() doesn't call filter", f2.wasCalled());
+        assertFalse("Checker.acceptFileStarted() does call removed filter", filter.wasCalled());
     }
 
     @Test
