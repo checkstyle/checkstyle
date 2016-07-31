@@ -41,6 +41,7 @@ import org.w3c.dom.NodeList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
@@ -184,7 +185,7 @@ public final class CheckUtil {
      * Checks whether a class may be considered as the checkstyle module.
      * Checkstyle's modules are nonabstract classes which names end with 'Check',
      * do not contain the word 'Input' (are not input files for UTs),
-     * checkstyle's filters and SuppressWarningsHolder class.
+     * checkstyle's filters, checkstyle's file filters and SuppressWarningsHolder class.
      * @param loadedClass class to check.
      * @return true if the class may be considered as the checkstyle module.
      */
@@ -192,6 +193,7 @@ public final class CheckUtil {
         final String className = loadedClass.getSimpleName();
         return isCheckstyleNonAbstractCheck(loadedClass, className)
             || isFilterModule(loadedClass, className)
+            || isFileFilterModule(loadedClass, className)
             || "SuppressWarningsHolder".equals(className)
             || "FileContentsHolder".equals(className);
     }
@@ -208,6 +210,20 @@ public final class CheckUtil {
         return Filter.class.isAssignableFrom(loadedClass)
             && AutomaticBean.class.isAssignableFrom(loadedClass)
             && className.endsWith("Filter");
+    }
+
+    /**
+     * Checks whether a class may be considered as the checkstyle file filter.
+     * Checkstyle's file filters are classes which are subclasses of AutomaticBean,
+     * implement 'BeforeExecutionFileFilter' interface, and which names end with 'FileFilter'.
+     * @param loadedClass class to check.
+     * @param className class name to check.
+     * @return true if a class may be considered as the checkstyle file filter.
+     */
+    private static boolean isFileFilterModule(Class<?> loadedClass, String className) {
+        return BeforeExecutionFileFilter.class.isAssignableFrom(loadedClass)
+            && AutomaticBean.class.isAssignableFrom(loadedClass)
+            && className.endsWith("FileFilter");
     }
 
     /**

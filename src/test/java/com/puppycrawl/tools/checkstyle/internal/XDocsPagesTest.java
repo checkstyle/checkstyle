@@ -99,6 +99,7 @@ public class XDocsPagesTest {
             "name=\"SuppressionCommentFilter\"",
             "name=\"SuppressWithNearbyCommentFilter\"",
             "name=\"SuppressWarningsFilter\"",
+            "name=\"BeforeExecutionExclusionFileFilter\"",
             "name=\"RegexpHeader\"",
             "name=\"RegexpOnFilename\"",
             "name=\"RegexpSingleline\"",

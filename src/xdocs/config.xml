@@ -659,6 +659,20 @@
 
     </section>
 
+    <section name="Before Execution File Filters">
+
+      <p>
+        A Checker module has a Before Execution File Filter submodule to filter
+        files from being processed by the utility. A Before Execution File Filter
+        can accept or reject a file by its name. If all Before Execution File Filters
+        accept a file, then Checker will process and validate the file.
+        If any Before Execution File Filter rejects an file, then Checker skips over
+        the file and acts like it does not exist.
+        For more information, please visit the <a href="config_filefilters.xml">file filters page</a>.
+      </p>
+
+    </section>
+
     <section name="AuditListeners">
 
       <p>
