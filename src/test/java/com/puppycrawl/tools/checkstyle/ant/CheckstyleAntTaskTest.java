@@ -334,7 +334,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public final void testSetClassName() {
+    public void testSetClassName() {
         final String customName = "customName";
         final CheckstyleAntTask.Listener listener = new CheckstyleAntTask.Listener();
         listener.setClassname(customName);

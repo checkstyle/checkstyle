@@ -233,7 +233,7 @@ public class FinalClassCheck
      * @param classAst class
      * @return super class name or null if super class is not specified
      */
-    private String getSuperClassName(DetailAST classAst) {
+    private static String getSuperClassName(DetailAST classAst) {
         String superClassName = null;
         final DetailAST classExtend = classAst.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (classExtend != null) {

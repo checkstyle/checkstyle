@@ -242,7 +242,7 @@ final class PropertyCacheFile {
      * @param resourceLocations locations of external configuration resources.
      * @return a set of {@link ExternalResource}.
      */
-    private Set<ExternalResource> loadExternalResources(Set<String> resourceLocations) {
+    private static Set<ExternalResource> loadExternalResources(Set<String> resourceLocations) {
         final Set<ExternalResource> resources = Sets.newHashSet();
         for (String location : resourceLocations) {
             String contentHashSum = null;
@@ -270,7 +270,7 @@ final class PropertyCacheFile {
      * @return array of bytes which respresents the content of external resource in binary form.
      * @throws CheckstyleException if error while loading occurs.
      */
-    private byte[] loadExternalResource(String location) throws CheckstyleException {
+    private static byte[] loadExternalResource(String location) throws CheckstyleException {
         byte[] content = null;
         final URI uri = CommonUtils.getUriByFilename(location);
         InputStream resourceReader = null;

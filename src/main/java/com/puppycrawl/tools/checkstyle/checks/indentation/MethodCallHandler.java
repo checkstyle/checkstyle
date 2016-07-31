@@ -93,7 +93,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * @param ast2 Ast2
      * @return True if ast2 begins on the same level that ast1 ends
      */
-    private boolean areMethodsChained(DetailAST ast1, DetailAST ast2) {
+    private static boolean areMethodsChained(DetailAST ast1, DetailAST ast2) {
         final DetailAST rparen = ast1.findFirstToken(TokenTypes.RPAREN);
         return rparen.getLineNo() == ast2.getLineNo();
     }

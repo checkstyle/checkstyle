@@ -366,7 +366,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param ast token to be checked
      * @return true if should be updated, else false
      */
-    private boolean shouldUpdateUninitializedVariables(DetailAST ast) {
+    private static boolean shouldUpdateUninitializedVariables(DetailAST ast) {
         return ast.getType() != TokenTypes.LITERAL_TRY
                 && ast.getType() != TokenTypes.LITERAL_CATCH
                 && ast.getType() != TokenTypes.LITERAL_FINALLY

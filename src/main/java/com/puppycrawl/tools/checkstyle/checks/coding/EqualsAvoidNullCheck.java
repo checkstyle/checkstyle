@@ -337,7 +337,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @param expr the argument expression
      * @return - true if any child matches the set of tokens, false if not
      */
-    private boolean containsAllSafeTokens(final DetailAST expr) {
+    private static boolean containsAllSafeTokens(final DetailAST expr) {
         DetailAST arg = expr.getFirstChild();
         arg = skipVariableAssign(arg);
 

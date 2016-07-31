@@ -1212,7 +1212,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if the set contains a definition with the
          *     same name and number of parameters.
          */
-        private boolean containsMethodDef(Set<DetailAST> set, DetailAST ident) {
+        private static boolean containsMethodDef(Set<DetailAST> set, DetailAST ident) {
             boolean result = false;
             for (DetailAST ast: set) {
                 if (isSimilarSignature(ident, ast)) {
@@ -1230,7 +1230,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if a method definition has the same name and number of parameters
          *     as the method call.
          */
-        private boolean isSimilarSignature(DetailAST ident, DetailAST ast) {
+        private static boolean isSimilarSignature(DetailAST ident, DetailAST ast) {
             boolean result = false;
             final DetailAST elistToken = ident.getParent().findFirstToken(TokenTypes.ELIST);
             if (elistToken != null && ident.getText().equals(ast.getText())) {

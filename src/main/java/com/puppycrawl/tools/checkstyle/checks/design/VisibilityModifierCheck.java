@@ -687,7 +687,7 @@ public class VisibilityModifierCheck
      * @param isCanonicalName whether type name is in canonical form.
      * @return generic type arguments token.
      */
-    private DetailAST getGenericTypeArgs(DetailAST type, boolean isCanonicalName) {
+    private static DetailAST getGenericTypeArgs(DetailAST type, boolean isCanonicalName) {
         final DetailAST typeArgs;
         if (isCanonicalName) {
             // if type class name is in canonical form, abstract tree has specific structure
@@ -743,7 +743,7 @@ public class VisibilityModifierCheck
      * @param variableDef field in consideration.
      * @return true if current field is final.
      */
-    private boolean isFinalField(DetailAST variableDef) {
+    private static boolean isFinalField(DetailAST variableDef) {
         final DetailAST modifiers = variableDef.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.branchContains(TokenTypes.FINAL);
     }

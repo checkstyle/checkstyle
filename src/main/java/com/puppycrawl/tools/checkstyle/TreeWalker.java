@@ -481,7 +481,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @param checks a set of checks.
      * @return a set of external configuration resource locations which are used by the checks set.
      */
-    private Set<String> getExternalResourceLocations(Set<AbstractCheck> checks) {
+    private static Set<String> getExternalResourceLocations(Set<AbstractCheck> checks) {
         final Set<String> externalConfigurationResources = Sets.newHashSet();
         for (AbstractCheck check : checks) {
             if (check instanceof ExternalResourceHolder) {

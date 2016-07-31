@@ -238,7 +238,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param previousSibling the statement to check.
      * @return true if the statement can have or always have curly brackets.
      */
-    private boolean isStatementWithPossibleCurlies(DetailAST previousSibling) {
+    private static boolean isStatementWithPossibleCurlies(DetailAST previousSibling) {
         return previousSibling.getType() == TokenTypes.LITERAL_IF
             || previousSibling.getType() == TokenTypes.LITERAL_TRY
             || previousSibling.getType() == TokenTypes.LITERAL_FOR
@@ -253,7 +253,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param previousSibling the statement to check.
      * @return true if the statement is a kind of definition.
      */
-    private boolean isDefinition(DetailAST previousSibling) {
+    private static boolean isDefinition(DetailAST previousSibling) {
         return previousSibling.getType() == TokenTypes.METHOD_DEF
             || previousSibling.getType() == TokenTypes.CLASS_DEF
             || previousSibling.getType() == TokenTypes.INTERFACE_DEF
@@ -779,7 +779,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param comment the comment to process.
      * @return a message key.
      */
-    private String getMessageKey(DetailAST comment) {
+    private static String getMessageKey(DetailAST comment) {
         final String msgKey;
         if (comment.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
             msgKey = MSG_KEY_SINGLE;

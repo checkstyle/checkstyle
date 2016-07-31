@@ -234,7 +234,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * @param ast ast token.
      * @return true if current loop statement does not have body.
      */
-    private boolean isEmptyLoopBody(DetailAST ast) {
+    private static boolean isEmptyLoopBody(DetailAST ast) {
         boolean noBodyLoop = false;
 
         if (ast.getType() == TokenTypes.LITERAL_FOR
