@@ -96,7 +96,7 @@ public final class Main {
     /** Name for the option '-j'. */
     private static final String OPTION_J_NAME = "j";
 
-    /** NAme for the option '--javadocTree'. */
+    /** Name for the option '--javadocTree'. */
     private static final String OPTION_JAVADOC_TREE_NAME = "javadocTree";
 
     /** Name for the option '-J'. */
