@@ -470,7 +470,7 @@
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>7.0</version>
+            <version>7.1</version>
           </dependency>
         </dependencies>
         <!-- Specifying configuration here will take effect on the execution of "mvn checkstyle:checkstyle",
