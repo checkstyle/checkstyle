@@ -93,7 +93,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testImproperToken() throws Exception {
+    public void testImproperToken() {
         final FinalClassCheck finalClassCheck = new FinalClassCheck();
         final DetailAST badAst = new DetailAST();
         final int unsupportedTokenByCheck = TokenTypes.EOF;

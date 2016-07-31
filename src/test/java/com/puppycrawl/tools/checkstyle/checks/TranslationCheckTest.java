@@ -394,7 +394,7 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWrongUserSpecifiedLanguageCodes() throws Exception {
+    public void testWrongUserSpecifiedLanguageCodes() {
         final TranslationCheck check = new TranslationCheck();
         try {
             check.setRequiredTranslations("11");
