@@ -170,14 +170,10 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "471: " + getCheckMessage(MSG_KEY, "l1", 3, 1),
             "471: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
             "479: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
-            "491: Distance between variable 'myOption' declaration and its first usage is 6,"
-                + " but allowed 1.",
-            "505: Distance between variable 'files' declaration and its first usage is 2,"
-                + " but allowed 1.",
-            "540: Distance between variable 'id' declaration and its first usage is 2,"
-                + " but allowed 1.",
-            "542: Distance between variable 'parentId' declaration and its first usage is 4,"
-                + " but allowed 1.",
+            "491: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
+            "505: " + getCheckMessage(MSG_KEY, "files", 2, 1),
+            "540: " + getCheckMessage(MSG_KEY, "id", 2, 1),
+            "542: " + getCheckMessage(MSG_KEY, "parentId", 4, 1),
         };
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }

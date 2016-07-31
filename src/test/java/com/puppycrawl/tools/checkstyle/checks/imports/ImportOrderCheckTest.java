@@ -194,7 +194,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
             createCheckConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("option", "under");
         final String[] expected = {
-            "5: Wrong order for 'java.awt.Dialog' import.",
+            "5: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
             "11: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
             "14: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
         };
