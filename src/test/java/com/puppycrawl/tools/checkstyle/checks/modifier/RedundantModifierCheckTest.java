@@ -210,4 +210,17 @@ public class RedundantModifierCheckTest
         };
         verify(checkConfig, getPath("InputFinalInTryWithResource.java"), expected);
     }
+
+    @Test
+    public void testFinalInAbstractMethods() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "4:33: " + getCheckMessage(MSG_KEY, "final"),
+            "8:49: " + getCheckMessage(MSG_KEY, "final"),
+            "11:17: " + getCheckMessage(MSG_KEY, "final"),
+            "16:24: " + getCheckMessage(MSG_KEY, "final"),
+            "25:33: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verify(checkConfig, getPath("InputFinalInAbstractMethods.java"), expected);
+    }
 }
