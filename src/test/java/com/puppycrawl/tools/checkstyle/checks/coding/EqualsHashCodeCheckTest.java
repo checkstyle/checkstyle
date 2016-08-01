@@ -19,7 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY_EQUALS;
+import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY_HASHCODE;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,11 +45,21 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
-            "57:9: " + getCheckMessage(MSG_KEY),
-            "94:13: " + getCheckMessage(MSG_KEY),
-            "122:9: " + getCheckMessage(MSG_KEY),
+            "57:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "94:13: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "122:9: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testNoEquals() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EqualsHashCodeCheck.class);
+        final String[] expected = {
+            "4:5: " + getCheckMessage(MSG_KEY_EQUALS),
+        };
+        verify(checkConfig, getPath("InputEqualsHashCodeNoEquals.java"), expected);
     }
 
     @Test

@@ -680,6 +680,10 @@ String nullString = null;
       <subsection name="Error Messages">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noEquals%22">
+            equals.noEquals</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noHashCode%22">
             equals.noHashCode</a>
           </li>

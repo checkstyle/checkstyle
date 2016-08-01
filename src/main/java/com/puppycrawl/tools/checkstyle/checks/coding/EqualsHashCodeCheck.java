@@ -20,12 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Map;
-import java.util.Set;
 
 import antlr.collections.AST;
 
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -57,13 +55,19 @@ public class EqualsHashCodeCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_KEY = "equals.noHashCode";
+    public static final String MSG_KEY_HASHCODE = "equals.noHashCode";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_EQUALS = "equals.noEquals";
 
     /** Maps OBJ_BLOCK to the method definition of equals(). */
-    private final Map<DetailAST, DetailAST> objBlockEquals = Maps.newHashMap();
+    private final Map<DetailAST, DetailAST> objBlockWithEquals = Maps.newHashMap();
 
-    /** The set of OBJ_BLOCKs that contain a definition of hashCode(). */
-    private final Set<DetailAST> objBlockWithHashCode = Sets.newHashSet();
+    /** Maps OBJ_BLOCKs to the method definition of hashCode(). */
+    private final Map<DetailAST, DetailAST> objBlockWithHashCode = Maps.newHashMap();
 
     @Override
     public int[] getDefaultTokens() {
@@ -82,7 +86,7 @@ public class EqualsHashCodeCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        objBlockEquals.clear();
+        objBlockWithEquals.clear();
         objBlockWithHashCode.clear();
     }
 
@@ -99,13 +103,13 @@ public class EqualsHashCodeCheck
                 && parameters.getChildCount() == 1
                 && isObjectParam(parameters.getFirstChild())
             ) {
-            objBlockEquals.put(ast.getParent(), ast);
+            objBlockWithEquals.put(ast.getParent(), ast);
         }
         else if (type.getFirstChild().getType() == TokenTypes.LITERAL_INT
                 && "hashCode".equals(methodName.getText())
                 && modifiers.branchContains(TokenTypes.LITERAL_PUBLIC)
                 && parameters.getFirstChild() == null) {
-            objBlockWithHashCode.add(ast.getParent());
+            objBlockWithHashCode.put(ast.getParent(), ast);
         }
     }
 
@@ -134,14 +138,20 @@ public class EqualsHashCodeCheck
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        for (Map.Entry<DetailAST, DetailAST> detailASTDetailASTEntry : objBlockEquals.entrySet()) {
-            if (!objBlockWithHashCode.contains(detailASTDetailASTEntry.getKey())) {
+        for (Map.Entry<DetailAST, DetailAST> detailASTDetailASTEntry : objBlockWithEquals
+                .entrySet()) {
+            if (objBlockWithHashCode.remove(detailASTDetailASTEntry.getKey()) == null) {
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
-                log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY);
+                log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_HASHCODE);
             }
         }
+        for (Map.Entry<DetailAST, DetailAST> detailASTDetailASTEntry : objBlockWithHashCode
+                .entrySet()) {
+            final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
+            log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_EQUALS);
+        }
 
-        objBlockEquals.clear();
+        objBlockWithEquals.clear();
         objBlockWithHashCode.clear();
     }
 }
