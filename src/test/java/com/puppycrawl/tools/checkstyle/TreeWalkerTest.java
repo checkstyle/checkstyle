@@ -97,7 +97,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             final String errorMsg = ex.getMessage();
             final Pattern expected = Pattern.compile(Pattern.quote("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - Token ")
-                    + "\"(VARIABLE_DEF|ENUM_DEF|CLASS_DEF|METHOD_DEF|IMPORT)\""
+                    + "\"(ENUM_DEF|CLASS_DEF|METHOD_DEF|IMPORT)\""
                     + Pattern.quote(" was not found in Acceptable tokens list in check"
                     + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
 
