@@ -31,12 +31,14 @@ import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Predicate;
@@ -156,10 +158,13 @@ public class BaseCheckTestSupport {
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
+            final List<String> actuals = lnr.lines().limit(expected.length)
+                    .sorted().collect(Collectors.toList());
+            Arrays.sort(expected);
+
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
-                final String actual = lnr.readLine();
-                assertEquals("error message " + i, expectedResult, actual);
+                assertEquals("error message " + i, expectedResult, actuals.get(i));
             }
 
             assertEquals("unexpected output: " + lnr.readLine(),
