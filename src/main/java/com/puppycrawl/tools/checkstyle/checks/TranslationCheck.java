@@ -24,7 +24,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -196,7 +195,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param translationCodes a comma separated list of language codes.
      */
     public void setRequiredTranslations(String... translationCodes) {
-        requiredTranslations = Sets.newLinkedHashSet(Arrays.asList(translationCodes));
+        requiredTranslations = Sets.newHashSet(translationCodes);
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
