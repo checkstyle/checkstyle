@@ -158,7 +158,8 @@ public class BaseCheckTestSupport {
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
-            final List<String> actuals = lnr.lines().sorted().collect(Collectors.toList());
+            final List<String> actuals = lnr.lines().limit(expected.length)
+                    .sorted().collect(Collectors.toList());
             Arrays.sort(expected);
 
             for (int i = 0; i < expected.length; i++) {
