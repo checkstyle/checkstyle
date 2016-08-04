@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
@@ -54,8 +55,8 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EmptyCatchBlockCheck.class);
         final String[] expected = {
-            "35: Empty catch block.",
-            "42: Empty catch block.",
+            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "42: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         verify(checkConfig, getPath("InputEmptyCatchBlock.java"), expected);
     }
@@ -67,14 +68,14 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
         checkConfig.addAttribute("commentFormat", "This is expected");
         final String[] expected = {
-            "35: Empty catch block.",
-            "63: Empty catch block.",
-            "97: Empty catch block.",
-            "186: Empty catch block.",
-            "195: Empty catch block.",
-            "214: Empty catch block.",
-            "230: Empty catch block.",
-            "239: Empty catch block.",
+            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "63: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "97: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "186: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "195: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "214: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "230: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "239: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         verify(checkConfig, getPath("InputEmptyCatchBlock.java"), expected);
     }
