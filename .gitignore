@@ -31,3 +31,7 @@ replay_pid*
 
 # Apple MAC OSX hidden file
 .DS_Store
+
+# NonDex files
+.nondex
+.nondex/*
