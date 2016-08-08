@@ -45,9 +45,7 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
-            "57:9: " + getCheckMessage(MSG_KEY_HASHCODE),
             "94:13: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "122:9: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
         verify(checkConfig, getPath("InputSemantic.java"), expected);
     }
@@ -68,6 +66,23 @@ public class EqualsHashCodeCheckTest
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEqualsHashCode.java"), expected);
+    }
+
+    @Test
+    public void testEqualsParameter() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(EqualsHashCodeCheck.class);
+        final String[] expected = {
+            "10:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "18:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "48:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "53:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "65:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "68:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "75:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "82:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+        };
+        verify(checkConfig, getPath("InputEqualsParameter.java"), expected);
     }
 
     @Test

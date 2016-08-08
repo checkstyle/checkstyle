@@ -17,6 +17,10 @@ public class InputEqualsHashCode {
         return false;
     }
     
+    private boolean equals(String s) {
+        return false;
+    }
+    
     protected int notHashCode() {
         return 1;
     }
