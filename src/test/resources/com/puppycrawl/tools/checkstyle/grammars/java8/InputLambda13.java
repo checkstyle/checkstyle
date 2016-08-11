@@ -1,9 +1,14 @@
 //Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
+
+import java.util.logging.Logger;
+
 public class InputLambda13 {
 
+	private static final Logger LOG = Logger.getLogger(InputLambda13.class.getName());
+
 	public static void testVoidLambda(TestOfVoidLambdas test) {
-		System.out.println("Method called");
+		LOG.info("Method called");
 		test.doSmth("fef", 5);
 	}
 	
@@ -11,7 +16,7 @@ public class InputLambda13 {
 	public static void main(String[] args) {
 		
 		testVoidLambda((String s1, Integer i2) -> {
-			System.out.println(s1);
+			LOG.info(s1);
 		});
 	}
 

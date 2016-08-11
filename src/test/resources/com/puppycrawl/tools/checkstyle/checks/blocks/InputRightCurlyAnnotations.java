@@ -213,7 +213,7 @@ class InputRightCurlyAnnotations
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } System.err. //violation
-            println("Xe-xe");
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER. //violation
+            equals("Xe-xe");
     }
 }

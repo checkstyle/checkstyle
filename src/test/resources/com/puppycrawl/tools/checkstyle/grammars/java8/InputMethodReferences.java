@@ -12,7 +12,7 @@ public class InputMethodReferences<T> extends ParentClass
 		
 		List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
 		
-		numbers.forEach(System.out::println);
+		numbers.forEach(String.CASE_INSENSITIVE_ORDER::equals);
 		InputMethodReferences tl = new InputMethodReferences();
 
 		String roster = new String();

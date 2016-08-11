@@ -4,8 +4,8 @@ import static java.lang.String.valueOf;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -312,9 +312,9 @@ public class InputRegressionJavaClass1 {
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
         } catch (Exception e) {
         } finally {}
-        try (BufferedReader br = new BufferedReader(new FileReader(""))) {}
-        try (BufferedReader br1 = new BufferedReader(new FileReader(""));
-                BufferedReader br2 = new BufferedReader(new FileReader(""));) {}
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"))) {}
+        try (BufferedReader br1 = new BufferedReader(new InputStreamReader(null, "utf-8"));
+                BufferedReader br2 = new BufferedReader(new InputStreamReader(null, "utf-8"));) {}
         
         // access
         test4 = InputRegressionJavaClass1.class;

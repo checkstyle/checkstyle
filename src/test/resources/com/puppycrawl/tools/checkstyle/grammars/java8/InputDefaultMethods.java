@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.grammars.java8;
 public interface InputDefaultMethods {
 	
 	default public void doSomething(){
-		System.out.println("Something done.");
+		String.CASE_INSENSITIVE_ORDER.equals("Something done.");
 	}
 	
 	public void doOneMoreThing();

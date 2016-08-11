@@ -16,7 +16,7 @@ public class InputRightCurlyDoWhile {
     public void foo2() {
         int i = 1;
         while (i < 5) {
-            System.out.print(i + " ");
+            String.CASE_INSENSITIVE_ORDER.equals(i + " ");
             i++;
         }
     }
@@ -25,36 +25,36 @@ public class InputRightCurlyDoWhile {
         int i = 1;
         do {
             i++;
-            System.out.print(i + " ");
+            String.CASE_INSENSITIVE_ORDER.equals(i + " ");
         } while (i < 5);
     }
 
     public void foo4() {
         int prog, user;
         prog = (int)(Math.random() * 10) + 1;
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in, "utf-8");
         if( input.hasNextInt() ) {
             do {
                 user = input.nextInt();
                 if(user == prog) {
-                    System.out.println("Good!");
+                    String.CASE_INSENSITIVE_ORDER.equals("Good!");
                 } else {
                     if (user > 0 && user <= 10) {
-                        System.out.print("Bad! ");
+                        String.CASE_INSENSITIVE_ORDER.equals("Bad! ");
                         if( prog < user ) {
-                            System.out.println("My number is less than yours.");
+                            String.CASE_INSENSITIVE_ORDER.equals("My number is less than yours.");
                         } else {
-                            System.out.println("My number is greater than yours.");
+                            String.CASE_INSENSITIVE_ORDER.equals("My number is greater than yours.");
                         }
                     } else {
-                        System.out.println("Error!");
+                        String.CASE_INSENSITIVE_ORDER.equals("Error!");
                     }
                 }
             } while( user != prog );
         } else {
-            System.out.println("Error!");
+            String.CASE_INSENSITIVE_ORDER.equals("Error!");
         }
-        System.out.println("Goodbye!");
+        String.CASE_INSENSITIVE_ORDER.equals("Goodbye!");
     }
 
     public void foo5() {

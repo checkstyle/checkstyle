@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 
 public final class InputRequireThisStatic {
@@ -14,7 +14,7 @@ public final class InputRequireThisStatic {
     public BufferedReader instanceField2;
     
     static {
-        try (BufferedReader instanceField2 = new BufferedReader(new FileReader(""))) {
+        try (BufferedReader instanceField2 = new BufferedReader(new InputStreamReader(null, "utf-8"))) {
             instanceField2.readLine();
         }
         catch (FileNotFoundException e) {
@@ -42,7 +42,7 @@ public final class InputRequireThisStatic {
     }
 
     static void test2() {
-        try (BufferedReader instanceField2 = new BufferedReader(new FileReader(""))) {
+        try (BufferedReader instanceField2 = new BufferedReader(new InputStreamReader(null, "utf-8"))) {
             instanceField2.readLine();
         }
         catch (IOException e) {

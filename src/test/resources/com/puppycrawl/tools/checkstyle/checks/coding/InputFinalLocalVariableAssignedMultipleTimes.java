@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashMap;
-import java.util.SortedMap;
+import java.util.Locale;
 
 import com.google.common.collect.Maps;
 
@@ -217,7 +217,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                     isSyntheticMethod = m.equals("");
                     className = this.getClass().getName();
                     kind = 2;
-                    if ("<init>".equals(m.toLowerCase())) {
+                    if ("<init>".equals(m.toLowerCase(Locale.getDefault()))) {
                         final int i = className.lastIndexOf('$');
                         if (i + 1 < className.length() && Character.isDigit(className.charAt(i + 1))) {
                             isParameterToInitMethodofAnonymousInnerClass = true;
@@ -228,7 +228,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                     throw new IllegalStateException("impossible");
                 }
 
-                if (!m.equals("") && !"<init>".equals(m.toLowerCase())) {
+                if (!m.equals("") && !"<init>".equals(m.toLowerCase(Locale.getDefault()))) {
                     final String c = "className";
                     // get inherited annotation
                     String inheritedAnnotations = new String();
@@ -246,7 +246,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                         }
                     }
                     if (n == null) {
-                        System.out.println("# of inherited annotations : " + inheritedAnnotations.length());
+                        String.CASE_INSENSITIVE_ORDER.equals("# of inherited annotations : " + inheritedAnnotations.length());
                     }
                     if (!inheritedAnnotations.isEmpty()) {
                         if (inheritedAnnotations.length() == 1) {
@@ -269,7 +269,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                         return null;
                     }
                     if (inheritedAnnotations.equals("")) {
-                        System.out.println("looking for default annotations: " + " defines " + m);
+                        String.CASE_INSENSITIVE_ORDER.equals("looking for default annotations: " + " defines " + m);
                     }
                 } // if not static
             } // associated with method
@@ -312,7 +312,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
             // look for default annotation
             n = new String(className);
             if (n == null) {
-                System.out.println("Default annotation for " + kind + " is " + n);
+                String.CASE_INSENSITIVE_ORDER.equals("Default annotation for " + kind + " is " + n);
             }
             if (n != null) {
                 return n;
@@ -320,7 +320,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
 
             n = new String(className);
             if (n == null) {
-                System.out.println("Default annotation for any is " + n);
+                String.CASE_INSENSITIVE_ORDER.equals("Default annotation for any is " + n);
             }
             if (n != null) {
                 return n;
@@ -330,7 +330,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
             className = className.substring(0, p + 1) + "package-info";
             n = new String(className);
             if (n == null) {
-                System.out.println("Default annotation for " + kind + " is " + n);
+                String.CASE_INSENSITIVE_ORDER.equals("Default annotation for " + kind + " is " + n);
             }
             if (n != null) {
                 return n;
@@ -338,7 +338,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
 
             n = new String(className);
             if (n == null) {
-                System.out.println("Default annotation for any is " + n);
+                String.CASE_INSENSITIVE_ORDER.equals("Default annotation for any is " + n);
             }
             if (n != null) {
                 return n;
@@ -347,7 +347,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
             return n;
         }
         catch (Exception e) {
-            System.out.println(e);
+            String.CASE_INSENSITIVE_ORDER.equals(e);
             ;
             return null;
         }
@@ -386,7 +386,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
 
     // Taken from Guava
     public static int foo13(int p, int q, int mode) {
-        System.out.println(mode);
+        String.CASE_INSENSITIVE_ORDER.equals(mode);
         ;
         if (q == 0) {
             throw new ArithmeticException("/ by zero"); // for GWT
@@ -409,7 +409,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
         boolean increment; // violation
         switch (mode) {
             case 1:
-                System.out.println(rem == 0);
+                String.CASE_INSENSITIVE_ORDER.equals(rem == 0);
                 // fall through
             case 2:
                 increment = false;

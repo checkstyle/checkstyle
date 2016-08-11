@@ -19,7 +19,7 @@ public class InputRequireThis {
             this.method1();
         }
         catch (RuntimeException e) {
-            e.printStackTrace();
+            e.toString();
         }
         this.i--;
 

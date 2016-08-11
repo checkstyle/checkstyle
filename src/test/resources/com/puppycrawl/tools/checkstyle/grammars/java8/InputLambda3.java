@@ -1,16 +1,21 @@
 //Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
+
+import java.util.logging.Logger;
+
 public class InputLambda3 {
-	
+
+	private static final Logger LOG = Logger.getLogger(InputLambda3.class.getName());
+
 	public static void testVoidLambda(TestOfVoidLambdas test) {
-		System.out.println("Method called");
+		LOG.info("Method called");
 		test.doSmth();
 	}
 	
 	
 	public static void main(String[] args) {
 		testVoidLambda(() -> {
-			System.out.println("Method in interface called");
+			LOG.info("Method in interface called");
 		});
 	}
 

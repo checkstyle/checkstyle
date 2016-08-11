@@ -57,7 +57,7 @@ public class InputFallThrough
                 } while(true);
             case 16:
                 for (int j1 = 0; j1 < 10; j1++) {
-                    System.err.println("something");
+                    String.valueOf("something");
                     return;
                 }
             case 17:
@@ -190,7 +190,7 @@ public class InputFallThrough
               } while(true);
           case 16:
               for (int j1 = 0; j1 < 10; j1++) {
-                  System.err.println("something");
+                  String.valueOf("something");
                   return;
               }
           case 17:
