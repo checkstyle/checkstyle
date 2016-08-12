@@ -11,7 +11,7 @@ import java.util.stream.IntStream; //indent:0 exp:0
 import java.util.stream.Stream; //indent:0 exp:0
 
 public class InputLambda1 { //indent:0 exp:0
-
+  private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(InputLambda1.class.getName()); //indent:2 exp:2
   interface Printer //indent:2 exp:2
   { //indent:2 exp:2
     void print(String s); //indent:4 exp:4
@@ -36,10 +36,10 @@ public class InputLambda1 { //indent:0 exp:0
 
     Runnable r4 = () -> x.run(); //indent:4 exp:4
 
-    Printer r5 = s -> System.out.print(s); //indent:4 exp:4
+    Printer r5 = s -> LOG.info(s); //indent:4 exp:4
 
-    Printer r6 = s -> System.out //indent:4 exp:4
-        .print(s); //indent:8 exp:8
+    Printer r6 = s -> String.CASE_INSENSITIVE_ORDER //indent:4 exp:4
+        .equals(s); //indent:8 exp:8
 
     Runnable r7 = () //indent:4 exp:4
         -> //indent:8 exp:8
@@ -80,11 +80,11 @@ public class InputLambda1 { //indent:0 exp:0
         () -> x.run(); //indent:8 exp:8
 
     Printer r51 = //indent:4 exp:4
-        s -> System.out.print(s); //indent:8 exp:8
+        s -> LOG.info(s); //indent:8 exp:8
 
     Printer r61 = //indent:4 exp:4
-        s -> System.out //indent:8 exp:8
-            .print(s); //indent:12 exp:12
+        s -> String.CASE_INSENSITIVE_ORDER //indent:8 exp:8
+            .equals(s); //indent:12 exp:12
 
     Object o1 = new Thread( //indent:4 exp:4
         () -> { //indent:8 exp:8
@@ -97,16 +97,16 @@ public class InputLambda1 { //indent:0 exp:0
 
     SomeInterface i1 = (LongTypeName //indent:4 exp:4
         arg) -> { //indent:8 exp:8
-      System.out.print(arg.toString()); //indent:6 exp:6
+      LOG.info(arg.toString()); //indent:6 exp:6
     }; //indent:4 exp:4
 
     Printer[] manyRunnable = new Printer[]{ //indent:4 exp:4
-        s -> System.out.print(s), //indent:8 exp:6,8
-        s -> { System.out.print(s); }, //indent:8 exp:6,8
-        s -> System.out //indent:8 exp:6,8
-            .print(s), //indent:12 exp:12
+        s -> LOG.info(s), //indent:8 exp:6,8
+        s -> { LOG.info(s); }, //indent:8 exp:6,8
+        s -> LOG //indent:8 exp:6,8
+            .info(s), //indent:12 exp:12
         s -> { //indent:8 exp:6,8
-          System.out.print(s); //indent:10 exp:10
+          LOG.info(s); //indent:10 exp:10
         }, //indent:8 exp:8
     }; //indent:4 exp:4
   } //indent:2 exp:2
@@ -143,11 +143,11 @@ public class InputLambda1 { //indent:0 exp:0
   public void f() { //indent:2 exp:2
     Stream.of("d2", "a2", "b1", "b3", "c") //indent:4 exp:4
         .map(s -> { //indent:8 exp:8
-          System.out.println("map: " + s); //indent:10 exp:10
-          return s.toUpperCase(); //indent:10 exp:10
+          LOG.info("map: " + s); //indent:10 exp:10
+          return s.toUpperCase(java.util.Locale.getDefault()); //indent:10 exp:10
         }) //indent:8 exp:8
         .anyMatch(s -> { //indent:8 exp:8
-          System.out.println("anyMatch: " + s); //indent:10 exp:10
+          LOG.info("anyMatch: " + s); //indent:10 exp:10
           return s.startsWith("A"); //indent:10 exp:10
         }); //indent:8 exp:8
 
@@ -158,12 +158,12 @@ public class InputLambda1 { //indent:0 exp:0
         .collect(Collectors.groupingBy(p -> p.age)); //indent:8 exp:8
 
     personsByAge //indent:4 exp:4
-        .forEach((age, p) -> System.out.format("age %s: %s\n", age, p)); //indent:8 exp:8
+        .forEach((age, p) -> LOG.info("age %s: %s\n")); //indent:8 exp:8
 
     Collector<Person, StringJoiner, String> personNameCollector = //indent:4 exp:4
         Collector.of( //indent:8 exp:8
             () -> new StringJoiner(" | "), //indent:12 exp:12
-            (j, p) -> j.add(p.name.toUpperCase()), //indent:12 exp:12
+            (j, p) -> j.add(p.name.toUpperCase(java.util.Locale.getDefault())), //indent:12 exp:12
             (j1, j2) -> j1.merge(j2), //indent:12 exp:12
             StringJoiner::toString); //indent:12 exp:12
 
@@ -176,15 +176,15 @@ public class InputLambda1 { //indent:0 exp:0
 
     Stream.of("d2", "a2", "b1", "b3", "c") //indent:4 exp:4
         .filter(s -> { //indent:8 exp:8
-         System.out.println("filter: " + s); //indent:9 exp:10 warn
+         LOG.info(("filter: " + s)); //indent:9 exp:10 warn
            return s.startsWith("a"); //indent:11 exp:10 warn
         }) //indent:8 exp:8
         .map(s -> { //indent:8 exp:8
-          System.out.println("map: " + s); //indent:10 exp:10
-          return s.toUpperCase(); //indent:10 exp:10
+          LOG.info("map: " + s); //indent:10 exp:10
+          return s.toUpperCase(java.util.Locale.getDefault()); //indent:10 exp:10
        }) //indent:7 exp:8 warn
         .forEach(s -> //indent:8 exp:8
-            System.out.println("forEach: " + s)); //indent:12 exp:12
+            LOG.info("forEach: " + s)); //indent:12 exp:12
 
     IntStream.range(1, 4) //indent:4 exp:4
         .mapToObj(i -> new Foo("Foo" + i)) //indent:8 exp:8
@@ -192,7 +192,7 @@ public class InputLambda1 { //indent:0 exp:0
             .mapToObj(i -> new Bar("Bar" + i + " <- " + f.name)) //indent:12 exp:12
             .forEach(f.bars::add)) //indent:12 exp:12
         .flatMap(f -> f.bars.stream()) //indent:8 exp:8
-        .forEach(b -> System.out.println(b.name)); //indent:8 exp:8
+        .forEach(b -> LOG.info(b.name)); //indent:8 exp:8
 
     IntStream.range(1, 4) //indent:4 exp:4
         .mapToObj(i -> new Foo("Foo" + i)) //indent:8 exp:8
@@ -200,7 +200,7 @@ public class InputLambda1 { //indent:0 exp:0
             .mapToObj(i -> new Bar("Bar" + i + " <- " + f.name)) //indent:12 exp:12
             .forEach(f.bars::add)) //indent:12 exp:12
         .flatMap(f -> f.bars.stream()) //indent:8 exp:8
-        .forEach(b -> System.out.println(b.name)); //indent:8 exp:8
+        .forEach(b -> LOG.info(b.name)); //indent:8 exp:8
   } //indent:2 exp:2
 
   Runnable r2r(Runnable x) { //indent:2 exp:2

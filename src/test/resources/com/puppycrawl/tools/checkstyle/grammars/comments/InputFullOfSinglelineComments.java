@@ -49,11 +49,11 @@ i//47
 +//48
 ""//49
 ;//50
-System//51
+String//51
 .//52
-out//53
+CASE_INSENSITIVE_ORDER//53
 .//54
-println//55
+equals//55
 (//56
 line//57
 )//58

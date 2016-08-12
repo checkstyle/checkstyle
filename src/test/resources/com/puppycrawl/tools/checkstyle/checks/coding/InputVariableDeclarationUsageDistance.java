@@ -408,7 +408,7 @@ public class InputVariableDeclarationUsageDistance {
     {
         int mm = Integer.parseInt("2");
         long timeNow = 0;
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
         cal.setTimeInMillis(timeNow);
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
@@ -417,7 +417,7 @@ public class InputVariableDeclarationUsageDistance {
     }
     
     public void testIssue32_3(MyObject[] objects) {
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
         for(int i=0; i<objects.length; i++) {
             objects[i].setEnabled(true);
             objects[i].setColor(0x121212);

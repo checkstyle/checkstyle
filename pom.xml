@@ -981,8 +981,8 @@
           <!-- generated classes, unfortunately use problematic api -->
           <exclude>**/GeneratedJavaLexer.class</exclude>
           <exclude>**/JavadocParser.class</exclude>
-          <!-- Tests related -->
-          <exclude>**/Input*</exclude>
+          <!-- excluded till https://github.com/policeman-tools/forbidden-apis/issues/108-->
+          <exclude>**/checks/annotation/InputAnnotationLocation4*</exclude>
         </excludes>
       </configuration>
       <executions>

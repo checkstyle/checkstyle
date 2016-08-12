@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 public class InputRightCurlyAloneOrSingleline {
 
-    public boolean equals(Object other) { boolean flag = true; return flag; } 
+    public boolean equals(Object other) { boolean flag = true; return flag; }
 
     public int hashCode()
     { 
@@ -173,7 +173,7 @@ public class InputRightCurlyAloneOrSingleline {
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } System.err. //violation
-            println("Xe-xe");
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER. //violation
+            equals("Xe-xe");
     }
 }

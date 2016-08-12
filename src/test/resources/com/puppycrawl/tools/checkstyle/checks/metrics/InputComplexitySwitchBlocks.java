@@ -7,13 +7,13 @@ public class InputComplexitySwitchBlocks {
             case "Java":
             case "C#":
             case "C++":
-                System.out.printf(programmingLanguage + " is an object oriented programming language.");
+                String.CASE_INSENSITIVE_ORDER.equals(programmingLanguage + " is an object oriented programming language.");
                 break;
             case "C":
-                System.out.printf(programmingLanguage + " is not an object oriented programming language.");
+                String.CASE_INSENSITIVE_ORDER.equals(programmingLanguage + " is not an object oriented programming language.");
                 break;
             default:
-                System.out.printf(programmingLanguage + " is unknown language.");
+                String.CASE_INSENSITIVE_ORDER.equals(programmingLanguage + " is unknown language.");
                 break;
         }
     }

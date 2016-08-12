@@ -38,9 +38,9 @@ public class InputInvalidLabelIndent { //indent:0 exp:0
     label4: //indent:4 exp:4
       System.identityHashCode("toplevel"); //indent:6 exp:8,12 warn
     label5: //indent:4 exp:4
-      System //indent:6 exp:8,12 warn
-            .out. //indent:12 exp:>=10
-                println("toplevel"); //indent:16 exp:>=16
+      String //indent:6 exp:8,12 warn
+            .CASE_INSENSITIVE_ORDER. //indent:12 exp:>=10
+                equals("toplevel"); //indent:16 exp:>=16
     } //indent:4 exp:4
 
 } //indent:0 exp:0

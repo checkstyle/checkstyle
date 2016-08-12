@@ -16,7 +16,7 @@ public class InputHiddenFieldLambdas {
     List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
     Integer value = new Integer(1);
     {
-        numbers.forEach((Integer value) -> System.out.println(value)); // 1 violation
+        numbers.forEach((Integer value) -> String.valueOf(value)); // 1 violation
     }
 
     /**
@@ -27,7 +27,7 @@ public class InputHiddenFieldLambdas {
     static List<String> firstNames = Arrays.asList("Andrei", "Michal", "Roman", "Vladislav");
     String name = new String();
     static {
-        firstNames.forEach((String name) -> System.out.println(name));
+        firstNames.forEach((String name) -> String.valueOf(name));
     }
 
     /**
@@ -38,7 +38,7 @@ public class InputHiddenFieldLambdas {
     static List<String> carBrands = Arrays.asList("BMW", "Mazda", "Volkswagen");
     String brand = new String();
     static {
-        carBrands.forEach(brand -> System.out.println(brand));
+        carBrands.forEach(brand -> String.valueOf(brand));
     }
 
     /**
@@ -48,7 +48,7 @@ public class InputHiddenFieldLambdas {
     static List<String> languageCodes = Arrays.asList("de", "ja", "fr", "pt");
     static String languageCode = new String();
     {
-        languageCodes.forEach(languageCode -> System.out.println(languageCode)); // 1 violation
+        languageCodes.forEach(languageCode -> String.valueOf(languageCode)); // 1 violation
     }
 
     /**
@@ -98,7 +98,7 @@ public class InputHiddenFieldLambdas {
     static String note = new String();
     private void foo4() {
         List<String> acceptableNotes = Arrays.asList("C", "D", "E", "F", "G", "A", "B");
-        acceptableNotes.forEach(note -> System.out.println(note)); // 1 violation
+        acceptableNotes.forEach(note -> String.valueOf(note)); // 1 violation
     }
 
     /**
@@ -109,7 +109,7 @@ public class InputHiddenFieldLambdas {
     String letter = new String("a");
     private static void foo5() {
         List<String> acceptableAlphabet = Arrays.asList("a", "b", "c");
-        acceptableAlphabet.forEach(letter -> System.out.println(letter));
+        acceptableAlphabet.forEach(letter -> String.valueOf(letter));
     }
 
     @FunctionalInterface
@@ -126,7 +126,7 @@ public class InputHiddenFieldLambdas {
         Function <String, Integer> multiAdder = (String stringValue, Integer intValue) -> { // 2 violations
             return Integer.parseInt(stringValue) + intValue;
         };
-        System.out.println(multiAdder.apply ("22.4", 2));
+        String.valueOf(multiAdder.apply ("22.4", 2));
     }
 
     /**
@@ -137,7 +137,7 @@ public class InputHiddenFieldLambdas {
         Function <Integer, Double> adder = (Integer integerValue, Double doubleValue) -> { // 1 violation
             return  integerValue + doubleValue;
         };
-        System.out.println(adder.apply(2, 2.2));
+        String.valueOf(adder.apply(2, 2.2));
     }
 
     /**
@@ -149,7 +149,7 @@ public class InputHiddenFieldLambdas {
         Function <String, String> stringConcat = (firstString, secondString) -> { // 2 violations
             return firstString + secondString;
         };
-        System.out.println(stringConcat.apply("A", "B"));
+        String.valueOf(stringConcat.apply("A", "B"));
     }
 
     @FunctionalInterface
@@ -205,8 +205,8 @@ public class InputHiddenFieldLambdas {
     {
         FunctionWithComplexGenerics<List<Double>, Map<String, Object>> someWierdFunc =
             (List<Double> justSomeList, Map<String, Object> justSomeMap) -> { // 2 violations
-                System.out.println(justSomeList);
-                System.out.println(justSomeMap);
+                String.valueOf(justSomeList);
+                String.valueOf(justSomeMap);
                 return new HashMap<>();
             };
     }

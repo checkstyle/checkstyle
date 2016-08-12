@@ -69,16 +69,16 @@ public class InputFallThrough2 {
                     System.identityHashCode("0xCAFED00D");
                 }
                 else {
-                    System.out.printf("0x4B1D");
+                    String.CASE_INSENSITIVE_ORDER.equals("0x4B1D");
                 }
                 break;
             case 10:
                 int var3 = 0xDEADBEEF;
                 switch (var3) {
                     case 0xCAFEBABE:
-                        System.out.printf("0x1CEB00DA");
+                        String.CASE_INSENSITIVE_ORDER.equals("0x1CEB00DA");
                     default:
-                        System.out.printf("");
+                        String.CASE_INSENSITIVE_ORDER.equals("");
                 }
                 if(true) {
                     break;

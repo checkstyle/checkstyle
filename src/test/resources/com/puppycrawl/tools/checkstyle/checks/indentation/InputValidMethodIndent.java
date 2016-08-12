@@ -179,7 +179,7 @@ public class InputValidMethodIndent extends java.awt.event.MouseAdapter implemen
                 + " at indentation level not at correct indentation, "  //indent:16 exp:>=12
                 + method1()); //indent:16 exp:>=12
 
-        System.out.toString() //indent:8 exp:8
+        String.CASE_INSENSITIVE_ORDER.toString() //indent:8 exp:8
             .equals("blah"); //indent:12 exp:>=12
 
 

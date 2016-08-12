@@ -79,11 +79,11 @@ public class InputValidForIndent { //indent:0 exp:0
         } //indent:8 exp:8
 
         for ( final int index : indices ) { //indent:8 exp:8
-            System.err.println(index); //indent:12 exp:12
+            String.CASE_INSENSITIVE_ORDER.equals(index); //indent:12 exp:12
         } //indent:8 exp:8
         for ( final int index : indices ) //indent:8 exp:8
         { //indent:8 exp:8
-            System.err.println(index); //indent:12 exp:12
+            String.CASE_INSENSITIVE_ORDER.equals(index); //indent:12 exp:12
         } //indent:8 exp:8
     } //indent:4 exp:4
 } //indent:0 exp:0

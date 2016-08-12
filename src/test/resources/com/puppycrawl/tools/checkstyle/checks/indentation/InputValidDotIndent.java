@@ -24,19 +24,19 @@ public class InputValidDotIndent { //indent:0 exp:0
 
         System.lineSeparator(); //indent:8 exp:8
 
-        System. //indent:8 exp:8
-            out.println(); //indent:12 exp:12
+        String. //indent:8 exp:8
+            CASE_INSENSITIVE_ORDER.reversed(); //indent:12 exp:12
 
-        System.out. //indent:8 exp:8
-            println(); //indent:12 exp:12
+        String.CASE_INSENSITIVE_ORDER. //indent:8 exp:8
+            reversed(); //indent:12 exp:12
 
-        System. //indent:8 exp:8
-            out. //indent:12 exp:12
-                println(); //indent:16 exp:16
+        String. //indent:8 exp:8
+            CASE_INSENSITIVE_ORDER. //indent:12 exp:12
+                reversed(); //indent:16 exp:16
 
-        System //indent:8 exp:8
-            .out //indent:12 exp:12
-                .println(); //indent:16 exp:16
+        String //indent:8 exp:8
+            .CASE_INSENSITIVE_ORDER //indent:12 exp:12
+                .reversed(); //indent:16 exp:16
 
         BevelBorder border = new javax.swing.border.BevelBorder(BevelBorder.LOWERED); //indent:8 exp:8
         border = new javax.swing.border. //indent:8 exp:8

@@ -90,11 +90,11 @@ class InputLeftCurlyOther
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } System.err.
-              println("Xe-xe");
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER.
+              equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { System.err.println("it is ok."); }
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
     }
 }
 
