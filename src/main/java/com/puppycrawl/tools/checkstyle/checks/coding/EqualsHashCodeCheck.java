@@ -138,13 +138,13 @@ public class EqualsHashCodeCheck
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        for (Map.Entry<DetailAST, DetailAST> detailASTDetailASTEntry : objBlockWithEquals
-                .entrySet()) {
-            if (objBlockWithHashCode.remove(detailASTDetailASTEntry.getKey()) == null) {
+        objBlockWithEquals
+            .entrySet().stream().filter(detailASTDetailASTEntry ->
+                objBlockWithHashCode.remove(detailASTDetailASTEntry.getKey()) == null)
+            .forEach(detailASTDetailASTEntry -> {
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
                 log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_HASHCODE);
-            }
-        }
+            });
         for (Map.Entry<DetailAST, DetailAST> detailASTDetailASTEntry : objBlockWithHashCode
                 .entrySet()) {
             final DetailAST equalsAST = detailASTDetailASTEntry.getValue();

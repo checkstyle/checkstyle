@@ -408,11 +408,9 @@ public class XDocsPagesTest {
         }
 
         // remove undocumented properties
-        for (String p : new HashSet<>(properties)) {
-            if (UNDOCUMENTED_PROPERTIES.contains(clss.getSimpleName() + "." + p)) {
-                properties.remove(p);
-            }
-        }
+        new HashSet<>(properties).stream()
+            .filter(p -> UNDOCUMENTED_PROPERTIES.contains(clss.getSimpleName() + "." + p))
+            .forEach(properties::remove);
 
         if (AbstractCheck.class.isAssignableFrom(clss)) {
             final AbstractCheck check = (AbstractCheck) instance;

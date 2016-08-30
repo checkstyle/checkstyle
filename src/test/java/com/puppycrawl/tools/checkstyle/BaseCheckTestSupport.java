@@ -41,7 +41,6 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 import com.google.common.base.Charsets;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.MapDifference.ValueDifference;
@@ -186,12 +185,7 @@ public class BaseCheckTestSupport {
         // process each of the lines
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
         final Map<String, List<String>> realExpectedViolations =
-            Maps.filterValues(expectedViolations, new Predicate<List<String>>() {
-                @Override
-                public boolean apply(List<String> input) {
-                    return !input.isEmpty();
-                }
-            });
+            Maps.filterValues(expectedViolations, input -> !input.isEmpty());
         final MapDifference<String, List<String>> violationDifferences =
             Maps.difference(realExpectedViolations, actualViolations);
 

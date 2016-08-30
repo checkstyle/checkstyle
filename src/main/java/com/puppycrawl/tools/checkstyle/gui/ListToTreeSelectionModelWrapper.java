@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreePath;
 
@@ -45,12 +43,8 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      */
     ListToTreeSelectionModelWrapper(JTreeTable jTreeTable) {
         treeTable = jTreeTable;
-        getListSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                updateSelectedPathsFromSelectedRows();
-            }
-        });
+        getListSelectionModel().addListSelectionListener(event ->
+            updateSelectedPathsFromSelectedRows());
     }
 
     /**

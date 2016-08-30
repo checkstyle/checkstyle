@@ -39,11 +39,11 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 public class PackageObjectFactoryTest {
 
     private final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+        new HashSet<>(), Thread.currentThread().getContextClassLoader());
 
     @Test(expected = IllegalArgumentException.class)
     public void testCtorException() {
-        new PackageObjectFactory(new HashSet<String>(), null);
+        new PackageObjectFactory(new HashSet<>(), null);
     }
 
     @Test

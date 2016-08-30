@@ -198,12 +198,8 @@ public class CommonUtilsTest {
 
     @Test(expected = IllegalStateException.class)
     public void testCloseWithException() {
-        CommonUtils.close(new Closeable() {
-
-            @Override
-            public void close() throws IOException {
-                throw new IOException("Test IOException");
-            }
+        CommonUtils.close(() -> {
+            throw new IOException("Test IOException");
         });
     }
 

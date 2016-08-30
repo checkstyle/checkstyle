@@ -456,12 +456,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     @Override
     public void destroy() {
-        for (AbstractCheck check : ordinaryChecks) {
-            check.destroy();
-        }
-        for (AbstractCheck check : commentChecks) {
-            check.destroy();
-        }
+        ordinaryChecks.forEach(AbstractCheck::destroy);
+        commentChecks.forEach(AbstractCheck::destroy);
         super.destroy();
     }
 
@@ -483,13 +479,11 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private static Set<String> getExternalResourceLocations(Set<AbstractCheck> checks) {
         final Set<String> externalConfigurationResources = Sets.newHashSet();
-        for (AbstractCheck check : checks) {
-            if (check instanceof ExternalResourceHolder) {
-                final Set<String> checkExternalResources =
-                    ((ExternalResourceHolder) check).getExternalResourceLocations();
-                externalConfigurationResources.addAll(checkExternalResources);
-            }
-        }
+        checks.stream().filter(check -> check instanceof ExternalResourceHolder).forEach(check -> {
+            final Set<String> checkExternalResources =
+                ((ExternalResourceHolder) check).getExternalResourceLocations();
+            externalConfigurationResources.addAll(checkExternalResources);
+        });
         return externalConfigurationResources;
     }
 

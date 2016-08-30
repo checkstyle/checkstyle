@@ -40,7 +40,6 @@ import java.util.Set;
 
 import javax.xml.bind.DatatypeConverter;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
@@ -301,22 +300,19 @@ final class PropertyCacheFile {
      * @return true if the contents of external configuration resources were changed.
      */
     private boolean areExternalResourcesChanged(Set<ExternalResource> resources) {
-        return Iterables.tryFind(resources, new Predicate<ExternalResource>() {
-            @Override
-            public boolean apply(ExternalResource resource) {
-                boolean changed = false;
-                if (isResourceLocationInCache(resource.location)) {
-                    final String contentHashSum = resource.contentHashSum;
-                    final String cachedHashSum = details.getProperty(resource.location);
-                    if (!cachedHashSum.equals(contentHashSum)) {
-                        changed = true;
-                    }
-                }
-                else {
+        return Iterables.tryFind(resources, resource -> {
+            boolean changed = false;
+            if (isResourceLocationInCache(resource.location)) {
+                final String contentHashSum = resource.contentHashSum;
+                final String cachedHashSum = details.getProperty(resource.location);
+                if (!cachedHashSum.equals(contentHashSum)) {
                     changed = true;
                 }
-                return changed;
             }
+            else {
+                changed = true;
+            }
+            return changed;
         }).isPresent();
     }
 
@@ -326,11 +322,9 @@ final class PropertyCacheFile {
      * @param externalResources a set of {@link ExternalResource}.
      */
     private void fillCacheWithExternalResources(Set<ExternalResource> externalResources) {
-        for (ExternalResource resource : externalResources) {
-            if (!isResourceLocationInCache(resource.location)) {
-                details.setProperty(resource.location, resource.contentHashSum);
-            }
-        }
+        externalResources.stream()
+            .filter(resource -> !isResourceLocationInCache(resource.location))
+            .forEach(resource -> details.setProperty(resource.location, resource.contentHashSum));
     }
 
     /**

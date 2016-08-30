@@ -23,7 +23,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -31,6 +30,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -151,14 +151,12 @@ public class AllChecksTest extends BaseCheckTestSupport {
         final Set<String> checksReferencedInConfig = CheckUtil.getConfigCheckStyleChecks();
         final Set<String> checksNames = getSimpleNames(CheckUtil.getCheckstyleChecks());
 
-        for (String check : checksNames) {
-            if (!checksReferencedInConfig.contains(check)) {
+        checksNames.stream().filter(check -> !checksReferencedInConfig.contains(check))
+            .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
-                        "%s is not referenced in checkstyle_checks.xml", check);
+                    "%s is not referenced in checkstyle_checks.xml", check);
                 Assert.fail(errorMessage);
-            }
-        }
-
+            });
     }
 
     @Test
@@ -166,14 +164,14 @@ public class AllChecksTest extends BaseCheckTestSupport {
         final Set<String> checkstyleModulesNames = getSimpleNames(CheckUtil.getCheckstyleModules());
         final Set<String> modulesNamesWhichHaveXdocs = XDocUtil.getModulesNamesWhichHaveXdoc();
 
-        for (String moduleName : checkstyleModulesNames) {
-            if (!modulesNamesWhichHaveXdocs.contains(moduleName)) {
+        checkstyleModulesNames.stream()
+            .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
+            .forEach(moduleName -> {
                 final String missingModuleMessage = String.format(Locale.ROOT,
                     "Module %s does not have xdoc documentation.",
                     moduleName);
                 Assert.fail(missingModuleMessage);
-            }
-        }
+            });
     }
 
     @Test
@@ -295,10 +293,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
      * @return a set of simple names.
      */
     private static Set<String> getSimpleNames(Set<Class<?>> checks) {
-        final Set<String> checksNames = new HashSet<>();
-        for (Class<?> check : checks) {
-            checksNames.add(check.getSimpleName().replace("Check", ""));
-        }
-        return checksNames;
+        return checks.stream().map(check -> check.getSimpleName().replace("Check", ""))
+            .collect(Collectors.toSet());
     }
 }

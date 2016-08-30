@@ -501,11 +501,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
             }
 
             // Dump out all unused tags
-            for (JavadocTag javadocTag : tags) {
-                if (!javadocTag.isSeeOrInheritDocTag()) {
-                    log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL);
-                }
-            }
+            tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
+                .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
         }
     }
 
@@ -914,14 +911,13 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
         if (!allowMissingThrowsTags && reportExpectedTags) {
-            for (ExceptionInfo exceptionInfo : throwsList) {
-                if (!exceptionInfo.isFound()) {
+            throwsList.stream().filter(exceptionInfo -> !exceptionInfo.isFound())
+                .forEach(exceptionInfo -> {
                     final Token token = exceptionInfo.getName();
                     log(token.getLineNo(), token.getColumnNo(),
-                            MSG_EXPECTED_TAG,
-                            JavadocTagInfo.THROWS.getText(), token.getText());
-                }
-            }
+                        MSG_EXPECTED_TAG,
+                        JavadocTagInfo.THROWS.getText(), token.getText());
+                });
         }
     }
 
