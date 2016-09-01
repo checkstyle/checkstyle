@@ -153,11 +153,11 @@ public class ParameterNameCheck
      * @return the scope of the method/constructor
      */
     private static Scope calculateScope(final DetailAST ast) {
-        if (ast.getParent().getType() == TokenTypes.LITERAL_CATCH) {
-            return Scope.PRIVATE;
-        }
         final DetailAST params = ast.getParent();
         final DetailAST meth = params.getParent();
+        if (ScopeUtils.isInCodeBlock(meth)) {
+            return Scope.PRIVATE;
+        }
         final DetailAST mods = meth.findFirstToken(TokenTypes.MODIFIERS);
         Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
         if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
