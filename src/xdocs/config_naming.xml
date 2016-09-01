@@ -1179,6 +1179,18 @@ public boolean equals(Object o) {
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
+          <tr>
+            <td>scope</td>
+            <td>Visibility scope of methods where parameters are checked.</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><code>private</code></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>Visibility scope of methods where parameters are not checked.</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><code>null</code></td>
+          </tr>
         </table>
       </subsection>
 
