@@ -1229,7 +1229,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">SL_ASSIGN</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">BXOR_ASSIGN</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">BOR_ASSIGN</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">BAND_ASSIGN</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">BAND_ASSIGN</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">METHOD_REF</a>.
             </td>
 
             <td>
