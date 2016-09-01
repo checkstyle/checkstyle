@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 public class InputCatchParameterName {
     {
         try {
-        } catch (Exception e) { // warn
+        } catch (Exception e) { // ok
         }
         try {
         } catch (Exception ex) { // ok
@@ -21,7 +21,7 @@ public class InputCatchParameterName {
         } catch (Exception noWorries) { // ok
         }
         try {
-        } catch (Throwable t) { // warn
+        } catch (Throwable T) { // warn
         }
         try {
             throw new InterruptedException("interruptedException");
@@ -44,10 +44,10 @@ public class InputCatchParameterName {
             }
         }
         try {
-        } catch (Exception iException) { // warn
+        } catch (Exception iException) { // ok
         }
         try {
-        } catch (Exception x) { // warn
+        } catch (Exception x) { // ok
         }
     }
 }

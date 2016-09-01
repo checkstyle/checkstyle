@@ -23,8 +23,6 @@ final class InputSimple
     private void localVariables()
     {
         //bad examples
-        int a; //warn
-        int aA; //warn
         int a1_a; //warn
         int A_A; //warn
         int aa2_a; //warn

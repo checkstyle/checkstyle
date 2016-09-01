@@ -144,3 +144,17 @@ enum TestEnum {
     public void method() {
     }
 }
+
+/** holder for interface specific modifier check. */
+interface InputDefaultPublicModifier
+{
+    /** correct order */
+    public default void a()
+    {
+    }
+
+    /** wrong order */
+    default public void b() // violation
+    {
+    }
+}

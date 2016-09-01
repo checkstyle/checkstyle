@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
   <li><span class="code">private</span></li>
   <li><span class="code">abstract</span></li>
+  <li><span class="code">default</span></li>
   <li><span class="code">static</span></li>
   <li><span class="code">final</span></li>
   <li><span class="code">transient</span></li>
@@ -84,8 +85,8 @@ public class ModifierOrderCheck
      * 8.3.1 and 8.4.3 of the JLS.
      */
     private static final String[] JLS_ORDER = {
-        "public", "protected", "private", "abstract", "static", "final",
-        "transient", "volatile", "synchronized", "native", "strictfp", "default",
+        "public", "protected", "private", "abstract", "default", "static",
+        "final", "transient", "volatile", "synchronized", "native", "strictfp",
     };
 
     @Override
