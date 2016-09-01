@@ -78,6 +78,8 @@ public class RedundantModifierCheckTest
             "118:5: " + getCheckMessage(MSG_KEY, "static"),
             "120:5: " + getCheckMessage(MSG_KEY, "public"),
             "121:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "152:5: " + getCheckMessage(MSG_KEY, "public"),
+            "157:13: " + getCheckMessage(MSG_KEY, "public"),
         };
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
