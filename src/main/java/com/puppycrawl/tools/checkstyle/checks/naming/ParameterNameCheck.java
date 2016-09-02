@@ -155,7 +155,7 @@ public class ParameterNameCheck
     private static Scope calculateScope(final DetailAST ast) {
         final DetailAST params = ast.getParent();
         final DetailAST meth = params.getParent();
-        if (ScopeUtils.isInCodeBlock(meth)) {
+        if (meth.getType() != TokenTypes.METHOD_DEF) {
             return Scope.PRIVATE;
         }
         final DetailAST mods = meth.findFirstToken(TokenTypes.MODIFIERS);
