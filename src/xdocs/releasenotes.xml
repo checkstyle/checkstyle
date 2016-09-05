@@ -17,6 +17,30 @@
 
     <!-- placeholder for a new section -->
 
+    <section name="Release 7.1.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            EqualsHashCode: hashCode without equals is not a violation. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3308">#3308</a>
+          </li>
+          <li>
+            RedundantModifier : missed violations at interface and abstract class methods signatures with final parameters. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3322">#3322</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Remove usage of System.out.println in IT resources. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2541">#2541</a>
+          </li>
+          <li>
+            Flaws in German translation. Author: Claas Augner <a href="https://github.com/checkstyle/checkstyle/issues/3403">#3403</a>
+          </li>
+          <li>
+            Add NonDex tool to pom.xml and .travis.yml. Author: Ben Lambeth <a href="https://github.com/checkstyle/checkstyle/issues/3378">#3378</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.1">
       <p>New:</p>
         <ul>
