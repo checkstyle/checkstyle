@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 set -e
 
 # Make sure you prepared your PC for automative deployment
@@ -10,6 +10,15 @@ PREV_RELEASE=$(git describe $(git rev-list --tags --max-count=1) | sed "s/checks
 
 echo "PREVIOUS RELEASE version:"$PREV_RELEASE
 echo "RELEASE version:"$RELEASE
+
+if [[ -z $RELEASE ]]; then
+  echo "Problem to calculate release version."
+  exit 1
+fi
+if [[ -z $PREV_RELEASE ]]; then
+  echo "Problem to calculate previous release version."
+  exit 1
+fi
 
 #############################
 echo "Please provide password for $SF_USER,checkstyle@shell.sourceforge.net"
