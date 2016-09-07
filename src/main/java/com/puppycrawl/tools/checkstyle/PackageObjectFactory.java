@@ -22,11 +22,12 @@ package com.puppycrawl.tools.checkstyle;
 import java.lang.reflect.Constructor;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -90,9 +91,9 @@ public class PackageObjectFactory implements ModuleFactory {
             instance = createObjectWithIgnoringProblems(nameCheck, getAllPossibleNames(nameCheck));
             if (instance == null) {
 
-                final String attemptedNames = joinPackageNamesWithClassName(name)
+                final String attemptedNames = joinPackageNamesWithClassName(name, packages)
                         + STRING_SEPARATOR + nameCheck + STRING_SEPARATOR
-                        + joinPackageNamesWithClassName(nameCheck);
+                        + joinPackageNamesWithClassName(nameCheck, packages);
                 final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, getClass(), null);
@@ -137,11 +138,16 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a string by joining package names with a class name.
      * @param className name of the class for joining.
+     * @param packages packages names.
      * @return a string which is obtained by joining package names with a class name.
      */
-    private String joinPackageNamesWithClassName(String className) {
-        final Joiner joiner = Joiner.on(className + STRING_SEPARATOR).skipNulls();
-        return joiner.join(packages) + className;
+    private static String joinPackageNamesWithClassName(String className, Set<String> packages) {
+        return packages.stream().filter(new Predicate<String>() {
+            @Override
+            public boolean test(String name) {
+                return name != null;
+            }
+        }).collect(Collectors.joining(className + STRING_SEPARATOR, "", className));
     }
 
     /**

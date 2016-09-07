@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.base.Joiner;
-
 /**
  * Represents a full identifier, including dots, with associated
  * position information.
@@ -76,7 +74,7 @@ public final class FullIdent {
      * @return the text
      */
     public String getText() {
-        return Joiner.on("").join(elements);
+        return String.join("", elements);
     }
 
     /**
