@@ -108,7 +108,8 @@
             Usage: This filter only works in conjunction with a <code>FileContentsHolder</code>, since that check makes
             the suppression comments in the Java files available. A configuration that includes this filter must
             configure <code>FileContentsHolder</code> as a
-            child module of <code>TreeWalker</code>.
+            child module of <code>TreeWalker</code>. Note that the suppression comment should be put
+            before the violation. You can use more than one suppression comment each on separate line.
           </p>
       </subsection>
       <subsection name="Properties">
@@ -363,6 +364,24 @@ public static void foo() {
     System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
 }
 // CSON systemout
+          </source>
+          <p>
+            Example of how to configure the check to suppress more than one checks.
+          </p>
+          <source>
+&lt;module name="SuppressionCommentFilter&quot;&gt;
+  &lt;property name="offCommentFormat" value="@cs-\: ([\w\|]+)"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+&lt;/module&gt;
+          </source>
+          <source>
+// @cs-: ClassDataAbstractionCoupling
+// @cs-: MagicNumber
+@Service // no violations from ClassDataAbstractionCoupling here
+@Transactional
+public class UserService {
+  private int value = 10022; // no violations from MagicNumber here
+}
           </source>
       </subsection>
       <subsection name="Example of Usage">
@@ -932,6 +951,26 @@ public void testMethod() { }
 
 public static void foo() {
   System.out.println("Debug info."); // @cs-: systemout (should not fail RegexpSinglelineJava)
+}
+            </source>
+            <p>
+              Example of how to configure the check to suppress more than one checks.
+              The influence format format is specified in the second regexp group.
+            </p>
+            <source>
+&lt;module name="SuppressWithNearbyCommentFilter&quot;&gt;
+  &lt;property name="commentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="$2"/&gt;
+  &lt;/module&gt;
+            </source>
+            <source>
+// @cs-: ClassDataAbstractionCoupling influence 2
+// @cs-: MagicNumber influence 4
+@Service // no violations from ClassDataAbstractionCoupling here
+@Transactional
+public class UserService {
+  private int value = 10022; // no violations from MagicNumber here
 }
             </source>
         </subsection>
