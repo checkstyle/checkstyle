@@ -56,4 +56,11 @@
     <suppress checks="IllegalCatchExtended"
               files="CheckerTest\.java"
               lines="543"/>
+
+    <!--JavadocTagInfo.java, JavadocTags.java, InvalidJavadocTag.java, JavadocTag.java will be
+    deprecated as we completely switch to ANTLR parser for javadoc. All of the mentioned classes
+    are required only for old javadoc parsers and their usage will be excluded from
+    JavadocUtils.java and JavadocUtilsTest.java. -->
+    <suppress checks="ForbidCertainImports"
+              files="JavadocUtils\.java|JavadocUtilsTest\.java"/>
 </suppressions>
