@@ -8,7 +8,7 @@ class myFoo
     private void foo()
     {
         int i = 0;
-        String[][] x = {{"foo"}};
+        String[][] x = { {"foo"} };
         for (int first = 0; first < 5; first++) {} //ok
         int j = 0;
         while (j == 1) {} //ok
