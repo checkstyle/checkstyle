@@ -87,8 +87,14 @@
             <property name="requiredParameters" value="value"/>
         </module>
         <module name="ForbidCertainImports">
-            <property name="packageNameRegexp" value="^.*(api|utils).*$"/>
-            <property name="forbiddenImportsRegexp" value="^.*checks.*|java\.util\.Vector|java\.util\.Stack$"/>
+            <property name="packageNameRegexp" value=".+"/>
+            <property name="forbiddenImportsRegexp" value="java\.util\.Stack|java\.util\.Vector"/>
+            <property name="forbiddenImportsExcludesRegexp" value=""/>
+        </module>
+        <module name="ForbidCertainImports">
+            <property name="packageNameRegexp" value=".+\.checkstyle\.api.*|.+\.checkstyle\.utils.*"/>
+            <property name="forbiddenImportsRegexp" value=".+\.checks\..+"/>
+            <property name="forbiddenImportsExcludesRegexp" value=""/>
         </module>
         <module name="LineLengthExtended">
             <property name="max" value="100"/>
