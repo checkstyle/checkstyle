@@ -55,7 +55,7 @@ public final class LocalizedMessage
      * Avoids repetitive calls to ResourceBundle.getBundle().
      */
     private static final Map<String, ResourceBundle> BUNDLE_CACHE =
-        Collections.synchronizedMap(new HashMap<String, ResourceBundle>());
+        Collections.synchronizedMap(new HashMap<>());
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;

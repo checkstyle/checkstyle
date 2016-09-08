@@ -13,10 +13,7 @@
          See https://github.com/checkstyle/checkstyle/issues/2285-->
     <suppress checks="IllegalCatch"
               files="Checker.java"
-              lines="278"/>
-    <suppress checks="IllegalCatch"
-              files="Checker.java"
-              lines="388"/>
+              lines="272"/>
     <!--Test to reproduce error catching in Checker and satisfy coverage rate. -->
     <suppress checks="IllegalCatch"
               files="CheckerTest.java"
@@ -149,7 +146,7 @@
 
     <!-- Suppressions from PMD configuration-->
     <!-- validateCli is not reasonable to split as encapsulation of logic will be damaged -->
-    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="249"/>
+    <suppress checks="CyclomaticComplexity" files="Main\.java"  lines="247"/>
     <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtils.getJavadocTags() - deprecated -->
     <suppress checks="CyclomaticComplexity" files="JavadocMethodCheck\.java"/>
     <suppress checks="CyclomaticComplexity" files="JavadocStyleCheck\.java"/>

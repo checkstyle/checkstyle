@@ -101,13 +101,11 @@ public class UnusedImportsCheck extends AbstractCheck {
     @Override
     public void finishTree(DetailAST rootAST) {
         // loop over all the imports to see if referenced.
-        for (final FullIdent imp : imports) {
-            if (!referenced.contains(CommonUtils.baseClassName(imp.getText()))) {
-                log(imp.getLineNo(),
-                    imp.getColumnNo(),
-                    MSG_KEY, imp.getText());
-            }
-        }
+        imports.stream()
+            .filter(imp -> !referenced.contains(CommonUtils.baseClassName(imp.getText())))
+            .forEach(imp -> log(imp.getLineNo(),
+                imp.getColumnNo(),
+                MSG_KEY, imp.getText()));
     }
 
     @Override
@@ -238,20 +236,13 @@ public class UnusedImportsCheck extends AbstractCheck {
         final Set<String> references = new HashSet<>();
         // process all the @link type tags
         // INLINE tags inside BLOCKs get hidden when using ALL
-        for (final JavadocTag tag
-                : getValidTags(textBlock, JavadocUtils.JavadocTagType.INLINE)) {
-            if (tag.canReferenceImports()) {
-                references.addAll(processJavadocTag(tag));
-            }
-        }
+        getValidTags(textBlock, JavadocUtils.JavadocTagType.INLINE).stream()
+            .filter(JavadocTag::canReferenceImports)
+            .forEach(tag -> references.addAll(processJavadocTag(tag)));
         // process all the @throws type tags
-        for (final JavadocTag tag
-                : getValidTags(textBlock, JavadocUtils.JavadocTagType.BLOCK)) {
-            if (tag.canReferenceImports()) {
-                references.addAll(
-                        matchPattern(tag.getFirstArg(), FIRST_CLASS_NAME));
-            }
-        }
+        getValidTags(textBlock, JavadocUtils.JavadocTagType.BLOCK).stream()
+            .filter(JavadocTag::canReferenceImports)
+            .forEach(tag -> references.addAll(matchPattern(tag.getFirstArg(), FIRST_CLASS_NAME)));
         return references;
     }
 

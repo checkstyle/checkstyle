@@ -142,9 +142,7 @@ public class IllegalInstantiationCheck
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        for (DetailAST literalNewAST : instantiations) {
-            postProcessLiteralNew(literalNewAST);
-        }
+        instantiations.forEach(this::postProcessLiteralNew);
     }
 
     /**

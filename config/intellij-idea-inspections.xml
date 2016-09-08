@@ -34,7 +34,7 @@
         <option name="m_maxLength" value="64" />
     </inspection_tool>
     <inspection_tool class="Annotator" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="Anonymous2MethodRef" enabled="false" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Anonymous2MethodRef" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AnonymousClassComplexity" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="3" />
     </inspection_tool>
@@ -424,10 +424,10 @@
     <inspection_tool class="ContinueStatementWithLabelJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Contract" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ControlFlowStatementWithoutBraces" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="Convert2Diamond" enabled="false" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="Convert2Lambda" enabled="false" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="Convert2MethodRef" enabled="false" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="Convert2streamapi" enabled="false" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Convert2Diamond" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Convert2Lambda" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Convert2MethodRef" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="Convert2streamapi" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConvertAnnotations" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConvertJavadoc" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConvertOldAnnotations" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -894,7 +894,7 @@
     <inspection_tool class="GroovyWhileLoopSpinsOnField" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreNonEmtpyLoops" value="false" />
     </inspection_tool>
-    <inspection_tool class="Guava" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="Guava" enabled="true" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="GuavaFluentIterable" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="HardCodedStringLiteral" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignoreForAssertStatements" value="true" />
@@ -1710,7 +1710,7 @@
         <option name="ignoreEmptySuperMethods" value="false" />
         <option name="onlyReportWhenAnnotated" value="true" />
     </inspection_tool>
-    <inspection_tool class="RemoveExplicitTypeArguments" enabled="false" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="RemoveExplicitTypeArguments" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReplaceAllDot" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReplaceAssignmentWithOperatorAssignment" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreLazyOperators" value="true" />

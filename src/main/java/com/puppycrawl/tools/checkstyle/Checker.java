@@ -196,15 +196,11 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         processFiles(files);
 
         // Finish up
-        for (final FileSetCheck fsc : fileSetChecks) {
-            // It may also log!!!
-            fsc.finishProcessing();
-        }
+        // It may also log!!!
+        fileSetChecks.forEach(FileSetCheck::finishProcessing);
 
-        for (final FileSetCheck fsc : fileSetChecks) {
-            // It may also log!!!
-            fsc.destroy();
-        }
+        // It may also log!!!
+        fileSetChecks.forEach(FileSetCheck::destroy);
 
         final int errorCount = counter.getCount();
         fireAuditFinished();
@@ -219,20 +215,18 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      */
     private Set<String> getExternalResourceLocations() {
         final Set<String> externalResources = Sets.newHashSet();
-        for (FileSetCheck check : fileSetChecks) {
-            if (check instanceof ExternalResourceHolder) {
+        fileSetChecks.stream().filter(check -> check instanceof ExternalResourceHolder)
+            .forEach(check -> {
                 final Set<String> locations =
                     ((ExternalResourceHolder) check).getExternalResourceLocations();
                 externalResources.addAll(locations);
-            }
-        }
-        for (Filter filter : filters.getFilters()) {
-            if (filter instanceof ExternalResourceHolder) {
+            });
+        filters.getFilters().stream().filter(filter -> filter instanceof ExternalResourceHolder)
+            .forEach(filter -> {
                 final Set<String> locations =
                     ((ExternalResourceHolder) filter).getExternalResourceLocations();
                 externalResources.addAll(locations);
-            }
-        }
+            });
         return externalResources;
     }
 

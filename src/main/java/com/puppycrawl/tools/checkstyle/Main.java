@@ -167,9 +167,7 @@ public final class Main {
                 if (cliViolations) {
                     exitStatus = exitWithCliViolation;
                     errorCounter = 1;
-                    for (String message : messages) {
-                        System.out.println(message);
-                    }
+                    messages.forEach(System.out::println);
                 }
                 else {
                     errorCounter = runCli(commandLine, filesToProcess);

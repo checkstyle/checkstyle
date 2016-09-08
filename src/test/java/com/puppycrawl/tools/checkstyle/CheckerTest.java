@@ -280,7 +280,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.setSeverity("ignore");
 
         final PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+            new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
         checker.setFileExtensions((String[]) null);
@@ -322,7 +322,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         final PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+            new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
         checker.finishLocalSetup();
@@ -332,7 +332,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     public void testSetupChildExceptions() {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+            new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
         final Configuration config = new DefaultConfiguration("java.lang.String");
@@ -349,7 +349,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     public void testSetupChildListener() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+            new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
 
         final Configuration config = new DefaultConfiguration(
@@ -452,7 +452,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     public void testWithCacheWithNoViolation() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<String>(), Thread.currentThread().getContextClassLoader());
+            new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.configure(createCheckConfig(TranslationCheck.class));
         checker.setCacheFile(temporaryFolder.newFile().getPath());

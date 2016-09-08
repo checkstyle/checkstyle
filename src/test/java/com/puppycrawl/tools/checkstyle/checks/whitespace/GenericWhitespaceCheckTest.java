@@ -49,10 +49,7 @@ public class GenericWhitespaceCheckTest
     public void setUp() {
         checkConfig = createCheckConfig(GenericWhitespaceCheck.class);
         final Map<Class<?>, Integer> x = Maps.newHashMap();
-        for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
-            entry.getValue();
-        }
-        //for (final Entry<Class<?>, Integer> entry : entrySet())
+        x.entrySet().forEach(Map.Entry::getValue);
     }
 
     @Override

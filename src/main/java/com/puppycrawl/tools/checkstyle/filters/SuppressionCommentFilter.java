@@ -236,9 +236,7 @@ public class SuppressionCommentFilter
         if (checkC) {
             final Collection<List<TextBlock>> cComments = contents
                     .getCComments().values();
-            for (List<TextBlock> element : cComments) {
-                tagSuppressions(element);
-            }
+            cComments.forEach(this::tagSuppressions);
         }
         Collections.sort(tags);
     }

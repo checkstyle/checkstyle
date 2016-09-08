@@ -23,7 +23,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -123,14 +122,9 @@ public class DetailASTTest {
     }
 
     private static void checkDir(File dir) throws Exception {
-        final File[] files = dir.listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File file) {
-                    return (file.getName().endsWith(".java")
-                            || file.isDirectory())
-                        && !file.getName().endsWith("InputGrammar.java");
-                }
-            });
+        final File[] files = dir.listFiles(file -> (file.getName().endsWith(".java")
+                || file.isDirectory())
+            && !file.getName().endsWith("InputGrammar.java"));
         for (File file : files) {
             if (file.isFile()) {
                 checkFile(file.getCanonicalPath());

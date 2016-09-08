@@ -241,9 +241,7 @@ public class SuppressWithNearbyCommentFilter
         if (checkC) {
             final Collection<List<TextBlock>> cComments =
                 contents.getCComments().values();
-            for (final List<TextBlock> element : cComments) {
-                tagSuppressions(element);
-            }
+            cComments.forEach(this::tagSuppressions);
         }
         Collections.sort(tags);
     }

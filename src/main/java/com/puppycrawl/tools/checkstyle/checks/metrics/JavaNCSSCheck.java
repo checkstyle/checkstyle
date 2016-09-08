@@ -205,9 +205,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         //check if token is countable
         if (isCountable(ast)) {
             //increment the stacked counters
-            for (final Counter counter : counters) {
-                counter.increment();
-            }
+            counters.forEach(Counter::increment);
         }
     }
 

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import java.lang.reflect.Constructor;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
@@ -129,9 +128,8 @@ public class PackageObjectFactory implements ModuleFactory {
      */
     private Set<String> getAllPossibleNames(String name) {
         final Set<String> names = Sets.newHashSet();
-        for (String packageName : packages) {
-            names.add(packageName + name);
-        }
+        names.addAll(packages.stream().map(packageName -> packageName + name)
+            .collect(Collectors.toList()));
         return names;
     }
 
@@ -142,12 +140,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * @return a string which is obtained by joining package names with a class name.
      */
     private static String joinPackageNamesWithClassName(String className, Set<String> packages) {
-        return packages.stream().filter(new Predicate<String>() {
-            @Override
-            public boolean test(String name) {
-                return name != null;
-            }
-        }).collect(Collectors.joining(className + STRING_SEPARATOR, "", className));
+        return packages.stream().filter(name -> name != null)
+            .collect(Collectors.joining(className + STRING_SEPARATOR, "", className));
     }
 
     /**

@@ -258,9 +258,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
                 traverseFieldFrameTree(child);
             }
             currentFrame = child;
-            for (DetailAST methodCall: child.getMethodCalls()) {
-                checkMethodCall(methodCall);
-            }
+            child.getMethodCalls().forEach(this::checkMethodCall);
         }
     }
 

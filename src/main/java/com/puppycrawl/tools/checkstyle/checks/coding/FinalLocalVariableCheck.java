@@ -314,9 +314,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final ScopeData scopeData = scopeStack.peek();
         final Deque<DetailAST> prevScopeUnitializedVariableData =
                 new ArrayDeque<>();
-        for (DetailAST variable : scopeData.uninitializedVariables) {
-            prevScopeUnitializedVariableData.push(variable);
-        }
+        scopeData.uninitializedVariables.forEach(prevScopeUnitializedVariableData::push);
         prevScopeUninitializedVariables.push(prevScopeUnitializedVariableData);
     }
 
