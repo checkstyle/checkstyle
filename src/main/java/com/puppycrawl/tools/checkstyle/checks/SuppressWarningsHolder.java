@@ -160,14 +160,8 @@ public class SuppressWarningsHolder
         final int column = event.getColumn();
         boolean suppressed = false;
         for (Entry entry : entries) {
-            final boolean afterStart =
-                entry.getFirstLine() < line
-                    || entry.getFirstLine() == line
-                            && (column == 0 || entry.getFirstColumn() <= column);
-            final boolean beforeEnd =
-                entry.getLastLine() > line
-                    || entry.getLastLine() == line && entry
-                        .getLastColumn() >= column;
+            final boolean afterStart = isSuppressedAfterEventStart(line, column, entry);
+            final boolean beforeEnd = isSuppressedBeforeEventEnd(line, column, entry);
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(entry.getCheckName())
                     || entry.getCheckName().equalsIgnoreCase(checkAlias);
@@ -178,6 +172,36 @@ public class SuppressWarningsHolder
             }
         }
         return suppressed;
+    }
+
+    /**
+     * Checks whether suppression entry position is after the audit event occurrence position
+     * in the source file.
+     * @param line the line number in the source file where the event occurred.
+     * @param column the column number in the source file where the event occurred.
+     * @param entry suppression entry.
+     * @return true if suppression entry position is after the audit event occurrence position
+     *         in the source file.
+     */
+    private static boolean isSuppressedAfterEventStart(int line, int column, Entry entry) {
+        return entry.getFirstLine() < line
+            || entry.getFirstLine() == line
+            && (column == 0 || entry.getFirstColumn() <= column);
+    }
+
+    /**
+     * Checks whether suppression entry position is before the audit event occurrence position
+     * in the source file.
+     * @param line the line number in the source file where the event occurred.
+     * @param column the column number in the source file where the event occurred.
+     * @param entry suppression entry.
+     * @return true if suppression entry position is before the audit event occurrence position
+     *         in the source file.
+     */
+    private static boolean isSuppressedBeforeEventEnd(int line, int column, Entry entry) {
+        return entry.getLastLine() > line
+            || entry.getLastLine() == line && entry
+                .getLastColumn() >= column;
     }
 
     @Override
