@@ -450,6 +450,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !(ast.getType() == TokenTypes.LITERAL_RETURN
                     && ast.getFirstChild().getType() == TokenTypes.SEMI)
+                && ast.getType() != TokenTypes.ARRAY_INIT
                 && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
                 && !isPartOfDoubleBraceInitializerForNextToken(ast);
     }
