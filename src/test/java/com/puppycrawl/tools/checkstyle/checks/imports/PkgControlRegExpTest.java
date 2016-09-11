@@ -26,8 +26,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PkgControlRegExpTest {
-    private final PkgControl pcRoot = new PkgControl("com.kazgroup.courtlink");
-    private final PkgControl pcCommon = new PkgControl(pcRoot, "common");
+    private final PkgControl pcRoot = new PkgControl("com.kazgroup.courtlink", false);
+    private final PkgControl pcCommon = new PkgControl(pcRoot, "common", false);
 
     @Before
     public void setUp() {

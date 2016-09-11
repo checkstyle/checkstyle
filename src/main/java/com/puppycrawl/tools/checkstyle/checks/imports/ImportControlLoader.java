@@ -96,11 +96,13 @@ final class ImportControlLoader extends AbstractLoader {
             throws SAXException {
         if ("import-control".equals(qName)) {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
-            stack.push(new PkgControl(pkg));
+            final boolean regex = containsRegexAttribute(attributes);
+            stack.push(new PkgControl(pkg, regex));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, "name");
-            stack.push(new PkgControl(stack.peek(), name));
+            final boolean regex = containsRegexAttribute(attributes);
+            stack.push(new PkgControl(stack.peek(), name, regex));
         }
         else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
             // Need to handle either "pkg" or "class" attribute.
@@ -109,7 +111,7 @@ final class ImportControlLoader extends AbstractLoader {
             final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
             final boolean isLocalOnly = attributes.getValue("local-only") != null;
             final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
-            final boolean regex = attributes.getValue("regex") != null;
+            final boolean regex = containsRegexAttribute(attributes);
             final Guard guard;
             if (pkg == null) {
                 // handle class names which can be normal class names or regular
@@ -126,6 +128,15 @@ final class ImportControlLoader extends AbstractLoader {
             final PkgControl pkgControl = stack.peek();
             pkgControl.addGuard(guard);
         }
+    }
+
+    /**
+     * Check if the given attributes contain the regex attribute.
+     * @param attributes the attributes.
+     * @return if the regex attribute is contained.
+     */
+    private static boolean containsRegexAttribute(final Attributes attributes) {
+        return attributes.getValue("regex") != null;
     }
 
     @Override
