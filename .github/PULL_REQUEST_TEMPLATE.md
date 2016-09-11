@@ -11,6 +11,6 @@ Mandatory to understand and do:
 
 To avoid multiple iterations of fixes and CIs failures, please read http://checkstyle.sourceforge.net/contributing.html
 
-ATTENTION: We are not merging Pull Requests that not passing your CIs.
+ATTENTION: We are not merging Pull Requests that not passing our CIs, but we help to resole issues.
 
 Thanks for reading, remove whole this message and type what you need.
