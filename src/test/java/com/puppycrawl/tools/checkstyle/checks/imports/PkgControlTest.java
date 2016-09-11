@@ -26,8 +26,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PkgControlTest {
-    private final PkgControl pcRoot = new PkgControl("com.kazgroup.courtlink");
-    private final PkgControl pcCommon = new PkgControl(pcRoot, "common");
+    private final PkgControl pcRoot = new PkgControl("com.kazgroup.courtlink", false);
+    private final PkgControl pcCommon = new PkgControl(pcRoot, "common", false);
 
     @Before
     public void setUp() {
@@ -45,6 +45,12 @@ public class PkgControlTest {
         assertEquals(pcCommon, pcRoot
                 .locateFinest("com.kazgroup.courtlink.common.api"));
         assertNull(pcRoot.locateFinest("com"));
+    }
+
+    @Test
+    public void testEnsureTrailingDot() {
+        assertNull(pcRoot.locateFinest("com.kazgroup.courtlinkkk"));
+        assertNull(pcRoot.locateFinest("com.kazgroup.courtlink/common.api"));
     }
 
     @Test

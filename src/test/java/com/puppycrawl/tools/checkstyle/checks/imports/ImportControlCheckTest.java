@@ -178,6 +178,30 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testPkgRegExpInParent() throws Exception {
+        testRegExpInPackage("import-control_pkg-re-in-parent.xml");
+    }
+
+    @Test
+    public void testPkgRegExpInChild() throws Exception {
+        testRegExpInPackage("import-control_pkg-re-in-child.xml");
+    }
+
+    @Test
+    public void testPkgRegExpInBoth() throws Exception {
+        testRegExpInPackage("import-control_pkg-re-in-both.xml");
+    }
+
+    // all import-control_pkg-re* files should be equivalent so use one test for all
+    private void testRegExpInPackage(String file) throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getPath(file));
+        final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final ImportControlCheck testCheckObject =
                 new ImportControlCheck();
