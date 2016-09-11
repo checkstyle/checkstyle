@@ -1037,6 +1037,7 @@
           </reportSet>
         </reportSets>
         <configuration>
+          <quiet>true</quiet>
           <formats>
             <format>xml</format>
             <format>html</format>
@@ -1835,6 +1836,7 @@
             <artifactId>cobertura-maven-plugin</artifactId>
             <version>2.7</version>
             <configuration>
+              <quiet>true</quiet>
               <formats>
                 <format>xml</format>
                 <format>html</format>
