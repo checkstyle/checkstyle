@@ -86,4 +86,31 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }
+
+    @Test
+    public void testWithoutIgnorePattern()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodLengthCheck.class);
+        checkConfig.addAttribute("max", "18");
+        final String[] expected = {
+            "79:5: " + getCheckMessage(MSG_KEY, 20, 18),
+            "115:5: " + getCheckMessage(MSG_KEY, 19, 18),
+            "170:5: " + getCheckMessage(MSG_KEY, 19, 18),
+        };
+        verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
+
+    @Test
+    public void testWithIgnorePattern()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(MethodLengthCheck.class);
+        checkConfig.addAttribute("max", "18");
+        checkConfig.addAttribute("ignorePattern", "(veryLong|localVariables)");
+        final String[] expected = {
+            "79:5: " + getCheckMessage(MSG_KEY, 20, 18),
+        };
+        verify(checkConfig, getPath("InputSimple.java"), expected);
+    }
 }
