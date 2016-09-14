@@ -94,6 +94,8 @@ public class SuppressWithNearbyCommentFilter
     private boolean checkC = true;
 
     /** Whether to look for trigger in C++-style comments. */
+    // -@cs[AbbreviationAsWordInName] We can not change it as,
+    // check's property is a part of API (used in configurations).
     private boolean checkCPP = true;
 
     /** Parsed comment regexp that marks checkstyle suppression region. */
@@ -180,6 +182,8 @@ public class SuppressWithNearbyCommentFilter
      * Set whether to look in C++ comments.
      * @param checkCpp {@code true} if C++ comments are checked.
      */
+    // -@cs[AbbreviationAsWordInName] We can not change it as,
+    // check's property is a part of API (used in configurations).
     public void setCheckCPP(boolean checkCpp) {
         checkCPP = checkCpp;
     }

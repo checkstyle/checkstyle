@@ -269,6 +269,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
                     cache.put(fileName, timestamp);
                 }
             }
+            // -@cs[IllegalCatch] There is no other way to deliver filename that was under
+            // processing. See https://github.com/checkstyle/checkstyle/issues/2285
             catch (Exception ex) {
                 // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException("Exception was thrown while processing "

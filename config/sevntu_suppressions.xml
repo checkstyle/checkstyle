@@ -15,47 +15,10 @@
     <suppress checks="LineLengthExtended"
               files="ParseTreeBuilder\.java"/>
 
-    <!-- Override methods from base class.
-    Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166-->
-    <suppress checks="SimpleAccessorNameNotation"
-              files="ClassDataAbstractionCouplingCheck\.java"
-              lines="71"/>
-    <suppress checks="SimpleAccessorNameNotation"
-              files="ClassFanOutComplexityCheck\.java"
-              lines="76"/>
-    <suppress checks="SimpleAccessorNameNotation"
-              files="SingleSpaceSeparatorCheck\.java"
-              lines="110"/>
-
-    <!-- These classes are deprecated and will be removed soon. -->
-    <suppress checks="ForbidWildcardAsReturnType"
-              files="AbstractTypeAwareCheck\.java"
-              lines="230,246,409"/>
-    <suppress checks="ForbidWildcardAsReturnType"
-              files="ClassResolver\.java"
-              lines="72,184"/>
-    <!-- We need to satisfy javax.swing.table.AbstractTableModel
-    public Class<?> getColumnClass(int columnIndex) { -->
-    <suppress checks="ForbidWildcardAsReturnType"
-              files="ParseTreeTableModel\.java"
-              lines="92"/>
-    <suppress checks="ForbidWildcardAsReturnType"
-              files="ParseTreeTablePModel\.java"
-              lines="109"/>
     <!-- If we change declaration order, Illegal forward reference will appear.
     See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/415-->
     <suppress checks="CustomDeclarationOrder"
               files="JavadocTokenTypes.java"/>
-    <!--CustomDeclarationOrder does not treat groups of overloaded methods.
-    See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414-->
-    <suppress checks="CustomDeclarationOrder"
-              files="AbstractViolationReporter.java"
-              lines="152,164"/>
-
-    <!-- testing for catch Error is part of 100% coverage -->
-    <suppress checks="IllegalCatchExtended"
-              files="CheckerTest\.java"
-              lines="543"/>
 
     <!--JavadocTagInfo.java, JavadocTags.java, InvalidJavadocTag.java, JavadocTag.java will be
     deprecated as we completely switch to ANTLR parser for javadoc. All of the mentioned classes

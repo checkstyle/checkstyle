@@ -68,6 +68,8 @@ public final class ClassDataAbstractionCouplingCheck
         };
     }
 
+    // -@cs[SimpleAccessorNameNotation] Overrides method from the base class.
+    // Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166
     @Override
     protected String getLogMessageId() {
         return MSG_KEY;

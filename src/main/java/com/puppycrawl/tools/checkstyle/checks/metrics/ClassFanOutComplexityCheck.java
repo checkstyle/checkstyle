@@ -73,6 +73,8 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
         };
     }
 
+    // -@cs[SimpleAccessorNameNotation] Override methods from base class.
+    // Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166
     @Override
     protected String getLogMessageId() {
         return MSG_KEY;

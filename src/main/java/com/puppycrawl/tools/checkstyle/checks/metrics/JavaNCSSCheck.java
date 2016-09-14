@@ -38,6 +38,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Lars Ködderitzsch
  */
+// -@cs[AbbreviationAsWordInName] We can not change it as,
+// check's name is a part of API (used in configurations).
 public class JavaNCSSCheck extends AbstractCheck {
 
     /**

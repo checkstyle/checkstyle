@@ -244,6 +244,7 @@ public final class Main {
      * @param filesToProcess List of files to process found from the command line.
      * @return list of violations
      */
+    // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation
     private static List<String> validateCli(CommandLine cmdLine, List<File> filesToProcess) {
         final List<String> result = new ArrayList<>();
 

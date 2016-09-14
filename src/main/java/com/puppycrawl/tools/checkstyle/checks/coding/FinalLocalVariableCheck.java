@@ -173,6 +173,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         };
     }
 
+    // -@cs[CyclomaticComplexity] The only optimization which can be done here is moving CASE-block
+    // expressions to separate methods, but that will not increase readability.
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
@@ -323,6 +325,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param prevScopeUnitializedVariableData variable for previous stack of uninitialized
      *     variables
      */
+    // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation.
     private void updateUninitializedVariables(Deque<DetailAST> prevScopeUnitializedVariableData) {
         // Check for only previous scope
         for (DetailAST variable : prevScopeUnitializedVariableData) {

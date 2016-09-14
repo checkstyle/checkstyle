@@ -226,6 +226,8 @@ public class CheckstyleAntTask extends Task {
      * @param url the URL of the configuration to use
      * @deprecated please use setConfigUrl instead
      */
+    // -@cs[AbbreviationAsWordInName] Should be removed at 7.0 version,
+    // we keep for some time to avoid braking compatibility.
     @Deprecated
     public void setConfigURL(URL url) {
         setConfigUrl(url);

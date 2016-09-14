@@ -227,6 +227,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * @return the resolved class or {@code null}
      *          if unable to resolve the class.
      */
+    // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
     protected final Class<?> resolveClass(String resolvableClassName,
             String className) {
         try {
@@ -243,6 +244,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      * @param className name of surrounding class.
      * @return {@code Class} for a ident.
      */
+    // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
     protected final Class<?> tryLoadClass(Token ident, String className) {
         final Class<?> clazz = resolveClass(ident.getText(), className);
         if (clazz == null) {
@@ -406,6 +408,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
         /**
          * @return {@code Class} associated with an object.
          */
+        // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
         public abstract Class<?> getClazz();
 
         /**

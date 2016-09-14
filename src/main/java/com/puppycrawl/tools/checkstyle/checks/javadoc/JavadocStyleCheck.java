@@ -339,6 +339,7 @@ public class JavadocStyleCheck
      * @param comment the {@code TextBlock} which represents
      *                 the Javadoc comment.
      */
+    // -@cs[ReturnCount] Too complex to break apart.
     private void checkHtmlTags(final DetailAST ast, final TextBlock comment) {
         final int lineNo = comment.getStartLineNo();
         final Deque<HtmlTag> htmlStack = new ArrayDeque<>();

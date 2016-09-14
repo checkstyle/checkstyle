@@ -141,6 +141,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
         {TokenTypes.METHOD_DEF, };
     }
 
+    // -@cs[CyclomaticComplexity] Too complex to break apart.
     @Override
     public void visitToken(final DetailAST ast) {
         final TextBlock javadoc =
