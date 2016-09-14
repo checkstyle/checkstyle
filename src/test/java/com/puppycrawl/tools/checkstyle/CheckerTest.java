@@ -540,6 +540,7 @@ public class CheckerTest extends BaseCheckTestSupport {
             checker.process(filesToProcess);
             fail("IOError is expected!");
         }
+        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
             assertThat(error.getCause(), instanceOf(IOError.class));
             assertThat(error.getCause().getCause(), instanceOf(InternalError.class));

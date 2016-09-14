@@ -69,6 +69,7 @@ public class ClassResolver {
      * @return the resolved class
      * @throws ClassNotFoundException if unable to resolve the class
      */
+    // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
     public Class<?> resolve(String name, String currentClass)
             throws ClassNotFoundException {
         // See if the class is full qualified
@@ -182,6 +183,7 @@ public class ClassResolver {
      * @throws ClassNotFoundException if an error occurs
      * @throws NoClassDefFoundError if an error occurs
      */
+    // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
     private Class<?> safeLoad(String name) throws ClassNotFoundException, NoClassDefFoundError {
         // The next line will load the class using the specified class
         // loader. The magic is having the "false" parameter. This means the

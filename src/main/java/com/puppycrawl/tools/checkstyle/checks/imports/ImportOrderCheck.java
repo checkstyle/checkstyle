@@ -354,6 +354,7 @@ public class ImportOrderCheck
         beforeFirstImport = true;
     }
 
+    // -@cs[CyclomaticComplexity] SWITCH was transformed into IF-ELSE.
     @Override
     public void visitToken(DetailAST ast) {
         final FullIdent ident;

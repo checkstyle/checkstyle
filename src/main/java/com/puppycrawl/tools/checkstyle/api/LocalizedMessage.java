@@ -102,6 +102,7 @@ public final class LocalizedMessage
      * @param sourceClass the Class that is the source of the message
      * @param customMessage optional custom message overriding the default
      */
+    // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public LocalizedMessage(int lineNo,
                             int columnNo,
                             String bundle,
@@ -140,6 +141,7 @@ public final class LocalizedMessage
      * @param sourceClass the Class that is the source of the message
      * @param customMessage optional custom message overriding the default
      */
+    // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public LocalizedMessage(int lineNo,
                             int columnNo,
                             String bundle,
@@ -171,6 +173,7 @@ public final class LocalizedMessage
      * @param sourceClass the source class for the message
      * @param customMessage optional custom message overriding the default
      */
+    // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public LocalizedMessage(int lineNo,
                             String bundle,
                             String key,
@@ -207,6 +210,7 @@ public final class LocalizedMessage
                 sourceClass, customMessage);
     }
 
+    // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override
     public boolean equals(Object object) {
         if (this == object) {

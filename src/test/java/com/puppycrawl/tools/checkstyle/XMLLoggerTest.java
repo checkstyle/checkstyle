@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Enter a description of class XMLLoggerTest.java.
  * @author Rick Giles
  */
+// -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class XMLLoggerTest {
     private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 

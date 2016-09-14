@@ -413,6 +413,8 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT ast to check.
      * @return the class frame where violation is found or null otherwise.
      */
+    // -@cs[CyclomaticComplexity] Method already invokes too many methods that fully explain
+    // a logic, additional abstraction will not make logic/algorithm more readable.
     private AbstractFrame getClassFrameWhereViolationIsFound(DetailAST ast) {
         AbstractFrame frameWhereViolationIsFound = null;
         final AbstractFrame variableDeclarationFrame = findFrame(ast, false);

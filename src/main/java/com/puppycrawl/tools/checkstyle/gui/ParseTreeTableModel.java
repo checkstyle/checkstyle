@@ -89,6 +89,8 @@ public class ParseTreeTableModel implements TreeModel {
      * @param column the column number
      * @return the type for column number {@code column}.
      */
+    // -@cs[ForbidWildcardAsReturnType] We need to satisfy javax.swing.table.AbstractTableModel
+    // public Class<?> getColumnClass(int columnIndex) {...}
     public Class<?> getColumnClass(int column) {
         return pModel.getColumnClass(column);
     }

@@ -143,6 +143,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      * Controls whether to allow documented exceptions that are not declared if
      * they are a subclass of java.lang.RuntimeException.
      */
+    // -@cs[AbbreviationAsWordInName] We can not change it as,
+    // check's property is part of API (used in configurations).
     private boolean allowUndeclaredRTE;
 
     /**
@@ -249,6 +251,8 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
      *
      * @param flag a {@code Boolean} value
      */
+    // -@cs[AbbreviationAsWordInName] We can not change it as,
+    // check's property is part of API (used in configurations).
     public void setAllowUndeclaredRTE(boolean flag) {
         allowUndeclaredRTE = flag;
     }

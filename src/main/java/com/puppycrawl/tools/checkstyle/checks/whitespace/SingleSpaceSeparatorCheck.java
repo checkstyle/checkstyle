@@ -107,6 +107,8 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
         return CommonUtils.EMPTY_INT_ARRAY;
     }
 
+    // -@cs[SimpleAccessorNameNotation] Overrides method from base class.
+    // Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166
     @Override
     public boolean isCommentNodesRequired() {
         return validateComments;

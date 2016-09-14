@@ -82,6 +82,8 @@ public class SuppressionCommentFilter
     private boolean checkC = true;
 
     /** Whether to look in comments of the C++ type. */
+    // -@cs[AbbreviationAsWordInName] we can not change it as,
+    // Check property is a part of API (used in configurations)
     private boolean checkCPP = true;
 
     /** Parsed comment regexp that turns checkstyle reporting off. */
@@ -169,6 +171,8 @@ public class SuppressionCommentFilter
      * Set whether to look in C++ comments.
      * @param checkCpp {@code true} if C++ comments are checked.
      */
+    // -@cs[AbbreviationAsWordInName] We can not change it as,
+    // check's property is a part of API (used in configurations).
     public void setCheckCPP(boolean checkCpp) {
         checkCPP = checkCpp;
     }

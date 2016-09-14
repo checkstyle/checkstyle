@@ -62,6 +62,8 @@ public abstract class AbstractComplexityCheck
      * Gets the message ID to log violations with.
      * @return the message ID to log violations with
      */
+    // -@cs[AbbreviationAsWordInName] Should be removed at 7.0 version,
+    // we keep for some time to avoid breaking of compatibility
     protected abstract String getMessageID();
 
     /**

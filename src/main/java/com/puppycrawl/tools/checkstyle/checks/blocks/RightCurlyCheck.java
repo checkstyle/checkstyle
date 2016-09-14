@@ -310,6 +310,8 @@ public class RightCurlyCheck extends AbstractCheck {
      * @param ast detail ast.
      * @return object that contain all details to make a validation.
      */
+    // -@cs[JavaNCSS] getDetails() method is a huge SWITCH, it has to be monolithic
+    // -@cs[ExecutableStatementCount] getDetails() method is a huge SWITCH, it has to be monolithic
     private static Details getDetails(DetailAST ast) {
         // Attempt to locate the tokens to do the check
         boolean shouldCheckLastRcurly = false;

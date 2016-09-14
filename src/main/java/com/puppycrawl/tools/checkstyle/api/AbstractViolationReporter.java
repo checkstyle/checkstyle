@@ -149,6 +149,8 @@ public abstract class AbstractViolationReporter
      *
      * @see java.text.MessageFormat
      */
+    // -@cs[CustomDeclarationOrder] CustomDeclarationOrder does not treat groups of
+    // overloaded methods. See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414
     public abstract void log(int line, String key, Object... args);
 
     /**
@@ -161,6 +163,8 @@ public abstract class AbstractViolationReporter
      *
      * @see java.text.MessageFormat
      */
+    // -@cs[CustomDeclarationOrder] CustomDeclarationOrder does not treat groups of
+    // overloaded methods. See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/414
     public abstract void log(int line, int col, String key,
             Object... args);
 }
