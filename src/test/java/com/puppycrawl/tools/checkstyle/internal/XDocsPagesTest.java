@@ -171,7 +171,7 @@ public class XDocsPagesTest {
     }
 
     private static void buildAndValidateXml(String fileName, String unserializedSource)
-            throws IOException, ParserConfigurationException {
+            throws IOException, ParserConfigurationException, CheckstyleException {
         // not all examples come with the full xml structure
         String code = unserializedSource;
 
@@ -214,7 +214,7 @@ public class XDocsPagesTest {
     }
 
     private static void validateCheckstyleXml(String fileName, String code,
-            String unserializedSource) throws IOException {
+            String unserializedSource) throws IOException, CheckstyleException {
         // can't process non-existent examples, or out of context snippets
         if (!code.contains("com.mycompany") && !code.contains("checkstyle-packages")
                 && !code.contains("MethodLimit") && !code.contains("<suppress ")
@@ -243,8 +243,8 @@ public class XDocsPagesTest {
                 }
             }
             catch (CheckstyleException ex) {
-                Assert.fail(fileName + " has invalid Checkstyle xml (" + ex.getMessage() + "): "
-                        + unserializedSource);
+                throw new CheckstyleException(fileName + " has invalid Checkstyle xml ("
+                        + ex.getMessage() + "): " + unserializedSource, ex);
             }
         }
     }
@@ -302,7 +302,7 @@ public class XDocsPagesTest {
             instance = moduleFactory.createModule(sectionName);
         }
         catch (CheckstyleException ex) {
-            Assert.fail(fileName + " couldn't find class: " + sectionName);
+            throw new CheckstyleException(fileName + " couldn't find class: " + sectionName, ex);
         }
 
         int subSectionPos = 0;
