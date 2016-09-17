@@ -296,7 +296,7 @@ public class XDocsPagesTest {
 
     private static void validateCheckSection(ModuleFactory moduleFactory, String fileName,
             String sectionName, Node section) throws Exception {
-        Object instance;
+        final Object instance;
 
         try {
             instance = moduleFactory.createModule(sectionName);
