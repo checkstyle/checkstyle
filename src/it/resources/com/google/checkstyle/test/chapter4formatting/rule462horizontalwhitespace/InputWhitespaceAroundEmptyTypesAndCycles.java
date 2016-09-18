@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
-import com.google.common.base.Function;
-import com.google.common.base.Supplier;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 class myFoo
 {

@@ -32,6 +32,9 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -52,8 +55,6 @@ import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
@@ -681,9 +682,9 @@ public class MainTest {
 
     @Test
     public void testPrintTreeJavadocOption() throws Exception {
-        final String expected = Files.toString(new File(
-                getPath("astprinter/expectedInputJavadocComment.txt")), Charsets.UTF_8)
-                    .replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = new String(Files.readAllBytes(Paths.get(
+            getPath("astprinter/expectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
+            .replaceAll("\\\\r\\\\n", "\\\\n");
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals(expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));
@@ -694,9 +695,9 @@ public class MainTest {
 
     @Test
     public void testPrintFullTreeOption() throws Exception {
-        final String expected = Files.toString(new File(
-                getPath("astprinter/expectedInputAstTreeStringPrinterJavadoc.txt")),
-                Charsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = new String(Files.readAllBytes(Paths.get(
+            getPath("astprinter/expectedInputAstTreeStringPrinterJavadoc.txt"))),
+            StandardCharsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals(expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));

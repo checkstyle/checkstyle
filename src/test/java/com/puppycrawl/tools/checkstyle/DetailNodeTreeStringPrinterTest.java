@@ -22,12 +22,12 @@ package com.puppycrawl.tools.checkstyle;
 import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 
 public class DetailNodeTreeStringPrinterTest {
 
@@ -45,9 +45,9 @@ public class DetailNodeTreeStringPrinterTest {
         final String actual = DetailNodeTreeStringPrinter.printFileAst(
             new File(getPath("InputJavadocComment.javadoc")))
                 .replaceAll("\\\\r\\\\n", "\\\\n");
-        final String expected = Files.toString(new File(
-                getPath("expectedInputJavadocComment.txt")), Charsets.UTF_8)
-                .replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = new String(Files.readAllBytes(Paths.get(
+            getPath("expectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
+            .replaceAll("\\\\r\\\\n", "\\\\n");
         Assert.assertEquals(expected, actual);
     }
 

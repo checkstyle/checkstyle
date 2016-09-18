@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
 
-import com.google.common.io.CharSource;
+import com.oracle.net.Sdp;
 
 import javax.swing.AbstractAction;
 

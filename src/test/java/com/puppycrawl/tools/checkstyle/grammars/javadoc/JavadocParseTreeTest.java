@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
@@ -33,9 +35,6 @@ import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 
 public class JavadocParseTreeTest {
     private final BaseErrorListener errorListener = new FailOnErrorListener();
@@ -62,7 +61,7 @@ public class JavadocParseTreeTest {
 
     private static String getFileContent(File filename)
             throws IOException {
-        return Files.toString(filename, Charsets.UTF_8);
+        return new String(Files.readAllBytes(filename.toPath()), StandardCharsets.UTF_8);
     }
 
     private static String getPath(String filename) throws IOException {

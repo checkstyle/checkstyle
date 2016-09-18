@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
 
 import antlr.collections.AST;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -728,9 +727,9 @@ public class VisibilityModifierCheck
      * @return true if all of generic type arguments are immutable.
      */
     private boolean areImmutableTypeArguments(List<String> typeArgsClassNames) {
-        return !Iterables.tryFind(typeArgsClassNames,
+        return !typeArgsClassNames.stream().filter(
             typeName -> !immutableClassShortNames.contains(typeName)
-            && !immutableClassCanonicalNames.contains(typeName)).isPresent();
+                && !immutableClassCanonicalNames.contains(typeName)).findFirst().isPresent();
     }
 
     /**

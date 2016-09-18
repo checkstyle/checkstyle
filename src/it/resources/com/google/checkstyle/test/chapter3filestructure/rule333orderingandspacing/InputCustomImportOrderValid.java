@@ -1,11 +1,11 @@
 package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.containsAnnotation;
+import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.getAnnotation;
 
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
+import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
+import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
 
 import com.sun.accessibility.internal.resources.*;
 import org.apache.commons.beanutils.converters.ArrayConverter;

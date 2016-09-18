@@ -7,7 +7,7 @@
 
   <allow pkg="antlr"/>
   <allow pkg="org.antlr.v4.runtime"/>
-  <allow pkg="com.google.common"/>
+  <allow pkg="com.google.common.collect"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
   <allow pkg="java.io"/>
@@ -20,6 +20,17 @@
   <allow pkg="org.xml.sax"/>
   <allow pkg="com.puppycrawl.tools.checkstyle"/>
   <allow pkg="java.lang.reflect"/>
+
+  <allow class="com.google.common.annotations.GwtCompatible" />
+  <allow class="com.google.common.annotations.GwtIncompatible"/>
+  <allow class="com.google.common.annotations.VisibleForTesting"/>
+  <allow class="com.google.common.base.Ascii"/>
+  <allow class="com.google.common.base.CaseFormat"/>
+  <allow class="com.google.common.base.CharMatcher"/>
+  <allow class="com.google.common.io.Closeables"/>
+  <allow class="com.google.common.io.Flushables"/>
+  <allow class="com.google.common.io.Files"/>
+  <allow class="com.google.common.reflect.ClassPath"/>
 
   <!-- The local ones -->
   <allow class="java.security.MessageDigest" local-only="true"/>

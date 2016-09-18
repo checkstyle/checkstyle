@@ -40,7 +40,6 @@ import java.util.Set;
 
 import javax.xml.bind.DatatypeConverter;
 
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
@@ -300,7 +299,7 @@ final class PropertyCacheFile {
      * @return true if the contents of external configuration resources were changed.
      */
     private boolean areExternalResourcesChanged(Set<ExternalResource> resources) {
-        return Iterables.tryFind(resources, resource -> {
+        return resources.stream().filter(resource -> {
             boolean changed = false;
             if (isResourceLocationInCache(resource.location)) {
                 final String contentHashSum = resource.contentHashSum;
@@ -313,7 +312,7 @@ final class PropertyCacheFile {
                 changed = true;
             }
             return changed;
-        }).isPresent();
+        }).findFirst().isPresent();
     }
 
     /**

@@ -39,7 +39,6 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.primitives.Ints;
 
 /**
  * This example shows how to create a simple JTreeTable component,
@@ -163,7 +162,7 @@ public class JTreeTable extends JTable {
         getColumn("Line").setMaxWidth(widthOfColumnContainingSixCharacterString);
         getColumn("Column").setMaxWidth(widthOfColumnContainingSixCharacterString);
         final int preferredTreeColumnWidth =
-                Ints.checkedCast(Math.round(getPreferredSize().getWidth() * 0.6));
+                Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));
         getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
         // Twenty eight character string to contain "Type" column
         final int widthOfTwentyEightCharacterString =

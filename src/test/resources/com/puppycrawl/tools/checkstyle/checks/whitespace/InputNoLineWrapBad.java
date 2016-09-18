@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.
     checkstyle.checks.whitespace;
 
-import com.google.common.annotations.Beta;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 
 import javax.accessibility.
     AccessibleAttributeSequence;

@@ -26,13 +26,13 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MS
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -121,7 +121,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         };
 
         final File file = temporaryFolder.newFile();
-        Files.write("first line \r\n second line \n\r third line", file, Charsets.UTF_8);
+        Files.write("first line \r\n second line \n\r third line", file, StandardCharsets.UTF_8);
 
         verify(checkConfig, file.getPath(), expected);
     }
@@ -133,8 +133,17 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     @Test
-    public void testEmptyFormat() throws Exception {
+    public void testNullFormat() throws Exception {
         checkConfig.addAttribute("format", null);
+        final String[] expected = {
+            "0: " + getCheckMessage(MSG_EMPTY),
+        };
+        verify(checkConfig, getPath("InputSemantic.java"), expected);
+    }
+
+    @Test
+    public void testEmptyFormat() throws Exception {
+        checkConfig.addAttribute("format", "");
         final String[] expected = {
             "0: " + getCheckMessage(MSG_EMPTY),
         };
@@ -151,7 +160,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         };
 
         final File file = temporaryFolder.newFile();
-        Files.write(makeLargeXyString(), file, Charsets.UTF_8);
+        Files.write(makeLargeXyString(), file, StandardCharsets.UTF_8);
 
         verify(checkConfig, file.getPath(), expected);
     }
@@ -166,7 +175,7 @@ public class RegexpMultilineCheckTest extends BaseFileSetCheckTestSupport {
         };
 
         final File file = temporaryFolder.newFile();
-        Files.write("", file, Charsets.UTF_8);
+        Files.write("", file, StandardCharsets.UTF_8);
 
         verify(checkConfig, file.getPath(), expected);
     }

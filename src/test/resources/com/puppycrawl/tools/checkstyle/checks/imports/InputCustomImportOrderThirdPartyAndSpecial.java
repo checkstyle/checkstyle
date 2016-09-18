@@ -1,14 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.Beta;
-import com.google.common.annotations.VisibleForTesting;
+import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
+import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
 
 import org.apache.commons.io.ByteOrderMark;
 
 import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 
-import com.google.common.annotations.GwtCompatible; //warn, ORDER, should be on THIRD_PARTY_PACKAGE, now SPECIAL_IMPORTS
+import com.google.common.collect.Sets; //warn, ORDER, should be on THIRD_PARTY_PACKAGE, now SPECIAL_IMPORTS
 
 import antlr.*;
 import antlr.CommonASTWithHiddenTokens;

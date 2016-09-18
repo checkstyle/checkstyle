@@ -1,12 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation; //indent:0 exp:0
 
 import java.util.AbstractMap; //indent:0 exp:0
+import java.util.List; //indent:0 exp:0
 import java.util.Set; //indent:0 exp:0
 import java.util.concurrent.ConcurrentMap; //indent:0 exp:0
 
 import javax.xml.bind.annotation.XmlElement; //indent:0 exp:0
 
-import com.google.common.base.Equivalence; //indent:0 exp:0
 
 /**                                                                           //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:   //indent:1 exp:1
@@ -39,8 +39,8 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
       } //indent:6 exp:6
 
       @Override //indent:6 exp:6
-      Equivalence<Object> defaultEquivalence() { //indent:6 exp:6
-        return Equivalence.equals(); //indent:8 exp:8
+      List<Object> defaultEquivalence() { //indent:6 exp:6
+        return new java.util.ArrayList<>(); //indent:8 exp:8
       } //indent:6 exp:6
 
       @Override //indent:6 exp:6
@@ -60,8 +60,8 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
       } //indent:6 exp:6
 
       @Override //indent:6 exp:6
-      Equivalence<Object> defaultEquivalence() { //indent:6 exp:6
-        return Equivalence.identity(); //indent:8 exp:8
+      List<Object> defaultEquivalence() { //indent:6 exp:6
+        return new java.util.ArrayList<>(); //indent:8 exp:8
       } //indent:6 exp:6
 
       @Override <K, V> Object referenceValue(Segment<K, V> segment, ReferenceEntry<K, V> entry, //indent:6 exp:6
@@ -81,8 +81,8 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
       } //indent:6 exp:6
 
       @Override //indent:6 exp:6
-      Equivalence<Object> defaultEquivalence() { //indent:6 exp:6
-        return Equivalence.identity(); //indent:8 exp:8
+      List<Object> defaultEquivalence() { //indent:6 exp:6
+        return new java.util.ArrayList<>(); //indent:8 exp:8
       } //indent:6 exp:6
     }; //indent:4 exp:4
 
@@ -97,7 +97,7 @@ class LocalCache<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> 
      * at this strength. This strategy will be used unless the user explicitly specifies an        //indent:5 exp:5
      * alternate strategy.                                                                         //indent:5 exp:5
      */                                                                                            //indent:5 exp:5
-    abstract Equivalence<Object> defaultEquivalence(); //indent:4 exp:4
+    abstract List<Object> defaultEquivalence(); //indent:4 exp:4
   } //indent:2 exp:2
 
   /**                        //indent:2 exp:2

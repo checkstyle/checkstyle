@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,12 +42,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.collect.Maps;
-import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class BaseCheckTestSupport {
@@ -108,8 +108,9 @@ public class BaseCheckTestSupport {
 
     protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName,
             boolean withComments) throws Exception {
-        final String expectedContents = Files.toString(new File(expectedTextPrintFileName),
-                Charsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expectedContents = new String(Files.readAllBytes(
+            Paths.get(expectedTextPrintFileName)), StandardCharsets.UTF_8)
+            .replaceAll("\\\\r\\\\n", "\\\\n");
         final String actualContents = AstTreeStringPrinter.printFileAst(
                 new File(actualJavaFileName), withComments).replaceAll("\\\\r\\\\n", "\\\\n");
 
