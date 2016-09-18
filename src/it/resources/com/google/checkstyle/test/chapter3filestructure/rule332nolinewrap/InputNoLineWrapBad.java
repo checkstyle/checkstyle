@@ -1,7 +1,7 @@
 package com.google.checkstyle.test. //warn
               chapter3filestructure.rule332nolinewrap;
 
-import com.google.common.annotations.Beta; //ok
+import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck; //ok
 
 import javax.accessibility. //warn
     AccessibleAttributeSequence;

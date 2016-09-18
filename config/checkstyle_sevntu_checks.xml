@@ -35,7 +35,14 @@
         <module name="ForbidThrowAnonymousExceptionsCheck"/>
         <module name="ForbidReturnInFinallyBlock"/>
         <module name="ForbidInstantiation">
-            <property name="forbiddenClasses" value="java.lang.NullPointerException,java.util.Vector,java.util.Stack"/>
+            <property name="forbiddenClasses" value="java.lang.NullPointerException,
+             java.util.Vector, java.util.Stack,com.google.collect.Iterables,
+             com.google.common.primitives.Ints,com.google.common.base.String,
+             com.google.common.base.Function,com.google.common.base.Supplier,
+             com.google.common.base.Charsets,com.google.common.base.MoreObjects,
+             com.google.common.base.Optional,com.google.common.base.Equivalence,
+             com.google.common.base.Preconditions,com.google.common.base.Predicate,
+             com.google.common.io.CharSource,com.google.common.annotations.Beta"/>
         </module>
         <module name="ForbidCCommentsInMethods"/>
         <module name="FinalizeImplementationCheck"/>
@@ -94,7 +101,14 @@
         </module>
         <module name="ForbidCertainImports">
             <property name="packageNameRegexp" value=".+"/>
-            <property name="forbiddenImportsRegexp" value="java\.util\.Stack|java\.util\.Vector"/>
+            <property name="forbiddenImportsRegexp" value="java\.util\.Stack|java\.util\.Vector|
+            com\.google\.collect\.Iterables|com\.google\.common\.annotations\.Beta|
+            com\.google\.common\.base\.Predicate|com\.google\.common\.base\.String||
+            com\.google\.common\.base\.Function|com\.google\.common\.base\.Supplier|
+            com\.google\.common\.base\.Charsets|com\.google\.common\.base\.MoreObjects|
+            com\.google\.common\.base\.Equivalence|com\.google\.common\.base\.Preconditions|
+            com\.google\.common\.base\.Optional|com\.google\.common\.io\.CharSource|
+            com\.google\.common\.primitives.*"/>
             <property name="forbiddenImportsExcludesRegexp" value=""/>
         </module>
         <module name="ForbidCertainImports">

@@ -44,7 +44,6 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -366,9 +365,8 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.configure(new DefaultConfiguration("default config"));
         // We set wrong file name length in order to reproduce IOException on OS Linux, OS Windows.
         // The maximum file name length which is allowed in most UNIX, Windows file systems is 255.
-        // See https://en.wikipedia.org/wiki/Filename
-        final int wrongFileNameLength = 300;
-        checker.setCacheFile(Strings.padEnd("fileName", wrongFileNameLength, 'e'));
+        // See https://en.wikipedia.org/wiki/Filename;
+        checker.setCacheFile(String.format(Locale.ENGLISH, "%0300d", 0));
         try {
             checker.destroy();
             fail("Exception did not happen");

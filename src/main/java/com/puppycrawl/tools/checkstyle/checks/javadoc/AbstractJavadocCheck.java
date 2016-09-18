@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
-import com.google.common.primitives.Ints;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
@@ -250,15 +250,15 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
         DetailNode curNode = root;
         while (curNode != null) {
-            final boolean waitsFor = Ints.contains(defaultTokenTypes, curNode.getType());
+            final boolean waitsForProcessing = shouldBeProcessed(defaultTokenTypes, curNode);
 
-            if (waitsFor) {
+            if (waitsForProcessing) {
                 visitJavadocToken(curNode);
             }
             DetailNode toVisit = JavadocUtils.getFirstChild(curNode);
             while (curNode != null && toVisit == null) {
 
-                if (waitsFor) {
+                if (waitsForProcessing) {
                     leaveJavadocToken(curNode);
                 }
 
@@ -269,6 +269,16 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             }
             curNode = toVisit;
         }
+    }
+
+    /**
+     * Checks whether the current node should be processed by the check.
+     * @param defaultTokenTypes default token types.
+     * @param curNode current node.
+     * @return true if the current node should be processed by the check.
+     */
+    private boolean shouldBeProcessed(int[] defaultTokenTypes, DetailNode curNode) {
+        return IntStream.of(defaultTokenTypes).anyMatch(i -> i == curNode.getType());
     }
 
 }

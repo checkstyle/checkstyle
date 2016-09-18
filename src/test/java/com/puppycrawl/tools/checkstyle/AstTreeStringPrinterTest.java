@@ -22,12 +22,13 @@ package com.puppycrawl.tools.checkstyle;
 import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class AstTreeStringPrinterTest {
@@ -55,8 +56,8 @@ public class AstTreeStringPrinterTest {
     public void testParseFile() throws Exception {
         final String actual = AstTreeStringPrinter.printFileAst(
             new File(getPath("InputAstTreeStringPrinterComments.java")), false);
-        final String expected = Files.toString(new File(
-                getPath("expectedInputAstTreeStringPrinter.txt")), Charsets.UTF_8);
+        final String expected = new String(Files.readAllBytes(Paths.get(
+            getPath("expectedInputAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8);
         Assert.assertEquals(expected, actual);
     }
 
@@ -65,8 +66,8 @@ public class AstTreeStringPrinterTest {
         final String actual = AstTreeStringPrinter.printFileAst(
             new File(getPath("InputAstTreeStringPrinterComments.java")), true)
                 .replaceAll("\\\\r\\\\n", "\\\\n");
-        final String expected = Files.toString(new File(
-                getPath("expectedInputAstTreeStringPrinterComments.txt")), Charsets.UTF_8)
+        final String expected = new String(Files.readAllBytes(Paths.get(
+                getPath("expectedInputAstTreeStringPrinterComments.txt"))), StandardCharsets.UTF_8)
                 .replaceAll("\\\\r\\\\n", "\\\\n");
         Assert.assertEquals(expected, actual);
     }
@@ -76,8 +77,8 @@ public class AstTreeStringPrinterTest {
         final String actual = AstTreeStringPrinter.printJavaAndJavadocTree(
                 new File(getPath("InputAstTreeStringPrinterJavadoc.java")))
                 .replaceAll("\\\\r\\\\n", "\\\\n");
-        final String expected = Files.toString(new File(
-                getPath("expectedInputAstTreeStringPrinterJavadoc.txt")), Charsets.UTF_8)
+        final String expected = new String(Files.readAllBytes(Paths.get(
+                getPath("expectedInputAstTreeStringPrinterJavadoc.txt"))), StandardCharsets.UTF_8)
                 .replaceAll("\\\\r\\\\n", "\\\\n");
         Assert.assertEquals(expected, actual);
     }

@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import com.google.common.base.Function;
-import com.google.common.base.Supplier;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class InputAllowEmptyTypesAndNonEmptyClasses{
 

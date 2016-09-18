@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
-
-import com.google.common.base.MoreObjects;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 
@@ -227,8 +226,8 @@ public final class DetectorOptions {
          * @return DetectorOptions instance.
          */
         public DetectorOptions build() {
-            message = MoreObjects.firstNonNull(message, "");
-            suppressor = MoreObjects.firstNonNull(suppressor, NeverSuppress.INSTANCE);
+            message = Optional.ofNullable(message).orElse("");
+            suppressor = Optional.ofNullable(suppressor).orElse(NeverSuppress.INSTANCE);
             return DetectorOptions.this;
         }
     }
