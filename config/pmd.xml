@@ -106,6 +106,12 @@
     <!-- Checkstyle is not thread safe -->
     <exclude name="UseConcurrentHashMap"/>
   </rule>
+  <rule ref="rulesets/java/controversial.xml/DefaultPackage">
+    <properties>
+      <!--  -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='DetectorOptions' or @Image='NeverSuppress']"/>
+    </properties>
+  </rule>
   <rule ref="rulesets/java/controversial.xml/AvoidUsingShortType">
     <properties>
       <!-- that class integrates checkstyle and antlr that is why it has a lot of imports -->
