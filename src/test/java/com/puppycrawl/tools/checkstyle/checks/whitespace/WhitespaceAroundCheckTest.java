@@ -148,6 +148,23 @@ public class WhitespaceAroundCheckTest
     }
 
     @Test
+    public void testIt5()
+            throws Exception {
+        checkConfig.addAttribute("tokens", "ARRAY_INIT");
+        final String[] expected = {
+            "7:39: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "11:37: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "13:56: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "21:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "21:59: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "23:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "23:41: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "27:46: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+        };
+        verify(checkConfig, getPath("InputWhitespaceAroundArrayInitialization.java"), expected);
+    }
+
+    @Test
     public void testGenericsTokensAreFlagged()
             throws Exception {
         final String[] expected = {
@@ -251,6 +268,7 @@ public class WhitespaceAroundCheckTest
         final int[] actual = whitespaceAroundCheckObj.getAcceptableTokens();
         final int[] expected = {
             TokenTypes.ASSIGN,
+            TokenTypes.ARRAY_INIT,
             TokenTypes.BAND,
             TokenTypes.BAND_ASSIGN,
             TokenTypes.BOR,
