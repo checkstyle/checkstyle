@@ -374,6 +374,11 @@
 
     <!-- Regexp -->
     <module name="Regexp"/>
+    <module name="Regexp">
+      <property name="format" value="^(?!(.*http|import)).{101,}$"/>
+      <property name="illegalPattern" value="true"/>
+      <property name="message" value="Line should not be longer then 100 symbols"/>
+    </module>
     <module name="RegexpSinglelineJava"/>
     <module name="RegexpSinglelineJava">
       <property name="format" value="[^\p{ASCII}]"/>
