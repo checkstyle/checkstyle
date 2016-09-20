@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -577,10 +577,10 @@ public class HiddenFieldCheck
         private final FieldFrame parent;
 
         /** Set of instance field names. */
-        private final Set<String> instanceFields = Sets.newHashSet();
+        private final Set<String> instanceFields = new HashSet<>();
 
         /** Set of static field names. */
-        private final Set<String> staticFields = Sets.newHashSet();
+        private final Set<String> staticFields = new HashSet<>();
 
         /**
          * Creates new frame.

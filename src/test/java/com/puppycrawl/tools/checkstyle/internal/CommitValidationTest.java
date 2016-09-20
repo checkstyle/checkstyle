@@ -28,7 +28,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -41,9 +45,6 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
 
 /**
  * Validate commit message has proper structure.
@@ -238,8 +239,10 @@ public class CommitValidationTest {
 
     private static List<RevCommit> getCommitsByCounter(
             Iterator<RevCommit> previousCommitsIterator) {
-        return Lists.newArrayList(Iterators.limit(previousCommitsIterator,
-                PREVIOUS_COMMITS_TO_CHECK_COUNT));
+        final Spliterator<RevCommit> spliterator =
+            Spliterators.spliteratorUnknownSize(previousCommitsIterator, Spliterator.ORDERED);
+        return StreamSupport.stream(spliterator, false).limit(PREVIOUS_COMMITS_TO_CHECK_COUNT)
+            .collect(Collectors.toList());
     }
 
     private static List<RevCommit> getCommitsByLastCommitAuthor(

@@ -27,6 +27,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
@@ -34,7 +35,6 @@ import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
 
-import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -48,7 +48,7 @@ public class GenericWhitespaceCheckTest
     @Before
     public void setUp() {
         checkConfig = createCheckConfig(GenericWhitespaceCheck.class);
-        final Map<Class<?>, Integer> x = Maps.newHashMap();
+        final Map<Class<?>, Integer> x = new HashMap<>();
         x.entrySet().forEach(Map.Entry::getValue);
     }
 

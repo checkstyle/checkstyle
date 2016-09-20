@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 /**
@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 @Deprecated
 public abstract class AbstractIllegalCheck extends AbstractCheck {
     /** Illegal class names. */
-    private final Set<String> illegalClassNames = Sets.newHashSet();
+    private final Set<String> illegalClassNames = new HashSet<>();
 
     /**
      * Constructs an object.

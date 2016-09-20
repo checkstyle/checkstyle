@@ -25,8 +25,9 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -108,9 +109,9 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
 
     /** Operations which can change control variable in update part of the loop. */
-    private static final Set<Integer> MUTATION_OPERATIONS =
-            Sets.newHashSet(TokenTypes.POST_INC, TokenTypes.POST_DEC, TokenTypes.DEC,
-                    TokenTypes.INC, TokenTypes.ASSIGN);
+    private static final Set<Integer> MUTATION_OPERATIONS = Stream.of(TokenTypes.POST_INC,
+        TokenTypes.POST_DEC, TokenTypes.DEC, TokenTypes.INC, TokenTypes.ASSIGN)
+        .collect(Collectors.toSet());
 
     /** Stack of block parameters. */
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();
@@ -304,8 +305,8 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     private static Set<String> getVariablesManagedByForLoop(DetailAST ast) {
         final Set<String> initializedVariables = getForInitVariables(ast);
         final Set<String> iteratingVariables = getForIteratorVariables(ast);
-
-        return Sets.intersection(initializedVariables, iteratingVariables);
+        return initializedVariables.stream().filter(iteratingVariables::contains)
+            .collect(Collectors.toSet());
     }
 
     /**

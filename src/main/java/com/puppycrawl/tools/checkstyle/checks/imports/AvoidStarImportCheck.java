@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -75,7 +75,7 @@ public class AvoidStarImportCheck
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
     /** The packages/classes to exempt from this check. */
-    private final List<String> excludes = Lists.newArrayList();
+    private final List<String> excludes = new ArrayList<>();
 
     /** Whether to allow all class imports. */
     private boolean allowClassImports;

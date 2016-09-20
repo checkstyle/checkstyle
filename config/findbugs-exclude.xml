@@ -89,6 +89,8 @@
         <!-- beginProcessing() is kind of c-tor -->
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck" />
+        <!--Uses setters to set fields values-->
+        <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck" />
       </Or>
       <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
     </Match>

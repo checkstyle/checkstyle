@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.Set;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -218,7 +218,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
      */
     private void visitMethodDef(DetailAST ast) {
         parameterNamesStack.push(parameterNames);
-        parameterNames = Sets.newHashSet();
+        parameterNames = new HashSet<>();
 
         visitMethodParameters(ast.findFirstToken(TokenTypes.PARAMETERS));
     }

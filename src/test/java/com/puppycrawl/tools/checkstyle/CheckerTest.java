@@ -38,14 +38,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -94,7 +93,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.fireFileStarted("Some File Name");
         checker.fireFileFinished("Some File Name");
 
-        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
@@ -126,7 +125,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         assertTrue("Checker.fireFileFinished() doesn't call listener", auditAdapter.wasCalled());
 
         auditAdapter.resetListener();
-        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
@@ -167,7 +166,7 @@ public class CheckerTest extends BaseCheckTestSupport {
                 auditAdapter.wasCalled());
 
         aa2.resetListener();
-        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
@@ -184,7 +183,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addFilter(filter);
 
         filter.resetFilter();
-        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
@@ -201,7 +200,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.removeFilter(filter);
 
         f2.resetFilter();
-        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
@@ -532,7 +531,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
         when(mock.lastModified()).thenThrow(expectedError);
         final Checker checker = new Checker();
-        final List<File> filesToProcess = Lists.newArrayList();
+        final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);

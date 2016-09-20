@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
 /**
@@ -46,7 +46,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     public static final String MSG_PACKAGE_INFO = "javadoc.packageInfo";
 
     /** The directories checked. */
-    private final Set<File> directoriesChecked = Sets.newHashSet();
+    private final Set<File> directoriesChecked = new HashSet<>();
 
     /** Indicates if allow legacy "package.html" file to be used. */
     private boolean allowLegacy;

@@ -28,6 +28,7 @@ import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -36,7 +37,6 @@ import org.apache.commons.beanutils.ConversionException;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -54,7 +54,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     private static final Pattern ESCAPED_LINE_FEED_PATTERN = Pattern.compile("\\\\n");
 
     /** The lines of the header file. */
-    private final List<String> readerLines = Lists.newArrayList();
+    private final List<String> readerLines = new ArrayList<>();
 
     /** The file that contains the header to check against. */
     private String headerFile;

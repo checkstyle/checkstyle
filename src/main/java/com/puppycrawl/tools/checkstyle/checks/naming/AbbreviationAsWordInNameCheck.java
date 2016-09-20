@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -159,7 +160,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      */
     public void setAllowedAbbreviations(String... allowedAbbreviations) {
         if (allowedAbbreviations != null) {
-            this.allowedAbbreviations = Sets.newHashSet(allowedAbbreviations);
+            this.allowedAbbreviations =
+                Arrays.stream(allowedAbbreviations).collect(Collectors.toSet());
         }
     }
 

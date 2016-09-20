@@ -35,12 +35,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
 import javax.xml.bind.DatatypeConverter;
 
-import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -241,7 +241,7 @@ final class PropertyCacheFile {
      * @return a set of {@link ExternalResource}.
      */
     private static Set<ExternalResource> loadExternalResources(Set<String> resourceLocations) {
-        final Set<ExternalResource> resources = Sets.newHashSet();
+        final Set<ExternalResource> resources = new HashSet<>();
         for (String location : resourceLocations) {
             String contentHashSum = null;
             try {

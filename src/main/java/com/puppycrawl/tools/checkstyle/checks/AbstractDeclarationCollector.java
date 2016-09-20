@@ -20,13 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -54,10 +54,10 @@ public abstract class AbstractDeclarationCollector extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        final Deque<LexicalFrame> frameStack = Lists.newLinkedList();
+        final Deque<LexicalFrame> frameStack = new LinkedList<>();
         frameStack.add(new GlobalFrame());
 
-        frames = Maps.newHashMap();
+        frames = new HashMap<>();
 
         DetailAST curNode = rootAST;
         while (curNode != null) {
@@ -243,7 +243,7 @@ public abstract class AbstractDeclarationCollector extends AbstractCheck {
          */
         protected LexicalFrame(LexicalFrame parent) {
             this.parent = parent;
-            varNames = Sets.newHashSet();
+            varNames = new HashSet<>();
         }
 
         /** Add a name to the frame.
@@ -328,10 +328,10 @@ public abstract class AbstractDeclarationCollector extends AbstractCheck {
          */
         ClassFrame(LexicalFrame parent) {
             super(parent);
-            instanceMembers = Sets.newHashSet();
-            instanceMethods = Sets.newHashSet();
-            staticMembers = Sets.newHashSet();
-            staticMethods = Sets.newHashSet();
+            instanceMembers = new HashSet<>();
+            instanceMethods = new HashSet<>();
+            staticMembers = new HashSet<>();
+            staticMethods = new HashSet<>();
         }
 
         /**

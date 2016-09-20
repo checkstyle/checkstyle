@@ -23,16 +23,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -66,10 +67,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
             SeverityLevel.ERROR);
 
     /** Vector of listeners. */
-    private final List<AuditListener> listeners = Lists.newArrayList();
+    private final List<AuditListener> listeners = new ArrayList<>();
 
     /** Vector of fileset checks. */
-    private final List<FileSetCheck> fileSetChecks = Lists.newArrayList();
+    private final List<FileSetCheck> fileSetChecks = new ArrayList<>();
 
     /** The audit event filters. */
     private final FilterSet filters = new FilterSet();
@@ -214,7 +215,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      *         checks and filters.
      */
     private Set<String> getExternalResourceLocations() {
-        final Set<String> externalResources = Sets.newHashSet();
+        final Set<String> externalResources = new HashSet<>();
         fileSetChecks.stream().filter(check -> check instanceof ExternalResourceHolder)
             .forEach(check -> {
                 final Set<String> locations =
@@ -290,7 +291,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
     private SortedSet<LocalizedMessage> processFile(File file) throws CheckstyleException {
-        final SortedSet<LocalizedMessage> fileMessages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> fileMessages = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {

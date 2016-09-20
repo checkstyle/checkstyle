@@ -331,7 +331,8 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("customImportOrderRules",
                 "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS");
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL, "com.google.common.collect.Sets"),
+            "11: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
+                "com.google.common.collect.HashMultimap"),
         };
 
         verify(checkConfig, getPath("InputCustomImportOrderThirdPartyAndSpecial.java"), expected);

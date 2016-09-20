@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +31,6 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -76,7 +76,7 @@ public class SuppressionCommentFilter
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
     /** Tagged comments. */
-    private final List<Tag> tags = Lists.newArrayList();
+    private final List<Tag> tags = new ArrayList<>();
 
     /** Whether to look in comments of the C type. */
     private boolean checkC = true;

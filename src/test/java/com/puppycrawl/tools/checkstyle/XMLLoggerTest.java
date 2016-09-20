@@ -30,12 +30,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
@@ -224,7 +224,7 @@ public class XMLLoggerTest {
         final byte[] bytes = outStream.toByteArray();
         final ByteArrayInputStream inStream =
             new ByteArrayInputStream(bytes);
-        final List<String> lineList = Lists.newArrayList();
+        final List<String> lineList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
             while (true) {

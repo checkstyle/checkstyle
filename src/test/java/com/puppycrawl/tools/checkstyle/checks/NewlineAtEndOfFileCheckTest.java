@@ -31,12 +31,13 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -171,9 +172,10 @@ public class NewlineAtEndOfFileCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(NewlineAtEndOfFileCheck.class);
         final NewlineAtEndOfFileCheck check = new NewlineAtEndOfFileCheck();
         check.configure(checkConfig);
+        final List<String> lines = new ArrayList<>(1);
+        lines.add("txt");
         final File impossibleFile = new File("");
-        final Set<LocalizedMessage> messages = check.process(impossibleFile,
-            Lists.newArrayList("txt"));
+        final Set<LocalizedMessage> messages = check.process(impossibleFile, lines);
         assertEquals(1, messages.size());
         final Iterator<LocalizedMessage> iterator = messages.iterator();
         assertEquals("Unable to open ''.", iterator.next().getMessage());

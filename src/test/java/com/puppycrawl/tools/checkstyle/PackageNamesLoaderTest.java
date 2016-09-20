@@ -36,6 +36,7 @@ import java.net.URLConnection;
 import java.net.URLStreamHandler;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
@@ -43,7 +44,6 @@ import org.mockito.Mockito;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
@@ -85,8 +85,7 @@ public class PackageNamesLoaderTest {
 
         assertEquals("pkgNames.length.", checkstylePackages.length,
             pkgNames.size());
-        final Set<String> checkstylePackagesSet =
-            Sets.newHashSet(Arrays.asList(checkstylePackages));
+        final Set<String> checkstylePackagesSet = new HashSet<>(Arrays.asList(checkstylePackages));
         assertEquals("names set.", checkstylePackagesSet, pkgNames);
     }
 
