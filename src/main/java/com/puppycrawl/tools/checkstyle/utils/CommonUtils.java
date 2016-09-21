@@ -425,4 +425,46 @@ public final class CommonUtils {
     public static boolean isBlank(String str) {
         return str == null || CharMatcher.WHITESPACE.matchesAllOf(str);
     }
+
+    /**
+     * Returns file name without extension.
+     * We do not use the method from Guava library to reduce Checkstyle's dependencies
+     * on external libraries.
+     * @param fullFilename file name with extension.
+     * @return file name without extension.
+     */
+    public static String getFileNameWithoutExtension(String fullFilename) {
+        final String fileName = new File(fullFilename).getName();
+        final int dotIndex = fileName.lastIndexOf('.');
+        final String fileNameWithoutExtension;
+        if (dotIndex == -1) {
+            fileNameWithoutExtension = fileName;
+        }
+        else {
+            fileNameWithoutExtension = fileName.substring(0, dotIndex);
+        }
+        return fileNameWithoutExtension;
+    }
+
+    /**
+     * Returns file extension for the given file name
+     * or empty string if file does not have an extension.
+     * We do not use the method from Guava library to reduce Checkstyle's dependencies
+     * on external libraries.
+     * @param fileNameWithExtension file name with extension.
+     * @return file extension for the given file name
+     *         or empty string if file does not have an extension.
+     */
+    public static String getFileExtension(String fileNameWithExtension) {
+        final String fileName = Paths.get(fileNameWithExtension).toString();
+        final int dotIndex = fileName.lastIndexOf('.');
+        final String extension;
+        if (dotIndex == -1) {
+            extension = "";
+        }
+        else {
+            extension = fileName.substring(dotIndex + 1);
+        }
+        return extension;
+    }
 }

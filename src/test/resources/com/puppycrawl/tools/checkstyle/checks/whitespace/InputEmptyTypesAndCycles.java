@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import com.google.common.annotations.GwtCompatible;
+
 
 class myFoo
 {
@@ -56,7 +56,7 @@ class WithEmptyAnonymous
 @Target(
     ElementType.ANNOTATION_TYPE)
 @Documented
-@GwtCompatible
+@Deprecated
 @interface Beta {}
 @interface MapFeature {
 	@interface Require {

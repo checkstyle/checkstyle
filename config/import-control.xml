@@ -70,7 +70,6 @@
   <subpackage name="checks">
     <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
     <allow class="com.puppycrawl.tools.checkstyle.Definitions"/>
-    <allow class="com.google.common.io.Files" local-only="true"/>
     <allow class="com.google.common.io.Closeables" local-only="true"/>
     <allow class="com.google.common.collect.HashMultiset" local-only="true"/>
     <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
@@ -99,23 +98,15 @@
       <allow pkg="com.puppycrawl.tools.checkstyle.grammars.javadoc"/>
       <allow pkg="java.lang.reflect"/>
       <allow class="com.google.common.base.CharMatcher" local-only="true"/>
-      <allow class="com.google.common.annotations.GwtCompatible" local-only="true"/>
-      <allow class="com.google.common.annotations.GwtIncompatible" local-only="true"/>
       <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
       <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
       <allow class="com.google.common.collect.ImmutableSortedSet" local-only="true"/>
       <allow class="com.google.common.collect.Multiset" local-only="true"/>
     </subpackage>
-    <subpackage name="whitespace">
-      <allow class="com.google.common.annotations.GwtCompatible" local-only="true"/>
-    </subpackage>
     <subpackage name="design">
       <allow class="com.google.common.annotations.VisibleForTesting" local-only="true"/>
       <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
       <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
-    </subpackage>
-    <subpackage name="regexp">
-      <allow class="com.google.common.io.Files" local-only="true"/>
     </subpackage>
     <subpackage name="imports">
       <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
@@ -164,8 +155,6 @@
 
   <subpackage name="internal">
     <allow class="com.google.common.reflect.ClassPath" local-only="true"/>
-    <allow class="com.google.common.io.Files" local-only="true"/>
     <allow class="com.google.common.collect.FluentIterable" local-only="true"/>
-    <allow class="com.google.common.collect.TreeTraverser"/>
   </subpackage>
 </import-control>
