@@ -20,10 +20,9 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import com.google.common.collect.Sets;
 
 /**
  * A filter set applies filters to AuditEvents.
@@ -34,7 +33,7 @@ import com.google.common.collect.Sets;
 public class FilterSet
     implements Filter {
     /** Filter set. */
-    private final Set<Filter> filters = Sets.newHashSet();
+    private final Set<Filter> filters = new HashSet<>();
 
     /**
      * Adds a Filter to the set.

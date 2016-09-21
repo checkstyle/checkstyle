@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.HashMap;
 import java.util.Locale;
 
-import com.google.common.collect.Maps;
+
 
 public class InputFinalLocalVariableAssignedMultipleTimes {
 
@@ -358,7 +358,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
     private void foo12(Long start, Long end) {
         HashMap<Object, Object> headMap;
         if (end < Long.MAX_VALUE) {
-            headMap = Maps.newHashMap();
+            headMap = new HashMap<>();
             Long tailEnd = 1L;
             if (tailEnd != null) {
                 end = tailEnd;
@@ -370,7 +370,7 @@ public class InputFinalLocalVariableAssignedMultipleTimes {
                 }
             }
         }
-        headMap = Maps.newHashMap();
+        headMap = new HashMap<>();
         if (!headMap.isEmpty()) {
             final int headStart = headMap.size();
             final Long headEnd = (Long) headMap.get(headStart);

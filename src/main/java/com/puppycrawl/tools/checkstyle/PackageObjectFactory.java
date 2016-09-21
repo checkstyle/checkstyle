@@ -20,14 +20,15 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.lang.reflect.Constructor;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
@@ -68,7 +69,7 @@ public class PackageObjectFactory implements ModuleFactory {
         }
 
         //create a copy of the given set, but retain ordering
-        packages = Sets.newLinkedHashSet(packageNames);
+        packages = new LinkedHashSet<>(packageNames);
         this.moduleClassLoader = moduleClassLoader;
     }
 
@@ -127,7 +128,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * @return all possible name for a class.
      */
     private Set<String> getAllPossibleNames(String name) {
-        final Set<String> names = Sets.newHashSet();
+        final Set<String> names = new HashSet<>();
         names.addAll(packages.stream().map(packageName -> packageName + name)
             .collect(Collectors.toList()));
         return names;

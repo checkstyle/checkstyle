@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.LinkedList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 /**
  * <p>
@@ -47,7 +46,7 @@ import com.google.common.collect.Lists;
  */
 class TagParser {
     /** List of HtmlTags found on the input line of text. */
-    private final List<HtmlTag> tags = Lists.newLinkedList();
+    private final List<HtmlTag> tags = new LinkedList<>();
 
     /**
      * Constructs a TagParser and finds the first tag if any.

@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -72,9 +72,9 @@ public class RedundantImportCheck
     public static final String MSG_DUPLICATE = "import.duplicate";
 
     /** Set of the imports. */
-    private final Set<FullIdent> imports = Sets.newHashSet();
+    private final Set<FullIdent> imports = new HashSet<>();
     /** Set of static imports. */
-    private final Set<FullIdent> staticImports = Sets.newHashSet();
+    private final Set<FullIdent> staticImports = new HashSet<>();
 
     /** Name of package in file. */
     private String pkgName;

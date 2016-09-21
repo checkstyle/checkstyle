@@ -8,7 +8,7 @@ import org.apache.commons.io.ByteOrderMark;
 
 import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 
-import com.google.common.collect.Sets; //warn, ORDER, should be on THIRD_PARTY_PACKAGE, now SPECIAL_IMPORTS
+import com.google.common.collect.HashMultimap; //warn, ORDER, should be on THIRD_PARTY_PACKAGE, now SPECIAL_IMPORTS
 
 import antlr.*;
 import antlr.CommonASTWithHiddenTokens;

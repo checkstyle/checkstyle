@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -40,13 +40,13 @@ public final class DefaultConfiguration implements Configuration {
     private final String name;
 
     /** The list of child Configurations. */
-    private final List<Configuration> children = Lists.newArrayList();
+    private final List<Configuration> children = new ArrayList<>();
 
     /** The map from attribute names to attribute values. */
-    private final Map<String, String> attributeMap = Maps.newHashMap();
+    private final Map<String, String> attributeMap = new HashMap<>();
 
     /** The map containing custom messages. */
-    private final Map<String, String> messages = Maps.newHashMap();
+    private final Map<String, String> messages = new HashMap<>();
 
     /**
      * Instantiates a DefaultConfiguration.

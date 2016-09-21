@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -505,13 +505,13 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         private final FieldFrame parent;
 
         /** Set of frame's children. */
-        private final Set<FieldFrame> children = Sets.newHashSet();
+        private final Set<FieldFrame> children = new HashSet<>();
 
         /** Set of fields. */
-        private final Set<DetailAST> fields = Sets.newHashSet();
+        private final Set<DetailAST> fields = new HashSet<>();
 
         /** Set of equals calls. */
-        private final Set<DetailAST> methodCalls = Sets.newHashSet();
+        private final Set<DetailAST> methodCalls = new HashSet<>();
 
         /** Name of the class, enum or enum constant declaration. */
         private String frameName;

@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -51,7 +51,7 @@ public class CovariantEqualsCheck extends AbstractCheck {
     public static final String MSG_KEY = "covariant.equals";
 
     /** Set of equals method definitions. */
-    private final Set<DetailAST> equalsMethods = Sets.newHashSet();
+    private final Set<DetailAST> equalsMethods = new HashSet<>();
 
     @Override
     public int[] getDefaultTokens() {

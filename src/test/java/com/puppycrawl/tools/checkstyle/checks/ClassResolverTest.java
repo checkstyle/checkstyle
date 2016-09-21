@@ -26,6 +26,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyObject;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
@@ -34,14 +35,12 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.google.common.collect.Sets;
-
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ ClassResolver.class, ClassResolverTest.class })
 public class ClassResolverTest {
     @Test
     public void testMisc() throws ClassNotFoundException {
-        final Set<String> imports = Sets.newHashSet();
+        final Set<String> imports = new HashSet<>();
         imports.add("java.io.File");
         imports.add("nothing.will.match.*");
         imports.add("java.applet.*");
@@ -87,7 +86,7 @@ public class ClassResolverTest {
 
     @Test
     public void testExistedImportCantBeResolved() {
-        final Set<String> imports = Sets.newHashSet();
+        final Set<String> imports = new HashSet<>();
         imports.add("java.applet.someClass");
         final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(),
@@ -105,7 +104,7 @@ public class ClassResolverTest {
 
     @Test
     public void testResolveInnerClass() throws Exception {
-        final Set<String> imports = Sets.newHashSet();
+        final Set<String> imports = new HashSet<>();
         final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(),
                 "java.util", imports);
@@ -116,7 +115,7 @@ public class ClassResolverTest {
 
     @Test
     public void testResolveInnerClassWithEmptyPackage() {
-        final Set<String> imports = Sets.newHashSet();
+        final Set<String> imports = new HashSet<>();
         final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(),
                 "", imports);
@@ -131,7 +130,7 @@ public class ClassResolverTest {
 
     @Test
     public void testResolveQualifiedNameFails() throws Exception {
-        final Set<String> imports = Sets.newHashSet();
+        final Set<String> imports = new HashSet<>();
         imports.add("java.applet.someClass");
 
         final ClassResolver classResolver = PowerMockito.spy(new ClassResolver(Thread
@@ -161,7 +160,7 @@ public class ClassResolverTest {
      */
     @Test
     public void testIsLoadableWithNoClassDefFoundError() throws Exception {
-        final Set<String> imports = Sets.newHashSet();
+        final Set<String> imports = new HashSet<>();
         imports.add("java.applet.someClass");
 
         final ClassResolver classResolver = PowerMockito.spy(new ClassResolver(Thread

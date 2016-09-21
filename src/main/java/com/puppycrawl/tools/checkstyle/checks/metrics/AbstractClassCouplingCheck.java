@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -201,7 +201,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * Set of referenced classes.
          * Sorted by name for predictable error messages in unit tests.
          */
-        private final Set<String> referencedClassNames = Sets.newTreeSet();
+        private final Set<String> referencedClassNames = new TreeSet<>();
         /** Own class name. */
         private final String className;
         /* Location of own class. (Used to log violations) */

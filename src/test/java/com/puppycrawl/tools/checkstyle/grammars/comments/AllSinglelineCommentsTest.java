@@ -21,12 +21,12 @@ package com.puppycrawl.tools.checkstyle.grammars.comments;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AllSinglelineCommentsTest extends BaseCheckTestSupport {
-    private static final Set<String> ALL_COMMENTS = Sets.newLinkedHashSet();
+    private static final Set<String> ALL_COMMENTS = new LinkedHashSet<>();
 
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 

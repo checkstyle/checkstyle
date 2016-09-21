@@ -19,11 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import antlr.collections.AST;
-
-import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -64,10 +63,10 @@ public class EqualsHashCodeCheck
     public static final String MSG_KEY_EQUALS = "equals.noEquals";
 
     /** Maps OBJ_BLOCK to the method definition of equals(). */
-    private final Map<DetailAST, DetailAST> objBlockWithEquals = Maps.newHashMap();
+    private final Map<DetailAST, DetailAST> objBlockWithEquals = new HashMap<>();
 
     /** Maps OBJ_BLOCKs to the method definition of hashCode(). */
-    private final Map<DetailAST, DetailAST> objBlockWithHashCode = Maps.newHashMap();
+    private final Map<DetailAST, DetailAST> objBlockWithHashCode = new HashMap<>();
 
     @Override
     public int[] getDefaultTokens() {
@@ -145,11 +144,10 @@ public class EqualsHashCodeCheck
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
                 log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_HASHCODE);
             });
-        for (Map.Entry<DetailAST, DetailAST> detailASTDetailASTEntry : objBlockWithHashCode
-                .entrySet()) {
+        objBlockWithHashCode.entrySet().forEach(detailASTDetailASTEntry -> {
             final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
             log(equalsAST.getLineNo(), equalsAST.getColumnNo(), MSG_KEY_EQUALS);
-        }
+        });
 
         objBlockWithEquals.clear();
         objBlockWithHashCode.clear();

@@ -27,6 +27,7 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,6 @@ import org.apache.tools.ant.types.Reference;
 import org.junit.Test;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
@@ -424,7 +424,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
             final Exception expectedError = new RuntimeException("");
             when(mock.lastModified()).thenThrow(expectedError);
-            final List<File> list = Lists.newArrayList();
+            final List<File> list = new ArrayList<>();
             list.add(mock);
             return list;
         }

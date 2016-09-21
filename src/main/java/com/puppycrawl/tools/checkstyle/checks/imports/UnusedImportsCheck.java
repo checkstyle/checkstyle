@@ -25,7 +25,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -72,10 +71,10 @@ public class UnusedImportsCheck extends AbstractCheck {
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
     /** Set of the imports. */
-    private final Set<FullIdent> imports = Sets.newHashSet();
+    private final Set<FullIdent> imports = new HashSet<>();
 
     /** Set of references - possibly to imports or other things. */
-    private final Set<String> referenced = Sets.newHashSet();
+    private final Set<String> referenced = new HashSet<>();
 
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;

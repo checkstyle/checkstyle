@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -27,7 +28,6 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -58,7 +58,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
     /** The compiled regular expressions. */
-    private final List<Pattern> headerRegexps = Lists.newArrayList();
+    private final List<Pattern> headerRegexps = new ArrayList<>();
 
     /** The header lines to repeat (0 or more) in the check, sorted. */
     private int[] multiLines = EMPTY_INT_ARRAY;

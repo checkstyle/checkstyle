@@ -21,12 +21,12 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -141,8 +141,8 @@ public final class JavadocUtils {
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
         final String[] text = textBlock.getText();
-        final List<JavadocTag> tags = Lists.newArrayList();
-        final List<InvalidJavadocTag> invalidTags = Lists.newArrayList();
+        final List<JavadocTag> tags = new ArrayList<>();
+        final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
         for (int i = 0; i < text.length; i++) {
             final String textValue = text[i];
             final Matcher blockTagMatcher = getBlockTagPattern(i).matcher(textValue);

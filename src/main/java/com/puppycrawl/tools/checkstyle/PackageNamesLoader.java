@@ -27,6 +27,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,7 +36,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -68,7 +68,7 @@ public final class PackageNamesLoader
     private final Deque<String> packageStack = new ArrayDeque<>();
 
     /** The fully qualified package names. */
-    private final Set<String> packageNames = Sets.newLinkedHashSet();
+    private final Set<String> packageNames = new LinkedHashSet<>();
 
     /**
      * Creates a new {@code PackageNamesLoader} instance.

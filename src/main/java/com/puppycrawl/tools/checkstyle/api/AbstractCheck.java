@@ -20,9 +20,8 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
-
-import com.google.common.collect.Sets;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -38,7 +37,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     private static final int DEFAULT_TAB_WIDTH = 8;
 
     /** The tokens the check is interested in. */
-    private final Set<String> tokens = Sets.newHashSet();
+    private final Set<String> tokens = new HashSet<>();
 
     /** The current file contents. */
     private FileContents fileContents;

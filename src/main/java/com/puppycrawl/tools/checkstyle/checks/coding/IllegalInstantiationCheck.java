@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import antlr.collections.AST;
 
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -73,16 +75,16 @@ public class IllegalInstantiationCheck
     private static final String JAVA_LANG = "java.lang.";
 
     /** The imports for the file. */
-    private final Set<FullIdent> imports = Sets.newHashSet();
+    private final Set<FullIdent> imports = new HashSet<>();
 
     /** The class names defined in the file. */
-    private final Set<String> classNames = Sets.newHashSet();
+    private final Set<String> classNames = new HashSet<>();
 
     /** The instantiations in the file. */
-    private final Set<DetailAST> instantiations = Sets.newHashSet();
+    private final Set<DetailAST> instantiations = new HashSet<>();
 
     /** Set of fully qualified class names. E.g. "java.lang.Boolean" */
-    private Set<String> illegalClasses = Sets.newHashSet();
+    private Set<String> illegalClasses = new HashSet<>();
 
     /** Name of the package. */
     private String pkgName;
@@ -351,6 +353,6 @@ public class IllegalInstantiationCheck
      * @param names a comma separate list of class names
      */
     public void setClasses(String... names) {
-        illegalClasses = Sets.newHashSet(names);
+        illegalClasses = Arrays.stream(names).collect(Collectors.toSet());
     }
 }

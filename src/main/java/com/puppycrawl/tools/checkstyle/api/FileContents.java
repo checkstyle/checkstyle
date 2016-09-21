@@ -20,15 +20,15 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
 
 /**
@@ -55,16 +55,15 @@ public final class FileContents implements CommentListener {
     /** Map of the Javadoc comments indexed on the last line of the comment.
      * The hack is it assumes that there is only one Javadoc comment per line.
      */
-    private final Map<Integer, TextBlock> javadocComments = Maps.newHashMap();
+    private final Map<Integer, TextBlock> javadocComments = new HashMap<>();
     /** Map of the C++ comments indexed on the first line of the comment. */
-    private final Map<Integer, TextBlock> cppComments =
-        Maps.newHashMap();
+    private final Map<Integer, TextBlock> cppComments = new HashMap<>();
 
     /**
      * Map of the C comments indexed on the first line of the comment to a list
      * of comments on that line.
      */
-    private final Map<Integer, List<TextBlock>> clangComments = Maps.newHashMap();
+    private final Map<Integer, List<TextBlock>> clangComments = new HashMap<>();
 
     /**
      * Creates a new {@code FileContents} instance.
@@ -144,7 +143,7 @@ public final class FileContents implements CommentListener {
             entries.add(comment);
         }
         else {
-            final List<TextBlock> entries = Lists.newArrayList();
+            final List<TextBlock> entries = new ArrayList<>();
             entries.add(comment);
             clangComments.put(startLineNo, entries);
         }

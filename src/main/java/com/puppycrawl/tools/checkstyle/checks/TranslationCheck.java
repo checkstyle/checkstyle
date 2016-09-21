@@ -24,22 +24,25 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.SetMultimap;
-import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.Definitions;
@@ -164,7 +167,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private static final String REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS = "^%s\\.%s$";
 
     /** The files to process. */
-    private final Set<File> filesToProcess = Sets.newHashSet();
+    private final Set<File> filesToProcess = new HashSet<>();
 
     /** The base name regexp pattern. */
     private Pattern baseNamePattern;
@@ -172,7 +175,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /**
      * Language codes of required translations for the check (de, pt, ja, etc).
      */
-    private Set<String> requiredTranslations = Sets.newHashSet();
+    private Set<String> requiredTranslations = new HashSet<>();
 
     /**
      * Creates a new {@code TranslationCheck} instance.
@@ -195,7 +198,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param translationCodes a comma separated list of language codes.
      */
     public void setRequiredTranslations(String... translationCodes) {
-        requiredTranslations = Sets.newHashSet(translationCodes);
+        requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
@@ -342,7 +345,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     private static Set<ResourceBundle> groupFilesIntoBundles(Set<File> files,
                                                              Pattern baseNameRegexp) {
-        final Set<ResourceBundle> resourceBundles = Sets.newHashSet();
+        final Set<ResourceBundle> resourceBundles = new HashSet<>();
         for (File currentFile : files) {
             final String fileName = currentFile.getName();
             final String baseName = extractBaseName(fileName);
@@ -437,7 +440,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         final Set<File> filesInBundle = bundle.getFiles();
         if (filesInBundle.size() > 1) {
             // build a map from files to the keys they contain
-            final Set<String> allTranslationKeys = Sets.newHashSet();
+            final Set<String> allTranslationKeys = new HashSet<>();
             final SetMultimap<File, String> filesAssociatedWithKeys = HashMultimap.create();
             for (File currentFile : filesInBundle) {
                 final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
@@ -461,7 +464,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
             final String path = currentFile.getPath();
             dispatcher.fireFileStarted(path);
             final Set<String> currentFileKeys = fileKeys.get(currentFile);
-            final Set<String> missingKeys = Sets.difference(keysThatMustExist, currentFileKeys);
+            final Set<String> missingKeys = keysThatMustExist.stream()
+                .filter(e -> !currentFileKeys.contains(e)).collect(Collectors.toSet());
             if (!missingKeys.isEmpty()) {
                 for (Object key : missingKeys) {
                     log(0, MSG_KEY, key);
@@ -478,7 +482,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @return a Set object which holds the loaded keys.
      */
     private Set<String> getTranslationKeys(File file) {
-        Set<String> keys = Sets.newHashSet();
+        Set<String> keys = new HashSet<>();
         InputStream inStream = null;
         try {
             inStream = new FileInputStream(file);
@@ -515,7 +519,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
                 args,
                 getId(),
                 getClass(), null);
-        final SortedSet<LocalizedMessage> messages = Sets.newTreeSet();
+        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
         LOG.debug("IOException occurred.", exception);
@@ -542,7 +546,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             this.baseName = baseName;
             this.path = path;
             this.extension = extension;
-            files = Sets.newHashSet();
+            files = new HashSet<>();
         }
 
         public String getBaseName() {

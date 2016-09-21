@@ -21,8 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Set;
 import java.util.SortedSet;
-
-import com.google.common.collect.Sets;
+import java.util.TreeSet;
 
 /**
  * Collection of messages.
@@ -30,14 +29,14 @@ import com.google.common.collect.Sets;
  */
 public final class LocalizedMessages {
     /** Contains the messages logged. **/
-    private final Set<LocalizedMessage> messages = Sets.newTreeSet();
+    private final Set<LocalizedMessage> messages = new TreeSet<>();
 
     /**
      * Gets the logged messages.
      * @return the logged messages
      */
     public SortedSet<LocalizedMessage> getMessages() {
-        return Sets.newTreeSet(messages);
+        return new TreeSet<>(messages);
     }
 
     /** Reset the object. **/

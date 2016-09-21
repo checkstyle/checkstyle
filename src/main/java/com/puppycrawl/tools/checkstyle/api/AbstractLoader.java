@@ -33,8 +33,6 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.google.common.collect.Maps;
-
 /**
  * Contains the common implementation of a loader, for loading a configuration
  * from an XML file.
@@ -77,8 +75,7 @@ public abstract class AbstractLoader
      */
     protected AbstractLoader(Map<String, String> publicIdToResourceNameMap)
             throws SAXException, ParserConfigurationException {
-        this.publicIdToResourceNameMap =
-            Maps.newHashMap(publicIdToResourceNameMap);
+        this.publicIdToResourceNameMap = new HashMap<>(publicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(true);
         factory.setNamespaceAware(true);

@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Context;
 
 /**
@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
  */
 public final class DefaultContext implements Context {
     /** Stores the context entries. */
-    private final Map<String, Object> entries = Maps.newHashMap();
+    private final Map<String, Object> entries = new HashMap<>();
 
     @Override
     public Object get(String key) {

@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -51,7 +51,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * {@code <String, ArrayList>}, with the ArrayList containing StringInfo
      * objects.
      */
-    private final Map<String, List<StringInfo>> stringMap = Maps.newHashMap();
+    private final Map<String, List<StringInfo>> stringMap = new HashMap<>();
 
     /**
      * Marks the TokenTypes where duplicate strings should be ignored.
@@ -135,7 +135,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
             if (pattern == null || !pattern.matcher(currentString).find()) {
                 List<StringInfo> hitList = stringMap.get(currentString);
                 if (hitList == null) {
-                    hitList = Lists.newArrayList();
+                    hitList = new ArrayList<>();
                     stringMap.put(currentString, hitList);
                 }
                 final int line = ast.getLineNo();

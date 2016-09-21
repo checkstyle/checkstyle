@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 /**
  * Represents the a tree of guards for controlling whether packages are allowed
@@ -33,9 +33,9 @@ import com.google.common.collect.Lists;
  */
 class PkgControl {
     /** List of {@link Guard} objects to check. */
-    private final Deque<Guard> guards = Lists.newLinkedList();
+    private final Deque<Guard> guards = new LinkedList<>();
     /** List of children {@link PkgControl} objects. */
-    private final List<PkgControl> children = Lists.newArrayList();
+    private final List<PkgControl> children = new ArrayList<>();
     /** The parent. Null indicates we are the root node. */
     private final PkgControl parent;
     /** The full package name for the node. */

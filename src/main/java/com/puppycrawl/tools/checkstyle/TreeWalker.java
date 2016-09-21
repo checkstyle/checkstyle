@@ -39,7 +39,6 @@ import antlr.TokenStreamHiddenTokenFilter;
 import antlr.TokenStreamRecognitionException;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -75,10 +74,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             HashMultimap.create();
 
     /** Registered ordinary checks, that don't use comment nodes. */
-    private final Set<AbstractCheck> ordinaryChecks = Sets.newHashSet();
+    private final Set<AbstractCheck> ordinaryChecks = new HashSet<>();
 
     /** Registered comment checks. */
-    private final Set<AbstractCheck> commentChecks = Sets.newHashSet();
+    private final Set<AbstractCheck> commentChecks = new HashSet<>();
 
     /** The distance between tab stops. */
     private int tabWidth = DEFAULT_TAB_WIDTH;
@@ -478,7 +477,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @return a set of external configuration resource locations which are used by the checks set.
      */
     private static Set<String> getExternalResourceLocations(Set<AbstractCheck> checks) {
-        final Set<String> externalConfigurationResources = Sets.newHashSet();
+        final Set<String> externalConfigurationResources = new HashSet<>();
         checks.stream().filter(check -> check instanceof ExternalResourceHolder).forEach(check -> {
             final Set<String> checkExternalResources =
                 ((ExternalResourceHolder) check).getExternalResourceLocations();
