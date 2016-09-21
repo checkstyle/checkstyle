@@ -204,6 +204,13 @@ public class CommonUtilsTest {
     }
 
     @Test
+    public void testGetFileExtensionForFileNameWithoutExtension() {
+        final String fileNameWithoutExtension = "file";
+        final String extension = CommonUtils.getFileExtension(fileNameWithoutExtension);
+        assertEquals("", extension);
+    }
+
+    @Test
     @PrepareForTest({ CommonUtils.class, CommonUtilsTest.class })
     @SuppressWarnings("unchecked")
     public void testLoadSuppressionsUriSyntaxException() throws Exception {

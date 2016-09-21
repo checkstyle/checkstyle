@@ -44,7 +44,8 @@
              com.google.common.base.Preconditions,com.google.common.base.Predicate,
              com.google.common.io.CharSource,com.google.common.annotations.Beta,
              com.google.common.collect.Queues,com.google.common.collect.Sets,
-             com.google.common.collect.Lists"/>
+             com.google.common.collect.Lists,com.google.common.annotations.GwtCompatible,
+             com.google.common.io.Files,com.google.common.collect.TreeTraverser"/>
         </module>
         <module name="ForbidCCommentsInMethods"/>
         <module name="FinalizeImplementationCheck"/>
@@ -111,7 +112,9 @@
             com\.google\.common\.base\.Equivalence|com\.google\.common\.base\.Preconditions|
             com\.google\.common\.base\.Optional|com\.google\.common\.io\.CharSource|
             com\.google\.common\.primitives.*|com\.google\.common\.collect\.Sets|
-            com\.google\.common\.collect\.Queues|com\.google\.common\.collect\.Lists"/>
+            com\.google\.common\.collect\.Queues|com\.google\.common\.collect\.Lists|
+            com\.google\.common\.annotations\.GwtCompatible|com\.google\.common\.io\.Files|
+            com\.google\.common\.collect\.TreeTraverser"/>
             <property name="forbiddenImportsExcludesRegexp" value=""/>
         </module>
         <module name="ForbidCertainImports">

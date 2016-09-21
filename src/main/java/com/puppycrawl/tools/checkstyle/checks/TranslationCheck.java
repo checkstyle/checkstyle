@@ -44,7 +44,6 @@ import org.apache.commons.logging.LogFactory;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.SetMultimap;
 import com.google.common.io.Closeables;
-import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -351,7 +350,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             final String baseName = extractBaseName(fileName);
             final Matcher baseNameMatcher = baseNameRegexp.matcher(baseName);
             if (baseNameMatcher.matches()) {
-                final String extension = Files.getFileExtension(fileName);
+                final String extension = CommonUtils.getFileExtension(fileName);
                 final String path = getPath(currentFile.getAbsolutePath());
                 final ResourceBundle newBundle = new ResourceBundle(baseName, path, extension);
                 final Optional<ResourceBundle> bundle = findBundle(resourceBundles, newBundle);

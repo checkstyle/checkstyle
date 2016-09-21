@@ -16,8 +16,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.google.common.annotations.GwtCompatible;
-import com.google.common.annotations.GwtIncompatible;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 
@@ -36,7 +34,7 @@ import java.util.List;
  *
  * @author Chris Povirk
  */
-@GwtCompatible(emulated = true)
+@SuppressWarnings(value = "unchecked")
 public abstract class InputExtendAnnotation<E>
   {
 

@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -272,7 +271,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
         String fileName = file.getName();
 
         if (ignoreFileNameExtensions) {
-            fileName = Files.getNameWithoutExtension(fileName);
+            fileName = CommonUtils.getFileNameWithoutExtension(fileName);
         }
 
         return fileName;
