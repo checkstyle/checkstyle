@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
- * The check to ensure that requires that comments be the only thing on a line.
+ * The check to ensure that comments are the only thing on a line.
  * For the case of // comments that means that the only thing that should
  * precede it is whitespace.
  * It doesn't check comments if they do not end line, i.e. it accept
