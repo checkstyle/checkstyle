@@ -21,11 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.io.File;
 import java.net.URI;
+import java.util.Collections;
 import java.util.Set;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -143,7 +143,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return ImmutableSet.of(fileLocation);
+        return Collections.singleton(fileLocation);
     }
 
     /**

@@ -31,6 +31,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -50,7 +51,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
@@ -118,10 +118,10 @@ public class XDocsPagesTest {
             "SuppressionCommentFilter.fileContents"
     );
 
-    private static final Set<String> SUN_CHECKS = ImmutableSet.copyOf(CheckUtil
-            .getConfigSunStyleChecks());
-    private static final Set<String> GOOGLE_CHECKS = ImmutableSet.copyOf(CheckUtil
-            .getConfigGoogleStyleChecks());
+    private static final Set<String> SUN_CHECKS = Collections.unmodifiableSet(
+        new HashSet<>(CheckUtil.getConfigSunStyleChecks()));
+    private static final Set<String> GOOGLE_CHECKS = Collections.unmodifiableSet(
+        new HashSet<>(CheckUtil.getConfigGoogleStyleChecks()));
 
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws IOException {

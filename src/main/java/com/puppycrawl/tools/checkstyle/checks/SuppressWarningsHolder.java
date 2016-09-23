@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +28,6 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -460,7 +460,7 @@ public class SuppressWarningsHolder
     private static List<String> getAnnotationValues(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.EXPR:
-                return ImmutableList.of(getStringExpr(ast));
+                return Collections.singletonList(getStringExpr(ast));
 
             case TokenTypes.ANNOTATION_ARRAY_INIT:
                 return findAllExpressionsInChildren(ast);

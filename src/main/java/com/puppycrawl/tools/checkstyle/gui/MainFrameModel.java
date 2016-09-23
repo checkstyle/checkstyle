@@ -22,12 +22,11 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 import antlr.ANTLRException;
-
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -174,7 +173,8 @@ public class MainFrameModel {
      * @return lines to position map.
      */
     public List<Integer> getLinesToPosition() {
-        return ImmutableList.copyOf(linesToPosition);
+        final List<Integer> copy = new ArrayList<>(linesToPosition);
+        return Collections.unmodifiableList(copy);
     }
 
     /**

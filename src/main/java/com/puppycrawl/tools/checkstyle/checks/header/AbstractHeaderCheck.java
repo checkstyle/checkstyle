@@ -29,14 +29,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -72,8 +71,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * Return the header lines to check against.
      * @return the header lines to check against.
      */
-    protected ImmutableList<String> getHeaderLines() {
-        return ImmutableList.copyOf(readerLines);
+    protected List<String> getHeaderLines() {
+        final List<String> copy = new ArrayList<>(readerLines);
+        return Collections.unmodifiableList(copy);
     }
 
     /**
@@ -194,6 +194,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return ImmutableSet.of(headerFile);
+        return Collections.singleton(headerFile);
     }
 }

@@ -19,9 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Collections;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -65,7 +67,8 @@ public class FinalParametersCheck extends AbstractCheck {
      * <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
      * primitive datatypes</a>.
      */
-    private final Set<Integer> primitiveDataTypes = ImmutableSet.of(
+    private final Set<Integer> primitiveDataTypes = Collections.unmodifiableSet(
+        Stream.of(
             TokenTypes.LITERAL_BYTE,
             TokenTypes.LITERAL_SHORT,
             TokenTypes.LITERAL_INT,
@@ -73,7 +76,8 @@ public class FinalParametersCheck extends AbstractCheck {
             TokenTypes.LITERAL_FLOAT,
             TokenTypes.LITERAL_DOUBLE,
             TokenTypes.LITERAL_BOOLEAN,
-            TokenTypes.LITERAL_CHAR);
+            TokenTypes.LITERAL_CHAR)
+        .collect(Collectors.toSet()));
 
     /**
      * Option to ignore primitive types as params.

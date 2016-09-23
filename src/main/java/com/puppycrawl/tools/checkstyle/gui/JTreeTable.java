@@ -25,6 +25,8 @@ import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EventObject;
 import java.util.List;
 
@@ -37,8 +39,6 @@ import javax.swing.KeyStroke;
 import javax.swing.LookAndFeel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
-
-import com.google.common.collect.ImmutableList;
 
 /**
  * This example shows how to create a simple JTreeTable component,
@@ -237,7 +237,8 @@ public class JTreeTable extends JTable {
      * @param linePositionMap Line position map.
      */
     public void setLinePositionMap(List<Integer> linePositionMap) {
-        this.linePositionMap = ImmutableList.copyOf(linePositionMap);
+        final List<Integer> copy = new ArrayList<>(linePositionMap);
+        this.linePositionMap = Collections.unmodifiableList(copy);
     }
 
     /**

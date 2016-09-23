@@ -105,4 +105,11 @@
         <Method name="apply" />
         <Bug pattern="NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE" />
     </Match>
+    <Match>
+        <!-- Temporary disabled. Have to deal with Javadoc nodes as well
+         See https://github.com/checkstyle/checkstyle/issues/3432-->
+        <Class name="com.puppycrawl.tools.checkstyle.gui.JTreeTable" />
+        <Method name="makeCodeSelection"/>
+        <Bug pattern="RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT"/>
+    </Match>
 </FindBugsFilter>
