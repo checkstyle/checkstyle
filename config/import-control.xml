@@ -123,10 +123,7 @@
 
   <subpackage name="doclets">
     <allow pkg="com.sun.javadoc"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.checks"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.filters"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.gui"/>
+    <disallow pkg="com.puppycrawl.tools.checkstyle.(checks|ant|filters|gui)" regex="true"/>
   </subpackage>
 
   <subpackage name="filters">
@@ -138,19 +135,14 @@
     <allow class="com.google.common.collect.ImmutableSet" local-only="true"/>
     <!-- is not possible till pkg is not a regexp -->
     <!-- <disallow pkg="com.puppycrawl.tools.checkstyle.checks.*"/> -->
-    <disallow pkg="com.puppycrawl.tools.checkstyle.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.doclets"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.gui"/>
+    <disallow pkg="com.puppycrawl.tools.checkstyle.(ant|doclets|gui)" regex="true"/>
   </subpackage>
 
   <subpackage name="gui">
     <allow pkg="java.awt"/>
     <allow pkg="javax.swing"/>
     <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.checks"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.ant"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.doclets"/>
-    <disallow pkg="com.puppycrawl.tools.checkstyle.filters"/>
+    <disallow pkg="com.puppycrawl.tools.checkstyle.(checks|ant|doclets|filters)" regex="true"/>
   </subpackage>
 
   <subpackage name="internal">
