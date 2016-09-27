@@ -20,9 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -350,19 +351,10 @@ public enum JavadocTagInfo {
     private static final Map<String, JavadocTagInfo> NAME_TO_TAG;
 
     static {
-        final ImmutableMap.Builder<String, JavadocTagInfo> textToTagBuilder =
-            new ImmutableMap.Builder<>();
-
-        final ImmutableMap.Builder<String, JavadocTagInfo> nameToTagBuilder =
-            new ImmutableMap.Builder<>();
-
-        for (final JavadocTagInfo tag : JavadocTagInfo.values()) {
-            textToTagBuilder.put(tag.text, tag);
-            nameToTagBuilder.put(tag.name, tag);
-        }
-
-        TEXT_TO_TAG = textToTagBuilder.build();
-        NAME_TO_TAG = nameToTagBuilder.build();
+        TEXT_TO_TAG = Collections.unmodifiableMap(Arrays.stream(JavadocTagInfo.values())
+            .collect(Collectors.toMap(JavadocTagInfo::getText, tagText -> tagText)));
+        NAME_TO_TAG = Collections.unmodifiableMap(Arrays.stream(JavadocTagInfo.values())
+            .collect(Collectors.toMap(JavadocTagInfo::getName, tagName -> tagName)));
 
         //Arrays sorting for binary search
         Arrays.sort(DEF_TOKEN_TYPES);

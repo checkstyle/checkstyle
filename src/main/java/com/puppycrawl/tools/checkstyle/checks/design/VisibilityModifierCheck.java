@@ -21,13 +21,15 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import antlr.collections.AST;
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -246,35 +248,37 @@ public class VisibilityModifierCheck
     public static final String MSG_KEY = "variable.notPrivate";
 
     /** Default immutable types canonical names. */
-    private static final List<String> DEFAULT_IMMUTABLE_TYPES = ImmutableList.of(
-        "java.lang.String",
-        "java.lang.Integer",
-        "java.lang.Byte",
-        "java.lang.Character",
-        "java.lang.Short",
-        "java.lang.Boolean",
-        "java.lang.Long",
-        "java.lang.Double",
-        "java.lang.Float",
-        "java.lang.StackTraceElement",
-        "java.math.BigInteger",
-        "java.math.BigDecimal",
-        "java.io.File",
-        "java.util.Locale",
-        "java.util.UUID",
-        "java.net.URL",
-        "java.net.URI",
-        "java.net.Inet4Address",
-        "java.net.Inet6Address",
-        "java.net.InetSocketAddress"
-    );
+    private static final List<String> DEFAULT_IMMUTABLE_TYPES = Collections.unmodifiableList(
+        Stream.of(
+            "java.lang.String",
+            "java.lang.Integer",
+            "java.lang.Byte",
+            "java.lang.Character",
+            "java.lang.Short",
+            "java.lang.Boolean",
+            "java.lang.Long",
+            "java.lang.Double",
+            "java.lang.Float",
+            "java.lang.StackTraceElement",
+            "java.math.BigInteger",
+            "java.math.BigDecimal",
+            "java.io.File",
+            "java.util.Locale",
+            "java.util.UUID",
+            "java.net.URL",
+            "java.net.URI",
+            "java.net.Inet4Address",
+            "java.net.Inet6Address",
+            "java.net.InetSocketAddress"
+        ).collect(Collectors.toList()));
 
     /** Default ignore annotations canonical names. */
-    private static final List<String> DEFAULT_IGNORE_ANNOTATIONS = ImmutableList.of(
-        "org.junit.Rule",
-        "org.junit.ClassRule",
-        "com.google.common.annotations.VisibleForTesting"
-    );
+    private static final List<String> DEFAULT_IGNORE_ANNOTATIONS = Collections.unmodifiableList(
+        Stream.of(
+            "org.junit.Rule",
+            "org.junit.ClassRule",
+            "com.google.common.annotations.VisibleForTesting"
+        ).collect(Collectors.toList()));
 
     /** Name for 'public' access modifier. */
     private static final String PUBLIC_ACCESS_MODIFIER = "public";

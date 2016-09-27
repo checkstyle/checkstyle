@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,8 +28,9 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -101,7 +103,7 @@ public class RequireThisCheck extends AbstractCheck {
     public static final String MSG_VARIABLE = "require.this.variable";
 
     /** Set of all declaration tokens. */
-    private static final ImmutableSet<Integer> DECLARATION_TOKENS = ImmutableSet.of(
+    private static final Set<Integer> DECLARATION_TOKENS = Collections.unmodifiableSet(Stream.of(
         TokenTypes.VARIABLE_DEF,
         TokenTypes.CTOR_DEF,
         TokenTypes.METHOD_DEF,
@@ -110,9 +112,9 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.INTERFACE_DEF,
         TokenTypes.PARAMETER_DEF,
         TokenTypes.TYPE_ARGUMENT
-    );
+    ).collect(Collectors.toSet()));
     /** Set of all assign tokens. */
-    private static final ImmutableSet<Integer> ASSIGN_TOKENS = ImmutableSet.of(
+    private static final Set<Integer> ASSIGN_TOKENS = Collections.unmodifiableSet(Stream.of(
         TokenTypes.ASSIGN,
         TokenTypes.PLUS_ASSIGN,
         TokenTypes.STAR_ASSIGN,
@@ -123,19 +125,20 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.SL_ASSIGN,
         TokenTypes.BAND_ASSIGN,
         TokenTypes.BXOR_ASSIGN
-    );
+    ).collect(Collectors.toSet()));
     /** Set of all compound assign tokens. */
-    private static final ImmutableSet<Integer> COMPOUND_ASSIGN_TOKENS = ImmutableSet.of(
-        TokenTypes.PLUS_ASSIGN,
-        TokenTypes.STAR_ASSIGN,
-        TokenTypes.DIV_ASSIGN,
-        TokenTypes.MOD_ASSIGN,
-        TokenTypes.SR_ASSIGN,
-        TokenTypes.BSR_ASSIGN,
-        TokenTypes.SL_ASSIGN,
-        TokenTypes.BAND_ASSIGN,
-        TokenTypes.BXOR_ASSIGN
-    );
+    private static final Set<Integer> COMPOUND_ASSIGN_TOKENS = Collections.unmodifiableSet(
+        Stream.of(
+            TokenTypes.PLUS_ASSIGN,
+            TokenTypes.STAR_ASSIGN,
+            TokenTypes.DIV_ASSIGN,
+            TokenTypes.MOD_ASSIGN,
+            TokenTypes.SR_ASSIGN,
+            TokenTypes.BSR_ASSIGN,
+            TokenTypes.SL_ASSIGN,
+            TokenTypes.BAND_ASSIGN,
+            TokenTypes.BXOR_ASSIGN
+        ).collect(Collectors.toSet()));
 
     /** Tree of all the parsed frames. */
     private Map<DetailAST, AbstractFrame> frames;

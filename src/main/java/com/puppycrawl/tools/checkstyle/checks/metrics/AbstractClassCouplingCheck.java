@@ -20,11 +20,14 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -39,28 +42,28 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  */
 public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Class names to ignore. */
-    private static final Set<String> DEFAULT_EXCLUDED_CLASSES =
-                ImmutableSet.<String>builder()
-                // primitives
-                .add("boolean", "byte", "char", "double", "float", "int")
-                .add("long", "short", "void")
-                // wrappers
-                .add("Boolean", "Byte", "Character", "Double", "Float")
-                .add("Integer", "Long", "Short", "Void")
-                // java.lang.*
-                .add("Object", "Class")
-                .add("String", "StringBuffer", "StringBuilder")
-                // Exceptions
-                .add("ArrayIndexOutOfBoundsException", "Exception")
-                .add("RuntimeException", "IllegalArgumentException")
-                .add("IllegalStateException", "IndexOutOfBoundsException")
-                .add("NullPointerException", "Throwable", "SecurityException")
-                .add("UnsupportedOperationException")
-                // java.util.*
-                .add("List", "ArrayList", "Deque", "Queue", "LinkedList")
-                .add("Set", "HashSet", "SortedSet", "TreeSet")
-                .add("Map", "HashMap", "SortedMap", "TreeMap")
-                .build();
+    private static final Set<String> DEFAULT_EXCLUDED_CLASSES = Collections.unmodifiableSet(
+        Stream.of(
+            // primitives
+            "boolean", "byte", "char", "double", "float", "int",
+            "long", "short", "void",
+            // wrappers
+            "Boolean", "Byte", "Character", "Double", "Float",
+            "Integer", "Long", "Short", "Void",
+            // java.lang.*
+            "Object", "Class",
+            "String", "StringBuffer", "StringBuilder",
+            // Exceptions
+            "ArrayIndexOutOfBoundsException", "Exception",
+            "RuntimeException", "IllegalArgumentException",
+            "IllegalStateException", "IndexOutOfBoundsException",
+            "NullPointerException", "Throwable", "SecurityException",
+            "UnsupportedOperationException",
+            // java.util.*
+            "List", "ArrayList", "Deque", "Queue", "LinkedList",
+            "Set", "HashSet", "SortedSet", "TreeSet",
+            "Map", "HashMap", "SortedMap", "TreeMap"
+        ).collect(Collectors.toSet()));
 
     /** Stack of contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
@@ -113,7 +116,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param excludedClasses the list of classes to ignore.
      */
     public final void setExcludedClasses(String... excludedClasses) {
-        this.excludedClasses = ImmutableSet.copyOf(excludedClasses);
+        this.excludedClasses =
+            Collections.unmodifiableSet(Arrays.stream(excludedClasses).collect(Collectors.toSet()));
     }
 
     @Override

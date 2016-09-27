@@ -73,10 +73,8 @@
     <allow class="com.google.common.io.Closeables" local-only="true"/>
     <allow class="com.google.common.collect.HashMultiset" local-only="true"/>
     <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
-    <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableMultiset" local-only="true"/>
-    <allow class="com.google.common.collect.ImmutableSet" local-only="true"/>
     <allow class="com.google.common.collect.Multimap" local-only="true"/>
     <allow class="com.google.common.collect.Multiset" local-only="true"/>
     <allow class="com.google.common.collect.Multiset.Entry" local-only="true"/>
@@ -91,33 +89,22 @@
     <subpackage name="header">
       <allow class="java.nio.charset.Charset" local-only="true"/>
       <allow class="com.google.common.io.Closeables" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableSet" local-only="true"/>
     </subpackage>
     <subpackage name="javadoc">
       <allow pkg="com.puppycrawl.tools.checkstyle.grammars.javadoc"/>
       <allow pkg="java.lang.reflect"/>
       <allow class="com.google.common.base.CharMatcher" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableSortedSet" local-only="true"/>
       <allow class="com.google.common.collect.Multiset" local-only="true"/>
     </subpackage>
     <subpackage name="design">
       <allow class="com.google.common.annotations.VisibleForTesting" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
       <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
     </subpackage>
     <subpackage name="imports">
       <allow class="com.google.common.collect.HashMultimap" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableSet" local-only="true"/>
     </subpackage>
     <subpackage name="coding">
       <allow class="com.google.common.collect.ImmutableCollection" local-only="true"/>
-      <allow class="com.google.common.collect.ImmutableSet" local-only="true"/>
-    </subpackage>
-    <subpackage name="metrics">
-      <allow class="com.google.common.collect.ImmutableSet" local-only="true"/>
     </subpackage>
   </subpackage>
 
@@ -132,7 +119,6 @@
     <allow class="com.google.common.base.CaseFormat" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableCollection" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
-    <allow class="com.google.common.collect.ImmutableSet" local-only="true"/>
     <!-- is not possible till pkg is not a regexp -->
     <!-- <disallow pkg="com.puppycrawl.tools.checkstyle.checks.*"/> -->
     <disallow pkg="com.puppycrawl.tools.checkstyle.(ant|doclets|gui)" regex="true"/>
@@ -141,7 +127,6 @@
   <subpackage name="gui">
     <allow pkg="java.awt"/>
     <allow pkg="javax.swing"/>
-    <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.(checks|ant|doclets|filters)" regex="true"/>
   </subpackage>
 

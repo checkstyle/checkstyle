@@ -19,9 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
@@ -46,7 +47,8 @@ public class CodeSelectorPModel {
      */
     public CodeSelectorPModel(DetailAST ast, List<Integer> lines2position) {
         this.ast = ast;
-        this.lines2position = ImmutableList.copyOf(lines2position);
+        final List<Integer> copy = new ArrayList<>(lines2position);
+        this.lines2position = Collections.unmodifiableList(copy);
     }
 
     /**

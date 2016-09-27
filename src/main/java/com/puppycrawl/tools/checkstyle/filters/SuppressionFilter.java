@@ -23,10 +23,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
-import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -109,7 +109,7 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return ImmutableSet.of(file);
+        return Collections.singleton(file);
     }
 
     /**
