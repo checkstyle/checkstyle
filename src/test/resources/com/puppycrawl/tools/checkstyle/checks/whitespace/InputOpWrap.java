@@ -4,6 +4,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Arrays;
+
 /**
  * Test case for detecting operator wrapping.
  * @author Lars K�hne
@@ -25,6 +27,13 @@ class InputOpWrap
             false;
         y = false
             && true;
+        Arrays.sort(null, String
+                    ::
+                    compareToIgnoreCase);
+        Arrays.sort(null, String::
+                    compareToIgnoreCase);
+        Arrays.sort(null, String
+                    ::compareToIgnoreCase);
     }
     
     void testAssignment()
