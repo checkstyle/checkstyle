@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +21,14 @@ class InputOperatorWrap
             false;
         y = false
             && true;
+        /* Note: The three tests below will be used when issue #3381 is closed */
+        Arrays.sort(null, String
+                    ::
+                    compareToIgnoreCase);
+        Arrays.sort(null, String::  /*(warn)*/
+                    compareToIgnoreCase);
+        Arrays.sort(null, String
+                    ::compareToIgnoreCase);
     }
     
     void testAssignment()

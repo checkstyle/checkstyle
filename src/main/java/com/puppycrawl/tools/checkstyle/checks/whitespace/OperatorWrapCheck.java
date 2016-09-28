@@ -70,6 +70,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *  {@link TokenTypes#SL_ASSIGN SL_ASSIGN},
  *  {@link TokenTypes#SR_ASSIGN SR_ASSIGN},
  *  {@link TokenTypes#STAR_ASSIGN STAR_ASSIGN}.
+ *  {@link TokenTypes#METHOD_REF METHOD_REF}.
  * </p>
  *  <p>
  * An example of how to configure the check is:
@@ -190,6 +191,7 @@ public class OperatorWrapCheck
             TokenTypes.BXOR_ASSIGN,       // "^="
             TokenTypes.BOR_ASSIGN,        // "|="
             TokenTypes.BAND_ASSIGN,       // "&="
+            TokenTypes.METHOD_REF,        // "::"
 
         };
     }
