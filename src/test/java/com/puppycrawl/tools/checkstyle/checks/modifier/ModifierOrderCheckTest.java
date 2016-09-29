@@ -66,6 +66,7 @@ public class ModifierOrderCheckTest
             "34:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
             "39:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
             "49:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
+            "157:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
         verify(checkConfig, getPath("InputModifier.java"), expected);
     }

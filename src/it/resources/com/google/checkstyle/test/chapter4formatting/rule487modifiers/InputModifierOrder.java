@@ -236,3 +236,11 @@ class WithInner
 
 @interface MyAnnotation4 {
 }
+
+/** Illegal order of modifiers for interface methods */
+interface InputModifierOrderInterface
+{
+    default strictfp void a() { }  //ok
+
+    strictfp default void b() { }  //warn
+}
