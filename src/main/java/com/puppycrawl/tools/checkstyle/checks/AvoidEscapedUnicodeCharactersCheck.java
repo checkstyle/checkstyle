@@ -129,6 +129,9 @@ public class AvoidEscapedUnicodeCharactersCheck
             Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
                     + "||\\\\b|\\\\t|\\\\n|\\\\f|\\\\r|\\\\|\"|\')+$");
 
+    /** Regular expression for escaped backslash. */
+    private static final Pattern ESCAPED_BACKSLASH = Pattern.compile("\\\\\\\\");
+
     /** Regular expression for non-printable unicode chars. */
     private static final Pattern NON_PRINTABLE_CHARS = Pattern.compile("\\\\u1680|\\\\u2028"
             + "|\\\\u2029|\\\\u205(f|F)|\\\\u3000|\\\\u2007|\\\\u2000|\\\\u200(a|A)"
@@ -242,7 +245,9 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true if literal has Unicode chars.
      */
     private static boolean hasUnicodeChar(String literal) {
-        return UNICODE_REGEXP.matcher(literal).find();
+        final String literalWithoutEscapedBackslashes =
+                ESCAPED_BACKSLASH.matcher(literal).replaceAll("");
+        return UNICODE_REGEXP.matcher(literalWithoutEscapedBackslashes).find();
     }
 
     /**
