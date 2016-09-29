@@ -97,6 +97,7 @@ public class ModifierOrderTest extends BaseCheckTestSupport {
             "215:28: " + getCheckMessage(clazz, msgMod, "synchronized"),
             "217:37: " + getCheckMessage(clazz, msgMod, "protected"),
             "219:22: " + getCheckMessage(clazz, msgAnnotation, "@MyAnnotation2"),
+            "245:14: " + getCheckMessage(clazz, msgMod, "default"),
         };
 
         final Configuration checkConfig = getCheckConfig("ModifierOrder");
