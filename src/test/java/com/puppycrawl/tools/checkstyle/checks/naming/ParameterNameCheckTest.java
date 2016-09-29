@@ -29,6 +29,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -136,6 +137,68 @@ public class ParameterNameCheckTest
             "28:62: " + getCheckMessage(MSG_INVALID_PATTERN, "packageNames", pattern),
             };
         verify(checkConfig, getPath("InputOverrideAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testScope()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^h$");
+        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+
+        final String pattern = "^h$";
+
+        final String[] expected = {
+            "5:27: " + getCheckMessage(MSG_INVALID_PATTERN, "pubconstr", pattern),
+            "9:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
+            "19:24: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpub", pattern),
+            "30:21: " + getCheckMessage(MSG_INVALID_PATTERN, "pubifc", pattern),
+            "44:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packpub", pattern),
+            "60:21: " + getCheckMessage(MSG_INVALID_PATTERN, "packifc", pattern),
+            };
+        verify(checkConfig, getPath("InputScope.java"), expected);
+    }
+
+    @Test
+    public void testExcludeScope()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^h$");
+        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
+
+        final String pattern = "^h$";
+
+        final String[] expected = {
+            "23:17: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpack", pattern),
+            "25:25: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpriv", pattern),
+            "48:17: " + getCheckMessage(MSG_INVALID_PATTERN, "packpack", pattern),
+            "50:25: " + getCheckMessage(MSG_INVALID_PATTERN, "packpriv", pattern),
+            "68:27: " + getCheckMessage(MSG_INVALID_PATTERN, "lexp", pattern),
+            "70:23: " + getCheckMessage(MSG_INVALID_PATTERN, "limp", pattern),
+            };
+        verify(checkConfig, getPath("InputScope.java"), expected);
+    }
+
+    @Test
+    public void testScopeExcludeScope()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ParameterNameCheck.class);
+        checkConfig.addAttribute("format", "^h$");
+        checkConfig.addAttribute("scope", Scope.PACKAGE.getName());
+        checkConfig.addAttribute("excludeScope", Scope.PUBLIC.getName());
+
+        final String pattern = "^h$";
+
+        final String[] expected = {
+            "21:27: " + getCheckMessage(MSG_INVALID_PATTERN, "pubprot", pattern),
+            "23:17: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpack", pattern),
+            "46:27: " + getCheckMessage(MSG_INVALID_PATTERN, "packprot", pattern),
+            "48:17: " + getCheckMessage(MSG_INVALID_PATTERN, "packpack", pattern),
+            };
+        verify(checkConfig, getPath("InputScope.java"), expected);
     }
 
     @Test
