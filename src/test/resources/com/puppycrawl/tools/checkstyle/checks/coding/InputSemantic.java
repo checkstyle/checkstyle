@@ -54,7 +54,7 @@ class InputSemantic
 
     public class EqualsVsHashCode2
     {
-        public boolean equals(String a) // flag
+        public boolean equals(String a) // don't flag
         {
             return true;
         }
@@ -119,7 +119,7 @@ class InputSemantic
 
     public class EqualsVsHashCode6
     {
-        public <A> boolean equals(Comparable<A> a) // flag, weven with generics
+        public <A> boolean equals(Comparable<A> a) // don't flag
         {
             return true;
         }
