@@ -33,6 +33,11 @@
         <source>
 git clone git@github.com:you_user_name/checkstyle.git
         </source>
+        Attention for Windows users, command should be:
+        <source>
+git config --global core.autocrlf true
+git clone git@github.com:you_user_name/checkstyle.git
+        </source>
       </p>
     </section>
 
