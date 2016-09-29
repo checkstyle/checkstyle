@@ -22,8 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
 * <p>
@@ -33,9 +35,13 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
  * and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
- * <p>The check has the following option:</p>
+ * <p>The check has the following options:</p>
  * <p><b>ignoreOverridden</b> - allows to skip methods with Override annotation from
  * validation. Default values is <b>false</b> .</p>
+ * <p><b>scope</b> - visibility scope of methods to be checked.
+ *  Default value is <b>anoninner</b> .</p>
+ * <p><b>excludeScope</b> - visibility scope of methods not to be checked.
+ *  Default value is <b>null</b> .</p>
  * <p>
  * An example of how to configure the check is:
  * </p>
@@ -72,6 +78,12 @@ public class ParameterNameCheck
      */
     private boolean ignoreOverridden;
 
+    /** The visibility scope where methods are checked. */
+    private Scope scope = Scope.ANONINNER;
+
+    /** The visibility scope where methods shouldn't be checked. */
+    private Scope excludeScope;
+
     /**
      * Creates a new {@code ParameterNameCheck} instance.
      */
@@ -86,6 +98,22 @@ public class ParameterNameCheck
      */
     public void setIgnoreOverridden(boolean ignoreOverridden) {
         this.ignoreOverridden = ignoreOverridden;
+    }
+
+    /**
+     * Set the scope.
+     * @param from a {@code String} value
+     */
+    public void setScope(String from) {
+        scope = Scope.getInstance(from);
+    }
+
+    /**
+     * Set the excludeScope.
+     * @param excludeScope a {@code String} value
+     */
+    public void setExcludeScope(String excludeScope) {
+        this.excludeScope = Scope.getInstance(excludeScope);
     }
 
     @Override
@@ -106,12 +134,53 @@ public class ParameterNameCheck
     @Override
     protected boolean mustCheckName(DetailAST ast) {
         boolean checkName = true;
+        final boolean isDefault = scope == Scope.ANONINNER && excludeScope == null;
+
         if (ignoreOverridden && isOverriddenMethod(ast)
                 || ast.getParent().getType() == TokenTypes.LITERAL_CATCH
-                || CheckUtils.isReceiverParameter(ast)) {
+                || CheckUtils.isReceiverParameter(ast)
+                || !isDefault && !matchScope(calculateScope(ast))) {
             checkName = false;
         }
         return checkName;
+    }
+
+    /**
+     * Returns the scope for the method/constructor at the specified AST. If
+     * the method is in an interface or annotation block, the scope is assumed
+     * to be public.
+     *
+     * @param ast the token of the method/constructor
+     * @return the scope of the method/constructor
+     */
+    private static Scope calculateScope(final DetailAST ast) {
+        final DetailAST params = ast.getParent();
+        final DetailAST meth = params.getParent();
+        Scope scope = Scope.PRIVATE;
+
+        if (meth.getType() == TokenTypes.METHOD_DEF
+            || meth.getType() == TokenTypes.CTOR_DEF) {
+            if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+                scope = Scope.PUBLIC;
+            }
+            else {
+                final DetailAST mods = meth.findFirstToken(TokenTypes.MODIFIERS);
+                scope = ScopeUtils.getScopeFromMods(mods);
+            }
+        }
+
+        return scope;
+    }
+
+    /**
+     * Checks whether a method has the correct scope to be checked.
+     * @param nodeScope the scope of the method
+     * @return whether the method matches the expected scope
+     */
+    private boolean matchScope(final Scope nodeScope) {
+        return nodeScope.isIn(scope)
+            && (excludeScope == null
+                || !nodeScope.isIn(excludeScope));
     }
 
     /**

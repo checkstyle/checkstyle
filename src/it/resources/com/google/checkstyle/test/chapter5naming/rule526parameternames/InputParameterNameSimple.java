@@ -49,3 +49,30 @@ enum MyEnum1
     		long llll_llll, //warn
             boolean bB) {} //warn 
 }
+
+/** Test public vs private method parameter naming check. */
+class InputParameterNameSimple
+{
+    /** Valid: public and more than one char Long */
+    public void a(int par, int parA) {}
+
+    /** Invalid: public and one char long */
+    public void b(int p) {} //warn
+
+    /** Invalid: private and one char long. */
+    private void c(int p) {} //warn
+
+    /** Holder for inner anonymous classes */
+    private void d(int param) {
+        new Object() {
+            /** Invalid: public and one char long. */
+            public void e(int p) { } //warn
+        };
+    }
+
+    /** Invalid: public constructor and one char long */
+    public InputParameterNameSimple(int p) { } // warn
+
+    /** Invalid: private constructor and one char long */
+    private InputParameterNameSimple(float p) { } // warn
+}

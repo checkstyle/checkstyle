@@ -1145,7 +1145,8 @@ class MyClass {
       <subsection name="Description">
         <p>
           Checks that method and <code>catch</code> parameter names conform to a format specified
-          by the format property.
+          by the format property. By using <code>scope</code> and <code>excludeScope</code> properties
+          it is possible to specify different formats for methods at different visibility levels.
         </p>
       </subsection>
 
@@ -1179,6 +1180,18 @@ public boolean equals(Object o) {
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
+          <tr>
+            <td>scope</td>
+            <td>Visibility scope of methods where parameters are checked.</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><code>anoninner</code></td>
+          </tr>
+          <tr>
+            <td>excludeScope</td>
+            <td>Visibility scope of methods where parameters are not checked.</td>
+            <td><a href="property_types.html#scope">scope</a></td>
+            <td><code>null</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -1205,6 +1218,25 @@ public boolean equals(Object o) {
         <source>
 &lt;module name="ParameterName"&gt;
     &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          The following configuration checks that the parameters always start with two
+          lowercase characters and, in addition, that public method parameters cannot be one character
+          long:
+        </p>
+        <source>
+&lt;module name=&quot;ParameterName&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;
+    &lt;property name=&quot;excludeScope&quot; value=&quot;public&quot;/&gt;
+    &lt;message key=&quot;name.invalidPattern&quot;
+        value=&quot;Parameter name ''{0}'' must match pattern ''{1}''.&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;ParameterName&quot;&gt;
+&lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
+    &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+    &lt;message key=&quot;name.invalidPattern&quot;
+        value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
