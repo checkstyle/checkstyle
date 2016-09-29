@@ -87,6 +87,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "93: " + getCheckMessage(MSG_KEY),
             "94: " + getCheckMessage(MSG_KEY),
             "98: " + getCheckMessage(MSG_KEY),
+            "104: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
@@ -127,6 +128,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "92: " + getCheckMessage(MSG_KEY),
             "94: " + getCheckMessage(MSG_KEY),
             "98: " + getCheckMessage(MSG_KEY),
+            "104: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
@@ -156,6 +158,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "82: " + getCheckMessage(MSG_KEY),
             "92: " + getCheckMessage(MSG_KEY),
             "98: " + getCheckMessage(MSG_KEY),
+            "104: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
@@ -209,6 +212,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends BaseCheckTestSupport
             "93: " + getCheckMessage(MSG_KEY),
             "94: " + getCheckMessage(MSG_KEY),
             "98: " + getCheckMessage(MSG_KEY),
+            "104: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }

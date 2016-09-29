@@ -54,13 +54,13 @@ public class InputAvoidEscapedUnicodeCharacters {
 			throw new AssertionError();
 		}
 	}
-		
+
 		static final String WHITESPACE_TABLE = ""
 				+ "\u2002\u3000\r\u0085\u200A\u2005\u2000\u3000\\"
 				+ "\u2029\u000B\u3000\u2008\u2003\u205F\u3000\u1680"
 				+ "\u0009\u0020\u2006\u2001\u202F\u00A0\u000C\u2009"
 				+ "\u3000\u2004\u3000\u3000\u2028\n\u2007\u3000";
-	
+
 	      public boolean matches(char c) {
 	        switch (c) {
 	          case '\t':
@@ -96,4 +96,10 @@ public class InputAvoidEscapedUnicodeCharacters {
 		}
 	}
 	private String unitAbbrev9 = "\u03bcs"; /* comment */ int i;
+
+	private String notAUnicodeEscaped1 = "\\u1234";
+
+	private String notAUnicodeEscaped2 = "\\\\u1234";
+
+	private String onlyEscaped = "\\\u1234";
 }
