@@ -57,12 +57,8 @@ public class ParameterNameTest extends BaseCheckTestSupport {
             "11:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "a_rg4", format),
             "12:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "_arg5", format),
             "13:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "arg6_", format),
-            "14:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "aArg7", format),
-            "15:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "aArg8", format),
             "16:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "aar_g", format),
-            "26:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "bB", format),
             "49:22: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "llll_llll", format),
-            "50:21: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "bB", format),
         };
 
         final String filePath = getPath("InputParameterNameSimple.java");

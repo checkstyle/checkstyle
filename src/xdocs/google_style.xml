@@ -786,7 +786,7 @@
                             <td><a name="4.8.2.2"/><a href="#4.8.2.2"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
-                                    href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.2.2-variables-limited-scope">4.8.2.2 Declared when needed, initialized as soon as
+                                    href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s4.8.2.2-variables-limited-scope">4.8.2.2 Declared when needed
                                     possible
                                 </a>
                             </td>
@@ -1505,6 +1505,23 @@
                                     alt="" />
                                 <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                                 <br/> Overrides are checked by presence of "@Override" annotation on method.
+                            </td>
+                            <td>
+                                <a
+                                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">config</a><br/>
+                                <a
+                                    href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">test</a>
+                            </td>
+                            <td><a name="7.3.4"/><a href="#7.3.4"><img src="images/anchor.png" alt=""/></a></td>
+                            <td>
+                                <a
+                                    href="http://checkstyle.sourceforge.net/reports/google-java-style.html#s7.3.4-javadoc-non-required">7.3.4</a>
+                            </td>
+                            <td>
+                                <img
+                                    src="images/ok_green.png"
+                                    alt="" />
+                                <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                             </td>
                             <td>
                                 <a

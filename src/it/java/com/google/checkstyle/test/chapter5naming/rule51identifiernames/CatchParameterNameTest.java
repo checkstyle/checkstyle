@@ -38,13 +38,10 @@ public class CatchParameterNameTest extends BaseCheckTestSupport {
     public void catchParameterNameTest() throws Exception {
         final Configuration checkConfig = getCheckConfig("CatchParameterName");
         final String msgKey = "name.invalidPattern";
-        final String format = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
+        final String format = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "6:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "e", format),
-            "24:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "t", format),
-            "47:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "iException", format),
-            "50:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "x", format),
+            "24:28: " + getCheckMessage(checkConfig.getMessages(), msgKey, "T", format),
         };
 
         final String filePath = getPath("InputCatchParameterName.java");

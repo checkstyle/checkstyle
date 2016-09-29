@@ -27,8 +27,9 @@
           Checks that the order of modifiers conforms to the suggestions in
           the <a
           href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">Java
-          Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>. The
-          correct order is:
+          Language specification, sections 8.1.1, 8.3.1, 8.4.3</a> and <a
+          href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-9.html">
+          9.4</a>. The correct order is:
         </p>
 
         <ol>
@@ -43,6 +44,9 @@
           </li>
           <li>
             <code>abstract</code>
+          </li>
+          <li>
+            <code>default</code>
           </li>
           <li>
             <code>static</code>

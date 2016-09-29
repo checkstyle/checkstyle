@@ -11,8 +11,8 @@ final class InputSimple
     		int a_rg4, //warn
     		int _arg5, //warn
     		int arg6_, //warn
-    		int aArg7, //warn
-    		int aArg8, //warn
+    		int aArg7, //ok
+    		int aArg8, //ok
     		int aar_g) //warn
             
     {}
@@ -23,7 +23,7 @@ class InputSimple2
 
     /** Some more Javadoc. */
     public void doSomething(int aaa, int abn, String aaA, 
-            boolean bB) //warn
+            boolean bB) //ok
     {
         for (Object O : new java.util.ArrayList())
         {
@@ -47,5 +47,5 @@ enum MyEnum1
     
     public void doEnum(int aaaL,
     		long llll_llll, //warn
-            boolean bB) {} //warn 
+            boolean bB) {} //ok
 }
