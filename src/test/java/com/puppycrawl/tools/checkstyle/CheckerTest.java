@@ -45,13 +45,16 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.powermock.api.mockito.PowerMockito;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
@@ -677,6 +680,31 @@ public class CheckerTest extends BaseCheckTestSupport {
         verify(checker, pathToEmptyFile, expected);
     }
 
+    @Test
+    public void testClearLazyLoadCacheInDetailAST() throws Exception {
+        final DefaultConfiguration checkConfig1 =
+            createCheckConfig(CheckWhichDoesNotRequireCommentNodes.class);
+        final DefaultConfiguration checkConfig2 =
+            createCheckConfig(CheckWhichRequiresCommentNodes.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig1);
+        treeWalkerConfig.addChild(checkConfig2);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyleConfig");
+        checkerConfig.addChild(treeWalkerConfig);
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String filePath = getPath("api/InputClearDetailAstLazyLoadCache.java");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, filePath, filePath, expected);
+    }
+
     private Checker createMockCheckerWithCacheForModule(
         Class<? extends ExternalResourceHolder> mockClass) throws IOException, CheckstyleException {
 
@@ -757,6 +785,83 @@ public class CheckerTest extends BaseCheckTestSupport {
                 locations.add(secondExternalResourceLocation);
             }
             return locations;
+        }
+    }
+
+    private static class CheckWhichDoesNotRequireCommentNodes extends AbstractCheck {
+
+        /** Number of children of method definition token. */
+        private static final int METHOD_DEF_CHILD_COUNT = 7;
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.METHOD_DEF};
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[] {TokenTypes.METHOD_DEF};
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.METHOD_DEF};
+        }
+
+        @Override
+        public void visitToken(DetailAST ast) {
+            if (ast.branchContains(TokenTypes.BLOCK_COMMENT_BEGIN)) {
+                log(ast, "AST has incorrect structure structure."
+                    + " The check does not require comment nodes but there were comment nodes"
+                    + " in the AST.");
+            }
+            final int childCount = ast.getChildCount();
+            if (childCount != METHOD_DEF_CHILD_COUNT) {
+                final String msg = String.format(Locale.getDefault(),
+                    "AST node has wrong number of children. Expected is %d but was %d",
+                    METHOD_DEF_CHILD_COUNT, childCount);
+                log(ast, msg);
+            }
+        }
+    }
+
+    private static class CheckWhichRequiresCommentNodes extends AbstractCheck {
+
+        /** Number of children of method definition token. */
+        private static final int METHOD_DEF_CHILD_COUNT = 7;
+
+        @Override
+        public boolean isCommentNodesRequired() {
+            return true;
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.METHOD_DEF};
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[] {TokenTypes.METHOD_DEF};
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.METHOD_DEF};
+        }
+
+        @Override
+        public void visitToken(DetailAST ast) {
+            if (!ast.branchContains(TokenTypes.BLOCK_COMMENT_BEGIN)) {
+                log(ast, "Incorrect AST structure.");
+            }
+            final int childCount = ast.getChildCount();
+            if (childCount != METHOD_DEF_CHILD_COUNT) {
+                final String msg = String.format(Locale.getDefault(),
+                    "AST node has wrong number of children. Expected is %d but was %d",
+                    METHOD_DEF_CHILD_COUNT, childCount);
+                log(ast, msg);
+            }
         }
     }
 }
