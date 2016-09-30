@@ -17,6 +17,63 @@
 
     <!-- placeholder for a new section -->
 
+    <section name="Release 7.1.2">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Wrong order of &quot;default&quot; method modifier. Author: alberto.cuda <a href="https://github.com/checkstyle/checkstyle/issues/3471">#3471</a>
+          </li>
+          <li>
+            EqualsHashCode: hashCode without equals is not a violation. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3308">#3308</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Revert &quot;Pull #3162: Update version of commons-collections to 3.2.2 to fix security vulnerability CVE-2015-6420&quot;. Author: Roman Ivanov
+          </li>
+          <li>
+            Cut down on Checkstyle&#39;s dependencies on Guava. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3433">#3433</a>
+          </li>
+          <li>
+            doc: fixed the wording in javadoc for TrailingCommentCheck. Author: José Castro
+          </li>
+          <li>
+            doc: added missing slash to backport documentation url (#3457). Author: rnveach
+          </li>
+          <li>
+            doc: added links to cs backport jre6 (#3447). Author: rnveach
+          </li>
+          <li>
+            Replace line-based suppressions with inline ones for Checkstyle&#39;s suppressions.xml. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2226">#2226</a>
+          </li>
+          <li>
+            Update Checkstyle GUI in order to display Javadoc tokens. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/408">#408</a>
+          </li>
+          <li>
+            Fix ForbidCertainImports config. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3412">#3412</a>
+          </li>
+          <li>
+            use CyclomaticComplexity.switchBlockAsSingleDecisionPoint in checkstyle_checks.xml. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/2874">#2874</a>
+          </li>
+          <li>
+            SuppressCommentFilter not working with ClassDataAbstractionCoupling when specified on class. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/977">#977</a>
+          </li>
+          <li>
+            Resolve IntelijIdea inspection violations for java8. Author: Mariia Mykhailova <a href="https://github.com/checkstyle/checkstyle/issues/3233">#3233</a>
+          </li>
+          <li>
+            Replace Guava&#39;s Joiner with Java 8 native approach. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3406">#3406</a>
+          </li>
+          <li>
+            Fix grammar in issue templates. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3428">#3428</a>
+          </li>
+          <li>
+            spelling: PR instructions, YOU --&gt; YOUR. Author: Elliotte Rusty Harold
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.1.1">
       <p>Bug fixes:</p>
         <ul>
