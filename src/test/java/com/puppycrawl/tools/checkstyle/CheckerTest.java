@@ -818,8 +818,23 @@ public class CheckerTest extends BaseCheckTestSupport {
             final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
                 final String msg = String.format(Locale.getDefault(),
-                    "AST node has wrong number of children. Expected is %d but was %d",
+                    "AST node in no comment tree has wrong number of children. "
+                            + "Expected is %d but was %d",
                     METHOD_DEF_CHILD_COUNT, childCount);
+                log(ast, msg);
+            }
+            // count children where comment lives
+            int actualChildCount = 0;
+            for (DetailAST child = ast.getFirstChild().getFirstChild(); child != null; child =
+                    child.getNextSibling()) {
+                actualChildCount++;
+            }
+            final int cacheChildCount = ast.getFirstChild().getChildCount();
+            if (cacheChildCount != actualChildCount) {
+                final String msg = String.format(Locale.getDefault(),
+                        "AST node with no comment has wrong number of children. "
+                                + "Expected is %d but was %d",
+                        cacheChildCount, actualChildCount);
                 log(ast, msg);
             }
         }
@@ -858,8 +873,23 @@ public class CheckerTest extends BaseCheckTestSupport {
             final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
                 final String msg = String.format(Locale.getDefault(),
-                    "AST node has wrong number of children. Expected is %d but was %d",
+                    "AST node in comment tree has wrong number of children. "
+                            + "Expected is %d but was %d",
                     METHOD_DEF_CHILD_COUNT, childCount);
+                log(ast, msg);
+            }
+            // count children where comment lives
+            int actualChildCount = 0;
+            for (DetailAST child = ast.getFirstChild().getFirstChild(); child != null; child =
+                    child.getNextSibling()) {
+                actualChildCount++;
+            }
+            final int cacheChildCount = ast.getFirstChild().getChildCount();
+            if (cacheChildCount != actualChildCount) {
+                final String msg = String.format(Locale.getDefault(),
+                        "AST node with comment has wrong number of children. "
+                                + "Expected is %d but was %d",
+                        cacheChildCount, actualChildCount);
                 log(ast, msg);
             }
         }

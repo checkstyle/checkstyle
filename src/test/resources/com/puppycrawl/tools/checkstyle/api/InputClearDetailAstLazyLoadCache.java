@@ -2,10 +2,11 @@ package com.puppycrawl.tools.checkstyle.api;
 
 public class InputClearDetailAstLazyLoadCache {
 
-    /**
+    public
+    /*
      * Javadoc comment
      */
-    public void foo() {
+    static void foo() {
         return;
     }
 }
