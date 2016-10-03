@@ -68,7 +68,7 @@ final class PropertyCacheFile {
      * checked the key is chosen in such a way that it cannot be a
      * valid file name.
      */
-    private static final String CONFIG_HASH_KEY = "configuration*?";
+    public static final String CONFIG_HASH_KEY = "configuration*?";
 
     /** Size of buffer which is used to read external configuration resources. */
     private static final int BUFFER_SIZE = 1024;
@@ -81,6 +81,9 @@ final class PropertyCacheFile {
 
     /** File name of cache. **/
     private final String fileName;
+
+    /** Generated configuration hash. **/
+    private String configHash;
 
     /**
      * Creates a new {@code PropertyCacheFile} instance.
@@ -106,17 +109,16 @@ final class PropertyCacheFile {
     public void load() throws IOException {
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
-        final String currentConfigHash = getHashCodeBasedOnObjectContent(config);
+        configHash = getHashCodeBasedOnObjectContent(config);
         if (new File(fileName).exists()) {
             FileInputStream inStream = null;
             try {
                 inStream = new FileInputStream(fileName);
                 details.load(inStream);
                 final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);
-                if (!currentConfigHash.equals(cachedConfigHash)) {
+                if (!configHash.equals(cachedConfigHash)) {
                     // Detected configuration change - clear cache
-                    details.clear();
-                    details.setProperty(CONFIG_HASH_KEY, currentConfigHash);
+                    reset();
                 }
             }
             finally {
@@ -125,7 +127,7 @@ final class PropertyCacheFile {
         }
         else {
             // put the hash in the file if the file is going to be created
-            details.setProperty(CONFIG_HASH_KEY, currentConfigHash);
+            reset();
         }
     }
 
@@ -149,10 +151,11 @@ final class PropertyCacheFile {
     }
 
     /**
-     * Clears the cache.
+     * Resets the cache to be empty except for the configuration hash.
      */
-    public void clear() {
+    public void reset() {
         details.clear();
+        details.setProperty(CONFIG_HASH_KEY, configHash);
     }
 
     /**
@@ -186,6 +189,15 @@ final class PropertyCacheFile {
      */
     public void put(String checkedFileName, long timestamp) {
         details.setProperty(checkedFileName, Long.toString(timestamp));
+    }
+
+    /**
+     * Retrieves the hash of a specific file.
+     * @param name The name of the file to retrieve.
+     * @return The has of the file or {@code null}.
+     */
+    public String get(String name) {
+        return details.getProperty(name);
     }
 
     /**
@@ -230,7 +242,7 @@ final class PropertyCacheFile {
     public void putExternalResources(Set<String> locations) {
         final Set<ExternalResource> resources = loadExternalResources(locations);
         if (areExternalResourcesChanged(resources)) {
-            details.clear();
+            reset();
         }
         fillCacheWithExternalResources(resources);
     }

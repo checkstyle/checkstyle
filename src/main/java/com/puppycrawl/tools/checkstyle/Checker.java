@@ -562,7 +562,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
      */
     public void clearCache() {
         if (cache != null) {
-            cache.clear();
+            cache.reset();
         }
     }
 }
