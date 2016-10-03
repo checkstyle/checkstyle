@@ -73,13 +73,39 @@ public class AstTreeStringPrinterTest {
     }
 
     @Test
-    public void testParseFileWithJavadoc() throws Exception {
+    public void testParseFileWithJavadoc1() throws Exception {
         final String actual = AstTreeStringPrinter.printJavaAndJavadocTree(
                 new File(getPath("InputAstTreeStringPrinterJavadoc.java")))
                 .replaceAll("\\\\r\\\\n", "\\\\n");
         final String expected = new String(Files.readAllBytes(Paths.get(
-                getPath("expectedInputAstTreeStringPrinterJavadoc.txt"))), StandardCharsets.UTF_8)
+                getPath("expectedInputAstTreeStringPrinterJavadoc.txt"))),
+                        StandardCharsets.UTF_8)
                 .replaceAll("\\\\r\\\\n", "\\\\n");
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testParseFileWithJavadoc2() throws Exception {
+        final String actual = AstTreeStringPrinter.printJavaAndJavadocTree(
+                new File(getPath("InputAstTreeStringPrinterJavaAndJavadoc.java")))
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = new String(Files.readAllBytes(Paths.get(
+                getPath("expectedInputAstTreeStringPrinterJavaAndJavadoc.txt"))),
+                        StandardCharsets.UTF_8)
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testParseFileWithJavadoc3() throws Exception {
+        final String actual = AstTreeStringPrinter.printJavaAndJavadocTree(
+                new File(getPath("InputAstTreeStringPrinterAttributesAndMethodsJavadoc.java")))
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = new String(Files.readAllBytes(Paths.get(
+                getPath("expectedInputAstTreeStringPrinterAttributesAndMethodsJavadoc.txt"))),
+                        StandardCharsets.UTF_8)
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        Assert.assertEquals(expected, actual);
+    }
+
 }

@@ -92,16 +92,16 @@ public final class AstTreeStringPrinter {
         final StringBuilder messageBuilder = new StringBuilder();
         DetailAST node = ast;
         while (node != null) {
-            if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                    && JavadocUtils.isJavadocComment(node)) {
+            messageBuilder.append(getIndentation(node))
+                .append(getNodeInfo(node))
+                .append(LINE_SEPARATOR);
+            if (node.getType() == TokenTypes.COMMENT_CONTENT
+                    && JavadocUtils.isJavadocComment(node.getParent())) {
                 final String javadocTree = parseAndPrintJavadocTree(node);
                 messageBuilder.append(javadocTree);
             }
             else {
-                messageBuilder.append(getIndentation(node))
-                    .append(getNodeInfo(node))
-                    .append(LINE_SEPARATOR)
-                    .append(printJavaAndJavadocTree(node.getFirstChild()));
+                messageBuilder.append(printJavaAndJavadocTree(node.getFirstChild()));
             }
             node = node.getNextSibling();
         }
@@ -114,10 +114,13 @@ public final class AstTreeStringPrinter {
      * @return string javadoc tree
      */
     private static String parseAndPrintJavadocTree(DetailAST node) {
-        final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(node);
+        final DetailAST javadocBlock = node.getParent();
+        final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(javadocBlock);
 
-        final String rootPrefix = getIndentation(node);
-        final String prefix = rootPrefix.substring(0, rootPrefix.length() - 2) + "   ";
+        String baseIdentation = getIndentation(node);
+        baseIdentation = baseIdentation.substring(0, baseIdentation.length() - 2);
+        final String rootPrefix = baseIdentation + "   `--";
+        final String prefix = baseIdentation + "       ";
         return DetailNodeTreeStringPrinter.printTree(tree, rootPrefix, prefix);
     }
 
