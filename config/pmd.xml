@@ -210,12 +210,6 @@
   </rule>
 
   <rule ref="rulesets/java/migrating.xml"/>
-  <rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseTestAnnotation">
-    <properties>
-      <!-- False positive of PMD. Non-test methods can be named as 'test' -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']"/>
-    </properties>
-  </rule>
 
   <rule ref="rulesets/java/naming.xml">
     <!-- we use CheckstyleCustomShortVariable, to control lenght (will be fixed in PMD 5.4) and skip Override methods -->
