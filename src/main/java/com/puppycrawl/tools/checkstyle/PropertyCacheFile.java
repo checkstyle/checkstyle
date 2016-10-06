@@ -201,6 +201,14 @@ final class PropertyCacheFile {
     }
 
     /**
+     * Removed a specific file from the cache.
+     * @param checkedFileName The name of the file to remove.
+     */
+    public void remove(String checkedFileName) {
+        details.remove(checkedFileName);
+    }
+
+    /**
      * Calculates the hashcode for the serializable object based on its content.
      * @param object serializable object.
      * @return the hashcode for serializable object.

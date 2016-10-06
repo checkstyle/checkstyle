@@ -22,12 +22,14 @@ package com.puppycrawl.tools.checkstyle;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOError;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -36,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -740,6 +743,38 @@ public class CheckerTest extends BaseCheckTestSupport {
         verify(checker, filePath, filePath, expected);
     }
 
+    @Test
+    public void testCacheOnViolationSuppression() throws Exception {
+        final File cacheFile = temporaryFolder.newFile();
+        final DefaultConfiguration violationCheck =
+                createCheckConfig(DummyFileSetViolationCheck.class);
+        final DefaultConfiguration defaultConfig = new DefaultConfiguration("defaultConfiguration");
+        defaultConfig.addAttribute("cacheFile", cacheFile.getPath());
+        defaultConfig.addChild(violationCheck);
+
+        final DefaultConfiguration filterConfig = createCheckConfig(SuppressionFilter.class);
+        filterConfig.addAttribute("file", getPath("suppress_all.xml"));
+        defaultConfig.addChild(filterConfig);
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.addListener(new BriefUtLogger(stream));
+        checker.configure(defaultConfig);
+
+        final String fileViolationPath = temporaryFolder.newFile("ViolationFile.java").getPath();
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, fileViolationPath, expected);
+
+        try (FileInputStream input = new FileInputStream(cacheFile)) {
+            final Properties details = new Properties();
+            details.load(input);
+
+            assertNotNull("suppressed violation file saved in cache",
+                    details.getProperty(fileViolationPath));
+        }
+    }
+
     private Checker createMockCheckerWithCacheForModule(
         Class<? extends ExternalResourceHolder> mockClass) throws IOException, CheckstyleException {
 
@@ -769,6 +804,22 @@ public class CheckerTest extends BaseCheckTestSupport {
 
         @Override
         protected void processFiltered(File file, List<String> lines) throws CheckstyleException { }
+
+        @Override
+        public Set<String> getExternalResourceLocations() {
+            final Set<String> externalResourceLocation = new HashSet<>(1);
+            externalResourceLocation.add("non_existing_external_resource.xml");
+            return externalResourceLocation;
+        }
+    }
+
+    private static class DummyFileSetViolationCheck extends AbstractFileSetCheck
+        implements ExternalResourceHolder {
+
+        @Override
+        protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+            log(0, "test");
+        }
 
         @Override
         public Set<String> getExternalResourceLocations() {
