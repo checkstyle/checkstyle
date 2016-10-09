@@ -41,6 +41,7 @@ mv htdocs/new-site/ .
 mv htdocs htdocs-$PREV_RELEASE
 mv new-site htdocs
 ln -s /home/project-web/checkstyle/reports htdocs/reports
+ln -s /home/project-web/checkstyle/dtds htdocs/dtds
 
 #Archiving
 tar cfz htdocs-$PREV_RELEASE.tar.gz htdocs-$PREV_RELEASE/
