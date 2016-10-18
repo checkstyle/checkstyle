@@ -93,8 +93,6 @@
     <exclude name="OnlyOneReturn"/>
     <!-- opposite to UnnecessaryConstructor -->
     <exclude name="AtLeastOneConstructor"/>
-    <!-- deprecated by PMD -->
-    <exclude name="BooleanInversion"/>
     <!-- that rule is too buggy, too much false positives-->
     <exclude name="DataflowAnomalyAnalysis"/>
     <!-- turning local variables to fields create design problems and extend scope of variable -->
@@ -241,7 +239,7 @@
   <rule ref="rulesets/java/naming.xml/AbstractNaming">
     <properties>
      <!-- We can not brake compatibility with previous versions -->
-     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Check']"/>
+     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Check' or @Image='AbstractClassNameCheck']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/naming.xml/LongVariable">
