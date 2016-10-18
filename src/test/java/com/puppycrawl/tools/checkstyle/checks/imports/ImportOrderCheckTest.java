@@ -530,4 +530,59 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
             };
         verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
     }
+
+    @Test
+    public void testOnDemandDeclarationFirstInGroups() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "*,javax");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "false");
+        checkConfig.addAttribute("caseSensitive", "false");
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("onDemandImportLastInGroup", "true");
+
+        final String[] expected = {"4: " + getCheckMessage(MSG_ORDERING, "java.lang.Byte"),
+        };
+        verify(checkConfig, getPath("InputImportOrderOnDemandFirstInGroup.java"),
+                expected);
+    }
+
+    @Test
+    public void testOnDemandDeclaration() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "*,javax");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "false");
+        checkConfig.addAttribute("caseSensitive", "true");
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("onDemandImportLastInGroup", "true");
+
+        final String[] expected = {
+            "6: " + getCheckMessage(MSG_ORDERING, "org.*"),
+            "8: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
+        };
+        verify(checkConfig, getPath("InputImportOrderStaticOnDemandGroupOrder.java"),
+                expected);
+    }
+
+    @Test
+    public void testOnDemandDeclarationLastInGroups() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "*,javax");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "false");
+        checkConfig.addAttribute("caseSensitive", "false");
+        checkConfig.addAttribute("option", "bottom");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("onDemandImportLastInGroup", "true");
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputImportOrderOnDemandLastInGroup.java"),
+                expected);
+    }
 }

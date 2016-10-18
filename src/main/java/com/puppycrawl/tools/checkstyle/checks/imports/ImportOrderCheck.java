@@ -224,6 +224,8 @@ public class ImportOrderCheck
     private boolean sortStaticImportsAlphabetically;
     /** Whether to use container ordering (Eclipse IDE term) for static imports or not. */
     private boolean useContainerOrderingForStatic;
+    /** Whether to use a type-import-on-demand declaration last in group. */
+    private boolean onDemandImportLastInGroup;
 
     /** The policy to enforce. */
     private ImportOrderOption option = ImportOrderOption.UNDER;
@@ -328,6 +330,15 @@ public class ImportOrderCheck
      */
     public void setUseContainerOrderingForStatic(boolean useContainerOrdering) {
         useContainerOrderingForStatic = useContainerOrdering;
+    }
+
+    /**
+     * Sets whether to use a type-import-on-demand declaration last in group.
+     * @param onDemandImportLastInGroup whether to use a type-import-on-demand declaration
+     *                                  last in group.
+     */
+    public void setOnDemandImportLastInGroup(boolean onDemandImportLastInGroup) {
+        this.onDemandImportLastInGroup = onDemandImportLastInGroup;
     }
 
     @Override
@@ -507,6 +518,10 @@ public class ImportOrderCheck
         if (isStatic && useContainerOrderingForStatic) {
             result = compareContainerOrder(lastImport, name, caseSensitive) > 0;
         }
+        else if (onDemandImportLastInGroup && (name.lastIndexOf(WILDCARD_GROUP_NAME) != -1
+                || lastImport.lastIndexOf(WILDCARD_GROUP_NAME) != -1)) {
+            result = compareOnDemandImport(lastImport, name, caseSensitive) > 0;
+        }
         else {
             // out of lexicographic order
             result = compare(lastImport, name, caseSensitive) > 0;
@@ -555,6 +570,49 @@ public class ImportOrderCheck
         final int result;
         if (compareContainersOrderResult == 0) {
             result = compare(importName1, importName2, caseSensitive);
+        }
+        else {
+            result = compareContainersOrderResult;
+        }
+        return result;
+    }
+
+    /**
+     * Compares two import strings.
+     * We first compare the container of the import, container being the type enclosing
+     * the element being imported. When this returns 0, we compare the qualified
+     * import name considering a type-import-on-demand declaration last in group.
+     * @param importName1 first import name.
+     * @param importName2 second import name.
+     * @param caseSensitive whether the comparison of fully qualified import names is case
+     *                      sensitive.
+     * @return the value {@code 0} if str1 is equal to str2; a value
+     *         less than {@code 0} if str is less than the str2 ;
+     *         and a value greater than {@code 0} if str1 is greater than str2
+     */
+    private static int compareOnDemandImport(String importName1, String importName2,
+                                             boolean caseSensitive) {
+        final String container1 = getImportContainer(importName1);
+        final String container2 = getImportContainer(importName2);
+        final int compareContainersOrderResult;
+        if (caseSensitive) {
+            compareContainersOrderResult = container1.compareTo(container2);
+        }
+        else {
+            compareContainersOrderResult = container1.compareToIgnoreCase(container2);
+        }
+        final int result;
+        if (compareContainersOrderResult == 0) {
+            final String import1 = importName1.substring(importName1.lastIndexOf('.') + 1,
+                    importName1.length());
+            final String import2 = importName2.substring(importName2.lastIndexOf('.') + 1,
+                    importName2.length());
+            if (import1.equals(WILDCARD_GROUP_NAME)) {
+                result = compare(import2, import1, caseSensitive);
+            }
+            else {
+                result = 0;
+            }
         }
         else {
             result = compareContainersOrderResult;
