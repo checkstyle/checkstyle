@@ -63,13 +63,3 @@ build:
         -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true
         && cd contribution/checkstyle-tester
         && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml
-
-  # java 8 compile (oraclejdk8)
-  - script:
-      name: java 8 inputs should NOT be in resources-noncompilable
-      code: >
-        if [ $(grep -rl --include='*.java' '//Compilable with Java8' src/test/resources-noncompilable | wc -l) -eq 0 ]; then
-        echo 'OK';
-        else
-        echo 'please move all java8 resources to src/test/resources' && false;
-        fi
