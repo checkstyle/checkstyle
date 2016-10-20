@@ -539,6 +539,10 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
     <section name="Declare check's external resource locations">
         See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's external resource locations</a>.
     </section>
+    
+    <section name="Known API issues">
+        <a href="https://github.com/checkstyle/checkstyle/issues/3507">Javadoc: Column number of DetailNode is always 0 for first line #3507</a>.
+    </section>
 
     <section name="Examples of Javadoc Checks">
       The best source knowledge about how to write Javadoc Checks
