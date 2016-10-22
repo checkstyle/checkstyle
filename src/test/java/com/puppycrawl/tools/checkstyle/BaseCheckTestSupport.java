@@ -54,6 +54,12 @@ public class BaseCheckTestSupport {
         return new DefaultConfiguration(clazz.getName());
     }
 
+    /**
+     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
+     * @param checkConfig {@link Configuration} instance.
+     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     * @throws Exception if an exception occurs during checker configuration.
+     */
     public Checker createChecker(Configuration checkConfig)
             throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(checkConfig);
@@ -69,6 +75,13 @@ public class BaseCheckTestSupport {
         return checker;
     }
 
+    /**
+     * Creates {@link DefaultConfiguration} for the {@link Checker}
+     * based on the given {@link Configuration} instance.
+     * @param config {@link Configuration} instance.
+     * @return {@link DefaultConfiguration} for the {@link Checker}
+     * based on the given {@link Configuration} instance.
+     */
     protected DefaultConfiguration createCheckerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
@@ -80,31 +93,81 @@ public class BaseCheckTestSupport {
         return dc;
     }
 
+    /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the root location.
+     * This implementation uses 'src/test/resources/com/puppycrawl/tools/checkstyle/'
+     * as a root location.
+     * @param filename file name.
+     * @return canonical path for the file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
     protected String getPath(String filename) throws IOException {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename)
                 .getCanonicalPath();
     }
 
+    /**
+     * Returns URI-representation of the path for the given file name.
+     * The path is formed base on the root location.
+     * This implementation uses 'src/test/resources/com/puppycrawl/tools/checkstyle/'
+     * as a root location.
+     * @param filename file name.
+     * @return URI-representation of the path for the file with the given file name.
+     */
     protected String getUriString(String filename) {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).toURI()
                 .toString();
     }
 
+    /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the sources location.
+     * This implementation uses 'src/test/java/com/puppycrawl/tools/checkstyle/'
+     * as a src location.
+     * @param filename file name.
+     * @return canonical path for the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
     protected static String getSrcPath(String filename) throws IOException {
         return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename)
                 .getCanonicalPath();
     }
 
+    /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the non-compilable resources location.
+     * This implementation uses 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/'
+     * as a non-compilable resource location.
+     * @param filename file name.
+     * @return canonical path for the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
     protected String getNonCompilablePath(String filename) throws IOException {
         return new File("src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/"
                 + filename).getCanonicalPath();
     }
 
+    /**
+     * Performs verification of the given text ast tree representation.
+     * This implementation uses {@link BaseCheckTestSupport#verifyAst(String, String, boolean)}
+     * method inside.
+     * @param expectedTextPrintFileName expected text ast tree representation.
+     * @param actualJavaFileName actual text ast tree representation.
+     * @throws Exception if exception occurs during verification.
+     */
     protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName)
             throws Exception {
         verifyAst(expectedTextPrintFileName, actualJavaFileName, false);
     }
 
+    /**
+     * Performs verification of the given text ast tree representation.
+     * @param expectedTextPrintFileName expected text ast tree representation.
+     * @param actualJavaFileName actual text ast tree representation.
+     * @param withComments whether to perform verification of comment nodes in tree.
+     * @throws Exception if exception occurs during verification.
+     */
     protected static void verifyAst(String expectedTextPrintFileName, String actualJavaFileName,
             boolean withComments) throws Exception {
         final String expectedContents = new String(Files.readAllBytes(
@@ -117,16 +180,49 @@ public class BaseCheckTestSupport {
                 actualContents);
     }
 
+    /**
+     * Performs verification of the file with the given file name. Uses specified configuration.
+     * Expected messages are represented by the array of strings.
+     * This implementation uses overloaded
+     * {@link BaseCheckTestSupport#verify(Checker, File[], String, String...)} method inside.
+     * @param aConfig configuration.
+     * @param fileName file name to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
     protected void verify(Configuration aConfig, String fileName, String... expected)
             throws Exception {
         verify(createChecker(aConfig), fileName, fileName, expected);
     }
 
+    /**
+     * Performs verification of the file with the given file name.
+     * Uses provided {@link Checker} instance.
+     * Expected messages are represented by the array of strings.
+     * This implementation uses overloaded
+     * {@link BaseCheckTestSupport#verify(Checker, String, String, String...)} method inside.
+     * @param checker {@link Checker} instance.
+     * @param fileName file name to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
     protected void verify(Checker checker, String fileName, String... expected)
             throws Exception {
         verify(checker, fileName, fileName, expected);
     }
 
+    /**
+     * Performs verification of the file with the given file name.
+     * Uses provided {@link Checker} instance.
+     * Expected messages are represented by the array of strings.
+     * This implementation uses overloaded
+     * {@link BaseCheckTestSupport#verify(Checker, File[], String, String...)} method inside.
+     * @param checker {@link Checker} instance.
+     * @param processedFilename file name to verify.
+     * @param messageFileName message file name.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
     protected void verify(Checker checker,
                           String processedFilename,
                           String messageFileName,
@@ -173,6 +269,13 @@ public class BaseCheckTestSupport {
         checker.destroy();
     }
 
+    /**
+     * Performs verification of the given files.
+     * @param checker {@link Checker} instance
+     * @param processedFiles files to process.
+     * @param expectedViolations a map of expected violations per files.
+     * @throws Exception if exception occurs during verification process.
+     */
     protected void verify(Checker checker,
                           File[] processedFiles,
                           Map<String, List<String>> expectedViolations)

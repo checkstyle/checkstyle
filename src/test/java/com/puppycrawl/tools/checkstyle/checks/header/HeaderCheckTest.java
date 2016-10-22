@@ -60,7 +60,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
                 + "header" + File.separator + filename);
     }
 
-    protected String getConfigPath(String filename) throws IOException {
+    private String getConfigPath(String filename) throws IOException {
         return super.getPath("configs" + File.separator + filename);
     }
 

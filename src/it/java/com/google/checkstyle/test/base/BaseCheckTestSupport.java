@@ -61,6 +61,13 @@ public class BaseCheckTestSupport {
 
     protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
+    /**
+     * Returns {@link Configuration} based on Google's checks xml-configuration (google_checks.xml).
+     * This implementation uses {@link ConfigurationLoader} in order to load configuration
+     * from xml-file.
+     * @return {@link Configuration} based on Google's checks xml-configuration (google_checks.xml).
+     * @throws CheckstyleException if exception occurs during configuration loading.
+     */
     protected static Configuration getConfiguration() throws CheckstyleException {
         if (configuration == null) {
             configuration = ConfigurationLoader.loadConfiguration(XML_NAME, new PropertiesExpander(
@@ -70,10 +77,21 @@ public class BaseCheckTestSupport {
         return configuration;
     }
 
+    /**
+     * Creates {@link DefaultConfiguration} instance for the given check class.
+     * @param clazz check class.
+     * @return {@link DefaultConfiguration} instance.
+     */
     protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
 
+    /**
+     * Creates {@link Checker} instance based on specified {@link Configuration}.
+     * @param checkConfig {@link Configuration} instance.
+     * @return {@link Checker} instance.
+     * @throws CheckstyleException if an exception occurs during checker configuration.
+     */
     protected Checker createChecker(Configuration checkConfig)
             throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(checkConfig);
@@ -89,6 +107,12 @@ public class BaseCheckTestSupport {
         return checker;
     }
 
+    /**
+     * Creates {@link DefaultConfiguration} or the {@link Checker}.
+     * based on the given {@link Configuration}.
+     * @param config {@link Configuration} instance.
+     * @return {@link DefaultConfiguration} for the {@link Checker}.
+     */
     protected DefaultConfiguration createCheckerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
@@ -100,11 +124,32 @@ public class BaseCheckTestSupport {
         return dc;
     }
 
+    /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed based on the specific root location.
+     * This implementation uses 'src/it/resources/com/google/checkstyle/test/' as a root location.
+     * @param fileName file name.
+     * @return canonical path for the the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
     protected String getPath(String fileName) throws IOException {
         return new File("src/it/resources/com/google/checkstyle/test/" + fileName)
                 .getCanonicalPath();
     }
 
+    /**
+     * Performs verification of the file with given file name. Uses specified configuration.
+     * Expected messages are represented by the array of strings, warning line numbers are
+     * represented by the array of integers.
+     * This implementation uses overloaded
+     * {@link BaseCheckTestSupport#verify(Checker, File[], String, String[], Integer...)} method
+     * inside.
+     * @param config configuration.
+     * @param fileName file name to verify.
+     * @param expected an array of expected messages.
+     * @param warnsExpected an array of expected warning numbers.
+     * @throws Exception if exception occurs during verification process.
+     */
     protected void verify(Configuration config, String fileName, String[] expected,
             Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
@@ -112,6 +157,15 @@ public class BaseCheckTestSupport {
                 fileName, expected, warnsExpected);
     }
 
+    /**
+     * Performs verification of files. Uses provided {@link Checker} instance.
+     * @param checker {@link Checker} instance.
+     * @param processedFiles files to process.
+     * @param messageFileName message file name.
+     * @param expected an array of expected messages.
+     * @param warnsExpected an array of expected warning line numbers.
+     * @throws Exception if exception occurs during verification process.
+     */
     protected void verify(Checker checker,
             File[] processedFiles,
             String messageFileName,
@@ -192,6 +246,13 @@ public class BaseCheckTestSupport {
         return null;
     }
 
+    /**
+     * Returns {@link Configuration} instance for the given check name.
+     * This implementation uses {@link BaseCheckTestSupport#getConfiguration()} method inside.
+     * @param checkName check name.
+     * @return {@link Configuration} instance for the given check name.
+     * @throws CheckstyleException if exception occurs during configuration loading.
+     */
     protected static Configuration getCheckConfig(String checkName) throws CheckstyleException {
         Configuration result = null;
         for (Configuration currentConfig : getConfiguration().getChildren()) {
@@ -219,6 +280,13 @@ public class BaseCheckTestSupport {
         return path;
     }
 
+    /**
+     * Returns an array of integers which represents the warning line numbers in the file
+     * with the given file name.
+     * @param fileName file name.
+     * @return an array of integers which represents the warning line numbers.
+     * @throws IOException if I/O exception occurs while reading the file.
+     */
     protected Integer[] getLinesWithWarn(String fileName) throws IOException {
         final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
