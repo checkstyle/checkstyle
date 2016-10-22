@@ -21,9 +21,12 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.lang.reflect.Field;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import com.google.common.collect.ImmutableMap;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -179,4 +182,30 @@ public final class TokenUtils {
         return isCommentType(getTokenId(type));
     }
 
+    /**
+     * Finds the first node {@link Optional} of {@link DetailAST} which matches the predicate.
+     * @param root root node.
+     * @param predicate predicate.
+     * @return {@link Optional} of {@link DetailAST} node which matches the predicate.
+     */
+    public static Optional<DetailAST> findFirstTokenByPredicate(DetailAST root,
+                                                                Predicate<DetailAST> predicate) {
+        Optional<DetailAST> result = Optional.empty();
+        DetailAST rootNode = root;
+        while (rootNode != null) {
+            DetailAST toVisit = rootNode.getFirstChild();
+            if (predicate.test(toVisit)) {
+                result = Optional.of(toVisit);
+                break;
+            }
+            while (rootNode != null && toVisit == null) {
+                toVisit = rootNode.getNextSibling();
+                if (toVisit == null) {
+                    rootNode = rootNode.getParent();
+                }
+            }
+            rootNode = toVisit;
+        }
+        return result;
+    }
 }
