@@ -31,11 +31,15 @@ public class PkgControlRegExpTest {
 
     @Before
     public void setUp() {
-        pcRoot.addGuard(new Guard(false, false, ".*\\.(spring|lui)framework", false, true));
-        pcRoot.addGuard(new Guard(false, false, "org\\.hibernate", false, true));
-        pcRoot.addGuard(new Guard(true, false, "org\\.(apache|lui)\\.commons", false, true));
+        pcRoot.addImportRule(
+            new PkgImportRule(false, false, ".*\\.(spring|lui)framework", false, true));
+        pcRoot.addImportRule(
+            new PkgImportRule(false, false, "org\\.hibernate", false, true));
+        pcRoot.addImportRule(
+            new PkgImportRule(true, false, "org\\.(apache|lui)\\.commons", false, true));
 
-        pcCommon.addGuard(new Guard(true, false, "org\\.h.*", false, true));
+        pcCommon.addImportRule(
+            new PkgImportRule(true, false, "org\\.h.*", false, true));
     }
 
     @Test

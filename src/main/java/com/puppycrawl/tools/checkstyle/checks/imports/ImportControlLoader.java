@@ -112,21 +112,19 @@ final class ImportControlLoader extends AbstractLoader {
             final boolean isLocalOnly = attributes.getValue("local-only") != null;
             final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
             final boolean regex = containsRegexAttribute(attributes);
-            final Guard guard;
+            final AbstractImportRule rule;
             if (pkg == null) {
                 // handle class names which can be normal class names or regular
                 // expressions
                 final String clazz = safeGet(attributes, "class");
-                guard = new Guard(isAllow, isLocalOnly, clazz, regex);
+                rule = new ClassImportRule(isAllow, isLocalOnly, clazz, regex);
             }
             else {
                 final boolean exactMatch =
                         attributes.getValue("exact-match") != null;
-                guard = new Guard(isAllow, isLocalOnly, pkg, exactMatch, regex);
+                rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
             }
-
-            final PkgControl pkgControl = stack.peek();
-            pkgControl.addGuard(guard);
+            stack.peek().addImportRule(rule);
         }
     }
 
