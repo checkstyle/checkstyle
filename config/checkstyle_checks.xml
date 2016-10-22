@@ -157,11 +157,7 @@
 
     <!-- Class Design -->
     <module name="DesignForExtension">
-      <!--
-        We should postpone DesignForExtension Check enforcement till next major release
-        as it will seriously brake backward compatibility with existing usage of our library
-      -->
-      <property name="severity" value="ignore"/>
+      <property name="ignoredAnnotations" value="Override, Test, Before, After, BeforeClass, AfterClass"/>
     </module>
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>

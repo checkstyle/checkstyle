@@ -36,7 +36,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
     private static Configuration checkConfig;
     private static String format;
 
-    protected String getPath(String packageName, String fileName) throws IOException {
+    private String getPath(String packageName, String fileName) throws IOException {
         return getPath("chapter5naming" + File.separator + "rule521" + packageName
                 + File.separator + fileName);
     }
