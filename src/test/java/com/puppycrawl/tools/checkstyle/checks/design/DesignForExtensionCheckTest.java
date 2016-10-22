@@ -51,9 +51,8 @@ public class DesignForExtensionCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(DesignForExtensionCheck.class);
         final String[] expected = {
-            "46:5: " + getCheckMessage(MSG_KEY, "doh"),
-            "54:5: " + getCheckMessage(MSG_KEY, "aNativeMethod"),
-            "105:9: " + getCheckMessage(MSG_KEY, "someMethod"),
+            "46:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
+            "100:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
         };
         verify(checkConfig, getPath("InputDesignForExtension.java"), expected);
 
@@ -64,5 +63,48 @@ public class DesignForExtensionCheckTest
         final DesignForExtensionCheck obj = new DesignForExtensionCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
         assertArrayEquals(expected, obj.getAcceptableTokens());
+    }
+
+    @Test
+    public void testOverridableMethods() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        final String[] expected = {
+            "6:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
+            "30:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
+            "35:9: " + getCheckMessage(MSG_KEY, "A", "foo9"),
+            "42:9: " + getCheckMessage(MSG_KEY, "A", "foo10"),
+            "49:9: " + getCheckMessage(MSG_KEY, "A", "foo11"),
+            "54:9: " + getCheckMessage(MSG_KEY, "A", "foo12"),
+            "61:9: " + getCheckMessage(MSG_KEY, "A", "foo13"),
+            "68:9: " + getCheckMessage(MSG_KEY, "A", "foo14"),
+            "90:9: " + getCheckMessage(MSG_KEY, "A", "foo22"),
+            "96:9: " + getCheckMessage(MSG_KEY, "A", "foo23"),
+            "110:9: " + getCheckMessage(MSG_KEY, "A", "foo26"),
+            "117:9: " + getCheckMessage(MSG_KEY, "A", "foo27"),
+        };
+        verify(checkConfig, getPath("InputDesignForExtensionOverridableMethods.java"), expected);
+    }
+
+    @Test
+    public void testIgnoredAnnotationsOption() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        checkConfig.addAttribute("ignoredAnnotations", "Override, Deprecated");
+        final String[] expected = {
+            "31:5: "
+                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo1"),
+            "141:5: "
+                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo21"),
+        };
+        verify(checkConfig, getPath("InputDesignForExtensionIgnoredAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testNativeMethods() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        checkConfig.addAttribute("ignoredAnnotations", "Deprecated");
+        final String[] expected = {
+            "8:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),
+        };
+        verify(checkConfig, getPath("InputDesignForExtensionNativeMethods.java"), expected);
     }
 }

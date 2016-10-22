@@ -19,55 +19,77 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
- * Checks find classes that are designed for inheritance.
+ * The check finds classes that are designed for extension (subclass creation).
  *
  * <p>
- * Nothing wrong could be with founded classes
- * this Check make sence only for library project (not a application projects)
- * who care about ideal OOP design to make sure clas work in all cases even misusage.
- * Even in library projects this Check most likely find classes that are not required to check.
- * User need to use suppressions extensively to got a benefit from this Check and avoid
- * false positives.
+ * Nothing wrong could be with founded classes.
+ * This check makes sense only for library projects (not an application projects)
+ * which care of ideal OOP-design to make sure that class works in all cases even misusage.
+ * Even in library projects this check most likely will find classes that are designed for extension
+ * by somebody. User needs to use suppressions extensively to got a benefit from this check,
+ * and keep in suppressions all confirmed/known classes that are deigned for inheritance
+ * intentionally to let the check catch only new classes, and bring this to team/user attention.
  * </p>
  *
  * <p>
- * ATTENTION: Only user can deside whether class is designed for extension or not.
- * Check just show all possible. If smth inappropriate is found please use supporession.
+ * ATTENTION: Only user can decide whether a class is designed for extension or not.
+ * The check just shows all classes which are possibly designed for extension.
+ * If smth inappropriate is found please use suppression.
  * </p>
  *
  * <p>
- * More specifically, it enforces a programming style
- * where superclasses provide empty "hooks" that can be
- * implemented by subclasses.
+ * ATTENTION: If the method which can be overridden in a subclass has a javadoc comment
+ * (a good practise is to explain its self-use of overridable methods) the check will not
+ * rise a violation. The violation can also be skipped if the method which can be overridden
+ * in a subclass has one or more annotations that are specified in ignoredAnnotations
+ * option. Note, that by default @Override annotation is not included in the
+ * ignoredAnnotations set as in a subclass the method which has the annotation can also be
+ * overridden in its subclass.
  * </p>
  *
- * <p>The exact rule is that non-private, non-static methods in
- * non-final classes (or classes that do not
- * only have private constructors) must either be
+ * <p>
+ * More specifically, the check enforces a programming style where superclasses provide empty
+ * "hooks" that can be implemented by subclasses.
+ * </p>
+ *
+ * <p>
+ * The check finds classes that have overridable methods (public or protected methods
+ * that are non-static, not-final, non-abstract) and have non-empty implementation.
+ * </p>
+ *
+ * <p>
+ * This protects superclasses against being broken by subclasses. The downside is that subclasses
+ * are limited in their flexibility, in particular, they cannot prevent execution of code in the
+ * superclass, but that also means that subclasses cannot forget to call their super method.
+ * </p>
+ *
+ * <p>
+ * The check has the following options:
+ * </p>
  * <ul>
- * <li>abstract or</li>
- * <li>final or</li>
- * <li>have an empty implementation</li>
+ * <li>
+ * ignoredAnnotations - annotations which allow the check to skip the method from validation.
+ * Default value is <b>Test, Before, After, BeforeClass, AfterClass</b>.
+ * </li>
  * </ul>
  *
- *
- * <p>
- * This protects superclasses against being broken by
- * subclasses. The downside is that subclasses are limited
- * in their flexibility, in particular they cannot prevent
- * execution of code in the superclass, but that also
- * means that subclasses can't forget to call their super
- * method.
- * </p>
- *
  * @author lkuehne
+ * @author Andrei Selkin
  */
 public class DesignForExtensionCheck extends AbstractCheck {
 
@@ -77,6 +99,20 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "design.forExtension";
 
+    /**
+     * A set of annotations which allow the check to skip the method from validation.
+     */
+    private Set<String> ignoredAnnotations = Stream.of("Test", "Before", "After", "BeforeClass",
+        "AfterClass").collect(Collectors.toSet());
+
+    /**
+     * Sets annotations which allow the check to skip the method from validation.
+     * @param ignoredAnnotations method annotations.
+     */
+    public void setIgnoredAnnotations(String... ignoredAnnotations) {
+        this.ignoredAnnotations = Arrays.stream(ignoredAnnotations).collect(Collectors.toSet());
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -84,6 +120,9 @@ public class DesignForExtensionCheck extends AbstractCheck {
 
     @Override
     public int[] getAcceptableTokens() {
+        // The check does not subscribe to CLASS_DEF token as now it is stateless. If the check
+        // subscribes to CLASS_DEF token it will become stateful, since we need to have additional
+        // stack to hold CLASS_DEF tokens.
         return new int[] {TokenTypes.METHOD_DEF};
     }
 
@@ -93,52 +132,169 @@ public class DesignForExtensionCheck extends AbstractCheck {
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        // nothing to do for Interfaces
-        if (!ScopeUtils.isInInterfaceOrAnnotationBlock(ast)
-                && !isPrivateOrFinalOrAbstract(ast)
-                && ScopeUtils.getSurroundingScope(ast).isIn(Scope.PROTECTED)) {
+        if (!hasJavadocComment(ast)
+                && (isNativeMethod(ast)
+                    || !hasEmptyImplementation(ast))
+                && canBeOverridden(ast)
+                && !hasIgnoredAnnotation(ast, ignoredAnnotations)) {
 
-            // method is ok if it is implementation can verified to be empty
-            // Note: native methods don't have impl in java code, so
-            // implementation can be null even if method not abstract
-            final DetailAST implementation = ast.findFirstToken(TokenTypes.SLIST);
-            final boolean nonEmptyImplementation = implementation == null
-                    || implementation.getFirstChild().getType() != TokenTypes.RCURLY;
-
-            final DetailAST classDef = findContainingClass(ast);
-            final DetailAST classMods = classDef.findFirstToken(TokenTypes.MODIFIERS);
-            // check if the containing class can be subclassed
-            final boolean classCanBeSubclassed = classDef.getType() != TokenTypes.ENUM_DEF
-                    && !classMods.branchContains(TokenTypes.FINAL);
-
-            if (nonEmptyImplementation && classCanBeSubclassed
-                    && hasDefaultOrExplicitNonPrivateCtor(classDef)) {
-
-                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
-                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY, name);
+            final DetailAST classDef = getNearestClassOrEnumDefinition(ast);
+            if (canBeSubclassed(classDef)) {
+                final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
+                final String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
+                log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY, className, methodName);
             }
         }
     }
 
     /**
-     * Check for modifiers.
-     * @param ast modifier ast
-     * @return tru in modifier is in checked ones
+     * Checks whether a method has a javadoc comment.
+     * @param methodDef method definition token.
+     * @return true if a method has a javadoc comment.
      */
-    private static boolean isPrivateOrFinalOrAbstract(DetailAST ast) {
-        // method is ok if it is private or abstract or final
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
-                || modifiers.branchContains(TokenTypes.ABSTRACT)
-                || modifiers.branchContains(TokenTypes.FINAL)
-                || modifiers.branchContains(TokenTypes.LITERAL_STATIC);
+    private boolean hasJavadocComment(DetailAST methodDef) {
+        final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
+        return modifiers.branchContains(TokenTypes.BLOCK_COMMENT_BEGIN);
     }
 
     /**
-     * Has Default Or Explicit Non Private Ctor.
-     * @param classDef class ast
-     * @return true if Check should make a violation
+     * Checks whether a methods is native.
+     * @param ast method definition token.
+     * @return true if a methods is native.
+     */
+    private boolean isNativeMethod(DetailAST ast) {
+        final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
+        return mods.branchContains(TokenTypes.LITERAL_NATIVE);
+    }
+
+    /**
+     * Checks whether a method has only comments in the body (has an empty implementation).
+     * Method is OK if its implementation is empty.
+     * @param ast method definition token.
+     * @return true if a method has only comments in the body.
+     */
+    private static boolean hasEmptyImplementation(DetailAST ast) {
+        boolean hasEmptyBody = true;
+        final DetailAST methodImplOpenBrace = ast.findFirstToken(TokenTypes.SLIST);
+        if (methodImplOpenBrace != null) {
+            final DetailAST methodImplCloseBrace = methodImplOpenBrace.getLastChild();
+            final Predicate<DetailAST> predicate = currentNode ->
+                currentNode != null
+                    && currentNode != methodImplCloseBrace
+                    && currentNode.getLineNo() <= methodImplCloseBrace.getLineNo()
+                    && !TokenUtils.isCommentType(currentNode.getType());
+            final Optional<DetailAST> methodBody =
+                TokenUtils.findFirstTokenByPredicate(methodImplOpenBrace, predicate);
+            if (methodBody.isPresent()) {
+                hasEmptyBody = false;
+            }
+        }
+        return hasEmptyBody;
+    }
+
+    /**
+     * Checks whether a method can be overridden.
+     * Method can be overridden if it is not private, abstract, final or static.
+     * Note that the check has nothing to do for interfaces.
+     * @param methodDef method definition token.
+     * @return true if a method can be overridden in a subclass.
+     */
+    private boolean canBeOverridden(DetailAST methodDef) {
+        final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
+        return ScopeUtils.getSurroundingScope(methodDef).isIn(Scope.PROTECTED)
+            && !ScopeUtils.isInInterfaceOrAnnotationBlock(methodDef)
+            && !modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)
+            && !modifiers.branchContains(TokenTypes.ABSTRACT)
+            && !modifiers.branchContains(TokenTypes.FINAL)
+            && !modifiers.branchContains(TokenTypes.LITERAL_STATIC);
+    }
+
+    /**
+     * Checks whether a method has any of ignored annotations.
+     * @param methodDef method definition token.
+     * @param annotations a set of ignored annotations.
+     * @return true if a method has any of ignored annotations.
+     */
+    private static boolean hasIgnoredAnnotation(DetailAST methodDef, Set<String> annotations) {
+        return annotations.stream().filter(annotation -> hasAnnotation(methodDef, annotation))
+            .findAny().isPresent();
+    }
+
+    /**
+     * Check if a method has specific annotation.
+     * @param methodDef method definition token.
+     * @param annotationName annotation name.
+     * @return true, if a method has a specific annotation.
+     */
+    private static boolean hasAnnotation(DetailAST methodDef, String annotationName) {
+        final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
+        boolean containsAnnotation = false;
+        if (modifiers.branchContains(TokenTypes.ANNOTATION)) {
+            final Optional<DetailAST> annotation = TokenUtils.findFirstTokenByPredicate(modifiers,
+                currentToken -> currentToken != null
+                    && currentToken.getType() == TokenTypes.ANNOTATION
+                    && annotationName.equals(getAnnotationName(currentToken)));
+            if (annotation.isPresent()) {
+                containsAnnotation = true;
+            }
+        }
+        return containsAnnotation;
+    }
+
+    /**
+     * Gets the name of the annotation.
+     * @param annotation to get name of.
+     * @return the name of the annotation.
+     */
+    private static String getAnnotationName(DetailAST annotation) {
+        final DetailAST dotAst = annotation.findFirstToken(TokenTypes.DOT);
+        final String name;
+        if (dotAst == null) {
+            name = annotation.findFirstToken(TokenTypes.IDENT).getText();
+        }
+        else {
+            name = dotAst.findFirstToken(TokenTypes.IDENT).getText();
+        }
+        return name;
+    }
+
+    /**
+     * Returns CLASS_DEF or ENUM_DEF token which is the nearest to the given ast node.
+     * Searches the tree towards the root until it finds a CLASS_DEF or ENUM_DEF node.
+     * @param ast the start node for searching.
+     * @return the CLASS_DEF or ENUM_DEF token.
+     */
+    private static DetailAST getNearestClassOrEnumDefinition(DetailAST ast) {
+        DetailAST searchAST = ast;
+        while (searchAST.getType() != TokenTypes.CLASS_DEF
+               && searchAST.getType() != TokenTypes.ENUM_DEF) {
+            searchAST = searchAST.getParent();
+        }
+        return searchAST;
+    }
+
+    /**
+     * Checks if the given class (given CLASS_DEF node) can be subclassed.
+     * @param classDef class definition token.
+     * @return true if the containing class can be subclassed.
+     */
+    private static boolean canBeSubclassed(DetailAST classDef) {
+        final DetailAST modifiers = classDef.findFirstToken(TokenTypes.MODIFIERS);
+        return classDef.getType() != TokenTypes.ENUM_DEF
+            && !modifiers.branchContains(TokenTypes.FINAL)
+            && hasDefaultOrExplicitNonPrivateCtor(classDef);
+    }
+
+    /**
+     * Checks whether a class has default or explicit non-private constructor.
+     * @param classDef class ast token.
+     * @return true if a class has default or explicit non-private constructor.
      */
     private static boolean hasDefaultOrExplicitNonPrivateCtor(DetailAST classDef) {
         // check if subclassing is prevented by having only private ctors
@@ -164,19 +320,5 @@ public class DesignForExtensionCheck extends AbstractCheck {
         }
 
         return hasDefaultConstructor || hasExplicitNonPrivateCtor;
-    }
-
-    /**
-     * Searches the tree towards the root until it finds a CLASS_DEF node.
-     * @param ast the start node for searching
-     * @return the CLASS_DEF node.
-     */
-    private static DetailAST findContainingClass(DetailAST ast) {
-        DetailAST searchAST = ast;
-        while (searchAST.getType() != TokenTypes.CLASS_DEF
-               && searchAST.getType() != TokenTypes.ENUM_DEF) {
-            searchAST = searchAST.getParent();
-        }
-        return searchAST;
     }
 }

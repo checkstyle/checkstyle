@@ -47,11 +47,6 @@ public abstract class InputDesignForExtension
     {
         System.identityHashCode("nonempty and overriding possible");
     }
-
-    // has a potentially complex implementation in native code.
-    // We can't check that, so to be safe DesignForExtension requires
-    // native methods to also be final
-    public native void aNativeMethod();
     
     public final void aFinalMethod()
     {
