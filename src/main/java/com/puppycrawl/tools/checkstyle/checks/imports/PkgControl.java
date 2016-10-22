@@ -39,8 +39,8 @@ class PkgControl {
     private static final Pattern DOT_PATTERN = Pattern.compile(DOT, Pattern.LITERAL);
     /** The regex for the package separator: "\\.". */
     private static final String DOT_REGEX = "\\.";
-    /** List of {@link Guard} objects to check. */
-    private final Deque<Guard> guards = new LinkedList<>();
+    /** List of {@link AbstractImportRule} objects to check. */
+    private final Deque<AbstractImportRule> rules = new LinkedList<>();
     /** List of children {@link PkgControl} objects. */
     private final List<PkgControl> children = new ArrayList<>();
     /** The parent. Null indicates we are the root node. */
@@ -180,11 +180,11 @@ class PkgControl {
     }
 
     /**
-     * Adds a guard to the node.
-     * @param thug the guard to be added.
+     * Adds a {@link AbstractImportRule} to the node.
+     * @param rule the rule to be added.
      */
-    protected void addGuard(final Guard thug) {
-        guards.addFirst(thug);
+    protected void addImportRule(final AbstractImportRule rule) {
+        rules.addFirst(rule);
     }
 
     /**
@@ -265,20 +265,20 @@ class PkgControl {
     }
 
     /**
-     * Checks whether any of the guards for this node control access to
-     * a specified package.
-     * @param forImport the package to check.
+     * Checks whether any of the rules for this node control access to
+     * a specified package or class.
+     * @param forImport the import to check.
      * @param inPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
     private AccessResult localCheckAccess(final String forImport,
         final String inPkg) {
-        for (Guard g : guards) {
-            // Check if a Guard is only meant to be applied locally.
-            if (g.isLocalOnly() && !matchesExactly(inPkg)) {
+        for (AbstractImportRule r : rules) {
+            // Check if a PkgImportRule is only meant to be applied locally.
+            if (r.isLocalOnly() && !matchesExactly(inPkg)) {
                 continue;
             }
-            final AccessResult result = g.verifyImport(forImport);
+            final AccessResult result = r.verifyImport(forImport);
             if (result != AccessResult.UNKNOWN) {
                 return result;
             }

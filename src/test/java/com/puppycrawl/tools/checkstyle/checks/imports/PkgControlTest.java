@@ -31,11 +31,15 @@ public class PkgControlTest {
 
     @Before
     public void setUp() {
-        pcRoot.addGuard(new Guard(false, false, "org.springframework", false, false));
-        pcRoot.addGuard(new Guard(false, false, "org.hibernate", false, false));
-        pcRoot.addGuard(new Guard(true, false, "org.apache.commons", false, false));
+        pcRoot.addImportRule(
+            new PkgImportRule(false, false, "org.springframework", false, false));
+        pcRoot.addImportRule(
+            new PkgImportRule(false, false, "org.hibernate", false, false));
+        pcRoot.addImportRule(
+            new PkgImportRule(true, false, "org.apache.commons", false, false));
 
-        pcCommon.addGuard(new Guard(true, false, "org.hibernate", false, false));
+        pcCommon.addImportRule(
+            new PkgImportRule(true, false, "org.hibernate", false, false));
     }
 
     @Test
