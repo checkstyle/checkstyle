@@ -18,8 +18,10 @@
 
   <property name="fileExtensions" value="java, properties, xml, g, g4"/>
 
-  <!-- BeforeExecutionFileFilters -->
-  <module name="BeforeExecutionExclusionFileFilter" />
+  <!-- BeforeExecutionFileFilters is required for sources that are based on java9 -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$" />
+  </module>
 
   <!-- Filters -->
   <module name="SeverityMatchFilter">
