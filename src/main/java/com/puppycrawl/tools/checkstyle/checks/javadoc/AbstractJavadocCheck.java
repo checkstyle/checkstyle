@@ -19,9 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
-import java.util.stream.IntStream;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
@@ -32,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
@@ -39,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
  * @author Baratali Izmailov
  */
 public abstract class AbstractJavadocCheck extends AbstractCheck {
-
     /**
      * Message key of error message. Missed close HTML tag breaks structure
      * of parse tree, so parser stops parsing and generates such error
@@ -90,6 +93,9 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      */
     private final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
 
+    /** The javadoc tokens the check is interested in. */
+    private final Set<Integer> javadocTokens = new HashSet<>();
+
     /**
      * DetailAST node of considered Javadoc comment that is just a block comment
      * in Java language syntax tree.
@@ -97,8 +103,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     private DetailAST blockCommentAst;
 
     /**
-     * Returns the default token types a check is interested in.
-     * @return the default token types
+     * Returns the default javadoc token types a check is interested in.
+     * @return the default javadoc token types
      * @see JavadocTokenTypes
      */
     public abstract int[] getDefaultJavadocTokens();
@@ -109,6 +115,84 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      *        the token to process
      */
     public abstract void visitJavadocToken(DetailNode ast);
+
+    /**
+     * The configurable javadoc token set.
+     * Used to protect Checks against malicious users who specify an
+     * unacceptable javadoc token set in the configuration file.
+     * The default implementation returns the check's default javadoc tokens.
+     * @return the javadoc token set this check is designed for.
+     * @see JavadocTokenTypes
+     */
+    public int[] getAcceptableJavadocTokens() {
+        final int[] defaultJavadocTokens = getDefaultJavadocTokens();
+        final int[] copy = new int[defaultJavadocTokens.length];
+        System.arraycopy(defaultJavadocTokens, 0, copy, 0, defaultJavadocTokens.length);
+        return copy;
+    }
+
+    /**
+     * The javadoc tokens that this check must be registered for.
+     * @return the javadoc token set this must be registered for.
+     * @see JavadocTokenTypes
+     */
+    public int[] getRequiredJavadocTokens() {
+        return CommonUtils.EMPTY_INT_ARRAY;
+    }
+
+    /**
+     * Adds a set of tokens the check is interested in.
+     * @param strRep the string representation of the tokens interested in
+     */
+    public final void setJavadocTokens(String... strRep) {
+        javadocTokens.clear();
+        for (String str : strRep) {
+            javadocTokens.add(JavadocUtils.getTokenId(str));
+        }
+    }
+
+    @Override
+    public void init() {
+        validateDefaultJavadocTokens();
+        if (javadocTokens.isEmpty()) {
+            for (int id : getDefaultJavadocTokens()) {
+                javadocTokens.add(id);
+            }
+        }
+        else {
+            final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();
+            Arrays.sort(acceptableJavadocTokens);
+            for (Integer javadocTokenId : javadocTokens) {
+                if (Arrays.binarySearch(acceptableJavadocTokens, javadocTokenId) < 0) {
+                    final String message = String.format(Locale.ROOT, "Javadoc Token \"%s\" was "
+                            + "not found in Acceptable javadoc tokens list in check %s",
+                            JavadocUtils.getTokenName(javadocTokenId), getClass().getName());
+                    throw new IllegalStateException(message);
+                }
+            }
+        }
+    }
+
+    /**
+     * Validates that check's required javadoc tokens are subset of default javadoc tokens.
+     * @throws IllegalStateException when validation of default javadoc tokens fails
+     */
+    private void validateDefaultJavadocTokens() {
+        if (getRequiredJavadocTokens().length != 0) {
+            final int[] defaultJavadocTokens = getDefaultJavadocTokens();
+            Arrays.sort(defaultJavadocTokens);
+            for (final int javadocToken : getRequiredJavadocTokens()) {
+                if (Arrays.binarySearch(defaultJavadocTokens, javadocToken) < 0) {
+                    final String message = String.format(Locale.ROOT,
+                            "Javadoc Token \"%s\" from required javadoc "
+                                + "tokens was not found in default "
+                                + "javadoc tokens list in check %s",
+                            javadocToken, getClass().getName());
+                    throw new IllegalStateException(message);
+                }
+            }
+        }
+    }
 
     /**
      * Called before the starting to process a tree.
@@ -246,11 +330,9 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      *        the root of tree for process
      */
     private void walk(DetailNode root) {
-        final int[] defaultTokenTypes = getDefaultJavadocTokens();
-
         DetailNode curNode = root;
         while (curNode != null) {
-            final boolean waitsForProcessing = shouldBeProcessed(defaultTokenTypes, curNode);
+            boolean waitsForProcessing = shouldBeProcessed(curNode);
 
             if (waitsForProcessing) {
                 visitJavadocToken(curNode);
@@ -265,6 +347,9 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                 toVisit = JavadocUtils.getNextSibling(curNode);
                 if (toVisit == null) {
                     curNode = curNode.getParent();
+                    if (curNode != null) {
+                        waitsForProcessing = shouldBeProcessed(curNode);
+                    }
                 }
             }
             curNode = toVisit;
@@ -273,12 +358,11 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
     /**
      * Checks whether the current node should be processed by the check.
-     * @param defaultTokenTypes default token types.
      * @param curNode current node.
      * @return true if the current node should be processed by the check.
      */
-    private boolean shouldBeProcessed(int[] defaultTokenTypes, DetailNode curNode) {
-        return IntStream.of(defaultTokenTypes).anyMatch(i -> i == curNode.getType());
+    private boolean shouldBeProcessed(DetailNode curNode) {
+        return javadocTokens.contains(curNode.getType());
     }
 
 }

@@ -120,6 +120,11 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     }
 
     @Override
+    public int[] getRequiredJavadocTokens() {
+        return getAcceptableJavadocTokens();
+    }
+
+    @Override
     public int[] getAcceptableTokens() {
         return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
     }

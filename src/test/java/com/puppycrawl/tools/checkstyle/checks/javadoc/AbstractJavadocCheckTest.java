@@ -33,7 +33,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -47,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
+    @Rule
+    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
@@ -166,6 +171,64 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         TestUtils.assertUtilsClassHasPrivateConstructor(BlockCommentPosition.class);
     }
 
+    @Test
+    public void testAcceptableTokensFail()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TokenIsNotInAcceptablesJavadocCheck.class);
+        checkConfig.addAttribute("javadocTokens", "RETURN_LITERAL");
+        try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            verify(checkConfig, getPath("InputMain.java"), expected);
+            Assert.fail("CheckstyleException is expected");
+        }
+        catch (IllegalStateException ex) {
+            Assert.assertTrue(ex.getMessage().startsWith("Javadoc Token "
+                    + "\"RETURN_LITERAL\" was not found in "
+                    + "Acceptable javadoc tokens list in check"));
+        }
+    }
+
+    @Test
+    public void testAcceptableTokensPass()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(TokenIsNotInAcceptablesJavadocCheck.class);
+        checkConfig.addAttribute("javadocTokens", "DEPRECATED_LITERAL");
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputMain.java"), expected);
+    }
+
+    @Test
+    public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
+        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+
+        try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            verify(checkConfig, pathToEmptyFile, expected);
+            Assert.fail("CheckstyleException is expected");
+        }
+        catch (IllegalStateException ex) {
+            Assert.assertTrue(ex.getMessage().startsWith("Javadoc Token \""
+                + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
+                + " javadoc tokens was not found in default javadoc tokens list in check"));
+        }
+    }
+
+    @Test
+    public void testVisitLeaveToken()
+            throws Exception {
+        JavadocVisitLeaveCheck.clearCounter();
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocVisitLeaveCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputJavadocPosition.java"), expected);
+        Assert.assertTrue(JavadocVisitLeaveCheck.visitCount > 0);
+        Assert.assertEquals(JavadocVisitLeaveCheck.visitCount, JavadocVisitLeaveCheck.leaveCount);
+    }
+
     private static class TempCheck extends AbstractJavadocCheck {
 
         @Override
@@ -215,6 +278,85 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         public void visitJavadocToken(DetailNode ast) {
             Assert.assertEquals(ast.toString(), "Javadoc<EOF>", ast.getText());
             javadocsNumber++;
+        }
+    }
+
+    private static class RequiredTokenIsNotInDefaultsJavadocCheck extends AbstractJavadocCheck {
+        @Override
+        public int[] getRequiredJavadocTokens() {
+            return new int[] {JavadocTokenTypes.RETURN_LITERAL};
+        }
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+        }
+
+        @Override
+        public int[] getAcceptableJavadocTokens() {
+            return CommonUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            // not used
+        }
+    }
+
+    private static class TokenIsNotInAcceptablesJavadocCheck extends AbstractJavadocCheck {
+        @Override
+        public int[] getRequiredJavadocTokens() {
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+        }
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+        }
+
+        @Override
+        public int[] getAcceptableJavadocTokens() {
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            // not used
+        }
+    }
+
+    private static class JavadocVisitLeaveCheck extends AbstractJavadocCheck {
+        private static int visitCount;
+        private static int leaveCount;
+
+        static void clearCounter() {
+            visitCount = 0;
+            leaveCount = 0;
+        }
+
+        @Override
+        public int[] getRequiredJavadocTokens() {
+            return new int[] {JavadocTokenTypes.CHAR};
+        }
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return getRequiredJavadocTokens();
+        }
+
+        @Override
+        public int[] getAcceptableJavadocTokens() {
+            return getRequiredJavadocTokens();
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            visitCount++;
+        }
+
+        @Override
+        public void leaveJavadocToken(DetailNode ast) {
+            leaveCount++;
         }
     }
 }

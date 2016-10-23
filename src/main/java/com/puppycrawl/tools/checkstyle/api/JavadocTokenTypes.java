@@ -24,6 +24,9 @@ import org.antlr.v4.runtime.Recognizer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
 
 /**
+ * Contains the constants for all the tokens contained in the Abstract
+ * Syntax Tree for the javadoc grammar.
+ *
  * @author Baratali Izmailov
  * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  * javadoc - The Java API Documentation Generator</a>

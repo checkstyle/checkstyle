@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public final class CheckUtil {
@@ -334,5 +335,43 @@ public final class CheckUtil {
 
             return result.toString();
         }
+    }
+
+    public static String getJavadocTokenText(int[] tokens, int... subtractions) {
+        final StringBuilder result = new StringBuilder();
+        boolean first = true;
+
+        for (int token : tokens) {
+            boolean found = false;
+
+            for (int subtraction : subtractions) {
+                if (subtraction == token) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                continue;
+            }
+
+            if (first) {
+                first = false;
+            }
+            else {
+                result.append(", ");
+            }
+
+            result.append(JavadocUtils.getTokenName(token));
+        }
+
+        if (result.length() == 0) {
+            result.append("empty");
+        }
+        else {
+            result.append(".");
+        }
+
+        return result.toString();
     }
 }

@@ -1372,6 +1372,33 @@ public boolean isSomething()
         </p>
       </subsection>
 
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>javadocTokens</td>
+            <td>javadoc tokens to check</td>
+            <td>subset of javadoc tokens
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">PARAM_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">RETURN_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">THROWS_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">DEPRECATED_LITERAL</a>.
+            </td>
+            <td>
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">PARAM_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">RETURN_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">THROWS_LITERAL</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">DEPRECATED_LITERAL</a>.
+            </td>
+          </tr>
+        </table>
+      </subsection>
+
       <subsection name="Examples">
         <p>
           Default configuration that will check <code>@param</code>, <code>@return</code>,
