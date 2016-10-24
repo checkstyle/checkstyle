@@ -117,10 +117,10 @@ public final class AstTreeStringPrinter {
         final DetailAST javadocBlock = node.getParent();
         final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(javadocBlock);
 
-        String baseIdentation = getIndentation(node);
-        baseIdentation = baseIdentation.substring(0, baseIdentation.length() - 2);
-        final String rootPrefix = baseIdentation + "   `--";
-        final String prefix = baseIdentation + "       ";
+        String baseIndentation = getIndentation(node);
+        baseIndentation = baseIndentation.substring(0, baseIndentation.length() - 2);
+        final String rootPrefix = baseIndentation + "   `--";
+        final String prefix = baseIndentation + "       ";
         return DetailNodeTreeStringPrinter.printTree(tree, rootPrefix, prefix);
     }
 
