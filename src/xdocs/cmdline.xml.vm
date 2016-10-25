@@ -256,6 +256,23 @@ java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
      -f xml -o build/checkstyle_errors.xml Check.java
       </source>
 
+      <p>
+        <b>
+          Run checkstyle with <a href="extending.html">custom module(s)
+          (Root module, Checks, etc)</a> in configuration file:
+        </b>
+      </p>
+      <source>
+java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
+     com.puppycrawl.tools.checkstyle.Main \
+     -c config.xml Check.java
+      </source>
+      <p>
+        <b>Note</b>: Custom modules should be specified with the class'
+        <a href="writingchecks.html#Integrate_your_Check">full classpath</a>
+        in the configuration file and the compiled class be located in the custom
+        JAR for Checkstyle to find.
+      </p>
     </section>
   </body>
 </document>

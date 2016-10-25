@@ -799,4 +799,15 @@ public class MainTest {
                 list);
         assertNotEquals(0, result.size());
     }
+
+    @Test
+    public void testCustomRootModule() throws Exception {
+        exit.checkAssertionAfterwards(() -> {
+            assertEquals("", systemOut.getLog());
+            assertEquals("", systemErr.getLog());
+            assertTrue(TestRootModuleChecker.isProcessed());
+        });
+        Main.main("-c", getPath("config-custom-root-module.xml"),
+                getPath("InputMain.java"));
+    }
 }

@@ -41,6 +41,9 @@ public class PackageObjectFactory implements ModuleFactory {
     /** Logger for PackageObjectFactory. */
     private static final Log LOG = LogFactory.getLog(PackageObjectFactory.class);
 
+    /** Exception message when null class loader is given. */
+    private static final String NULL_LOADER_MESSAGE = "moduleClassLoader must not be null";
+
     /** Log message when ignoring exception. */
     private static final String IGNORING_EXCEPTION_MESSAGE = "Keep looking, ignoring exception";
 
@@ -64,12 +67,27 @@ public class PackageObjectFactory implements ModuleFactory {
      */
     public PackageObjectFactory(Set<String> packageNames, ClassLoader moduleClassLoader) {
         if (moduleClassLoader == null) {
-            throw new IllegalArgumentException(
-                    "moduleClassLoader must not be null");
+            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
         }
 
         //create a copy of the given set, but retain ordering
         packages = new LinkedHashSet<>(packageNames);
+        this.moduleClassLoader = moduleClassLoader;
+    }
+
+    /**
+     * Creates a new {@code PackageObjectFactory} instance.
+     * @param packageName The package name to use
+     * @param moduleClassLoader class loader used to load Checkstyle
+     *          core and custom modules
+     */
+    public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
+        if (moduleClassLoader == null) {
+            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
+        }
+
+        packages = new LinkedHashSet<>(1);
+        packages.add(packageName);
         this.moduleClassLoader = moduleClassLoader;
     }
 

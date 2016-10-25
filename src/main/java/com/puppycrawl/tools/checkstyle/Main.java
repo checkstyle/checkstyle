@@ -49,6 +49,7 @@ import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -409,26 +410,43 @@ public final class Main {
         // create a listener for output
         final AuditListener listener = createListener(cliOptions.format, cliOptions.outputLocation);
 
-        // create Checker object and run it
+        // create RootModule object and run it
         int errorCounter = 0;
-        final Checker checker = new Checker();
+        final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
+        final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
 
         try {
 
-            final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
-            checker.setModuleClassLoader(moduleClassLoader);
-            checker.configure(config);
-            checker.addListener(listener);
+            rootModule.setModuleClassLoader(moduleClassLoader);
+            rootModule.configure(config);
+            rootModule.addListener(listener);
 
-            // run Checker
-            errorCounter = checker.process(cliOptions.files);
+            // run RootModule
+            errorCounter = rootModule.process(cliOptions.files);
 
         }
         finally {
-            checker.destroy();
+            rootModule.destroy();
         }
 
         return errorCounter;
+    }
+
+    /**
+     * Creates a new instance of the root module that will control and run
+     * Checkstyle.
+     * @param name The name of the module. This will either be a short name that
+     *        will have to be found or the complete package name.
+     * @param moduleClassLoader Class loader used to load the root module.
+     * @return The new instance of the root module.
+     * @throws CheckstyleException if no module can be instantiated from name
+     */
+    private static RootModule getRootModule(String name, ClassLoader moduleClassLoader)
+            throws CheckstyleException {
+        final ModuleFactory factory = new PackageObjectFactory(
+                Checker.class.getPackage().getName() + ".", moduleClassLoader);
+
+        return (RootModule) factory.createModule(name);
     }
 
     /**
