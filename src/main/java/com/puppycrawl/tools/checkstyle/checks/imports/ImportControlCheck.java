@@ -76,7 +76,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     private String fileLocation;
 
     /** The root package controller. */
-    private PkgControl root;
+    private ImportControl root;
     /** The package doing the import. */
     private String inPkg;
 
@@ -84,7 +84,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * The package controller for the current file. Used for performance
      * optimisation.
      */
-    private PkgControl currentLeaf;
+    private ImportControl currentLeaf;
 
     @Override
     public int[] getDefaultTokens() {
