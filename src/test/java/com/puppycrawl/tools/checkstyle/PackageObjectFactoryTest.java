@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
@@ -41,9 +42,26 @@ public class PackageObjectFactoryTest {
     private final PackageObjectFactory factory = new PackageObjectFactory(
         new HashSet<>(), Thread.currentThread().getContextClassLoader());
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testCtorException() {
-        new PackageObjectFactory(new HashSet<>(), null);
+        try {
+            new PackageObjectFactory(new HashSet<>(), null);
+            fail("Exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("moduleClassLoader must not be null", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testCtorException2() {
+        try {
+            new PackageObjectFactory("test", null);
+            fail("Exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("moduleClassLoader must not be null", ex.getMessage());
+        }
     }
 
     @Test

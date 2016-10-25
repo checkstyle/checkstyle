@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -60,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author lkuehne
  * @author Andrei Selkin
  */
-public class Checker extends AutomaticBean implements MessageDispatcher {
+public class Checker extends AutomaticBean implements MessageDispatcher, RootModule {
     /** Logger for Checker. */
     private static final Log LOG = LogFactory.getLog(Checker.class);
 
@@ -158,7 +159,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         filters.removeFilter(filter);
     }
 
-    /** Cleans up the object. **/
+    @Override
     public void destroy() {
         listeners.clear();
         beforeExecutionFileFilters.clear();
@@ -189,15 +190,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         this.basedir = basedir;
     }
 
-    /**
-     * Processes a set of files with all FileSetChecks.
-     * Once this is done, it is highly recommended to call for
-     * the destroy method to close and remove the listeners.
-     * @param files the list of files to be audited.
-     * @return the total number of errors found
-     * @throws CheckstyleException if error condition within Checkstyle occurs
-     * @see #destroy()
-     */
+    @Override
     public int process(List<File> files) throws CheckstyleException {
         if (cache != null) {
             cache.putExternalResources(getExternalResourceLocations());
@@ -480,10 +473,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         filters.addFilter(filter);
     }
 
-    /**
-     * Add the listener that will be used to receive events from the audit.
-     * @param listener the nosy thing
-     */
+    @Override
     public final void addListener(AuditListener listener) {
         listeners.add(listener);
     }
@@ -572,13 +562,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher {
         classLoader = loader;
     }
 
-    /**
-     * Sets the classloader used to load Checkstyle core and custom module
-     * classes when the module tree is being built up.
-     * If no custom ModuleFactory is being set for the Checker module then
-     * this module classloader must be specified.
-     * @param moduleClassLoader the classloader used to load module classes
-     */
+    @Override
     public final void setModuleClassLoader(ClassLoader moduleClassLoader) {
         this.moduleClassLoader = moduleClassLoader;
     }
