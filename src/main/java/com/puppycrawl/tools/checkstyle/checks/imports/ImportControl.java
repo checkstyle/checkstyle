@@ -26,13 +26,13 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * Represents the a tree of guards for controlling whether packages are allowed
- * to be used. Each instance must have a single parent or be the root node.
- * Each instance may have zero or more children.
+ * Represents a tree of import rules for controlling whether packages or
+ * classes are allowed to be used. Each instance must have a single parent or
+ * be the root node. Each instance may have zero or more children.
  *
  * @author Oliver Burn
  */
-class PkgControl {
+class ImportControl {
     /** The package separator: "." */
     private static final String DOT = ".";
     /** A pattern matching the package separator: "." */
@@ -41,10 +41,10 @@ class PkgControl {
     private static final String DOT_REGEX = "\\.";
     /** List of {@link AbstractImportRule} objects to check. */
     private final Deque<AbstractImportRule> rules = new LinkedList<>();
-    /** List of children {@link PkgControl} objects. */
-    private final List<PkgControl> children = new ArrayList<>();
+    /** List of children {@link ImportControl} objects. */
+    private final List<ImportControl> children = new ArrayList<>();
     /** The parent. Null indicates we are the root node. */
-    private final PkgControl parent;
+    private final ImportControl parent;
     /** The full package name for the node. */
     private final String fullPackage;
     /**
@@ -62,7 +62,7 @@ class PkgControl {
      * @param pkgName the name of the package.
      * @param regex flags interpretation of pkgName as regex pattern.
      */
-    PkgControl(final String pkgName, final boolean regex) {
+    ImportControl(final String pkgName, final boolean regex) {
         parent = null;
         this.regex = regex;
         if (regex) {
@@ -85,7 +85,7 @@ class PkgControl {
      * @param subPkg the sub package name.
      * @param regex flags interpretation of subPkg as regex pattern.
      */
-    PkgControl(final PkgControl parent, final String subPkg, final boolean regex) {
+    ImportControl(final ImportControl parent, final String subPkg, final boolean regex) {
         this.parent = parent;
         if (regex || parent.regex) {
             // regex gets inherited
@@ -180,7 +180,7 @@ class PkgControl {
     }
 
     /**
-     * Adds a {@link AbstractImportRule} to the node.
+     * Adds an {@link AbstractImportRule} to the node.
      * @param rule the rule to be added.
      */
     protected void addImportRule(final AbstractImportRule rule) {
@@ -192,15 +192,15 @@ class PkgControl {
      * @param forPkg the package to search for.
      * @return the finest match, or null if no match at all.
      */
-    public PkgControl locateFinest(final String forPkg) {
-        PkgControl finestMatch = null;
+    public ImportControl locateFinest(final String forPkg) {
+        ImportControl finestMatch = null;
         // Check if we are a match.
         if (matchesAtFront(forPkg)) {
             // If there won't be match so I am the best there is.
             finestMatch = this;
             // Check if any of the children match.
-            for (PkgControl child : children) {
-                final PkgControl match = child.locateFinest(forPkg);
+            for (ImportControl child : children) {
+                final ImportControl match = child.locateFinest(forPkg);
                 if (match != null) {
                     finestMatch = match;
                     break;
@@ -239,12 +239,12 @@ class PkgControl {
     }
 
     /**
-     * Returns whether a package is allowed to be used. The algorithm checks
-     * with the current node for a result, and if none is found then calls
-     * its parent looking for a match. This will recurse looking for match.
-     * If there is no clear result then {@link AccessResult#UNKNOWN} is
-     * returned.
-     * @param forImport the package to check on.
+     * Returns whether a package or class is allowed to be imported.
+     * The algorithm checks with the current node for a result, and if none is
+     * found then calls its parent looking for a match. This will recurse
+     * looking for match. If there is no clear result then
+     * {@link AccessResult#UNKNOWN} is returned.
+     * @param forImport the import to check on.
      * @param inPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
@@ -274,7 +274,7 @@ class PkgControl {
     private AccessResult localCheckAccess(final String forImport,
         final String inPkg) {
         for (AbstractImportRule r : rules) {
-            // Check if a PkgImportRule is only meant to be applied locally.
+            // Check if an import rule is only meant to be applied locally.
             if (r.isLocalOnly() && !matchesExactly(inPkg)) {
                 continue;
             }

@@ -24,40 +24,40 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-public class PkgControlRegExpInPkgTest {
-    private final PkgControl pcRoot = new PkgControl("com\\.[^.]+\\.courtlink", true);
-    private final PkgControl pcCommon = new PkgControl(pcRoot, "com+on", true);
+public class ImportControlRegExpInPkgTest {
+    private final ImportControl icRoot = new ImportControl("com\\.[^.]+\\.courtlink", true);
+    private final ImportControl icCommon = new ImportControl(icRoot, "com+on", true);
 
     @Test
     public void testRegExpInRootIsConsidered() {
-        assertNull(pcRoot.locateFinest("com"));
-        assertNull(pcRoot.locateFinest("com/hurz/courtlink"));
-        assertNull(pcRoot.locateFinest("com.hurz.hurz.courtlink"));
-        assertEquals(pcRoot, pcRoot
+        assertNull(icRoot.locateFinest("com"));
+        assertNull(icRoot.locateFinest("com/hurz/courtlink"));
+        assertNull(icRoot.locateFinest("com.hurz.hurz.courtlink"));
+        assertEquals(icRoot, icRoot
                 .locateFinest("com.hurz.courtlink.domain"));
-        assertEquals(pcRoot, pcRoot
+        assertEquals(icRoot, icRoot
                 .locateFinest("com.kazgroup.courtlink.domain"));
     }
 
     @Test
     public void testRegExpInSubpackageIsConsidered() {
-        assertEquals(pcCommon, pcRoot
+        assertEquals(icCommon, icRoot
                 .locateFinest("com.kazgroup.courtlink.common.api"));
-        assertEquals(pcCommon, pcRoot
+        assertEquals(icCommon, icRoot
                 .locateFinest("com.kazgroup.courtlink.comon.api"));
     }
 
     @Test
     public void testEnsureTrailingDot() {
-        assertNull(pcRoot.locateFinest("com.kazgroup.courtlinkkk"));
-        assertNull(pcRoot.locateFinest("com.kazgroup.courtlink/common.api"));
+        assertNull(icRoot.locateFinest("com.kazgroup.courtlinkkk"));
+        assertNull(icRoot.locateFinest("com.kazgroup.courtlink/common.api"));
     }
 
     @Test
     public void testAlternationInParentIsHandledCorrectly() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
-        final PkgControl root = new PkgControl("com\\.foo|com\\.bar", true);
-        final PkgControl common = new PkgControl(root, "common", false);
+        final ImportControl root = new ImportControl("com\\.foo|com\\.bar", true);
+        final ImportControl common = new ImportControl(root, "common", false);
         assertEquals(root, root.locateFinest("com.foo"));
         assertEquals(common, root.locateFinest("com.foo.common"));
         assertEquals(root, root.locateFinest("com.bar"));
@@ -67,8 +67,8 @@ public class PkgControlRegExpInPkgTest {
     @Test
     public void testAlternationInParentIfUserCaresForIt() {
         // the regular expression has to be adjusted to (com\.foo|com\.bar)
-        final PkgControl root = new PkgControl("(com\\.foo|com\\.bar)", true);
-        final PkgControl common = new PkgControl(root, "common", false);
+        final ImportControl root = new ImportControl("(com\\.foo|com\\.bar)", true);
+        final ImportControl common = new ImportControl(root, "common", false);
         assertEquals(root, root.locateFinest("com.foo"));
         assertEquals(common, root.locateFinest("com.foo.common"));
         assertEquals(root, root.locateFinest("com.bar"));
@@ -77,9 +77,9 @@ public class PkgControlRegExpInPkgTest {
 
     @Test
     public void testAlternationInSubpackageIsHandledCorrectly() {
-        final PkgControl root = new PkgControl("org.somewhere", false);
+        final ImportControl root = new ImportControl("org.somewhere", false);
         // the regular expression has to be adjusted to (foo|bar)
-        final PkgControl subpackages = new PkgControl(root, "foo|bar", true);
+        final ImportControl subpackages = new ImportControl(root, "foo|bar", true);
         assertEquals(root, root.locateFinest("org.somewhere"));
         assertEquals(subpackages, root.locateFinest("org.somewhere.foo"));
         assertEquals(subpackages, root.locateFinest("org.somewhere.bar"));
@@ -87,6 +87,6 @@ public class PkgControlRegExpInPkgTest {
 
     @Test
     public void testUnknownPkg() {
-        assertNull(pcRoot.locateFinest("net.another"));
+        assertNull(icRoot.locateFinest("net.another"));
     }
 }

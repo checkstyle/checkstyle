@@ -25,58 +25,66 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PkgControlTest {
-    private final PkgControl pcRoot = new PkgControl("com.kazgroup.courtlink", false);
-    private final PkgControl pcCommon = new PkgControl(pcRoot, "common", false);
+public class ImportControlRegExpTest {
+    private final ImportControl icRoot = new ImportControl("com.kazgroup.courtlink", false);
+    private final ImportControl icCommon = new ImportControl(icRoot, "common", false);
 
     @Before
     public void setUp() {
-        pcRoot.addImportRule(
-            new PkgImportRule(false, false, "org.springframework", false, false));
-        pcRoot.addImportRule(
-            new PkgImportRule(false, false, "org.hibernate", false, false));
-        pcRoot.addImportRule(
-            new PkgImportRule(true, false, "org.apache.commons", false, false));
+        icRoot.addImportRule(
+            new PkgImportRule(false, false, ".*\\.(spring|lui)framework", false, true));
+        icRoot.addImportRule(
+            new PkgImportRule(false, false, "org\\.hibernate", false, true));
+        icRoot.addImportRule(
+            new PkgImportRule(true, false, "org\\.(apache|lui)\\.commons", false, true));
 
-        pcCommon.addImportRule(
-            new PkgImportRule(true, false, "org.hibernate", false, false));
+        icCommon.addImportRule(
+            new PkgImportRule(true, false, "org\\.h.*", false, true));
     }
 
     @Test
     public void testLocateFinest() {
-        assertEquals(pcRoot, pcRoot
+        assertEquals(icRoot, icRoot
                 .locateFinest("com.kazgroup.courtlink.domain"));
-        assertEquals(pcCommon, pcRoot
+        assertEquals(icCommon, icRoot
                 .locateFinest("com.kazgroup.courtlink.common.api"));
-        assertNull(pcRoot.locateFinest("com"));
-    }
-
-    @Test
-    public void testEnsureTrailingDot() {
-        assertNull(pcRoot.locateFinest("com.kazgroup.courtlinkkk"));
-        assertNull(pcRoot.locateFinest("com.kazgroup.courtlink/common.api"));
+        assertNull(icRoot.locateFinest("com"));
     }
 
     @Test
     public void testCheckAccess() {
-        assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
+        assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
                 "org.springframework.something",
                 "com.kazgroup.courtlink.common"));
-        assertEquals(AccessResult.ALLOWED, pcCommon
+        assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
+                "org.luiframework.something",
+                "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
+                "de.springframework.something",
+                "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
+                "de.luiframework.something",
+                "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.ALLOWED, icCommon
                 .checkAccess("org.apache.commons.something",
                         "com.kazgroup.courtlink.common"));
-        assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
+        assertEquals(AccessResult.ALLOWED, icCommon
+                .checkAccess("org.lui.commons.something",
+                        "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
                 "org.apache.commons", "com.kazgroup.courtlink.common"));
-        assertEquals(AccessResult.ALLOWED, pcCommon.checkAccess(
+        assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
+                "org.lui.commons", "com.kazgroup.courtlink.common"));
+        assertEquals(AccessResult.ALLOWED, icCommon.checkAccess(
                 "org.hibernate.something", "com.kazgroup.courtlink.common"));
-        assertEquals(AccessResult.DISALLOWED, pcCommon.checkAccess(
+        assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
                 "com.badpackage.something", "com.kazgroup.courtlink.common"));
-        assertEquals(AccessResult.DISALLOWED, pcRoot.checkAccess(
+        assertEquals(AccessResult.DISALLOWED, icRoot.checkAccess(
                 "org.hibernate.something", "com.kazgroup.courtlink"));
     }
 
     @Test
     public void testUnknownPkg() {
-        assertNull(pcRoot.locateFinest("net.another"));
+        assertNull(icRoot.locateFinest("net.another"));
     }
 }
