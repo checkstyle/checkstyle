@@ -182,7 +182,16 @@ public class ParseTreeTablePModel {
             result = ((DetailNode) parent).getChildren().length;
         }
         else {
-            result = ((DetailAST) parent).getChildCount();
+            if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
+                    && ((AST) parent).getType() == TokenTypes.COMMENT_CONTENT
+                    && JavadocUtils.isJavadocComment(((DetailAST) parent).getParent())) {
+                //getChildCount return 0 on COMMENT_CONTENT,
+                //but we need to attach javadoc tree, that is separate tree
+                result = 1;
+            }
+            else {
+                result = ((DetailAST) parent).getChildCount();
+            }
         }
 
         return result;
@@ -255,20 +264,22 @@ public class ParseTreeTablePModel {
      *         and parseMode is JAVA_WITH_JAVADOC_AND_COMMENTS.
      */
     private Object getChildAtDetailAst(DetailAST parent, int index) {
-        int currentIndex = 0;
-        DetailAST child = parent.getFirstChild();
-        while (currentIndex < index) {
-            child = child.getNextSibling();
-            currentIndex++;
-        }
-
-        Object result = child;
-
+        final Object result;
         if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
-                && child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                && JavadocUtils.isJavadocComment(child)) {
-            result = getJavadocTree(child);
+                && parent.getType() == TokenTypes.COMMENT_CONTENT
+                && JavadocUtils.isJavadocComment(parent.getParent())) {
+            result = getJavadocTree(parent.getParent());
         }
+        else {
+            int currentIndex = 0;
+            DetailAST child = parent.getFirstChild();
+            while (currentIndex < index) {
+                child = child.getNextSibling();
+                currentIndex++;
+            }
+            result = child;
+        }
+
         return result;
     }
 

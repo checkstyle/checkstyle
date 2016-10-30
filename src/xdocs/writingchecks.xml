@@ -147,6 +147,20 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       types like IDENT (an identifier) near the leaves of the tree.  </p>
 
       <p>
+       In the bottom of frame you can find buttons "Open File", "Reload File"
+       and dropdown list with parse modes to choose. First one opens file
+       choose window. After choosing file tree that corresponds to java source
+       file builds in frame. Notice that only files with ".java" extension
+       can be opened. Second one reloads chosen file from file system and
+       rebuilds source code tree. Dropdown list allow to choose one of three
+       parse modes: "PLAIN JAVA", "JAVA WITH COMMENTS", "JAVA WITH JAVADOC AND COMMENTS".
+       "PLAIN JAVA" mode uses to show java source code without comments. In
+       "JAVA WITH COMMENTS" you can see also comments blocks on the tree. When
+       "JAVA WITH JAVADOC AND COMMENTS" chosen javadoc tree builds and attaches
+       for every comment block, that contains javadoc.
+      </p>
+
+      <p>
         Notice: text of a tree node and its children is selected automaticaly
         after either pressing "Enter" or double-clicking on it, so there is no
         need to make selection manually.
