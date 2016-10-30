@@ -209,7 +209,8 @@ public final class ScopeUtils {
             if (type == TokenTypes.METHOD_DEF
                 || type == TokenTypes.CTOR_DEF
                 || type == TokenTypes.INSTANCE_INIT
-                || type == TokenTypes.STATIC_INIT) {
+                || type == TokenTypes.STATIC_INIT
+                || type == TokenTypes.LAMBDA) {
                 returnValue = true;
                 break;
             }

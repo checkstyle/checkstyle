@@ -41,6 +41,12 @@ public class JavadocVariableCheckTest
                 + "javadoc" + File.separator + filename);
     }
 
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("checks" + File.separator
+                + "javadoc" + File.separator + filename);
+    }
+
     @Test
     public void testGetRequiredTokens() {
         final JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
@@ -336,6 +342,17 @@ public class JavadocVariableCheckTest
         };
         verify(checkConfig,
                 getPath("InputNoJavadoc.java"),
+                expected);
+    }
+
+    @Test
+    public void testDoNotMarkLambdaVariablesAsNeedingJavadoc()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(JavadocVariableCheck.class);
+        final String[] expected = {"6:5: " + getCheckMessage(MSG_JAVADOC_MISSING)};
+        verify(checkConfig,
+                getNonCompilablePath("InputNoJavadocNeededInLambda.java"),
                 expected);
     }
 }
