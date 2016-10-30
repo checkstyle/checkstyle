@@ -17,6 +17,57 @@
 
     <!-- placeholder for a new section -->
 
+    <section name="Release 7.2">
+      <p>New:</p>
+        <ul>
+          <li>
+            DesignForExtension: consider overridable methods and javadoc. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3102">#3102</a>
+          </li>
+          <li>
+            ImportControl: allow regex in subpackage elements.. Author: Volker Boerchers <a href="https://github.com/checkstyle/checkstyle/issues/2999">#2999</a>
+          </li>
+          <li>
+            Allow WhitespaceAround for ARRAY_INIT token. Author: zenigata <a href="https://github.com/checkstyle/checkstyle/issues/3202">#3202</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Inconsistency in AST tructure for block-comments. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3431">#3431</a>
+          </li>
+          <li>
+            Checker Cache invalidated falsely on load in second run due to external resources. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3489">#3489</a>
+          </li>
+          <li>
+            Wrong warning from AvoidEscapedUnicodeCharacters. Author: Dzmitry Rusak <a href="https://github.com/checkstyle/checkstyle/issues/3476">#3476</a>
+          </li>
+          <li>
+            Add METHOD_REF to the list of valid tokens for OperatorCheck. Author: alberto.cuda <a href="https://github.com/checkstyle/checkstyle/issues/3472">#3472</a>
+          </li>
+          <li>
+            DetailAST should invalidate childCount cache. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3486">#3486</a>
+          </li>
+          <li>
+            DetailAST should invalidate its methods cache (aka lazy-load). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3466">#3466</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Rename PkgControl to ImportControl. Author: Jochen Van de Velde <a href="https://github.com/checkstyle/checkstyle/issues/3514">#3514</a>
+          </li>
+          <li>
+            split Guard class into two. Author: Jochen Van de Velde <a href="https://github.com/checkstyle/checkstyle/issues/3497">#3497</a>
+          </li>
+          <li>
+            openjdk8/9 test code should be parseable by checkstyle . Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3033">#3033</a>
+          </li>
+          <li>
+            use shippable CI in testing. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3316">#3316</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.1.2">
       <p>Bug fixes:</p>
         <ul>
