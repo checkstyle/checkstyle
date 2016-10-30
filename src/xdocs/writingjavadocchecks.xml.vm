@@ -528,7 +528,28 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
     </section>
 
     <section name="Checkstyle SDK GUI">
-      Not implemented yet. See <a href="https://github.com/checkstyle/checkstyle/issues/408">Github Issue #408</a>.
+      <p>
+       Checkstyle GUI allows to showing javadoc tree in java files. To run in use
+      </p>
+      <source>
+java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
+      </source>
+      <p>
+       and choose "JAVA WITH JAVADOC MODE" in dropdown list in bottom of frame.
+      </p>
+      <p>
+       Now you can see parsed javadoc tree as child of comment block.
+      </p>
+      <p>
+        <img alt="screenshot" src="images/gui_javadoc_screenshot.png"/>
+      </p>
+      <p>
+       Notice that only files with ".java" extension can be opened.
+      </p>
+      <p>
+       For detail reference you can see
+       <a href="http://checkstyle.sourceforge.net/writingchecks.html#The_Checkstyle_SDK_Gui">Checkstyle GUI documentation</a>.
+      </p>
     </section>
 
     <section name="Customize token types in Javadoc Checks">

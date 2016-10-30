@@ -1845,7 +1845,7 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>92</totalBranchRate>
+                <totalBranchRate>91</totalBranchRate>
                 <totalLineRate>98</totalLineRate>
                 <regexes>
                   <regex>
@@ -1858,12 +1858,29 @@
                     <branchRate>79</branchRate>
                     <lineRate>97</lineRate>
                   </regex>
+                  <regex>
+                    <pattern>com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePModel</pattern>
+                    <branchRate>41</branchRate>
+                    <lineRate>44</lineRate>
+                  </regex>
                 </regexes>
               </check>
               <instrumentation>
                 <excludes>
                   <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
+                  <!-- Swing related classes -->
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/BaseCellEditor*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/CodeSelector*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/JTreeTable*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/Main*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/MainFrame*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableModelAdapter*.class</exclude>
+                  <!-- GUI model classes without tests -->
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/CodeSelectorPModel*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/MainFrameModel*.class</exclude>
                   <!-- deprecated classes -->
                   <exclude>com/puppycrawl/tools/checkstyle/checks/AbstractFormatCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/AbstractDeclarationCollector*.class</exclude>
