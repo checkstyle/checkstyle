@@ -75,6 +75,13 @@
       </roles>
     </developer>
     <developer>
+      <id>rnveach</id>
+      <name>Richard Veach</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>oburn</id>
       <name>Oliver Burn</name>
       <roles>
