@@ -26,8 +26,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
  * </p>
  * <p>
  * Reference:<a
- * href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html">
- * Cleaning up unused objects</a>.
+ * href="http://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
+ * 10 points on finalize method in Java</a>.
  * </p>
  * <p>
  * An example of how to configure the check is:
