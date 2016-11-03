@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -386,33 +385,27 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * Sets standardRegExp specified by user.
      * @param regexp
      *        user value.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
      */
-    public final void setStandardPackageRegExp(String regexp) {
-        standardPackageRegExp = CommonUtils.createPattern(regexp);
+    public final void setStandardPackageRegExp(Pattern regexp) {
+        standardPackageRegExp = regexp;
     }
 
     /**
      * Sets thirdPartyRegExp specified by user.
      * @param regexp
      *        user value.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
      */
-    public final void setThirdPartyPackageRegExp(String regexp) {
-        thirdPartyPackageRegExp = CommonUtils.createPattern(regexp);
+    public final void setThirdPartyPackageRegExp(Pattern regexp) {
+        thirdPartyPackageRegExp = regexp;
     }
 
     /**
      * Sets specialImportsRegExp specified by user.
      * @param regexp
      *        user value.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
      */
-    public final void setSpecialImportsRegExp(String regexp) {
-        specialImportsRegExp = CommonUtils.createPattern(regexp);
+    public final void setSpecialImportsRegExp(Pattern regexp) {
+        specialImportsRegExp = regexp;
     }
 
     /**

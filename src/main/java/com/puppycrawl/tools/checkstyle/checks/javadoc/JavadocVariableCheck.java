@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
@@ -71,11 +70,10 @@ public class JavadocVariableCheck
 
     /**
      * Sets the variable names to ignore in the check.
-     * @param regexp regular expression to define variable names to ignore.
-     * @throws org.apache.commons.beanutils.ConversionException if unable to create Pattern object.
+     * @param pattern a pattern.
      */
-    public void setIgnoreNamePattern(String regexp) {
-        ignoreNamePattern = CommonUtils.createPattern(regexp);
+    public void setIgnoreNamePattern(Pattern pattern) {
+        ignoreNamePattern = pattern;
     }
 
     @Override

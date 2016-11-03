@@ -338,20 +338,20 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           <tr>
             <td>standardPackageRegExp</td>
             <td>RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^(java|javax)\.</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^(java|javax)\."</code></td>
           </tr>
           <tr>
             <td>thirdPartyPackageRegExp</td>
             <td>RegExp for THIRDPARTY_PACKAGE group imports.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>.*</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>".*"</code></td>
           </tr>
           <tr>
             <td>specialImportsRegExp</td>
             <td>RegExp for SPECIAL_IMPORTS group imports.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^$"</code></td>
           </tr>
           <tr>
             <td>separateLineBetweenGroups</td>

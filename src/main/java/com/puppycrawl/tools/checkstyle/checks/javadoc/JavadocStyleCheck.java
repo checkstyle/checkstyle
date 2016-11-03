@@ -94,10 +94,7 @@ public class JavadocStyleCheck
     private Scope excludeScope;
 
     /** Format for matching the end of a sentence. */
-    private String endOfSentenceFormat = "([.?!][ \t\n\r\f<])|([.?!]$)";
-
-    /** Regular expression for matching the end of a sentence. */
-    private Pattern endOfSentencePattern;
+    private Pattern endOfSentenceFormat = Pattern.compile("([.?!][ \t\n\r\f<])|([.?!]$)");
 
     /**
      * Indicates if the first sentence should be checked for proper end of
@@ -236,7 +233,7 @@ public class JavadocStyleCheck
         final String commentText = getCommentText(comment.getText());
 
         if (!commentText.isEmpty()
-            && !getEndOfSentencePattern().matcher(commentText).find()
+            && !endOfSentenceFormat.matcher(commentText).find()
             && !(commentText.startsWith("{@inheritDoc}")
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
             log(comment.getStartLineNo(), MSG_NO_PERIOD);
@@ -508,22 +505,10 @@ public class JavadocStyleCheck
 
     /**
      * Set the format for matching the end of a sentence.
-     * @param format format for matching the end of a sentence.
+     * @param pattern a pattern.
      */
-    public void setEndOfSentenceFormat(String format) {
-        endOfSentenceFormat = format;
-    }
-
-    /**
-     * Returns a regular expression for matching the end of a sentence.
-     *
-     * @return a regular expression for matching the end of a sentence.
-     */
-    private Pattern getEndOfSentencePattern() {
-        if (endOfSentencePattern == null) {
-            endOfSentencePattern = Pattern.compile(endOfSentenceFormat);
-        }
-        return endOfSentencePattern;
+    public void setEndOfSentenceFormat(Pattern pattern) {
+        endOfSentenceFormat = pattern;
     }
 
     /**

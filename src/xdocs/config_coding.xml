@@ -844,8 +844,8 @@ case 5:
               Regular expression to match the relief comment that suppresses
               the warning about a fall through.
             </td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>fallthru|falls? ?through</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"fallthru|falls? ?through"</code></td>
           </tr>
         </table>
       </subsection>
@@ -1063,8 +1063,8 @@ case 5:
           <tr>
             <td>ignoreFormat</td>
             <td>pattern for names of variables and parameters to ignore</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td>(not applied)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>null</code></td>
           </tr>
 
           <tr>
@@ -1665,8 +1665,8 @@ class SomeClass
           <tr>
             <td>format</td>
             <td>illegal pattern</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code> (empty)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>&quot;$^&quot; (empty)</code></td>
           </tr>
           <tr>
             <td>ignoreCase</td>
@@ -1805,8 +1805,8 @@ class SomeClass
           <tr>
             <td>format</td>
             <td>Pattern for illegal class names.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^(.*[\\.])?Abstract.*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^(.*[.])?Abstract.*$"</code></td>
           </tr>
           <tr>
             <td>memberModifiers</td>
@@ -2458,8 +2458,8 @@ class MyClass {
             <td>
               Regular expression pattern for ignored strings (with quotation marks)
             </td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^""$</code> (ignore empty strings)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^""$"</code></td>
           </tr>
           <tr>
             <td>ignoreOccurrenceContext</td>
@@ -3503,8 +3503,8 @@ public static class B {
           <tr>
             <td>format</td>
             <td>method names to ignore</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^equals$</code> (empty)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^equals$"</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -4103,8 +4103,8 @@ if (&quot;something&quot;.equals(x))
           <tr>
             <td>ignoreVariablePattern</td>
             <td>pattern for ignoring the distance calculation</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td>(not applied)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>""</code></td>
           </tr>
 
           <tr>

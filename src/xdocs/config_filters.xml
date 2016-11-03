@@ -123,26 +123,26 @@
               <tr>
                   <td>offCommentFormat</td>
                   <td>comment pattern to trigger filter to begin suppression</td>
-                  <td><a href="property_types.html#regexp">regular expression</a></td>
-                  <td><code>CHECKSTYLE\:OFF</code></td>
+                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><code>"CHECKSTYLE:OFF"</code></td>
               </tr>
               <tr>
                   <td>onCommentFormat</td>
                   <td>comment pattern to trigger filter to end suppression</td>
-                  <td><a href="property_types.html#regexp">regular expression</a></td>
-                  <td><code>CHECKSTYLE\:ON</code></td>
+                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><code>"CHECKSTYLE:ON"</code></td>
               </tr>
               <tr>
                   <td>checkFormat</td>
                   <td>check pattern to suppress</td>
-                  <td><a href="property_types.html#regexp">regular expression</a></td>
-                  <td><code>.*</code> (all checks)</td>
+                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><code>".*"</code></td>
               </tr>
               <tr>
                   <td>messageFormat</td>
                   <td>message pattern to suppress</td>
-                  <td><a href="property_types.html#regexp">regular expression</a></td>
-                  <td>none</td>
+                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><code>null</code></td>
               </tr>
               <tr>
                   <td>checkCPP</td>
@@ -478,13 +478,13 @@ public class UserService {
           <ul>
               <li>
                   <code>files</code> -
-                  a <a href="property_types.html#regexp">regular expression</a>
+                  a <a href="property_types.html#regexp">Regular Expression</a>
                   matched against the file name associated with an audit
                   event. It is mandatory.
               </li>
               <li>
                   <code>checks</code> -
-                  a <a href="property_types.html#regexp">regular expression</a>
+                  a <a href="property_types.html#regexp">Regular Expression</a>
                   matched against the name of the check associated with an audit
                   event. Optional if <code>id</code> is specified.
               </li>
@@ -768,27 +768,27 @@ public static void foo() {
                 <tr>
                     <td>commentFormat</td>
                     <td>comment pattern to trigger filter to begin suppression</td>
-                    <td><a href="property_types.html#regexp">regular expression</a></td>
-                    <td><code>SUPPRESS CHECKSTYLE (\w+)</code></td>
+                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
                 </tr>
                 <tr>
                     <td>checkFormat</td>
                     <td>check pattern to suppress</td>
-                    <td><a href="property_types.html#regexp">regular expression</a></td>
-                    <td><code>.*</code></td>
+                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><code>".*"</code></td>
                 </tr>
                 <tr>
                     <td>messageFormat</td>
                     <td>message pattern to suppress</td>
-                    <td><a href="property_types.html#regexp">regular expression</a></td>
-                    <td>none</td>
+                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><code>null</code></td>
                 </tr>
                 <tr>
                     <td>influenceFormat</td>
                     <td>a negative/zero/positive value that defines the number of
                         lines preceding/at/following the suppression comment</td>
-                    <td><a href="property_types.html#regexp">regular expression</a></td>
-                    <td><code>0</code> (the line containing the comment)</td>
+                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><code>"0"</code></td>
                 </tr>
                 <tr>
                     <td>checkCPP</td>

@@ -25,7 +25,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -80,13 +79,12 @@ public class PackageNameCheck
     private Pattern regexp = Pattern.compile(format);
 
     /**
-     * Set the format to the specified regular expression.
-     * @param format a {@code String} value
-     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     * Set the format for the specified regular expression.
+     * @param pattern the new pattern
      */
-    public final void setFormat(String format) {
-        this.format = format;
-        regexp = CommonUtils.createPattern(format);
+    public void setFormat(Pattern pattern) {
+        format = pattern.pattern();
+        regexp = pattern;
     }
 
     @Override

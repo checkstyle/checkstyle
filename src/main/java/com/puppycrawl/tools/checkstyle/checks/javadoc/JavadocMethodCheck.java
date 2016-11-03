@@ -196,10 +196,10 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
 
     /**
      * Set regex for matching method names to ignore.
-     * @param regex regex for matching method names.
+     * @param pattern a pattern.
      */
-    public void setIgnoreMethodNamesRegex(String regex) {
-        ignoreMethodNamesRegex = CommonUtils.createPattern(regex);
+    public void setIgnoreMethodNamesRegex(Pattern pattern) {
+        ignoreMethodNamesRegex = pattern;
     }
 
     /**

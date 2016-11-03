@@ -572,14 +572,14 @@ public class StringUtils // not final to allow subclassing
           <tr>
             <td>format</td>
             <td>pattern for exception class names</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^.*Exception$|^.*Error$|^.*Throwable$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
           </tr>
           <tr>
             <td>extendedClassNameFormat</td>
             <td>pattern for extended class names</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^.*Exception$|^.*Error$|^.*Throwable$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
           </tr>
         </table>
       </subsection>
@@ -922,8 +922,8 @@ public class Foo{
           <tr>
             <td>publicMemberPattern</td>
             <td>pattern for public members that should be ignored</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^serialVersionUID$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^serialVersionUID$"</code></td>
           </tr>
           <tr>
             <td>allowPublicFinalFields</td>

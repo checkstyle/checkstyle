@@ -95,10 +95,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Sets custom value of regular expression for forbidden summary fragments.
-     * @param pattern user's value.
+     * @param pattern a pattern.
      */
-    public void setForbiddenSummaryFragments(String pattern) {
-        forbiddenSummaryFragments = CommonUtils.createPattern(pattern);
+    public void setForbiddenSummaryFragments(Pattern pattern) {
+        forbiddenSummaryFragments = pattern;
     }
 
     /**

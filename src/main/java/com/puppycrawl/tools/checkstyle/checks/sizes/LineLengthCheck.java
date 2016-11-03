@@ -90,14 +90,7 @@ public class LineLengthCheck extends AbstractCheck {
     private int max = DEFAULT_MAX_COLUMNS;
 
     /** The regexp when long lines are ignored. */
-    private Pattern ignorePattern;
-
-    /**
-     * Creates a new {@code LineLengthCheck} instance.
-     */
-    public LineLengthCheck() {
-        setIgnorePattern("^$");
-    }
+    private Pattern ignorePattern = Pattern.compile("^$");
 
     @Override
     public int[] getDefaultTokens() {
@@ -140,9 +133,9 @@ public class LineLengthCheck extends AbstractCheck {
 
     /**
      * Set the ignore pattern.
-     * @param format a {@code String} value
+     * @param pattern a pattern.
      */
-    public final void setIgnorePattern(String format) {
-        ignorePattern = CommonUtils.createPattern(format);
+    public final void setIgnorePattern(Pattern pattern) {
+        ignorePattern = pattern;
     }
 }

@@ -29,7 +29,6 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -67,13 +66,13 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
     /**
      * Pattern for matching ignored strings.
      */
-    private Pattern pattern;
+    private Pattern ignoreStringsRegexp;
 
     /**
      * Construct an instance with default values.
      */
     public MultipleStringLiteralsCheck() {
-        setIgnoreStringsRegexp("^\"\"$");
+        setIgnoreStringsRegexp(Pattern.compile("^\"\"$"));
         ignoreOccurrenceContext.set(TokenTypes.ANNOTATION);
     }
 
@@ -89,15 +88,13 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * Sets regular expression pattern for ignored strings.
      * @param ignoreStringsRegexp
      *        regular expression pattern for ignored strings
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object
      */
-    public final void setIgnoreStringsRegexp(String ignoreStringsRegexp) {
-        if (ignoreStringsRegexp == null || ignoreStringsRegexp.isEmpty()) {
-            pattern = null;
+    public final void setIgnoreStringsRegexp(Pattern ignoreStringsRegexp) {
+        if (ignoreStringsRegexp == null || ignoreStringsRegexp.pattern().isEmpty()) {
+            this.ignoreStringsRegexp = null;
         }
         else {
-            pattern = CommonUtils.createPattern(ignoreStringsRegexp);
+            this.ignoreStringsRegexp = ignoreStringsRegexp;
         }
     }
 
@@ -132,7 +129,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         if (!isInIgnoreOccurrenceContext(ast)) {
             final String currentString = ast.getText();
-            if (pattern == null || !pattern.matcher(currentString).find()) {
+            if (ignoreStringsRegexp == null || !ignoreStringsRegexp.matcher(currentString).find()) {
                 List<StringInfo> hitList = stringMap.get(currentString);
                 if (hitList == null) {
                     hitList = new ArrayList<>();

@@ -49,7 +49,7 @@ public abstract class AbstractNameCheck
      * @param format format to check with
      */
     protected AbstractNameCheck(String format) {
-        setFormat(format);
+        setFormat(CommonUtils.createPattern(format));
     }
 
     /**
@@ -62,13 +62,12 @@ public abstract class AbstractNameCheck
     protected abstract boolean mustCheckName(DetailAST ast);
 
     /**
-     * Set the format to the specified regular expression.
-     * @param format a {@code String} value
-     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     * Set the format for the specified regular expression.
+     * @param pattern the new pattern
      */
-    public final void setFormat(String format) {
-        this.format = format;
-        regexp = CommonUtils.createPattern(format);
+    public final void setFormat(Pattern pattern) {
+        format = pattern.pattern();
+        regexp = pattern;
     }
 
     @Override

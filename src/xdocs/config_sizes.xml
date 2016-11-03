@@ -306,8 +306,8 @@
           <tr>
             <td>ignorePattern</td>
             <td>pattern for lines to ignore</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td>^$</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td>"^$"</td>
           </tr>
           <tr>
             <td>max</td>

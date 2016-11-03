@@ -40,6 +40,7 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -602,6 +603,9 @@ public class XDocsPagesTest {
                 result = "String Set";
             }
         }
+        else if (clss == Pattern.class) {
+            result = "Regular Expression";
+        }
         else if (clss != String.class) {
             Assert.fail("Unknown property type: " + clss.getSimpleName());
         }
@@ -644,6 +648,16 @@ public class XDocsPagesTest {
                         .replace(".0", "");
                 if (result.isEmpty()) {
                     result = "{}";
+                }
+            }
+            else if (clss == Pattern.class) {
+                if (value != null) {
+                    result = '"' + value.toString().replace("\n", "\\n").replace("\t", "\\t")
+                            .replace("\r", "\\r").replace("\f", "\\f") + '"';
+                }
+
+                if ("\"$^\"".equals(result)) {
+                    result += " (empty)";
                 }
             }
 

@@ -69,8 +69,8 @@ public class ConstantNameCheckTest
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module"
-                    + " com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property"
-                    + " 'format' to '\\' in module"
+                    + " com.puppycrawl.tools.checkstyle.TreeWalker - illegal value"
+                    + " '\\' for property 'format' of module"
                     + " com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
                     ex.getMessage());
         }

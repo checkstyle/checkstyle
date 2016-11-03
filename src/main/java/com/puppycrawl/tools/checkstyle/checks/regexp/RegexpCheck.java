@@ -166,11 +166,11 @@ public class RegexpCheck extends AbstractCheck {
 
     /**
      * Set the format to the specified regular expression.
-     * @param format a {@code String} value
+     * @param pattern the new pattern
      * @throws org.apache.commons.beanutils.ConversionException unable to parse format
      */
-    public final void setFormat(String format) {
-        this.format = format;
+    public final void setFormat(Pattern pattern) {
+        format = pattern.pattern();
         regexp = CommonUtils.createPattern(format, Pattern.MULTILINE);
     }
 

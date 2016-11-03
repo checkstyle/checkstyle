@@ -335,8 +335,8 @@ public boolean isSomething()
           <tr>
             <td>ignoreMethodNamesRegex</td>
             <td>ignore method whose names are matching specified regex</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>null</code> (tag not required)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>null</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -800,8 +800,8 @@ public boolean isSomething()
             <td>
               Format for matching the end of a sentence.
             </td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>([.?!][ \t\n\r\f&lt;])|([.?!]$)</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
           </tr>
           <tr>
             <td>checkEmptyJavadoc</td>
@@ -1091,14 +1091,14 @@ public boolean isSomething()
           <tr>
             <td>authorFormat</td>
             <td>pattern for @author tag</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>null</code> (tag not required)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>null</code></td>
           </tr>
           <tr>
             <td>versionFormat</td>
             <td>pattern for @version tag</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>null</code> (tag not required)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>null</code></td>
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
@@ -1269,7 +1269,7 @@ public boolean isSomething()
           <tr>
               <td>ignoreNamePattern</td>
               <td>regexp to define variable names to ignore</td>
-              <td><a href="property_types.html#regexp">regular expression</a></td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
               <td><code>null</code></td>
           </tr>
           <tr>
@@ -1596,8 +1596,8 @@ public boolean isSomething()
           <tr>
             <td>forbiddenSummaryFragments</td>
             <td>forbidden summary fragments</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^$"</code></td>
           </tr>
           <tr>
             <td>period</td>
@@ -1726,7 +1726,7 @@ public boolean isSomething()
           <tr>
             <td>tagFormat</td>
             <td>Format of tag</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
