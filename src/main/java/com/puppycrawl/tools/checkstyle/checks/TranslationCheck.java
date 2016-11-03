@@ -169,7 +169,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private final Set<File> filesToProcess = new HashSet<>();
 
     /** The base name regexp pattern. */
-    private Pattern baseNamePattern;
+    private Pattern baseName;
 
     /**
      * Language codes of required translations for the check (de, pt, ja, etc).
@@ -181,15 +181,15 @@ public class TranslationCheck extends AbstractFileSetCheck {
      */
     public TranslationCheck() {
         setFileExtensions("properties");
-        baseNamePattern = CommonUtils.createPattern("^messages.*$");
+        baseName = CommonUtils.createPattern("^messages.*$");
     }
 
     /**
      * Sets the base name regexp pattern.
      * @param baseName base name regexp.
      */
-    public void setBaseName(String baseName) {
-        baseNamePattern = CommonUtils.createPattern(baseName);
+    public void setBaseName(Pattern baseName) {
+        this.baseName = baseName;
     }
 
     /**
@@ -250,7 +250,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     public void finishProcessing() {
         super.finishProcessing();
 
-        final Set<ResourceBundle> bundles = groupFilesIntoBundles(filesToProcess, baseNamePattern);
+        final Set<ResourceBundle> bundles = groupFilesIntoBundles(filesToProcess, baseName);
         for (ResourceBundle currentBundle : bundles) {
             checkExistenceOfDefaultTranslation(currentBundle);
             checkExistenceOfRequiredTranslations(currentBundle);

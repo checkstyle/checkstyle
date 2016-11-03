@@ -609,10 +609,10 @@ public static final int COUNTER = 10; // violation as javadoc exists
                being suppressed matching this pattern will be flagged.
             </td>
             <td>
-              <a href="property_types.html#regexp">regexp</a>
+              <a href="property_types.html#regexp">Regular Expression</a>
             </td>
             <td>
-              <code>^$|^\s+$</code>
+              <code>"^$|^\s+$"</code>
             </td>
           </tr>
 

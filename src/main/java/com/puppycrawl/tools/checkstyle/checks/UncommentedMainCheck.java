@@ -63,11 +63,11 @@ public class UncommentedMainCheck
 
     /**
      * Set the excluded classes pattern.
-     * @param excludedClasses a {@code String} value
+     * @param excludedClasses a pattern
      */
-    public void setExcludedClasses(String excludedClasses) {
-        this.excludedClasses = excludedClasses;
-        excludedClassesPattern = CommonUtils.createPattern(excludedClasses);
+    public void setExcludedClasses(Pattern excludedClasses) {
+        this.excludedClasses = excludedClasses.pattern();
+        excludedClassesPattern = excludedClasses;
     }
 
     @Override

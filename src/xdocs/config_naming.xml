@@ -186,8 +186,8 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^Abstract.+$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^Abstract.+$"</code></td>
           </tr>
           <tr>
             <td>ignoreModifier</td>
@@ -291,10 +291,10 @@
             <td>format</td>
             <td>Specifies valid identifiers.</td>
             <td>
-              <a href="property_types.html#regexp">regular expression</a>
+              <a href="property_types.html#regexp">Regular Expression</a>
             </td>
             <td>
-              <code>^(e|t|ex|[a-z][a-z][a-zA-Z]+)$</code>
+              <code>"^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"</code>
             </td>
           </tr>
         </table>
@@ -373,8 +373,8 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[A-Z]$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[A-Z]$"</code></td>
           </tr>
         </table>
       </subsection>
@@ -442,8 +442,8 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"</code></td>
           </tr>
           <tr>
             <td>applyToPublic</td>
@@ -543,8 +543,8 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[A-Z]$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[A-Z]$"</code></td>
           </tr>
         </table>
       </subsection>
@@ -608,8 +608,8 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
           </tr>
           <tr>
           <td>tokens</td>
@@ -690,8 +690,8 @@
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
           </tr>
           <tr>
             <td>allowOneCharVarInForLoop</td>
@@ -785,8 +785,8 @@ for (int i = 1; i &lt; 10; i++) {}
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
           </tr>
           <tr>
             <td>applyToPublic</td>
@@ -890,8 +890,8 @@ for (int i = 1; i &lt; 10; i++) {}
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
           </tr>
           <tr>
             <td>allowClassName</td>
@@ -1010,8 +1010,8 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[A-Z]$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[A-Z]$"</code></td>
           </tr>
         </table>
       </subsection>
@@ -1078,8 +1078,8 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"</code></td>
           </tr>
         </table>
       </subsection>
@@ -1161,8 +1161,8 @@ class MyClass {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
           </tr>
           <tr>
             <td>ignoreOverridden</td>
@@ -1298,8 +1298,8 @@ public boolean equals(Object o) {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
           </tr>
           <tr>
             <td>applyToPublic</td>
@@ -1392,8 +1392,8 @@ public boolean equals(Object o) {
           <tr>
             <td>format</td>
             <td>Specifies valid identifiers.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[A-Z][a-zA-Z0-9]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[A-Z][a-zA-Z0-9]*$"</code></td>
           </tr>
           <tr>
             <td>applyToPublic</td>

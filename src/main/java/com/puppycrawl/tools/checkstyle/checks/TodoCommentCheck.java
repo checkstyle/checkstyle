@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -76,15 +75,13 @@ public class TodoCommentCheck
     }
 
     /**
-     * Setter for 'todo' comment format.
-     * @param format
-     *        format of 'todo' comment.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object.
+     * Setter for 'todo' comment pattern.
+     * @param pattern
+     *        pattern of 'todo' comment.
      */
-    public void setFormat(String format) {
-        this.format = format;
-        regexp = CommonUtils.createPattern(format);
+    public void setFormat(Pattern pattern) {
+        format = pattern.pattern();
+        regexp = pattern;
     }
 
     @Override

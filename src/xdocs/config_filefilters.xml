@@ -54,7 +54,7 @@
           <tr>
             <td>fileNamePattern</td>
             <td>Regular expression to match the file name against.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
           </tr>
         </table>

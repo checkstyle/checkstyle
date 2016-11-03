@@ -24,6 +24,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.regex.Pattern;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet;
@@ -34,7 +36,7 @@ public class BeforeExecutionFileFilterSetTest {
     public void testAccept() {
         final String fileName = "BAD";
         final BeforeExecutionExclusionFileFilter filter = new BeforeExecutionExclusionFileFilter();
-        filter.setFileNamePattern(fileName);
+        filter.setFileNamePattern(Pattern.compile(fileName));
         final BeforeExecutionFileFilterSet set = new BeforeExecutionFileFilterSet();
         set.addBeforeExecutionFileFilter(filter);
 
@@ -45,7 +47,7 @@ public class BeforeExecutionFileFilterSetTest {
     public void testReject() {
         final String fileName = "Test";
         final BeforeExecutionExclusionFileFilter filter = new BeforeExecutionExclusionFileFilter();
-        filter.setFileNamePattern(fileName);
+        filter.setFileNamePattern(Pattern.compile(fileName));
         final BeforeExecutionFileFilterSet set = new BeforeExecutionFileFilterSet();
         set.addBeforeExecutionFileFilter(filter);
 

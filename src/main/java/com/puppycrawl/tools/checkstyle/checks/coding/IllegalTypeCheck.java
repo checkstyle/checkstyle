@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -151,13 +150,12 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
-     * Set the format to the specified regular expression.
-     * @param format a {@code String} value
-     * @throws org.apache.commons.beanutils.ConversionException unable to parse format
+     * Set the format for the specified regular expression.
+     * @param pattern a pattern.
      */
-    public void setFormat(String format) {
-        this.format = format;
-        regexp = CommonUtils.createPattern(format);
+    public void setFormat(Pattern pattern) {
+        format = pattern.pattern();
+        regexp = pattern;
     }
 
     /**

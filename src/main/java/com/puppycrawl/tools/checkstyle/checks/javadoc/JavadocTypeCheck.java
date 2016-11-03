@@ -134,20 +134,20 @@ public class JavadocTypeCheck
 
     /**
      * Set the author tag pattern.
-     * @param format a {@code String} value
+     * @param pattern a pattern.
      */
-    public void setAuthorFormat(String format) {
-        authorFormat = format;
-        authorFormatPattern = CommonUtils.createPattern(format);
+    public void setAuthorFormat(Pattern pattern) {
+        authorFormat = pattern.pattern();
+        authorFormatPattern = pattern;
     }
 
     /**
      * Set the version format pattern.
-     * @param format a {@code String} value
+     * @param pattern a pattern.
      */
-    public void setVersionFormat(String format) {
-        versionFormat = format;
-        versionFormatPattern = CommonUtils.createPattern(format);
+    public void setVersionFormat(Pattern pattern) {
+        versionFormat = pattern.pattern();
+        versionFormatPattern = pattern;
     }
 
     /**

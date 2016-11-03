@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
@@ -372,12 +371,10 @@ public class VisibilityModifierCheck
      * Set the pattern for public members to ignore.
      * @param pattern
      *        pattern for public members to ignore.
-     * @throws org.apache.commons.beanutils.ConversionException
-     *         if unable to create Pattern object
      */
-    public void setPublicMemberPattern(String pattern) {
-        publicMemberPattern = CommonUtils.createPattern(pattern);
-        publicMemberFormat = pattern;
+    public void setPublicMemberPattern(Pattern pattern) {
+        publicMemberPattern = pattern;
+        publicMemberFormat = pattern.pattern();
     }
 
     /**

@@ -1343,8 +1343,8 @@ void foo(String aFooString,
           <tr>
             <td>format</td>
             <td>Pattern to match comments against</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>TODO:</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"TODO:"</code></td>
           </tr>
         </table>
       </subsection>
@@ -1490,16 +1490,16 @@ d = e / f;        // Another comment for this line
           <tr>
             <td>format</td>
             <td>pattern for strings allowed before the comment</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^[\\s\\}\\);]*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^[\s\});]*$"</code></td>
           </tr>
           <tr>
             <td>legalComment</td>
             <td>pattern for text allowed in trailing comments. (This
                 pattern will not be applied to multiline comments and the text of the
                 comment will be trimmed before matching.)</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td>(not set)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>null</code></td>
           </tr>
         </table>
       </subsection>
@@ -1618,8 +1618,8 @@ messages.properties: Key 'ok' missing.
             <td><a href="https://docs.oracle.com/javase/7/docs/api/java/util/ResourceBundle.html">
               Base name</a> of resource bundles which contain message resources. It helps
               the check to distinguish config and localization resources.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^messages.*$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^messages.*$"</code></td>
           </tr>
           <tr>
             <td>requiredTranslations</td>
@@ -1772,8 +1772,8 @@ messages_home_fr_CA_UNIX.properties
             <td>excludedClasses</td>
             <td>Pattern for qualified names of classes which are allowed
             to have a main method.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"^$"</code></td>
           </tr>
         </table>
       </subsection>

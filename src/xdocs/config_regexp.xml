@@ -80,8 +80,8 @@
           <tr>
             <td>format</td>
             <td>pattern</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>$^</code> (empty)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>"$^"</code> (empty)</td>
           </tr>
           <tr>
             <td>message</td>
@@ -504,8 +504,8 @@
           <tr>
             <td>format</td>
             <td>illegal pattern</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code> (empty)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>&quot;$.&quot;</code></td>
           </tr>
           <tr>
             <td>message</td>
@@ -653,13 +653,13 @@
           <tr>
             <td>folderPattern</td>
             <td>Regular expression to match the folder path against.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
             <td>fileNamePattern</td>
             <td>Regular expression to match the file name against.</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
@@ -817,8 +817,8 @@
           <tr>
             <td>format</td>
             <td>illegal pattern</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code> (empty)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>&quot;$.&quot;</code></td>
           </tr>
           <tr>
             <td>message</td>
@@ -959,8 +959,8 @@
           <tr>
             <td>format</td>
             <td>illegal pattern</td>
-            <td><a href="property_types.html#regexp">regular expression</a></td>
-            <td><code>^$</code> (empty)</td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>&quot;$.&quot;</code></td>
           </tr>
           <tr>
             <td>message</td>

@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.filefilters;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.regex.Pattern;
+
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -73,7 +75,7 @@ public class ExclusionBeforeExecutionFileFilterTest extends BaseCheckTestSupport
         final BeforeExecutionExclusionFileFilter exclusionBeforeExecutionFileFilter =
                 new BeforeExecutionExclusionFileFilter();
         if (fileName != null) {
-            exclusionBeforeExecutionFileFilter.setFileNamePattern(fileName);
+            exclusionBeforeExecutionFileFilter.setFileNamePattern(Pattern.compile(fileName));
         }
         return exclusionBeforeExecutionFileFilter;
     }

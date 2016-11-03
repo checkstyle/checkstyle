@@ -26,6 +26,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import org.junit.Test;
 
@@ -229,7 +230,7 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
         final File file = new File(getPath("") + "\u0000" + File.separatorChar + "Test");
         try {
             final RegexpOnFilenameCheck check = new RegexpOnFilenameCheck();
-            check.setFileNamePattern("BAD");
+            check.setFileNamePattern(Pattern.compile("BAD"));
             check.process(file, null);
             fail("CheckstyleException expected");
         }

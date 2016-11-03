@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -78,11 +77,9 @@ public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
      * Sets regular expression of the file to exclude.
      *
      * @param fileNamePattern regular expression of the excluded file.
-     * @throws org.apache.commons.beanutils.ConversionException if unable to
-     *         create Pattern object.
      */
-    public void setFileNamePattern(String fileNamePattern) {
-        this.fileNamePattern = CommonUtils.createPattern(fileNamePattern);
+    public void setFileNamePattern(Pattern fileNamePattern) {
+        this.fileNamePattern = fileNamePattern;
     }
 
     @Override

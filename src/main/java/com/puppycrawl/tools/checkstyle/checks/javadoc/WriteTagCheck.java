@@ -107,11 +107,11 @@ public class WriteTagCheck
 
     /**
      * Set the tag format.
-     * @param format a {@code String} value
+     * @param pattern a {@code String} value
      */
-    public void setTagFormat(String format) {
-        tagFormat = format;
-        tagFormatRegExp = CommonUtils.createPattern(format);
+    public void setTagFormat(Pattern pattern) {
+        tagFormat = pattern.pattern();
+        tagFormatRegExp = pattern;
     }
 
     /**
