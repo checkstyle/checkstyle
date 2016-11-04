@@ -193,7 +193,7 @@ public final class ScopeUtils {
 
     /**
      * Returns whether the scope of a node is restricted to a code block.
-     * A code block is a method or constructor body, or a initializer block.
+     * A code block is a method or constructor body, an initializer block, or lambda body.
      *
      * @param node the node to check
      * @return a {@code boolean} value
@@ -207,9 +207,10 @@ public final class ScopeUtils {
              token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.METHOD_DEF
-                || type == TokenTypes.CTOR_DEF
-                || type == TokenTypes.INSTANCE_INIT
-                || type == TokenTypes.STATIC_INIT) {
+                    || type == TokenTypes.CTOR_DEF
+                    || type == TokenTypes.INSTANCE_INIT
+                    || type == TokenTypes.STATIC_INIT
+                    || type == TokenTypes.LAMBDA) {
                 returnValue = true;
                 break;
             }

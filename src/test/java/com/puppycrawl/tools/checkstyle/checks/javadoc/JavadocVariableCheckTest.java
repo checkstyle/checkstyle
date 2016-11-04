@@ -338,4 +338,13 @@ public class JavadocVariableCheckTest
                 getPath("InputNoJavadoc.java"),
                 expected);
     }
+
+    @Test
+    public void testLambdaLocalVariablesDoNotNeedJavadoc() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(JavadocVariableCheck.class);
+        final String[] expected = {
+            "6:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig, getPath("InputNoJavadocNeededInLambda.java"), expected);
+    }
 }
