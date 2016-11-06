@@ -41,7 +41,14 @@ matrix:
 
     # NonDex (oraclejdk8)
     - jdk: oraclejdk8
-      env: DESC="NonDex" CMD="mvn clean nondex:nondex" COVERAGE_CMD="" DEPLOY="false"
+      env:
+        - DESC="NonDex"
+        - CMD1="mvn --fail-never clean nondex:nondex "
+        - CMD2=" && cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > output.txt "
+        - CMD3=" && RESULT=$(cat output.txt | wc -c) && cat output.txt "
+        - CMD4=" && echo 'Size of output:'$RESULT && if [[ $RESULT != 0 ]]; then false; fi"
+        - CMD=$CMD1$CMD2$CMD3$CMD4
+        - COVERAGE_CMD=""
 
     # site (oraclejdk8 as 'site' success is required to be sure that on release time all will be ok, admins will use oracle8 version)
     # moved to https://codeship.com/projects/124310/configure_tests
