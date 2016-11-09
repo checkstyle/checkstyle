@@ -82,9 +82,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           cannot be used other options and requires exactly one file to run on to be specified.
         </li>
         <li>
-          <code>-J, --treeWithJavadoc</code> - print Abstract Syntax Tree(AST) with Javadoc nodes and comment nodes 
-          of the checked file. Attention that line number and columns will not be the same as it is a file due to the fact 
-          that each javadoc comment is parsed separately from java file. The option cannot be used other options and requires 
+          <code>-J, --treeWithJavadoc</code> - print Abstract Syntax Tree(AST) with Javadoc nodes and comment nodes
+          of the checked file. Attention that line number and columns will not be the same as it is a file due to the fact
+          that each javadoc comment is parsed separately from java file. The option cannot be used other options and requires
           exactly one file to run on to be specified.
         </li>
         <li>
@@ -93,10 +93,10 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           For example:
           MyTestFile.javadoc
           <source>
-          
+
            * Test method.
            * @return true
-           
+
           </source>
           The option
           cannot be used other options and requires exactly one file to run on to be specified.
