@@ -56,10 +56,8 @@ public final class MutableExceptionCheck extends AbstractCheck {
     private Pattern extendedClassNameFormat = Pattern.compile(DEFAULT_FORMAT);
     /** Should we check current class or not. */
     private boolean checking;
-    /** The format string of the regexp. */
-    private String format = DEFAULT_FORMAT;
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile(DEFAULT_FORMAT);
 
     /**
      * Sets the format of extended class name to the specified regular expression.
@@ -74,8 +72,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * @param pattern the new pattern
      */
     public void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     @Override
@@ -151,7 +148,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
      */
     private boolean isNamedAsException(DetailAST ast) {
         final String className = ast.findFirstToken(TokenTypes.IDENT).getText();
-        return regexp.matcher(className).find();
+        return format.matcher(className).find();
     }
 
     /**

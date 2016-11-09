@@ -108,11 +108,8 @@ public class TrailingCommentCheck extends AbstractCheck {
     /** Pattern for legal trailing comment. */
     private Pattern legalComment;
 
-    /** The format string of the regexp. */
-    private String format = "^[\\s\\});]*$";
-
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile("^[\\s\\});]*$");
 
     /**
      * Sets patter for legal trailing comments.
@@ -127,8 +124,7 @@ public class TrailingCommentCheck extends AbstractCheck {
      * @param pattern a pattern
      */
     public final void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     @Override
@@ -180,7 +176,7 @@ public class TrailingCommentCheck extends AbstractCheck {
                     continue;
                 }
             }
-            if (!regexp.matcher(lineBefore).find()
+            if (!format.matcher(lineBefore).find()
                 && !isLegalComment(comment)) {
                 log(lineNo, MSG_KEY);
             }

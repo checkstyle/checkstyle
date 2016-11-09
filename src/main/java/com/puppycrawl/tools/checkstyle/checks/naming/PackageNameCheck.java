@@ -70,21 +70,18 @@ public class PackageNameCheck
      */
     public static final String MSG_KEY = "name.invalidPattern";
 
-    /** The format string of the regexp. */
+    /** The regexp to match against. */
     // Uppercase letters seem rather uncommon, but they're allowed in
     // http://docs.oracle.com/javase/specs/
     //  second_edition/html/packages.doc.html#40169
-    private String format = "^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$";
-    /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
 
     /**
      * Set the format for the specified regular expression.
      * @param pattern the new pattern
      */
     public void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     @Override
@@ -106,12 +103,12 @@ public class PackageNameCheck
     public void visitToken(DetailAST ast) {
         final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
         final FullIdent full = FullIdent.createFullIdent(nameAST);
-        if (!regexp.matcher(full.getText()).find()) {
+        if (!format.matcher(full.getText()).find()) {
             log(full.getLineNo(),
                 full.getColumnNo(),
                 MSG_KEY,
                 full.getText(),
-                format);
+                format.pattern());
         }
     }
 }

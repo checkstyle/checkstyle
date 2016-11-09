@@ -101,13 +101,9 @@ public class JavadocTypeCheck
     /** The visibility scope where Javadoc comments shouldn't be checked. **/
     private Scope excludeScope;
     /** Compiled regexp to match author tag content. **/
-    private Pattern authorFormatPattern;
+    private Pattern authorFormat;
     /** Compiled regexp to match version tag content. **/
-    private Pattern versionFormatPattern;
-    /** Regexp to match author tag content. */
-    private String authorFormat;
-    /** Regexp to match version tag content. */
-    private String versionFormat;
+    private Pattern versionFormat;
     /**
      * Controls whether to ignore errors when a method has type parameters but
      * does not have matching param tags in the javadoc. Defaults to false.
@@ -137,8 +133,7 @@ public class JavadocTypeCheck
      * @param pattern a pattern.
      */
     public void setAuthorFormat(Pattern pattern) {
-        authorFormat = pattern.pattern();
-        authorFormatPattern = pattern;
+        authorFormat = pattern;
     }
 
     /**
@@ -146,8 +141,7 @@ public class JavadocTypeCheck
      * @param pattern a pattern.
      */
     public void setVersionFormat(Pattern pattern) {
-        versionFormat = pattern.pattern();
-        versionFormatPattern = pattern;
+        versionFormat = pattern;
     }
 
     /**
@@ -202,9 +196,9 @@ public class JavadocTypeCheck
                 if (ScopeUtils.isOuterMostType(ast)) {
                     // don't check author/version for inner classes
                     checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
-                            authorFormatPattern, authorFormat);
+                            authorFormat);
                     checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
-                            versionFormatPattern, versionFormat);
+                            versionFormat);
                 }
 
                 final List<String> typeParamNames =
@@ -272,10 +266,9 @@ public class JavadocTypeCheck
      * @param tags tags from the Javadoc comment for the type definition.
      * @param tagName the required tag name.
      * @param formatPattern regexp for the tag value.
-     * @param format pattern for the tag value.
      */
     private void checkTag(int lineNo, List<JavadocTag> tags, String tagName,
-                          Pattern formatPattern, String format) {
+                          Pattern formatPattern) {
         if (formatPattern != null) {
             int tagCount = 0;
             final String tagPrefix = "@";
@@ -284,7 +277,7 @@ public class JavadocTypeCheck
                 if (tag.getTagName().equals(tagName)) {
                     tagCount++;
                     if (!formatPattern.matcher(tag.getFirstArg()).find()) {
-                        log(lineNo, MSG_TAG_FORMAT, tagPrefix + tagName, format);
+                        log(lineNo, MSG_TAG_FORMAT, tagPrefix + tagName, formatPattern.pattern());
                     }
                 }
             }

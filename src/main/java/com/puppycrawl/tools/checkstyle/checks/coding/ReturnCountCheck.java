@@ -62,10 +62,8 @@ public final class ReturnCountCheck extends AbstractCheck {
     /** Stack of method contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
 
-    /** The format string of the regexp. */
-    private String format = "^equals$";
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile("^equals$");
 
     /** Maximum allowed number of return statements. */
     private int max = 2;
@@ -104,8 +102,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * @param pattern a pattern.
      */
     public void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     /**
@@ -171,7 +168,7 @@ public final class ReturnCountCheck extends AbstractCheck {
     private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
         final DetailAST methodNameAST = ast.findFirstToken(TokenTypes.IDENT);
-        final boolean check = !regexp.matcher(methodNameAST.getText()).find();
+        final boolean check = !format.matcher(methodNameAST.getText()).find();
         context = new Context(check);
     }
 

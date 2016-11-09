@@ -304,17 +304,13 @@ public class VisibilityModifierCheck
         PROTECTED_ACCESS_MODIFIER,
     };
 
-    /**
-     * Pattern for public members that should be ignored.  Note:
+    /** Regexp for public members that should be ignored. Note:
      * Earlier versions of checkstyle used ^f[A-Z][a-zA-Z0-9]*$ as the
      * default to allow CMP for EJB 1.1 with the default settings.
      * With EJB 2.0 it is not longer necessary to have public access
      * for persistent fields.
      */
-    private String publicMemberFormat = "^serialVersionUID$";
-
-    /** Regexp for public members that should be ignored. */
-    private Pattern publicMemberPattern = Pattern.compile(publicMemberFormat);
+    private Pattern publicMemberPattern = Pattern.compile("^serialVersionUID$");
 
     /** List of ignore annotations short names. */
     private final List<String> ignoreAnnotationShortNames =
@@ -374,7 +370,6 @@ public class VisibilityModifierCheck
      */
     public void setPublicMemberPattern(Pattern pattern) {
         publicMemberPattern = pattern;
-        publicMemberFormat = pattern.pattern();
     }
 
     /**

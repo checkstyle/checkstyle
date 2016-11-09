@@ -108,11 +108,8 @@ public class RegexpCheck extends AbstractCheck {
     /** Tracks number of errors. */
     private int errorCount;
 
-    /** The format string of the regexp. */
-    private String format = "$^";
-
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format, Pattern.MULTILINE);
+    private Pattern format = Pattern.compile("$^", Pattern.MULTILINE);
 
     /** The matcher. */
     private Matcher matcher;
@@ -170,8 +167,7 @@ public class RegexpCheck extends AbstractCheck {
      * @throws org.apache.commons.beanutils.ConversionException unable to parse format
      */
     public final void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = CommonUtils.createPattern(format, Pattern.MULTILINE);
+        format = CommonUtils.createPattern(pattern.pattern(), Pattern.MULTILINE);
     }
 
     @Override
@@ -191,7 +187,7 @@ public class RegexpCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        matcher = regexp.matcher(getFileContents().getText().getFullText());
+        matcher = format.matcher(getFileContents().getText().getFullText());
         matchCount = 0;
         errorCount = 0;
         findMatch();
@@ -271,7 +267,7 @@ public class RegexpCheck extends AbstractCheck {
         String msg;
 
         if (message.isEmpty()) {
-            msg = format;
+            msg = format.pattern();
         }
         else {
             msg = message;
