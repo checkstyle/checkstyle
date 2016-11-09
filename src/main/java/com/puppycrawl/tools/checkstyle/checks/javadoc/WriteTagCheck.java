@@ -87,12 +87,10 @@ public class WriteTagCheck
     /** Compiled regexp to match tag. **/
     private Pattern tagRegExp;
     /** Compiled regexp to match tag content. **/
-    private Pattern tagFormatRegExp;
+    private Pattern tagFormat;
 
     /** Regexp to match tag. */
     private String tag;
-    /** Regexp to match tag content. */
-    private String tagFormat;
     /** The severity level of found tag reports. */
     private SeverityLevel tagSeverityLevel = SeverityLevel.INFO;
 
@@ -110,8 +108,7 @@ public class WriteTagCheck
      * @param pattern a {@code String} value
      */
     public void setTagFormat(Pattern pattern) {
-        tagFormat = pattern.pattern();
-        tagFormatRegExp = pattern;
+        tagFormat = pattern;
     }
 
     /**
@@ -181,11 +178,11 @@ public class WriteTagCheck
                     tagCount += 1;
                     final int contentStart = matcher.start(1);
                     final String content = commentValue.substring(contentStart);
-                    if (tagFormatRegExp == null || tagFormatRegExp.matcher(content).find()) {
+                    if (tagFormat == null || tagFormat.matcher(content).find()) {
                         logTag(lineNo + i - comment.length, tag, content);
                     }
                     else {
-                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat);
+                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                     }
                 }
             }

@@ -60,14 +60,9 @@ public class TodoCommentCheck
     public static final String MSG_KEY = "todo.match";
 
     /**
-     * Format of 'todo' comment.
-     */
-    private String format = "TODO:";
-
-    /**
      * Regular expression pattern compiled from format.
      */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile("TODO:");
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -80,8 +75,7 @@ public class TodoCommentCheck
      *        pattern of 'todo' comment.
      */
     public void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     @Override
@@ -104,8 +98,8 @@ public class TodoCommentCheck
         final String[] lines = ast.getText().split("\n");
 
         for (int i = 0; i < lines.length; i++) {
-            if (regexp.matcher(lines[i]).find()) {
-                log(ast.getLineNo() + i, MSG_KEY, format);
+            if (format.matcher(lines[i]).find()) {
+                log(ast.getLineNo() + i, MSG_KEY, format.pattern());
             }
         }
     }

@@ -131,11 +131,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
     /** Check methods and fields with only corresponding modifiers. */
     private List<Integer> memberModifiers;
 
-    /** The format string of the regexp. */
-    private String format = "^(.*[.])?Abstract.*$";
-
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile("^(.*[.])?Abstract.*$");
 
     /**
      * Controls whether to validate abstract class names.
@@ -154,8 +151,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param pattern a pattern.
      */
     public void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     /**
@@ -338,7 +334,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
                 || illegalClassNames.contains(shortName)
                 || validateAbstractClassNames
                     && !legalAbstractClassNames.contains(className)
-                    && regexp.matcher(className).find();
+                    && format.matcher(className).find();
     }
 
     /**

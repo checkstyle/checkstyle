@@ -61,11 +61,8 @@ public final class AbstractClassNameCheck extends AbstractCheck {
     /** Whether to ignore checking the name. */
     private boolean ignoreName;
 
-    /** The format string of the regexp. */
-    private String format = "^Abstract.+$";
-
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile("^Abstract.+$");
 
     /**
      * Whether to ignore checking for the {@code abstract} modifier.
@@ -88,8 +85,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * @param pattern the new pattern
      */
     public void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     @Override
@@ -123,7 +119,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
             // if class has abstract modifier
             if (!ignoreName && !isMatchingClassName(className)) {
                 log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_ILLEGAL_ABSTRACT_CLASS_NAME, className, format);
+                    MSG_ILLEGAL_ABSTRACT_CLASS_NAME, className, format.pattern());
             }
         }
         else if (!ignoreModifier && isMatchingClassName(className)) {
@@ -148,6 +144,6 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * @return true if class name matches format of abstract class names.
      */
     private boolean isMatchingClassName(String className) {
-        return regexp.matcher(className).find();
+        return format.matcher(className).find();
     }
 }

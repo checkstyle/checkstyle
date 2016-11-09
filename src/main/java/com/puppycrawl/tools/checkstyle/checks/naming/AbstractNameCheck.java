@@ -38,18 +38,15 @@ public abstract class AbstractNameCheck
      */
     public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
 
-    /** The format string of the regexp. */
-    private String format;
-
     /** The regexp to match against. */
-    private Pattern regexp;
+    private Pattern format;
 
     /**
      * Creates a new {@code AbstractNameCheck} instance.
      * @param format format to check with
      */
     protected AbstractNameCheck(String format) {
-        setFormat(CommonUtils.createPattern(format));
+        this.format = CommonUtils.createPattern(format);
     }
 
     /**
@@ -66,20 +63,19 @@ public abstract class AbstractNameCheck
      * @param pattern the new pattern
      */
     public final void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         if (mustCheckName(ast)) {
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
-            if (!regexp.matcher(nameAST.getText()).find()) {
+            if (!format.matcher(nameAST.getText()).find()) {
                 log(nameAST.getLineNo(),
                     nameAST.getColumnNo(),
                     MSG_INVALID_PATTERN,
                     nameAST.getText(),
-                    format);
+                    format.pattern());
             }
         }
     }

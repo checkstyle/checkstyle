@@ -107,19 +107,15 @@ public class SuppressWarningsCheck extends AbstractCheck {
     private static final String FQ_SUPPRESS_WARNINGS =
         "java.lang." + SUPPRESS_WARNINGS;
 
-    /** The format string of the regexp. */
-    private String format = "^$|^\\s+$";
-
     /** The regexp to match against. */
-    private Pattern regexp = Pattern.compile(format);
+    private Pattern format = Pattern.compile("^$|^\\s+$");
 
     /**
      * Set the format for the specified regular expression.
      * @param pattern the new pattern
      */
     public final void setFormat(Pattern pattern) {
-        format = pattern.pattern();
-        regexp = pattern;
+        format = pattern;
     }
 
     @Override
@@ -242,7 +238,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      */
     private void logMatch(final int lineNo,
         final int colNum, final String warningText) {
-        final Matcher matcher = regexp.matcher(warningText);
+        final Matcher matcher = format.matcher(warningText);
         if (matcher.matches()) {
             log(lineNo, colNum,
                     MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, warningText);
