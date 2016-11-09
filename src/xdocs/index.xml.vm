@@ -110,7 +110,7 @@
         However, some members of the community have created an unofficial backport of the latest
         Checkstyle releases to be run with JDKs as old as 1.6. If you wish to continue using new
         Checkstyle versions on older JDKs, we recommend you either checkout the
-        <a href="https://github.com/rnveach/checkstyle-backport-jre6">github site</a> or the 
+        <a href="https://github.com/rnveach/checkstyle-backport-jre6">github site</a> or the
         <a href="https://rnveach.github.io/checkstyle-backport-jre6/">documentation site</a> on how
         to use the backport version of the utility, in place of the official Checkstyle version.
       </p>
