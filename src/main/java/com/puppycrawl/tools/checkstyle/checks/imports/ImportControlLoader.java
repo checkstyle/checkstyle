@@ -50,6 +50,10 @@ final class ImportControlLoader extends AbstractLoader {
     private static final String DTD_PUBLIC_ID_1_1 =
         "-//Puppy Crawl//DTD Import Control 1.1//EN";
 
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_2 =
+        "-//Puppy Crawl//DTD Import Control 1.2//EN";
+
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
@@ -57,6 +61,10 @@ final class ImportControlLoader extends AbstractLoader {
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_1 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_1.dtd";
+
+    /** The resource for the configuration dtd. */
+    private static final String DTD_RESOURCE_NAME_1_2 =
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_2.dtd";
 
     /** The map to lookup the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
@@ -76,6 +84,7 @@ final class ImportControlLoader extends AbstractLoader {
     static {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
     }
 
     /**
