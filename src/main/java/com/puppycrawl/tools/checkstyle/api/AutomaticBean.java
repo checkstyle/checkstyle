@@ -44,6 +44,7 @@ import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
+import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -100,6 +101,7 @@ public class AutomaticBean
         cub.register(new ArrayConverter(short[].class, new ShortConverter()),
             short[].class);
         cub.register(new PatternConverter(), Pattern.class);
+        cub.register(new PadOptionConverter(), PadOption.class);
         cub.register(new RelaxedStringArrayConverter(), String[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
@@ -251,6 +253,20 @@ public class AutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             return CommonUtils.createPattern(value.toString());
+        }
+    }
+
+    /** A converter that converts strings to pad options. */
+    private static class PadOptionConverter implements Converter {
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        @Override
+        public Object convert(Class type, Object value) {
+            try {
+                return PadOption.valueOf(value.toString().trim().toUpperCase(Locale.ENGLISH));
+            }
+            catch (IllegalArgumentException iae) {
+                throw new ConversionException("unable to parse " + value.toString(), iae);
+            }
         }
     }
 
