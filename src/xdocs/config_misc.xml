@@ -1592,6 +1592,12 @@ messages_de.properties: Key 'cancel' missing.
 messages.properties: Key 'hell' missing.
 messages.properties: Key 'ok' missing.
         </source>
+        <p>
+          <font color="red">Attention:</font> this Check could produce false-positives if it is used with
+          <a href="config.html#Checker">Checker</a> that use cache (property "cacheFile")
+          This is known design problem, will be addrerssed at
+          <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
+        </p>
       </subsection>
 
       <subsection name="Properties">
