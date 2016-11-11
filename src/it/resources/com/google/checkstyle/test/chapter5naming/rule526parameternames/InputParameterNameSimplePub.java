@@ -2,22 +2,6 @@ package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
 import java.io.*;
 
-final class InputSimple
-{                                      
-    void toManyArgs(
-    		int $arg1, //warn
-    		int ar$g2, //warn
-    		int arg3$, //warn
-    		int a_rg4, //warn
-    		int _arg5, //warn
-    		int arg6_, //warn
-    		int aArg7, //warn
-    		int aArg8, //warn
-    		int aar_g) //warn
-            
-    {}
-}
-
 class InputSimple2
 {
 
@@ -51,7 +35,7 @@ enum MyEnum1
 }
 
 /** Test public vs private method parameter naming check. */
-class InputParameterNameSimple
+class InputParameterNameSimplePub
 {
     /** Valid: public and more than one char Long */
     public void a(int par, int parA) {}
@@ -59,8 +43,8 @@ class InputParameterNameSimple
     /** Invalid: public and one char long */
     public void b(int p) {} //warn
 
-    /** Invalid: private and one char long. */
-    private void c(int p) {} //warn
+    /** Valid: private and one char long. */
+    private void c(int p) {}
 
     /** Holder for inner anonymous classes */
     private void d(int param) {
@@ -71,8 +55,8 @@ class InputParameterNameSimple
     }
 
     /** Invalid: public constructor and one char long */
-    public InputParameterNameSimple(int p) { } // warn
+    public InputParameterNameSimplePub(int p) { } // warn
 
-    /** Invalid: private constructor and one char long */
-    private InputParameterNameSimple(float p) { } // warn
+    /** Valid: private constructor and one char long */
+    private InputParameterNameSimplePub(float p) { }
 }

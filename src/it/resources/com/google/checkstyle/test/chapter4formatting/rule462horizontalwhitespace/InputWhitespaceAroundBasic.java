@@ -236,3 +236,24 @@ class SpecialCasesInForLoop
         return null;
     }
 }
+
+/**
+ * Operators mentioned in Google Coding Standards 2016-07-12
+ */
+class NewGoogleOperators
+{
+    NewGoogleOperators()
+    {
+       Runnable l;
+
+       l = ()-> { }; //warn
+       l = () ->{ }; //warn
+       l = () -> { };
+
+       java.util.Arrays.sort(null, String :: compareToIgnoreCase);
+       java.util.Arrays.sort(null, String::compareToIgnoreCase);
+
+       new Object().toString();
+       new Object() . toString();
+    }
+}

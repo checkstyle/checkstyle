@@ -72,4 +72,20 @@ class Catch {
             finally {} //warn
         }
     };
+
+    void bar1() {
+        try {
+           if(!flag) {
+               doSm();
+           }
+        } catch (Exception expected) {}
+    }
+
+    void bar2() {
+        try {
+           if(!flag) {
+               doSm();
+           }
+        } catch (Exception expected) {}
+    }
 }
