@@ -64,6 +64,9 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
             "118:20: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "/"),
             "147:15: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "assert"),
             "150:20: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, ":"),
+            "249:14: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "->"),
+            "250:17: " + getCheckMessage(checkConfig.getMessages(), msgFollowed, "->"),
+            "250:17: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "{"),
         };
 
         final String filePath = getPath("InputWhitespaceAroundBasic.java");

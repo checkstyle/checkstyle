@@ -254,19 +254,35 @@ public class BaseCheckTestSupport {
      * @throws CheckstyleException if exception occurs during configuration loading.
      */
     protected static Configuration getCheckConfig(String checkName) throws CheckstyleException {
-        Configuration result = null;
+        final List<Configuration> configs = getCheckConfigs(checkName);
+        if (configs.isEmpty()) {
+            return null;
+        }
+        else {
+            return configs.get(0);
+        }
+    }
+
+    /**
+     * Returns a list of all {@link Configuration} instances for the given check name.
+     * This implementation uses {@link BaseCheckTestSupport#getConfiguration()} method inside.
+     * @param checkName check name.
+     * @return {@link Configuration} instance for the given check name.
+     * @throws CheckstyleException if exception occurs during configuration loading.
+     */
+    protected static List<Configuration> getCheckConfigs(String checkName)
+            throws CheckstyleException {
+        final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : getConfiguration().getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
                 for (Configuration checkConfig : currentConfig.getChildren()) {
                     if (checkName.equals(checkConfig.getName())) {
-                        result = checkConfig;
-                        break;
+                        result.add(checkConfig);
                     }
                 }
             }
             else if (checkName.equals(currentConfig.getName())) {
-                result = currentConfig;
-                break;
+                result.add(currentConfig);
             }
         }
         return result;
