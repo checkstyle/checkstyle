@@ -36,6 +36,19 @@ class InputCorrectJavaDocParagraph {
     
     /**
      * Some Javadoc.
+     * 
+     *<pre>
+     * Test
+     * </pre>
+     * 
+     * <pre>
+     * Test
+     * </pre>
+     */
+    boolean test() {return false;}
+    
+    /**
+     * Some Javadoc.
      *
      * <p>Some Javadoc.
      *

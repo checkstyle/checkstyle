@@ -320,6 +320,8 @@ enum Foo1 {}
  *     Some javadoc.
  * @serialData Some javadoc.
  *   Line below is empty on purpose. // warn
+ * @see Some Text.
+ * L.
  *
  * @author max
  * @see {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest

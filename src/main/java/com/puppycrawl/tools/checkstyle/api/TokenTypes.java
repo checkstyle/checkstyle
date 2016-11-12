@@ -3399,7 +3399,7 @@ public final class TokenTypes {
     /**
      * Text of single-line or block comment.
      *
-     *<pre>
+     * <pre>
      * +--SINGLE_LINE_COMMENT
      *         |
      *         +--COMMENT_CONTENT

@@ -35,7 +35,7 @@ public class JavadocNodeImpl implements DetailNode {
     /**
      * Empty array of {@link DetailNode} type.
      */
-    private static final DetailNode[] EMPTY_DETAIL_NODE_ARRAY = new DetailNode[0];
+    public static final JavadocNodeImpl[] EMPTY_DETAIL_NODE_ARRAY = new JavadocNodeImpl[0];
 
     /**
      * Node index among parent's children.
