@@ -142,9 +142,7 @@ public class JTreeTable extends JTable {
      * Make selection of code in a text area.
      */
     private void makeCodeSelection() {
-        // temporary disabled. Have to deal with Javadoc nodes as well
-        // see https://github.com/checkstyle/checkstyle/issues/3432
-        new CodeSelector(null, editor, linePositionMap);
+        new CodeSelector(tree.getLastSelectedPathComponent(), editor, linePositionMap).select();
     }
 
     /**
