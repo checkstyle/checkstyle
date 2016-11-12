@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -31,8 +32,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * @author unknown
  */
 public class CodeSelectorPModel {
-    /** DetailAST node. */
-    private final DetailAST ast;
+    /** DetailAST or DetailNode node. */
+    private final Object node;
     /** Mapping. */
     private final List<Integer> lines2position;
     /** Selection start position. */
@@ -46,7 +47,18 @@ public class CodeSelectorPModel {
      * @param lines2position list to map lines.
      */
     public CodeSelectorPModel(DetailAST ast, List<Integer> lines2position) {
-        this.ast = ast;
+        node = ast;
+        final List<Integer> copy = new ArrayList<>(lines2position);
+        this.lines2position = Collections.unmodifiableList(copy);
+    }
+
+    /**
+     * Constructor.
+     * @param node DetailNode node.
+     * @param lines2position list to map lines.
+     */
+    public CodeSelectorPModel(DetailNode node, List<Integer> lines2position) {
+        this.node = node;
         final List<Integer> copy = new ArrayList<>(lines2position);
         this.lines2position = Collections.unmodifiableList(copy);
     }
@@ -69,6 +81,19 @@ public class CodeSelectorPModel {
      * Find start and end selection positions from AST line and Column.
      */
     public void findSelectionPositions() {
+        if (node instanceof DetailAST) {
+            findSelectionPositions((DetailAST) node);
+        }
+        else {
+            findSelectionPositions((DetailNode) node);
+        }
+    }
+
+    /**
+     * Find start and end selection positions from AST line and Column.
+     * @param ast DetailAST node for which selection finds
+     */
+    private void findSelectionPositions(DetailAST ast) {
         selectionStart = lines2position.get(ast.getLineNo()) + ast.getColumnNo();
 
         if (ast.getChildCount() == 0
@@ -78,6 +103,17 @@ public class CodeSelectorPModel {
         else {
             selectionEnd = findLastPosition(ast);
         }
+    }
+
+    /**
+     * Find start and end selection positions from DetailNode line and Column.
+     * @param detailNode DetailNode node for which selection finds
+     */
+    private void findSelectionPositions(DetailNode detailNode) {
+        selectionStart = lines2position.get(detailNode.getLineNumber())
+                            + detailNode.getColumnNumber();
+
+        selectionEnd = findLastPosition(detailNode);
     }
 
     /**
@@ -93,5 +129,24 @@ public class CodeSelectorPModel {
         else {
             return findLastPosition(astNode.getLastChild());
         }
+    }
+
+    /**
+     * Finds the last position of node without children.
+     * @param detailNode DetailNode node.
+     * @return Last position of node without children.
+     */
+    private int findLastPosition(final DetailNode detailNode) {
+        final int lastPosition;
+        if (detailNode.getChildren().length == 0) {
+            lastPosition = lines2position.get(detailNode.getLineNumber())
+                    + detailNode.getColumnNumber() + detailNode.getText().length();
+        }
+        else {
+            final DetailNode lastChild =
+                    detailNode.getChildren()[detailNode.getChildren().length - 1];
+            lastPosition = findLastPosition(lastChild);
+        }
+        return lastPosition;
     }
 }
