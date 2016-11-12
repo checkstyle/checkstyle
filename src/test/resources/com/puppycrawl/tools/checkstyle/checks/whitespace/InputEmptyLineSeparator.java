@@ -17,18 +17,21 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace; //no violation: trainling comment
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.ArrayList; /*no violation: trailing comment*/
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
+/* no violation: block comment after token*/
 
 import com.oracle.net.Sdp;
+//no violation: single line comment after token
 
-import javax.swing.AbstractAction;
+import javax.swing.AbstractAction; /* no violation: no trailing comment
+*/
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
 import org.apache.commons.beanutils.BasicDynaBean;
@@ -124,6 +127,12 @@ class InputEmptyLineSeparator
         {
             //empty
         }
+    }
+
+
+    class SecondInnerClass {
+
+        private int intVariable;
     }
 }
 

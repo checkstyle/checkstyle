@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * Checks for empty line separators after header, package, all import declarations,
@@ -251,6 +252,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
@@ -285,7 +291,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             processMultipleLinesInside(ast);
         }
 
-        final DetailAST nextToken = ast.getNextSibling();
+        DetailAST nextToken = ast.getNextSibling();
+        while (nextToken != null && isComment(nextToken)) {
+            nextToken = nextToken.getNextSibling();
+        }
         if (nextToken != null) {
             final int astType = ast.getType();
             switch (astType) {
@@ -405,7 +414,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void processPackage(DetailAST ast, DetailAST nextToken) {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
-            log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+            if (getFileContents().getFileName().endsWith("package-info.java")) {
+                if (ast.getFirstChild().getChildCount() == 0 && !isPrecededByJavadoc(ast)) {
+                    log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+                }
+            }
+            else {
+                log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+            }
         }
         if (!hasEmptyLineAfter(ast)) {
             log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
@@ -487,8 +503,12 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lastToken == null) {
             lastToken = token.getLastChild();
         }
+        DetailAST nextToken = token.getNextSibling();
+        if (isComment(nextToken)) {
+            nextToken = nextToken.getNextSibling();
+        }
         // Start of the next token
-        final int nextBegin = token.getNextSibling().getLineNo();
+        final int nextBegin = nextToken.getLineNo();
         // End of current token.
         final int currentEnd = lastToken.getLineNo();
         return hasEmptyLine(currentEnd + 1, nextBegin - 1);
@@ -531,6 +551,31 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         //  [lineNo - 2] is the number of the previous line because the numbering starts from zero.
         final String lineBefore = getLines()[lineNo - 2];
         return lineBefore.trim().isEmpty();
+    }
+
+    /**
+     * Check if token is preceded by javadoc comment.
+     * @param token token for check.
+     * @return true, if token is preceded by javadoc comment.
+     */
+    private static boolean isPrecededByJavadoc(DetailAST token) {
+        boolean result = false;
+        final DetailAST previous = token.getPreviousSibling();
+        if (previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                && JavadocUtils.isJavadocComment(previous)) {
+            result = true;
+        }
+        return result;
+    }
+
+    /**
+     * Check if token is a comment.
+     * @param ast ast node
+     * @return true, if given ast is comment.
+     */
+    private static boolean isComment(DetailAST ast) {
+        return ast.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                   || ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN;
     }
 
     /**
