@@ -34,6 +34,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import com.google.common.base.CaseFormat;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer;
 import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
@@ -181,6 +182,12 @@ public class JavadocDetailNodeParser {
         ParseTree parseTreeParent = parseTreeNode;
 
         while (currentJavadocParent != null) {
+            // remove unnecessary children tokens
+            if (currentJavadocParent.getType() == JavadocTokenTypes.TEXT) {
+                currentJavadocParent
+                        .setChildren((DetailNode[]) JavadocNodeImpl.EMPTY_DETAIL_NODE_ARRAY);
+            }
+
             final JavadocNodeImpl[] children =
                     (JavadocNodeImpl[]) currentJavadocParent.getChildren();
 

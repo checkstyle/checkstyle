@@ -108,13 +108,13 @@ public class CodeSelectorPModelTest {
 
     @Test
     public void testDetailNodeLeafSelection() {
-        final DetailNode javadocLeaf = ((DetailNode) model.getParseTreeTableModel()
-                .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0))
-                .getChildren()[2].getChildren()[0];
+        final DetailNode javadoc = (DetailNode) model.getParseTreeTableModel()
+                .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
+        final DetailNode javadocLeaf = javadoc.getChildren()[2];
         final CodeSelectorPModel selector = new CodeSelectorPModel(javadocLeaf, linesToPosition);
         selector.findSelectionPositions();
         Assert.assertEquals(5, selector.getSelectionStart());
-        Assert.assertEquals(6, selector.getSelectionEnd());
+        Assert.assertEquals(19, selector.getSelectionEnd());
     }
 
 }

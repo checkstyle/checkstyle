@@ -151,7 +151,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
-        if (!isLastEmptyLine(newline) && nearestToken.getChildren().length > 1) {
+        if (!isLastEmptyLine(newline) && nearestToken.getType() == JavadocTokenTypes.TEXT
+                && !nearestToken.getText().trim().isEmpty()) {
             log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
     }
@@ -199,7 +200,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             return false;
         }
         if (previousSibling.getType() == JavadocTokenTypes.TEXT
-                && previousSibling.getChildren().length == 1) {
+                && previousSibling.getText().trim().isEmpty()) {
             previousSibling = JavadocUtils.getPreviousSibling(previousSibling);
         }
         return previousSibling != null
@@ -215,7 +216,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode previousNode = JavadocUtils.getPreviousSibling(paragraphTag);
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
-                    && previousNode.getChildren().length > 1
+                    && !previousNode.getText().trim().isEmpty()
                 || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && previousNode.getType() != JavadocTokenTypes.NEWLINE
                     && previousNode.getType() != JavadocTokenTypes.TEXT) {
@@ -252,7 +253,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode nextNode = JavadocUtils.getNextSibling(newLine);
         while (nextNode != null && nextNode.getType() != JavadocTokenTypes.JAVADOC_TAG) {
             if (nextNode.getType() == JavadocTokenTypes.TEXT
-                    && nextNode.getChildren().length > 1
+                    && !nextNode.getText().trim().isEmpty()
                     || nextNode.getType() == JavadocTokenTypes.HTML_ELEMENT) {
                 return false;
             }

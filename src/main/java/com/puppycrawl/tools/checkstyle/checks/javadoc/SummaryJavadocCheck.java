@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
 /**
  * <p>
@@ -157,30 +156,15 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final StringBuilder result = new StringBuilder();
         final String periodSuffix = PERIOD + ' ';
         for (DetailNode child : ast.getChildren()) {
+            final String text = child.getText();
+
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
-                && child.getText().contains(periodSuffix)) {
-                result.append(getCharsTillDot(child));
+                && text.contains(periodSuffix)) {
+                result.append(text.substring(0, text.indexOf(periodSuffix) + 1));
                 break;
             }
             else {
-                result.append(child.getText());
-            }
-        }
-        return result.toString();
-    }
-
-    /**
-     * Finds and returns chars till first dot.
-     * @param textNode node with javadoc text.
-     * @return String with chars till first dot.
-     */
-    private static String getCharsTillDot(DetailNode textNode) {
-        final StringBuilder result = new StringBuilder();
-        for (DetailNode child : textNode.getChildren()) {
-            result.append(child.getText());
-            if (PERIOD.equals(child.getText())
-                && JavadocUtils.getNextSibling(child).getType() == JavadocTokenTypes.WS) {
-                break;
+                result.append(text);
             }
         }
         return result.toString();

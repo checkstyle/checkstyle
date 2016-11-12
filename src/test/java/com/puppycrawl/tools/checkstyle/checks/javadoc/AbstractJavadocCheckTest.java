@@ -336,7 +336,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
         @Override
         public int[] getRequiredJavadocTokens() {
-            return new int[] {JavadocTokenTypes.CHAR};
+            return new int[] {JavadocTokenTypes.TEXT};
         }
 
         @Override
