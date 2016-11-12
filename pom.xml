@@ -61,13 +61,6 @@
       </roles>
     </developer>
     <developer>
-      <id>sabaka</id>
-      <name>Ilja Dubinin</name>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-    <developer>
       <id>rnveach</id>
       <name>Richard Veach</name>
       <roles>
@@ -84,6 +77,13 @@
     <developer>
       <id>mkordas</id>
       <name>Michał Kordas</name>
+      <roles>
+        <role>former developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>sabaka</id>
+      <name>Ilja Dubinin</name>
       <roles>
         <role>former developer</role>
       </roles>
