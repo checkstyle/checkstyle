@@ -47,13 +47,6 @@
       </roles>
     </developer>
     <developer>
-      <id>mkordas</id>
-      <name>Michał Kordas</name>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-    <developer>
       <id>rdiachenko</id>
       <name>Ruslan Diachenko</name>
       <roles>
@@ -86,6 +79,13 @@
       <name>Oliver Burn</name>
       <roles>
         <role>founder (retired)</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>mkordas</id>
+      <name>Michał Kordas</name>
+      <roles>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
