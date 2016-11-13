@@ -47,20 +47,6 @@
       </roles>
     </developer>
     <developer>
-      <id>rdiachenko</id>
-      <name>Ruslan Diachenko</name>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>baratali</id>
-      <name>Baratali Izmailov</name>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-    <developer>
       <id>rnveach</id>
       <name>Richard Veach</name>
       <roles>
@@ -79,6 +65,20 @@
       <name>Michał Kordas</name>
       <roles>
         <role>former developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>rdiachenko</id>
+      <name>Ruslan Diachenko</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>baratali</id>
+      <name>Baratali Izmailov</name>
+      <roles>
+        <role>developer</role>
       </roles>
     </developer>
     <developer>
