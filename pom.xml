@@ -1365,7 +1365,7 @@
           <!-- Creates the binary and source distributions -->
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.6</version>
+            <version>3.0.0</version>
             <configuration>
               <descriptors>
                 <descriptor>config/assembly-bin.xml</descriptor>
