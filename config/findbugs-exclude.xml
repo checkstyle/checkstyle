@@ -112,4 +112,10 @@
         <Method name="makeCodeSelection"/>
         <Bug pattern="RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT"/>
     </Match>
+    <Match>
+        <!-- Until https://github.com/checkstyle/checkstyle/issues/3573 -->
+        <Class name="com.puppycrawl.tools.checkstyle.checks.FileContentsHolder" />
+        <Method name="beginTree"/>
+        <Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD"/>
+    </Match>
 </FindBugsFilter>

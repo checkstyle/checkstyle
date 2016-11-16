@@ -40,8 +40,6 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -298,17 +296,6 @@ public class SuppressionCommentFilterTest
     public void testAcceptNullLocalizedMessage() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
-        Assert.assertTrue(filter.accept(auditEvent));
-    }
-
-    @Test
-    public void testAcceptNullFileContents() {
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
-                "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                    getClass(), null);
-        final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
-        final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         Assert.assertTrue(filter.accept(auditEvent));
     }
 

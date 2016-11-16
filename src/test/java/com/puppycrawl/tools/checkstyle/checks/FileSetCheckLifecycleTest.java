@@ -121,7 +121,7 @@ public class FileSetCheckLifecycleTest
 
         @Override
         public void finishProcessing() {
-            fileContentAvailable = FileContentsHolder.getContents() != null;
+            fileContentAvailable = FileContentsHolder.getCurrentFileContents() != null;
         }
     }
 }
