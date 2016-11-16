@@ -179,16 +179,14 @@ public class SuppressionCommentFilter
         if (event.getLocalizedMessage() != null) {
             // Lazy update. If the first event for the current file, update file
             // contents and tag suppressions
-            final FileContents currentContents = FileContentsHolder.getContents();
+            final FileContents currentContents = FileContentsHolder.getCurrentFileContents();
 
-            if (currentContents != null) {
-                if (getFileContents() != currentContents) {
-                    setFileContents(currentContents);
-                    tagSuppressions();
-                }
-                final Tag matchTag = findNearestMatch(event);
-                accepted = matchTag == null || matchTag.isReportingOn();
+            if (getFileContents() != currentContents) {
+                setFileContents(currentContents);
+                tagSuppressions();
             }
+            final Tag matchTag = findNearestMatch(event);
+            accepted = matchTag == null || matchTag.isReportingOn();
         }
         return accepted;
     }

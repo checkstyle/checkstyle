@@ -191,16 +191,14 @@ public class SuppressWithNearbyCommentFilter
         if (event.getLocalizedMessage() != null) {
             // Lazy update. If the first event for the current file, update file
             // contents and tag suppressions
-            final FileContents currentContents = FileContentsHolder.getContents();
+            final FileContents currentContents = FileContentsHolder.getCurrentFileContents();
 
-            if (currentContents != null) {
-                if (getFileContents() != currentContents) {
-                    setFileContents(currentContents);
-                    tagSuppressions();
-                }
-                if (matchesTag(event)) {
-                    accepted = false;
-                }
+            if (getFileContents() != currentContents) {
+                setFileContents(currentContents);
+                tagSuppressions();
+            }
+            if (matchesTag(event)) {
+                accepted = false;
             }
         }
         return accepted;
