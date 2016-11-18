@@ -334,6 +334,38 @@ public class MethodLimitCheck extends AbstractCheck
 
     </section>
 
+    <section name="Comment Tokens in AST">
+
+      <p>
+        Before <a href="releasenotes.html#Release_6.0">Checkstyle 6.0</a>, there was no comments in AST tree
+        as commnents are not a code and ignored by complier, so it was not a primary focus of Checkstyle.
+        But more and more requests appear to do validation of code vs javadoc or comments.
+        So there was a simple solution to receive plain text of file in Check, do own parsing and searching for required comments in file.
+      </p>
+      <p>
+        Since 6.0, there is a new method in AbstractCheck class that allow you to see or not comment nodes in AST Tree -
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#isCommentNodesRequired--">
+        isCommentNodesRequired()</a>. It should return TRUE if Check want to see comments in AST Tree.
+      </p>
+      <p>
+        It is done as optional because it is change for a AST Tree structure, and non of existing Checks ready for this.
+        Checkstyle does not do re-parse file one more time, comments were already in grammar and parsed, but skipped during AST nodes creation.
+      </p>
+      <p>
+        Before execution, all Checks are divided into 2 groups (base on isCommentNodesRequired method): "java only Checks", "comments Checks".
+        Checkstyle execute "java only Checks" first, as all them finish, append to AST Tree missed comment AST nodes and call "comments Checks".
+        All Javadoc Checks that are child of AbstractJavadocCheck are "comments Checks".
+      </p>
+      <p>
+        Comment tokens:
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">SINGLE_LINE_COMMENT</a>,
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">BLOCK_COMMENT_BEGIN</a>,
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_END">BLOCK_COMMENT_END</a>,
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">COMMENT_CONTENT</a>.
+      </p>
+
+    </section>
+
     <section name="Navigating the AST">
 
       <p>
