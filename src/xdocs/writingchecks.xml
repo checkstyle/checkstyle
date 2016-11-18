@@ -334,6 +334,22 @@ public class MethodLimitCheck extends AbstractCheck
 
     </section>
 
+    <section name="Comments Token in AST">
+
+      <p>
+        Before <a href="releasenotes.html#Release_6.0">Checkstyle 6.0</a>, there was no comments in AST tree 
+        as commnents are not a code and ignored by complier. But more and more requests apear to do validation of code vs javadoc or comments.
+        So there was a wat to receive plain text of file in Check, so all Check had to use its own parsing and searching for comments
+        in file. 
+        Since 6.0, there is a new method in AbstractCheck class that allow you to see them in AST Tree.
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#isCommentNodesRequired--">
+        isCommentNodesRequired()</a>
+        Checkstyle does not do reparse file one more time, comments were already in tree, but skipped during AST nodes creation.
+        Comment are skipped in general AST tree after parsing
+      </p>
+
+    </section>
+
     <section name="Navigating the AST">
 
       <p>
