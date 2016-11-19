@@ -12,8 +12,6 @@
              classpath="${mvn.runtime_classpath}"
              />
 
-    <delete file="${mvn.project.build.directory}/cachefile" />
-
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="config/checkstyle_checks.xml"/>
 

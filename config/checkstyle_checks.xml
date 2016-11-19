@@ -14,6 +14,8 @@
 
   <metadata name="com.atlas-sw.eclipse" value="I like Sydney"/>
 
+  <property name="cacheFile" value="${checkstyle.cache.file}"/>
+
   <property name="severity" value="error"/>
 
   <property name="fileExtensions" value="java, properties, xml, vm, g, g4"/>

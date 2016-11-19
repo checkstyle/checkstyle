@@ -20,7 +20,6 @@
              classname="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask">
       <classpath refid="run.classpath"/>
     </taskdef>
-    <delete file="${target.dir}/cachefile" />
 
     <property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
     <property name="check.config" location="config/checkstyle_checks.xml"/>

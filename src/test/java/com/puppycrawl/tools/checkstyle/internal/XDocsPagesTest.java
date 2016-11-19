@@ -177,7 +177,9 @@ public class XDocsPagesTest {
     private static void buildAndValidateXml(String fileName, String unserializedSource)
             throws IOException, ParserConfigurationException, CheckstyleException {
         // not all examples come with the full xml structure
-        String code = unserializedSource;
+        String code = unserializedSource
+            // don't corrupt our own cachefile
+            .replace("target/cachefile", "target/cachefile-test");
 
         if (!hasFileSetClass(code)) {
             code = "<module name=\"TreeWalker\">\n" + code + "\n</module>";
