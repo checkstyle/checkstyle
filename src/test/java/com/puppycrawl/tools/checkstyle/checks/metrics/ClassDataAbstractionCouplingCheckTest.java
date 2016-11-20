@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,12 +70,18 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
         verify(checkConfig, getPath("InputClassCoupling.java"), expected);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testWrongToken() {
         final ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
             new ClassDataAbstractionCouplingCheck();
         final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
-        classDataAbstractionCouplingCheckObj.visitToken(ast);
+        try {
+            classDataAbstractionCouplingCheckObj.visitToken(ast);
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Unknown type: ctor[0x-1]", ex.getMessage());
+        }
     }
 }

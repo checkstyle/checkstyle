@@ -26,7 +26,6 @@ import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
 
 public class SingleLineJavadocTest extends BaseCheckTestSupport {
@@ -55,21 +54,6 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(SingleLineJavadocCheck.class);
         checkConfig.addAttribute("ignoreInlineTags", "false");
         final String filePath = getPath("InputSingleLineJavadocCheck.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
-    }
-
-    @Test(expected = Exception.class)
-    public void customInlineTagTest() throws Exception {
-        final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
-
-        final Configuration checkConfig = getCheckConfig("SingleLineJavadocCheck");
-        final String filePath = getPath("InputSingleLineJavadocCheckError.java");
-
-        final String[] expected = {
-            "4: " + msg,
-        };
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

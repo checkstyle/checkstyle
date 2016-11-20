@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.Method;
 import java.util.SortedSet;
@@ -100,7 +101,7 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
                 messages.first().getMessage());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testCustomMessageWithParametersNegative() throws Exception {
         final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message {0.");
@@ -109,14 +110,13 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         final LocalizedMessages collector = new LocalizedMessages();
         emptyCheck.setMessages(collector);
 
-        emptyCheck.log(0, "msgKey", "TestParam");
-
-        final SortedSet<LocalizedMessage> messages = collector.getMessages();
-        assertEquals(1, messages.size());
-
-        //we expect an exception here because of the bogus custom message
-        //format
-        messages.first().getMessage();
+        try {
+            emptyCheck.log(0, "msgKey", "TestParam");
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Unmatched braces in the pattern.", ex.getMessage());
+        }
     }
 
     private static class EmptyCheck extends AbstractCheck {

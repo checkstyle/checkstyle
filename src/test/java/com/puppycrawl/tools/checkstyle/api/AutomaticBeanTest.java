@@ -118,12 +118,18 @@ public class AutomaticBeanTest {
         }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testTestBean() {
         final TestBean testBean = new TestBean();
         testBean.setVal(0);
         testBean.setWrong("wrongVal");
-        testBean.setExceptionalMethod("someValue");
+        try {
+            testBean.setExceptionalMethod("someValue");
+            fail("exception expected");
+        }
+        catch (IllegalStateException ex) {
+            assertEquals("null,wrongVal,0,someValue", ex.getMessage());
+        }
     }
 
     private static class TestBean extends AutomaticBean {

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -88,14 +89,26 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         }
     }
 
-    @Test(expected = CheckstyleException.class)
-    public void testLoadFromMalformedUrl() throws CheckstyleException {
-        SuppressionsLoader.loadSuppressions("http");
+    @Test
+    public void testLoadFromMalformedUrl() {
+        try {
+            SuppressionsLoader.loadSuppressions("http");
+            fail("exception expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Unable to find: http", ex.getMessage());
+        }
     }
 
-    @Test(expected = CheckstyleException.class)
-    public void testLoadFromNonExistingUrl() throws CheckstyleException {
-        SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
+    @Test
+    public void testLoadFromNonExistingUrl() {
+        try {
+            SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
+            fail("exception expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Unable to find: http://^%$^* %&% %^&", ex.getMessage());
+        }
     }
 
     @Test

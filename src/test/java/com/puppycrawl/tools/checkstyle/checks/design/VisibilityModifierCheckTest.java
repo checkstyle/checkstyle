@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
+
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -370,12 +373,18 @@ public class VisibilityModifierCheckTest
         verify(checkConfig, getPath("InputEnumIsSealed.java"), expected);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testWrongTokenType() {
         final VisibilityModifierCheck obj = new VisibilityModifierCheck();
         final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
-        obj.visitToken(ast);
+        try {
+            obj.visitToken(ast);
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Unexpected token type: class", ex.getMessage());
+        }
     }
 
     @Test

@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,12 +80,18 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("InputBooleanExpressionComplexityNPE.java"), expected);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testWrongToken() {
         final BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
             new BooleanExpressionComplexityCheck();
         final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
-        booleanExpressionComplexityCheckObj.visitToken(ast);
+        try {
+            booleanExpressionComplexityCheckObj.visitToken(ast);
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Unknown type: interface[0x-1]", ex.getMessage());
+        }
     }
 }
