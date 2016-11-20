@@ -77,13 +77,13 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     /** The root package controller. */
     private ImportControl root;
     /** The package doing the import. */
-    private String inPkg;
+    private String packageName;
 
     /**
      * The package controller for the current file. Used for performance
      * optimisation.
      */
-    private ImportControl currentLeaf;
+    private ImportControl currentImportControl;
 
     @Override
     public int[] getDefaultTokens() {
@@ -103,39 +103,28 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     @Override
     public void beginTree(final DetailAST rootAST) {
-        currentLeaf = null;
+        currentImportControl = null;
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
-            final FullIdent full = FullIdent.createFullIdent(nameAST);
             if (root == null) {
-                log(nameAST, MSG_MISSING_FILE);
+                log(ast, MSG_MISSING_FILE);
             }
             else {
-                inPkg = full.getText();
-                currentLeaf = root.locateFinest(inPkg);
-                if (currentLeaf == null) {
-                    log(nameAST, MSG_UNKNOWN_PKG);
+                packageName = getPackageText(ast);
+                currentImportControl = root.locateFinest(packageName);
+                if (currentImportControl == null) {
+                    log(ast, MSG_UNKNOWN_PKG);
                 }
             }
         }
-        else if (currentLeaf != null) {
-            final FullIdent imp;
-            if (ast.getType() == TokenTypes.IMPORT) {
-                imp = FullIdent.createFullIdentBelow(ast);
-            }
-            else {
-                // know it is a static import
-                imp = FullIdent.createFullIdent(ast
-                        .getFirstChild().getNextSibling());
-            }
-            final AccessResult access = currentLeaf.checkAccess(imp.getText(),
-                    inPkg);
+        else if (currentImportControl != null) {
+            final String importText = getImportText(ast);
+            final AccessResult access = currentImportControl.checkAccess(packageName, importText);
             if (access != AccessResult.ALLOWED) {
-                log(ast, MSG_DISALLOWED, imp.getText());
+                log(ast, MSG_DISALLOWED, importText);
             }
         }
     }
@@ -143,6 +132,34 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     @Override
     public Set<String> getExternalResourceLocations() {
         return Collections.singleton(fileLocation);
+    }
+
+    /**
+     * Returns package text.
+     * @param ast PACKAGE_DEF ast node
+     * @return String that represents full package name
+     */
+    private static String getPackageText(DetailAST ast) {
+        final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
+        return FullIdent.createFullIdent(nameAST).getText();
+    }
+
+    /**
+     * Returns import text.
+     * @param ast ast node that represents import
+     * @return String that represents importing class
+     */
+    private static String getImportText(DetailAST ast) {
+        final FullIdent imp;
+        if (ast.getType() == TokenTypes.IMPORT) {
+            imp = FullIdent.createFullIdentBelow(ast);
+        }
+        else {
+            // know it is a static import
+            imp = FullIdent.createFullIdent(ast
+                    .getFirstChild().getNextSibling());
+        }
+        return imp.getText();
     }
 
     /**

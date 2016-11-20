@@ -248,9 +248,9 @@ class ImportControl {
      * @param inPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
-    public AccessResult checkAccess(final String forImport, final String inPkg) {
+    public AccessResult checkAccess(final String inPkg, final String forImport) {
         final AccessResult result;
-        final AccessResult returnValue = localCheckAccess(forImport, inPkg);
+        final AccessResult returnValue = localCheckAccess(inPkg, forImport);
         if (returnValue != AccessResult.UNKNOWN) {
             result = returnValue;
         }
@@ -259,7 +259,7 @@ class ImportControl {
             result = AccessResult.DISALLOWED;
         }
         else {
-            result = parent.checkAccess(forImport, inPkg);
+            result = parent.checkAccess(inPkg, forImport);
         }
         return result;
     }
@@ -271,8 +271,8 @@ class ImportControl {
      * @param inPkg the package doing the import.
      * @return an {@link AccessResult}.
      */
-    private AccessResult localCheckAccess(final String forImport,
-        final String inPkg) {
+    private AccessResult localCheckAccess(final String inPkg,
+        final String forImport) {
         for (AbstractImportRule r : rules) {
             // Check if an import rule is only meant to be applied locally.
             if (r.isLocalOnly() && !matchesExactly(inPkg)) {

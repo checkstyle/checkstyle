@@ -60,19 +60,19 @@ public class ImportControlTest {
     @Test
     public void testCheckAccess() {
         assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
-                "org.springframework.something",
-                "com.kazgroup.courtlink.common"));
+                "com.kazgroup.courtlink.common",
+                "org.springframework.something"));
         assertEquals(AccessResult.ALLOWED, icCommon
-                .checkAccess("org.apache.commons.something",
-                        "com.kazgroup.courtlink.common"));
+                .checkAccess("com.kazgroup.courtlink.common",
+                        "org.apache.commons.something"));
         assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
-                "org.apache.commons", "com.kazgroup.courtlink.common"));
+                "com.kazgroup.courtlink.common", "org.apache.commons"));
         assertEquals(AccessResult.ALLOWED, icCommon.checkAccess(
-                "org.hibernate.something", "com.kazgroup.courtlink.common"));
+                "com.kazgroup.courtlink.common", "org.hibernate.something"));
         assertEquals(AccessResult.DISALLOWED, icCommon.checkAccess(
-                "com.badpackage.something", "com.kazgroup.courtlink.common"));
+                "com.kazgroup.courtlink.common", "com.badpackage.something"));
         assertEquals(AccessResult.DISALLOWED, icRoot.checkAccess(
-                "org.hibernate.something", "com.kazgroup.courtlink"));
+                "com.kazgroup.courtlink", "org.hibernate.something"));
     }
 
     @Test
