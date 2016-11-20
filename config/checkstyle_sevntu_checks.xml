@@ -177,5 +177,6 @@
         <module name="SingleBreakOrContinueCheck"/>
         <module name="NumericLiteralNeedsUnderscoreCheck"/>
         <module name="UniformEnumConstantNameCheck" />
+        <module name="ForbidAnnotationElementValueCheck" />
     </module>
 </module>
