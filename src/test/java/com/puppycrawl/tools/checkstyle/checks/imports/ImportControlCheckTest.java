@@ -97,15 +97,14 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testWrong() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", getPath("import-control_wrong.xml"));
-        final String[] expected = {"1:47: " + getCheckMessage(MSG_UNKNOWN_PKG)};
-
+        final String[] expected = {"1:1: " + getCheckMessage(MSG_UNKNOWN_PKG)};
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
 
     @Test
     public void testMissing() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        final String[] expected = {"1:47: " + getCheckMessage(MSG_MISSING_FILE)};
+        final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
 
@@ -113,7 +112,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testEmpty() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", "   ");
-        final String[] expected = {"1:47: " + getCheckMessage(MSG_MISSING_FILE)};
+        final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
 
@@ -121,7 +120,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testNull() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", null);
-        final String[] expected = {"1:47: " + getCheckMessage(MSG_MISSING_FILE)};
+        final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
 
@@ -228,7 +227,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testUrlBlank() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("url", "");
-        final String[] expected = {"1:47: " + getCheckMessage(MSG_MISSING_FILE)};
+        final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
@@ -237,7 +236,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     public void testUrlNull() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("url", null);
-        final String[] expected = {"1:47: " + getCheckMessage(MSG_MISSING_FILE)};
+        final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
