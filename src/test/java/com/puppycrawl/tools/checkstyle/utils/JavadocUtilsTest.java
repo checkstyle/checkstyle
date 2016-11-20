@@ -215,18 +215,36 @@ public class JavadocUtilsTest {
         assertEquals("EOF", JavadocUtils.getTokenName(JavadocTokenTypes.EOF));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testGetTokenNameForLargeId() {
-        JavadocUtils.getTokenName(20074);
+        try {
+            JavadocUtils.getTokenName(20074);
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Unknown javadoc token id. Given id: 20074", ex.getMessage());
+        }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testGetTokenNameForInvalidId() {
-        JavadocUtils.getTokenName(100);
+        try {
+            JavadocUtils.getTokenName(100);
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Unknown javadoc token id. Given id: 100", ex.getMessage());
+        }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testGetTokenIdThatIsUnknown() {
-        JavadocUtils.getTokenId("");
+        try {
+            JavadocUtils.getTokenId("");
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Unknown javadoc token name. Given name ", ex.getMessage());
+        }
     }
 }

@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -131,24 +133,36 @@ public class ExecutableStatementCountCheckTest
         verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testVisitTokenWithWrongTokenType() {
         final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
         final DetailAST ast = new DetailAST();
         ast.initialize(
             new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
-        checkObj.visitToken(ast);
+        try {
+            checkObj.visitToken(ast);
+            fail("exception expected");
+        }
+        catch (IllegalStateException ex) {
+            assertEquals("ENUM[0x-1]", ex.getMessage());
+        }
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testLeaveTokenWithWrongTokenType() {
         final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
         final DetailAST ast = new DetailAST();
         ast.initialize(
             new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
-        checkObj.leaveToken(ast);
+        try {
+            checkObj.leaveToken(ast);
+            fail("exception expected");
+        }
+        catch (IllegalStateException ex) {
+            assertEquals("ENUM[0x-1]", ex.getMessage());
+        }
     }
 
     @Test

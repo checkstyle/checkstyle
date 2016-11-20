@@ -20,14 +20,21 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
 public class SeverityLevelCounterTest {
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testCtorException() {
-        new SeverityLevelCounter(null);
+        try {
+            new SeverityLevelCounter(null);
+            fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("'level' cannot be null", ex.getMessage());
+        }
     }
 
     @Test

@@ -29,6 +29,8 @@ import java.nio.file.Paths;
 import org.junit.Assert;
 import org.junit.Test;
 
+import antlr.NoViableAltException;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class AstTreeStringPrinterTest {
@@ -46,10 +48,17 @@ public class AstTreeStringPrinterTest {
         assertUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class);
     }
 
-    @Test(expected = CheckstyleException.class)
+    @Test
     public void testParseFileThrowable() throws Exception {
-        AstTreeStringPrinter.printFileAst(
-            new File(getNonCompilablePath("InputAstTreeStringPrinter.java")), false);
+        try {
+            AstTreeStringPrinter.printFileAst(
+                new File(getNonCompilablePath("InputAstTreeStringPrinter.java")), false);
+            Assert.fail("exception expected");
+        }
+        catch (CheckstyleException ex) {
+            Assert.assertSame(NoViableAltException.class, ex.getCause().getClass());
+            Assert.assertEquals("unexpected token: classD", ex.getCause().getMessage());
+        }
     }
 
     @Test

@@ -23,6 +23,8 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitiali
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_PRECEDED;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -106,11 +108,20 @@ public class EmptyForInitializerPadCheckTest
         assertEquals(WrapOption.EOL, option);
     }
 
-    @Test(expected = CheckstyleException.class)
+    @Test
     public void testInvalidOption() throws Exception {
         checkConfig.addAttribute("option", "invalid_option");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+            verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+            fail("exception expected");
+        }
+        catch (CheckstyleException ex) {
+            assertTrue(ex.getMessage().startsWith(
+                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+                            + "Cannot set property 'option' to 'invalid_option' in module"));
+        }
     }
 }

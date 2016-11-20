@@ -26,9 +26,15 @@ import org.junit.Test;
 
 public class PropertiesExpanderTest {
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testCtorException() {
-        new PropertiesExpander(null);
+        try {
+            new PropertiesExpander(null);
+            Assert.fail("exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            Assert.assertEquals("cannot pass null", ex.getMessage());
+        }
     }
 
     @Test
