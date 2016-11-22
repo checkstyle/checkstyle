@@ -668,7 +668,7 @@
         accept a file, then Checker will process and validate the file.
         If any Before Execution File Filter rejects an file, then Checker skips over
         the file and acts like it does not exist.
-        For more information, please visit the <a href="config_filefilters.xml">file filters page</a>.
+        For more information, please visit the <a href="config_filefilters.html">file filters page</a>.
       </p>
 
     </section>
