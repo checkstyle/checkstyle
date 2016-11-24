@@ -966,6 +966,12 @@ import android.*;
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
           </tr>
+          <tr>
+            <td>onDemandImportLastInGroup</td>
+            <td>whether to use a type-import-on-demand declaration last in group or not</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td>false</td>
+          </tr>
 
           <tr>
             <td>tokens</td>
