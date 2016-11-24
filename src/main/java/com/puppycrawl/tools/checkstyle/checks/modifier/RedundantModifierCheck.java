@@ -53,7 +53,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * <p>Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
  * So, the <code>static</code> modifier on the enums is redundant. In addition,
- * if enum is inside of interface, <code>public</code> modifier is also redundant.
+ * if enum is inside of interface, <code>public</code> modifier is also redundant.</p>
+ *
+ * <p>Enums can also contain abstract methods and methods which can be overridden by the declared
+ * enumeration fields.
+ * See the following example:</p>
+ * <pre>
+ * public enum EnumClass {
+ *    FIELD_1,
+ *    FIELD_2 {
+ *        &#64;Override
+ *        public final void method1() {} // violation expected
+ *    };
+ *
+ *    public void method1() {}
+ *    public final void method2() {} // no violation expected
+ * }
+ * </pre>
+ *
+ * <p>Since these methods can be overridden in these situations, the final methods are not
+ * marked as redundant even though they can't be extended by other classes/enums.</p>
  *
  * <p>Final classes by definition cannot be extended so the <code>final</code>
  * modifier on the method of a final class is redundant.

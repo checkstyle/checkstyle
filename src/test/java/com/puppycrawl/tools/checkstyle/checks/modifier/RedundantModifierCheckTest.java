@@ -223,4 +223,11 @@ public class RedundantModifierCheckTest
         };
         verify(checkConfig, getPath("InputFinalInAbstractMethods.java"), expected);
     }
+
+    @Test
+    public void testEnumMethods() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RedundantModifierCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputFinalInEnumMethods.java"), expected);
+    }
 }

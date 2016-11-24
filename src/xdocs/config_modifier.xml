@@ -187,6 +187,30 @@
         </p>
 
         <p>
+          Enums can also contain abstract methods and methods which can be overridden by the declared
+          enumeration fields.
+          See the following example:
+        </p>
+
+        <source>
+          public enum EnumClass {
+             FIELD_1,
+             FIELD_2 {
+                 &#64;Override
+                 public final void method1() {} // violation expected
+             };
+
+             public void method1() {}
+             public final void method2() {} // no violation expected
+          }
+        </source>
+
+        <p>
+          Since these methods can be overridden in these situations, the final methods are not
+          marked as redundant even though they can't be extended by other classes/enums.
+        </p>
+
+        <p>
           Nested <code>enum</code> types are always static by default.
         </p>
 
