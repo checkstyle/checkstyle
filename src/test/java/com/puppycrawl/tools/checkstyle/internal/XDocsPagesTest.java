@@ -605,6 +605,9 @@ public class XDocsPagesTest {
                 result = "String Set";
             }
         }
+        else if (clss == File.class) {
+            result = "String";
+        }
         else if (clss == Pattern.class) {
             result = "Regular Expression";
         }

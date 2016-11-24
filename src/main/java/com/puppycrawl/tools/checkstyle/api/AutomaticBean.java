@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.beans.PropertyDescriptor;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -100,6 +101,7 @@ public class AutomaticBean
         cub.register(new ArrayConverter(short[].class, new ShortConverter()),
             short[].class);
         cub.register(new PatternConverter(), Pattern.class);
+        cub.register(new FileConverter(), File.class);
         cub.register(new RelaxedStringArrayConverter(), String[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
@@ -251,6 +253,20 @@ public class AutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             return CommonUtils.createPattern(value.toString());
+        }
+    }
+
+    /** A converter that converts strings to file. */
+    private static class FileConverter implements Converter {
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        @Override
+        public Object convert(Class type, Object value) {
+            final String name = value.toString();
+            if (!CommonUtils.isBlank(name)) {
+                return new File(name);
+            }
+
+            return null;
         }
     }
 

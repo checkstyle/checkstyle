@@ -149,18 +149,18 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     /**
      * Set the name for the file containing the import control
      * configuration. It will cause the file to be loaded.
-     * @param name the name of the file to load.
+     * @param file the file to load.
      * @throws ConversionException on error loading the file.
      */
-    public void setFile(final String name) {
+    public void setFile(File file) {
         // Handle empty param
-        if (!CommonUtils.isBlank(name)) {
+        if (file != null) {
             try {
-                root = ImportControlLoader.load(new File(name).toURI());
-                fileLocation = name;
+                root = ImportControlLoader.load(file.toURI());
+                fileLocation = file.getAbsolutePath();
             }
             catch (final CheckstyleException ex) {
-                throw new ConversionException(UNABLE_TO_LOAD + name, ex);
+                throw new ConversionException(UNABLE_TO_LOAD + fileLocation, ex);
             }
         }
     }

@@ -708,7 +708,7 @@ import android.*;
             <td>
               name of the file containing the import control configuration.
             </td>
-            <td><a href="property_types.html#string">string</a></td>
+            <td><a href="property_types.html#string">String</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
