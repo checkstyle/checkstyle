@@ -254,7 +254,7 @@
       <property name="file" value="${checkstyle.importcontrol.file}"/>
     </module>
     <module name="ImportOrder">
-      <property name="groups" value="/^javax?\./,org"/>
+      <property name="groups" value="/^java\./,javax,org"/>
       <property name="ordered" value="true"/>
       <property name="separated" value="true"/>
       <property name="option" value="top"/>

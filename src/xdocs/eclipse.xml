@@ -96,7 +96,7 @@
         are likely to work the same way), please go to Window -> Preferences in menu.<br/>
         In Preferences window select Java->Code Style->Organize Imports (follow numbers on a picture).<br/>
         Default configuration should look as following (you can also try Restore Defaults button):<br/><br/>
-        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.jpg"/>
+        <img alt="Organize Imports settings in Eclipse" src="images/gui_screenshot_organize_imports_eclipse.png"/>
         <br/>
       </p>
     </section>
