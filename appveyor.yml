@@ -12,7 +12,7 @@ init:
 install:
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
-      if (!(Test-Path -Path "C:\maven" )) {
+      if (!(Test-Path -Path "C:\maven\apache-maven-3.2.5" )) {
         (new-object System.Net.WebClient).DownloadFile(
           'http://www.us.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.zip',
           'C:\maven-bin.zip'
@@ -27,7 +27,7 @@ install:
   - cmd: '%CYG_BIN% -qnNdO -R %CYG_ROOT% -s %CYG_MIRROR% -l %CYG_CACHE% -P hg'
 
 cache:
-  - C:\maven\
+  - C:\maven\apache-maven-3.2.5
   - C:\Users\appveyor\.m2
   - C:\cygwin\var\cache\setup
 
