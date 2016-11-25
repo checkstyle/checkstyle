@@ -1239,6 +1239,8 @@
             <excludedLink>https://www.codacy.com/</excludedLink>
             <!-- permanent SSLException -->
             <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
+            <!-- permanent SSLException -->
+            <excludedLink>https://git-scm.com</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
