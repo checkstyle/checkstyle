@@ -17,6 +17,69 @@
 
     <!-- placeholder for a new section -->
 
+    <section name="Release 7.3">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Javadoc grammar: Delete child nodes in Javadoc TEXT node. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3170">#3170</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Update Google style coverage to state of 12 July 2016. Author: alberto.cuda <a href="https://github.com/checkstyle/checkstyle/issues/3381">#3381</a>
+          </li>
+          <li>
+            Modules and XDocs: changed setter methods to recieve similar types with field type for easier xdoc validation . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3255">#3255</a>
+          </li>
+          <li>
+            CLI: Cannot override default Checker. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3515">#3515</a>
+          </li>
+          <li>
+            ParameterNameCheck: new scope and excludeScope properties . Author: alberto.cuda <a href="https://github.com/checkstyle/checkstyle/issues/3473">#3473</a>
+          </li>
+          <li>
+            google_checks.xml CustomImportOrder problem. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/941">#941</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            GUI: Add support of DetailNode objects in CodeSelector. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3432">#3432</a>
+          </li>
+          <li>
+            GUI: Inconsistency in AST structure for block-comments. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3445">#3445</a>
+          </li>
+          <li>
+            Checker Cache not saving files that have suppressed violations. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3488">#3488</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            ImportOrder: checkstyle_checks.xml does not have separate &quot;java&quot; group. Author: linelect <a href="https://github.com/checkstyle/checkstyle/issues/3577">#3577</a>
+          </li>
+          <li>
+            doc: fix broken link to file filters page. Author: Ken Geis
+          </li>
+          <li>
+            use ForbidAnnotationElementValueCheck from sevntu.checkstyle. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3567">#3567</a>
+          </li>
+          <li>
+            Turn on Config Cache File Locally for Developers. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3487">#3487</a>
+          </li>
+          <li>
+            document isCommentNodesRequired method in xdoc. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3561">#3561</a>
+          </li>
+          <li>
+            Checkstyle tests should not require internet. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3536">#3536</a>
+          </li>
+          <li>
+            doc: note was placed to TranslationCheck that it has problems with Checker cache. Author: Roman Ivanov
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.2">
       <p>New:</p>
         <ul>
