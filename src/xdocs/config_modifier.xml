@@ -72,7 +72,7 @@
         </ol>
 
         <p>
-          ATTENTION: We skip <a href="https://blogs.oracle.com/java-platform-group/entry/java_8_s_new_type">
+          ATTENTION: We skip <a href="http://www.oracle.com/technetwork/articles/java/ma14-architect-annotations-2177655.html">
           type annotations</a> from validation.
         </p>
 
