@@ -706,7 +706,9 @@ import android.*;
           <tr>
             <td>file</td>
             <td>
-              name of the file containing the import control configuration.
+              The location of the file containing the import control configuration.
+              It can be a regular file, URL or resource path. It will try loading
+              the path as a URL first, then as a file, and finally as a resource.
             </td>
             <td><a href="property_types.html#string">string</a></td>
             <td><code>null</code></td>

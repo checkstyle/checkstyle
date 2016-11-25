@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.io.File;
 import java.net.URI;
 import java.util.Collections;
 import java.util.Set;
@@ -148,7 +147,8 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     /**
      * Set the name for the file containing the import control
-     * configuration. It will cause the file to be loaded.
+     * configuration. It can also be a URL or resource in the classpath.
+     * It will cause the file to be loaded.
      * @param name the name of the file to load.
      * @throws ConversionException on error loading the file.
      */
@@ -156,7 +156,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
         // Handle empty param
         if (!CommonUtils.isBlank(name)) {
             try {
-                root = ImportControlLoader.load(new File(name).toURI());
+                root = ImportControlLoader.load(CommonUtils.getUriByFilename(name));
                 fileLocation = name;
             }
             catch (final CheckstyleException ex) {
