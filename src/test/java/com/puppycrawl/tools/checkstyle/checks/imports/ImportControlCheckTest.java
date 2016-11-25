@@ -60,6 +60,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
                 + "imports" + File.separator + filename);
     }
 
+    private static String getResourcePath(String filename) {
+        return "/com/puppycrawl/tools/checkstyle/checks/imports/" + filename;
+    }
+
     @Test
     public void testGetRequiredTokens() {
         final ImportControlCheck checkObj = new ImportControlCheck();
@@ -271,6 +275,56 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         catch (final CheckstyleException ex) {
             final String message = getInvocationTargetExceptionMessage(ex);
             assertTrue(message.startsWith("Syntax error in url "));
+        }
+    }
+
+    @Test
+    public void testResource() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getResourcePath("import-control_one.xml"));
+        final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
+    public void testResourceUnableToLoad() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getResourcePath("import-control_unknown.xml"));
+
+        try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            verify(checkConfig, getPath("InputImportControl.java"), expected);
+            fail("Test should fail if exception was not thrown");
+        }
+        catch (final CheckstyleException ex) {
+            final String message = getInvocationTargetExceptionMessage(ex);
+            assertTrue(message.startsWith("Unable to load "));
+        }
+    }
+
+    @Test
+    public void testUrlInFileProperty() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getUriString("import-control_one.xml"));
+        final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
+    public void testUrlInFilePropertyUnableToLoad() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", "https://UnableToLoadThisURL");
+
+        try {
+            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+            verify(checkConfig, getPath("InputImportControl.java"), expected);
+            fail("Test should fail if exception was not thrown");
+        }
+        catch (final CheckstyleException ex) {
+            final String message = getInvocationTargetExceptionMessage(ex);
+            assertTrue(message.startsWith("Unable to load "));
         }
     }
 
