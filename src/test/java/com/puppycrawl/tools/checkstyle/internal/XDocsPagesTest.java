@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 
 public class XDocsPagesTest {
     private static final Path JAVA_SOURCES_DIRECTORY = Paths.get("src/main/java");
@@ -608,6 +609,9 @@ public class XDocsPagesTest {
         else if (clss == Pattern.class) {
             result = "Regular Expression";
         }
+        else if (clss == PadOption.class) {
+            result = "Pad Policy";
+        }
         else if (clss != String.class) {
             Assert.fail("Unknown property type: " + clss.getSimpleName());
         }
@@ -661,6 +665,9 @@ public class XDocsPagesTest {
                 if ("\"$^\"".equals(result)) {
                     result += " (empty)";
                 }
+            }
+            else if (clss == PadOption.class) {
+                result = value.toString().toLowerCase(Locale.ENGLISH);
             }
 
             if (clss != String.class && clss != String[].class && result == null) {
