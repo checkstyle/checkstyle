@@ -30,7 +30,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import antlr.NoViableAltException;
-
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class AstTreeStringPrinterTest {

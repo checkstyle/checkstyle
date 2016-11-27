@@ -24,7 +24,6 @@ import java.util.Map;
 
 import antlr.ASTFactory;
 import antlr.collections.AST;
-
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
