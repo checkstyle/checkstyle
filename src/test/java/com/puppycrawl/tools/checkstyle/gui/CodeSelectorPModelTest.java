@@ -30,7 +30,6 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 public class CodeSelectorPModelTest {

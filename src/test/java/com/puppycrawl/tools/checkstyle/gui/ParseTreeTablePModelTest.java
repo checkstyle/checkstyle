@@ -26,16 +26,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import antlr.collections.AST;
-
 import com.puppycrawl.tools.checkstyle.TreeWalker;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
 public class ParseTreeTablePModelTest {

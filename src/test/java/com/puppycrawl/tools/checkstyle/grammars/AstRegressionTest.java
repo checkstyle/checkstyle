@@ -37,7 +37,6 @@ import antlr.NoViableAltForCharException;
 import antlr.ParserSharedInputState;
 import antlr.SemanticException;
 import antlr.TokenBuffer;
-
 import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.api.FileText;
