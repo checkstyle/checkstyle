@@ -37,6 +37,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * (e.g., java. comes first, javax. comes second, then everything else)</li>
  * <li>adds a separation between groups : ensures that a blank line sit between
  * each group</li>
+ * <li>import groups aren't separated internally: ensures that
+ * each group aren't separated internally by blank line or comment</li>
  * <li>sorts imports inside each group: ensures that imports within each group
  * are in lexicographic order</li>
  * <li>sorts according to case: ensures that the comparison between import is
@@ -59,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *   <tr><td>ordered</td><td>whether imports within group should be sorted</td>
  *       <td>Boolean</td><td>true</td></tr>
  *   <tr><td>separated</td><td>whether imports groups should be separated by, at least,
- *       one blank line</td><td>Boolean</td><td>false</td></tr>
+ *       one blank line and aren't separated internally</td><td>Boolean</td><td>false</td></tr>
  *   <tr><td>caseSensitive</td><td>whether string comparison should be case sensitive or not.
  *       Case sensitive sorting is in ASCII sort order</td><td>Boolean</td><td>true</td></tr>
  *   <tr><td>sortStaticImportsAlphabetically</td><td>whether static imports grouped by top or
@@ -78,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *     <li>groups of non-static imports: &quot;java&quot; then &quot;javax&quot;
  *         packages first, then &quot;org&quot; and then all other imports</li>
  *     <li>imports will be sorted in the groups</li>
- *     <li>groups are separated by, at least, one blank line</li>
+ *     <li>groups are separated by, at least, one blank line and aren't separated internally</li>
  * </ul>
  *
  * <pre>
@@ -98,7 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *     <li>groups of non-static imports: all imports except of &quot;javax&quot; and
  *         &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
  *     <li>imports will be sorted in the groups</li>
- *     <li>groups are separated by, at least, one blank line</li>
+ *     <li>groups are separated by, at least, one blank line and aren't separated internally</li>
  * </ul>
  *
  *         <p>
@@ -194,6 +196,12 @@ public class ImportOrderCheck
      * file.
      */
     public static final String MSG_ORDERING = "import.ordering";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_SEPARATED_IN_GROUP = "import.groups.separated.internally";
 
     /** The special wildcard that catches all remaining groups. */
     private static final String WILDCARD_GROUP_NAME = "*";
@@ -443,9 +451,24 @@ public class ImportOrderCheck
         else {
             log(line, MSG_ORDERING, name);
         }
+        if (checkSeparatorInGroup(groupIdx, isStatic, line)) {
+            log(line, MSG_SEPARATED_IN_GROUP, name);
+        }
 
         lastGroup = groupIdx;
         lastImport = name;
+    }
+
+    /**
+     * Checks whether imports group separated internally.
+     * @param groupIdx group number.
+     * @param isStatic whether the token is static or not.
+     * @param line the line of the current import.
+     * @return true if imports group are separated internally.
+     */
+    private boolean checkSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
+        return !beforeFirstImport && separated && groupIdx == lastGroup
+                && isStatic == lastImportStatic && line - lastImportLine > 1;
     }
 
     /**
