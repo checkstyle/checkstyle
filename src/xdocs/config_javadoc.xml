@@ -227,13 +227,13 @@ public int checkReturnTag(final int aTagIndex,
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
@@ -778,13 +778,13 @@ public boolean isSomething()
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
@@ -1079,13 +1079,13 @@ public boolean isSomething()
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>
@@ -1257,13 +1257,13 @@ public boolean isSomething()
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
           </tr>
           <tr>

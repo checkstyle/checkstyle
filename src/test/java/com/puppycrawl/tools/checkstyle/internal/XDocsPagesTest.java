@@ -60,6 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 
@@ -578,6 +579,7 @@ public class XDocsPagesTest {
                         .replaceAll("\\s+", " ").trim());
     }
 
+    /** @noinspection IfStatementWithTooManyBranches */
     private static String getCheckPropertyExpectedTypeName(Class<?> clss, Object instance,
             String propertyName) {
         final String instanceName = instance.getClass().getSimpleName();
@@ -611,6 +613,9 @@ public class XDocsPagesTest {
         }
         else if (clss == SeverityLevel.class) {
             result = "Severity";
+        }
+        else if (clss == Scope.class) {
+            result = "Scope";
         }
         else if (clss != String.class) {
             Assert.fail("Unknown property type: " + clss.getSimpleName());
@@ -666,7 +671,7 @@ public class XDocsPagesTest {
                     result += " (empty)";
                 }
             }
-            else if (clss == SeverityLevel.class) {
+            else if (value != null && (clss == SeverityLevel.class || clss == Scope.class)) {
                 result = value.toString().toLowerCase(Locale.ENGLISH);
             }
 

@@ -1985,6 +1985,8 @@
                 <option value="MismatchedQueryAndUpdateOfCollection" />
                 <!-- Till https://github.com/checkstyle/checkstyle/issues/3066 -->
                 <option value="ProhibitedExceptionCaught" />
+                <!-- No way to split apart huge if/else branches in test. -->
+                <option value="IfStatementWithTooManyBranches" />
             </list>
         </option>
     </inspection_tool>
