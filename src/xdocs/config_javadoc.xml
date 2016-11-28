@@ -1732,7 +1732,7 @@ public boolean isSomething()
           <tr>
             <td>tagSeverity</td>
             <td>Severity level when tag is found and printed</td>
-            <td><a href="property_types.html#severity">severity</a></td>
+            <td><a href="property_types.html#severity">Severity</a></td>
             <td><code>info</code></td>
           </tr>
           <tr>
