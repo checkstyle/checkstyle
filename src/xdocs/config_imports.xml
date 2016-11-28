@@ -892,6 +892,8 @@ import android.*;
           then everything else)</li>
           <li>adds a separation between groups : ensures that a blank
           line sit between each group</li>
+          <li>import groups aren't separated internally: ensures that
+          each group aren't separated internally by blank line or comment</li>
           <li>sorts imports inside each group: ensures that imports
           within each group are in lexicographic order</li>
           <li>sorts according to case: ensures that the comparison
@@ -941,7 +943,7 @@ import android.*;
             <td>separated</td>
             <td>
               whether imports groups should be separated by, at least, one
-              blank line
+              blank line and aren't separated internally
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
@@ -993,7 +995,7 @@ import android.*;
           <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
               then &quot;org&quot; and then all other imports</li>
           <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
+          <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
         <p>Notes:</p>
         <ul>
@@ -1005,7 +1007,7 @@ import android.*;
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org&quot;/&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org&quot;/&gt;
     &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
@@ -1020,12 +1022,12 @@ import android.*;
           <li>groups of non-static imports: &quot;java&quot; and &quot;javax&quot; packages first,
               then &quot;org&quot; and &quot;com&quot;, then all other imports as one group</li>
           <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
+          <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
-    &lt;property name=&quot;groups&quot; value=&quot;/^javax?\./,org,com&quot;/&gt;
+    &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org,com&quot;/&gt;
     &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
@@ -1040,7 +1042,7 @@ import android.*;
           <li>groups of non-static imports: all imports except of &quot;javax&quot;
               and &quot;java&quot;, then &quot;javax&quot; and &quot;java&quot;</li>
           <li>imports will be sorted in the groups</li>
-          <li>groups are separated by, at least, one blank line</li>
+          <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
 
         <p>
@@ -1160,6 +1162,10 @@ public class InputEclipseStaticImportsOrder { }
 
       <subsection name="Error Messages">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.groups.separated.internally%22">
+            import.groups.separated.internally</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.ordering%22">
             import.ordering</a>

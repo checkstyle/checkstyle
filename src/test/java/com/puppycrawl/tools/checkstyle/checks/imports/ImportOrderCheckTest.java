@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
+import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -550,5 +551,19 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
                 "io.netty.handler.codec.http.HttpHeaders.Names.DATE"),
             };
         verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
+    }
+
+    @Test
+    public void testImportGroupsRedundantSeparatedInternally() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/^javax\\./,com");
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("separated", "true");
+        checkConfig.addAttribute("option", "bottom");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputImportOrder_MultiplePatternMatches.java"),
+                expected);
     }
 }
