@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Check that controls what packages can be imported in each package. Useful
@@ -166,18 +165,18 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * Set the name for the file containing the import control
      * configuration. It can also be a URL or resource in the classpath.
      * It will cause the file to be loaded.
-     * @param name the name of the file to load.
+     * @param uri the uri of the file to load.
      * @throws ConversionException on error loading the file.
      */
-    public void setFile(final String name) {
+    public void setFile(URI uri) {
         // Handle empty param
-        if (!CommonUtils.isBlank(name)) {
+        if (uri != null) {
             try {
-                root = ImportControlLoader.load(CommonUtils.getUriByFilename(name));
-                fileLocation = name;
+                root = ImportControlLoader.load(uri);
+                fileLocation = uri.toString();
             }
             catch (final CheckstyleException ex) {
-                throw new ConversionException(UNABLE_TO_LOAD + name, ex);
+                throw new ConversionException(UNABLE_TO_LOAD + uri, ex);
             }
         }
     }
@@ -185,28 +184,12 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     /**
      * Set the parameter for the url containing the import control
      * configuration. It will cause the url to be loaded.
-     * @param url the url of the file to load.
+     * @param uri the uri of the file to load.
      * @throws ConversionException on error loading the file.
-     * @deprecated use {@link #setFile(String name)} to load URLs instead
+     * @deprecated use {@link #setFile(URI uri)} to load URLs instead
      */
     @Deprecated
-    public void setUrl(final String url) {
-        // Handle empty param
-        if (!CommonUtils.isBlank(url)) {
-            final URI uri;
-            try {
-                uri = URI.create(url);
-            }
-            catch (final IllegalArgumentException ex) {
-                throw new ConversionException("Syntax error in url " + url, ex);
-            }
-            try {
-                root = ImportControlLoader.load(uri);
-                fileLocation = url;
-            }
-            catch (final CheckstyleException ex) {
-                throw new ConversionException(UNABLE_TO_LOAD + url, ex);
-            }
-        }
+    public void setUrl(URI uri) {
+        setFile(uri);
     }
 }

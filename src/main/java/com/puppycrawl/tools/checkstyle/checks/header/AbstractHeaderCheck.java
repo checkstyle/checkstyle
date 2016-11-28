@@ -56,7 +56,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     private final List<String> readerLines = new ArrayList<>();
 
     /** The file that contains the header to check against. */
-    private String headerFile;
+    private URI headerFile;
 
     /** Name of a charset to use for loading the header from a file. */
     private String charset = System.getProperty("file.encoding", "UTF-8");
@@ -91,17 +91,17 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /**
      * Set the header file to check against.
-     * @param fileName the file that contains the header to check against.
+     * @param uri the uri of the header to load.
      * @throws CheckstyleException if fileName is empty.
      */
-    public void setHeaderFile(String fileName) throws CheckstyleException {
-        if (CommonUtils.isBlank(fileName)) {
+    public void setHeaderFile(URI uri) throws CheckstyleException {
+        if (uri == null) {
             throw new CheckstyleException(
                 "property 'headerFile' is missing or invalid in module "
                     + getConfiguration().getName());
         }
 
-        headerFile = fileName;
+        headerFile = uri;
     }
 
     /**
@@ -112,9 +112,8 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         checkHeaderNotInitialized();
         Reader headerReader = null;
         try {
-            final URI uri = CommonUtils.getUriByFilename(headerFile);
             headerReader = new InputStreamReader(new BufferedInputStream(
-                    uri.toURL().openStream()), charset);
+                    headerFile.toURL().openStream()), charset);
             loadHeader(headerReader);
         }
         catch (final IOException ex) {
@@ -194,6 +193,6 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(headerFile);
+        return Collections.singleton(headerFile.toString());
     }
 }

@@ -28,7 +28,6 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -138,8 +137,8 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (CheckstyleException ex) {
-            final String message = getInvocationTargetExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to load "));
+            final String message = getCheckstyleExceptionMessage(ex);
+            assertTrue(message.startsWith("Unable to find: "));
         }
     }
 
@@ -153,7 +152,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (CheckstyleException ex) {
-            final String message = getInvocationTargetExceptionMessage(ex);
+            final String message = getCheckstyleExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }
     }
@@ -256,7 +255,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (final CheckstyleException ex) {
-            final String message = getInvocationTargetExceptionMessage(ex);
+            final String message = getCheckstyleExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }
     }
@@ -272,8 +271,8 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (final CheckstyleException ex) {
-            final String message = getInvocationTargetExceptionMessage(ex);
-            assertTrue(message.startsWith("Syntax error in url "));
+            final String message = getCheckstyleExceptionMessage(ex);
+            assertTrue(message.startsWith("Unable to find: "));
         }
     }
 
@@ -297,8 +296,8 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (final CheckstyleException ex) {
-            final String message = getInvocationTargetExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to load "));
+            final String message = getCheckstyleExceptionMessage(ex);
+            assertTrue(message.startsWith("Unable to find: "));
         }
     }
 
@@ -322,7 +321,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             fail("Test should fail if exception was not thrown");
         }
         catch (final CheckstyleException ex) {
-            final String message = getInvocationTargetExceptionMessage(ex);
+            final String message = getCheckstyleExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }
     }
@@ -382,8 +381,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
      * @param exception Exception
      * @return String message of original exception
      */
-    private static String getInvocationTargetExceptionMessage(CheckstyleException exception) {
-        return ((InvocationTargetException) exception.getCause().getCause())
-            .getTargetException().getMessage();
+    private static String getCheckstyleExceptionMessage(CheckstyleException exception) {
+        return exception.getCause().getCause().getCause().getMessage();
     }
 }

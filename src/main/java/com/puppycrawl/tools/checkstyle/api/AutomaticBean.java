@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -67,6 +68,19 @@ public class AutomaticBean
     private static BeanUtilsBean createBeanUtilsBean() {
         final ConvertUtilsBean cub = new ConvertUtilsBean();
 
+        registerIntegralTypes(cub);
+        registerCustomTypes(cub);
+
+        return new BeanUtilsBean(cub, new PropertyUtilsBean());
+    }
+
+    /**
+     * Register basic types of JDK like boolean, int, and String to use with BeanUtils. All these
+     * types are found in the {@code java.lang} package.
+     * @param cub
+     *            Instance of {@link ConvertUtilsBean} to register types with.
+     */
+    private static void registerIntegralTypes(ConvertUtilsBean cub) {
         cub.register(new BooleanConverter(), Boolean.TYPE);
         cub.register(new BooleanConverter(), Boolean.class);
         cub.register(new ArrayConverter(
@@ -99,15 +113,23 @@ public class AutomaticBean
         cub.register(new ShortConverter(), Short.class);
         cub.register(new ArrayConverter(short[].class, new ShortConverter()),
             short[].class);
-        cub.register(new PatternConverter(), Pattern.class);
-        cub.register(new ServerityLevelConverter(), SeverityLevel.class);
-        cub.register(new ScopeConverter(), Scope.class);
         cub.register(new RelaxedStringArrayConverter(), String[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
         // do not use defaults in the default configuration of ConvertUtilsBean
+    }
 
-        return new BeanUtilsBean(cub, new PropertyUtilsBean());
+    /**
+     * Register custom types of JDK like URI and Checkstyle specific classes to use with BeanUtils.
+     * None of these types should be found in the {@code java.lang} package.
+     * @param cub
+     *            Instance of {@link ConvertUtilsBean} to register types with.
+     */
+    private static void registerCustomTypes(ConvertUtilsBean cub) {
+        cub.register(new PatternConverter(), Pattern.class);
+        cub.register(new ServerityLevelConverter(), SeverityLevel.class);
+        cub.register(new ScopeConverter(), Scope.class);
+        cub.register(new UriConverter(), URI.class);
     }
 
     /**
@@ -271,6 +293,27 @@ public class AutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             return Scope.getInstance(value.toString());
+        }
+    }
+
+    /** A converter that converts strings to uri. */
+    private static class UriConverter implements Converter {
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        @Override
+        public Object convert(Class type, Object value) {
+            final String url = value.toString();
+            URI result = null;
+
+            if (!CommonUtils.isBlank(url)) {
+                try {
+                    result = CommonUtils.getUriByFilename(url);
+                }
+                catch (CheckstyleException ex) {
+                    throw new ConversionException(ex);
+                }
+            }
+
+            return result;
         }
     }
 
