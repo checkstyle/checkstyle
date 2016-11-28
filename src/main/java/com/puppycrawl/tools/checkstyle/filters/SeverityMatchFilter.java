@@ -40,14 +40,13 @@ public class SeverityMatchFilter
     private boolean acceptOnMatch = true;
 
     /**
-     * Sets the severity level.  The string should be one of the names
-     * defined in the {@code SeverityLevel} class.
+     * Sets the severity level.
      *
      * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setSeverity(String severity) {
-        this.severity = SeverityLevel.getInstance(severity);
+    public final void setSeverity(SeverityLevel severity) {
+        this.severity = severity;
     }
 
     /**

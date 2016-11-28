@@ -51,7 +51,7 @@ public class SeverityMatchFilterTest {
 
     @Test
     public void testSeverity() {
-        filter.setSeverity("info");
+        filter.setSeverity(SeverityLevel.INFO);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
         assertTrue("no message", filter.accept(ev));
@@ -70,7 +70,7 @@ public class SeverityMatchFilterTest {
 
     @Test
     public void testAcceptOnMatch() {
-        filter.setSeverity("info");
+        filter.setSeverity(SeverityLevel.INFO);
         filter.setAcceptOnMatch(false);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO

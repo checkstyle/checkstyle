@@ -100,6 +100,7 @@ public class AutomaticBean
         cub.register(new ArrayConverter(short[].class, new ShortConverter()),
             short[].class);
         cub.register(new PatternConverter(), Pattern.class);
+        cub.register(new ServerityLevelConverter(), SeverityLevel.class);
         cub.register(new RelaxedStringArrayConverter(), String[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
@@ -251,6 +252,15 @@ public class AutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             return CommonUtils.createPattern(value.toString());
+        }
+    }
+
+    /** A converter that converts strings to severity level. */
+    private static class ServerityLevelConverter implements Converter {
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        @Override
+        public Object convert(Class type, Object value) {
+            return SeverityLevel.getInstance(value.toString());
         }
     }
 
