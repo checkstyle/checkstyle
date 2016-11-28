@@ -101,6 +101,7 @@ public class AutomaticBean
             short[].class);
         cub.register(new PatternConverter(), Pattern.class);
         cub.register(new ServerityLevelConverter(), SeverityLevel.class);
+        cub.register(new ScopeConverter(), Scope.class);
         cub.register(new RelaxedStringArrayConverter(), String[].class);
 
         // BigDecimal, BigInteger, Class, Date, String, Time, TimeStamp
@@ -261,6 +262,15 @@ public class AutomaticBean
         @Override
         public Object convert(Class type, Object value) {
             return SeverityLevel.getInstance(value.toString());
+        }
+    }
+
+    /** A converter that converts strings to scope. */
+    private static class ScopeConverter implements Converter {
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        @Override
+        public Object convert(Class type, Object value) {
+            return Scope.getInstance(value.toString());
         }
     }
 

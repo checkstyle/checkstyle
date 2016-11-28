@@ -1183,13 +1183,13 @@ public boolean equals(Object o) {
           <tr>
             <td>scope</td>
             <td>Visibility scope of methods where parameters are checked.</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>anoninner</code></td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>Visibility scope of methods where parameters are not checked.</td>
-            <td><a href="property_types.html#scope">scope</a></td>
+            <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
           </tr>
         </table>

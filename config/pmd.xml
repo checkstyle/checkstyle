@@ -287,6 +287,13 @@
   </rule>
 
   <rule ref="rulesets/java/strings.xml"/>
+  <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
+    <properties>
+      <!-- Annotations like '@SuppressWarnings' don't need to be checked, it is better to keep their strings
+           connected to the annotation instead of separating. -->
+      <property name="skipAnnotations" value="true"/>
+    </properties>
+  </rule>
   <rule ref="rulesets/java/sunsecure.xml/MethodReturnsInternalArray">
     <properties>
       <!--It's not important when array is empty-->
