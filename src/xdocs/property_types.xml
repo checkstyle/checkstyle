@@ -108,6 +108,16 @@
       </p>
     </section>
 
+    <section name="uri">
+      <p>
+        This property represents a URI. The string representation is parsed using a custom
+        routine to analyze what type of URI the string is.
+        It can be a URL, regular file, or a resource path. It will try loading the path as
+        a URL first, then as a file that must exist, and then finally as a resource on the
+        classpath.
+      </p>
+    </section>
+
     <section name="parenPad">
       <p>
         This property represents the policy for padding with white space. The

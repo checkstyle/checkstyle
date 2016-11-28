@@ -116,8 +116,9 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             assertTrue(ex.getMessage()
                     .startsWith("cannot initialize module"
                             + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                            + " - Unable to find: "));
-            assertTrue(ex.getMessage().endsWith("nonExisting.file"));
+                            + " - illegal value "));
+            assertTrue(ex.getCause().getCause().getCause().getMessage()
+                    .startsWith("Unable to find: "));
         }
     }
 
@@ -230,7 +231,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
                 anyObject());
 
-        check.setHeaderFile(getPath("InputRegexpHeader1.java"));
+        check.setHeaderFile(CommonUtils.getUriByFilename(getPath("InputRegexpHeader1.java")));
 
         final Method loadHeaderFile = AbstractHeaderCheck.class.getDeclaredMethod("loadHeaderFile");
         loadHeaderFile.setAccessible(true);
@@ -240,8 +241,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof CheckstyleException);
-            assertEquals("unable to load header file "
-                    + getPath("InputRegexpHeader1.java"), ex.getCause().getMessage());
+            assertTrue(ex.getCause().getMessage().startsWith("unable to load header file "));
         }
     }
 

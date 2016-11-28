@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Field;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -608,6 +609,9 @@ public class XDocsPagesTest {
                 result = "String Set";
             }
         }
+        else if (clss == URI.class) {
+            result = "URI";
+        }
         else if (clss == Pattern.class) {
             result = "Regular Expression";
         }
@@ -659,6 +663,11 @@ public class XDocsPagesTest {
                         .replace(".0", "");
                 if (result.isEmpty()) {
                     result = "{}";
+                }
+            }
+            else if (clss == URI.class) {
+                if (value != null) {
+                    result = '"' + value.toString() + '"';
                 }
             }
             else if (clss == Pattern.class) {
