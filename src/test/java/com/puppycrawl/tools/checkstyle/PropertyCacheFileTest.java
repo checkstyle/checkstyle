@@ -125,6 +125,12 @@ public class PropertyCacheFileTest {
         assertFalse(cache.isInCache("myFile", 1));
     }
 
+    /**
+     * This noInspection is required to suppress
+     * "Unchecked generics array creation for varargs parameter" during mock
+     * @noinspection unchecked
+     * @throws IOException when smth wrong with file creation or cache.load
+     */
     @Test
     public void testNonExistingResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
