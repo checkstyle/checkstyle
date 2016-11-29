@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -41,6 +40,7 @@ import java.util.Set;
 
 import javax.xml.bind.DatatypeConverter;
 
+import com.google.common.io.ByteStreams;
 import com.google.common.io.Closeables;
 import com.google.common.io.Flushables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -69,9 +69,6 @@ final class PropertyCacheFile {
      * valid file name.
      */
     public static final String CONFIG_HASH_KEY = "configuration*?";
-
-    /** Size of buffer which is used to read external configuration resources. */
-    private static final int BUFFER_SIZE = 1024;
 
     /** The details on files. **/
     private final Properties details = new Properties();
@@ -289,27 +286,16 @@ final class PropertyCacheFile {
      * @throws CheckstyleException if error while loading occurs.
      */
     private static byte[] loadExternalResource(String location) throws CheckstyleException {
-        byte[] content = null;
+        final byte[] content;
         final URI uri = CommonUtils.getUriByFilename(location);
-        InputStream resourceReader = null;
+
         try {
-            resourceReader = new BufferedInputStream(uri.toURL().openStream());
-            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            final byte[] data = new byte[BUFFER_SIZE];
-            int bytesRead = resourceReader.read(data, 0, data.length);
-            while (bytesRead != -1) {
-                outputStream.write(data, 0, bytesRead);
-                bytesRead = resourceReader.read(data, 0, data.length);
-            }
-            outputStream.flush();
-            content = outputStream.toByteArray();
+            content = ByteStreams.toByteArray(new BufferedInputStream(uri.toURL().openStream()));
         }
         catch (IOException ex) {
             throw new CheckstyleException("Unable to load external resource file " + location, ex);
         }
-        finally {
-            Closeables.closeQuietly(resourceReader);
-        }
+
         return content;
     }
 

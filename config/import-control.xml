@@ -34,6 +34,7 @@
   <allow class="com.google.common.collect.MapDifference" local-only="true"/>
   <allow class="com.google.common.collect.Maps" local-only="true"/>
   <allow class="com.google.common.collect.Multimap" local-only="true"/>
+  <allow class="com.google.common.io.ByteStreams" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
   <allow pkg="org.apache.commons.cli" local-only="true"/>
 

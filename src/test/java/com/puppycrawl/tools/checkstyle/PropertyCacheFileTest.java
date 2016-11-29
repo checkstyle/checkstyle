@@ -24,9 +24,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -47,10 +49,11 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.google.common.io.ByteStreams;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ PropertyCacheFile.class, PropertyCacheFileTest.class })
+@PrepareForTest({ PropertyCacheFile.class, PropertyCacheFileTest.class, ByteStreams.class })
 public class PropertyCacheFileTest {
 
     @Rule
@@ -120,6 +123,41 @@ public class PropertyCacheFileTest {
 
         assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
         assertFalse(cache.isInCache("myFile", 1));
+    }
+
+    /**
+     * This SuppressWarning("unchecked") required to suppress
+     * "Unchecked generics array creation for varargs parameter" during mock
+     * @throws IOException when smth wrong with file creation or cache.load
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testNonExistingResource() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String filePath = temporaryFolder.newFile().getPath();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+
+        // create cache with one file
+        cache.load();
+        final String myFile = "myFile";
+        cache.put(myFile, 1);
+
+        final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
+        assertNotNull(hash);
+
+        mockStatic(ByteStreams.class);
+
+        when(ByteStreams.toByteArray(any(BufferedInputStream.class)))
+                .thenThrow(IOException.class);
+
+        // apply new external resource to clear cache
+        final Set<String> resources = new HashSet<>();
+        final String resource = "/com/puppycrawl/tools/checkstyle/java.header";
+        resources.add(resource);
+        cache.putExternalResources(resources);
+
+        assertFalse(cache.isInCache(myFile, 1));
+        assertFalse(cache.isInCache(resource, 1));
     }
 
     @Test
