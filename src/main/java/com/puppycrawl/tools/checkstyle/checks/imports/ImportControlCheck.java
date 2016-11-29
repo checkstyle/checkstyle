@@ -187,7 +187,9 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * configuration. It will cause the url to be loaded.
      * @param url the url of the file to load.
      * @throws ConversionException on error loading the file.
+     * @deprecated use {@link #setFile(String name)} to load URLs instead
      */
+    @Deprecated
     public void setUrl(final String url) {
         // Handle empty param
         if (!CommonUtils.isBlank(url)) {

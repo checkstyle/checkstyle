@@ -717,6 +717,8 @@ import android.*;
             <td>url</td>
             <td>
               URL of the file containing the import control configuration.
+              This property is deprecated. Please use the file property to load configurations
+              from URLs.
             </td>
             <td><a href="property_types.html#string">string</a></td>
             <td><code>null</code></td>
