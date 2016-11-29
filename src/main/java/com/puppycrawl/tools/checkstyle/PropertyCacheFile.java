@@ -286,7 +286,7 @@ final class PropertyCacheFile {
      * @throws CheckstyleException if error while loading occurs.
      */
     private static byte[] loadExternalResource(String location) throws CheckstyleException {
-        byte[] content = null;
+        byte[] content;
         final URI uri = CommonUtils.getUriByFilename(location);
 
         try {
