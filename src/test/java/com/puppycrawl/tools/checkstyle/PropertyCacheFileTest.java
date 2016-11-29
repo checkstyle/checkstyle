@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
@@ -126,11 +126,11 @@ public class PropertyCacheFileTest {
     }
 
     /**
-     * This noInspection is required to suppress
+     * This SuppressWarning("unchecked") required to suppress
      * "Unchecked generics array creation for varargs parameter" during mock
-     * @noinspection unchecked
      * @throws IOException when smth wrong with file creation or cache.load
      */
+    @SuppressWarnings("unchecked")
     @Test
     public void testNonExistingResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
