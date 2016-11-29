@@ -615,29 +615,6 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testCacheIoExceptionWhenReadingExternalResource() throws Exception {
-        final SuppressionFilter mock = PowerMockito.mock(SuppressionFilter.class);
-        final Set<String> mockResourceLocations = new HashSet<>(1);
-        mockResourceLocations.add("http://mock.sourceforge.net/suppressions_none.xml");
-        when(mock.getExternalResourceLocations()).thenReturn(mockResourceLocations);
-
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
-
-        final Checker checker = new Checker();
-        checker.addFilter(mock);
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-
-        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
-        // One more time to use cahce.
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
-    }
-
-    @Test
     public void testMultipleConfigs() throws Exception {
         final DefaultConfiguration headerCheckConfig =
             createCheckConfig(MockMissingExternalResourcesFileSetCheck.class);
