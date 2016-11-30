@@ -1470,5 +1470,30 @@
       </build>
     </profile>
 
+    <profile>
+      <id>pitest-checks-sizes</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.1.10</version>
+            <configuration>
+              <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.checks.sizes.*</param>
+              </targetClasses>
+              <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.checks.sizes.*</param>
+              </targetTests>
+              <mutationThreshold>88</mutationThreshold>
+              <timeoutFactor>10</timeoutFactor>
+              <timeoutConstant>50000</timeoutConstant>
+              <threads>4</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
   </profiles>
 </project>
