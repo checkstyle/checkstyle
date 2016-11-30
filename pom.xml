@@ -1471,7 +1471,7 @@
     </profile>
 
     <profile>
-      <id>pitest-size</id>
+      <id>pitest-checks-sizes</id>
       <build>
         <plugins>
           <plugin>
