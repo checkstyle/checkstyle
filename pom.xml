@@ -1488,7 +1488,6 @@
               <mutationThreshold>88</mutationThreshold>
               <timeoutFactor>10</timeoutFactor>
               <timeoutConstant>50000</timeoutConstant>
-              <failWhenNoMutations>false</failWhenNoMutations>
               <threads>4</threads>
             </configuration>
           </plugin>
