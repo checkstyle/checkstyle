@@ -95,13 +95,12 @@ matrix:
         - CMD2=" && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties "
         - CMD3=" && sed -i.'' 's/#checkstyle/checkstyle/' projects-for-travis.properties "
         - CMD4=" && sed -i.'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties "
-        - CMD5=" && sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
-        - CMD6=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD7="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD8="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
-        - CMD9=" && cd contribution/checkstyle-tester "
-        - CMD10=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10
+        - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD6="                  -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD7="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
+        - CMD8=" && cd contribution/checkstyle-tester "
+        - CMD9=" && groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
         - COVERAGE_CMD=""
     # NoExceptiontest - Guava (oraclejdk8)
     - jdk: oraclejdk8
@@ -110,13 +109,12 @@ matrix:
         - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester"
         - CMD2=" && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties"
         - CMD3=" && sed -i.'' 's/#guava/guava/' projects-for-travis.properties"
-        - CMD4=" && sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh"
-        - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true"
-        - CMD6="                   -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
-        - CMD8=" && cd contribution/checkstyle-tester "
-        - CMD9=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
+        - CMD4=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true"
+        - CMD5="                   -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD6="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
+        - CMD7=" && cd contribution/checkstyle-tester "
+        - CMD8=" && groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # NoExceptiontest - Guava with google_checks (oraclejdk8)
     - jdk: oraclejdk8
@@ -125,14 +123,13 @@ matrix:
         - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester"
         - CMD2=" && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties"
         - CMD3=" && sed -i.'' 's/#guava/guava/' projects-for-travis.properties"
-        - CMD4=" && sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh"
-        - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true"
-        - CMD6="                   -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
-        - CMD8=" && sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml"
-        - CMD9=" && cd contribution/checkstyle-tester "
-        - CMD10=" && ./launch.sh -Dcheckstyle.config.location=../../src/main/resources/google_checks.xml
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10
+        - CMD4=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true"
+        - CMD5="                   -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD6="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true"
+        - CMD7=" && sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml"
+        - CMD8=" && cd contribution/checkstyle-tester "
+        - CMD9=" && groovy ./launch.groovy projects-for-travis.properties ../../src/main/resources/google_checks.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
         - COVERAGE_CMD=""
     # NoExceptionTest - Hibernate ORM (oraclejdk8)
     - jdk: oraclejdk8
@@ -141,13 +138,12 @@ matrix:
         - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester "
         - CMD2="&& sed -i.'' 's/^guava/#guava/' projects-for-travis.properties "
         - CMD3="&& sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties "
-        - CMD4="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
-        - CMD5="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD6="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
-        - CMD8="&& cd contribution/checkstyle-tester "
-        - CMD9="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
+        - CMD4="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD5="                  -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD6="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
+        - CMD7="&& cd contribution/checkstyle-tester "
+        - CMD8="&& groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # NoExceptionTest - FindBugs (oraclejdk8)
     - jdk: oraclejdk8
@@ -156,13 +152,12 @@ matrix:
         - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester "
         - CMD2="&& sed -i.'' 's/^guava/#guava/' projects-for-travis.properties "
         - CMD3="&& sed -i.'' 's/#findbugs/findbugs/' projects-for-travis.properties "
-        - CMD4="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
-        - CMD5="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD6="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
-        - CMD8="&& cd contribution/checkstyle-tester "
-        - CMD9="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
+        - CMD4="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD5="                  -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD6="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
+        - CMD7="&& cd contribution/checkstyle-tester "
+        - CMD8="&& groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # NoExceptionTest - Pmd,elasticsearch,lombok-ast (oraclejdk8)
     - jdk: oraclejdk8
@@ -173,13 +168,12 @@ matrix:
         - CMD3="&& sed -i.'' 's/#pmd/pmd/' projects-for-travis.properties "
         - CMD4="&& sed -i.'' 's/#elasticsearch/elasticsearch/' projects-for-travis.properties "
         - CMD5="&& sed -i.'' 's/#lombok-ast/lombok-ast/' projects-for-travis.properties "
-        - CMD6="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
-        - CMD7="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD8="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD9="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
-        - CMD10="&& cd contribution/checkstyle-tester "
-        - CMD11="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11
+        - CMD6="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD7="                  -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD8="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
+        - CMD9="&& cd contribution/checkstyle-tester "
+        - CMD10="&& groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10
         - COVERAGE_CMD=""
     # NoExceptionTest - RxJava,java-design-patterns,MaterialDesignLibrary,apache-ant,apache-jsecurity,android-launcher (oraclejdk8)
     - jdk: oraclejdk8
@@ -193,13 +187,12 @@ matrix:
         - CMD06="&& sed -i.'' 's/#apache-ant/apache-ant/' projects-for-travis.properties "
         - CMD07="&& sed -i.'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties "
         - CMD08="&& sed -i.'' 's/#android-launcher/android-launcher/' projects-for-travis.properties "
-        - CMD09="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
-        - CMD10="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD11="                  -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD12="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
-        - CMD13="&& cd contribution/checkstyle-tester "
-        - CMD14="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD01$CMD02$CMD03$CMD04$CMD05$CMD06$CMD07$CMD08$CMD09$CMD10$CMD11$CMD12$CMD13$CMD14
+        - CMD09="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD10="                  -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD11="                  -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
+        - CMD12="&& cd contribution/checkstyle-tester "
+        - CMD13="&& groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD01$CMD02$CMD03$CMD04$CMD05$CMD06$CMD07$CMD08$CMD09$CMD10$CMD11$CMD12$CMD13
         - COVERAGE_CMD=""
     # NoExceptionTest - Spring (oraclejdk8)
     - jdk: oraclejdk8
@@ -208,13 +201,12 @@ matrix:
         - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester"
         - CMD2=" && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties "
         - CMD3=" && sed -i.'' 's/#spring-framework/spring-framework/' projects-for-travis.properties "
-        - CMD4=" && sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
-        - CMD5=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD6="                   -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
-        - CMD8=" && cd contribution/checkstyle-tester "
-        - CMD9=" && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
+        - CMD4=" && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD5="                   -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD6="                   -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
+        - CMD7=" && cd contribution/checkstyle-tester "
+        - CMD8=" && groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
     # NoExceptionTest - Hbase (oraclejdk8)
     - jdk: oraclejdk8
@@ -223,14 +215,14 @@ matrix:
         - CMD1="git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester "
         - CMD2="&& sed -i.'' 's/^guava/#guava/' projects-for-travis.properties "
         - CMD3="&& sed -i.'' 's/#Hbase/Hbase/' projects-for-travis.properties "
-        - CMD4="&& sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh "
-        - CMD5="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
-        - CMD6="                 -Dpmd.skip=true -Dfindbugs.skip=true "
-        - CMD7="                 -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
-        - CMD8="&& cd contribution/checkstyle-tester "
-        - CMD9="&& ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
-        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9
+        - CMD4="&& cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true "
+        - CMD5="                 -Dpmd.skip=true -Dfindbugs.skip=true "
+        - CMD6="                 -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true"
+        - CMD7="&& cd contribution/checkstyle-tester "
+        - CMD8="&& groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml"
+        - CMD=$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8
         - COVERAGE_CMD=""
+
     # release dry run (oraclejdk8)
     - jdk: oraclejdk8
       env:
@@ -330,7 +322,6 @@ matrix:
         - CMD=$CMD_$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD11$CMD12$CMD13$CMD14$CMD15
         - CMD=$CMD$CMD16$CMD17$CMD18$CMD19$CMD20$CMD21$CMD22$CMD23$CMD24
         - COVERAGE_CMD=""
-
 
 script: eval $CMD
 
