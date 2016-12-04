@@ -7,6 +7,18 @@ build:
         export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
         mvn -version
 
+  - script:
+      name: install groovy
+      code: |-
+         if [ ! -d ${WERCKER_CACHE_DIR}/groovy ];
+         then wget -O ${WERCKER_CACHE_DIR}/groovy.zip https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip;
+         unzip ${WERCKER_CACHE_DIR}/groovy.zip -d ${WERCKER_CACHE_DIR};
+         mv ${WERCKER_CACHE_DIR}/groovy-2.4.7 ${WERCKER_CACHE_DIR}/groovy
+         fi
+         export GROOVY_HOME=${WERCKER_CACHE_DIR}/groovy
+         PATH=$GROOVY_HOME/bin:$PATH
+         groovy -v
+
   # unit tests (oraclejdk8)
   - script:
       name: tests
@@ -57,9 +69,8 @@ build:
       code: >
         rm -rf contribution
         && git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
-        && sed -i.'' 's/projects-to-test-on.properties/projects-for-wercker.properties/' launch.sh
         && cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true
         -Dpmd.skip=true -Dfindbugs.skip=true
         -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true
         && cd contribution/checkstyle-tester
-        && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml
+        && groovy ./launch.groovy projects-for-wercker.properties checks-nonjavadoc-error.xml
