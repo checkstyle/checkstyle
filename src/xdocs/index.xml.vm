@@ -272,10 +272,10 @@
                   <td/>
               </tr>
               <tr>
-                  <td><a href="https://sonarqube.com/">SonarQube</a></td>
+                  <td><a href="https://sonarqube.com/about">SonarQube</a></td>
                   <td>Freddy Mallet (initial author)</td>
-                  <td><a href="https://sonarqube.com/">SonarQube Home Page</a></td>
-                  <td><a href="https://sonarqube.com/">Demo site</a></td>
+                  <td><a href="https://sonarqube.com/about">SonarQube Home Page</a></td>
+                  <td><a href="https://sonarqube.com/projects">Demo site</a></td>
               </tr>
               <tr>
                   <td><a href="http://www.jedit.org/">jEdit</a></td>
