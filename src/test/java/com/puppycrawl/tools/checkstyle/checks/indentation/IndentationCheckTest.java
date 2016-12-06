@@ -1568,7 +1568,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("InputSynchronizedMethod.java"), expected);
+        verifyWarns(checkConfig, getPath("InputSynchronizedMethod.java"),
+                expected);
     }
 
     @Test
@@ -1590,6 +1591,20 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "26: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 2),
         };
         verifyWarns(checkConfig, getPath("InputAnonymousClassInMethod.java"), expected);
+    }
+
+    @Test
+    public void testAnonymousClassInMethodWithCurlyOnNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("throwsIndent", "4");
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputAnonymousClassInMethodCurlyOnNewLine.java"), expected);
     }
 
     @Test
