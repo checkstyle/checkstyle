@@ -49,6 +49,12 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public abstract class AbstractLoader
     extends DefaultHandler {
+    /** Feature that enables loading external DTD when loading XML files. */
+    private static final String LOAD_EXTERNAL_DTD =
+        "http://apache.org/xml/features/nonvalidating/load-external-dtd";
+    /** Feature that enables including external general entities in XML files. */
+    private static final String EXTERNAL_GENERAL_ENTITIES =
+        "http://xml.org/sax/features/external-general-entities";
     /** Maps public id to resolve to resource name for the DTD. */
     private final Map<String, String> publicIdToResourceNameMap;
     /** Parser to read XML files. **/
@@ -77,6 +83,8 @@ public abstract class AbstractLoader
             throws SAXException, ParserConfigurationException {
         this.publicIdToResourceNameMap = new HashMap<>(publicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
+        factory.setFeature(LOAD_EXTERNAL_DTD, true);
+        factory.setFeature(EXTERNAL_GENERAL_ENTITIES, true);
         factory.setValidating(true);
         factory.setNamespaceAware(true);
         parser = factory.newSAXParser().getXMLReader();
