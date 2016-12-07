@@ -239,4 +239,13 @@ public class FinalLocalVariableCheckTest
         verify(checkConfig, getPath("InputFinalLocalVariableMultipleAndNestedConditions.java"),
             expected);
     }
+
+    @Test
+    public void testMultiTypeCatch() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
+        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputFinalLocalVariableMultiCatch.java"),
+                expected);
+    }
 }
