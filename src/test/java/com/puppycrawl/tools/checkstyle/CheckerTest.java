@@ -752,6 +752,32 @@ public class CheckerTest extends BaseCheckTestSupport {
         }
     }
 
+    @Test
+    public void testHaltOnExceptionOff() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(CheckWhichThrowsError.class);
+
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyleConfig");
+        checkerConfig.addChild(treeWalkerConfig);
+
+        checkerConfig.addAttribute("haltOnException", "false");
+
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        final String filePath = getPath("InputMain.java");
+        final String[] expected = {
+            "0: Got an exception - java.lang.IndexOutOfBoundsException: test",
+        };
+
+        verify(checker, filePath, filePath, expected);
+    }
+
     private Checker createMockCheckerWithCacheForModule(
         Class<? extends ExternalResourceHolder> mockClass) throws IOException, CheckstyleException {
 
@@ -955,6 +981,29 @@ public class CheckerTest extends BaseCheckTestSupport {
                         cacheChildCount, actualChildCount);
                 log(ast, msg);
             }
+        }
+    }
+
+    private static class CheckWhichThrowsError extends AbstractCheck {
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[] {TokenTypes.CLASS_DEF};
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[] {TokenTypes.CLASS_DEF};
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[] {TokenTypes.CLASS_DEF};
+        }
+
+        @Override
+        public void visitToken(DetailAST ast) {
+            throw new IndexOutOfBoundsException("test");
         }
     }
 }

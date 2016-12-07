@@ -330,6 +330,13 @@
           <td><a href="property_types.html#string">String</a> array</td>
           <td><code>null</code></td>
         </tr>
+        <tr>
+          <td>haltOnException</td>
+          <td>whether to stop execution of Checkstyle if a single file produces any kind of
+          exception during verification</td>
+          <td><a href="property_types.html#boolean">Boolean</a></td>
+          <td><code>true</code></td>
+        </tr>
       </table>
 
       <p>
@@ -371,6 +378,18 @@
       <source>
 &lt;module name=&quot;Checker&quot;&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, properties&quot;/&gt;
+    ...
+&lt;/module&gt;
+      </source>
+
+      <p>
+        To configure a <code>Checker</code> so that it doesn't stop execution on an
+        <code>Exception</code> and instead prints it as a violation:
+      </p>
+
+      <source>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;property name=&quot;haltOnException&quot; value=&quot;false&quot;/&gt;
     ...
 &lt;/module&gt;
       </source>
