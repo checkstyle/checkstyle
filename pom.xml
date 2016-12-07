@@ -1426,8 +1426,8 @@
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePModel</pattern>
-                    <branchRate>41</branchRate>
-                    <lineRate>44</lineRate>
+                    <branchRate>97</branchRate>
+                    <lineRate>100</lineRate>
                   </regex>
                 </regexes>
               </check>

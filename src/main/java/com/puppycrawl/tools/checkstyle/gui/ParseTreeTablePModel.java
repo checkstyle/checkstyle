@@ -242,7 +242,7 @@ public class ParseTreeTablePModel {
      * @return true if editable
      */
     public boolean isCellEditable(int column) {
-        return getColumnClass(column).equals(ParseTreeTablePModel.class);
+        return false;
     }
 
     /**

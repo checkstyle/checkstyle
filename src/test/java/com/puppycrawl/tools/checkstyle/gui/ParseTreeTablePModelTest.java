@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class ParseTreeTablePModelTest {
 
@@ -43,7 +44,7 @@ public class ParseTreeTablePModelTest {
         return "src/test/resources/com/puppycrawl/tools/checkstyle/gui/" + filename;
     }
 
-    public static DetailAST parseFile(File file) throws Exception {
+    private static DetailAST parseFile(File file) throws Exception {
         final FileContents contents = new FileContents(
                 new FileText(file.getAbsoluteFile(), System.getProperty("file.encoding", "UTF-8")));
         return TreeWalker.parseWithComments(contents);
@@ -163,8 +164,136 @@ public class ParseTreeTablePModelTest {
         Assert.assertTrue(javadoc instanceof DetailNode);
         Assert.assertEquals(JavadocTokenTypes.JAVADOC, ((DetailNode) javadoc).getType());
         final Object javadocChild = parseTree.getChild(javadoc, 2);
-        Assert.assertTrue(javadoc instanceof DetailNode);
+        Assert.assertTrue(javadocChild instanceof DetailNode);
         Assert.assertEquals(JavadocTokenTypes.TEXT, ((DetailNode) javadocChild).getType());
+    }
+
+    @Test
+    public void testGetIndexOfChild() {
+        DetailAST ithChild = tree.getFirstChild();
+        Assert.assertNotNull(ithChild);
+        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        int index = 0;
+        while (ithChild != null) {
+            Assert.assertEquals(index, parseTree.getIndexOfChild(tree, ithChild));
+            ithChild = ithChild.getNextSibling();
+            index++;
+        }
+
+        Assert.assertEquals(-1, parseTree.getIndexOfChild(tree, new DetailAST()));
+    }
+
+    /**
+     * The path to class name in InputJavadocAttributesAndMethods.java
+     * CLASS_DEF
+     *  - MODIFIERS
+     *  - Comment node
+     *  - LITERAL_CLASS
+     *  - IDENT -> this is the node that holds the class name
+     *  Line number 4 - first three lines are taken by javadoc
+     *  Column 6 - first five columns taken by 'class '
+     */
+    @Test
+    public void testGetValueAt() {
+
+        final DetailAST node = tree.getFirstChild()
+            .getNextSibling()
+            .getNextSibling()
+            .getNextSibling();
+
+        Assert.assertNotNull("Expected a non-null identifier node here", node);
+        Assert.assertEquals("Expected identifier token",
+            TokenTypes.IDENT, node.getType());
+
+        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final Object treeModel = parseTree.getValueAt(node, 0);
+        final String type = (String) parseTree.getValueAt(node, 1);
+        final int line = (int) parseTree.getValueAt(node, 2);
+        final int column = (int) parseTree.getValueAt(node, 3);
+        final String text = (String) parseTree.getValueAt(node, 4);
+
+        Assert.assertEquals("Node should be an Identifier", "IDENT", type);
+        Assert.assertEquals("Class identifier should start on line 4", 4, line);
+        Assert.assertEquals("Class name should start from column 6", 6, column);
+        Assert.assertEquals("Wrong class name", "InputJavadocAttributesAndMethods", text);
+        Assert.assertNull("Root node should have null value", treeModel);
+
+        try {
+            parseTree.getValueAt(node, parseTree.getColumnCount());
+            Assert.fail("IllegalStateException expected");
+        }
+        catch (IllegalStateException ex) {
+            Assert.assertEquals("Unknown column", ex.getMessage());
+        }
+
+    }
+
+    @Test
+    public void testGetValueAtDetailNode() {
+        final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
+        Assert.assertNotNull("Comment node cannot be null", commentContentNode);
+        final int nodeType = commentContentNode.getType();
+        Assert.assertTrue("Comment node should be a comment type",
+            TokenUtils.isCommentType(nodeType));
+        Assert.assertEquals("This should be a javadoc comment",
+            "/*", commentContentNode.getParent().getText());
+        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
+        final Object child = parseTree.getChild(commentContentNode, 0);
+
+        Assert.assertFalse(parseTree.isLeaf(child));
+        Assert.assertTrue(parseTree.isLeaf(tree.getFirstChild()));
+
+        final Object treeModel = parseTree.getValueAt(child, 0);
+        final String type = (String) parseTree.getValueAt(child, 1);
+        final int line = (int) parseTree.getValueAt(child, 2);
+        final int column = (int) parseTree.getValueAt(child, 3);
+        final String text = (String) parseTree.getValueAt(child, 4);
+        final String expectedText = String.join("", System.lineSeparator(),
+            "* class javadoc", System.lineSeparator(), "<EOF>");
+
+        Assert.assertEquals(null, treeModel);
+        Assert.assertEquals("JAVADOC", type);
+        Assert.assertEquals(1, line);
+        Assert.assertEquals(0, column);
+        Assert.assertEquals(expectedText, text);
+
+        try {
+            parseTree.getValueAt(child, parseTree.getColumnCount());
+            Assert.fail("IllegalStateException expected");
+        }
+        catch (IllegalStateException ex) {
+            Assert.assertEquals("Unknown column", ex.getMessage());
+        }
+
+    }
+
+    @Test
+    public void testColumnMethods() {
+        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        Assert.assertEquals(ParseTreeTableModel.class, parseTree.getColumnClass(0));
+        Assert.assertEquals(String.class, parseTree.getColumnClass(1));
+        Assert.assertEquals(Integer.class, parseTree.getColumnClass(2));
+        Assert.assertEquals(Integer.class, parseTree.getColumnClass(3));
+        Assert.assertEquals(String.class, parseTree.getColumnClass(4));
+
+        try {
+            parseTree.getColumnClass(parseTree.getColumnCount());
+            Assert.fail("IllegalStateException expected");
+        }
+        catch (IllegalStateException ex) {
+            Assert.assertEquals("Unknown column", ex.getMessage());
+        }
+
+        Assert.assertFalse(parseTree.isCellEditable(1));
+
+        Assert.assertEquals(5, parseTree.getColumnCount());
+        Assert.assertEquals("Tree", parseTree.getColumnName(0));
+        Assert.assertEquals("Type", parseTree.getColumnName(1));
+        Assert.assertEquals("Line", parseTree.getColumnName(2));
+        Assert.assertEquals("Column", parseTree.getColumnName(3));
+        Assert.assertEquals("Text", parseTree.getColumnName(4));
+
     }
 
 }
