@@ -195,7 +195,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 if (!isInLambda(ast)
                         && !ast.branchContains(TokenTypes.FINAL)
                         && !isInAbstractOrNativeMethod(ast)
-                        && !ScopeUtils.isInInterfaceBlock(ast)) {
+                        && !ScopeUtils.isInInterfaceBlock(ast)
+                        && !isMultipleTypeCatch(ast)) {
                     insertParameter(ast);
                 }
                 break;
@@ -466,6 +467,16 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             }
         }
+    }
+
+    /**
+     * Check if given parameter definition is a multiple type catch.
+     * @param parameterDefAst parameter definition
+     * @return true if it is a multiple type catch, false otherwise
+     */
+    private boolean isMultipleTypeCatch(DetailAST parameterDefAst) {
+        final DetailAST typeAst = parameterDefAst.findFirstToken(TokenTypes.TYPE);
+        return typeAst.getFirstChild().getType() == TokenTypes.BOR;
     }
 
     /**
