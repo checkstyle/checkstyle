@@ -1424,11 +1424,6 @@
                     <branchRate>79</branchRate>
                     <lineRate>97</lineRate>
                   </regex>
-                  <regex>
-                    <pattern>com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePModel</pattern>
-                    <branchRate>97</branchRate>
-                    <lineRate>100</lineRate>
-                  </regex>
                 </regexes>
               </check>
               <instrumentation>
