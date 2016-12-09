@@ -1987,6 +1987,8 @@
                 <option value="ProhibitedExceptionCaught" />
                 <!-- No way to split apart huge if/else branches in test. -->
                 <option value="IfStatementWithTooManyBranches" />
+                <!-- we have to catch Exception in Checker and rethrow it -->
+                <option value="ProhibitedExceptionThrown" />
             </list>
         </option>
     </inspection_tool>
