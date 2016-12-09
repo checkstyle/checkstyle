@@ -141,6 +141,10 @@ public class ParseTreeTablePModelTest {
         final Object child = parseTree.getChild(commentContentNode, 0);
         Assert.assertTrue(child instanceof DetailNode);
         Assert.assertEquals(JavadocTokenTypes.JAVADOC, ((DetailNode) child).getType());
+        // get Child one more time to test cache of PModel
+        final Object childSame = parseTree.getChild(commentContentNode, 0);
+        Assert.assertTrue(childSame instanceof DetailNode);
+        Assert.assertEquals(JavadocTokenTypes.JAVADOC, ((DetailNode) childSame).getType());
     }
 
     @Test
