@@ -304,6 +304,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @param file a file to process.
      * @return a sorted set of messages to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
+     * @noinspection ProhibitedExceptionThrown
      */
     private SortedSet<LocalizedMessage> processFile(File file) throws CheckstyleException {
         final SortedSet<LocalizedMessage> fileMessages = new TreeSet<>();
@@ -605,7 +606,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     }
 
     /**
-     * Sets the field {@link haltOnException}.
+     * Sets the field haltOnException.
      * @param haltOnException the new value.
      */
     public void setHaltOnException(boolean haltOnException) {
