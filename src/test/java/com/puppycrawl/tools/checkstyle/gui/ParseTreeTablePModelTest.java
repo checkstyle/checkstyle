@@ -232,7 +232,6 @@ public class ParseTreeTablePModelTest {
 
     }
 
-    /** @noinspection TooBroadScope */
     @Test
     public void testGetValueAtDetailNode() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();

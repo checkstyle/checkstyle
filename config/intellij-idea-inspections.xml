@@ -1987,8 +1987,6 @@
                 <option value="ProhibitedExceptionCaught" />
                 <!-- No way to split apart huge if/else branches in test. -->
                 <option value="IfStatementWithTooManyBranches" />
-                <!-- TooBroadScope does not honnor blocks of similar code, frequent in tests for asserts, ....  -->
-                <option value="TooBroadScope" />
             </list>
         </option>
     </inspection_tool>
