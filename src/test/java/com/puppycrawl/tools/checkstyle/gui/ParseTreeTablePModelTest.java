@@ -232,6 +232,7 @@ public class ParseTreeTablePModelTest {
 
     }
 
+    /** @noinspection TooBroadScope */
     @Test
     public void testGetValueAtDetailNode() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
@@ -254,9 +255,9 @@ public class ParseTreeTablePModelTest {
         final int column = (int) parseTree.getValueAt(child, 3);
         final String text = (String) parseTree.getValueAt(child, 4);
         final String expectedText = String.join("", System.lineSeparator(),
-            "* class javadoc", System.lineSeparator(), "<EOF>");
+                "* class javadoc", System.lineSeparator(), "<EOF>");
 
-        Assert.assertEquals(null, treeModel);
+        Assert.assertNull(treeModel);
         Assert.assertEquals("JAVADOC", type);
         Assert.assertEquals(1, line);
         Assert.assertEquals(0, column);
@@ -275,11 +276,11 @@ public class ParseTreeTablePModelTest {
     @Test
     public void testColumnMethods() {
         final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
-        Assert.assertEquals(ParseTreeTableModel.class, parseTree.getColumnClass(0));
-        Assert.assertEquals(String.class, parseTree.getColumnClass(1));
-        Assert.assertEquals(Integer.class, parseTree.getColumnClass(2));
-        Assert.assertEquals(Integer.class, parseTree.getColumnClass(3));
-        Assert.assertEquals(String.class, parseTree.getColumnClass(4));
+        Assert.assertSame(ParseTreeTableModel.class, parseTree.getColumnClass(0));
+        Assert.assertSame(String.class, parseTree.getColumnClass(1));
+        Assert.assertSame(Integer.class, parseTree.getColumnClass(2));
+        Assert.assertSame(Integer.class, parseTree.getColumnClass(3));
+        Assert.assertSame(String.class, parseTree.getColumnClass(4));
 
         try {
             parseTree.getColumnClass(parseTree.getColumnCount());
