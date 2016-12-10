@@ -1,11 +1,11 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 case "$GOAL" in
 
-verify)
-  mvn verify
+releasenotes-gen)
+  .ci/travis/xtr_releasenotes-gen.sh
   ;;
 
 all-sevntu-checks)
