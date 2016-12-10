@@ -188,11 +188,6 @@
           <property name="classNameFormat" value=".*Exception$"/>
           <property name="ignoredClassNameFormat" value="UnsupportedOperationException"/>
         </module>
-        <!--
-        IndentationCheckTest.java:[110,28] (extension) ReturnCountExtended: Return count for 'isCommentConsistent' method is 3 (max allowed is 1).
-        AnnotationUtility.java:[139,29] (extension) ReturnCountExtended: Return count for 'getAnnotation' method is 2 (max allowed is 1).
-        ClassResolver.java:[73,21] (extension) ReturnCountExtended: Return count for 'resolve' method is 5 (max allowed is 1).
         <module name="ReturnCountExtendedCheck" />
-        -->
     </module>
 </module>
