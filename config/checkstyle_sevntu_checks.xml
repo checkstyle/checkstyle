@@ -179,7 +179,11 @@
         <module name="UniformEnumConstantNameCheck" />
         <module name="ForbidAnnotationElementValueCheck" />
         <module name="HideUtilityClassConstructorCheck" />
-        <module name="AvoidModifiersForTypesCheck" />
+        <module name="AvoidModifiersForTypesCheck">
+          <property name="forbiddenClassesRegexpProtected" value="Logger"/>
+          <property name="forbiddenClassesRegexpPublic" value="Logger"/>
+          <property name="forbiddenClassesRegexpPackagePrivate" value="Logger"/>
+        </module>
         <!-- disabled due to NPE, will be fixed in next sevntu release
         <module name="ConstructorWithoutParamsCheck" />
         -->
