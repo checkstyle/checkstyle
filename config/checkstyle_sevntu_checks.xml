@@ -178,5 +178,16 @@
         <module name="NumericLiteralNeedsUnderscoreCheck"/>
         <module name="UniformEnumConstantNameCheck" />
         <module name="ForbidAnnotationElementValueCheck" />
+        <module name="HideUtilityClassConstructorCheck" />
+        <module name="AvoidModifiersForTypesCheck" />
+        <!-- disabled due to NPE, will be fixed in next sevntu release
+        <module name="ConstructorWithoutParamsCheck" />
+        -->
+        <!--
+        IndentationCheckTest.java:[110,28] (extension) ReturnCountExtended: Return count for 'isCommentConsistent' method is 3 (max allowed is 1).
+        AnnotationUtility.java:[139,29] (extension) ReturnCountExtended: Return count for 'getAnnotation' method is 2 (max allowed is 1).
+        ClassResolver.java:[73,21] (extension) ReturnCountExtended: Return count for 'resolve' method is 5 (max allowed is 1).
+        <module name="ReturnCountExtendedCheck" />
+        -->
     </module>
 </module>
