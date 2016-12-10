@@ -186,6 +186,7 @@
     <properties>
       <!-- default is 3 but we try to use single point of exit from method and that require extra IFs -->
       <property name="problemDepth" value="4"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='ClassResolver']//MethodDeclarator[@Image='resolve']"/>
     </properties>
   </rule>
 

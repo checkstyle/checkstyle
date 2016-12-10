@@ -110,13 +110,13 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     private static boolean isCommentConsistent(IndentComment comment) {
         final String[] levels = comment.getExpectedWarning().split(", ");
         final int indent = comment.getIndent() + comment.getIndentOffset();
-
+        final boolean result;
         if (levels.length > 1) {
             // multi
             final boolean containsActualLevel =
                             Arrays.asList(levels).contains(String.valueOf(indent));
 
-            return containsActualLevel != comment.isWarning();
+            result = containsActualLevel != comment.isWarning();
         }
         else {
             final int expectedWarning = Integer.parseInt(comment.getExpectedWarning());
@@ -124,14 +124,15 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             if (comment.isExpectedNonStrict()) {
                 // non-strict
                 final boolean test = indent >= expectedWarning;
-                return test != comment.isWarning();
+                result = test != comment.isWarning();
             }
             else {
                 // single
                 final boolean test = expectedWarning == indent;
-                return test != comment.isWarning();
+                result = test != comment.isWarning();
             }
         }
+        return result;
     }
 
     private static int getLineStart(String line, final int tabWidth) {

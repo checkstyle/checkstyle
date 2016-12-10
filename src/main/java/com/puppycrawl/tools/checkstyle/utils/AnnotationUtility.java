@@ -152,7 +152,7 @@ public final class AnnotationUtility {
         }
 
         final DetailAST holder = getAnnotationHolder(ast);
-
+        DetailAST result = null;
         for (DetailAST child = holder.getFirstChild();
             child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.ANNOTATION) {
@@ -160,12 +160,13 @@ public final class AnnotationUtility {
                 final String name =
                     FullIdent.createFullIdent(firstChild.getNextSibling()).getText();
                 if (annotation.equals(name)) {
-                    return child;
+                    result = child;
+                    break;
                 }
             }
         }
 
-        return null;
+        return result;
     }
 
 }

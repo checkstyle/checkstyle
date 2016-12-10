@@ -69,16 +69,61 @@ public class ClassResolver {
      * @return the resolved class
      * @throws ClassNotFoundException if unable to resolve the class
      */
-    // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
+    // -@cs[ForbidWildcardAsReturnType] This method can return any type, so no way to avoid wildcard
     public Class<?> resolve(String name, String currentClass)
             throws ClassNotFoundException {
         // See if the class is full qualified
         Class<?> clazz = resolveQualifiedName(name);
-        if (clazz != null) {
-            return clazz;
-        }
+        if (clazz == null) {
+            // try matching explicit imports
+            clazz = resolveMatchingExplicitImport(name);
 
-        // try matching explicit imports
+            if (clazz == null) {
+                // See if in the package
+                clazz = resolveInPackage(name);
+
+                if (clazz == null) {
+                    // see if inner class of this class
+                    clazz = resolveInnerClass(name, currentClass);
+
+                    if (clazz == null) {
+                        clazz = resolveByStarImports(name);
+                        // -@cs[NestedIfDepth] it is better to have single return point from method
+                        if (clazz == null) {
+                            // Giving up, the type is unknown, so load the class to generate an
+                            // exception
+                            clazz = safeLoad(name);
+                        }
+                    }
+                }
+            }
+        }
+        return clazz;
+    }
+
+    /**
+     * Try to find class by search in package.
+     * @param name class name
+     * @return class object
+     */
+    private Class<?> resolveInPackage(String name) {
+        Class<?> clazz = null;
+        if (pkg != null && !pkg.isEmpty()) {
+            final Class<?> classFromQualifiedName = resolveQualifiedName(pkg + PERIOD + name);
+            if (classFromQualifiedName != null) {
+                clazz = classFromQualifiedName;
+            }
+        }
+        return clazz;
+    }
+
+    /**
+     * Try to find class by matching explicit Import.
+     * @param name class name
+     * @return class object
+     */
+    private Class<?> resolveMatchingExplicitImport(String name) {
+        Class<?> clazz = null;
         for (String imp : imports) {
             // Very important to add the "." in the check below. Otherwise you
             // when checking for "DataException", it will match on
@@ -87,34 +132,12 @@ public class ClassResolver {
             if (imp.endsWith(PERIOD + name)) {
                 clazz = resolveQualifiedName(imp);
                 if (clazz != null) {
-                    return clazz;
+                    break;
                 }
 
             }
         }
-
-        // See if in the package
-        if (pkg != null && !pkg.isEmpty()) {
-            final Class<?> classFromQualifiedName = resolveQualifiedName(pkg + PERIOD + name);
-            if (classFromQualifiedName != null) {
-                return classFromQualifiedName;
-            }
-        }
-
-        // see if inner class of this class
-        final Class<?> innerClass = resolveInnerClass(name, currentClass);
-        if (innerClass != null) {
-            return innerClass;
-        }
-
-        final Class<?> classFromStarImport = resolveByStarImports(name);
-        if (classFromStarImport != null) {
-            return classFromStarImport;
-        }
-
-        // Giving up, the type is unknown, so load the class to generate an
-        // exception
-        return safeLoad(name);
+        return clazz;
     }
 
     /**
@@ -150,8 +173,7 @@ public class ClassResolver {
         Class<?> clazz = null;
         for (String imp : imports) {
             if (imp.endsWith(".*")) {
-                final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1)
-                    + name;
+                final String fqn = imp.substring(0, imp.lastIndexOf('.') + 1) + name;
                 clazz = resolveQualifiedName(fqn);
                 if (clazz != null) {
                     break;
@@ -166,13 +188,15 @@ public class ClassResolver {
      * @return whether a specified class is loadable with safeLoad().
      */
     public boolean isLoadable(String name) {
+        boolean result = false;
         try {
             safeLoad(name);
-            return true;
+            result = true;
         }
         catch (final ClassNotFoundException | NoClassDefFoundError ignored) {
-            return false;
+            result = false;
         }
+        return result;
     }
 
     /**
