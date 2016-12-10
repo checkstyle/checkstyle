@@ -1,6 +1,6 @@
 #!/bin/bash
-
-set -ex
+# Attention, there is no "-x" to avoid disclosure of secret variables
+set -e
 
 case "$GOAL" in
 
