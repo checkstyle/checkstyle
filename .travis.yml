@@ -323,6 +323,14 @@ matrix:
         - CMD=$CMD$CMD16$CMD17$CMD18$CMD19$CMD20$CMD21$CMD22$CMD23$CMD24
         - COVERAGE_CMD=""
 
+    # Ensure that all Sevntu check are kused
+    - jdk: oraclejdk8
+      env:
+        - DESC="All sevntu checks should be used"
+        - GOAL="all-sevntu-checks"
+        - CMD="./.ci/travis/travis.sh"
+        - COVERAGE_CMD=""
+
 script: eval $CMD
 
 after_success:
