@@ -271,23 +271,8 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="Releasenotes generation"
-        - CMD0="if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi "
-        - CMD1=" && git clone https://github.com/checkstyle/contribution && cd contribution/releasenotes-builder "
-        - CMD2=" && mvn clean compile package "
-        - CMD3=" && cd ../../ && git clone https://github.com/checkstyle/checkstyle && cd checkstyle "
-        - CMD4=" && LATEST_RELEASE_TAG=\$(git describe \$(git rev-list --tags --max-count=1)) && cd ../"
-        - CMD5=" && CS_RELEASE_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//' ) "
-        - CMD6=" && echo LATEST_RELEASE_TAG=\$LATEST_RELEASE_TAG && echo CS_RELEASE_VERSION=\$CS_RELEASE_VERSION "
-        - CMD7=" && java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar "
-        - CMD8="        -localRepoPath checkstyle -startRef \$LATEST_RELEASE_TAG -releaseNumber \$CS_RELEASE_VERSION -githubAuthToken $GITHUB_AUTH_TOKEN -generateAll -publishXdoc"
-        - CMD9=" && echo && echo =============================================="
-        - CMD10=" && echo xdoc && echo && cat xdoc.xml"
-        - CMD11=" && echo twitter post && echo && cat twitter.txt"
-        - CMD12=" && echo google plus post && echo && cat gplus.txt"
-        - CMD13=" && echo RSS post && echo && cat rss.txt"
-        - CMD14=" && echo mailing list post && echo && cat mailing_list.txt"
-        - CMD15=" && cd checkstyle/src/xdocs && echo releasenotes.xml after commit && echo && head -n 100 releasenotes.xml"
-        - CMD=$CMD0$CMD1$CMD2$CMD3$CMD4$CMD5$CMD6$CMD7$CMD8$CMD9$CMD10$CMD9$CMD11$CMD9$CMD12$CMD9$CMD13$CMD9$CMD14$CMD9$CMD15
+        - GOAL="releasenotes-gen"
+        - CMD="./.ci/travis/travis.sh"
         - COVERAGE_CMD=""
 
     # testing of PR format
