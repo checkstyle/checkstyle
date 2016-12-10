@@ -883,6 +883,15 @@ public class XDocsPagesTest {
             final String input = new String(Files.readAllBytes(path), UTF_8);
             final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("tr");
+            Set<String> styleChecks = null;
+
+            if (path.toFile().getName().contains("google")) {
+                styleChecks = new HashSet<>(GOOGLE_CHECKS);
+            }
+            else if (path.toFile().getName().contains("sun")) {
+                styleChecks = new HashSet<>();
+            }
+
             String lastRuleName = null;
 
             for (int position = 0; position < sources.getLength(); position++) {
@@ -910,10 +919,14 @@ public class XDocsPagesTest {
                 }
 
                 validateStyleChecks(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
-                        XmlUtil.findChildElementsByTag(columns.get(3), "a"), fileName, ruleName);
+                        XmlUtil.findChildElementsByTag(columns.get(3), "a"), styleChecks, fileName,
+                        ruleName);
 
                 lastRuleName = ruleName;
             }
+
+            Assert.assertTrue(fileName + " requires the following check(s) to appear: "
+                    + styleChecks, styleChecks.isEmpty());
         }
     }
 
@@ -950,8 +963,8 @@ public class XDocsPagesTest {
         }
     }
 
-    private static void validateStyleChecks(Set<Node> checks, Set<Node> configs, String fileName,
-            String ruleName) {
+    private static void validateStyleChecks(Set<Node> checks, Set<Node> configs,
+            Set<String> styleChecks, String fileName, String ruleName) {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
 
@@ -966,6 +979,8 @@ public class XDocsPagesTest {
 
             Assert.assertTrue(fileName + " rule '" + ruleName + "' check '" + checkName
                     + "' shouldn't end with 'Check'", !checkName.endsWith("Check"));
+
+            styleChecks.remove(checkName);
 
             for (String configName : new String[] {"config", "test"}) {
                 Node config = null;
