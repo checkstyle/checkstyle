@@ -4,8 +4,8 @@ set -euo pipefail
 
 case "$GOAL" in
 
-verify)
-  mvn verify
+releasenotes-gen)
+  .ci/travis/xtc_releasenotes-gen.sh
   ;;
 
 all-sevntu-checks)
