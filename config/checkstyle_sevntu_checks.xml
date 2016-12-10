@@ -184,9 +184,10 @@
           <property name="forbiddenClassesRegexpPublic" value="Logger"/>
           <property name="forbiddenClassesRegexpPackagePrivate" value="Logger"/>
         </module>
-        <!-- disabled due to NPE, will be fixed in next sevntu release
-        <module name="ConstructorWithoutParamsCheck" />
-        -->
+        <module name="ConstructorWithoutParamsCheck">
+          <property name="classNameFormat" value=".*Exception$"/>
+          <property name="ignoredClassNameFormat" value="UnsupportedOperationException"/>
+        </module>
         <!--
         IndentationCheckTest.java:[110,28] (extension) ReturnCountExtended: Return count for 'isCommentConsistent' method is 3 (max allowed is 1).
         AnnotationUtility.java:[139,29] (extension) ReturnCountExtended: Return count for 'getAnnotation' method is 2 (max allowed is 1).
