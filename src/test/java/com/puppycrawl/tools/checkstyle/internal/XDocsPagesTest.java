@@ -773,17 +773,23 @@ public class XDocsPagesTest {
         Assert.assertTrue(fileName + " section '" + sectionName
                 + "' has unknown text in 'Example of Usage': " + text, text.isEmpty());
 
+        boolean hasCheckstyle = false;
+        boolean hasGoogle = false;
+        boolean hasSun = false;
+
         for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
             final String url = node.getAttributes().getNamedItem("href").getTextContent();
             final String linkText = node.getTextContent().trim();
             String expectedUrl = null;
 
             if ("Checkstyle Style".equals(linkText)) {
+                hasCheckstyle = true;
                 expectedUrl = "https://github.com/search?q="
                         + "path%3Aconfig+filename%3Acheckstyle_checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+" + sectionName;
             }
             else if ("Google Style".equals(linkText)) {
+                hasGoogle = true;
                 expectedUrl = "https://github.com/search?q="
                         + "path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+"
@@ -794,6 +800,7 @@ public class XDocsPagesTest {
                         GOOGLE_CHECKS.contains(sectionName));
             }
             else if ("Sun Style".equals(linkText)) {
+                hasSun = true;
                 expectedUrl = "https://github.com/search?q="
                         + "path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+"
                         + "repo%3Acheckstyle%2Fcheckstyle+"
@@ -807,6 +814,15 @@ public class XDocsPagesTest {
             Assert.assertEquals(fileName + " section '" + sectionName
                     + "' should have matching url", expectedUrl, url);
         }
+
+        Assert.assertTrue(fileName + " section '" + sectionName
+                + "' should have a checkstyle section", hasCheckstyle);
+        Assert.assertTrue(fileName + " section '" + sectionName
+                + "' should have a google section since it is in it's config", hasGoogle
+                || !GOOGLE_CHECKS.contains(sectionName));
+        Assert.assertTrue(fileName + " section '" + sectionName
+                + "' should have a sun section since it is in it's config",
+                hasSun || !SUN_CHECKS.contains(sectionName));
     }
 
     private static void validatePackageSection(String fileName, String sectionName,
