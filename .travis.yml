@@ -2,8 +2,15 @@ language: java
 sudo: false
 
 cache:
+  apt: true
   directories:
-  - ~/.m2
+    - ~/.m2
+
+addons:
+  apt:
+    packages:
+      - xsltproc
+      - xmlstarlet
 
 branches:
   only:
