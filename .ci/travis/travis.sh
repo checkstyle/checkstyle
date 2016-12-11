@@ -1,11 +1,15 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid disclosure of secret variables
+# Attention, there is no "-x" to avoid problems on Travis
 set -e
 
 case "$GOAL" in
 
 releasenotes-gen)
   .ci/travis/xtr_releasenotes-gen.sh
+  ;;
+
+pr-description)
+  .ci/travis/xtr_pr-description.sh
   ;;
 
 all-sevntu-checks)
