@@ -4,7 +4,7 @@ checkout:
 dependencies:
   # we to override as 'mvn dependecy:go-ofline' does not download all dependencies
   override:
-    - mvn install -Passembly
+    - mvn install -Pno-validations
     - eval $TESTER_DEPENDENCIES
 machine:
   java:
