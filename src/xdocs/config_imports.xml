@@ -391,7 +391,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
     &lt;property name=&quot;customImportOrderRules&quot;
         value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
-    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;org&quot;/&gt;
+    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
     &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
@@ -410,8 +410,8 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
     &lt;property name=&quot;customImportOrderRules&quot;
         value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
-    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;org&quot;/&gt;
-    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com&quot;/&gt;
+    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
+    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
     &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
     &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
@@ -464,7 +464,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
     &lt;property name=&quot;customImportOrderRules&quot;
         value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
-    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;com|org&quot;/&gt;
+    &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^(com|org)\.&quot;/&gt;
     &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -522,7 +522,7 @@ import android.*;
 &lt;module name=&quot;CustomImportOrder&quot;&gt;
     &lt;property name=&quot;customImportOrderRules&quot;
     value=&quot;SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS&quot;/&gt;
-    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;android.*&quot;/&gt;
+    &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^android\.&quot;/&gt;
 &lt;/module&gt;
        </source>
       </subsection>
