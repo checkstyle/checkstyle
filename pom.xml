@@ -1292,15 +1292,15 @@
       <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
-        <linkcheck.skip>true</linkcheck.skip>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
+        <findbugs.skip>true</findbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
-        <findbugs.skip>true</findbugs.skip>
-        <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <cobertura.skip>true</cobertura.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <linkcheck.skip>true</linkcheck.skip>
       </properties>
     </profile>
 
@@ -1310,15 +1310,16 @@
       <id>assembly</id>
       <properties>
         <skipTests>true</skipTests>
-        <linkcheck.skip>true</linkcheck.skip>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <checkstyle.skip>true</checkstyle.skip>
         <pmd.skip>true</pmd.skip>
+        <findbugs.skip>true</findbugs.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
-        <findbugs.skip>true</findbugs.skip>
-        <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <cobertura.skip>true</cobertura.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <linkcheck.skip>true</linkcheck.skip>
+        <!-- difference from "no-validations" -->
         <maven.site.skip>true</maven.site.skip>
       </properties>
 
