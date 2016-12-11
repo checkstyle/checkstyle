@@ -1288,8 +1288,8 @@
 
     <profile>
       <!-- To be used during development. Run the command-->
-      <!-- mvn -Psite-only site -->
-      <id>site-only</id>
+      <!-- mvn -Pno-validations site -->
+      <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
         <linkcheck.skip>true</linkcheck.skip>

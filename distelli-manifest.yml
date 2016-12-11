@@ -6,7 +6,7 @@ checkstyle/checkstyle:
     - sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
     - sed -i.'' 's/#spring-framework/spring-framework/' projects-for-travis.properties
     - sed -i.'' 's/projects-to-test-on.properties/projects-for-travis.properties/' launch.sh
-    - cd ../../ && mvn clean install -DskipTests -DskipITs -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true  -Dxml.skip=true
+    - cd ../../ && mvn clean install -Pno-validations
     - cd contribution/checkstyle-tester
     - ./launch.sh -Dcheckstyle.config.location=checks-only-javadoc-error.xml
     - if grep "Got an exception" target/site/checkstyle.html; then
