@@ -1,5 +1,5 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid disclosure of AuthToken and other secret variables
+# Attention, there is no "-x" to avoid problem on Travis
 set -e
 
 if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
