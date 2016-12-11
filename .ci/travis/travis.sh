@@ -15,7 +15,7 @@ all-sevntu-checks)
   wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - | html2text \
     | grep -E "Check$" | cut -d " " -f6 \
     | sort | uniq | sed "s/Check$//" > web.txt
-  diff web.txt file.txt
+  diff -u web.txt file.txt
   ;;
 
 *)
