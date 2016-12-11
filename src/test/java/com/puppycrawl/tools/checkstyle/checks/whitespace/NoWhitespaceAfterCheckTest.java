@@ -174,6 +174,15 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testSynchronized() throws Exception {
+        checkConfig.addAttribute("tokens", "LITERAL_SYNCHRONIZED");
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_KEY, "synchronized"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterSynchronized.java"), expected);
+    }
+
+    @Test
     public void testNpe() throws Exception {
         verify(checkConfig, getPath("InputNoWhiteSpaceAfterFormerNpe.java"));
     }
