@@ -188,7 +188,7 @@ public class ClassResolver {
      * @return whether a specified class is loadable with safeLoad().
      */
     public boolean isLoadable(String name) {
-        boolean result = false;
+        boolean result;
         try {
             safeLoad(name);
             result = true;
