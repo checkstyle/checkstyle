@@ -306,7 +306,5 @@ after_success:
             && $DEPLOY == 'true'
        ]];
     then
-        mvn -s config/deploy-settings.xml deploy \
-          -DskipTests -DskipITs -Dpmd.skip=true -Dfindbugs.skip=true \
-          -Dcobertura.skip=true -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dxml.skip=true ;
+        mvn -s config/deploy-settings.xml -Pno-validations deploy;
     fi
