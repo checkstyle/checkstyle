@@ -263,254 +263,268 @@
     </section>
 
     <section name="Checker">
+      <subsection name="Description">
+        <p>
+          All configurations have root module <code>Checker</code>.  <code>Checker</code>
+          contains:
+        </p>
 
-      <p>
-        All configurations have root module <code>Checker</code>.  <code>Checker</code>
-        contains:
-      </p>
+        <ul>
+          <li><em>FileSetCheck</em> children: modules that check sets of
+          files.</li>
+          <li><em>Filter</em> children: modules that filter audit
+          events.</li>
+          <li><em>AuditListener</em> children: modules that report
+          filtered events.</li>
+        </ul>
 
-      <ul>
-        <li><em>FileSetCheck</em> children: modules that check sets of
-        files.</li>
-        <li><em>Filter</em> children: modules that filter audit
-        events.</li>
-        <li><em>AuditListener</em> children: modules that report
-        filtered events.</li>
-      </ul>
+        <p>
+          <code>Checker</code> also defines properties that are
+          inherited by all other modules of a configuration.
+        </p>
+      </subsection>
 
-      <p>
-        <code>Checker</code> also defines properties that are
-        inherited by all other modules of a configuration.
-      </p>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>basedir</td>
+            <td>base directory name; stripped off in messages about files</td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>cacheFile</td>
+            <td>caches information about files that have checked OK; used
+                to avoid repeated checks of the same files</td>
+            <td><a href="property_types.html#string">string</a></td>
+            <td><code>null</code> (no cache file)</td>
+          </tr>
+          <tr>
+            <td>localeCountry</td>
+            <td>locale country for messages</td>
+            <td><a href="property_types.html#string">string</a>: either
+            the empty string or an uppercase ISO 3166 2-letter code</td>
+            <td>default locale country for the Java Virtual Machine</td>
+          </tr>
+          <tr>
+            <td>localeLanguage</td>
+            <td>locale language for messages</td>
+            <td><a href="property_types.html#string">string</a>: either
+            the empty string or a lowercase ISO 639 code</td>
+            <td>default locale language for the Java Virtual Machine</td>
+          </tr>
+          <tr>
+            <td>charset</td>
+            <td>name of the file charset</td>
+            <td><a href="property_types.html#string">String</a></td>
+            <td>System property &quot;file.encoding&quot;</td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file extensions that are accepted</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>null</code></td>
+          </tr>
+          <tr>
+            <td>severity</td>
+            <td>the default severity level of all violations</td>
+            <td><a href="property_types.html#severity">Severity</a></td>
+            <td><code>error</code></td>
+          </tr>
+          <tr>
+            <td>haltOnException</td>
+            <td>whether to stop execution of Checkstyle if a single file produces any kind of
+            exception during verification</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
+      </subsection>
 
-      <h4>Properties</h4>
-      <table>
-        <tr>
-          <th>name</th>
-          <th>description</th>
-          <th>type</th>
-          <th>default value</th>
-        </tr>
-        <tr>
-          <td>basedir</td>
-          <td>base directory name; stripped off in messages about files</td>
-          <td><a href="property_types.html#string">string</a></td>
-          <td><code>null</code></td>
-        </tr>
-        <tr>
-          <td>cacheFile</td>
-          <td>caches information about files that have checked OK; used
-              to avoid repeated checks of the same files</td>
-          <td><a href="property_types.html#string">string</a></td>
-          <td><code>null</code> (no cache file)</td>
-        </tr>
-        <tr>
-          <td>localeCountry</td>
-          <td>locale country for messages</td>
-          <td><a href="property_types.html#string">string</a>: either
-          the empty string or an uppercase ISO 3166 2-letter code</td>
-          <td>default locale country for the Java Virtual Machine</td>
-        </tr>
-        <tr>
-          <td>localeLanguage</td>
-          <td>locale language for messages</td>
-          <td><a href="property_types.html#string">string</a>: either
-          the empty string or a lowercase ISO 639 code</td>
-          <td>default locale language for the Java Virtual Machine</td>
-        </tr>
-        <tr>
-          <td>charset</td>
-          <td>name of the file charset</td>
-          <td><a href="property_types.html#string">String</a></td>
-          <td>System property &quot;file.encoding&quot;</td>
-        </tr>
-        <tr>
-          <td>fileExtensions</td>
-          <td>file extensions that are accepted</td>
-          <td><a href="property_types.html#string">String</a> array</td>
-          <td><code>null</code></td>
-        </tr>
-        <tr>
-          <td>haltOnException</td>
-          <td>whether to stop execution of Checkstyle if a single file produces any kind of
-          exception during verification</td>
-          <td><a href="property_types.html#boolean">Boolean</a></td>
-          <td><code>true</code></td>
-        </tr>
-      </table>
+      <subsection name="Examples">
+        <p>
+          For example, the following configuration fragment specifies base
+          directory <code>src/checkstyle</code>, cache file <code>target/cachefile</code> and German
+          locale for all modules:
+        </p>
 
-      <p>
-        For example, the following configuration fragment specifies base
-        directory <code>src/checkstyle</code>, cache file <code>target/cachefile</code> and German
-        locale for all modules:
-      </p>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
+      &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
+      &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
+      &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
+      &lt;module name=&quot;JavadocPackage&quot;/&gt;
+      &lt;module name=&quot;TreeWalker&quot;&gt;
+          ...
+      &lt;/module&gt;
+  &lt;/module&gt;
+        </source>
 
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;property name=&quot;basedir&quot; value=&quot;src/checkstyle&quot;/&gt;
-    &lt;property name=&quot;cacheFile&quot; value=&quot;target/cachefile&quot;/&gt;
-    &lt;property name=&quot;localeCountry&quot; value=&quot;DE&quot;/&gt;
-    &lt;property name=&quot;localeLanguage&quot; value=&quot;de&quot;/&gt;
-    &lt;module name=&quot;JavadocPackage&quot;/&gt;
-    &lt;module name=&quot;TreeWalker&quot;&gt;
-        ...
-    &lt;/module&gt;
-&lt;/module&gt;
-      </source>
+        <p>
+          To configure a <code>Checker</code> so that it
+          handles files with the <code>UTF-8</code> charset:
+        </p>
 
-      <p>
-        To configure a <code>Checker</code> so that it
-        handles files with the <code>UTF-8</code> charset:
-      </p>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
 
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
+        <p>
+          To configure a <code>Checker</code> so that it
+          handles files with the <code>java, xml, properties</code> extensions:
+        </p>
 
-      <p>
-        To configure a <code>Checker</code> so that it
-        handles files with the <code>java, xml, properties</code> extensions:
-      </p>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, properties&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
 
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, properties&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
+        <p>
+          To configure a <code>Checker</code> so that it doesn't stop execution on an
+          <code>Exception</code> and instead prints it as a violation:
+        </p>
 
-      <p>
-        To configure a <code>Checker</code> so that it doesn't stop execution on an
-        <code>Exception</code> and instead prints it as a violation:
-      </p>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;property name=&quot;haltOnException&quot; value=&quot;false&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
 
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;property name=&quot;haltOnException&quot; value=&quot;false&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
+        <p>
+          To configure a <code>Checker</code> so that it
+          handles files with any extension:
+        </p>
 
-      <p>
-        To configure a <code>Checker</code> so that it
-        handles files with any extension:
-      </p>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
+          <p>OR</p>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
 
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
-        <p>OR</p>
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
-
+      </subsection>
     </section>
 
     <section name="TreeWalker">
-      <p>
-        FileSetCheck <code>TreeWalker</code> checks
-        individual Java source files and defines properties that are
-        applicable to checking such files.
-      </p>
+      <subsection name="Description">
+        <p>
+          FileSetCheck <code>TreeWalker</code> checks
+          individual Java source files and defines properties that are
+          applicable to checking such files.
+        </p>
+      </subsection>
 
-      <h4>Properties</h4>
-      <table>
-        <tr>
-          <th>name</th>
-          <th>description</th>
-          <th>type</th>
-          <th>default value</th>
-        </tr>
-        <tr>
-          <td>tabWidth</td>
-          <td>number of expanded spaces for a tab character (<code>'\t'</code>); used in messages and Checks that
-          require a tab width, such as <a
-          href="config_sizes.html#LineLength"><code>LineLength</code></a></td>
-          <td><a href="property_types.html#integer">integer</a></td>
-          <td><code>8</code></td>
-        </tr>
-        <tr>
-          <td>fileExtensions</td>
-          <td>file type extension to identify Java files. Setting this
-          property is typically only required if your Java source code
-          is preprocessed before compilation and the original files do
-          not have the extension <code>.java</code></td>
-          <td><a href="property_types.html#stringSet">String Set</a></td>
-          <td><code>java</code></td>
-        </tr>
-      </table>
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>tabWidth</td>
+            <td>number of expanded spaces for a tab character (<code>'\t'</code>); used in messages and Checks that
+            require a tab width, such as <a
+            href="config_sizes.html#LineLength"><code>LineLength</code></a></td>
+            <td><a href="property_types.html#integer">Integer</a></td>
+            <td><code>8</code></td>
+          </tr>
+          <tr>
+            <td>fileExtensions</td>
+            <td>file type extension to identify Java files. Setting this
+            property is typically only required if your Java source code
+            is preprocessed before compilation and the original files do
+            not have the extension <code>.java</code></td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>java</code></td>
+          </tr>
+        </table>
+      </subsection>
 
-      <p>
-        For example, the following configuration fragment specifies
-        <code>TreeWalker</code> a <code>tabWidth</code> of <code>4</code>:
-      </p>
+      <subsection name="Examples">
+        <p>
+          For example, the following configuration fragment specifies
+          <code>TreeWalker</code> a <code>tabWidth</code> of <code>4</code>:
+        </p>
 
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;TreeWalker&quot;&gt;
-        &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
-        ...
-    &lt;/module&gt;
-&lt;/module&gt;
-      </source>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;module name=&quot;TreeWalker&quot;&gt;
+          &lt;property name=&quot;tabWidth&quot; value=&quot;4&quot;/&gt;
+          ...
+      &lt;/module&gt;
+  &lt;/module&gt;
+        </source>
 
-      <p>
-        <!--
-          thanks to Paul King for this example, see
-          https://sourceforge.net/tracker/?func=detail&aid=865610&group_id=29721&atid=397078
-        -->
-        To integrate Checkstyle with BEA Weblogic Workshop 8.1:
-      </p>
+        <p>
+          <!--
+            thanks to Paul King for this example, see
+            https://sourceforge.net/tracker/?func=detail&aid=865610&group_id=29721&atid=397078
+          -->
+          To integrate Checkstyle with BEA Weblogic Workshop 8.1:
+        </p>
 
-      <source>
-&lt;module name=&quot;Checker&quot;&gt;
-    &lt;module name=&quot;TreeWalker&quot;&gt;
-        &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
-        ...
-    &lt;/module&gt;
-&lt;/module&gt;
-      </source>
+        <source>
+  &lt;module name=&quot;Checker&quot;&gt;
+      &lt;module name=&quot;TreeWalker&quot;&gt;
+          &lt;property name=&quot;fileExtensions&quot; value=&quot;java,ejb,jpf&quot;/&gt;
+          ...
+      &lt;/module&gt;
+  &lt;/module&gt;
+        </source>
 
-      <p>
-        To configure <code>TreeWalker</code> so that it
-        handles files with the <code>java</code> extension:
-      </p>
+        <p>
+          To configure <code>TreeWalker</code> so that it
+          handles files with the <code>java</code> extension:
+        </p>
 
-      <source>
-&lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
+        <source>
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+      &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
 
-      <p>
-        To configure <code>TreeWalker</code> so that it
-        handles files with any extension:
-      </p>
+        <p>
+          To configure <code>TreeWalker</code> so that it
+          handles files with any extension:
+        </p>
 
-      <source>
-&lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
-        <p>OR</p>
-      <source>
-&lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
-    ...
-&lt;/module&gt;
-      </source>
-
+        <source>
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+      &lt;property name=&quot;fileExtensions&quot; value=&quot;null&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
+          <p>OR</p>
+        <source>
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+      &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
+      ...
+  &lt;/module&gt;
+        </source>
+      </subsection>
     </section>
 
     <section name="TreeWalker Checks">

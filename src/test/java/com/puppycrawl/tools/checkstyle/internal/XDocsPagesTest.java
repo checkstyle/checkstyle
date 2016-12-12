@@ -122,6 +122,14 @@ public class XDocsPagesTest {
     private static final Set<String> FILESET_PROPERTIES = getProperties(AbstractFileSetCheck.class);
 
     private static final List<String> UNDOCUMENTED_PROPERTIES = Arrays.asList(
+            "Checker.classLoader",
+            "Checker.classloader",
+            "Checker.moduleClassLoader",
+            "Checker.moduleFactory",
+            "TreeWalker.classLoader",
+            "TreeWalker.moduleFactory",
+            "TreeWalker.cacheFile",
+            "TreeWalker.upChild",
             "SuppressWithNearbyCommentFilter.fileContents",
             "SuppressionCommentFilter.fileContents"
     );
@@ -302,6 +310,30 @@ public class XDocsPagesTest {
         }
     }
 
+    @Test
+    public void testAllCheckSectionsEx() throws Exception {
+        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
+
+        final Path path = Paths.get(XDocUtil.DIRECTORY_PATH + "/config.xml");
+        final String fileName = path.getFileName().toString();
+
+        final String input = new String(Files.readAllBytes(path), UTF_8);
+        final Document document = XmlUtil.getRawXml(fileName, input, input);
+        final NodeList sources = document.getElementsByTagName("section");
+
+        for (int position = 0; position < sources.getLength(); position++) {
+            final Node section = sources.item(position);
+            final String sectionName = section.getAttributes().getNamedItem("name")
+                    .getNodeValue();
+
+            if (!"Checker".equals(sectionName) && !"TreeWalker".equals(sectionName)) {
+                continue;
+            }
+
+            validateCheckSection(moduleFactory, fileName, sectionName, section);
+        }
+    }
+
     private static void validateCheckSection(ModuleFactory moduleFactory, String fileName,
             String sectionName, Node section) throws Exception {
         final Object instance;
@@ -429,7 +461,7 @@ public class XDocsPagesTest {
                 properties.removeAll(CHECK_PROPERTIES);
             }
         }
-        else if (AbstractFileSetCheck.class.isAssignableFrom(clss)) {
+        if (AbstractFileSetCheck.class.isAssignableFrom(clss)) {
             properties.removeAll(FILESET_PROPERTIES);
 
             // override
