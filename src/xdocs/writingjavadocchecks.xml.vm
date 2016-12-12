@@ -69,7 +69,7 @@ public class MyClass {
 
     <section name="Tight-HTML rules">
       <p>
-      Every HTML tag should have matching end HTML tag or it is a <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void element</a>.
+      Every HTML tag should have matching end HTML tag or it is a <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void element</a>.
       </p>
       <p>
       The only exceptions are HTML 4 tags whose end tag is optional(ommitable) by HTML specification (example is <a href="https://www.w3.org/TR/html5/tabular-data.html#the-tr-element">TR</a>), so, Checkstyle won't show error about missing end tag, however, it leads to broken Tight-HTML structure and as a result
