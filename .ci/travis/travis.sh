@@ -56,6 +56,114 @@ all-sevntu-checks)
   diff -u web.txt file.txt
   ;;
 
+no-exception-test-checkstyle-sevntu-checkstyle)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#checkstyle/checkstyle/' projects-for-travis.properties
+  sed -i.'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
+no-exception-test-guava)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#guava/guava/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
+no-exception-test-guava-with-google-checks)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#guava/guava/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties ../../src/main/resources/google_checks.xml
+  ;;
+
+no-exception-test-hibernate)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
+no-exception-test-findbugs)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#findbugs/findbugs/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
+no-exception-test-spring-framework)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#spring-framework/spring-framework/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
+no-exception-test-hbase)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#Hbase/Hbase/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
+no-exception-test-Pmd-elasticsearch-lombok-ast)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#pmd/pmd/' projects-for-travis.properties
+  sed -i.'' 's/#elasticsearch/elasticsearch/' projects-for-travis.properties
+  sed -i.'' 's/#lombok-ast/lombok-ast/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
+no-exception-test-alot-of-project1)
+  git clone https://github.com/checkstyle/contribution
+  cd contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+  sed -i.'' 's/#RxJava/RxJava/' projects-for-travis.properties
+  sed -i.'' 's/#java-design-patterns/java-design-patterns/' projects-for-travis.properties
+  sed -i.'' 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-travis.properties
+  sed -i.'' 's/#apache-ant/apache-ant/' projects-for-travis.properties
+  sed -i.'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties
+  sed -i.'' 's/#android-launcher/android-launcher/' projects-for-travis.properties
+  cd ../../
+  mvn clean install -Pno-validations
+  cd contribution/checkstyle-tester
+  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  ;;
+
 *)
   echo "Unexpected GOAL mode: $GOAL"
   exit 1
