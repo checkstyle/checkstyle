@@ -82,7 +82,7 @@ public class MyClass {
       Other rules:
       <ul>
         <li>Document Structure elements (DOCTYPE, &lt;html&gt;, &lt;body&gt;, etc) are not mandatory.</li>
-        <li>Elements must always be closed, except HTML4 elements whose end tag is optional(ommitable) and HTML4 <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
+        <li>Elements must always be closed, except HTML4 elements whose end tag is optional(ommitable) and HTML4 <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
         <li>HTML elements can be either in lowercase or in uppercase</li>
         <li>Attribute names can be either in lowercase or in uppercase</li>
         <li>Attribute values can be either quoted or not be quoted</li>
@@ -278,7 +278,7 @@ class MyCheck extends AbstractJavadocCheck {
         Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">all HTML4 elements</a>.
       </p>
       <p>
-        HTML4 is picked just to have a list of elements whose end tag is optional(ommitable) and a list of <a href="https://www.w3.org/TR/html-markup/syntax.html#void-element">void elements</a> (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
+        HTML4 is picked just to have a list of elements whose end tag is optional(ommitable) and a list of <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a> (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
       </p>
       <p>
         HTML4 elements whose end tag is optional(ommitable): &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
