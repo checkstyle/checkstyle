@@ -17,6 +17,11 @@
     <exclude name="StdCyclomaticComplexity"/>
   </rule>
 
+  <rule ref="rulesets/java/basic.xml/EmptyCatchBlock">
+    <properties>
+      <property name="allowCommentedBlocks" value="true"/>
+    </properties>
+  </rule>
   <rule ref="rulesets/java/codesize.xml/CyclomaticComplexity">
     <properties>
       <property name="showClassesComplexity" value="false"/>
@@ -52,8 +57,9 @@
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20"/>
-      <!-- Reducing the number of methods requires making excess hierarchy or duplicating code, or making existing methods too complex. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck']"/>
+      <!-- Reducing the number of methods in RequireThisCheck requires making excess hierarchy or duplicating code, or making existing methods too complex. -->
+      <!-- PackageObjectFactory has many boilerplate methods. -->
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck' or @Image='PackageObjectFactory']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/codesize.xml/ExcessiveClassLength">
