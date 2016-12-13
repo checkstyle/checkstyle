@@ -739,7 +739,8 @@
         <code>
         com.puppycrawl.tools.checkstyle.filters</code>, and <code> com.puppycrawl.tools.checkstyle.checks</code> as
         well as any sub-packages of <code>com.puppycrawl.tools.checkstyle.checks</code> that
-        are distributed with Checkstyle.
+        are distributed with Checkstyle. However standard checkstyle modules are loaded
+        with the help of inner map of their names to fully qualified names.
       </p>
       <p>
         To specify other packages to apply,

@@ -20,18 +20,23 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.internal.CheckUtil;
 
 /**
  * Enter a description of class PackageObjectFactoryTest.java.
@@ -83,6 +88,19 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
+    public void testCreateObjectWithIgnoringProblems() throws Exception {
+        final Method createObjectWithIgnoringProblemsMethod =
+                PackageObjectFactory.class.getDeclaredMethod(
+                        "createObjectWithIgnoringProblems", String.class, Set.class);
+        createObjectWithIgnoringProblemsMethod.setAccessible(true);
+        final Set<String> secondAttempt = new HashSet<>();
+        secondAttempt.add("com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck");
+        final ConstantNameCheck check = (ConstantNameCheck) createObjectWithIgnoringProblemsMethod
+                .invoke(factory, "ConstantName", secondAttempt);
+        assertNotNull(check);
+    }
+
+    @Test
     public void testJoinPackageNamesWhichContainNullWithClassName() throws Exception {
         final Class<PackageObjectFactory> clazz = PackageObjectFactory.class;
         final Method method =
@@ -93,5 +111,17 @@ public class PackageObjectFactoryTest {
         final String actual =
             String.valueOf(method.invoke(PackageObjectFactory.class, className, packages));
         assertEquals(className, actual);
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testNameToFullModuleNameMap() throws Exception {
+        final Set<Class<?>> classes = CheckUtil.getCheckstyleModules();
+        final Class<PackageObjectFactory> packageObjectFactoryClass = PackageObjectFactory.class;
+        final Field field = packageObjectFactoryClass.getDeclaredField("NAME_TO_FULL_MODULE_NAME");
+        field.setAccessible(true);
+        final Collection<String> canonicalNames = ((Map<String, String>) field.get(null)).values();
+        assertFalse(classes.stream()
+                .anyMatch(clazz -> !canonicalNames.contains(clazz.getCanonicalName())));
     }
 }
