@@ -373,14 +373,12 @@ public class ConfigurationLoaderTest {
                 constructor = constr;
             }
 
-            final Class<?>[] param = new Class<?>[4];
-            param[0] = String.class;
-            param[1] = String.class;
-            param[2] = String.class;
-            param[3] = Attributes.class;
-            final Method method = aClass.getDeclaredMethod("startElement", param);
             final Object objParent = ctorParent.newInstance(null, true);
             final Object obj = constructor.newInstance(objParent);
+
+            final Class<?>[] param = new Class<?>[] {String.class, String.class,
+                String.class, Attributes.class, };
+            final Method method = aClass.getDeclaredMethod("startElement", param);
 
             method.invoke(obj, "", "", "hello", null);
 
