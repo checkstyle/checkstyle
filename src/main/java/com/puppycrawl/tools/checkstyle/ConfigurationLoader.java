@@ -24,17 +24,17 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -52,8 +52,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Oliver Burn
  */
 public final class ConfigurationLoader {
-    /** Logger for ConfigurationLoader. */
-    private static final Log LOG = LogFactory.getLog(ConfigurationLoader.class);
 
     /** The public ID for version 1_0 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
@@ -466,21 +464,24 @@ public final class ConfigurationLoader {
         @Override
         public void endElement(String uri,
                                String localName,
-                               String qName) {
+                               String qName) throws SAXException {
             if (qName.equals(MODULE)) {
 
                 final Configuration recentModule =
                     configStack.pop();
 
-                // remove modules with severity ignore if these modules should
-                // be omitted
+                // get severity attribute if it exists
                 SeverityLevel level = null;
-                try {
-                    final String severity = recentModule.getAttribute(SEVERITY);
-                    level = SeverityLevel.getInstance(severity);
-                }
-                catch (final CheckstyleException ex) {
-                    LOG.debug("Severity not set, ignoring exception", ex);
+                if (containsAttribute(recentModule, SEVERITY)) {
+                    try {
+                        final String severity = recentModule.getAttribute(SEVERITY);
+                        level = SeverityLevel.getInstance(severity);
+                    }
+                    catch (final CheckstyleException ex) {
+                        throw new SAXException(
+                                "Problem during accessing '" + SEVERITY + "' attribute for "
+                                        + recentModule.getName(), ex);
+                    }
                 }
 
                 // omit this module if these should be omitted and the module
@@ -494,6 +495,19 @@ public final class ConfigurationLoader {
                     parentModule.removeChild(recentModule);
                 }
             }
+        }
+
+        /**
+         * Util method to recheck attribute in module.
+         * @param module module to check
+         * @param attributeName name of attribute in module to find
+         * @return true if attribute is present in module
+         */
+        private boolean containsAttribute(Configuration module, String attributeName) {
+            final String[] names = module.getAttributeNames();
+            final Optional<String> result = Arrays.stream(names)
+                    .filter(name -> name.equals(attributeName)).findFirst();
+            return result.isPresent();
         }
     }
 }

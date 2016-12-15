@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,6 +33,10 @@ import java.lang.reflect.Method;
 import java.util.Properties;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 
@@ -43,6 +48,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  * @author Rick Giles
  * @author lkuehne
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class})
 public class ConfigurationLoaderTest {
     private static String getConfigPath(String filename) {
         return "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + filename;
@@ -501,4 +508,39 @@ public class ConfigurationLoaderTest {
             fail("unexpected exception");
         }
     }
+
+    /**
+     * This SuppressWarning("unchecked") required to suppress
+     * "Unchecked generics array creation for varargs parameter" during mock
+     * @throws Exception could happen from PowerMokito calls and getAttribute
+     */
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testConfigWithIgnoreExceptionalAttributes() throws Exception {
+
+        // emulate exception from unrelated code, but that is same try-catch
+        final DefaultConfiguration tested = PowerMockito.mock(DefaultConfiguration.class);
+        when(tested.getAttributeNames()).thenReturn(new String[] {"severity"});
+        when(tested.getName()).thenReturn("MemberName");
+        when(tested.getAttribute("severity")).thenThrow(CheckstyleException.class);
+        // to void creation of 2 other mocks for now reason, only one moc is used for all cases
+        PowerMockito.whenNew(DefaultConfiguration.class)
+                .withArguments("MemberName").thenReturn(tested);
+        PowerMockito.whenNew(DefaultConfiguration.class)
+                .withArguments("Checker").thenReturn(tested);
+        PowerMockito.whenNew(DefaultConfiguration.class)
+                .withArguments("TreeWalker").thenReturn(tested);
+
+        try {
+            ConfigurationLoader.loadConfiguration(
+                    getConfigPath("config_with_ignore.xml"),
+                    new PropertiesExpander(new Properties()), true);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException expected) {
+            assertEquals("Problem during accessing 'severity' attribute for MemberName",
+                    expected.getCause().getMessage());
+        }
+    }
+
 }
