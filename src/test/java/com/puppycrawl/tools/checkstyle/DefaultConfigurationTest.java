@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -46,10 +46,10 @@ public class DefaultConfigurationTest {
         final String attributeName = "NonExisting#$%";
         try {
             config.getAttribute(attributeName);
-            Assert.fail("Exception is expected");
+            fail("Exception is expected");
         }
         catch (CheckstyleException expected) {
-            Assert.assertEquals("missing key '" + attributeName + "' in " + name,
+            assertEquals("missing key '" + attributeName + "' in " + name,
                     expected.getMessage());
         }
     }

@@ -32,7 +32,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -513,6 +512,12 @@ public class ConfigurationLoaderTest {
         }
     }
 
+    /**
+     * This SuppressWarning("unchecked") required to suppress
+     * "Unchecked generics array creation for varargs parameter" during mock
+     * @throws Exception could happen from PowerMokito calls and getAttribute
+     */
+    @SuppressWarnings("unchecked")
     @Test
     public void testConfigWithIgnoreExceptionalAttributes() throws Exception {
 
@@ -533,10 +538,10 @@ public class ConfigurationLoaderTest {
             ConfigurationLoader.loadConfiguration(
                     getConfigPath("config_with_ignore.xml"),
                     new PropertiesExpander(new Properties()), true);
-            Assert.fail("Exception is expected");
+            fail("Exception is expected");
         }
         catch (CheckstyleException expected) {
-            Assert.assertEquals("Problem during accessing 'severity' attribute for MemberName",
+            assertEquals("Problem during accessing 'severity' attribute for MemberName",
                     expected.getCause().getMessage());
         }
     }
