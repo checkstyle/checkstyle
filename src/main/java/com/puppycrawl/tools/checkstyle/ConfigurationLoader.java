@@ -499,8 +499,8 @@ public final class ConfigurationLoader {
 
         /**
          * Util method to recheck attribute in module.
-         * @param module modeul to check
-         * @param attributeName name of atteribute in module to find
+         * @param module module to check
+         * @param attributeName name of attribute in module to find
          * @return true if attribute is present in module
          */
         private boolean containsAttribute(Configuration module, String attributeName) {
