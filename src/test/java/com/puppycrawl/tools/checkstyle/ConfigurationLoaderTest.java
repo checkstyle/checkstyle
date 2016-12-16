@@ -42,7 +42,6 @@ import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
  * Unit test for ConfigurationLoader.
@@ -50,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @author lkuehne
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({SeverityLevel.class, DefaultConfiguration.class, ConfigurationLoader.class})
+@PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class})
 public class ConfigurationLoaderTest {
     private static String getConfigPath(String filename) {
         return "src/test/resources/com/puppycrawl/tools/checkstyle/configs/" + filename;
