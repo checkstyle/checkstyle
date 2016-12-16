@@ -5,6 +5,7 @@ set -e
 case "$GOAL" in
 
 nondex)
+  # exclude ConfigurationLoaderTest till https://github.com/TestingResearchIllinois/NonDex/issues/112
   mvn --fail-never clean nondex:nondex -Dtest='*,!ConfigurationLoaderTest'
   cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > output.txt
   RESULT=$(cat output.txt | wc -c)
