@@ -27,7 +27,7 @@ abstract class AbstractImportRule {
     /** Indicates whether to allow access or not. */
     private final boolean allowed;
 
-    /** Indicates if the guard only applies to this package. */
+    /** Indicates if the rule only applies to this package. */
     private final boolean localOnly;
 
     /**
@@ -39,7 +39,7 @@ abstract class AbstractImportRule {
     /**
      * Constructs an instance.
      * @param allow whether to allow access.
-     * @param localOnly whether the rules is to be applied locally only.
+     * @param localOnly whether the rule is to be applied locally only.
      * @param regExp whether the name is to be interpreted as a regular
      *        expression.
      */
