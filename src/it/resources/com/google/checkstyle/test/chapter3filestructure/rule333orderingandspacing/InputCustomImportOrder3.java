@@ -4,7 +4,6 @@ import static java.awt.Button.ABORT;
 import java.awt.Dialog; //warn
 import static javax.swing.WindowConstants.*; //warn
 
-
 import com.google.checkstyle.test.chapter2filebasic.rule21filename.*; //warn
 import com.google.common.reflect.*; //warn
 import com.sun.xml.internal.xsom.impl.scd.Iterators; //warn

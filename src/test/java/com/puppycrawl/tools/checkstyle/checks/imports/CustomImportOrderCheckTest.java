@@ -320,7 +320,9 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("separateLineBetweenGroups", "true");
         checkConfig.addAttribute("customImportOrderRules",
                 "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC");
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
+        };
 
         verify(checkConfig, getPath("InputCustomImportOrderThirdPartyPackage.java"), expected);
     }
@@ -642,6 +644,46 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         createChecker(checkConfig);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputCustomImportOrder_MultiplePatternMatches.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoPackage() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "STATIC###THIRD_PARTY_PACKAGE");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+
+        createChecker(checkConfig);
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.*"),
+        };
+        verify(checkConfig, getPath("InputCustomImportOrderNoPackage.java"),
+            expected);
+    }
+
+    @Test
+    public void testNoPackage2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "STATIC###THIRD_PARTY_PACKAGE");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+
+        createChecker(checkConfig);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "com.puppycrawl.tools.checkstyle.utils.AnnotationUtility.containsAnnotation"),
+            "7: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "com.sun.accessibility.internal.resources.*"),
+            "11: " + getCheckMessage(MSG_LINE_SEPARATOR, "java.util.Arrays"),
+            "19: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "org.apache.commons.beanutils.converters.ArrayConverter"),
+        };
+        verify(checkConfig, getPath("InputCustomImportOrderNoPackage2.java"),
             expected);
     }
 }

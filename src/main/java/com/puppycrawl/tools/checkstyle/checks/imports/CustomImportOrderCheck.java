@@ -502,6 +502,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
             final String importGroup = importObject.getImportGroup();
             final String fullImportIdent = importObject.getImportFullPath();
 
+            if (getCountOfEmptyLinesBefore(importObject.getLineNumber()) > 1) {
+                log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
+            }
             if (importGroup.equals(currentGroup)) {
                 if (sortImportsInGroupAlphabetically
                         && previousImportFromCurrentGroup != null
@@ -519,7 +522,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
                         if (separateLineBetweenGroups
-                                && !hasEmptyLineBefore(importObject.getLineNumber())) {
+                                && getCountOfEmptyLinesBefore(importObject.getLineNumber()) == 0) {
                             log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
                         }
                         currentGroup = nextGroup;
@@ -695,16 +698,22 @@ public class CustomImportOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if a token has a empty line before.
+     * Counts empty lines before given.
      * @param lineNo
      *        Line number of current import.
-     * @return true, if token have empty line before.
+     * @return count of empty lines before given.
      */
-    private boolean hasEmptyLineBefore(int lineNo) {
+    private int getCountOfEmptyLinesBefore(int lineNo) {
+        int result = 0;
+        final String[] lines = getLines();
         //  [lineNo - 2] is the number of the previous line
         //  because the numbering starts from zero.
-        final String lineBefore = getLine(lineNo - 2);
-        return lineBefore.trim().isEmpty();
+        int lineBeforeIndex = lineNo - 2;
+        while (lineBeforeIndex >= 0 && lines[lineBeforeIndex].trim().isEmpty()) {
+            lineBeforeIndex--;
+            result++;
+        }
+        return result;
     }
 
     /**

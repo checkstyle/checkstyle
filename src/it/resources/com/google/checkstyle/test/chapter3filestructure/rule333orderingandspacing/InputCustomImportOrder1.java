@@ -14,7 +14,6 @@ import java.io.IOException; //warn
 import java.io.InputStream; //warn
 import java.io.Reader; //warn
 
-
 import com.google.common.base.Ascii; //warn
 
 public class InputCustomImportOrder1 {}
