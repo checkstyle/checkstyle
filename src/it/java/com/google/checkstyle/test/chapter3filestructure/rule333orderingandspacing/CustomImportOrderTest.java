@@ -59,7 +59,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
             "13: " + getCheckMessage(clazz, MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
             "14: " + getCheckMessage(clazz, MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
             "15: " + getCheckMessage(clazz, MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
-            "18: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.base.Ascii",
+            "17: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.base.Ascii",
                 "javax.swing.JTable"),
         };
 
@@ -102,16 +102,16 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
             "4: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR, "java.awt.Dialog"),
             "5: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
                 "javax.swing.WindowConstants.*"),
-            "8: " + getCheckMessage(clazz, MSG_LEX,
+            "7: " + getCheckMessage(clazz, MSG_LEX,
                 "com.google.checkstyle.test.chapter2filebasic.rule21filename.*", "java.awt.Dialog"),
-            "9: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.reflect.*",
+            "8: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.reflect.*",
                 "java.awt.Dialog"),
-            "10: " + getCheckMessage(clazz, MSG_LEX, "com.sun.xml.internal.xsom.impl.scd.Iterators",
+            "9: " + getCheckMessage(clazz, MSG_LEX, "com.sun.xml.internal.xsom.impl.scd.Iterators",
                 "java.awt.Dialog"),
-            "12: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
+            "11: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
                 "java.io.File.createTempFile"),
-            "14: " + getCheckMessage(clazz, MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
-            "16: " + getCheckMessage(clazz, MSG_LEX, "java.util.concurrent.*",
+            "13: " + getCheckMessage(clazz, MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
+            "15: " + getCheckMessage(clazz, MSG_LEX, "java.util.concurrent.*",
                 "java.util.concurrent.AbstractExecutorService"),
         };
 
