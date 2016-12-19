@@ -274,6 +274,8 @@
           files.</li>
           <li><em>Filter</em> children: modules that filter audit
           events.</li>
+          <li><em>FileFilter</em> children: modules that filter files
+          for Checkstyle to process.</li>
           <li><em>AuditListener</em> children: modules that report
           filtered events.</li>
         </ul>
