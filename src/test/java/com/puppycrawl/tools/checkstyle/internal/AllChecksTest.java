@@ -147,11 +147,11 @@ public class AllChecksTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAllChecksAreReferencedInConfigFile() throws Exception {
-        final Set<String> checksReferencedInConfig = CheckUtil.getConfigCheckStyleChecks();
-        final Set<String> checksNames = getSimpleNames(CheckUtil.getCheckstyleChecks());
+    public void testAllModulesAreReferencedInConfigFile() throws Exception {
+        final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
+        final Set<String> moduleNames = getSimpleNames(CheckUtil.getCheckstyleModules());
 
-        checksNames.stream().filter(check -> !checksReferencedInConfig.contains(check))
+        moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
                     "%s is not referenced in checkstyle_checks.xml", check);
@@ -163,6 +163,10 @@ public class AllChecksTest extends BaseCheckTestSupport {
     public void testAllCheckstyleModulesHaveXdocDocumentation() throws Exception {
         final Set<String> checkstyleModulesNames = getSimpleNames(CheckUtil.getCheckstyleModules());
         final Set<String> modulesNamesWhichHaveXdocs = XDocUtil.getModulesNamesWhichHaveXdoc();
+
+        // these are documented on non-'config_' pages
+        checkstyleModulesNames.remove("TreeWalker");
+        checkstyleModulesNames.remove("Checker");
 
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
@@ -176,7 +180,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     @Test
     public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
-        final Set<String> configChecks = CheckUtil.getConfigCheckStyleChecks();
+        final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
 
         for (String moduleName : getSimpleNames(CheckUtil.getCheckstyleModules())) {
             Assert.assertTrue("checkstyle_checks.xml is missing module: " + moduleName,
@@ -185,11 +189,20 @@ public class AllChecksTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAllCheckstyleModulesHaveMessage() throws Exception {
+    public void testAllCheckstyleChecksHaveMessage() throws Exception {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
-            Assert.assertFalse(module.getSimpleName()
-                    + " should have atleast one 'MSG_*' field for error messages", CheckUtil
-                    .getCheckMessages(module).isEmpty());
+            final String name = module.getSimpleName();
+
+            if ("FileContentsHolder".equals(name)) {
+                Assert.assertTrue(name
+                        + " should not have any 'MSG_*' field for error messages", CheckUtil
+                        .getCheckMessages(module).isEmpty());
+            }
+            else {
+                Assert.assertFalse(name
+                        + " should have atleast one 'MSG_*' field for error messages", CheckUtil
+                        .getCheckMessages(module).isEmpty());
+            }
         }
     }
 
@@ -197,7 +210,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
     public void testAllCheckstyleMessages() throws Exception {
         final Map<String, List<String>> usedMessages = new TreeMap<>();
 
-        // test validity of messages from checks
+        // test validity of messages from modules
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
             for (Field message : CheckUtil.getCheckMessages(module)) {
                 Assert.assertEquals(module.getSimpleName() + "." + message.getName()
@@ -288,12 +301,20 @@ public class AllChecksTest extends BaseCheckTestSupport {
     }
 
     /**
-     * Removes 'Check' suffix from each class name in the set.
+     * Retrieves a list of class names, removing 'Check' from the end if the class is
+     * a checkstyle check.
      * @param checks class instances.
      * @return a set of simple names.
      */
     private static Set<String> getSimpleNames(Set<Class<?>> checks) {
-        return checks.stream().map(check -> check.getSimpleName().replace("Check", ""))
-            .collect(Collectors.toSet());
+        return checks.stream().map(check -> {
+            String name = check.getSimpleName();
+
+            if (name.endsWith("Check")) {
+                name = name.substring(0, name.length() - 5);
+            }
+
+            return name;
+        }).collect(Collectors.toSet());
     }
 }
