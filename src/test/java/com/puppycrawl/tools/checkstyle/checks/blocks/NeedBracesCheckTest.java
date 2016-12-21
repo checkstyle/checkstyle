@@ -116,6 +116,16 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testSingleLineCaseDefault2() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputNeedBracesEmptyDefault.java"), expected);
+    }
+
+    @Test
     public void testCycles() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NeedBracesCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_WHILE, LITERAL_DO, LITERAL_FOR");
@@ -177,5 +187,14 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "108: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
         };
         verify(checkConfig, getPath("InputNeedBracesNoBodyLoops.java"), expected);
+    }
+
+    @Test
+    public void testEmptySingleLineDefaultStmt() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputNeedBracesEmptyDefault.java"), expected);
     }
 }
