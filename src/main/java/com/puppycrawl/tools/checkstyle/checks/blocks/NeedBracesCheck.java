@@ -442,9 +442,14 @@ public class NeedBracesCheck extends AbstractCheck {
     private static boolean isSingleLineDefault(DetailAST literalDefault) {
         boolean result = false;
         final DetailAST slist = literalDefault.getNextSibling();
-        final DetailAST block = slist.getFirstChild();
-        if (block.getType() != TokenTypes.SLIST) {
-            result = literalDefault.getLineNo() == block.getLineNo();
+        if (slist == null) {
+            result = true;
+        }
+        else {
+            final DetailAST block = slist.getFirstChild();
+            if (block.getType() != TokenTypes.SLIST) {
+                result = literalDefault.getLineNo() == block.getLineNo();
+            }
         }
         return result;
     }

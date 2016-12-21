@@ -178,4 +178,13 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputNeedBracesNoBodyLoops.java"), expected);
     }
+
+    @Test
+    public void testEmptySingleLineDefaultStmt() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputNeedBracesEmptyDefault.java"), expected);
+    }
 }
