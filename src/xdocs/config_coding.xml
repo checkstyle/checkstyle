@@ -4099,7 +4099,7 @@ if (&quot;something&quot;.equals(x))
 
           <tr>
             <td>allowedDistance</td>
-            <td>A distance between declaration of variable and its first usage</td>
+            <td>A distance between declaration of variable and its first usage. Values should be greater than 0.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>3</td>
           </tr>
