@@ -2,6 +2,11 @@ checkout:
   post:
     - git clone https://github.com/checkstyle/contribution
 dependencies:
+  cache_directories:
+    - groovy-2.4.7
+  pre:
+    - if [ ! -d groovy-2.4.7 ]; then wget https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip && unzip apache-groovy-binary-2.4.7.zip; fi
+
   # we to override as 'mvn dependecy:go-ofline' does not download all dependencies
   override:
     - mvn install -Pno-validations
@@ -14,11 +19,10 @@ machine:
     DEP1: " && sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties"
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
     DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
-    DEP3: " && ./launch.sh -Dcheckstyle.config.location=my_check.xml"
+    DEP3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy projects-for-circle.properties my_check.xml"
     TESTER_DEPENDENCIES: $CMD1$DEP1$DEP2$DEP3
     CMD2: " && sed -i.'' 's/^openjdk/#openjdk/' projects-for-circle.properties"
-    CMD3: " && sed -i.'' s/projects-to-test-on.properties/projects-for-circle.properties/ launch.sh"
-    CMD4: " && ./launch.sh -Dcheckstyle.config.location=checks-nonjavadoc-error.xml"
+    CMD3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy projects-for-circle.properties checks-nonjavadoc-error.xml"
     OPENJDK7: " && sed -i.'' 's/#openjdk7/openjdk7/' projects-for-circle.properties"
     OPENJDK8: " && sed -i.'' 's/#openjdk8/openjdk8/' projects-for-circle.properties"
     OPENJDK9: " && sed -i.'' 's/#openjdk9/openjdk9/' projects-for-circle.properties"
@@ -34,13 +38,13 @@ machine:
     SCOUTER: " && sed -i.'' 's/#scouter/scouter/' projects-for-circle.properties"
     GROOVY: " && sed -i.'' 's/#groovy/groovy/' projects-for-circle.properties"
     # Test over openjdk7,8
-    TEST_1: $CMD1$CMD2$OPENJDK7$OPENJDK8$CMD3$CMD4
+    TEST_1: $CMD1$CMD2$OPENJDK7$OPENJDK8$CMD3
     # Test over infinispan, protonpack, jOOL, lucene-solr, openjdk9
-    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$OPENJDK9$CMD3$CMD4
+    TEST_2: $CMD1$CMD2$INFINISPAN$PROTONPACK$JOOL$LUCENE$OPENJDK9$CMD3
     # Test over tapestry5, storm, cassandra
-    TEST_3: $CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3$CMD4
+    TEST_3: $CMD1$CMD2$TAPESTRY$STORM$CASSANDRA$CMD3
     # Test over apache-commons, hadoop, scouter, groovy
-    TEST_4: $CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3$CMD4
+    TEST_4: $CMD1$CMD2$COMMONS$HADOOP$SCOUTER$GROOVY$CMD3
 test:
   override:
     - case $CIRCLE_NODE_INDEX in 0) eval $TEST_1 ;; 1) eval $TEST_2 ;; 2) eval $TEST_3 ;;  3) eval $TEST_4 ;; esac:
