@@ -254,13 +254,44 @@ public class BaseCheckTestSupport {
      * @throws CheckstyleException if exception occurs during configuration loading.
      */
     protected static Configuration getCheckConfig(String checkName) throws CheckstyleException {
+        final Configuration result;
         final List<Configuration> configs = getCheckConfigs(checkName);
-        if (configs.isEmpty()) {
-            return null;
+        if (configs.size() == 1) {
+            result = configs.get(0);
         }
         else {
-            return configs.get(0);
+            result = configs.get(0);
+            //throw new IllegalStateException("multiple instances of the same Check is detected");
         }
+        return result;
+    }
+
+    /**
+     * Returns {@link Configuration} instance for the given check name.
+     * This implementation uses {@link BaseCheckTestSupport#getConfiguration()} method inside.
+     * @param checkName check name.
+     * @return {@link Configuration} instance for the given check name.
+     * @throws CheckstyleException if exception occurs during configuration loading.
+     */
+    protected static Configuration getCheckConfig(String checkName, String checkId)
+            throws CheckstyleException {
+        final Configuration result;
+        final List<Configuration> configs = getCheckConfigs(checkName);
+        if (configs.size() == 1) {
+            result = configs.get(0);
+        }
+        else {
+            result = configs.stream().filter(conf -> {
+                try {
+                    return conf.getAttribute("id").equals(checkId);
+                }
+                catch (CheckstyleException ex) {
+                    throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
+                }
+            })
+            .findFirst().orElseGet(null);
+        }
+        return result;
     }
 
     /**
