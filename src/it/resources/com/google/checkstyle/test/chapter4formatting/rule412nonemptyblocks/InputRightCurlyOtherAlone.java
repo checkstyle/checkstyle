@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-class InputRightCurlyOther
+class InputRightCurlyOtherAlone
 {
     /** @see test method **/
     int foo() throws InterruptedException
@@ -17,7 +17,7 @@ class InputRightCurlyOther
                 } else if (x < 0) {  //ok
                 
                     ;
-                } //warn
+                } //ok - for alone config
                 else
                 {
                     break;
@@ -29,7 +29,7 @@ class InputRightCurlyOther
                 default:
                     break;
                 } //ok
-            } //warn
+            } //ok - for alone config
             catch (Exception e)
             {
                 break;
@@ -76,7 +76,7 @@ class InputRightCurlyOther
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } System. //warn
+            flag = !flag; } System. //ok for alone config
               identityHashCode("Xe-xe");
         
        
@@ -88,30 +88,30 @@ class InputRightCurlyOther
  * Test input for closing brace if that brace terminates 
  * a statement or the body of a constructor. 
  */
-class FooCtor
+class FooCtorAlone
 {
     int i;
-    public FooCtor()
+    public FooCtorAlone()
     {
         i = 1;
-    }} //ok
+    }} //warn
 
 /**
 * Test input for closing brace if that brace terminates 
 * a statement or the body of a method. 
 */
-class FooMethod
+class FooMethodAlone
 {
     public void fooMethod()
     {
         int i = 1;
-    }} //ok
+    }} //warn
 
 /**
 * Test input for closing brace if that brace terminates 
 * a statement or the body of a named class. 
 */
-class FooInner
+class FooInnerAlone
 {
     class InnerFoo
     {
@@ -119,13 +119,13 @@ class FooInner
         {
             
         }
-    }} //ok
+    }} //warn
 
-class EnumContainer {
+class EnumContainerAlone {
     private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
 }
 
-class WithArrays {
+class WithArraysAlone {
     String[] s = {""}; // ok
     String[] empty = {}; // ok
     String[] s1 = {
