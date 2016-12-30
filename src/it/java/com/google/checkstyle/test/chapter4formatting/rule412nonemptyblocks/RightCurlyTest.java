@@ -20,6 +20,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_ALONE;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck.MSG_KEY_LINE_SAME;
 
@@ -29,9 +30,8 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.google.checkstyle.test.base.BaseCheckTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck;
-import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class RightCurlyTest extends BaseCheckTestSupport {
@@ -44,10 +44,47 @@ public class RightCurlyTest extends BaseCheckTestSupport {
 
     @Test
     public void rightCurlyTestAlone() throws Exception {
-        final DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
-        newCheckConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        newCheckConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF");
+        final String[] expected = {
+            "20:17: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 17),
+            "32:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
+            "79:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
+        };
 
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final String filePath = getPath("InputRightCurlyOther.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void rightCurlyTestSame() throws Exception {
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final String filePath = getPath("InputRightCurlySame.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testRightCurlySameAndLiteralDoDefault() throws Exception {
+        final String[] expected = {
+            "62:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
+            "67:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
+            "83:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
+        };
+
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
+        final String filePath = getPath("InputRightCurlyDoWhile.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testRightCurlyAloneOther() throws Exception {
         final String[] expected = {
             "97:5: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 5),
             "97:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
@@ -56,34 +93,31 @@ public class RightCurlyTest extends BaseCheckTestSupport {
             "122:6: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_NEW, "}", 6),
         };
 
-        final String filePath = getPath("InputRightCurlyOther.java");
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
+        final String filePath = getPath("InputRightCurlyOtherAlone.java");
+
         final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(newCheckConfig, filePath, expected, warnList);
+        verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
-    public void rightCurlyTestSame() throws Exception {
-        final DefaultConfiguration newCheckConfig = createCheckConfig(RightCurlyCheck.class);
-        newCheckConfig.addAttribute("option", RightCurlyOption.SAME.toString());
-
+    public void rightCurlyAloneTestSame() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
         final String filePath = getPath("InputRightCurlySame.java");
+
         final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(newCheckConfig, filePath, expected, warnList);
+        verify(checkConfig, filePath, expected, warnList);
     }
 
     @Test
-    public void testRightCurlySameAndLiteralDo() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(RightCurlyCheck.class);
-        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_DO");
-        final String[] expected = {
-            "62:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
-            "67:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
-            "83:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
-        };
-        final String filePath = getPath("InputRightCurlyDoWhile.java");
+    public void testRightCurlyAloneSameAndLiteralDo() throws Exception {
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
+        final String filePath = getPath("InputRightCurlyDoWhileAlone.java");
+
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
