@@ -48,7 +48,6 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
     @Test
     public void fileTabTest() throws Exception {
 
-        final DefaultConfiguration checkConfig = createConfig(true);
         final String[] expected = {
             "8:25: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
             "51:5: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
@@ -61,18 +60,10 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
             "134:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
         };
 
+        final Configuration checkConfig = getCheckConfig("FileTabCharacter");
         final String filePath = getPath("InputFileTabCharacter.java");
+
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
-    }
-
-    /**
-     * Creates a configuration that is functionally close to that in the docs.
-     */
-    private static DefaultConfiguration createConfig(boolean verbose) {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", Boolean.toString(verbose));
-        return checkConfig;
     }
 }

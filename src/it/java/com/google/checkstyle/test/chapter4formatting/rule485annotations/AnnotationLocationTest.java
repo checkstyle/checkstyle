@@ -74,7 +74,6 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
         final Configuration checkConfig = getCheckConfig("AnnotationLocation",
                 "AnnotationLocationVariables");
 
-        final String msgLocationAlone = "annotation.location.alone";
         final String msgLocation = "annotation.location";
         final String[] expected = {
             "63: " + getCheckMessage(clazz, msgLocation, "MyAnnotation2", "7", "4"),
