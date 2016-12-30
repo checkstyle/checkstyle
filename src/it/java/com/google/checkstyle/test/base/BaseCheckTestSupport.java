@@ -82,7 +82,7 @@ public class BaseCheckTestSupport {
      * @param clazz check class.
      * @return {@link DefaultConfiguration} instance.
      */
-    protected static DefaultConfiguration createCheckConfig(Class<?> clazz) {
+    private static DefaultConfiguration createCheckConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
 
