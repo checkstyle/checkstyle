@@ -37,14 +37,28 @@ public class SeparatorWrapTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void separatorWrapTest() throws Exception {
+    public void separatorWrapDotTest() throws Exception {
 
         final String[] expected = {
             "28:30: " + getCheckMessage(SeparatorWrapCheck.class, "line.new", "."),
         };
 
-        final Configuration checkConfig = getCheckConfig("SeparatorWrap");
+        final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapDot");
         final String filePath = getPath("InputSeparatorWrap.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void separatorWrapCommaTest() throws Exception {
+
+        final String[] expected = {
+            "31:17: " + getCheckMessage(SeparatorWrapCheck.class, "line.previous", ","),
+        };
+
+        final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapComma");
+        final String filePath = getPath("InputSeparatorWrapComma.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
