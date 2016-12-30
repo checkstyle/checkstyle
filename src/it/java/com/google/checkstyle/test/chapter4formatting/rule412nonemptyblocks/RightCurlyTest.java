@@ -50,7 +50,7 @@ public class RightCurlyTest extends BaseCheckTestSupport {
             "79:27: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyDefault");
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
         final String filePath = getPath("InputRightCurlyOther.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -61,7 +61,7 @@ public class RightCurlyTest extends BaseCheckTestSupport {
     public void rightCurlyTestSame() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyDefault");
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
         final String filePath = getPath("InputRightCurlySame.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
@@ -76,7 +76,7 @@ public class RightCurlyTest extends BaseCheckTestSupport {
             "83:9: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 9),
         };
 
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyDefault");
+        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
         final String filePath = getPath("InputRightCurlyDoWhile.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);

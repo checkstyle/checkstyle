@@ -260,8 +260,7 @@ public class BaseCheckTestSupport {
             result = configs.get(0);
         }
         else {
-            result = configs.get(0);
-            //throw new IllegalStateException("multiple instances of the same Check is detected");
+            throw new IllegalStateException("multiple instances of the same Check is detected");
         }
         return result;
     }
