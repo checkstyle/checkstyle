@@ -16,6 +16,116 @@
   <body>
 
     <!-- placeholder for a new section -->
+    <section name="Release 7.4">
+      <p>New:</p>
+        <ul>
+          <li>
+            Support LITERAL_SYNCHRONIZED token for NoWhitespaceAfter Rule. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2803">#2803</a>
+          </li>
+          <li>
+            google_checks.xml : NO space is allowed method method name and its arguments. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2809">#2809</a>
+          </li>
+          <li>
+            Support more tokens in WhitespaceAfter check. Author: MaksimP <a href="https://github.com/checkstyle/checkstyle/issues/3333">#3333</a>
+          </li>
+          <li>
+            Checker: option to allow printing exception as violation and continue execution. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3611">#3611</a>
+          </li>
+          <li>
+            ImportControl: allow to load files from resources. Author: Jochen Van de Velde <a href="https://github.com/checkstyle/checkstyle/issues/3450">#3450</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            NullPointerException when using NeedBraces with tokens LITERAL_CASE, LITERAL_DEFAULT. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/3655">#3655</a>
+          </li>
+          <li>
+            CustomImportOrder should check that import groups are separated by one line only. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3551">#3551</a>
+          </li>
+          <li>
+            RightCurly was misconfigured in google_checks.xml for do-while blocks. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3678">#3678</a>
+          </li>
+          <li>
+            keep a map of Check name and it package in source to avoid brute force load by PackageObjectFactory from all packages. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/3184">#3184</a>
+          </li>
+          <li>
+            Duplicated Checks in google_checks.xml config should have &quot;id&quot;. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3662">#3662</a>
+          </li>
+          <li>
+            skip unnecessary exception &#39;Severity not set, ignoring exception&#39;. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3657">#3657</a>
+          </li>
+          <li>
+            EmptyLineSeparator causing violation in `package-info.java`. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3426">#3426</a>
+          </li>
+          <li>
+            FinalLocalVariable should not to check multi-catch variables. Author: liscju <a href="https://github.com/checkstyle/checkstyle/issues/3617">#3617</a>
+          </li>
+          <li>
+            ImportOrder: Check that import groups aren&#39;t separated internally. Author: linelect <a href="https://github.com/checkstyle/checkstyle/issues/2143">#2143</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update documentation about getAcceptableTokens for javadoc Checks. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3672">#3672</a>
+          </li>
+          <li>
+            update documentation for VariableDeclarationUsageDistance with allowedDistance = 0. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3665">#3665</a>
+          </li>
+          <li>
+            Module term and usage is confusing in test area. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3667">#3667</a>
+          </li>
+          <li>
+            Using the SPDX identifier for the license name. Author: Robert Reiz <a href="https://github.com/checkstyle/checkstyle/issues/3653">#3653</a>
+          </li>
+          <li>
+            XDoc: extend validation to Checker and TreeWalker. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3622">#3622</a>
+          </li>
+          <li>
+            travis: use standalone shell files . Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3632">#3632</a>
+          </li>
+          <li>
+            CustomImportControl bad document examples that could lead to false positive on &#39;special group&#39;. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3590">#3590</a>
+          </li>
+          <li>
+            Add new Sevntu checks and create UT for missing checks. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3628">#3628</a>
+          </li>
+          <li>
+            repo files should not have execute permissions. Author: MaksimP <a href="https://github.com/checkstyle/checkstyle/issues/3600">#3600</a>
+          </li>
+          <li>
+            use shippable CI in testing. Author: Oleg Efremenkov <a href="https://github.com/checkstyle/checkstyle/issues/3316">#3316</a>
+          </li>
+          <li>
+            100% UT coverage for ParseTreeTablePModel.java. Author: Saideep, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3606">#3606</a>
+          </li>
+          <li>
+            Set Load external DTD feature to be enabled. Author: Aurimas Liutikas <a href="https://github.com/checkstyle/checkstyle/issues/3605">#3605</a>
+          </li>
+          <li>
+            Modules and XDocs: change setter methods to recieve similar types with field type for easier xdoc validation (more 2). Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3575">#3575</a>
+          </li>
+          <li>
+            ImportControl: Deprecate &#39;url&#39; property in favor of the &#39;file&#39; property. Author: Jochen Van de Velde <a href="https://github.com/checkstyle/checkstyle/issues/3584">#3584</a>
+          </li>
+          <li>
+            Unexpected loss of coverage for PropertyCacheFile.java. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3594">#3594</a>
+          </li>
+          <li>
+            Update ISSUE_TEMPLATE.md. Author: Roman Ivanov
+          </li>
+          <li>
+            refactoring to ImportControlCheck . Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3498">#3498</a>
+          </li>
+          <li>
+            ThreadLocal usage in single threaded checkstyle. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/2992">#2992</a>
+          </li>
+          <li>
+            Detect final methods in Enumeration for RedundantModifier. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2068">#2068</a>
+          </li>
+        </ul>
+    </section>
 
     <section name="Release 7.3">
       <p>Breaking backward compatibility:</p>
