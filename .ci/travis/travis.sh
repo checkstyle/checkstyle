@@ -47,6 +47,10 @@ pr-description)
   .ci/travis/xtr_pr-description.sh
   ;;
 
+check-chmod)
+  .ci/travis/checkchmod.sh
+  ;;
+
 all-sevntu-checks)
   xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_sevntu_checks.xml \
     | grep -vE "Checker|TreeWalker|Filter|Holder" | grep -v "^$" \
