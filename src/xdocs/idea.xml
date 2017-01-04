@@ -31,6 +31,12 @@
         <br/><br/>
         Then Next > Next > ... Until Finish.
       </p>
+      <p>
+        Generate sources that a required by checkstyle
+        by right click over pom.xml file and click on menu "Maven / Generate Sources and Update Folders"
+        <img alt="screenshot" src="images/gui_screenshot_idea_generate_sources.png"/>
+        <br/><br/>
+      </p>
     </section>
 
     <section name="Debug">
