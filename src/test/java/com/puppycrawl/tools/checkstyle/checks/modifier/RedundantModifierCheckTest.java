@@ -227,7 +227,10 @@ public class RedundantModifierCheckTest
     @Test
     public void testEnumMethods() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RedundantModifierCheck.class);
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "7:16: " + getCheckMessage(MSG_KEY, "final"),
+            "22:16: " + getCheckMessage(MSG_KEY, "final"),
+        };
         verify(checkConfig, getPath("InputFinalInEnumMethods.java"), expected);
     }
 }
