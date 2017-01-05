@@ -10,4 +10,4 @@ build:
     - /root/.m2
 
   ci:
-    - mvn clean verify -Ppitest-checks-sizes org.pitest:pitest-maven:mutationCoverage
+    # - mvn clean verify -Ppitest-checks-sizes org.pitest:pitest-maven:mutationCoverage

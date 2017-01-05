@@ -10,21 +10,21 @@ branches:
 init:
   - git config --global core.autocrlf true
 install:
-  - ps: |
-      Add-Type -AssemblyName System.IO.Compression.FileSystem
-      if (!(Test-Path -Path "C:\maven\apache-maven-3.2.5" )) {
-        (new-object System.Net.WebClient).DownloadFile(
-          'http://www.us.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.zip',
-          'C:\maven-bin.zip'
-        )
-        [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
-      }
-  - cmd: SET M2_HOME=C:\maven\apache-maven-3.2.5
-  - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
-  - cmd: git config --global core.autocrlf
-  - cmd: mvn --version
-  - cmd: java -version
-  - cmd: '%CYG_BIN% -qnNdO -R %CYG_ROOT% -s %CYG_MIRROR% -l %CYG_CACHE% -P hg'
+  # - ps: |
+  #     Add-Type -AssemblyName System.IO.Compression.FileSystem
+  #     if (!(Test-Path -Path "C:\maven\apache-maven-3.2.5" )) {
+  #       (new-object System.Net.WebClient).DownloadFile(
+  #         'http://www.us.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.zip',
+  #         'C:\maven-bin.zip'
+  #       )
+  #       [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
+  #     }
+  # - cmd: SET M2_HOME=C:\maven\apache-maven-3.2.5
+  # - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
+  # - cmd: git config --global core.autocrlf
+  # - cmd: mvn --version
+  # - cmd: java -version
+  # - cmd: '%CYG_BIN% -qnNdO -R %CYG_ROOT% -s %CYG_MIRROR% -l %CYG_CACHE% -P hg'
 
 cache:
   - C:\maven\apache-maven-3.2.5
@@ -67,18 +67,18 @@ environment:
       CMD1: "mvn -e -Pno-validations site"
 
 build_script:
-  - ps: >
-       (get-content env:CMD1)
-       + (get-content env:CMD2)
-       + (get-content env:CMD3)
-       + (get-content env:CMD4)
-       + (get-content env:CMD5)
-       + (get-content env:CMD6)
-       + (get-content env:CMD7)
-       + (get-content env:CMD8)
-       + (get-content env:CMD9)
-       + (get-content env:CMD10)
-       | Out-File appveyor.cmd -encoding ASCII
-  - ps: get-content appveyor.cmd
-  # We need to use cmd there as ps1 is failing each time error output appear from any command line
-  - appveyor.cmd
+  # - ps: >
+  #      (get-content env:CMD1)
+  #      + (get-content env:CMD2)
+  #      + (get-content env:CMD3)
+  #      + (get-content env:CMD4)
+  #      + (get-content env:CMD5)
+  #      + (get-content env:CMD6)
+  #      + (get-content env:CMD7)
+  #      + (get-content env:CMD8)
+  #      + (get-content env:CMD9)
+  #      + (get-content env:CMD10)
+  #      | Out-File appveyor.cmd -encoding ASCII
+  # - ps: get-content appveyor.cmd
+  # # We need to use cmd there as ps1 is failing each time error output appear from any command line
+  # - appveyor.cmd

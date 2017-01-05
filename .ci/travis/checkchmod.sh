@@ -2,13 +2,11 @@
 
 set -e
 
-ls -la .ci/
-echo "-----"
 ls -la config/
 echo "-----"
-find -type f -not -path '*/\.git/*' -a -type f -not -perm 664
+find config -type f -not -path '*/\.git/*' -a -type f -not -perm 664
 echo "-----"
-find -type f -not -perm 664
+find config -type f -not -perm 664
 echo "-----"
 
 CHMOD=$(find -type f -not -path '*/\.git/*' -a -type f -not -name '*.sh' -a \( -type d -not -perm 775 -o -type f -not -perm 664 \))
