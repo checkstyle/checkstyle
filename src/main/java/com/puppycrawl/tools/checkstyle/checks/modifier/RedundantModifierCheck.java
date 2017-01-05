@@ -278,7 +278,8 @@ public class RedundantModifierCheck
                 checkFinal = checkFinal || classModifiers.branchContains(TokenTypes.FINAL);
                 parent = null;
             }
-            else if (parent.getType() == TokenTypes.LITERAL_NEW) {
+            else if (parent.getType() == TokenTypes.LITERAL_NEW
+                    || parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
                 checkFinal = true;
                 parent = null;
             }
