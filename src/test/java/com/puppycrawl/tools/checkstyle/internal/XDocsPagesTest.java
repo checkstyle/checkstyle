@@ -66,33 +66,9 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 
 public class XDocsPagesTest {
-    private static final Path JAVA_SOURCES_DIRECTORY = Paths.get("src/main/java");
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
-    private static final String CHECK_FILE_NAME = ".+Check.java$";
-    private static final String CHECK_SUFFIX = "Check.java";
     private static final String LINK_TEMPLATE =
             "(?s).*<a href=\"config_\\w+\\.html#%1$s\">%1$s</a>.*";
-
-    private static final List<String> MODULES_ON_PAGE_IGNORE_LIST = Arrays.asList(
-            "AbstractAccessControlNameCheck.java",
-            "AbstractCheck.java",
-            "AbstractClassCouplingCheck.java",
-            "AbstractComplexityCheck.java",
-            "AbstractFileSetCheck.java",
-            "AbstractFormatCheck.java",
-            "AbstractHeaderCheck.java",
-            "AbstractIllegalCheck.java",
-            "AbstractIllegalMethodCheck.java",
-            "AbstractJavadocCheck.java",
-            "AbstractNameCheck.java",
-            "AbstractNestedDepthCheck.java",
-            "AbstractOptionCheck.java",
-            "AbstractParenPadCheck.java",
-            "AbstractSuperCheck.java",
-            "AbstractTypeAwareCheck.java",
-            "AbstractTypeParameterNameCheck.java",
-            "FileSetCheck.java"
-    );
 
     private static final List<String> XML_FILESET_LIST = Arrays.asList(
             "TreeWalker",
@@ -140,19 +116,16 @@ public class XDocsPagesTest {
         new HashSet<>(CheckUtil.getConfigGoogleStyleModules()));
 
     @Test
-    public void testAllChecksPresentOnAvailableChecksPage() throws IOException {
+    public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
         final String availableChecks = new String(Files.readAllBytes(AVAILABLE_CHECKS_PATH), UTF_8);
-        Files.walk(JAVA_SOURCES_DIRECTORY).forEach(filePath -> {
-            final String fileName = filePath.getFileName().toString();
-            if (fileName.matches(CHECK_FILE_NAME)
-                    && !MODULES_ON_PAGE_IGNORE_LIST.contains(fileName)) {
-                final String checkName = fileName.replace(CHECK_SUFFIX, "");
+
+        CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
+            .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
                     Assert.fail(checkName + " is not correctly listed on Available Checks page"
                         + " - add it to " + AVAILABLE_CHECKS_PATH);
                 }
-            }
-        });
+            });
     }
 
     private static boolean isPresent(String availableChecks, String checkName) {

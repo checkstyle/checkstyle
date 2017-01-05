@@ -30,7 +30,6 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -149,7 +148,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
     @Test
     public void testAllModulesAreReferencedInConfigFile() throws Exception {
         final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
-        final Set<String> moduleNames = getSimpleNames(CheckUtil.getCheckstyleModules());
+        final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
@@ -161,7 +160,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
     @Test
     public void testAllCheckstyleModulesHaveXdocDocumentation() throws Exception {
-        final Set<String> checkstyleModulesNames = getSimpleNames(CheckUtil.getCheckstyleModules());
+        final Set<String> checkstyleModulesNames = CheckUtil.getSimpleNames(CheckUtil
+                .getCheckstyleModules());
         final Set<String> modulesNamesWhichHaveXdocs = XDocUtil.getModulesNamesWhichHaveXdoc();
 
         // these are documented on non-'config_' pages
@@ -182,7 +182,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
     public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
 
-        for (String moduleName : getSimpleNames(CheckUtil.getCheckstyleModules())) {
+        for (String moduleName : CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules())) {
             Assert.assertTrue("checkstyle_checks.xml is missing module: " + moduleName,
                     configChecks.contains(moduleName));
         }
@@ -298,23 +298,5 @@ public class AllChecksTest extends BaseCheckTestSupport {
             }
         }
         return true;
-    }
-
-    /**
-     * Retrieves a list of class names, removing 'Check' from the end if the class is
-     * a checkstyle check.
-     * @param checks class instances.
-     * @return a set of simple names.
-     */
-    private static Set<String> getSimpleNames(Set<Class<?>> checks) {
-        return checks.stream().map(check -> {
-            String name = check.getSimpleName();
-
-            if (name.endsWith("Check")) {
-                name = name.substring(0, name.length() - 5);
-            }
-
-            return name;
-        }).collect(Collectors.toSet());
     }
 }
