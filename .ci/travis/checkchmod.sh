@@ -11,5 +11,5 @@ else
         echo $NAMEFILE;
     done
 fi
-echo " ";
+echo "  ";
 echo "To change permissions.";
