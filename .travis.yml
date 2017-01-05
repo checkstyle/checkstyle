@@ -228,11 +228,11 @@ matrix:
         - COVERAGE_CMD=""
 
     # Check the chmod on files.
-    - env:
-        - DESC="check permissions on all files"
-        - GOAL="check-chmod"
-        - CMD="./.ci/travis/travis.sh"
-        - COVERAGE_CMD=""
+    # - env:
+    #     - DESC="check permissions on all files"
+    #     - GOAL="check-chmod"
+    #     - CMD="./.ci/travis/travis.sh"
+    #     - COVERAGE_CMD=""
 
     # Ensure that all Sevntu check are kused
     - jdk: oraclejdk8
