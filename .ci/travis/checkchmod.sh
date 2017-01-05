@@ -4,10 +4,13 @@ set -e
 
 ls -la config/
 echo "-----"
-find config -type f -not -path '*/\.git/*' -a -type f -not -perm 664
-echo "-----"
 find config -type f -not -perm 664
 echo "-----"
+find config -type f -perm 664
+echo "-----"
+find -v
+echo "-----"
+
 
 CHMOD=$(find -type f -not -path '*/\.git/*' -a -type f -not -name '*.sh' -a \( -type d -not -perm 775 -o -type f -not -perm 664 \))
 if [[ ! -z $CHMOD ]]; then
