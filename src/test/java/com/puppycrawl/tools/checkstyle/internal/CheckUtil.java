@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -66,6 +67,24 @@ public final class CheckUtil {
 
     public static Set<String> getConfigGoogleStyleModules() {
         return getCheckStyleModulesReferencedInConfig("src/main/resources/google_checks.xml");
+    }
+
+    /**
+     * Retrieves a list of class names, removing 'Check' from the end if the class is
+     * a checkstyle check.
+     * @param checks class instances.
+     * @return a set of simple names.
+     */
+    public static Set<String> getSimpleNames(Set<Class<?>> checks) {
+        return checks.stream().map(check -> {
+            String name = check.getSimpleName();
+
+            if (name.endsWith("Check")) {
+                name = name.substring(0, name.length() - 5);
+            }
+
+            return name;
+        }).collect(Collectors.toSet());
     }
 
     /**

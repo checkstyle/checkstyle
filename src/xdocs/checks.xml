@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <head>
-    <title>Standard Checks</title>
+    <title>Checks</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <section name="Checks">
+    <section name="Standard Checks">
     <p>
       The Standard Checkstyle Checks are applicable to general Java coding style
       and require no external libraries. The standard checks are included in
@@ -721,12 +721,6 @@
         </td>
       </tr>
       <tr>
-        <td><a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a></td>
-        <td>
-          This check allows for finding code that should not be reported by Checkstyle
-        </td>
-      </tr>
-      <tr>
         <td><a href="config_design.html#ThrowsCount">ThrowsCount</a></td>
         <td>
         Restricts throws statements to a specified count (default = 4).</td>
@@ -802,6 +796,27 @@
         <td><a href="config_javadoc.html#WriteTag">WriteTag</a></td>
         <td>
         Outputs a JavaDoc tag as information.</td>
+      </tr>
+    </table>
+    </section>
+
+    <section name="Holder Checks">
+    <p>
+      These checks aren't normal checks and are usually associated with a specialized filter
+      to gather information the filter can't get on it's own.
+    </p>
+
+    <table>
+      <tr>
+        <td><a href="config_misc.html#FileContentsHolder">FileContentsHolder</a></td>
+        <td>Holds the current file contents for global access when configured as a
+        TreeWalker sub-module.</td>
+      </tr>
+      <tr>
+        <td><a href="config_annotation.html#SuppressWarningsHolder">SuppressWarningsHolder</a></td>
+        <td>
+          Maintains a set of check suppressions from <code>SuppressWarnings</code> annotations.
+        </td>
       </tr>
     </table>
     </section>
