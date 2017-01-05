@@ -101,7 +101,7 @@ public class CodeSelectorPModelTest {
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
         final CodeSelectorPModel selector = new CodeSelectorPModel(javadoc, linesToPosition);
         selector.findSelectionPositions();
-        Assert.assertEquals(0, selector.getSelectionStart());
+        Assert.assertEquals(3, selector.getSelectionStart());
         Assert.assertEquals(25, selector.getSelectionEnd());
     }
 
