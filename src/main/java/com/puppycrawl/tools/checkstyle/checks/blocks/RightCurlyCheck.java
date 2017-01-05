@@ -370,7 +370,9 @@ public class RightCurlyCheck extends AbstractCheck {
             case TokenTypes.LITERAL_DO:
                 nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
                 lcurly = ast.findFirstToken(TokenTypes.SLIST);
-                rcurly = lcurly.getLastChild();
+                if (lcurly != null) {
+                    rcurly = lcurly.getLastChild();
+                }
                 break;
             default:
                 // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
