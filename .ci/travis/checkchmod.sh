@@ -6,9 +6,13 @@ ls -la config/
 echo "-----"
 find config -type f -not -perm 664
 echo "-----"
+find config -type f -perm 664
+echo "-----"
 find config -type f
 echo "-----"
 find -version
+echo "-----"
+stat -c "%a %n" config/checkstyle_checks.xml
 echo "-----"
 
 
