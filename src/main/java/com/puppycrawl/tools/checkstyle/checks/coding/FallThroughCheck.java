@@ -267,7 +267,13 @@ public class FallThroughCheck extends AbstractCheck {
         }
 
         if (!isTerminated) {
-            isTerminated = isTerminated(ast.getFirstChild(),
+            DetailAST firstChild = ast.getFirstChild();
+
+            if (firstChild.getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                firstChild = firstChild.getNextSibling();
+            }
+
+            isTerminated = isTerminated(firstChild,
                     useBreak, useContinue);
 
             DetailAST catchStmt = ast.findFirstToken(TokenTypes.LITERAL_CATCH);

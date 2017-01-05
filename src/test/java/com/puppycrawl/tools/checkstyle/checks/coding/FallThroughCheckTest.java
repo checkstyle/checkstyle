@@ -132,6 +132,11 @@ public class FallThroughCheckTest extends BaseCheckTestSupport {
             "424:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "436:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "446:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "495:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "501:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "507:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "514:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verify(checkConfig,
                getPath("InputFallThrough.java"),
