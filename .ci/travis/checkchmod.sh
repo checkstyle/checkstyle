@@ -6,9 +6,9 @@ ls -la config/
 echo "-----"
 find config -type f -not -perm 664
 echo "-----"
-find config -type f -perm 664
+find config -type f
 echo "-----"
-find -v
+find -version
 echo "-----"
 
 
