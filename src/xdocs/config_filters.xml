@@ -901,13 +901,13 @@ private int D2;
             </p>
             <source>
 &lt;module name="SuppressWithNearbyCommentFilter&quot;&gt;
-  &lt;property name="commentFormat" value="@cs.suppress \[(\w(\|\w)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
+  &lt;property name="commentFormat" value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
   &lt;property name="checkFormat" value="$1"/&gt;
   &lt;property name="influenceFormat" value="1"/&gt;
 &lt;/module>
             </source>
             <source>
-public static final int [] array; // @cs.suppress ConstantName | NoWhitespaceAfter
+public static final int [] array; // @cs.suppress [ConstantName|NoWhitespaceAfter] A comment here
             </source>
             <p>
               It is possible to specify an ID of checks, so that it can be leveraged by the
