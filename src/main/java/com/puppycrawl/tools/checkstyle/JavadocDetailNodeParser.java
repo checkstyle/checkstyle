@@ -78,6 +78,9 @@ public class JavadocDetailNodeParser {
     public static final String MSG_KEY_UNRECOGNIZED_ANTLR_ERROR =
             "javadoc.unrecognized.antlr.error";
 
+    /** Symbols with which javadoc starts. */
+    private static final String JAVADOC_START = "/**";
+
     /**
      * Line number of the Block comment AST that is being parsed.
      */
@@ -96,6 +99,7 @@ public class JavadocDetailNodeParser {
      */
     public ParseStatus parseJavadocAsDetailNode(DetailAST javadocCommentAst) {
         blockCommentLineNumber = javadocCommentAst.getLineNo();
+
         final String javadocComment = JavadocUtils.getJavadocCommentContent(javadocCommentAst);
 
         // Use a new error listener each time to be able to use
@@ -114,6 +118,10 @@ public class JavadocDetailNodeParser {
             final ParseTree parseTree = parseJavadocAsParseTree(javadocComment);
 
             final DetailNode tree = convertParseTreeToDetailNode(parseTree);
+            // adjust first line to indent of /**
+            adjustFirstLineToJavadocIndent(tree,
+                        javadocCommentAst.getColumnNo()
+                                + JAVADOC_START.length());
             result.setTree(tree);
         }
         catch (ParseCancellationException ex) {
@@ -301,6 +309,21 @@ public class JavadocDetailNodeParser {
         node.setParent(parent);
         node.setChildren((DetailNode[]) new JavadocNodeImpl[parseTree.getChildCount()]);
         return node;
+    }
+
+    /**
+     * Adjust first line nodes to javadoc indent.
+     * @param tree DetailNode tree root
+     * @param javadocColumnNumber javadoc indent
+     */
+    private void adjustFirstLineToJavadocIndent(DetailNode tree, int javadocColumnNumber) {
+        if (tree.getLineNumber() == blockCommentLineNumber) {
+            ((JavadocNodeImpl) tree).setColumnNumber(tree.getColumnNumber() + javadocColumnNumber);
+            final DetailNode[] children = tree.getChildren();
+            for (DetailNode child : children) {
+                adjustFirstLineToJavadocIndent(child, javadocColumnNumber);
+            }
+        }
     }
 
     /**

@@ -259,7 +259,7 @@ public class ParseTreeTablePModelTest {
         Assert.assertNull(treeModel);
         Assert.assertEquals("JAVADOC", type);
         Assert.assertEquals(1, line);
-        Assert.assertEquals(0, column);
+        Assert.assertEquals(3, column);
         Assert.assertEquals(expectedText, text);
 
         try {
