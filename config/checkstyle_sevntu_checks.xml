@@ -95,8 +95,6 @@
             <property name="checkReadObjectMethod" value="true"/>
             <property name="matchMethodsByArgCount" value="true"/>
         </module>
-        <!--commented till https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/410-->
-        <!--<module name="AvoidModifiersForTypes"/>-->
         <module name="ForbidAnnotation">
             <property name="annotationNames" value="Ignore, VisibleForTesting"/>
             <property name="annotationTargets" value="METHOD_DEF"/>
