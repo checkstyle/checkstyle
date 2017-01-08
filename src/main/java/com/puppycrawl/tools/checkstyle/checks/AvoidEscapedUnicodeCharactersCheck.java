@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Restrict using <a href =
  * "http://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
- * Unicode escapes</a> (e.g. \u221e).
+ * Unicode escapes</a> (such as <code>&#92;u221e</code>).
  * It is possible to allow using escapes for
  * <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
  * non-printable(control) characters</a>.
@@ -45,8 +45,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Examples of using Unicode:</p>
  * <pre>
- * String unitAbbrev = "μs"; //Best: perfectly clear even without a comment.
- * String unitAbbrev = "\u03bcs"; //Poor: the reader has no idea what this is.
+ * String unitAbbrev = "μs";      // Best: perfectly clear even without a comment.
+ * String unitAbbrev = "&#92;u03bcs"; // Poor: the reader has no idea what this is.
  * </pre>
  * <p>
  * An example of how to configure the check is:
@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * An example of non-printable(control) characters.
  * </p>
  * <pre>
- * return '\ufeff' + content; // byte order mark
+ * return '&#92;ufeff' + content; // byte order mark
  * </pre>
  * <p>
  * An example of how to configure the check to allow using escapes
@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Example of using escapes with trail comment:
  * </p>
  * <pre>
- * String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
+ * String unitAbbrev = "&#92;u03bcs"; // Greek letter mu, "s"
  * </pre>
  * <p>An example of how to configure the check to allow using escapes
  * if trail comment is present:
@@ -86,7 +86,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example of using escapes if literal contains only them:
  * </p>
  * <pre>
- * String unitAbbrev = "\u03bc\u03bc\u03bc";
+ * String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc";
  * </pre>
  * <p>An example of how to configure the check to allow escapes
  * if literal contains only them:
