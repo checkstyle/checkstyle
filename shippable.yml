@@ -4,10 +4,30 @@ language: java
 jdk:
   - oraclejdk8
 
+env:
+  matrix:
+    - PITEST_CMD="-Ppitest-checks-blocks org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-coding org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-design org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-header org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-imports org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-indentation org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-javadoc org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-metrics org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-modifier org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-naming org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-regexp org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-sizes org.pitest:pitest-maven:mutationCoverage"
+    - PITEST_CMD="-Ppitest-checks-whitespace org.pitest:pitest-maven:mutationCoverage"
+
 build:
   cache: true
   cache_dir_list:
     - /root/.m2
 
   ci:
-    - mvn clean verify -Ppitest-checks-sizes org.pitest:pitest-maven:mutationCoverage
+    - >-
+      if [ $(git log -1 | grep -E "Issue \#[0-9]+\:" | cat | wc -l) -gt 0 ];
+      then
+       mvn clean verify $PITEST_CMD;
+      fi
