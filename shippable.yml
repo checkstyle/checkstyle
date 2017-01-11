@@ -6,19 +6,19 @@ jdk:
 
 env:
   matrix:
-    - PITEST_CMD="-Ppitest-checks-blocks org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-coding org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-design org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-header org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-imports org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-indentation org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-javadoc org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-metrics org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-modifier org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-naming org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-regexp org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-sizes org.pitest:pitest-maven:mutationCoverage"
-    - PITEST_CMD="-Ppitest-checks-whitespace org.pitest:pitest-maven:mutationCoverage"
+    - PROFILE="-Pno-validations,pitest-checks-blocks"
+    - PROFILE="-Pno-validations,pitest-checks-coding"
+    - PROFILE="-Pno-validations,pitest-checks-design"
+    - PROFILE="-Pno-validations,pitest-checks-header"
+    - PROFILE="-Pno-validations,pitest-checks-imports"
+    - PROFILE="-Pno-validations,pitest-checks-indentation"
+    - PROFILE="-Pno-validations,pitest-checks-javadoc"
+    - PROFILE="-Pno-validations,pitest-checks-metrics"
+    - PROFILE="-Pno-validations,pitest-checks-modifier"
+    - PROFILE="-Pno-validations,pitest-checks-naming"
+    - PROFILE="-Pno-validations,pitest-checks-regexp"
+    - PROFILE="-Pno-validations,pitest-checks-sizes"
+    - PROFILE="-Pno-validations,pitest-checks-whitespace"
 
 build:
   cache: true
@@ -26,8 +26,9 @@ build:
     - /root/.m2
 
   ci:
+    # we skip PRs and commits that are not for Issues, as pitest is too time consuming
     - >-
       if [ $(git log -1 | grep -E "Issue \#[0-9]+\:" | cat | wc -l) -gt 0 ];
       then
-       mvn clean verify $PITEST_CMD;
+       mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;
       fi
