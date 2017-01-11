@@ -728,7 +728,7 @@ import android.*;
 
       <subsection name="Examples">
         <p>
-          To configure the check using a import control file called
+          To configure the check using an import control file called
           &quot;config/import-control.xml&quot;, then have the following:
         </p>
 
