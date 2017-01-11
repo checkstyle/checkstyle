@@ -6,19 +6,19 @@ jdk:
 
 env:
   matrix:
-    - PROFILE="-Pno-validations,pitest-checks-blocks"
-    - PROFILE="-Pno-validations,pitest-checks-coding"
-    - PROFILE="-Pno-validations,pitest-checks-design"
-    - PROFILE="-Pno-validations,pitest-checks-header"
-    - PROFILE="-Pno-validations,pitest-checks-imports"
-    - PROFILE="-Pno-validations,pitest-checks-indentation"
-    - PROFILE="-Pno-validations,pitest-checks-javadoc"
-    - PROFILE="-Pno-validations,pitest-checks-metrics"
-    - PROFILE="-Pno-validations,pitest-checks-modifier"
-    - PROFILE="-Pno-validations,pitest-checks-naming"
-    - PROFILE="-Pno-validations,pitest-checks-regexp"
-    - PROFILE="-Pno-validations,pitest-checks-sizes"
-    - PROFILE="-Pno-validations,pitest-checks-whitespace"
+    - PROFILE="-Ppitest-checks-blocks,no-validations"
+    - PROFILE="-Ppitest-checks-coding,no-validations"
+    - PROFILE="-Ppitest-checks-design,no-validations"
+    - PROFILE="-Ppitest-checks-header,no-validations"
+    - PROFILE="-Ppitest-checks-imports,no-validations"
+    - PROFILE="-Ppitest-checks-indentation,no-validations"
+    - PROFILE="-Ppitest-checks-javadoc,no-validations"
+    - PROFILE="-Ppitest-checks-metrics,no-validations"
+    - PROFILE="-Ppitest-checks-modifier,no-validations"
+    - PROFILE="-Ppitest-checks-naming,no-validations"
+    - PROFILE="-Ppitest-checks-regexp,no-validations"
+    - PROFILE="-Ppitest-checks-sizes,no-validations"
+    - PROFILE="-Ppitest-checks-whitespace,no-validations"
 
 build:
   cache: true
