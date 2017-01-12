@@ -379,6 +379,16 @@ public final class CheckUtil {
         }
     }
 
+    public static Set<String> getTokenTextSet(int... tokens) {
+        final Set<String> result = new HashSet<>();
+
+        for (int token : tokens) {
+            result.add(TokenUtils.getTokenName(token));
+        }
+
+        return result;
+    }
+
     public static String getJavadocTokenText(int[] tokens, int... subtractions) {
         final StringBuilder result = new StringBuilder();
         boolean first = true;

@@ -23,6 +23,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -30,6 +32,8 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,7 +41,9 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -54,6 +60,134 @@ public class AllChecksTest extends BaseCheckTestSupport {
         Locale.CHINESE,
         Locale.ENGLISH,
     };
+
+    private static final Map<String, Set<String>> TOKENS_IN_CONFIG_TO_IGNORE = new HashMap<>();
+
+    static {
+        TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
+                // we use GenericWhitespace for this behavior
+                "GENERIC_START", "GENERIC_END").collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
+                // enum values should be uppercase, we use EnumValueNameCheck instead
+                "ENUM_CONSTANT_DEF").collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("FinalLocalVariable", Stream.of(
+                // we prefer all parameters be effectively final as to not damage readability
+                // we use ParameterAssignmentCheck to enforce this
+                "PARAMETER_DEF").collect(Collectors.toSet()));
+        // we have no need to block these specific tokens
+        TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalToken",
+                Stream.of("LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF",
+                        "TYPE_PARAMETERS", "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH",
+                        "ANNOTATIONS", "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION",
+                        "FOR_INIT", "LITERAL_LONG", "MINUS", "OBJBLOCK", "LITERAL_NULL",
+                        "ANNOTATION", "LITERAL_TRUE", "COMMENT_CONTENT", "LITERAL_CHAR",
+                        "PARAMETER_DEF", "POST_DEC", "ANNOTATION_FIELD_DEF", "BLOCK_COMMENT_END",
+                        "TYPE", "LITERAL_INT", "BSR", "ENUM", "ANNOTATION_MEMBER_VALUE_PAIR",
+                        "TYPECAST", "LITERAL_SYNCHRONIZED", "PLUS_ASSIGN", "DOT", "LPAREN",
+                        "LITERAL_IF", "LITERAL_CATCH", "BAND", "INTERFACE_DEF", "LOR", "BNOT",
+                        "METHOD_CALL", "AT", "ELLIPSIS", "ARRAY_INIT", "FOR_EACH_CLAUSE",
+                        "LITERAL_THROWS", "CHAR_LITERAL", "CASE_GROUP", "POST_INC", "SEMI",
+                        "LITERAL_FINALLY", "ASSIGN", "RESOURCE_SPECIFICATION", "STATIC_IMPORT",
+                        "GENERIC_START", "IMPORT", "SL", "VARIABLE_DEF", "LITERAL_DOUBLE",
+                        "RCURLY", "RESOURCE", "SR", "COMMA", "BAND_ASSIGN", "METHOD_DEF",
+                        "LITERAL_VOID", "NUM_LONG", "LITERAL_TRANSIENT", "LITERAL_THIS", "LCURLY",
+                        "MINUS_ASSIGN", "TYPE_LOWER_BOUNDS", "TYPE_ARGUMENT", "LITERAL_CLASS",
+                        "INSTANCE_INIT", "DIV", "STAR", "UNARY_MINUS", "FOR_ITERATOR", "NOT_EQUAL",
+                        "LE", "LITERAL_INTERFACE", "LITERAL_FLOAT", "LITERAL_INSTANCEOF",
+                        "BOR_ASSIGN", "LT", "SL_ASSIGN", "ELIST", "ANNOTATION_ARRAY_INIT",
+                        "MODIFIERS", "LITERAL_BREAK", "EXTENDS_CLAUSE", "TYPE_PARAMETER",
+                        "LITERAL_DEFAULT", "STATIC_INIT", "BSR_ASSIGN", "TYPE_EXTENSION_AND",
+                        "BOR", "LITERAL_PRIVATE", "LITERAL_THROW", "LITERAL_BYTE", "BXOR",
+                        "WILDCARD_TYPE", "FINAL", "PARAMETERS", "RPAREN", "SR_ASSIGN",
+                        "UNARY_PLUS", "EMPTY_STAT", "LITERAL_STATIC", "LITERAL_CONTINUE",
+                        "STAR_ASSIGN", "LAMBDA", "RBRACK", "BXOR_ASSIGN", "CTOR_CALL",
+                        "LITERAL_FALSE", "DO_WHILE", "LITERAL_PUBLIC", "LITERAL_WHILE", "PLUS",
+                        "INC", "CTOR_DEF", "GENERIC_END", "DIV_ASSIGN", "SLIST", "LNOT", "LAND",
+                        "LITERAL_ELSE", "ABSTRACT", "STRICTFP", "QUESTION", "LITERAL_NEW",
+                        "LITERAL_RETURN", "SINGLE_LINE_COMMENT", "INDEX_OP", "EXPR",
+                        "BLOCK_COMMENT_BEGIN", "PACKAGE_DEF", "IMPLEMENTS_CLAUSE", "NUM_FLOAT",
+                        "LITERAL_DO", "EOF", "GE", "RESOURCES", "MOD", "DEC", "EQUAL",
+                        "LITERAL_BOOLEAN", "CLASS_DEF", "COLON", "LITERAL_TRY", "ENUM_DEF", "GT",
+                        "NUM_INT", "ANNOTATION_DEF", "METHOD_REF", "TYPE_ARGUMENTS",
+                        "DOUBLE_COLON", "IDENT", "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL",
+                        "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE").collect(
+                        Collectors.toSet()));
+        // we have no need to block specific token text
+        TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
+                Stream.of("LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF",
+                        "TYPE_PARAMETERS", "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH",
+                        "ANNOTATIONS", "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION",
+                        "FOR_INIT", "LITERAL_LONG", "MINUS", "OBJBLOCK", "LITERAL_NULL",
+                        "ANNOTATION", "LITERAL_TRUE", "COMMENT_CONTENT", "LITERAL_CHAR",
+                        "PARAMETER_DEF", "POST_DEC", "ANNOTATION_FIELD_DEF", "BLOCK_COMMENT_END",
+                        "TYPE", "LITERAL_INT", "BSR", "ENUM", "LABELED_STAT",
+                        "ANNOTATION_MEMBER_VALUE_PAIR", "TYPECAST", "LITERAL_SYNCHRONIZED",
+                        "PLUS_ASSIGN", "DOT", "LPAREN", "LITERAL_IF", "LITERAL_CATCH", "BAND",
+                        "INTERFACE_DEF", "LOR", "BNOT", "METHOD_CALL", "AT", "ELLIPSIS",
+                        "ARRAY_INIT", "FOR_EACH_CLAUSE", "LITERAL_THROWS", "CHAR_LITERAL",
+                        "CASE_GROUP", "POST_INC", "SEMI", "LITERAL_FINALLY", "ASSIGN",
+                        "RESOURCE_SPECIFICATION", "STATIC_IMPORT", "GENERIC_START", "IMPORT", "SL",
+                        "VARIABLE_DEF", "LITERAL_DOUBLE", "RCURLY", "RESOURCE", "SR", "COMMA",
+                        "BAND_ASSIGN", "METHOD_DEF", "LITERAL_VOID", "NUM_LONG",
+                        "LITERAL_TRANSIENT", "LITERAL_THIS", "LCURLY", "MINUS_ASSIGN",
+                        "TYPE_LOWER_BOUNDS", "TYPE_ARGUMENT", "LITERAL_CLASS", "INSTANCE_INIT",
+                        "DIV", "LITERAL_VOLATILE", "STAR", "UNARY_MINUS", "FOR_ITERATOR",
+                        "NOT_EQUAL", "LE", "LITERAL_INTERFACE", "LITERAL_FLOAT",
+                        "LITERAL_INSTANCEOF", "BOR_ASSIGN", "LT", "SL_ASSIGN", "ELIST",
+                        "ANNOTATION_ARRAY_INIT", "MODIFIERS", "LITERAL_BREAK", "EXTENDS_CLAUSE",
+                        "TYPE_PARAMETER", "LITERAL_DEFAULT", "STATIC_INIT", "BSR_ASSIGN",
+                        "TYPE_EXTENSION_AND", "BOR", "LITERAL_PRIVATE", "LITERAL_THROW",
+                        "LITERAL_BYTE", "BXOR", "WILDCARD_TYPE", "FINAL", "PARAMETERS", "RPAREN",
+                        "SR_ASSIGN", "UNARY_PLUS", "EMPTY_STAT", "LITERAL_STATIC",
+                        "LITERAL_CONTINUE", "STAR_ASSIGN", "LAMBDA", "RBRACK", "BXOR_ASSIGN",
+                        "CTOR_CALL", "LITERAL_FALSE", "DO_WHILE", "LITERAL_PUBLIC",
+                        "LITERAL_WHILE", "PLUS", "INC", "CTOR_DEF", "GENERIC_END", "DIV_ASSIGN",
+                        "SLIST", "LNOT", "LAND", "LITERAL_ELSE", "ABSTRACT", "STRICTFP",
+                        "QUESTION", "LITERAL_NEW", "LITERAL_RETURN", "SINGLE_LINE_COMMENT",
+                        "INDEX_OP", "EXPR", "BLOCK_COMMENT_BEGIN", "PACKAGE_DEF",
+                        "IMPLEMENTS_CLAUSE", "NUM_FLOAT", "LITERAL_DO", "EOF", "GE", "RESOURCES",
+                        "MOD", "DEC", "EQUAL", "LITERAL_BOOLEAN", "CLASS_DEF", "COLON",
+                        "LITERAL_TRY", "ENUM_DEF", "GT", "NUM_INT", "ANNOTATION_DEF",
+                        "LITERAL_NATIVE", "METHOD_REF", "TYPE_ARGUMENTS", "DOUBLE_COLON", "IDENT",
+                        "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL", "STRING_LITERAL",
+                        "ARRAY_DECLARATOR", "LITERAL_CASE").collect(Collectors.toSet()));
+        // we do not use this check as it is deprecated
+        TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
+                Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF", "ANNOTATION_FIELD_DEF")
+                        .collect(Collectors.toSet()));
+        // state of the configuration when test was made until reason found in
+        // https://github.com/checkstyle/checkstyle/issues/3730
+        TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
+                Stream.of("TYPECAST", "DOT", "TYPE_ARGUMENT", "LITERAL_NEW", "LITERAL_THROWS",
+                        "IMPLEMENTS_CLAUSE").collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
+                // method declaration could be long due to "parameters/exceptions", it is ok to
+                // be not strict there
+                "METHOD_DEF", "CTOR_DEF",
+                // type declaration could be long due to "extends/implements", it is ok to
+                // be not strict there
+                "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
+                .collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceAfter", Stream.of(
+                // whitespace after is preferred
+                "TYPECAST", "LITERAL_SYNCHRONIZED").collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
+                // needs context to decide what type of parentheses should be separated or not
+                // which this check does not provide
+                "LPAREN", "RPAREN").collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("NeedBraces", Stream.of(
+                // we prefer no braces here as it looks unusual even though they help avoid sharing
+                // scope of variables
+                "LITERAL_DEFAULT", "LITERAL_CASE", "LAMBDA").collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
+                // we prefer these to be effectively final as to not damage readability
+                "FOR_EACH_CLAUSE", "LITERAL_CATCH").collect(Collectors.toSet()));
+        TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
+                // we prefer no spaces on one side or both for these tokens
+                "ARRAY_INIT",
+                // these are covered by GenericWhitespaceCheck
+                "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START").collect(Collectors.toSet()));
+    }
 
     @Test
     public void testAllChecksWithDefaultConfiguration() throws Exception {
@@ -156,6 +290,67 @@ public class AllChecksTest extends BaseCheckTestSupport {
                     "%s is not referenced in checkstyle_checks.xml", check);
                 Assert.fail(errorMessage);
             });
+    }
+
+    @Test
+    public void testAllCheckTokensAreReferencedInConfigFile() throws Exception {
+        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
+        final Configuration configuration = ConfigurationUtil
+                .loadConfiguration("config/checkstyle_checks.xml");
+        final Set<Configuration> configChecks = ConfigurationUtil.getChecks(configuration);
+
+        final Map<String, Set<String>> configCheckTokens = new HashMap<>();
+        final Map<String, Set<String>> checkTokens = new HashMap<>();
+
+        for (Configuration checkConfig : configChecks) {
+            final String checkName = checkConfig.getName();
+            final Object instance;
+
+            try {
+                instance = moduleFactory.createModule(checkName);
+            }
+            catch (CheckstyleException ex) {
+                throw new CheckstyleException("Couldn't find check: " + checkName, ex);
+            }
+
+            if (instance instanceof AbstractCheck) {
+                final AbstractCheck check = (AbstractCheck) instance;
+
+                Set<String> configTokens = configCheckTokens.get(checkName);
+
+                if (configTokens == null) {
+                    configTokens = new HashSet<>();
+
+                    configCheckTokens.put(checkName, configTokens);
+
+                    // add all overriden tokens
+                    final Set<String> overrideTokens = TOKENS_IN_CONFIG_TO_IGNORE.get(checkName);
+
+                    if (overrideTokens != null) {
+                        configTokens.addAll(overrideTokens);
+                    }
+
+                    configTokens.addAll(CheckUtil.getTokenTextSet(check.getDefaultTokens()));
+                    checkTokens.put(checkName,
+                            CheckUtil.getTokenTextSet(check.getAcceptableTokens()));
+                }
+
+                try {
+                    configTokens.addAll(Arrays.asList(checkConfig.getAttribute("tokens").split(
+                            ",\\s*")));
+                }
+                catch (CheckstyleException ex) {
+                    // no tokens defined, so it is using default
+                }
+            }
+        }
+
+        for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
+            Assert.assertEquals("'" + entry.getKey()
+                    + "' should have all acceptable tokens from check in config or specify an "
+                    + "override to ignore the specific tokens",
+                    entry.getValue(), configCheckTokens.get(entry.getKey()));
+        }
     }
 
     @Test
