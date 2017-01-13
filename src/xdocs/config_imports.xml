@@ -723,6 +723,16 @@ import android.*;
             <td><a href="property_types.html#uri">URI</a></td>
             <td><code>null</code></td>
           </tr>
+          <tr>
+            <td>path</td>
+            <td>
+              Regular expression of file paths to which this check should apply. Files that
+              don't match the pattern will not be checked. The pattern will be matched against
+              the full absolute file path.
+            </td>
+            <td><a href="property_types.html#regexp">Regular Expression</a></td>
+            <td><code>".*"</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -735,6 +745,19 @@ import android.*;
         <source>
 &lt;module name=&quot;ImportControl&quot;&gt;
     &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to only check the &quot;src/main&quot; directory
+          using an import control file called &quot;config/import-control.xml&quot;,
+          then have the following:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportControl&quot;&gt;
+    &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+    &lt;property name=&quot;path&quot; value=&quot;^.*[\\/]src[\\/]main[\\/].*$&quot;/&gt;
 &lt;/module&gt;
         </source>
 

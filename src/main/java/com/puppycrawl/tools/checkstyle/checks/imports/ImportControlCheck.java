@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.net.URI;
 import java.util.Collections;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.ConversionException;
 
@@ -73,6 +74,11 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     /** Location of import control file. */
     private String fileLocation;
 
+    /** The filepath pattern this check applies to. */
+    private Pattern path = Pattern.compile(".*");
+    /** Whether to process the current file. */
+    private boolean processCurrentFile;
+
     /** The root package controller. */
     private ImportControl root;
     /** The package doing the import. */
@@ -103,27 +109,31 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     @Override
     public void beginTree(final DetailAST rootAST) {
         currentImportControl = null;
+        processCurrentFile = path.matcher(getFileContents().getFileName()).find();
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            if (root == null) {
-                log(ast, MSG_MISSING_FILE);
-            }
-            else {
-                packageName = getPackageText(ast);
-                currentImportControl = root.locateFinest(packageName);
-                if (currentImportControl == null) {
-                    log(ast, MSG_UNKNOWN_PKG);
+        if (processCurrentFile) {
+            if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+                if (root == null) {
+                    log(ast, MSG_MISSING_FILE);
+                }
+                else {
+                    packageName = getPackageText(ast);
+                    currentImportControl = root.locateFinest(packageName);
+                    if (currentImportControl == null) {
+                        log(ast, MSG_UNKNOWN_PKG);
+                    }
                 }
             }
-        }
-        else if (currentImportControl != null) {
-            final String importText = getImportText(ast);
-            final AccessResult access = currentImportControl.checkAccess(packageName, importText);
-            if (access != AccessResult.ALLOWED) {
-                log(ast, MSG_DISALLOWED, importText);
+            else if (currentImportControl != null) {
+                final String importText = getImportText(ast);
+                final AccessResult access =
+                        currentImportControl.checkAccess(packageName, importText);
+                if (access != AccessResult.ALLOWED) {
+                    log(ast, MSG_DISALLOWED, importText);
+                }
             }
         }
     }
@@ -179,6 +189,14 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
                 throw new ConversionException(UNABLE_TO_LOAD + uri, ex);
             }
         }
+    }
+
+    /**
+     * Set the file path pattern that this check applies to.
+     * @param pattern the file path regex this check should apply to.
+     */
+    public void setPath(Pattern pattern) {
+        path = pattern;
     }
 
     /**
