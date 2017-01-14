@@ -1701,7 +1701,11 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.*</param>
               </targetTests>
-              <mutationThreshold>98</mutationThreshold>
+              <excludedClasses>
+                <!-- deprecated class -->
+                <param>com.puppycrawl.tools.checkstyle.checks.naming.AbstractTypeParameterNameCheck</param>
+              </excludedClasses>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
