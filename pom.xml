@@ -1509,7 +1509,13 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.*</param>
               </targetTests>
-              <mutationThreshold>93</mutationThreshold>
+              <excludedClasses>
+                <!-- deprecated class -->
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.AbstractIllegalMethodCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.AbstractNestedDepthCheck</param>
+              </excludedClasses>
+              <mutationThreshold>95</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
