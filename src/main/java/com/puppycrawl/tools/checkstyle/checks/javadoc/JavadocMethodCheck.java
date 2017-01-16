@@ -694,7 +694,9 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         while (child != null) {
             if (child.getType() == TokenTypes.PARAMETER_DEF) {
                 final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-                returnValue.add(ident);
+                if (ident != null) {
+                    returnValue.add(ident);
+                }
             }
             child = child.getNextSibling();
         }

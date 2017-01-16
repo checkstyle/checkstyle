@@ -591,4 +591,10 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputJavadocMethodsNotSkipWritten.java"), expected);
     }
+
+    @Test
+    public void testJava8ReceiverParameter() throws Exception {
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputJavadocReceiverParameter.java"), expected);
+    }
 }
