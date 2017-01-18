@@ -192,8 +192,7 @@ public class ModifierOrderCheck
         DetailAST modifier;
         do {
             modifier = modifierIterator.next();
-        }
-        while (modifierIterator.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
+        } while (modifierIterator.hasNext() && modifier.getType() == TokenTypes.ANNOTATION);
         return modifier;
     }
 

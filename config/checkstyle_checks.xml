@@ -135,7 +135,13 @@
 
     <!-- Annotations -->
     <module name="AnnotationLocation">
+      <property name="tokens" value="ANNOTATION_DEF"/>
+      <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
       <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+    </module>
+    <module name="AnnotationLocation">
+      <property name="tokens" value="PARAMETER_DEF"/>
+      <property name="allowSamelineMultipleAnnotations" value="true"/>
     </module>
     <module name="AnnotationUseStyle"/>
     <module name="MissingDeprecated"/>
@@ -151,6 +157,10 @@
       <property name="allowInSwitchCase" value="true"/>
     </module>
     <module name="EmptyBlock">
+      <property name="tokens" value="LITERAL_CATCH"/>
+      <property name="tokens" value="ARRAY_INIT"/>
+      <property name="tokens" value="LITERAL_DEFAULT"/>
+      <property name="tokens" value="LITERAL_CASE"/>
       <property name="option" value="text"/>
     </module>
     <module name="EmptyCatchBlock"/>
@@ -159,7 +169,18 @@
     </module>
     <module name="NeedBraces"/>
     <module name="RightCurly">
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="INSTANCE_INIT"/>
+      <property name="tokens" value="LITERAL_FOR"/>
+      <property name="tokens" value="STATIC_INIT"/>
+      <property name="tokens" value="LITERAL_WHILE"/>
       <property name="option" value="alone"/>
+    </module>
+    <module name="RightCurly">
+      <property name="tokens" value="LITERAL_DO"/>
+      <property name="option" value="same"/>
     </module>
 
     <!-- Class Design -->
@@ -199,7 +220,10 @@
     </module>
     <module name="IllegalInstantiation"/>
     <module name="IllegalThrows"/>
-    <module name="IllegalToken"/>
+    <module name="IllegalToken">
+        <property name="tokens" value="LITERAL_NATIVE"/>
+        <property name="tokens" value="LITERAL_VOLATILE"/>
+    </module>
     <module name="IllegalTokenText"/>
     <module name="IllegalType"/>
     <module name="InnerAssignment"/>
@@ -425,7 +449,33 @@
       <property name="tokens" value="DOT"/>
       <property name="allowLineBreaks" value="true"/>
     </module>
-    <module name="OperatorWrap"/>
+    <module name="OperatorWrap">
+      <property name="tokens" value="QUESTION"/>
+      <property name="tokens" value="COLON"/>
+      <property name="tokens" value="EQUAL"/>
+      <property name="tokens" value="NOT_EQUAL"/>
+      <property name="tokens" value="DIV"/>
+      <property name="tokens" value="PLUS"/>
+      <property name="tokens" value="MINUS"/>
+      <property name="tokens" value="STAR"/>
+      <property name="tokens" value="MOD"/>
+      <property name="tokens" value="SR"/>
+      <property name="tokens" value="BSR"/>
+      <property name="tokens" value="GE"/>
+      <property name="tokens" value="GT"/>
+      <property name="tokens" value="SL"/>
+      <property name="tokens" value="LE"/>
+      <property name="tokens" value="LT"/>
+      <property name="tokens" value="BXOR"/>
+      <property name="tokens" value="BOR"/>
+      <property name="tokens" value="LOR"/>
+      <property name="tokens" value="BAND"/>
+      <property name="tokens" value="LAND"/>
+      <property name="tokens" value="TYPE_EXTENSION_AND"/>
+      <property name="tokens" value="LITERAL_INSTANCEOF"/>
+      <property name="tokens" value="METHOD_REF"/>
+      <property name="option" value="nl"/>
+    </module>
     <module name="OperatorWrap">
       <property name="tokens" value="ASSIGN"/>
       <property name="tokens" value="DIV_ASSIGN"/>
@@ -444,10 +494,15 @@
     <module name="ParenPad"/>
     <module name="SeparatorWrap">
       <property name="tokens" value="DOT"/>
+      <property name="tokens" value="AT"/>
       <property name="option" value="nl"/>
     </module>
     <module name="SeparatorWrap">
       <property name="tokens" value="COMMA"/>
+      <property name="tokens" value="RBRACK"/>
+      <property name="tokens" value="ARRAY_DECLARATOR"/>
+      <property name="tokens" value="ELLIPSIS"/>
+      <property name="tokens" value="SEMI"/>
       <property name="option" value="EOL"/>
     </module>
     <module name="SingleSpaceSeparator">
