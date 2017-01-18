@@ -327,8 +327,11 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
 
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
-            "22: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "33: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
+            "35: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
+            "39: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "41: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "45: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
         };
 
         verifyWarns(checkConfig,
@@ -1703,6 +1706,30 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("basicOffset", "4");
         final String fileName = getPath("InputChainedMethods.java");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testMultipleAnnotationsWithWrappedLines() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String fileName = getPath("InputCorrectMultipleAnnotationsWithWrappedLines.java");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testInputAnnotationScopeIndentationCheck() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String fileName = getPath("InputAnnotationScopeIndentationCheck.java");
+        final String[] expected = {
+            "9: " + getCheckMessage(MSG_ERROR, "}", 8, 0),
+        };
         verifyWarns(checkConfig, fileName, expected);
     }
 

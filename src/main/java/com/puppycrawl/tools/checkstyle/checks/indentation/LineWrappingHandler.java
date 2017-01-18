@@ -93,7 +93,21 @@ public class LineWrappingHandler {
 
         final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
         if (firstLineNode.getType() == TokenTypes.AT) {
-            checkAnnotationIndentation(firstLineNode, firstNodesOnLines, indentLevel);
+            DetailAST node = firstLineNode.getParent();
+            while (node != null) {
+                if (node.getType() == TokenTypes.ANNOTATION) {
+                    final DetailAST atNode = node.getFirstChild();
+                    final NavigableMap<Integer, DetailAST> annotationLines =
+                        firstNodesOnLines.subMap(
+                            node.getLineNo(),
+                            true,
+                            getNextNodeLine(firstNodesOnLines, node),
+                            true
+                        );
+                    checkAnnotationIndentation(atNode, annotationLines, indentLevel);
+                }
+                node = node.getNextSibling();
+            }
         }
 
         if (ignoreFirstLine) {
@@ -120,6 +134,23 @@ public class LineWrappingHandler {
                 logWarningMessage(node, currentIndent);
             }
         }
+    }
+
+    /**
+     * Gets the next node line from the firstNodesOnLines map unless there is no next line, in
+     * which case, it returns the last line.
+     *
+     * @param firstNodesOnLines NavigableMap of lines and their first nodes.
+     * @param node the node for which to find the next node line
+     * @return the line number of the next line in the map
+     */
+    private static Integer getNextNodeLine(
+            NavigableMap<Integer, DetailAST> firstNodesOnLines, DetailAST node) {
+        Integer nextNodeLine = firstNodesOnLines.higherKey(node.getLastChild().getLineNo());
+        if (nextNodeLine == null) {
+            nextNodeLine = firstNodesOnLines.lastKey();
+        }
+        return nextNodeLine;
     }
 
     /**
@@ -187,33 +218,58 @@ public class LineWrappingHandler {
         final int firstNodeIndent = getLineStart(atNode);
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
-        final DetailAST lastAnnotationNode = getLastAnnotationNode(atNode);
+        final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
         final int lastAnnotationLine = lastAnnotationNode.getLineNo();
 
         final Iterator<DetailAST> itr = values.iterator();
         while (firstNodesOnLines.size() > 1) {
             final DetailAST node = itr.next();
 
-            if (node.getLineNo() <= lastAnnotationLine) {
-                final DetailAST parentNode = node.getParent();
-                final boolean isCurrentNodeCloseAnnotationAloneInLine =
-                        node.getLineNo() == lastAnnotationLine
-                        && node.equals(lastAnnotationNode);
-                if (isCurrentNodeCloseAnnotationAloneInLine
-                        || node.getType() == TokenTypes.AT
-                        && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                            || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)) {
-                    logWarningMessage(node, firstNodeIndent);
-                }
-                else {
-                    logWarningMessage(node, currentIndent);
-                }
-                itr.remove();
+            final DetailAST parentNode = node.getParent();
+            final boolean isCurrentNodeCloseAnnotationAloneInLine =
+                node.getLineNo() == lastAnnotationLine
+                    && isEndOfScope(lastAnnotationNode, node);
+            if (isCurrentNodeCloseAnnotationAloneInLine
+                    || node.getType() == TokenTypes.AT
+                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
+                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)) {
+                logWarningMessage(node, firstNodeIndent);
             }
             else {
-                break;
+                logWarningMessage(node, currentIndent);
             }
+            itr.remove();
         }
+    }
+
+    /**
+     * Checks line for end of scope.  Handles occurrences of close braces and close parenthesis on
+     * the same line.
+     *
+     * @param lastAnnotationNode the last node of the annotation
+     * @param node the node indicating where to begin checking
+     * @return true if all the nodes up to the last annotation node are end of scope nodes
+     *         false otherwise
+     */
+    private boolean isEndOfScope(final DetailAST lastAnnotationNode, final DetailAST node) {
+        DetailAST checkNode = node;
+        boolean endOfScope = true;
+        while (endOfScope && !checkNode.equals(lastAnnotationNode)) {
+            switch (checkNode.getType()) {
+                case TokenTypes.RCURLY:
+                case TokenTypes.RBRACK:
+                    while (checkNode.getNextSibling() == null) {
+                        checkNode = checkNode.getParent();
+                    }
+                    checkNode = checkNode.getNextSibling();
+                    break;
+                default:
+                    endOfScope = false;
+
+            }
+
+        }
+        return endOfScope;
     }
 
     /**
@@ -248,7 +304,6 @@ public class LineWrappingHandler {
      * Get the start of the specified line.
      *
      * @param line the specified line number
-     *
      * @return the start of the specified line
      */
     private int getLineStart(String line) {
@@ -257,20 +312,6 @@ public class LineWrappingHandler {
             index++;
         }
         return CommonUtils.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
-    }
-
-    /**
-     * Finds and returns last annotation node.
-     * @param atNode first at-clause node.
-     * @return last annotation node.
-     */
-    private static DetailAST getLastAnnotationNode(DetailAST atNode) {
-        DetailAST lastAnnotation = atNode.getParent();
-        while (lastAnnotation.getNextSibling() != null
-                && lastAnnotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {
-            lastAnnotation = lastAnnotation.getNextSibling();
-        }
-        return lastAnnotation.getLastChild();
     }
 
     /**
