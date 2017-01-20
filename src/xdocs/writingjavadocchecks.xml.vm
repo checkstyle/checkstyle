@@ -156,8 +156,8 @@ CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   |--BLOCK_COMMENT_BEGIN -> /* [1:0]
 |   |   |--COMMENT_CONTENT -> *\n * My <b>class</b>.\n * @see AbstractClass\n  [1:2]
-|   |   |   `--JAVADOC -> \n * My <b>class</b>.\n * @see AbstractClass\n <EOF> [1:0]
-|   |   |       |--NEWLINE -> \n [1:0]
+|   |   |   `--JAVADOC -> \n * My <b>class</b>.\n * @see AbstractClass\n <EOF> [1:3]
+|   |   |       |--NEWLINE -> \n [1:3]
 |   |   |       |--LEADING_ASTERISK ->  * [2:0]
 |   |   |       |--TEXT ->  My  [2:2]
 |   |   |       |--HTML_ELEMENT -> <b>class</b> [2:6]
@@ -554,10 +554,6 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
 
     <section name="Declare check's external resource locations">
         See <a href="writingchecks.html#Declare_checks_external_resource_locations">Declare check's external resource locations</a>.
-    </section>
-
-    <section name="Known API issues">
-        <a href="https://github.com/checkstyle/checkstyle/issues/3507">Javadoc: Column number of DetailNode is always 0 for first line #3507</a>.
     </section>
 
     <section name="Examples of Javadoc Checks">
