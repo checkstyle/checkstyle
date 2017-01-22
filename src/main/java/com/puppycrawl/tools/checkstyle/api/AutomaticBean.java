@@ -45,6 +45,7 @@ import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -54,6 +55,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class AutomaticBean
     implements Configurable, Contextualizable {
+
+    /** Comma separator for StringTokenizer. */
+    private static final String COMMA_SEPARATOR = ",";
+
     /** The configuration of this bean. */
     private Configuration configuration;
 
@@ -130,6 +135,7 @@ public class AutomaticBean
         cub.register(new ServerityLevelConverter(), SeverityLevel.class);
         cub.register(new ScopeConverter(), Scope.class);
         cub.register(new UriConverter(), URI.class);
+        cub.register(new RelaxedAccessModifierArrayConverter(), AccessModifier[].class);
     }
 
     /**
@@ -328,7 +334,7 @@ public class AutomaticBean
         public Object convert(Class type, Object value) {
             // Convert to a String and trim it for the tokenizer.
             final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), ",");
+                value.toString().trim(), COMMA_SEPARATOR);
             final List<String> result = new ArrayList<>();
 
             while (tokenizer.hasMoreTokens()) {
@@ -337,6 +343,30 @@ public class AutomaticBean
             }
 
             return result.toArray(new String[result.size()]);
+        }
+    }
+
+    /**
+     * A converter that converts strings to {@link AccessModifier}.
+     * This implementation does not care whether the array elements contain characters like '_'.
+     * The normal {@link ArrayConverter} class has problems with this character.
+     */
+    private static class RelaxedAccessModifierArrayConverter implements Converter {
+
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        @Override
+        public Object convert(Class type, Object value) {
+            // Converts to a String and trims it for the tokenizer.
+            final StringTokenizer tokenizer = new StringTokenizer(
+                value.toString().trim(), COMMA_SEPARATOR);
+            final List<AccessModifier> result = new ArrayList<>();
+
+            while (tokenizer.hasMoreTokens()) {
+                final String token = tokenizer.nextToken();
+                result.add(AccessModifier.getInstance(token.trim()));
+            }
+
+            return result.toArray(new AccessModifier[result.size()]);
         }
     }
 }

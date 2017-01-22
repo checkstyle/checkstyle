@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
 
 public class XDocsPagesTest {
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
@@ -626,6 +627,9 @@ public class XDocsPagesTest {
         else if (clss == Scope.class) {
             result = "Scope";
         }
+        else if (clss == AccessModifier[].class) {
+            result = "Access Modifier Set";
+        }
         else if (clss != String.class) {
             Assert.fail("Unknown property type: " + clss.getSimpleName());
         }
@@ -687,6 +691,9 @@ public class XDocsPagesTest {
             }
             else if (value != null && (clss == SeverityLevel.class || clss == Scope.class)) {
                 result = value.toString().toLowerCase(Locale.ENGLISH);
+            }
+            else if (value != null && clss == AccessModifier[].class) {
+                result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
             }
 
             if (clss != String.class && clss != String[].class && result == null) {

@@ -403,6 +403,17 @@
       </ul>
     </section>
 
+      <section name="access_modifiers">
+          <p>This property represents Java access modifiers.</p>
+
+          <ul>
+              <li><code>public</code></li>
+              <li><code>protected</code></li>
+              <li><code>package</code></li>
+              <li><code>private</code></li>
+          </ul>
+      </section>
+
     <section name="severity">
       <p>
         This property represents the severity level of a check violation. The

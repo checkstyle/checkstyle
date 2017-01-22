@@ -1,8 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-public class InputScope {
+public class InputAccessModifier {
 
-    public InputScope(int pubconstr) {}
+    public InputAccessModifier(int pubconstr) {}
 
     public void v1(int h) {
         new Object () {

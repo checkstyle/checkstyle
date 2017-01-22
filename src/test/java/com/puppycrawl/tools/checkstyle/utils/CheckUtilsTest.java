@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -112,7 +113,34 @@ public class CheckUtilsTest {
         metDef.addChild(parameters);
 
         Assert.assertFalse(CheckUtils.isEqualsMethod(metDef));
-
     }
 
+    @Test
+    public void testGetAccessModifierFromModifiersTokenWrongTokenType() {
+        final DetailAST modifiers = new DetailAST();
+        modifiers.setType(TokenTypes.METHOD_DEF);
+
+        try {
+            CheckUtils.getAccessModifierFromModifiersToken(modifiers);
+            fail(IllegalArgumentException.class.getSimpleName() + " was expcted.");
+        }
+        catch (IllegalArgumentException exc) {
+            final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
+            final String actualExceptionMsg = exc.getMessage();
+            assertEquals(expectedExceptionMsg, actualExceptionMsg);
+        }
+    }
+
+    @Test
+    public void testGetAccessModifierFromModifiersTokenWithNullParameter() {
+        try {
+            CheckUtils.getAccessModifierFromModifiersToken(null);
+            fail(IllegalArgumentException.class.getSimpleName() + " was expcted.");
+        }
+        catch (IllegalArgumentException exc) {
+            final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
+            final String actualExceptionMsg = exc.getMessage();
+            assertEquals(expectedExceptionMsg, actualExceptionMsg);
+        }
+    }
 }
