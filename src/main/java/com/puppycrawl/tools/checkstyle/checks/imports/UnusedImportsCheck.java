@@ -58,14 +58,18 @@ public class UnusedImportsCheck extends AbstractCheck {
     public static final String MSG_KEY = "import.unused";
 
     /** Regex to match class names. */
-    private static final Pattern CLASS_NAME = Pattern.compile(
+    private static final Pattern CLASS_NAME = CommonUtils.createPattern(
            "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
     /** Regex to match the first class name. */
-    private static final Pattern FIRST_CLASS_NAME = Pattern.compile(
+    private static final Pattern FIRST_CLASS_NAME = CommonUtils.createPattern(
            "^" + CLASS_NAME);
     /** Regex to match argument names. */
-    private static final Pattern ARGUMENT_NAME = Pattern.compile(
+    private static final Pattern ARGUMENT_NAME = CommonUtils.createPattern(
            "[(,]\\s*" + CLASS_NAME.pattern());
+
+    /** Regexp pattern to match java.lang package. */
+    private static final Pattern JAVA_LANG_PACKAGE_PATTERN =
+        CommonUtils.createPattern("^java\\.lang\\.[a-zA-Z]+$");
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
@@ -101,10 +105,10 @@ public class UnusedImportsCheck extends AbstractCheck {
     public void finishTree(DetailAST rootAST) {
         // loop over all the imports to see if referenced.
         imports.stream()
-            .filter(imp -> !referenced.contains(CommonUtils.baseClassName(imp.getText())))
-            .forEach(imp -> log(imp.getLineNo(),
-                imp.getColumnNo(),
-                MSG_KEY, imp.getText()));
+            .filter(imprt -> isUnusedImport(imprt.getText()))
+            .forEach(imprt -> log(imprt.getLineNo(),
+                imprt.getColumnNo(),
+                MSG_KEY, imprt.getText()));
     }
 
     @Override
@@ -171,6 +175,17 @@ public class UnusedImportsCheck extends AbstractCheck {
                 collectReferencesFromJavadoc(ast);
             }
         }
+    }
+
+    /**
+     * Checks whether an import is unused.
+     * @param imprt an import.
+     * @return true if an import is unused.
+     */
+    private boolean isUnusedImport(String imprt) {
+        final Matcher javaLangPackageMatcher = JAVA_LANG_PACKAGE_PATTERN.matcher(imprt);
+        return !referenced.contains(CommonUtils.baseClassName(imprt))
+            || javaLangPackageMatcher.matches();
     }
 
     /**
