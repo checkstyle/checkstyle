@@ -59,6 +59,10 @@
     <allow pkg="java.text"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
            local-only="true"/>
+    <!-- AccessModifier is in util package (should be moved to api package) to disallow
+    its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511-->
+    <allow class="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier"
+           local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes"
            local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Utils"
