@@ -42,6 +42,7 @@ import org.powermock.api.mockito.PowerMockito;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 
 public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
@@ -49,12 +50,17 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     private static final String FLAWLESS_INPUT = "ant/InputCheckstyleAntTaskFlawless.java";
     private static final String VIOLATED_INPUT = "ant/InputCheckstyleAntTaskError.java";
     private static final String CONFIG_FILE = "ant/ant_task_test_checks.xml";
+    private static final String CUSTOM_ROOT_CONFIG_FILE = "config-custom-root-module.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
     private static final String FAILURE_PROPERTY_VALUE = "myValue";
 
     private CheckstyleAntTask getCheckstyleAntTask() throws IOException {
+        return getCheckstyleAntTask(CONFIG_FILE);
+    }
+
+    private CheckstyleAntTask getCheckstyleAntTask(String configFile) throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setConfig(new File(getPath(CONFIG_FILE)));
+        antTask.setConfig(new File(getPath(configFile)));
         antTask.setProject(new Project());
         return antTask;
     }
@@ -64,6 +70,17 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.execute();
+    }
+
+    @Test
+    public final void testCustomRootModule() throws IOException {
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        antTask.execute();
+
+        assertTrue(TestRootModuleChecker.isProcessed());
     }
 
     @Test
@@ -100,7 +117,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             fail("Exception is expected");
         }
         catch (BuildException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to create a Checker: configLocation"));
+            assertTrue(ex.getMessage().startsWith("Unable to create Root Module: configLocation"));
         }
     }
 
@@ -115,7 +132,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             fail("Exception is expected");
         }
         catch (BuildException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to create a Checker: configLocation"));
+            assertTrue(ex.getMessage().startsWith("Unable to create Root Module: configLocation"));
         }
     }
 
