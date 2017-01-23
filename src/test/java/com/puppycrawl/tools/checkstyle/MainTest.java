@@ -802,6 +802,8 @@ public class MainTest {
 
     @Test
     public void testCustomRootModule() throws Exception {
+        TestRootModuleChecker.reset();
+
         exit.checkAssertionAfterwards(() -> {
             assertEquals("", systemOut.getLog());
             assertEquals("", systemErr.getLog());

@@ -59,4 +59,8 @@ public class TestRootModuleChecker implements RootModule {
     public static boolean isProcessed() {
         return processed;
     }
+
+    public static void reset() {
+        processed = false;
+    }
 }

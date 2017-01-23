@@ -46,13 +46,15 @@ import org.apache.tools.ant.types.Reference;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
-import com.puppycrawl.tools.checkstyle.DefaultContext;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.ModuleFactory;
+import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 
@@ -262,7 +264,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    // Setters for Checker configuration attributes
+    // Setters for Root Module's configuration attributes
     ////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -316,45 +318,45 @@ public class CheckstyleAntTask extends Task {
      * @param checkstyleVersion Checkstyle compile version.
      */
     private void realExecute(String checkstyleVersion) {
-        // Create the checker
-        Checker checker = null;
+        // Create the root module
+        RootModule rootModule = null;
         try {
-            checker = createChecker();
+            rootModule = createRootModule();
 
             // setup the listeners
             final AuditListener[] listeners = getListeners();
             for (AuditListener element : listeners) {
-                checker.addListener(element);
+                rootModule.addListener(element);
             }
             final SeverityLevelCounter warningCounter =
                 new SeverityLevelCounter(SeverityLevel.WARNING);
-            checker.addListener(warningCounter);
+            rootModule.addListener(warningCounter);
 
-            processFiles(checker, warningCounter, checkstyleVersion);
+            processFiles(rootModule, warningCounter, checkstyleVersion);
         }
         finally {
-            destroyChecker(checker);
+            destroyRootModule(rootModule);
         }
     }
 
     /**
-     * Destroy Checker. This method exists only due to bug in cobertura library
+     * Destroy root module. This method exists only due to bug in cobertura library
      * https://github.com/cobertura/cobertura/issues/170
-     * @param checker Checker that was used to process files
+     * @param rootModule Root module that was used to process files
      */
-    private static void destroyChecker(Checker checker) {
-        if (checker != null) {
-            checker.destroy();
+    private static void destroyRootModule(RootModule rootModule) {
+        if (rootModule != null) {
+            rootModule.destroy();
         }
     }
 
     /**
-     * Scans and processes files by means given checker.
-     * @param checker Checker to process files
-     * @param warningCounter Checker's counter of warnings
+     * Scans and processes files by means given root module.
+     * @param rootModule Root module to process files
+     * @param warningCounter Root Module's counter of warnings
      * @param checkstyleVersion Checkstyle compile version
      */
-    private void processFiles(Checker checker, final SeverityLevelCounter warningCounter,
+    private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
         final List<File> files = scanFileSets();
@@ -370,7 +372,7 @@ public class CheckstyleAntTask extends Task {
 
         try {
             final long processingStartTime = System.currentTimeMillis();
-            numErrs = checker.process(files);
+            numErrs = rootModule.process(files);
             final long processingEndTime = System.currentTimeMillis();
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
@@ -397,11 +399,11 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Creates new instance of {@code Checker}.
-     * @return new instance of {@code Checker}
+     * Creates new instance of the root module.
+     * @return new instance of the root module
      */
-    private Checker createChecker() {
-        final Checker checker;
+    private RootModule createRootModule() {
+        final RootModule rootModule;
         try {
             final Properties props = createOverridingProperties();
             final Configuration config =
@@ -410,24 +412,29 @@ public class CheckstyleAntTask extends Task {
                     new PropertiesExpander(props),
                     omitIgnoredModules);
 
-            final DefaultContext context = new DefaultContext();
-            final ClassLoader loader = new AntClassLoader(getProject(),
-                    classpath);
-            context.add("classloader", loader);
-
             final ClassLoader moduleClassLoader =
                 Checker.class.getClassLoader();
-            context.add("moduleClassLoader", moduleClassLoader);
 
-            checker = new Checker();
-            checker.contextualize(context);
-            checker.configure(config);
+            final ModuleFactory factory = new PackageObjectFactory(
+                    Checker.class.getPackage().getName() + ".", moduleClassLoader);
+
+            rootModule = (RootModule) factory.createModule(config.getName());
+            rootModule.setModuleClassLoader(moduleClassLoader);
+
+            if (rootModule instanceof Checker) {
+                final ClassLoader loader = new AntClassLoader(getProject(),
+                        classpath);
+
+                ((Checker) rootModule).setClassLoader(loader);
+            }
+
+            rootModule.configure(config);
         }
         catch (final CheckstyleException ex) {
-            throw new BuildException(String.format(Locale.ROOT, "Unable to create a Checker: "
+            throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
                     + "configLocation {%s}, classpath {%s}.", configLocation, classpath), ex);
         }
-        return checker;
+        return rootModule;
     }
 
     /**
