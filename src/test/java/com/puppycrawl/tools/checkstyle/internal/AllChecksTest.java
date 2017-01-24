@@ -61,21 +61,26 @@ public class AllChecksTest extends BaseCheckTestSupport {
         Locale.ENGLISH,
     };
 
-    private static final Map<String, Set<String>> TOKENS_IN_CONFIG_TO_IGNORE = new HashMap<>();
+    private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
+            new HashMap<>();
+    private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
+            new HashMap<>();
 
     static {
-        TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
+        // checkstyle
+
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
                 // we use GenericWhitespace for this behavior
                 "GENERIC_START", "GENERIC_END").collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
                 // enum values should be uppercase, we use EnumValueNameCheck instead
                 "ENUM_CONSTANT_DEF").collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("FinalLocalVariable", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("FinalLocalVariable", Stream.of(
                 // we prefer all parameters be effectively final as to not damage readability
                 // we use ParameterAssignmentCheck to enforce this
                 "PARAMETER_DEF").collect(Collectors.toSet()));
         // we have no need to block these specific tokens
-        TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalToken",
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalToken",
                 Stream.of("LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF",
                         "TYPE_PARAMETERS", "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH",
                         "ANNOTATIONS", "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION",
@@ -113,7 +118,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                         "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE").collect(
                         Collectors.toSet()));
         // we have no need to block specific token text
-        TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
                 Stream.of("LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF",
                         "TYPE_PARAMETERS", "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH",
                         "ANNOTATIONS", "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION",
@@ -152,15 +157,15 @@ public class AllChecksTest extends BaseCheckTestSupport {
                         "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL", "STRING_LITERAL",
                         "ARRAY_DECLARATOR", "LITERAL_CASE").collect(Collectors.toSet()));
         // we do not use this check as it is deprecated
-        TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
                 Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF", "ANNOTATION_FIELD_DEF")
                         .collect(Collectors.toSet()));
         // state of the configuration when test was made until reason found in
         // https://github.com/checkstyle/checkstyle/issues/3730
-        TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
                 Stream.of("TYPECAST", "DOT", "TYPE_ARGUMENT", "LITERAL_NEW", "LITERAL_THROWS",
                         "IMPLEMENTS_CLAUSE").collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method declaration could be long due to "parameters/exceptions", it is ok to
                 // be not strict there
                 "METHOD_DEF", "CTOR_DEF",
@@ -168,25 +173,109 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 // be not strict there
                 "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
                 .collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceAfter", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceAfter", Stream.of(
                 // whitespace after is preferred
                 "TYPECAST", "LITERAL_SYNCHRONIZED").collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
                 // needs context to decide what type of parentheses should be separated or not
                 // which this check does not provide
                 "LPAREN", "RPAREN").collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("NeedBraces", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NeedBraces", Stream.of(
                 // we prefer no braces here as it looks unusual even though they help avoid sharing
                 // scope of variables
                 "LITERAL_DEFAULT", "LITERAL_CASE", "LAMBDA").collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
                 // we prefer these to be effectively final as to not damage readability
                 "FOR_EACH_CLAUSE", "LITERAL_CATCH").collect(Collectors.toSet()));
-        TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
                 // we prefer no spaces on one side or both for these tokens
                 "ARRAY_INIT",
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START").collect(Collectors.toSet()));
+
+        // google
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
+                // state of the configuration when test was made until reason found in
+                // https://github.com/checkstyle/checkstyle/issues/3730
+                "TYPECAST", "DOT", "TYPE_ARGUMENT", "ANNOTATION_DEF", "LITERAL_NEW",
+                "LITERAL_THROWS", "PARAMETER_DEF", "IMPLEMENTS_CLAUSE", "ANNOTATION_FIELD_DEF")
+                .collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
+                // enum values should be uppercase
+                "ENUM_CONSTANT_DEF").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
+                // method declaration could be long due to "parameters/exceptions", it is ok to
+                // be not strict there
+                "METHOD_DEF", "CTOR_DEF", "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
+                .collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
+                // state of configuration until
+                // https://github.com/checkstyle/checkstyle/issues/3752
+                "RBRACK", "AT", "ELLIPSIS", "SEMI", "ARRAY_DECLARATOR",
+                // needs context to decide what type of parentheses should be separated or not
+                // which this check does not provide
+                "LPAREN", "RPAREN").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NeedBraces", Stream.of(
+                // state of configuration until
+                // https://github.com/checkstyle/checkstyle/issues/3753
+                "LAMBDA",
+                // google doesn't require or prevent braces on these
+                "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyBlock", Stream.of(
+                // state of the configuration when test was made until
+                // https://github.com/checkstyle/checkstyle/issues/3748
+                "LITERAL_DEFAULT", "LITERAL_CASE",
+                // can be empty for special cases via '6.2 Caught exceptions: not ignored'
+                "LITERAL_CATCH",
+                // specifically allowed via '5.2.4 Constant names'
+                "ARRAY_INIT")
+                .collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
+                //  allowed via '4.8.3 Arrays'
+                "ARRAY_INIT",
+                // google prefers no spaces on one side or both for these tokens
+                "GENERIC_START", "GENERIC_END", "WILDCARD_TYPE")
+                .collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
+                // all other java tokens and text are allowed
+                "LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF", "TYPE_PARAMETERS",
+                "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH", "ANNOTATIONS",
+                "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION", "FOR_INIT", "LITERAL_LONG",
+                "MINUS", "OBJBLOCK", "LITERAL_NULL", "ANNOTATION", "LITERAL_TRUE",
+                "COMMENT_CONTENT", "LITERAL_CHAR", "PARAMETER_DEF", "POST_DEC",
+                "ANNOTATION_FIELD_DEF", "BLOCK_COMMENT_END", "TYPE", "LITERAL_INT", "BSR", "ENUM",
+                "LABELED_STAT", "ANNOTATION_MEMBER_VALUE_PAIR", "TYPECAST", "LITERAL_SYNCHRONIZED",
+                "PLUS_ASSIGN", "DOT", "LPAREN", "LITERAL_IF", "LITERAL_CATCH", "BAND",
+                "INTERFACE_DEF", "LOR", "BNOT", "METHOD_CALL", "AT", "ELLIPSIS", "ARRAY_INIT",
+                "FOR_EACH_CLAUSE", "LITERAL_THROWS", "CASE_GROUP", "POST_INC", "SEMI",
+                "LITERAL_FINALLY", "ASSIGN", "RESOURCE_SPECIFICATION", "STATIC_IMPORT",
+                "GENERIC_START", "IMPORT", "SL", "VARIABLE_DEF", "LITERAL_DOUBLE", "RCURLY",
+                "RESOURCE", "SR", "COMMA", "BAND_ASSIGN", "METHOD_DEF", "LITERAL_VOID",
+                "NUM_LONG", "LITERAL_TRANSIENT", "LITERAL_THIS", "LCURLY", "MINUS_ASSIGN",
+                "TYPE_LOWER_BOUNDS", "TYPE_ARGUMENT", "LITERAL_CLASS", "INSTANCE_INIT", "DIV",
+                "LITERAL_VOLATILE", "STAR", "UNARY_MINUS", "FOR_ITERATOR", "NOT_EQUAL", "LE",
+                "LITERAL_INTERFACE", "LITERAL_FLOAT", "LITERAL_INSTANCEOF", "BOR_ASSIGN", "LT",
+                "SL_ASSIGN", "ELIST", "ANNOTATION_ARRAY_INIT", "MODIFIERS", "LITERAL_BREAK",
+                "EXTENDS_CLAUSE", "TYPE_PARAMETER", "LITERAL_DEFAULT", "STATIC_INIT", "BSR_ASSIGN",
+                "TYPE_EXTENSION_AND", "BOR", "LITERAL_PRIVATE", "LITERAL_THROW", "LITERAL_BYTE",
+                "BXOR", "WILDCARD_TYPE", "FINAL", "PARAMETERS", "RPAREN", "SR_ASSIGN",
+                "UNARY_PLUS", "EMPTY_STAT", "LITERAL_STATIC", "LITERAL_CONTINUE", "STAR_ASSIGN",
+                "LAMBDA", "RBRACK", "BXOR_ASSIGN", "CTOR_CALL", "LITERAL_FALSE", "DO_WHILE",
+                "LITERAL_PUBLIC", "LITERAL_WHILE", "PLUS", "INC", "CTOR_DEF", "GENERIC_END",
+                "DIV_ASSIGN", "SLIST", "LNOT", "LAND", "LITERAL_ELSE", "ABSTRACT", "STRICTFP",
+                "QUESTION", "LITERAL_NEW", "LITERAL_RETURN", "SINGLE_LINE_COMMENT", "INDEX_OP",
+                "EXPR", "BLOCK_COMMENT_BEGIN", "PACKAGE_DEF", "IMPLEMENTS_CLAUSE", "NUM_FLOAT",
+                "LITERAL_DO", "EOF", "GE", "RESOURCES", "MOD", "DEC", "EQUAL", "LITERAL_BOOLEAN",
+                "CLASS_DEF", "COLON", "LITERAL_TRY", "ENUM_DEF", "GT", "NUM_INT", "ANNOTATION_DEF",
+                "LITERAL_NATIVE", "METHOD_REF", "TYPE_ARGUMENTS", "DOUBLE_COLON", "IDENT",
+                "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL", "ARRAY_DECLARATOR", "LITERAL_CASE")
+                .collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
+                // state of the configuration when test was made until
+                // https://github.com/checkstyle/checkstyle/issues/3749
+                "DIV_ASSIGN", "BOR_ASSIGN", "SL_ASSIGN", "ASSIGN", "BSR_ASSIGN", "BAND_ASSIGN",
+                "PLUS_ASSIGN", "MINUS_ASSIGN", "SR_ASSIGN", "STAR_ASSIGN", "BXOR_ASSIGN",
+                "MOD_ASSIGN").collect(Collectors.toSet()));
     }
 
     @Test
@@ -293,10 +382,26 @@ public class AllChecksTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAllCheckTokensAreReferencedInConfigFile() throws Exception {
-        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
+    public void testAllCheckTokensAreReferencedInCheckstyleConfigFile() throws Exception {
         final Configuration configuration = ConfigurationUtil
                 .loadConfiguration("config/checkstyle_checks.xml");
+
+        validateAllCheckTokensAreReferencedInConfigFile("checkstyle", configuration,
+                CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE);
+    }
+
+    @Test
+    public void testAllCheckTokensAreReferencedInGoogleConfigFile() throws Exception {
+        final Configuration configuration = ConfigurationUtil
+                .loadConfiguration("src/main/resources/google_checks.xml");
+
+        validateAllCheckTokensAreReferencedInConfigFile("google", configuration,
+                GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE);
+    }
+
+    private static void validateAllCheckTokensAreReferencedInConfigFile(String configName,
+            Configuration configuration, Map<String, Set<String>> tokensToIgnore) throws Exception {
+        final ModuleFactory moduleFactory = TestUtils.getPackageObjectFactory();
         final Set<Configuration> configChecks = ConfigurationUtil.getChecks(configuration);
 
         final Map<String, Set<String>> configCheckTokens = new HashMap<>();
@@ -324,7 +429,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                     configCheckTokens.put(checkName, configTokens);
 
                     // add all overriden tokens
-                    final Set<String> overrideTokens = TOKENS_IN_CONFIG_TO_IGNORE.get(checkName);
+                    final Set<String> overrideTokens = tokensToIgnore.get(checkName);
 
                     if (overrideTokens != null) {
                         configTokens.addAll(overrideTokens);
@@ -336,8 +441,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 }
 
                 try {
-                    configTokens.addAll(Arrays.asList(checkConfig.getAttribute("tokens").split(
-                            ",\\s*")));
+                    configTokens.addAll(Arrays.asList(checkConfig.getAttribute("tokens").trim()
+                            .split(",\\s*")));
                 }
                 catch (CheckstyleException ex) {
                     // no tokens defined, so it is using default
@@ -347,8 +452,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
             Assert.assertEquals("'" + entry.getKey()
-                    + "' should have all acceptable tokens from check in config or specify an "
-                    + "override to ignore the specific tokens",
+                    + "' should have all acceptable tokens from check in " + configName
+                    + " config or specify an override to ignore the specific tokens",
                     entry.getValue(), configCheckTokens.get(entry.getKey()));
         }
     }
