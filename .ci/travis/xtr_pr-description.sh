@@ -4,6 +4,7 @@ set -e
 
 if [[ ! $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
 LINK_COMMITS=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST/commits
+echo $(curl -s -H "Authorization: token $GITHUB_AUTH_TOKEN" $LINK_COMMITS)
 COMMITS=$(curl -s -H "Authorization: token $GITHUB_AUTH_TOKEN" $LINK_COMMITS | jq '.[0] | .commit.message')
 echo 'Messages from github:'${COMMITS:0:60}...
 ISSUE_NUMBER=$(echo $COMMITS | sed -e 's/^.*Issue //' | sed -e 's/:.*//')
