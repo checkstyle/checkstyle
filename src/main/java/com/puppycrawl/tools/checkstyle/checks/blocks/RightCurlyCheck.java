@@ -175,7 +175,7 @@ public class RightCurlyCheck extends AbstractCheck {
         final Details details = getDetails(ast);
         final DetailAST rcurly = details.rcurly;
 
-        if (rcurly != null && rcurly.getType() == TokenTypes.RCURLY) {
+        if (rcurly != null) {
             final String violation;
             if (shouldStartLine) {
                 final String targetSourceLine = getLines()[rcurly.getLineNo() - 1];
@@ -340,10 +340,11 @@ public class RightCurlyCheck extends AbstractCheck {
                     shouldCheckLastRcurly = true;
                     nextToken = getNextToken(ast);
                     lcurly = ast.getLastChild();
-                    rcurly = lcurly.getLastChild();
                 }
                 else {
                     lcurly = nextToken.getPreviousSibling();
+                }
+                if (lcurly.getType() == TokenTypes.SLIST) {
                     rcurly = lcurly.getLastChild();
                 }
                 break;
@@ -352,7 +353,9 @@ public class RightCurlyCheck extends AbstractCheck {
                 shouldCheckLastRcurly = true;
                 nextToken = getNextToken(ast);
                 lcurly = ast.getFirstChild();
-                rcurly = lcurly.getLastChild();
+                if (lcurly.getType() == TokenTypes.SLIST) {
+                    rcurly = lcurly.getLastChild();
+                }
                 break;
             case TokenTypes.CLASS_DEF:
                 final DetailAST child = ast.getLastChild();
