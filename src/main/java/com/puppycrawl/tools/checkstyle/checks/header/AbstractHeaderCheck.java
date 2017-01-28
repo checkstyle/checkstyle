@@ -193,6 +193,15 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(headerFile.toString());
+        final Set<String> result;
+
+        if (headerFile == null) {
+            result = Collections.emptySet();
+        }
+        else {
+            result = Collections.singleton(headerFile.toString());
+        }
+
+        return result;
     }
 }
