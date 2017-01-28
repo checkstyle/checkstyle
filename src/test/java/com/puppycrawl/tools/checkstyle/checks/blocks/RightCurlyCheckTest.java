@@ -260,18 +260,6 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testRightCurlyIsAloneInLambda() throws Exception {
-        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addAttribute("tokens", "LAMBDA");
-        final String[] expected = {
-            "14:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
-            "17:49: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 49),
-            "24:33: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 33),
-        };
-        verify(checkConfig, getPath("InputRightCurlyAloneInLambda.java"), expected);
-    }
-
-    @Test
     public void testCatchWithoutFinally() throws Exception {
         final String[] expected = {
             "15:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),

@@ -121,19 +121,4 @@ public class RightCurlyTest extends BaseCheckTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
-
-    @Test
-    public void testRightCurlyAloneInLambda() throws Exception {
-        final String[] expected = {
-            "12:70: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 70),
-            "15:46: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 46),
-            "22:33: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_ALONE, "}", 33),
-        };
-
-        final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");
-        final String filePath = getPath("InputRightCurlyAloneLambda.java");
-
-        final Integer[] warnList = {12, 15, 22};
-        verify(checkConfig, filePath, expected, warnList);
-    }
 }
