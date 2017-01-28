@@ -16,6 +16,100 @@
   <body>
 
     <!-- placeholder for a new section -->
+
+    <section name="Release 7.5">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            ParameterName: deprecate &#39;scope&#39; and &#39;excludeScope&#39; properties, introduce new property &#39;accessModifiers&#39;. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3675">#3675</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Ant: Cannot override default Checker. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3530">#3530</a>
+          </li>
+          <li>
+            ImportControl should have property which allows to validate specified file path. Author: Jochen Van de Velde <a href="https://github.com/checkstyle/checkstyle/issues/3462">#3462</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            NullPointerException in AbstractHeaderCheck when cache file specified and no header file. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3771">#3771</a>
+          </li>
+          <li>
+            RequireThisCheck doesn&#39;t see outer classes for anonymous classes. Author: Vladislav Lisetskiy <a href="https://github.com/checkstyle/checkstyle/issues/3041">#3041</a>
+          </li>
+          <li>
+            NPE on type parameter annotations for this. Author: Markus Rathgeb <a href="https://github.com/checkstyle/checkstyle/issues/3732">#3732</a>
+          </li>
+          <li>
+            UnusedImports behaviour is different from documentation. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3741">#3741</a>
+          </li>
+          <li>
+            Javadoc: Column number of DetailNode is always 0 for first line. Author: kazachka <a href="https://github.com/checkstyle/checkstyle/issues/3507">#3507</a>
+          </li>
+          <li>
+            FallThrough check doesn&#39;t correctly handle try-with-resources. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3509">#3509</a>
+          </li>
+          <li>
+            RedundantModifier: no violation on final enum field methods. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3582">#3582</a>
+          </li>
+          <li>
+            NPE in RightCurly with LITERAL_DO on do-while without curly braces. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3681">#3681</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            reevaluate tokens in google config for NeedBracesCheck. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3753">#3753</a>
+          </li>
+          <li>
+            refactoring: RightCurlyCheck code expression. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3764">#3764</a>
+          </li>
+          <li>
+            Verify tokens in google config. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3740">#3740</a>
+          </li>
+          <li>
+            Verify tokens in checkstyle config. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3720">#3720</a>
+          </li>
+          <li>
+            Strive for 100% mutation coverage. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3708">#3708</a>
+          </li>
+          <li>
+            doc: Fix typo in config_imports.xml. Author: Jochen Van de Velde
+          </li>
+          <li>
+            Investigate pitest tool. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3271">#3271</a>
+          </li>
+          <li>
+            add pgjdbc project at NoErrorTest group of tests . Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3670">#3670</a>
+          </li>
+          <li>
+            use shippable CI in testing. Author: Oleg Efremenkov <a href="https://github.com/checkstyle/checkstyle/issues/3316">#3316</a>
+          </li>
+          <li>
+            doc: fix the escaping of AvoidEscapedUnicodeCharactersCheck&#39;s javadocs. Author: Michael Diamond
+          </li>
+          <li>
+            use new checks and new properties from sevntu.checkstyle project . Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3064">#3064</a>
+          </li>
+          <li>
+            CI special phase to enforce 644 permissions on all files. Author: Roman Ivanov, MaksimP <a href="https://github.com/checkstyle/checkstyle/issues/3683">#3683</a>
+          </li>
+          <li>
+            create xdoc for FileContentsHolder. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3664">#3664</a>
+          </li>
+          <li>
+            doc: Fix incorrect documentation for SuppressWithNearbyCommentFilter. Author: Charlie Pai
+          </li>
+          <li>
+            doc: how to generate sources after import project to IntelijIdea. Author: Roman Ivanov
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.4">
       <p>New:</p>
         <ul>
