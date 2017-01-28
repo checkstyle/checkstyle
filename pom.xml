@@ -1241,6 +1241,12 @@
             <excludedLink>http://dl.acm.org/*</excludedLink>
             <!-- permanent SSLHandshakeException -->
             <excludedLink>https://www.codacy.com/</excludedLink>
+            <!-- permanent SSLHandshakeException https://issues.apache.org/jira/browse/MLINKCHECK-28 -->
+            <excludedLink>https://sourceforge.net/p/checkstyle/news/feed</excludedLink>
+            <!-- permanent SSLHandshakeException https://issues.apache.org/jira/browse/MLINKCHECK-28 -->
+            <excludedLink>https://sourceforge.net/projects/checkstyle/</excludedLink>
+            <!-- permanent SSLHandshakeException https://issues.apache.org/jira/browse/MLINKCHECK-28 -->
+            <excludedLink>https://sourceforge.net/projects/checkstyle/files/checkstyle/</excludedLink>
             <!-- permanent SSLException -->
             <excludedLink>https://button.flattr.com/flattr-badge-large.png</excludedLink>
             <!-- permanent SSLException -->
