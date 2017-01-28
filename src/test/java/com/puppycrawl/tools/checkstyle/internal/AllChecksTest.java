@@ -216,11 +216,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 // which this check does not provide
                 "LPAREN", "RPAREN").collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NeedBraces", Stream.of(
-                // state of configuration until
-                // https://github.com/checkstyle/checkstyle/issues/3753
-                "LAMBDA",
                 // google doesn't require or prevent braces on these
-                "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toSet()));
+                "LAMBDA", "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyBlock", Stream.of(
                 // state of the configuration when test was made until
                 // https://github.com/checkstyle/checkstyle/issues/3748
