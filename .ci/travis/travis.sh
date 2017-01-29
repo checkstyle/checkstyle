@@ -34,9 +34,11 @@ sonarqube)
   ;;
 
 release-dry-run)
-  mvn release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
-    -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true  -Dxml.skip=true \
-    -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
+  if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ]; then
+    mvn release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
+      -Dcobertura.skip=true -Dpmd.skip=true -Dfindbugs.skip=true  -Dxml.skip=true \
+      -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
+  fi
   ;;
 
 releasenotes-gen)
