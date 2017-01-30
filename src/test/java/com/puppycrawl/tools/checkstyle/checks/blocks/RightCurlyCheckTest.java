@@ -305,4 +305,33 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputRightCurlyDoWhile.java"), expected);
     }
+
+    @Test
+    public void testTryWithResourceSame() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "24:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
+        };
+        verify(checkConfig, getPath("InputRightCurlyTryResource.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResourceAlone() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "24:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
+        };
+        verify(checkConfig, getPath("InputRightCurlyTryResource.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResourceAloneSingle() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlyTryResource.java"), expected);
+    }
 }
