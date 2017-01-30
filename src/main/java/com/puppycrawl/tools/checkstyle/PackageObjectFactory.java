@@ -146,8 +146,9 @@ public class PackageObjectFactory implements ModuleFactory {
      * Create object with the help of Checkstyle NAME_TO_FULL_MODULE_NAME map.
      * @param name name of module.
      * @return instance of module if it is found in modules map.
+     * @throws CheckstyleException if the class fails to instantiate.
      */
-    private Object createObjectFromMap(String name) {
+    private Object createObjectFromMap(String name) throws CheckstyleException {
         final String fullModuleName = NAME_TO_FULL_MODULE_NAME.get(name);
         Object instance = null;
         if (fullModuleName == null) {
@@ -168,9 +169,10 @@ public class PackageObjectFactory implements ModuleFactory {
      * @param secondAttempt the set of names to attempt instantiation
      *                      if usage of the className was not successful.
      * @return the {@code Object} created by loader or null.
+     * @throws CheckstyleException if the class fails to instantiate.
      */
-    private Object createObjectWithIgnoringProblems(String className,
-                                                    Set<String> secondAttempt) {
+    private Object createObjectWithIgnoringProblems(String className, Set<String> secondAttempt)
+            throws CheckstyleException {
         Object instance = createObject(className);
         if (instance == null) {
             final Iterator<String> ite = secondAttempt.iterator();
@@ -208,18 +210,31 @@ public class PackageObjectFactory implements ModuleFactory {
      * Creates a new instance of a named class.
      * @param className the name of the class to instantiate.
      * @return the {@code Object} created by loader or null.
+     * @throws CheckstyleException if the class fails to instantiate.
      */
-    private Object createObject(String className) {
-        Object instance = null;
+    private Object createObject(String className) throws CheckstyleException {
+        Class<?> clazz = null;
+
         try {
-            final Class<?> clazz = Class.forName(className, true, moduleClassLoader);
-            final Constructor<?> declaredConstructor = clazz.getDeclaredConstructor();
-            declaredConstructor.setAccessible(true);
-            instance = declaredConstructor.newInstance();
+            clazz = Class.forName(className, true, moduleClassLoader);
         }
         catch (final ReflectiveOperationException | NoClassDefFoundError ignored) {
             // keep looking, ignoring exception
         }
+
+        Object instance = null;
+
+        if (clazz != null) {
+            try {
+                final Constructor<?> declaredConstructor = clazz.getDeclaredConstructor();
+                declaredConstructor.setAccessible(true);
+                instance = declaredConstructor.newInstance();
+            }
+            catch (final ReflectiveOperationException ex) {
+                throw new CheckstyleException("Unable to instatiate " + className, ex);
+            }
+        }
+
         return instance;
     }
 

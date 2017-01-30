@@ -24,16 +24,19 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.CheckUtil;
@@ -123,5 +126,30 @@ public class PackageObjectFactoryTest {
         final Collection<String> canonicalNames = ((Map<String, String>) field.get(null)).values();
         assertFalse(classes.stream()
                 .anyMatch(clazz -> !canonicalNames.contains(clazz.getCanonicalName())));
+    }
+
+    @Test
+    public void testConstructorFailure() {
+        try {
+            factory.createModule(FailConstructorFileSet.class.getName());
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Unable to instatiate com.puppycrawl.tools.checkstyle."
+                    + "PackageObjectFactoryTest$FailConstructorFileSet", ex.getMessage());
+            assertEquals("IllegalArgumentException", ex.getCause().getCause().getClass()
+                    .getSimpleName());
+        }
+    }
+
+    private static final class FailConstructorFileSet extends AbstractFileSetCheck {
+        private FailConstructorFileSet() {
+            throw new IllegalArgumentException("Test");
+        }
+
+        @Override
+        protected void processFiltered(File file, List<String> lines) {
+            // not used
+        }
     }
 }
