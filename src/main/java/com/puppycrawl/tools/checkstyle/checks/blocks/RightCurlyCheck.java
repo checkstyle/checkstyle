@@ -312,6 +312,7 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     // -@cs[JavaNCSS] getDetails() method is a huge SWITCH, it has to be monolithic
     // -@cs[ExecutableStatementCount] getDetails() method is a huge SWITCH, it has to be monolithic
+    // -@cs[NPathComplexity] getDetails() method is a huge SWITCH, it has to be monolithic
     private static Details getDetails(DetailAST ast) {
         // Attempt to locate the tokens to do the check
         boolean shouldCheckLastRcurly = false;
@@ -321,9 +322,19 @@ public class RightCurlyCheck extends AbstractCheck {
 
         switch (ast.getType()) {
             case TokenTypes.LITERAL_TRY:
-                lcurly = ast.getFirstChild();
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    lcurly = ast.getFirstChild().getNextSibling();
+                }
+                else {
+                    lcurly = ast.getFirstChild();
+                }
                 nextToken = lcurly.getNextSibling();
                 rcurly = lcurly.getLastChild();
+
+                if (nextToken == null) {
+                    shouldCheckLastRcurly = true;
+                    nextToken = getNextToken(ast);
+                }
                 break;
             case TokenTypes.LITERAL_CATCH:
                 nextToken = ast.getNextSibling();
