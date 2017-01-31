@@ -171,6 +171,18 @@ no-exception-test-alot-of-project1)
   groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
   ;;
 
+no-error-test-openstreetmap)
+  mvn clean package -Passembly
+  export CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  svn export https://josm.openstreetmap.de/svn/trunk/
+  rm trunk/tools/checkstyle/checkstyle-*-all.jar
+  cp target/checkstyle-$CS_POM_VERSION-all.jar trunk/tools/checkstyle/
+  sed -i'' "s/checkstyle-7.4-all.jar/checkstyle-$CS_POM_VERSION-all.jar/" trunk/build.xml
+  cd trunk
+  ant checkstyle
+  ;;
+
 *)
   echo "Unexpected GOAL mode: $GOAL"
   exit 1

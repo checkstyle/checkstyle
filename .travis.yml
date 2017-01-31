@@ -135,6 +135,12 @@ matrix:
         - DESC="NoExceptionTest - Hbase"
         - CMD="./.ci/travis/travis.sh no-exception-test-hbase"
         - COVERAGE_CMD=""
+    # NoErrorTest - openstreetmap.de (oraclejdk8)
+    - jdk: oraclejdk8
+      env:
+        - DESC="NoErrorTest - openstreetmap.de"
+        - CMD="./.ci/travis/travis.sh no-error-test-openstreetmap"
+        - COVERAGE_CMD=""
 
     # release dry run (oraclejdk8)
     - jdk: oraclejdk8
