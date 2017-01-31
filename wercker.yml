@@ -63,6 +63,17 @@ build:
         && git clone https://github.com/apache/incubator-apex-core/ && cd incubator-apex-core
         && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
 
+  # NoErrorTest - HtmlUnit (oraclejdk8)
+  - script:
+      name: NoErrorTest - HtmlUnit
+      code: >
+        mvn clean install -Pno-validations
+        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        && echo CS_version: ${CS_POM_VERSION}
+        && svn export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit htmlunit
+        && cd htmlunit
+        && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+
   # NoExceptiontest - Apache Struts (oraclejdk8)
   - script:
       name: NoExceptiontest - Apache Struts
