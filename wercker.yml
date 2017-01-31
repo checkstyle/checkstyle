@@ -73,7 +73,7 @@ build:
         && svn export https://josm.openstreetmap.de/svn/trunk/
         && rm trunk/tools/checkstyle/checkstyle-*-all.jar
         && cp target/checkstyle-$CS_POM_VERSION-all.jar trunk/tools/checkstyle/
-        && sed -i '' "s/checkstyle-7.4-all.jar/checkstyle-$CS_POM_VERSION-all.jar/" trunk/build.xml
+        && sed -i'' "s/checkstyle-7.4-all.jar/checkstyle-$CS_POM_VERSION-all.jar/" trunk/build.xml
         && cd trunk && ant checkstyle
 
   # NoExceptiontest - Apache Struts (oraclejdk8)
