@@ -16,8 +16,7 @@ branches:
   only:
     - master
 
-install:
-  - ant deps
+install: ant deps
 
 matrix:
   fast_finish: true
