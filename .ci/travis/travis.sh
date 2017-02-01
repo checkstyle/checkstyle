@@ -174,7 +174,7 @@ no-exception-test-alot-of-project1)
 no-error-test-openstreetmap)
   echo "installing new ant ..."
   wget http://www-us.apache.org/dist//ant/binaries/apache-ant-1.9.8-bin.zip
-  unzip apache-ant-1.9.8-bin.zip
+  unzip -q apache-ant-1.9.8-bin.zip
   export ANT_HOME=$(pwd)/apache-ant-1.9.8
   export PATH=$ANT_HOME/bin/:$PATH
   echo "building checkstyle ..."
