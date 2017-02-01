@@ -76,16 +76,16 @@ public class CyclomaticComplexityCheckTest
         checkConfig.addAttribute("max", "0");
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "7:17: " + getCheckMessage(MSG_KEY, 2, 0),
-            "17:5: " + getCheckMessage(MSG_KEY, 6, 0),
-            "27:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "34:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "48:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "58:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "67:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "76:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "79:13: " + getCheckMessage(MSG_KEY, 2, 0),
+            "5:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "10:17: " + getCheckMessage(MSG_KEY, 2, 0),
+            "22:5: " + getCheckMessage(MSG_KEY, 6, 0),
+            "35:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "45:5: " + getCheckMessage(MSG_KEY, 5, 0),
+            "63:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "76:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "88:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "100:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "104:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verify(checkConfig, getPath("InputComplexity.java"), expected);
