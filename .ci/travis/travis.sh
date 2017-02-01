@@ -175,14 +175,14 @@ no-error-test-openstreetmap)
   mvn clean package -Passembly
   export CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  svn export https://josm.openstreetmap.de/svn/trunk/ openstreetmap
-  rm openstreetmap/tools/checkstyle/checkstyle-*-all.jar
-  cp target/checkstyle-$CS_POM_VERSION-all.jar openstreetmap/tools/checkstyle/
-  sed -i'' "s/checkstyle-7.4-all.jar/checkstyle-$CS_POM_VERSION-all.jar/" openstreetmap/build.xml
+  echo "Checkouting sources ...."
+  svn -q export https://josm.openstreetmap.de/svn/trunk/ openstreetmap
+  echo "replacing checkstyle-all.jar ...."
+  cp -f target/checkstyle-$CS_POM_VERSION-all.jar openstreetmap/tools/checkstyle/checkstyle-all.jar
   cd openstreetmap
   ant -v checkstyle
-  cat checkstyle-josm.xml
-  grep '<error' checkstyle-josm.xml > errors.log
+  grep '<error' checkstyle-josm.xml | cat > errors.log
+  echo "Checkstyle Errors:"
   RESULT=$(cat errors.log | wc -l)
   cat errors.log
   echo 'Size of output:'$RESULT
