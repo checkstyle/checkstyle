@@ -187,6 +187,8 @@ no-error-test-openstreetmap)
   cp -f target/checkstyle-$CS_POM_VERSION-all.jar openstreetmap/tools/checkstyle/checkstyle-all.jar
   cd openstreetmap
   ant -v checkstyle
+  ls -la
+  cat checkstyle-josm.xml
   grep '<error' checkstyle-josm.xml | cat > errors.log
   echo "Checkstyle Errors:"
   RESULT=$(cat errors.log | wc -l)
