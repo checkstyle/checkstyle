@@ -689,7 +689,7 @@ class SwitchExample {
           The NPATH metric computes the number of possible execution
           paths through a function(method). It takes into account the nesting of
           conditional statements and multi-part boolean expressions
-          (e.g., A &amp;&amp; B, C || D, etc.).
+          (A &amp;&amp; B, C || D, E ? F :G and their combinations).
           <br/>
           The NPATH metric was designed base on Cyclomatic complexity to
           avoid problem of Cyclomatic complexity metric like nesting level within a function(method).
