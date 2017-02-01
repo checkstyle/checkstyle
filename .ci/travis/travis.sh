@@ -181,6 +181,11 @@ no-error-test-openstreetmap)
   sed -i'' "s/checkstyle-7.4-all.jar/checkstyle-$CS_POM_VERSION-all.jar/" trunk/build.xml
   cd trunk
   ant checkstyle
+  grep '<error' checkstyle-josm.xml > errors.log
+  RESULT=$(cat errors.log | wc -l)
+  cat errors.log
+  echo 'Size of output:'$RESULT
+  if [[ $RESULT != 0 ]]; then false; fi
   ;;
 
 *)
