@@ -180,7 +180,7 @@ no-error-test-openstreetmap)
   cp target/checkstyle-$CS_POM_VERSION-all.jar trunk/tools/checkstyle/
   sed -i'' "s/checkstyle-7.4-all.jar/checkstyle-$CS_POM_VERSION-all.jar/" trunk/build.xml
   cd trunk
-  ant checkstyle
+  ant -v checkstyle
   grep '<error' checkstyle-josm.xml > errors.log
   RESULT=$(cat errors.log | wc -l)
   cat errors.log
