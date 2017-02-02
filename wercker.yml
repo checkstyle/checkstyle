@@ -73,6 +73,7 @@ build:
         && echo "checkouting project sources ..."
         && svn -q export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit@13524 htmlunit
         && cd htmlunit
+        && sed -i'' "s/<includeTestSourceDirectory>true/<includeTestSourceDirectory>false/" pom.xml
         && echo "Running checkstyle validation ..."
         && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
 
