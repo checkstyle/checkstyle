@@ -7,6 +7,10 @@ build:
       code: |-
         export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
         mvn -version
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}/* | sort -h
 
   - script:
       name: install groovy
@@ -20,48 +24,70 @@ build:
          PATH=$GROOVY_HOME/bin:$PATH
          groovy -v
 
+  # Build Checkstyle
+  - script:
+      name: Build Checkstyle
+      code: >
+        mvn clean install -Pno-validations
+
   # NoErrorTest - Postgresql JDBC Driver (oraclejdk8)
   - script:
       name: NoErrorTest - Postgresql JDBC Driver
       code: >
-        mvn clean install -Pno-validations
-        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
         && echo CS_version: ${CS_POM_VERSION}
         && git clone https://github.com/pgjdbc/pgjdbc.git && cd pgjdbc/pgjdbc
         && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+        && cd ../../
+        && rm -rf pgjdbc
 
   # NoErrorTest - Orekit (oraclejdk8)
   - script:
       name: NoErrorTest - Orekit
       code: >
-        mvn clean install -Pno-validations
-        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
         && echo CS_version: ${CS_POM_VERSION}
-        && git clone https://github.com/Hipparchus-Math/hipparchus.git && cd hipparchus && mvn clean install -DskipTests
+        && git clone https://github.com/Hipparchus-Math/hipparchus.git && cd hipparchus && mvn clean install -DskipTests && cd ../
         && git clone https://github.com/CS-SI/Orekit.git && cd Orekit
         && git checkout 82f2ac9fbaabb4a8e07e4d6643c0d23845cbab42
         && mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
+        && cd ../
+        && rm -rf hipparchus Orekit
 
   # NoErrorTest - XWiki (oraclejdk8)
   - script:
       name: NoErrorTest - XWiki
       code: >
-        mvn clean install -Pno-validations
-        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
         && echo CS_version: ${CS_POM_VERSION}
         && git clone https://github.com/xwiki/xwiki-commons/
         && cd xwiki-commons/xwiki-commons-core && git checkout xwiki-commons-8.2-milestone-1
         && mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+        && cd ../../
+        && rm -rf xwiki-commons
 
   # NoErrorTest - Apache Apex (oraclejdk8)
   - script:
       name: NoErrorTest - Apache Apex
       code: >
-        mvn clean install -Pno-validations
-        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
         && echo CS_version: ${CS_POM_VERSION}
         && git clone https://github.com/apache/incubator-apex-core/ && cd incubator-apex-core
         && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+        && cd ../
+        && rm -rf incubator-apex-core
+
+  # NoErrorTest - Hibernate Search (oraclejdk8)
+  - script:
+      name: NoErrorTest - Hibernate Search
+      code: >
+        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        && echo CS_version: ${CS_POM_VERSION}
+        && git clone https://github.com/hibernate/hibernate-search.git && cd hibernate-search
+        && mvn -s settings-example.xml -B -q clean install -DskipTests=true
+        && mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+        && cd ../
+        && rm -rf hibernate-search
 
   # NoErrorTest - Hibernate Search (oraclejdk8)
   - script:
@@ -78,21 +104,33 @@ build:
   - script:
       name: NoErrorTest - HtmlUnit
       code: >
-        mvn clean install -Pno-validations
-        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
         && echo CS_version: ${CS_POM_VERSION}
         && echo "checkouting project sources ..."
         && svn -q export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit@13543 htmlunit
         && cd htmlunit
         && echo "Running checkstyle validation ..."
         && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+        && cd ../
+        && rm -rf htmlunit
 
   # NoExceptiontest - Apache Struts (oraclejdk8)
   - script:
       name: NoExceptiontest - Apache Struts
       code: >
-        rm -rf contribution
-        && git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
-        && cd ../../ && mvn clean install -Pno-validations
-        && cd contribution/checkstyle-tester
+        git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
         && groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --checkstyleCfg checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+  # Cleanup
+  - script:
+      name: Cleanup maven local repo
+      code:  |-
+        find ${WERCKER_CACHE_DIR} -type d -name "*SNAPSHOT" -ls -exec rm -rf {} +
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}/* | sort -h
+        echo "------"
+        du -hs * | sort -h
