@@ -71,4 +71,4 @@ build:
         && git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
         && cd ../../ && mvn clean install -Pno-validations
         && cd contribution/checkstyle-tester
-        && groovy ./launch.groovy projects-for-wercker.properties checks-nonjavadoc-error.xml
+        && groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --checksyleCfg checks-nonjavadoc-error.xml
