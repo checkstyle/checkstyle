@@ -63,6 +63,17 @@ build:
         && git clone https://github.com/apache/incubator-apex-core/ && cd incubator-apex-core
         && mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
 
+  # NoErrorTest - Hibernate Search (oraclejdk8)
+  - script:
+      name: NoErrorTest - Hibernate Search
+      code: >
+        mvn clean install -Pno-validations
+        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        && echo CS_version: ${CS_POM_VERSION}
+        && git clone https://github.com/hibernate/hibernate-search.git && cd hibernate-search
+        && mvn -s settings-example.xml -B -q clean install -DskipTests=true
+        && mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+
   # NoErrorTest - HtmlUnit (oraclejdk8)
   - script:
       name: NoErrorTest - HtmlUnit
