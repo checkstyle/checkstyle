@@ -72,7 +72,7 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 no-exception-test-guava)
@@ -83,7 +83,7 @@ no-exception-test-guava)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 no-exception-test-guava-with-google-checks)
@@ -106,7 +106,7 @@ no-exception-test-hibernate)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 no-exception-test-findbugs)
@@ -117,7 +117,7 @@ no-exception-test-findbugs)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 no-exception-test-spring-framework)
@@ -128,7 +128,7 @@ no-exception-test-spring-framework)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 no-exception-test-hbase)
@@ -139,7 +139,7 @@ no-exception-test-hbase)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 no-exception-test-Pmd-elasticsearch-lombok-ast)
@@ -152,7 +152,7 @@ no-exception-test-Pmd-elasticsearch-lombok-ast)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 no-exception-test-alot-of-project1)
@@ -168,7 +168,7 @@ no-exception-test-alot-of-project1)
   cd ../../
   mvn clean install -Pno-validations
   cd contribution/checkstyle-tester
-  groovy ./launch.groovy projects-for-travis.properties checks-nonjavadoc-error.xml
+  groovy ./launch.groovy ---listOfProjects projects-for-travis.properties --checkstyleCfg checks-nonjavadoc-error.xml
   ;;
 
 *)

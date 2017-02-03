@@ -19,10 +19,10 @@ machine:
     DEP1: " && sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties"
     # we need this to let pass 'mvn site' on no-projects mode to download all dependecies
     DEP2: " && echo 'class ClassEmpty{}' > src/main/java/EmptyClass.java"
-    DEP3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy projects-for-circle.properties my_check.xml"
+    DEP3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --checkstyleCfg my_check.xml"
     TESTER_DEPENDENCIES: $CMD1$DEP1$DEP2$DEP3
     CMD2: " && sed -i.'' 's/^openjdk/#openjdk/' projects-for-circle.properties"
-    CMD3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy projects-for-circle.properties checks-nonjavadoc-error.xml"
+    CMD3: " && /home/ubuntu/checkstyle/groovy-2.4.7/bin/groovy launch.groovy --listOfProjects projects-for-circle.properties --checkstyleCfg checks-nonjavadoc-error.xml"
     OPENJDK7: " && sed -i.'' 's/#openjdk7/openjdk7/' projects-for-circle.properties"
     OPENJDK8: " && sed -i.'' 's/#openjdk8/openjdk8/' projects-for-circle.properties"
     OPENJDK9: " && sed -i.'' 's/#openjdk9/openjdk9/' projects-for-circle.properties"
