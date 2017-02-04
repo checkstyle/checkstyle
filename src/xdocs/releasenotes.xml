@@ -17,6 +17,24 @@
 
     <!-- placeholder for a new section -->
 
+    <section name="Release 7.5.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            PackageObjectFactory hides real exception. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3778">#3778</a>
+          </li>
+          <li>
+            RightCurly: handling of try-with-resources on several lines with CS 7.5. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3776">#3776</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add the Hibernate Search project to the Checkstyle CI. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3790">#3790</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.5">
       <p>Breaking backward compatibility:</p>
         <ul>
