@@ -93,8 +93,7 @@ build:
   - script:
       name: NoErrorTest - Hibernate Search
       code: >
-        mvn clean install -Pno-validations
-        && CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
         && echo CS_version: ${CS_POM_VERSION}
         && git clone https://github.com/hibernate/hibernate-search.git && cd hibernate-search
         && mvn -s settings-example.xml -B -q clean install -DskipTests=true
