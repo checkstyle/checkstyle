@@ -171,6 +171,32 @@ no-exception-test-alot-of-project1)
   groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
   ;;
 
+no-error-test-openstreetmap)
+  echo "installing new ant ..."
+  wget http://www-us.apache.org/dist//ant/binaries/apache-ant-1.9.8-bin.zip
+  unzip -q apache-ant-1.9.8-bin.zip
+  export ANT_HOME=$(pwd)/apache-ant-1.9.8
+  export PATH=$ANT_HOME/bin/:$PATH
+  echo "building checkstyle ..."
+  mvn clean package -Passembly
+  export CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  echo "Checkouting sources ...."
+  svn -q export https://josm.openstreetmap.de/svn/trunk/ openstreetmap
+  echo "replacing checkstyle-all.jar ...."
+  cp -f target/checkstyle-$CS_POM_VERSION-all.jar openstreetmap/tools/checkstyle/checkstyle-all.jar
+  cd openstreetmap
+  ant -v checkstyle
+  ls -la
+  cat checkstyle-josm.xml
+  grep '<error' checkstyle-josm.xml | cat > errors.log
+  echo "Checkstyle Errors:"
+  RESULT=$(cat errors.log | wc -l)
+  cat errors.log
+  echo 'Size of output:'$RESULT
+  if [[ $RESULT != 0 ]]; then false; fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   exit 1
