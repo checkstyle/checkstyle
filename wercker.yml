@@ -108,7 +108,7 @@ build:
       name: NoExceptiontest - Apache Struts
       code: >
         git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
-        && groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --checkstyleCfg checks-nonjavadoc-error.xml
+        && groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
         && cd ../../
         && rm -rf contribution
 
