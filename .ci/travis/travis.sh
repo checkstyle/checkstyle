@@ -172,7 +172,7 @@ no-exception-test-alot-of-project1)
   ;;
 
 *)
-  echo "Unexpected GOAL mode: $GOAL"
+  echo "Unexpected argument: $1"
   exit 1
   ;;
 
