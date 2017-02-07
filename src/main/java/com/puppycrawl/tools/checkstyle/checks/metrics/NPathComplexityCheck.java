@@ -23,47 +23,68 @@ import java.math.BigInteger;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks the npath complexity against a specified limit (default = 200).
- * The npath metric computes the number of possible execution paths
- * through a function. Similar to the cyclomatic complexity but also
- * takes into account the nesting of conditional statements and
- * multi-part boolean expressions.
- *
+ * Checks the npath complexity against a specified limit (default = 200). The npath metric computes
+ * the number of possible execution paths through a function. Similar to the cyclomatic complexity
+ * but also takes into account the nesting of conditional statements and multi-part boolean
+ * expressions.
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
+ * @author attatrol
  */
 public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY = "npathComplexity";
 
-    /** Default allowed complexity. */
+    /**
+     * Default allowed complexity.
+     */
     private static final int DEFAULT_MAX = 200;
 
-    /** The initial current value. */
+    /**
+     * The initial current value.
+     */
     private static final BigInteger INITIAL_VALUE = BigInteger.ONE;
 
-    /** Stack of values - all but the current value. */
-    private final Deque<BigInteger> valueStack = new ArrayDeque<>();
+    /**
+     * Stack of NP values for ranges.
+     */
+    private final Deque<BigInteger> rangeValueStack = new ArrayDeque<>();
 
-    /** The current value. */
-    private BigInteger currentValue = INITIAL_VALUE;
+    /**
+     * Stack of NP values for expressions.
+     */
+    private final Deque<Integer> expressionValueStack = new ArrayDeque<>();
 
-    /** Threshold to report error for. */
+    /**
+     * Spatial range of the last processed expression. Used for checking that ternary operation
+     * which is a part of expression won't be processed for second time.
+     */
+    private final SpatialRange processedExpressionRange = new SpatialRange();
+
+    /**
+     * NP value for current range.
+     */
+    private BigInteger currentRangeValue = INITIAL_VALUE;
+
+    /**
+     * Threshold to report error for.
+     */
     private int max = DEFAULT_MAX;
 
     /**
      * Set the maximum threshold allowed.
-     *
-     * @param max the maximum threshold
+     * @param max
+     *        the maximum threshold
      */
     public void setMax(int max) {
         this.max = max;
@@ -82,10 +103,10 @@ public final class NPathComplexityCheck extends AbstractCheck {
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_TRY,
-            TokenTypes.LITERAL_CATCH,
+            TokenTypes.CASE_GROUP,
             TokenTypes.QUESTION,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_DEFAULT,
         };
     }
 
@@ -102,10 +123,10 @@ public final class NPathComplexityCheck extends AbstractCheck {
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_SWITCH,
-            TokenTypes.LITERAL_CASE,
-            TokenTypes.LITERAL_TRY,
-            TokenTypes.LITERAL_CATCH,
+            TokenTypes.CASE_GROUP,
             TokenTypes.QUESTION,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_DEFAULT,
         };
     }
 
@@ -120,21 +141,36 @@ public final class NPathComplexityCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(DetailAST rootAST) {
+        processedExpressionRange.resetRange();
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_FOR:
             case TokenTypes.LITERAL_IF:
-            case TokenTypes.QUESTION:
-            case TokenTypes.LITERAL_TRY:
+                visitConditional(ast, 1);
+                break;
             case TokenTypes.LITERAL_SWITCH:
-                visitMultiplyingConditional();
+                visitConditional(ast, 0);
+                break;
+            case TokenTypes.QUESTION:
+                if (!processedExpressionRange.belongsToRange(ast)) {
+                    visitUnitaryOperator(ast, 1);
+                }
+                break;
+            case TokenTypes.LITERAL_RETURN:
+                visitUnitaryOperator(ast, 0);
                 break;
             case TokenTypes.LITERAL_ELSE:
-            case TokenTypes.LITERAL_CATCH:
-            case TokenTypes.LITERAL_CASE:
-                visitAddingConditional();
+            case TokenTypes.LITERAL_DEFAULT:
+                visitBranch(0);
+                break;
+            case TokenTypes.CASE_GROUP:
+                visitCaseGroup(ast);
                 break;
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -154,15 +190,19 @@ public final class NPathComplexityCheck extends AbstractCheck {
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_FOR:
             case TokenTypes.LITERAL_IF:
-            case TokenTypes.QUESTION:
-            case TokenTypes.LITERAL_TRY:
             case TokenTypes.LITERAL_SWITCH:
-                leaveMultiplyingConditional();
+            case TokenTypes.LITERAL_RETURN:
+                leaveConditional();
+                break;
+            case TokenTypes.QUESTION:
+                if (!processedExpressionRange.belongsToRange(ast)) {
+                    leaveConditional();
+                }
                 break;
             case TokenTypes.LITERAL_ELSE:
-            case TokenTypes.LITERAL_CATCH:
-            case TokenTypes.LITERAL_CASE:
-                leaveAddingConditional();
+            case TokenTypes.CASE_GROUP:
+            case TokenTypes.LITERAL_DEFAULT:
+                leaveBranch();
                 break;
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
@@ -175,56 +215,251 @@ public final class NPathComplexityCheck extends AbstractCheck {
         }
     }
 
-    /** Visits else, catch or case. */
-    private void visitAddingConditional() {
-        pushValue();
-    }
-
-    /** Leaves else, catch or case. */
-    private void leaveAddingConditional() {
-        currentValue = currentValue.subtract(BigInteger.ONE).add(popValue());
-    }
-
-    /** Visits while, do, for, if, try, ? (in ?::) or switch. */
-    private void visitMultiplyingConditional() {
-        pushValue();
-    }
-
-    /** Leaves while, do, for, if, try, ? (in ?::) or switch. */
-    private void leaveMultiplyingConditional() {
-        currentValue = currentValue.add(BigInteger.ONE).multiply(popValue());
-    }
-
-    /** Push the current value on the stack. */
-    private void pushValue() {
-        valueStack.push(currentValue);
-        currentValue = INITIAL_VALUE;
+    /**
+     * Visits if, while, do-while, for and switch tokens - all of them have expression in
+     * parentheses which is used for calculation.
+     * @param ast
+     *        visited token.
+     * @param basicBranchingFactor
+     *        default number of branches added.
+     */
+    private void visitConditional(DetailAST ast, int basicBranchingFactor) {
+        int expressionValue = basicBranchingFactor;
+        DetailAST bracketed;
+        for (bracketed = ast.findFirstToken(TokenTypes.LPAREN).getNextSibling();
+                bracketed.getType() != TokenTypes.RPAREN;
+                bracketed = bracketed.getNextSibling()) {
+            expressionValue += countLogicalOperators(bracketed);
+        }
+        processedExpressionRange.setRange(ast, bracketed);
+        pushValue(expressionValue);
     }
 
     /**
-     * Pops a value off the stack and makes it the current value.
-     * @return pop a value off the stack and make it the current value
+     * Visits ternary operator (?:) and return tokens. They differ from those processed by
+     * visitConditional method in that their expression isn't bracketed.
+     * @param ast
+     *        visited token.
+     * @param basicBranchingFactor
+     *        number of branches inherently added by this token.
      */
-    private BigInteger popValue() {
-        currentValue = valueStack.pop();
-        return currentValue;
+    private void visitUnitaryOperator(DetailAST ast, int basicBranchingFactor) {
+        final int expressionValue = basicBranchingFactor + countLogicalOperators(ast);
+        processedExpressionRange.setRange(ast, getLastToken(ast));
+        pushValue(expressionValue);
     }
 
-    /** Process the start of the method definition. */
+    /**
+     * Visits else, default and indirectly case group tokens.
+     * @param branchMultiplier
+     *        number of additional branches added by this token.
+     */
+    private void visitBranch(Integer branchMultiplier) {
+        pushValue(branchMultiplier);
+    }
+
+    /**
+     * Visits case group token.
+     * @param ast
+     *        visited token.
+     */
+    private void visitCaseGroup(DetailAST ast) {
+        final int caseNumber = countCaseTokens(ast);
+        visitBranch(caseNumber);
+    }
+
+    /**
+     * Process the start of the method definition.
+     */
     private void visitMethodDef() {
-        pushValue();
+        pushValue(0);
+    }
+
+    /**
+     * Leaves while, do, for, if, ternary (?::), return or switch.
+     */
+    private void leaveConditional() {
+        final Pair<BigInteger, BigInteger> valuePair = popValue();
+        final BigInteger basicRangeValue = valuePair.getLeft();
+        final BigInteger expressionValue = valuePair.getRight();
+        currentRangeValue = currentRangeValue.add(expressionValue).multiply(basicRangeValue);
+    }
+
+    /**
+     * Leaves else, default or case group tokens.
+     */
+    private void leaveBranch() {
+        final Pair<BigInteger, BigInteger> valuePair = popValue();
+        final BigInteger basicRangeValue = valuePair.getLeft();
+        final BigInteger expressionValue = valuePair.getRight();
+        currentRangeValue = currentRangeValue
+                .subtract(BigInteger.ONE).add(basicRangeValue).add(expressionValue);
     }
 
     /**
      * Process the end of a method definition.
-     *
-     * @param ast the token representing the method definition
+     * @param ast
+     *        the token type representing the method definition
      */
     private void leaveMethodDef(DetailAST ast) {
         final BigInteger bigIntegerMax = BigInteger.valueOf(max);
-        if (currentValue.compareTo(bigIntegerMax) > 0) {
-            log(ast, MSG_KEY, currentValue, bigIntegerMax);
+        if (currentRangeValue.compareTo(bigIntegerMax) > 0) {
+            log(ast, MSG_KEY, currentRangeValue, bigIntegerMax);
         }
         popValue();
+        currentRangeValue = INITIAL_VALUE;
+    }
+
+    /**
+     * Pushes the current range value on the range value stack. Pushes this token expression value
+     * on the expression value stack.
+     * @param expressionValue
+     *        value of expression calculated for current token.
+     */
+    private void pushValue(Integer expressionValue) {
+        rangeValueStack.push(currentRangeValue);
+        expressionValueStack.push(expressionValue);
+        currentRangeValue = INITIAL_VALUE;
+    }
+
+    /**
+     * Pops values from both stack of expression values and stack of range values.
+     * @return pair of head values from both of the stacks.
+     */
+    private Pair<BigInteger, BigInteger> popValue() {
+        final int expressionValue = expressionValueStack.pop();
+        return Pair.of(rangeValueStack.pop(),
+                BigInteger.valueOf(expressionValue));
+    }
+
+    /**
+     * Calculates number of logical operators, including inline ternary operatior, for a token.
+     * @param ast
+     *        inspected token.
+     * @return number of logical operators.
+     */
+    private int countLogicalOperators(DetailAST ast) {
+        int number = 0;
+        for (DetailAST child = ast.getFirstChild(); child != null;
+                child = child.getNextSibling()) {
+            final int type = child.getType();
+            if (type == TokenTypes.LOR || type == TokenTypes.LAND) {
+                number++;
+            }
+            else if (type == TokenTypes.QUESTION) {
+                number += 2;
+            }
+            number += countLogicalOperators(child);
+        }
+        return number;
+    }
+
+    /**
+     * Finds a leaf, which is the most distant from the root.
+     * @param ast
+     *        the root of tree.
+     * @return the leaf.
+     */
+    private DetailAST getLastToken(DetailAST ast) {
+        final DetailAST lastChild = ast.getLastChild();
+        final DetailAST result;
+        if (lastChild.getFirstChild() == null) {
+            result = lastChild;
+        }
+        else {
+            result = getLastToken(lastChild);
+        }
+        return result;
+    }
+
+    /**
+     * Counts number of case tokens subject to a case group token.
+     * @param ast
+     *        case group token.
+     * @return number of case tokens.
+     */
+    private int countCaseTokens(DetailAST ast) {
+        int counter = 0;
+        for (DetailAST iterator = ast.getFirstChild(); iterator != null;
+                iterator = iterator.getNextSibling()) {
+            if (iterator.getType() == TokenTypes.LITERAL_CASE) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    /**
+     * A spatial range between tokens. Used to prevent inline ternary operator from being processed
+     * twice.
+     * @author atta_troll
+     */
+    private static class SpatialRange {
+        /**
+         * Start line of the range.
+         */
+        private int startLineNo;
+
+        /**
+         * Start column of the range.
+         */
+        private int startColumnNo;
+
+        /**
+         * End line of the range.
+         */
+        private int endLineNo;
+
+        /**
+         * End column of the range.
+         */
+        private int endColumnNo;
+
+        /**
+         * Sets range between two tokens.
+         * @param startToken
+         *        starting token of the range.
+         * @param endToken
+         *        ending token of the range.
+         */
+        public void setRange(DetailAST startToken, DetailAST endToken) {
+            if (!belongsToRange(startToken)) {
+                startLineNo = startToken.getLineNo();
+                startColumnNo = startToken.getColumnNo();
+            }
+            if (!belongsToRange(endToken)) {
+                endLineNo = endToken.getLineNo();
+                endColumnNo = endToken.getColumnNo();
+            }
+        }
+
+        /**
+         * Sets range to the start of the file.
+         */
+        public void resetRange() {
+            startLineNo = 0;
+            startColumnNo = 0;
+            endLineNo = 0;
+            endColumnNo = 0;
+        }
+
+        /**
+         * Checks if token belongs to the range.
+         * @param ast
+         *        inspected token.
+         * @return true, if token belongs to the range.
+         */
+        public boolean belongsToRange(DetailAST ast) {
+            final int lineNo = ast.getLineNo();
+            final int columnNo = ast.getColumnNo();
+            boolean inRange = true;
+            if (lineNo < startLineNo
+                    || lineNo > endLineNo
+                    || lineNo == endLineNo
+                    && (columnNo <= startColumnNo || columnNo > endColumnNo)) {
+                inRange = false;
+            }
+            return inRange;
+        }
     }
 }
