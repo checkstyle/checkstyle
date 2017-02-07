@@ -82,7 +82,31 @@ public class InputValidTryIndent { //indent:0 exp:0
         { //indent:8 exp:8
         } //indent:8 exp:8
 
+        try  //indent:8 exp:8
+        { //indent:8 exp:8
+        }  //indent:8 exp:8
+        catch (NullPointerException | IllegalArgumentException t)  //indent:8 exp:8
+        { //indent:8 exp:8
+            System.identityHashCode("err"); //indent:12 exp:12
+        } //indent:8 exp:8
 
+        try  //indent:8 exp:8
+        { //indent:8 exp:8
+        }  //indent:8 exp:8
+        catch (NullPointerException //indent:8 exp:8
+            | IllegalArgumentException t)  //indent:12 exp:12
+        { //indent:8 exp:8
+            System.identityHashCode("err"); //indent:12 exp:12
+        } //indent:8 exp:8
+
+        try  //indent:8 exp:8
+        { //indent:8 exp:8
+        }  //indent:8 exp:8
+        catch (NullPointerException | //indent:8 exp:8
+            IllegalArgumentException t)  //indent:12 exp:12
+        { //indent:8 exp:8
+            System.identityHashCode("err"); //indent:12 exp:12
+        } //indent:8 exp:8
     } //indent:4 exp:4
 
 } //indent:0 exp:0

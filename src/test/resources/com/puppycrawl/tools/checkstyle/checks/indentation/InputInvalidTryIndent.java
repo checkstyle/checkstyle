@@ -83,6 +83,14 @@ public class InputInvalidTryIndent { //indent:0 exp:0
         { //indent:8 exp:8
         } //indent:8 exp:8
 
+try { //indent:0 exp:8 warn
+} catch (NullPointerException //indent:0 exp:8 warn
+| IllegalArgumentException t) { //indent:0 exp:12 warn
+} //indent:0 exp:8 warn
 
+try { //indent:0 exp:8 warn
+} catch (NullPointerException | //indent:0 exp:8 warn
+IllegalArgumentException t) { //indent:0 exp:12 warn
+} //indent:0 exp:8 warn
     } //indent:4 exp:4
 } //indent:0 exp:0
