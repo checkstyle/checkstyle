@@ -839,6 +839,14 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "74: " + getCheckMessage(MSG_ERROR, "catch lcurly", 6, 8),
             "77: " + getCheckMessage(MSG_ERROR, "catch rcurly", 10, 8),
             "80: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
+            "86: " + getCheckMessage(MSG_ERROR, "try", 0, 8),
+            "87: " + getCheckMessage(MSG_ERROR, "try rcurly", 0, 8),
+            "88: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 12),
+            "89: " + getCheckMessage(MSG_ERROR, "catch rcurly", 0, 8),
+            "91: " + getCheckMessage(MSG_ERROR, "try", 0, 8),
+            "92: " + getCheckMessage(MSG_ERROR, "try rcurly", 0, 8),
+            "93: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 12),
+            "94: " + getCheckMessage(MSG_ERROR, "catch rcurly", 0, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
