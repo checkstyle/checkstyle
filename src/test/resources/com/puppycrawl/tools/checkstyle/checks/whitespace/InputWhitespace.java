@@ -283,4 +283,7 @@ class SpecialCasesInForLoop
 )
 ;
     }
+
+    public static void testNoWhitespaceBeforeEllipses(String ... args) {
+    }
 }

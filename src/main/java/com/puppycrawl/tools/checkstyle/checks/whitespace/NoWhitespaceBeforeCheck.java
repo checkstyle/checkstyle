@@ -33,9 +33,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * allowLineBreaks to true.
  * </p>
  * <p> By default the check will check the following operators:
+ *  {@link TokenTypes#COMMA COMMA},
  *  {@link TokenTypes#SEMI SEMI},
  *  {@link TokenTypes#POST_DEC POST_DEC},
- *  {@link TokenTypes#POST_INC POST_INC}.
+ *  {@link TokenTypes#POST_INC POST_INC},
+ *  {@link TokenTypes#ELLIPSIS ELLIPSIS}.
  * {@link TokenTypes#DOT DOT} is also an acceptable token in a configuration
  * of this check.
  * </p>
@@ -77,6 +79,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.ELLIPSIS,
         };
     }
 
@@ -90,6 +93,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.DOT,
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
+            TokenTypes.ELLIPSIS,
         };
     }
 
