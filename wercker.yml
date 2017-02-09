@@ -112,6 +112,111 @@ build:
         && cd ../../
         && rm -rf contribution
 
+  # NoExceptiontest - Checkstyle ,sevntu-checkstyle (oraclejdk8)
+  - script:
+      name: NoExceptiontest - Checkstyle ,sevntu-checkstyle
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#checkstyle/checkstyle/' projects-for-travis.properties
+        && sed -i.'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+  # NoExceptiontest - Guava (oraclejdk8)
+  - script:
+      name: NoExceptiontest - Guava
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#guava/guava/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+  # NoExceptiontest - Hibernate (oraclejdk8)
+  - script:
+      name: NoExceptiontest - Hibernate
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+
+  # NoExceptiontest - Findbugs (oraclejdk8)
+  - script:
+      name: NoExceptiontest - findbugs
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#findbugs/findbugs/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+  # NoExceptiontest - spring-framework (oraclejdk8)
+  - script:
+      name: NoExceptiontest - spring-framework
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#spring-framework/spring-framework/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+  # NoExceptiontest - Hbase (oraclejdk8)
+  - script:
+      name: NoExceptiontest - Hbase
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#Hbase/Hbase/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+  # NoExceptiontest - pmd elasticsearch lombok-ast (oraclejdk8)
+  - script:
+      name: NoExceptiontest - pmd elasticsearch lombok-ast
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#pmd/pmd/' projects-for-travis.properties
+        && sed -i.'' 's/#elasticsearch/elasticsearch/' projects-for-travis.properties
+        && sed -i.'' 's/#lombok-ast/lombok-ast/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
+  # NoExceptiontest - RxJava java-design-patterns MaterialDesignLibrary apache-ant apache-jsecurity android-launcher (oraclejdk8)
+  - script:
+      name: NoExceptiontest - RxJava java-design-patterns MaterialDesignLibrary apache-ant apache-jsecurity android-launcher
+      code: >
+        git clone https://github.com/checkstyle/contribution
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#RxJava/RxJava/' projects-for-travis.properties
+        && sed -i.'' 's/#java-design-patterns/java-design-patterns/' projects-for-travis.properties
+        && sed -i.'' 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-travis.properties
+        && sed -i.'' 's/#apache-ant/apache-ant/' projects-for-travis.properties
+        && sed -i.'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties
+        && sed -i.'' 's/#android-launcher/android-launcher/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd ../../
+        && rm -rf contribution
+
   # Cleanup
   - script:
       name: Cleanup maven local repo
