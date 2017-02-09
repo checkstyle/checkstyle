@@ -130,10 +130,10 @@ build:
       name: NoExceptiontest - Guava
       code: >
         git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i.'' 's/#guava/guava/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+        && cd contribution/checkstyle-tester
+        && sed -i.'' 's/^guava/#guava/' projects-for-travis.properties
+        && sed -i.'' 's/#guava/guava/' projects-for-travis.properties
+        && groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
         && cd ../../
         && rm -rf contribution
 
