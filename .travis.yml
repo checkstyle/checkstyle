@@ -81,35 +81,11 @@ matrix:
         - CMD="./.ci/travis/travis.sh sonarqube"
         - COVERAGE_CMD=""
 
-    # NoExceptiontest - Checkstyle, sevntu-checkstyle (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - Checkstyle, sevntu-checkstyle"
-        - CMD="./.ci/travis/travis.sh no-exception-test-checkstyle-sevntu-checkstyle"
-        - COVERAGE_CMD=""
-    # NoExceptiontest - Guava (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - Guava"
-        - CMD="./.ci/travis/travis.sh no-exception-test-guava"
-        - COVERAGE_CMD=""
     # NoExceptiontest - Guava with google_checks (oraclejdk8)
     - jdk: oraclejdk8
       env:
         - DESC="NoExceptionTest - Guava with google_checks"
         - CMD="./.ci/travis/travis.sh no-exception-test-guava-with-google-checks"
-        - COVERAGE_CMD=""
-    # NoExceptionTest - Hibernate ORM (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - Hibernate ORM"
-        - CMD="./.ci/travis/travis.sh no-exception-test-hibernate"
-        - COVERAGE_CMD=""
-    # NoExceptionTest - FindBugs (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - FindBugs"
-        - CMD="./.ci/travis/travis.sh no-exception-test-findbugs"
         - COVERAGE_CMD=""
     # NoExceptionTest - Pmd,elasticsearch,lombok-ast (oraclejdk8)
     - jdk: oraclejdk8
@@ -122,18 +98,6 @@ matrix:
       env:
         - DESC="NoExceptionTest - RxJava,java-design-patterns,MaterialDesignLibrary,apache-ant,apache-jsecurity,android-launcher"
         - CMD="./.ci/travis/travis.sh no-exception-test-alot-of-project1"
-        - COVERAGE_CMD=""
-    # NoExceptionTest - Spring (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - Spring"
-        - CMD="./.ci/travis/travis.sh no-exception-test-spring-framework"
-        - COVERAGE_CMD=""
-    # NoExceptionTest - Hbase (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - Hbase"
-        - CMD="./.ci/travis/travis.sh no-exception-test-hbase"
         - COVERAGE_CMD=""
 
     # release dry run (oraclejdk8)
