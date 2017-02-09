@@ -12,7 +12,7 @@ class InputOneCharInitVarName
             //some code
         }
         
-        int i = 0; //warn
+        int i = 0; // ok
         
         for(int index = 1; index < 10; index++) { //ok
             //some code

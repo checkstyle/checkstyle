@@ -51,7 +51,6 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
     public void localVariableNameTest() throws Exception {
 
         final String[] expected = {
-            "26:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "a", format),
             "27:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "aA", format),
             "28:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "a1_a", format),
             "29:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "A_A", format),
@@ -74,7 +73,6 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
     public void oneCharTest() throws Exception {
 
         final String[] expected = {
-            "15:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "i", format),
             "21:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "I_ndex", format),
             "45:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "i_ndex", format),
             "49:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "ii_i1", format),
