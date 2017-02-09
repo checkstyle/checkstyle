@@ -260,7 +260,7 @@ public int checkReturnTag(final int aTagIndex,
           <tr>
             <td>allowMissingThrowsTags</td>
             <td>whether to ignore errors when a method declares
-            that it throws exceptions but does have matching throws tags
+            that it throws exceptions but does not have matching throws tags
             in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
@@ -268,7 +268,7 @@ public int checkReturnTag(final int aTagIndex,
           <tr>
             <td>allowMissingReturnTag</td>
             <td>whether to ignore errors when a method returns
-            non-void type does have a return tag in the javadoc.</td>
+            non-void type and does not have a return tag in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
