@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
 import java.io.*;
 
-class InputSimple2
+class InputParameterName
 {
 
     /** Some more Javadoc. */
@@ -41,7 +41,7 @@ class InputParameterNameSimplePub
     public void a(int par, int parA) {}
 
     /** Invalid: public and one char long */
-    public void b(int p) {} //warn
+    public void b(int p) {}
 
     /** Valid: private and one char long. */
     private void c(int p) {}
@@ -50,13 +50,26 @@ class InputParameterNameSimplePub
     private void d(int param) {
         new Object() {
             /** Invalid: public and one char long. */
-            public void e(int p) { } //warn
+            public void e(int p) { }
         };
     }
 
     /** Invalid: public constructor and one char long */
-    public InputParameterNameSimplePub(int p) { } // warn
+    public InputParameterNameSimplePub(int p) { }
 
     /** Valid: private constructor and one char long */
     private InputParameterNameSimplePub(float p) { }
+
+    void toManyArgs(
+        int $arg1, //warn
+        int ar$g2, //warn
+        int arg3$, //warn
+        int a_rg4, //warn
+        int _arg5, //warn
+        int arg6_, //warn
+        int aArg7, //warn
+        int aArg8, //warn
+        int aar_g) //warn
+
+    {}
 }

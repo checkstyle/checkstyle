@@ -34,10 +34,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class ParameterNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static String genealFormat;
-    private static String pubFormat;
-    private static Configuration generalConfig;
-    private static Configuration pubConfig;
+    private static String format;
+    private static Configuration config;
 
     @Override
     protected String getPath(String fileName) throws IOException {
@@ -49,63 +47,34 @@ public class ParameterNameTest extends BaseCheckTestSupport {
     public static void setConfigurationBuilder() throws CheckstyleException {
         final List<Configuration> configs = getCheckConfigs("ParameterName");
 
-        Assert.assertEquals(configs.size(), 2);
+        Assert.assertEquals(configs.size(), 1);
 
-        generalConfig = configs.get(0);
-        Assert.assertEquals(generalConfig.getAttribute("accessModifiers"),
-            "protected, package, private");
-        genealFormat = generalConfig.getAttribute("format");
-
-        pubConfig = configs.get(1);
-        Assert.assertEquals(pubConfig.getAttribute("accessModifiers"), "public");
-        pubFormat = pubConfig.getAttribute("format");
+        config = configs.get(0);
+        format = config.getAttribute("format");
     }
 
     @Test
     public void generalParameterNameTest() throws Exception {
 
         final String[] expected = {
-            "8:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "$arg1", genealFormat),
-            "9:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "ar$g2", genealFormat),
-            "10:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "arg3$", genealFormat),
-            "11:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "a_rg4", genealFormat),
-            "12:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "_arg5", genealFormat),
-            "13:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "arg6_", genealFormat),
-            "14:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "aArg7", genealFormat),
-            "15:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "aArg8", genealFormat),
-            "16:21: "
-                + getCheckMessage(generalConfig.getMessages(), MSG_KEY, "aar_g", genealFormat),
+            "10:21: " + getCheckMessage(config.getMessages(), MSG_KEY, "bB", format),
+            "33:22: " + getCheckMessage(config.getMessages(), MSG_KEY, "llll_llll", format),
+            "34:21: " + getCheckMessage(config.getMessages(), MSG_KEY, "bB", format),
+            "64:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "$arg1", format),
+            "65:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "ar$g2", format),
+            "66:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "arg3$", format),
+            "67:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "a_rg4", format),
+            "68:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "_arg5", format),
+            "69:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "arg6_", format),
+            "70:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "aArg7", format),
+            "71:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "aArg8", format),
+            "72:13: " + getCheckMessage(config.getMessages(), MSG_KEY, "aar_g", format),
         };
 
-        final String filePath = getPath("InputParameterNameSimpleGeneral.java");
+        final String filePath = getPath("InputParameterName.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(generalConfig, filePath, expected, warnList);
+        verify(config, filePath, expected, warnList);
     }
 
-    @Test
-    public void pubParameterNameTest() throws Exception {
-
-        final String[] expected = {
-            "10:21: " + getCheckMessage(pubConfig.getMessages(), MSG_KEY, "bB", pubFormat),
-            "33:22: " + getCheckMessage(pubConfig.getMessages(), MSG_KEY, "llll_llll", pubFormat),
-            "34:21: " + getCheckMessage(pubConfig.getMessages(), MSG_KEY, "bB", pubFormat),
-            "44:23: " + getCheckMessage(pubConfig.getMessages(), MSG_KEY, "p", pubFormat),
-            "53:31: " + getCheckMessage(pubConfig.getMessages(), MSG_KEY, "p", pubFormat),
-            "58:44: " + getCheckMessage(pubConfig.getMessages(), MSG_KEY, "p", pubFormat),
-        };
-
-        final String filePath = getPath("InputParameterNameSimplePub.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(pubConfig, filePath, expected, warnList);
-    }
 }
