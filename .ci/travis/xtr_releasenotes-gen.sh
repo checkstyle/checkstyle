@@ -16,7 +16,7 @@ echo LATEST_RELEASE_TAG=$LATEST_RELEASE_TAG
 echo CS_RELEASE_VERSION=$CS_RELEASE_VERSION
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
         -localRepoPath checkstyle -startRef $LATEST_RELEASE_TAG -releaseNumber $CS_RELEASE_VERSION \
-        -githubAuthToken $GITHUB_AUTH_TOKEN -generateAll -publishXdoc
+        -githubAuthToken $READ_ONLY_TOKEN -generateAll -publishXdoc
 
 echo ==============================================
 echo
