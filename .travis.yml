@@ -87,18 +87,6 @@ matrix:
         - DESC="NoExceptionTest - Guava with google_checks"
         - CMD="./.ci/travis/travis.sh no-exception-test-guava-with-google-checks"
         - COVERAGE_CMD=""
-    # NoExceptionTest - Pmd,elasticsearch,lombok-ast (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - Pmd,elasticsearch,lombok-ast"
-        - CMD="./.ci/travis/travis.sh no-exception-test-Pmd-elasticsearch-lombok-ast"
-        - COVERAGE_CMD=""
-    # NoExceptionTest - RxJava,java-design-patterns,MaterialDesignLibrary,apache-ant,apache-jsecurity,android-launcher (oraclejdk8)
-    - jdk: oraclejdk8
-      env:
-        - DESC="NoExceptionTest - RxJava,java-design-patterns,MaterialDesignLibrary,apache-ant,apache-jsecurity,android-launcher"
-        - CMD="./.ci/travis/travis.sh no-exception-test-alot-of-project1"
-        - COVERAGE_CMD=""
 
     # release dry run (oraclejdk8)
     - jdk: oraclejdk8
