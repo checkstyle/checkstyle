@@ -6,26 +6,28 @@
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
   <allow pkg="antlr"/>
-  <allow pkg="org.antlr.v4.runtime"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
   <allow pkg="java.io"/>
   <allow pkg="java.net"/>
-  <allow pkg="java.nio"/>
   <allow pkg="java.util"/>
   <allow pkg="javax.xml.parsers"/>
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
   <allow pkg="org.xml.sax"/>
-  <allow pkg="com.puppycrawl.tools.checkstyle"/>
-  <allow pkg="java.lang.reflect"/>
 
   <!-- The local ones -->
+  <allow pkg="java.lang.reflect" local-only="true" />
+  <allow pkg="java.nio" local-only="true" />
   <allow class="java.security.MessageDigest" local-only="true"/>
   <allow class="java.security.NoSuchAlgorithmException" local-only="true"/>
   <allow class="javax.xml.bind.DatatypeConverter" local-only="true"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.grammars" local-only="true"/>
   <allow pkg="org.apache.commons.cli" local-only="true"/>
+  <allow pkg="org.antlr.v4.runtime" local-only="true"/>
+  <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
+          local-only="true" regex="true"/>
 
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>
@@ -39,6 +41,9 @@
   <allow class="com.google.common.io.ByteStreams" local-only="true"/>
 
   <subpackage name="utils">
+    <allow pkg="java.lang.reflect" local-only="true" />
+    <allow pkg="java.nio" local-only="true" />
+
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
     <allow class="com.google.common.base.CharMatcher" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
@@ -46,6 +51,7 @@
 
   <subpackage name="ant">
     <allow pkg="org.apache.tools.ant" local-only="true"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.checks"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.filters"/>
     <disallow pkg="com.puppycrawl.tools.checkstyle.doclets"/>
@@ -57,29 +63,33 @@
 
   <subpackage name="api">
     <allow pkg="com.puppycrawl.tools.checkstyle.grammars"/>
-    <allow pkg="java.beans"/>
-    <allow pkg="java.text"/>
+    <allow pkg="java.lang.reflect" local-only="true"/>
+    <allow pkg="java.nio.charset" local-only="true"/>
+    <allow class="java.beans.PropertyDescriptor" local-only="true"/>
+    <allow class="java.text.MessageFormat" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.grammars.CommentListener"
            local-only="true"/>
     <!-- AccessModifier is in util package (should be moved to api package) to disallow
     its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511-->
     <allow class="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier"
            local-only="true"/>
-    <allow class="com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes"
-           local-only="true"/>
-    <allow class="com.puppycrawl.tools.checkstyle.Utils"
-           local-only="true"/>
+    <allow pkg="org.antlr.v4.runtime" local-only="true"/>
 
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
     <allow class="com.google.common.io.Closeables" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableCollection" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
+
+    <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
+    <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3817 -->
+    <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
   </subpackage>
 
   <subpackage name="checks">
     <allow pkg="java.math"/>
-    <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
-    <allow class="com.puppycrawl.tools.checkstyle.Definitions"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
+    <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.Definitions" local-only="true"/>
 
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
     <allow class="com.google.common.io.Closeables" local-only="true"/>
@@ -102,6 +112,10 @@
     <subpackage name="javadoc">
       <allow pkg="com.puppycrawl.tools.checkstyle.grammars.javadoc"/>
       <allow pkg="java.lang.reflect"/>
+      <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"
+        local-only="true"/>
+      <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
+            regex="true" local-only="true"/>
 
       <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
       <allow class="com.google.common.base.CharMatcher" local-only="true"/>
@@ -109,20 +123,24 @@
   </subpackage>
 
   <subpackage name="doclets">
+    <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
     <allow pkg="com.sun.javadoc"/>
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.(checks|ant|filters|gui)" regex="true"/>
   </subpackage>
 
   <subpackage name="filters">
-    <allow pkg="java.lang.ref"/>
-    <!-- check's subpackages -->
+    <allow class="java.lang.ref.WeakReference" local-only="true"/>
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
-    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.(ant|doclets|gui)" regex="true"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
   </subpackage>
 
   <subpackage name="gui">
     <allow pkg="java.awt"/>
     <allow pkg="javax.swing"/>
-    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.(checks|ant|doclets|filters)" regex="true"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode"
+          local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser" local-only="true"/>
   </subpackage>
 </import-control>
