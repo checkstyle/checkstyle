@@ -221,6 +221,7 @@
     <module name="IllegalInstantiation"/>
     <module name="IllegalThrows"/>
     <module name="IllegalToken">
+        <property name="tokens" value="LABELED_STAT"/>
         <property name="tokens" value="LITERAL_NATIVE"/>
         <property name="tokens" value="LITERAL_VOLATILE"/>
     </module>
