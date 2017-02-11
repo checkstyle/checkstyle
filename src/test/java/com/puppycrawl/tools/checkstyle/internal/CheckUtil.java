@@ -379,7 +379,7 @@ public final class CheckUtil {
         }
     }
 
-    public static Set<String> getTokenTextSet(int... tokens) {
+    public static Set<String> getTokenNameSet(int... tokens) {
         final Set<String> result = new HashSet<>();
 
         for (int token : tokens) {
