@@ -863,6 +863,21 @@ import android.*;
             you want to match only a certain package level instead.
           </li>
         </ul>
+        <h4 id="innerclass-notes">Notes on inner classes</h4>
+        <p>
+          Static inner classes have to be explicitly allowed when they are imported, they
+          are not automatically allowed along with their enclosing class.
+        </p>
+        <p>
+          For example, to allow importing both <code>java.util.Map</code> and
+          <code>java.util.Map.Entry</code> use the following configuration:
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;allow class=&quot;java.util.Map&quot;/&gt;
+    &lt;allow class=&quot;java.util.Map.Entry&quot;/&gt;
+&lt;/import-control&gt;
+        </source>
       </subsection>
 
       <subsection name="Example of Usage">
