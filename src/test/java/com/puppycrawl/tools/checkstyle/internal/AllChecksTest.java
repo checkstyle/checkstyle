@@ -432,9 +432,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
                         configTokens.addAll(overrideTokens);
                     }
 
-                    configTokens.addAll(CheckUtil.getTokenTextSet(check.getDefaultTokens()));
+                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
                     checkTokens.put(checkName,
-                            CheckUtil.getTokenTextSet(check.getAcceptableTokens()));
+                            CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
                 }
 
                 try {
