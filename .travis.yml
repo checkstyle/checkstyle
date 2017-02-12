@@ -178,7 +178,13 @@ matrix:
         - CMD="./.ci/travis/travis.sh sonarqube"
         - COVERAGE_CMD=""
 
-script: eval $CMD
+script:
+  - SKIP_FILES=".github|appveyor.yml|circle.yml|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|wercker.yml"
+  - >-
+    if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]];
+    then
+         eval $CMD;
+    fi
 
 after_success:
   - eval $COVERAGE_CMD
