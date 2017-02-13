@@ -122,9 +122,11 @@ public class DetailASTTest {
     }
 
     private static void checkDir(File dir) throws Exception {
-        final File[] files = dir.listFiles(file -> (file.getName().endsWith(".java")
+        final File[] files = dir.listFiles(file -> {
+            return (file.getName().endsWith(".java")
                 || file.isDirectory())
-            && !file.getName().endsWith("InputGrammar.java"));
+                && !file.getName().endsWith("InputGrammar.java");
+        });
         for (File file : files) {
             if (file.isFile()) {
                 checkFile(file.getCanonicalPath());

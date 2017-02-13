@@ -184,11 +184,12 @@ public class DesignForExtensionCheck extends AbstractCheck {
         final DetailAST methodImplOpenBrace = ast.findFirstToken(TokenTypes.SLIST);
         if (methodImplOpenBrace != null) {
             final DetailAST methodImplCloseBrace = methodImplOpenBrace.getLastChild();
-            final Predicate<DetailAST> predicate = currentNode ->
-                currentNode != null
+            final Predicate<DetailAST> predicate = currentNode -> {
+                return currentNode != null
                     && currentNode != methodImplCloseBrace
                     && currentNode.getLineNo() <= methodImplCloseBrace.getLineNo()
                     && !TokenUtils.isCommentType(currentNode.getType());
+            };
             final Optional<DetailAST> methodBody =
                 TokenUtils.findFirstTokenByPredicate(methodImplOpenBrace, predicate);
             if (methodBody.isPresent()) {
@@ -237,9 +238,11 @@ public class DesignForExtensionCheck extends AbstractCheck {
         boolean containsAnnotation = false;
         if (modifiers.branchContains(TokenTypes.ANNOTATION)) {
             final Optional<DetailAST> annotation = TokenUtils.findFirstTokenByPredicate(modifiers,
-                currentToken -> currentToken != null
-                    && currentToken.getType() == TokenTypes.ANNOTATION
-                    && annotationName.equals(getAnnotationName(currentToken)));
+                currentToken -> {
+                    return currentToken != null
+                        && currentToken.getType() == TokenTypes.ANNOTATION
+                        && annotationName.equals(getAnnotationName(currentToken));
+                });
             if (annotation.isPresent()) {
                 containsAnnotation = true;
             }

@@ -344,7 +344,7 @@
     <inspection_tool class="CloneableImplementsClone" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_ignoreCloneableDueToInheritance" value="false" />
     </inspection_tool>
-    <inspection_tool class="CodeBlock2Expr" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="CodeBlock2Expr" enabled="false" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CoffeeScriptArgumentsOutsideFunction" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CoffeeScriptFunctionSignatures" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CoffeeScriptInfiniteLoop" enabled="true" level="ERROR" enabled_by_default="true" />
