@@ -224,6 +224,7 @@
         <property name="tokens" value="LABELED_STAT"/>
         <property name="tokens" value="LITERAL_NATIVE"/>
         <property name="tokens" value="LITERAL_VOLATILE"/>
+        <property name="tokens" value="LITERAL_ASSERT"/>
     </module>
     <module name="IllegalTokenText"/>
     <module name="IllegalType"/>
