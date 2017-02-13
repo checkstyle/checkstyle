@@ -161,7 +161,7 @@ script:
   - SKIP_FILES=".github|appveyor.yml|circle.yml|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|wercker.yml"
   - SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then echo true; else echo true; fi;)
   - >-
-    if [[ $SKIP_CI ]];
+    if [[ $SKIP_CI == 'false' ]];
     then
          eval $CMD;
     fi
@@ -172,7 +172,7 @@ after_success:
           && $SKIP_CI == 'false'
        ]];
     then
-        eval $COVERAGE_CMD;
+        eval $CMD_AFTER_SUCCESS;
     fi
   - >-
     if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
