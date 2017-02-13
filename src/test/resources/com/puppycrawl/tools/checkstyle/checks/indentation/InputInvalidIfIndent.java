@@ -253,6 +253,10 @@ System.getProperty("blah"); //indent:0 exp:12 warn
       ) { //indent:6 exp:8 warn
             System.getProperty("blah");  //indent:12 exp:12
         } //indent:8 exp:8
+if (test  //indent:0 exp:8 warn
+|| test) {  //indent:0 exp:12 warn
+System.getProperty("blah");  //indent:0 exp:12 warn
+}  //indent:0 exp:8 warn
 
     } //indent:4 exp:4
 
