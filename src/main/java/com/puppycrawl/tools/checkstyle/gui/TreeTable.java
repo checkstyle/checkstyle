@@ -41,7 +41,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
 /**
- * This example shows how to create a simple JTreeTable component,
+ * This example shows how to create a simple TreeTable component,
  * by using a JTree as a renderer (and editor) for the cells in a
  * particular column in the JTable.
  *
@@ -53,7 +53,7 @@ import javax.swing.tree.TreePath;
  * @author Scott Violet
  * @author Lars Kühne
  */
-public class JTreeTable extends JTable {
+public class TreeTable extends JTable {
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
     private final TreeTableCellRenderer tree;
@@ -63,10 +63,10 @@ public class JTreeTable extends JTable {
     private List<Integer> linePositionMap;
 
     /**
-     * Creates JTreeTable base on TreeTableModel.
+     * Creates TreeTable base on TreeTableModel.
      * @param treeTableModel Tree table model
      */
-    public JTreeTable(ParseTreeTableModel treeTableModel) {
+    public TreeTable(ParseTreeTableModel treeTableModel) {
 
         // Create the tree. It will be used as a renderer and editor.
         tree = new TreeTableCellRenderer(this, treeTableModel);

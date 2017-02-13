@@ -222,7 +222,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void forbidCStyle() throws Exception {
+    public void forbidOldStyle() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
         checkConfig.addAttribute("basicOffset", "4");

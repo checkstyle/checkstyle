@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  */
 public class ParseTreeTableModel implements TreeModel {
     /** Presentation model. */
-    private final ParseTreeTablePModel pModel;
+    private final ParseTreeTablePresentation pModel;
 
     /**
      * A list of event listeners for the tree model.
@@ -46,7 +46,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTableModel(DetailAST parseTree) {
-        pModel = new ParseTreeTablePModel(parseTree);
+        pModel = new ParseTreeTablePresentation(parseTree);
         setParseTree(parseTree);
     }
 

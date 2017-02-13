@@ -47,7 +47,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void testJavaStyle()
+    public void testJavaStyleOn()
             throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ArrayTypeStyleCheck.class);
@@ -59,7 +59,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void testCStyle()
+    public void testJavaStyleOff()
             throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(ArrayTypeStyleCheck.class);

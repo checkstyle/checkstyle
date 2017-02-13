@@ -176,7 +176,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
             final DetailAST lparen = getMainAst();
             final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
-            checkLParen(lparen);
+            checkLeftParen(lparen);
 
             if (rparen.getLineNo() != lparen.getLineNo()) {
                 checkExpressionSubtree(
@@ -184,7 +184,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                     new IndentLevel(getIndent(), getBasicOffset()),
                     false, true);
 
-                checkRParen(lparen, rparen);
+                checkRightParen(lparen, rparen);
                 checkWrappingIndentation(getMainAst(), getMethodCallLastNode(getMainAst()));
             }
         }

@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
-public class CodeSelectorPModelTest {
+public class CodeSelectorPresentationTest {
 
     private MainFrameModel model;
 
@@ -71,7 +71,8 @@ public class CodeSelectorPModelTest {
 
     @Test
     public void testDetailASTSelection() {
-        final CodeSelectorPModel selector = new CodeSelectorPModel(tree, linesToPosition);
+        final CodeSelectorPresentation selector = new CodeSelectorPresentation(tree,
+                linesToPosition);
         selector.findSelectionPositions();
         Assert.assertEquals(23, selector.getSelectionStart());
         Assert.assertEquals(212, selector.getSelectionEnd());
@@ -80,7 +81,8 @@ public class CodeSelectorPModelTest {
     @Test
     public void testDetailASTLeafSelection() {
         final DetailAST leaf = tree.getLastChild().getFirstChild();
-        final CodeSelectorPModel selector = new CodeSelectorPModel(leaf, linesToPosition);
+        final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
+                linesToPosition);
         selector.findSelectionPositions();
         Assert.assertEquals(62, selector.getSelectionStart());
         Assert.assertEquals(63, selector.getSelectionEnd());
@@ -89,7 +91,8 @@ public class CodeSelectorPModelTest {
     @Test
     public void testDetailASTNoSelection() {
         final DetailAST leaf = tree.getFirstChild();
-        final CodeSelectorPModel selector = new CodeSelectorPModel(leaf, linesToPosition);
+        final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
+                linesToPosition);
         selector.findSelectionPositions();
         Assert.assertEquals(23, selector.getSelectionStart());
         Assert.assertEquals(23, selector.getSelectionEnd());
@@ -99,7 +102,8 @@ public class CodeSelectorPModelTest {
     public void testDetailNodeSelection() {
         final DetailNode javadoc = (DetailNode) model.getParseTreeTableModel()
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
-        final CodeSelectorPModel selector = new CodeSelectorPModel(javadoc, linesToPosition);
+        final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadoc,
+                linesToPosition);
         selector.findSelectionPositions();
         Assert.assertEquals(3, selector.getSelectionStart());
         Assert.assertEquals(25, selector.getSelectionEnd());
@@ -110,7 +114,8 @@ public class CodeSelectorPModelTest {
         final DetailNode javadoc = (DetailNode) model.getParseTreeTableModel()
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
         final DetailNode javadocLeaf = javadoc.getChildren()[2];
-        final CodeSelectorPModel selector = new CodeSelectorPModel(javadocLeaf, linesToPosition);
+        final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadocLeaf,
+                linesToPosition);
         selector.findSelectionPositions();
         Assert.assertEquals(5, selector.getSelectionStart());
         Assert.assertEquals(19, selector.getSelectionEnd());

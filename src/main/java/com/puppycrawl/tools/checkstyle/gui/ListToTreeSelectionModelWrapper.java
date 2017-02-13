@@ -33,15 +33,15 @@ import javax.swing.tree.TreePath;
  */
 class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
     private static final long serialVersionUID = 2267930983939339510L;
-    /** JTreeTable to perform updates on. */
-    private final JTreeTable treeTable;
+    /** TreeTable to perform updates on. */
+    private final TreeTable treeTable;
     /** Set to true when we are updating the ListSelectionModel. */
     private boolean updatingListSelectionModel;
 
     /**
      * @param jTreeTable TreeTable to perform updates on.
      */
-    ListToTreeSelectionModelWrapper(JTreeTable jTreeTable) {
+    ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
         treeTable = jTreeTable;
         getListSelectionModel().addListSelectionListener(event -> {
             updateSelectedPathsFromSelectedRows();

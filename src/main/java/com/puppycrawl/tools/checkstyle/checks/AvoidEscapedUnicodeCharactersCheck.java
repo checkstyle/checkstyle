@@ -220,8 +220,8 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        singlelineComments = getFileContents().getCppComments();
-        blockComments = getFileContents().getCComments();
+        singlelineComments = getFileContents().getSingleLineComments();
+        blockComments = getFileContents().getBlockComments();
     }
 
     @Override
@@ -280,7 +280,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             final List<TextBlock> commentList = blockComments.get(lineNo);
             if (commentList != null) {
                 final TextBlock comment = commentList.get(commentList.size() - 1);
-                result = isTrailingCComent(comment, line);
+                result = isTrailingBlockComment(comment, line);
             }
         }
         return result;
@@ -292,7 +292,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @param line the line where the comment starts.
      * @return true if the comment is trailing.
      */
-    private static boolean isTrailingCComent(TextBlock comment, String line) {
+    private static boolean isTrailingBlockComment(TextBlock comment, String line) {
         return comment.getText().length != 1
             || line.substring(comment.getEndColNo() + 1).trim().isEmpty();
     }

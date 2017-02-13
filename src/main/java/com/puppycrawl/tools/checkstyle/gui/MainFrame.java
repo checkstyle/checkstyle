@@ -62,7 +62,7 @@ public class MainFrame extends JFrame {
     /** Code text area. */
     private JTextArea textArea;
     /** Tree table. */
-    private JTreeTable treeTable;
+    private TreeTable treeTable;
 
     /** Create a new MainFrame. */
     public MainFrame() {
@@ -77,7 +77,7 @@ public class MainFrame extends JFrame {
         textArea.setEditable(false);
         final JScrollPane textAreaScrollPane = new JScrollPane(textArea);
 
-        treeTable = new JTreeTable(model.getParseTreeTableModel());
+        treeTable = new TreeTable(model.getParseTreeTableModel());
         treeTable.setEditor(textArea);
         treeTable.setLinePositionMap(model.getLinesToPosition());
         final JScrollPane treeTableScrollPane = new JScrollPane(treeTable);

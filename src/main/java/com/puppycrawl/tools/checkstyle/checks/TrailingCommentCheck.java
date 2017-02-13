@@ -150,9 +150,9 @@ public class TrailingCommentCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         final Map<Integer, TextBlock> cppComments = getFileContents()
-                .getCppComments();
+                .getSingleLineComments();
         final Map<Integer, List<TextBlock>> cComments = getFileContents()
-                .getCComments();
+                .getBlockComments();
         final Set<Integer> lines = new HashSet<>();
         lines.addAll(cppComments.keySet());
         lines.addAll(cComments.keySet());

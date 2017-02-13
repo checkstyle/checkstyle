@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
  * @author o_sukhodolsky
  */
+// -@cs[AbbreviationAsWordInName] Can't change check name
 public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
