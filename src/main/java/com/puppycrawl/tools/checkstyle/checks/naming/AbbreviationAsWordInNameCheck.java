@@ -40,6 +40,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
  * <p>
+ * {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
+ * allowed in the identifier.
+ * A value of <i>3</i> indicates that up to 4 consecutive capital letters are allowed,
+ * one after the other, before a violation is printed. The identifier 'MyTEST' would be
+ * allowed, but 'MyTESTS' would not be.
+ * A value of <i>0</i> indicates that only 1 consecutive capital letter is allowed. This
+ * is what should be used to enforce strict camel casing. The identifier 'MyTest' would
+ * be allowed, but 'MyTEst' would not be.
+ * </p>
+ * <p>
  * Option {@code allowedAbbreviationLength} indicates on the allowed amount of capital
  * letters in abbreviations in the classes, interfaces,
  * variables and methods names. Default value is '3'.
@@ -209,7 +219,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
             final String abbr = getDisallowedAbbreviation(typeName);
             if (abbr != null) {
-                log(nameAst.getLineNo(), MSG_KEY, typeName, allowedAbbreviationLength);
+                log(nameAst.getLineNo(), MSG_KEY, typeName, allowedAbbreviationLength + 1);
             }
         }
     }

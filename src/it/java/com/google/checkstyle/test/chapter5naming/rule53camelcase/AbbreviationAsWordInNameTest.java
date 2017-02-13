@@ -42,7 +42,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
     @Test
     public void abbreviationAsWordInNameTest() throws Exception {
 
-        final int maxCapitalCount = 1;
+        final int maxCapitalCount = 2;
 
         final String[] expected = {
             "50: " + getWarningMessage("newCustomerID", maxCapitalCount),
