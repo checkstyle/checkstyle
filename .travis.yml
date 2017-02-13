@@ -160,10 +160,12 @@ matrix:
 script:
   - SKIP_FILES=".github|appveyor.yml|circle.yml|distelli-manifest.yml|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr|shippable.yml|wercker.yml"
   - SKIP_CI=$(if [[ $(git diff --name-only HEAD HEAD~1 | grep -vE "$SKIP_FILES" | cat | wc -c) > 0 ]]; then echo true; else echo true; fi;)
+  - echo "SKIP_CI="$SKIP_CI
   - >-
     if [[ $SKIP_CI == 'false' ]];
     then
          eval $CMD;
+         echo "CMD is finished";
     fi
 
 after_success:
@@ -173,6 +175,7 @@ after_success:
        ]];
     then
         eval $CMD_AFTER_SUCCESS;
+        echo "CMD_AFTER_SUCCESS is finished";
     fi
   - >-
     if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
@@ -183,4 +186,5 @@ after_success:
        ]];
     then
         mvn -s config/deploy-settings.xml -Pno-validations deploy;
+        echo "deploy to maven snapshot repository is finished";
     fi
