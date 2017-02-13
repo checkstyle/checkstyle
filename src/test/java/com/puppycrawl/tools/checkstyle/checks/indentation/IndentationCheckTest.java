@@ -1061,6 +1061,10 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "245: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
             "251: " + getCheckMessage(MSG_ERROR, "if lparen", 6, 8),
             "253: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
+            "256: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
+            "257: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "258: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "259: " + getCheckMessage(MSG_ERROR, "if rcurly", 0, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
