@@ -113,7 +113,7 @@ public class MethodDefHandler extends BlockParentHandler {
 
         checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
         // abstract method def -- no body
-        if (getLCurly() != null) {
+        if (getLeftCurly() != null) {
             super.checkIndentation();
         }
     }

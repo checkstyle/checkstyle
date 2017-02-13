@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
-public class ParseTreeTablePModelTest {
+public class ParseTreeTablePresentationTest {
 
     private DetailAST tree;
 
@@ -58,20 +58,20 @@ public class ParseTreeTablePModelTest {
 
     @Test
     public void testRoot() {
-        final Object root = new ParseTreeTablePModel(tree).getRoot();
-        final int childCount = new ParseTreeTablePModel(null).getChildCount(root);
+        final Object root = new ParseTreeTablePresentation(tree).getRoot();
+        final int childCount = new ParseTreeTablePresentation(null).getChildCount(root);
         Assert.assertEquals(1, childCount);
     }
 
     @Test
     public void testChildCount() {
-        final int childCount = new ParseTreeTablePModel(null).getChildCount(tree);
+        final int childCount = new ParseTreeTablePresentation(null).getChildCount(tree);
         Assert.assertEquals(5, childCount);
     }
 
     @Test
     public void testChildCountInJavaAndJavadocMode() {
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final int childCount = parseTree.getChildCount(tree);
         Assert.assertEquals(5, childCount);
@@ -79,14 +79,14 @@ public class ParseTreeTablePModelTest {
 
     @Test
     public void testChild() {
-        final Object child = new ParseTreeTablePModel(null).getChild(tree, 1);
+        final Object child = new ParseTreeTablePresentation(null).getChild(tree, 1);
         Assert.assertTrue(child instanceof DetailAST);
         Assert.assertEquals(TokenTypes.BLOCK_COMMENT_BEGIN, ((AST) child).getType());
     }
 
     @Test
     public void testChildInJavaAndJavadocMode() {
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(tree, 1);
         Assert.assertTrue(child instanceof DetailAST);
@@ -96,7 +96,7 @@ public class ParseTreeTablePModelTest {
     @Test
     public void testCommentChildCount() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
         final int javadocCommentChildCount = parseTree.getChildCount(commentContentNode);
         Assert.assertEquals(0, javadocCommentChildCount);
@@ -104,7 +104,7 @@ public class ParseTreeTablePModelTest {
 
     @Test
     public void testCommentChildCountInJavaAndJavadocMode() {
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final DetailAST commentContentNode = tree.getLastChild().getLastChild()
                 .getPreviousSibling().getLastChild().getFirstChild().getFirstChild();
@@ -114,7 +114,7 @@ public class ParseTreeTablePModelTest {
 
     @Test
     public void testCommentChildInJavaAndJavadocMode() {
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final DetailAST commentContentNode = tree.getLastChild().getLastChild()
                 .getPreviousSibling().getLastChild().getFirstChild().getFirstChild();
@@ -125,7 +125,7 @@ public class ParseTreeTablePModelTest {
     @Test
     public void testJavadocCommentChildCount() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         final int commentChildCount = parseTree.getChildCount(commentContentNode);
         Assert.assertEquals(0, commentChildCount);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
@@ -136,7 +136,7 @@ public class ParseTreeTablePModelTest {
     @Test
     public void testJavadocCommentChild() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(commentContentNode, 0);
         Assert.assertTrue(child instanceof DetailNode);
@@ -150,7 +150,7 @@ public class ParseTreeTablePModelTest {
     @Test
     public void testJavadocChildCount() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object javadoc = parseTree.getChild(commentContentNode, 0);
         Assert.assertTrue(javadoc instanceof DetailNode);
@@ -162,7 +162,7 @@ public class ParseTreeTablePModelTest {
     @Test
     public void testJavadocChild() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object javadoc = parseTree.getChild(commentContentNode, 0);
         Assert.assertTrue(javadoc instanceof DetailNode);
@@ -176,7 +176,7 @@ public class ParseTreeTablePModelTest {
     public void testGetIndexOfChild() {
         DetailAST ithChild = tree.getFirstChild();
         Assert.assertNotNull(ithChild);
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         int index = 0;
         while (ithChild != null) {
             Assert.assertEquals(index, parseTree.getIndexOfChild(tree, ithChild));
@@ -209,7 +209,7 @@ public class ParseTreeTablePModelTest {
         Assert.assertEquals("Expected identifier token",
             TokenTypes.IDENT, node.getType());
 
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         final Object treeModel = parseTree.getValueAt(node, 0);
         final String type = (String) parseTree.getValueAt(node, 1);
         final int line = (int) parseTree.getValueAt(node, 2);
@@ -241,7 +241,7 @@ public class ParseTreeTablePModelTest {
             TokenUtils.isCommentType(nodeType));
         Assert.assertEquals("This should be a javadoc comment",
             "/*", commentContentNode.getParent().getText());
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(commentContentNode, 0);
 
@@ -274,7 +274,7 @@ public class ParseTreeTablePModelTest {
 
     @Test
     public void testColumnMethods() {
-        final ParseTreeTablePModel parseTree = new ParseTreeTablePModel(null);
+        final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         Assert.assertSame(ParseTreeTableModel.class, parseTree.getColumnClass(0));
         Assert.assertSame(String.class, parseTree.getColumnClass(1));
         Assert.assertSame(Integer.class, parseTree.getColumnClass(2));

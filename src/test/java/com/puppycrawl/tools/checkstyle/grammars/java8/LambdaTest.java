@@ -147,7 +147,7 @@ public class LambdaTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWithFewArgWIthTypeOneLine()
+    public void testWithFewArgWithTypeOneLine()
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);
@@ -167,7 +167,7 @@ public class LambdaTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testWIthMultilineBody()
+    public void testWithMultilineBody()
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createCheckConfig(MemberNameCheck.class);

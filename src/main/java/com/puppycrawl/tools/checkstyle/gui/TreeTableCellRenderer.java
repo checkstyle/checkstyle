@@ -42,7 +42,7 @@ class TreeTableCellRenderer extends JTree implements
     private static final long serialVersionUID = 4324031590789321581L;
 
     /** Tree table to render. */
-    private final JTreeTable treeTable;
+    private final TreeTable treeTable;
 
     /** Last table/tree row asked to renderer. */
     private int visibleRow;
@@ -52,7 +52,7 @@ class TreeTableCellRenderer extends JTree implements
      * @param treeTable tree table to render.
      * @param model Tree model.
      */
-    TreeTableCellRenderer(JTreeTable treeTable, TreeModel model) {
+    TreeTableCellRenderer(TreeTable treeTable, TreeModel model) {
         super(model);
         this.treeTable = treeTable;
     }

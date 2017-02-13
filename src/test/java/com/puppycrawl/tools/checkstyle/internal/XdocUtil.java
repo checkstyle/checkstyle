@@ -37,10 +37,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public final class XDocUtil {
+public final class XdocUtil {
     public static final String DIRECTORY_PATH = "src/xdocs";
 
-    private XDocUtil() {
+    private XdocUtil() {
     }
 
     /**

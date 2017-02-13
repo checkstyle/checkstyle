@@ -50,7 +50,7 @@ public class NewHandler extends AbstractExpressionHandler {
         }
 
         final DetailAST lparen = getMainAst().findFirstToken(TokenTypes.LPAREN);
-        checkLParen(lparen);
+        checkLeftParen(lparen);
     }
 
     @Override

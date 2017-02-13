@@ -125,7 +125,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return true if curly braces are present, false otherwise
      */
     protected boolean hasCurlies() {
-        return getLCurly() != null && getRCurly() != null;
+        return getLeftCurly() != null && getRightCurly() != null;
     }
 
     /**
@@ -133,7 +133,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the left curly brace expression
      */
-    protected DetailAST getLCurly() {
+    protected DetailAST getLeftCurly() {
         return getMainAst().findFirstToken(TokenTypes.SLIST);
     }
 
@@ -142,7 +142,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the right curly brace expression
      */
-    protected DetailAST getRCurly() {
+    protected DetailAST getRightCurly() {
         final DetailAST slist = getMainAst().findFirstToken(TokenTypes.SLIST);
         return slist.findFirstToken(TokenTypes.RCURLY);
     }
@@ -150,10 +150,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Check the indentation of the left curly brace.
      */
-    protected void checkLCurly() {
+    protected void checkLeftCurly() {
         // the lcurly can either be at the correct indentation, or nested
         // with a previous expression
-        final DetailAST lcurly = getLCurly();
+        final DetailAST lcurly = getLeftCurly();
         final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
         if (!curlyIndent().isAcceptable(lcurlyPos) && isOnStartOfLine(lcurly)) {
@@ -182,8 +182,8 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Check the indentation of the right curly brace.
      */
-    protected void checkRCurly() {
-        final DetailAST rcurly = getRCurly();
+    protected void checkRightCurly() {
+        final DetailAST rcurly = getRightCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
         if (!curlyIndent().isAcceptable(rcurlyPos)
@@ -226,7 +226,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the right parenthesis expression
      */
-    protected DetailAST getRParen() {
+    protected DetailAST getRightParen() {
         return getMainAst().findFirstToken(TokenTypes.RPAREN);
     }
 
@@ -235,7 +235,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      *
      * @return the left parenthesis expression
      */
-    protected DetailAST getLParen() {
+    protected DetailAST getLeftParen() {
         return getMainAst().findFirstToken(TokenTypes.LPAREN);
     }
 
@@ -243,11 +243,11 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         checkTopLevelToken();
         // separate to allow for eventual configuration
-        checkLParen(getLParen());
-        checkRParen(getLParen(), getRParen());
+        checkLeftParen(getLeftParen());
+        checkRightParen(getLeftParen(), getRightParen());
         if (hasCurlies()) {
-            checkLCurly();
-            checkRCurly();
+            checkLeftCurly();
+            checkRightCurly();
         }
         final DetailAST listChild = getListChild();
         if (listChild == null) {
@@ -255,7 +255,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         }
         else {
             // NOTE: switch statements usually don't have curlies
-            if (!hasCurlies() || !areOnSameLine(getLCurly(), getRCurly())) {
+            if (!hasCurlies() || !areOnSameLine(getLeftCurly(), getRightCurly())) {
                 checkChildren(listChild,
                         getCheckedChildren(),
                         getChildrenExpectedIndent(),
@@ -275,10 +275,11 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // try to suggest single level to children using curlies'
         // levels.
         if (getIndent().isMultiLevel() && hasCurlies()) {
-            if (isOnStartOfLine(getLCurly())) {
-                indentLevel = new IndentLevel(expandedTabsColumnNo(getLCurly()) + getBasicOffset());
+            if (isOnStartOfLine(getLeftCurly())) {
+                indentLevel = new IndentLevel(expandedTabsColumnNo(getLeftCurly())
+                        + getBasicOffset());
             }
-            else if (isOnStartOfLine(getRCurly())) {
+            else if (isOnStartOfLine(getRightCurly())) {
                 final IndentLevel level = new IndentLevel(curlyIndent(), getBasicOffset());
                 level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
                 indentLevel = level;

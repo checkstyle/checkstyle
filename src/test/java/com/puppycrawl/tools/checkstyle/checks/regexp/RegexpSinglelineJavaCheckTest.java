@@ -119,7 +119,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsCStyle() throws Exception {
+    public void testIgnoreCommentsBlockStyle() throws Exception {
         // See if the comment is removed properly
         final String illegal = "c-style 1";
         checkConfig.addAttribute("format", illegal);
@@ -129,7 +129,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsFalseCStyle() throws Exception {
+    public void testIgnoreCommentsFalseBlockStyle() throws Exception {
         final String illegal = "c-style 1";
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreComments", "false");
@@ -140,7 +140,7 @@ public class RegexpSinglelineJavaCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsMultipleCStyle() throws Exception {
+    public void testIgnoreCommentsMultipleBlockStyle() throws Exception {
         // See if a second comment on the same line is removed properly
         final String illegal = "c-style 2";
         checkConfig.addAttribute("format", illegal);

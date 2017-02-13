@@ -617,7 +617,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         }
         else if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {
             final String importPathTrimmedToSamePackageDepth =
-                    getFirstNDomainsFromIdent(samePackageMatchingDepth, importPath);
+                    getFirstDomainsFromIdent(samePackageMatchingDepth, importPath);
             if (samePackageDomainsRegExp.equals(importPathTrimmedToSamePackageDepth)) {
                 bestMatch.group = SAME_PACKAGE_RULE_GROUP;
                 bestMatch.matchLength = importPath.length();
@@ -772,7 +772,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private static String createSamePackageRegexp(int firstPackageDomainsCount,
              DetailAST packageNode) {
         final String packageFullPath = getFullImportIdent(packageNode);
-        return getFirstNDomainsFromIdent(firstPackageDomainsCount, packageFullPath);
+        return getFirstDomainsFromIdent(firstPackageDomainsCount, packageFullPath);
     }
 
     /**
@@ -784,7 +784,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @return String with defined amount of domains or full identifier
      *        (if full identifier had less domain then specified)
      */
-    private static String getFirstNDomainsFromIdent(
+    private static String getFirstDomainsFromIdent(
             final int firstPackageDomainsCount, final String packageFullPath) {
         final StringBuilder builder = new StringBuilder();
         final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");

@@ -541,7 +541,7 @@ public abstract class AbstractExpressionHandler {
      * @param rparen parenthesis to check
      * @param lparen left parenthesis associated with aRparen
      */
-    protected final void checkRParen(DetailAST lparen, DetailAST rparen) {
+    protected final void checkRightParen(DetailAST lparen, DetailAST rparen) {
         if (rparen != null) {
             // the rcurly can either be at the correct indentation,
             // or not first on the line
@@ -561,7 +561,7 @@ public abstract class AbstractExpressionHandler {
      * Check the indentation of the left parenthesis.
      * @param lparen parenthesis to check
      */
-    protected final void checkLParen(final DetailAST lparen) {
+    protected final void checkLeftParen(final DetailAST lparen) {
         // the rcurly can either be at the correct indentation, or on the
         // same line as the lcurly
         if (lparen != null

@@ -1445,7 +1445,7 @@
                   <!-- Swing related classes -->
                   <exclude>com/puppycrawl/tools/checkstyle/gui/BaseCellEditor*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/CodeSelector.class</exclude>
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/JTreeTable*.class</exclude>
+                  <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTable*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/Main*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/MainFrame*.class</exclude>

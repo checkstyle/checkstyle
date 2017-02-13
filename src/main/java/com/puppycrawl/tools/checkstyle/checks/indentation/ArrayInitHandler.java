@@ -61,7 +61,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getLCurly() {
+    protected DetailAST getLeftCurly() {
         return getMainAst();
     }
 
@@ -73,7 +73,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getRCurly() {
+    protected DetailAST getRightCurly() {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
@@ -94,7 +94,7 @@ public class ArrayInitHandler extends BlockParentHandler {
                     getIndentCheck().getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
-        final int lcurlyPos = expandedTabsColumnNo(getLCurly());
+        final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
         final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
         if (firstChildPos >= 0) {

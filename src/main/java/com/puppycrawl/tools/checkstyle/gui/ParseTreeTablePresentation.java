@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  *
  * @author Lars Kühne
  */
-public class ParseTreeTablePModel {
+public class ParseTreeTablePresentation {
 
     /** Exception message. */
     private static final String UNKNOWN_COLUMN_MSG = "Unknown column";
@@ -65,7 +65,7 @@ public class ParseTreeTablePModel {
     /**
      * @param parseTree DetailAST parse tree.
      */
-    public ParseTreeTablePModel(DetailAST parseTree) {
+    public ParseTreeTablePresentation(DetailAST parseTree) {
         root = createArtificialTreeRoot();
         setParseTree(parseTree);
     }

@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
  * Presentation model for CodeSelector.
  * @author unknown
  */
-public class CodeSelectorPModel {
+public class CodeSelectorPresentation {
     /** DetailAST or DetailNode node. */
     private final Object node;
     /** Mapping. */
@@ -46,7 +46,7 @@ public class CodeSelectorPModel {
      * @param ast ast node.
      * @param lines2position list to map lines.
      */
-    public CodeSelectorPModel(DetailAST ast, List<Integer> lines2position) {
+    public CodeSelectorPresentation(DetailAST ast, List<Integer> lines2position) {
         node = ast;
         final List<Integer> copy = new ArrayList<>(lines2position);
         this.lines2position = Collections.unmodifiableList(copy);
@@ -57,7 +57,7 @@ public class CodeSelectorPModel {
      * @param node DetailNode node.
      * @param lines2position list to map lines.
      */
-    public CodeSelectorPModel(DetailNode node, List<Integer> lines2position) {
+    public CodeSelectorPresentation(DetailNode node, List<Integer> lines2position) {
         this.node = node;
         final List<Integer> copy = new ArrayList<>(lines2position);
         this.lines2position = Collections.unmodifiableList(copy);

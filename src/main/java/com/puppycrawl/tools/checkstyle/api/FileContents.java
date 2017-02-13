@@ -95,18 +95,12 @@ public final class FileContents implements CommentListener {
         reportCppComment(startLineNo, startColNo);
     }
 
-    @Override
-    public void reportBlockComment(String type, int startLineNo,
-            int startColNo, int endLineNo, int endColNo) {
-        reportCComment(startLineNo, startColNo, endLineNo, endColNo);
-    }
-
     /**
-     * Report the location of a C++ style comment.
+     * Report the location of a single line comment.
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      **/
-    public void reportCppComment(int startLineNo, int startColNo) {
+    public void reportSingleLineComment(int startLineNo, int startColNo) {
         final String line = line(startLineNo - 1);
         final String[] txt = {line.substring(startColNo)};
         final Comment comment = new Comment(txt, startColNo, startLineNo,
@@ -114,25 +108,22 @@ public final class FileContents implements CommentListener {
         cppComments.put(startLineNo, comment);
     }
 
-    /**
-     * Returns a map of all the C++ style comments. The key is a line number,
-     * the value is the comment {@link TextBlock} at the line.
-     * @return the Map of comments
-     */
-    public ImmutableMap<Integer, TextBlock> getCppComments() {
-        return ImmutableMap.copyOf(cppComments);
+    @Override
+    public void reportBlockComment(String type, int startLineNo,
+            int startColNo, int endLineNo, int endColNo) {
+        reportCComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
     /**
-     * Report the location of a C-style comment.
+     * Report the location of a block comment.
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
      **/
-    public void reportCComment(int startLineNo, int startColNo,
+    public void reportBlockComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        final String[] cComment = extractCComment(startLineNo, startColNo,
+        final String[] cComment = extractBlockComment(startLineNo, startColNo,
                 endLineNo, endColNo);
         final Comment comment = new Comment(cComment, startColNo, endLineNo,
                 endColNo);
@@ -156,24 +147,83 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Returns a map of all C style comments. The key is the line number, the
-     * value is a {@link List} of C style comment {@link TextBlock}s
-     * that start at that line.
-     * @return the map of comments
-     */
-    public ImmutableMap<Integer, List<TextBlock>> getCComments() {
-        return ImmutableMap.copyOf(clangComments);
+     * Report the location of a C++ style comment.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @deprecated Use {@link #reportSingleLineComment(int, int)} instead.
+     **/
+    @Deprecated
+    public void reportCppComment(int startLineNo, int startColNo) {
+        reportSingleLineComment(startLineNo, startColNo);
     }
 
     /**
-     * Returns the specified C comment as a String array.
+     * Returns a map of all the C++ style comments. The key is a line number,
+     * the value is the comment {@link TextBlock} at the line.
+     * @return the Map of comments
+     * @deprecated Use {@link #getSingleLineComments()} instead.
+     */
+    @Deprecated
+    public ImmutableMap<Integer, TextBlock> getCppComments() {
+        return getSingleLineComments();
+    }
+
+    /**
+     * Returns a map of all the single line comments. The key is a line number,
+     * the value is the comment {@link TextBlock} at the line.
+     * @return the Map of comments
+     */
+    public ImmutableMap<Integer, TextBlock> getSingleLineComments() {
+        return ImmutableMap.copyOf(cppComments);
+    }
+
+    /**
+     * Report the location of a C-style comment.
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
-     * @return C comment as a array
+     * @deprecated Use {@link #reportBlockComment(int, int, int, int)} instead.
      **/
-    private String[] extractCComment(int startLineNo, int startColNo,
+    // -@cs[AbbreviationAsWordInName] Can't change yet since class is API.
+    @Deprecated
+    public void reportCComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo) {
+        reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
+    }
+
+    /**
+     * Returns a map of all C style comments. The key is the line number, the
+     * value is a {@link List} of C style comment {@link TextBlock}s
+     * that start at that line.
+     * @return the map of comments
+     * @deprecated Use {@link #getBlockComments()} instead.
+     */
+    // -@cs[AbbreviationAsWordInName] Can't change yet since class is API.
+    @Deprecated
+    public ImmutableMap<Integer, List<TextBlock>> getCComments() {
+        return getBlockComments();
+    }
+
+    /**
+     * Returns a map of all block comments. The key is the line number, the
+     * value is a {@link List} of block comment {@link TextBlock}s
+     * that start at that line.
+     * @return the map of comments
+     */
+    public ImmutableMap<Integer, List<TextBlock>> getBlockComments() {
+        return ImmutableMap.copyOf(clangComments);
+    }
+
+    /**
+     * Returns the specified block comment as a String array.
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     * @return block comment as an array
+     **/
+    private String[] extractBlockComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
         final String[] returnValue;
         if (startLineNo == endLineNo) {
@@ -296,8 +346,9 @@ public final class FileContents implements CommentListener {
      **/
     public boolean hasIntersectionWithComment(int startLineNo,
             int startColNo, int endLineNo, int endColNo) {
-        return hasIntersectionWithCComment(startLineNo, startColNo, endLineNo, endColNo)
-                || hasIntersectionWithCppComment(startLineNo, startColNo, endLineNo, endColNo);
+        return hasIntersectionWithBlockComment(startLineNo, startColNo, endLineNo, endColNo)
+                || hasIntersectionWithSingleLineComment(startLineNo, startColNo, endLineNo,
+                        endColNo);
     }
 
     /**
@@ -309,14 +360,14 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Checks if the specified position intersects with a C comment.
+     * Checks if the specified position intersects with a block comment.
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
-     * @return true if the positions intersects with a C comment.
+     * @return true if the positions intersects with a block comment.
      */
-    private boolean hasIntersectionWithCComment(int startLineNo, int startColNo,
+    private boolean hasIntersectionWithBlockComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
         // Check C comments (all comments should be checked)
         final Collection<List<TextBlock>> values = clangComments.values();
@@ -331,14 +382,14 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Checks if the specified position intersects with a CPP comment.
+     * Checks if the specified position intersects with a single line comment.
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
-     * @return true if the positions intersects with a CPP comment.
+     * @return true if the positions intersects with a single line comment.
      */
-    private boolean hasIntersectionWithCppComment(int startLineNo, int startColNo,
+    private boolean hasIntersectionWithSingleLineComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
         // Check CPP comments (line searching is possible)
         for (int lineNumber = startLineNo; lineNumber <= endLineNo;

@@ -35,7 +35,7 @@ public class CodeSelector {
     /** Editor. */
     private final JTextArea editor;
     /** Presentation model. */
-    private final CodeSelectorPModel pModel;
+    private final CodeSelectorPresentation pModel;
 
     /**
      * Constructor.
@@ -47,10 +47,10 @@ public class CodeSelector {
                         final List<Integer> lines2position) {
         this.editor = editor;
         if (node instanceof DetailAST) {
-            pModel = new CodeSelectorPModel((DetailAST) node, lines2position);
+            pModel = new CodeSelectorPresentation((DetailAST) node, lines2position);
         }
         else {
-            pModel = new CodeSelectorPModel((DetailNode) node, lines2position);
+            pModel = new CodeSelectorPresentation((DetailNode) node, lines2position);
         }
     }
 

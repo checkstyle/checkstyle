@@ -459,7 +459,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
     public void testAllCheckstyleModulesHaveXdocDocumentation() throws Exception {
         final Set<String> checkstyleModulesNames = CheckUtil.getSimpleNames(CheckUtil
                 .getCheckstyleModules());
-        final Set<String> modulesNamesWhichHaveXdocs = XDocUtil.getModulesNamesWhichHaveXdoc();
+        final Set<String> modulesNamesWhichHaveXdocs = XdocUtil.getModulesNamesWhichHaveXdoc();
 
         // these are documented on non-'config_' pages
         checkstyleModulesNames.remove("TreeWalker");

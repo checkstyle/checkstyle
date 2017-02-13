@@ -201,9 +201,9 @@ public class NoWhitespaceAfterCheckTest
         //unexpected parent for ARRAY_DECLARATOR token
         final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile");
         final DetailAST astArrayDeclarator = mockAST(TokenTypes.ARRAY_DECLARATOR, "[", "mockfile");
-        final DetailAST astRBrake = mockAST(TokenTypes.RBRACK, "[", "mockfile");
+        final DetailAST astRightBracket = mockAST(TokenTypes.RBRACK, "[", "mockfile");
         astImport.addChild(astArrayDeclarator);
-        astArrayDeclarator.addChild(astRBrake);
+        astArrayDeclarator.addChild(astRightBracket);
 
         final NoWhitespaceAfterCheck check = new NoWhitespaceAfterCheck();
         try {

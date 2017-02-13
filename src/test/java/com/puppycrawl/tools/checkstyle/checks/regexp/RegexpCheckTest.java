@@ -241,7 +241,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsCStyle() throws Exception {
+    public void testIgnoreCommentsBlockStyle() throws Exception {
         // See if the comment is removed properly
         final String illegal = "c-style 1";
         final DefaultConfiguration checkConfig =
@@ -254,7 +254,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsFalseCStyle() throws Exception {
+    public void testIgnoreCommentsFalseBlockStyle() throws Exception {
         final String illegal = "c-style 1";
         final DefaultConfiguration checkConfig =
             createCheckConfig(RegexpCheck.class);
@@ -268,7 +268,7 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsMultipleCStyle() throws Exception {
+    public void testIgnoreCommentsMultipleBlockStyle() throws Exception {
         // See if a second comment on the same line is removed properly
         final String illegal = "c-style 2";
         final DefaultConfiguration checkConfig =

@@ -47,12 +47,12 @@ public class ObjectBlockHandler extends BlockParentHandler {
     }
 
     @Override
-    protected DetailAST getLCurly() {
+    protected DetailAST getLeftCurly() {
         return getMainAst().findFirstToken(TokenTypes.LCURLY);
     }
 
     @Override
-    protected DetailAST getRCurly() {
+    protected DetailAST getRightCurly() {
         return getMainAst().findFirstToken(TokenTypes.RCURLY);
     }
 
@@ -87,8 +87,8 @@ public class ObjectBlockHandler extends BlockParentHandler {
     }
 
     @Override
-    protected void checkRCurly() {
-        final DetailAST rcurly = getRCurly();
+    protected void checkRightCurly() {
+        final DetailAST rcurly = getRightCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
         final IndentLevel level = curlyIndent();
         level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndentation());
