@@ -268,8 +268,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL", "ARRAY_DECLARATOR", "LITERAL_CASE")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
-                // state of the configuration when test was made until
-                // https://github.com/checkstyle/checkstyle/issues/3749
+                // specifically allowed via '4.5.1 Where to break' because the following are
+                // assignment operators and they are allowed to break before or after the symbol
                 "DIV_ASSIGN", "BOR_ASSIGN", "SL_ASSIGN", "ASSIGN", "BSR_ASSIGN", "BAND_ASSIGN",
                 "PLUS_ASSIGN", "MINUS_ASSIGN", "SR_ASSIGN", "STAR_ASSIGN", "BXOR_ASSIGN",
                 "MOD_ASSIGN").collect(Collectors.toSet()));
