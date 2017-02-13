@@ -183,7 +183,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NeedBraces", Stream.of(
                 // we prefer no braces here as it looks unusual even though they help avoid sharing
                 // scope of variables
-                "LITERAL_DEFAULT", "LITERAL_CASE", "LAMBDA").collect(Collectors.toSet()));
+                "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
                 // we prefer these to be effectively final as to not damage readability
                 "FOR_EACH_CLAUSE", "LITERAL_CATCH").collect(Collectors.toSet()));

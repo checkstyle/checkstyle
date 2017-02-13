@@ -724,8 +724,10 @@ public class VisibilityModifierCheck
      */
     private boolean areImmutableTypeArguments(List<String> typeArgsClassNames) {
         return !typeArgsClassNames.stream().filter(
-            typeName -> !immutableClassShortNames.contains(typeName)
-                && !immutableClassCanonicalNames.contains(typeName)).findFirst().isPresent();
+            typeName -> {
+                return !immutableClassShortNames.contains(typeName)
+                    && !immutableClassCanonicalNames.contains(typeName);
+            }).findFirst().isPresent();
     }
 
     /**
