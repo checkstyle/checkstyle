@@ -74,7 +74,7 @@ public class JavadocStyleCheck
         .collect(Collectors.toCollection(TreeSet::new)));
 
     /** HTML tags that are allowed in java docs.
-     * From http://www.w3schools.com/tags/default.asp
+     * From https://www.w3schools.com/tags/default.asp
      * The forms and structure tags are not allowed
      */
     private static final Set<String> ALLOWED_TAGS = Collections.unmodifiableSortedSet(Stream.of(

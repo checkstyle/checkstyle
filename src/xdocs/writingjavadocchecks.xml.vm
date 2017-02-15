@@ -278,7 +278,7 @@ class MyCheck extends AbstractJavadocCheck {
         Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">all HTML4 elements</a>.
       </p>
       <p>
-        HTML4 is picked just to have a list of elements whose end tag is optional(ommitable) and a list of <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a> (also known as <a href="http://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
+        HTML4 is picked just to have a list of elements whose end tag is optional(ommitable) and a list of <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a> (also known as <a href="https://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
       </p>
       <p>
         HTML4 elements whose end tag is optional(ommitable): &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
@@ -348,7 +348,7 @@ JAVADOC -> <audio><source src="horse.ogg" type="audio/ogg"/></audio><EOF> [0:0]
     </p>
 
     <p>
-      There are also HTML tags that are marked as "Not supported in HTML5" (<a href='http://www.w3schools.com/tags/default.asp'>HTML Element Reference</a>).
+      There are also HTML tags that are marked as "Not supported in HTML5" (<a href='https://www.w3schools.com/tags/default.asp'>HTML Element Reference</a>).
       Checkstyle Javadoc parser can parse those tags too if they are written in <a href="#Tight-HTML_rules">Tight-HTML</a>.
       <br/>
       Example.
