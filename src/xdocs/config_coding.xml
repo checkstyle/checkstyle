@@ -1654,7 +1654,8 @@ class SomeClass
     <section name="IllegalTokenText">
       <subsection name="Description">
         <p>
-          Checks for illegal token text.
+          Checks specified tokens text for matching an illegal pattern from
+          <code>format</code> property. By default no tokens are specified.
         </p>
       </subsection>
 
@@ -1688,8 +1689,15 @@ class SomeClass
           <tr>
             <td>tokens</td>
             <td>tokens to check</td>
-            <td>subset of tokens <a
-            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>.
+            <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">NUM_DOUBLE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">NUM_FLOAT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">NUM_INT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">NUM_LONG</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">IDENT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">COMMENT_CONTENT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">STRING_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">CHAR_LITERAL</a>.
             </td>
             <td>empty</td>
           </tr>

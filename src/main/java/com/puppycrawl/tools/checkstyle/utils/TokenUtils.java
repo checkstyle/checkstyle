@@ -103,6 +103,14 @@ public final class TokenUtils {
     }
 
     /**
+     * Get total number of TokenTypes.
+     * @return total number of TokenTypes.
+     */
+    public static int getTokenTypesTotalNumber() {
+        return TOKEN_IDS.length;
+    }
+
+    /**
      * Get all token IDs that are available in TokenTypes.
      * @return array of token IDs
      */

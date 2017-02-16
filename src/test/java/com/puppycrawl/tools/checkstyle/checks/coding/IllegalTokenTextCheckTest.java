@@ -23,12 +23,16 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextChec
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public class IllegalTokenTextCheckTest
     extends BaseCheckTestSupport {
@@ -122,4 +126,29 @@ public class IllegalTokenTextCheckTest
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
 
+    @Test
+    public void testAcceptableTokensMakeSense() {
+        final int expectedTokenTypesTotalNumber = 169;
+        Assert.assertEquals("Total number of TokenTypes has changed, acceptable tokens in"
+                + " IllegalTokenTextCheck need to be reconsidered.",
+            expectedTokenTypesTotalNumber, TokenUtils.getTokenTypesTotalNumber());
+
+        final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
+        final int[] allowedTokens = check.getAcceptableTokens();
+        final List<Integer> tokenTypesWithMutableText = Arrays.asList(
+            TokenTypes.NUM_DOUBLE,
+            TokenTypes.NUM_FLOAT,
+            TokenTypes.NUM_INT,
+            TokenTypes.NUM_LONG,
+            TokenTypes.IDENT,
+            TokenTypes.COMMENT_CONTENT,
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.CHAR_LITERAL
+        );
+        for (int tokenType : allowedTokens) {
+            Assert.assertTrue(TokenUtils.getTokenName(tokenType) + " should not be allowed"
+                + " in this check as its text is a constant (IllegalTokenCheck should be used for"
+                + " such cases).", tokenTypesWithMutableText.contains(tokenType));
+        }
+    }
 }
