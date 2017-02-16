@@ -158,6 +158,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
     @Override
     public final void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF
+            || ast.getType() == TokenTypes.INTERFACE_DEF
             || ast.getType() == TokenTypes.ENUM_DEF) {
             // perhaps it was inner class
             int dotIdx = currentClassName.lastIndexOf('$');
