@@ -119,43 +119,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
                         Collectors.toSet()));
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
-                Stream.of("LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF",
-                        "TYPE_PARAMETERS", "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH",
-                        "ANNOTATIONS", "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION",
-                        "FOR_INIT", "LITERAL_LONG", "MINUS", "OBJBLOCK", "LITERAL_NULL",
-                        "ANNOTATION", "LITERAL_TRUE", "COMMENT_CONTENT", "LITERAL_CHAR",
-                        "PARAMETER_DEF", "POST_DEC", "ANNOTATION_FIELD_DEF", "BLOCK_COMMENT_END",
-                        "TYPE", "LITERAL_INT", "BSR", "ENUM", "LABELED_STAT",
-                        "ANNOTATION_MEMBER_VALUE_PAIR", "TYPECAST", "LITERAL_SYNCHRONIZED",
-                        "PLUS_ASSIGN", "DOT", "LPAREN", "LITERAL_IF", "LITERAL_CATCH", "BAND",
-                        "INTERFACE_DEF", "LOR", "BNOT", "METHOD_CALL", "AT", "ELLIPSIS",
-                        "ARRAY_INIT", "FOR_EACH_CLAUSE", "LITERAL_THROWS", "CHAR_LITERAL",
-                        "CASE_GROUP", "POST_INC", "SEMI", "LITERAL_FINALLY", "ASSIGN",
-                        "RESOURCE_SPECIFICATION", "STATIC_IMPORT", "GENERIC_START", "IMPORT", "SL",
-                        "VARIABLE_DEF", "LITERAL_DOUBLE", "RCURLY", "RESOURCE", "SR", "COMMA",
-                        "BAND_ASSIGN", "METHOD_DEF", "LITERAL_VOID", "NUM_LONG",
-                        "LITERAL_TRANSIENT", "LITERAL_THIS", "LCURLY", "MINUS_ASSIGN",
-                        "TYPE_LOWER_BOUNDS", "TYPE_ARGUMENT", "LITERAL_CLASS", "INSTANCE_INIT",
-                        "DIV", "LITERAL_VOLATILE", "STAR", "UNARY_MINUS", "FOR_ITERATOR",
-                        "NOT_EQUAL", "LE", "LITERAL_INTERFACE", "LITERAL_FLOAT",
-                        "LITERAL_INSTANCEOF", "BOR_ASSIGN", "LT", "SL_ASSIGN", "ELIST",
-                        "ANNOTATION_ARRAY_INIT", "MODIFIERS", "LITERAL_BREAK", "EXTENDS_CLAUSE",
-                        "TYPE_PARAMETER", "LITERAL_DEFAULT", "STATIC_INIT", "BSR_ASSIGN",
-                        "TYPE_EXTENSION_AND", "BOR", "LITERAL_PRIVATE", "LITERAL_THROW",
-                        "LITERAL_BYTE", "BXOR", "WILDCARD_TYPE", "FINAL", "PARAMETERS", "RPAREN",
-                        "SR_ASSIGN", "UNARY_PLUS", "EMPTY_STAT", "LITERAL_STATIC",
-                        "LITERAL_CONTINUE", "STAR_ASSIGN", "LAMBDA", "RBRACK", "BXOR_ASSIGN",
-                        "CTOR_CALL", "LITERAL_FALSE", "DO_WHILE", "LITERAL_PUBLIC",
-                        "LITERAL_WHILE", "PLUS", "INC", "CTOR_DEF", "GENERIC_END", "DIV_ASSIGN",
-                        "SLIST", "LNOT", "LAND", "LITERAL_ELSE", "ABSTRACT", "STRICTFP",
-                        "QUESTION", "LITERAL_NEW", "LITERAL_RETURN", "SINGLE_LINE_COMMENT",
-                        "INDEX_OP", "EXPR", "BLOCK_COMMENT_BEGIN", "PACKAGE_DEF",
-                        "IMPLEMENTS_CLAUSE", "NUM_FLOAT", "LITERAL_DO", "EOF", "GE", "RESOURCES",
-                        "MOD", "DEC", "EQUAL", "LITERAL_BOOLEAN", "CLASS_DEF", "COLON",
-                        "LITERAL_TRY", "ENUM_DEF", "GT", "NUM_INT", "ANNOTATION_DEF",
-                        "LITERAL_NATIVE", "METHOD_REF", "TYPE_ARGUMENTS", "DOUBLE_COLON", "IDENT",
-                        "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL", "STRING_LITERAL",
-                        "ARRAY_DECLARATOR", "LITERAL_CASE").collect(Collectors.toSet()));
+                Stream.of("NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
+                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL")
+                    .collect(Collectors.toSet()));
         // we do not use this check as it is deprecated
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
                 Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF", "ANNOTATION_FIELD_DEF")
@@ -234,37 +200,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // all other java tokens and text are allowed
-                "LITERAL_SUPER", "LITERAL_ASSERT", "ENUM_CONSTANT_DEF", "TYPE_PARAMETERS",
-                "TYPE_UPPER_BOUNDS", "NUM_DOUBLE", "LITERAL_SWITCH", "ANNOTATIONS",
-                "LITERAL_SHORT", "LITERAL_PROTECTED", "FOR_CONDITION", "FOR_INIT", "LITERAL_LONG",
-                "MINUS", "OBJBLOCK", "LITERAL_NULL", "ANNOTATION", "LITERAL_TRUE",
-                "COMMENT_CONTENT", "LITERAL_CHAR", "PARAMETER_DEF", "POST_DEC",
-                "ANNOTATION_FIELD_DEF", "BLOCK_COMMENT_END", "TYPE", "LITERAL_INT", "BSR", "ENUM",
-                "LABELED_STAT", "ANNOTATION_MEMBER_VALUE_PAIR", "TYPECAST", "LITERAL_SYNCHRONIZED",
-                "PLUS_ASSIGN", "DOT", "LPAREN", "LITERAL_IF", "LITERAL_CATCH", "BAND",
-                "INTERFACE_DEF", "LOR", "BNOT", "METHOD_CALL", "AT", "ELLIPSIS", "ARRAY_INIT",
-                "FOR_EACH_CLAUSE", "LITERAL_THROWS", "CASE_GROUP", "POST_INC", "SEMI",
-                "LITERAL_FINALLY", "ASSIGN", "RESOURCE_SPECIFICATION", "STATIC_IMPORT",
-                "GENERIC_START", "IMPORT", "SL", "VARIABLE_DEF", "LITERAL_DOUBLE", "RCURLY",
-                "RESOURCE", "SR", "COMMA", "BAND_ASSIGN", "METHOD_DEF", "LITERAL_VOID",
-                "NUM_LONG", "LITERAL_TRANSIENT", "LITERAL_THIS", "LCURLY", "MINUS_ASSIGN",
-                "TYPE_LOWER_BOUNDS", "TYPE_ARGUMENT", "LITERAL_CLASS", "INSTANCE_INIT", "DIV",
-                "LITERAL_VOLATILE", "STAR", "UNARY_MINUS", "FOR_ITERATOR", "NOT_EQUAL", "LE",
-                "LITERAL_INTERFACE", "LITERAL_FLOAT", "LITERAL_INSTANCEOF", "BOR_ASSIGN", "LT",
-                "SL_ASSIGN", "ELIST", "ANNOTATION_ARRAY_INIT", "MODIFIERS", "LITERAL_BREAK",
-                "EXTENDS_CLAUSE", "TYPE_PARAMETER", "LITERAL_DEFAULT", "STATIC_INIT", "BSR_ASSIGN",
-                "TYPE_EXTENSION_AND", "BOR", "LITERAL_PRIVATE", "LITERAL_THROW", "LITERAL_BYTE",
-                "BXOR", "WILDCARD_TYPE", "FINAL", "PARAMETERS", "RPAREN", "SR_ASSIGN",
-                "UNARY_PLUS", "EMPTY_STAT", "LITERAL_STATIC", "LITERAL_CONTINUE", "STAR_ASSIGN",
-                "LAMBDA", "RBRACK", "BXOR_ASSIGN", "CTOR_CALL", "LITERAL_FALSE", "DO_WHILE",
-                "LITERAL_PUBLIC", "LITERAL_WHILE", "PLUS", "INC", "CTOR_DEF", "GENERIC_END",
-                "DIV_ASSIGN", "SLIST", "LNOT", "LAND", "LITERAL_ELSE", "ABSTRACT", "STRICTFP",
-                "QUESTION", "LITERAL_NEW", "LITERAL_RETURN", "SINGLE_LINE_COMMENT", "INDEX_OP",
-                "EXPR", "BLOCK_COMMENT_BEGIN", "PACKAGE_DEF", "IMPLEMENTS_CLAUSE", "NUM_FLOAT",
-                "LITERAL_DO", "EOF", "GE", "RESOURCES", "MOD", "DEC", "EQUAL", "LITERAL_BOOLEAN",
-                "CLASS_DEF", "COLON", "LITERAL_TRY", "ENUM_DEF", "GT", "NUM_INT", "ANNOTATION_DEF",
-                "LITERAL_NATIVE", "METHOD_REF", "TYPE_ARGUMENTS", "DOUBLE_COLON", "IDENT",
-                "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL", "ARRAY_DECLARATOR", "LITERAL_CASE")
+                "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
+                "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
                 // specifically allowed via '4.5.1 Where to break' because the following are
