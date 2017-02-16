@@ -687,12 +687,12 @@ class SwitchExample {
       <subsection name="Description">
         <p>
           The NPATH metric computes the number of possible execution
-          paths through a function. It takes into account the nesting of
+          paths through a function(method). It takes into account the nesting of
           conditional statements and multi-part boolean expressions
           (e.g., A &amp;&amp; B, C || D, etc.).
           <br/>
           The NPATH metric was designed base on Cyclomatic complexity to
-          avoid problem of Cyclomatic complexity metric like nesting level within a function.
+          avoid problem of Cyclomatic complexity metric like nesting level within a function(method).
         </p>
         <p>
           Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
@@ -739,12 +739,12 @@ class SwitchExample {
         <tr><td>return</td><td>1</td></tr>
         <tr><td>Statement</td><td>1 (even sequential statements)</td></tr>
         <tr><td>Function call</td><td>1</td></tr>
-        <tr><td>C function</td><td>P(i=1:i=N)NP(Statement(i))</td></tr>
+        <tr><td>Function(Method) declaration</td><td>P(i=1:i=N)NP(Statement(i))</td></tr>
         </table>
 
         <p>
           <b>Rationale:</b> Nejmeh says that his group had an informal NPATH
-          limit of 200 on individual routines; functions that exceeded
+          limit of 200 on individual routines; functions(methods) that exceeded
           this value were candidates for further decomposition - or at
           least a closer look.
           <b>Please do not be fanatic with limit 200</b>
