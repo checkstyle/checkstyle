@@ -219,8 +219,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 // google doesn't require or prevent braces on these
                 "LAMBDA", "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("EmptyBlock", Stream.of(
-                // state of the configuration when test was made until
-                // https://github.com/checkstyle/checkstyle/issues/3748
+                // google doesn't specifically mention empty braces at the start of a case/default
                 "LITERAL_DEFAULT", "LITERAL_CASE",
                 // can be empty for special cases via '6.2 Caught exceptions: not ignored'
                 "LITERAL_CATCH",
