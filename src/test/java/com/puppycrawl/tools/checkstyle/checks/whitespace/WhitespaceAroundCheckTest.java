@@ -405,4 +405,12 @@ public class WhitespaceAroundCheckTest
         };
         verify(checkConfig, getPath("InputWhitespaceAroundLambda.java"), expected);
     }
+
+    @Test
+    public void testWhitespaceAroundEmptyCatchBlock() throws Exception {
+        checkConfig.addAttribute("allowEmptyCatches", "true");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputWhitespaceAroundCatch.java"),
+                expected);
+    }
 }

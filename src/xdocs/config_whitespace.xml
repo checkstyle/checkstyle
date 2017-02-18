@@ -2018,8 +2018,9 @@ public @interface Beta {} // empty annotation type
         <p>
         may optionally be exempted from the policy using the <code>
         allowEmptyMethods</code>, <code>allowEmptyConstructors
-        </code>, <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code> and
-        <code>allowEmptyLambdas</code> properties.
+        </code>, <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code>
+        <code>allowEmptyLambdas</code> and <code>allowEmptyCatches</code>
+        properties.
         </p>
         <p>This check does not flag as violation double brace initialization like:</p>
         <pre><code>
@@ -2027,6 +2028,17 @@ new Properties() {{
     setProperty("key", "value");
 }};
         </code></pre>
+        <p>Parameter allowEmptyCatches allows to suppress violations when token
+        list contains SLIST to check if beginning of block is surrounded by
+        whitespace and catch block is empty, for example:</p>
+        <pre><code>
+try {
+    k = 5 / i;
+} catch (ArithmeticException ex) {}
+        </code></pre>
+        With this property turned off, this raises violation because the beginning of the
+        catch block (left curly bracket) is not separated from the end of the catch
+        block (right curly bracket).
       </subsection>
 
       <subsection name="Properties">
@@ -2064,6 +2076,12 @@ new Properties() {{
           <tr>
             <td>allowEmptyLambdas</td>
             <td>allow empty lambda bodies</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
+          <tr>
+            <td>allowEmptyCatches</td>
+            <td>allow empty catch bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
           </tr>
