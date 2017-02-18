@@ -187,6 +187,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private boolean allowEmptyLoops;
     /** Whether or not empty lambda blocks are allowed. */
     private boolean allowEmptyLambdas;
+    /** Whether or not empty catch blocks are allowed. */
+    private boolean allowEmptyCatches;
     /** Whether or not to ignore a colon in a enhanced for loop. */
     private boolean ignoreEnhancedForColon = true;
 
@@ -362,6 +364,14 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         allowEmptyLambdas = allow;
     }
 
+    /**
+     * Sets whether or not empty catch blocks are allowed.
+     * @param allow {@code true} to allow empty catch blocks.
+     */
+    public void setAllowEmptyCatches(boolean allow) {
+        allowEmptyCatches = allow;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
@@ -478,7 +488,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         return isEmptyMethodBlock(ast, parentType)
                 || isEmptyCtorBlock(ast, parentType)
                 || isEmptyLoop(ast, parentType)
-                || isEmptyLambda(ast, parentType);
+                || isEmptyLambda(ast, parentType)
+                || isEmptyCatch(ast, parentType);
     }
 
     /**
@@ -597,6 +608,18 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyLambda(DetailAST ast, int parentType) {
         return allowEmptyLambdas && isEmptyBlock(ast, parentType, TokenTypes.LAMBDA);
+    }
+
+    /**
+     * Tests if the given {@code DetailAst} is part of an allowed empty
+     * catch block.
+     * @param ast the {@code DetailAst} to test.
+     * @param parentType the token type of {@code ast}'s parent
+     * @return {@code true} if {@code ast} makes up part of an
+     *         allowed empty catch block.
+     */
+    private boolean isEmptyCatch(DetailAST ast, int parentType) {
+        return allowEmptyCatches && isEmptyBlock(ast, parentType, TokenTypes.LITERAL_CATCH);
     }
 
     /**
