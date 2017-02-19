@@ -218,4 +218,8 @@ public class InputDesignForExtensionOverridableMethods {
 
         protected final int foo4(int a, int b) {return a + b;}
     }
+
+    public abstract class C {
+        public abstract void foo1(int a);
+    }
 }
