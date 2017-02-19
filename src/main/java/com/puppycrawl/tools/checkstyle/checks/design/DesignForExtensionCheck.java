@@ -24,7 +24,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -102,8 +101,8 @@ public class DesignForExtensionCheck extends AbstractCheck {
     /**
      * A set of annotations which allow the check to skip the method from validation.
      */
-    private Set<String> ignoredAnnotations = Stream.of("Test", "Before", "After", "BeforeClass",
-        "AfterClass").collect(Collectors.toSet());
+    private Set<String> ignoredAnnotations = Arrays.stream(new String[] {"Test", "Before", "After",
+        "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
 
     /**
      * Sets annotations which allow the check to skip the method from validation.
@@ -139,9 +138,9 @@ public class DesignForExtensionCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (!hasJavadocComment(ast)
+                && canBeOverridden(ast)
                 && (isNativeMethod(ast)
                     || !hasEmptyImplementation(ast))
-                && canBeOverridden(ast)
                 && !hasIgnoredAnnotation(ast, ignoredAnnotations)) {
 
             final DetailAST classDef = getNearestClassOrEnumDefinition(ast);
@@ -182,19 +181,17 @@ public class DesignForExtensionCheck extends AbstractCheck {
     private static boolean hasEmptyImplementation(DetailAST ast) {
         boolean hasEmptyBody = true;
         final DetailAST methodImplOpenBrace = ast.findFirstToken(TokenTypes.SLIST);
-        if (methodImplOpenBrace != null) {
-            final DetailAST methodImplCloseBrace = methodImplOpenBrace.getLastChild();
-            final Predicate<DetailAST> predicate = currentNode -> {
-                return currentNode != null
-                    && currentNode != methodImplCloseBrace
-                    && currentNode.getLineNo() <= methodImplCloseBrace.getLineNo()
-                    && !TokenUtils.isCommentType(currentNode.getType());
-            };
-            final Optional<DetailAST> methodBody =
-                TokenUtils.findFirstTokenByPredicate(methodImplOpenBrace, predicate);
-            if (methodBody.isPresent()) {
-                hasEmptyBody = false;
-            }
+        final DetailAST methodImplCloseBrace = methodImplOpenBrace.getLastChild();
+        final Predicate<DetailAST> predicate = currentNode -> {
+            return currentNode != null
+                && currentNode != methodImplCloseBrace
+                && currentNode.getLineNo() <= methodImplCloseBrace.getLineNo()
+                && !TokenUtils.isCommentType(currentNode.getType());
+        };
+        final Optional<DetailAST> methodBody =
+            TokenUtils.findFirstTokenByPredicate(methodImplOpenBrace, predicate);
+        if (methodBody.isPresent()) {
+            hasEmptyBody = false;
         }
         return hasEmptyBody;
     }
