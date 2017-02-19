@@ -26,7 +26,7 @@
 
 <!--
   name - The name of the subpackage. For example if the name is "tools"
-  and the pa the parent is "com.puppycrawl", then it corresponds to the
+  and the parent is "com.puppycrawl", then it corresponds to the
   package "com.puppycrawl.tools". If the regex attribute is "true" the
   name is interpreted as a regular expression.
 -->
@@ -35,28 +35,28 @@
   regex (true) #IMPLIED>
 
 <!--
-  Represents attributes for a guard which can either allow or disallow
-  access.
+  Represents attributes for an import rule which can either allow or
+  disallow access.
 
-  pkg - The fully qualified name of the package to guard. Cannot be
-  specified in conjunction with "class".
+  pkg - The fully qualified name of the package to allow/disallow.
+  Cannot be specified in conjunction with "class".
 
-  class - The fully qualified name of the class to guard. Cannot be
-  specified in conjunction with "pkg".
+  class - The fully qualified name of the class to allow/disallow.
+  Cannot be specified in conjunction with "pkg".
 
   exact-match - Only valid with "pkg". Specifies whether the package
   name matching should be exact. For example, the pkg
   "com.puppycrawl.tools" will match the import
   "com.puppycrawl.tools.checkstyle.api.*" when the option is not set,
-  but will not match is the option is set.
+  but will not match if the option is set.
 
-  local-only - Indicates that the guard is to apply only to the current
+  local-only - Indicates that the rule is to apply only to the current
   package and not to subpackages.
 
   regex - Indicates that the class or package name has to be interpreted as
   regular expression.
 -->
-<!ENTITY % attlist.guard "
+<!ENTITY % attlist.importrule "
   pkg CDATA #IMPLIED
   exact-match (true) #IMPLIED
   class CDATA #IMPLIED
@@ -64,15 +64,15 @@
   regex (true) #IMPLIED">
 
 <!--
-  Represents a guard that will allow access.
+  Represents an import rule that will allow access.
 -->
 <!ELEMENT allow EMPTY>
 <!ATTLIST allow
-  %attlist.guard;>
+  %attlist.importrule;>
 
 <!--
-  Represents a guard that will disallow access.
+  Represents an import rule that will disallow access.
 -->
 <!ELEMENT disallow EMPTY>
 <!ATTLIST disallow
-  %attlist.guard;>
+  %attlist.importrule;>
