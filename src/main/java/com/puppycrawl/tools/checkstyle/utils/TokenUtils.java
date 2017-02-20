@@ -191,7 +191,8 @@ public final class TokenUtils {
     }
 
     /**
-     * Finds the first node {@link Optional} of {@link DetailAST} which matches the predicate.
+     * Finds the first {@link Optional} child token of {@link DetailAST} root node
+     * which matches the given predicate.
      * @param root root node.
      * @param predicate predicate.
      * @return {@link Optional} of {@link DetailAST} node which matches the predicate.
@@ -199,20 +200,11 @@ public final class TokenUtils {
     public static Optional<DetailAST> findFirstTokenByPredicate(DetailAST root,
                                                                 Predicate<DetailAST> predicate) {
         Optional<DetailAST> result = Optional.empty();
-        DetailAST rootNode = root;
-        while (rootNode != null) {
-            DetailAST toVisit = rootNode.getFirstChild();
-            if (predicate.test(toVisit)) {
-                result = Optional.of(toVisit);
+        for (DetailAST ast = root.getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (predicate.test(ast)) {
+                result = Optional.of(ast);
                 break;
             }
-            while (rootNode != null && toVisit == null) {
-                toVisit = rootNode.getNextSibling();
-                if (toVisit == null) {
-                    rootNode = rootNode.getParent();
-                }
-            }
-            rootNode = toVisit;
         }
         return result;
     }

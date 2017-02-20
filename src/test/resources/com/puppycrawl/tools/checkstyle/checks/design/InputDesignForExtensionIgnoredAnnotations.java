@@ -138,6 +138,29 @@ public class InputDesignForExtensionIgnoredAnnotations {
     @InputLocalAnnotations.ClassRule
     public void foo20() { return; }
 
-    @InputLocalAnnotations.ClassRule
-    public void foo21() { return; } // violation
+    @InputLocalAnnotations.ClassRule // violation
+    public void foo21() { return; }
+
+    private int age;
+
+    @Inject // violation
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public @interface Inject { }
+
+    public @MyAnnotation void foo22() {
+        foo1();
+    }
+
+    @MyAnnotation public void foo23() {
+        foo1();
+    }
+
+    public void foo24(@MyAnnotation int a) { // violation
+        foo1();
+    }
+
+    public @interface MyAnnotation { }
 }

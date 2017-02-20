@@ -183,9 +183,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
         final DetailAST methodImplOpenBrace = ast.findFirstToken(TokenTypes.SLIST);
         final DetailAST methodImplCloseBrace = methodImplOpenBrace.getLastChild();
         final Predicate<DetailAST> predicate = currentNode -> {
-            return currentNode != null
-                && currentNode != methodImplCloseBrace
-                && currentNode.getLineNo() <= methodImplCloseBrace.getLineNo()
+            return currentNode != methodImplCloseBrace
                 && !TokenUtils.isCommentType(currentNode.getType());
         };
         final Optional<DetailAST> methodBody =
@@ -220,31 +218,19 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @return true if a method has any of ignored annotations.
      */
     private static boolean hasIgnoredAnnotation(DetailAST methodDef, Set<String> annotations) {
-        return annotations.stream().filter(annotation -> hasAnnotation(methodDef, annotation))
-            .findAny().isPresent();
-    }
-
-    /**
-     * Check if a method has specific annotation.
-     * @param methodDef method definition token.
-     * @param annotationName annotation name.
-     * @return true, if a method has a specific annotation.
-     */
-    private static boolean hasAnnotation(DetailAST methodDef, String annotationName) {
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
-        boolean containsAnnotation = false;
+        boolean hasIgnoredAnnotation = false;
         if (modifiers.branchContains(TokenTypes.ANNOTATION)) {
             final Optional<DetailAST> annotation = TokenUtils.findFirstTokenByPredicate(modifiers,
                 currentToken -> {
-                    return currentToken != null
-                        && currentToken.getType() == TokenTypes.ANNOTATION
-                        && annotationName.equals(getAnnotationName(currentToken));
+                    return currentToken.getType() == TokenTypes.ANNOTATION
+                        && annotations.contains(getAnnotationName(currentToken));
                 });
             if (annotation.isPresent()) {
-                containsAnnotation = true;
+                hasIgnoredAnnotation = true;
             }
         }
-        return containsAnnotation;
+        return hasIgnoredAnnotation;
     }
 
     /**
