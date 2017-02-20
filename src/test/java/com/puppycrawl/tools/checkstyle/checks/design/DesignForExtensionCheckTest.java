@@ -30,6 +30,7 @@ import org.junit.Test;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class DesignForExtensionCheckTest
     extends BaseCheckTestSupport {
@@ -88,14 +89,27 @@ public class DesignForExtensionCheckTest
     @Test
     public void testIgnoredAnnotationsOption() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
-        checkConfig.addAttribute("ignoredAnnotations", "Override, Deprecated");
+        checkConfig.addAttribute("ignoredAnnotations", "Override, Deprecated, MyAnnotation");
         final String[] expected = {
             "31:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo1"),
             "141:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo21"),
+            "146:5: "
+                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "setAge"),
+            "161:5: "
+                + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo24"),
         };
         verify(checkConfig, getPath("InputDesignForExtensionIgnoredAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreAnnotationsOptionWithMultipleAnnotations() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(DesignForExtensionCheck.class);
+        checkConfig.addAttribute("ignoredAnnotations",
+            "Override, Deprecated, Before, After, BeforeClass, AfterClass");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputDesignForExtensionMultipleAnnotations.java"), expected);
     }
 
     @Test
