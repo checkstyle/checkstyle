@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -75,9 +74,12 @@ public class ParameterNameCheck extends AbstractNameCheck {
     private boolean ignoreOverridden;
 
     /** Access modifiers of methods which should be checked. */
-    private AccessModifier[] accessModifiers = Stream.of(AccessModifier.PUBLIC,
-        AccessModifier.PROTECTED, AccessModifier.PACKAGE, AccessModifier.PRIVATE)
-        .toArray(AccessModifier[]::new);
+    private AccessModifier[] accessModifiers = {
+        AccessModifier.PUBLIC,
+        AccessModifier.PROTECTED,
+        AccessModifier.PACKAGE,
+        AccessModifier.PRIVATE,
+    };
 
     /**
      * Creates a new {@code ParameterNameCheck} instance.

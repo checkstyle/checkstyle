@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -68,7 +68,7 @@ public class FinalParametersCheck extends AbstractCheck {
      * primitive datatypes</a>.
      */
     private final Set<Integer> primitiveDataTypes = Collections.unmodifiableSet(
-        Stream.of(
+        Arrays.stream(new Integer[] {
             TokenTypes.LITERAL_BYTE,
             TokenTypes.LITERAL_SHORT,
             TokenTypes.LITERAL_INT,
@@ -76,7 +76,7 @@ public class FinalParametersCheck extends AbstractCheck {
             TokenTypes.LITERAL_FLOAT,
             TokenTypes.LITERAL_DOUBLE,
             TokenTypes.LITERAL_BOOLEAN,
-            TokenTypes.LITERAL_CHAR)
+            TokenTypes.LITERAL_CHAR, })
         .collect(Collectors.toSet()));
 
     /**

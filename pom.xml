@@ -1463,6 +1463,8 @@
                   <exclude>com/puppycrawl/tools/checkstyle/checks/coding/AbstractNestedDepthCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/metrics/AbstractComplexityCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/naming/AbstractTypeParameterNameCheck.class</exclude>
+                  <!--Until https://github.com/checkstyle/checkstyle/issues/3848-->
+                  <exclude>com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.class</exclude>
                 </excludes>
               </instrumentation>
             </configuration>

@@ -16,6 +16,18 @@
   <allow pkg="org.apache.commons.logging"/>
   <allow pkg="org.xml.sax"/>
 
+  <!--Disallowed till https://github.com/mojohaus/cobertura-maven-plugin/issues/29-->
+  <disallow class="java.util.stream.Stream"/>
+  <disallow class="java.util.stream.Stream.Builder"/>
+  <disallow class="java.util.stream.DoubleStream"/>
+  <disallow class="java.util.stream.DoubleStream.Builder"/>
+  <disallow class="java.util.stream.IntStream"/>
+  <disallow class="java.util.stream.IntStream.Builder"/>
+  <disallow class="java.util.stream.LongStream"/>
+  <disallow class="java.util.stream.LongStream.Builder"/>
+  <disallow class="java.util.stream.BaseStream"/>
+  <disallow class="java.util.stream.Collector"/>
+
   <!-- The local ones -->
   <allow pkg="java.lang.reflect" local-only="true" />
   <allow pkg="java.nio" local-only="true" />
