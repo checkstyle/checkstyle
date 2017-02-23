@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -248,7 +247,7 @@ public class VisibilityModifierCheck
 
     /** Default immutable types canonical names. */
     private static final List<String> DEFAULT_IMMUTABLE_TYPES = Collections.unmodifiableList(
-        Stream.of(
+        Arrays.stream(new String[] {
             "java.lang.String",
             "java.lang.Integer",
             "java.lang.Byte",
@@ -268,16 +267,16 @@ public class VisibilityModifierCheck
             "java.net.URI",
             "java.net.Inet4Address",
             "java.net.Inet6Address",
-            "java.net.InetSocketAddress"
-        ).collect(Collectors.toList()));
+            "java.net.InetSocketAddress",
+        }).collect(Collectors.toList()));
 
     /** Default ignore annotations canonical names. */
     private static final List<String> DEFAULT_IGNORE_ANNOTATIONS = Collections.unmodifiableList(
-        Stream.of(
+        Arrays.stream(new String[] {
             "org.junit.Rule",
             "org.junit.ClassRule",
-            "com.google.common.annotations.VisibleForTesting"
-        ).collect(Collectors.toList()));
+            "com.google.common.annotations.VisibleForTesting",
+        }).collect(Collectors.toList()));
 
     /** Name for 'public' access modifier. */
     private static final String PUBLIC_ACCESS_MODIFIER = "public";

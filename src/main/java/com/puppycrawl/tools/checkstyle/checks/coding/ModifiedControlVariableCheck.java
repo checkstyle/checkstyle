@@ -20,13 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -109,9 +109,14 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
 
     /** Operations which can change control variable in update part of the loop. */
-    private static final Set<Integer> MUTATION_OPERATIONS = Stream.of(TokenTypes.POST_INC,
-        TokenTypes.POST_DEC, TokenTypes.DEC, TokenTypes.INC, TokenTypes.ASSIGN)
-        .collect(Collectors.toSet());
+    private static final Set<Integer> MUTATION_OPERATIONS =
+        Arrays.stream(new Integer[] {
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
+            TokenTypes.DEC,
+            TokenTypes.INC,
+            TokenTypes.ASSIGN,
+        }).collect(Collectors.toSet());
 
     /** Stack of block parameters. */
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();

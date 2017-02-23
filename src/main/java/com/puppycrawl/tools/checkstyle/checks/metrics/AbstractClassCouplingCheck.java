@@ -26,7 +26,6 @@ import java.util.Deque;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -43,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Class names to ignore. */
     private static final Set<String> DEFAULT_EXCLUDED_CLASSES = Collections.unmodifiableSet(
-        Stream.of(
+        Arrays.stream(new String[] {
             // primitives
             "boolean", "byte", "char", "double", "float", "int",
             "long", "short", "void",
@@ -62,8 +61,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             // java.util.*
             "List", "ArrayList", "Deque", "Queue", "LinkedList",
             "Set", "HashSet", "SortedSet", "TreeSet",
-            "Map", "HashMap", "SortedMap", "TreeMap"
-        ).collect(Collectors.toSet()));
+            "Map", "HashMap", "SortedMap", "TreeMap",
+        }).collect(Collectors.toSet()));
 
     /** Stack of contexts. */
     private final Deque<Context> contextStack = new ArrayDeque<>();
