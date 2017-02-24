@@ -166,7 +166,6 @@ script:
     if [[ $SKIP_CI == 'false' ]];
     then
          eval $CMD;
-         echo "CMD is finished";
     fi
 
 after_success:
