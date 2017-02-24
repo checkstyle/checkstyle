@@ -170,7 +170,8 @@ script:
     fi
 
 after_success:
-  - >-
+  - |
+    set -e
     if [[ -n $CMD_AFTER_SUCCESS
           && $SKIP_CI == 'false'
        ]];
@@ -178,7 +179,8 @@ after_success:
         eval $CMD_AFTER_SUCCESS;
         echo "CMD_AFTER_SUCCESS is finished";
     fi
-  - >-
+  - |
+    set -e
     if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
             && $TRAVIS_BRANCH == 'master'
             && $TRAVIS_PULL_REQUEST == 'false'
