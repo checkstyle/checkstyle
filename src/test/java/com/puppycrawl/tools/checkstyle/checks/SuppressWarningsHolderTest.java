@@ -35,7 +35,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -117,7 +116,7 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
             holder.setAliasList("SomeAlias");
             fail("Exception expected");
         }
-        catch (ConversionException ex) {
+        catch (IllegalArgumentException ex) {
             assertEquals("'=' expected in alias list item: SomeAlias", ex.getMessage());
         }
 

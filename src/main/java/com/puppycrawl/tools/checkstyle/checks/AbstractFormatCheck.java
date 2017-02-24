@@ -113,7 +113,7 @@ public abstract class AbstractFormatCheck
             compileFlags |= compileFlagsParam;
         }
         catch (final PatternSyntaxException ex) {
-            throw new ConversionException("unable to parse " + regexpFormat, ex);
+            throw new IllegalArgumentException("unable to parse " + regexpFormat, ex);
         }
     }
 }

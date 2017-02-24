@@ -31,7 +31,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.apache.commons.beanutils.ConversionException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -203,7 +202,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             check.setHeader("Header2");
             fail("ConversionException is expected");
         }
-        catch (ConversionException ex) {
+        catch (IllegalArgumentException ex) {
             assertEquals("header has already been set - "
                     + "set either header or headerFile, not both", ex.getMessage());
         }
@@ -219,7 +218,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             check.setHeader("header");
             fail("Exception expected");
         }
-        catch (ConversionException ex) {
+        catch (IllegalArgumentException ex) {
             assertTrue(ex.getCause() instanceof IOException);
             assertEquals("unable to load header", ex.getMessage());
         }

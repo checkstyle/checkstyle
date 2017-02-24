@@ -88,7 +88,7 @@ public final class CommonUtils {
      * @param flags
      *            the flags to set
      * @return a created regexp object
-     * @throws ConversionException
+     * @throws IllegalArgumentException
      *             if unable to create Pattern object.
      **/
     public static Pattern createPattern(String pattern, int flags) {
@@ -96,7 +96,7 @@ public final class CommonUtils {
             return Pattern.compile(pattern, flags);
         }
         catch (final PatternSyntaxException ex) {
-            throw new ConversionException(
+            throw new IllegalArgumentException(
                 "Failed to initialise regular expression " + pattern, ex);
         }
     }

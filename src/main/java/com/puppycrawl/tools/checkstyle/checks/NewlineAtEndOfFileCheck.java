@@ -25,8 +25,6 @@ import java.io.RandomAccessFile;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 
@@ -111,8 +109,7 @@ public class NewlineAtEndOfFileCheck
                     .toUpperCase(Locale.ENGLISH));
         }
         catch (IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + lineSeparatorParam,
-                iae);
+            throw new IllegalArgumentException("unable to parse " + lineSeparatorParam, iae);
         }
     }
 

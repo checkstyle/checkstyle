@@ -124,7 +124,7 @@ public class JavadocDetailNodeParser {
                                 + JAVADOC_START.length());
             result.setTree(tree);
         }
-        catch (ParseCancellationException ex) {
+        catch (ParseCancellationException | IllegalArgumentException ex) {
             // If syntax error occurs then message is printed by error listener
             // and parser throws this runtime exception to stop parsing.
             // Just stop processing current Javadoc comment.
@@ -478,13 +478,13 @@ public class JavadocDetailNodeParser {
                 errorMessage = new ParseErrorMessage(lineNumber,
                         MSG_JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
 
-                throw new ParseCancellationException(msg);
+                throw new IllegalArgumentException(msg);
             }
             else if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
                         MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
 
-                throw new ParseCancellationException(msg);
+                throw new IllegalArgumentException(msg);
             }
             else {
                 final int ruleIndex = ex.getCtx().getRuleIndex();

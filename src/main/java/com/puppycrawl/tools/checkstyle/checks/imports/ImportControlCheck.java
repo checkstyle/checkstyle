@@ -176,7 +176,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      * configuration. It can also be a URL or resource in the classpath.
      * It will cause the file to be loaded.
      * @param uri the uri of the file to load.
-     * @throws ConversionException on error loading the file.
+     * @throws IllegalArgumentException on error loading the file.
      */
     public void setFile(URI uri) {
         // Handle empty param
@@ -186,7 +186,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
                 fileLocation = uri.toString();
             }
             catch (final CheckstyleException ex) {
-                throw new ConversionException(UNABLE_TO_LOAD + uri, ex);
+                throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, ex);
             }
         }
     }

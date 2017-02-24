@@ -26,8 +26,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -155,7 +153,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
                 headerRegexps.add(Pattern.compile(line));
             }
             catch (final PatternSyntaxException ex) {
-                throw new ConversionException("line "
+                throw new IllegalArgumentException("line "
                         + (headerRegexps.size() + 1)
                         + " in header specification"
                         + " is not a regular expression", ex);
@@ -166,14 +164,14 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     /**
      * Validates the {@code header} by compiling it with
      * {@link Pattern#compile(String) } and throws
-     * {@link PatternSyntaxException} if {@code header} isn't a valid pattern.
+     * {@link IllegalArgumentException} if {@code header} isn't a valid pattern.
      * @param header the header value to validate and set (in that order)
      */
     @Override
     public void setHeader(String header) {
         if (!CommonUtils.isBlank(header)) {
             if (!CommonUtils.isPatternValid(header)) {
-                throw new ConversionException("Unable to parse format: " + header);
+                throw new IllegalArgumentException("Unable to parse format: " + header);
             }
             super.setHeader(header);
         }

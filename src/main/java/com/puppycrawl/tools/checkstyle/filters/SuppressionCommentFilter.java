@@ -29,8 +29,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -310,7 +308,7 @@ public class SuppressionCommentFilter
          * @param text the text of the suppression.
          * @param reportingOn {@code true} if the tag turns checkstyle reporting.
          * @param filter the {@code SuppressionCommentFilter} with the context
-         * @throws ConversionException if unable to parse expanded text.
+         * @throws IllegalArgumentException if unable to parse expanded text.
          */
         public Tag(int line, int column, String text, boolean reportingOn,
                    SuppressionCommentFilter filter) {
@@ -351,9 +349,8 @@ public class SuppressionCommentFilter
                 }
             }
             catch (final PatternSyntaxException ex) {
-                throw new ConversionException(
-                    "unable to parse expanded comment " + format,
-                    ex);
+                throw new IllegalArgumentException(
+                    "unable to parse expanded comment " + format, ex);
             }
         }
 

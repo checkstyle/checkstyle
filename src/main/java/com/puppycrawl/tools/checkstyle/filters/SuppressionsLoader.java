@@ -86,6 +86,7 @@ public final class SuppressionsLoader
             final String checks = attributes.getValue("checks");
             final String modId = attributes.getValue("id");
             if (checks == null && modId == null) {
+                // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
                 throw new SAXException("missing checks and id attribute");
             }
             final SuppressElement suppress;
@@ -100,6 +101,7 @@ public final class SuppressionsLoader
                 }
             }
             catch (final PatternSyntaxException ex) {
+                // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
                 throw new SAXException("invalid files or checks format", ex);
             }
             final String lines = attributes.getValue("lines");

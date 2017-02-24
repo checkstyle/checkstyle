@@ -30,7 +30,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.beanutils.ConversionException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -267,7 +266,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");
             Assert.fail("ConversionException is expected");
         }
-        catch (ConversionException ex) {
+        catch (IllegalArgumentException ex) {
             assertTrue(ex.getMessage().startsWith("unable to parse"));
         }
     }

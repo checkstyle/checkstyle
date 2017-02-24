@@ -222,7 +222,10 @@
     <module name="IllegalCatch">
         <property name="illegalClassNames" value="java.lang.Exception, java.lang.Throwable, java.lang.RuntimeException, java.lang.NullPointerException"/>
     </module>
-    <module name="IllegalInstantiation"/>
+    <module name="IllegalInstantiation">
+        <property name="classes" value="org.xml.sax.SAXException, org.xml.sax.SAXParseException, org.apache.commons.beanutils.ConversionException,
+            org.antlr.v4.runtime.misc.ParseCancellationException, antlr.RecognitionException, antlr.TokenStreamException, antlr.TokenStreamRecognitionException, antlr.ANTLRException"/>
+    </module>
     <module name="IllegalThrows"/>
     <module name="IllegalToken">
         <property name="tokens" value="LABELED_STAT"/>
