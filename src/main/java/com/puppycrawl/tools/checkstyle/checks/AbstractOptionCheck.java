@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Locale;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 
 /**
@@ -64,7 +62,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
     /**
      * Set the option to enforce.
      * @param optionStr string to decode option from
-     * @throws ConversionException if unable to decode
+     * @throws IllegalArgumentException if unable to decode
      */
     public void setOption(String optionStr) {
         try {
@@ -72,7 +70,7 @@ public abstract class AbstractOptionCheck<T extends Enum<T>>
                     Enum.valueOf(optionClass, optionStr.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + optionStr, iae);
+            throw new IllegalArgumentException("unable to parse " + optionStr, iae);
         }
     }
 

@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Locale;
 
-import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
@@ -94,9 +93,9 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             final String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
             instance.setHeader(header);
             fail(String.format(Locale.ROOT, "%s should have been thrown",
-                    ConversionException.class));
+                    IllegalArgumentException.class));
         }
-        catch (ConversionException ex) {
+        catch (IllegalArgumentException ex) {
             assertEquals("Unable to parse format: ^/**\\n *"
                     + " Licensed to the Apache Software Foundation (ASF)",
                     ex.getMessage());

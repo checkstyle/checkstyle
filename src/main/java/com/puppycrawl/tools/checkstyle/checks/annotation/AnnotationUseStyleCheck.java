@@ -301,7 +301,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
             return Enum.valueOf(enumClass, value.trim().toUpperCase(Locale.ENGLISH));
         }
         catch (final IllegalArgumentException iae) {
-            throw new ConversionException("unable to parse " + value, iae);
+            throw new IllegalArgumentException("unable to parse " + value, iae);
         }
     }
 

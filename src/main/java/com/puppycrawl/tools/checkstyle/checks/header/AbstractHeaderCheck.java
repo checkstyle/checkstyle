@@ -34,8 +34,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -127,11 +125,11 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /**
      * Called before initializing the header.
-     * @throws ConversionException if header has already been set
+     * @throws IllegalArgumentException if header has already been set
      */
     private void checkHeaderNotInitialized() {
         if (!readerLines.isEmpty()) {
-            throw new ConversionException(
+            throw new IllegalArgumentException(
                     "header has already been set - "
                     + "set either header or headerFile, not both");
         }
@@ -141,7 +139,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * Set the header to check against. Individual lines in the header
      * must be separated by '\n' characters.
      * @param header header content to check against.
-     * @throws ConversionException if the header cannot be interpreted
+     * @throws IllegalArgumentException if the header cannot be interpreted
      */
     public void setHeader(String header) {
         if (!CommonUtils.isBlank(header)) {
@@ -155,7 +153,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
                 loadHeader(headerReader);
             }
             catch (final IOException ex) {
-                throw new ConversionException("unable to load header", ex);
+                throw new IllegalArgumentException("unable to load header", ex);
             }
             finally {
                 Closeables.closeQuietly(headerReader);

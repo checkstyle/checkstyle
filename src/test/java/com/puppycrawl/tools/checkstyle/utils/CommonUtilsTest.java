@@ -38,7 +38,6 @@ import java.net.URL;
 import java.util.Dictionary;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -87,7 +86,7 @@ public class CommonUtilsTest {
             CommonUtils.createPattern("[");
             fail("exception expected");
         }
-        catch (ConversionException ex) {
+        catch (IllegalArgumentException ex) {
             assertEquals("Failed to initialise regular expression [", ex.getMessage());
         }
     }
@@ -98,7 +97,7 @@ public class CommonUtilsTest {
             CommonUtils.createPattern("[", Pattern.MULTILINE);
             fail("exception expected");
         }
-        catch (ConversionException ex) {
+        catch (IllegalArgumentException ex) {
             assertEquals("Failed to initialise regular expression [", ex.getMessage());
         }
     }

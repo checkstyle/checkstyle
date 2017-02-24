@@ -26,8 +26,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -138,7 +136,7 @@ public class SuppressWarningsHolder
                     .substring(index + 1));
             }
             else if (!sourceAlias.isEmpty()) {
-                throw new ConversionException(
+                throw new IllegalArgumentException(
                     "'=' expected in alias list item: " + sourceAlias);
             }
         }

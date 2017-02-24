@@ -29,8 +29,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -299,7 +297,7 @@ public class SuppressWithNearbyCommentFilter
          * @param text the text of the suppression.
          * @param line the line number.
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
-         * @throws ConversionException if unable to parse expanded text.
+         * @throws IllegalArgumentException if unable to parse expanded text.
          */
         public Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
             this.text = text;
@@ -329,8 +327,7 @@ public class SuppressWithNearbyCommentFilter
                     influence = Integer.parseInt(format);
                 }
                 catch (final NumberFormatException ex) {
-                    throw new ConversionException(
-                        "unable to parse influence from '" + text
+                    throw new IllegalArgumentException("unable to parse influence from '" + text
                             + "' using " + filter.influenceFormat, ex);
                 }
                 if (influence >= 0) {
@@ -343,9 +340,8 @@ public class SuppressWithNearbyCommentFilter
                 }
             }
             catch (final PatternSyntaxException ex) {
-                throw new ConversionException(
-                    "unable to parse expanded comment " + format,
-                    ex);
+                throw new IllegalArgumentException(
+                    "unable to parse expanded comment " + format, ex);
             }
         }
 

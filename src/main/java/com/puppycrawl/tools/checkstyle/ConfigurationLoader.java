@@ -436,6 +436,7 @@ public final class ConfigurationLoader {
                         overridePropsResolver, attributes.getValue(DEFAULT));
                 }
                 catch (final CheckstyleException ex) {
+                    // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
                     throw new SAXException(ex);
                 }
                 final String name = attributes.getValue(NAME);
@@ -478,6 +479,8 @@ public final class ConfigurationLoader {
                         level = SeverityLevel.getInstance(severity);
                     }
                     catch (final CheckstyleException ex) {
+                        // -@cs[IllegalInstantiation] SAXException is in the overridden
+                        // method signature
                         throw new SAXException(
                                 "Problem during accessing '" + SEVERITY + "' attribute for "
                                         + recentModule.getName(), ex);

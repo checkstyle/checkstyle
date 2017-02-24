@@ -217,6 +217,8 @@ final class ImportControlLoader extends AbstractLoader {
             throws SAXException {
         final String returnValue = attributes.getValue(name);
         if (returnValue == null) {
+            // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
+            // of the only method which calls the current one
             throw new SAXException("missing attribute " + name);
         }
         return returnValue;
