@@ -1,4 +1,4 @@
-# CI is dedicated to verify NoExceptions in Javadoc checks  - checks-only-javadoc-error.xml
+# CI is dedicated to verify NoExceptions in Javadoc checks - checks-only-javadoc-error.xml
 checkstyle/checkstyle:
   Build:
     - set -e
