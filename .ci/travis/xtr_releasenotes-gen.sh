@@ -7,6 +7,7 @@ git clone https://github.com/checkstyle/contribution
 cd contribution/releasenotes-builder
 mvn clean compile package
 cd ../../
+# we need to do full clone as Travis do "git clone --depth=50"
 git clone https://github.com/checkstyle/checkstyle
 cd checkstyle
 LATEST_RELEASE_TAG=$(git describe $(git rev-list --tags --max-count=1))
