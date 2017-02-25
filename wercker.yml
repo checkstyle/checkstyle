@@ -58,199 +58,255 @@ build:
   - script:
       name: NoErrorTest - Orekit
       code: |
-        set -e
-        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-        echo CS_version: ${CS_POM_VERSION}
-        git clone https://github.com/Hipparchus-Math/hipparchus.git
-        cd hipparchus
-        mvn clean install -DskipTests
-        cd ../
-        git clone https://github.com/CS-SI/Orekit.git
-        cd Orekit
-        git checkout 651f25088ed50543d32dd54fa10f9a6a070ee5d7
-        mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
-        cd ../
-        rm -rf hipparchus Orekit
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+          echo CS_version: ${CS_POM_VERSION}
+          git clone https://github.com/Hipparchus-Math/hipparchus.git
+          cd hipparchus
+          mvn clean install -DskipTests
+          cd ../
+          git clone https://github.com/CS-SI/Orekit.git
+          cd Orekit
+          git checkout 651f25088ed50543d32dd54fa10f9a6a070ee5d7
+          mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
+          cd ../
+          rm -rf hipparchus Orekit
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoErrorTest - XWiki (oraclejdk8)
   - script:
       name: NoErrorTest - XWiki
       code: |
-        set -e
-        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-        echo CS_version: ${CS_POM_VERSION}
-        git clone https://github.com/xwiki/xwiki-commons/
-        cd xwiki-commons/xwiki-commons-core
-        git checkout xwiki-commons-8.2-milestone-1
-        mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-        cd ../../
-        rm -rf xwiki-commons
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+          echo CS_version: ${CS_POM_VERSION}
+          git clone https://github.com/xwiki/xwiki-commons/
+          cd xwiki-commons/xwiki-commons-core
+          git checkout xwiki-commons-8.2-milestone-1
+          mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+          cd ../../
+          rm -rf xwiki-commons
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoErrorTest - Apache Apex (oraclejdk8)
   - script:
       name: NoErrorTest - Apache Apex
       code: |
-        set -e
-        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-        echo CS_version: ${CS_POM_VERSION}
-        git clone https://github.com/apache/incubator-apex-core/
-        cd incubator-apex-core
-        mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-        cd ../
-        rm -rf incubator-apex-core
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+          echo CS_version: ${CS_POM_VERSION}
+          git clone https://github.com/apache/incubator-apex-core/
+          cd incubator-apex-core
+          mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+          cd ../
+          rm -rf incubator-apex-core
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoErrorTest - Hibernate Search (oraclejdk8)
   - script:
       name: NoErrorTest - Hibernate Search
       code: |
-        set -e
-        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-        echo CS_version: ${CS_POM_VERSION}
-        git clone https://github.com/hibernate/hibernate-search.git
-        cd hibernate-search
-        mvn -s settings-example.xml -B -q clean install -DskipTests=true
-        mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
-        cd ../
-        rm -rf hibernate-search
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+          echo CS_version: ${CS_POM_VERSION}
+          git clone https://github.com/hibernate/hibernate-search.git
+          cd hibernate-search
+          mvn -s settings-example.xml -B -q clean install -DskipTests=true
+          mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+          cd ../
+          rm -rf hibernate-search
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoErrorTest - HtmlUnit (oraclejdk8)
   - script:
       name: NoErrorTest - HtmlUnit
       code: |
-        set -e
-        CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-        echo CS_version: ${CS_POM_VERSION}
-        echo "checkouting project sources ..."
-        svn -q export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit@13543 htmlunit
-        cd htmlunit
-        echo "Running checkstyle validation ..."
-        mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-        cd ../
-        rm -rf htmlunit
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+          echo CS_version: ${CS_POM_VERSION}
+          echo "checkouting project sources ..."
+          svn -q export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit@13543 htmlunit
+          cd htmlunit
+          echo "Running checkstyle validation ..."
+          mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+          cd ../
+          rm -rf htmlunit
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - Apache Struts (oraclejdk8)
   - script:
       name: NoExceptiontest - Apache Struts
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - Checkstyle ,sevntu-checkstyle (oraclejdk8)
   - script:
       name: NoExceptiontest - Checkstyle ,sevntu-checkstyle
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#checkstyle/checkstyle/' projects-for-travis.properties
-        sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#checkstyle/checkstyle/' projects-for-travis.properties
+          sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - Guava (oraclejdk8)
   - script:
       name: NoExceptiontest - Guava
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#guava/guava/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#guava/guava/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - Hibernate (oraclejdk8)
   - script:
       name: NoExceptiontest - Hibernate
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
 
   # NoExceptiontest - Findbugs (oraclejdk8)
   - script:
       name: NoExceptiontest - findbugs
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#findbugs/findbugs/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#findbugs/findbugs/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - spring-framework (oraclejdk8)
   - script:
       name: NoExceptiontest - spring-framework
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#spring-framework/spring-framework/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#spring-framework/spring-framework/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - Hbase (oraclejdk8)
   - script:
       name: NoExceptiontest - Hbase
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#Hbase/Hbase/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#Hbase/Hbase/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - pmd elasticsearch lombok-ast (oraclejdk8)
   - script:
       name: NoExceptiontest - pmd elasticsearch lombok-ast
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#pmd/pmd/' projects-for-travis.properties
-        sed -i'' 's/#elasticsearch/elasticsearch/' projects-for-travis.properties
-        sed -i'' 's/#lombok-ast/lombok-ast/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#pmd/pmd/' projects-for-travis.properties
+          sed -i'' 's/#elasticsearch/elasticsearch/' projects-for-travis.properties
+          sed -i'' 's/#lombok-ast/lombok-ast/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoExceptiontest - RxJava java-design-patterns MaterialDesignLibrary apache-ant apache-jsecurity android-launcher (oraclejdk8)
   - script:
       name: NoExceptiontest - RxJava java-design-patterns MaterialDesignLibrary apache-ant apache-jsecurity android-launcher
       code: |
-        set -e
-        git clone https://github.com/checkstyle/contribution
-        cd contribution/checkstyle-tester
-        sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-        sed -i'' 's/#RxJava/RxJava/' projects-for-travis.properties
-        sed -i'' 's/#java-design-patterns/java-design-patterns/' projects-for-travis.properties
-        sed -i'' 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-travis.properties
-        sed -i'' 's/#apache-ant/apache-ant/' projects-for-travis.properties
-        sed -i'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties
-        sed -i'' 's/#android-launcher/android-launcher/' projects-for-travis.properties
-        groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
-        cd ../../
-        rm -rf contribution
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          git clone https://github.com/checkstyle/contribution
+          cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
+          sed -i'' 's/#RxJava/RxJava/' projects-for-travis.properties
+          sed -i'' 's/#java-design-patterns/java-design-patterns/' projects-for-travis.properties
+          sed -i'' 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-travis.properties
+          sed -i'' 's/#apache-ant/apache-ant/' projects-for-travis.properties
+          sed -i'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties
+          sed -i'' 's/#android-launcher/android-launcher/' projects-for-travis.properties
+          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          cd ../../
+          rm -rf contribution
+        else
+          echo "build is skipped ..."
+        fi
 
   # Cleanup
   - script:
