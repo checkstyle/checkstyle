@@ -185,11 +185,13 @@ after_success:
     fi
   - |
     set -e
+    SKIP_DEPLOY=$(if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ]; then echo false; else echo true; fi;)
     if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
             && $TRAVIS_BRANCH == 'master'
             && $TRAVIS_PULL_REQUEST == 'false'
             && $DEPLOY == 'true'
             && $SKIP_CI == 'false'
+            && $SKIP_DEPLOY == 'false'
        ]];
     then
         mvn -s config/deploy-settings.xml -Pno-validations deploy;
