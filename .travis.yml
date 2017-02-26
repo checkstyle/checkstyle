@@ -48,7 +48,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="cobertura and codecov"
-        - CMD="mvn clean compile cobertura:check cobertura:cobertura"
+        - CMD="./.ci/travis/travis.sh cobertura-check"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
     # findbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
