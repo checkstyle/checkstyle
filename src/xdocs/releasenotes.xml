@@ -17,6 +17,93 @@
 
     <!-- placeholder for a new section -->
 
+    <section name="Release 7.6">
+      <p>New:</p>
+        <ul>
+          <li>
+            add allowEmptyCatches parameter to WhitespaceAroundCheck. Author: liscju<a href="https://github.com/checkstyle/checkstyle/issues/3841"> #3841</a>
+          </li>
+          <li>
+            NoWhitespaceBefore: Add support for varargs. Author: Robert Painsi<a href="https://github.com/checkstyle/checkstyle/issues/3718"> #3718</a>
+          </li>
+          <li>
+            Google style: allow single character variables. Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/3702"> #3702</a>
+          </li>
+          <li>
+            NPathComplexityCheck: set of tokens should not be customizable by user. Author: kazachka<a href="https://github.com/checkstyle/checkstyle/issues/3797"> #3797</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            DesignForExtension: order of annotations change violation. Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/3830"> #3830</a>
+          </li>
+          <li>
+            AbbreviationAsWordInName: confusing violation message. Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3721"> #3721</a>
+          </li>
+          <li>
+            Fix AbstractTypeAwareCheck when dealing with nested interfaces. Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3835"> #3835</a>
+          </li>
+          <li>
+            IllegalTokenText in google_checks should not has BACKSPACE character . Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3701"> #3701</a>
+          </li>
+          <li>
+            IndentationCheck: catch child indentation not checked. Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3803"> #3803</a>
+          </li>
+          <li>
+            Indentation: Annotation with RParen on new line when followed by other annotations causes invalid expectation. Author: shawn.kovalchick<a href="https://github.com/checkstyle/checkstyle/issues/3733"> #3733</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Code coverage is not working for certain classes in checkstyle. Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/3843"> #3843</a>
+          </li>
+          <li>
+            ImportControl: improve xdoc documentation. Author: Jochen Van de Velde<a href="https://github.com/checkstyle/checkstyle/issues/2935"> #2935</a>
+          </li>
+          <li>
+            reevaluate tokens in IllegalTokenText. Author: Vladislav Lisetskii<a href="https://github.com/checkstyle/checkstyle/issues/3729"> #3729</a>
+          </li>
+          <li>
+            reevaluate &#39;default&#39; and &#39;case&#39; in google config for EmptyBlock. Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3748"> #3748</a>
+          </li>
+          <li>
+            reevaluate tokens in checkstyle config for NeedBraces. Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3735"> #3735</a>
+          </li>
+          <li>
+            Config: forbid assert token by Illegal token Check. Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3751"> #3751</a>
+          </li>
+          <li>
+            reevaluate tokens in google config for OperatorWrapCheck. Author: rnveach<a href="https://github.com/checkstyle/checkstyle/issues/3749"> #3749</a>
+          </li>
+          <li>
+            messages_ja.properties contains funny (wrongly machine-translated) messages. Author: SATO Yusuke<a href="https://github.com/checkstyle/checkstyle/issues/3831"> #3831</a>
+          </li>
+          <li>
+            config: Remove redundant and incorrect rules from import control configuration. Author: Jochen Van de Velde<a href="https://github.com/checkstyle/checkstyle/issues/3736"> #3736</a>
+          </li>
+          <li>
+            travis should skip execution if configs of other CIs are changed. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3818"> #3818</a>
+          </li>
+          <li>
+            doc: Add notes on import control config for inner classes. Author: Jochen Van de Velde
+          </li>
+          <li>
+            Rename method in CheckUtil. Author: Vladislav Lisetskii<a href="https://github.com/checkstyle/checkstyle/issues/3820"> #3820</a>
+          </li>
+          <li>
+            wercker ci should have most of testing launches on real code to shorten time of Travis execution. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3798"> #3798</a>
+          </li>
+          <li>
+            Typo in website documentation for JavadocMethod.. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3800"> #3800</a>
+          </li>
+          <li>
+            doc: Known API issues was added to reference #3810. Author: Roman Ivanov
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.5.1">
       <p>Bug fixes:</p>
         <ul>
