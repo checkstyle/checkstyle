@@ -348,14 +348,12 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.METHOD_DEF :
                 final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
-                if (frame.getType() == FrameType.CLASS_FRAME) {
-                    final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                    if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
-                        ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
-                    }
-                    else {
-                        ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
-                    }
+                final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
+                if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
+                    ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
+                }
+                else {
+                    ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
                 }
                 frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
                 break;
