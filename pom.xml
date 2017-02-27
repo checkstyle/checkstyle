@@ -1437,12 +1437,6 @@
                     <branchRate>79</branchRate>
                     <lineRate>97</lineRate>
                   </regex>
-                  <!--Until https://github.com/checkstyle/checkstyle/issues/3848-->
-                  <regex>
-                    <pattern>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</pattern>
-                    <branchRate>99</branchRate>
-                    <lineRate>100</lineRate>
-                  </regex>
                 </regexes>
               </check>
               <instrumentation>
