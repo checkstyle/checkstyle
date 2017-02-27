@@ -624,7 +624,7 @@
             <!-- add support for ssh/scp -->
             <groupId>org.apache.maven.wagon</groupId>
             <artifactId>wagon-ssh</artifactId>
-            <version>2.10</version>
+            <version>2.12</version>
           </dependency>
         </dependencies>
       </plugin>
