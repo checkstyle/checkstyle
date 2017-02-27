@@ -388,7 +388,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 8   ;
         </source>
         <p>
-          Examnple #8: Comment is placed within an empty case block.
+          Example #8: Comment is placed within an empty case block.
           Note, if comment is placed at the end of the empty case block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
           only case we can assume as a violation is when a single line comment within the empty case
