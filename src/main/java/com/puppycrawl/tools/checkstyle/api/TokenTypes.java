@@ -723,7 +723,24 @@ public final class TokenTypes {
     public static final int METHOD_CALL = GeneratedJavaTokenTypes.METHOD_CALL;
 
     /**
-     * Part of Java 8 syntax. Method or constructor call without arguments.
+     * Part of Java 8 syntax. A reference to a method or constructor without arguments.
+     * The token should be used for subscribing for double colon literal.
+     * {@link #DOUBLE_COLON} token does not appear in the tree.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * String::compareToIgnoreCase
+     * </pre>
+     *
+     * <p>parses as:
+     * <pre>
+     * +--METHOD_REF (::)
+     *     |
+     *     +--IDENT (String)
+     *     +--IDENT (compareToIgnoreCase)
+     * </pre>
+     *
+     * @see #IDENT
      * @see #DOUBLE_COLON
      */
     public static final int METHOD_REF = GeneratedJavaTokenTypes.METHOD_REF;
@@ -1448,6 +1465,8 @@ public final class TokenTypes {
     /**
      * The <code>::</code> (double colon) operator.
      * It is part of Java 8 syntax that is used for method reference.
+     * The token does not appear in tree, {@link #METHOD_REF} should be used instead.
+     *
      * @see #METHOD_REF
      */
     public static final int DOUBLE_COLON = GeneratedJavaTokenTypes.DOUBLE_COLON;
