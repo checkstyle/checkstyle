@@ -114,6 +114,68 @@
       </p>
 
     </section>
+      <section name="Tool to print Java tree structure">
+          <p>
+              Checkstyle can print Abstract Syntax Tree for Java trees. You need to run checkstyle jar file with <b>-t</b> or <b>-T</b> argument, providing java file.
+          </p>
+          <p>For example, here is MyClass.java file:</p>
+          <source><![CDATA[
+/**
+ * My <b>class</b>.
+ * @see AbstractClass
+ */
+public class MyClass {
+
+}
+      ]]></source>
+          <table style="table-layout: fixed;">
+              <tr>
+                  <td>
+                      1) Using -t as parameter.
+                      <br />
+                      java -jar checkstyle-X.XX-all.jar -t MyClass.java
+                  </td>
+                  <td>
+                      2) Using -T as parameter.
+                      <br />
+                      java -jar checkstyle-X.XX-all.jar -T MyClass.java
+                  </td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <source><![CDATA[
+CLASS_DEF -> CLASS_DEF [5:0]
+|--MODIFIERS -> MODIFIERS [5:0]
+|   `--LITERAL_PUBLIC -> public [5:0]
+|--LITERAL_CLASS -> class [5:7]
+|--IDENT -> MyClass [5:13]
+`--OBJBLOCK -> OBJBLOCK [5:21]
+    |--LCURLY -> { [5:21]
+    `--RCURLY -> } [7:0]
+          ]]></source>
+                  </td>
+                  <td>
+                      <source><![CDATA[
+CLASS_DEF -> CLASS_DEF [5:0]
+|--MODIFIERS -> MODIFIERS [5:0]
+|   |--BLOCK_COMMENT_BEGIN -> /* [1:0]
+|   |   |--COMMENT_CONTENT -> *\n * My <b>class</b>.\n * @see AbstractClass\n  [1:2]
+|   |   `--BLOCK_COMMENT_END -> */ [4:1]
+|   `--LITERAL_PUBLIC -> public [5:0]
+|--LITERAL_CLASS -> class [5:7]
+|--IDENT -> MyClass [5:13]
+`--OBJBLOCK -> OBJBLOCK [5:21]
+    |--LCURLY -> { [5:21]
+    `--RCURLY -> } [7:0]
+          ]]></source>
+                  </td>
+              </tr>
+          </table>
+          <p>
+            As you can see very small java file transforms to a huge Abstract Syntax Tree, because that is the most detailed tree including all components of the java file: object block, comments, modifiers, etc.
+          </p>
+      </section>
 
     <section name="The Checkstyle SDK Gui">
 
