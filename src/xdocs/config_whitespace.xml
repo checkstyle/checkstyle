@@ -816,6 +816,8 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
               <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>,
+              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>,
@@ -831,7 +833,9 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             <td><a
             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
             <a
-             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>.</td>
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
+            <a
+            href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.</td>
           </tr>
         </table>
       </subsection>
@@ -841,11 +845,14 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
         Examples of line-wrapped statements (bad case):
       </p>
       <source>
-package com.puppycrawl.
+package com.puppycrawl. //violation
     tools.checkstyle.checks;
 
-import com.puppycrawl.tools.
+import com.puppycrawl.tools. //violation
     checkstyle.api.AbstractCheck;
+
+import static java.math. //violation
+    BigInteger.ZERO;
       </source>
       <p>
         To configure the check to force no line-wrapping
@@ -868,6 +875,7 @@ import com.puppycrawl.tools.
       </p>
       <source>
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import static java.math.BigInteger.ZERO;
       </source>
       </subsection>
 

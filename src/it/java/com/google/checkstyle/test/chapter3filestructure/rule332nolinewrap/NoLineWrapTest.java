@@ -44,6 +44,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "package"),
             "6: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
+            "10: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
         };
 
         final Configuration checkConfig = getCheckConfig("NoLineWrap");
