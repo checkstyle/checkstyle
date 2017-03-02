@@ -17,7 +17,7 @@ public class InputAvoidEscapedUnicodeCharacters {
         String fakeUnicode = "asd\tsasd"; 
         String fakeUnicode2 = "\\u23\\u123i\\u";
         String content = "";
-        return "\ufeff" + content ; // byte order mark ok
+        /*byte order mark ok*/return "\ufeff" + content ;
     }
 
     public Object fooChar()
@@ -25,7 +25,7 @@ public class InputAvoidEscapedUnicodeCharacters {
         /*warn*/char unitAbbrev2 = '\u03bc'; 
         char unitAbbrev3 = '\u03bc'; // Greek letter mu, "s" ok
         String content = "";
-        return '\ufeff' + content; // byte order mark ok
+        /*byte order mark ok*/return '\ufeff' + content;
     }
 
     public void multiplyString()

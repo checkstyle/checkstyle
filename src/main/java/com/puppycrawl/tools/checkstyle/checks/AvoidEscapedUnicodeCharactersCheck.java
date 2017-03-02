@@ -118,10 +118,15 @@ public class AvoidEscapedUnicodeCharactersCheck
     /** Regular expression for Unicode chars. */
     private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
 
-    /** Regular expression Unicode control characters. */
+    /**
+     * Regular expression Unicode control characters.
+     *
+     * @see <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
+     *     Appendix:Control characters</a>
+     */
     private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\(u|U)"
-            + "(00[0-1][0-1A-Fa-f]|00[8-9][0-9A-Fa-f]|034(f|F)|070(f|F)"
-            + "|180(e|E)|200[b-fB-F]|202[b-eB-E]|206[0-4a-fA-F]"
+            + "(00[0-1][0-9A-Fa-f]|00[8-9][0-9A-Fa-f]|00(a|A)(d|D)|034(f|F)|070(f|F)"
+            + "|180(e|E)|200[b-fB-F]|202[a-eA-E]|206[0-4a-fA-F]"
             + "|[fF]{3}[9a-bA-B]|[fF][eE][fF]{2})");
 
     /** Regular expression for all escaped chars. */
