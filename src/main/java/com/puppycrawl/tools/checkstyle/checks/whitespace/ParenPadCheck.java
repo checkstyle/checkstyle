@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *  {@link TokenTypes#RESOURCE_SPECIFICATION RESOURCE_SPECIFICATION},
  *  {@link TokenTypes#SUPER_CTOR_CALL SUPER_CTOR_CALL},
  *  {@link TokenTypes#QUESTION QUESTION},
+ *  {@link TokenTypes#LAMBDA LAMBDA},
  * </p>
  * <p>
  * An example of how to configure the check is:
@@ -131,7 +132,8 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             case TokenTypes.ENUM_CONSTANT_DEF:
             case TokenTypes.LITERAL_NEW:
             case TokenTypes.LITERAL_SYNCHRONIZED:
-                visitNewEnumConstDefAnnotationSync(ast);
+            case TokenTypes.LAMBDA:
+                visitTokenWithOptionalParentheses(ast);
                 break;
             default:
                 processLeft(ast.findFirstToken(TokenTypes.LPAREN));
@@ -140,11 +142,13 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
-     * Checks parens in {@link TokenTypes#ENUM_CONSTANT_DEF}, {@link TokenTypes#ANNOTATION}
-     * {@link TokenTypes#LITERAL_SYNCHRONIZED} and {@link TokenTypes#LITERAL_NEW}.
+     * Checks parens in token which may not contain parens, e.g.
+     * {@link TokenTypes#ENUM_CONSTANT_DEF}, {@link TokenTypes#ANNOTATION}
+     * {@link TokenTypes#LITERAL_SYNCHRONIZED}, {@link TokenTypes#LITERAL_NEW} and
+     * {@link TokenTypes#LAMBDA}.
      * @param ast the token to check.
      */
-    private void visitNewEnumConstDefAnnotationSync(DetailAST ast) {
+    private void visitTokenWithOptionalParentheses(DetailAST ast) {
         final DetailAST parenAst = ast.findFirstToken(TokenTypes.LPAREN);
         if (parenAst != null) {
             processLeft(parenAst);
@@ -229,6 +233,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             TokenTypes.QUESTION,
             TokenTypes.RESOURCE_SPECIFICATION,
             TokenTypes.SUPER_CTOR_CALL,
+            TokenTypes.LAMBDA,
         };
     }
 

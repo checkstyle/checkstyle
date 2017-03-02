@@ -1411,7 +1411,9 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE_SPECIFICATION">RESOURCE_SPECIFICATION</a>,
               <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>.
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
             </td>
 
             <td>
@@ -1452,7 +1454,9 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE_SPECIFICATION">RESOURCE_SPECIFICATION</a>,
               <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>.
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">SUPER_CTOR_CALL</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
             </td>
           </tr>
         </table>
