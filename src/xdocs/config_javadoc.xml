@@ -1628,12 +1628,29 @@ public boolean isSomething()
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;&gt;
-    &lt;property name=&quot;period&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+    &lt;property name=&quot;period&quot; value="。"/&gt;
 &lt;/module&gt;
         </source>
-      </subsection>
+        <p>
+          Example of period property.
+        </p>
 
-      <subsection name="Example of Usage">
+        <source><![CDATA[
+public class TestClass {
+   /**
+    * This is invalid java doc.
+    */
+    void invalidJavaDocMethod() {
+    }
+   /**
+    * This is valid java doc。
+    */
+    void validJavaDocMethod() {
+    }
+}
+        ]]></source>
+     </subsection>
+     <subsection name="Example of Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
