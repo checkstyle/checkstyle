@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SeparatorWrapCheckTest
-    extends BaseCheckTestSupport {
+        extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
@@ -49,7 +49,7 @@ public class SeparatorWrapCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator + "separatorwrap" + File.separator + filename);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "31:10: " + getCheckMessage(MSG_LINE_NEW, "."),
         };
-        verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputSeparatorWrapForTestDot.java"), expected);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "39:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
-        verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputSeparatorWrapForTestComma.java"), expected);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class SeparatorWrapCheckTest
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputSeparatorWrap.java"), expected);
+            verify(checkConfig, getPath("InputSeparatorWrapForInvalidOption.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
