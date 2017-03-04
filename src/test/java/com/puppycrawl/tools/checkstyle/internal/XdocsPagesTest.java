@@ -744,7 +744,7 @@ public class XdocsPagesTest {
 
         if (expectedText.length() > 0) {
             expectedText.append("All messages can be customized if the default message doesn't "
-                    + "suite you.\nPlease see the documentation to learn how to.");
+                    + "suit you.\nPlease see the documentation to learn how to.");
         }
 
         if (subSection == null) {

@@ -208,7 +208,7 @@ public void test(&#64;MyAnnotation String s) { // OK
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -329,7 +329,7 @@ public void test(&#64;MyAnnotation String s) { // OK
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -416,7 +416,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -501,7 +501,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -559,7 +559,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -691,7 +691,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -799,7 +799,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>

@@ -95,7 +95,7 @@ for (
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -191,7 +191,7 @@ for (Iterator foo = very.long.line.iterator();
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -408,7 +408,7 @@ class Foo
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -520,7 +520,7 @@ class Foo
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -621,7 +621,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -771,7 +771,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -889,7 +889,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1041,7 +1041,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1152,7 +1152,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1316,7 +1316,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1513,7 +1513,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1650,7 +1650,7 @@ foo(i,
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1754,7 +1754,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1849,7 +1849,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1977,7 +1977,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2260,7 +2260,7 @@ try {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
