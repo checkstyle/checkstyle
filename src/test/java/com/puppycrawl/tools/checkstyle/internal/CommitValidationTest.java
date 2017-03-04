@@ -287,6 +287,7 @@ public class CommitValidationTest {
                 + "        " + OTHER_COMMIT_MESSAGE_REGEX_PATTERN + "\n"
                 + "    2) It contains only one line of text\n"
                 + "    3) Must not end with a period, space, or tab\n"
+                + "    4) Commit message should be less than or equal to 200 characters\n"
                 + "\n"
                 + "The rule broken was: ";
     }
