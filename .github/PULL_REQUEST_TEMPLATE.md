@@ -8,6 +8,7 @@ Mandatory to understand and do:
       ^(minor|config|infra|doc|spelling): .*$
    b) It contains only one line of text
    c) Must not end with a period, space, or tab
+   d) Commit message should be less than or equal to 200 characters
 
 To avoid multiple iterations of fixes and CIs failures, please read http://checkstyle.sourceforge.net/contributing.html
 
