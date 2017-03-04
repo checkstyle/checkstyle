@@ -3146,11 +3146,33 @@ public void foo(int i, String s) {}
           Ensures that a class has a package declaration, and (optionally) whether
           the package name matches the directory name for the source file.
         </p>
-
         <p>
           Rationale: Classes that live in the null package cannot be
           imported. Many novice developers are not aware of this.
         </p>
+        <p>
+          Packages provide logical namespace to classes and should be stored in
+          the form of directory levels to provide physical grouping to your classes.
+          These directories are added to the classpath so that your classes
+          are visible to JVM when it runs the code.
+        </p>
+      </subsection>
+
+      <subsection name="Properties">
+        <table>
+          <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>type</th>
+            <th>default value</th>
+          </tr>
+          <tr>
+            <td>matchDirectoryStructure</td>
+            <td>Whether to check for directory and package name match.</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>true</code></td>
+          </tr>
+        </table>
       </subsection>
 
       <subsection name="Examples">
@@ -3159,6 +3181,33 @@ public void foo(int i, String s) {}
         </p>
         <source>
 &lt;module name=&quot;PackageDeclaration&quot;/&gt;
+        </source>
+        <p>
+          Let us consider the class AnnotationLocationCheck which is in the directory
+          /com/puppycrawl/tools/checkstyle/checks/annotations/
+        </p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks; //Violation
+public class AnnotationLocationCheck extends AbstractCheck {
+//...
+}
+        </source>
+        <p>
+          Example of how the check works when matchDirectoryStructure option is set to false.
+          Let us again consider the AnnotationLocationCheck class located at directory
+          /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
+        </p>
+        <source>
+&lt;module name=&quot;PackageDeclaration&quot;&gt;
+&lt;property name=&quot;matchDirectoryStructure&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks;  //No Violation
+
+public class AnnotationLocationCheck extends AbstractCheck {
+//...
+}
         </source>
       </subsection>
 
@@ -3173,6 +3222,10 @@ public void foo(int i, String s) {}
 
       <subsection name="Error Messages">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mismatch.package.directory%22">
+            mismatch.package.directory</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.package.declaration%22">
             missing.package.declaration</a>
