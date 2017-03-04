@@ -195,7 +195,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
       <p>
       As you see very small java file transforms to a huge Abstract Syntax Tree, because that is the most detailed tree including all components of the java file: classes, methods, comments, etc.
       </p>
-      <p>In most cases while developing Javadoc Check you need only parse tree of the exact Javadoc comment.
+      <p>In most cases while developing Javadoc Check, you need to only parse the tree of the exact Javadoc comment.
       To do that just copy Javadoc comment to separate file and remove <b>/**</b> at the begining and <b>*/</b> at the end. After that, run checkstyle with <b>-j</b> argument.
       </p>
       <p>MyJavadocComment.javadoc file:</p>
