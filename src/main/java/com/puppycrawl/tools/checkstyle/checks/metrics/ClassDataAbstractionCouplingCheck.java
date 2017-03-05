@@ -50,6 +50,7 @@ public final class ClassDataAbstractionCouplingCheck
     public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -61,6 +62,7 @@ public final class ClassDataAbstractionCouplingCheck
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,

@@ -49,6 +49,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -63,6 +64,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
