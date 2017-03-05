@@ -10,7 +10,7 @@ import java.util.Arrays;
  * Test case for detecting operator wrapping.
  * @author Lars K�hne
  **/
-class InputOpWrap
+class InputOperatorWrap
 {
     void test()
     {

@@ -47,7 +47,9 @@ public class OperatorWrapCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "operatorwrap" + File.separator
+                + filename);
     }
 
     @Test
@@ -60,7 +62,7 @@ public class OperatorWrapCheckTest
             "48:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
             "61:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
         };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
     }
 
     @Test
@@ -72,7 +74,7 @@ public class OperatorWrapCheckTest
             "24:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
             "29:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
         };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
     }
 
     @Test
@@ -82,7 +84,7 @@ public class OperatorWrapCheckTest
         final String[] expected = {
             "33:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
     }
 
     @Test
@@ -94,7 +96,7 @@ public class OperatorWrapCheckTest
             "31:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
             "36:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
         };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
     }
 
     @Test
@@ -105,7 +107,7 @@ public class OperatorWrapCheckTest
         final String[] expected = {
             "42:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
         };
-        verify(checkConfig, getPath("InputOpWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
     }
 
     @Test
@@ -115,7 +117,7 @@ public class OperatorWrapCheckTest
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputOpWrap.java"), expected);
+            verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
