@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.inputs;
 
-public class InputWhitespaceAfter {
+public class InputWhitespaceAfterConditions {
 
     boolean condition() {
         return false;
