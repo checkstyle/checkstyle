@@ -37,7 +37,7 @@ public class WhitespaceAfterCheckTest
     extends BaseCheckTestSupport {
     private DefaultConfiguration checkConfig;
 
-    private String testPrefix =
+    private static final String testPrefix =
             "InputWhitespaceAfter";
 
     @Before
