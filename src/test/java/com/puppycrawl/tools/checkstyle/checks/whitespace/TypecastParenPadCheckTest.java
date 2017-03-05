@@ -40,7 +40,9 @@ public class TypecastParenPadCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "typecastparenpad" + File.separator
+                + filename);
     }
 
     @Test
@@ -52,7 +54,7 @@ public class TypecastParenPadCheckTest
             "89:14: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "89:21: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputTypecastParenPadWhitespace.java"), expected);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class TypecastParenPadCheckTest
             "241:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "241:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputTypecastParenPadWhitespace.java"), expected);
     }
 
     @Test
@@ -80,7 +82,7 @@ public class TypecastParenPadCheckTest
             createCheckConfig(TypecastParenPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("InputTypecastParenPadWhitespaceAround.java"),
                expected);
     }
 

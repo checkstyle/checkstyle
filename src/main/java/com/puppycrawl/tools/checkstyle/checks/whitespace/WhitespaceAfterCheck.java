@@ -101,9 +101,9 @@ public class WhitespaceAfterCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String line = getLine(ast.getLineNo() - 1);
         if (ast.getType() == TokenTypes.TYPECAST) {
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
+            final String line = getLine(targetAST.getLineNo() - 1);
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST.getLineNo(),
                     targetAST.getColumnNo() + targetAST.getText().length(),
@@ -111,6 +111,7 @@ public class WhitespaceAfterCheck
             }
         }
         else {
+            final String line = getLine(ast.getLineNo() - 1);
             if (!isFollowedByWhitespace(ast, line)) {
                 final Object[] message = {ast.getText()};
                 log(ast.getLineNo(),

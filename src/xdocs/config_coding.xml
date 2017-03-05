@@ -75,7 +75,7 @@ return new int[] { 0 };
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -139,7 +139,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -258,7 +258,7 @@ class Test {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -414,7 +414,7 @@ public class A {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -472,7 +472,7 @@ public class A {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -527,7 +527,7 @@ public class A {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -625,7 +625,7 @@ String nullString = null;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -697,7 +697,7 @@ String nullString = null;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -762,7 +762,7 @@ String nullString = null;
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -896,7 +896,7 @@ case 5:
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1030,7 +1030,7 @@ case 5:
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1247,7 +1247,7 @@ class SomeClass
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1325,7 +1325,7 @@ class SomeClass
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1441,7 +1441,7 @@ class SomeClass
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1551,7 +1551,7 @@ class SomeClass
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1633,7 +1633,7 @@ class SomeClass
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1749,7 +1749,7 @@ class SomeClass
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1882,7 +1882,7 @@ class SomeClass
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -1966,7 +1966,7 @@ while ((line = bufferedReader.readLine()) != null) {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2177,7 +2177,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2229,7 +2229,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2297,7 +2297,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2417,7 +2417,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2548,7 +2548,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2615,7 +2615,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2693,7 +2693,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2770,7 +2770,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2847,7 +2847,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2913,7 +2913,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -2969,7 +2969,7 @@ class MyClass {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3058,7 +3058,7 @@ r = 5; int t; //violation here
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3122,7 +3122,7 @@ public void foo(int i, String s) {}
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3179,7 +3179,7 @@ public void foo(int i, String s) {}
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3234,7 +3234,7 @@ public void foo(int i, String s) {}
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3449,7 +3449,7 @@ public static class B {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3619,7 +3619,7 @@ public static class B {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3681,7 +3681,7 @@ public static class B {
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3755,7 +3755,7 @@ return !valid();
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3819,7 +3819,7 @@ if (&quot;something&quot;.equals(x))
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3877,7 +3877,7 @@ if (&quot;something&quot;.equals(x))
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -3936,7 +3936,7 @@ if (&quot;something&quot;.equals(x))
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -4071,7 +4071,7 @@ if (&quot;something&quot;.equals(x))
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>
@@ -4292,7 +4292,7 @@ cal.set(Calendar.MINUTE, minutes);
           </li>
         </ul>
         <p>
-          All messages can be customized if the default message doesn't suite you.
+          All messages can be customized if the default message doesn't suit you.
           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
         </p>
       </subsection>

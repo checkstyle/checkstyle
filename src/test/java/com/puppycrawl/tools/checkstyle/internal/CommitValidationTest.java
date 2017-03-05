@@ -129,6 +129,11 @@ public class CommitValidationTest {
                 validateCommitMessage("minor: Test\n\n"));
         assertEquals("should accept commit message that ends properly", 0,
                 validateCommitMessage("minor: Test. Test"));
+        assertEquals("should accept commit message with less than or equal to 200 characters",
+                4, validateCommitMessage("minor: Test Test Test Test Test"
+                + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
+                + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
+                + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"));
     }
 
     @Test
@@ -161,6 +166,10 @@ public class CommitValidationTest {
         else if (INVALID_POSTFIX_PATTERN.matcher(message).matches()) {
             // improper postfix
             result = 3;
+        }
+        else if (message.length() > 200) {
+            // commit message has more than 200 characters
+            result = 4;
         }
         else {
             result = 0;

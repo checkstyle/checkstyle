@@ -428,7 +428,8 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isAnonymousClassDef(DetailAST ast) {
         final DetailAST lastChild = ast.getLastChild();
-        return lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK;
+        return lastChild != null
+            && lastChild.getType() == TokenTypes.OBJBLOCK;
     }
 
     /**
@@ -800,8 +801,7 @@ public class RequireThisCheck extends AbstractCheck {
     private AbstractFrame getMethodWithoutThis(DetailAST ast) {
         AbstractFrame result = null;
         final AbstractFrame frame = findFrame(ast, true);
-        if (frame != null
-                && !validateOnlyOverlapping
+        if (!validateOnlyOverlapping
                 && ((ClassFrame) frame).hasInstanceMethod(ast)
                 && !((ClassFrame) frame).hasStaticMethod(ast)) {
             result = frame;

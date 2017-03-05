@@ -252,4 +252,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRequireThisStatic.java"), expected);
     }
+
+    @Test
+    public void testMethodReferencess() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_VARIABLE, "tags", ""),
+        };
+        verify(checkConfig, getPath("InputRequireThisMetodReferences.java"), expected);
+    }
 }

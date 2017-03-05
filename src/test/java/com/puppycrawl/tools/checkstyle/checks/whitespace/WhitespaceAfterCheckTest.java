@@ -75,6 +75,17 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testMultilineCast() throws Exception {
+        final DefaultConfiguration configurationTestCast =
+                createCheckConfig(WhitespaceAfterCheck.class);
+        configurationTestCast.addAttribute("tokens", "TYPECAST");
+        final String[] expected = {
+            "7:24: " + getCheckMessage(MSG_WS_TYPECAST),
+        };
+        verify(configurationTestCast, getPath("InputWhitespaceMultilineCast.java"), expected);
+    }
+
+    @Test
     public void testSemi() throws Exception {
         final DefaultConfiguration configurationTestSemi =
                 createCheckConfig(WhitespaceAfterCheck.class);
