@@ -216,6 +216,9 @@ for (Iterator foo = very.long.line.iterator();
           fields, constructors, methods, nested classes,
           static initializers and instance initializers.
         </p>
+        <p>
+          ATTENTION: empty line separator is required between AST siblings, not after line where token is found.
+        </p>
       </subsection>
 
       <subsection name="Properties">
