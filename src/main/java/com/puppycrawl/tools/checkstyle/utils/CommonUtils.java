@@ -468,4 +468,39 @@ public final class CommonUtils {
         }
         return extension;
     }
+
+    /**
+     * Checks whether the given string is a valid identifier.
+     * @param str A string to check.
+     * @return true when the given string contains valid identifier.
+     */
+    public static boolean isIdentifier(String str) {
+        boolean isIdentifier = !str.isEmpty();
+
+        for (int i = 0; isIdentifier && i < str.length(); i++) {
+            if (i == 0) {
+                isIdentifier = Character.isJavaIdentifierStart(str.charAt(0));
+            } else {
+                isIdentifier = Character.isJavaIdentifierPart(str.charAt(i));
+            }
+        }
+
+        return isIdentifier;
+    }
+
+    /**
+     * Checks whether the given string is a valid name.
+     * @param str A string to check.
+     * @return true when the given string contains valid name.
+     */
+    public static boolean isName(String str) {
+        boolean isName = !str.isEmpty();
+
+        final String[] identifiers = str.split("\\.", -1);
+        for (int i = 0; isName && i < identifiers.length; i++) {
+            isName = isIdentifier(identifiers[i]);
+        }
+
+        return isName;
+    }
 }
