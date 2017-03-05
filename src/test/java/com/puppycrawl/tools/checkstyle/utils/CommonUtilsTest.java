@@ -228,6 +228,56 @@ public class CommonUtilsTest {
     }
 
     @Test
+    public void testIsIdentifier() throws Exception {
+        assertTrue(CommonUtils.isIdentifier("aValidIdentifier"));
+    }
+
+    @Test
+    public void testIsIdentifierEmptyString() throws Exception {
+        assertFalse(CommonUtils.isIdentifier(""));
+    }
+
+    @Test
+    public void testIsIdentifierInvalidFirstSymbol() throws Exception {
+        assertFalse(CommonUtils.isIdentifier("1InvalidIdentifier"));
+    }
+
+    @Test
+    public void testIsIdentifierInvalidSymbols() throws Exception {
+        assertFalse(CommonUtils.isIdentifier("invalid#Identifier"));
+    }
+
+    @Test
+    public void testIsName() throws Exception {
+        assertTrue(CommonUtils.isName("a.valid.Nam3"));
+    }
+
+    @Test
+    public void testIsNameEmptyString() throws Exception {
+        assertFalse(CommonUtils.isName(""));
+    }
+
+    @Test
+    public void testIsNameInvalidFirstSymbol() throws Exception {
+        assertFalse(CommonUtils.isName("1.invalid.name"));
+    }
+
+    @Test
+    public void testIsNameEmptyPart() throws Exception {
+        assertFalse(CommonUtils.isName("invalid..name"));
+    }
+
+    @Test
+    public void testIsNameEmptyLastPart() throws Exception {
+        assertFalse(CommonUtils.isName("invalid.name."));
+    }
+
+    @Test
+    public void testIsNameInvalidSymbol() throws Exception {
+        assertFalse(CommonUtils.isName("invalid.name#42"));
+    }
+
+    @Test
     @PrepareForTest({ CommonUtils.class, CommonUtilsTest.class })
     @SuppressWarnings("unchecked")
     public void testLoadSuppressionsUriSyntaxException() throws Exception {
