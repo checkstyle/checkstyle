@@ -717,13 +717,33 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
       </subsection>
 
       <subsection name="Examples">
+          <p>
+              Example of declarations with padding between identifier and left parenthesis (bad case):
+          </p>
+          <source>
+class Foo
+{
+    Foo () {}
+    public void foo () {}
+    // constructor and method identifiers should be separated from left parenthesis
+}
+          </source>
         <p>
-          To configure the check:
+          To configure the check with default parameters:
         </p>
         <source>
 &lt;module name=&quot;MethodParamPad&quot;/&gt;
         </source>
-
+        <p>
+            Example of declarations without padding between identifiers that is expected by Checkstyle:
+        </p>
+          <source>
+class Foo
+{
+    Foo() {}
+    public void foo() {}
+}
+          </source>
         <p>
           To configure the check to require a space after the identifier of a
           method definition, except if the left parenthesis occurs on a new
@@ -736,6 +756,16 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
     &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>
+              Example of method declaration with allowed line breaks:
+          </p>
+          <source>
+class Foo
+{
+    public void foo
+    () {}
+}
+          </source>
       </subsection>
 
       <subsection name="Example of Usage">
