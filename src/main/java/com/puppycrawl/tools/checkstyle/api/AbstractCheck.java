@@ -246,6 +246,18 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                 getCustomMessages().get(key)));
     }
 
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param ast a node to get line id column numbers associated
+     *             with the message
+     * @param key key to locale message format
+     * @param args arguments to format
+     */
+    protected final void log(DetailAST ast, String key, Object... args) {
+        log(ast.getLineNo(), ast.getColumnNo(), key, args);
+    }
+
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
