@@ -27,7 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
- * Checks for empty blocks. The policy to verify is specified using the {@link
+ * Checks for empty blocks. This check does not validate sequential blocks.
+ * The policy to verify is specified using the {@link
  * BlockOption} class and defaults to {@link BlockOption#STMT}.
  *
  * <p> By default the check will check the following blocks:
@@ -138,16 +139,7 @@ public class EmptyBlockCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST slistToken = ast.findFirstToken(TokenTypes.SLIST);
-        final DetailAST leftCurly;
-
-        if (slistToken == null) {
-            leftCurly = ast.findFirstToken(TokenTypes.LCURLY);
-        }
-        else {
-            leftCurly = slistToken;
-        }
-
+        final DetailAST leftCurly = findLeftCurly(ast);
         if (leftCurly != null) {
             if (option == BlockOption.STMT) {
                 final boolean emptyBlock;
@@ -235,5 +227,28 @@ public class EmptyBlockCheck
             }
         }
         return result;
+    }
+
+    /**
+     * Calculates the left curly corresponding to the block to be checked.
+     *
+     * @param ast a {@code DetailAST} value
+     * @return the left curly corresponding to the block to be checked
+     */
+    private static DetailAST findLeftCurly(DetailAST ast) {
+        final DetailAST leftCurly;
+        final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
+        if (ast.getType() == TokenTypes.LITERAL_CASE
+                && ast.getNextSibling() != null
+                && ast.getNextSibling().getFirstChild().getType() == TokenTypes.SLIST) {
+            leftCurly = ast.getNextSibling().getFirstChild();
+        }
+        else if (slistAST == null) {
+            leftCurly = ast.findFirstToken(TokenTypes.LCURLY);
+        }
+        else {
+            leftCurly = slistAST;
+        }
+        return leftCurly;
     }
 }
