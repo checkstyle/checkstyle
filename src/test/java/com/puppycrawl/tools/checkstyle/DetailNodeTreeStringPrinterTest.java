@@ -25,9 +25,12 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class DetailNodeTreeStringPrinterTest {
 
@@ -53,6 +56,7 @@ public class DetailNodeTreeStringPrinterTest {
 
     @Test
     public void testParseFileWithError() throws Exception {
+        LocalizedMessage.setLocale(Locale.ROOT);
         try {
             DetailNodeTreeStringPrinter.printFileAst(
                     new File(getPath("InputJavadocWithError.javadoc")));
