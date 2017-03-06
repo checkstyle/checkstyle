@@ -149,7 +149,7 @@ switch (a)
 
     <section name="EmptyBlock">
       <subsection name="Description">
-        <p> Checks for empty blocks. </p>
+        <p> Checks for empty blocks. This check does not validate sequential blocks. </p>
       </subsection>
 
       <subsection name="Properties">

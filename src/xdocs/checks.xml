@@ -165,7 +165,7 @@
       </tr>
       <tr>
         <td><a href="config_blocks.html#EmptyBlock">EmptyBlock</a></td>
-        <td>Checks for empty blocks.</td>
+        <td>Checks for empty blocks but does not validate sequential blocks.</td>
       </tr>
       <tr>
         <td><a href="config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a></td>
