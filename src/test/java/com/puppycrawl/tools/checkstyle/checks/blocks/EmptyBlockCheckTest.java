@@ -157,4 +157,36 @@ public class EmptyBlockCheckTest
                             + "Cannot set property 'option' to 'invalid_option' in module"));
         }
     }
+
+    @Test
+    public void testAllowEmptyCaseWithText() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_CASE");
+        final String[] expected = {
+            "12:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "18:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "29:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "31:37: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "32:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+        };
+        verify(checkConfig, getPath("InputEmptyCase.java"), expected);
+    }
+
+    @Test
+    public void testForbidCaseWithoutStmt() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.STMT.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_CASE");
+        final String[] expected = {
+            "12:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
+            "18:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
+            "22:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
+            "29:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
+            "31:37: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
+            "32:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
+            "32:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
+        };
+        verify(checkConfig, getPath("InputEmptyCase.java"), expected);
+    }
 }
