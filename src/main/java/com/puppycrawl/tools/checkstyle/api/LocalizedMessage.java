@@ -361,6 +361,7 @@ public final class LocalizedMessage
      * @param locale the locale to use for localization
      */
     public static void setLocale(Locale locale) {
+        BUNDLE_CACHE.clear();
         if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
             sLocale = Locale.ROOT;
         }
