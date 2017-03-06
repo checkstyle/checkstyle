@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
-public class InputDoWhile {
+public class InputWhitespaceAfterDoWhile {
 
     boolean condition() {
         return false;

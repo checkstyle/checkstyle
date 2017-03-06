@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
-public class InputWhitespaceMultilineCast {
+public class InputWhitespaceAfterMultilineCast {
     void issue3850() {
         Object obj = new Object();
         obj = (java.lang.
