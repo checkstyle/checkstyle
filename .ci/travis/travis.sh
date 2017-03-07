@@ -63,6 +63,16 @@ all-sevntu-checks)
   diff -u web.txt file.txt
   ;;
 
+no-error-test-sbe)
+  CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo version:$CS_POM_VERSION
+  mvn clean install -Pno-validations
+  git clone https://github.com/real-logic/simple-binary-encoding.git
+  cd simple-binary-encoding
+  sed -i'' "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" build.gradle
+  ./gradlew build
+  ;;
+
 no-exception-test-checkstyle-sevntu-checkstyle)
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
