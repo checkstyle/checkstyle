@@ -50,12 +50,31 @@ return new int[] { 0 };
       </subsection>
 
       <subsection name="Examples">
-        <p>
+          <p>
           To configure the check:
-        </p>
-        <source>
-&lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
-        </source>
+          </p>
+          <source>
+            &lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+          </source>
+          <p>
+            Which results in the following violations:
+          </p>
+          <source>
+            int[] numbers = {1, 2, 3};        //no violation
+            boolean[] bools = {
+            true,
+            true,
+            false
+            };        //violation
+
+            String[][] text = {{},{},};        //no violation
+
+            double[][] decimals = {
+            {0.5, 2.3, 1.1,},        //no violation
+            {1.7, 1.9, 0.6},
+            {0.8, 7.4, 6.5}
+            };        //violation
+          </source>
       </subsection>
 
       <subsection name="Example of Usage">
