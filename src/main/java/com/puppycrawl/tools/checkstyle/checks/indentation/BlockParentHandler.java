@@ -151,13 +151,26 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * Check the indentation of the left curly brace.
      */
     protected void checkLeftCurly() {
-        // the lcurly can either be at the correct indentation, or nested
-        // with a previous expression
-        final DetailAST lcurly = getLeftCurly();
-        final int lcurlyPos = expandedTabsColumnNo(lcurly);
+        checkCurly("lcurly", getLeftCurly());
+    }
 
-        if (!curlyIndent().isAcceptable(lcurlyPos) && isOnStartOfLine(lcurly)) {
-            logError(lcurly, "lcurly", lcurlyPos, curlyIndent());
+    /**
+     * Check the indentation of the right curly brace.
+     */
+    protected void checkRightCurly() {
+        checkCurly("rcurly", getRightCurly());
+    }
+
+    /**
+     * Checks the indentation of the given curly.
+     * @param curlyName The type of the curly (either "lcurly" or "rcurly").
+     * @param curly The left or right cury expression.
+     */
+    protected void checkCurly(String curlyName, DetailAST curly) {
+        final int curlyPos = expandedTabsColumnNo(curly);
+
+        if (!curlyIndent().isAcceptable(curlyPos) && isOnStartOfLine(curly)) {
+            logError(curly, curlyName, curlyPos, curlyIndent());
         }
     }
 
@@ -177,19 +190,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     protected boolean canChildrenBeNested() {
         return false;
-    }
-
-    /**
-     * Check the indentation of the right curly brace.
-     */
-    protected void checkRightCurly() {
-        final DetailAST rcurly = getRightCurly();
-        final int rcurlyPos = expandedTabsColumnNo(rcurly);
-
-        if (!curlyIndent().isAcceptable(rcurlyPos)
-                && isOnStartOfLine(rcurly)) {
-            logError(rcurly, "rcurly", rcurlyPos, curlyIndent());
-        }
     }
 
     /**
@@ -281,7 +281,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
             }
             else if (isOnStartOfLine(getRightCurly())) {
                 final IndentLevel level = new IndentLevel(curlyIndent(), getBasicOffset());
-                level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndent());
+                level.addAcceptedIndent(level.getFirstIndentLevel() + getLineWrappingIndentation());
                 indentLevel = level;
             }
         }
@@ -298,7 +298,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */
-    private int getLineWrappingIndent() {
+    protected final int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
     }
 }

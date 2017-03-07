@@ -1609,6 +1609,29 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testAnonymousClassInMethodWithCurlyOnNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("throwsIndent", "4");
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        final String[] expected = {
+            "38: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "8, 12, 16"),
+            "40: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "46: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "8, 12, 16"),
+            "58: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "8, 12, 16"),
+            "64: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "8, 12, 16"),
+            "67: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "8, 12, 16"),
+            "73: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "8, 12, 16"),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputAnonymousClassInMethodCurlyOnNewLine.java"), expected);
+    }
+
+    @Test
     public void testAnnotationDefinition() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
