@@ -91,6 +91,7 @@
         <module name="SeparatorWrap">
             <property name="id" value="SeparatorWrapComma"/>
             <property name="tokens" value="COMMA"/>
+            <property name="tokens" value="METHOD_REF"/>
             <property name="option" value="EOL"/>
         </module>
         <module name="PackageName">
