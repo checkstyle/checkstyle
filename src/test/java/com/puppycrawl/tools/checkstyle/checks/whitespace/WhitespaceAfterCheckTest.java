@@ -45,7 +45,7 @@ public class WhitespaceAfterCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator + "inputs" + File.separator + filename);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class WhitespaceAfterCheckTest
             "42:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
             "71:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputWhitespaceAfterSimple.java"), expected);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "7:24: " + getCheckMessage(MSG_WS_TYPECAST),
         };
-        verify(configurationTestCast, getPath("InputWhitespaceMultilineCast.java"), expected);
+        verify(configurationTestCast, getPath("InputWhitespaceAfterMultilineCast.java"), expected);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class WhitespaceAfterCheckTest
             "54:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
             "103:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verify(configurationTestSemi, getPath("InputBraces.java"), expected);
+        verify(configurationTestSemi, getPath("InputWhitespaceAfterBraces.java"), expected);
     }
 
     @Test
@@ -161,7 +161,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "18:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
         };
-        verify(configurationTestDoWhile, getPath("InputDoWhile.java"), expected);
+        verify(configurationTestDoWhile, getPath("InputWhitespaceAfterDoWhile.java"), expected);
     }
 
     @Test
@@ -170,7 +170,7 @@ public class WhitespaceAfterCheckTest
             "14:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
             "17:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputWhitespaceAfterFor.java"), expected);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class WhitespaceAfterCheckTest
             "11:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
             "11:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
-        verify(checkConfig, getPath("InputGenerics.java"), expected);
+        verify(checkConfig, getPath("InputWhitespaceAfterGenerics.java"), expected);
     }
 
     @Test
