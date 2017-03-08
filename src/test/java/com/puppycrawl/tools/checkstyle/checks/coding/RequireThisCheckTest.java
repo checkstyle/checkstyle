@@ -191,8 +191,6 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "185:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "189:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "210:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "215:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "225:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "228:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "238:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "253:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
@@ -204,7 +202,6 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "340:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "374:40: " + getCheckMessage(MSG_METHOD, "getServletRelativeAction", ""),
             "376:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "383:9: " + getCheckMessage(MSG_VARIABLE, "servletRelativeAction", ""),
             "384:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
         };
         verify(checkConfig, getPath("InputValidateOnlyOverlappingFalse.java"), expected);
@@ -260,5 +257,21 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "15:9: " + getCheckMessage(MSG_VARIABLE, "tags", ""),
         };
         verify(checkConfig, getPath("InputRequireThisMetodReferences.java"), expected);
+    }
+
+    @Test
+    public void testAllowLocalVars() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        checkConfig.addAttribute("checkMethods", "false");
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "22:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "35:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
+            "40:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
+            "46:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
+            "47:16: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+        };
+        verify(checkConfig, getPath("InputAllowLocalVars.java"), expected);
     }
 }
