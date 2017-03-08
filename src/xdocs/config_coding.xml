@@ -3486,7 +3486,7 @@ public static class B {
          Please, be aware of the following logic, which is implemented in the check:
        </p>
        <p>
-         1) If you arranges 'this' in your code on your own, the check will not rise violation for
+         1) If you arrange 'this' in your code on your own, the check will not raise violation for
             variables which use 'this' to reference a class field, for example:
        </p>
        <source>
@@ -3503,7 +3503,7 @@ public class C {
 }
        </source>
        <p>
-         2) If method parameter is returned from the method, the check will not rise violation for
+         2) If method parameter is returned from the method, the check will not raise violation for
             returned variable/parameter, for example:
        </p>
        <source>
@@ -3526,13 +3526,15 @@ public static class A {
   public A(int field1) {
     field1 = field1; // violation: Reference to instance variable "field1" needs "this".
     field2 = 0; // violation: Reference to instance variable "field2" needs "this".
+    String field2;
+    field2 = "0"; // No violation. Local var allowed
   }
 
   void foo3() {
     String field1 = "values";
     field1 = field1; // violation:  Reference to instance variable "field1" needs "this".
-    }
   }
+}
 
 public static class B {
   private int field1;
@@ -3543,6 +3545,19 @@ public static class B {
 
   String addSuffixToField(String field1) {
     return field1 += "suffix"; // violation: Reference to instance variable "field1" needs "this".
+  }
+}
+
+// If the variable is locally defined, there won't be a violation provided the variable doesn't overlap.
+class C {
+  private String s1 = "foo1";
+  String s2 = "foo2";
+
+  C() {
+      s1 = "bar1"; // Violation. Reference to instance variable 's1' needs "this.".
+      String s2;
+      s2 = "bar2"; // No violation. Local var allowed.
+      s2 += s2; // Violation. Overlapping. Reference to instance variable 's2' needs "this.".
   }
 }
        </source>

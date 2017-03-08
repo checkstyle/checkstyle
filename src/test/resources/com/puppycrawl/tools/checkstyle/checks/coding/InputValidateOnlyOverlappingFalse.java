@@ -212,7 +212,7 @@ public class InputValidateOnlyOverlappingFalse {
 
     void foo24() {
         String field1 = "Hello";
-        field1 = "Java"; // violation
+        field1 = "Java"; // No violation. Local var allowed
         this.booleanField = true;
         this.booleanField = booleanField;
     }
@@ -222,10 +222,10 @@ public class InputValidateOnlyOverlappingFalse {
             if (true) {
                 String field1 = "Hello, World!";
                 if (true) {
-                    field1 = new String(); // violation
+                    field1 = new String(); // No violation. Local var allowed
                 }
                 else {
-                    field1 = new String(); // violation
+                    field1 += field1; // violation
                 }
             }
         }
@@ -380,7 +380,7 @@ public class InputValidateOnlyOverlappingFalse {
                 servletRelativeAction = "" + servletRelativeAction;
             }
         }
-        servletRelativeAction = "servletRelativeAction"; // violation
+        servletRelativeAction = "servletRelativeAction"; // No violation. Local var allowed
         return processAction(servletRelativeAction); // violation (Method call to 'processAction' needs "this.".)
     }
 
