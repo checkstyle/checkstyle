@@ -1,8 +1,8 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Optional;
 import java.util.function.Supplier;
+
 
 public class InputGenericWhitespaceMethodRef
 {

@@ -1,8 +1,8 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
+
 
 public class InputIllegalInstantiation2
 {

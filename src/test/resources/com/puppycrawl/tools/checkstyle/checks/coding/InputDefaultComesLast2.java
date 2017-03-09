@@ -1,5 +1,5 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
+
 public interface InputDefaultComesLast2 {
 
     String toJson(Object one, Object two, Object three);

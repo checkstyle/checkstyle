@@ -1,5 +1,5 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.blocks;
+
 public class InputSingleLineLambda {
     
     static Runnable r1 = ()->String.CASE_INSENSITIVE_ORDER.equals("Hello world one!");

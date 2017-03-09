@@ -1,8 +1,8 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+
 
 public class InputLambda6 {
 

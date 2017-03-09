@@ -1,9 +1,9 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
 import java.awt.geom.Rectangle2D;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
+
 
 public class InputTypeUseAnnotationsOnQualifiedTypes {
     /* Causes parse failure */

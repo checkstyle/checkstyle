@@ -1,6 +1,6 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import java.util.function.Supplier;
+
 public class InputMethodReferences3
 {
   public static class SomeClass {

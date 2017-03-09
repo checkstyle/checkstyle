@@ -1,9 +1,9 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 import java.util.List;
+
 
 public class InputAnnotations6 {
 

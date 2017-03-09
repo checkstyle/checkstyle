@@ -1,9 +1,9 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
 
 public class InputMethodReferences<T> extends ParentClass
 {
