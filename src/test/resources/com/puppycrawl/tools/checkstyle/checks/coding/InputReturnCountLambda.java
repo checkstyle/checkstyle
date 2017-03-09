@@ -1,10 +1,10 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.lang.Integer;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
+
 
 public class InputReturnCountLambda {
 

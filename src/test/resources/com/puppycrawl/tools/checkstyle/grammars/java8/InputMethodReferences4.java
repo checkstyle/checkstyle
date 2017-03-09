@@ -1,7 +1,7 @@
-//Compilable with Java8
 //Issue #2729
 package com.puppycrawl.tools.checkstyle.grammars.java8;
 import java.util.Arrays;
+
 
 public class InputMethodReferences4 {
     public void doSomething(final Object... arguments) {

@@ -1,4 +1,3 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.lang.Integer;
@@ -7,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 
 public class InputHiddenFieldLambdas {
     /**

@@ -1,4 +1,4 @@
-//Compilable with Java8 //indent:0 exp:0
+//a comment //indent:0 exp:0
 package com.puppycrawl.tools.checkstyle.checks.indentation; //indent:0 exp:0
 
 import java.util.ArrayList; //indent:0 exp:0

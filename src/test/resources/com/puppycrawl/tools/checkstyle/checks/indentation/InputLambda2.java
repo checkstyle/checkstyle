@@ -1,8 +1,9 @@
-//Compilable with Java8 //indent:0 exp:0
+//a comment //indent:0 exp:0
 package com.puppycrawl.tools.checkstyle.checks.indentation; //indent:0 exp:0
 
 import java.util.function.BinaryOperator; //indent:0 exp:0
 import java.util.function.Consumer; //indent:0 exp:0
+
 
 public class InputLambda2 { //indent:0 exp:0
     public <T> Consumer<Integer> params(Consumer<Integer> f1, Consumer<Integer> f2) { //indent:4 exp:4

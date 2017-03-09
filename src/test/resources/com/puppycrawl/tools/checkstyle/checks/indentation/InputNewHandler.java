@@ -1,8 +1,8 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
+
 
 /**
  *

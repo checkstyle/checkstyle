@@ -1,10 +1,10 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 import java.util.List;
 import java.util.Map;
+
 
 public class InputSuppressWarningsHolder5{
 

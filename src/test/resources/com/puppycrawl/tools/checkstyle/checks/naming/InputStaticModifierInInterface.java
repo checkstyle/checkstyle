@@ -1,5 +1,5 @@
-//Compilable with Java8
 package com.puppycrawl.tools.checkstyle.checks.naming;
+
 
 public interface InputStaticModifierInInterface
 {
