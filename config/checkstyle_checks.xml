@@ -453,6 +453,7 @@
       <property name="tokens" value="UNARY_MINUS"/>
       <property name="tokens" value="UNARY_PLUS"/>
       <property name="tokens" value="ARRAY_DECLARATOR"/>
+      <property name="tokens" value="METHOD_REF"/>
     </module>
     <module name="NoWhitespaceBefore"/>
     <module name="NoWhitespaceBefore">
