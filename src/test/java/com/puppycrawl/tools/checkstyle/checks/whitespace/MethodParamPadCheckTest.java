@@ -50,7 +50,8 @@ public class MethodParamPadCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "methodparampad" + File.separator + filename);
     }
 
     @Test
