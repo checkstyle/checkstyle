@@ -1,6 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 import java.util.Vector;
-
 /** Test input for MethodDefPadCheck */
 public class InputMethodParamPad
 {
@@ -9,7 +8,7 @@ public class InputMethodParamPad
         super();
     }
     
-    public InputMethodParamPad(int aParam)
+    public InputMethodParamPad (int aParam)
     {
         super ();
     }
@@ -34,7 +33,7 @@ public class InputMethodParamPad
     {
         // invoke constructor
         InputMethodParamPad pad = new InputMethodParamPad();
-        pad = new InputMethodParamPad();
+        pad = new InputMethodParamPad ();
         pad = new InputMethodParamPad
             ();
 
@@ -58,17 +57,17 @@ public class InputMethodParamPad
         p.method
             ();
 
-        Integer.parseInt("0");
-        Integer.parseInt ("0");
-        Integer.parseInt
-            ("0");
+        java.lang.Integer.parseInt("0");
+        java.lang.Integer.parseInt ("0");
+        java.lang.Integer.parseInt
+            ("0");    
     }
-
+    
     public void newArray()
     {
         int[] a = new int[]{0, 1};
-        Vector<String> v = new Vector<String>();
-        Vector<String> v1 = new Vector<String>();
+        java.util.Vector<String> v = new java.util.Vector<String>();
+        java.util.Vector<String> v1 = new Vector<String>();
     }
 
     enum TestEnum {
@@ -82,3 +81,4 @@ public class InputMethodParamPad
         }
     }
 }
+
