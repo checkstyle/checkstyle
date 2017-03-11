@@ -88,7 +88,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
     }
     
     @Test 
-    public void whitespaceAroundField() throws Exception{
+    public void whitespaceAroundFieldTest() throws Exception{
     	final String[] expectedStringArray = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("WhitespaceAround");
