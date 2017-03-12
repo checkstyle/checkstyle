@@ -54,28 +54,28 @@ public class JavadocDetailNodeParser {
      * {@code "no viable alternative at input 'b \n *\n'"} and it is not
      * clear that error is about missed close HTML tag.
      */
-    public static final String MSG_JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
+    public static final String JAVADOC_MISSED_HTML_CLOSE = "javadoc.missed.html.close";
 
     /**
      * Message key of error message.
      */
-    public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
+    public static final String JAVADOC_WRONG_SINGLETON_TAG =
         "javadoc.wrong.singleton.html.tag";
 
     /**
      * Parse error while rule recognition.
      */
-    public static final String MSG_JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
+    public static final String JAVADOC_PARSE_RULE_ERROR = "javadoc.parse.rule.error";
 
     /**
      * Error message key for common javadoc errors.
      */
-    public static final String MSG_KEY_PARSE_ERROR = "javadoc.parse.error";
+    public static final String KEY_PARSE_ERROR = "javadoc.parse.error";
 
     /**
      * Unrecognized error from antlr parser.
      */
-    public static final String MSG_KEY_UNRECOGNIZED_ANTLR_ERROR =
+    public static final String KEY_UNRECOGNIZED_ANTLR_ERROR =
             "javadoc.unrecognized.antlr.error";
 
     /** Symbols with which javadoc starts. */
@@ -133,7 +133,7 @@ public class JavadocDetailNodeParser {
             // There are cases when antlr error listener does not handle syntax error
             if (parseErrorMessage == null) {
                 parseErrorMessage = new ParseErrorMessage(javadocCommentAst.getLineNo(),
-                        MSG_KEY_UNRECOGNIZED_ANTLR_ERROR,
+                    KEY_UNRECOGNIZED_ANTLR_ERROR,
                         javadocCommentAst.getColumnNo(), ex.getMessage());
             }
 
@@ -474,15 +474,15 @@ public class JavadocDetailNodeParser {
             final int lineNumber = offset + line;
             final Token token = (Token) offendingSymbol;
 
-            if (MSG_JAVADOC_MISSED_HTML_CLOSE.equals(msg)) {
+            if (JAVADOC_MISSED_HTML_CLOSE.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
+                    JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
 
                 throw new IllegalArgumentException(msg);
             }
-            else if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
+            else if (JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
+                    JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
 
                 throw new IllegalArgumentException(msg);
             }
@@ -493,7 +493,7 @@ public class JavadocDetailNodeParser {
                         CaseFormat.UPPER_UNDERSCORE, ruleName);
 
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
+                    JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
             }
         }
     }
