@@ -49,3 +49,16 @@ h2:hover .anchor {
 .anchor {
   display: none;
 }
+
+.source {
+  width: 90%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.wrap-content {
+  white-space: pre-wrap !important;
+  white-space: -moz-pre-wrap !important;
+  white-space: -o-pre-wrap !important;
+  word-wrap: break-word !important;
+}
