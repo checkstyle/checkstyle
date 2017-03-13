@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
-class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Serializable
+class InputGenericWhitespaceDefault implements Comparable<InputGenericWhitespaceDefault>, Serializable
 {
     void meth()
     {
@@ -17,7 +17,7 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
         List < List < Integer > > b = new ArrayList < List < Integer > > ();
     }
     //always 0
-    public int compareTo(InputGenericWhitespace aObject)
+    public int compareTo(InputGenericWhitespaceDefault aObject)
     {
         return 0;
     }
@@ -43,11 +43,11 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
         return 666;
     }
     
-    <T> InputGenericWhitespace(List<T> things, int i)
+    <T> InputGenericWhitespaceDefault(List<T> things, int i)
     {
     }
 
-    public <T> InputGenericWhitespace(List<T> things)
+    public <T> InputGenericWhitespaceDefault(List<T> things)
     {
     }
 

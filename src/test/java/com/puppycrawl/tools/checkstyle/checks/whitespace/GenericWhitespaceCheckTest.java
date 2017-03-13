@@ -56,13 +56,13 @@ public class GenericWhitespaceCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator + "genericwhitespace" + File.separator + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator + "genericwhitespace" + File.separator + filename);
     }
 
     @Test
@@ -105,13 +105,13 @@ public class GenericWhitespaceCheckTest
             "60:60: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
             "63:60: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
-        verify(checkConfig, getPath("InputGenericWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceDefault.java"), expected);
     }
 
     @Test
-    public void testGh47() throws Exception {
+    public void testList() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputGh47.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceList.java"), expected);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testMethodReferences() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMethodReferences3.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceMethodRef1.java"), expected);
     }
 
     @Test
@@ -131,7 +131,7 @@ public class GenericWhitespaceCheckTest
         final String[] expected = {
             "10:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
-        verify(checkConfig, getPath("InputGenericWhitespaceMethodRef.java"), expected);
+        verify(checkConfig, getPath("InputGenericWhitespaceMethodRef2.java"), expected);
     }
 
     @Test
