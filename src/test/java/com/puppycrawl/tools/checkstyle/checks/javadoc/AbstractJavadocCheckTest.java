@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_MISSED_HTML_CLOSE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_WRONG_SINGLETON_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_PARSE_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNRECOGNIZED_ANTLR_ERROR;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -62,9 +62,9 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     public void testNumberFormatException() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(TempCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY_PARSE_ERROR, 52, "no viable "
-                + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;' "
-                + "while parsing HTML_TAG"),
+            "3: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 52, "no viable "
+                + "alternative at input '<ul><li>a' {@link EntityEntry} (by way of {@link #;'",
+                "HTML_TAG"),
         };
         verify(checkConfig, getPath("InputTestNumberFormatException.java"), expected);
     }

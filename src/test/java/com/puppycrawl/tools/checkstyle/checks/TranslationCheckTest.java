@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MISSING_TRANSLATION_FILE;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.junit.Assert.assertThat;
@@ -133,7 +134,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'messages_translation.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "messages_translation.properties"),
         };
         verify(
             createChecker(checkConfig),
@@ -153,7 +155,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'messages_translation_de.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "messages_translation_de.properties"),
         };
         verify(
             createChecker(checkConfig),
@@ -172,7 +175,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'messages-translation.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "messages-translation.properties"),
         };
         verify(
             createChecker(checkConfig),
@@ -192,7 +196,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'messages-translation_tr.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "messages-translation_tr.properties"),
         };
         verify(
             createChecker(checkConfig),
@@ -231,7 +236,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
             };
 
         final String[] expected = {
-            "0: Properties file 'messages_home_de.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "messages_home_de.properties"),
         };
         verify(
             createChecker(checkConfig),
@@ -276,7 +282,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'ButtonLabels_ja.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "ButtonLabels_ja.properties"),
         };
         verify(
             createChecker(checkConfig),
@@ -305,7 +312,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'ButtonLabels_ja.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "ButtonLabels_ja.properties"),
         };
 
         verify(
@@ -335,7 +343,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'ButtonLabels_ja.properties' is missing.",
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                    "ButtonLabels_ja.properties"),
         };
 
         verify(
@@ -359,9 +368,9 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         };
 
         final String[] expected = {
-            "0: Properties file 'MyLabelsI18_fr.properties' is missing.",
-            "0: Properties file 'MyLabelsI18_ja.properties' is missing.",
-            };
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "MyLabelsI18_fr.properties"),
+            "0: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE, "MyLabelsI18_ja.properties"),
+        };
 
         verify(
             createChecker(checkConfig),

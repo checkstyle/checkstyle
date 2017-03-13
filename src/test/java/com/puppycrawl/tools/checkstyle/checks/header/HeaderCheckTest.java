@@ -30,7 +30,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Locale;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -255,9 +254,6 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
 
         final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         checker.addListener(new BriefUtLogger(stream));
@@ -282,9 +278,6 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
 
         final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         checker.addListener(new BriefUtLogger(stream));
