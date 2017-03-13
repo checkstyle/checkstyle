@@ -34,10 +34,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -160,6 +163,9 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             final IndentComment... linesWithWarn) throws Exception {
         final Checker checker = createChecker(config);
         checker.addListener(new IndentAudit(linesWithWarn));
+        checker.setLocaleCountry(Locale.ROOT.getCountry());
+        checker.setLocaleLanguage(Locale.ROOT.getLanguage());
+        checker.finishLocalSetup();
         verify(checker, new File[] {new File(filePath)}, filePath, expected);
     }
 
@@ -785,8 +791,12 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "112: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
         };
 
+        final Checker checker = createChecker(checkConfig);
+        checker.setLocaleCountry(Locale.ROOT.getCountry());
+        checker.setLocaleLanguage(Locale.ROOT.getLanguage());
+        checker.finishLocalSetup();
         //Test input for this test case is not checked due to issue #693.
-        verify(checkConfig, fileName, expected);
+        verify(checker, fileName, expected);
     }
 
     @Test
@@ -1735,6 +1745,19 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "9: " + getCheckMessage(MSG_ERROR, "}", 8, 0),
         };
         verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Override
+    protected String internalGetCheckMessage(
+            String messageBundle, String messageKey, Object... arguments) {
+        final ResourceBundle resourceBundle = ResourceBundle.getBundle(
+                messageBundle,
+                Locale.ROOT,
+                Thread.currentThread().getContextClassLoader(),
+                new LocalizedMessage.Utf8Control());
+        final String pattern = resourceBundle.getString(messageKey);
+        final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
+        return formatter.format(arguments);
     }
 
     private static final class IndentAudit implements AuditListener {
