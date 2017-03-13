@@ -30,11 +30,11 @@
         <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
         3. Checkout the current source code from: https://github.com/you_user_name/checkstyle/<br/>
         by running
-        <source>
+        <source class="wrap-content">
 git clone git@github.com:you_user_name/checkstyle.git
         </source>
         Attention for Windows users, command should be:
-        <source>
+        <source class="wrap-content">
 git config --global core.autocrlf true
 git clone git@github.com:you_user_name/checkstyle.git
         </source>
@@ -52,37 +52,37 @@ git clone git@github.com:you_user_name/checkstyle.git
       <p>
         Follow these instructions of Git usage and creating a Pull Request:<br/>
            1) Configure remotes:
-           <source>
+           <source class="wrap-content">
 git remote add main https://github.com/checkstyle/checkstyle
            </source>
            2) Create a branch for a new check:
-           <source>
+           <source class="wrap-content">
 git checkout -b my-new-check
            </source>
            3) Commit changes to my-new-check branch:
-           <source>
+           <source class="wrap-content">
 git add .
 git commit -m "commit message"
            </source>
            4) Push branch to GitHub, to allow your mentor to review your code:
-           <source>
+           <source class="wrap-content">
 git push origin my-new-check
            </source>
            5) Repeat steps 3-4 till development is complete<br/>
            6) Update current branch and local master by pulling changes that were done<br/>
            by other contributors:
-           <source>
+           <source class="wrap-content">
 git pull --rebase main master
            </source>
            7) In the process of the rebase, it may discover conflicts.<br/>
            In that case it will stop and allow you to fix the conflicts.<br/>
            After fixing conflicts, use git add . to update the index with those contents,<br/>
            and then just run:
-           <source>
+           <source class="wrap-content">
 git rebase --continue
            </source>
            8) Push branch to GitHub (with all your final changes and actual code of Checkstyle):
-           <source>
+           <source class="wrap-content">
 git push --force origin my-new-check
            </source>
            9) Only after all content is finished and testing is done - send a <a href="https://help.github.com/articles/using-pull-requests/">Pull Request</a>

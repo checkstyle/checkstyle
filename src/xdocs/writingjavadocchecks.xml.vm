@@ -149,7 +149,7 @@ public class MyClass {
 }
       ]]></source>
       <p>Command:</p>
-      <source>java -jar checkstyle-X.XX-all.jar -J MyClass.java</source>
+      <source class="wrap-content">java -jar checkstyle-X.XX-all.jar -J MyClass.java</source>
       <p>Output:</p>
       <source><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
@@ -204,7 +204,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
  * @see AbstractClass
       ]]></source>
       <p>Command:</p>
-      <source>java -jar checkstyle-X.XX-all.jar -j MyJavadocComment.javadoc</source>
+      <source class="wrap-content">java -jar checkstyle-X.XX-all.jar -j MyJavadocComment.javadoc</source>
       <p>Output:</p>
       <source><![CDATA[
 JAVADOC ->  * My <b>class</b>.\r\n * @see AbstractClass<EOF> [0:0]
@@ -343,7 +343,7 @@ JAVADOC -> <audio><source src="horse.ogg" type="audio/ogg"/></audio><EOF> [0:0]
       Input:
       <source>&lt;audio&gt;test</source>
       Output:
-      <source>[ERROR:0] Javadoc comment at column 1 has parse error. Missed HTML close tag 'audio'. Sometimes it means that close tag missed for one of previous tags.</source>
+      <source class="wrap-content">[ERROR:0] Javadoc comment at column 1 has parse error. Missed HTML close tag 'audio'. Sometimes it means that close tag missed for one of previous tags.</source>
       As you see Javadoc parser prints error and doesn't build AST if unknown HTML tag doesn't have matching end tag. If that a case please create an issue against Checkstyle to upgrade parser.
     </p>
 
@@ -474,7 +474,7 @@ JAVADOC -> <p> First </p>\r\n<p> Second </p><EOF> [0:0]
       <p>
        Checkstyle GUI allows to showing javadoc tree in java files. To run in use
       </p>
-      <source>
+      <source class="wrap-content">
 java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
       </source>
       <p>

@@ -183,7 +183,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
         Still with us? Great, you have mastered the basic theory so here
         is your reward - a GUI that displays the structure of a Java source file. To run it type
       </p>
-      <source>
+      <source class="wrap-content">
 java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gui.Main
       </source>
 
@@ -581,17 +581,13 @@ public class MethodLimitCheck extends AbstractCheck
       </p>
 
       <p>For Linux/Unix OS:</p>
-      <source>
-java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar \
-     com.puppycrawl.tools.checkstyle.Main
-     -c config.xml myproject
+      <source class="wrap-content">
+java -classpath mycompanychecks.jar:checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
       </source>
 
       <p>For Windows OS:</p>
-      <source>
-java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar \
-     com.puppycrawl.tools.checkstyle.Main
-     -c config.xml myproject
+      <source class="wrap-content">
+java -classpath mycompanychecks.jar;checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.Main-c config.xml myproject
       </source>
 
       <p>
