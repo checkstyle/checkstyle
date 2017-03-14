@@ -50,7 +50,8 @@ public class MethodParamPadCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "methodparampad" + File.separator + filename);
     }
 
     @Test
@@ -135,7 +136,7 @@ public class MethodParamPadCheckTest
     public void test1322879() throws Exception {
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputWhitespaceAround.java"),
+        verify(checkConfig, getPath("InputMethodParamPadWhitespaceAround.java"),
                expected);
     }
 

@@ -1452,8 +1452,6 @@
                   <exclude>com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableCellRenderer*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/TreeTableModelAdapter*.class</exclude>
-                  <!-- GUI model classes without tests -->
-                  <exclude>com/puppycrawl/tools/checkstyle/gui/MainFrameModel*.class</exclude>
                   <!-- deprecated classes -->
                   <exclude>com/puppycrawl/tools/checkstyle/checks/AbstractFormatCheck.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/checks/AbstractDeclarationCollector*.class</exclude>
