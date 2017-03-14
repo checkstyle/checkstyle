@@ -218,13 +218,13 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             "empty.line.separator.multiple.lines.inside";
 
     /** Allows no empty line between fields. */
-    private boolean allowNoEmptyLineBetweenFields;
+    private boolean allowNoEmptyLineBetweenFields = true;
 
     /** Allows multiple empty lines between class members. */
-    private boolean allowMultipleEmptyLines = true;
+    private boolean allowMultipleEmptyLines = false;
 
     /** Allows multiple empty lines inside class members. */
-    private boolean allowMultipleEmptyLinesInsideClassMembers = true;
+    private boolean allowMultipleEmptyLinesInsideClassMembers = false;
 
     /**
      * Allow no empty line between the fields.
