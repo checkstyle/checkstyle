@@ -71,7 +71,7 @@ public class EmptyLineSeparatorCheckTest
     public void testAllowNoEmptyLineBetweenFields() throws Exception {
 
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "false");
 
         final String[] expected = {
             "21: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -98,7 +98,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testMultipleEmptyLinesBetweenClassMembers() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addAttribute("allowMultipleEmptyLines", "true");
         final String[] expected = {
             "21: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
             "24: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
@@ -114,7 +114,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testFormerArrayIndexOutOfBounds() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addAttribute("allowMultipleEmptyLines", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEmptyLineSeparatorFormerException.java"), expected);
     }
@@ -122,8 +122,8 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testAllowMultipleFieldInClass() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
-        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+        checkConfig.addAttribute("allowMultipleEmptyLines", "true");
+        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
     }
@@ -131,7 +131,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testAllowMultipleImportSeparatedFromPackage() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addAttribute("allowMultipleEmptyLines", "true");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
         };
@@ -161,7 +161,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testPrePreviousLineEmptiness() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addAttribute("allowMultipleEmptyLines", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputPrePreviousLineEmptiness.java"), expected);
     }
@@ -169,7 +169,8 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testDisAllowMultipleEmptyLinesInsideClassMembers() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "tr
+ue");
         final String[] expected = {
             "27: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
             "39: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
