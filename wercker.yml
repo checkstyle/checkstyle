@@ -156,6 +156,8 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
           groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
@@ -171,10 +173,10 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#checkstyle/checkstyle/' projects-for-travis.properties
-          sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#checkstyle/checkstyle/' projects-for-wercker.properties
+          sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
@@ -189,9 +191,9 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#guava/guava/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#guava/guava/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
@@ -206,9 +208,9 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#hibernate-orm/hibernate-orm/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#hibernate-orm/hibernate-orm/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
@@ -224,9 +226,9 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#findbugs/findbugs/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#findbugs/findbugs/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
@@ -241,9 +243,9 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#spring-framework/spring-framework/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#spring-framework/spring-framework/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
@@ -258,9 +260,9 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#Hbase/Hbase/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#Hbase/Hbase/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
@@ -275,11 +277,11 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#pmd/pmd/' projects-for-travis.properties
-          sed -i'' 's/#elasticsearch/elasticsearch/' projects-for-travis.properties
-          sed -i'' 's/#lombok-ast/lombok-ast/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#pmd/pmd/' projects-for-wercker.properties
+          sed -i'' 's/#elasticsearch/elasticsearch/' projects-for-wercker.properties
+          sed -i'' 's/#lombok-ast/lombok-ast/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
@@ -294,14 +296,14 @@ build:
           set -e
           git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
-          sed -i'' 's/^guava/#guava/' projects-for-travis.properties
-          sed -i'' 's/#RxJava/RxJava/' projects-for-travis.properties
-          sed -i'' 's/#java-design-patterns/java-design-patterns/' projects-for-travis.properties
-          sed -i'' 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-travis.properties
-          sed -i'' 's/#apache-ant/apache-ant/' projects-for-travis.properties
-          sed -i'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-travis.properties
-          sed -i'' 's/#android-launcher/android-launcher/' projects-for-travis.properties
-          groovy ./launch.groovy --listOfProjects projects-for-travis.properties --config checks-nonjavadoc-error.xml
+          sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+          sed -i'' 's/#RxJava/RxJava/' projects-for-wercker.properties
+          sed -i'' 's/#java-design-patterns/java-design-patterns/' projects-for-wercker.properties
+          sed -i'' 's/#MaterialDesignLibrary/MaterialDesignLibrary/' projects-for-wercker.properties
+          sed -i'' 's/#apache-ant/apache-ant/' projects-for-wercker.properties
+          sed -i'' 's/#apache-jsecurity/apache-jsecurity/' projects-for-wercker.properties
+          sed -i'' 's/#android-launcher/android-launcher/' projects-for-wercker.properties
+          groovy ./launch.groovy --listOfProjects projects-for-wercker.properties --config checks-nonjavadoc-error.xml
           cd ../../
           rm -rf contribution
         else
