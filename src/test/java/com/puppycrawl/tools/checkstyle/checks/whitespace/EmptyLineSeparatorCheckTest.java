@@ -40,7 +40,8 @@ public class EmptyLineSeparatorCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "emptylineseparator" + File.separator + filename);
     }
 
     @Test
@@ -163,7 +164,8 @@ public class EmptyLineSeparatorCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addAttribute("allowMultipleEmptyLines", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputPrePreviousLineEmptiness.java"), expected);
+        verify(checkConfig,
+            getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
     }
 
     @Test
