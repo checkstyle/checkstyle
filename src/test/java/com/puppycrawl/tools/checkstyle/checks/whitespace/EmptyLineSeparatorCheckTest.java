@@ -169,8 +169,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testDisAllowMultipleEmptyLinesInsideClassMembers() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "tr
-ue");
+        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "true");
         final String[] expected = {
             "27: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
             "39: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
