@@ -721,23 +721,63 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
 
       <subsection name="Examples">
         <p>
-          To configure the check:
+          To configure the check with default parameters:
         </p>
         <source>
-&lt;module name=&quot;MethodParamPad&quot;/&gt;
+          &lt;module name=&quot;MethodParamPad&quot;/&gt;
         </source>
-
+        <p>
+          Example of declarations with padding between identifiers that is not expected by check(bad case):
+        </p>
+        <source>
+class Foo
+  {
+  Foo () {}             //there is padding between constructor identifier and left parenthesis
+  public void foo () {} //there is padding between method identifier and left parenthesis
+}
+        </source>
+        <p>
+          Example of declarations without padding between identifiers that is
+          expected by check with default configuration:
+        </p>
+        <source>
+class Foo
+{
+  Foo() {}             //there isnt padding between constructor identifier and left parenthesis
+  public void foo() {} //there isnt padding between method identifier and left parenthesis
+}
+        </source>
         <p>
           To configure the check to require a space after the identifier of a
           method definition, except if the left parenthesis occurs on a new
           line:
         </p>
         <source>
-&lt;module name=&quot;MethodParamPad&quot;&gt;
-    &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
-    &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
-    &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;MethodParamPad&quot;&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+          &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
+          &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
+          &lt;/module&gt;
+        </source>
+        <p>
+          Example of method declaration with required padding between identifier and
+          left parenthesis,except line wrapping:
+        </p>
+        <source>
+class Foo
+{
+  public void foo () {}  //there is padding between identifier of a method definition and left parenthesis
+}
+        </source>
+        <p>
+          Example of method declaration when space between identifier of a method definition and left parenthesis is forbidden:
+        </p>
+        <source>
+class Foo
+{
+  public void foo
+  () {}  //there isn't space after identifier of a method definition, but line break is allowed
+}
         </source>
       </subsection>
 
