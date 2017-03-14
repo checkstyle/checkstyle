@@ -338,7 +338,7 @@
                   <td>Combines multiple tools (CheckStyle, findbugs, PMD, Cobertura, etc.)</td>
               </tr>
               <tr>
-                  <td><a href="http://www.bluej.org">BlueJ</a></td>
+                  <td><a href="https://www.bluej.org/">BlueJ</a></td>
                   <td>Rick Giles</td>
                   <td><a href="http://bluejcheckstyle.sourceforge.net/">bluejcheckstyle home page</a></td>
                   <td/>
