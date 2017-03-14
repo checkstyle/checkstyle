@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.util.function.Function;
 import java.util.function.IntFunction;
