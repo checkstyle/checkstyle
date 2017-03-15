@@ -846,6 +846,9 @@ package com.puppycrawl.
 
 import com.puppycrawl.tools.
     checkstyle.api.AbstractCheck;
+
+import com.puppycrawl.tools.
+    checkstyle.TreeWalker    
       </source>
       <p>
         To configure the check to force no line-wrapping
@@ -868,6 +871,8 @@ import com.puppycrawl.tools.
       </p>
       <source>
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+
+import com.puppycrawl.tools.checkstyle.TreeWalker
       </source>
       </subsection>
 
