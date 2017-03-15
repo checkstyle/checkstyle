@@ -2,7 +2,7 @@
 // Test case file for FOR_ITERATION.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforiteratorpad;
 
 class InputEmptyForIteratorPad
 {
