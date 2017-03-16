@@ -197,6 +197,12 @@
                 Set, HashSet, SortedSet, TreeSet,
                 Map, HashMap, SortedMap, TreeMap</td>
           </tr>
+          <tr>
+            <td>excludeClassesRegexps</td>
+            <td>User-configured regular expressions to ignore classes</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>"^$"</code></td>
+          </tr>
         </table>
       </subsection>
 
@@ -215,6 +221,45 @@
 &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
     &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check with two excluded classes <code>HashMap</code> and <code>HashSet</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+    &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check with two regular expressions <code>^Array.*</code> and <code>.*Exception$</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+    &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Array.*, .*Exception$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          The following example demonstrates usage of <b>excludedClasses</b> and <b>excludeClassesRegexps</b> properties
+        </p>
+        <p>
+          Expected result is one class <code>Date</code>
+        </p>
+        <source>
+&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+    &lt;property name=&quot;excludedClasses&quot; value=&quot;ArrayList&quot;/&gt;
+    &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Hash.*&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+public class InputClassCoupling {
+    public Set _set = new HashSet();
+    public Map _map = new HashMap();
+    public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+    public Date _date = new Date();
+}
         </source>
       </subsection>
 
@@ -293,6 +338,12 @@
                 List, ArrayList, Deque, Queue, LinkedList,
                 Set, HashSet, SortedSet, TreeSet,
                 Map, HashMap, SortedMap, TreeMap</td>
+          </tr>
+          <tr>
+            <td>excludeClassesRegexps</td>
+            <td>User-configured regular expressions to ignore classes</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>"^$"</code></td>
           </tr>
         </table>
       </subsection>
