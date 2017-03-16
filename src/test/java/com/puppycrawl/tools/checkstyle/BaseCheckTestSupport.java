@@ -369,7 +369,7 @@ public class BaseCheckTestSupport {
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-    protected String getCheckMessage(
+    protected static String getCheckMessage(
             Class<?> clazz, String messageKey, Object... arguments) {
         return internalGetCheckMessage(getMessageBundle(clazz.getName()), messageKey, arguments);
     }
@@ -382,7 +382,7 @@ public class BaseCheckTestSupport {
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      */
-    protected String internalGetCheckMessage(
+    private static String internalGetCheckMessage(
             String messageBundle, String messageKey, Object... arguments) {
         final ResourceBundle resourceBundle = ResourceBundle.getBundle(
                 messageBundle,
