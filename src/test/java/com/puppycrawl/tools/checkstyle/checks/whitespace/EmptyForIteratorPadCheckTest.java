@@ -49,7 +49,9 @@ public class EmptyForIteratorPadCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator 
+                + "iteratorpad" + File.separator 
+                + filename);
     }
 
     @Test
@@ -66,7 +68,7 @@ public class EmptyForIteratorPadCheckTest
             "43:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
             "55:11: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
     }
 
     @Test
@@ -75,7 +77,7 @@ public class EmptyForIteratorPadCheckTest
         final String[] expected = {
             "23:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
     }
 
     @Test
@@ -95,7 +97,7 @@ public class EmptyForIteratorPadCheckTest
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+            verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
