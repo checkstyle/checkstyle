@@ -34,12 +34,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,7 +49,6 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -163,9 +160,6 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             final IndentComment... linesWithWarn) throws Exception {
         final Checker checker = createChecker(config);
         checker.addListener(new IndentAudit(linesWithWarn));
-        checker.setLocaleCountry(Locale.ROOT.getCountry());
-        checker.setLocaleLanguage(Locale.ROOT.getLanguage());
-        checker.finishLocalSetup();
         verify(checker, new File[] {new File(filePath)}, filePath, expected);
     }
 
@@ -791,12 +785,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             "112: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
         };
 
-        final Checker checker = createChecker(checkConfig);
-        checker.setLocaleCountry(Locale.ROOT.getCountry());
-        checker.setLocaleLanguage(Locale.ROOT.getLanguage());
-        checker.finishLocalSetup();
         //Test input for this test case is not checked due to issue #693.
-        verify(checker, fileName, expected);
+        verify(checkConfig, fileName, expected);
     }
 
     @Test
@@ -1747,17 +1737,37 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
-    @Override
-    protected String internalGetCheckMessage(
-            String messageBundle, String messageKey, Object... arguments) {
-        final ResourceBundle resourceBundle = ResourceBundle.getBundle(
-                messageBundle,
-                Locale.ROOT,
-                Thread.currentThread().getContextClassLoader(),
-                new LocalizedMessage.Utf8Control());
-        final String pattern = resourceBundle.getString(messageKey);
-        final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
-        return formatter.format(arguments);
+    /**
+     * Verifies that the arguments of {@link IndentationCheck#MSG_ERROR},
+     * {@link IndentationCheck#MSG_CHILD_ERROR}, {@link IndentationCheck#MSG_CHILD_ERROR_MULTI},
+     * {@link IndentationCheck#MSG_CHILD_ERROR_MULTI} are in appropriate order.
+     *
+     * In other tests, the argument 0 and text before it are chopped off and only the rest of
+     * messages are verified. Therefore, the argument 0 is required to be the first argument in
+     * the messages above. If we update the messages in the future, it is required to keep the
+     * arguments in appropriate order to ensure other tests will work.
+     *
+     * @see IndentComment#getExpectedMessagePostfix(String)
+     */
+    @Test
+    public void testArgumentOrderOfErrorMessages() {
+        final String[] arguments = {"##0##", "##1##", "##2##"};
+        final String[] messages = {
+            getCheckMessage(MSG_ERROR, (Object[]) arguments),
+            getCheckMessage(MSG_CHILD_ERROR, (Object[]) arguments),
+            getCheckMessage(MSG_ERROR_MULTI, (Object[]) arguments),
+            getCheckMessage(MSG_CHILD_ERROR_MULTI, (Object[]) arguments),
+        };
+        final boolean isInOrder = Arrays.stream(messages).allMatch(msg -> {
+            final int indexOfArgumentZero = msg.indexOf(arguments[0]);
+            return Arrays.stream(arguments).mapToInt(msg::indexOf)
+                    .allMatch(index -> index >= indexOfArgumentZero);
+        });
+        assertTrue(
+                "the argument 0 of error messages (indentation.error, indentation.child.error,"
+                        + " indentation.error.multi, indentation.child.error.multi)"
+                        + " is required to be the first argument of them",
+                isInOrder);
     }
 
     private static final class IndentAudit implements AuditListener {
@@ -1801,12 +1811,15 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             final IndentComment comment = comments[position];
             position++;
 
-            assertTrue(
-                    "input expected warning #" + position + " at line " + comment.getLineNumber()
-                            + " to report '" + comment.getExpectedMessage() + "' but got instead: "
-                            + line + ": " + message,
-                    line == comment.getLineNumber()
-                            && message.endsWith(comment.getExpectedMessage()));
+            final String possibleExceptedMessages = Arrays.stream(comment.getExpectedMessages())
+                    .reduce("", (cur, next) -> cur + "\"" + next + "\", ");
+            final String assertMessage = String.format(
+                    Locale.ROOT,
+                    "input expected warning #%d at line %d to report one of the following: %s"
+                            + "but got instead: %d: %s",
+                    position, comment.getLineNumber(), possibleExceptedMessages, line, message);
+            assertTrue(assertMessage, line == comment.getLineNumber()
+                    && Arrays.stream(comment.getExpectedMessages()).anyMatch(message::endsWith));
         }
 
         @Override
@@ -1816,6 +1829,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     private static final class IndentComment {
+        /** Used to locate the index of argument zero of error messages. */
+        private static final String FAKE_ARGUMENT_ZERO = "##0##";
         private final int lineNumber;
         private final int indent;
         /** Used for when violations report nodes not first on the line. */
@@ -1838,15 +1853,28 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             warning = match.group(5) != null;
         }
 
-        public String getExpectedMessage() {
+        public String[] getExpectedMessages() {
+            final String[] expectedMessages;
             if (expectedWarning.contains(",")) {
-                return "incorrect indentation level " + (indent + indentOffset)
-                        + ", expected level should be one of the following: " + expectedWarning
-                        + ".";
+                expectedMessages = new String[] {
+                    getExpectedMessagePostfix(MSG_ERROR_MULTI),
+                    getExpectedMessagePostfix(MSG_CHILD_ERROR_MULTI),
+                };
+            } else {
+                expectedMessages = new String[] {
+                    getExpectedMessagePostfix(MSG_ERROR),
+                    getExpectedMessagePostfix(MSG_CHILD_ERROR),
+                };
             }
+            return expectedMessages;
+        }
 
-            return "incorrect indentation level " + (indent + indentOffset)
-                    + ", expected level should be " + expectedWarning + ".";
+        private String getExpectedMessagePostfix(final String messageKey) {
+            final String msg = getCheckMessage(IndentationCheck.class, messageKey,
+                    FAKE_ARGUMENT_ZERO, indent + indentOffset, expectedWarning);
+            final int indexOfMsgPostfix = msg.indexOf(FAKE_ARGUMENT_ZERO)
+                    + FAKE_ARGUMENT_ZERO.length();
+            return msg.substring(indexOfMsgPostfix);
         }
 
         public int getLineNumber() {
