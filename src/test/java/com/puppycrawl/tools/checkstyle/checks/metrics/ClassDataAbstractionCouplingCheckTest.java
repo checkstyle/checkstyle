@@ -83,4 +83,39 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             assertEquals("Unknown type: ctor[0x-1]", ex.getMessage());
         }
     }
+
+    @Test
+    public void testRegularExpression() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+        checkConfig.addAttribute("excludedClasses", "InnerClass");
+        checkConfig.addAttribute("excludeClassesRegexps", "^Hash.*");
+
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
+            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+        };
+
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+    }
+
+    @Test
+    public void testEmptyRegularExpression() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ClassDataAbstractionCouplingCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+        checkConfig.addAttribute("excludedClasses", "InnerClass");
+        checkConfig.addAttribute("excludeClassesRegexps", "");
+
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+        };
+
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+    }
 }

@@ -20,11 +20,14 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -32,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Base class for coupling calculation.
@@ -73,6 +77,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private int max;
     /** Package of the file we check. */
     private String packageName;
+    /** User-configured regular expressions to ignore classes. */
+    private List<Pattern> excludeClassesRegexps = new ArrayList<>();
 
     /** Current context. */
     private Context context = new Context("", 0, 0);
@@ -83,6 +89,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     protected AbstractClassCouplingCheck(int defaultMax) {
         max = defaultMax;
+        excludeClassesRegexps.add(CommonUtils.createPattern("^$"));
     }
 
     /**
@@ -117,6 +124,18 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     public final void setExcludedClasses(String... excludedClasses) {
         this.excludedClasses =
             Collections.unmodifiableSet(Arrays.stream(excludedClasses).collect(Collectors.toSet()));
+    }
+
+    /**
+     * Sets user-excluded regular expression of classes to ignore.
+     * @param from array representing regular expressions of classes to ignore.
+     */
+    public void setExcludeClassesRegexps(String... from) {
+        excludeClassesRegexps.clear();
+        excludeClassesRegexps.addAll(Arrays.asList(from.clone())
+                .stream()
+                .map(CommonUtils::createPattern)
+                .collect(Collectors.toSet()));
     }
 
     @Override
@@ -293,8 +312,17 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @return true if we should count this class.
          */
         private boolean isSignificant(String candidateClassName) {
-            return !excludedClasses.contains(candidateClassName)
+            boolean result = !excludedClasses.contains(candidateClassName)
                     && !candidateClassName.startsWith("java.lang.");
+            if (result) {
+                for (Pattern pattern : excludeClassesRegexps) {
+                    if (pattern.matcher(candidateClassName).matches()) {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

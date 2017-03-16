@@ -94,4 +94,36 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
         Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void testRegularExpression() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ClassFanOutComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+        checkConfig.addAttribute("excludeClassesRegexps", "^Inner.*");
+
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+    }
+
+    @Test
+    public void testEmptyRegularExpression() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(ClassFanOutComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+        checkConfig.addAttribute("excludeClassesRegexps", "");
+
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MSG_KEY, 3, 0),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+    }
 }
