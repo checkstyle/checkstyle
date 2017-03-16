@@ -50,7 +50,8 @@ public class EmptyForInitializerPadCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator + "emptyforinitializerpad"
+                + File.separator + filename);
     }
 
     @Test
@@ -65,7 +66,7 @@ public class EmptyForInitializerPadCheckTest
         final String[] expected = {
             "48:14: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
     }
 
     @Test
@@ -74,7 +75,7 @@ public class EmptyForInitializerPadCheckTest
         final String[] expected = {
             "51:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
     }
 
     @Test
@@ -115,7 +116,7 @@ public class EmptyForInitializerPadCheckTest
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+            verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
