@@ -167,8 +167,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final IllegalStateException cause = (IllegalStateException) ex.getCause();
-            assertEquals("Unable to get"
-                            + " class information for @throws tag 'InvalidExceptionName'.",
+            assertEquals(getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
                     cause.getMessage());
         }
     }

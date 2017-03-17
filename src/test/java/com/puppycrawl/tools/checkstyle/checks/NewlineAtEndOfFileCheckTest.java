@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
 import static java.util.Locale.ENGLISH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -188,7 +189,7 @@ public class NewlineAtEndOfFileCheckTest
         final Set<LocalizedMessage> messages = check.process(impossibleFile, lines);
         assertEquals(1, messages.size());
         final Iterator<LocalizedMessage> iterator = messages.iterator();
-        assertEquals("Unable to open ''.", iterator.next().getMessage());
+        assertEquals(getCheckMessage(MSG_KEY_UNABLE_OPEN, ""), iterator.next().getMessage());
     }
 
     @Test

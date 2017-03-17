@@ -143,15 +143,43 @@ public class DetailASTTest {
         final FileContents contents = new FileContents(text);
         final DetailAST rootAST = TreeWalker.parse(contents);
         if (rootAST != null) {
-            checkTree(rootAST, null, null, filename, rootAST);
+            checkTree(filename, rootAST);
         }
     }
 
-    private static void checkTree(final DetailAST node,
-                           final DetailAST parent,
-                           final DetailAST prev,
-                           final String filename,
-                           final DetailAST root) {
+    private static void checkTree(final String filename, final DetailAST root) {
+        DetailAST curNode = root;
+        DetailAST parent = null;
+        DetailAST prev = null;
+        while (curNode != null) {
+            checkNode(curNode, parent, prev, filename, root);
+            DetailAST toVisit = curNode.getFirstChild();
+            if (toVisit != null) {
+                parent = curNode;
+                curNode = toVisit;
+                prev = null;
+            } else {
+                while (curNode != null && toVisit == null) {
+                    toVisit = curNode.getNextSibling();
+                    if (toVisit != null) {
+                        prev = curNode;
+                        curNode = toVisit;
+                    } else {
+                        curNode = curNode.getParent();
+                        if (curNode != null) {
+                            parent = curNode.getParent();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static void checkNode(final DetailAST node,
+                                  final DetailAST parent,
+                                  final DetailAST prev,
+                                  final String filename,
+                                  final DetailAST root) {
         final Object[] params = {
             node, parent, prev, filename, root,
         };
@@ -163,14 +191,5 @@ public class DetailASTTest {
                 "Bad prev node={0} prev={2} parent={1} filename={3} root={4}", Locale.ROOT);
         final String badPrevMsg = badPrevFormatter.format(params);
         assertEquals(badPrevMsg, prev, node.getPreviousSibling());
-
-        if (node.getFirstChild() != null) {
-            checkTree(node.getFirstChild(), node, null,
-                      filename, root);
-        }
-        if (node.getNextSibling() != null) {
-            checkTree(node.getNextSibling(), parent, node,
-                      filename, root);
-        }
     }
 }
