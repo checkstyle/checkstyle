@@ -1,0 +1,473 @@
+[33mcommit 4d1d39f6db117665ec5210e9f885bd2c197f4313[m
+Author: Luolc <luolc.witty@gmail.com>
+Date:   Fri Mar 10 01:36:12 2017 +0800
+
+    Issue #3965: remove from Input files "Compilable with Java8"
+
+[33mcommit e675c19633405ab2bc813c5f0b91356e1c322a5d[m
+Author: Luolc <luolc.witty@gmail.com>
+Date:   Thu Mar 2 15:10:17 2017 +0800
+
+    Issue #3700: Control Characters are not skipped with google_checks config
+
+[33mcommit 7e8aff17447a9ca21e611a6af7ef8a94d892b11a[m
+Author: Pedro Portela <pedro12909@hotmail.com>
+Date:   Tue Mar 7 15:09:56 2017 +0000
+
+    Issue #3943: Add examples for xdoc for ArrayTrailingComma
+
+[33mcommit 0906005ee6cea1d121cbb81833dc21fbac3599f4[m
+Author: Sagar <sagar.shah@evivehealth.com>
+Date:   Sat Mar 4 21:05:24 2017 +0530
+
+    Issue #3904: Split and Organize Checkstyle inputs by Test for SeparatorWrap
+
+[33mcommit 90f6cdc814f093a135ba1e50847dd86134120967[m
+Author: Nikhil Gupta <nanonikhil@gmail.com>
+Date:   Mon Mar 6 05:09:37 2017 +0530
+
+    Issue #3929: Modified OperatorWrapCheckTest.java and moved its input files to operatorwrap subdirectory
+
+[33mcommit 2d060c1cb5170e71fb508c4283e095bc41db1821[m
+Author: Pedro Portela <pedro12909@hotmail.com>
+Date:   Mon Mar 6 01:47:56 2017 +0000
+
+    Issue #3897: Split input test files for WhitespaceAfterCheckTest
+
+[33mcommit 7f10c214662ef5c3aa1e2a33a85b596ca645d860[m
+Author: Sagar <sagar.shah@evivehealth.com>
+Date:   Sat Mar 4 16:04:08 2017 +0530
+
+    Issue #3910: CommitValidationTest: add character limit to line
+
+[33mcommit 55041a390865fc15ddddcb22ebe26abf7e348648[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Tue Mar 7 06:27:08 2017 -0800
+
+    infra: add simple-binary-encoding to no-error testing
+
+[33mcommit 8e649173a8248470975b370800b516e2c0de4d35[m
+Author: Sagar <sagar.shah@evivehealth.com>
+Date:   Sat Mar 4 20:30:12 2017 +0530
+
+    Issue #3906: update documentation for usage of period property at SummaryJavadoc
+
+[33mcommit e70836bb3dec30734f5fd51b63d4dc6cbe24679d[m
+Author: Andrew Kuchev <0coming.soon@gmail.com>
+Date:   Thu Mar 2 18:23:18 2017 +0500
+
+    Issue #3329: Added lambda to ParenPad
+
+[33mcommit b3cd54c7cdab80932c2ce97a9e705bdbc01b2861[m
+Author: Sagar <sagar.shah@evivehealth.com>
+Date:   Sun Mar 5 04:35:28 2017 +0530
+
+    spelling: corrected sentence
+
+[33mcommit 6ae9253d730e8bf0dcd864f545ae1776c59861b3[m
+Author: Piyush Sharma <ps26oct@gmail.com>
+Date:   Fri Mar 3 22:03:22 2017 +0530
+
+    Issue #3900: Modified TypecastParenPadCheckTest.java and moved its test-files to a subdir
+
+[33mcommit 9114dea760f6ee30668c2fd1f8d821b489e3e279[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Mar 4 16:13:19 2017 -0800
+
+    Issue #3089: documentation was extended for EmptyLineSeparator
+
+[33mcommit 5f108624a73d1f53ca4dd86fc87e2d9879325e21[m
+Author: ljacqu <ljacqu@users.noreply.github.com>
+Date:   Sat Mar 4 19:26:28 2017 +0100
+
+    spelling: change 'suite' to 'suit'
+
+[33mcommit f26c614d8f5b542e0a1af3b9fcb24b2703939565[m
+Author: Sagar <sagar.shah@evivehealth.com>
+Date:   Sat Mar 4 16:04:08 2017 +0530
+
+    Issue #3910: CommitValidationTest: add character limit to line
+
+[33mcommit 8068599a13ab94c2f4d9ddb836caf7fe017e5fcf[m
+Author: Sagar <sagar.shah@evivehealth.com>
+Date:   Thu Mar 2 01:13:13 2017 +0530
+
+    Issue #3883: Added a new section Tool to print Java treestructure to Writing Checks
+
+[33mcommit 31bb4ea052d1049f945f076ef531ca964268fa8d[m
+Author: Andrei Selkin <andreyselkin@gmail.com>
+Date:   Mon Feb 27 23:04:26 2017 +0300
+
+    Issue #3850: Fixed multiline typecast
+
+[33mcommit cac09c455718b1f96246f9b49710b62c213777f3[m
+Author: Luolc <luolc.witty@gmail.com>
+Date:   Wed Mar 1 01:42:19 2017 +0800
+
+    Issue #3731: expand documentation on METHOD_REF token
+
+[33mcommit f347e30dddd7b903fe610effebce062eabd79067[m
+Author: Vladislav Lisetskii <vladlis54@gmail.com>
+Date:   Wed Mar 1 17:08:49 2017 +0300
+
+    Issue #3869: Provide ability to skip CI executions base on commit files in CircleCI
+
+[33mcommit 1a49cdac6fca0c130e212b49f790865f9ad2c267[m
+Author: Andrei Selkin <andreyselkin@gmail.com>
+Date:   Mon Feb 27 23:04:26 2017 +0300
+
+    Issue #3848: Increase code coverage of RequireThisCheck
+
+[33mcommit f601b17f24e746dbcb7eb931198e9fcf450bfec4[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 13:30:47 2017 -0800
+
+    infra: fix for wercker build problem with 'Could not find artifact neko-htmlunit:jar:2.25-SNAPSHOT' by upgrade to first commit after 2.25 tag
+
+[33mcommit ee700b71b5414720afec1a2e38c7b8b1f77a7813[m
+Author: Craig P. Motlin <cmotlin@gmail.com>
+Date:   Mon Feb 27 13:38:48 2017 -0500
+
+    spelling: fix typo in documentation
+
+[33mcommit 5416ff1b06a356960b53aa311ea09b0549f35574[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:22:07 2017 -0800
+
+    config: bump org.jacoco.agent version to 0.7.9
+
+[33mcommit d310990d43ea2210c977a5ef6361cb959bcfe4c6[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:18:58 2017 -0800
+
+    config: bump equalsverifier version to 2.2.1
+
+[33mcommit fc0751c439dfff94d7829811baaa11c523b29283[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:17:42 2017 -0800
+
+    config: bump ant version to 1.10.1
+
+[33mcommit 6ab478b7736d4e61ed07110e6488a3ab8106c804[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:16:38 2017 -0800
+
+    config: bump wagon-ssh version ro 2.12
+
+[33mcommit ca6f21f131662038ee05ec69c67d8243aa752848[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:23:37 2017 -0800
+
+    config: bump nexus-staging-maven-plugin version to 1.6.8
+
+[33mcommit 497ad25f9a3d5684141fc5384e93c6a7f7fbda82[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:20:27 2017 -0800
+
+    config: bump slf4j-simple version to 1.7.23
+
+[33mcommit f0fd57ae3bbd19ef18f313e42ffdab94fb3b5096[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:27:59 2017 -0800
+
+    config: bump maven-shade-plugin version to 3.0.0
+
+[33mcommit f48e33f56b37de7bba6eb899df5ad536b5e23f3f[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:26:24 2017 -0800
+
+    config: bump forbiddenapis version to 2.3
+
+[33mcommit e656b8ca8f5112a90ab016ce1afb0d76ec83ba7e[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 27 06:25:20 2017 -0800
+
+    config: bump build-helper-maven-plugin version to 3.0.0
+
+[33mcommit ce21086e087661553f3a774c38362327ee88996a[m
+Author: Vladislav Lisetskii <vladlis54@gmail.com>
+Date:   Fri Feb 24 15:03:18 2017 +0300
+
+    Issue #3763: Try to avoid non-jdk runtime exceptions in code
+
+[33mcommit e20e2af5756235d6244f2778eddd124542eb89dd[m
+Author: Andrei Selkin <andreyselkin@gmail.com>
+Date:   Sun Feb 26 18:52:58 2017 +0300
+
+    Issue #3843: Add check for missing classes in Cobertura coverage report
+
+[33mcommit e4d90d68f56a67ea79fbafd09dba4ace1f7f023c[m
+Author: Andrei Selkin <andreyselkin@gmail.com>
+Date:   Sun Feb 26 18:05:48 2017 +0300
+
+    Issue #3848: Remove unnecessary if-block to increase code coverage
+
+[33mcommit ba684f1ea4b372728d6b7aa7dcd56f9a1c622fe0[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sun Feb 26 07:02:51 2017 -0800
+
+    minor: gplus link is changed to https://plus.google.com/+CheckstyleJava
+
+[33mcommit c1ed8ea6e677ad6c74b17f9dbff73d3a9f392847[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sun Feb 26 06:42:07 2017 -0800
+
+    Issue #3868: skip deploy if commit is from maven-release-plugin to avoid build failure
+
+[33mcommit d9f9c9b9f21f11a5fd211709a788c7bc700f1fc7[m
+Author: Roman Ivanov <romani@users.noreply.github.com>
+Date:   Sun Feb 26 06:00:34 2017 -0800
+
+    config: bump checkstyle version
+
+[33mcommit 0cbe8063a3a178fd6dfb0d7f6e643a27ae66eebd[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sun Feb 26 05:27:33 2017 -0800
+
+    [maven-release-plugin] prepare for next development iteration
+
+[33mcommit f85b57444abe53c84ee61685a1d30c17e282446f[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sun Feb 26 05:27:28 2017 -0800
+
+    [maven-release-plugin] prepare release checkstyle-7.6
+
+[33mcommit 0d0fc5017682ba6b995b300b3e82b8f4a978d79c[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 20:25:15 2017 -0800
+
+    doc: release notes for 7.6
+
+[33mcommit a099f441701657773cce945bdb22f3dd57f72a3c[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 11:16:18 2017 -0800
+
+    infra: testing skip abilities for wercker
+
+[33mcommit d8ee0a95940e365c52a53668dca959adfd46e701[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 06:52:38 2017 -0800
+
+    infra: make wercker commands multiline to preserve formatting
+
+[33mcommit 73d316442a57bbc07c9ca0946b0fdf1eedf839f9[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 10:25:57 2017 -0800
+
+    infra: update for skips for distelli-manifest.yml
+
+[33mcommit 2f282d63d614eb325f9ca475bc7d5649e59e9161[m
+Author: Roman Ivanov <romani@users.noreply.github.com>
+Date:   Sat Feb 25 10:06:45 2017 -0800
+
+    config: sevntu checkstyle version bump
+
+[33mcommit 55aa8cedc60d4faa776d7a36f8ae2d0bed0ada45[m
+Author: Andrei Selkin <andreyselkin@gmail.com>
+Date:   Thu Feb 23 16:13:15 2017 +0300
+
+    Issue #3843: Disallow import of interfaces from java.util.stream due to coverage problem
+
+[33mcommit 463195c45d1a728b3b67f154821504eb59d57a9a[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 05:54:38 2017 -0800
+
+    infra: introduce skip by content for shippable
+
+[33mcommit 589bf321ee6f65588769193a216eca79c5f7809a[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 05:46:41 2017 -0800
+
+    infra: Issue #3862: fix for osx skipped builds
+
+[33mcommit 5b36d9e7c7973f5447e887b23ebab5e4a8967e6a[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 05:06:11 2017 -0800
+
+    infra: fix for travis:osx problem with 'shell_session_update: command not found'
+
+[33mcommit 683a05135d953a08b94e887db8c83f5da3c66059[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sat Feb 25 05:10:23 2017 -0800
+
+    minor: comment for xtr_releasenotes-gen.sh
+
+[33mcommit 25ae64596996bdf4a8eaf175c12a1bd348570cfd[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Fri Feb 24 15:31:32 2017 -0800
+
+    Issue #3858: set 'set -e' for all scripts commands
+
+[33mcommit 8be5cdcf45c829c8f0bf7c68e325852e6ecdfc86[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Fri Feb 24 15:20:39 2017 -0800
+
+    Issue #3858: 'set -e' in he same script line
+
+[33mcommit f4223fddfa36da2c06b71925e5f00b2ee1cef1ec[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Fri Feb 24 15:07:54 2017 -0800
+
+    Issue #3858: removal of echo at the end if IF block
+
+[33mcommit cc59681347157578f01c28feabedc0807a407185[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Fri Feb 24 14:59:48 2017 -0800
+
+    Issue #3858: add 'set -e'
+
+[33mcommit 257d13b6bb53245d2491e50d4ca8e39ddfc80035[m
+Author: Andrei Selkin <andreyselkin@gmail.com>
+Date:   Mon Feb 20 21:03:19 2017 +0300
+
+    Issue #3830: Fix bug in DesignForExtension when order of annotations changes violation
+
+[33mcommit 0de913bf4d7bca3ddbbf1657d651370002536bf0[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Mon Feb 20 13:07:35 2017 -0800
+
+    minor: doc update for NPATH to show that blocks are calculated the same as methods. Discussion at #3785
+
+[33mcommit dac58b66dce54fcece15a2bb7877158d0721dc81[m
+Author: liscju <piotr.listkiewicz@gmail.com>
+Date:   Sat Feb 18 16:03:05 2017 +0100
+
+    Pull #3841: add allowEmptyCatches parameter to WhitespaceAroundCheck
+
+[33mcommit f9a6b2ae992aa06206aa796047fa795f3c8aff69[m
+Author: Jochen Van de Velde <mail@jochenvandevelde.be>
+Date:   Sun Feb 19 16:27:39 2017 +0100
+
+    Issue #2935: Correct naming in import control DTD
+
+[33mcommit 3eaa031fb7de67dc205fbbff370712bb92fc8259[m
+Author: Andrei Selkin <andreyselkin@gmail.com>
+Date:   Sun Feb 19 13:55:45 2017 +0300
+
+    Issue #3843: Fix coverage problem for DesignForExtension
+
+[33mcommit 29af968bb63a17ccf0f8c51001cc9dfc2f737cdc[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sun Feb 19 06:31:33 2017 -0800
+
+    minor: swap of elements in NPATH xdoc to ease reading
+
+[33mcommit cd88872f9db17c838641bcd32ad7f334893827c0[m
+Author: Vladislav Lisetskii <vladlis54@gmail.com>
+Date:   Fri Feb 17 00:34:06 2017 +0300
+
+    Issue #3729: Reevaluate tokens in IllegalTokenText
+
+[33mcommit e60bf1807aa9d02552948781f8ffa8dcc6c40f16[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Fri Feb 17 17:50:40 2017 -0500
+
+    Issue #3748: updated reason for google's EmptyBlockCheck config
+
+[33mcommit 6e8d1e06728b7defbd734253b3818a33676b62bc[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Mon Feb 13 11:50:36 2017 -0500
+
+    Issue #3721: enforced no abbreviations in checkstyle
+
+[33mcommit a103ccf92ba26a1b7bfb4296f9d9ce85ca6dea79[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Mon Feb 13 11:09:45 2017 -0500
+
+    Issue #3721: expanded message and documentation AbbreviationAsWordInName
+
+[33mcommit 1aa8bcf788f6fa6abfe6bf7c42cf20f54b063ae1[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Thu Feb 16 16:10:47 2017 -0800
+
+    minor: NPATH: clarification for Statement and blocks, empty block is also should be counted as 1
+
+[33mcommit 7f33056426f331b1fc8c0f224fbea09a7f41d266[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Thu Feb 16 15:59:00 2017 -0800
+
+    minor: update for NPathComplexity xdoc to qualify function term with method
+
+[33mcommit 48d48fd09772901470c16d4dfb516b3dff7c73f0[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Wed Feb 15 21:26:23 2017 -0500
+
+    Pull #3835: added missing leave token to AbstractTypeAwareCheck
+
+[33mcommit 67bd379bd8bba435ffb6cbab544c49b2d97944c0[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Thu Feb 16 08:16:05 2017 -0500
+
+    Issue #3701: changed google's message for IllegalTokenText
+
+[33mcommit fe882ab223d069438e0216c8c3d964849b1e4456[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Mon Feb 13 10:24:08 2017 -0500
+
+    Issue #3701: removed backspace from google's IllegalTokenText
+
+[33mcommit 34ef127bdc17c8103b68b2cd5fe5fdd2b92be0f6[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Mon Feb 13 16:35:13 2017 -0500
+
+    Issue #3735: added lambdas to NeedBraces for checkstyle config
+
+[33mcommit 2b645405ac9a4ecf96e1a55d41261b0530ae54a4[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Mon Feb 13 16:13:43 2017 -0500
+
+    Issue #3751: added assert literal to checkstyle illegal token
+
+[33mcommit dcd5615e9e3e09a74d090e230a5eb88fc22e942e[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Mon Feb 13 10:15:58 2017 -0500
+
+    Issue #3803: added new case for if and or operator for IndentationCheck
+
+[33mcommit 2e29226c84a8f1f9833383f5a6d4a216ec744ad9[m
+Author: rnveach <rveach02@gmail.com>
+Date:   Mon Feb 13 08:23:52 2017 -0500
+
+    Issue #3749: updated reason for google's OperatorWrapCheck config
+
+[33mcommit 4bc519ac0589a96699d739d966e90f7930bf9f76[m
+Author: shawn.kovalchick <shawn.kovalchick@mobileposse.com>
+Date:   Wed Jan 18 11:08:07 2017 -0500
+
+    Issue #3733: Modify indent check to handle multiple, stacked annotations
+
+[33mcommit 8b367e9d35b7bdecabaca34ab8f906737cf152e4[m
+Author: SATO Yusuke <yusuke.sato.zz@gmail.com>
+Date:   Wed Feb 15 00:23:26 2017 +0900
+
+    Issue #3831: fixed funny messages in messages_ja.properties
+
+[33mcommit dd0208b1ba56b5e720d8e453d3d94083a0ce881c[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Tue Feb 14 17:50:03 2017 -0800
+
+    minor: links to w3schools were updated to use https as linkcheck plugin detected redirect
+
+[33mcommit 0f7c70e68f7334eb3c20d84f62226c12563feba1[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Tue Feb 14 17:34:25 2017 -0800
+
+    minor: change eclipse links to https to avoid linkcheck plugin violations 'SocketException : Connection reset'
+
+[33mcommit e307efd92b98c19c879db9b0ea3d20bc4460a532[m
+Author: Jochen Van de Velde <mail@jochenvandevelde.be>
+Date:   Fri Feb 10 20:14:22 2017 +0100
+
+    Issue #3736: Clean up import control configuration
+
+[33mcommit a169e60720ae1f9ae3c93ef467be7c45aee13123[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sun Feb 12 16:04:45 2017 -0800
+
+    Issue #3818: skip travis deploy phase if changes in minor files or other ci configs
+
+[33mcommit 88a419520bc2c5d5be1c224a0c55b412794f3636[m
+Author: Roman Ivanov <ivanov-jr@mail.ru>
+Date:   Sun Feb 12 07:07:27 2017 -0800
+
+    infra: refactoring for wercker config to make replace of property file
