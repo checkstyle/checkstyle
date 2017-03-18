@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class BaseCheckTestSupport {
     private static final Pattern WARN_PATTERN = CommonUtils
-            .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]warn[*]/");
+            .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\s?warn\\s?[*]/");
 
     private static final String XML_NAME = "/google_checks.xml";
 
