@@ -725,8 +725,8 @@ class SwitchExample {
 
         <table>
         <thead><tr><th>Structure</th><th> Complexity expression </th></tr></thead>
-        <tr><td>if ([expr]) { [if-range] }</td><td>NP(if-range) + NP(expr) + 1</td></tr>
-        <tr><td>if [expr] { [if-range] } esle { [else-range] }</td><td>NP(if-range) + NP(expr) + NP(else-range)</td></tr>
+        <tr><td>if ([expr]) { [if-range] }</td><td>NP(if-range) + 1 + NP(expr)</td></tr>
+        <tr><td>if [expr] { [if-range] } esle { [else-range] }</td><td>NP(if-range) + NP(else-range) + NP(expr)</td></tr>
         <tr><td>while ([expr]) { [while-range] } </td><td>NP(while-range) + NP(expr) + 1</td></tr>
         <tr><td>do { [do-range] } while ([expr])</td><td>NP(do-range) + NP(expr) + 1</td></tr>
         <tr><td>for([expr1]; [expr2]; [expr3]) { [for-range] }</td><td>NP(for-range) + NP(expr1) + NP(expr2) + NP(expr3) + 1</td></tr>
