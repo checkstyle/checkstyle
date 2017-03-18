@@ -76,6 +76,10 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "83: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "116: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "121: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "126: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "131: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
         verify(checkConfig, getPath("InputIncorrectSummaryJavaDoc.java"), expected);
     }
@@ -106,6 +110,10 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "116: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "121: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "126: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "131: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         createChecker(checkConfig);

@@ -112,5 +112,25 @@ class InputIncorrectSummaryJavaDoc {
          * An especially short bit of Javadoc.
          */
         void foo6() {}
+
+         /**
+          * mm{@inheritDoc}
+          */
+         void foo7() {}
+
+         /**
+          * {@inheritDoc}mm
+          */
+         void foo9() {}
+
+         /**
+          * {@link #setBounds(int,int,int,int)}
+          */
+         void foo8() {}
+
+         /**
+          *
+          */
+         void foo10() {}
     };
 }
