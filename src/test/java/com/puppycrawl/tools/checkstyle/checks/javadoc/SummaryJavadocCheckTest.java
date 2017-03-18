@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_FIRST_SENTENCE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC_MISSING;
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Before;
@@ -66,17 +67,20 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("forbiddenSummaryFragments",
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "32: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "47: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "53: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "69: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "83: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "103: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "116: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "121: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "126: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "131: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "126: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "131: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputSummaryJavadocIncorrect.java"), expected);
     }
@@ -103,17 +107,33 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "32: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "53: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "69: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "103: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "116: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "121: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "126: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "131: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "126: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "131: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputSummaryJavadocIncorrect.java"), expected);
+    }
+
+    @Test
+    public void testPeriodAtEnd() throws Exception {
+        checkConfig.addAttribute("period", ".");
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "17: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "24: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "31: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verify(checkConfig, getPath("InputPeriodAtEnd.java"), expected);
     }
 }

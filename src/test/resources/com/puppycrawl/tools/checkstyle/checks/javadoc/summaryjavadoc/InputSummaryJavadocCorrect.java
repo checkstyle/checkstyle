@@ -16,6 +16,7 @@ class InputSummaryJavadocCorrect {
     void foo3() {}
     
     /**
+     * This is valid.
      * @throws Exception if an error occurs.
      */
     void foo4() throws Exception {}
@@ -48,8 +49,9 @@ class InputSummaryJavadocCorrect {
      */
     void foo10() {}
 
-    /** 
-     * <a href="mailto:vlad@htmlbook.ru"/> 
+    /**
+     * This is summary java doc.
+     * <a href="mailto:vlad@htmlbook.ru"/>
      */
      class InnerInputCorrectJavaDocParagraphCheck {
 
@@ -65,11 +67,12 @@ class InputSummaryJavadocCorrect {
         public static final byte NUL_2 = 0;
 
         /**
-         * Returns the customer ID. This method returns
+         * Returns the customer ID. This method returns.
          */
         int getId() {return 666;}
         
         /**
+         * This is valid.
          * <a href="mailto:vlad@htmlbook.ru"/>.
          */
         void foo2() {}
@@ -81,6 +84,7 @@ class InputSummaryJavadocCorrect {
         void foo3() {}
         
         /**
+         * This is description.
          * @throws Exception if an error occurs.
          */
         void foo4() throws Exception {}
@@ -93,7 +97,7 @@ class InputSummaryJavadocCorrect {
 
         /**
          * An especially short (int... A) bit of Javadoc. This
-         * method returns
+         * method returns.
          */
         void foo6() {}
     }
@@ -124,6 +128,7 @@ class InputSummaryJavadocCorrect {
         void foo3() {}
         
         /**
+         * This is valid.
          * @throws Exception if an error occurs.
          */
         void foo4() throws Exception {}
@@ -147,13 +152,18 @@ class InputSummaryJavadocCorrect {
         boolean emulated1() {return false;}
         
         /**
+         * This is valid.
          * @return Some Javadoc the customer ID.
          */
         int geId() {return 666;} 
         
         /**
+         * This is valid.
          * @return Sentence one. Sentence two.
          */
-        String twoSentences() {return "Sentence one. Sentence two.";} 
+        String twoSentences() {return "Sentence one. Sentence two.";}
+
+         /** Stop instances being created. **/
+         String twoSentences1() {return "Sentence one. Sentence two.";}
     };
 }

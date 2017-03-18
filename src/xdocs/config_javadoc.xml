@@ -1648,7 +1648,7 @@ public boolean isSomething()
         <p>
           Checks that <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use. Summaries that contain
-          only the <code>{@inheritDoc}</code> tag are skipped.
+          only the <code>{@inheritDoc}</code> tag are skipped. Check also violate javadoc that does not contain first sentence.
         </p>
       </subsection>
 
@@ -1680,7 +1680,7 @@ public boolean isSomething()
 
       <subsection name="Examples">
         <p>
-          By default Check validate that first sentence is not empty:
+          By default Check validate that first sentence is not empty and first sentence is not missing:
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
@@ -1785,6 +1785,10 @@ public class TestClass {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.javaDoc%22">
             summary.javaDoc</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.javaDoc.missing%22">
+              summary.javaDoc.missing</a>
           </li>
         </ul>
         <p>
