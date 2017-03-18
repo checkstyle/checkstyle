@@ -356,6 +356,21 @@
                             </td>
                         </tr>
                         <tr>
+                            <td><a name="3.3.4"/><a href="#3.3.4"><img src="images/anchor.png" alt=""/></a></td>
+                            <td>
+                                <a
+                                   href="http://checkstyle.sourceforge.net/reports/google-java-style-20160712.html#s3.3.4-import-class-not-static">
+                                   3.3.4 No static import for classes</a>
+                            </td>
+                            <td>
+                                <img
+                                    src="images/ban_red.png"
+                                    alt="" />
+                                Will be addressed in the issue <a href="https://github.com/checkstyle/checkstyle/issues/4005">#4005</a>.
+                            </td>
+                            <td/>
+                        </tr>
+                        <tr>
                             <td><a name="3.4"/><a href="#3.4"><img src="images/anchor.png" alt=""/></a></td>
                             <td>
                                 <a
@@ -527,10 +542,15 @@
                             </td>
                             <td>
                                 <img
-                                    src="images/ok_green.png"
+                                    src="images/ok_blue.png"
                                     alt="" />
                                 <a
                                     href="config_misc.html#Indentation">Indentation</a>
+                                <br />
+                                The rule "A line is never broken adjacent to the arrow in a lambda, except that a
+                                break may come immediately after the arrow if the body of the lambda consists
+                                of a single unbraced expression" will be addressed in the issue
+                                <a href="https://github.com/checkstyle/checkstyle/issues/4006">#4006</a>.
                             </td>
                             <td>
                                 <a
