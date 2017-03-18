@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -772,7 +773,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
         final String filePath = getPath("InputMain.java");
         final String[] expected = {
-            "0: Got an exception - java.lang.IndexOutOfBoundsException: test",
+            "0: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
         };
 
         verify(checker, filePath, filePath, expected);

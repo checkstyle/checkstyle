@@ -40,7 +40,9 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator
+                + "methodcount" + File.separator
+                + filename);
     }
 
     @Test

@@ -39,7 +39,9 @@ public class FileLengthCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator
+                + "filelength" + File.separator
+                + filename);
     }
 
     @Override
@@ -59,8 +61,8 @@ public class FileLengthCheckTest
             "1: " + getCheckMessage(MSG_KEY, 225, 20),
         };
         verify(createChecker(checkConfig),
-                getPath("InputSimple.java"),
-                getPath("InputSimple.java"), expected);
+                getPath("InputFileLength.java"),
+                getPath("InputFileLength.java"), expected);
     }
 
     @Test
@@ -70,8 +72,8 @@ public class FileLengthCheckTest
         checkConfig.addAttribute("max", "2000");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
-                getPath("InputSimple.java"),
-                getPath("InputSimple.java"), expected);
+                getPath("InputFileLength.java"),
+                getPath("InputFileLength.java"), expected);
     }
 
     @Test
@@ -101,8 +103,8 @@ public class FileLengthCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(createChecker(checkConfig),
-                getPath("InputSimple.java"),
-                getPath("InputSimple.java"), expected);
+                getPath("InputFileLength.java"),
+                getPath("InputFileLength.java"), expected);
     }
 
     @Test
