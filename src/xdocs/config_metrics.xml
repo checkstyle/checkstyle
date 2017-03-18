@@ -738,6 +738,7 @@ class SwitchExample {
         <tr><td>continue</td><td>1</td></tr>
         <tr><td>return</td><td>1</td></tr>
         <tr><td>Statement (even sequential statements)</td><td>1</td></tr>
+        <tr><td>Empty block {}</td><td>1</td></tr>
         <tr><td>Function call</td><td>1</td></tr>
         <tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement(i))</td></tr>
         </table>
