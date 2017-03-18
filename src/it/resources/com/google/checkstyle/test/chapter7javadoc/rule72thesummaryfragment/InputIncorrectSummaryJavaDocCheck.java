@@ -29,7 +29,7 @@ class InputIncorrectSummaryJavaDocCheck {
      */
     public static final byte NUL = 0;
 
-    /** 
+/*warn*//**
      * <a href="mailto:vlad@htmlbook.ru"/> 
      */
      class InnerInputCorrectJavaDocParagraphCheck {
@@ -39,7 +39,7 @@ class InputIncorrectSummaryJavaDocCheck {
           */
         public static final byte NUL = 0;
 
-        /** 
+        /**
          * Some java@doc.
          */
         public static final byte NUL_2 = 0;
@@ -50,7 +50,7 @@ class InputIncorrectSummaryJavaDocCheck {
          */
         boolean emulated() {return false;}
         
-        /**
+/*warn*//**
          * <a href="mailto:vlad@htmlbook.ru"/>
          */
         void foo2() {}
@@ -62,7 +62,7 @@ class InputIncorrectSummaryJavaDocCheck {
         int geId() {return 666;} 
 
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
         
@@ -94,17 +94,17 @@ class InputIncorrectSummaryJavaDocCheck {
          * Some Javadoc.
          */
         void emulated(String s) {}
-        
+
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
-        
+
 /*warn*//**
          * @throws Exception if an error occurs
          */
         void foo4() throws Exception {}
-        
+
         /** An especially short bit of Javadoc. */
         void foo5() {}
 

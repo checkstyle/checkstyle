@@ -16,6 +16,7 @@ class InputCorrectSummaryJavaDocCheck {
     void foo3() {}
     
     /**
+     * This is valid.
      * @throws Exception if an error occurs.
      */
     void foo4() throws Exception {}
@@ -29,8 +30,9 @@ class InputCorrectSummaryJavaDocCheck {
      */
     void foo6() {}
 
-    /** 
-     * <a href="mailto:vlad@htmlbook.ru"/> 
+    /**
+     * This is valid.
+     * <a href="mailto:vlad@htmlbook.ru"/>
      */
      class InnerInputCorrectJavaDocParagraphCheck {
 
@@ -46,11 +48,12 @@ class InputCorrectSummaryJavaDocCheck {
         public static final byte NUL_2 = 0;
 
         /**
-         * Returns the customer ID. This method returns
+         * Returns the customer ID. This method returns.
          */
         int getId() {return 666;}
         
         /**
+         * This is valid.
          * <a href="mailto:vlad@htmlbook.ru"/>.
          */
         void foo2() {}
@@ -62,6 +65,7 @@ class InputCorrectSummaryJavaDocCheck {
         void foo3() {}
         
         /**
+         * This is valid.
          * @throws Exception if an error occurs.
          */
         void foo4() throws Exception {}
@@ -74,7 +78,7 @@ class InputCorrectSummaryJavaDocCheck {
 
         /**
          * An especially short (int... A) bit of Javadoc. This
-         * method returns
+         * method returns.
          */
         void foo6() {}
     }
@@ -105,6 +109,7 @@ class InputCorrectSummaryJavaDocCheck {
         void foo3() {}
         
         /**
+         * This is valid.
          * @throws Exception if an error occurs.
          */
         void foo4() throws Exception {}
@@ -128,6 +133,7 @@ class InputCorrectSummaryJavaDocCheck {
         boolean emulated1() {return false;}
         
         /**
+         * This is valid.
          * @return Some Javadoc the customer ID.
          */
         int geId() {return 666;} 

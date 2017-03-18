@@ -56,15 +56,20 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
             "summary.first.sentence");
         final String msgForbiddenFragment = getCheckMessage(SummaryJavadocCheck.class,
             "summary.javaDoc");
+        final String msgMissingDoc = getCheckMessage(SummaryJavadocCheck.class,
+            "summary.javaDoc.missing");
 
         final String[] expected = {
-            "14: " + msgFirstSentence,
+            "14: " + msgMissingDoc,
+            "32: " + msgMissingDoc,
             "37: " + msgFirstSentence,
             "47: " + msgForbiddenFragment,
+            "53: " + msgMissingDoc,
             "58: " + msgForbiddenFragment,
-            "69: " + msgFirstSentence,
+            "58: " + msgMissingDoc,
+            "69: " + msgMissingDoc,
             "83: " + msgForbiddenFragment,
-            "103: " + msgFirstSentence,
+            "103: " + msgMissingDoc,
         };
 
         final Configuration checkConfig = getCheckConfig("SummaryJavadoc");
