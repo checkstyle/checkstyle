@@ -44,6 +44,8 @@ public class EmptyCatchBlockTest extends BaseCheckTestSupport {
             "28: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
             "49: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
             "71: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "79: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
+            "83: " + getCheckMessage(EmptyCatchBlockCheck.class, "catch.block.empty"),
         };
 
         final Configuration checkConfig = getCheckConfig("EmptyCatchBlock");
