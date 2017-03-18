@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.google.common.base.CharMatcher;
@@ -83,6 +86,14 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final String PERIOD = ".";
 
     /**
+     * Stores allowed values in document for inherit doc literal.
+     */
+    private static final Set<Integer> SKIP_TOKENS = new HashSet<>(
+        Arrays.asList(JavadocTokenTypes.NEWLINE,
+                       JavadocTokenTypes.LEADING_ASTERISK,
+                       JavadocTokenTypes.EOF)
+    );
+    /**
      * Regular expression for forbidden summary fragments.
      */
     private Pattern forbiddenSummaryFragments = CommonUtils.createPattern("^$");
@@ -135,7 +146,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         String firstSentence = getFirstSentence(ast);
         final int endOfSentence = firstSentence.lastIndexOf(period);
         if (endOfSentence == -1) {
-            if (!firstSentence.trim().startsWith("{@inheritDoc}")) {
+            if (!isOnlyInheritDoc(ast)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
         }
@@ -145,6 +156,38 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
+    }
+
+    /**
+     * Finds if inheritDoc is placed properly in java doc.
+     * @param ast Javadoc root node.
+     * @return true if inheritDoc is valid or false.
+     */
+    private static boolean isOnlyInheritDoc(DetailNode ast) {
+        boolean extraTextFound = false;
+        boolean containsInheritDoc = false;
+        for (DetailNode child : ast.getChildren()) {
+            if (child.getType() == JavadocTokenTypes.TEXT) {
+                if (!child.getText().trim().isEmpty()) {
+                    extraTextFound = true;
+                }
+            }
+            else if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                if (child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {
+                    containsInheritDoc = true;
+                }
+                else {
+                    extraTextFound = true;
+                }
+            }
+            else if (!SKIP_TOKENS.contains(child.getType())) {
+                extraTextFound = true;
+            }
+            if (extraTextFound) {
+                break;
+            }
+        }
+        return containsInheritDoc && !extraTextFound;
     }
 
     /**
