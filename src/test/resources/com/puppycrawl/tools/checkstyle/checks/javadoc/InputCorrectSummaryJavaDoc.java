@@ -32,6 +32,22 @@ class InputCorrectSummaryJavaDoc {
     /** {@inheritDoc} */
     void foo7() {}
 
+    /**
+     * {@inheritDoc} */
+    void foo8() {}
+
+    /**
+     * {@inheritDoc}
+     */
+    void foo9() {}
+
+    /**
+     *
+     *
+     * {@inheritDoc}
+     */
+    void foo10() {}
+
     /** 
      * <a href="mailto:vlad@htmlbook.ru"/> 
      */
