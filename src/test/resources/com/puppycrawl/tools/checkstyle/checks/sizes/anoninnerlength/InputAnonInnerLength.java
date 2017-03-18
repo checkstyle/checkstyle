@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2002
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.sizes;
+package com.puppycrawl.tools.checkstyle.checks.sizes.anoninnerlength;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
