@@ -112,7 +112,7 @@ public class RightCurlyCheck extends AbstractCheck {
     private RightCurlyOption option = RightCurlyOption.SAME;
 
     /**
-     * Set the option to enforce.
+     * Sets the option to enforce.
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
@@ -378,7 +378,7 @@ public class RightCurlyCheck extends AbstractCheck {
                 break;
             default:
                 // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
-                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, only.
+                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE only.
                 // It has been done to improve coverage to 100%. I couldn't replace it with
                 // if-else-if block because code was ugly and didn't pass pmd check.
 
