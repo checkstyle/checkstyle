@@ -325,3 +325,12 @@ class NewClass {
         };
     }
 }
+
+class Example {
+
+    void doNothing() {} // ok
+
+    void doNothingElse() { // ok
+
+    }
+}
