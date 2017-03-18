@@ -63,8 +63,8 @@ build:
           CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
           echo CS_version: ${CS_POM_VERSION}
           git clone https://github.com/Hipparchus-Math/hipparchus.git
-          git checkout 905006092493e350dcd68dd7b2ec1dedaf4983b7
           cd hipparchus
+          git checkout 905006092493e350dcd68dd7b2ec1dedaf4983b7
           mvn clean install -DskipTests
           cd ../
           git clone https://github.com/CS-SI/Orekit.git
