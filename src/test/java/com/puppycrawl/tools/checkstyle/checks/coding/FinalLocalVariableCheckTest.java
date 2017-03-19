@@ -226,8 +226,8 @@ public class FinalLocalVariableCheckTest
     public void testFinalLocalVariableFalsePositives() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
         final String[] expected = {
-            "341:16: " + getCheckMessage(MSG_KEY, "c2"),
-            "2184:16: " + getCheckMessage(MSG_KEY, "b"),
+            "344:16: " + getCheckMessage(MSG_KEY, "c2"),
+            "2187:16: " + getCheckMessage(MSG_KEY, "b"),
         };
         verify(checkConfig, getPath("InputFinalLocalVariableFalsePositives.java"), expected);
     }
@@ -247,5 +247,12 @@ public class FinalLocalVariableCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableMultiCatch.java"),
                 expected);
+    }
+
+    @Test
+    public void testLeavingSlistToken() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputFinalLocalVariableLeavingSlistToken.java"), expected);
     }
 }
