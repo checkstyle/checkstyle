@@ -29,7 +29,7 @@
         any coding standard. An example configuration files are supplied
         supporting the <a href="http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html">
         Sun Code Conventions</a>,
-        <a href="http://checkstyle.sourceforge.net/reports/google-java-style.html">Google Java Style</a>.
+        <a href="http://checkstyle.sourceforge.net/reports/google-java-style-20170228.html">Google Java Style</a>.
       </p>
 
       <p>
