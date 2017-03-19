@@ -363,16 +363,34 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * If token is LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, or LITERAL_ELSE, then do not
-     * update the uninitialized variables.
+     * If token is LITERAL_IF and there is an {@code else} following or token is CASE_GROUP and
+     * there is another {@code case} following, then update the uninitialized variables.
      * @param ast token to be checked
      * @return true if should be updated, else false
      */
     private static boolean shouldUpdateUninitializedVariables(DetailAST ast) {
-        return ast.getType() != TokenTypes.LITERAL_TRY
-                && ast.getType() != TokenTypes.LITERAL_CATCH
-                && ast.getType() != TokenTypes.LITERAL_FINALLY
-                && ast.getType() != TokenTypes.LITERAL_ELSE;
+        return isIfTokenWithAnElseFollowing(ast) || isCaseTokenWithAnotherCaseFollowing(ast);
+    }
+
+    /**
+     * If token is LITERAL_IF and there is an {@code else} following.
+     * @param ast token to be checked
+     * @return true if token is LITERAL_IF and there is an {@code else} following, else false
+     */
+    private static boolean isIfTokenWithAnElseFollowing(DetailAST ast) {
+        return ast.getType() == TokenTypes.LITERAL_IF
+                && ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE;
+    }
+
+    /**
+     * If token is CASE_GROUP and there is another {@code case} following.
+     * @param ast token to be checked
+     * @return true if token is CASE_GROUP and there is another {@code case} following, else false
+     */
+    private static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
+        return ast.getType() == TokenTypes.CASE_GROUP
+                && findLastChildWhichContainsSpecifiedToken(
+                        ast.getParent(), TokenTypes.CASE_GROUP, TokenTypes.SLIST) != ast;
     }
 
     /**
@@ -383,7 +401,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param containType the token type which has to be present in the branch
      * @return the matching token, or null if no match
      */
-    public DetailAST findLastChildWhichContainsSpecifiedToken(DetailAST ast, int childType,
+    private static DetailAST findLastChildWhichContainsSpecifiedToken(DetailAST ast, int childType,
                                                               int containType) {
         DetailAST returnValue = null;
         for (DetailAST astIterator = ast.getFirstChild(); astIterator != null;
