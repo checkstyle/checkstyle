@@ -3,6 +3,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class InputFinalLocalVariableFalsePositives {
 
     // spring-framework/spring-web/src/main/java/org/springframework/web/multipart/commons/CommonsFileUploadSupport.java
