@@ -35,7 +35,7 @@ public class IllegalCatchCheckTest extends BaseCheckTestSupport {
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
                 + "coding" + File.separator
-                + "illegalcath" + File.separator 
+                + "illegalcath" + File.separator
                 + filename);
     }
 
