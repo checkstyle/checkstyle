@@ -149,14 +149,14 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     }
 
     @Override
-    public void addChild(AST ast) {
+   public void addChild(AST ast) {
         clearBranchTokenTypes();
         clearChildCountCache(this);
-        super.addChild(ast);
         if (ast != null) {
             ((DetailAST) ast).setParent(this);
-            getFirstChild().setParent(this);
+            ((DetailAST)ast).previousSibling = getLastChild(); 
         }
+        super.addChild(ast);
     }
 
     /**
