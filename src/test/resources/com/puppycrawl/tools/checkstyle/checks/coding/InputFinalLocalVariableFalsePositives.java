@@ -1,5 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class InputFinalLocalVariableFalsePositives {
 
     // spring-framework/spring-web/src/main/java/org/springframework/web/multipart/commons/CommonsFileUploadSupport.java
@@ -2200,5 +2203,221 @@ public class InputFinalLocalVariableFalsePositives {
                 b = "c";
         }
         b = "b";
+    }
+
+    private void foo91() {
+        Integer[] s;
+        if (true) {
+            s = new Integer[0];
+        } else {
+            s = new Integer[5];
+            if (true) {
+                final ArrayList<Integer> retain = new ArrayList<>();
+                for (final Integer c : s) {
+                    if (true) {
+                        retain.add(c);
+                    }
+                }
+                s = retain.toArray(new Integer[retain.size()]);
+            }
+            if (true && s.length > 0) {
+                s = new Integer[] {s[0]};
+            }
+        }
+        Arrays.toString(s);
+    }
+
+    // findbugs/src/java/edu/umd/cs/findbugs/ba/jsr305/TypeQualifierApplications.java
+    private void foo92() {
+        String tqa;
+        if (true) {
+            tqa = null;
+            if (true) {
+            }
+        }
+        else {
+            if (true) {
+            }
+            tqa = "a";
+            if (true) {
+            }
+            if (tqa == null) {
+                if (true) {
+                }
+                tqa = "b";
+                if (true) {
+                    if (tqa == "abc") {
+                    } else if (tqa != null) {
+                    } else {
+                    }
+                }
+            }
+            if (tqa == "bcd") {
+                tqa = null;
+            }
+            if (tqa == null) {
+                if (true) {
+                    if (true) {
+                    }
+                } else {
+                    if (true) {
+                    }
+                    tqa = "c";
+                    if (true) {
+                    }
+                }
+            }
+        }
+    }
+
+    // hibernate-core/src/main/java/org/hibernate/internal/util/collections/BoundedConcurrentHashMap.java
+    private void foo93() {
+        if (true) {
+            String evictedCopy;
+            if (true) {
+                final String evictedEntry = "a";
+                evictedCopy = evictedEntry;
+            } else {
+                evictedCopy = "c";
+                for (int i = 0; i < 0; ++i) {
+                    evictedCopy.trim();
+                }
+                evictedCopy = evictedCopy.trim();
+            }
+        }
+    }
+
+    // spring-framework/spring-core/src/main/java/org/springframework/core/Conventions.java
+    private void foo94() {
+        String valueClass;
+        if (true) {
+            valueClass = "a";
+        }
+        else if (true) {
+            valueClass = "b";
+            if (valueClass == null) {
+                if (true) {
+                }
+                if (true) {
+                }
+                valueClass = "c";
+            }
+        }
+        else {
+            valueClass = "d";
+        }
+    }
+
+    // spring-framework/spring-test/src/main/java/org/springframework/test/annotation/ProfileValueUtils.java
+    private void foo95() {
+        String profileValueSource;
+        if (true) {
+            profileValueSource = "a";
+        }
+        else {
+            try {
+                profileValueSource = "b";
+            }
+            catch (Exception e) {
+                if (true) {
+                }
+                profileValueSource = "c";
+            }
+        }
+    }
+
+    // spring-framework/spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/RequestPartMethodArgumentResolver.java
+    private void foo96() {
+        Object arg;
+        if (true) {
+            arg = "a";
+        }
+        else if (true) {
+            arg = "b";
+        }
+        else if (true) {
+            arg = "c";
+        }
+        else if (true) {
+            arg = "d";
+        }
+        else if (true) {
+            arg = "e";
+        }
+        else if (true) {
+            arg = "f";
+        }
+        else {
+            try {
+                arg = "g";
+                if (arg != null) {
+                    if (true) {
+                    }
+                }
+            }
+            catch (Exception ex) {
+                arg = null;
+            }
+        }
+    }
+
+    // infinispan/commons/src/main/java/org/infinispan/commons/util/concurrent/jdk8backported/BoundedEquivalentConcurrentHashMapV8.java
+    private void foo97() {
+        if (true) {
+            String evictedCopy;
+            if (true) {
+                evictedCopy = "b";
+            } else {
+                evictedCopy = "c";
+                for (int i = 0; i < 0; ++i) {
+                }
+                evictedCopy = "d";
+            }
+        }
+    }
+
+    // infinispan/core/src/main/java/org/infinispan/util/concurrent/BoundedConcurrentHashMap.java
+    private void foo98() {
+        if (true) {
+            String evictedCopy;
+            if (true) {
+                evictedCopy = "b";
+            } else {
+                evictedCopy = "c";
+                for (int i = 0; i < 0; ++i) {
+                }
+                evictedCopy = "d";
+            }
+        }
+    }
+
+    // infinispan/persistence/soft-index/src/main/java/org/infinispan/persistence/sifs/IndexNode.java
+    private void foo99() {
+        int insertionPoint;
+        if (true) {
+            insertionPoint = 0;
+        } else if (true) {
+            insertionPoint = 1;
+        } else {
+            insertionPoint = 2;
+            if (insertionPoint < 0) {
+                insertionPoint = -insertionPoint - 1;
+            } else {
+                insertionPoint++;
+            }
+        }
+    }
+
+    // apache-struts/core/src/main/java/com/opensymphony/xwork2/util/LocalizedTextUtil.java
+    private void foo100() {
+        String result;
+        if (true) {
+            result = "a";
+        } else {
+            result = "b";
+            if (result != null) {
+            }
+            result = "c";
+        }
     }
 }
