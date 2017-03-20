@@ -36,7 +36,8 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator + "methodlength"
+                + File.separator + filename);
     }
 
     @Test
