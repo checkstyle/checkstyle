@@ -3,7 +3,7 @@
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.sizes;
+package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
 strictfp final class InputModifier // illegal order of modifiers for class
 {
