@@ -603,11 +603,26 @@ import android.*;
           </tr>
           <tr>
             <td>illegalPkgs</td>
-            <td>packages to reject</td>
+            <td>Packages to reject, if <b>regexp</b> variable is not set, checks if import is the part of package. If <b>regexp</b> variable is set, then list of packages will be
+                interpreted as regular expressions. Note, all properties for match will be used.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>sun</code></td>
           </tr>
+          <tr>
+            <td>illegalClasses</td>
+            <td>Class names to reject, if <b>regexp</b> variable is not set, checks if import equals class name. If <b>regexp</b> variable is set, then list of class name will be
+                interpreted as regular expressions. Note, all properties for match will be used.</td>
+            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><code>{}</code></td>
+          </tr>
+          <tr>
+            <td>regexp</td>
+            <td>Whether the <b>illegalPkgs</b> and <b>illegalClasses</b> should be interpreted as regular expressions</td>
+            <td><a href="property_types.html#boolean">Boolean</a></td>
+            <td><code>false</code></td>
+          </tr>
         </table>
+
       </subsection>
 
       <subsection name="Examples">
@@ -625,6 +640,162 @@ import android.*;
 &lt;module name=&quot;IllegalImport&quot;&gt;
     &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+            The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.lang.ArithmeticException;
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p>
+          The following example shows class with two illegal imports
+          <ul>
+            <li><b>java.io.*</b>, illegalPkgs property contains this package</li>
+            <li><b>java.sql.Connection</b> is inside java.sql package</li>
+          </ul>
+        </p>
+        <source>
+import java.io.*;           // violation
+import java.lang.ArithmeticException;
+import java.sql.Connection; // violation
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+
+        <p>
+          To configure the check so that it rejects classes <code>java.util.Date</code> and <code>java.sql.Connection</code>:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalImport&quot;&gt;
+    &lt;property name=&quot;illegalClasses&quot; value=&quot;java.util.Date, java.sql.Connection&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p>
+          The following example shows class with two illegal imports
+          <ul>
+            <li><b>java.sql.Connection</b>, illegalClasses property contains this class</li>
+            <li><b>java.util.Date</b>, illegalClasses property contains this class</li>
+          </ul>
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection; // violation
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import java.util.Date;      // violation
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+
+        <p>
+          To configure the check so that it rejects packages not satisfying to regular expression <code>java\.util</code>:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalImport&quot;&gt;
+    &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;illegalPkgs&quot; value=&quot;java\.util&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p>
+          The following example shows class with four illegal imports
+          <ul>
+            <li><b>java.util.List</b></li>
+            <li><b>java.util.Enumeration</b></li>
+            <li><b>java.util.Arrays</b></li>
+            <li><b>java.util.Date</b></li>
+          </ul>
+          All four imports match "java\.util" regular expression
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection;
+import java.util.List;          // violation
+import java.util.Enumeration;   // violation
+import java.util.Arrays;        // violation
+import java.util.Date;          // violation
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+
+        <p>
+          To configure the check so that it rejects class names not satisfying to regular expression <code>^java\.util\.(List|Arrays)</code> and <code>^java\.sql\.Connection</code>:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalImport&quot;&gt;
+    &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
+    &lt;property name=&quot;illegalClasses&quot; value=&quot;^java\.util\.(List|Arrays), ^java\.sql\.Connection&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.util.Enumeration;
+import java.util.Date;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p>
+          The following example shows class with three illegal imports
+          <ul>
+            <li><b>java.sql.Connection</b> matches "^java\.sql\.Connection" regular expression</li>
+            <li><b>java.util.List</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
+            <li><b>java.util.Arrays</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
+          </ul>
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection;     // violation
+import java.util.List;          // violation
+import java.util.Enumeration;
+import java.util.Arrays;        // violation
+import java.util.Date;
+import sun.applet.*;
+
+public class InputIllegalImport { }
         </source>
       </subsection>
 

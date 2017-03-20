@@ -19,10 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -66,8 +71,23 @@ public class IllegalImportCheck
      */
     public static final String MSG_KEY = "import.illegal";
 
+    /** The compiled regular expressions for packages. */
+    private final List<Pattern> illegalPkgsRegexps = new ArrayList<>();
+
+    /** The compiled regular expressions for classes. */
+    private final List<Pattern> illegalClassesRegexps = new ArrayList<>();
+
     /** List of illegal packages. */
     private String[] illegalPkgs;
+
+    /** List of illegal classes. */
+    private String[] illegalClasses;
+
+    /**
+     * Whether the packages or class names
+     * should be interpreted as regular expressions.
+     */
+    private boolean regexp;
 
     /**
      * Creates a new {@code IllegalImportCheck} instance.
@@ -82,6 +102,31 @@ public class IllegalImportCheck
      */
     public final void setIllegalPkgs(String... from) {
         illegalPkgs = from.clone();
+        illegalPkgsRegexps.clear();
+        for (String illegalPkg : illegalPkgs) {
+            illegalPkgsRegexps.add(CommonUtils.createPattern("^" + illegalPkg + "\\..*"));
+        }
+    }
+
+    /**
+     * Set the list of illegal classes.
+     * @param from array of illegal classes
+     */
+    public void setIllegalClasses(String... from) {
+        illegalClasses = from.clone();
+        illegalClassesRegexps.clear();
+        for (String illegalClass : illegalClasses) {
+            illegalClassesRegexps.add(CommonUtils.createPattern(illegalClass));
+        }
+    }
+
+    /**
+     * Controls whether the packages or class names
+     * should be interpreted as regular expressions.
+     * @param regexp a {@code Boolean} value
+     */
+    public void setRegexp(boolean regexp) {
+        this.regexp = regexp;
     }
 
     @Override
@@ -118,18 +163,68 @@ public class IllegalImportCheck
     }
 
     /**
-     * Checks if an import is from a package that must not be used.
+     * Checks if an import matches one of the regular expressions
+     * for illegal packages or illegal class names.
      * @param importText the argument of the import keyword
-     * @return if {@code importText} contains an illegal package prefix
+     * @return if {@code importText} matches one of the regular expressions
+     *         for illegal packages or illegal class names
      */
-    private boolean isIllegalImport(String importText) {
-        boolean isIllegal = false;
-        for (String element : illegalPkgs) {
-            if (importText.startsWith(element + ".")) {
-                isIllegal = true;
+    private boolean isIllegalImportByRegularExpressions(String importText) {
+        boolean result = false;
+        for (Pattern pattern : illegalPkgsRegexps) {
+            if (pattern.matcher(importText).matches()) {
+                result = true;
                 break;
             }
         }
-        return isIllegal;
+        if (!result) {
+            for (Pattern pattern : illegalClassesRegexps) {
+                if (pattern.matcher(importText).matches()) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if an import is from a package or class name that must not be used.
+     * @param importText the argument of the import keyword
+     * @return if {@code importText} contains an illegal package prefix or equals illegal class name
+     */
+    private boolean isIllegalImportByPackagesAndClassNames(String importText) {
+        boolean result = false;
+        for (String element : illegalPkgs) {
+            if (importText.startsWith(element + ".")) {
+                result = true;
+                break;
+            }
+        }
+        if (!result && illegalClasses != null) {
+            for (String element : illegalClasses) {
+                if (importText.equals(element)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if an import is from a package or class name that must not be used.
+     * @param importText the argument of the import keyword
+     * @return if {@code importText} is illegal import
+     */
+    private boolean isIllegalImport(String importText) {
+        final boolean result;
+        if (regexp) {
+            result = isIllegalImportByRegularExpressions(importText);
+        }
+        else {
+            result = isIllegalImportByPackagesAndClassNames(importText);
+        }
+        return result;
     }
 }
