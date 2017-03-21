@@ -36,7 +36,8 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator + "methodlength"
+                + File.separator + filename);
     }
 
     @Test
@@ -66,7 +67,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "79:5: " + getCheckMessage(MSG_KEY, 20, 19),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputMethodLengthSimple.java"), expected);
     }
 
     @Test
@@ -76,7 +77,7 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("max", "19");
         checkConfig.addAttribute("countEmpty", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputMethodLengthSimple.java"), expected);
     }
 
     @Test
@@ -84,6 +85,6 @@ public class MethodLengthCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(MethodLengthCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputModifier.java"), expected);
+        verify(checkConfig, getPath("InputMethodLengthModifier.java"), expected);
     }
 }
