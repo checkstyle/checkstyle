@@ -31,17 +31,21 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class LineLengthCheckTest extends BaseCheckTestSupport {
+public class InputLineLengthCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator
+                + "linelength" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator
+                + "linelength" + File.separator
+                + filename);
     }
 
     @Test
@@ -67,7 +71,7 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
             "18: " + getCheckMessage(MSG_KEY, 80, 81),
             "145: " + getCheckMessage(MSG_KEY, 80, 83),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputLineLengthSimple.java"), expected);
     }
 
     @Test
@@ -82,7 +86,7 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
             "18: 80,81",
             "145: 80,83",
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputLineLengthSimple.java"), expected);
     }
 
     @Test
