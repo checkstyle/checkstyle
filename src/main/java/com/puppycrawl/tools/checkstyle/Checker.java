@@ -66,7 +66,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     public static final String EXCEPTION_MSG = "general.exception";
 
     /** Logger for Checker. */
-    private static final Log LOG = LogFactory.getLog(Checker.class);
+    private final Log log;
 
     /** Maintains error count. */
     private final SeverityLevelCounter counter = new SeverityLevelCounter(
@@ -136,6 +136,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      */
     public Checker() {
         addListener(counter);
+        log = LogFactory.getLog(Checker.class);
     }
 
     /**
@@ -315,7 +316,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             }
         }
         catch (final IOException ioe) {
-            LOG.debug("IOException occurred.", ioe);
+            log.debug("IOException occurred.", ioe);
             fileMessages.add(new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {ioe.getMessage()}, null, getClass(), null));
@@ -326,7 +327,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                 throw ex;
             }
 
-            LOG.debug("Exception occurred.", ex);
+            log.debug("Exception occurred.", ex);
             fileMessages.add(new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {ex.getClass().getName() + ": " + ex.getMessage()},
