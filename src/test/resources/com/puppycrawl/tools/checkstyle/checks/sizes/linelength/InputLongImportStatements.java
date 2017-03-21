@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.sizes;
+package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import com.puppycrawl.tools.checkstyle.grammars.comments.InputFullOfSinglelineComments;
 import static com.puppycrawl.tools.checkstyle.grammars.comments.InputFullOfSinglelineComments.main;
