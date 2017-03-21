@@ -33,10 +33,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
+
+    /**
+     * Prefix for input directory of test case
+     */
+    private static final String TEST_RESOURCE_PATH_PREFIX = "checks" + File.separator
+        + "sizes" + File.separator + "outertypenumber" + File.separator;
+
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+        return super.getPath(TEST_RESOURCE_PATH_PREFIX + filename);
     }
 
     @Test
