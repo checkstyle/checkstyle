@@ -35,13 +35,17 @@ public class LineLengthCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator
+                + "linelength" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator
+                + "linelength" + File.separator
+                + filename);
     }
 
     @Test
