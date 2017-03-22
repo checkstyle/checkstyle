@@ -71,7 +71,7 @@ public class InputLineLengthCheckTest extends BaseCheckTestSupport {
             "18: " + getCheckMessage(MSG_KEY, 80, 81),
             "145: " + getCheckMessage(MSG_KEY, 80, 83),
         };
-        verify(checkConfig, getPath("InputSimpleLineLength.java"), expected);
+        verify(checkConfig, getPath("InputLineLengthSimple.java"), expected);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class InputLineLengthCheckTest extends BaseCheckTestSupport {
             "18: 80,81",
             "145: 80,83",
         };
-        verify(checkConfig, getPath("InputSimpleLineLength.java"), expected);
+        verify(checkConfig, getPath("InputLineLengthSimple.java"), expected);
     }
 
     @Test

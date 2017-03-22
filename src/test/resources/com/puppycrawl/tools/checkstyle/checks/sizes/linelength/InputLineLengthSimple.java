@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputSimpleLineLength
+final class InputLineLengthSimple
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<-
@@ -99,7 +99,7 @@ final class InputSimpleLineLength
     }
 
     /** constructor that is 10 lines long **/
-    private InputSimpleLineLength()
+    private InputLineLengthSimple()
     {
         // a line
         // a line
@@ -198,7 +198,7 @@ final class InputSimpleLineLength
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimpleLineLength2
+class InputLineLengthSimple2
 {
     /** Some more Javadoc. */
     public void doSomething()
