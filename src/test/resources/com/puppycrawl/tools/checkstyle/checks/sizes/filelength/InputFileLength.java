@@ -13,6 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
+
 final class InputFileLength
 {
     // Long line ----------------------------------------------------------------
@@ -99,6 +100,8 @@ final class InputFileLength
     }
 
     /** constructor that is 10 lines long **/
+
+
     private InputFileLength()
     {
         // a line
