@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +33,9 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
+
+    private DefaultConfiguration checkConfig;
+
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
@@ -45,12 +49,41 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testSkipIfLastAndSharedWithCase() throws Exception {
+        checkConfig = createCheckConfig(DefaultComesLastCheck.class);
+        checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "25:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "33:21: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "37:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "57:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "77:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "89:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "98:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig, getPath("InputSkipIfLastAndSharedWithCase.java"), expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createCheckConfig(DefaultComesLastCheck.class);
+        checkConfig = createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY),
             "32:24: " + getCheckMessage(MSG_KEY),
+            "37:13: " + getCheckMessage(MSG_KEY),
+            "45:13: " + getCheckMessage(MSG_KEY),
+            "53:13: " + getCheckMessage(MSG_KEY),
+            "61:21: " + getCheckMessage(MSG_KEY),
+            "65:13: " + getCheckMessage(MSG_KEY),
+            "69:21: " + getCheckMessage(MSG_KEY),
+            "74:13: " + getCheckMessage(MSG_KEY),
+            "85:13: " + getCheckMessage(MSG_KEY),
+            "96:13: " + getCheckMessage(MSG_KEY),
+            "106:13: " + getCheckMessage(MSG_KEY),
+            "114:13: " + getCheckMessage(MSG_KEY),
+            "125:13: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
                getPath("InputDefaultComesLast.java"),
@@ -60,8 +93,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultMethodsInJava8()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createCheckConfig(DefaultComesLastCheck.class);
+        checkConfig = createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("InputDefaultComesLastDefaultMethodsInInterface.java"),

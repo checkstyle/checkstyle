@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.Objects;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -49,6 +51,16 @@ public class DefaultComesLastCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "default.comes.last";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE =
+            "default.comes.last.in.casegroup";
+
+    /** Whether to process skipIfLastAndSharedWithCaseInSwitch() invocations. */
+    private boolean skipIfLastAndSharedWithCase;
+
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
@@ -66,6 +78,14 @@ public class DefaultComesLastCheck extends AbstractCheck {
         return getAcceptableTokens();
     }
 
+    /**
+     * Whether to allow default keyword not in last but surrounded with case.
+     * @param newValue whether to ignore checking.
+     */
+    public void setSkipIfLastAndSharedWithCase(boolean newValue) {
+        skipIfLastAndSharedWithCase = newValue;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST defaultGroupAST = ast.getParent();
@@ -73,15 +93,41 @@ public class DefaultComesLastCheck extends AbstractCheck {
         //interested in
         if (defaultGroupAST.getType() != TokenTypes.ANNOTATION_FIELD_DEF
                 && defaultGroupAST.getType() != TokenTypes.MODIFIERS) {
-            final DetailAST switchAST = defaultGroupAST.getParent();
-            final DetailAST lastGroupAST =
-                switchAST.getLastChild().getPreviousSibling();
 
-            if (defaultGroupAST.getLineNo() != lastGroupAST.getLineNo()
-                || defaultGroupAST.getColumnNo()
-                    != lastGroupAST.getColumnNo()) {
+            if (skipIfLastAndSharedWithCase) {
+                if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
+                    log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
+                }
+                else if (ast.getPreviousSibling() == null
+                    && Objects.nonNull(findNextSibling(defaultGroupAST,
+                                                       TokenTypes.CASE_GROUP))) {
+                    log(ast, MSG_KEY);
+                }
+            }
+            else if (Objects.nonNull(findNextSibling(defaultGroupAST,
+                                                     TokenTypes.CASE_GROUP))) {
                 log(ast, MSG_KEY);
             }
         }
+    }
+
+    /**
+     * Return token type only if passed tokenType in argument is found or returns -1.
+     *
+     * @param ast root node.
+     * @param tokenType tokentype to be processed.
+     * @return token if desired token is found or else null.
+     */
+    private static DetailAST findNextSibling(DetailAST ast, int tokenType) {
+        DetailAST token = null;
+        DetailAST node = ast.getNextSibling();
+        while (node != null) {
+            if (node.getType() == tokenType) {
+                token = node;
+                break;
+            }
+            node = node.getNextSibling();
+        }
+        return token;
     }
 }
