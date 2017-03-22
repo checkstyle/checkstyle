@@ -1,40 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
 
-public class InputDefaultComesLast
+public class InputSkipIfLastAndSharedWithCase
 {
     void method(int i) {
-        // switch with last default
-        switch (i) {
-        case 1: break;
-        case 2: break;
-        default: 
-            // do something :)
-        }
-        
-        // switch w/o default (not a problem)
-        switch (i) {
-        case 1: break;
-        case 2: break;
-        }
-
-        // VIOLATION!!! default is not the last one.
-        switch (i) {
-        case 1:
-            break;
-        default: /**default is not last*/
-            break;
-        case 2:
-            break;
-        }
-        
-        switch (i) {
-        case 1: break; default: break; case 2: break;  
-        }
-
         switch (i) {
             case 1:
-            default: //violation
+            default: // No violation with the new option is expected
                 break;
             case 2:
                 break;
@@ -42,7 +14,7 @@ public class InputDefaultComesLast
 
         switch (i) {
             case 1:
-            default: //violation
+            default: // violation Default should be last label in the case group.
             case 2:
                 break;
             case 3:
@@ -50,7 +22,7 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
-            default: //violation
+            default: // violation Default should be last label in the case group.
             case 1:
                 break;
             case 2:
@@ -58,20 +30,20 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
-            case 0: default: case 1: break; case 2: break; //violation
+            case 0: default: case 1: break; case 2: break;  // violation Default should be last label in the case group.
         }
 
         switch (i) {
-            default: case 1: break; case 2: break; //violation
+            default: case 1: break; case 2: break;  // violation Default should be last label in the case group.
         }
 
         switch (i) {
-            case 1: default: break; case 2: break; //violation
+            case 1: default: break; case 2: break;  // No violation with the new option is expected
         }
 
         switch (i) {
             case 1:
-            default: //violation
+            default: // No violation with the new option is expected
                 break;
             case 2:
                 break;
@@ -82,7 +54,7 @@ public class InputDefaultComesLast
         switch (i) {
             case 1:
                 break;
-            default: //violation
+            default:  // violation Default should be last label in the case group.
             case 2:
                 break;
             case 3:
@@ -93,7 +65,7 @@ public class InputDefaultComesLast
             case 1:
                 break;
             case 2:
-            default: //violation
+            default: // No violation with the new option is expected
                 break;
             case 3:
                 break;
@@ -102,8 +74,7 @@ public class InputDefaultComesLast
         switch (i) {
             case 1:
                 break;
-            case 2:
-            default: //violation
+            default: // violation Default should be last label in the case group.
             case 3:
                 break;
             case 4:
@@ -111,9 +82,22 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
-            default: //violation
-                break;
             case 1:
+                break;
+            case 2:
+                break;
+            default: // violation Default should be last label in the group.
+            case 5:
+            case 6:
+                break;
+        }
+
+        switch (i) {
+            case 1:
+                break;
+            default: // violation Default should be last label in the case group.
+                break;
+            case 2:
                 break;
         }
 
@@ -122,17 +106,14 @@ public class InputDefaultComesLast
                 break;
             case 2:
                 break;
-            default: //violation
-            case 5:
-            case 6:
-                break;
-            case 7:
+            default: // No violation.
                 break;
         }
+
     }
 }
 
-@interface InputDefaultComesLastAnnotation
+@interface InputSkipIfLastAndSharedWithCaseAnnotation
 {
     int blag() default 1;
 }
