@@ -91,7 +91,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     protected IndentLevel getChildrenExpectedIndent() {
         final IndentLevel expectedIndent =
             new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
-                    getIndentCheck().getLineWrappingIndentation());
+                getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
@@ -127,14 +127,5 @@ public class ArrayInitHandler extends BlockParentHandler {
         else {
             return realColumnNo;
         }
-    }
-
-    /**
-     * A shortcut for {@code IndentationCheck} property.
-     * @return value of lineWrappingIndentation property
-     *         of {@code IndentationCheck}
-     */
-    private int getLineWrappingIndentation() {
-        return getIndentCheck().getLineWrappingIndentation();
     }
 }
