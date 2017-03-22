@@ -1737,6 +1737,39 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    /**
+     * Verifies that the arguments of {@link IndentationCheck#MSG_ERROR},
+     * {@link IndentationCheck#MSG_CHILD_ERROR}, {@link IndentationCheck#MSG_CHILD_ERROR_MULTI},
+     * {@link IndentationCheck#MSG_CHILD_ERROR_MULTI} are in appropriate order.
+     *
+     * In other tests, the argument 0 and text before it are chopped off and only the rest of
+     * messages are verified. Therefore, the argument 0 is required to be the first argument in
+     * the messages above. If we update the messages in the future, it is required to keep the
+     * arguments in appropriate order to ensure other tests will work.
+     *
+     * @see IndentComment#getExpectedMessagePostfix(String)
+     */
+    @Test
+    public void testArgumentOrderOfErrorMessages() {
+        final String[] arguments = {"##0##", "##1##", "##2##"};
+        final String[] messages = {
+            getCheckMessage(MSG_ERROR, (Object[]) arguments),
+            getCheckMessage(MSG_CHILD_ERROR, (Object[]) arguments),
+            getCheckMessage(MSG_ERROR_MULTI, (Object[]) arguments),
+            getCheckMessage(MSG_CHILD_ERROR_MULTI, (Object[]) arguments),
+        };
+        final boolean isInOrder = Arrays.stream(messages).allMatch(msg -> {
+            final int indexOfArgumentZero = msg.indexOf(arguments[0]);
+            return Arrays.stream(arguments).mapToInt(msg::indexOf)
+                    .allMatch(index -> index >= indexOfArgumentZero);
+        });
+        assertTrue(
+                "the argument 0 of error messages (indentation.error, indentation.child.error,"
+                        + " indentation.error.multi, indentation.child.error.multi)"
+                        + " is required to be the first argument of them",
+                isInOrder);
+    }
+
     private static final class IndentAudit implements AuditListener {
         private final IndentComment[] comments;
         private int position;
@@ -1778,12 +1811,15 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             final IndentComment comment = comments[position];
             position++;
 
-            assertTrue(
-                    "input expected warning #" + position + " at line " + comment.getLineNumber()
-                            + " to report '" + comment.getExpectedMessage() + "' but got instead: "
-                            + line + ": " + message,
-                    line == comment.getLineNumber()
-                            && message.endsWith(comment.getExpectedMessage()));
+            final String possibleExceptedMessages = Arrays.stream(comment.getExpectedMessages())
+                    .reduce("", (cur, next) -> cur + "\"" + next + "\", ");
+            final String assertMessage = String.format(
+                    Locale.ROOT,
+                    "input expected warning #%d at line %d to report one of the following: %s"
+                            + "but got instead: %d: %s",
+                    position, comment.getLineNumber(), possibleExceptedMessages, line, message);
+            assertTrue(assertMessage, line == comment.getLineNumber()
+                    && Arrays.stream(comment.getExpectedMessages()).anyMatch(message::endsWith));
         }
 
         @Override
@@ -1793,6 +1829,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     private static final class IndentComment {
+        /** Used to locate the index of argument zero of error messages. */
+        private static final String FAKE_ARGUMENT_ZERO = "##0##";
         private final int lineNumber;
         private final int indent;
         /** Used for when violations report nodes not first on the line. */
@@ -1815,15 +1853,28 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
             warning = match.group(5) != null;
         }
 
-        public String getExpectedMessage() {
+        public String[] getExpectedMessages() {
+            final String[] expectedMessages;
             if (expectedWarning.contains(",")) {
-                return "incorrect indentation level " + (indent + indentOffset)
-                        + ", expected level should be one of the following: " + expectedWarning
-                        + ".";
+                expectedMessages = new String[] {
+                    getExpectedMessagePostfix(MSG_ERROR_MULTI),
+                    getExpectedMessagePostfix(MSG_CHILD_ERROR_MULTI),
+                };
+            } else {
+                expectedMessages = new String[] {
+                    getExpectedMessagePostfix(MSG_ERROR),
+                    getExpectedMessagePostfix(MSG_CHILD_ERROR),
+                };
             }
+            return expectedMessages;
+        }
 
-            return "incorrect indentation level " + (indent + indentOffset)
-                    + ", expected level should be " + expectedWarning + ".";
+        private String getExpectedMessagePostfix(final String messageKey) {
+            final String msg = getCheckMessage(IndentationCheck.class, messageKey,
+                    FAKE_ARGUMENT_ZERO, indent + indentOffset, expectedWarning);
+            final int indexOfMsgPostfix = msg.indexOf(FAKE_ARGUMENT_ZERO)
+                    + FAKE_ARGUMENT_ZERO.length();
+            return msg.substring(indexOfMsgPostfix);
         }
 
         public int getLineNumber() {

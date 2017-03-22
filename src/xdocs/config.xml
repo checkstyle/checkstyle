@@ -665,7 +665,8 @@
         custom message pattern, as shown in the example above.
         Placeholders used in the default message can also be used in the
         custom message.  Note that the message pattern must be a valid
-        <code>java.text.MessageFormat</code> style pattern,
+        <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">java.text.MessageFormat</a>
+        style pattern,
         so be careful about curly braces outside a placeholder
         definition.
       </p>

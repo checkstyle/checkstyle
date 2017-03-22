@@ -19,7 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISMATCH;
+import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISSING;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,14 +46,23 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefaultNoPackage() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY),
+            "4: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
         verify(checkConfig, getNonCompilablePath("InputNoPackage.java"), expected);
+    }
+
+    @Test
+    public void testDefaultWithPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputPackageDeclaration.java"), expected);
     }
 
     @Test
@@ -60,19 +70,70 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY),
+            "1: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
         verify(checkConfig, getPath("InputWithCommentOnly.java"), expected);
     }
 
     @Test
-    public void testCorrectFile() throws Exception {
+    public void testFileForDiffDirectoryMismatch() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
 
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_MISMATCH),
+        };
+
+        verify(checkConfig, getPath("InputPackageDiffDirectory.java"), expected);
+    }
+
+    @Test
+    public void testFileForDirectoryMismatchAtParent() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_MISMATCH),
+        };
+
+        verify(checkConfig, getPath("InputPackageDiffDirectoryAtParent.java"), expected);
+    }
+
+    @Test
+    public void testFileForDirectoryMismatchAtSubpackage() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_MISMATCH),
+        };
+
+        verify(checkConfig, getPath("InputPackageDiffDirectoryAtSubpackage.java"), expected);
+    }
+
+    @Test
+    public void testFileIgnoreDiffDirectoryMismatch() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        checkConfig.addAttribute("matchDirectoryStructure", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageDeclaration.java"), expected);
+        verify(checkConfig, getPath("InputPackageDiffDirectory.java"), expected);
+    }
+
+    @Test
+    public void testFileIgnoreDirectoryMismatchAtParent() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        checkConfig.addAttribute("matchDirectoryStructure", "false");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputPackageDiffDirectoryAtParent.java"), expected);
+    }
+
+    @Test
+    public void testFileIgnoreDirectoryMismatchAtSubpackage() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(PackageDeclarationCheck.class);
+        checkConfig.addAttribute("matchDirectoryStructure", "false");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputPackageDiffDirectoryAtSubpackage.java"), expected);
     }
 
     @Test

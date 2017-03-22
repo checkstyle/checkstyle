@@ -72,4 +72,16 @@ class Catch {
             finally {}
         }
     };
+
+    void foo3() {
+        try {
+            foo();
+        } catch (Exception e) {} //warn
+
+        try {
+            foo();
+        } catch (Exception e) /*warn*/ {
+
+        }
+    }
 }

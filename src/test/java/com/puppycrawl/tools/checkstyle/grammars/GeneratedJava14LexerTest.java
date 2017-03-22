@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.grammars;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -63,8 +65,8 @@ public class GeneratedJava14LexerTest
             createCheckConfig(MemberNameCheck.class);
         // input is 'ÃЯ'
         final String[] expected = {
-            "7:9: Name '" + (char) 0xC3 + (char) 0x042F
-                 + "' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "7:9: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "" + (char) 0xC3 + (char) 0x042F, "^[a-z][a-zA-Z0-9]*$"),
         };
         verify(checkConfig, getPath("InputGrammar.java"), expected);
     }

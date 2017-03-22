@@ -39,13 +39,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 public class BaseCheckTestSupport {
     protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -64,11 +65,6 @@ public class BaseCheckTestSupport {
             throws Exception {
         final DefaultConfiguration dc = createCheckerConfig(checkConfig);
         final Checker checker = new Checker();
-        // make sure the tests always run with default error messages (language-invariant)
-        // so the tests don't fail in supported locales like German
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(dc);
         checker.addListener(new BriefUtLogger(stream));
@@ -362,15 +358,54 @@ public class BaseCheckTestSupport {
      * @param arguments  the arguments of message in 'messages.properties' file.
      */
     protected String getCheckMessage(String messageKey, Object... arguments) {
-        final Properties pr = new Properties();
-        try {
-            pr.load(getClass().getResourceAsStream("messages.properties"));
-        }
-        catch (IOException ex) {
-            return null;
-        }
-        final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
-                Locale.ROOT);
+        return internalGetCheckMessage(getMessageBundle(), messageKey, arguments);
+    }
+
+    /**
+     * Gets the check message 'as is' from appropriate 'messages.properties'
+     * file.
+     *
+     * @param clazz the related check class.
+     * @param messageKey the key of message in 'messages.properties' file.
+     * @param arguments the arguments of message in 'messages.properties' file.
+     */
+    protected static String getCheckMessage(
+            Class<?> clazz, String messageKey, Object... arguments) {
+        return internalGetCheckMessage(getMessageBundle(clazz.getName()), messageKey, arguments);
+    }
+
+    /**
+     * Gets the check message 'as is' from appropriate 'messages.properties'
+     * file.
+     *
+     * @param messageBundle the bundle name.
+     * @param messageKey the key of message in 'messages.properties' file.
+     * @param arguments the arguments of message in 'messages.properties' file.
+     */
+    private static String internalGetCheckMessage(
+            String messageBundle, String messageKey, Object... arguments) {
+        final ResourceBundle resourceBundle = ResourceBundle.getBundle(
+                messageBundle,
+                Locale.getDefault(),
+                Thread.currentThread().getContextClassLoader(),
+                new LocalizedMessage.Utf8Control());
+        final String pattern = resourceBundle.getString(messageKey);
+        final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
         return formatter.format(arguments);
+    }
+
+    private String getMessageBundle() {
+        final String className = getClass().getName();
+        return getMessageBundle(className);
+    }
+
+    private static String getMessageBundle(String className) {
+        final int endIndex = className.lastIndexOf('.');
+        final String messages = "messages";
+        if (endIndex < 0) {
+            return messages;
+        }
+        final String packageName = className.substring(0, endIndex);
+        return packageName + "." + messages;
     }
 }

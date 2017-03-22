@@ -13,7 +13,8 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputSimple
+
+final class InputFileLength
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<-
@@ -99,7 +100,9 @@ final class InputSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputSimple()
+
+
+    private InputFileLength()
     {
         // a line
         // a line

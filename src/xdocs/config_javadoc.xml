@@ -24,7 +24,9 @@
     <section name="AtclauseOrder">
       <subsection name="Description">
         <p>
-          Checks the order of at-clauses.
+          Checks the order of <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">javadoc block-tags or javadoc tags</a>.
+          <br/>
+          Note: Google used term "at-clauses" for block tags in his guide till 2017-02-28.
         </p>
       </subsection>
 

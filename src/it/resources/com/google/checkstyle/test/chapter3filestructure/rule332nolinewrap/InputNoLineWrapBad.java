@@ -7,9 +7,12 @@ import javax.accessibility. //warn
     AccessibleAttributeSequence;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater; //ok
 
+import static java.math. //warn
+        BigInteger.ONE;
+
 public class
     InputNoLineWrapBad {
-    
+
     public void
         fooMethod() {
         final int
@@ -23,5 +26,4 @@ enum
 
 interface
     InterFoo {}
-
 
