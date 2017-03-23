@@ -131,4 +131,28 @@ enum MyEnum {
         int i = (int) (2 * (4 / 2)
                 ); 
     };
+
+    public void myMethod() {
+        String s = "test";
+        Object o = s;
+        ((String)o).length();
+        ( (String)o ).length();
+    }
+
+    public void crisRon() {
+        Object leo = "messi";
+        Object ibra = leo;
+        ((String)leo).compareTo( (String)ibra );
+        Math.random();
+    }
+
+    public void intStringConv() {
+        Object a = 5;
+        Object b = "string";
+        int w = Integer.parseInt((String)a);
+        int x = Integer.parseInt( (String)a);
+        double y = Double.parseDouble((String)a );
+        float z = Float.parseFloat( (String)a );
+        String d = ((String)b);
+    }
 }

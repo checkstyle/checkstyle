@@ -205,7 +205,6 @@ public class ParenPadCheckTest
             "96:47: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "97:42: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "99:44: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "112:17: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "113:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "113:25: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "113:31: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -217,7 +216,6 @@ public class ParenPadCheckTest
             "115:28: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "115:35: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "115:53: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "115:55: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "119:17: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "119:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "123:30: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -226,6 +224,12 @@ public class ParenPadCheckTest
             "126:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "130:19: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "130:19: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "145:33: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "145:46: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "153:34: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "154:48: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "155:36: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "155:46: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputParenPad.java"), expected);
     }
@@ -237,10 +241,14 @@ public class ParenPadCheckTest
         checkConfig.addAttribute("tokens", "METHOD_CALL");
         final String[] expected = {
             "90:38: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "112:17: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "113:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "115:53: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "115:55: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "145:33: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "145:46: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "153:34: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "154:48: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "155:36: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "155:46: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputParenPad.java"), expected);
     }

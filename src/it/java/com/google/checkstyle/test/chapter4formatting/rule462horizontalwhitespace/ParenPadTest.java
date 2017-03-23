@@ -87,7 +87,6 @@ public class ParenPadTest extends BaseCheckTestSupport {
             "96:47: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "97:42: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "99:44: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
-            "112:17: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "113:23: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "113:25: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "113:31: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
@@ -99,7 +98,6 @@ public class ParenPadTest extends BaseCheckTestSupport {
             "115:28: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "115:35: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "115:53: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
-            "115:55: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "119:17: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "119:22: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "123:30: " + getCheckMessage(clazz, messageKeyFollowed, "("),
@@ -108,6 +106,12 @@ public class ParenPadTest extends BaseCheckTestSupport {
             "126:22: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "130:19: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "130:19: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "145:33: " + getCheckMessage(clazz, messageKeyFollowed, "("),
+            "145:46: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "153:34: " + getCheckMessage(clazz, messageKeyFollowed, "("),
+            "154:48: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "155:36: " + getCheckMessage(clazz, messageKeyFollowed, "("),
+            "155:46: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
         };
         final Configuration checkConfig = getCheckConfig("ParenPad");
         final String filePath = getPath("InputParenPad.java");

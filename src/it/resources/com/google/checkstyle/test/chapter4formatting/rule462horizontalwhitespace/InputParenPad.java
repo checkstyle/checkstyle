@@ -109,7 +109,7 @@ public class InputParenPad
     }
 
     String foo() {
-        return ( (Object // warning
+        return ( (Object
                 ) bar( ( 1 > 2 ) ? // warning
                         ( ( 3 < 4 )? false : true ) : // warning
                         ( ( 1 == 1 ) ? false : true) ) ).toString(); // warning
@@ -131,4 +131,28 @@ enum MyEnum {
         int i = (int) (2 * (4 / 2)
                 ); 
     };
+
+    public void myMethod() {
+        String s = "test";
+        Object o = s;
+        ((String)o).length();
+        ( (String)o ).length();
+    }
+
+    public void crisRon() {
+        Object leo = "messi";
+        Object ibra = leo;
+        ((String)leo).compareTo( (String)ibra ); // warning
+        Math.random();
+    }
+
+    public void intStringConv() {
+        Object a = 5;
+        Object b = "string";
+        int w = Integer.parseInt((String)a);
+        int x = Integer.parseInt( (String)a); // warning
+        double y = Double.parseDouble((String)a ); // warning
+        float z = Float.parseFloat( (String)a ); // warning
+        String d = ((String)b);
+    }
 }
