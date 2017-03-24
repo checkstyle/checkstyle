@@ -11,8 +11,8 @@
 [![][versioneye img]][versioneye]
 [![][sonar img]][sonar]
 
-Members chat: [![][gitter img]][gitter]
-Contributors chat: [![https://gitter.im/checkstyle/checkstyle](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/checkstyle/checkstyle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Members chat: [![][gitter_mem img]][gitter_mem]
+Contributors chat: [![][gitter_con img]][gitter_con]
 
 ![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
 
@@ -92,11 +92,11 @@ directory.
 [versioneye]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a
 [versioneye img]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a/badge.svg
 
-[gitter]:https://gitter.im/checkstyle
-[gitter img]:http://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
+[gitter_mem]:https://gitter.im/checkstyle
+[gitter_mem img]:http://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
 
-[gitterpublic]:https://gitter.im/checkstyle/checkstyle
-[gitterpublic img]:https://badges.gitter.im/Join%20Chat.svg)
+[gitter_con]:https://gitter.im/checkstyle/checkstyle
+[gitter_con img]:https://badges.gitter.im/Join%20Chat.svg
 
 [stackoverflow]:http://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
