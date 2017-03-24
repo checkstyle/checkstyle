@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.abbrevationaswordinname;
 
-public abstract class InputAbstractMultisetSetCount<E> {
+public abstract class InputAbbreviationAsWordInNameAbstractMultisetSetCount<E> {
 
   private static final String SUPPORTS_REMOVE = "";
 

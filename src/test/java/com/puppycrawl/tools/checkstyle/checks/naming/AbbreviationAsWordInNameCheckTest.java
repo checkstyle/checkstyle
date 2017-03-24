@@ -35,7 +35,8 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator + "abbrevationaswordinname" + File.separator
+                + filename);
     }
 
     @Test
@@ -56,7 +57,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -74,7 +75,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "32: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -92,7 +93,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "37: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -118,7 +119,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "58: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -147,7 +148,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "84: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -172,7 +173,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "38: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -201,7 +202,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
                 + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -229,7 +230,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
                 + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
         };
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -249,7 +250,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-                getPath("InputAbbreviationAsWordInTypeNameOverridableMethod.java"), expected);
+                getPath("InputAbbreviationAsWordInNameOverridableMethod.java"), expected);
     }
 
     @Test
@@ -298,7 +299,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             "119: " + getWarningMessage("VALUE", expectedCapitalCount),
         };
         verify(checkConfig,
-                getPath("InputAbbreviationAsWordInTypeName.java"), expected);
+                getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
     @Test
@@ -312,7 +313,9 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAbstractMultisetSetCount.java"), expected);
+        verify(checkConfig,
+                getPath("InputAbbreviationAsWordInNameAbstractMultisetSetCount.java"),
+                expected);
     }
 
     private String getWarningMessage(String typeName, int expectedCapitalCount) {
@@ -325,6 +328,7 @@ public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
             createCheckConfig(AbbreviationAsWordInNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAbbreviationAsWordReceiver.java"), expected);
+        verify(checkConfig, getPath("InputAbbreviationAsWordInNameReceiver.java"),
+                expected);
     }
 }
