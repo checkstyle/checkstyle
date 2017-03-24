@@ -78,7 +78,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
-
     /** Period literal. */
     private static final String PERIOD = ".";
 
@@ -135,7 +134,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         String firstSentence = getFirstSentence(ast);
         final int endOfSentence = firstSentence.lastIndexOf(period);
         if (endOfSentence == -1) {
-            if (!firstSentence.trim().startsWith("{@inheritDoc}")) {
+            if (!isValidInheritDoc(ast)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
         }
@@ -145,6 +144,36 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
+    }
+
+    /**
+     * Finds if inheritDoc is placed properly in java doc.
+     * @param ast Javadoc root node.
+     * @return true if inheritDoc is valid or fasle.
+     */
+    private static boolean isValidInheritDoc(DetailNode ast) {
+        boolean result = true;
+        for (DetailNode child : ast.getChildren()) {
+            if (child.getType() == JavadocTokenTypes.TEXT) {
+                if (!child.getText().trim().isEmpty()) {
+                    result = false;
+                }
+            }
+            else if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                if (child.getChildren()[1].getType() != JavadocTokenTypes.INHERIT_DOC_LITERAL) {
+                    result = false;
+                }
+            }
+            else if (child.getType() != JavadocTokenTypes.NEWLINE
+                && child.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                && child.getType() != JavadocTokenTypes.EOF) {
+                result = false;
+            }
+            if (!result) {
+                break;
+            }
+        }
+        return result;
     }
 
     /**
