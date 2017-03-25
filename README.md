@@ -86,6 +86,9 @@ directory.
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
 
+[license]:LICENSE
+[license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
+
 [mavenbadge]:http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
 [mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
 
