@@ -31,5 +31,9 @@ class InputRightCurlyTryResource {
         }
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) { ; }
+        try (BufferedReader br1 = new BufferedReader(null)) {
+            ; } // violation
+        try (BufferedReader br1 = new BufferedReader(null)) {
+            } int i; // violation
     }
 }

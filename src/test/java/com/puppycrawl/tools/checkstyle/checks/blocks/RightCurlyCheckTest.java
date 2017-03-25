@@ -258,7 +258,9 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "164:76: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 76),
             "164:77: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 77),
             "176:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
-
+            "182:24: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 24),
+            "185:24: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 24),
+            "188:24: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 24),
         };
         verify(checkConfig, getPath("InputRightCurlyAloneOrSingleline.java"), expected);
     }
@@ -316,6 +318,8 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "11:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
             "24:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
+            "35:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
+            "37:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verify(checkConfig, getPath("InputRightCurlyTryResource.java"), expected);
     }
@@ -329,6 +333,8 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "25:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
             "27:92: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 92),
             "33:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
+            "35:15: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 15),
+            "37:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verify(checkConfig, getPath("InputRightCurlyTryResource.java"), expected);
     }
@@ -338,6 +344,8 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "35:15: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 15),
+            "37:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verify(checkConfig, getPath("InputRightCurlyTryResource.java"), expected);
     }
