@@ -176,4 +176,15 @@ public class InputRightCurlyAloneOrSingleline {
             flag = !flag; } String.CASE_INSENSITIVE_ORDER. //violation
             equals("Xe-xe");
     }
+
+    void foo30() {
+        if (true) {
+            getClass();} // violation
+
+        for (int i = 0; i == 0; i++) {
+            getClass();} // violation
+
+        while (true) {
+            getClass();} // violation
+    }
 }
