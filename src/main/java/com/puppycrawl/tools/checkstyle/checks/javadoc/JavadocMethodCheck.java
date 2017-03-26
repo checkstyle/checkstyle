@@ -940,14 +940,12 @@ public class JavadocMethodCheck extends AbstractTypeAwareCheck {
         ExceptionInfo foundException = null;
 
         // First look for matches on the exception name
-        final ListIterator<ExceptionInfo> throwIt = throwsList.listIterator();
-        while (!found && throwIt.hasNext()) {
-            final ExceptionInfo exceptionInfo = throwIt.next();
-
+        for (ExceptionInfo exceptionInfo : throwsList) {
             if (exceptionInfo.getName().getText().equals(
                     documentedClassInfo.getName().getText())) {
                 found = true;
                 foundException = exceptionInfo;
+                break;
             }
         }
 

@@ -442,9 +442,10 @@ public class MagicNumberCheck extends AbstractCheck {
         do {
             if (node.getType() == type) {
                 result = true;
+                break;
             }
             node = node.getParent();
-        } while (node != null && !result);
+        } while (node != null);
 
         return result;
     }

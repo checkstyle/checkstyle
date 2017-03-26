@@ -132,6 +132,7 @@ public final class CommonUtils {
             for (final String fileExtension : withDotExtensions) {
                 if (fileName.endsWith(fileExtension)) {
                     result = true;
+                    break;
                 }
             }
         }

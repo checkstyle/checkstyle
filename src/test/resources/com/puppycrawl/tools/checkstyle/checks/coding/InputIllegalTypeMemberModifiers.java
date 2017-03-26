@@ -31,4 +31,5 @@ public class InputIllegalTypeMemberModifiers {
     }
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
     protected AbstractClass a1 = null;
+    public AbstractClass a2 = null;
 }

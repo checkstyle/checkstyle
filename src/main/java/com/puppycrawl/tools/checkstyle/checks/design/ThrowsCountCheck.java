@@ -149,6 +149,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
                 if (child.getType() == TokenTypes.ANNOTATION
                         && "Override".equals(getAnnotationName(child))) {
                     isOverriding = true;
+                    break;
                 }
                 child = child.getNextSibling();
             }
