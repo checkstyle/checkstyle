@@ -236,6 +236,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
                      modifier = modifier.getNextSibling()) {
                 if (memberModifiers.contains(modifier.getType())) {
                     result = true;
+                    break;
                 }
             }
         }
