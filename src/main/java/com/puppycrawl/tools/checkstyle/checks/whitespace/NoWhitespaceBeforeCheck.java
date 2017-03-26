@@ -115,6 +115,7 @@ public class NoWhitespaceBeforeCheck
             for (int i = 0; !flag && i < before; i++) {
                 if (!Character.isWhitespace(line.charAt(i))) {
                     flag = true;
+                    break;
                 }
             }
             if (flag) {

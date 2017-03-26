@@ -303,6 +303,7 @@ public class JavadocTypeCheck
                 && tag.getFirstArg().indexOf(OPEN_ANGLE_BRACKET
                         + typeParamName + CLOSE_ANGLE_BRACKET) == 0) {
                 found = true;
+                break;
             }
         }
         if (!found) {

@@ -166,6 +166,7 @@ public class SuppressWarningsHolder
                 && event.getModuleId().equals(entry.getCheckName());
             if (afterStart && beforeEnd && (nameMatches || idMatches)) {
                 suppressed = true;
+                break;
             }
         }
         return suppressed;

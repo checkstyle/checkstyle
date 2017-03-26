@@ -520,6 +520,7 @@ public class RequireThisCheck extends AbstractCheck {
             if (prevSibling != null
                     && prevSibling.getType() == TokenTypes.LITERAL_THIS) {
                 userDefinedArrangementOfThis = true;
+                break;
             }
         }
         return userDefinedArrangementOfThis;
@@ -1189,6 +1190,7 @@ public class RequireThisCheck extends AbstractCheck {
                 final boolean finalMod = mods.branchContains(TokenTypes.FINAL);
                 if (finalMod && member.equals(instanceMember)) {
                     result = true;
+                    break;
                 }
             }
             return result;
