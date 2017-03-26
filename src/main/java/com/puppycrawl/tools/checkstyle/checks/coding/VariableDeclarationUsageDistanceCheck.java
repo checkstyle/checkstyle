@@ -394,7 +394,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             if (currentAst.getFirstChild() != null) {
 
                 if (isChild(currentAst, variableIdentAst)) {
-                    dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
+                    dist += getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
                     variableUsageAst = currentAst;
                     firstUsageFound = true;
                 }
