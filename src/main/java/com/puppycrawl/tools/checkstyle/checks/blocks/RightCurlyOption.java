@@ -64,7 +64,8 @@ public enum RightCurlyOption {
     /**
      * Represents the policy that the brace should be on the same line as the
      * the next part of a multi-block statement (one that directly contains
-     * multiple blocks: if/else-if/else or try/catch/finally).
+     * multiple blocks: if/else-if/else or try/catch/finally). It also allows
+     * single-line format of multi-block statements.
      *
      * <p>Examples:</p>
      *
@@ -117,6 +118,12 @@ public enum RightCurlyOption {
      *                ...
      *  <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
      * <b>}</b>); // this is OK, allowed for better code readability
+     *
+     * if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
+     * if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
+     * if (a &#62; 0) {
+     *     ...
+     * } else { ... <b>}</b> // OK, single-line multi-block statement
      * </pre>
      **/
     SAME
