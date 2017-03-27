@@ -1478,6 +1478,9 @@
 
     <profile>
       <id>pitest-checks-blocks</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1502,6 +1505,9 @@
     </profile>
     <profile>
       <id>pitest-checks-coding</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1532,6 +1538,9 @@
     </profile>
     <profile>
       <id>pitest-checks-design</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1556,6 +1565,9 @@
     </profile>
     <profile>
       <id>pitest-checks-header</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1580,6 +1592,9 @@
     </profile>
     <profile>
       <id>pitest-checks-imports</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1604,6 +1619,9 @@
     </profile>
     <profile>
       <id>pitest-checks-indentation</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1628,6 +1646,9 @@
     </profile>
     <profile>
       <id>pitest-checks-javadoc</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1652,6 +1673,9 @@
     </profile>
     <profile>
       <id>pitest-checks-metrics</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1680,6 +1704,9 @@
     </profile>
     <profile>
       <id>pitest-checks-modifier</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1704,6 +1731,9 @@
     </profile>
     <profile>
       <id>pitest-checks-naming</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1732,6 +1762,9 @@
     </profile>
     <profile>
       <id>pitest-checks-regexp</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1756,6 +1789,9 @@
     </profile>
     <profile>
       <id>pitest-checks-sizes</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -1780,6 +1816,9 @@
     </profile>
     <profile>
       <id>pitest-checks-whitespace</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
       <build>
         <plugins>
           <plugin>
