@@ -521,7 +521,7 @@
         <version>3.0.0</version>
       </plugin>
 
-      <!-- It brakes linkcheck plugin report.
+      <!-- It breaks linkcheck plugin report.
            It works when linkcheck.forceSite=false, but
            at this case linkcheck report is full of false-positives
 
@@ -1167,9 +1167,9 @@
       </plugin>
 
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-linkcheck-plugin</artifactId>
-        <version>1.2</version>
+        <groupId>net.trajano.mojo</groupId>
+        <artifactId>linkcheck-maven-plugin</artifactId>
+        <version>1.3.1</version>
         <configuration>
           <httpMethod>GET</httpMethod>
           <timeout>6000</timeout>
