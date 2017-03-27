@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 
 abstract public class InputAbstractClassName {
 }

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 
 public class InputAbstractClassNameFormerFalsePositive
 {
