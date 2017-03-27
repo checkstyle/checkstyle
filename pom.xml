@@ -472,22 +472,42 @@
         </dependencies>
         <!-- Specifying configuration here will take effect on the execution of "mvn checkstyle:checkstyle",
              but will not take effect on the execution of "mvn site"  -->
-        <configuration>
-          <configLocation>${project.basedir}/config/checkstyle_sevntu_checks.xml</configLocation>
-          <failOnViolation>true</failOnViolation>
-          <includeResources>false</includeResources>
-          <includeTestResources>false</includeTestResources>
-          <logViolationsToConsole>true</logViolationsToConsole>
-          <maxAllowedViolations>0</maxAllowedViolations>
-          <violationSeverity>error</violationSeverity>
-          <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
-          <sourceDirectory>${project.basedir}/src</sourceDirectory>
-          <excludes>**/it/resources/**/*,**/test/resources/**/*,**/test/resources-noncompilable/**/*</excludes>
-        </configuration>
         <executions>
           <execution>
             <id>sevntu-checkstyle-check</id>
             <phase>verify</phase>
+            <configuration>
+              <configLocation>${project.basedir}/config/checkstyle_sevntu_checks.xml</configLocation>
+              <failOnViolation>true</failOnViolation>
+              <includeResources>false</includeResources>
+              <includeTestResources>false</includeTestResources>
+              <logViolationsToConsole>true</logViolationsToConsole>
+              <maxAllowedViolations>0</maxAllowedViolations>
+              <violationSeverity>error</violationSeverity>
+              <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
+              <sourceDirectory>${project.basedir}/src</sourceDirectory>
+              <excludes>**/it/resources/**/*,**/test/resources/**/*,**/test/resources-noncompilable/**/*</excludes>
+            </configuration>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>checkstyle-non-main-check</id>
+            <phase>verify</phase>
+            <configuration>
+              <configLocation>${project.basedir}/config/checkstyle_non_main_files_checks.xml</configLocation>
+              <failOnViolation>true</failOnViolation>
+              <includeResources>false</includeResources>
+              <includeTestResources>true</includeTestResources>
+              <logViolationsToConsole>true</logViolationsToConsole>
+              <maxAllowedViolations>0</maxAllowedViolations>
+              <violationSeverity>error</violationSeverity>
+              <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
+              <sourceDirectory>${project.basedir}</sourceDirectory>
+              <includes>**/*</includes>
+              <excludes>src/main/**/*,src/test/java/**/*,src/site/resources/images/**/*,target/**/*,bin/**/*,.git/**/*,.idea/**/*,.settings/**/*,.checkstyle/**/*,.DS_Store/**/*,.nondex/**/*,.pmd/**/*,.fbExcludeFilterFile/**/*,.externalToolBuilders/**/*,.pmdruleset.xml,nbactions.xml,nb-configuration.xml,*.iml</excludes>
+            </configuration>
             <goals>
               <goal>check</goal>
             </goals>

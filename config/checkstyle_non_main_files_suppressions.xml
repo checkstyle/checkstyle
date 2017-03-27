@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+    
+    <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
+    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*Newline.*AtEndOfFile\.java"/>
+
+    <!-- Intentional no new line at the end. -->
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
+
+    <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputEmbeddedNullChar\.java"/>
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]InputLeadingAsterisks\.txt"/>
+
+    <!-- Javadoc files should not have new line by design (on purpose). -->
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]htmlTags[\\/].*"/>
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]javadocTags[\\/].*"/>
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/]InputJavadocComment\.javadoc"/>
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/]InputJavadocWithError\.javadoc"/>
+    
+    <!--Empty file cannot have any new line at the end. -->
+    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]InputEmptyFile\.txt"/>
+    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputRegressionEmptyAst\.txt"/>
+</suppressions>
