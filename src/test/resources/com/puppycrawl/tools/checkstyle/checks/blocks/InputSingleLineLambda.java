@@ -7,6 +7,7 @@ public class InputSingleLineLambda {
     static Runnable r3 = () ->
         String.CASE_INSENSITIVE_ORDER.equals("Hello world two!");
     static Runnable r4 = () -> {String.CASE_INSENSITIVE_ORDER.equals("Hello world two!");};
+<<<<<<< refs/remotes/origin/master
     static Runnable r5 = () -> String.CASE_INSENSITIVE_ORDER.equals("Hello " +
             "world!");
     static Runnable r6 = () -> String.CASE_INSENSITIVE_ORDER.equals("Hello " + "world!");
@@ -19,3 +20,6 @@ public class InputSingleLineLambda {
         int operation(int a, int b);
     }
 }
+=======
+}
+>>>>>>> Issue #3072: Add EOL for files in test, it, .ci, config folders
