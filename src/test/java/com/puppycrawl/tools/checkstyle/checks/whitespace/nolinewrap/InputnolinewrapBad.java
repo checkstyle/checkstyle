@@ -1,0 +1,28 @@
+package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
+
+/**
+ *
+ * @author divsidhu-26
+ */
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+
+import javax.accessibility.
+    AccessibleAttributeSequence;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+
+public class
+    InputnolinewrapBad {
+    
+	public void
+	    fooMethod() {
+		final int
+		    foo = 0;
+	}
+}
+
+enum
+    FooFoo {
+}
+
+interface
+    InterFoo {}

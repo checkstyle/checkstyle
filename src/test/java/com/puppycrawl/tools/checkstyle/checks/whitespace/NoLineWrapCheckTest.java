@@ -35,14 +35,15 @@ public class NoLineWrapCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator 
+                + "nolinewrap" + File.separator + filename);
     }
 
     @Test
     public void testCaseWithoutLineWrapping() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(NoLineWrapCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNoLineWrapGood.java"), expected);
+        verify(checkConfig, getPath("InputnolinewrapGood.java"), expected);
     }
 
     @Test
@@ -53,7 +54,7 @@ public class NoLineWrapCheckTest
             "6: " + getCheckMessage(MSG_KEY, "import"),
             "10: " + getCheckMessage(MSG_KEY, "import"),
         };
-        verify(checkConfig, getPath("InputNoLineWrapBad.java"), expected);
+        verify(checkConfig, getPath("InputnolinewrapBad.java"), expected);
     }
 
     @Test
@@ -69,6 +70,6 @@ public class NoLineWrapCheckTest
             "16: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
             "23: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
         };
-        verify(checkConfig, getPath("InputNoLineWrapBad.java"), expected);
+        verify(checkConfig, getPath("InputnolinewrapBad.java"), expected);
     }
 }
