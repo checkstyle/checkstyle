@@ -120,6 +120,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private final Deque<Deque<DetailAST>> prevScopeUninitializedVariables =
             new ArrayDeque<>();
 
+    /** Assigned variables of current scope. */
+    private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
+            new ArrayDeque<>();
+
     /** Controls whether to check enhanced for-loop variable. */
     private boolean validateEnhancedForLoopVariable;
 
@@ -145,6 +149,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.LITERAL_BREAK,
         };
     }
 
@@ -156,6 +161,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.LITERAL_BREAK,
             TokenTypes.VARIABLE_DEF,
         };
     }
@@ -168,6 +174,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.LITERAL_BREAK,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
         };
@@ -184,6 +191,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 scopeStack.push(new ScopeData());
                 break;
             case TokenTypes.SLIST:
+                currentScopeAssignedVariables.push(new ArrayDeque<>());
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
                     || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
                     == ast.getParent()) {
@@ -208,18 +216,20 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                     insertVariable(ast);
                 }
                 break;
-
             case TokenTypes.IDENT:
                 final int parentType = ast.getParent().getType();
                 if (isAssignOperator(parentType) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
                         determineAssignmentConditions(ast, candidate.get());
+                        currentScopeAssignedVariables.peek().add(ast);
                     }
                     removeFinalVariableCandidateFromStack(ast);
                 }
                 break;
-
+            case TokenTypes.LITERAL_BREAK:
+                scopeStack.peek().containsBreak = true;
+                break;
             default:
                 throw new IllegalStateException("Incorrect token type");
         }
@@ -237,16 +247,19 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             case TokenTypes.SLIST:
                 final Deque<DetailAST> prevScopeUnitializedVariableData =
                     prevScopeUninitializedVariables.peek();
+                boolean containsBreak = false;
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
                     || findLastChildWhichContainsSpecifiedToken(ast.getParent().getParent(),
                             TokenTypes.CASE_GROUP, TokenTypes.SLIST) == ast.getParent()) {
+                    containsBreak = scopeStack.peek().containsBreak;
                     scope = scopeStack.pop().scope;
                     prevScopeUninitializedVariables.pop();
                 }
                 final DetailAST parent = ast.getParent();
-                if (shouldUpdateUninitializedVariables(parent)) {
-                    updateUninitializedVariables(prevScopeUnitializedVariableData);
+                if (containsBreak || shouldUpdateUninitializedVariables(parent)) {
+                    updateAllUninitializedVariables(prevScopeUnitializedVariableData);
                 }
+                updateCurrentScopeAssignedVariables();
                 break;
             default:
                 // do nothing
@@ -256,6 +269,19 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 final DetailAST ident = candidate.variableIdent;
                 log(ident.getLineNo(), ident.getColumnNo(), MSG_KEY, ident.getText());
             }
+        }
+    }
+
+    /**
+     * Update assigned variables in a temporary stack.
+     */
+    private void updateCurrentScopeAssignedVariables() {
+        final Deque<DetailAST> poppedScopeAssignedVariableData =
+                currentScopeAssignedVariables.pop();
+        final Deque<DetailAST> currentScopeAssignedVariableData =
+                currentScopeAssignedVariables.peek();
+        if (currentScopeAssignedVariableData != null) {
+            currentScopeAssignedVariableData.addAll(poppedScopeAssignedVariableData);
         }
     }
 
@@ -322,29 +348,28 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Update current scope data uninitialized variable according to the previous scope data.
+     * Update current scope data uninitialized variable according to the whole scope data.
      * @param prevScopeUnitializedVariableData variable for previous stack of uninitialized
      *     variables
      */
     // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation.
-    private void updateUninitializedVariables(Deque<DetailAST> prevScopeUnitializedVariableData) {
+    private void updateAllUninitializedVariables(
+            Deque<DetailAST> prevScopeUnitializedVariableData) {
         // Check for only previous scope
-        for (DetailAST variable : prevScopeUnitializedVariableData) {
-            for (ScopeData scopeData : scopeStack) {
-                final FinalVariableCandidate candidate = scopeData.scope.get(variable.getText());
-                DetailAST storedVariable = null;
-                if (candidate != null) {
-                    storedVariable = candidate.variableIdent;
-                }
-                if (storedVariable != null && isSameVariables(storedVariable, variable)
-                        && !scopeData.uninitializedVariables.contains(storedVariable)) {
-                    scopeData.uninitializedVariables.push(variable);
-                }
-            }
-        }
+        updateUninitializedVariables(prevScopeUnitializedVariableData);
         // Check for rest of the scope
-        for (Deque<DetailAST> unitializedVariableData : prevScopeUninitializedVariables) {
-            for (DetailAST variable : unitializedVariableData) {
+        prevScopeUninitializedVariables.forEach(this::updateUninitializedVariables);
+    }
+
+    /**
+     * Update current scope data uninitialized variable according to the specific scope data.
+     * @param scopeUnitializedVariableData variable for specific stack of uninitialized variables
+     */
+    private void updateUninitializedVariables(Deque<DetailAST> scopeUnitializedVariableData) {
+        final Iterator<DetailAST> iterator = currentScopeAssignedVariables.peek().iterator();
+        while (iterator.hasNext()) {
+            final DetailAST assignedVariable = iterator.next();
+            for (DetailAST variable : scopeUnitializedVariableData) {
                 for (ScopeData scopeData : scopeStack) {
                     final FinalVariableCandidate candidate =
                         scopeData.scope.get(variable.getText());
@@ -354,8 +379,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                     }
                     if (storedVariable != null
                             && isSameVariables(storedVariable, variable)
-                            && !scopeData.uninitializedVariables.contains(storedVariable)) {
+                            && isSameVariables(assignedVariable, variable)) {
                         scopeData.uninitializedVariables.push(variable);
+                        iterator.remove();
                     }
                 }
             }
@@ -627,7 +653,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             findFirstUpperNamedBlock(ast1);
         final DetailAST classOrMethodOfAst2 =
             findFirstUpperNamedBlock(ast2);
-        return classOrMethodOfAst1 == classOrMethodOfAst2;
+        return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
     }
 
     /**
@@ -666,6 +692,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
         /** Contains definitions of uninitialized variables. */
         private final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
+
+        /** Whether there is a {@code break} in the scope. */
+        private boolean containsBreak;
 
         /**
          * Searches for final local variable candidate for ast in the scope.
