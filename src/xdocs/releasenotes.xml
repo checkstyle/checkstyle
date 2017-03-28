@@ -131,6 +131,75 @@
           <li>
             Travis faliure: &quot;sonatype-nexus-staging not found&quot; during release. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3868"> #3868</a>
           </li>
+          <li>
+            DetailAst class unclear logic in addChilld method. Author: Abulfaz Ahmadov <a href="https://github.com/checkstyle/checkstyle/issues/3491"> #3491</a>
+          </li>
+          <li>
+            make code coverage for MainFrameModel 100%. Author: Xiao Pu <a href="https://github.com/checkstyle/checkstyle/issues/3648"> #3648</a>
+          </li>
+          <li>
+            Refactiring for RightCurlyCheck.java. Author: sagar shah <a href="https://github.com/checkstyle/checkstyle/issues/3685"> #3685</a>
+          </li>
+          <li>
+            Travis faliure: "sonatype-nexus-staging not found" during release. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3868"> #3868</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for WhitespaceAfterCheck. Author: Pedro Portela <a href="https://github.com/checkstyle/checkstyle/issues/3897"> #3897</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for TypecastParenPad. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3900"> #3900</a>
+          </li>
+          <li>
+            CommitValidationTest: add character limit to line. Author: sagar shah <a href="https://github.com/checkstyle/checkstyle/issues/3910"> #3910</a>
+          </li>
+          <li>
+            doc: add examples for xdoc for ArrayTrailingComma. Author: Pedro Portela <a href="https://github.com/checkstyle/checkstyle/issues/3943"> #3943</a>
+          </li>
+          <li>
+            DetailASTTest: 'checkTree' failing on deep AST tree. Author: LoLo <a href="https://github.com/checkstyle/checkstyle/issues/3961"> #3961</a>
+          </li>
+          <li>
+            remove from Input files "Compilable with Java8". Author: LoLo <a href="https://github.com/checkstyle/checkstyle/issues/3965"> #3965</a>
+          </li>
+          <li>
+            Indentation UTs should not use ROOT locale when they test violation/error message. Author: LoLo <a href="https://github.com/checkstyle/checkstyle/issues/4003"> #4003</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for OperatorWrap. Author: Nikhil Gupta <a href="https://github.com/checkstyle/checkstyle/issues/3929"> #3929</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodParamPad. Author: Nikhil Gupta <a href="https://github.com/checkstyle/checkstyle/issues/3954"> #3954</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for GenericWhitespace. Author: subkrish <a href="https://github.com/checkstyle/checkstyle/issues/3958"> #3958</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for EmptyForInitializerPadCheck. Author: samuel-gu <a href="https://github.com/checkstyle/checkstyle/issues/3970"> #3970</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for EmptyForIteratorPad. Author: shivanshsoni <a href="https://github.com/checkstyle/checkstyle/issues/3976"> #3976</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for EmptyLineSeparator. Author: anudeepti2004 <a href="https://github.com/checkstyle/checkstyle/issues/3985"> #3985</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for AnonInnerLength. Author: samuel-gu <a href="https://github.com/checkstyle/checkstyle/issues/3986"> #3986</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for ExecutableStatementCount. Author: GabrielBercaru <a href="https://github.com/checkstyle/checkstyle/issues/3991"> #3991</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for FileLength. Author: Grigorii Shevchenko <a href="https://github.com/checkstyle/checkstyle/issues/3999"> #3999</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodCount. Author: timurt <a href="https://github.com/checkstyle/checkstyle/issues/4014"> #4014</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodLength. Author: GabrielBercaru <a href="https://github.com/checkstyle/checkstyle/issues/4042"> #4042</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for AbbreviationAsWordInName. Author: Igor Shmagrinskiy <a href="https://github.com/checkstyle/checkstyle/issues/4095"> #4095</a>
+          </li>
         </ul>
     </section>
 
