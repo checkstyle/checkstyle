@@ -52,7 +52,7 @@ Licensing
 This software is licensed under the terms in the file named "LICENSE" in this
 directory.
 
-The software uses the ANTLR package (http://www.antlr.org). Its license terms
+The software uses the ANTLR package (http://www.antlr.org/). Its license terms
 are in the file named "RIGHTS.antlr" in this directory.
 
 This product includes software developed by
@@ -69,7 +69,7 @@ these packages are in the file named "LICENSE.apache20" in this
 directory.
 
 [travis]:https://travis-ci.org/checkstyle/checkstyle/builds
-[travis img]:https://secure.travis-ci.org/checkstyle/checkstyle.png
+[travis img]:https://travis-ci.org/checkstyle/checkstyle.svg
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
@@ -80,25 +80,25 @@ directory.
 [codacy]:https://www.codacy.com/app/checkstyle/checkstyle
 [codacy img]:https://api.codacy.com/project/badge/3adf12d434314ba8b38277ea46d3c44b
 
-[coverage]:http://codecov.io/github/checkstyle/checkstyle?branch=master
-[coverage img]:http://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
+[coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=master
+[coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
 
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
 
-[mavenbadge]:http://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
+[mavenbadge]:https://search.maven.org/#search|gav|1|g%3A%22com.puppycrawl.tools%22%20AND%20a%3A%22checkstyle%22
 [mavenbadge img]:https://maven-badges.herokuapp.com/maven-central/com.puppycrawl.tools/checkstyle/badge.svg
 
 [versioneye]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a
 [versioneye img]:https://www.versioneye.com/user/projects/5504ca834a1064774400049a/badge.svg
 
 [gitter_mem]:https://gitter.im/checkstyle
-[gitter_mem img]:http://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
+[gitter_mem img]:https://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
 
 [gitter_con]:https://gitter.im/checkstyle/checkstyle
 [gitter_con img]:https://badges.gitter.im/Join%20Chat.svg
 
-[stackoverflow]:http://stackoverflow.com/questions/tagged/checkstyle
+[stackoverflow]:https://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
 
 [teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
