@@ -18,6 +18,15 @@
     <!-- placeholder for a new section -->
 
     <section name="Release 7.6.1">
+      <p>New:</p>
+        <ul>
+          <li>
+            NoLineWrap: add support for static imports. Author: Vikramaditya Kukreja<a href="https://github.com/checkstyle/checkstyle/issues/3892"> #3892</a>
+          </li>
+          <li>
+            PackageDeclaration: new property matchDirectoryStructure to match the package name to directory name of source file. Author: Vikramaditya Kukreja<a href="https://github.com/checkstyle/checkstyle/issues/3437"> #3437</a>
+          </li>
+        </ul>
       <p>Bug fixes:</p>
         <ul>
           <li>
