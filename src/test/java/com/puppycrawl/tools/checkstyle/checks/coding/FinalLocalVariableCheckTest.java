@@ -255,4 +255,13 @@ public class FinalLocalVariableCheckTest
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableLeavingSlistToken.java"), expected);
     }
+
+    @Test
+    public void testBreakOrReturn() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "7:19: " + getCheckMessage(MSG_KEY, "e"),
+        };
+        verify(checkConfig, getPath("InputFinalLocalVariableBreak.java"), expected);
+    }
 }
