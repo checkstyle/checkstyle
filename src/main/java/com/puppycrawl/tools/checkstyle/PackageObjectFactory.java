@@ -270,6 +270,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.annotation.AnnotationLocationCheck");
         NAME_TO_FULL_MODULE_NAME.put("AnnotationUseStyleCheck",
                 BASE_PACKAGE + ".checks.annotation.AnnotationUseStyleCheck");
+        NAME_TO_FULL_MODULE_NAME.put("AvoidAnnotationCombinationCheck",
+                BASE_PACKAGE + ".checks.annotation.AvoidAnnotationCombinationCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingDeprecatedCheck",
                 BASE_PACKAGE + ".checks.annotation.MissingDeprecatedCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingOverrideCheck",

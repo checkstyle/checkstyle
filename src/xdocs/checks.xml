@@ -68,6 +68,10 @@
         <td>Checks the order of at-clauses.</td>
       </tr>
       <tr>
+        <td><a href="config_misc.html#AvoidAnnotationCombination">AvoidAnnotationCombination</a></td>
+        <td>Avoid certain annotations to be used in combination with a given modifier.</td>
+      </tr>
+      <tr>
         <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">AvoidEscapedUnicodeCharacters</a></td>
         <td>Restrict using Unicode escapes.</td>
       </tr>
