@@ -35,7 +35,7 @@
       <p>
         The functionality of Checkstyle is implemented in modules that can
         be plugged into Checkstyle. Modules can be containers for other
-        modules, i.e. they form a tree structure. The toplevel modules
+        modules, i.e. they form a tree structure. The top level modules
         that are known directly to the Checkstyle kernel (which is also a
         module and forms the root of the tree) implement the <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/FileSetCheck.html">FileSetCheck</a>
@@ -223,7 +223,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       </p>
 
       <p>
-        Notice: text of a tree node and its children is selected automaticaly
+        Notice: text of a tree node and its children is selected automatically
         after either pressing "Enter" or double-clicking on it, so there is no
         need to make selection manually.
       </p>
@@ -400,7 +400,7 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>
         Before <a href="releasenotes.html#Release_6.0">Checkstyle 6.0</a>, there was no comments in AST tree
-        as commnents are not a code and ignored by complier, so it was not a primary focus of Checkstyle.
+        as comments are not a code and ignored by compiler, so it was not a primary focus of Checkstyle.
         But more and more requests appear to do validation of code vs javadoc or comments.
         So there was a simple solution to receive plain text of file in Check, do own parsing and searching for required comments in file.
       </p>
@@ -730,10 +730,10 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
          <li>
            If <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
            return null, there will be NullPointerException in <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">Checker</a>.
-           Such behaviour will signal that your module (check or filter) is designed incorrectrly.
+           Such behaviour will signal that your module (check or filter) is designed incorrectly.
          </li>
          <li>
-           It make sence to return an empty set from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
+           It makes sense to return an empty set from <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">getExternalResourceLocations</a>
            only for composite modules like <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>.
          </li>
        </p>

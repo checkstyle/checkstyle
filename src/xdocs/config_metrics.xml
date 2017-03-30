@@ -746,7 +746,7 @@ class SwitchExample {
           avoid problem of Cyclomatic complexity metric like nesting level within a function(method).
         </p>
         <p>
-          Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detaled description of algorithm, please read that article,
+          Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">"NPATH: a measure of execution pathcomplexity and its applications"</a>. If you need detailed description of algorithm, please read that article,
           it is well written and have number of examples and details.
         </p>
 
@@ -777,7 +777,7 @@ class SwitchExample {
         <table>
         <thead><tr><th>Structure</th><th> Complexity expression </th></tr></thead>
         <tr><td>if ([expr]) { [if-range] }</td><td>NP(if-range) + 1 + NP(expr)</td></tr>
-        <tr><td>if ([expr]) { [if-range] } esle { [else-range] }</td><td>NP(if-range) + NP(else-range) + NP(expr)</td></tr>
+        <tr><td>if ([expr]) { [if-range] } else { [else-range] }</td><td>NP(if-range) + NP(else-range) + NP(expr)</td></tr>
         <tr><td>while ([expr]) { [while-range] } </td><td>NP(while-range) + NP(expr) + 1</td></tr>
         <tr><td>do { [do-range] } while ([expr])</td><td>NP(do-range) + NP(expr) + 1</td></tr>
         <tr><td>for([expr1]; [expr2]; [expr3]) { [for-range] }</td><td>NP(for-range) + NP(expr1) + NP(expr2) + NP(expr3) + 1</td></tr>

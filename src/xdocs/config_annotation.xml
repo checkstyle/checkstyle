@@ -32,7 +32,7 @@
           Attention: Annotations among modifiers are ignored (looks like false-negative)
           as there might be a problem with annotations for return types <source>public @Nullable Long getStartTimeOrNull() { ... }</source>
           Such annotations are better to keep close to type.
-          Due to limitations Checkstyle can not examin target of annotation.
+          Due to limitations Checkstyle can not examine target of annotation.
         </p>
         <p>
           Example:
@@ -60,7 +60,7 @@ public String getNameIfPresent() { ... }
           </tr>
           <tr>
             <td>allowSamelineSingleParameterlessAnnotation</td>
-            <td>To allow single prameterless annotation to be located on the same line as target element.</td>
+            <td>To allow single parameterless annotation to be located on the same line as target element.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
           </tr>
