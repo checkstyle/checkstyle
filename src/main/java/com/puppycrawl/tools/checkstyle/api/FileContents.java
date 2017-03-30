@@ -92,7 +92,7 @@ public final class FileContents implements CommentListener {
     @Override
     public void reportSingleLineComment(String type, int startLineNo,
             int startColNo) {
-        reportCppComment(startLineNo, startColNo);
+        reportSingleLineComment(startLineNo, startColNo);
     }
 
     /**
@@ -111,7 +111,7 @@ public final class FileContents implements CommentListener {
     @Override
     public void reportBlockComment(String type, int startLineNo,
             int startColNo, int endLineNo, int endColNo) {
-        reportCComment(startLineNo, startColNo, endLineNo, endColNo);
+        reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
     /**
