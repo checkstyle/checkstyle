@@ -41,7 +41,7 @@ public class MyClass {
       ]]></source>
       </p>
       Attention that java comment starts with <code>/*</code>, following with Identificator of comment type. Javadoc Identificator is <code>*</code>. All symbols after Javadoc Identificator till <code>*/</code> are part of javadoc comment.
-      <p>Please not that javadoc-like comment inside a method is not a javadoc comment and skiped by
+      <p>Please not that javadoc-like comment inside a method is not a javadoc comment and skipped by
          Sun/Oracle javadoc tool and by our parser.
       </p>
       <p>In internet you can find different types of documentation
@@ -54,7 +54,7 @@ public class MyClass {
       <p>
       Javadoc by specification could contain any HTML tags that let user generate content he needs.
       All tags are copied as is to result javadoc html pages by Sun/Oracle javadoc tool.
-      All bad formatting is responsibility of user and web-browser. To validate Chekcstyle to parse
+      All bad formatting is responsibility of user and web-browser. To validate Checkstyle to parse
       input to predictable structure - Abstract Syntax Tree(AST). It is very difficult to parse free style
       format, so input text need to follow some format, so limitation appears.
       </p>
@@ -72,7 +72,7 @@ public class MyClass {
       Every HTML tag should have matching end HTML tag or it is a <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void element</a>.
       </p>
       <p>
-      The only exceptions are HTML 4 tags whose end tag is optional(ommitable) by HTML specification (example is <a href="https://www.w3.org/TR/html5/tabular-data.html#the-tr-element">TR</a>), so, Checkstyle won't show error about missing end tag, however, it leads to broken Tight-HTML structure and as a result
+      The only exceptions are HTML 4 tags whose end tag is optional (omittable) by HTML specification (example is <a href="https://www.w3.org/TR/html5/tabular-data.html#the-tr-element">TR</a>), so, Checkstyle won't show error about missing end tag, however, it leads to broken Tight-HTML structure and as a result
       leads to not-nested content of the HTML tags in Abstract Syntax Tree of the Javadoc comment.
       <br/>
       In other words, if HTML tags are not closed Javadoc grammar cannot determine content of these tags,
@@ -82,7 +82,7 @@ public class MyClass {
       Other rules:
       <ul>
         <li>Document Structure elements (DOCTYPE, &lt;html&gt;, &lt;body&gt;, etc) are not mandatory.</li>
-        <li>Elements must always be closed, except HTML4 elements whose end tag is optional(ommitable) and HTML4 <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
+        <li>Elements must always be closed, except HTML4 elements whose end tag is optional (omittable) and HTML4 <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a>. See <a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a> section</li>
         <li>HTML elements can be either in lowercase or in uppercase</li>
         <li>Attribute names can be either in lowercase or in uppercase</li>
         <li>Attribute values can be either quoted or not be quoted</li>
@@ -108,7 +108,7 @@ public class MyClass {
         </li>
         <li>
           <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#visitJavadocToken-com.puppycrawl.tools.checkstyle.api.DetailNode-">
-          visitJavadocToken(DetailNode)</a> - it's a place you should put tree nodes proccessing. The argument is Javadoc tree node of type you described before in
+          visitJavadocToken(DetailNode)</a> - it's a place you should put tree nodes processing. The argument is Javadoc tree node of type you described before in
           <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">getDefaultJavadocTokens()</a> method.
         </li>
       </ul>
@@ -119,7 +119,7 @@ public class MyClass {
         Java grammar parses java file base on Java language specifications. So, there are singleline comments and multiline/block comments in it.
         Java compiler doesn't know about Javadoc because it is just a multiline comment.
         To parse multiline comment as a Javadoc comment, checkstyle has special Parser
-        that is based on ANTLR Javadoc grammar. So, it's supposed to proccess block comments
+        that is based on ANTLR Javadoc grammar. So, it's supposed to process block comments
         that start with Javadoc Identificator and parse them to Abstract Syntax Tree (AST).
       </p>
       <p>
@@ -196,7 +196,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
       As you see very small java file transforms to a huge Abstract Syntax Tree, because that is the most detailed tree including all components of the java file: classes, methods, comments, etc.
       </p>
       <p>In most cases while developing Javadoc Check, you need to only parse the tree of the exact Javadoc comment.
-      To do that just copy Javadoc comment to separate file and remove <b>/**</b> at the begining and <b>*/</b> at the end. After that, run checkstyle with <b>-j</b> argument.
+      To do that just copy Javadoc comment to separate file and remove <b>/**</b> at the beginning and <b>*/</b> at the end. After that, run checkstyle with <b>-j</b> argument.
       </p>
       <p>MyJavadocComment.javadoc file:</p>
       <source><![CDATA[
@@ -278,10 +278,10 @@ class MyCheck extends AbstractJavadocCheck {
         Checkstyle supports HTML4 tags in Javadoc comments: <a href="https://www.w3.org/TR/html4/index/elements.html">all HTML4 elements</a>.
       </p>
       <p>
-        HTML4 is picked just to have a list of elements whose end tag is optional(ommitable) and a list of <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a> (also known as <a href="https://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
+        HTML4 is picked just to have a list of elements whose end tag is optional(omittable) and a list of <a href="https://www.w3.org/TR/html/syntax.html#void-elements">void elements</a> (also known as <a href="https://www.w3schools.com/html/html_elements.asp">empty html tags</a>, for example <a href="https://www.w3.org/TR/html4/struct/text.html#edef-BR">BR tag</a>).
       </p>
       <p>
-        HTML4 elements whose end tag is optional(ommitable): &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
+        HTML4 elements whose end tag is optional (omittable): &lt;P&gt;, &lt;LI&gt;, &lt;TR&gt;, &lt;TD&gt;, &lt;TH&gt;, &lt;BODY&gt;, &lt;COLGROUP&gt;, &lt;DD&gt;,
         &lt;DT&gt;, &lt;HEAD&gt;, &lt;HTML&gt;, &lt;OPTION&gt;, &lt;TBODY&gt;, &lt;THEAD&gt;, &lt;TFOOT&gt;.
       </p>
       <p>
@@ -290,8 +290,8 @@ class MyCheck extends AbstractJavadocCheck {
       </p>
 
       <p>
-        To make Checkstyle support HTML5 tags whose end tag is optional(ommitable) and HTML5 void elements we should update Javadoc Parser
-        bacause each element that breaks <a href="#Tight-HTML_rules">Tight-HTML rules</a> have to be defined in Javadoc grammar.
+        To make Checkstyle support HTML5 tags whose end tag is optional (omittable) and HTML5 void elements we should update Javadoc Parser
+        because each element that breaks <a href="#Tight-HTML_rules">Tight-HTML rules</a> have to be defined in Javadoc grammar.
         In future we should update Javadoc grammar if those tag lists extend (new tags, new HTML standard, etc.).
         (We already have an <a href='https://github.com/checkstyle/checkstyle/issues/3332'>issue on updating Javadoc grammar to HTML5</a>)
       </p>
@@ -568,10 +568,10 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
     </section>
 
     <section name="Javadoc parser behavior for current HTML version and new HTML version">
-      This section shows how parser should/will behave during parsing of current HTML versoin and any new HTML version. Current version is HTML4, new version that need to be supported is HTML5.
+      This section shows how parser should/will behave during parsing of current HTML version and any new HTML version. Current version is HTML4, new version that need to be supported is HTML5.
       GeneralToken - mean that after parsing there will be general AstToken - HTML_TAG.
       SpecialToken - mean that after parsing there will be special AstToken - PARAGRAPH, .... .
-      <p><b>Tags with optional(ommitable) end tag:</b></p>
+      <p><b>Tags with optional (omittable) end tag:</b></p>
       <table style="table-layout: fixed;">
         <tr>
           <th>Input</th>
@@ -597,7 +597,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
         <tr>
           <td>
             <![CDATA[<rb>text</rb>]]>
-            <br/><i>New HTML5 tag with optional(ommitable) end tag</i>
+            <br/><i>New HTML5 tag with optional (omittable) end tag</i>
           </td>
           <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
           <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
@@ -607,7 +607,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
         <tr>
           <td>
             <![CDATA[<rb>text]]>
-            <br/><i>New HTML5 tag with optional(ommitable) end tag</i>
+            <br/><i>New HTML5 tag with optional (omittable) end tag</i>
           </td>
           <td><![CDATA[Parse error]]></td>
           <td><![CDATA[Parse error]]></td>

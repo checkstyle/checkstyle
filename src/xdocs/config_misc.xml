@@ -313,7 +313,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 8
 9   public void foo8() {}
         </source>
-        <p>Example #4: Comment has destributed previous statement.</p>
+        <p>Example #4: Comment has distributed previous statement.</p>
         <source>
 1   public void foo11() {
 2       CheckUtils
@@ -376,7 +376,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 19        // it is OK
 20  }
         </source>
-        <p>Example #7: Comment is placed within a destributed statement.</p>
+        <p>Example #7: Comment is placed within a distributed statement.</p>
         <source>
 1   String breaks = "J"
 2   // violation (comment should have the same indentation level as line 3)
@@ -431,7 +431,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 9   public void foo43() {
 10     try {
 11        int a;
-12     // Why do we catch exception here? - violation (should have the same indenatation as line 11)
+12     // Why do we catch exception here? - violation (should have the same indentation as line 11)
 13     } catch (Exception e) { ... }
 14  }
         </source>
@@ -835,7 +835,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       <subsection name="Examples">
         <p>
           This check should not be used by itself, as it does no reporting.
-          It is to be used in conjuction with other checks like
+          It is to be used in conjunction with other checks like
           <a href="config_filters.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
           and
           <a href="config_filters.html#SuppressWithNearbyCommentFilter">SuppressWithNearbyCommentFilter</a>.
@@ -1160,7 +1160,7 @@ void foo(String aFooString,
           <img src="https://cloud.githubusercontent.com/assets/812984/13894408/afd965b8-ed24-11e5-8bfd-e9edf56a6fe6.png" alt="example of diff"/>
         </p>
         <p>
-          Old Ratinale: CVS source control management
+          Old Rationale: CVS source control management
           systems will even print a warning when it
           encounters a file that doesn't end with a line separator.
         </p>
@@ -1595,7 +1595,7 @@ messages.properties: Key 'ok' missing.
         <p>
           <font color="red">Attention:</font> this Check could produce false-positives if it is used with
           <a href="config.html#Checker">Checker</a> that use cache (property "cacheFile")
-          This is known design problem, will be addrerssed at
+          This is known design problem, will be addressed at
           <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
         </p>
       </subsection>
@@ -1694,7 +1694,7 @@ messages.properties: Key 'ok' missing.
         <p>
           As we can see from the configuration, the TranslationCheck was configured to check
           an existence of 'es', 'fr' and 'de' translations. Lets assume that we have the resource
-          bunbdle:
+          bundle:
         </p>
         <source>
 messages_home.properties
