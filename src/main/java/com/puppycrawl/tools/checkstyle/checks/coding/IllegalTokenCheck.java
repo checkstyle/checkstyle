@@ -105,9 +105,9 @@ public class IllegalTokenCheck
             case TokenTypes.LABELED_STAT:
                 tokenText = ast.getFirstChild().getText() + ast.getText();
                 break;
-            // multyline tokens need to become singlelined
+            // multiline tokens need to become singlelined
             case TokenTypes.COMMENT_CONTENT:
-                tokenText = JavadocUtils.excapeAllControlChars(ast.getText());
+                tokenText = JavadocUtils.escapeAllControlChars(ast.getText());
                 break;
             default:
                 tokenText = ast.getText();

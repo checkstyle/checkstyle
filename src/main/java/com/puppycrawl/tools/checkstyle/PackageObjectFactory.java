@@ -231,7 +231,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 instance = declaredConstructor.newInstance();
             }
             catch (final ReflectiveOperationException ex) {
-                throw new CheckstyleException("Unable to instatiate " + className, ex);
+                throw new CheckstyleException("Unable to instantiate " + className, ex);
             }
         }
 
@@ -245,7 +245,7 @@ public class PackageObjectFactory implements ModuleFactory {
         fillChecksFromAnnotationPackage();
         fillChecksFromBlocksPackage();
         fillChecksFromCodingPackage();
-        fillChecksFromDesingPackage();
+        fillChecksFromDesignPackage();
         fillChecksFromHeaderPackage();
         fillChecksFromImportsPackage();
         fillChecksFromIndentationPackage();
@@ -394,7 +394,7 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Fill short-to-full module names map with Checks from design package.
      */
-    private static void fillChecksFromDesingPackage() {
+    private static void fillChecksFromDesignPackage() {
         NAME_TO_FULL_MODULE_NAME.put("DesignForExtensionCheck",
                 BASE_PACKAGE + ".checks.design.DesignForExtensionCheck");
         NAME_TO_FULL_MODULE_NAME.put("FinalClassCheck",

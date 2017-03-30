@@ -130,7 +130,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private static final Log LOG = LogFactory.getLog(TranslationCheck.class);
 
     /**
-     * Regexp string for default tranlsation files.
+     * Regexp string for default translation files.
      * For example, messages.properties.
      */
     private static final String DEFAULT_TRANSLATION_REGEXP = "^.+\\..+$";
@@ -159,10 +159,10 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /** File name format with language code. */
     private static final String FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER = "%s_%s.%s";
 
-    /** Formatting string to form regexp to validate required tranlsations file names. */
+    /** Formatting string to form regexp to validate required translations file names. */
     private static final String REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS =
         "^%1$s\\_%2$s(\\_[A-Z]{2})?\\.%3$s$|^%1$s\\_%2$s\\_[A-Z]{2}\\_[A-Za-z]+\\.%3$s$";
-    /** Formatting string to form regexp to validate default tranlsations file names. */
+    /** Formatting string to form regexp to validate default translations file names. */
     private static final String REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS = "^%s\\.%s$";
 
     /** The files to process. */
@@ -202,7 +202,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Validates the correctness of user specififed language codes for the check.
+     * Validates the correctness of user specified language codes for the check.
      * @param languageCodes user specified language codes for the check.
      */
     private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
@@ -411,7 +411,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         else {
             regexp = DEFAULT_TRANSLATION_REGEXP;
         }
-        // We use substring(...) insead of replace(...), so that the regular expression does
+        // We use substring(...) instead of replace(...), so that the regular expression does
         // not have to be compiled each time it is used inside 'replace' method.
         final String removePattern = regexp.substring("^.+".length(), regexp.length());
         return fileName.replaceAll(removePattern, "");

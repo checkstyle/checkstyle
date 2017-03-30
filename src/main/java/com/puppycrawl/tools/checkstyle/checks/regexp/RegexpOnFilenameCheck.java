@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * When customizing the check, the properties are applied in a specific order.
  * The fileExtensions property first picks only files that match any of the
  * specific extensions supplied. Once files are matched against the
- * fileExtensions, the match property is then used in conjuction with the
+ * fileExtensions, the match property is then used in conjunction with the
  * patterns to determine if the check is looking for a match or mis-match on
  * those files. If the fileNamePattern is supplied, the matching is only applied
  * to the fileNamePattern and not the folderPattern. If no fileNamePattern is

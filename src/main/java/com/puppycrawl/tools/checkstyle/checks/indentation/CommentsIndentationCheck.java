@@ -139,7 +139,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 handleCommentInEmptyCaseBlock(prevStmt, comment, nextStmt);
             }
             else if (isFallThroughComment(prevStmt, nextStmt)) {
-                handleFallThroughtComment(prevStmt, comment, nextStmt);
+                handleFallThroughComment(prevStmt, comment, nextStmt);
             }
             else if (isInEmptyCodeBlock(prevStmt, nextStmt)) {
                 handleCommentInEmptyCodeBlock(comment, nextStmt);
@@ -199,7 +199,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Checks whether the previous statement of a comment is a method call chain or
-     * string concatenation statemen distributed over two ore more lines.
+     * string concatenation statement distributed over two ore more lines.
      * @param comment comment to check.
      * @return true if the previous statement is a distributed expression.
      */
@@ -262,9 +262,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether the previous statement of a comment is a destributed return statement.
+     * Checks whether the previous statement of a comment is a distributed return statement.
      * @param commentPreviousSibling previous sibling of the comment.
-     * @return true if the previous statement of a comment is a destributed return statement.
+     * @return true if the previous statement of a comment is a distributed return statement.
      */
     private static boolean isDistributedReturnStatement(DetailAST commentPreviousSibling) {
         boolean isDistributed = false;
@@ -280,9 +280,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether the previous statement of a comment is a destributed throw statement.
+     * Checks whether the previous statement of a comment is a distributed throw statement.
      * @param commentPreviousSibling previous sibling of the comment.
-     * @return true if the previous statement of a comment is a destributed throw statement.
+     * @return true if the previous statement of a comment is a distributed throw statement.
      */
     private static boolean isDistributedThrowStatement(DetailAST commentPreviousSibling) {
         boolean isDistributed = false;
@@ -298,9 +298,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Returns the first token of the destributed previous statement of comment.
+     * Returns the first token of the distributed previous statement of comment.
      * @param comment comment to check.
-     * @return the first token of the destributed previous statement of comment.
+     * @return the first token of the distributed previous statement of comment.
      */
     private static DetailAST getDistributedPreviousStatement(DetailAST comment) {
         DetailAST currentToken = comment.getPreviousSibling();
@@ -399,7 +399,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Handles a comment which is plased within empty case block.
+     * Handles a comment which is placed within empty case block.
      * Note, if comment is placed at the end of the empty case block, we have Checkstyle's
      * limitations to clearly detect user intention of explanation target - above or below. The
      * only case we can assume as a violation is when a single line comment within the empty case
@@ -460,8 +460,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param comment single line comment.
      * @param nextStmt next statement.
      */
-    private void handleFallThroughtComment(DetailAST prevStmt, DetailAST comment,
-                                           DetailAST nextStmt) {
+    private void handleFallThroughComment(DetailAST prevStmt, DetailAST comment,
+                                          DetailAST nextStmt) {
 
         if (!areSameLevelIndented(comment, prevStmt, nextStmt)) {
             logMultilineIndentation(prevStmt, comment, nextStmt);
@@ -470,7 +470,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Handles a comment which is placed at the end of non empty code block.
-     * Note, if single line comment is plcaed at the end of non empty block the comment should have
+     * Note, if single line comment is placed at the end of non empty block the comment should have
      * the same indentation level as the previous statement. For example:
      * <p>
      * {@code

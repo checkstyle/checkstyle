@@ -534,7 +534,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * }
      * </p>
      * @param variable variable.
-     * @return true if a variable which is declared ouside loop is used inside loop.
+     * @return true if a variable which is declared outside loop is used inside loop.
      */
     private static boolean isUseOfExternalVariableInsideLoop(DetailAST variable) {
         DetailAST loop2 = variable.getParent();

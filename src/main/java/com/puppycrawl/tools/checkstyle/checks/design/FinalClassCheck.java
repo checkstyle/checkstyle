@@ -204,7 +204,7 @@ public class FinalClassCheck
      * outer class.
      * @param packageName package name, empty string on default package
      * @param outerClassQualifiedName qualified name(package + class) of outer class,
-     *                           null if doesnt exist
+     *                           null if doesn't exist
      * @param className class name
      * @return qualified class name(package + class name)
      */
@@ -242,7 +242,7 @@ public class FinalClassCheck
 
     /**
      * Checks if given super class name in extend clause match super class qualified name.
-     * @param superClassQualifiedName super class quaflieid name(with package)
+     * @param superClassQualifiedName super class qualified name (with package)
      * @param superClassInExtendClause name in extend clause
      * @return true if given super class name in extend clause match super class qualified name,
      *         false otherwise
