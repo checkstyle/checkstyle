@@ -17,6 +17,192 @@
 
     <!-- placeholder for a new section -->
 
+    <section name="Release 7.6.1">
+      <p>New:</p>
+        <ul>
+          <li>
+            NoLineWrap: add support for static imports. Author: Vikramaditya Kukreja<a href="https://github.com/checkstyle/checkstyle/issues/3892"> #3892</a>
+          </li>
+          <li>
+            PackageDeclaration: new property matchDirectoryStructure to match the package name to directory name of source file. Author: Vikramaditya Kukreja<a href="https://github.com/checkstyle/checkstyle/issues/3437"> #3437</a>
+          </li>
+          <li>
+            ParenPad: add LAMBDA token support. Author: Andrew<a href="https://github.com/checkstyle/checkstyle/issues/3229"> #3329</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SummaryJavadoc: need special processing of inheritDoc tag. Author: Sagar<a href="https://github.com/checkstyle/checkstyle/issues/3908"> #3908</a>
+          </li>
+          <li>
+            Indentation check fails for Line Wrapped Anonymous Inner Class with LCurly on newline. Author: Andrew Kuchev<a href="https://github.com/checkstyle/checkstyle/issues/3612"> #3612</a>
+          </li>
+          <li>
+            Regression false-positive FinalLocalVariable. Author: Luolc<a href="https://github.com/checkstyle/checkstyle/issues/3172"> #3172</a>
+          </li>
+          <li>
+            ImportControlLoader does not close InputStream and leaks filehandles when xml is malformed. Author: Giorgos Gaganis<a href="https://github.com/checkstyle/checkstyle/issues/3962"> #3962</a>
+          </li>
+          <li>
+            RightCurly: ALONE option doen&#39;t work for a singleline IF. Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/4044"> #4044</a>
+          </li>
+          <li>
+            Test failed due to locale message settings. (with non-English locale settings). Author: Luolc<a href="https://github.com/checkstyle/checkstyle/issues/3896"> #3896</a>
+          </li>
+          <li>
+            Control Characters are not skipped with google_checks config. Author: Luolc<a href="https://github.com/checkstyle/checkstyle/issues/3700"> #3700</a>
+          </li>
+          <li>
+            WhitespaceAfterCheck: problem with multiline typecast. Author: Andrew Kuchev<a href="https://github.com/checkstyle/checkstyle/issues/3850"> #3850</a>
+          </li>
+          <li>
+            try to avoid non jdk runtime exceptions in code. Author: Vladislav Lisetskii<a href="https://github.com/checkstyle/checkstyle/issues/3763"> #3763</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            README: broken link. Author: unrealwork<a href="https://github.com/checkstyle/checkstyle/issues/4093"> #4093</a>
+          </li>
+          <li>
+            Wrong German translation of declaration.order.access in messages_de.properties. Author: sirdis<a href="https://github.com/checkstyle/checkstyle/issues/4081"> #4081</a>
+          </li>
+          <li>
+            Perform refactoring of AnnotationLocationCheck to increase code readability. Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/4055"> #4055</a>
+          </li>
+          <li>
+            google_checks: update to most recent version of style guide ( Feb 28, 2017 ). Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3888"> #3888</a>
+          </li>
+          <li>
+            spelling: fix spelling and punctuation in comments (RightCurly). Author: Andrei Selkin
+          </li>
+          <li>
+            google_checks: update to most recent version of style guide (3 November 2016). Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/3755"> #3755</a>
+          </li>
+          <li>
+            NPath for empty block is 1. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/4045"> #4045</a>
+          </li>
+          <li>
+            Add new setting in Beginning Development for IDEA docs. Author: Vikramaditya Kukreja<a href="https://github.com/checkstyle/checkstyle/issues/4030"> #4030</a>
+          </li>
+          <li>
+            doc: fix typos in Travis PR validation messages. Author: Vladislav Lisetskii
+          </li>
+          <li>
+            UTs should not use ROOT locale when they test violation/error message . Author: Luolc<a href="https://github.com/checkstyle/checkstyle/issues/3989"> #3989</a>
+          </li>
+          <li>
+            wercker ci should have most of testing launches on real code to shorten time of Travis execution. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3798"> #3798</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for SeparatorWrap. Author: Sagar<a href="https://github.com/checkstyle/checkstyle/issues/3904"> #3904</a>
+          </li>
+          <li>
+            doc: update documentation for usage of &quot;period&quot; property at SummaryJavadoc . Author: Sagar<a href="https://github.com/checkstyle/checkstyle/issues/3906"> #3906</a>
+          </li>
+          <li>
+            spelling: corrected sentence. Author: Sagar
+          </li>
+          <li>
+            EmptyLineSeparator check not enforcing empty line after class def, enum def or interface def tokens. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3089"> #3089</a>
+          </li>
+          <li>
+            spelling: change &#39;suite&#39; to &#39;suit&#39;. Author: ljacqu
+          </li>
+          <li>
+            WritingChecks: add documentation on java grammar. Author: Sagar<a href="https://github.com/checkstyle/checkstyle/issues/3883"> #3883</a>
+          </li>
+          <li>
+            expand documentation on METHOD_REF token. Author: Luolc<a href="https://github.com/checkstyle/checkstyle/issues/3731"> #3731</a>
+          </li>
+          <li>
+            circleci: provide ability to skip CI executions base on commit files. Author: Vladislav Lisetskii<a href="https://github.com/checkstyle/checkstyle/issues/3869"> #3869</a>
+          </li>
+          <li>
+            RequireThisCheck is not fully covered with UTs. Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/3848"> #3848</a>
+          </li>
+          <li>
+            spelling: fix typo in documentation. Author: Craig P. Motlin
+          </li>
+          <li>
+            Code coverage is not working for certain classes in checkstyle. Author: Andrei Selkin<a href="https://github.com/checkstyle/checkstyle/issues/3843"> #3843</a>
+          </li>
+          <li>
+            Travis faliure: &quot;sonatype-nexus-staging not found&quot; during release. Author: Roman Ivanov<a href="https://github.com/checkstyle/checkstyle/issues/3868"> #3868</a>
+          </li>
+          <li>
+            DetailAst class unclear logic in addChilld method. Author: Abulfaz Ahmadov <a href="https://github.com/checkstyle/checkstyle/issues/3491"> #3491</a>
+          </li>
+          <li>
+            make code coverage for MainFrameModel 100%. Author: Xiao Pu <a href="https://github.com/checkstyle/checkstyle/issues/3648"> #3648</a>
+          </li>
+          <li>
+            Refactiring for RightCurlyCheck.java. Author: sagar shah <a href="https://github.com/checkstyle/checkstyle/issues/3685"> #3685</a>
+          </li>
+          <li>
+            Travis faliure: "sonatype-nexus-staging not found" during release. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3868"> #3868</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for WhitespaceAfterCheck. Author: Pedro Portela <a href="https://github.com/checkstyle/checkstyle/issues/3897"> #3897</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for TypecastParenPad. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3900"> #3900</a>
+          </li>
+          <li>
+            CommitValidationTest: add character limit to line. Author: sagar shah <a href="https://github.com/checkstyle/checkstyle/issues/3910"> #3910</a>
+          </li>
+          <li>
+            doc: add examples for xdoc for ArrayTrailingComma. Author: Pedro Portela <a href="https://github.com/checkstyle/checkstyle/issues/3943"> #3943</a>
+          </li>
+          <li>
+            DetailASTTest: 'checkTree' failing on deep AST tree. Author: LoLo <a href="https://github.com/checkstyle/checkstyle/issues/3961"> #3961</a>
+          </li>
+          <li>
+            remove from Input files "Compilable with Java8". Author: LoLo <a href="https://github.com/checkstyle/checkstyle/issues/3965"> #3965</a>
+          </li>
+          <li>
+            Indentation UTs should not use ROOT locale when they test violation/error message. Author: LoLo <a href="https://github.com/checkstyle/checkstyle/issues/4003"> #4003</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for OperatorWrap. Author: Nikhil Gupta <a href="https://github.com/checkstyle/checkstyle/issues/3929"> #3929</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodParamPad. Author: Nikhil Gupta <a href="https://github.com/checkstyle/checkstyle/issues/3954"> #3954</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for GenericWhitespace. Author: subkrish <a href="https://github.com/checkstyle/checkstyle/issues/3958"> #3958</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for EmptyForInitializerPadCheck. Author: samuel-gu <a href="https://github.com/checkstyle/checkstyle/issues/3970"> #3970</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for EmptyForIteratorPad. Author: shivanshsoni <a href="https://github.com/checkstyle/checkstyle/issues/3976"> #3976</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for EmptyLineSeparator. Author: anudeepti2004 <a href="https://github.com/checkstyle/checkstyle/issues/3985"> #3985</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for AnonInnerLength. Author: samuel-gu <a href="https://github.com/checkstyle/checkstyle/issues/3986"> #3986</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for ExecutableStatementCount. Author: GabrielBercaru <a href="https://github.com/checkstyle/checkstyle/issues/3991"> #3991</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for FileLength. Author: Grigorii Shevchenko <a href="https://github.com/checkstyle/checkstyle/issues/3999"> #3999</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodCount. Author: timurt <a href="https://github.com/checkstyle/checkstyle/issues/4014"> #4014</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodLength. Author: GabrielBercaru <a href="https://github.com/checkstyle/checkstyle/issues/4042"> #4042</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for AbbreviationAsWordInName. Author: Igor Shmagrinskiy <a href="https://github.com/checkstyle/checkstyle/issues/4095"> #4095</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.6">
       <p>New:</p>
         <ul>

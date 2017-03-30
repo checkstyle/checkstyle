@@ -1,6 +1,6 @@
 Mandatory to understand and do:
-0) Issue you are trying to fix/resolve has to have "approved" label.
-1) Put in description of Pull Request reference to issue if it exists. Example: "Issue: #XXXXXX"
+0) The issue you are trying to fix/resolve has to have the "approved" label.
+1) Put in the description of Pull Request the reference to an issue if it exists. Example: "Issue: #XXXXXX"
 2) Commit message should adhere to the following rules:
    a) Must match one of the following patterns:\n"
       ^Issue #\\d+: .*$
@@ -12,6 +12,6 @@ Mandatory to understand and do:
 
 To avoid multiple iterations of fixes and CIs failures, please read http://checkstyle.sourceforge.net/contributing.html
 
-ATTENTION: We are not merging Pull Requests that not passing our CIs, but we help to resole issues.
+ATTENTION: We are not merging Pull Requests that are not passing our CIs, but we will help to resolve issues.
 
 Thanks for reading, remove whole this message and type what you need.

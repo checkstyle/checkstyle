@@ -521,7 +521,7 @@ java -cp checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.gu
       <ul>
 
         <li>
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#setJavadocTokens--">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#setJavadocTokens-java.lang.String...-">
           setJavadocTokens()</a> - method then define actual set of tokens to run on.
         </li>
         <li>
