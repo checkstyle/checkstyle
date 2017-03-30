@@ -37,7 +37,8 @@ public class ParameterNumberCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator + "parameternumber"
+                + File.separator + filename);
     }
 
     @Test
@@ -67,7 +68,7 @@ public class ParameterNumberCheckTest
         final String[] expected = {
             "194:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
     }
 
     @Test
@@ -80,7 +81,7 @@ public class ParameterNumberCheckTest
             "71:9: " + getCheckMessage(MSG_KEY, 2, 3),
             "194:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
     }
 
     @Test
@@ -92,7 +93,7 @@ public class ParameterNumberCheckTest
         final String[] expected = {
             "194:10: 7,9",
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
     }
 
     @Test
