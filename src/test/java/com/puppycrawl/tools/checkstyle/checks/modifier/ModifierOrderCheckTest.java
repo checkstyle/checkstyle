@@ -84,32 +84,38 @@ public class ModifierOrderCheckTest
     public void testGetDefaultTokens() {
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getDefaultTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {TokenTypes.MODIFIERS};
+        assertArrayEquals(expected, actual);
+
+        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+
         final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals(expected, actual);
-        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
-        Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);
-        Assert.assertNotNull(actual);
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getAcceptableTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {TokenTypes.MODIFIERS};
+        assertArrayEquals(expected, actual);
+
+        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
+        Assert.assertNotSame(unexpectedEmptyArray, actual);
+
         final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals(expected, actual);
-        final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
-        Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);
-        Assert.assertNotNull(actual);
     }
 
     @Test

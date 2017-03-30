@@ -81,6 +81,8 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
         final ClassFanOutComplexityCheck classFanOutComplexityCheckObj =
             new ClassFanOutComplexityCheck();
         final int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
@@ -91,7 +93,6 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_THROWS,
             TokenTypes.ANNOTATION_DEF,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

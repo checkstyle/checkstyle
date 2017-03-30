@@ -238,10 +238,11 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        final int[] expectedTokens = {TokenTypes.METHOD_DEF };
         final MissingOverrideCheck check = new MissingOverrideCheck();
         final int[] actual = check.getAcceptableTokens();
         assertEquals(1, actual.length);
+
+        final int[] expectedTokens = {TokenTypes.METHOD_DEF };
         Assert.assertArrayEquals(expectedTokens, actual);
     }
 }

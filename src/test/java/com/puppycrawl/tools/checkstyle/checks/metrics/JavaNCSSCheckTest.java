@@ -87,6 +87,8 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getAcceptableTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -117,7 +119,6 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_DEFAULT,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 
@@ -125,6 +126,8 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getRequiredTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -155,7 +158,6 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_DEFAULT,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 }

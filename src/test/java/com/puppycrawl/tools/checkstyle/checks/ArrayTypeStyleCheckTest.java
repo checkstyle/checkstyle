@@ -75,10 +75,11 @@ public class ArrayTypeStyleCheckTest
 
     @Test
     public void testGetAcceptableTokens() {
-        final int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         final ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
         final int[] actual = check.getAcceptableTokens();
         assertEquals(1, actual.length);
+
+        final int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         assertArrayEquals(expected, actual);
     }
 }

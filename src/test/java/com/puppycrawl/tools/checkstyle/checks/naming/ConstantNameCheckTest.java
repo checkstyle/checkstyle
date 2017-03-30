@@ -165,10 +165,11 @@ public class ConstantNameCheckTest
     public void testGetAcceptableTokens() {
         final ConstantNameCheck constantNameCheckObj = new ConstantNameCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        Assert.assertNotNull(actual);
         assertArrayEquals(expected, actual);
     }
 }
