@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Oliver Burn
  * @deprecated Checkstyle is not type aware tool and all Checks derived from this
  *     class are potentially unstable.
+ * @noinspection DeprecatedIsStillUsed
  */
 @Deprecated
 public abstract class AbstractTypeAwareCheck extends AbstractCheck {

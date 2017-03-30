@@ -41,9 +41,11 @@ public class FileContentsTest {
     @SuppressWarnings("deprecation")
     public void testDeprecatedAbbreviatedMethod() {
         // just to make UT coverage 100%
-        final FileContents o = new FileContents("filename", "1", "2");
+        final FileContents o = new FileContents("filename", "123", "456");
         o.getCppComments();
         o.getCComments();
+        o.reportCppComment(1, 1);
+        o.reportCComment(1, 1, 1, 1);
     }
 
     @Test
