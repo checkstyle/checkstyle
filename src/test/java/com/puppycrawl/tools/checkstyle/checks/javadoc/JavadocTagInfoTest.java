@@ -297,7 +297,7 @@ public class JavadocTagInfoTest {
         ast.setFirstChild(astChild);
         final DetailAST astChild2 = new DetailAST();
         astChild2.setType(TokenTypes.ARRAY_DECLARATOR);
-        astChild2.setText("ObjectStreafield");
+        astChild2.setText("ObjectStreamField");
         astChild.setFirstChild(astChild2);
 
         final int[] validTypes = {
