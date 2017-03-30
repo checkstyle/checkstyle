@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  *
  * <p>
  * The basic idea behind this is that while
- * pretty printers are sometimes convenient for reformats of
+ * pretty printers are sometimes convenient for reformatting of
  * legacy code, they often either aren't configurable enough or
  * just can't anticipate how format should be done.  Sometimes this is
  * personal preference, other times it is practical experience.  In any

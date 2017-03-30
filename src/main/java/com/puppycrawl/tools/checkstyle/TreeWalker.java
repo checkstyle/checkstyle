@@ -462,11 +462,11 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        final Set<String> orinaryChecksResources = getExternalResourceLocations(ordinaryChecks);
+        final Set<String> ordinaryChecksResources = getExternalResourceLocations(ordinaryChecks);
         final Set<String> commentChecksResources = getExternalResourceLocations(commentChecks);
-        final int resultListSize = orinaryChecksResources.size() + commentChecksResources.size();
+        final int resultListSize = ordinaryChecksResources.size() + commentChecksResources.size();
         final Set<String> resourceLocations = new HashSet<>(resultListSize);
-        resourceLocations.addAll(orinaryChecksResources);
+        resourceLocations.addAll(ordinaryChecksResources);
         resourceLocations.addAll(commentChecksResources);
         return resourceLocations;
     }

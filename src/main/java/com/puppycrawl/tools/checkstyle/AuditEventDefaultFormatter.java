@@ -85,7 +85,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
 
     /**
      * Returns check name without 'Check' suffix.
-     * @param event audit ivent.
+     * @param event audit event.
      * @return check name without 'Check' suffix.
      */
     private static String getCheckShortName(AuditEvent event) {

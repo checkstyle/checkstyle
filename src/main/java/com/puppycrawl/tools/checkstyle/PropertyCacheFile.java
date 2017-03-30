@@ -267,7 +267,7 @@ final class PropertyCacheFile {
             }
             catch (CheckstyleException ex) {
                 // if exception happened (configuration resource was not found, connection is not
-                // available, resouce is broken, etc), we need to calculate hash sum based on
+                // available, resource is broken, etc), we need to calculate hash sum based on
                 // exception object content in order to check whether problem is resolved later
                 // and/or the configuration is changed.
                 contentHashSum = getHashCodeBasedOnObjectContent(ex);
@@ -282,7 +282,7 @@ final class PropertyCacheFile {
     /**
      * Loads the content of external resource.
      * @param location external resource location.
-     * @return array of bytes which respresents the content of external resource in binary form.
+     * @return array of bytes which represents the content of external resource in binary form.
      * @throws CheckstyleException if error while loading occurs.
      */
     private static byte[] loadExternalResource(String location) throws CheckstyleException {

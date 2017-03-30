@@ -217,7 +217,7 @@ public class NeedBracesCheck extends AbstractCheck {
     /**
      * Checks if ast is default in annotation
      * @param ast ast to test.
-     * @return true if current ast is default and it is part of annatation.
+     * @return true if current ast is default and it is part of annotation.
      */
     private boolean isDefaultInAnnotation(DetailAST ast) {
         boolean isDefaultInAnnotation = false;

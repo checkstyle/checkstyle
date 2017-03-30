@@ -132,7 +132,7 @@ public class AutomaticBean
      */
     private static void registerCustomTypes(ConvertUtilsBean cub) {
         cub.register(new PatternConverter(), Pattern.class);
-        cub.register(new ServerityLevelConverter(), SeverityLevel.class);
+        cub.register(new SeverityLevelConverter(), SeverityLevel.class);
         cub.register(new ScopeConverter(), Scope.class);
         cub.register(new UriConverter(), URI.class);
         cub.register(new RelaxedAccessModifierArrayConverter(), AccessModifier[].class);
@@ -285,7 +285,7 @@ public class AutomaticBean
     }
 
     /** A converter that converts strings to severity level. */
-    private static class ServerityLevelConverter implements Converter {
+    private static class SeverityLevelConverter implements Converter {
         @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public Object convert(Class type, Object value) {
