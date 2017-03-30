@@ -144,7 +144,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
 java -jar checkstyle-${projectVersion}-all.jar -c /sun_checks.xml MyClass.java
 java -jar checkstyle-${projectVersion}-all.jar -c /google_checks.xml MyClass.java
         </source>
-        It is recommended to use configuration files that are embeded in jar files, but latest configuration files are there:
+        It is recommended to use configuration files that are embedded in jar files, but latest configuration files are there:
         <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/sun_checks.xml">sun_checks.xml</a>
         <a href="https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml">google_checks.xml</a>
       </p>

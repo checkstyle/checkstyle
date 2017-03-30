@@ -353,7 +353,7 @@ HashSet hashSet; // Warning here: Declaring variables, return values or paramete
 &lt;/module&gt;
           </source>
           <source>
-// CSOFF ignore (test has not been emplemented yet)
+// CSOFF ignore (test has not been implemented yet)
 @Ignore // should NOT fail RegexpSinglelineJava
 @Test
 public void testMethod() { }
