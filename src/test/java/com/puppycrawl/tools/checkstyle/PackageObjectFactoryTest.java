@@ -135,7 +135,7 @@ public class PackageObjectFactoryTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to instatiate com.puppycrawl.tools.checkstyle."
+            assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."
                     + "PackageObjectFactoryTest$FailConstructorFileSet", ex.getMessage());
             assertEquals("IllegalArgumentException", ex.getCause().getCause().getClass()
                     .getSimpleName());

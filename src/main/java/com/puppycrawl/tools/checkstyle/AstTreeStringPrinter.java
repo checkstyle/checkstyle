@@ -160,7 +160,7 @@ public final class AstTreeStringPrinter {
      */
     private static String getNodeInfo(DetailAST node) {
         return TokenUtils.getTokenName(node.getType())
-                + " -> " + excapeAllControlChars(node.getText())
+                + " -> " + escapeAllControlChars(node.getText())
                 + " [" + node.getLineNo() + ':' + node.getColumnNo() + ']';
     }
 
@@ -198,11 +198,11 @@ public final class AstTreeStringPrinter {
     }
 
     /**
-     * Replace all control chars with excaped symbols.
+     * Replace all control chars with escaped symbols.
      * @param text the String to process.
-     * @return the processed String with all control chars excaped.
+     * @return the processed String with all control chars escaped.
      */
-    private static String excapeAllControlChars(String text) {
+    private static String escapeAllControlChars(String text) {
         final String textWithoutNewlines = NEWLINE.matcher(text).replaceAll("\\\\n");
         final String textWithoutReturns = RETURN.matcher(textWithoutNewlines).replaceAll("\\\\r");
         return TAB.matcher(textWithoutReturns).replaceAll("\\\\t");

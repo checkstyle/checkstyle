@@ -84,15 +84,15 @@ public class IllegalTokenCheckTest
 
         final String[] expected = {
             "3:3: " + getCheckMessage(MSG_KEY,
-                        JavadocUtils.excapeAllControlChars(
+                        JavadocUtils.escapeAllControlChars(
                             "*" + System.lineSeparator()
                             + " * Test for illegal tokens"
                             + System.lineSeparator() + " ")),
             "31:29: " + getCheckMessage(MSG_KEY,
-                        JavadocUtils.excapeAllControlChars(
+                        JavadocUtils.escapeAllControlChars(
                             " some comment href" + System.lineSeparator())),
             "35:28: " + getCheckMessage(MSG_KEY,
-                        JavadocUtils.excapeAllControlChars(
+                        JavadocUtils.escapeAllControlChars(
                             " some a href" + System.lineSeparator())),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);

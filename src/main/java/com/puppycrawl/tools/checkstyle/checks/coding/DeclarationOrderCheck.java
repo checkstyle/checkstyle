@@ -291,7 +291,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
      * state({@code Scope}), if it is it updates substate or else it
      * logs violation.
      * @param modifiersAst modifiers to process
-     * @param state curent state
+     * @param state current state
      * @param isStateValid is main state for given modifiers is valid
      */
     private void processModifiersSubState(DetailAST modifiersAst, ScopeState state,
