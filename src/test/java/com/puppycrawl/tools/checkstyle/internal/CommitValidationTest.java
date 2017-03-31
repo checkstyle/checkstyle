@@ -103,7 +103,7 @@ public class CommitValidationTest {
 
     @Test
     public void testHasCommits() {
-        assertTrue("must have atleast one commit to validate",
+        assertTrue("must have at least one commit to validate",
                 lastCommits != null && !lastCommits.isEmpty());
     }
 

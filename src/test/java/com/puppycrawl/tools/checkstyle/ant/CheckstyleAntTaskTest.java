@@ -150,7 +150,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public final void testMaxWarningExeeded() throws IOException {
+    public final void testMaxWarningExceeded() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath("ant/InputCheckstyleAntTaskWarning.java")));
         antTask.setMaxWarnings(0);

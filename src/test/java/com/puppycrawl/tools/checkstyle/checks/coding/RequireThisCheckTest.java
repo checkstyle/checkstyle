@@ -254,7 +254,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testMethodReferencess() throws Exception {
+    public void testMethodReferences() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_VARIABLE, "tags", ""),

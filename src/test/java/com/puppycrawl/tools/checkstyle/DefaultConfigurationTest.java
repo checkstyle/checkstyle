@@ -40,7 +40,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testExceptioForNonExistingAttribute() {
+    public void testExceptionForNonExistingAttribute() {
         final String name = "MyConfig";
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final String attributeName = "NonExisting#$%";

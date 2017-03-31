@@ -122,7 +122,7 @@ public class CheckUtilsTest {
 
         try {
             CheckUtils.getAccessModifierFromModifiersToken(modifiers);
-            fail(IllegalArgumentException.class.getSimpleName() + " was expcted.");
+            fail(IllegalArgumentException.class.getSimpleName() + " was expected.");
         }
         catch (IllegalArgumentException exc) {
             final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
@@ -135,7 +135,7 @@ public class CheckUtilsTest {
     public void testGetAccessModifierFromModifiersTokenWithNullParameter() {
         try {
             CheckUtils.getAccessModifierFromModifiersToken(null);
-            fail(IllegalArgumentException.class.getSimpleName() + " was expcted.");
+            fail(IllegalArgumentException.class.getSimpleName() + " was expected.");
         }
         catch (IllegalArgumentException exc) {
             final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";

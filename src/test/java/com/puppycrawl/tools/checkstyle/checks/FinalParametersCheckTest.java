@@ -130,7 +130,7 @@ public class FinalParametersCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testRecieverParameters() throws Exception {
+    public void testReceiverParameters() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(FinalParametersCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

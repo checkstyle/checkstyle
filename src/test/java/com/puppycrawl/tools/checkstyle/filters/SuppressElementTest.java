@@ -161,7 +161,7 @@ public class SuppressElementTest {
 
     @Test
     public void testEquals() {
-        // filterBased is used instead of filter field only to satisfy IntelijIdea Inspection
+        // filterBased is used instead of filter field only to satisfy IntelliJ Idea Inspection
         // Inspection "Arguments to assertEquals() in wrong order "
         final SuppressElement filterBased = new SuppressElement("Test");
         filterBased.setChecks("Test");

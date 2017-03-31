@@ -230,7 +230,7 @@ public class BaseCheckTestSupport {
     }
 
     /**
-     *  We keep two verify methods with separate logic only for convenience of debuging
+     *  We keep two verify methods with separate logic only for convenience of debugging
      *  We have minimum amount of multi-file test cases
      */
     protected void verify(Checker checker,

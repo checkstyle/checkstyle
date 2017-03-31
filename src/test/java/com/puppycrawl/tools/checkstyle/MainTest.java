@@ -395,9 +395,9 @@ public class MainTest {
             final String output = String.format(Locale.ROOT,
                     "Checkstyle ends with 1 errors.%n");
             assertEquals(output, systemOut.getLog());
-            final String errorOuput = "com.puppycrawl.tools.checkstyle.api."
+            final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: unable to parse configuration stream - ";
-            assertTrue(systemErr.getLog().startsWith(errorOuput));
+            assertTrue(systemErr.getLog().startsWith(errorOutput));
         });
         Main.main("-c", getPath("config-Incorrect.xml"),
             getPath("InputMain.java"));
@@ -411,10 +411,10 @@ public class MainTest {
             final String output = String.format(Locale.ROOT,
                     "Checkstyle ends with 1 errors.%n");
             assertEquals(output, systemOut.getLog());
-            final String errorOuput = "com.puppycrawl.tools.checkstyle.api."
+            final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: cannot initialize module RegexpSingleline"
                     + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
-            assertTrue(systemErr.getLog().startsWith(errorOuput));
+            assertTrue(systemErr.getLog().startsWith(errorOutput));
         });
         Main.main("-c", getPath("config-incorrectChildren.xml"),
             getPath("InputMain.java"));
@@ -428,10 +428,10 @@ public class MainTest {
             final String output = String.format(Locale.ROOT,
                     "Checkstyle ends with 1 errors.%n");
             assertEquals(output, systemOut.getLog());
-            final String errorOuput = "com.puppycrawl.tools.checkstyle.api."
+            final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: cannot initialize module TreeWalker"
                     + " - JavadocVariable is not allowed as a child in JavadocMethod";
-            assertTrue(systemErr.getLog().startsWith(errorOuput));
+            assertTrue(systemErr.getLog().startsWith(errorOutput));
         });
         Main.main("-c", getPath("config-incorrectChildren2.xml"),
             getPath("InputMain.java"));

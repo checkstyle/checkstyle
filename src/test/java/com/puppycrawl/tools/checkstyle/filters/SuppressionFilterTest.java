@@ -78,7 +78,7 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
                           + "suppressions_none.xml";
         final boolean optional = false;
-        final SuppressionFilter filter = createSupressionFilter(fileName, optional);
+        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
 
@@ -89,7 +89,7 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
     public void testAcceptOnNullFile() throws CheckstyleException {
         final String fileName = null;
         final boolean optional = false;
-        final SuppressionFilter filter = createSupressionFilter(fileName, optional);
+        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyJava.java", null);
 
@@ -97,12 +97,12 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNonExistanceSuppressionFileWithFalseOptional() {
+    public void testNonExistingSuppressionFileWithFalseOptional() {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existance_suppresion_file.xml";
+                + "non_existing_suppression_file.xml";
         try {
             final boolean optional = false;
-            createSupressionFilter(fileName, optional);
+            createSuppressionFilter(fileName, optional);
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
@@ -111,12 +111,12 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testExistanceInvalidSuppressionFileWithTrueOptional() {
+    public void testExistingInvalidSuppressionFileWithTrueOptional() {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
                 + "suppressions_invalid_file.xml";
         try {
             final boolean optional = true;
-            createSupressionFilter(fileName, optional);
+            createSuppressionFilter(fileName, optional);
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
@@ -130,7 +130,7 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
                 + "suppressions_none.xml";
         final boolean optional = true;
-        final SuppressionFilter filter = createSupressionFilter(fileName, optional);
+        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
@@ -156,17 +156,17 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
         BDDMockito.given(CommonUtils.getUriByFilename(fileName)).willReturn(uri);
 
         final boolean optional = true;
-        final SuppressionFilter filter = createSupressionFilter(fileName, optional);
+        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
         assertTrue(filter.accept(ev));
     }
 
     @Test
-    public void testNonExistanceSuppressionFileWithTrueOptional() throws Exception {
+    public void testNonExistingSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existance_suppresion_file.xml";
+                + "non_existing_suppression_file.xml";
         final boolean optional = true;
-        final SuppressionFilter filter = createSupressionFilter(fileName, optional);
+        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
@@ -174,11 +174,11 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testNonExistanceSuppressionUrlWithTrueOptional() throws Exception {
+    public void testNonExistingSuppressionUrlWithTrueOptional() throws Exception {
         final String fileName =
                 "http://checkstyle.sourceforge.net/non_existing_suppression.xml";
         final boolean optional = true;
-        final SuppressionFilter filter = createSupressionFilter(fileName, optional);
+        final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
@@ -275,9 +275,9 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
             while (attemptCount <= attemptLimit) {
                 InputStream stream = null;
                 try {
-                    final URL addres = new URL(url);
-                    stream = addres.openStream();
-                    // Attemt to read a byte in order to check wtether file content is available
+                    final URL address = new URL(url);
+                    stream = address.openStream();
+                    // Attempt to read a byte in order to check whether file content is available
                     available = stream.read() != -1;
                     break;
                 }
@@ -314,7 +314,7 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
         return true;
     }
 
-    private static SuppressionFilter createSupressionFilter(String fileName, boolean optional)
+    private static SuppressionFilter createSuppressionFilter(String fileName, boolean optional)
             throws CheckstyleException {
         final SuppressionFilter suppressionFilter = new SuppressionFilter();
         suppressionFilter.setFile(fileName);
