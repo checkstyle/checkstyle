@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputSingleSpaceNoErrors {
+public class InputSingleSpaceSeparatorNoErrors {
 
     int count; //long indentation - OK
     String text = "             "; // OK
