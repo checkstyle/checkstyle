@@ -583,7 +583,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testAllowToSkipOverriden() throws Exception {
+    public void testAllowToSkipOverridden() throws Exception {
         checkConfig.addAttribute("allowedAnnotations", "MyAnnotation");
         final String[] expected = {
             "7:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),

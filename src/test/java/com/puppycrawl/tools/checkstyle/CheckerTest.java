@@ -565,7 +565,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         // An Error indicates serious problems that a reasonable application should not try to
         // catch, but due to issue https://github.com/checkstyle/checkstyle/issues/2285
         // we catch errors in 'processFiles' method. Most such errors are abnormal conditions,
-        // that is why we use PowerMockito to reproduse them.
+        // that is why we use PowerMockito to reproduce them.
         final File mock = PowerMockito.mock(File.class);
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         final String errorMessage = "Java Virtual Machine is broken"

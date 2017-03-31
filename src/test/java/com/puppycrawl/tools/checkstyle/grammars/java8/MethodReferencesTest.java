@@ -76,7 +76,7 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testFromHiernate()
+    public void testFromHibernate()
             throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;

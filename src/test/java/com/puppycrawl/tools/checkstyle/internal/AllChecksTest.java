@@ -361,7 +361,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
 
                     configCheckTokens.put(checkName, configTokens);
 
-                    // add all overriden tokens
+                    // add all overridden tokens
                     final Set<String> overrideTokens = tokensToIgnore.get(checkName);
 
                     if (overrideTokens != null) {
@@ -433,7 +433,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
             }
             else {
                 Assert.assertFalse(name
-                        + " should have atleast one 'MSG_*' field for error messages", CheckUtil
+                        + " should have at least one 'MSG_*' field for error messages", CheckUtil
                         .getCheckMessages(module).isEmpty());
             }
         }

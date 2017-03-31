@@ -263,7 +263,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                     }
                     break;
                 default:
-                    throw new IllegalStateException("unexpected ast syntax" + parent);
+                    throw new IllegalStateException("unexpected ast syntax " + parent);
             }
         }
         return previousElement;

@@ -114,7 +114,7 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testSkipTypeAnnotations() throws Exception {
-        // Type Annotations are avaliable only in Java 8
+        // Type Annotations are available only in Java 8
         // We skip type annotations from validation
         // See https://github.com/checkstyle/checkstyle/issues/903#issuecomment-172228013
         final DefaultConfiguration checkConfig = createCheckConfig(ModifierOrderCheck.class);
