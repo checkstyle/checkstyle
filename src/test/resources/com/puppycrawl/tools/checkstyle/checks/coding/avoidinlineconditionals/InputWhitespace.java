@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com . puppycrawl
     .tools.
-    checkstyle.checks.coding;
+    checkstyle.checks.coding.avoidinlineconditionals;
 
 /**
  * Class for testing inline conditionals.
