@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableName;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.Assert.assertArrayEquals;
@@ -25,6 +25,7 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
+import com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
@@ -32,12 +33,14 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class LocalFinalVariableNameCheckTest
+public class InputLocalFinalVariableName
     extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming"+ File.separator
+                + "localfinalvariablename" + File.separator
+                + filename);
     }
 
     @Test
@@ -58,7 +61,7 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "123:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableNameSimple.java"), expected);
     }
 
     @Test
@@ -73,7 +76,7 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "122:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableNameSimple.java"), expected);
     }
 
     @Test
