@@ -35,7 +35,8 @@ public class OverloadMethodsDeclarationOrderCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "overloadmethodsdeclarationorder" + File.separator + filename);
     }
 
     @Test

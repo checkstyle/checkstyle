@@ -37,7 +37,8 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "returncount" + File.separator + filename);
     }
 
     @Override

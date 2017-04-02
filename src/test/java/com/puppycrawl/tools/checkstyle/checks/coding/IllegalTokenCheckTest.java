@@ -35,7 +35,8 @@ public class IllegalTokenCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "illegaltoken" + File.separator + filename);
     }
 
     @Test
@@ -47,7 +48,7 @@ public class IllegalTokenCheckTest
             "29:14: " + getCheckMessage(MSG_KEY, "label:"),
             "31:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalToken.java"), expected);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class IllegalTokenCheckTest
             "14:18: " + getCheckMessage(MSG_KEY, "--"),
             "15:18: " + getCheckMessage(MSG_KEY, "++"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalToken.java"), expected);
     }
 
     @Test
@@ -72,7 +73,7 @@ public class IllegalTokenCheckTest
         final String[] expected = {
             "20:12: " + getCheckMessage(MSG_KEY, "native"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalToken.java"), expected);
     }
 
     @Test
@@ -95,7 +96,7 @@ public class IllegalTokenCheckTest
                         JavadocUtils.excapeAllControlChars(
                             " some a href" + System.lineSeparator())),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalToken.java"), expected);
     }
 
     @Test
@@ -108,7 +109,7 @@ public class IllegalTokenCheckTest
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_KEY, "/*"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalToken.java"), expected);
     }
 
     @Test
@@ -121,7 +122,7 @@ public class IllegalTokenCheckTest
         final String[] expected = {
             "5:2: " + getCheckMessage(MSG_KEY, "*/"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalToken.java"), expected);
     }
 
     @Test
@@ -135,6 +136,6 @@ public class IllegalTokenCheckTest
             "31:27: " + getCheckMessage(MSG_KEY, "//"),
             "35:26: " + getCheckMessage(MSG_KEY, "//"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalToken.java"), expected);
     }
 }

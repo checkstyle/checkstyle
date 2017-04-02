@@ -34,11 +34,12 @@ public class SuperFinalizeCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "superfinalize" + File.separator + filename);
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(SuperFinalizeCheck.class);
         final String[] expected = {

@@ -45,7 +45,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "illegaltype" + File.separator + filename);
     }
 
     @Test
@@ -85,7 +86,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "9:13: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
+              "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
+                + "InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
         };
 
@@ -111,7 +113,8 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass"),
+              "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
+                + "InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
@@ -179,12 +182,12 @@ public class IllegalTypeCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "9:13: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding."
+                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
                     + "InputIllegalTypeMemberModifiers.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
             "23:15: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding."
+                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
                     + "InputIllegalTypeMemberModifiers.AbstractClass"),
             "25:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "33:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),

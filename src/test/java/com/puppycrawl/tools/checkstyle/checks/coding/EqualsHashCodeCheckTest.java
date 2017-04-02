@@ -37,7 +37,8 @@ public class EqualsHashCodeCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "equalshashcode" + File.separator + filename);
     }
 
     @Test

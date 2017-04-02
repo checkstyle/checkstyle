@@ -41,7 +41,8 @@ public class IllegalInstantiationCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "illegalinstantiation" + File.separator + filename);
     }
 
     @Override
@@ -57,7 +58,8 @@ public class IllegalInstantiationCheckTest
         checkConfig.addAttribute(
             "classes",
             "java.lang.Boolean,"
-                + "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier,"
+                + "com.puppycrawl.tools.checkstyle.checks.coding."
+                + "illegalinstantiation.InputModifier,"
                 + "java.io.File,"
                 + "java.awt.Color");
         final String[] expected = {
@@ -65,7 +67,8 @@ public class IllegalInstantiationCheckTest
             "24:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "31:16: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "38:21: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier"),
+                "com.puppycrawl.tools.checkstyle.checks.coding."
+                    + "illegalinstantiation.InputModifier"),
             "41:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "44:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
