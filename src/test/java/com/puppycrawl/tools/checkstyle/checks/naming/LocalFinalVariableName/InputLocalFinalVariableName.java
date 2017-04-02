@@ -61,7 +61,7 @@ public class InputLocalFinalVariableName
         final String[] expected = {
             "123:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
-        verify(checkConfig, getPath("InputLocalFinalVariableNameSimple.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableNameSimpleTest.java"), expected);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class InputLocalFinalVariableName
         final String[] expected = {
             "122:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
-        verify(checkConfig, getPath("InputLocalFinalVariableNameSimple.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableNameSimpleTest.java"), expected);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class InputLocalFinalVariableName
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableNameInnerTest.java"), expected);
     }
 
     @Test
