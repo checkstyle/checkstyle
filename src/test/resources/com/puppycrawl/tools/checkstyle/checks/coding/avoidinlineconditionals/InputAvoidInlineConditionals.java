@@ -10,7 +10,7 @@ package com . puppycrawl
  * Class for testing inline conditionals.
  * error missing author tag
  **/
-class InputWhitespace
+class InputAvoidInlineConditionals
 {
     /** method **/
     void method1()
