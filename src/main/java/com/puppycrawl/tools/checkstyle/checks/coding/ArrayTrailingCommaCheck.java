@@ -27,16 +27,33 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks if array initialization contains optional trailing comma.
  * </p>
+ *
  * <p>
  * Rationale: Putting this comma in make is easier to change the
  * order of the elements or add new elements on the end.
  * </p>
+ *
+ * <pre>
+ * Properties:
+ * </pre>
+ * <table summary="Properties" border="1">
+ * <tr><th>name</th><th>Description</th><th>type</th><th>default value</th></tr>
+ * <tr><td>ignoreInlineArrays</td><td>The flag controls trailing commas in inline arrays.
+ * If set to true, then you can ignore the lack of a trailing comma,
+ * otherwise an error should be raised.
+ * </td><td>Boolean</td><td>true</td>
+ * </tr>
+ * </table>
+ *
  * <p>
  * An example of how to configure the check is:
  * </p>
  * <pre>
- * &lt;module name="ArrayTrailingComma"/&gt;
+ * &lt;module name="ArrayTrailingComma"&gt;
+ *    &lt;property name=&quot;ignoreInlineArrays&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
  * </pre>
+ *
  * @author o_sukhodolsky
  */
 public class ArrayTrailingCommaCheck extends AbstractCheck {
@@ -46,6 +63,13 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "array.trailing.comma";
+
+    /**
+     * The flag controls trailing commas in inline arrays.
+     * If set to true, then you can ignore the lack of a trailing comma, otherwise an error
+     * should be raised.
+     */
+    private boolean ignoreInlineArrays = true;
 
     @Override
     public int[] getDefaultTokens() {
@@ -68,12 +92,23 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
 
         // if curlies are on the same line
         // or array is empty then check nothing
-        if (arrayInit.getLineNo() != rcurly.getLineNo()
+        if ((!ignoreInlineArrays
+            || arrayInit.getLineNo() != rcurly.getLineNo())
             && arrayInit.getChildCount() != 1) {
             final DetailAST prev = rcurly.getPreviousSibling();
             if (prev.getType() != TokenTypes.COMMA) {
                 log(rcurly.getLineNo(), MSG_KEY);
             }
         }
+    }
+
+    /**
+     * Set the ignoreInlineArrays to enforce.
+     *
+     * @param ignoreInlineArraysStringValue string to decode ignoreInlineArrays from
+     * @throws IllegalArgumentException if unable to decode
+     */
+    public void setIgnoreInlineArrays(boolean ignoreInlineArraysStringValue) {
+        ignoreInlineArrays = ignoreInlineArraysStringValue;
     }
 }
