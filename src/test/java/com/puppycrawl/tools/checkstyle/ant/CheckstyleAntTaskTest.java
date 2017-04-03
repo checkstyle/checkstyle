@@ -47,8 +47,11 @@ import com.puppycrawl.tools.checkstyle.XMLLogger;
 
 public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
-    private static final String FLAWLESS_INPUT = "ant/InputCheckstyleAntTaskFlawless.java";
-    private static final String VIOLATED_INPUT = "ant/InputCheckstyleAntTaskError.java";
+    public static final String FLAWLESS_INPUT_DIR = "ant/inputs/flawless/";
+    private static final String FLAWLESS_INPUT =
+        FLAWLESS_INPUT_DIR + "InputCheckstyleAntTaskFlawless.java";
+    private static final String VIOLATED_INPUT = "ant/inputs/InputCheckstyleAntTaskError.java";
+    private static final String WARNING_INPUT = "ant/inputs/InputCheckstyleAntTaskWarning.java";
     private static final String CONFIG_FILE = "ant/ant_task_test_checks.xml";
     private static final String CUSTOM_ROOT_CONFIG_FILE = "config-custom-root-module.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
@@ -144,7 +147,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             fail("Exception is expected");
         }
         catch (BuildException ex) {
-            assertEquals("Must specify at least one of 'file' or nested 'fileset'.",
+            assertEquals("Must specify at least one of 'file' or nested 'fileset' or 'sourcepath'.",
                 ex.getMessage());
         }
     }
@@ -152,7 +155,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     @Test
     public final void testMaxWarningExceeded() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
-        antTask.setFile(new File(getPath("ant/InputCheckstyleAntTaskWarning.java")));
+        antTask.setFile(new File(getPath(WARNING_INPUT)));
         antTask.setMaxWarnings(0);
         try {
             antTask.execute();

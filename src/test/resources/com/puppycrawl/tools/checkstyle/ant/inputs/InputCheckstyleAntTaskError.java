@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.ant;
+package com.puppycrawl.tools.checkstyle.ant.inputs;
 
 /**
  * @incomplete Some javadoc
