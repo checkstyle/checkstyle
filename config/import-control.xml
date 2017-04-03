@@ -40,6 +40,7 @@
   <allow pkg="org.antlr.v4.runtime" local-only="true"/>
   <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
           local-only="true" regex="true"/>
+  <allow pkg="org.reflections" local-only="true"/>
 
   <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
   <allow class="com.google.common.base.CaseFormat" local-only="true"/>

@@ -19,10 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -35,6 +38,11 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -114,6 +122,31 @@ public class PackageObjectFactoryTest {
         final String actual =
             String.valueOf(method.invoke(PackageObjectFactory.class, className, packages));
         assertEquals(className, actual);
+    }
+
+    @Test
+    public void testReflections() {
+        // to be removed, just for temporary debugging
+        final Reflections reflections = new Reflections(new ConfigurationBuilder()
+                .setScanners(new SubTypesScanner(false))
+                .setUrls(ClasspathHelper.forPackage("com.puppycrawl.tools.checkstyle"))
+                .filterInputsBy(new FilterBuilder()
+                        .include(FilterBuilder.prefix("com.puppycrawl.tools.checkstyle"))));
+        assertNotEquals(0, reflections.getSubTypesOf(Object.class).size());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testGetPackagesWithException() throws Exception {
+        final ClassLoader classLoader = mock(ClassLoader.class);
+        when(classLoader.getResources("checkstyle_packages.xml"))
+                .thenThrow(CheckstyleException.class);
+
+        final Method method = factory.getClass().getDeclaredMethod(
+                "generateNameToFullModuleNameMap", ClassLoader.class);
+        method.setAccessible(true);
+        final int size = ((Map<String, String>) method.invoke(factory, classLoader)).size();
+        assertEquals(0, size);
     }
 
     @Test
