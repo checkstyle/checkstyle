@@ -24,7 +24,7 @@
     <section name="Import Checkstyle Project">
       <p>
         If no project is currently open in IntelliJ IDEA, click Import Project on the
-        Welcome screen. Otherwise, select File > Import Project<br/><br/>
+        Welcome screen. Otherwise, select File > New > Project from Existing Sources<br/><br/>
         <img alt="screenshot" src="images/gui_screenshot_importing_idea.png"/>
         <br/><br/>
         <img alt="screenshot" src="images/gui_screenshot_importing_idea1.png"/>
