@@ -79,6 +79,7 @@
     <suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|TreeWalkerTest|BaseCheckTestSupport|XdocsPagesTest|CheckstyleAntTaskTest)\.java"/>
     <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFile\.java"/>
     <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
+    <suppress checks="ClassFanOutComplexity" files="CheckstyleAntTask\.java"/>
     <!-- a lot of GUI elements is OK -->
     <suppress checks="ClassDataAbstractionCoupling" files="(TreeTable|MainFrame)\.java"/>
 

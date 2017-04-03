@@ -26,11 +26,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
@@ -71,6 +73,9 @@ public class CheckstyleAntTask extends Task {
 
     /** Suffix for time string. */
     private static final String TIME_SUFFIX = " ms.";
+
+    /** Contains the paths to process. */
+    private final List<Path> paths = new ArrayList<>();
 
     /** Contains the filesets to process. */
     private final List<FileSet> fileSets = new ArrayList<>();
@@ -149,6 +154,14 @@ public class CheckstyleAntTask extends Task {
      */
     public void setMaxWarnings(int maxWarnings) {
         this.maxWarnings = maxWarnings;
+    }
+
+    /**
+     * Adds a path.
+     * @param path the path to add.
+     */
+    public void addPath(Path path) {
+        paths.add(path);
     }
 
     /**
@@ -296,9 +309,11 @@ public class CheckstyleAntTask extends Task {
             log("compiled on " + compileTimestamp, Project.MSG_VERBOSE);
 
             // Check for no arguments
-            if (fileName == null && fileSets.isEmpty()) {
+            if (fileName == null
+                    && fileSets.isEmpty()
+                    && paths.isEmpty()) {
                 throw new BuildException(
-                        "Must specify at least one of 'file' or nested 'fileset'.",
+                        "Must specify at least one of 'file' or nested 'fileset' or 'path'.",
                         getLocation());
             }
             if (configLocation == null) {
@@ -359,7 +374,7 @@ public class CheckstyleAntTask extends Task {
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
         final long startTime = System.currentTimeMillis();
-        final List<File> files = scanFileSets();
+        final List<File> files = getFilesToCheck();
         final long endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
@@ -509,33 +524,114 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Returns the list of files (full path name) to process.
-     * @return the list of files included via the filesets.
+     * @return the list of files included via the fileName, filesets and paths.
      */
-    protected List<File> scanFileSets() {
-        final List<File> list = new ArrayList<>();
+    protected List<File> getFilesToCheck() {
+        final List<File> allFiles = new ArrayList<>();
         if (fileName != null) {
             // oops we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
-            list.add(new File(fileName));
+            allFiles.add(new File(fileName));
         }
+
+        final List<File> filesFromFileSets = scanFileSets();
+        allFiles.addAll(filesFromFileSets);
+
+        final List<File> filesFromPaths = scanPaths();
+        allFiles.addAll(filesFromPaths);
+
+        return allFiles;
+    }
+
+    /**
+     * Retrieves all files from the defined paths.
+     * @return a list of files defined via paths.
+     */
+    private List<File> scanPaths() {
+        final List<File> allFiles = new ArrayList<>();
+
+        for (int i = 0; i < paths.size(); i++) {
+            final Path currentPath = paths.get(i);
+            final List<File> pathFiles = scanPath(currentPath, i + 1);
+            allFiles.addAll(pathFiles);
+        }
+
+        return allFiles;
+    }
+
+    /**
+     * Scans the given path and retrieves all files for the given path.
+     *
+     * @param path      A path to scan.
+     * @param pathIndex The index of the given path. Used in log messages only.
+     * @return A list of files, extracted from the given path.
+     */
+    private List<File> scanPath(Path path, int pathIndex) {
+        final String[] resources = path.list();
+        log(pathIndex + ") Scanning path " + path, Project.MSG_VERBOSE);
+        final List<File> allFiles = new ArrayList<>();
+        int concreteFilesCount = 0;
+
+        for (String resource : resources) {
+            final File file = new File(resource);
+            if (file.isFile()) {
+                concreteFilesCount++;
+                allFiles.add(file);
+            }
+            else {
+                final DirectoryScanner scanner = new DirectoryScanner();
+                scanner.setBasedir(file);
+                scanner.scan();
+                final List<File> scannedFiles = retrieveAllScannedFiles(scanner, pathIndex);
+                allFiles.addAll(scannedFiles);
+            }
+        }
+
+        if (concreteFilesCount > 0) {
+            log(String.format(Locale.ROOT, "%d) Adding %d files from path %s",
+                pathIndex, concreteFilesCount, path), Project.MSG_VERBOSE);
+        }
+
+        return allFiles;
+    }
+
+    /**
+     * Returns the list of files (full path name) to process.
+     * @return the list of files included via the filesets.
+     */
+    protected List<File> scanFileSets() {
+        final List<File> allFiles = new ArrayList<>();
+
         for (int i = 0; i < fileSets.size(); i++) {
             final FileSet fileSet = fileSets.get(i);
             final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
             scanner.scan();
 
-            final String[] names = scanner.getIncludedFiles();
-            log(i + ") Adding " + names.length + " files from directory "
-                    + scanner.getBasedir(), Project.MSG_VERBOSE);
-
-            for (String element : names) {
-                final String pathname = scanner.getBasedir() + File.separator
-                        + element;
-                list.add(new File(pathname));
-            }
+            final List<File> scannedFiles = retrieveAllScannedFiles(scanner, i);
+            allFiles.addAll(scannedFiles);
         }
 
-        return list;
+        return allFiles;
+    }
+
+    /**
+     * Retrieves all matched files from the given scanner.
+     *
+     * @param scanner  A directory scanner. Note, that {@link DirectoryScanner#scan()}
+     *                 must be called before calling this method.
+     * @param logIndex A log entry index. Used only for log messages.
+     * @return A list of files, retrieved from the given scanner.
+     */
+    private List<File> retrieveAllScannedFiles(DirectoryScanner scanner, int logIndex) {
+        final String[] fileNames = scanner.getIncludedFiles();
+        log(String.format(Locale.ROOT, "%d) Adding %d files from directory %s",
+            logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
+
+        return Arrays.stream(fileNames)
+            .map(name -> scanner.getBasedir() + File.separator + name)
+            .map(File::new)
+            .collect(Collectors.toList());
     }
 
     /**

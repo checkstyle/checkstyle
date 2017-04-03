@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
@@ -37,6 +39,7 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.Reference;
+import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.Test;
 import org.powermock.api.mockito.PowerMockito;
 
@@ -47,11 +50,13 @@ import com.puppycrawl.tools.checkstyle.XMLLogger;
 
 public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
-    public static final String FLAWLESS_INPUT_DIR = "ant/inputs/flawless/";
+    private static final String FLAWLESS_INPUT_DIR = "ant/checkstyleanttask/flawless/";
     private static final String FLAWLESS_INPUT =
         FLAWLESS_INPUT_DIR + "InputCheckstyleAntTaskFlawless.java";
-    private static final String VIOLATED_INPUT = "ant/inputs/InputCheckstyleAntTaskError.java";
-    private static final String WARNING_INPUT = "ant/inputs/InputCheckstyleAntTaskWarning.java";
+    private static final String VIOLATED_INPUT =
+        "ant/checkstyleanttask/InputCheckstyleAntTaskError.java";
+    private static final String WARNING_INPUT =
+        "ant/checkstyleanttask/InputCheckstyleAntTaskWarning.java";
     private static final String CONFIG_FILE = "ant/ant_task_test_checks.xml";
     private static final String CUSTOM_ROOT_CONFIG_FILE = "config-custom-root-module.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
@@ -73,6 +78,50 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.execute();
+    }
+
+    @Test
+    public final void testPathsOneFile() throws IOException {
+        // given
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        final FileSet examinationFileSet = new FileSet();
+        examinationFileSet.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final Path sourcePath = new Path(antTask.getProject());
+        sourcePath.addFileset(examinationFileSet);
+        antTask.addPath(sourcePath);
+
+        // when
+        antTask.execute();
+
+        // then
+        assertTrue(TestRootModuleChecker.isProcessed());
+        final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
+        assertThat(filesToCheck.size(), is(1));
+        assertThat(filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+    }
+
+    @Test
+    public final void testPathsDirectoryWithNestedFile() throws IOException {
+        // given
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        final FileResource fileResource = new FileResource(
+            antTask.getProject(), getPath(FLAWLESS_INPUT_DIR));
+        final Path sourcePath = new Path(antTask.getProject());
+        sourcePath.add(fileResource);
+        antTask.addPath(sourcePath);
+
+        // when
+        antTask.execute();
+
+        // then
+        assertTrue(TestRootModuleChecker.isProcessed());
+        final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
+        assertThat(filesToCheck.size(), is(1));
+        assertThat(filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
     }
 
     @Test
@@ -147,7 +196,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             fail("Exception is expected");
         }
         catch (BuildException ex) {
-            assertEquals("Must specify at least one of 'file' or nested 'fileset' or 'sourcepath'.",
+            assertEquals("Must specify at least one of 'file' or nested 'fileset' or 'path'.",
                 ex.getMessage());
         }
     }

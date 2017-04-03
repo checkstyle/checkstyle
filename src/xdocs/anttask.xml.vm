@@ -101,7 +101,33 @@
           <td>file</td>
           <td>File to run checkstyle on.</td>
           <td>
-            One of either <i>file</i> or at least one nested <i>fileset</i>
+            One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+            element
+          </td>
+        </tr>
+
+        <tr>
+          <td>fileset</td>
+          <td>
+            A set of files to run checkstyle on. Nested attribute.
+            See <a href="http://ant.apache.org/manual/Types/fileset.html">fileset</a>
+            ant documentation for details
+          </td>
+          <td>
+            One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+            element
+          </td>
+        </tr>
+
+        <tr>
+          <td>path</td>
+          <td>
+            A set of path to run checkstyle on. Nested attribute.
+            See <a href="http://ant.apache.org/manual/using.html#path">path</a>
+            ant documentation for details
+          </td>
+          <td>
+            One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
             element
           </td>
         </tr>
@@ -212,6 +238,11 @@
         significant changes regarding package name file handling. See <a
         href="config.html#Packages"/> for details.
       </p>
+
+      <p>
+        Also note, that checkstyle ignores all duplicate files,
+        specified in the <i>file</i>, <i>fileset</i> or <i>path</i> parameters
+      </p>
     </section>
 
     <section name="Nested Elements">
@@ -221,6 +252,8 @@
         href="http://ant.apache.org/manual/Types/fileset.html">&lt;fileset&gt;</a>,
         <a
         href="http://ant.apache.org/manual/using.html#path">&lt;classpath&gt;</a>,
+        <a
+        href="http://ant.apache.org/manual/using.html#path">&lt;path&gt;</a>,
         <code>&lt;formatter&gt;</code>, and <code>&lt;property&gt;</code>.
       </p>
 
@@ -346,6 +379,26 @@
 
   &lt;!-- Location of cache-file. Something that is project specific --&gt;
   &lt;property key=&quot;checkstyle.cache.file&quot; file=&quot;target/cachefile&quot;/&gt;
+&lt;/checkstyle&gt;
+      </source>
+
+      <p>
+        <b>
+          Run checkstyle on a previously defined source path.
+        </b>
+      </p>
+      <source>
+&lt;!-- Somewhere in your config --&gt;
+&lt;path id="project.sourcepath"&gt;
+  &lt;fileset dir="src"
+              includes="**/*"
+              excludes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*"/&gt;
+&lt;/path&gt;
+
+&lt;!-- Actual checkstyle config --&gt;
+&lt;checkstyle config=&quot;/path/to/site/sun_checks.xml&quot;&gt;
+  &lt;!-- Refer to a previously defined source path --&gt;
+  &lt;path refid="project.sourcepath" /&gt;
 &lt;/checkstyle&gt;
       </source>
 

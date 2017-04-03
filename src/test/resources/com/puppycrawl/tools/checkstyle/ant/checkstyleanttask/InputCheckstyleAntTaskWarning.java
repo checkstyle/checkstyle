@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.ant.inputs;
+package com.puppycrawl.tools.checkstyle.ant.checkstyleanttask;
 
 public final class InputCheckstyleAntTaskWarning {
     int foo;

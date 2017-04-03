@@ -492,62 +492,6 @@
               <goal>check</goal>
             </goals>
           </execution>
-          <execution>
-            <id>checkstyle-non-main-check</id>
-            <phase>verify</phase>
-            <configuration>
-              <configLocation>${project.basedir}/config/checkstyle_non_main_files_checks.xml</configLocation>
-              <failOnViolation>true</failOnViolation>
-              <includeResources>false</includeResources>
-              <includeTestResources>true</includeTestResources>
-              <logViolationsToConsole>true</logViolationsToConsole>
-              <maxAllowedViolations>0</maxAllowedViolations>
-              <violationSeverity>error</violationSeverity>
-              <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
-              <sourceDirectory>${project.basedir}</sourceDirectory>
-              <includes>**/*</includes>
-              <!-- All .gitignore files should be added to exclusions -->
-              <excludes>
-                .git/**/*,
-                src/main/**/*,
-                src/test/java/**/*,
-                src/site/resources/images/**/*,
-                <!-- Eclipse project files -->
-                .settings/**/*,
-                .externalToolBuilders/**/*,
-                .classpath,
-                .project,
-                <!-- m2e-code-quality Eclipse IDE plugin temporary configuration files for Eclipse CS Checkstyle / PMD / FindBugs Plug-Ins -->
-                .checkstyle/**/*,
-                .pmd/**/*,
-                .pmdruleset.xml,
-                .fbExcludeFilterFile/**/*,
-                <!-- NetBeans project files -->
-                nbactions.xml,
-                nb-configuration.xml,
-                <!-- Maven build folder -->
-                target/**/*,
-                bin/**/*,
-                <!-- IDEA project files -->
-                *.iml,
-                *.ipr,
-                *.iws,
-                .idea/**/*,
-                <!-- Temp files -->
-                *~,
-                <!-- Java Virtual machine crash logs -->
-                hs_err_pid*,
-                replay_pid*,
-                <!-- Apple MAC OSX hidden file -->
-                .DS_Store,
-                <!-- NonDex files -->
-                .nondex/**/*,
-              </excludes>
-            </configuration>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
         </executions>
       </plugin>
 
@@ -895,6 +839,7 @@
                 <property name="mvn.project.build.directory" value="${project.build.directory}" />
                 <property name="mvn.project.version" value="${project.version}" />
                 <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
+                <property name="project.basedir" value="${project.basedir}" />
                 <ant antfile="config/ant-phase-verify.xml" />
               </target>
             </configuration>
