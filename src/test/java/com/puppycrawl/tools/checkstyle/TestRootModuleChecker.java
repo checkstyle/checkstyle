@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -29,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 public class TestRootModuleChecker implements RootModule {
     private static boolean processed;
+    private static List<File> filesToCheck;
 
     @Override
     public void configure(Configuration configuration) throws CheckstyleException {
@@ -43,6 +46,7 @@ public class TestRootModuleChecker implements RootModule {
     @Override
     public int process(List<File> files) throws CheckstyleException {
         processed = true;
+        filesToCheck = new ArrayList<>(files);
         return 0;
     }
 
@@ -62,5 +66,10 @@ public class TestRootModuleChecker implements RootModule {
 
     public static void reset() {
         processed = false;
+        filesToCheck = null;
+    }
+
+    public static List<File> getFilesToCheck() {
+        return Collections.unmodifiableList(filesToCheck);
     }
 }
