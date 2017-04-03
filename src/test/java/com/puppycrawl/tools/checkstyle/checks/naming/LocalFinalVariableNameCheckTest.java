@@ -25,7 +25,6 @@ import static org.junit.Assert.assertArrayEquals;
 import java.io.File;
 import java.io.IOException;
 
-import com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
