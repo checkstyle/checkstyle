@@ -42,7 +42,7 @@ public class NoWhitespaceBeforeCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator + "nowhitespacebefore" + File.separator + filename);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class NoWhitespaceBeforeCheckTest
             "284:1: " + getCheckMessage(MSG_KEY, ";"),
             "287:61: " + getCheckMessage(MSG_KEY, "..."),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeDefault.java"), expected);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class NoWhitespaceBeforeCheckTest
             "136:10: " + getCheckMessage(MSG_KEY, "."),
             "264:1: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeDot.java"), expected);
     }
 
     @Test
@@ -87,6 +87,6 @@ public class NoWhitespaceBeforeCheckTest
             "129:17: " + getCheckMessage(MSG_KEY, "."),
             "136:10: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);
     }
 }
