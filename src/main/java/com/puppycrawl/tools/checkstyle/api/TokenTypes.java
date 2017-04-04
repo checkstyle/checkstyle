@@ -1993,7 +1993,7 @@ public final class TokenTypes {
     public static final int LITERAL_TRY = GeneratedJavaTokenTypes.LITERAL_try;
 
     /**
-     * Java 7 try-with-resources construct.
+     * The Java 7 try-with-resources construct.
      *
      * <p>For example:</p>
      * <pre>
@@ -2057,7 +2057,8 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.RESOURCE_SPECIFICATION;
 
     /**
-     * Java 7 try-with-resources construct.
+     * A list of resources in the Java 7 try-with-resources construct.
+     * This is a child of RESOURCE_SPECIFICATION.
      *
      * @see #RESOURCE_SPECIFICATION
      **/
@@ -2065,8 +2066,10 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.RESOURCES;
 
     /**
-     * Java 7 try-with-resources construct.
+     * A resource in the Java 7 try-with-resources construct.
+     * This is a child of RESOURCES.
      *
+     * @see #RESOURCES
      * @see #RESOURCE_SPECIFICATION
      **/
     public static final int RESOURCE =
