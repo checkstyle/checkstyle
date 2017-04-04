@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
  * Tests having inner types
  * @author Oliver Burn
  **/
-class InputLocalFinalVariableNameInnerTest
+class InputLocalFinalVariableNameInnerClass
 {
     // Ignore - two errors
     class InnerInner2
