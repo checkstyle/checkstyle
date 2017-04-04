@@ -37,7 +37,9 @@ public class LocalFinalVariableNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "localfinalvariablename" + File.separator
+                + filename);
     }
 
     @Test
@@ -58,7 +60,7 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "123:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableName.java"), expected);
     }
 
     @Test
@@ -73,7 +75,7 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "122:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableName.java"), expected);
     }
 
     @Test
@@ -82,7 +84,7 @@ public class LocalFinalVariableNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
     }
 
     @Test
