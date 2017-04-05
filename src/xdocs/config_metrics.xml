@@ -730,7 +730,7 @@ class SwitchExample {
         <tr><td>while ([expr]) { [while-range] } </td><td>NP(while-range) + NP(expr) + 1</td></tr>
         <tr><td>do { [do-range] } while ([expr])</td><td>NP(do-range) + NP(expr) + 1</td></tr>
         <tr><td>for([expr1]; [expr2]; [expr3]) { [for-range] }</td><td>NP(for-range) + NP(expr1) + NP(expr2) + NP(expr3) + 1</td></tr>
-        <tr><td>switch ([expr]) { case : [case-range] default: [default-range] }</td><td>S(i=1:i=n)NP(case-range(i)) + NP(default-range) + NP(expr)</td></tr>
+        <tr><td>switch ([expr]) { case : [case-range] default: [default-range] }</td><td>S(i=1:i=n)NP(case-range[i]) + NP(default-range) + NP(expr)</td></tr>
         <tr><td>[expr1] ? [expr2] : [expr3]</td><td>NP(expr1) + NP(expr2) + NP(expr3) + 2</td></tr>
         <tr><td>goto label</td><td>1</td></tr>
         <tr><td>break</td><td>1</td></tr>
@@ -740,7 +740,7 @@ class SwitchExample {
         <tr><td>Statement (even sequential statements)</td><td>1</td></tr>
         <tr><td>Empty block {}</td><td>1</td></tr>
         <tr><td>Function call</td><td>1</td></tr>
-        <tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement(i))</td></tr>
+        <tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement[i])</td></tr>
         </table>
 
         <p>
