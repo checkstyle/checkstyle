@@ -723,7 +723,7 @@ public final class TokenTypes {
     public static final int METHOD_CALL = GeneratedJavaTokenTypes.METHOD_CALL;
 
     /**
-     * Part of Java 8 syntax. A reference to a method or constructor without arguments.
+     * A reference to a method or constructor without arguments. Part of Java 8 syntax.
      * The token should be used for subscribing for double colon literal.
      * {@link #DOUBLE_COLON} token does not appear in the tree.
      *
