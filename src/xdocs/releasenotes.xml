@@ -27,7 +27,7 @@
             PackageDeclaration: new property matchDirectoryStructure to match the package name to directory name of source file. Author: Vikramaditya Kukreja<a href="https://github.com/checkstyle/checkstyle/issues/3437"> #3437</a>
           </li>
           <li>
-            ParenPad: add LAMBDA token support. Author: Andrew<a href="https://github.com/checkstyle/checkstyle/issues/3229"> #3329</a>
+            ParenPad: add LAMBDA token support. Author: Andrew<a href="https://github.com/checkstyle/checkstyle/issues/3329"> #3329</a>
           </li>
         </ul>
       <p>Bug fixes:</p>
