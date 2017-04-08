@@ -16,3 +16,4 @@ echo "------------ grep of linkcheck.html--END"
 RESULT=$(grep externalLink target/site/linkcheck.html | grep -v 'Read timed out' | wc -l)
 echo 'Exit code:'$RESULT
 if [[ $RESULT != 0 ]]; then false; fi
+
