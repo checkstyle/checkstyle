@@ -158,13 +158,15 @@ public class DetailASTTest {
                 parent = curNode;
                 curNode = toVisit;
                 prev = null;
-            } else {
+            }
+            else {
                 while (curNode != null && toVisit == null) {
                     toVisit = curNode.getNextSibling();
                     if (toVisit != null) {
                         prev = curNode;
                         curNode = toVisit;
-                    } else {
+                    }
+                    else {
                         curNode = curNode.getParent();
                         if (curNode != null) {
                             parent = curNode.getParent();
