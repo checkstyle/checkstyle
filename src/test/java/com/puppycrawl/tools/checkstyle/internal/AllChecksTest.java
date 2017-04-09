@@ -130,7 +130,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
         // https://github.com/checkstyle/checkstyle/issues/3730
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
                 Stream.of("TYPECAST", "DOT", "TYPE_ARGUMENT", "LITERAL_NEW", "LITERAL_THROWS",
-                        "IMPLEMENTS_CLAUSE").collect(Collectors.toSet()));
+                        "IMPLEMENTS_CLAUSE", "CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
+                        "METHOD_DEF", "VARIABLE_DEF").collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method declaration could be long due to "parameters/exceptions", it is ok to
                 // be not strict there
@@ -190,8 +191,11 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 // can be empty for special cases via '6.2 Caught exceptions: not ignored'
                 "LITERAL_CATCH",
                 // specifically allowed via '5.2.4 Constant names'
-                "ARRAY_INIT")
-                .collect(Collectors.toSet()));
+                "ARRAY_INIT",
+                // state of the configuration when test was made until
+                // https://github.com/checkstyle/checkstyle/issues/4121
+                "INSTANCE_INIT", "LITERAL_DO", "LITERAL_FOR", "LITERAL_SYNCHRONIZED",
+                "LITERAL_WHILE", "STATIC_INIT").collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
                 //  allowed via '4.8.3 Arrays'
                 "ARRAY_INIT",
@@ -208,7 +212,10 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 // assignment operators and they are allowed to break before or after the symbol
                 "DIV_ASSIGN", "BOR_ASSIGN", "SL_ASSIGN", "ASSIGN", "BSR_ASSIGN", "BAND_ASSIGN",
                 "PLUS_ASSIGN", "MINUS_ASSIGN", "SR_ASSIGN", "STAR_ASSIGN", "BXOR_ASSIGN",
-                "MOD_ASSIGN").collect(Collectors.toSet()));
+                "MOD_ASSIGN",
+                // state of the configuration when test was made until
+                // https://github.com/checkstyle/checkstyle/issues/4122
+                "COLON", "TYPE_EXTENSION_AND").collect(Collectors.toSet()));
     }
 
     @Test
@@ -368,7 +375,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                         configTokens.addAll(overrideTokens);
                     }
 
-                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
+                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getRequiredTokens()));
                     checkTokens.put(checkName,
                             CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
                 }
@@ -379,6 +386,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 }
                 catch (CheckstyleException ex) {
                     // no tokens defined, so it is using default
+                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
                 }
             }
         }
