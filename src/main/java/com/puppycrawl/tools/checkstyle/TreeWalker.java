@@ -152,7 +152,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         final Object module = moduleFactory.createModule(name);
         if (!(module instanceof AbstractCheck)) {
             throw new CheckstyleException(
-                "TreeWalker is not allowed as a parent of " + name);
+                "TreeWalker is not allowed as a parent of " + name
+                        + " Please review 'Parent Module' section for this Check in web"
+                        + " documentation if Check is standard.");
         }
         final AbstractCheck check = (AbstractCheck) module;
         check.contextualize(childContext);
