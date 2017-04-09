@@ -159,6 +159,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 "ARRAY_INIT",
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START").collect(Collectors.toSet()));
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurly", Stream.of(
+                // Until https://github.com/checkstyle/checkstyle/issues/4177
+                "LAMBDA").collect(Collectors.toSet()));
 
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
@@ -216,6 +219,9 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 // state of the configuration when test was made until
                 // https://github.com/checkstyle/checkstyle/issues/4122
                 "COLON", "TYPE_EXTENSION_AND").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurly", Stream.of(
+                // Until https://github.com/checkstyle/checkstyle/issues/4178
+                "LAMBDA").collect(Collectors.toSet()));
     }
 
     @Test
