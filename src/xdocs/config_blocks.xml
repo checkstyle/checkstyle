@@ -799,7 +799,9 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
             <a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">STATIC_INIT</a>,
             <a
-             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>.</td>
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">INSTANCE_INIT</a>,
+            <a
+             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.</td>
 
             <td><a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">LITERAL_TRY</a>,

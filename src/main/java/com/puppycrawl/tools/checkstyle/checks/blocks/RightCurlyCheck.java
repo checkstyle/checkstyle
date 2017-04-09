@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
  *  {@link TokenTypes#LITERAL_DO LITERAL_DO}.
  *  {@link TokenTypes#STATIC_INIT STATIC_INIT}.
  *  {@link TokenTypes#INSTANCE_INIT INSTANCE_INIT}.
+ *  {@link TokenTypes#LAMBDA LAMBDA}.
  * </p>
  * <p>
  * <b>shouldStartLine</b> - does the check need to check
@@ -160,6 +161,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.LITERAL_DO,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -321,10 +323,10 @@ public class RightCurlyCheck extends AbstractCheck {
      * Collects validation details.
      * @param ast detail ast.
      * @return object that contain all details to make a validation.
+     * @noinspection SwitchStatementDensity
      */
-    // -@cs[JavaNCSS] getDetails() method is a huge SWITCH, it has to be monolithic
-    // -@cs[ExecutableStatementCount] getDetails() method is a huge SWITCH, it has to be monolithic
-    // -@cs[NPathComplexity] getDetails() method is a huge SWITCH, it has to be monolithic
+    // -@cs[JavaNCSS|ExecutableStatementCount|CyclomaticComplexity|NPathComplexity] getDetails()
+    // method is a huge SWITCH, it has to be monolithic
     private static Details getDetails(DetailAST ast) {
         // Attempt to locate the tokens to do the check
         boolean shouldCheckLastRcurly = false;
@@ -396,6 +398,18 @@ public class RightCurlyCheck extends AbstractCheck {
             case TokenTypes.LITERAL_DO:
                 nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
                 lcurly = ast.findFirstToken(TokenTypes.SLIST);
+                if (lcurly != null) {
+                    rcurly = lcurly.getLastChild();
+                }
+                break;
+            case TokenTypes.LAMBDA:
+                lcurly = ast.findFirstToken(TokenTypes.SLIST);
+                nextToken = getNextToken(ast);
+                if (nextToken.getType() != TokenTypes.RPAREN
+                        && nextToken.getType() != TokenTypes.COMMA) {
+                    shouldCheckLastRcurly = true;
+                    nextToken = getNextToken(nextToken);
+                }
                 if (lcurly != null) {
                     rcurly = lcurly.getLastChild();
                 }
