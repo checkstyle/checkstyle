@@ -145,7 +145,8 @@ public class MainFrameModelTest {
             model.openFile(testData);
 
             fail("Expected IllegalArgumentException is not thrown.");
-        } catch (IllegalArgumentException ex) {
+        }
+        catch (IllegalArgumentException ex) {
             assertEquals("Unknown mode: Unknown parse mode", ex.getMessage());
         }
     }
@@ -168,7 +169,8 @@ public class MainFrameModelTest {
             model.openFile(nonExistentFile);
 
             fail("Expected CheckstyleException is not thrown.");
-        } catch (CheckstyleException ex) {
+        }
+        catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
                     "FileNotFoundException occurred while opening file %s.",
                     nonExistentFile.getPath());
@@ -185,7 +187,8 @@ public class MainFrameModelTest {
             model.openFile(nonCompilableFile);
 
             fail("Expected CheckstyleException is not thrown.");
-        } catch (CheckstyleException ex) {
+        }
+        catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
                     "NoViableAltException occurred while opening file %s.",
                     nonCompilableFile.getPath());

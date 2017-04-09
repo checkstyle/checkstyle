@@ -143,7 +143,8 @@ public class ImportControlLoaderTest {
             ImportControlLoader.load(uri);
             //Using available to bypass 'ignored result' warning
             fail("exception expected " + available);
-        } catch (CheckstyleException ex) {
+        }
+        catch (CheckstyleException ex) {
             assertSame(IOException.class, ex.getCause().getClass());
         }
         Mockito.verify(inputStream).close();
@@ -164,7 +165,8 @@ public class ImportControlLoaderTest {
             ImportControlLoader.load(uri);
             //Using available to bypass 'ignored result' warning
             fail("exception expected " + available);
-        } catch (CheckstyleException ex) {
+        }
+        catch (CheckstyleException ex) {
             assertSame(SAXParseException.class, ex.getCause().getClass());
         }
     }

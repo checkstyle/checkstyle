@@ -212,7 +212,8 @@ final class ImportControlLoader extends AbstractLoader {
         if (inputStream != null) {
             try {
                 inputStream.close();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex) {
                 throw new CheckstyleException("unable to close input stream", ex);
             }
         }

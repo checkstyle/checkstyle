@@ -161,6 +161,17 @@
       <property name="tokens" value="ARRAY_INIT"/>
       <property name="tokens" value="LITERAL_DEFAULT"/>
       <property name="tokens" value="LITERAL_CASE"/>
+      <property name="tokens" value="INSTANCE_INIT"/>
+      <property name="tokens" value="LITERAL_DO"/>
+      <property name="tokens" value="LITERAL_ELSE"/>
+      <property name="tokens" value="LITERAL_FINALLY"/>
+      <property name="tokens" value="LITERAL_FOR"/>
+      <property name="tokens" value="LITERAL_IF"/>
+      <property name="tokens" value="LITERAL_SWITCH"/>
+      <property name="tokens" value="LITERAL_SYNCHRONIZED"/>
+      <property name="tokens" value="LITERAL_TRY"/>
+      <property name="tokens" value="LITERAL_WHILE"/>
+      <property name="tokens" value="STATIC_INIT"/>
       <property name="option" value="text"/>
     </module>
     <module name="EmptyCatchBlock"/>
@@ -180,6 +191,11 @@
       <property name="tokens" value="LITERAL_FOR"/>
       <property name="tokens" value="STATIC_INIT"/>
       <property name="tokens" value="LITERAL_WHILE"/>
+      <property name="tokens" value="LITERAL_CATCH"/>
+      <property name="tokens" value="LITERAL_ELSE"/>
+      <property name="tokens" value="LITERAL_FINALLY"/>
+      <property name="tokens" value="LITERAL_IF"/>
+      <property name="tokens" value="LITERAL_TRY"/>
       <property name="option" value="alone"/>
     </module>
     <module name="RightCurly">
@@ -453,6 +469,7 @@
       <property name="tokens" value="UNARY_MINUS"/>
       <property name="tokens" value="UNARY_PLUS"/>
       <property name="tokens" value="ARRAY_DECLARATOR"/>
+      <property name="tokens" value="INDEX_OP"/>
     </module>
     <module name="NoWhitespaceBefore"/>
     <module name="NoWhitespaceBefore">
