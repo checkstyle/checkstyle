@@ -1883,7 +1883,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                     getExpectedMessagePostfix(MSG_ERROR_MULTI),
                     getExpectedMessagePostfix(MSG_CHILD_ERROR_MULTI),
                 };
-            } else {
+            }
+            else {
                 expectedMessages = new String[] {
                     getExpectedMessagePostfix(MSG_ERROR),
                     getExpectedMessagePostfix(MSG_CHILD_ERROR),
