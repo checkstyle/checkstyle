@@ -19,6 +19,8 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_NEW;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -59,6 +61,20 @@ public class SeparatorWrapTest extends BaseCheckTestSupport {
 
         final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapComma");
         final String filePath = getPath("InputSeparatorWrapComma.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void separatorWrapMethodRefTest() throws Exception {
+
+        final String[] expected = {
+            "17:49: " + getCheckMessage(SeparatorWrapCheck.class, MSG_LINE_NEW, "::"),
+        };
+
+        final Configuration checkConfig = getCheckConfig("SeparatorWrap", "SeparatorWrapMethodRef");
+        final String filePath = getPath("InputSeparatorWrapMethodRef.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
