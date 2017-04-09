@@ -360,4 +360,48 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputRightCurlySingelineIfBlocks.java"), expected);
     }
+
+    @Test
+    public void testRightCurlyIsAloneLambda() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "LAMBDA");
+        final String[] expected = {
+            "14:74: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 74),
+            "17:49: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 49),
+            "35:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "45:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlyAloneLambda.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyIsAloneOrSinglelineLambda() throws Exception {
+        checkConfig.addAttribute("option",
+            RightCurlyOption.ALONE_OR_SINGLELINE.toString());
+        checkConfig.addAttribute("tokens", "LAMBDA");
+        final String[] expected = {
+            "17:49: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 49),
+            "35:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "45:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "47:58: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 58),
+        };
+        verify(checkConfig,
+            getPath("InputRightCurlyAloneOrSinglelineLambda.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyIsSameLambda() throws Exception {
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("tokens", "LAMBDA");
+        final String[] expected = {
+            "17:49: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 49),
+            "35:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "40:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "53:30: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 30),
+            "68:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
+            "73:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
+        };
+        verify(checkConfig,
+            getPath("InputRightCurlySameLambda.java"), expected);
+    }
 }

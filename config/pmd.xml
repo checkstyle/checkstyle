@@ -68,6 +68,8 @@
     <properties>
       <!-- JavadocMethodCheck is deprecated class, till it is redone to use JavadocAst -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']"/>
+      <!-- getDetails() method is a huge SWITCH, it has to be monolithic -->
+      <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='getDetails' and ../../..[@Image='RightCurlyCheck']]"/>
     </properties>
   </rule>
 
