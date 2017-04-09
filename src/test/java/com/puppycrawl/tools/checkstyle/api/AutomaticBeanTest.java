@@ -83,7 +83,9 @@ public class AutomaticBeanTest {
             fail("expecting checkstyle exception");
         }
         catch (CheckstyleException ex) {
-            assertEquals("expected exception", "childConf is not allowed as a child in parentConf",
+            assertEquals("expected exception", "childConf is not allowed as a "
+                            + "child in parentConf. Please review 'Parent Module' section "
+                            + "for this Check in web documentation if Check is standard.",
                     ex.getMessage());
         }
     }
