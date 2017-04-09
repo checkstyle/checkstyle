@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 class InputIncorrectSummaryJavaDoc {
     
     /**
-     * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+     * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
      */
     void foo3() {}
     
@@ -62,7 +62,7 @@ class InputIncorrectSummaryJavaDoc {
         int geId() {return 666;} 
 
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
         
@@ -96,7 +96,7 @@ class InputIncorrectSummaryJavaDoc {
         void emulated(String s) {}
         
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
         
