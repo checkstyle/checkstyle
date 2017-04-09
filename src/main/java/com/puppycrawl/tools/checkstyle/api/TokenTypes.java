@@ -1463,7 +1463,7 @@ public final class TokenTypes {
     public static final int COLON = GeneratedJavaTokenTypes.COLON;
 
     /**
-     * The <code>::</code> (double colon) operator.
+     * The <code>::</code> (double colon) separator.
      * It is part of Java 8 syntax that is used for method reference.
      * The token does not appear in tree, {@link #METHOD_REF} should be used instead.
      *

@@ -74,6 +74,16 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
+    public void testMethodRef() throws Exception {
+        checkConfig.addAttribute("option", "NL");
+        checkConfig.addAttribute("tokens", "METHOD_REF");
+        final String[] expected = {
+            "17:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
+        };
+        verify(checkConfig, getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
+    }
+
+    @Test
     public void testGetDefaultTokens() {
         final SeparatorWrapCheck separatorWrapCheckObj = new SeparatorWrapCheck();
         final int[] actual = separatorWrapCheckObj.getDefaultTokens();
