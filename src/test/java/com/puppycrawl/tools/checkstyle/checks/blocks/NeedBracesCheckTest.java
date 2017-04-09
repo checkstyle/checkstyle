@@ -1,3 +1,4 @@
+
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
 // Copyright (C) 2001-2017 the original author or authors.
@@ -98,6 +99,9 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "10: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "15: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verify(checkConfig, getPath("InputSingleLineLambda.java"), expected);
     }

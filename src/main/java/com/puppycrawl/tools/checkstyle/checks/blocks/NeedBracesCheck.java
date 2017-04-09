@@ -415,6 +415,16 @@ public class NeedBracesCheck extends AbstractCheck {
         final DetailAST block = lambda.getLastChild();
         if (block.getType() != TokenTypes.SLIST) {
             result = lambda.getLineNo() == block.getLineNo();
+            final DetailAST elist = block.getFirstChild().findFirstToken(TokenTypes.ELIST);
+            if (elist != null) {
+                result = result && block.getLineNo() == elist.getLastChild().getLineNo();
+                final DetailAST expr = elist.findFirstToken(TokenTypes.EXPR);
+                if (expr != null && expr.getLastChild().getChildCount() > 1) {
+                    result = result
+                            && expr.getLastChild().getLastChild().getLineNo()
+                            == expr.getLastChild().getLineNo();
+                }
+            }
         }
         return result;
     }
