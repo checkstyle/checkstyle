@@ -35,7 +35,9 @@ public class LocalVariableNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "localvariablename" + File.separator
+                + filename);
     }
 
     @Test
@@ -52,7 +54,7 @@ public class LocalVariableNameCheckTest
             "132:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
             "207:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputLocalVariableName.java"), expected);
     }
 
     @Test
@@ -61,7 +63,7 @@ public class LocalVariableNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(LocalVariableNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputLocalVariableNameInnerClass.java"), expected);
     }
 
     @Test
@@ -78,6 +80,6 @@ public class LocalVariableNameCheckTest
             "19:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
             "25:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
         };
-        verify(checkConfig, getPath("InputOneCharInitVarName.java"), expected);
+        verify(checkConfig, getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
     }
 }
