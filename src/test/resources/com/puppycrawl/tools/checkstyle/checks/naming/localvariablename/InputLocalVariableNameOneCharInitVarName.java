@@ -3,12 +3,12 @@
 // Created: Feb-2001
 // Ignore error
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-class InputOneCharInitVarName
+class InputLocalVariableNameOneCharInitVarName
 {
 	public void fooMethod()
 	{
