@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
-public interface InputDefaultComesLast2 {
+public interface InputDefaultComesLastDefaultMethodsInInterface {
 
     String toJson(Object one, Object two, Object three);
 
