@@ -35,7 +35,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator + "defaultcomeslast" + File.separator + filename);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = {
@@ -64,7 +64,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
                 createCheckConfig(DefaultComesLastCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("InputDefaultComesLast2.java"),
+                getPath("InputDefaultComesLastDefaultMethodsInInterface.java"),
                 expected);
     }
 
