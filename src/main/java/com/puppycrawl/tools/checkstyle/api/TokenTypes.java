@@ -1993,7 +1993,7 @@ public final class TokenTypes {
     public static final int LITERAL_TRY = GeneratedJavaTokenTypes.LITERAL_try;
 
     /**
-     * Java 7 try-with-resources construct.
+     * The Java 7 try-with-resources construct.
      *
      * <p>For example:</p>
      * <pre>
@@ -2046,6 +2046,70 @@ public final class TokenTypes {
      *         +--RCURLY (})
      * </pre>
      *
+     * <p>Also consider:</p>
+     * <pre>
+     * try (BufferedReader br = new BufferedReader(new FileReader(path)))
+     * {
+     *  return br.readLine();
+     * }
+     * </pre>
+     * <p>which parses as:</p>
+     * <pre>
+     * +--LITERAL_TRY (try)
+     *     |
+     *     +--RESOURCE_SPECIFICATION
+     *         |
+     *         +--LPAREN (()
+     *         +--RESOURCES
+     *             |
+     *             +--RESOURCE
+     *                 |
+     *                 +--MODIFIERS
+     *                 +--TYPE
+     *                     |
+     *                     +--IDENT (BufferedReader)
+     *                 +--IDENT (br)
+     *                 +--ASSIGN (=)
+     *                 +--EXPR
+     *                     |
+     *                     +--LITERAL_NEW (new)
+     *                         |
+     *                         +--IDENT (FileReader)
+     *                         +--LPAREN (()
+     *                         +--ELIST
+     *                             |
+     *                             +--EXPR
+     *                                 |
+     *                                 +--LITERAL_NEW (new)
+     *                                     |
+     *                                     +--IDENT (BufferedReader)
+     *                                     +--LPAREN (()
+     *                                     +--ELIST
+     *                                         |
+     *                                         +--EXPR
+     *                                             |
+     *                                             +--IDENT (path)
+     *                                     +--RPAREN ())
+     *                         +--RPAREN ())
+     *         +--RPAREN ())
+     *     +--SLIST ({)
+     *         |
+     *         +--LITERAL_RETURN (return)
+     *             |
+     *             +--EXPR
+     *                 |
+     *                 +--METHOD_CALL (()
+     *                     |
+     *                     +--DOT (.)
+     *                         |
+     *                         +--IDENT (br)
+     *                         +--IDENT (readLine)
+     *                     +--ELIST
+     *                     +--RPAREN ())
+     *             +--SEMI (;)
+     *         +--RCURLY (})
+     * </pre>
+     *
      * @see #LPAREN
      * @see #RESOURCES
      * @see #RESOURCE
@@ -2057,7 +2121,8 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.RESOURCE_SPECIFICATION;
 
     /**
-     * Java 7 try-with-resources construct.
+     * A list of resources in the Java 7 try-with-resources construct.
+     * This is a child of RESOURCE_SPECIFICATION.
      *
      * @see #RESOURCE_SPECIFICATION
      **/
@@ -2065,8 +2130,10 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.RESOURCES;
 
     /**
-     * Java 7 try-with-resources construct.
+     * A resource in the Java 7 try-with-resources construct.
+     * This is a child of RESOURCES.
      *
+     * @see #RESOURCES
      * @see #RESOURCE_SPECIFICATION
      **/
     public static final int RESOURCE =
