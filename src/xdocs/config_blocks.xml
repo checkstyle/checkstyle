@@ -150,6 +150,35 @@ switch (a)
     <section name="EmptyBlock">
       <subsection name="Description">
         <p> Checks for empty blocks. This check does not validate sequential blocks. </p>
+
+        <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
+        <source>
+            switch (a) {
+            case 1:                          // no violation
+            case 2:                          // no violation
+            case 3: someMethod(); { }        // no violation
+            default: break;
+            }
+        </source>
+
+        <p>
+          This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
+          So, if tokens=LITERAL_DEFAULT, following code will not trigger any violation,
+          as the empty block belongs to LITERAL_CASE:
+        </p>
+        <p> Configuration: </p>
+        <source>
+&lt;module name=&quot;EmptyBlock&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Result: </p>
+        <source>
+              switch (a) {
+              default:        // no violation for "default:" as empty block belong to "case 1:"
+              case 1: { }
+              }
+        </source>
       </subsection>
 
       <subsection name="Properties">

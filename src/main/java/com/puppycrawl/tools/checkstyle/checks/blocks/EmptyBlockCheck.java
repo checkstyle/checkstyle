@@ -238,7 +238,8 @@ public class EmptyBlockCheck
     private static DetailAST findLeftCurly(DetailAST ast) {
         final DetailAST leftCurly;
         final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
-        if (ast.getType() == TokenTypes.LITERAL_CASE
+        if ((ast.getType() == TokenTypes.LITERAL_CASE
+                || ast.getType() == TokenTypes.LITERAL_DEFAULT)
                 && ast.getNextSibling() != null
                 && ast.getNextSibling().getFirstChild().getType() == TokenTypes.SLIST) {
             leftCurly = ast.getNextSibling().getFirstChild();
