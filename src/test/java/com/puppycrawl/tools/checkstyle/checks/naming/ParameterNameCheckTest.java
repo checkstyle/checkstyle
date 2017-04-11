@@ -37,7 +37,9 @@ public class ParameterNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "parametername" + File.separator
+                + filename);
     }
 
     @Test
@@ -54,7 +56,7 @@ public class ParameterNameCheckTest
             createCheckConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputCatchOnly.java"), expected);
+        verify(checkConfig, getPath("InputParameterNameCatchOnly.java"), expected);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class ParameterNameCheckTest
             "71:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
             "72:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterName.java"), expected);
     }
 
     @Test
@@ -80,7 +82,7 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterName.java"), expected);
     }
 
     @Test
@@ -166,7 +168,7 @@ public class ParameterNameCheckTest
         checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]*$");
         checkConfig.addAttribute("ignoreOverridden", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOverrideAnnotationNoNPE.java"), expected);
+        verify(checkConfig, getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
     }
 
     @Test
