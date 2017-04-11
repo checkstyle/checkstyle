@@ -49,6 +49,7 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+<<<<<<< refs/remotes/origin/master
     public void testSkipIfLastAndSharedWithCase() throws Exception {
         checkConfig = createCheckConfig(DefaultComesLastCheck.class);
         checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
@@ -69,6 +70,11 @@ public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefault() throws Exception {
         checkConfig = createCheckConfig(DefaultComesLastCheck.class);
+=======
+    public void testDefault() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(DefaultComesLastCheck.class);
+>>>>>>> Issue #4165: Split and Organize Checkstyle inputs by Test for DefaultComesLastCheckTest
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY),
             "32:24: " + getCheckMessage(MSG_KEY),
