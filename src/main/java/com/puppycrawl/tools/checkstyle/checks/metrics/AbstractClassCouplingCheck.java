@@ -77,14 +77,15 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Package names to ignore. */
     private static final Set<String> DEFAULT_EXCLUDED_PACKAGES = Collections.emptySet();
 
+    /** User-configured regular expressions to ignore classes. */
+    private final List<Pattern> excludeClassesRegexps = new ArrayList<>();
+
     /** User-configured class names to ignore. */
     private Set<String> excludedClasses = DEFAULT_EXCLUDED_CLASSES;
     /** User-configured package names to ignore. */
     private Set<String> excludedPackages = DEFAULT_EXCLUDED_PACKAGES;
     /** Allowed complexity. */
     private int max;
-    /** User-configured regular expressions to ignore classes. */
-    private List<Pattern> excludeClassesRegexps = new ArrayList<>();
 
     /** Current file context. */
     private FileContext fileContext;
