@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 /**
  * Test file for covariant equals methods.
  * @author Rick Giles
  */
-public class InputCovariant
+public class InputCovariantEquals
 {
     private class Inner
     {
@@ -27,7 +27,7 @@ public class InputCovariant
         }
     }
 
-    public boolean equals(InputCovariant aInputCovariant)
+    public boolean equals(InputCovariantEquals aInputCovariantEquals)
     {
         return false;
     }
