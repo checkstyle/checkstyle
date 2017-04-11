@@ -35,7 +35,7 @@ public class CovariantEqualsCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator + "covariantequals" + File.separator + filename);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class CovariantEqualsCheckTest
             "134:20: " + getCheckMessage(MSG_KEY),
             "138:9: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputCovariant.java"), expected);
+        verify(checkConfig, getPath("InputCovariantEquals.java"), expected);
     }
 
     @Test
