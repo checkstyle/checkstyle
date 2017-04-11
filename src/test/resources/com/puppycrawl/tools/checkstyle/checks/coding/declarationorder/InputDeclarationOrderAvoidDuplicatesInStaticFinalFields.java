@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
 public class InputDeclarationOrderAvoidDuplicatesInStaticFinalFields
 {
