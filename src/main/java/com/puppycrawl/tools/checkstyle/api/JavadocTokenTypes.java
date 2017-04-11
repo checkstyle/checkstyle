@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser;
  * @author Baratali Izmailov
  * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  * javadoc - The Java API Documentation Generator</a>
- * @noinspection JavaDoc
  */
 public final class JavadocTokenTypes {
     /** Rule types offset. */
