@@ -83,6 +83,9 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 =======
 >>>>>>> Issue #3309: Added excludedPackages to class coupling checks
 
+    /** User-configured regular expressions to ignore classes. */
+    private final List<Pattern> excludeClassesRegexps = new ArrayList<>();
+
     /** User-configured class names to ignore. */
     private Set<String> excludedClasses = DEFAULT_EXCLUDED_CLASSES;
     /** User-configured package names to ignore. */
@@ -90,10 +93,13 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Allowed complexity. */
     private int max;
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
 =======
     /** User-configured regular expressions to ignore classes. */
     private List<Pattern> excludeClassesRegexps = new ArrayList<>();
 >>>>>>> Issue #3309: Added excludedPackages to class coupling checks
+=======
+>>>>>>> Issue #3616: Fix TC violation - Field may be 'final'
 
     /** Current file context. */
     private FileContext fileContext;
