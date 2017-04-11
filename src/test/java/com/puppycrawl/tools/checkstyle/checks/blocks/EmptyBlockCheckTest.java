@@ -189,4 +189,39 @@ public class EmptyBlockCheckTest
         };
         verify(checkConfig, getPath("InputEmptyCase.java"), expected);
     }
+
+    @Test
+    public void testAllowEmptyDefaultWithText() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        final String[] expected = {
+            "5:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "11:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "36:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "44:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "50:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "78:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+        };
+        verify(checkConfig, getPath("InputEmptyDefault.java"), expected);
+    }
+
+    @Test
+    public void testForbidDefaultWithoutStatement() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.STMT.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        final String[] expected = {
+            "5:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "11:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "15:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "26:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "36:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "44:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "50:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "65:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+            "78:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
+        };
+        verify(checkConfig, getPath("InputEmptyDefault.java"), expected);
+    }
 }
