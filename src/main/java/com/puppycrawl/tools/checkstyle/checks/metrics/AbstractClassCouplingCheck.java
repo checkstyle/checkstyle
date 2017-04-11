@@ -139,8 +139,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     public void setExcludeClassesRegexps(String... from) {
         excludeClassesRegexps.clear();
-        excludeClassesRegexps.addAll(Arrays.asList(from.clone())
-                .stream()
+        excludeClassesRegexps.addAll(Arrays.stream(from.clone())
                 .map(CommonUtils::createPattern)
                 .collect(Collectors.toSet()));
     }
