@@ -36,7 +36,9 @@ public class MethodTypeParameterNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "methodtypeparametername" + File.separator
+                + filename);
     }
 
     @Test
@@ -62,7 +64,7 @@ public class MethodTypeParameterNameCheckTest
             "23:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
         };
-        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputMethodTypeParameterName.java"), expected);
     }
 
     @Test
@@ -83,6 +85,6 @@ public class MethodTypeParameterNameCheckTest
             "37:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
             //"40:14: Name 'EE' must match pattern '^foo$'.",
         };
-        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputMethodTypeParameterName.java"), expected);
     }
 }
