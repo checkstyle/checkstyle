@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.emptystatement;
 
 /**
  * Input class for testing EmptyStatementCheck
