@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
 import java.util.ArrayList;
 import java.util.List;
