@@ -38,7 +38,9 @@ public class FileTabCharacterCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "filetabcharacter" + File.separator
+                + filename);
     }
 
     @Override
@@ -56,9 +58,9 @@ public class FileTabCharacterCheckTest
             "19:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
         final File[] files = {
-            new File(getPath("InputSimple.java")),
+            new File(getPath("InputFileTabCharacterSimple.java")),
         };
-        verify(createChecker(checkConfig), files, getPath("InputSimple.java"),
+        verify(createChecker(checkConfig), files, getPath("InputFileTabCharacterSimple.java"),
             expected);
     }
 
@@ -76,9 +78,9 @@ public class FileTabCharacterCheckTest
             "158:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
         final File[] files = {
-            new File(getPath("InputSimple.java")),
+            new File(getPath("InputFileTabCharacterSimple.java")),
         };
-        verify(createChecker(checkConfig), files, getPath("InputSimple.java"),
+        verify(createChecker(checkConfig), files, getPath("InputFileTabCharacterSimple.java"),
             expected);
     }
 
