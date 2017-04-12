@@ -197,6 +197,16 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testMethodReference2() throws Exception {
+        checkConfig.addAttribute("tokens", "METHOD_REF");
+        final String[] expected = {
+            "16:33: " + getCheckMessage(MSG_KEY, "::"),
+            "17:62: " + getCheckMessage(MSG_KEY, "::"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterMethodRefBad.java"), expected);
+    }
+
+    @Test
     public void testVisitTokenSwitchReflection() {
         //unexpected parent for ARRAY_DECLARATOR token
         final DetailAST astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile");
