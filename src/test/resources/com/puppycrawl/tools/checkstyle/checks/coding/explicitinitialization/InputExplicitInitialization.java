@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
-public class InputExplicitInit {
+public class InputExplicitInitialization {
     private int x = 0;
     private Object bar = /* comment test */null;
     private int y = 1;
