@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
 
-public class InputEqualsParameter {
+public class InputEqualsHashCodeEqualsParameter {
     public static class TestClass1 { // no violation
         public boolean equals(String o) {
             return true;

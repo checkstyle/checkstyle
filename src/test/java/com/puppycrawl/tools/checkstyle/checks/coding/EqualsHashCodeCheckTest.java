@@ -37,17 +37,17 @@ public class EqualsHashCodeCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator + "equalshashcode" + File.separator + filename);
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testSemantic() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
             "94:13: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEqualsHashCodeSemantic.java"), expected);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class EqualsHashCodeCheckTest
             "75:9: " + getCheckMessage(MSG_KEY_EQUALS),
             "82:9: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
-        verify(checkConfig, getPath("InputEqualsParameter.java"), expected);
+        verify(checkConfig, getPath("InputEqualsHashCodeEqualsParameter.java"), expected);
     }
 
     @Test
