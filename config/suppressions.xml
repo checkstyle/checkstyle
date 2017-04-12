@@ -94,4 +94,7 @@
 
     <!-- Until https://github.com/checkstyle/checkstyle/issues/3496 -->
     <suppress id="returnCountMaxOne" files=".*[\\/]coding[\\/]|.*[\\/]indentation[\\/]"/>
+
+    <!-- HandlerFactory crosses allowed limit for executable statements -->
+    <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
 </suppressions>
