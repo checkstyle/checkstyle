@@ -1760,6 +1760,50 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testInputAnnotationDefIndentationCheck() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String fileName = getPath("InputCustomAnnotation.java");
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
+            "15: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "16: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
+            "17: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
+            "18: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "20: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
+            "22: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
+            "23: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "25: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
+            "26: " + getCheckMessage(MSG_ERROR, "AnnotationWithLineWrap", 5, 0),
+            "30: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
+            "31: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
+            "34: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 5, 4),
+            "35: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "36: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 0, 4),
+            "37: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
+            "38: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap", 8, 4),
+            "41: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 8),
+            "58: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap2", 4, 0),
+            "59: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 3, 4),
+            "60: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
+            "61: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
+            "72: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "117: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 4),
+            "128: " + getCheckMessage(MSG_ERROR, "interface", 1, 0),
+            "134: " + getCheckMessage(MSG_ERROR, "@", 11, 0),
+            "137: " + getCheckMessage(MSG_ERROR, "@", 16, 0),
+            "144: " + getCheckMessage(MSG_ERROR, "@", 12, 4),
+            "148: " + getCheckMessage(MSG_ERROR, "class def ident", 16, 0),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     /**
      * Verifies that the arguments of {@link IndentationCheck#MSG_ERROR},
      * {@link IndentationCheck#MSG_CHILD_ERROR}, {@link IndentationCheck#MSG_CHILD_ERROR_MULTI},
