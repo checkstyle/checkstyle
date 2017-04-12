@@ -69,18 +69,27 @@ public class ClassDefHandler extends BlockParentHandler {
     public void checkIndentation() {
         final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (modifiers.getChildCount() == 0) {
-            final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-            final int lineStart = getLineStart(ident);
-            if (!getIndent().isAcceptable(lineStart)) {
-                logError(ident, "ident", lineStart);
+            if (getMainAst().getType() != TokenTypes.ANNOTATION_DEF) {
+                final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
+                final int lineStart = getLineStart(ident);
+                if (!getIndent().isAcceptable(lineStart)) {
+                    logError(ident, "ident", lineStart);
+                }
             }
-
         }
         else {
             checkModifiers();
         }
-
-        checkWrappingIndentation(getMainAst(), getMainAst().getLastChild());
+        if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
+            final DetailAST atAst = getMainAst().findFirstToken(TokenTypes.AT);
+            if (isOnStartOfLine(atAst)) {
+                checkWrappingIndentation(getMainAst(), getListChild(), 0,
+                        getIndent().getFirstIndentLevel(), false);
+            }
+        }
+        else {
+            checkWrappingIndentation(getMainAst(), getListChild());
+        }
         super.checkIndentation();
     }
 
@@ -110,6 +119,9 @@ public class ClassDefHandler extends BlockParentHandler {
         }
         else if (ast.getType() == TokenTypes.ENUM_DEF) {
             name = "enum def";
+        }
+        else if (ast.getType() == TokenTypes.ANNOTATION_DEF) {
+            name = "annotation def";
         }
         else {
             name = "interface def";
