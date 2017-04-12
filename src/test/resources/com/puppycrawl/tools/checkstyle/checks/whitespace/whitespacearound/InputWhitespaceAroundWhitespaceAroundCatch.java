@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-public class InputWhitespaceAroundCatch {
+public class InputWhitespaceAroundWhitespaceAroundCatch {
     public int case1(int i) {
         int k = 1;
         try {

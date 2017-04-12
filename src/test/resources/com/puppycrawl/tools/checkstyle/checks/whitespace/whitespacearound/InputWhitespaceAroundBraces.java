@@ -2,9 +2,9 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-class InputBraces
+class InputWhitespaceAroundBraces
 {
     /** @return helper func **/
     boolean condition()
@@ -108,7 +108,7 @@ class InputBraces
     }
 
     /** Empty constructor block. **/
-    public InputBraces() {}
+    public InputWhitespaceAroundBraces() {}
     
     /** Empty method block. **/
     public void emptyImplementation() {}

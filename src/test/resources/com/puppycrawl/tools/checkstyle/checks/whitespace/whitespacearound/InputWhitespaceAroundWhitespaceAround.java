@@ -1,14 +1,14 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 @SuppressWarnings({"this", "that"})
-public class InputWhitespaceAround
+public class InputWhitespaceAroundWhitespaceAround
 {
-    protected InputWhitespaceAround ( int i )
+    protected InputWhitespaceAroundWhitespaceAround(int i )
     {
         this (); //whitespace
         toString ();
     }
-    protected InputWhitespaceAround ()
+    protected InputWhitespaceAroundWhitespaceAround()
     {
         super ();
     }

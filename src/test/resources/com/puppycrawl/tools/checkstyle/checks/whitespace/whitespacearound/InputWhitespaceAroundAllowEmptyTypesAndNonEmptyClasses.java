@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class InputAllowEmptyTypesAndNonEmptyClasses{
+public class InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses{
 
     private Object object;
 
