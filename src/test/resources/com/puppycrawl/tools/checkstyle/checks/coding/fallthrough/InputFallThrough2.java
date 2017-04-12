@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
 public class InputFallThrough2 {
     enum Test {
