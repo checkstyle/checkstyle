@@ -530,6 +530,8 @@
                 bin/**/*,
                 <!-- IDEA project files -->
                 *.iml,
+                *.ipr,
+                *.iws,
                 .idea/**/*,
                 <!-- Temp files -->
                 *~,
