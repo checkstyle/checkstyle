@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-public class InputSwitchWhitespaceAround {
+public class InputWhitespaceAroundSwitch {
 
     public void switchTest(int k) {
         switch(k) {
