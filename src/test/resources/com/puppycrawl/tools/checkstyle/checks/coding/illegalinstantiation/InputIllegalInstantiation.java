@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class InputIllegalInstantiation2
+public class InputIllegalInstantiation
 {
 
     public static void main(String[] args)
