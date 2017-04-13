@@ -20,6 +20,8 @@ bin
 
 # IDEA project files
 checkstyle.iml
+checkstyle.ipr
+checkstyle.iws
 .idea
 
 # Temp files
