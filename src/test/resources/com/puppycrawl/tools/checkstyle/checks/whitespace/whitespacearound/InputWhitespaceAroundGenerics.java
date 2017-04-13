@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 import java.util.Collection;
 import java.util.Map;
 
-public class InputGenerics<A, B extends Collection<?>, C extends D&E, F extends Collection<? extends InputGenerics[]>>
+public class InputWhitespaceAroundGenerics<A, B extends Collection<?>, C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>>
 {
 }
 
