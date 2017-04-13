@@ -530,8 +530,11 @@
                 bin/**/*,
                 <!-- IDEA project files -->
                 *.iml,
+<<<<<<< refs/remotes/origin/master
                 *.ipr,
                 *.iws,
+=======
+>>>>>>> Issue #4176: Add suppression of .DS_Store for NewlineAtEndOfFile
                 .idea/**/*,
                 <!-- Temp files -->
                 *~,
