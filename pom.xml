@@ -506,7 +506,41 @@
               <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
               <sourceDirectory>${project.basedir}</sourceDirectory>
               <includes>**/*</includes>
-              <excludes>src/main/**/*,src/test/java/**/*,src/site/resources/images/**/*,target/**/*,bin/**/*,.git/**/*,.idea/**/*,.settings/**/*,.checkstyle/**/*,.DS_Store/**/*,.nondex/**/*,.pmd/**/*,.fbExcludeFilterFile/**/*,.externalToolBuilders/**/*,.pmdruleset.xml,nbactions.xml,nb-configuration.xml,*.iml</excludes>
+              <!-- All .gitignore files should be added to exclusions -->
+              <excludes>
+                .git/**/*,
+                src/main/**/*,
+                src/test/java/**/*,
+                src/site/resources/images/**/*,
+                <!-- Eclipse project files -->
+                .settings/**/*,
+                .externalToolBuilders/**/*,
+                .classpath,
+                .project,
+                <!-- m2e-code-quality Eclipse IDE plugin temporary configuration files for Eclipse CS Checkstyle / PMD / FindBugs Plug-Ins -->
+                .checkstyle/**/*,
+                .pmd/**/*,
+                .pmdruleset.xml,
+                .fbExcludeFilterFile/**/*,
+                <!-- NetBeans project files -->
+                nbactions.xml,
+                nb-configuration.xml,
+                <!-- Maven build folder -->
+                target/**/*,
+                bin/**/*,
+                <!-- IDEA project files -->
+                *.iml,
+                .idea/**/*,
+                <!-- Temp files -->
+                *~,
+                <!-- Java Virtual machine crash logs -->
+                hs_err_pid*,
+                replay_pid*,
+                <!-- Apple MAC OSX hidden file -->
+                .DS_Store,
+                <!-- NonDex files -->
+                .nondex/**/*,
+              </excludes>
             </configuration>
             <goals>
               <goal>check</goal>
