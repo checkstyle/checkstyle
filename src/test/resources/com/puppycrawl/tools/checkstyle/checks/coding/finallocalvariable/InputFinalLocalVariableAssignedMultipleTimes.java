@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.HashMap;
 import java.util.Locale;

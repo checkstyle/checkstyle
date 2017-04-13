@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 class Foo1 {
     public void foo(String text) {
