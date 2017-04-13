@@ -131,4 +131,84 @@ enum MyEnum {
         int i = (int) (2 * (4 / 2)
                 ); 
     };
+
+    public void myMethod() {
+        String s = "test";
+        Object o = s;
+        ((String)o).length();
+        ( (String)o ).length();
+    }
+
+    public void crisRon() {
+        Object leo = "messi";
+        Object ibra = leo;
+        ((String)leo).compareTo( (String)ibra );
+        Math.random();
+    }
+
+    public void intStringConv() {
+        Object a = 5;
+        Object b = "string";
+        int w = Integer.parseInt((String)a);
+        int x = Integer.parseInt( (String)a);
+        double y = Double.parseDouble((String)a );
+        float z = Float.parseFloat( (String)a );
+        String d = ((String)b);
+    }
+
+    public int something( Object o ) {
+        if ( o == null || !( o instanceof Float ) ) {
+        	return -1;
+        }
+        return Integer.valueOf( 22 ).compareTo( (Integer) o );
+    }
+
+    private void launch(Integer number ) {
+        String myInt = ( number.toString() + '\0' );
+        boolean result = false;
+        if (number == 123)
+            result = true;
+    }
+
+    private static String getterName( Exception t) {
+        if (t instanceof ClassNotFoundException ) {
+            return ( (ClassNotFoundException) t ).getMessage();
+        }
+        else {
+            return "?";
+        }
+    }
+
+    private Object exam;
+
+    public String testing() {
+        return ( this.exam != null )
+                ? ( ( Enum )this.exam ).name()
+                : null;
+    }
+
+    Object stringReturnValue( Object result ) {
+        if ( result instanceof String ) {
+            result = ( (String) result ).length();
+        }
+        return result;
+    }
+
+
+
+    private void except() {
+        java.util.ArrayList<Integer> arrlist = new java.util.ArrayList<Integer>( 5 );
+        arrlist.add( 20);
+        arrlist.add(15 );
+        arrlist.add( 30 );
+        arrlist.add(45);
+        try {
+            ( arrlist ).remove( 2);
+        } catch ( IndexOutOfBoundsException x ) {
+            x.getMessage();
+        }
+        org.junit.Assert.assertThat( "123", org.hamcrest.CoreMatchers.is( "123" ) );
+        org.junit.Assert.assertThat( "Help! Integers don't work",
+                0, org.hamcrest.CoreMatchers.is( 1 ) );
+    }
 }

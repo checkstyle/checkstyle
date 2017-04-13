@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *  {@link TokenTypes#ANNOTATION_FIELD_DEF ANNOTATION_FIELD_DEF},
  *  {@link TokenTypes#CTOR_DEF CTOR_DEF},
  *  {@link TokenTypes#CTOR_CALL CTOR_CALL},
+ *  {@link TokenTypes#DOT DOT},
  *  {@link TokenTypes#ENUM_CONSTANT_DEF ENUM_CONSTANT_DEF},
  *  {@link TokenTypes#EXPR EXPR},
  *  {@link TokenTypes#LITERAL_CATCH LITERAL_CATCH},
@@ -121,6 +122,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
                 processExpression(ast);
                 break;
+            case TokenTypes.DOT:
             case TokenTypes.EXPR:
             case TokenTypes.QUESTION:
                 processExpression(ast);
@@ -218,6 +220,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.CTOR_CALL,
             TokenTypes.CTOR_DEF,
+            TokenTypes.DOT,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.EXPR,
             TokenTypes.LITERAL_CATCH,
