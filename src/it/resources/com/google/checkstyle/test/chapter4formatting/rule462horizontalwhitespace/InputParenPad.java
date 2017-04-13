@@ -131,4 +131,84 @@ enum MyEnum {
         int i = (int) (2 * (4 / 2)
                 ); 
     };
+
+    public void myMethod() {
+        String s = "test";
+        Object o = s;
+        ((String)o).length();
+        ( (String)o ).length(); // warning
+    }
+
+    public void crisRon() {
+        Object leo = "messi";
+        Object ibra = leo;
+        ((String)leo).compareTo( (String)ibra ); // warning
+        Math.random();
+    }
+
+    public void intStringConv() {
+        Object a = 5;
+        Object b = "string";
+        int w = Integer.parseInt((String)a);
+        int x = Integer.parseInt( (String)a); // warning
+        double y = Double.parseDouble((String)a ); // warning
+        float z = Float.parseFloat( (String)a ); // warning
+        String d = ((String)b);
+    }
+
+    public int something( Object o ) { // warning
+        if ( o == null || !( o instanceof Float ) ) { // warning
+            return -1;
+        }
+        return Integer.valueOf( 22 ).compareTo( (Integer) o ); // warning
+    }
+
+    private void launch(Integer number ) { // warning
+        String myInt = ( number.toString() + '\0' ); // warning
+        boolean result = false;
+        if (number == 123)
+            result = true;
+    }
+
+    private static String getterName( Exception t) { // warning
+        if (t instanceof ClassNotFoundException ) { // warning
+            return ( (ClassNotFoundException) t ).getMessage(); // warning
+        }
+        else {
+            return "?";
+        }
+    }
+
+    private Object exam;
+
+    public String testing() {
+        return ( this.exam != null ) // warning
+                ? ( ( Enum )this.exam ).name() // warning
+                : null;
+    }
+
+    Object stringReturnValue( Object result ) { // warning
+        if ( result instanceof String ) { // warning
+            result = ( (String) result ).length(); // warning
+        }
+        return result;
+    }
+
+
+
+    private void except() {
+        java.util.ArrayList<Integer> arrlist = new java.util.ArrayList<Integer>( 5 ); // warning
+        arrlist.add( 20); // warning
+        arrlist.add(15 ); // warning
+        arrlist.add( 30 ); // warning
+        arrlist.add(45);
+        try {
+            ( arrlist ).remove( 2); // warning
+        } catch ( IndexOutOfBoundsException x ) { // warning
+            x.getMessage();
+        }
+        org.junit.Assert.assertThat( "123", org.hamcrest.CoreMatchers.is( "123" ) ); // warning
+        org.junit.Assert.assertThat( "Help! Integers don't work", // warning
+                0, org.hamcrest.CoreMatchers.is( 1 ) ); // warning
+    }
 }

@@ -1391,6 +1391,8 @@ import static java.math.BigInteger.ZERO;
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
               <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
+              <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">EXPR</a>,
@@ -1433,6 +1435,8 @@ import static java.math.BigInteger.ZERO;
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">CTOR_CALL</a>,
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
+              <a
+              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>,
               <a
