@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.lang.Integer;
 import java.util.Arrays;

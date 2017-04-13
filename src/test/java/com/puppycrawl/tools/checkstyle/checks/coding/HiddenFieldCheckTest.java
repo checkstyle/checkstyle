@@ -36,7 +36,7 @@ public class HiddenFieldCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator + "hiddenfield" + File.separator + filename);
     }
 
     @Override
