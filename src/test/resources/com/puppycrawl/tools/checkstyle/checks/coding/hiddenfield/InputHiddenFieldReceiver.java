@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 public class InputHiddenFieldReceiver {
     public void foo4(InputHiddenFieldReceiver this) {}
