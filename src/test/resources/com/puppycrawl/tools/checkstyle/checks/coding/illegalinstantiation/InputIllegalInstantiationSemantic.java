@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 
 import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
@@ -12,7 +12,7 @@ import java.awt.Color;
  * Test case for detecting simple semantic errors.
  * @author Lars Kühne
  **/
-class InputSemantic
+class InputIllegalInstantiationSemantic
 {
     /* Boolean instantiation in a static initializer */
     static {

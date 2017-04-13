@@ -41,23 +41,26 @@ public class IllegalInstantiationCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "illegalinstantiation" + File.separator + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "illegalinstantiation" + File.separator + filename);
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(IllegalInstantiationCheck.class);
         checkConfig.addAttribute(
             "classes",
             "java.lang.Boolean,"
-                + "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier,"
+                + "com.puppycrawl.tools.checkstyle.checks.coding."
+                + "illegalinstantiation.InputModifier,"
                 + "java.io.File,"
                 + "java.awt.Color");
         final String[] expected = {
@@ -65,11 +68,12 @@ public class IllegalInstantiationCheckTest
             "24:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "31:16: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "38:21: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.InputModifier"),
+                "com.puppycrawl.tools.checkstyle.checks.coding."
+                + "illegalinstantiation.InputModifier"),
             "41:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "44:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputIllegalInstantiationSemantic.java"), expected);
     }
 
     @Test
@@ -78,7 +82,7 @@ public class IllegalInstantiationCheckTest
                 createCheckConfig(IllegalInstantiationCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("InputIllegalInstantiation2.java"),
+                getPath("InputIllegalInstantiation.java"),
                 expected);
     }
 
