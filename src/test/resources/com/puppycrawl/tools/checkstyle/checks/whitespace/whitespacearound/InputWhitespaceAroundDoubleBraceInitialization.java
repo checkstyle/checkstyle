@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 import java.util.Properties;
 
-public class InputDoubleBraceInitialization {
-    public InputDoubleBraceInitialization() {
+public class InputWhitespaceAroundDoubleBraceInitialization {
+    public InputWhitespaceAroundDoubleBraceInitialization() {
         new Properties() {{
             setProperty("double curly braces", "are not a style error");
         }};
