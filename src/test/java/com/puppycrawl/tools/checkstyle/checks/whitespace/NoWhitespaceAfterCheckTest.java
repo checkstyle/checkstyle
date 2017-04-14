@@ -42,7 +42,9 @@ public class NoWhitespaceAfterCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "nowhitespaceafter" + File.separator
+                + filename);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class NoWhitespaceAfterCheckTest
             "136:12: " + getCheckMessage(MSG_KEY, "."),
             "264:2: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
     }
 
     @Test
@@ -84,7 +86,7 @@ public class NoWhitespaceAfterCheckTest
             "129:24: " + getCheckMessage(MSG_KEY, "."),
             "136:12: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
     }
 
     @Test
@@ -95,7 +97,7 @@ public class NoWhitespaceAfterCheckTest
             "89:23: " + getCheckMessage(MSG_KEY, ")"),
             "241:22: " + getCheckMessage(MSG_KEY, ")"),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
     }
 
     @Test
@@ -184,7 +186,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testNpe() throws Exception {
-        verify(checkConfig, getPath("InputNoWhiteSpaceAfterFormerNpe.java"));
+        verify(checkConfig, getPath("InputNoWhitespaceAfterFormerNpe.java"));
     }
 
     @Test
