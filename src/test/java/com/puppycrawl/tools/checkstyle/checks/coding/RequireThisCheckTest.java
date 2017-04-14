@@ -276,4 +276,18 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         };
         verify(checkConfig, getPath("InputRequireThisAllowLocalVars.java"), expected);
     }
+
+    @Test
+    public void testAllowLambdaParameters() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        checkConfig.addAttribute("checkMethods", "false");
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "35:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "60:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "60:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+        };
+        verify(checkConfig, getPath("InputRequireThisAllowLambdaParameters.java"), expected);
+    }
 }
