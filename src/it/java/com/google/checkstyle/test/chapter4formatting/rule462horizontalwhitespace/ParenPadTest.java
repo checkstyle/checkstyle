@@ -108,6 +108,14 @@ public class ParenPadTest extends BaseCheckTestSupport {
             "126:22: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
             "130:19: " + getCheckMessage(clazz, messageKeyFollowed, "("),
             "130:19: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "139:10: " + getCheckMessage(clazz, messageKeyFollowed, "("),
+            "139:20: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "145:33: " + getCheckMessage(clazz, messageKeyFollowed, "("),
+            "145:46: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "153:34: " + getCheckMessage(clazz, messageKeyFollowed, "("),
+            "154:48: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
+            "155:36: " + getCheckMessage(clazz, messageKeyFollowed, "("),
+            "155:46: " + getCheckMessage(clazz, messageKeyPreceded, ")"),
         };
         final Configuration checkConfig = getCheckConfig("ParenPad");
         final String filePath = getPath("InputParenPad.java");
