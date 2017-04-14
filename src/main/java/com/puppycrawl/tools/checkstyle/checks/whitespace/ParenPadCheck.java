@@ -181,11 +181,21 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             DetailAST childAst = ast.getFirstChild();
             while (childAst != null) {
                 if (childAst.getType() == TokenTypes.LPAREN) {
-                    processLeft(childAst);
-                    processExpression(childAst);
+                    if (childAst.getNextSibling().getType() == TokenTypes.TYPECAST) {
+                        processExpression(childAst);
+                    }
+                    else {
+                        processLeft(childAst);
+                        processExpression(childAst);
+                    }
                 }
                 else if (childAst.getType() == TokenTypes.RPAREN && !isInTypecast(childAst)) {
-                    processRight(childAst);
+                    if (childAst.getPreviousSibling().getType() == TokenTypes.TYPECAST) {
+                        processExpression(childAst);
+                    }
+                    else {
+                        processRight(childAst);
+                    }
                 }
                 else if (!isAcceptableToken(childAst)) {
                     //Traverse all subtree tokens which will never be configured
