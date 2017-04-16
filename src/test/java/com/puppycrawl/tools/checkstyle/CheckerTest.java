@@ -35,6 +35,7 @@ import java.io.IOError;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -398,7 +399,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testDestroyCacheWithWrongFileNameLength() throws Exception {
+    public void testDestroyCheckerWithWrongCacheFileNameLength() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
@@ -417,8 +418,14 @@ public class CheckerTest extends BaseCheckTestSupport {
         }
     }
 
+    /**
+     * It is OK to have long test method name here as it describes the test purpose.
+     * @noinspection InstanceMethodNamingConvention
+     */
     @Test
-    public void testCacheFile() throws Exception {
+    public void testCacheAndCheckWhichDoesNotImplementExternalResourceHolderInterface()
+            throws Exception {
+        assertFalse(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class));
         final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
 
         final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
@@ -427,7 +434,9 @@ public class CheckerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyleConfig");
         checkerConfig.addAttribute("charset", "UTF-8");
         checkerConfig.addChild(treeWalkerConfig);
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
@@ -437,54 +446,19 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(new BriefUtLogger(stream));
 
-        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+        final File tmpFile = temporaryFolder.newFile("file.java");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
+        final Properties cacheAfterFirstRun = new Properties();
+        cacheAfterFirstRun.load(Files.newBufferedReader(cacheFile.toPath()));
+
         // one more time to reuse cache
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
-    }
+        verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
+        final Properties cacheAfterSecondRun = new Properties();
+        cacheAfterSecondRun.load(Files.newBufferedReader(cacheFile.toPath()));
 
-    @Test
-    public void testCacheFileChangeInConfig() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
-
-        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
-        checkerConfig.addAttribute("charset", "UTF-8");
-        checkerConfig.addChild(treeWalkerConfig);
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
-
-        final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(new BriefUtLogger(stream));
-
-        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
-
-        // update Checker config
-        checker.destroy();
-        checker.configure(checkerConfig);
-
-        final Checker otherChecker = new Checker();
-        otherChecker.setLocaleCountry(locale.getCountry());
-        otherChecker.setLocaleLanguage(locale.getLanguage());
-        otherChecker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        otherChecker.configure(checkerConfig);
-        otherChecker.addListener(new BriefUtLogger(stream));
-        // here is diff with previous checker
-        checkerConfig.addAttribute("fileExtensions", "java,javax");
-
-        // one more time on updated config
-        verify(otherChecker, pathToEmptyFile, pathToEmptyFile, expected);
+        assertEquals(cacheAfterFirstRun, cacheAfterSecondRun);
     }
 
     @Test
@@ -494,12 +468,30 @@ public class CheckerTest extends BaseCheckTestSupport {
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         checker.configure(createCheckConfig(TranslationCheck.class));
-        checker.setCacheFile(temporaryFolder.newFile().getPath());
+
+        final File cacheFile = temporaryFolder.newFile();
+        checker.setCacheFile(cacheFile.getPath());
+
         checker.setupChild(createCheckConfig(TranslationCheck.class));
-        final File file = temporaryFolder.newFile("file.java");
-        final List<File> files = new ArrayList<>();
-        files.add(file);
+        final File tmpFile = temporaryFolder.newFile("file.java");
+        final List<File> files = new ArrayList<>(1);
+        files.add(tmpFile);
         checker.process(files);
+
+        // invoke destroy to persist cache
+        checker.destroy();
+
+        final Properties cache = new Properties();
+        cache.load(Files.newBufferedReader(cacheFile.toPath()));
+
+        // There should 2 objects in cache: processed file (file.java) and checker configuration.
+        final int expectedNumberOfObjectsInCache = 2;
+        assertEquals(expectedNumberOfObjectsInCache, cache.size());
+
+        final String expectedConfigHash = "68EE3C3B4593FD8D86159C670C504542E20C6FA0";
+        assertEquals(expectedConfigHash, cache.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
+
+        assertNotNull(cache.getProperty(tmpFile.getPath()));
     }
 
     @Test
@@ -512,51 +504,47 @@ public class CheckerTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
         checkerConfig.addAttribute("charset", "UTF-8");
         checkerConfig.addChild(treeWalkerConfig);
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
         checker.addListener(new BriefUtLogger(stream));
 
+        checker.clearCache();
+        // invoke destroy to persist cache
+        checker.destroy();
+
+        final Properties cacheAfterClear = new Properties();
+        cacheAfterClear.load(Files.newBufferedReader(cacheFile.toPath()));
+
+        assertEquals(1, cacheAfterClear.size());
+        assertNotNull(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
+
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
+        // file that should be audited is not in cache
         verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
-        checker.clearCache();
-        // one more time, but file that should be audited is not in cache
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        final Properties cacheAfterSecondRun = new Properties();
+        cacheAfterSecondRun.load(Files.newBufferedReader(cacheFile.toPath()));
+
+        assertNotNull(cacheAfterSecondRun.getProperty(pathToEmptyFile));
+        assertEquals(
+            cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY),
+            cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY)
+        );
+        final int expectedNumberOfObjectsInCacheAfterSecondRun = 2;
+        assertEquals(expectedNumberOfObjectsInCacheAfterSecondRun, cacheAfterSecondRun.size());
     }
 
     @Test
-    public void testClearNonexistentCache() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
-
-        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("simpleConfig");
-        checkerConfig.addAttribute("charset", "UTF-8");
-        checkerConfig.addChild(treeWalkerConfig);
-
+    public void testClearCacheWhenCacheFileIsNotSet() {
+        // The idea of the test is to check that when cache file is not set,
+        // the invokation of clearCache method does not throw an exception.
         final Checker checker = new Checker();
-        final Locale locale = Locale.ROOT;
-        checker.setLocaleCountry(locale.getCountry());
-        checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(new BriefUtLogger(stream));
-
-        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
         checker.clearCache();
-        // one more time, but cache does not exist
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
     }
 
     @Test
@@ -587,68 +575,20 @@ public class CheckerTest extends BaseCheckTestSupport {
         }
     }
 
+    /**
+     * It is OK to have long test method name here as it describes the test purpose.
+     * @noinspection InstanceMethodNamingConvention
+     */
     @Test
-    public void testExternalConfigurationResourceDoesNotExist() throws Exception {
-        final Checker mockChecker = createMockCheckerWithCacheForModule(DummyFileSetCheck.class);
-
-        final String pathToEmptyFile = temporaryFolder.newFile("EmptyFile.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        // We invoke 'verify' twice to invalidate cache
-        // and have two identical exceptions which happen on the same line between runs
-        final int numberOfRuns = 2;
-        for (int i = 0; i < numberOfRuns; i++) {
-            verify(mockChecker, pathToEmptyFile, expected);
-        }
-    }
-
-    @Test
-    public void testInvalidateCacheDueToDifferentExceptionsBetweenRuns() throws Exception {
-        final Checker mockChecker = createMockCheckerWithCacheForModule(DummyFileSetCheck.class);
-
-        final String pathToEmptyFile = temporaryFolder.newFile("TestFile.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        verify(mockChecker, pathToEmptyFile, expected);
-        // Once again to invalidate cache because in the second run exception will happen
-        // on different line
-        verify(mockChecker, pathToEmptyFile, expected);
-    }
-
-    @Test
-    public void testMultipleConfigs() throws Exception {
-        final DefaultConfiguration headerCheckConfig =
-            createCheckConfig(MockMissingExternalResourcesFileSetCheck.class);
-
-        final DefaultConfiguration dummyFileSetCheckConfig =
-            createCheckConfig(DummyFileSetCheck.class);
-
-        final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
-        checkerConfig.addChild(headerCheckConfig);
-        checkerConfig.addChild(dummyFileSetCheckConfig);
-
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(checkerConfig);
-        checker.addListener(new BriefUtLogger(stream));
-
-        final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        verify(checker, pathToEmptyFile, expected);
-        // Once again to invalidate cache because in the second run IOException will happen
-        // on different line for DummyFileSetCheck and it will change the content
-        verify(checker, pathToEmptyFile, expected);
-    }
-
-    @Test
-    public void testFilterWhichDoesNotImplementExternalResourceHolderInterface() throws Exception {
+    public void testCacheAndFilterWhichDoesNotImplementExternalResourceHolderInterface()
+            throws Exception {
+        assertFalse(ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class));
         final DefaultConfiguration filterConfig = createCheckConfig(DummyFilter.class);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
         checkerConfig.addChild(filterConfig);
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -657,13 +597,36 @@ public class CheckerTest extends BaseCheckTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         final String pathToEmptyFile = temporaryFolder.newFile("file.java").getPath();
+
         verify(checker, pathToEmptyFile, expected);
+        final Properties cacheAfterFirstRun = new Properties();
+        cacheAfterFirstRun.load(Files.newBufferedReader(cacheFile.toPath()));
+
         // One more time to use cache.
         verify(checker, pathToEmptyFile, expected);
+        final Properties cacheAfterSecondRun = new Properties();
+        cacheAfterSecondRun.load(Files.newBufferedReader(cacheFile.toPath()));
+
+        assertEquals(
+            cacheAfterFirstRun.getProperty(pathToEmptyFile),
+            cacheAfterSecondRun.getProperty(pathToEmptyFile)
+        );
+        assertEquals(
+            cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY),
+            cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY)
+        );
+        final int expectedNumberOfObjectsInCache = 2;
+        assertEquals(expectedNumberOfObjectsInCache, cacheAfterFirstRun.size());
+        assertEquals(expectedNumberOfObjectsInCache, cacheAfterSecondRun.size());
     }
 
+    /**
+     * It is OK to have long test method name here as it describes the test purpose.
+     * @noinspection InstanceMethodNamingConvention
+     */
     @Test
-    public void testCheckAddsNewResourceLocationButKeepsSameCheckerInstance() throws Exception {
+    public void testCacheAndCheckWhichAddsNewResourceLocationButKeepsSameCheckerInstance()
+            throws Exception {
 
         // Use case (https://github.com/checkstyle/checkstyle/pull/3092#issuecomment-218162436):
         // Imagine that cache exists in a file. New version of Checkstyle appear.
@@ -672,11 +635,13 @@ public class CheckerTest extends BaseCheckTestSupport {
         // Cache should not be reused.
 
         final DynamicalResourceHolderCheck check = new DynamicalResourceHolderCheck();
-        check.setFirstExternalResourceLocation(getPath("checks" + File.separator
-            + "imports" + File.separator + "import-control_one.xml"));
+        final String firstExternalResourceLocation = getPath("checks" + File.separator
+            + "imports" + File.separator + "import-control_one.xml");
+        check.setFirstExternalResourceLocation(firstExternalResourceLocation);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
-        checkerConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -688,12 +653,36 @@ public class CheckerTest extends BaseCheckTestSupport {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         verify(checker, pathToEmptyFile, expected);
+        final Properties cacheAfterFirstRun = new Properties();
+        cacheAfterFirstRun.load(Files.newBufferedReader(cacheFile.toPath()));
+
+        final int expectedNumberOfObjectsInCacheAfterFirstRun = 3;
+        assertEquals(expectedNumberOfObjectsInCacheAfterFirstRun, cacheAfterFirstRun.size());
 
         // Change a list of external resources which are used by the check
-        check.setSecondExternalResourceLocation("checks" + File.separator
-            + "imports" + File.separator + "import-control_one-re.xml");
+        final String secondExternalResourceLocation = "checks" + File.separator
+            + "imports" + File.separator + "import-control_one-re.xml";
+        check.setSecondExternalResourceLocation(secondExternalResourceLocation);
 
         verify(checker, pathToEmptyFile, expected);
+        final Properties cacheAfterSecondRun = new Properties();
+        cacheAfterSecondRun.load(Files.newBufferedReader(cacheFile.toPath()));
+
+        assertEquals(
+            cacheAfterFirstRun.getProperty(pathToEmptyFile),
+            cacheAfterSecondRun.getProperty(pathToEmptyFile)
+        );
+        assertEquals(
+            cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY),
+            cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY)
+        );
+        assertEquals(
+            cacheAfterFirstRun.getProperty(firstExternalResourceLocation),
+            cacheAfterSecondRun.getProperty(firstExternalResourceLocation)
+        );
+        final int expectedNumberOfObjectsInCacheAfterSecondRun = 4;
+        assertEquals(expectedNumberOfObjectsInCacheAfterSecondRun, cacheAfterSecondRun.size());
+        assertNotNull(cacheAfterSecondRun.getProperty(secondExternalResourceLocation));
     }
 
     @Test
@@ -779,41 +768,11 @@ public class CheckerTest extends BaseCheckTestSupport {
         verify(checker, filePath, filePath, expected);
     }
 
-    private Checker createMockCheckerWithCacheForModule(
-        Class<? extends ExternalResourceHolder> mockClass) throws IOException, CheckstyleException {
-
-        final DefaultConfiguration mockConfig = createCheckConfig(mockClass);
-
-        final DefaultConfiguration defaultConfig = new DefaultConfiguration("defaultConfiguration");
-        defaultConfig.addAttribute("cacheFile", temporaryFolder.newFile().getPath());
-        defaultConfig.addChild(mockConfig);
-
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.addListener(new BriefUtLogger(stream));
-        checker.configure(defaultConfig);
-        return checker;
-    }
-
     private static class DummyFilter implements Filter {
 
         @Override
         public boolean accept(AuditEvent event) {
             return false;
-        }
-    }
-
-    private static class DummyFileSetCheck extends AbstractFileSetCheck
-        implements ExternalResourceHolder {
-
-        @Override
-        protected void processFiltered(File file, List<String> lines) throws CheckstyleException { }
-
-        @Override
-        public Set<String> getExternalResourceLocations() {
-            final Set<String> externalResourceLocation = new HashSet<>(1);
-            externalResourceLocation.add("non_existing_external_resource.xml");
-            return externalResourceLocation;
         }
     }
 
@@ -829,20 +788,6 @@ public class CheckerTest extends BaseCheckTestSupport {
         public Set<String> getExternalResourceLocations() {
             final Set<String> externalResourceLocation = new HashSet<>(1);
             externalResourceLocation.add("non_existing_external_resource.xml");
-            return externalResourceLocation;
-        }
-    }
-
-    private static class MockMissingExternalResourcesFileSetCheck extends AbstractFileSetCheck
-        implements ExternalResourceHolder {
-
-        @Override
-        protected void processFiltered(File file, List<String> lines) throws CheckstyleException { }
-
-        @Override
-        public Set<String> getExternalResourceLocations() {
-            final Set<String> externalResourceLocation = new HashSet<>(1);
-            externalResourceLocation.add("missing_external_resource.xml");
             return externalResourceLocation;
         }
     }
