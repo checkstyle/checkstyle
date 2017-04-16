@@ -2,13 +2,13 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 
 /**
  * Test case for finding nested blocks.
  * @author lkuehne
  **/
-class InputNestedBlocks
+class InputAvoidNestedBlocksDefault
 {
     static
     { // OK

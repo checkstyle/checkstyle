@@ -36,7 +36,7 @@ public class AvoidNestedBlocksCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "blocks" + File.separator + filename);
+                + "blocks" + File.separator + "avoidnestedblocks" + File.separator + filename);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class AvoidNestedBlocksCheckTest
             "50:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
             "58:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
-        verify(checkConfig, getPath("InputNestedBlocks.java"), expected);
+        verify(checkConfig, getPath("InputAvoidNestedBlocksDefault.java"), expected);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class AvoidNestedBlocksCheckTest
             "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
             "58:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
-        verify(checkConfig, getPath("InputNestedBlocks.java"), expected);
+        verify(checkConfig, getPath("InputAvoidNestedBlocksDefault.java"), expected);
     }
 
     @Test
