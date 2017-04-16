@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -40,6 +41,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.Set;
 
 import org.junit.Rule;
@@ -50,10 +52,12 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.ByteStreams;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ PropertyCacheFile.class, PropertyCacheFileTest.class, ByteStreams.class })
+@PrepareForTest({ PropertyCacheFile.class, ByteStreams.class, CommonUtils.class })
 public class PropertyCacheFileTest {
 
     @Rule
@@ -213,5 +217,141 @@ public class PropertyCacheFileTest {
             assertTrue(ex.getCause().getCause() instanceof NoSuchAlgorithmException);
             assertEquals("Unable to calculate hashcode.", ex.getCause().getMessage());
         }
+    }
+
+    @Test
+    public void testPutNonExsistingExternalResourceSameExceptionBetweenRuns() throws Exception {
+        final File cacheFile = temporaryFolder.newFile();
+
+        // We mock getUriByFilename method of CommonUtils to garantee that it will
+        // throw CheckstyleException with the specific content.
+        mockStatic(CommonUtils.class);
+        final CheckstyleException mockException =
+            new CheckstyleException("Cannot get URL for cache file " + cacheFile.getAbsolutePath());
+        when(CommonUtils.getUriByFilename(any(String.class)))
+            .thenThrow(mockException);
+
+        // We invoke 'putExternalResources' twice to invalidate cache
+        // and have two identical exceptions whith the equal content
+        final int numberOfRuns = 2;
+        final String[] configHashes = new String[numberOfRuns];
+        final String[] externalResourceHashes = new String[numberOfRuns];
+        for (int i = 0; i < numberOfRuns; i++) {
+            final Configuration config = new DefaultConfiguration("myConfig");
+            final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
+            cache.load();
+
+            configHashes[i] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
+            assertNotNull(configHashes[i]);
+
+            final Set<String> nonExistingExternalResources = new HashSet<>();
+            final String externalResourceFileName = "non_existing_file.xml";
+            nonExistingExternalResources.add(externalResourceFileName);
+            cache.putExternalResources(nonExistingExternalResources);
+
+            externalResourceHashes[i] = cache.get(externalResourceFileName);
+            assertNotNull(externalResourceHashes[i]);
+
+            cache.persist();
+
+            final Properties cacheDetails = new Properties();
+            cacheDetails.load(Files.newBufferedReader(cacheFile.toPath()));
+
+            final int expectedNumberOfObjectsInCacheFile = 2;
+            assertEquals(expectedNumberOfObjectsInCacheFile, cacheDetails.size());
+        }
+
+        assertEquals(configHashes[0], configHashes[1]);
+        assertEquals(externalResourceHashes[0], externalResourceHashes[1]);
+    }
+
+    /**
+     * It is OK to have long test method name here as it describes the test purpose.
+     * @noinspection InstanceMethodNamingConvention
+     */
+    @Test
+    public void testPutNonExsistingExternalResourceDifferentExceptionsBetweenRuns()
+            throws Exception {
+
+        final File cacheFile = temporaryFolder.newFile();
+
+        // We invoke 'putExternalResources' twice to invalidate cache
+        // and have two different exceptions with different content.
+        final int numberOfRuns = 2;
+        final String[] configHashes = new String[numberOfRuns];
+        final String[] externalResourceHashes = new String[numberOfRuns];
+        for (int i = 0; i < numberOfRuns; i++) {
+            final Configuration config = new DefaultConfiguration("myConfig");
+            final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
+
+            // We mock getUriByFilename method of CommonUtils to garantee that it will
+            // throw CheckstyleException with the specific content.
+            mockStatic(CommonUtils.class);
+            final CheckstyleException mockException = new CheckstyleException("Exception #" + i);
+            when(CommonUtils.getUriByFilename(any(String.class)))
+                .thenThrow(mockException);
+
+            cache.load();
+
+            configHashes[i] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
+            assertNotNull(configHashes[i]);
+
+            final Set<String> nonExistingExternalResources = new HashSet<>();
+            final String externalResourceFileName = "non_existing_file.xml";
+            nonExistingExternalResources.add(externalResourceFileName);
+            cache.putExternalResources(nonExistingExternalResources);
+
+            externalResourceHashes[i] = cache.get(externalResourceFileName);
+            assertNotNull(externalResourceHashes[i]);
+
+            cache.persist();
+
+            final Properties cacheDetails = new Properties();
+            cacheDetails.load(Files.newBufferedReader(cacheFile.toPath()));
+
+            final int expectedNumberOfObjectsInCacheFile = 2;
+            assertEquals(expectedNumberOfObjectsInCacheFile, cacheDetails.size());
+        }
+
+        assertEquals(configHashes[0], configHashes[1]);
+        assertNotEquals(externalResourceHashes[0], externalResourceHashes[1]);
+    }
+
+    @Test
+    public void testChangeInConfig() throws Exception {
+        final DefaultConfiguration config = new DefaultConfiguration("myConfig");
+        config.addAttribute("attr", "value");
+
+        final File cacheFile = temporaryFolder.newFile();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
+        cache.load();
+
+        final String expectedInitialConfigHash = "EEF15651C2D79B29968835FC729E788938CAFE3B";
+        final String actualInitialConfigHash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
+        assertEquals(expectedInitialConfigHash, actualInitialConfigHash);
+
+        cache.persist();
+
+        final Properties details = new Properties();
+        details.load(Files.newBufferedReader(cacheFile.toPath()));
+        assertEquals(1, details.size());
+
+        // change in config
+        config.addAttribute("newAttr", "newValue");
+
+        final PropertyCacheFile cacheAfterChangeInConfig =
+            new PropertyCacheFile(config, cacheFile.getPath());
+        cacheAfterChangeInConfig.load();
+
+        final String expectedConfigHashAfterChange = "0FFFF89F6636EE8AEB904681F594B0F05E1FF795";
+        final String actualConfigHashAfterChange =
+            cacheAfterChangeInConfig.get(PropertyCacheFile.CONFIG_HASH_KEY);
+        assertEquals(expectedConfigHashAfterChange, actualConfigHashAfterChange);
+
+        cacheAfterChangeInConfig.persist();
+
+        final Properties detailsAfterChangeInConfig = new Properties();
+        detailsAfterChangeInConfig.load(Files.newBufferedReader(cacheFile.toPath()));
+        assertEquals(1, detailsAfterChangeInConfig.size());
     }
 }
