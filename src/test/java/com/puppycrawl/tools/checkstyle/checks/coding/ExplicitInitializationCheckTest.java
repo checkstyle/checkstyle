@@ -74,4 +74,24 @@ public class ExplicitInitializationCheckTest extends BaseCheckTestSupport {
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
     }
+
+    @Test
+    public void testonlyObjectReferences() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ExplicitInitializationCheck.class);
+        checkConfig.addAttribute("onlyObjectReferences", "true");
+        final String[] expected = {
+            "5:20: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "14:22: " + getCheckMessage(MSG_KEY, "str1", "null"),
+            "14:35: " + getCheckMessage(MSG_KEY, "str3", "null"),
+            "15:9: " + getCheckMessage(MSG_KEY, "ar1", "null"),
+            "39:25: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "40:27: " + getCheckMessage(MSG_KEY, "barArray", "null"),
+            "48:29: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "49:31: " + getCheckMessage(MSG_KEY, "barArray", "null"),
+            "53:25: " + getCheckMessage(MSG_KEY, "bar", "null"),
+            "54:27: " + getCheckMessage(MSG_KEY, "barArray", "null"),
+        };
+        verify(checkConfig, getPath("InputExplicitInitialization.java"), expected);
+    }
 }
