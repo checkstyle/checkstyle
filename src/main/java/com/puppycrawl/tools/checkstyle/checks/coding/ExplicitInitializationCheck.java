@@ -56,6 +56,9 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "explicit.init";
 
+    /** Whether only explicit initialization made to null should be checked.**/
+    private boolean onlyObjectReferences;
+
     @Override
     public final int[] getDefaultTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
@@ -71,6 +74,15 @@ public class ExplicitInitializationCheck extends AbstractCheck {
         return new int[] {TokenTypes.VARIABLE_DEF};
     }
 
+    /**
+     * Sets whether only explicit initialization made to null should be checked.
+     * @param onlyObjectReferences whether only explicit initialization made to null
+     *                             should be checked
+     */
+    public void setOnlyObjectReferences(boolean onlyObjectReferences) {
+        this.onlyObjectReferences = onlyObjectReferences;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         if (!isSkipCase(ast)) {
@@ -83,19 +95,33 @@ public class ExplicitInitializationCheck extends AbstractCheck {
                 && exprStart.getType() == TokenTypes.LITERAL_NULL) {
                 log(ident, MSG_KEY, ident.getText(), "null");
             }
+            if (!onlyObjectReferences) {
+                validateNonObjects(ast);
+            }
+        }
+    }
 
-            final int primitiveType = type.getFirstChild().getType();
-            if (primitiveType == TokenTypes.LITERAL_BOOLEAN
+    /**
+     * Checks for explicit initializations made to 'false', '0' and '\0'.
+     * @param ast token being checked for explicit initializations
+     */
+    private void validateNonObjects(DetailAST ast) {
+        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
+        final DetailAST exprStart =
+                assign.getFirstChild().getFirstChild();
+        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+        final int primitiveType = type.getFirstChild().getType();
+        if (primitiveType == TokenTypes.LITERAL_BOOLEAN
                 && exprStart.getType() == TokenTypes.LITERAL_FALSE) {
-                log(ident, MSG_KEY, ident.getText(), "false");
-            }
-            if (isNumericType(primitiveType) && isZero(exprStart)) {
-                log(ident, MSG_KEY, ident.getText(), "0");
-            }
-            if (primitiveType == TokenTypes.LITERAL_CHAR
+            log(ident, MSG_KEY, ident.getText(), "false");
+        }
+        if (isNumericType(primitiveType) && isZero(exprStart)) {
+            log(ident, MSG_KEY, ident.getText(), "0");
+        }
+        if (primitiveType == TokenTypes.LITERAL_CHAR
                 && isZeroChar(exprStart)) {
-                log(ident, MSG_KEY, ident.getText(), "\\0");
-            }
+            log(ident, MSG_KEY, ident.getText(), "\\0");
         }
     }
 
