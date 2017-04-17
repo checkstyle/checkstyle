@@ -588,7 +588,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     }
 
     /**
-     *
+     * Checks if loop is empty.
      * @param ast ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
      * @return {@code true} if {@code ast} makes up part of an

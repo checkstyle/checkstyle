@@ -779,7 +779,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Extracts defined amount of domains from the left side of package/import identifier
+     * Extracts defined amount of domains from the left side of package/import identifier.
      * @param firstPackageDomainsCount
      *        number of first package domains.
      * @param packageFullPath
@@ -819,6 +819,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         private final boolean staticImport;
 
         /**
+         * Initialise importFullPath, lineNumber, importGroup, staticImport.
          * @param importFullPath
          *        import full path.
          * @param lineNumber

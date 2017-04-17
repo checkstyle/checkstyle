@@ -52,6 +52,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
     private int[] ignoreLines = EMPTY_INT_ARRAY;
 
     /**
+     * Returns true if lineNo is header lines or false.
      * @param lineNo a line number
      * @return if {@code lineNo} is one of the ignored header lines.
      */

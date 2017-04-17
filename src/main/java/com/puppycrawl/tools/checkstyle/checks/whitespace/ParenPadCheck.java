@@ -213,6 +213,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
+     * Returns array of acceptable tokens.
      * @return acceptableTokens.
      */
     private static int[] makeAcceptableTokens() {

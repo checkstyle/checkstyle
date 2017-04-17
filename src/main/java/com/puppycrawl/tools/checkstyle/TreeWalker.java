@@ -120,6 +120,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     }
 
     /**
+     * Sets classLoader to load class.
      * @param classLoader class loader to resolve classes with.
      */
     public void setClassLoader(ClassLoader classLoader) {
@@ -388,7 +389,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     }
 
     /**
-     * Method returns list of checks
+     * Method returns list of checks.
      *
      * @param ast
      *            the node to notify for

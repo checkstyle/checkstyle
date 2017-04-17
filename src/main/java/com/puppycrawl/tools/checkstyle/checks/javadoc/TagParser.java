@@ -109,7 +109,7 @@ class TagParser {
     }
 
     /**
-     * Parses the tag and return position after it
+     * Parses the tag and return position after it.
      * @param text the source line to parse.
      * @param lineNo the source line number.
      * @param nLines line length

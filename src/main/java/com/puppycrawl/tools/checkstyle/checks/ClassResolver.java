@@ -184,6 +184,7 @@ public class ClassResolver {
     }
 
     /**
+     * Checks if the given class name can be loaded.
      * @param name name of the class to check
      * @return whether a specified class is loadable with safeLoad().
      */

@@ -137,7 +137,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks for cases that should be skipped: no assignment, local variable, final variables
+     * Checks for cases that should be skipped: no assignment, local variable, final variables.
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */
@@ -185,6 +185,8 @@ public class ExplicitInitializationCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if given node contains numeric constant for zero.
+     *
      * @param expr node to check.
      * @return true if given node contains numeric constant for zero.
      */

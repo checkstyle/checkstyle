@@ -123,6 +123,7 @@ public class MethodLengthCheck extends AbstractCheck {
     }
 
     /**
+     * Sets maximum length of a method.
      * @param length the maximum length of a method.
      */
     public void setMax(int length) {
@@ -130,6 +131,7 @@ public class MethodLengthCheck extends AbstractCheck {
     }
 
     /**
+     * Sets countEmpty.
      * @param countEmpty whether to count empty and single line comments
      *     of the form //.
      */

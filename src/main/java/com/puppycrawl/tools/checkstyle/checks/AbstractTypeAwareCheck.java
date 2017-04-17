@@ -209,6 +209,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
     }
 
     /**
+     * Returns the current tree's ClassResolver.
      * @return {@code ClassResolver} for current tree.
      */
     private ClassResolver getClassResolver() {
@@ -413,6 +414,7 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
         }
 
         /**
+         * Returns class associated with that object.
          * @return {@code Class} associated with an object.
          */
         // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.

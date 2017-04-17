@@ -226,6 +226,7 @@ public final class CommonUtils {
     }
 
     /**
+     * Returns base class name from qualified name.
      * @param type
      *            the fully qualified name. Cannot be null
      * @return the base class name from a fully qualified name
@@ -326,6 +327,7 @@ public final class CommonUtils {
     }
 
     /**
+     * Returns new instance of a class.
      * @param constructor
      *            to invoke
      * @param parameters

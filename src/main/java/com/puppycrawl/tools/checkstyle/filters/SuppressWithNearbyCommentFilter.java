@@ -126,6 +126,7 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
+     * Returns FileContents for this filter.
      * @return the FileContents for this filter.
      */
     public FileContents getFileContents() {

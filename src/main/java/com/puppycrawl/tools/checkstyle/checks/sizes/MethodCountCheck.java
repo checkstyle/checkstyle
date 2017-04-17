@@ -260,6 +260,7 @@ public final class MethodCountCheck extends AbstractCheck {
         }
 
         /**
+         * Fetches total number of methods.
          * @return the total number of methods.
          */
         private int getTotal() {

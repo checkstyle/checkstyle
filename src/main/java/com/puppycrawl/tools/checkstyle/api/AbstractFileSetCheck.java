@@ -101,6 +101,7 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
+     * Makes copy of file extensions and returns them.
      * @return file extensions that identify the files that pass the
      *     filter of this FileSetCheck.
      */

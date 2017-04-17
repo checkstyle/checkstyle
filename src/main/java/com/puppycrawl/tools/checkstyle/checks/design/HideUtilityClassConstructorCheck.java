@@ -89,6 +89,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
     }
 
     /**
+     * Returns true if given class is abstract or false.
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
@@ -98,6 +99,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
     }
 
     /**
+     * Returns true if given class is static or false.
      * @param ast class definition for check.
      * @return true if a given class declared as static.
      */

@@ -332,6 +332,7 @@ public final class LocalizedMessage
     }
 
     /**
+     * Returns id of module.
      * @return the module identifier.
      */
     public String getModuleId() {

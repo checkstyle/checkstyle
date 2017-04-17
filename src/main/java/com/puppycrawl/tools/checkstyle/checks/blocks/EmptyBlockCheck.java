@@ -166,6 +166,7 @@ public class EmptyBlockCheck
     }
 
     /**
+     * Checks if SLIST token contains any text.
      * @param slistAST a {@code DetailAST} value
      * @return whether the SLIST token contains any text.
      */
