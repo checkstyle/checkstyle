@@ -32,8 +32,8 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 
 /**
- * A factory for creating objects from package names and names,
- * considering:
+ * A factory for creating objects from package names and names.
+ * Consider the below example for better understanding.
  * <ul>
  *     <li>module name - name of java class that represents module;</li>
  *     <li>module full name - fully qualifies name of java class that represents module;</li>

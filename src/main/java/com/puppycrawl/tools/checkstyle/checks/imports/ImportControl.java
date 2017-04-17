@@ -327,7 +327,7 @@ class ImportControl {
     }
 
     /**
-     * Check for equality of this with pkg
+     * Check for equality of this with pkg.
      * @param pkg the package to compare with.
      * @return if it matches.
      */

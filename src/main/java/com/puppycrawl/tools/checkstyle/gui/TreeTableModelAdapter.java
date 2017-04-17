@@ -50,6 +50,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
     private final transient ParseTreeTableModel treeTableModel;
 
     /**
+     * Initialise tree and treeTableModel class attributes.
      * @param treeTableModel Tree table model.
      * @param tree JTree component.
      */

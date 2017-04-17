@@ -66,6 +66,7 @@ public class JavadocTag {
     }
 
     /**
+     * Returns first argument.
      * @return the first argument. null if not set.
      */
     public String getFirstArg() {

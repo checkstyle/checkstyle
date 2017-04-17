@@ -129,6 +129,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if declared class is abstract or not.
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
@@ -140,6 +141,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
     }
 
     /**
+     * Returns true if class name matches format of abstract class names.
      * @param className class name for check.
      * @return true if class name matches format of abstract class names.
      */

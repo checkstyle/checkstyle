@@ -63,6 +63,7 @@ public class ParseTreeTablePresentation {
     private ParseMode parseMode;
 
     /**
+     * Constructor initialise root node.
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTablePresentation(DetailAST parseTree) {
@@ -87,6 +88,7 @@ public class ParseTreeTablePresentation {
     }
 
     /**
+     * Returns number of available columns.
      * @return the number of available columns.
      */
     public int getColumnCount() {
@@ -94,6 +96,7 @@ public class ParseTreeTablePresentation {
     }
 
     /**
+     * Returns name for specified column number.
      * @param column the column number
      * @return the name for column number {@code column}.
      */
@@ -102,6 +105,7 @@ public class ParseTreeTablePresentation {
     }
 
     /**
+     * Returns type of specified column number.
      * @param column the column number
      * @return the type for column number {@code column}.
      */
@@ -133,6 +137,7 @@ public class ParseTreeTablePresentation {
     }
 
     /**
+     * Returns the value to be displayed for node at column number.
      * @param node the node
      * @param column the column number
      * @return the value to be displayed for node {@code node}, at column number {@code column}.
@@ -197,6 +202,7 @@ public class ParseTreeTablePresentation {
     }
 
     /**
+     * Returns value of root.
      * @return the root.
      */
     public Object getRoot() {

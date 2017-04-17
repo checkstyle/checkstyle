@@ -105,6 +105,10 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     /**
+     * Returns column number of first non-blank char after
+     * specified column on specified line or -1 if
+     * such char doesn't exist.
+     *
      * @param lineNo   number of line on which we search
      * @param columnNo number of column after which we search
      *

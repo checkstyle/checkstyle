@@ -36,6 +36,7 @@ public class FileContentsHolder extends AbstractCheck {
     private static FileContents currentFileContents;
 
     /**
+     * Returns content of current file.
      * @return the current file contents.
      */
     public static FileContents getCurrentFileContents() {
@@ -43,6 +44,7 @@ public class FileContentsHolder extends AbstractCheck {
     }
 
     /**
+     * Returns content of current file.
      * @return the current file contents.
      * @deprecated use getCurrentFileContents() instead.
      */

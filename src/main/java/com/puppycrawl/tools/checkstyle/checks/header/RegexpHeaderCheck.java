@@ -137,6 +137,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     }
 
     /**
+     * Returns true if line is multiline header lines or false.
      * @param lineNo a line number
      * @return if {@code lineNo} is one of the repeat header lines.
      */

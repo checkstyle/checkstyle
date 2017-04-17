@@ -325,6 +325,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
+     * Returns true if given class name is one of illegal classes or else false.
      * @param className class name to check.
      * @return true if given class name is one of illegal classes
      *         or if it matches to abstract class names pattern.
@@ -400,6 +401,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
+     * Returns true if method has to be checked or false.
      * @param ast method def to check.
      * @return true if we should check this method.
      */

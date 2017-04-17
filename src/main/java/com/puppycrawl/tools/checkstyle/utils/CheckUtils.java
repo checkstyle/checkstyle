@@ -150,6 +150,7 @@ public final class CheckUtils {
     }
 
     /**
+     * Returns FullIndent for given type.
      * @param typeAST a type node (no array)
      * @return {@code FullIdent} for given type.
      */

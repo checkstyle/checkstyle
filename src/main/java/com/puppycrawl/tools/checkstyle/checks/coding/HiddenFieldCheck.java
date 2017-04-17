@@ -394,7 +394,7 @@ public class HiddenFieldCheck
      * (default behavior) or return type is name of the class in which
      * such method is declared (allowed only if
      * {@link #setSetterCanReturnItsClass(boolean)} is called with
-     * value <em>true</em>)
+     * value <em>true</em>).
      *
      * @param ast the AST to check.
      * @param name the name of ast.

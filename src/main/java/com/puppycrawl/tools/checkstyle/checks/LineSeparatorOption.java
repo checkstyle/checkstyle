@@ -80,6 +80,7 @@ public enum LineSeparatorOption {
     }
 
     /**
+     * Returns length of file separator in bytes.
      * @return the length of the file separator in bytes,
      *     e.g. 1 for CR, 2 for CRLF, ...
      */

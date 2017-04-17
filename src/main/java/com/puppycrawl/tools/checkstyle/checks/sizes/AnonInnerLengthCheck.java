@@ -101,6 +101,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     }
 
     /**
+     * Sets maximum length of an anonymous inner class.
      * @param length the maximum length of an anonymous inner class.
      */
     public void setMax(int length) {

@@ -64,6 +64,7 @@ public class CodeSelectorPresentation {
     }
 
     /**
+     * Returns selection start position.
      * @return selection start position.
      */
     public int getSelectionStart() {
@@ -71,6 +72,7 @@ public class CodeSelectorPresentation {
     }
 
     /**
+     * Returns selection end position.
      * @return selection end position.
      */
     public int getSelectionEnd() {

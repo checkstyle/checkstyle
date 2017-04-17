@@ -190,7 +190,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     }
 
     /**
-     * Determine whether SLIST begins static or non-static block and
+     * Determine whether SLIST begins static or non-static block.
      * @param ast SLIST ast.
      */
     private void leaveSlist(DetailAST ast) {

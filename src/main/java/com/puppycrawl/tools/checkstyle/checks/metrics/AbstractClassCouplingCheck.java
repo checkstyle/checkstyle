@@ -100,6 +100,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     }
 
     /**
+     * Returns message key we use for log violations.
      * @return message key we use for log violations.
      */
     protected abstract String getLogMessageId();
@@ -110,6 +111,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     }
 
     /**
+     * Returns allowed complexity.
      * @return allowed complexity.
      */
     public final int getMax() {

@@ -58,6 +58,7 @@ abstract class AbstractImportRule {
     public abstract AccessResult verifyImport(String forImport);
 
     /**
+     * Return true if the guard is to only be applied locally or false.
      * @return whether the guard is to only be applied locally.
      */
     public boolean isLocalOnly() {
@@ -65,6 +66,7 @@ abstract class AbstractImportRule {
     }
 
     /**
+     * Return true if the name is to be interpreted as a regular expression or false.
      * @return whether the name is to be interpreted as a regular expression.
      */
     protected boolean isRegExp() {

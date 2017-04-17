@@ -334,6 +334,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
     }
 
     /**
+     * Returns token type with branch.
      * @return the token types that occur in the branch as a sorted set.
      */
     private BitSet getBranchTokenTypes() {

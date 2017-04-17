@@ -43,6 +43,7 @@ public class ParseTreeTableModel implements TreeModel {
     private final EventListenerList listenerList = new EventListenerList();
 
     /**
+     * Initialise pModel.
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTableModel(DetailAST parseTree) {
@@ -71,6 +72,7 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
+     * Returns number of available column.
      * @return the number of available column.
      */
     public int getColumnCount() {
@@ -78,6 +80,7 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
+     * Returns column name of specified column number.
      * @param column the column number
      * @return the name for column number {@code column}.
      */
@@ -86,6 +89,7 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
+     * Returns type of specified column number.
      * @param column the column number
      * @return the type for column number {@code column}.
      */
@@ -96,6 +100,7 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
+     * Returns the value to be displayed for node at column number.
      * @param node the node
      * @param column the column number
      * @return the value to be displayed for node {@code node},

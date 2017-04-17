@@ -72,6 +72,8 @@ public class IndentLevel {
     }
 
     /**
+     * Returns true if indent less then minimal of
+     * acceptable indentation levels, false otherwise.
      * @param indent indentation to check.
      * @return true if {@code indent} less then minimal of
      *         acceptable indentation levels, false otherwise.

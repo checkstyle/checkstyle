@@ -240,6 +240,7 @@ final class ImportControlLoader extends AbstractLoader {
     }
 
     /**
+     * Returns root ImportControl.
      * @return the root {@link ImportControl} object loaded.
      */
     private ImportControl getRoot() {

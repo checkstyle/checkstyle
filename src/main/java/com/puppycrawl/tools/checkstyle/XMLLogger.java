@@ -186,6 +186,7 @@ public class XMLLogger
     }
 
     /**
+     * Finds whether the given argument is character or entity reference.
      * @param ent the possible entity to look for.
      * @return whether the given argument a character or entity reference
      */
