@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-public class InputLeftCurlyEnums {
+public class InputLeftCurlyIgnoreEnums {
     enum Colors {RED,
         BLUE,
         GREEN
