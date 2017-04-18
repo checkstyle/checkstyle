@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;

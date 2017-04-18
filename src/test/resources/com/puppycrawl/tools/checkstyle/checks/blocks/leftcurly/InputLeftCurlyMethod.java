@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 /**
  * Test case for correct use of braces.
