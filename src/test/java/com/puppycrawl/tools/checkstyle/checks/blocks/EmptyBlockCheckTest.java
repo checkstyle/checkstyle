@@ -40,7 +40,7 @@ public class EmptyBlockCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "blocks" + File.separator + filename);
+                + "blocks" + File.separator + "emptyblock" + File.separator + filename);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -68,7 +68,7 @@ public class EmptyBlockCheckTest
             "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class EmptyBlockCheckTest
             "71:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
             "84:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
 
     @Test
@@ -103,7 +103,7 @@ public class EmptyBlockCheckTest
             "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class EmptyBlockCheckTest
             "22:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "23:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
-        verify(checkConfig, getPath("InputSemantic2.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockAllowEmptyLoops.java"), expected);
     }
 
     @Test
@@ -137,7 +137,7 @@ public class EmptyBlockCheckTest
             "22:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
             "23:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
         };
-        verify(checkConfig, getPath("InputSemantic2.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockAllowEmptyLoops.java"), expected);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class EmptyBlockCheckTest
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputSemantic.java"), expected);
+            verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -170,7 +170,7 @@ public class EmptyBlockCheckTest
             "31:37: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
             "32:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
         };
-        verify(checkConfig, getPath("InputEmptyCase.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockCase.java"), expected);
     }
 
     @Test
@@ -187,6 +187,6 @@ public class EmptyBlockCheckTest
             "32:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
             "32:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "case"),
         };
-        verify(checkConfig, getPath("InputEmptyCase.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockCase.java"), expected);
     }
 }
