@@ -3,7 +3,7 @@
 // Created: Feb-2001
 // Ignore error
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.sizes;
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 import java.io.*;
 /**
  * Contains simple mistakes:
@@ -13,7 +13,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputSimple
+final class InputOuterTypeNumberSimple
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<-
@@ -99,7 +99,7 @@ final class InputSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputSimple()
+    private InputOuterTypeNumberSimple()
     {
         // a line
         // a line
@@ -198,7 +198,7 @@ final class InputSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimple2
+class InputOuterTypeNumberSimple2
 {
     /** Some more Javadoc. */
     public void doSomething()
