@@ -4,13 +4,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com . puppycrawl
     .tools.
-    checkstyle.checks.whitespace;
+    checkstyle.checks.whitespace.parenpad;
 
 /**
  * Class for testing whitespace issues.
  * error missing author tag
  **/
-class InputWhitespace
+class InputParenPadWhitespace
 {
     /** ignore assignment **/
     private int mVar1=1;
@@ -191,7 +191,7 @@ class InputWhitespace
     /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputWhitespace() {
+        Object o = new InputParenPadWhitespace() {
             private int j ;
             //           ^ whitespace
         };

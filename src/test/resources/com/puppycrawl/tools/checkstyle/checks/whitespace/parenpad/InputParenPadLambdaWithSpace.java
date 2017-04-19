@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
-class InputParenPadLambdaOnlyWithSpace {
+class InputParenPadLambdaWithSpace {
     {
         java.util.function.Consumer a = ( o ) -> { o.toString( ); }; // ok
 
@@ -19,6 +19,6 @@ class InputParenPadLambdaOnlyWithSpace {
         java.util.stream.Stream.of().forEach( o -> o.toString() ); // ok
     }
 
-    void someMethod(String param) { // ok
+    void someMethod(String param) { // 2 violations
     }
 }
