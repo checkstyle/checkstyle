@@ -40,7 +40,7 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "blocks" + File.separator + filename);
+                + "blocks" + File.separator + "emptycatchblock" + File.separator + filename);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
             "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "42: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verify(checkConfig, getPath("InputEmptyCatchBlock.java"), expected);
+        verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class EmptyCatchBlockCheckTest extends BaseCheckTestSupport {
             "230: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "239: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verify(checkConfig, getPath("InputEmptyCatchBlock.java"), expected);
+        verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
 
     @Test
