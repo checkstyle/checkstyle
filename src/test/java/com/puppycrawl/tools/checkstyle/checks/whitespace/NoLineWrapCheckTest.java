@@ -35,7 +35,9 @@ public class NoLineWrapCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "nolinewrap" + File.separator
+                + filename);
     }
 
     @Test

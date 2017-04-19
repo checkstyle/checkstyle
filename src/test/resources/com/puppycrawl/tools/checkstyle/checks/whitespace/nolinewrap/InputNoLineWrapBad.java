@@ -1,5 +1,5 @@
 package com.puppycrawl.tools. //violation
-    checkstyle.checks.whitespace;
+    checkstyle.checks.whitespace.nolinewrap;
 
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 
