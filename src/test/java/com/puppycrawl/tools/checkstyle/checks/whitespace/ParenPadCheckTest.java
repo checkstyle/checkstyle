@@ -41,7 +41,9 @@ public class ParenPadCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "parenpad" + File.separator
+                + filename);
     }
 
     @Test
@@ -60,7 +62,7 @@ public class ParenPadCheckTest
             "277:18: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "277:23: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputParenPadWhitespace.java"), expected);
     }
 
     @Test
@@ -106,7 +108,7 @@ public class ParenPadCheckTest
             "287:55: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "287:70: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputParenPadWhitespace.java"), expected);
     }
 
     @Test
@@ -123,7 +125,7 @@ public class ParenPadCheckTest
             "48:27: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "51:26: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputParenPadForWhitespace.java"), expected);
     }
 
     @Test
@@ -143,7 +145,7 @@ public class ParenPadCheckTest
             "27:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "32:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
         };
-        verify(checkConfig, getPath("InputForWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputParenPadForWhitespace.java"), expected);
     }
 
     @Test
@@ -281,7 +283,7 @@ public class ParenPadCheckTest
             "212:51: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "212:53: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPad.java"), expected);
+        verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace.java"), expected);
     }
 
     @Test
@@ -317,7 +319,7 @@ public class ParenPadCheckTest
             "212:51: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "212:53: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPad.java"), expected);
+        verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace.java"), expected);
     }
 
     @Test
@@ -328,7 +330,7 @@ public class ParenPadCheckTest
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputParenPad.java"), expected);
+            verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
