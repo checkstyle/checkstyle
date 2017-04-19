@@ -36,7 +36,9 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "sizes" + File.separator + filename);
+                + "sizes" + File.separator
+                + "outertypenumber" + File.separator
+                + filename);
     }
 
     @Test
@@ -72,7 +74,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, 3, 1),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeNumberSimple.java"), expected);
     }
 
     @Test
@@ -81,7 +83,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
             createCheckConfig(OuterTypeNumberCheck.class);
         checkConfig.addAttribute("max", "30");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeNumberSimple.java"), expected);
     }
 
     @Test
@@ -90,6 +92,6 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
             createCheckConfig(OuterTypeNumberCheck.class);
         checkConfig.addAttribute("max", "1");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOuterTypeNumber.java"), expected);
+        verify(checkConfig, getPath("InputOuterTypeNumberEmptyInner.java"), expected);
     }
 }
