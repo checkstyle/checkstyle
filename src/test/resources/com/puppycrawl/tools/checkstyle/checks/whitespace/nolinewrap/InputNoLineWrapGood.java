@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 
