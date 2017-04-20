@@ -281,6 +281,10 @@
     <module name="ReturnCount">
       <property name="maxForVoid" value="0"/>
     </module>
+    <module name="ReturnCount">
+      <property name="id" value="returnCountMaxOne"/>
+      <property name="max" value="1"/>
+    </module>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
     <module name="StringLiteralEquality"/>
