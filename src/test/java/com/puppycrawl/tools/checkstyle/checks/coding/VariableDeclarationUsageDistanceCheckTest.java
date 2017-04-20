@@ -36,7 +36,9 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "variabledeclarationusagedistance" + File.separator
+                + filename);
     }
 
     @Test
