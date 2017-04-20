@@ -34,7 +34,9 @@ public class SuperFinalizeCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "superfinalize" + File.separator
+                + filename);
     }
 
     @Test
@@ -45,6 +47,6 @@ public class SuperFinalizeCheckTest
             "27:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
-        verify(checkConfig, getPath("InputFinalize.java"), expected);
+        verify(checkConfig, getPath("InputSuperFinalizeVariations.java"), expected);
     }
 }

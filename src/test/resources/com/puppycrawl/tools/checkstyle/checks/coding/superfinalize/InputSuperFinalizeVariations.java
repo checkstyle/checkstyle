@@ -1,7 +1,7 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
-public class InputFinalize
+package com.puppycrawl.tools.checkstyle.checks.coding.superfinalize;
+public class InputSuperFinalizeVariations
 {
-    public InputFinalize() throws Throwable
+    public InputSuperFinalizeVariations() throws Throwable
     {
         super.equals(new String());
         super.finalize();
