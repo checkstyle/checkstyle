@@ -897,14 +897,6 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
             <td>3.0</td>
           </tr>
           <tr>
-            <td>shouldStartLine</td>
-            <td>should we check if <code>'}'</code>
-            starts line.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>4.2</td>
-          </tr>
-          <tr>
             <td>tokens</td>
             <td>tokens to check</td>
 
@@ -1014,10 +1006,6 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.before%22">
             line.break.before</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
-            line.new</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.same%22">

@@ -71,7 +71,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "9:15: " + getCheckMessage(RightCurlyCheck.class,
-                RightCurlyCheck.MSG_KEY_LINE_NEW, "}", 15),
+                RightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 15),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
