@@ -202,12 +202,14 @@ public class BaseIndentationCheckSupport extends BaseCheckTestSupport {
     }
 
     private static int getLineStart(String line, final int tabWidth) {
+        int lineStart = 0;
         for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
-                return CommonUtils.lengthExpandedTabs(line, index, tabWidth);
+                lineStart = CommonUtils.lengthExpandedTabs(line, index, tabWidth);
+                break;
             }
         }
-        return 0;
+        return lineStart;
     }
 
     private enum CommentType {
