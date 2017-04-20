@@ -1,5 +1,5 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
-public class InputUnnecessaryParentheses {
+package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
+public class InputUnnecessaryParenthesesOperatorsAndCasts {
     int f1() {
         int x = 0;
         for (int i = (0+1); ((i) < (6+6)); i += (1+0)) {
