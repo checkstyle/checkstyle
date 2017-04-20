@@ -408,16 +408,18 @@ public class SuppressWarningsHolder
      * @throws IllegalArgumentException if the AST is invalid
      */
     private static String getIdentifier(DetailAST ast) {
-        if (ast != null) {
-            if (ast.getType() == TokenTypes.IDENT) {
-                return ast.getText();
-            }
-            else {
-                return getIdentifier(ast.getFirstChild()) + "."
-                        + getIdentifier(ast.getLastChild());
-            }
+        if (ast == null) {
+            throw new IllegalArgumentException("Identifier AST expected, but get null.");
         }
-        throw new IllegalArgumentException("Identifier AST expected, but get null.");
+        final String identifier;
+        if (ast.getType() == TokenTypes.IDENT) {
+            identifier = ast.getText();
+        }
+        else {
+            identifier = getIdentifier(ast.getFirstChild()) + "."
+                + getIdentifier(ast.getLastChild());
+        }
+        return identifier;
     }
 
     /**
@@ -457,17 +459,19 @@ public class SuppressWarningsHolder
      * @throws IllegalArgumentException if the AST is invalid
      */
     private static List<String> getAnnotationValues(DetailAST ast) {
+        final List<String> annotationValues;
         switch (ast.getType()) {
             case TokenTypes.EXPR:
-                return Collections.singletonList(getStringExpr(ast));
-
+                annotationValues = Collections.singletonList(getStringExpr(ast));
+                break;
             case TokenTypes.ANNOTATION_ARRAY_INIT:
-                return findAllExpressionsInChildren(ast);
-
+                annotationValues = findAllExpressionsInChildren(ast);
+                break;
             default:
                 throw new IllegalArgumentException(
                         "Expression or annotation array initializer AST expected: " + ast);
         }
+        return annotationValues;
     }
 
     /**

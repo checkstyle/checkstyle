@@ -333,13 +333,15 @@ public class JavadocDetailNodeParser {
      * @return line number
      */
     private static int getLine(ParseTree tree) {
+        final int line;
         if (tree instanceof TerminalNode) {
-            return ((TerminalNode) tree).getSymbol().getLine() - 1;
+            line = ((TerminalNode) tree).getSymbol().getLine() - 1;
         }
         else {
             final ParserRuleContext rule = (ParserRuleContext) tree;
-            return rule.start.getLine() - 1;
+            line = rule.start.getLine() - 1;
         }
+        return line;
     }
 
     /**
@@ -349,13 +351,15 @@ public class JavadocDetailNodeParser {
      * @return column number
      */
     private static int getColumn(ParseTree tree) {
+        final int column;
         if (tree instanceof TerminalNode) {
-            return ((TerminalNode) tree).getSymbol().getCharPositionInLine();
+            column = ((TerminalNode) tree).getSymbol().getCharPositionInLine();
         }
         else {
             final ParserRuleContext rule = (ParserRuleContext) tree;
-            return rule.start.getCharPositionInLine();
+            column = rule.start.getCharPositionInLine();
         }
+        return column;
     }
 
     /**

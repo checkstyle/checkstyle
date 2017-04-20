@@ -231,12 +231,14 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
     // -@cs[ForbidWildcardAsReturnType] The class is deprecated and will be removed soon.
     protected final Class<?> resolveClass(String resolvableClassName,
             String className) {
+        Class<?> clazz;
         try {
-            return getClassResolver().resolve(resolvableClassName, className);
+            clazz = getClassResolver().resolve(resolvableClassName, className);
         }
         catch (final ClassNotFoundException ignored) {
-            return null;
+            clazz = null;
         }
+        return clazz;
     }
 
     /**
@@ -362,11 +364,15 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
      */
     protected final AbstractClassInfo createClassInfo(final Token name,
                                               final String surroundingClass) {
+        final AbstractClassInfo result;
         final AbstractClassInfo classInfo = findClassAlias(name.getText());
-        if (classInfo != null) {
-            return new ClassAlias(name, classInfo);
+        if (classInfo == null) {
+            result = new RegularClass(name, surroundingClass, this);
         }
-        return new RegularClass(name, surroundingClass, this);
+        else {
+            result = new ClassAlias(name, classInfo);
+        }
+        return result;
     }
 
     /**
