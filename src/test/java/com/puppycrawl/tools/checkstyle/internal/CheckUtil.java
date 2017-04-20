@@ -319,8 +319,9 @@ public final class CheckUtil {
      */
     public static String getCheckMessage(Class<?> module, Locale locale, String messageKey,
             Object... arguments) {
-        final Properties pr = new Properties();
+        String checkMessage;
         try {
+            final Properties pr = new Properties();
             if (locale == Locale.ENGLISH) {
                 pr.load(module.getResourceAsStream("messages.properties"));
             }
@@ -328,17 +329,19 @@ public final class CheckUtil {
                 pr.load(module
                         .getResourceAsStream("messages_" + locale.getLanguage() + ".properties"));
             }
+            final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey), locale);
+            checkMessage = formatter.format(arguments);
         }
         catch (IOException ex) {
-            return null;
+            checkMessage = null;
         }
-        final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey), locale);
-        return formatter.format(arguments);
+        return checkMessage;
     }
 
     public static String getTokenText(int[] tokens, int... subtractions) {
+        final String tokenText;
         if (subtractions.length == 0 && Arrays.equals(tokens, TokenUtils.getAllTokenIds())) {
-            return "TokenTypes.";
+            tokenText = "TokenTypes.";
         }
         else {
             final StringBuilder result = new StringBuilder();
@@ -375,8 +378,9 @@ public final class CheckUtil {
                 result.append(".");
             }
 
-            return result.toString();
+            tokenText = result.toString();
         }
+        return tokenText;
     }
 
     public static Set<String> getTokenNameSet(int... tokens) {

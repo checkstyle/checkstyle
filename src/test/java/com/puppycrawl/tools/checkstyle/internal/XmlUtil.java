@@ -40,6 +40,7 @@ public final class XmlUtil {
 
     public static Document getRawXml(String fileName, String code, String unserializedSource)
             throws ParserConfigurationException {
+        Document rawXml = null;
         try {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setValidating(false);
@@ -47,14 +48,14 @@ public final class XmlUtil {
 
             final DocumentBuilder builder = factory.newDocumentBuilder();
 
-            return builder.parse(new InputSource(new StringReader(code)));
+            rawXml = builder.parse(new InputSource(new StringReader(code)));
         }
         catch (IOException | SAXException ex) {
             Assert.fail(fileName + " has invalid xml (" + ex.getMessage() + "): "
                     + unserializedSource);
         }
 
-        return null;
+        return rawXml;
     }
 
     public static Set<Node> getChildrenElements(Node node) {
@@ -70,13 +71,15 @@ public final class XmlUtil {
     }
 
     public static Node getFirstChildElement(Node node) {
+        Node firstChildElement = null;
         for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
             if (child.getNodeType() != Node.TEXT_NODE) {
-                return child;
+                firstChildElement = child;
+                break;
             }
         }
 
-        return null;
+        return firstChildElement;
     }
 
     public static Set<Node> findChildElementsByTag(Node node, String tag) {
