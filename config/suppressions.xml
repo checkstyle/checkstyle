@@ -95,8 +95,12 @@
         |.*[\\/]coding[\\/]|.*[\\/]design[\\/]|.*[\\/]imports[\\/]|.*[\\/]indentation[\\/]|.*[\\/]javadoc[\\/]|
         |.*[\\/]naming[\\/]|.*[\\/]regexp[\\/]|.*[\\/]sizes[\\/]|.*[\\/]whitespace[\\/]|.*[\\/]doclets[\\/]|.*[\\/]gui[\\/]|
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
         |.*[\\/]utils[\\/]|.*[\\/]doclets[\\/]|.*[\\/]internal[\\/]"/>
 =======
         |.*[\\/]utils[\\/]|.*[\\/]doclets[\\/]|.*[\\/]internal[\\/]||.*[\\/]base[\\/]|.*[\\/]checkstyle[\\/].*\.java|.*[\\/]checks[\\/].*\.java"/>
 >>>>>>> Issue #3496: Enforce ReturnCount max=1 and suppress violations
+=======
+        |.*[\\/]utils[\\/]|.*[\\/]doclets[\\/]|.*[\\/]internal[\\/]|.*[\\/]checkstyle[\\/].*\.java|.*[\\/]checks[\\/].*\.java"/>
+>>>>>>> Issue #3496: Enforce ReturnCount max=1 in com.google.checkstyle.test.base package
 </suppressions>
