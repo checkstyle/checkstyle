@@ -94,5 +94,9 @@
     <suppress id="returnCountMaxOne" files=".*[\\/]ant[\\/]|.*[\\/]filters[\\/]|.*[\\/]api[\\/]|.*[\\/]annotation[\\/]|
         |.*[\\/]coding[\\/]|.*[\\/]design[\\/]|.*[\\/]imports[\\/]|.*[\\/]indentation[\\/]|.*[\\/]javadoc[\\/]|
         |.*[\\/]naming[\\/]|.*[\\/]regexp[\\/]|.*[\\/]sizes[\\/]|.*[\\/]whitespace[\\/]|.*[\\/]doclets[\\/]|.*[\\/]gui[\\/]|
+<<<<<<< refs/remotes/origin/master
         |.*[\\/]utils[\\/]|.*[\\/]doclets[\\/]|.*[\\/]internal[\\/]"/>
+=======
+        |.*[\\/]utils[\\/]|.*[\\/]doclets[\\/]|.*[\\/]internal[\\/]||.*[\\/]base[\\/]|.*[\\/]checkstyle[\\/].*\.java|.*[\\/]checks[\\/].*\.java"/>
+>>>>>>> Issue #3496: Enforce ReturnCount max=1 and suppress violations
 </suppressions>
