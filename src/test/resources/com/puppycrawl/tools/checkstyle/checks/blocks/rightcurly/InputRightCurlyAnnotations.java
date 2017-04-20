@@ -145,7 +145,7 @@ class InputRightCurlyAnnotations
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }}; //violation
+        }}; //NO violation
 
         Thread t = new Thread() {@Override public void run() {super.run();}}; //violation
         new Object() { public int hashCode() { return 1; }  { int a = 5; }}; //violation

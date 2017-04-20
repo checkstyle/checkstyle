@@ -105,7 +105,7 @@ public class InputRightCurlyAloneOrSingleline {
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }}; // it's ok
+        }}; //NO violation
 
         Thread t = new Thread() {@Override public void run() {super.run();}};
         new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }};
@@ -138,14 +138,14 @@ public class InputRightCurlyAloneOrSingleline {
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }});  //it's ok, can't be formatted better
+        }});  //violation
 
         foo23(new java.util.HashSet<String>() {{
             add("XZ13s");
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }});} //violation
+        }});} //2 violations
 
 
     void foo23(java.util.HashSet<String> set) {
