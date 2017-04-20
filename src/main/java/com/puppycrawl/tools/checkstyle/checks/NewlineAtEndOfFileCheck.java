@@ -123,17 +123,21 @@ public class NewlineAtEndOfFileCheck
      */
     private boolean endsWithNewline(RandomAccessFile randomAccessFile)
             throws IOException {
+        final boolean result;
         final int len = lineSeparator.length();
         if (randomAccessFile.length() < len) {
-            return false;
+            result = false;
         }
-        randomAccessFile.seek(randomAccessFile.length() - len);
-        final byte[] lastBytes = new byte[len];
-        final int readBytes = randomAccessFile.read(lastBytes);
-        if (readBytes != len) {
-            throw new IOException("Unable to read " + len + " bytes, got "
-                    + readBytes);
+        else {
+            randomAccessFile.seek(randomAccessFile.length() - len);
+            final byte[] lastBytes = new byte[len];
+            final int readBytes = randomAccessFile.read(lastBytes);
+            if (readBytes != len) {
+                throw new IOException("Unable to read " + len + " bytes, got "
+                        + readBytes);
+            }
+            result = lineSeparator.matches(lastBytes);
         }
-        return lineSeparator.matches(lastBytes);
+        return result;
     }
 }

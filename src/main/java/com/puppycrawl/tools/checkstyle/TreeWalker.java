@@ -580,12 +580,14 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @return true if position of ast1 is greater than position of ast2.
      */
     private static boolean isPositionGreater(DetailAST ast1, DetailAST ast2) {
+        final boolean isGreater;
         if (ast1.getLineNo() == ast2.getLineNo()) {
-            return ast1.getColumnNo() > ast2.getColumnNo();
+            isGreater = ast1.getColumnNo() > ast2.getColumnNo();
         }
         else {
-            return ast1.getLineNo() > ast2.getLineNo();
+            isGreater = ast1.getLineNo() > ast2.getLineNo();
         }
+        return isGreater;
     }
 
     /**
@@ -596,12 +598,14 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @return DetailAST of comment node.
      */
     private static DetailAST createCommentAstFromToken(Token token) {
+        final DetailAST commentAst;
         if (token.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
-            return createSlCommentNode(token);
+            commentAst = createSlCommentNode(token);
         }
         else {
-            return createBlockCommentNode(token);
+            commentAst = createBlockCommentNode(token);
         }
+        return commentAst;
     }
 
     /**

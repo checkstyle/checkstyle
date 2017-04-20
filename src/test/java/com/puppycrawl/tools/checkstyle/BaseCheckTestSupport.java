@@ -400,12 +400,16 @@ public class BaseCheckTestSupport {
     }
 
     private static String getMessageBundle(String className) {
-        final int endIndex = className.lastIndexOf('.');
+        final String messageBundle;
         final String messages = "messages";
+        final int endIndex = className.lastIndexOf('.');
         if (endIndex < 0) {
-            return messages;
+            messageBundle = messages;
         }
-        final String packageName = className.substring(0, endIndex);
-        return packageName + "." + messages;
+        else {
+            final String packageName = className.substring(0, endIndex);
+            messageBundle = packageName + "." + messages;
+        }
+        return messageBundle;
     }
 }
