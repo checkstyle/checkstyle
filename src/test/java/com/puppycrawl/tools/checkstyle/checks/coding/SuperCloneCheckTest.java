@@ -35,7 +35,9 @@ public class SuperCloneCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "superclone" + File.separator
+                + filename);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class SuperCloneCheckTest
             "35:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "60:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verify(checkConfig, getPath("InputClone.java"), expected);
+        verify(checkConfig, getPath("InputSuperCloneInnerAndWithArguments.java"), expected);
     }
 
     @Test
@@ -63,7 +65,7 @@ public class SuperCloneCheckTest
         final String[] expected = {
             "9:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verify(checkConfig, getPath("InputSuperClone.java"), expected);
+        verify(checkConfig, getPath("InputSuperClonePlainAndSubclasses.java"), expected);
     }
 
     @Test
