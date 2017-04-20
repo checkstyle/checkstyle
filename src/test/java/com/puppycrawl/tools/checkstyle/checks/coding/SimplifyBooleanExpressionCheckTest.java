@@ -35,7 +35,9 @@ public class SimplifyBooleanExpressionCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "simplifybooleanexpression" + File.separator
+                + filename);
     }
 
     @Test
@@ -49,7 +51,7 @@ public class SimplifyBooleanExpressionCheckTest
             "43:16: " + getCheckMessage(MSG_KEY),
             "43:32: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputSimplifyBoolean.java"), expected);
+        verify(checkConfig, getPath("InputSimplifyBooleanExpression.java"), expected);
     }
 
     @Test
