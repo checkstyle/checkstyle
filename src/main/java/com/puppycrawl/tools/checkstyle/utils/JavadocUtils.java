@@ -332,13 +332,9 @@ public final class JavadocUtils {
      * @return true if node contains any node of type type among children on any deep level.
      */
     public static boolean containsInBranch(DetailNode node, int type) {
+        boolean result = true;
         DetailNode curNode = node;
-        while (true) {
-
-            if (type == curNode.getType()) {
-                return true;
-            }
-
+        while (type != curNode.getType()) {
             DetailNode toVisit = getFirstChild(curNode);
             while (curNode != null && toVisit == null) {
                 toVisit = getNextSibling(curNode);
@@ -348,13 +344,13 @@ public final class JavadocUtils {
             }
 
             if (curNode == toVisit) {
+                result = false;
                 break;
             }
 
             curNode = toVisit;
         }
-
-        return false;
+        return result;
     }
 
     /**
@@ -364,15 +360,16 @@ public final class JavadocUtils {
      * @return next sibling.
      */
     public static DetailNode getNextSibling(DetailNode node) {
+        DetailNode nextSibling = null;
         final DetailNode parent = node.getParent();
         if (parent != null) {
             final int nextSiblingIndex = node.getIndex() + 1;
             final DetailNode[] children = parent.getChildren();
             if (nextSiblingIndex <= children.length - 1) {
-                return children[nextSiblingIndex];
+                nextSibling = children[nextSiblingIndex];
             }
         }
-        return null;
+        return nextSibling;
     }
 
     /**
@@ -396,13 +393,14 @@ public final class JavadocUtils {
      * @return previous sibling
      */
     public static DetailNode getPreviousSibling(DetailNode node) {
+        DetailNode previousSibling = null;
         final DetailNode parent = node.getParent();
         final int previousSiblingIndex = node.getIndex() - 1;
         final DetailNode[] children = parent.getChildren();
         if (previousSiblingIndex >= 0) {
-            return children[previousSiblingIndex];
+            previousSibling = children[previousSiblingIndex];
         }
-        return null;
+        return previousSibling;
     }
 
     /**
@@ -412,15 +410,18 @@ public final class JavadocUtils {
      * @return a token name
      */
     public static String getTokenName(int id) {
+        final String name;
         if (id == JavadocTokenTypes.EOF) {
-            return "EOF";
+            name = "EOF";
         }
-        if (id > TOKEN_VALUE_TO_NAME.length - 1) {
+        else if (id > TOKEN_VALUE_TO_NAME.length - 1) {
             throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
         }
-        final String name = TOKEN_VALUE_TO_NAME[id];
-        if (name == null) {
-            throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
+        else {
+            name = TOKEN_VALUE_TO_NAME[id];
+            if (name == null) {
+                throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
+            }
         }
         return name;
     }
