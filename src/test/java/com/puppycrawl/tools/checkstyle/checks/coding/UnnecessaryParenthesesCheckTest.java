@@ -45,7 +45,9 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "unnecessaryparentheses" + File.separator
+                + filename);
     }
 
     @Test
@@ -100,7 +102,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
             "82:39: " + getCheckMessage(MSG_ASSIGN),
         };
 
-        verify(checkConfig, getPath("InputUnnecessaryParentheses.java"), expected);
+        verify(checkConfig, getPath("InputUnnecessaryParenthesesOperatorsAndCasts.java"), expected);
     }
 
     @Test
@@ -108,7 +110,7 @@ public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig =
             createCheckConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("Input15Extensions.java"), expected);
+        verify(checkConfig, getPath("InputUnnecessaryParentheses15Extensions.java"), expected);
     }
 
     @Test
