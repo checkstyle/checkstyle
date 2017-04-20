@@ -38,4 +38,24 @@ public class InputArrayTrailingComma
 
     int[] e1 = new int[] {
     };
+
+    int[] f1 = new int[] {0, 1
+    };
+
+    int[][] f2 = new int[][]
+    {
+        {1,
+         2,},
+    };
+
+    int[] f3 = new int[]{
+            1,
+            2
+            ,
+    };
+
+    int[] f4 = new int[]{
+            1,
+            2
+            ,};
 }

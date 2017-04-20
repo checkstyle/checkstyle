@@ -45,7 +45,6 @@ public class ArrayTrailingCommaCheckTest
             createCheckConfig(ArrayTrailingCommaCheck.class);
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY),
-            "34: " + getCheckMessage(MSG_KEY),
             "37: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputArrayTrailingComma.java"), expected);
