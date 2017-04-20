@@ -332,29 +332,19 @@ public final class JavadocUtils {
      * @return true if node contains any node of type type among children on any deep level.
      */
     public static boolean containsInBranch(DetailNode node, int type) {
-        DetailNode curNode = node;
-        while (true) {
-
-            if (type == curNode.getType()) {
-                return true;
-            }
-
-            DetailNode toVisit = getFirstChild(curNode);
-            while (curNode != null && toVisit == null) {
-                toVisit = getNextSibling(curNode);
-                if (toVisit == null) {
-                    curNode = curNode.getParent();
+        boolean result = false;
+        if (type == node.getType()) {
+            result = true;
+        }
+        else {
+            for (DetailNode child : node.getChildren()) {
+                if (containsInBranch(child, type)) {
+                    result = true;
+                    break;
                 }
             }
-
-            if (curNode == toVisit) {
-                break;
-            }
-
-            curNode = toVisit;
         }
-
-        return false;
+        return result;
     }
 
     /**
