@@ -38,7 +38,9 @@ public class ModifiedControlVariableCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "modifiedcontrolvariable" + File.separator
+                + filename);
     }
 
     @Test
@@ -55,7 +57,7 @@ public class ModifiedControlVariableCheckTest
             "67:15: " + getCheckMessage(MSG_KEY, "i"),
             "68:15: " + getCheckMessage(MSG_KEY, "k"),
         };
-        verify(checkConfig, getPath("InputModifiedControl.java"), expected);
+        verify(checkConfig, getPath("InputModifiedControlVariableBothForLoops.java"), expected);
     }
 
     @Test

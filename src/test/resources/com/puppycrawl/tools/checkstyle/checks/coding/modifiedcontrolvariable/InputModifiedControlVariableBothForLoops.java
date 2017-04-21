@@ -2,9 +2,9 @@
 // Test case file for FOR_ITERATION and whitespace.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 import java.io.Serializable;
-class InputModifiedControl
+class InputModifiedControlVariableBothForLoops
 {
     int k;
     void method1()
