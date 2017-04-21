@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-public class InputRequireThis3 {
+public class InputRequireThisAnonymousEmpty {
 
     private int bar;
 

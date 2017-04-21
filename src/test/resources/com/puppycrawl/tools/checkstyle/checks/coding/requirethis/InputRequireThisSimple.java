@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-public class InputRequireThis2 {
+public class InputRequireThisSimple {
 	private final int number = 1;
 
     public int check() {

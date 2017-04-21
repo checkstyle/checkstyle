@@ -39,7 +39,9 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "requirethis" + File.separator
+                + filename);
     }
 
     @Test
@@ -61,7 +63,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
         };
         verify(checkConfig,
-               getPath("InputRequireThis.java"),
+               getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
                expected);
     }
 
@@ -78,7 +80,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
         };
         verify(checkConfig,
-               getPath("InputRequireThis.java"),
+               getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
                expected);
     }
 
@@ -98,7 +100,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
         };
         verify(checkConfig,
-               getPath("InputRequireThis.java"),
+               getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
                expected);
     }
 
@@ -108,7 +110,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             createCheckConfig(RequireThisCheck.class);
         checkConfig.addAttribute("validateOnlyOverlapping", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("Input15Extensions.java"), expected);
+        verify(checkConfig, getPath("InputRequireThis15Extensions.java"), expected);
     }
 
     @Test
@@ -121,7 +123,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "8:16: " + getCheckMessage(MSG_METHOD, "other", ""),
         };
         verify(checkConfig,
-                getPath("InputRequireThis2.java"),
+                getPath("InputRequireThisSimple.java"),
                 expected);
     }
 
@@ -139,11 +141,11 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("validateOnlyOverlapping", "false");
         final String[] expected = {
             "19:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
-            "23:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThis3."),
+            "23:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
             "46:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
         };
         verify(checkConfig,
-                getPath("InputRequireThis3.java"),
+                getPath("InputRequireThisAnonymousEmpty.java"),
                 expected);
     }
 
@@ -204,7 +206,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "376:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
             "384:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
         };
-        verify(checkConfig, getPath("InputValidateOnlyOverlappingFalse.java"), expected);
+        verify(checkConfig, getPath("InputRequireThisValidateOnlyOverlappingFalse.java"), expected);
     }
 
     @Test
@@ -224,7 +226,7 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "301:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "339:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
         };
-        verify(checkConfig, getPath("InputValidateOnlyOverlappingTrue.java"), expected);
+        verify(checkConfig, getPath("InputRequireThisValidateOnlyOverlappingTrue.java"), expected);
     }
 
     @Test
@@ -272,6 +274,6 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "46:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
             "47:16: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
         };
-        verify(checkConfig, getPath("InputAllowLocalVars.java"), expected);
+        verify(checkConfig, getPath("InputRequireThisAllowLocalVars.java"), expected);
     }
 }

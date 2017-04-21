@@ -1,11 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.awt.Toolkit;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class InputRequireThis {
+public class InputRequireThisEnumInnerClassesAndBugs {
     int i;
     void method1() {
         i = 3;
