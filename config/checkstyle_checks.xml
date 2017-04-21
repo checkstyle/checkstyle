@@ -474,6 +474,7 @@
     <module name="NoWhitespaceBefore"/>
     <module name="NoWhitespaceBefore">
       <property name="tokens" value="DOT"/>
+      <property name="tokens" value="METHOD_REF"/>
       <property name="allowLineBreaks" value="true"/>
     </module>
     <module name="OperatorWrap">

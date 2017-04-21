@@ -1110,7 +1110,8 @@ import static java.math.BigInteger.ZERO;
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">DOT</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_START">GENERIC_START</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_END">GENERIC_END</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">ELLIPSIS</a>.
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">ELLIPSIS</a>,
+              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">METHOD_REF</a>.
             </td>
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>,
