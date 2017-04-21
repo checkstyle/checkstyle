@@ -89,4 +89,14 @@ public class NoWhitespaceBeforeCheckTest
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);
     }
+
+    @Test
+    public void testMethodReference() throws Exception {
+        checkConfig.addAttribute("tokens", "METHOD_REF");
+        final String[] expected = {
+            "17:31: " + getCheckMessage(MSG_KEY, "::"),
+            "18:60: " + getCheckMessage(MSG_KEY, "::"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeMethodRef.java"), expected);
+    }
 }

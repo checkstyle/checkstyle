@@ -94,6 +94,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
+            TokenTypes.METHOD_REF,
         };
     }
 
