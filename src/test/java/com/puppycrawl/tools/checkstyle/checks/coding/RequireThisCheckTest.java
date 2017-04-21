@@ -275,9 +275,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
             "47:16: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
         };
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
         verify(checkConfig, getPath("InputRequireThisAllowLocalVars.java"), expected);
 =======
         verify(checkConfig, getPath("InputAllowLocalVars.java"), expected);
 >>>>>>> Issue #3423: Allow local vars without any unnecessary violations from RequireThisCheck. Added UT. Fixed related UT
+=======
+        verify(checkConfig, getPath("InputRequireThisAllowLocalVars.java"), expected);
+>>>>>>> Issue #4165: Split and Organize Checkstyle inputs by Test for checks in coding package: RequireThis
     }
 }
