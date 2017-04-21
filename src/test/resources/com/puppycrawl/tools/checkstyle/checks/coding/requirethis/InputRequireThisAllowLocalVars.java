@@ -3,14 +3,14 @@ Input test file for RequireThisCheck.
 Created: 2017
  */
 
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-class InputAllowLocalVars {
+class InputRequireThisAllowLocalVars {
 
     private String s1 = "foo1";
     String s2 = "foo2";
 
-    InputAllowLocalVars() {
+    InputRequireThisAllowLocalVars() {
         s1 = "bar1"; // Violation. Requires "this".
         String s2;
         s2 = "bar2"; // No violation. Local var allowed.

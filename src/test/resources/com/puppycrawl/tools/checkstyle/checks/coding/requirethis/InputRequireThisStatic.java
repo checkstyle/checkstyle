@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

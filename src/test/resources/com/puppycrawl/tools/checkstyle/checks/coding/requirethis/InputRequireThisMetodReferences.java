@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.util.Arrays;
 import java.util.Collections;
