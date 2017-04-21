@@ -519,7 +519,7 @@ public class MainTest {
         exit.checkAssertionAfterwards(new Assertion() {
             @Override
             public void checkAssertion() throws IOException {
-                final String expectedPath = getFilePath("checks/metrics") + File.separator;
+                final String expectedPath = getFilePath("main/") + File.separator;
                 final StringBuilder sb = new StringBuilder();
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
                 final String format = "[WARN] %s.java:%s: %s [FileLength]";
@@ -538,7 +538,7 @@ public class MainTest {
         });
 
         Main.main("-c", getPath("config-filelength.xml"),
-                getPath("checks/metrics"));
+                getPath("main/"));
     }
 
     @Test
