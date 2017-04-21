@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /*
     This class provides test input for OneStatementPerLineCheck with different
@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
     <variable> = <expression>;
  */
-public class InputOneStatementPerLine2 {
+public class InputOneStatementPerLineMultiline {
 
     /**
      * One multiline  assignment (declaration) statement
