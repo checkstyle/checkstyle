@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.parameterassignment;
 /**Input*/
-public class InputParameterAssignment {
+public class InputParameterAssignmentWithUnchecked {
     int field;
     void foo1(int field) {
         int i = field;
