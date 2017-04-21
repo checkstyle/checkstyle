@@ -1,8 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-class InputPackageDeclaration {
+public class InputPackageDeclarationDiffDirectoryAtParent {
     public String value;
-    
+
     private void get(){
     }
 }
