@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.nofinalizer;
 
-public class InputHasFinalizer
+public class InputNoFinalizerHasFinalizer
 {
     public void finalize()
     {

@@ -40,7 +40,9 @@ public class NoFinalizerCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "nofinalizer" + File.separator
+                + filename);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class NoFinalizerCheckTest
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputHasFinalizer.java"), expected);
+        verify(checkConfig, getPath("InputNoFinalizerHasFinalizer.java"), expected);
     }
 
     @Test
@@ -60,6 +62,6 @@ public class NoFinalizerCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(NoFinalizerCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFallThrough.java"), expected);
+        verify(checkConfig, getPath("InputNoFinalizerFallThrough.java"), expected);
     }
 }
