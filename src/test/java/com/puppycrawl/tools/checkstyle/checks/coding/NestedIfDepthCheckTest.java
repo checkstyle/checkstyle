@@ -35,7 +35,9 @@ public class NestedIfDepthCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "nestedifdepth" + File.separator
+                + filename);
     }
 
     @Test
