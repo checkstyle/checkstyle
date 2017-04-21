@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.parameterassignment;
 
 public class InputParameterAssignmentReceiver {
     public void foo4(InputParameterAssignmentReceiver this) {}
