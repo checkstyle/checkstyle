@@ -37,7 +37,9 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "parameterassignment" + File.separator
+                + filename);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class ParameterAssignmentCheckTest extends BaseCheckTestSupport {
             "12:14: " + getCheckMessage(MSG_KEY, "field"),
             "20:30: " + getCheckMessage(MSG_KEY, "field1"),
         };
-        verify(checkConfig, getPath("InputParameterAssignment.java"),
+        verify(checkConfig, getPath("InputParameterAssignmentWithUnchecked.java"),
                expected);
     }
 
