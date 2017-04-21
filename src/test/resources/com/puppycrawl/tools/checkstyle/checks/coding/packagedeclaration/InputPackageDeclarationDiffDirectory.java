@@ -1,6 +1,6 @@
 package com.testing.packagediffdirectory;
 
-public class InputPackageDiffDirectory {
+public class InputPackageDeclarationDiffDirectory {
     public String value;
 
     private void get(){

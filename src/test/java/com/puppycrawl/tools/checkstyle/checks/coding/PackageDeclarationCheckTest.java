@@ -36,13 +36,17 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "packagedeclaration" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "packagedeclaration" + File.separator
+                + filename);
     }
 
     @Test
@@ -62,7 +66,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageDeclaration.java"), expected);
+        verify(checkConfig, getPath("InputPackageDeclarationPlain.java"), expected);
     }
 
     @Test
@@ -73,7 +77,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
             "1: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
-        verify(checkConfig, getPath("InputWithCommentOnly.java"), expected);
+        verify(checkConfig, getPath("InputPackageDeclarationWithCommentOnly.java"), expected);
     }
 
     @Test
@@ -84,7 +88,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
             "1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verify(checkConfig, getPath("InputPackageDiffDirectory.java"), expected);
+        verify(checkConfig, getPath("InputPackageDeclarationDiffDirectory.java"), expected);
     }
 
     @Test
@@ -95,7 +99,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
             "1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verify(checkConfig, getPath("InputPackageDiffDirectoryAtParent.java"), expected);
+        verify(checkConfig, getPath("InputPackageDeclarationDiffDirectoryAtParent.java"), expected);
     }
 
     @Test
@@ -106,7 +110,8 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
             "1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verify(checkConfig, getPath("InputPackageDiffDirectoryAtSubpackage.java"), expected);
+        verify(checkConfig,
+                getPath("InputPackageDeclarationDiffDirectoryAtSubpackage.java"), expected);
     }
 
     @Test
@@ -115,7 +120,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("matchDirectoryStructure", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageDiffDirectory.java"), expected);
+        verify(checkConfig, getPath("InputPackageDeclarationDiffDirectory.java"), expected);
     }
 
     @Test
@@ -124,7 +129,7 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("matchDirectoryStructure", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageDiffDirectoryAtParent.java"), expected);
+        verify(checkConfig, getPath("InputPackageDeclarationDiffDirectoryAtParent.java"), expected);
     }
 
     @Test
@@ -133,7 +138,8 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("matchDirectoryStructure", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageDiffDirectoryAtSubpackage.java"), expected);
+        verify(checkConfig,
+                getPath("InputPackageDeclarationDiffDirectoryAtSubpackage.java"), expected);
     }
 
     @Test
