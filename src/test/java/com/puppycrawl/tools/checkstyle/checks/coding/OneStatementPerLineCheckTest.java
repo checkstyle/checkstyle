@@ -34,7 +34,9 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "onestatementperline" + File.separator
+                + filename);
     }
 
     @Override
@@ -57,7 +59,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getPath("InputOneStatementPerLine.java"),
+            getPath("InputOneStatementPerLineSingleLine.java"),
             expected);
     }
 
@@ -84,7 +86,7 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig,
-            getPath("InputOneStatementPerLine2.java"),
+            getPath("InputOneStatementPerLineMultiline.java"),
             expected);
     }
 

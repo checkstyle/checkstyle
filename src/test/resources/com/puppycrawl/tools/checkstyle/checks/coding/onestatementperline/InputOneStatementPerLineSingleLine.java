@@ -16,7 +16,7 @@
 //License along with this library; if not, write to the Free Software
 //Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /**
  * Two import statements on the same line are illegal.
@@ -29,7 +29,7 @@ import java.io.EOFException; import java.io.BufferedReader;
  * @author Alexander Jesse
  * @see com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck
  */
-public class InputOneStatementPerLine {
+public class InputOneStatementPerLineSingleLine {
   /**
    * Dummy innerclass to test the behaviour in the case of a smalltalk-style
    * statements (<code>myObject.firstMethod().secondMethod().thirdMethod()</code>).
