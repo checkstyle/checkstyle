@@ -1,8 +1,8 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.util.BitSet;
 
-public class InputValidateOnlyOverlappingTrue {
+public class InputRequireThisValidateOnlyOverlappingFalse {
 
     private static String fieldStatic = "fieldStatic";
 
@@ -16,49 +16,49 @@ public class InputValidateOnlyOverlappingTrue {
     private boolean booleanField;
     private int intField;
 
-    public InputValidateOnlyOverlappingTrue(String field1) {
+    public InputRequireThisValidateOnlyOverlappingFalse(String field1) {
         field1 = field1; // violation
-        fieldFinal1 = 0;
-        fieldFinal2 = 0;
-        fieldFinal3 = new BitSet();
+        fieldFinal1 = 0; // violation
+        fieldFinal2 = 0; // violation
+        fieldFinal3 = new BitSet(); // violation
     }
 
-    public InputValidateOnlyOverlappingTrue(long value) {
-        fieldFinal1 = value;
-        fieldFinal2 = 0;
-        fieldFinal3 = new BitSet();
+    public InputRequireThisValidateOnlyOverlappingFalse(long value) {
+        fieldFinal1 = value; // violation
+        fieldFinal2 = 0; // violation
+        fieldFinal3 = new BitSet(); // violation
     }
 
-    public InputValidateOnlyOverlappingTrue() {
-        fieldFinal1 = 0;
+    public InputRequireThisValidateOnlyOverlappingFalse() {
+        fieldFinal1 = 0; // violation
         long fieldFinal2 = 0L;
         fieldFinal2 = 1L;
         this.fieldFinal2 = fieldFinal2;
-        fieldFinal3 = new BitSet();
+        fieldFinal3 = new BitSet(); // violation
     }
 
-    public InputValidateOnlyOverlappingTrue(String name, long id) {
-        fieldFinal1 = 0;
+    public InputRequireThisValidateOnlyOverlappingFalse(String name, long id) {
+        fieldFinal1 = 0; // violation
         long field1 = 0L;
         field1 = field1; // violation
         this.fieldFinal2 = 1L;
-        fieldFinal3 = new BitSet();
+        fieldFinal3 = new BitSet(); // violation
     }
 
-    public InputValidateOnlyOverlappingTrue(int param) {
-        fieldFinal2 = 0L;
-        fieldFinal3 = new BitSet();
-        long finalField1 = 1L;
+    public InputRequireThisValidateOnlyOverlappingFalse(int param) {
+        fieldFinal2 = 0L; // violation
+        fieldFinal3 = new BitSet(); // violation
+        long fieldFinal1 = 1L;
         try {
-            finalField1 = 2L;
+            fieldFinal1 = 2L;
         }
         catch (Exception ex) {}
-        this.fieldFinal1 = finalField1;
+        this.fieldFinal1 = fieldFinal1;
     }
 
-    public InputValidateOnlyOverlappingTrue(BitSet fieldFinal3) {
-        fieldFinal1 = 1L;
-        fieldFinal2 = 0L;
+    public InputRequireThisValidateOnlyOverlappingFalse(BitSet fieldFinal3) {
+        fieldFinal1 = 1L; // violation
+        fieldFinal2 = 0L; // violation
         fieldFinal3 = new BitSet();
         if (true) {
             fieldFinal3 = (BitSet) fieldFinal3.clone();
@@ -90,7 +90,7 @@ public class InputValidateOnlyOverlappingTrue {
 
     void foo6(String field1) {
         field1 = this.field1 + field1;
-        this.field1 = field1 + field1;
+        this.field1 = field1 + this.field1;
         field1 = field1 + this.field1;
         field1 = this.field1 + this.field1;
         this.field1 = this.field1 + this.field1;
@@ -125,11 +125,11 @@ public class InputValidateOnlyOverlappingTrue {
     }
 
     void method1() {
-        field1 = "2";
+        field1 = "2"; // violation
     }
 
     void method2() {
-        method1();
+        method1() ; // violation
     }
 
     void method3() {
@@ -164,29 +164,29 @@ public class InputValidateOnlyOverlappingTrue {
         fieldStatic = "Hello, World!";
     }
 
-    InputValidateOnlyOverlappingTrue(boolean flag) {
-        fieldFinal1 = 0L;
-        fieldFinal2 = 0L;
-        fieldFinal3 = new BitSet();
+    InputRequireThisValidateOnlyOverlappingFalse(boolean flag) {
+        fieldFinal1 = 0L; // violation
+        fieldFinal2 = 0L; // violation
+        fieldFinal3 = new BitSet(); // violation
         long field1 = 1L;
         field1 = field1; // violation
     }
 
-    InputValidateOnlyOverlappingTrue(boolean flag, String name) {
-        fieldFinal1 = 0L;
-        fieldFinal2 = 0L;
-        fieldFinal3 = new BitSet();
+    InputRequireThisValidateOnlyOverlappingFalse(boolean flag, String name) {
+        fieldFinal1 = 0L; // violation
+        fieldFinal2 = 0L; // violation
+        fieldFinal3 = new BitSet(); // violation
         long field1 = 1L;
         field1 = field1; // violation
         return;
     }
 
     void foo18() {
-        field1 = "Hello";
+        field1 = "Hello"; // violation
     }
 
     void foo19(String field1) {
-        field1 = "Hello";
+        field1 = "Hello"; // violation
     }
 
     void foo20() {
@@ -207,12 +207,12 @@ public class InputValidateOnlyOverlappingTrue {
     }
 
     void foo23() {
-        field1 = "Hello!";
+        field1 = "Hello!"; // violation
     }
 
     void foo24() {
         String field1 = "Hello";
-        field1 = "Java";
+        field1 = "Java"; // No violation. Local var allowed
         this.booleanField = true;
         this.booleanField = booleanField;
     }
@@ -222,10 +222,10 @@ public class InputValidateOnlyOverlappingTrue {
             if (true) {
                 String field1 = "Hello, World!";
                 if (true) {
-                    field1 = new String();
+                    field1 = new String(); // No violation. Local var allowed
                 }
                 else {
-                    field1 = new String();
+                    field1 += field1; // violation
                 }
             }
         }
@@ -271,7 +271,7 @@ public class InputValidateOnlyOverlappingTrue {
         return field1;
     }
 
-    String foo33(String field1) {
+    String foo33(String field1 ) {
         field1 = addSuffixToField(field1); // violation (no return, variable 'stringField' will not be saved after method execution)
         return "New String";
     }
@@ -323,16 +323,17 @@ public class InputValidateOnlyOverlappingTrue {
     }
 
     static {
+//        this.fieldStatic = ""; <-- compile time error: cannot be referenced from a static context
         fieldStatic = "";
     }
 
-//    {
+    {
 //        if we assign variable to a final variable in initialization block,
 //        it will lead to compile time error in constructor block: variable migh have been
 //        already assigned
 
 //        fieldFinal1 = 1;
-//    }
+    }
 
     {
         String field1 = "";
@@ -370,25 +371,25 @@ public class InputValidateOnlyOverlappingTrue {
     }
 
     public String foo45() {
-        String servletRelativeAction = getServletRelativeAction();
+        String servletRelativeAction = getServletRelativeAction(); // violation (Method call to 'getServletRelativeAction' needs "this.".)
         if (true) {
-            return processAction("action");
+            return processAction("action"); // violation (Method call to 'processAction' needs "this.".)
         }
         else if (servletRelativeAction.endsWith("/")) {
             if (servletRelativeAction.startsWith("/")) {
                 servletRelativeAction = "" + servletRelativeAction;
             }
         }
-        servletRelativeAction = "servletRelativeAction";
-        return processAction(servletRelativeAction);
+        servletRelativeAction = "servletRelativeAction"; // No violation. Local var allowed
+        return processAction(servletRelativeAction); // violation (Method call to 'processAction' needs "this.".)
     }
 
     private String processAction(String servletRelativeAction) {
         return "";
     }
 
-    public InputValidateOnlyOverlappingTrue(long fieldFinal1, long fieldFinal2,
-                                             BitSet fieldFinal3, boolean booleanField) {
+    public InputRequireThisValidateOnlyOverlappingFalse(long fieldFinal1, long fieldFinal2,
+                                                        BitSet fieldFinal3, boolean booleanField) {
         this.fieldFinal1 = fieldFinal1;
         this.fieldFinal2 = fieldFinal2;
         this.fieldFinal3 = fieldFinal3;
