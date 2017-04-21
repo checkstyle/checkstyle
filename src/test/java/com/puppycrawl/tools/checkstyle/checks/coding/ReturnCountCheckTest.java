@@ -37,7 +37,9 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "returncount" + File.separator
+                + filename);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
             "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
-        verify(checkConfig, getPath("InputReturnCount.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class ReturnCountCheckTest extends BaseCheckTestSupport {
             "35:17: " + getCheckMessage(MSG_KEY, 6, 1),
             "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
-        verify(checkConfig, getPath("InputReturnCount.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
     }
 
     @Test

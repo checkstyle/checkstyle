@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 /* комментарий на русском */
-public class InputReturnCount
+public class InputReturnCountSwitches
 {
     public boolean equals(Object obj) {
         int i = 1;
