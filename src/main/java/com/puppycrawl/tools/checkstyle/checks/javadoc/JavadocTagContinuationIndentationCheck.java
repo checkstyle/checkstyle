@@ -129,13 +129,15 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @return true, if description node is a description of in-line tag.
      */
     private static boolean isInlineDescription(DetailNode description) {
+        boolean isInline = false;
         DetailNode inlineTag = description.getParent();
         while (inlineTag != null) {
             if (inlineTag.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                return true;
+                isInline = true;
+                break;
             }
             inlineTag = inlineTag.getParent();
         }
-        return false;
+        return isInline;
     }
 }

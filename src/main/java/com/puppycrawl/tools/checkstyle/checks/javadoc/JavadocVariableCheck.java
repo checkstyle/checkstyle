@@ -130,31 +130,21 @@ public class JavadocVariableCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        if (ScopeUtils.isInCodeBlock(ast) || isIgnored(ast)) {
-            return false;
-        }
-
-        final Scope customScope;
-        if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            customScope = Scope.PUBLIC;
-        }
-        else {
-            final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final Scope declaredScope = ScopeUtils.getScopeFromMods(mods);
-
-            if (ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
-                customScope = Scope.PUBLIC;
+        boolean result = false;
+        if (!ScopeUtils.isInCodeBlock(ast) && !isIgnored(ast)) {
+            Scope customScope = Scope.PUBLIC;
+            if (ast.getType() != TokenTypes.ENUM_CONSTANT_DEF
+                    && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+                final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
+                customScope = ScopeUtils.getScopeFromMods(mods);
             }
-            else {
-                customScope = declaredScope;
-            }
+
+            final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
+            result = customScope.isIn(scope) && surroundingScope.isIn(scope)
+                && (excludeScope == null
+                    || !customScope.isIn(excludeScope)
+                    || !surroundingScope.isIn(excludeScope));
         }
-
-        final Scope surroundingScope = ScopeUtils.getSurroundingScope(ast);
-
-        return customScope.isIn(scope) && surroundingScope.isIn(scope)
-            && (excludeScope == null
-                || !customScope.isIn(excludeScope)
-                || !surroundingScope.isIn(excludeScope));
+        return result;
     }
 }

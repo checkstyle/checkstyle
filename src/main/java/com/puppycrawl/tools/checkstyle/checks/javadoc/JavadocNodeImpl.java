@@ -94,12 +94,11 @@ public class JavadocNodeImpl implements DetailNode {
 
     @Override
     public DetailNode[] getChildren() {
-        if (children == null) {
-            return EMPTY_DETAIL_NODE_ARRAY;
+        DetailNode[] nodeChildren = EMPTY_DETAIL_NODE_ARRAY;
+        if (children != null) {
+            nodeChildren = Arrays.copyOf(children, children.length);
         }
-        else {
-            return Arrays.copyOf(children, children.length);
-        }
+        return nodeChildren;
     }
 
     @Override
