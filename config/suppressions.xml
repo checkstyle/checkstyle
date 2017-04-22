@@ -93,6 +93,5 @@
     <!-- Until https://github.com/checkstyle/checkstyle/issues/3496 -->
     <suppress id="returnCountMaxOne" files=".*[\\/]ant[\\/]|.*[\\/]filters[\\/]|.*[\\/]api[\\/]|.*[\\/]annotation[\\/]|
         |.*[\\/]coding[\\/]|.*[\\/]design[\\/]|.*[\\/]imports[\\/]|.*[\\/]indentation[\\/]|.*[\\/]javadoc[\\/]|
-        |.*[\\/]naming[\\/]|.*[\\/]regexp[\\/]|.*[\\/]sizes[\\/]|.*[\\/]whitespace[\\/]|.*[\\/]doclets[\\/]|.*[\\/]gui[\\/]|
-        |.*[\\/]utils[\\/]|.*[\\/]doclets[\\/]|.*[\\/]internal[\\/]"/>
+        |.*[\\/]naming[\\/]|.*[\\/]regexp[\\/]|.*[\\/]sizes[\\/]|.*[\\/]utils[\\/]|.*[\\/]internal[\\/]"/>
 </suppressions>

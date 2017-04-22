@@ -90,10 +90,11 @@ public final class TokenTypesDoclet {
      * @return option length (how many parts are in option).
      */
     public static int optionLength(String option) {
+        int length = 0;
         if (DEST_FILE_OPT.equals(option)) {
-            return 2;
+            length = 2;
         }
-        return 0;
+        return length;
     }
 
     /**
@@ -104,21 +105,21 @@ public final class TokenTypesDoclet {
      */
     public static boolean checkOptions(String[][] options, DocErrorReporter reporter) {
         boolean foundDestFileOption = false;
+        boolean onlyOneDestFileOption = true;
         for (final String[] opt : options) {
             if (DEST_FILE_OPT.equals(opt[0])) {
                 if (foundDestFileOption) {
                     reporter.printError("Only one -destfile option allowed.");
-                    return false;
+                    onlyOneDestFileOption = false;
+                    break;
                 }
                 foundDestFileOption = true;
             }
         }
         if (!foundDestFileOption) {
-            final String message =
-                "Usage: javadoc -destfile file -doclet TokenTypesDoclet ...";
-            reporter.printError(message);
+            reporter.printError("Usage: javadoc -destfile file -doclet TokenTypesDoclet ...");
         }
-        return foundDestFileOption;
+        return onlyOneDestFileOption && foundDestFileOption;
     }
 
     /**

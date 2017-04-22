@@ -194,14 +194,12 @@ public class TreeTable extends JTable {
      */
     @Override
     public int getEditingRow() {
+        int rowIndex = -1;
         final Class<?> editingClass = getColumnClass(editingColumn);
-
-        if (editingClass == ParseTreeTableModel.class) {
-            return -1;
+        if (editingClass != ParseTreeTableModel.class) {
+            rowIndex = editingRow;
         }
-        else {
-            return editingRow;
-        }
+        return rowIndex;
     }
 
     /**

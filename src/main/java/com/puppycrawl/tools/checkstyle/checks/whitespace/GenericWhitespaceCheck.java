@@ -291,14 +291,15 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @param line the line to check
      * @return whether there are only whitespaces (or nothing)
      */
-    private static boolean containsWhitespaceBetween(
-            int fromIndex, int toIndex, String line) {
+    private static boolean containsWhitespaceBetween(int fromIndex, int toIndex, String line) {
+        boolean result = true;
         for (int i = fromIndex; i < toIndex; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
-                return false;
+                result = false;
+                break;
             }
         }
-        return true;
+        return result;
     }
 
     /**

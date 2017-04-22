@@ -508,18 +508,21 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      *         node.
      */
     private static boolean isEmptyBlock(DetailAST ast, int parentType, int match) {
+        final boolean result;
         final int type = ast.getType();
         if (type == TokenTypes.RCURLY) {
             final DetailAST parent = ast.getParent();
             final DetailAST grandParent = ast.getParent().getParent();
-            return parentType == TokenTypes.SLIST
+            result = parentType == TokenTypes.SLIST
                     && parent.getFirstChild().getType() == TokenTypes.RCURLY
                     && grandParent.getType() == match;
         }
-
-        return type == TokenTypes.SLIST
+        else {
+            result = type == TokenTypes.SLIST
                 && parentType == match
                 && ast.getFirstChild().getType() == TokenTypes.RCURLY;
+        }
+        return result;
     }
 
     /**

@@ -122,13 +122,15 @@ public class CodeSelectorPresentation {
      * @return Last position of node without children.
      */
     private int findLastPosition(final DetailAST astNode) {
+        final int lastPosition;
         if (astNode.getChildCount() == 0) {
-            return lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
+            lastPosition = lines2position.get(astNode.getLineNo()) + astNode.getColumnNo()
                     + astNode.getText().length();
         }
         else {
-            return findLastPosition(astNode.getLastChild());
+            lastPosition = findLastPosition(astNode.getLastChild());
         }
+        return lastPosition;
     }
 
     /**
