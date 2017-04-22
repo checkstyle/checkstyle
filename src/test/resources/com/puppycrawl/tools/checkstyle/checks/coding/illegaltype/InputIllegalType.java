@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 import java.util.TreeSet;
 import java.util.Hashtable;
 //configuration: default
@@ -6,8 +6,8 @@ public class InputIllegalType {
     private AbstractClass a = null; //WARNING
     private NotAnAbstractClass b = null; /*another comment*/
 
-    private com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.AbstractClass c = null; //WARNING
-    private com.puppycrawl.tools.checkstyle.checks.coding.InputIllegalType.NotAnAbstractClass d = null;
+    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass c = null; //WARNING
+    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.NotAnAbstractClass d = null;
 
     private abstract class AbstractClass {/*one more comment*/}
 
