@@ -68,7 +68,7 @@ public class EmptyBlockCheckTest
             "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class EmptyBlockCheckTest
             "71:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
             "84:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
     }
 
     @Test
@@ -103,7 +103,7 @@ public class EmptyBlockCheckTest
             "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
             "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class EmptyBlockCheckTest
         try {
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
+            verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -203,7 +203,7 @@ public class EmptyBlockCheckTest
             "50:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
             "78:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
         };
-        verify(checkConfig, getPath("InputEmptyDefault.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
 
     @Test
@@ -222,6 +222,6 @@ public class EmptyBlockCheckTest
             "65:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
             "78:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STMT, "default"),
         };
-        verify(checkConfig, getPath("InputEmptyDefault.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
 }
