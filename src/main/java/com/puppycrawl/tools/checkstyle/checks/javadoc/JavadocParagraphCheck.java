@@ -194,17 +194,18 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if line is empty line.
      */
     private static boolean isEmptyLine(DetailNode newLine) {
+        boolean result = false;
         DetailNode previousSibling = JavadocUtils.getPreviousSibling(newLine);
-        if (previousSibling == null
-                || previousSibling.getParent().getType() != JavadocTokenTypes.JAVADOC) {
-            return false;
+        if (previousSibling != null
+                && previousSibling.getParent().getType() == JavadocTokenTypes.JAVADOC) {
+            if (previousSibling.getType() == JavadocTokenTypes.TEXT
+                    && previousSibling.getText().trim().isEmpty()) {
+                previousSibling = JavadocUtils.getPreviousSibling(previousSibling);
+            }
+            result = previousSibling != null
+                    && previousSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
         }
-        if (previousSibling.getType() == JavadocTokenTypes.TEXT
-                && previousSibling.getText().trim().isEmpty()) {
-            previousSibling = JavadocUtils.getPreviousSibling(previousSibling);
-        }
-        return previousSibling != null
-                && previousSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+        return result;
     }
 
     /**
@@ -213,6 +214,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if line with paragraph tag is first line in javadoc.
      */
     private static boolean isFirstParagraph(DetailNode paragraphTag) {
+        boolean result = true;
         DetailNode previousNode = JavadocUtils.getPreviousSibling(paragraphTag);
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
@@ -220,11 +222,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
                 || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && previousNode.getType() != JavadocTokenTypes.NEWLINE
                     && previousNode.getType() != JavadocTokenTypes.TEXT) {
-                return false;
+                result = false;
+                break;
             }
             previousNode = JavadocUtils.getPreviousSibling(previousNode);
         }
-        return true;
+        return result;
     }
 
     /**
@@ -250,16 +253,18 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if NEWLINE node is a last node in javadoc.
      */
     private static boolean isLastEmptyLine(DetailNode newLine) {
+        boolean result = true;
         DetailNode nextNode = JavadocUtils.getNextSibling(newLine);
         while (nextNode != null && nextNode.getType() != JavadocTokenTypes.JAVADOC_TAG) {
             if (nextNode.getType() == JavadocTokenTypes.TEXT
                     && !nextNode.getText().trim().isEmpty()
                     || nextNode.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                return false;
+                result = false;
+                break;
             }
             nextNode = JavadocUtils.getNextSibling(nextNode);
         }
-        return true;
+        return result;
     }
 
     /**

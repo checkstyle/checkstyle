@@ -92,5 +92,5 @@
 
     <!-- Until https://github.com/checkstyle/checkstyle/issues/3496 -->
     <suppress id="returnCountMaxOne" files=".*[\\/]ant[\\/]|.*[\\/]filters[\\/]|.*[\\/]api[\\/]|.*[\\/]annotation[\\/]|
-        |.*[\\/]coding[\\/]|.*[\\/]indentation[\\/]|.*[\\/]javadoc[\\/]"/>
+        |.*[\\/]coding[\\/]|.*[\\/]indentation[\\/]"/>
 </suppressions>
