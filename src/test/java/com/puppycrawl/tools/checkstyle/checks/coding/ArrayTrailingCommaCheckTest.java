@@ -58,4 +58,19 @@ public class ArrayTrailingCommaCheckTest
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
     }
+
+    @Test
+    public void testIgnoreInlineArraysProperty()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(ArrayTrailingCommaCheck.class);
+        checkConfig.addAttribute("ignoreInlineArrays", "false");
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_KEY),
+            "15: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig,
+            getPath("InputArrayTrailingCommaIgnoreInlineArrays.java"),
+            expected);
+    }
 }
