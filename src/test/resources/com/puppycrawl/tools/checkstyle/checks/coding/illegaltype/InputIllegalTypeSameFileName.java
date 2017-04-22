@@ -1,19 +1,19 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 import java.util.ArrayList;
 import java.awt.List;
 import java.util.*;
-import com.puppycrawl.tools.checkstyle.checks.coding.InputGregorianCalendar; 
-import com.puppycrawl.tools.checkstyle.checks.coding.InputGregorianCalendar.SubCalendar;
+import com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeGregorianCalendar;
+import com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeGregorianCalendar.SubCalendar;
 //configuration: "illegalClassNames": List, GregorianCalendar, java.io.File, SubCalendar, ArrayList
 public class InputIllegalTypeSameFileName
 {
-    InputGregorianCalendar cal = AnObject.getInstance(); //WARNING
+    InputIllegalTypeGregorianCalendar cal = AnObject.getInstance(); //WARNING
     java.util.Date date = null;
     SubCalendar subCalendar = null; //WARNING
     
-    private static class AnObject extends InputGregorianCalendar {
+    private static class AnObject extends InputIllegalTypeGregorianCalendar {
 
-        public static InputGregorianCalendar getInstance() //WARNING
+        public static InputIllegalTypeGregorianCalendar getInstance() //WARNING
         {
             return null;
         }
