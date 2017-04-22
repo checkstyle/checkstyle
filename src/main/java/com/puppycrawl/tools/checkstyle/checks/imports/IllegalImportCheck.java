@@ -123,11 +123,13 @@ public class IllegalImportCheck
      * @return if {@code importText} contains an illegal package prefix
      */
     private boolean isIllegalImport(String importText) {
+        boolean isIllegal = false;
         for (String element : illegalPkgs) {
             if (importText.startsWith(element + ".")) {
-                return true;
+                isIllegal = true;
+                break;
             }
         }
-        return false;
+        return isIllegal;
     }
 }

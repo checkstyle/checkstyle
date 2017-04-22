@@ -117,15 +117,14 @@ public final class DetectorOptions {
      * @return the pattern to use when matching.
      */
     public Pattern getPattern() {
-        if (pattern != null) {
-            return pattern;
-        }
-        int options = compileFlags;
+        if (pattern == null) {
+            int options = compileFlags;
 
-        if (ignoreCase) {
-            options |= Pattern.CASE_INSENSITIVE;
+            if (ignoreCase) {
+                options |= Pattern.CASE_INSENSITIVE;
+            }
+            pattern = Pattern.compile(format, options);
         }
-        pattern = Pattern.compile(format, options);
         return pattern;
     }
 

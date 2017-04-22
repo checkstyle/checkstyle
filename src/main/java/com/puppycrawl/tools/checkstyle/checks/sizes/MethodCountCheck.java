@@ -252,14 +252,11 @@ public final class MethodCountCheck extends AbstractCheck {
          * @return the value of a scope counter
          */
         private int value(Scope scope) {
-            final Integer value = counts.get(scope);
-
+            Integer value = counts.get(scope);
             if (value == null) {
-                return 0;
+                value = 0;
             }
-            else {
-                return value;
-            }
+            return value;
         }
 
         /**

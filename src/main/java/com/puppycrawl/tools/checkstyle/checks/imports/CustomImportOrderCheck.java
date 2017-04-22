@@ -593,12 +593,14 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *        true, if current group contains at least one import.
      */
     private boolean hasAnyImportInCurrentGroup(String currentGroup) {
+        boolean result = false;
         for (ImportDetails currentImport : importToGroupList) {
             if (currentGroup.equals(currentImport.getImportGroup())) {
-                return true;
+                result = true;
+                break;
             }
         }
-        return false;
+        return result;
     }
 
     /**
@@ -723,12 +725,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @return full path or null.
      */
     private static String getFullImportIdent(DetailAST token) {
-        if (token == null) {
-            return "";
+        String ident = "";
+        if (token != null) {
+            ident = FullIdent.createFullIdent(token.findFirstToken(TokenTypes.DOT)).getText();
         }
-        else {
-            return FullIdent.createFullIdent(token.findFirstToken(TokenTypes.DOT)).getText();
-        }
+        return ident;
     }
 
     /**
