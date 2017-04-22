@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.innerassignment;
 
 import java.io.FileInputStream;
 import java.io.IOException;
