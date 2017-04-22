@@ -343,7 +343,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
           </tr>
           <tr>
             <td>thirdPartyPackageRegExp</td>
-            <td>RegExp for THIRDPARTY_PACKAGE group imports.</td>
+            <td>RegExp for THIRD_PARTY_PACKAGE group imports.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>".*"</code></td>
           </tr>
