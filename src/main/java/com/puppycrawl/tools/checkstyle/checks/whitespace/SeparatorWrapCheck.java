@@ -132,6 +132,7 @@ public class SeparatorWrapCheck
             TokenTypes.RPAREN,
             TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.RBRACK,
+            TokenTypes.METHOD_REF,
         };
     }
 

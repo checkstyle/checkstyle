@@ -1596,7 +1596,9 @@ import static java.math.BigInteger.ZERO;
                     <a
                      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">ARRAY_DECLARATOR</a>,
                      <a
-                      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">RBRACK</a>.
+                      href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">RBRACK</a>,
+                      <a
+                       href="apidocs/com/puppycrawl/tool/checkstyle/api/TokenTypes.html#METHOD_REF">METHOD_REF</a>.
             </td>
 
             <td>

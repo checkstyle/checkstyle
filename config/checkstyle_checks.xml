@@ -535,6 +535,7 @@
       <property name="tokens" value="ARRAY_DECLARATOR"/>
       <property name="tokens" value="ELLIPSIS"/>
       <property name="tokens" value="SEMI"/>
+      <property name="tokens" value="METHOD_REF"/>
       <property name="option" value="EOL"/>
     </module>
     <module name="SingleSpaceSeparator">
