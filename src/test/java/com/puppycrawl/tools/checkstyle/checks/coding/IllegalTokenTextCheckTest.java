@@ -39,7 +39,9 @@ public class IllegalTokenTextCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "illegaltokentext" + File.separator
+                + filename);
     }
 
     @Test
@@ -53,7 +55,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
     }
 
     @Test
@@ -68,7 +70,7 @@ public class IllegalTokenTextCheckTest
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
             "25:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
     }
 
     @Test
@@ -84,7 +86,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "24:28: " + customMessage,
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
     }
 
     @Test
@@ -99,7 +101,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
     }
 
     @Test
@@ -123,7 +125,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "35:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
     }
 
     @Test
