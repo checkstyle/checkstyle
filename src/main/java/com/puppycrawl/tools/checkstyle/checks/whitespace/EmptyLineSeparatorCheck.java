@@ -544,13 +544,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if token have empty line before.
      */
     private boolean hasEmptyLineBefore(DetailAST token) {
+        boolean result = false;
         final int lineNo = token.getLineNo();
-        if (lineNo == 1) {
-            return false;
+        if (lineNo != 1) {
+            // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
+            final String lineBefore = getLines()[lineNo - 2];
+            result = lineBefore.trim().isEmpty();
         }
-        //  [lineNo - 2] is the number of the previous line because the numbering starts from zero.
-        final String lineBefore = getLines()[lineNo - 2];
-        return lineBefore.trim().isEmpty();
+        return result;
     }
 
     /**
