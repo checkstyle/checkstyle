@@ -485,9 +485,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         boolean result = false;
         final int lineNo = token.getLineNo();
         // 3 is the number of the pre-previous line because the numbering starts from zero.
-        final int number = 3;
-        if (lineNo >= number) {
-            final String prePreviousLine = getLines()[lineNo - number];
+        if (lineNo >= 1) {
+            final String prePreviousLine = getLines()[lineNo - 1];
             result = prePreviousLine.trim().isEmpty();
         }
         return result;
@@ -504,7 +503,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             lastToken = token.getLastChild();
         }
         DetailAST nextToken = token.getNextSibling();
-        if (isComment(nextToken)) {
+        if (lastToken != null && isComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
         // Start of the next token
@@ -527,7 +526,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         boolean result = false;
         if (startLine <= endLine) {
             final FileContents fileContents = getFileContents();
-            for (int line = startLine; line <= endLine; line++) {
+            for (int line = startLine; line < endLine; line++) {
                 // Check, if the line is blank. Lines are numbered from 0, so subtract 1
                 if (fileContents.lineIsBlank(line - 1)) {
                     result = true;
@@ -545,11 +544,12 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean hasEmptyLineBefore(DetailAST token) {
         final int lineNo = token.getLineNo();
+        boolean result = false;
         if (lineNo == 1) {
-            return false;
+            return result;
         }
-        //  [lineNo - 2] is the number of the previous line because the numbering starts from zero.
-        final String lineBefore = getLines()[lineNo - 2];
+        //  [lineNo - 1] is the number of the previous line because the numbering starts from zero.
+        final String lineBefore = getLines()[lineNo - 1];
         return lineBefore.trim().isEmpty();
     }
 
