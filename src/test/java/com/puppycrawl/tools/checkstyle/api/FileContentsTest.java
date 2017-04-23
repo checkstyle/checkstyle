@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -34,7 +35,7 @@ public class FileContentsTest {
     public void testDeprecatedCtor() {
         // just to make UT coverage 100%
         final FileContents o = new FileContents("filename.java", "1", "2");
-        o.getFilename();
+        assertEquals("filename.java", o.getFilename());
     }
 
     @Test

@@ -411,7 +411,7 @@ public final class Main {
         final AuditListener listener = createListener(cliOptions.format, cliOptions.outputLocation);
 
         // create RootModule object and run it
-        int errorCounter = 0;
+        final int errorCounter;
         final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
         final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);
 

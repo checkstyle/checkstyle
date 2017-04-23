@@ -255,7 +255,6 @@ public class IllegalInstantiationCheck
      * Check import statements.
      * @param className name of the class
      * @return value of illegal instantiated type
-     * @noinspection StringConcatenationInLoop
      */
     private String checkImportStatements(String className) {
         String illegalType = null;
