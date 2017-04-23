@@ -56,15 +56,20 @@ class ImportControl {
     private final Pattern patternForExactMatch;
     /** If this package represents a regular expression. */
     private final boolean regex;
+    /** Strategy in a case if matching allow/disallow rule was not found. */
+    private final MismatchStrategy strategyOnMismatch;
 
     /**
      * Construct a root node.
      * @param pkgName the name of the package.
      * @param regex flags interpretation of pkgName as regex pattern.
+     * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    ImportControl(final String pkgName, final boolean regex) {
+    ImportControl(final String pkgName, final boolean regex,
+                  final MismatchStrategy strategyOnMismatch) {
         parent = null;
         this.regex = regex;
+        this.strategyOnMismatch = strategyOnMismatch;
         if (regex) {
             // ensure that fullPackage is a self-contained regular expression
             fullPackage = encloseInGroup(pkgName);
@@ -79,14 +84,26 @@ class ImportControl {
     }
 
     /**
+     * Construct a root node.
+     * @param pkgName the name of the package.
+     * @param regex flags interpretation of pkgName as regex pattern.
+     */
+    ImportControl(final String pkgName, final boolean regex) {
+        this(pkgName, regex, MismatchStrategy.DISALLOWED);
+    }
+
+    /**
      * Construct a child node. The concatenation of regular expressions needs special care:
      * see {@link #ensureSelfContainedRegex(String, boolean)} for more details.
      * @param parent the parent node.
      * @param subPkg the sub package name.
      * @param regex flags interpretation of subPkg as regex pattern.
+     * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
-    ImportControl(final ImportControl parent, final String subPkg, final boolean regex) {
+    ImportControl(final ImportControl parent, final String subPkg, final boolean regex,
+                  final MismatchStrategy strategyOnMismatch) {
         this.parent = parent;
+        this.strategyOnMismatch = strategyOnMismatch;
         if (regex || parent.regex) {
             // regex gets inherited
             final String parentRegex = ensureSelfContainedRegex(parent.fullPackage, parent.regex);
@@ -103,6 +120,17 @@ class ImportControl {
             this.regex = false;
         }
         parent.children.add(this);
+    }
+
+    /**
+     * Construct a child node. The concatenation of regular expressions needs special care:
+     * see {@link #ensureSelfContainedRegex(String, boolean)} for more details.
+     * @param parent the parent node.
+     * @param subPkg the sub package name.
+     * @param regex flags interpretation of subPkg as regex pattern.
+     */
+    ImportControl(final ImportControl parent, final String subPkg, final boolean regex) {
+        this(parent, subPkg, regex, MismatchStrategy.DELEGATE_TO_PARENT);
     }
 
     /**
@@ -255,11 +283,23 @@ class ImportControl {
             result = returnValue;
         }
         else if (parent == null) {
-            // we are the top, so default to not allowed.
-            result = AccessResult.DISALLOWED;
+            if (strategyOnMismatch == MismatchStrategy.ALLOWED) {
+                result = AccessResult.ALLOWED;
+            }
+            else {
+                result = AccessResult.DISALLOWED;
+            }
         }
         else {
-            result = parent.checkAccess(inPkg, forImport);
+            if (strategyOnMismatch == MismatchStrategy.ALLOWED) {
+                result = AccessResult.ALLOWED;
+            }
+            else if (strategyOnMismatch == MismatchStrategy.DISALLOWED) {
+                result = AccessResult.DISALLOWED;
+            }
+            else {
+                result = parent.checkAccess(inPkg, forImport);
+            }
         }
         return result;
     }
