@@ -194,6 +194,54 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testStrategyOnMismatchOne() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getPath("import-control_strategy-on-mismatch_one.xml"));
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+            "4:1: " + getCheckMessage(MSG_DISALLOWED, "javax.swing.border.*"),
+            "6:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Button.ABORT"),
+        };
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
+    public void testStrategyOnMismatchTwo() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getPath("import-control_strategy-on-mismatch_two.xml"));
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+            "6:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Button.ABORT"),
+        };
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
+    public void testStrategyOnMismatchThree() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getPath("import-control_strategy-on-mismatch_three.xml"));
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+        };
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
+    public void testStrategyOnMismatchFour() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getPath("import-control_strategy-on-mismatch_four.xml"));
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+            "4:1: " + getCheckMessage(MSG_DISALLOWED, "javax.swing.border.*"),
+        };
+
+        verify(checkConfig, getPath("InputImportControl.java"), expected);
+    }
+
+    @Test
     public void testPkgRegExpInParent() throws Exception {
         testRegExpInPackage("import-control_pkg-re-in-parent.xml");
     }
