@@ -2,13 +2,13 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
+package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
 
-class InputEmptyBlockAllowEmptyLoops
+class UpdateClass
 {
 	public void fooMethod()
 	{
