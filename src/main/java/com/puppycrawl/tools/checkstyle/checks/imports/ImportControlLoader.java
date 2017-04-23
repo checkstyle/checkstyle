@@ -54,6 +54,10 @@ final class ImportControlLoader extends AbstractLoader {
     private static final String DTD_PUBLIC_ID_1_2 =
         "-//Puppy Crawl//DTD Import Control 1.2//EN";
 
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_3 =
+            "-//Puppy Crawl//DTD Import Control 1.3//EN";
+
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
@@ -66,11 +70,24 @@ final class ImportControlLoader extends AbstractLoader {
     private static final String DTD_RESOURCE_NAME_1_2 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_2.dtd";
 
+    /** The resource for the configuration dtd. */
+    private static final String DTD_RESOURCE_NAME_1_3 =
+            "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_3.dtd";
+
     /** The map to lookup the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
 
     /** Name for attribute 'pkg'. */
     private static final String PKG_ATTRIBUTE_NAME = "pkg";
+
+    /** Name for attribute 'strategyOnMismatch'. */
+    private static final String STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME = "strategyOnMismatch";
+
+    /** Value "allowed" for attribute 'strategyOnMismatch'. */
+    private static final String STRATEGY_ON_MISMATCH_ALLOWED_VALUE = "allowed";
+
+    /** Value "disallowed" for attribute 'strategyOnMismatch'. */
+    private static final String STRATEGY_ON_MISMATCH_DISALLOWED_VALUE = "disallowed";
 
     /** Qualified name for element 'subpackage'. */
     private static final String SUBPACKAGE_ELEMENT_NAME = "subpackage";
@@ -85,6 +102,7 @@ final class ImportControlLoader extends AbstractLoader {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_1, DTD_RESOURCE_NAME_1_1);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
     }
 
     /**
@@ -105,13 +123,15 @@ final class ImportControlLoader extends AbstractLoader {
             throws SAXException {
         if ("import-control".equals(qName)) {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
+            final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new ImportControl(pkg, regex));
+            stack.push(new ImportControl(pkg, regex, strategyOnMismatch));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, "name");
+            final MismatchStrategy strategyOnMismatch = getStrategyForSubpackage(attributes);
             final boolean regex = containsRegexAttribute(attributes);
-            stack.push(new ImportControl(stack.peek(), name, regex));
+            stack.push(new ImportControl(stack.peek(), name, regex, strategyOnMismatch));
         }
         else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
             // Need to handle either "pkg" or "class" attribute.
@@ -224,6 +244,37 @@ final class ImportControlLoader extends AbstractLoader {
      */
     private ImportControl getRoot() {
         return stack.peek();
+    }
+
+    /**
+     * Utility to get a strategyOnMismatch property for "import-control" tag.
+     * @param attributes collect to get attribute from.
+     * @return the value of the attribute.
+     */
+    private static MismatchStrategy getStrategyForImportControl(final Attributes attributes) {
+        final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
+        MismatchStrategy strategyOnMismatch = MismatchStrategy.DISALLOWED;
+        if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
+            strategyOnMismatch = MismatchStrategy.ALLOWED;
+        }
+        return strategyOnMismatch;
+    }
+
+    /**
+     * Utility to get a strategyOnMismatch property for "subpackage" tag.
+     * @param attributes collect to get attribute from.
+     * @return the value of the attribute.
+     */
+    private static MismatchStrategy getStrategyForSubpackage(final Attributes attributes) {
+        final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
+        MismatchStrategy strategyOnMismatch = MismatchStrategy.DELEGATE_TO_PARENT;
+        if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
+            strategyOnMismatch = MismatchStrategy.ALLOWED;
+        }
+        else if (STRATEGY_ON_MISMATCH_DISALLOWED_VALUE.equals(returnValue)) {
+            strategyOnMismatch = MismatchStrategy.DISALLOWED;
+        }
+        return strategyOnMismatch;
     }
 
     /**
