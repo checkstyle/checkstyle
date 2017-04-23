@@ -2,9 +2,9 @@
 // Input test file for testing empty LITERAL_CASE.
 // Created: 2017
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
+package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-class InputEmptyBlockCase
+class InputEmptyCase
 {
     void method1(int a) {
         switch (a) {}
