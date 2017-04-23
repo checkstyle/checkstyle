@@ -77,7 +77,7 @@ public final class JavadocUtils {
 
     /** Inline tag pattern. */
     private static final Pattern INLINE_TAG_PATTERN = Pattern.compile(
-        ".*?\\{@(\\p{Alpha}+)\\s+(.*?)\\}");
+        ".*?\\{@(\\p{Alpha}+)\\s+(.*?)}");
 
     /** Newline pattern. */
     private static final Pattern NEWLINE = Pattern.compile("\n");
