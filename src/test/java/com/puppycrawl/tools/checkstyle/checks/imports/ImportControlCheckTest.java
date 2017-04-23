@@ -180,6 +180,20 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testBlacklist() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
+        checkConfig.addAttribute("file", getPath("import-control_blacklist.xml"));
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.Stream"),
+            "4:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.Date"),
+            "6:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.Collectors"),
+            "7:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.IntStream"),
+        };
+
+        verify(checkConfig, getPath("InputImportControl_Blacklist.java"), expected);
+    }
+
+    @Test
     public void testPkgRegExpInParent() throws Exception {
         testRegExpInPackage("import-control_pkg-re-in-parent.xml");
     }

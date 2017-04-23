@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+        "-//Puppy Crawl//DTD Import Control 1.2//EN"
+        "http://checkstyle.sourceforge.net/dtds/import_control_1_2.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks">
+  <allow pkg=".*" regex="true"/>
+  <subpackage name="imports">
+    <disallow class="java.util.Date"/>
+    <disallow pkg="java.util.stream"/>
+  </subpackage>
+</import-control>
