@@ -1491,7 +1491,7 @@ d = e / f;        // Another comment for this line
             <td>format</td>
             <td>pattern for strings allowed before the comment</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^[\s\});]*$"</code></td>
+            <td><code>"^[\s});]*$"</code></td>
           </tr>
           <tr>
             <td>legalComment</td>

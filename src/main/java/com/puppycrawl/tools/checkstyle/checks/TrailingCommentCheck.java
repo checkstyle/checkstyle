@@ -109,7 +109,7 @@ public class TrailingCommentCheck extends AbstractCheck {
     private Pattern legalComment;
 
     /** The regexp to match against. */
-    private Pattern format = Pattern.compile("^[\\s\\});]*$");
+    private Pattern format = Pattern.compile("^[\\s});]*$");
 
     /**
      * Sets patter for legal trailing comments.
