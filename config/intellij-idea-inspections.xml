@@ -46,6 +46,8 @@
     </inspection_tool>
     <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AnonymousFunctionJS" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- suppressed till GSoC project completion .... -->
+    <inspection_tool class="AnonymousHasLambdaAlternative" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="AnonymousInnerClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AnonymousInnerClassMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false" />
@@ -1524,6 +1526,8 @@
     <inspection_tool class="OctalLiteral" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="OnDemandImport" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="OneWayWebMethod" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- suppressed till GSoC project completion .... -->
+    <inspection_tool class="OptionalIsPresent" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="OverloadedMethodsWithSameNumberOfParameters" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreInconvertibleTypes" value="true" />
     </inspection_tool>
@@ -1801,6 +1805,8 @@
     <inspection_tool class="SimplifiableIfStatement" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="SimplifiableJUnitAssertion" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifyNegatedBinaryExpression" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- suppressed till GSoC project completion .... -->
+    <inspection_tool class="SimplifyStreamApiCallChains" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SingleCharacterStartsWith" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SingleClassImport" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="Singleton" enabled="true" level="WARNING" enabled_by_default="true" />
