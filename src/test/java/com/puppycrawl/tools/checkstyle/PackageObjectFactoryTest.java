@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -34,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -57,7 +57,7 @@ public class PackageObjectFactoryTest {
             fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("moduleClassLoader must not be null", ex.getMessage());
+            Assert.assertEquals("moduleClassLoader must not be null", ex.getMessage());
         }
     }
 
@@ -68,7 +68,7 @@ public class PackageObjectFactoryTest {
             fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("moduleClassLoader must not be null", ex.getMessage());
+            Assert.assertEquals("moduleClassLoader must not be null", ex.getMessage());
         }
     }
 
@@ -113,7 +113,7 @@ public class PackageObjectFactoryTest {
         final String className = "SomeClass";
         final String actual =
             String.valueOf(method.invoke(PackageObjectFactory.class, className, packages));
-        assertEquals(className, actual);
+        Assert.assertEquals(className, actual);
     }
 
     @Test
@@ -135,9 +135,9 @@ public class PackageObjectFactoryTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."
+            Assert.assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."
                     + "PackageObjectFactoryTest$FailConstructorFileSet", ex.getMessage());
-            assertEquals("IllegalArgumentException", ex.getCause().getCause().getClass()
+            Assert.assertEquals("IllegalArgumentException", ex.getCause().getCause().getClass()
                     .getSimpleName());
         }
     }
