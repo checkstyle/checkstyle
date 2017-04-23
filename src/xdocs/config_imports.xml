@@ -847,6 +847,16 @@ public class InputIllegalImport { }
         </p>
 
         <p>
+          Short description of the behaviour:
+          <ul>
+              <li>Check starts checking from the longest matching subpackage (later 'current subpackage') described inside import control file to package defined in class file.</li>
+              <li>If there is matching allow/disallow rule inside the current subpackage then the Check returns "allowed" or "disallowed" message.</li>
+              <li>If there is no matching allow/disallow rule inside the current subpackage then it continues checking in the parent subpackage.</li>
+              <li>If there is no matching allow/disallow rule in any of the subpackages, including the root level (import-control), then the import is disallowed by default.</li>
+          </ul>
+        </p>
+
+        <p>
           The DTD for a import control XML document is at <a
           href="http://checkstyle.sourceforge.net/dtds/import_control_1_2.dtd">
           http://checkstyle.sourceforge.net/dtds/import_control_1_2.dtd</a>. It
@@ -945,6 +955,7 @@ public class InputIllegalImport { }
 
         <source>
 &lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;disallow pkg=&quot;sun&quot;/&gt;
     &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.api&quot;/&gt;
     &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;/&gt;
     &lt;allow class=&quot;com.google.common.io.Files&quot;/&gt;
@@ -957,6 +968,9 @@ public class InputIllegalImport { }
         &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.ant&quot;/&gt;
         &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.doclets&quot;/&gt;
         &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.gui&quot;/&gt;
+    &lt;/subpackage&gt;
+    &lt;subpackage name=&quot;dao&quot;&gt;
+        &lt;disallow pkg=&quot;javax.swing&quot; exact-match=&quot;true&quot;/&gt;
     &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </source>
@@ -988,6 +1002,52 @@ public class InputIllegalImport { }
           import-control.xml</a>
           which is part of the Checkstyle distribution.
         </p>
+
+        <h4 id="blacklist-example">Example of blacklist mode</h4>
+        <p>To have a <b>blacklist mode</b>, it is required to have disallows inside subpackage and to have allow rule inside parent of the current subpackage to catch classes and packages those are not in the blacklist.</p>
+        <p>In the example below any import from <code>java.util</code> (<code>java.util.List</code>, <code>java.util.Date</code>) package is allowed except <code>java.util.Map</code> inside subpackage <code>com.puppycrawl.tools.checkstyle.filters</code>.</p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+    &lt;allow pkg=&quot;java.util&quot;/&gt;
+    &lt;subpackage name=&quot;filters&quot; &gt;
+        &lt;disallow class=&quot;java.util.Map&quot;/&gt;
+    &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>
+          In the next example imports <code>java.util.stream.Stream</code> and <code>java.util.stream.Collectors</code> are disallowed inside <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
+          but because of <code>&lt;allow pkg=&quot;java.util.stream&quot;/&gt;</code> every import from <code>java.util.stream</code> is allowed except described ones.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
+    &lt;allow pkg=&quot;java.util.stream&quot;/&gt;
+    &lt;subpackage name=&quot;imports&quot;&gt;
+        &lt;disallow class=&quot;java.util.stream.Stream&quot;/&gt;
+        &lt;disallow class=&quot;java.util.stream.Collectors&quot;/&gt;
+    &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.imports;
+
+import java.util.stream.Stream;     // violation here
+import java.util.stream.Collectors; // violation here
+import java.util.stream.IntStream;
+        </source>
+        <p>
+          In the following example, all imports are allowed except the classes <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
+    &lt;allow pkg=&quot;.*&quot; regexp=&quot;true&quot;/&gt;
+    &lt;subpackage name=&quot;imports&quot;&gt;
+        &lt;disallow class=&quot;java.util.Date&quot;/&gt;
+        &lt;disallow class=&quot;java.util.List&quot;/&gt;
+        &lt;disallow pkg=&quot;sun&quot;/&gt;
+    &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
 
         <h4 id="regex-notes">Notes on regular expressions</h4>
         <p>
