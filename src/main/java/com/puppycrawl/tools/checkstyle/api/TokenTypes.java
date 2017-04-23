@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaTokenTypes;
  *
  * @author Oliver Burn
  * @author <a href="mailto:dobratzp@ele.uri.edu">Peter Dobratz</a>
- * @noinspection JavaDoc
  */
 public final class TokenTypes {
     // The following three types are never part of an AST,

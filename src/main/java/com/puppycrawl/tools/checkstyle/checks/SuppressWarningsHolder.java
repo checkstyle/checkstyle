@@ -87,11 +87,11 @@ public class SuppressWarningsHolder
      * @return the default alias for the given check
      */
     public static String getDefaultAlias(String sourceName) {
-        final int startIndex = sourceName.lastIndexOf('.') + 1;
         int endIndex = sourceName.length();
         if (sourceName.endsWith(CHECK_SUFFIX)) {
             endIndex -= CHECK_SUFFIX.length();
         }
+        final int startIndex = sourceName.lastIndexOf('.') + 1;
         return sourceName.substring(startIndex, endIndex).toLowerCase(Locale.ENGLISH);
     }
 
