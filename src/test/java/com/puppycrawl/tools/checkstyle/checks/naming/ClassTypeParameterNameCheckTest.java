@@ -36,7 +36,9 @@ public class ClassTypeParameterNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "classtypeparametername" + File.separator
+                + filename);
     }
 
     @Test
@@ -56,11 +58,11 @@ public class ClassTypeParameterNameCheckTest
         final String pattern = "^[A-Z]$";
 
         final String[] expected = {
-            "5:38: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "5:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
             "13:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
-        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputClassTypeParameterName.java"), expected);
     }
 
     @Test
@@ -73,10 +75,10 @@ public class ClassTypeParameterNameCheckTest
         final String pattern = "^foo$";
 
         final String[] expected = {
-            "5:38: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "5:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
             "33:18: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputClassTypeParameterName.java"), expected);
     }
 
     @Test
