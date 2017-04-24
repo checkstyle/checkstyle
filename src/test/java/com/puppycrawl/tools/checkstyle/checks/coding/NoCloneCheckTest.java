@@ -38,7 +38,9 @@ public class NoCloneCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "noclone" + File.separator
+                + filename);
     }
 
     @Test
@@ -55,7 +57,7 @@ public class NoCloneCheckTest
             "60: " + getCheckMessage(MSG_KEY),
             "98: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputClone.java"), expected);
+        verify(checkConfig, getPath("InputNoClone.java"), expected);
     }
 
     @Test
