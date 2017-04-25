@@ -390,11 +390,14 @@ public class SuppressionCommentFilter
          */
         @Override
         public int compareTo(Tag object) {
+            final int result;
             if (line == object.line) {
-                return Integer.compare(column, object.column);
+                result = Integer.compare(column, object.column);
             }
-
-            return Integer.compare(line, object.line);
+            else {
+                result = Integer.compare(line, object.line);
+            }
+            return result;
         }
 
         @Override

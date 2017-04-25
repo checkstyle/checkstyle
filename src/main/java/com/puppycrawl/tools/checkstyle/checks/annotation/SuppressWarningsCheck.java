@@ -249,7 +249,6 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * @return a Token representing the expr.
      */
     private static DetailAST findWarningsHolder(final DetailAST annotation) {
-        DetailAST warningsHolder = annotation;
         final DetailAST annValuePair =
             annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         final DetailAST annArrayInit;
@@ -263,6 +262,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
                     annValuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
         }
 
+        DetailAST warningsHolder = annotation;
         if (annArrayInit != null) {
             warningsHolder = annArrayInit;
         }

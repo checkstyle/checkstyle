@@ -128,15 +128,8 @@ public class SuppressElement
 
     @Override
     public boolean accept(AuditEvent event) {
-        // reject if file or check module mismatch?
-        if (isFileNameAndModuleNotMatching(event)) {
-            return true;
-        }
-
-        // reject if no line/column matching
-        return (lineFilter != null || columnFilter != null)
-                && (lineFilter == null || !lineFilter.accept(event.getLine()))
-                && (columnFilter == null || !columnFilter.accept(event.getColumn()));
+        return isFileNameAndModuleNotMatching(event)
+                || isLineAndColumnMatch(event);
     }
 
     /**
@@ -150,6 +143,17 @@ public class SuppressElement
                 || event.getLocalizedMessage() == null
                 || moduleId != null && !moduleId.equals(event.getModuleId())
                 || checkRegexp != null && !checkRegexp.matcher(event.getSourceName()).find();
+    }
+
+    /**
+     * Whether line and column match.
+     * @param event event to process.
+     * @return true if line and column match.
+     */
+    private boolean isLineAndColumnMatch(AuditEvent event) {
+        return (lineFilter != null || columnFilter != null)
+                && (lineFilter == null || !lineFilter.accept(event.getLine()))
+                && (columnFilter == null || !columnFilter.accept(event.getColumn()));
     }
 
     @Override

@@ -303,15 +303,16 @@ public class SuppressionFilterTest extends BaseCheckTestSupport {
     }
 
     private static boolean isUrlReachable(String url) {
+        boolean result = true;
         try {
             final URL verifiableUrl = new URL(url);
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
         catch (IOException ex) {
-            return false;
+            result = false;
         }
-        return true;
+        return result;
     }
 
     private static SuppressionFilter createSuppressionFilter(String fileName, boolean optional)

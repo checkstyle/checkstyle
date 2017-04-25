@@ -208,12 +208,14 @@ public class SuppressWithNearbyCommentFilter
      * @return true if event matches any tag from {@link #tags}, false otherwise.
      */
     private boolean matchesTag(AuditEvent event) {
+        boolean result = false;
         for (final Tag tag : tags) {
             if (tag.isMatch(event)) {
-                return true;
+                result = true;
+                break;
             }
         }
-        return false;
+        return result;
     }
 
     /**
@@ -355,11 +357,14 @@ public class SuppressWithNearbyCommentFilter
          */
         @Override
         public int compareTo(Tag other) {
+            final int result;
             if (firstLine == other.firstLine) {
-                return Integer.compare(lastLine, other.lastLine);
+                result = Integer.compare(lastLine, other.lastLine);
             }
-
-            return Integer.compare(firstLine, other.firstLine);
+            else {
+                result = Integer.compare(firstLine, other.firstLine);
+            }
+            return result;
         }
 
         @Override
