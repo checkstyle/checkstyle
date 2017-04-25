@@ -34,13 +34,15 @@ public class SingleSpaceSeparatorCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "whitespace" + File.separator + filename);
+                + "whitespace" + File.separator
+                + "singlespaceseparator" + File.separator
+                + filename);
     }
 
     @Test
     public void testNoSpaceErrors() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(SingleSpaceSeparatorCheck.class);
-        verify(checkConfig, getPath("InputSingleSpaceNoErrors.java"),
+        verify(checkConfig, getPath("InputSingleSpaceSeparatorNoErrors.java"),
                 CommonUtils.EMPTY_STRING_ARRAY);
     }
 
@@ -99,7 +101,7 @@ public class SingleSpaceSeparatorCheckTest extends BaseCheckTestSupport {
             "14:7: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceComments.java"), expected);
+        verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
     }
 
     @Test
@@ -109,6 +111,6 @@ public class SingleSpaceSeparatorCheckTest extends BaseCheckTestSupport {
             "13:13: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceComments.java"), expected);
+        verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
     }
 }
