@@ -595,11 +595,15 @@ public class CheckstyleAntTask extends Task {
          * @throws IOException if an error occurs
          */
         public AuditListener createListener(Task task) throws IOException {
+            final AuditListener listener;
             if (type != null
                     && E_XML.equals(type.getValue())) {
-                return createXmlLogger(task);
+                listener = createXmlLogger(task);
             }
-            return createDefaultLogger(task);
+            else {
+                listener = createDefaultLogger(task);
+            }
+            return listener;
         }
 
         /**
@@ -610,13 +614,17 @@ public class CheckstyleAntTask extends Task {
          */
         private AuditListener createDefaultLogger(Task task)
                 throws IOException {
+            final AuditListener defaultLogger;
             if (toFile == null || !useFile) {
-                return new DefaultLogger(
+                defaultLogger = new DefaultLogger(
                     new LogOutputStream(task, Project.MSG_DEBUG),
                     true, new LogOutputStream(task, Project.MSG_ERR), true);
             }
-            final FileOutputStream infoStream = new FileOutputStream(toFile);
-            return new DefaultLogger(infoStream, true, infoStream, false);
+            else {
+                final FileOutputStream infoStream = new FileOutputStream(toFile);
+                defaultLogger = new DefaultLogger(infoStream, true, infoStream, false);
+            }
+            return defaultLogger;
         }
 
         /**
@@ -626,11 +634,14 @@ public class CheckstyleAntTask extends Task {
          * @throws IOException if an error occurs
          */
         private AuditListener createXmlLogger(Task task) throws IOException {
+            final AuditListener xmlLogger;
             if (toFile == null || !useFile) {
-                return new XMLLogger(new LogOutputStream(task,
-                        Project.MSG_INFO), true);
+                xmlLogger = new XMLLogger(new LogOutputStream(task, Project.MSG_INFO), true);
             }
-            return new XMLLogger(new FileOutputStream(toFile), true);
+            else {
+                xmlLogger = new XMLLogger(new FileOutputStream(toFile), true);
+            }
+            return xmlLogger;
         }
     }
 
