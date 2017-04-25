@@ -122,6 +122,7 @@ build:
           echo CS_version: ${CS_POM_VERSION}
           git clone https://github.com/hibernate/hibernate-search.git
           cd hibernate-search
+          git checkout 5.8.0.Beta1
           mvn -s settings-example.xml clean install -DskipTests=true -DtestElasticsearchVersion=false
           mvn -s settings-example.xml checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
           cd ../
