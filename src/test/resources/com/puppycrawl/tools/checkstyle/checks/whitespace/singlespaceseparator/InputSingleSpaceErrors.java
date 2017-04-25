@@ -1,4 +1,4 @@
-package  com.puppycrawl.   tools.checkstyle.checks.whitespace;
+package  com.puppycrawl.   tools.checkstyle.checks.whitespace.singlespaceseparator;
 
 import java.util.List;
 import  java.util.Vector;
