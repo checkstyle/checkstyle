@@ -115,12 +115,11 @@ public final class AuditEvent
      * @return the audit event severity level
      */
     public SeverityLevel getSeverityLevel() {
-        if (localizedMessage == null) {
-            return SeverityLevel.INFO;
+        SeverityLevel severityLevel = SeverityLevel.INFO;
+        if (localizedMessage != null) {
+            severityLevel = localizedMessage.getSeverityLevel();
         }
-        else {
-            return localizedMessage.getSeverityLevel();
-        }
+        return severityLevel;
     }
 
     /**

@@ -119,13 +119,17 @@ public abstract class AbstractViolationReporter
      *     used by the module.
      */
     private static String getMessageBundle(final String className) {
+        final String messageBundle;
         final int endIndex = className.lastIndexOf('.');
         final String messages = "messages";
         if (endIndex < 0) {
-            return messages;
+            messageBundle = messages;
         }
-        final String packageName = className.substring(0, endIndex);
-        return packageName + "." + messages;
+        else {
+            final String packageName = className.substring(0, endIndex);
+            messageBundle = packageName + "." + messages;
+        }
+        return messageBundle;
     }
 
     /**
