@@ -41,7 +41,9 @@ public class ConstantNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "constantname" + File.separator
+                + filename);
     }
 
     @Override
@@ -88,7 +90,7 @@ public class ConstantNameCheckTest
             "25:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
             "142:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputConstantNameSimple.java"), expected);
     }
 
     @Test
@@ -105,7 +107,7 @@ public class ConstantNameCheckTest
         final String[] expected = {
             "142:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputConstantNameSimple.java"), expected);
     }
 
     @Test
@@ -120,7 +122,7 @@ public class ConstantNameCheckTest
             "24:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
             "64:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
         };
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputConstantNameInner.java"), expected);
     }
 
     @Test
@@ -129,7 +131,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputConstantNames.java"), expected);
+        verify(checkConfig, getPath("InputConstantName.java"), expected);
     }
 
     @Test
@@ -149,7 +151,7 @@ public class ConstantNameCheckTest
             "52:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "53:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verify(checkConfig, getPath("InputMemberNameExtended.java"), expected);
+        verify(checkConfig, getPath("InputConstantNameMemberExtended.java"), expected);
     }
 
     @Test
@@ -158,7 +160,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputStaticModifierInInterface.java"), expected);
+        verify(checkConfig, getPath("InputConstantNameStaticModifierInInterface.java"), expected);
     }
 
     @Test
