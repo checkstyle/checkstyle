@@ -91,6 +91,6 @@
     <suppress checks="CyclomaticComplexity" files="CustomImportOrderCheck\.java"/>
 
     <!-- Until https://github.com/checkstyle/checkstyle/issues/3496 -->
-    <suppress id="returnCountMaxOne" files=".*[\\/]ant[\\/]|.*[\\/]filters[\\/]|.*[\\/]api[\\/]|.*[\\/]annotation[\\/]|
+    <suppress id="returnCountMaxOne" files=".*[\\/]filters[\\/]|.*[\\/]api[\\/]|
         |.*[\\/]coding[\\/]|.*[\\/]indentation[\\/]"/>
 </suppressions>

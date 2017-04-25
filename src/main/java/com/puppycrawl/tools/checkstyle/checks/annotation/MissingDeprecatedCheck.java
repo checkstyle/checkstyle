@@ -199,33 +199,28 @@ public final class MissingDeprecatedCheck extends AbstractCheck {
      * @return true if contains the tag
      */
     private boolean containsJavadocTag(final TextBlock javadoc) {
-        if (javadoc == null) {
-            return false;
-        }
-
-        final String[] lines = javadoc.getText();
-
         boolean found = false;
+        if (javadoc != null) {
+            final String[] lines = javadoc.getText();
+            int currentLine = javadoc.getStartLineNo() - 1;
 
-        int currentLine = javadoc.getStartLineNo() - 1;
+            for (int i = 0; i < lines.length; i++) {
+                currentLine++;
+                final String line = lines[i];
 
-        for (int i = 0; i < lines.length; i++) {
-            currentLine++;
-            final String line = lines[i];
+                final Matcher javadocNoArgMatcher = MATCH_DEPRECATED.matcher(line);
+                final Matcher noArgMultilineStart = MATCH_DEPRECATED_MULTILINE_START.matcher(line);
 
-            final Matcher javadocNoArgMatcher =
-                MATCH_DEPRECATED.matcher(line);
-            final Matcher noArgMultilineStart = MATCH_DEPRECATED_MULTILINE_START.matcher(line);
-
-            if (javadocNoArgMatcher.find()) {
-                if (found) {
-                    log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
-                        JavadocTagInfo.DEPRECATED.getText());
+                if (javadocNoArgMatcher.find()) {
+                    if (found) {
+                        log(currentLine, MSG_KEY_JAVADOC_DUPLICATE_TAG,
+                                JavadocTagInfo.DEPRECATED.getText());
+                    }
+                    found = true;
                 }
-                found = true;
-            }
-            else if (noArgMultilineStart.find()) {
-                found = checkTagAtTheRestOfComment(lines, found, currentLine, i);
+                else if (noArgMultilineStart.find()) {
+                    found = checkTagAtTheRestOfComment(lines, found, currentLine, i);
+                }
             }
         }
         return found;

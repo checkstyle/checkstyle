@@ -217,15 +217,12 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * @return the {@link SuppressWarnings SuppressWarnings} annotation
      */
     private static DetailAST getSuppressWarnings(DetailAST ast) {
-        final DetailAST annotation = AnnotationUtility.getAnnotation(
-            ast, SUPPRESS_WARNINGS);
+        DetailAST annotation = AnnotationUtility.getAnnotation(ast, SUPPRESS_WARNINGS);
 
         if (annotation == null) {
-            return AnnotationUtility.getAnnotation(ast, FQ_SUPPRESS_WARNINGS);
+            annotation = AnnotationUtility.getAnnotation(ast, FQ_SUPPRESS_WARNINGS);
         }
-        else {
-            return annotation;
-        }
+        return annotation;
     }
 
     /**
@@ -252,6 +249,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * @return a Token representing the expr.
      */
     private static DetailAST findWarningsHolder(final DetailAST annotation) {
+        DetailAST warningsHolder = annotation;
         final DetailAST annValuePair =
             annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         final DetailAST annArrayInit;
@@ -266,10 +264,10 @@ public class SuppressWarningsCheck extends AbstractCheck {
         }
 
         if (annArrayInit != null) {
-            return annArrayInit;
+            warningsHolder = annArrayInit;
         }
 
-        return annotation;
+        return warningsHolder;
     }
 
     /**
