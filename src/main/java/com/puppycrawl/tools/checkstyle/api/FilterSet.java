@@ -83,12 +83,14 @@ public class FilterSet
 
     @Override
     public boolean accept(AuditEvent event) {
+        boolean result = true;
         for (Filter filter : filters) {
             if (!filter.accept(event)) {
-                return false;
+                result = false;
+                break;
             }
         }
-        return true;
+        return result;
     }
 
     /** Clears the FilterSet. */

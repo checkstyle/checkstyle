@@ -279,12 +279,12 @@ public final class LocalizedMessage
      *          if there is no custom message
      */
     private String getCustomMessage() {
-
-        if (customMessage == null) {
-            return null;
+        String message = null;
+        if (customMessage != null) {
+            final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
+            message = formatter.format(args);
         }
-        final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
-        return formatter.format(args);
+        return message;
     }
 
     /**

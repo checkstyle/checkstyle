@@ -107,6 +107,7 @@ public abstract class AbstractLoader
     @Override
     public InputSource resolveEntity(String publicId, String systemId)
             throws SAXException, IOException {
+        final InputSource inputSource;
         if (publicIdToResourceNameMap.keySet().contains(publicId)) {
             final String dtdResourceName =
                     publicIdToResourceNameMap.get(publicId);
@@ -115,9 +116,12 @@ public abstract class AbstractLoader
             final InputStream dtdIs =
                 loader.getResourceAsStream(dtdResourceName);
 
-            return new InputSource(dtdIs);
+            inputSource = new InputSource(dtdIs);
         }
-        return super.resolveEntity(publicId, systemId);
+        else {
+            inputSource = super.resolveEntity(publicId, systemId);
+        }
+        return inputSource;
     }
 
     @Override

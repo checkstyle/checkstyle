@@ -229,12 +229,14 @@ public final class FileText extends AbstractList<String> {
      * @return an object representing the denoted text file
      */
     public static FileText fromLines(File file, List<String> lines) {
+        final FileText fileText;
         if (lines instanceof FileText) {
-            return (FileText) lines;
+            fileText = (FileText) lines;
         }
         else {
-            return new FileText(file, lines);
+            fileText = new FileText(file, lines);
         }
+        return fileText;
     }
 
     /**

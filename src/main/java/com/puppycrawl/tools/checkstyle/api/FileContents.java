@@ -369,16 +369,21 @@ public final class FileContents implements CommentListener {
      */
     private boolean hasIntersectionWithBlockComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
+        boolean hasIntersection = false;
         // Check C comments (all comments should be checked)
         final Collection<List<TextBlock>> values = clangComments.values();
         for (final List<TextBlock> row : values) {
             for (final TextBlock comment : row) {
                 if (comment.intersects(startLineNo, startColNo, endLineNo, endColNo)) {
-                    return true;
+                    hasIntersection = true;
+                    break;
                 }
             }
+            if (hasIntersection) {
+                break;
+            }
         }
-        return false;
+        return hasIntersection;
     }
 
     /**
@@ -391,15 +396,17 @@ public final class FileContents implements CommentListener {
      */
     private boolean hasIntersectionWithSingleLineComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
+        boolean hasIntersection = false;
         // Check CPP comments (line searching is possible)
         for (int lineNumber = startLineNo; lineNumber <= endLineNo;
              lineNumber++) {
             final TextBlock comment = cppComments.get(lineNumber);
             if (comment != null && comment.intersects(startLineNo, startColNo,
                     endLineNo, endColNo)) {
-                return true;
+                hasIntersection = true;
+                break;
             }
         }
-        return false;
+        return hasIntersection;
     }
 }
