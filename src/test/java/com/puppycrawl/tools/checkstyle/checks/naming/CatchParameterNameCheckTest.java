@@ -36,7 +36,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 public class CatchParameterNameCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + "naming" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "naming" + File.separator
+                + "catchparametername" + File.separator
+                + filename);
     }
 
     @Test
@@ -53,7 +56,7 @@ public class CatchParameterNameCheckTest extends BaseCheckTestSupport {
         final Configuration checkConfig = createCheckConfig(CatchParameterNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputCatchParameterNameSimple.java"), expected);
     }
 
     @Test
