@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -39,18 +38,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 public final class CheckUtil {
@@ -140,133 +133,43 @@ public final class CheckUtil {
      * Gets all checkstyle's non-abstract checks.
      * @return the set of checkstyle's non-abstract check classes.
      * @throws IOException if the attempt to read class path resources failed.
-     * @see #isValidCheckstyleClass(Class, String)
-     * @see #isCheckstyleCheck(Class)
      */
     public static Set<Class<?>> getCheckstyleChecks() throws IOException {
-        final Set<Class<?>> checkstyleChecks = new HashSet<>();
-
         final ClassLoader loader = Thread.currentThread()
                 .getContextClassLoader();
-        final ClassPath classpath = ClassPath.from(loader);
         final String packageName = "com.puppycrawl.tools.checkstyle";
-        final ImmutableSet<ClassPath.ClassInfo> checkstyleClasses = classpath
-                .getTopLevelClassesRecursive(packageName);
-
-        for (ClassPath.ClassInfo clazz : checkstyleClasses) {
-            final String className = clazz.getSimpleName();
-            final Class<?> loadedClass = clazz.load();
-            if (isValidCheckstyleClass(loadedClass, className)
-                    && isCheckstyleCheck(loadedClass)) {
-                checkstyleChecks.add(loadedClass);
-            }
-        }
-        return checkstyleChecks;
+        return getCheckstyleModulesRecursive(packageName, loader).stream()
+                .filter(ModuleReflectionUtils::isCheckstyleCheck)
+                .collect(Collectors.toSet());
     }
 
     /**
      * Gets all checkstyle's modules.
      * @return the set of checkstyle's module classes.
      * @throws IOException if the attempt to read class path resources failed.
-     * @see #isCheckstyleModule(Class)
      */
     public static Set<Class<?>> getCheckstyleModules() throws IOException {
-        final Set<Class<?>> checkstyleModules = new HashSet<>();
-
         final ClassLoader loader = Thread.currentThread()
                 .getContextClassLoader();
-        final ClassPath classpath = ClassPath.from(loader);
         final String packageName = "com.puppycrawl.tools.checkstyle";
-        final ImmutableSet<ClassPath.ClassInfo> checkstyleClasses = classpath
-                .getTopLevelClassesRecursive(packageName);
-
-        for (ClassPath.ClassInfo clazz : checkstyleClasses) {
-            final Class<?> loadedClass = clazz.load();
-            if (isCheckstyleModule(loadedClass)) {
-                checkstyleModules.add(loadedClass);
-            }
-        }
-        return checkstyleModules;
+        return getCheckstyleModulesRecursive(packageName, loader);
     }
 
     /**
-     * Checks whether a class may be considered as a checkstyle module. Checkstyle's modules are
-     * non-abstract classes, which names do not start with the word 'Input' (are not input files for
-     * UTs), and are either checkstyle's checks, file sets, filters, file filters, or root module.
-     * @param loadedClass class to check.
-     * @return true if the class may be considered as the checkstyle module.
+     * Gets checkstyle's modules in the given package recursively.
+     * @param packageName the package name to use
+     * @param loader the class loader used to load Checkstyle package name
+     * @return the set of checkstyle's module classes
+     * @throws IOException if the attempt to read class path resources failed
+     * @see ModuleReflectionUtils#isCheckstyleModule(Class)
      */
-    private static boolean isCheckstyleModule(Class<?> loadedClass) {
-        final String className = loadedClass.getSimpleName();
-        return isValidCheckstyleClass(loadedClass, className)
-            && (isCheckstyleCheck(loadedClass)
-                    || isFileSetModule(loadedClass)
-                    || isFilterModule(loadedClass)
-                    || isFileFilterModule(loadedClass)
-                    || isRootModule(loadedClass));
-    }
-
-    /**
-     * Checks whether a class extends 'AutomaticBean', is non-abstract, and doesn't start with the
-     * word 'Input' (are not input files for UTs).
-     * @param loadedClass class to check.
-     * @param className class name to check.
-     * @return true if a class may be considered a valid production class.
-     */
-    public static boolean isValidCheckstyleClass(Class<?> loadedClass, String className) {
-        return AutomaticBean.class.isAssignableFrom(loadedClass)
-                && !Modifier.isAbstract(loadedClass.getModifiers())
-                && !className.contains("Input");
-    }
-
-    /**
-     * Checks whether a class may be considered as the checkstyle check.
-     * Checkstyle's checks are classes which implement 'AbstractCheck' interface.
-     * @param loadedClass class to check.
-     * @return true if a class may be considered as the checkstyle check.
-     */
-    public static boolean isCheckstyleCheck(Class<?> loadedClass) {
-        return AbstractCheck.class.isAssignableFrom(loadedClass);
-    }
-
-    /**
-     * Checks whether a class may be considered as the checkstyle file set.
-     * Checkstyle's file sets are classes which implement 'AbstractFileSetCheck' interface.
-     * @param loadedClass class to check.
-     * @return true if a class may be considered as the checkstyle file set.
-     */
-    public static boolean isFileSetModule(Class<?> loadedClass) {
-        return AbstractFileSetCheck.class.isAssignableFrom(loadedClass);
-    }
-
-    /**
-     * Checks whether a class may be considered as the checkstyle filter.
-     * Checkstyle's filters are classes which implement 'Filter' interface.
-     * @param loadedClass class to check.
-     * @return true if a class may be considered as the checkstyle filter.
-     */
-    public static boolean isFilterModule(Class<?> loadedClass) {
-        return Filter.class.isAssignableFrom(loadedClass);
-    }
-
-    /**
-     * Checks whether a class may be considered as the checkstyle file filter.
-     * Checkstyle's file filters are classes which implement 'BeforeExecutionFileFilter' interface.
-     * @param loadedClass class to check.
-     * @return true if a class may be considered as the checkstyle file filter.
-     */
-    public static boolean isFileFilterModule(Class<?> loadedClass) {
-        return BeforeExecutionFileFilter.class.isAssignableFrom(loadedClass);
-    }
-
-    /**
-     * Checks whether a class may be considered as the checkstyle root module.
-     * Checkstyle's root modules are classes which implement 'RootModule' interface.
-     * @param loadedClass class to check.
-     * @return true if a class may be considered as the checkstyle root module.
-     */
-    public static boolean isRootModule(Class<?> loadedClass) {
-        return RootModule.class.isAssignableFrom(loadedClass);
+    private static Set<Class<?>> getCheckstyleModulesRecursive(
+            String packageName, ClassLoader loader) throws IOException {
+        final ClassPath classPath = ClassPath.from(loader);
+        return classPath.getTopLevelClassesRecursive(packageName).stream()
+                .map(ClassPath.ClassInfo::load)
+                .filter(ModuleReflectionUtils::isCheckstyleModule)
+                .collect(Collectors.toSet());
     }
 
     /**
