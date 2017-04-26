@@ -19,13 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.CHECK_SUFFIX;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_LOADER_MESSAGE;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_MESSAGE;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.URLClassLoader;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -33,42 +45,67 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.CheckUtil;
 
 /**
  * Enter a description of class PackageObjectFactoryTest.java.
+ *
  * @author Rick Giles
  */
 public class PackageObjectFactoryTest {
 
     private final PackageObjectFactory factory = new PackageObjectFactory(
-        new HashSet<>(), Thread.currentThread().getContextClassLoader());
+            BASE_PACKAGE, Thread.currentThread().getContextClassLoader());
 
     @Test
-    public void testCtorException() {
+    public void testCtorNullLoaderException1() {
         try {
             new PackageObjectFactory(new HashSet<>(), null);
             fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertEquals("moduleClassLoader must not be null", ex.getMessage());
+            assertEquals(NULL_LOADER_MESSAGE, ex.getMessage());
         }
     }
 
     @Test
-    public void testCtorException2() {
+    public void testCtorNullLoaderException2() {
         try {
             new PackageObjectFactory("test", null);
             fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertEquals("moduleClassLoader must not be null", ex.getMessage());
+            assertEquals(NULL_LOADER_MESSAGE, ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testCtorNullPackageException1() {
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        try {
+            new PackageObjectFactory(Collections.singleton(null), classLoader);
+            fail("Exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testCtorNullPackageException2() {
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        try {
+            new PackageObjectFactory((String) null, classLoader);
+            fail("Exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage());
         }
     }
 
@@ -91,29 +128,50 @@ public class PackageObjectFactoryTest {
     }
 
     @Test
-    public void testCreateObjectWithIgnoringProblems() throws Exception {
-        final Method createObjectWithIgnoringProblemsMethod =
-                PackageObjectFactory.class.getDeclaredMethod(
-                        "createObjectWithIgnoringProblems", String.class, Set.class);
-        createObjectWithIgnoringProblemsMethod.setAccessible(true);
-        final Set<String> secondAttempt = new HashSet<>();
-        secondAttempt.add("com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck");
-        final ConstantNameCheck check = (ConstantNameCheck) createObjectWithIgnoringProblemsMethod
-                .invoke(factory, "ConstantName", secondAttempt);
-        assertNotNull(check);
+    public void testCreateModuleWithNonExistName() throws CheckstyleException {
+        testCreateModuleWithNonExistName("NonExistClassOne");
+        testCreateModuleWithNonExistName("NonExistClassTwo");
+    }
+
+    private void testCreateModuleWithNonExistName(String name) {
+        try {
+            factory.createModule(name);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
+                    + name + CHECK_SUFFIX + STRING_SEPARATOR
+                    + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
+                    new String[] {name, attemptedNames}, null, factory.getClass(), null);
+            assertEquals(exceptionMessage.getMessage(), ex.getMessage());
+        }
     }
 
     @Test
-    public void testJoinPackageNamesWhichContainNullWithClassName() throws Exception {
+    @SuppressWarnings("unchecked")
+    public void testGenerateThirdPartyNameToFullModuleNameWithException() throws Exception {
+        final URLClassLoader classLoader = mock(URLClassLoader.class);
+        when(classLoader.getURLs()).thenThrow(IOException.class);
+        final Method method = factory.getClass().getDeclaredMethod(
+                "generateThirdPartyNameToFullModuleName", ClassLoader.class);
+        method.setAccessible(true);
+        final int size = ((Map<String, String>) method.invoke(factory, classLoader)).size();
+        assertEquals(0, size);
+    }
+
+    @Test
+    public void testJoinPackageNamesWithClassName() throws Exception {
         final Class<PackageObjectFactory> clazz = PackageObjectFactory.class;
         final Method method =
             clazz.getDeclaredMethod("joinPackageNamesWithClassName", String.class, Set.class);
         method.setAccessible(true);
-        final Set<String> packages = Collections.singleton(null);
+        final Set<String> packages = Collections.singleton("test");
         final String className = "SomeClass";
         final String actual =
             String.valueOf(method.invoke(PackageObjectFactory.class, className, packages));
-        Assert.assertEquals(className, actual);
+        assertEquals("test." + className, actual);
     }
 
     @Test
@@ -135,9 +193,9 @@ public class PackageObjectFactoryTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            Assert.assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."
+            assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."
                     + "PackageObjectFactoryTest$FailConstructorFileSet", ex.getMessage());
-            Assert.assertEquals("IllegalArgumentException", ex.getCause().getCause().getClass()
+            assertEquals("IllegalArgumentException", ex.getCause().getCause().getClass()
                     .getSimpleName());
         }
     }

@@ -58,6 +58,7 @@
 
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3455 -->
     <allow class="com.google.common.collect.ImmutableMap" local-only="true"/>
+    <allow class="com.google.common.reflect.ClassPath" local-only="true"/>
   </subpackage>
 
   <subpackage name="ant">
