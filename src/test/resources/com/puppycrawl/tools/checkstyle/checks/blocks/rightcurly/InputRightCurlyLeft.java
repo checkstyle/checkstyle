@@ -2,13 +2,13 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 /**
  * Test case for correct use of braces.
  * @author Oliver Burn
  **/
-class InputLeftCurlyOther
+class InputRightCurlyLeft
 {
     /** @see test method **/
     int foo() throws InterruptedException
