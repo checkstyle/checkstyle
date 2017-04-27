@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-public class InputNeedBraces
+public class InputNeedBracesConditional
 {
     public void method() {
         if (false)

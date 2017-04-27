@@ -2,13 +2,13 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
 /**
  * Test case for correct use of braces.
  * @author Oliver Burn
  **/
-class InputBraces
+class InputNeedBraces
 {
     /** @return helper func **/
     boolean condition()
@@ -112,7 +112,7 @@ class InputBraces
     }
 
     /** Empty constructor block. **/
-    public InputBraces() {}
+    public InputNeedBraces() {}
     
     /** Empty method block. **/
     public void emptyImplementation() {}

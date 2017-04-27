@@ -34,13 +34,17 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "blocks" + File.separator + filename);
+                + "blocks" + File.separator
+                + "needbraces" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "blocks" + File.separator + filename);
+                + "blocks" + File.separator
+                + "needbraces" + File.separator
+                + filename);
     }
 
     @Test
@@ -66,7 +70,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "99: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "100: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
-        verify(checkConfig, getPath("InputBraces.java"), expected);
+        verify(checkConfig, getPath("InputNeedBraces.java"), expected);
     }
 
     @Test
@@ -87,7 +91,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "107: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "114: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
-        verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
+        verify(checkConfig, getPath("InputNeedBracesSingleLineStatements.java"), expected);
     }
 
     @Test
@@ -99,7 +103,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
-        verify(checkConfig, getPath("InputSingleLineLambda.java"), expected);
+        verify(checkConfig, getPath("InputNeedBracesSingleLineLambda.java"), expected);
     }
 
     @Test
@@ -112,7 +116,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "72: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "75: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
-        verify(checkConfig, getPath("InputBracesSingleLineStatements.java"), expected);
+        verify(checkConfig, getPath("InputNeedBracesSingleLineStatements.java"), expected);
     }
 
     @Test
@@ -131,7 +135,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("tokens", "LITERAL_WHILE, LITERAL_DO, LITERAL_FOR");
         checkConfig.addAttribute("allowSingleLineStatement", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNeedBraces.java"), expected);
+        verify(checkConfig, getPath("InputNeedBracesConditional.java"), expected);
     }
 
     @Test
@@ -149,7 +153,7 @@ public class NeedBracesCheckTest extends BaseCheckTestSupport {
             "49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "56: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
-        verify(checkConfig, getPath("InputNeedBraces.java"), expected);
+        verify(checkConfig, getPath("InputNeedBracesConditional.java"), expected);
     }
 
     @Test
