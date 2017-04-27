@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import java.io.BufferedReader;
 import java.io.IOException;

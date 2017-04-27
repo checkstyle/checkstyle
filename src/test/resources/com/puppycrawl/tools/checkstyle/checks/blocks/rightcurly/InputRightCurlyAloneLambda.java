@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InputRightCurlyAloneOrSinglelineLambda {
+public class InputRightCurlyAloneLambda {
 
     static Runnable r1 = () -> {
         String.valueOf("Test rightCurly one!");
@@ -11,7 +11,7 @@ public class InputRightCurlyAloneOrSinglelineLambda {
 
     static Runnable r2 = () -> String.valueOf("Test rightCurly two!");
 
-    static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");};
+    static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");};   //violation
 
     static Runnable r4 = () -> {
         String.valueOf("Test rightCurly four!");};    //violation
@@ -43,7 +43,5 @@ public class InputRightCurlyAloneOrSinglelineLambda {
         Stream.of("Hello").filter(s -> {
                 return s != null;
         }).collect(Collectors.toList());    // violation
-
-        Stream.of("Hello").filter(s -> {return s != null;}).collect(Collectors.toList());   // violation
     }
 }

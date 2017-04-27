@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InputRightCurlySameLambda {
+public class InputRightCurlyAloneOrSinglelineLambda {
 
     static Runnable r1 = () -> {
         String.valueOf("Test rightCurly one!");
@@ -37,42 +37,13 @@ public class InputRightCurlySameLambda {
     void foo1() {
         Stream.of("Hello").filter(s -> {
                 return s != null;
-            }       // violation
+            }
         ).collect(Collectors.toList());
 
         Stream.of("Hello").filter(s -> {
                 return s != null;
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toList());    // violation
 
-        Stream.of("Hello").filter(s -> {return s != null;})
-                .collect(Collectors.toList());
-
-        Stream.of("Hello").filter(s -> {return s != null;}).collect(Collectors.toList());
-
-        Stream.of("Hello").filter(s -> {
-            return s != null;}).collect(Collectors.toList()); // violation
-
-        bar(() -> {return;}, () -> {return;});
-
-        bar(() -> {
-            return;
-        }, () -> {return;});
-
-        bar(() -> {
-            return;
-        }, () -> {
-            return;
-        });
-
-        bar(() -> {
-            return;}, () -> {return;}); // violation
-
-        bar(() -> {
-            return;
-        }, () -> {
-            return;}); // violation
-
+        Stream.of("Hello").filter(s -> {return s != null;}).collect(Collectors.toList());   // violation
     }
-
-    void bar(Runnable r1, Runnable r2) { }
 }

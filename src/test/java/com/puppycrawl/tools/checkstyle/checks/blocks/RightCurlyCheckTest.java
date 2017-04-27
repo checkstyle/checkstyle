@@ -49,7 +49,9 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "blocks" + File.separator + filename);
+                + "blocks" + File.separator
+                + "rightcurly" + File.separator
+                + filename);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -71,7 +73,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
-        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
 
     @Test
@@ -84,7 +86,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
-        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
 
     @Test
@@ -101,7 +103,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
             "97:72: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 72),
         };
-        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
 
     @Test
@@ -116,7 +118,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "122:6: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 6),
             "136:6: " + getCheckMessage(MSG_KEY_LINE_NEW, "}", 6),
         };
-        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
 
     @Test
@@ -127,7 +129,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
             "97:72: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 72),
         };
-        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
 
     @Test
@@ -138,7 +140,7 @@ public class RightCurlyCheckTest extends BaseCheckTestSupport {
             "93:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
             "97:72: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 72),
         };
-        verify(checkConfig, getPath("InputLeftCurlyOther.java"), expected);
+        verify(checkConfig, getPath("InputRightCurlyLeft.java"), expected);
     }
 
     @Test

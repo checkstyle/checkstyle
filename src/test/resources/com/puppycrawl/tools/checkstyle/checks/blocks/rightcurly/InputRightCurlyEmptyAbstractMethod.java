@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.blocks;
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 abstract class CharSequenceReader{
     
     abstract void moveTo(double deltaX, double deltaY);
