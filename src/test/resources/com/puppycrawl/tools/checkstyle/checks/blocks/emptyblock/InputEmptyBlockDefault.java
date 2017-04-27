@@ -1,4 +1,4 @@
-public class InputEmptyDefault {
+public class InputEmptyBlockDefault {
     void method1(int a) {
         switch (a) {}
         switch (a) {default: ; } // no violation
