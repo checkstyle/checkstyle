@@ -1,8 +1,8 @@
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.interfacetypeparametername;
 
 import java.io.Serializable;
 
-public class InputTypeParameterName <t>
+public class InputInterfaceTypeParameterName<t>
 {
     public <TT> void foo() { }
     
