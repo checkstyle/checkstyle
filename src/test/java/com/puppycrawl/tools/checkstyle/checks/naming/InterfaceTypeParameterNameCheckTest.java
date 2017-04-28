@@ -36,7 +36,9 @@ public class InterfaceTypeParameterNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "interfacetypeparametername" + File.separator
+                + filename);
     }
 
     @Test
@@ -58,7 +60,7 @@ public class InterfaceTypeParameterNameCheckTest
         final String[] expected = {
             "48:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
         };
-        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputInterfaceTypeParameterName.java"), expected);
     }
 
     @Test
@@ -74,6 +76,6 @@ public class InterfaceTypeParameterNameCheckTest
             "48:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
             "52:24: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("InputTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputInterfaceTypeParameterName.java"), expected);
     }
 }
