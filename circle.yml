@@ -29,7 +29,7 @@ machine:
     INFINISPAN: " && sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties"
     PROTONPACK: " && sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties"
     JOOL: " && sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties"
-    TAPESTRY: " && sed -i'' 's/#tapestry5/tapestry5/' projects-for-circle.properties"
+    TAPESTRY: " && sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-circle.properties"
     COMMONS: " && sed -i'' 's/#apache-commons/apache-commons/' projects-for-circle.properties"
     LUCENE: " && sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-circle.properties"
     STORM: " && sed -i'' 's/#storm/storm/' projects-for-circle.properties"
