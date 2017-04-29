@@ -43,7 +43,9 @@
       <p>
         <b>Releases will happen at the end of each month</b> if functional changes exists in <a href="https://github.com/checkstyle/checkstyle/commits/master">master branch of our repo</a>.
       </p>
-      <p>Explanation why we do not follow Semantic Versioning is in <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>
+      <p>
+        Explanation why we do not follow Semantic Versioning is in <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>
+      </p>
       </section>
 
     <section name="Features">
