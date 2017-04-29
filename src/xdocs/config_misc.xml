@@ -1164,6 +1164,11 @@ void foo(String aFooString,
           systems will even print a warning when it
           encounters a file that doesn't end with a line separator.
         </p>
+        <p>
+          Attention: property fileExtensions works with files that are passed by similar property for at
+          <a href="config.html#Checker">Checker</a>.
+          Please make sure required file extensions are mentioned at Checker's fileExtensions property.
+        </p>
       </subsection>
 
       <subsection name="Properties">
