@@ -1800,6 +1800,68 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testTryResourcesStrict() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        final String fileName = getPath("InputTryWithResourcesStrict.java");
+        final String[] expected = {
+            "26: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
+            "28: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 13, "8, 12"),
+            "33: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 16),
+            "39: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 12),
+            "59: " + getCheckMessage(MSG_ERROR, "try resource", 20, 16),
+            "84: " + getCheckMessage(MSG_ERROR, "writ", 19, 12),
+            "91: " + getCheckMessage(MSG_ERROR, "writ", 19, 16),
+            "98: " + getCheckMessage(MSG_ERROR, "writ", 21, 16),
+            "113: " + getCheckMessage(MSG_ERROR, "zipFileName", 17, 16),
+            "120: " + getCheckMessage(MSG_ERROR, "zipFileName", 15, 16),
+            "130: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "135: " + getCheckMessage(MSG_CHILD_ERROR, "try", 15, 12),
+            "141: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "142: " + getCheckMessage(MSG_CHILD_ERROR, "try", 9, 12),
+            "146: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "147: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 11, 16),
+            "148: " + getCheckMessage(MSG_CHILD_ERROR, "try", 13, 12),
+            "150: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "151: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 7, "8, 12"),
+            "155: " + getCheckMessage(MSG_ERROR, "try", 9, 8),
+            "161: " + getCheckMessage(MSG_ERROR, ".", 13, 12),
+            "167: " + getCheckMessage(MSG_ERROR, ".", 11, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testTryResourcesNotStrict() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        final String fileName = getPath("InputTryResourcesNotStrict.java");
+        final String[] expected = {
+            "27: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
+            "33: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 16),
+            "39: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 12),
+            "120: " + getCheckMessage(MSG_ERROR, "zipFileName", 15, 16),
+            "130: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "135: " + getCheckMessage(MSG_CHILD_ERROR, "try", 15, 12),
+            "141: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "142: " + getCheckMessage(MSG_CHILD_ERROR, "try", 9, 12),
+            "146: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "147: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 11, 16),
+            "148: " + getCheckMessage(MSG_CHILD_ERROR, "try", 13, 12),
+            "150: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "151: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 7, "8, 12"),
+            "164: " + getCheckMessage(MSG_ERROR, ".", 8, 12),
+            "172: " + getCheckMessage(MSG_ERROR, "new", 11, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     /**
      * Verifies that the arguments of {@link IndentationCheck#MSG_ERROR},
      * {@link IndentationCheck#MSG_CHILD_ERROR}, {@link IndentationCheck#MSG_CHILD_ERROR_MULTI},
