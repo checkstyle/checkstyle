@@ -25,8 +25,7 @@ class InputIndentationValidTryResourcesIndent //indent:0 exp:0
     // Taken from JDK7 java.lang.Package src code. //indent:4 exp:4
     private static Manifest loadManifest(String fn) { //indent:4 exp:4
         try (FileInputStream fis = new FileInputStream(fn); //indent:8 exp:8
-    // This should be an error //indent:4 exp:4
-    JarInputStream jis = new JarInputStream(fis, false)) //indent:4 exp:4
+            JarInputStream jis = new JarInputStream(fis, false)) //indent:12 exp:12
         { //indent:8 exp:8
             return jis.getManifest(); //indent:12 exp:12
         } catch (IOException e) //indent:8 exp:8

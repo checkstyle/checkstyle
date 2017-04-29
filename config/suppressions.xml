@@ -6,7 +6,7 @@
 
 <suppressions>
     <suppress checks="FileLength"
-              files="TokenTypes.java"
+              files="TokenTypes.java|IndentationCheckTest.java"
               lines="1"/>
 
     <!-- illegal words are part of Javadoc -->
