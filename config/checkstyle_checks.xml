@@ -18,7 +18,7 @@
 
   <property name="severity" value="error"/>
 
-  <property name="fileExtensions" value="java, properties, xml, vm, g, g4"/>
+  <property name="fileExtensions" value="java, properties, xml, vm, g, g4, dtd"/>
 
   <!-- BeforeExecutionFileFilters is required for sources that are based on java9 -->
   <module name="BeforeExecutionExclusionFileFilter">
