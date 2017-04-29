@@ -39,35 +39,11 @@
       </p>
     </section>
 
-    <section name="Important Development Changes">
-      <p>
-        As of September 2013, the Checkstyle project is using GitHub for
-        hosting the following:
-      </p>
-      <ul>
-        <li>
-          <a href="https://github.com/checkstyle/checkstyle">GitHub Source
-          code repository</a> - replacing the Mercurial repository on
-          SourceForge.
-        </li>
-        <li>
-          <a
-          href="https://github.com/checkstyle/checkstyle/issues">GitHub Issue
-          management</a> - replacing the Bugs/Feature/Patches on
-          SourceForge. All new issues should be raised at GitHub, and
-          pull requests are now the preferred way to submit patches.
-        </li>
-      </ul>
-
-      <p>
-        SourceForge will still be used for website hosting and binary
-        hosting for downloads.
-      </p>
-
+    <section name="Development Circle">
       <p>
         <b>Releases will happen at the end of each month</b> if functional changes exists in <a href="https://github.com/checkstyle/checkstyle/commits/master">master branch of our repo</a>.
       </p>
-
+      <p>Explanation why we do not follow Semantic Versioning is in <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>
       </section>
 
     <section name="Features">
@@ -309,6 +285,12 @@
                   <td>Andrew Johnson</td>
                   <td><a href="https://github.com/etsy/sbt-checkstyle-plugin">sbt-checkstyle-plugin Project Page</a></td>
                   <td>SBT plugin for running Checkstyle on Java source files in an SBT project</td>
+              </tr>
+              <tr>
+                  <td><a href="https://github.com/nidi3/code-assert">code-assert</a></td>
+                  <td>Stefan Niederhauser</td>
+                  <td><a href="https://github.com/nidi3/code-assert#checkstyle-checks">code-assert</a></td>
+                  <td>Assert that the java code of a project satisfies certain checks. Launch checkstyle validation from UTs</td>
               </tr>
           </table>
       </subsection>
