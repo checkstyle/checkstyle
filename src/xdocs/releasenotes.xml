@@ -16,6 +16,251 @@
   <body>
 
     <!-- placeholder for a new section -->
+    <section name="Release 7.7">
+      <p>New:</p>
+        <ul>
+          <li>
+            Ant: accept path in addition to fileset option. Author: Andrew Kuchev
+                <a href="https://github.com/checkstyle/checkstyle/issues/3312">#3312</a>
+          </li>
+          <li>
+            SeparatorWrap: add support for method reference operator. Author: Luolc
+                <a href="https://github.com/checkstyle/checkstyle/issues/3951">#3951</a>
+          </li>
+          <li>
+            NoWhitespaceBefore: add support for method reference operator. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/3949">#3949</a>
+          </li>
+          <li>
+            RightCurlyCheck: add support for lambda. Author: Vladislav Lisetskii
+                <a href="https://github.com/checkstyle/checkstyle/issues/3546">#3546</a>
+          </li>
+          <li>
+            ParenPad: thinks precedence parens are a METHOD_CALL instead of an EXPR, new token TokenTypes.DOT should be supported. Author: Subbu Dantu
+                <a href="https://github.com/checkstyle/checkstyle/issues/3048">#3048</a>
+          </li>
+          <li>
+            DefaultComesLast: new option skipIfLastAndSharedWithCase to raise violation if default doesn&#39;t share case. Author: Sagar
+                <a href="https://github.com/checkstyle/checkstyle/issues/4078">#4078</a>
+          </li>
+          <li>
+            ClassDataAbstractionCoupling and ClassFanOutComplexity: property to exclude packages. Author: Andrew Kuchev
+                <a href="https://github.com/checkstyle/checkstyle/issues/3309">#3309</a>
+          </li>
+          <li>
+            ClassDataAbstractionCoupling : Add a excludeClassesRegexps property  . Author: Tima
+                <a href="https://github.com/checkstyle/checkstyle/issues/3234">#3234</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            NPathComplexity ignores multi-part boolean expressions . Author: kazachka
+                <a href="https://github.com/checkstyle/checkstyle/issues/56">#56</a>
+          </li>
+          <li>
+            ArrayTrailingComma: Extra coma is required in multiline array value. Author: Vladislav Lisetskii
+                <a href="https://github.com/checkstyle/checkstyle/issues/1509">#1509</a>
+          </li>
+          <li>
+            EmptyBlock should process LITERAL_DEFAULT. Author: Piyush Sharma
+                <a href="https://github.com/checkstyle/checkstyle/issues/4159">#4159</a>
+          </li>
+          <li>
+            Take &quot;break&quot; into consideration in FinalLocalVariable. Author: Luolc
+                <a href="https://github.com/checkstyle/checkstyle/issues/4082">#4082</a>
+          </li>
+          <li>
+            RequireThis treats local variables as properties. Author: Piyush Sharma
+                <a href="https://github.com/checkstyle/checkstyle/issues/3423">#3423</a>
+          </li>
+          <li>
+            Exception message not informative enough for users on incorrect parent. Author: Subbu Dantu
+                <a href="https://github.com/checkstyle/checkstyle/issues/2186">#2186</a>
+          </li>
+          <li>
+            EmptyBlock: can&#39;t get violation from case token. Author: Piyush Sharma
+                <a href="https://github.com/checkstyle/checkstyle/issues/3839">#3839</a>
+          </li>
+          <li>
+            RightCurly: False negative on multiblock tokens with ALONE_OR_SINGLELINE option. Author: Vladislav Lisetskii
+                <a href="https://github.com/checkstyle/checkstyle/issues/4091">#4091</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Split and Organize Checkstyle inputs by Test for InterfaceTypeParameterName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4142">#4142</a>
+          </li>
+          <li>
+            ReturnCount: enforce max=1 over checkstyle code. Author: Vladislav Lisetskii
+                <a href="https://github.com/checkstyle/checkstyle/issues/3496">#3496</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test in the blocks package. Author: Subbu Dantu, Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4220">#4220</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for ClassTypeParameterName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4137">#4137</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for CatchParameterName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4136">#4136</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for ConstantName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4141">#4141</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in coding package. Author: slava ganyaev, Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4165">#4165</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for SingleSpaceSeparator. Author: Jun Lin
+                <a href="https://github.com/checkstyle/checkstyle/issues/4080">#4080</a>
+          </li>
+          <li>
+            Fix new TeamCity violations. Author: Roman Ivanov
+                <a href="https://github.com/checkstyle/checkstyle/issues/4250">#4250</a>
+          </li>
+          <li>
+            spelling: unify THIRDPARTY_PACKAGE into THIRD_PARTY_PACKAGE. Author: Yusuke Matsubara
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for NoLineWrap. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/3933">#3933</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for OuterTypeNumber. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4043">#4043</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for ParentPad. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4062">#4062</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for StaticVariableName. Author: Akshita
+                <a href="https://github.com/checkstyle/checkstyle/issues/4208">#4208</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for NoWhitespaceAfter. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/3931">#3931</a>
+          </li>
+          <li>
+            Expand missing testing for PropertyCacheFile tests. Author: Andrei Selkin
+                <a href="https://github.com/checkstyle/checkstyle/issues/3650">#3650</a>
+          </li>
+          <li>
+            Adding IDEA project files to gitignore and excluding them from checkstyle list. Author: Tima
+                <a href="https://github.com/checkstyle/checkstyle/issues/4209">#4209</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodTypeParameterName. Author: Janine Freitas
+                <a href="https://github.com/checkstyle/checkstyle/issues/4168">#4168</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for ParameterName. Author: Shubham Kumar
+                <a href="https://github.com/checkstyle/checkstyle/issues/4191">#4191</a>
+          </li>
+          <li>
+            Add suppression of .DS_Store for NewlineAtEndOfFile. Author: Luolc
+                <a href="https://github.com/checkstyle/checkstyle/issues/4176">#4176</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for WhitespaceAround. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/3898">#3898</a>
+          </li>
+          <li>
+            Verifying tokens in checkstyle config handles default tokens wrong. Author: rnveach
+                <a href="https://github.com/checkstyle/checkstyle/issues/4119">#4119</a>
+          </li>
+          <li>
+            spelling: fix grammar in messages.properties for indentation package. Author: Vladislav Lisetskii
+          </li>
+          <li>
+            Javadoc for try-with-resources tokens is not good enough. Author: Subbu Dantu
+                <a href="https://github.com/checkstyle/checkstyle/issues/2899">#2899</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for FileTabCharacter. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/3959">#3959</a>
+          </li>
+          <li>
+            Fix new TeamCity violations. Author: Vladislav Lisetskii
+                <a href="https://github.com/checkstyle/checkstyle/issues/3616">#3616</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for LocalVariableName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4150">#4150</a>
+          </li>
+          <li>
+            Formatting issue in documentation. Author: sagar shah
+                <a href="https://github.com/checkstyle/checkstyle/issues/3902">#3902</a>
+          </li>
+          <li>
+            doc: fix documentation for METHOD_REF token. Author: Subbu Dantu
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for LocalFinalVariableName. Author: kurileo
+                <a href="https://github.com/checkstyle/checkstyle/issues/4144">#4144</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for NoWhitespaceBefore. Author: Subbu Dantu
+                <a href="https://github.com/checkstyle/checkstyle/issues/3930">#3930</a>
+          </li>
+          <li>
+            Enforce EndOfLine symbols at the end of  all files in checkstyle repository. Author: Vikramaditya Kukreja
+                <a href="https://github.com/checkstyle/checkstyle/issues/3072">#3072</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test. Author: slava ganyaev
+                <a href="https://github.com/checkstyle/checkstyle/issues/3891">#3891</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for ParameterNumber. Author: GabrielBercaru
+                <a href="https://github.com/checkstyle/checkstyle/issues/4090">#4090</a>
+          </li>
+          <li>
+            RightCurly: update documentation for singleline statements with SAME option. Author: Vladislav Lisetskii
+                <a href="https://github.com/checkstyle/checkstyle/issues/4085">#4085</a>
+          </li>
+          <li>
+            spelling: fix typos in tests. Author: Vladislav Lisetskii
+          </li>
+          <li>
+            spelling: fix typos in xdocs. Author: Vladislav Lisetskii
+          </li>
+          <li>
+            Fix typo in @serialField javadoc tag validation. Author: Vladislav Lisetskii
+                <a href="https://github.com/checkstyle/checkstyle/issues/4126">#4126</a>
+          </li>
+          <li>
+            spelling: fix some typos in code/javadoc/comments. Author: Vladislav Lisetskii
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for AbstractClassName. Author: vasilyeva
+                <a href="https://github.com/checkstyle/checkstyle/issues/4106">#4106</a>
+          </li>
+          <li>
+            pitest: skip Uts execution as pitest do this for wihtou mutation mode. Author: Roman Ivanov
+                <a href="https://github.com/checkstyle/checkstyle/issues/4104">#4104</a>
+          </li>
+          <li>
+            changed loops to end execution early. Author: rnveach
+                <a href="https://github.com/checkstyle/checkstyle/issues/4102">#4102</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for LineLength. Author: MikhailovOlegM
+                <a href="https://github.com/checkstyle/checkstyle/issues/4013">#4013</a>
+          </li>
+          <li>
+            Grammar mistakes in PULL_REQUEST_TEMPLATE.md. Author: unrealwork
+                <a href="https://github.com/checkstyle/checkstyle/issues/4098">#4098</a>
+          </li>
+        </ul>
+    </section>
 
     <section name="Release 7.6.1">
       <p>New:</p>
