@@ -957,6 +957,9 @@
               <systemId>src/main/resources/com/puppycrawl/tools/checkstyle/configuration_1_3.dtd</systemId>
             </validationSet>
           </validationSets>
+          <catalogs>
+            <catalog>config/catalog.xml</catalog>
+          </catalogs>
         </configuration>
       </plugin>
       <plugin>
