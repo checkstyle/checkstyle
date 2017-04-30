@@ -556,7 +556,7 @@ public class MethodLimitCheck extends AbstractCheck
 &lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;!DOCTYPE module PUBLIC
     &quot;-//Puppy Crawl//DTD Check Configuration 1.3//EN&quot;
-    &quot;http://www.puppycrawl.com/dtds/configuration_1_3.dtd&quot;&gt;
+    &quot;http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd&quot;&gt;
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
           &lt;!-- your standard Checks that come with Checkstyle --&gt;
