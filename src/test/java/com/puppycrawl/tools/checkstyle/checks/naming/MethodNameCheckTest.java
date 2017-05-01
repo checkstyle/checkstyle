@@ -38,7 +38,9 @@ public class MethodNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "methodname" + File.separator
+                + filename);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class MethodNameCheckTest
         final String[] expected = {
             "137:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameSimple.java"), expected);
     }
 
     @Test
@@ -70,22 +72,25 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "12:16: " + getCheckMessage(MSG_KEY, "InputMethNameEqualClsName"),
-            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
-            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName",
+            "12:16: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
+            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
                 pattern),
             "23:20: " + getCheckMessage(MSG_KEY, "Inner"),
             "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
-            "37:24: " + getCheckMessage(MSG_KEY, "InputMethNameEqualClsName"),
-            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
+            "37:24: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
+            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
             "47:9: " + getCheckMessage(MSG_KEY, "SweetInterface"),
             "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
             "53:17: " + getCheckMessage(MSG_KEY, "Outter"),
             "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
         };
 
-        verify(checkConfig, getPath("InputMethNameEqualClsName.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
     }
 
     @Test
@@ -99,17 +104,20 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
-            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethNameEqualClsName",
+            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
                 pattern),
             "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
-            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
+            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
             "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
             "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
         };
 
-        verify(checkConfig, getPath("InputMethNameEqualClsName.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
     }
 
     @Test
@@ -126,15 +134,18 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
             "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
-            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN, "InputMethNameEqualClsName", pattern),
+            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
+            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName", pattern),
             "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
             "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outter", pattern),
         };
 
-        verify(checkConfig, getPath("InputMethNameEqualClsName.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
     }
 
     @Test
