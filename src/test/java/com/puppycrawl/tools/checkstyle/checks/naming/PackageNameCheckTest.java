@@ -37,7 +37,9 @@ public class PackageNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "packagename" + File.separator
+                + filename);
     }
 
     @Test
@@ -58,9 +60,9 @@ public class PackageNameCheckTest
 
         final String[] expected = {
             "6:9: " + getCheckMessage(MSG_INVALID_PATTERN,
-                "com.puppycrawl.tools.checkstyle.checks.naming", pattern),
+                "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);
     }
 
     @Test
@@ -69,7 +71,7 @@ public class PackageNameCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(PackageNameCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);
     }
 
     @Test
