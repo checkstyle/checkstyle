@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 /**
  * Test input for MethodNameCheck specifically
@@ -6,15 +6,15 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
  *
  * @author Travis Schneeberger
  */
-public class InputMethNameEqualClsName {
+public class InputMethodNameEqualClassName {
 
 	//illegal name
-    public int InputMethNameEqualClsName() {
+    public int InputMethodNameEqualClassName() {
         return 0;
     }
 
     //illegal name
-    private int PRIVATEInputMethNameEqualClsName() {
+    private int PRIVATEInputMethodNameEqualClassName() {
         return 0;
     }
 
@@ -25,16 +25,16 @@ public class InputMethNameEqualClsName {
 		}
 
 		//OK name - name of the outter class's ctor
-        public int InputMethNameEqualClsName() {
+        public int InputMethodNameEqualClassName() {
 			return 0;
 		}
 	}
 
 	public void anotherMethod() {
-		new InputMethNameEqualClsName() {
+		new InputMethodNameEqualClassName() {
 
 			//illegal name
-            public int InputMethNameEqualClsName() {
+            public int InputMethodNameEqualClassName() {
 				return 1;
 			}
 		};
