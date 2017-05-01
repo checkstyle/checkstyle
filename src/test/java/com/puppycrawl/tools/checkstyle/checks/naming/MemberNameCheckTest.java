@@ -36,7 +36,9 @@ public class MemberNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "membername" + File.separator
+                + filename);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class MemberNameCheckTest
             "35:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
             "224:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputMemberNameSimple.java"), expected);
     }
 
     @Test
@@ -73,7 +75,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "56:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
         };
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputMemberNameInner.java"), expected);
     }
 
     @Test

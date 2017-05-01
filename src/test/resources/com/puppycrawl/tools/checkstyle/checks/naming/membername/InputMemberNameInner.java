@@ -2,13 +2,13 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 
 /**
  * Tests having inner types
  * @author Oliver Burn
  **/
-class InputInner
+class InputMemberNameInner
 {
     // Ignore - two errors
     class InnerInner2
