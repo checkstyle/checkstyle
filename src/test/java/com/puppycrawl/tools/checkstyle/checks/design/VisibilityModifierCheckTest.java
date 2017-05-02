@@ -191,7 +191,7 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames",
-                 "com.puppycrawl.tools.checkstyle.checks.coding.InputGregorianCalendar,"
+                 "com.puppycrawl.tools.checkstyle.checks.design.InputGregorianCalendar,"
                  + "com.puppycrawl.tools.checkstyle.checks.design.InetSocketAddress");
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
