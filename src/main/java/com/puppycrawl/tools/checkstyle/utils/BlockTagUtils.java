@@ -5,7 +5,6 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.sound.sampled.Line;
 
 /**
  * Tools for parsing block tags from a Javadoc comment.
@@ -19,6 +18,7 @@ public class BlockTagUtils {
     /** Block tag pattern. */
     private static final Pattern BLOCK_TAG_PATTERN = Pattern.compile(
         "^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
+
     /**
      * Extract the block tags from a Javadoc comment.
      */

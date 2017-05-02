@@ -102,7 +102,7 @@ public final class JavadocUtils {
 
             // Only process public int fields.
             if (!Modifier.isPublic(field.getModifiers())
-                || field.getType() != Integer.TYPE) {
+                    || field.getType() != Integer.TYPE) {
                 continue;
             }
 
@@ -231,9 +231,10 @@ public final class JavadocUtils {
 
     /**
      * Returns the first child token that has a specified type.
-     *
-     * @param detailNode Javadoc AST node
-     * @param type the token type to match
+     * @param detailNode
+     *        Javadoc AST node
+     * @param type
+     *        the token type to match
      * @return the matching token, or null if no match
      */
     public static DetailNode findFirstToken(DetailNode detailNode, int type) {

@@ -4,9 +4,13 @@ import com.google.auto.value.AutoValue;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
 /**
- * Created by nnaze on 5/2/17.
+ * Common utilities for paring Javadoc tags.
  */
-public class TagUtils {
+class TagUtils {
+
+    /**
+     * Value object for storing data about a parsed tag.
+     */
     @AutoValue
     abstract static class Tag {
         abstract String name();
