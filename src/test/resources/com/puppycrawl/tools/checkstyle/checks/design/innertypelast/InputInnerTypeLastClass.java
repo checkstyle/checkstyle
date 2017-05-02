@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-public class InputInnerClass {
+public class InputInnerTypeLastClass {
 	public int test1 = 100;
 
 	public void methodTestInner1() {
