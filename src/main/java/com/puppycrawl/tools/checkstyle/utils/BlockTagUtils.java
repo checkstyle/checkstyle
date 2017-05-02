@@ -42,6 +42,10 @@ public class BlockTagUtils {
                 String remainder = line.substring(tagMatcher.end(1));
                 String tagValue = remainder.trim();
 
+                if (tagValue.endsWith("*/")) {
+                    tagValue = tagValue.substring(0, tagValue.length() - "*/".length()).trim();
+                }
+
                 LineColumn position = new LineColumn(lineNum, colNum);
                 tags.add(TagUtils.Tag.create(tagName, tagValue, position));
             }

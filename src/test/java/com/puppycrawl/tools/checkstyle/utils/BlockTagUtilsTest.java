@@ -50,4 +50,30 @@ public class BlockTagUtilsTest {
         assertEquals(4, tag4.position().getLine());
         assertEquals(3, tag4.position().getColumn());
     }
+
+    @Test
+    public void testVersionStringFormat() {
+        final String[] text = {
+            "/** ",
+            " * @version 1.0",
+            " */"
+        };
+        ImmutableList<TagUtils.Tag> tags = BlockTagUtils.extractBlockTags(text);
+        assertEquals(1, tags.size());
+        assertEquals("version", tags.get(0).name());
+        assertEquals("1.0", tags.get(0).value());
+    }
+
+    @Test
+    public void testOddVersionString() {
+        final String[] text = {
+            "/**",
+            " * Foo",
+            " * @version 1.0 */"};
+
+        ImmutableList<TagUtils.Tag> tags = BlockTagUtils.extractBlockTags(text);
+        assertEquals(1, tags.size());
+        assertEquals("version", tags.get(0).name());
+        assertEquals("1.0", tags.get(0).value());
+    }
 }
