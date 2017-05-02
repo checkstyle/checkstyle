@@ -13,9 +13,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+<<<<<<< HEAD
  * Tools for extracting inline tags from Javadoc comments.
  */
 class InlineTagUtils {
+=======
+ * Created by nnaze on 4/28/17.
+ */
+public class InlineTagUtils {
+>>>>>>> ce2e1b46c279e0454a84b0830bc7a335b4cb69e7
 
     /**
      * Inline tag pattern.
@@ -84,8 +90,12 @@ class InlineTagUtils {
         return str.replaceAll("\\s+", " ").trim();
     }
 
+<<<<<<< HEAD
     @VisibleForTesting
     static String removeLeadingJavaDoc(String source) {
+=======
+    public static String removeLeadingJavaDoc(String source) {
+>>>>>>> ce2e1b46c279e0454a84b0830bc7a335b4cb69e7
         Matcher matcher = JAVADOC_PREFIX_PATTERN.matcher(source);
         return matcher.replaceAll("");
     }

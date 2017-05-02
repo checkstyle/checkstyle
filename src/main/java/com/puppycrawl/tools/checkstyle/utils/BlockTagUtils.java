@@ -5,6 +5,10 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+<<<<<<< HEAD
+=======
+import javax.sound.sampled.Line;
+>>>>>>> ce2e1b46c279e0454a84b0830bc7a335b4cb69e7
 
 /**
  * Tools for parsing block tags from a Javadoc comment.
@@ -18,7 +22,10 @@ public class BlockTagUtils {
     /** Block tag pattern. */
     private static final Pattern BLOCK_TAG_PATTERN = Pattern.compile(
         "^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce2e1b46c279e0454a84b0830bc7a335b4cb69e7
     /**
      * Extract the block tags from a Javadoc comment.
      */
@@ -42,11 +49,14 @@ public class BlockTagUtils {
                 String remainder = line.substring(tagMatcher.end(1));
                 String tagValue = remainder.trim();
 
+<<<<<<< HEAD
                 // Handle the case where we're on the last line of a Javadoc comment.
                 if (tagValue.endsWith("*/")) {
                     tagValue = tagValue.substring(0, tagValue.length() - "*/".length()).trim();
                 }
 
+=======
+>>>>>>> ce2e1b46c279e0454a84b0830bc7a335b4cb69e7
                 LineColumn position = new LineColumn(lineNum, colNum);
                 tags.add(TagUtils.Tag.create(tagName, tagValue, position));
             }

@@ -8,7 +8,11 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import org.junit.Test;
 
 /**
+<<<<<<< HEAD
  * Tests InlineTagUtils
+=======
+ * Created by nnaze on 4/28/17.
+>>>>>>> ce2e1b46c279e0454a84b0830bc7a335b4cb69e7
  */
 public class InlineTagUtilsTest {
 

@@ -50,6 +50,7 @@ public class BlockTagUtilsTest {
         assertEquals(4, tag4.position().getLine());
         assertEquals(3, tag4.position().getColumn());
     }
+<<<<<<< HEAD
 
     @Test
     public void testVersionStringFormat() {
@@ -76,4 +77,6 @@ public class BlockTagUtilsTest {
         assertEquals("version", tags.get(0).name());
         assertEquals("1.0", tags.get(0).value());
     }
+=======
+>>>>>>> ce2e1b46c279e0454a84b0830bc7a335b4cb69e7
 }
