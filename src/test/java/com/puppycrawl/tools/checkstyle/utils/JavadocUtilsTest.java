@@ -55,6 +55,18 @@ public class JavadocUtilsTest {
     }
 
     @Test
+    public void testBlockTag() {
+        final String[] text = {
+            "/** @see elsewhere ",
+            " */"
+        };
+        final Comment comment = new Comment(text, 1, 4, text[1].length());
+        final JavadocTags allTags =
+            JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
+        assertEquals(1, allTags.getValidTags().size());
+    }
+
+    @Test
     public void testTagType() {
         final String[] text = {
             "/** @see block",
