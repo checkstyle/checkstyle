@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -11,7 +11,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-public class InputAnnotatedVisibility {
+public class InputVisibilityModifierAnnotated {
     @Rule
     public TemporaryFolder publicJUnitRule = new TemporaryFolder();
 

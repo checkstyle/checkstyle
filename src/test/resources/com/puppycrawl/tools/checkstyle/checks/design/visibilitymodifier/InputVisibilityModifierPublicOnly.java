@@ -2,9 +2,9 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
-public class InputPublicOnly
+public class InputVisibilityModifierPublicOnly
 {
     private interface InnerInterface
     {

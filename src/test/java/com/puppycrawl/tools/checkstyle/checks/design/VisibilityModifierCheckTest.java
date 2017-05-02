@@ -49,7 +49,9 @@ public class VisibilityModifierCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "visibilitymodifier" + File.separator
+                + filename);
     }
 
     @Test
@@ -73,7 +75,7 @@ public class VisibilityModifierCheckTest
             "43:19: " + getCheckMessage(MSG_KEY, "sWeird2"),
             "77:20: " + getCheckMessage(MSG_KEY, "someValue"),
         };
-        verify(getChecker(), getPath("InputInner.java"), expected);
+        verify(getChecker(), getPath("InputVisibilityModifierInner.java"), expected);
     }
 
     @Test
@@ -88,7 +90,7 @@ public class VisibilityModifierCheckTest
             "17:20: " + getCheckMessage(MSG_KEY, "fData"),
             "77:20: " + getCheckMessage(MSG_KEY, "someValue"),
         };
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierInner.java"), expected);
     }
 
     @Test
@@ -101,7 +103,7 @@ public class VisibilityModifierCheckTest
             "50:9: " + getCheckMessage(MSG_KEY, "mTest1"),
             "52:16: " + getCheckMessage(MSG_KEY, "mTest2"),
         };
-        verify(getChecker(), getPath("InputSimple.java"), expected);
+        verify(getChecker(), getPath("InputVisibilityModifierSimple.java"), expected);
     }
 
     @Test
@@ -111,7 +113,7 @@ public class VisibilityModifierCheckTest
             "33:19: " + getCheckMessage(MSG_KEY, "mDeer"),
             "34:16: " + getCheckMessage(MSG_KEY, "aFreddo"),
         };
-        verify(getChecker(), getPath("InputPublicOnly.java"), expected);
+        verify(getChecker(), getPath("InputVisibilityModifierPublicOnly.java"), expected);
     }
 
     @Test
@@ -127,7 +129,7 @@ public class VisibilityModifierCheckTest
             "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
         };
-        verify(checkConfig, getPath("InputImmutable.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
     }
 
     @Test
@@ -150,7 +152,7 @@ public class VisibilityModifierCheckTest
             "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
             };
-        verify(checkConfig, getPath("InputImmutable.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
     }
 
     @Test
@@ -163,7 +165,7 @@ public class VisibilityModifierCheckTest
             "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
         };
-        verify(checkConfig, getPath("InputImmutable.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
     }
 
     @Test
@@ -182,7 +184,7 @@ public class VisibilityModifierCheckTest
             "36:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "37:31: " + getCheckMessage(MSG_KEY, "longValue"),
         };
-        verify(checkConfig, getPath("InputImmutable.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutable.java"), expected);
     }
 
     @Test
@@ -191,13 +193,16 @@ public class VisibilityModifierCheckTest
                 createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames",
-                 "com.puppycrawl.tools.checkstyle.checks.design.InputGregorianCalendar,"
-                 + "com.puppycrawl.tools.checkstyle.checks.design.InetSocketAddress");
+                 "com.puppycrawl.tools.checkstyle.checks.design."
+                         + "visibilitymodifier.InputVisibilityModifierGregorianCalendar,"
+                 + "com.puppycrawl.tools.checkstyle.checks.design."
+                         + "visibilitymodifier.InetSocketAddress");
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
-            "11:45: " + getCheckMessage(MSG_KEY, "adr"),
+            "12:45: " + getCheckMessage(MSG_KEY, "adr"),
         };
-        verify(checkConfig, getPath("InputImmutableSameTypeName.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutableSameTypeName.java"),
+                expected);
     }
 
     @Test
@@ -207,11 +212,12 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         final String[] expected = {
             "7:46: " + getCheckMessage(MSG_KEY, "calendar"),
-            "8:41: " + getCheckMessage(MSG_KEY, "calendar2"),
-            "9:87: " + getCheckMessage(MSG_KEY, "calendar3"),
-            "10:36: " + getCheckMessage(MSG_KEY, "address"),
+            "8:59: " + getCheckMessage(MSG_KEY, "calendar2"),
+            "10:73: " + getCheckMessage(MSG_KEY, "calendar3"),
+            "11:36: " + getCheckMessage(MSG_KEY, "address"),
         };
-        verify(checkConfig, getPath("InputImmutableSameTypeName.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutableSameTypeName.java"),
+                expected);
     }
 
     @Test
@@ -221,7 +227,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("allowPublicImmutableFields", "true");
         checkConfig.addAttribute("immutableClassCanonicalNames", "java.util.Arrays");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputImmutableStarImport.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutableStarImport.java"), expected);
     }
 
     @Test
@@ -232,7 +238,8 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("immutableClassCanonicalNames",
             "java.lang.String, com.google.common.collect.ImmutableSet");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputImmutableStarImport2.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierImmutableStarImport2.java"),
+                expected);
     }
 
     @Test
@@ -247,7 +254,7 @@ public class VisibilityModifierCheckTest
             "49:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
             "50:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
         };
-        verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierAnnotated.java"), expected);
     }
 
     @Test
@@ -256,7 +263,7 @@ public class VisibilityModifierCheckTest
             createCheckConfig(VisibilityModifierCheck.class);
         checkConfig.addAttribute("ignoreAnnotationCanonicalNames",
                 "com.puppycrawl.tools.checkstyle.checks.design."
-                    + "InputAnnotatedVisibility.CustomAnnotation");
+                    + "InputVisibilityModifierAnnotated.CustomAnnotation");
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "19:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
@@ -272,7 +279,7 @@ public class VisibilityModifierCheckTest
             "59:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
             "62:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
-        verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierAnnotated.java"), expected);
     }
 
     @Test
@@ -298,7 +305,7 @@ public class VisibilityModifierCheckTest
             "59:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
             "62:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
-        verify(checkConfig, getPath("InputAnnotatedVisibility.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierAnnotated.java"), expected);
     }
 
     @Test
@@ -309,7 +316,8 @@ public class VisibilityModifierCheckTest
             "11:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "14:28: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
         };
-        verify(checkConfig, getPath("InputAnnotatedVisibilitySameTypeName.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifierAnnotatedSameTypeName.java"),
+                expected);
     }
 
     @Test
@@ -333,7 +341,7 @@ public class VisibilityModifierCheckTest
             "13:29: " + getCheckMessage(MSG_KEY, "value"),
             "14:23: " + getCheckMessage(MSG_KEY, "list"),
         };
-        verify(checkConfig, getPath("InputPublicImmutable.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifiersPublicImmutable.java"), expected);
     }
 
     @Test
@@ -347,7 +355,7 @@ public class VisibilityModifierCheckTest
             "13:29: " + getCheckMessage(MSG_KEY, "value"),
             "14:23: " + getCheckMessage(MSG_KEY, "list"),
         };
-        verify(checkConfig, getPath("InputPublicImmutable.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifiersPublicImmutable.java"), expected);
     }
 
     @Test
@@ -358,7 +366,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addAttribute("immutableClassCanonicalNames",
             "com.google.common.collect.ImmutableSet");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputPublicImmutable.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifiersPublicImmutable.java"), expected);
     }
 
     @Test
@@ -369,7 +377,7 @@ public class VisibilityModifierCheckTest
         final String[] expected = {
             "15:23: " + getCheckMessage(MSG_KEY, "hole"),
         };
-        verify(checkConfig, getPath("InputEnumIsSealed.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifiersEnumIsSealed.java"), expected);
     }
 
     @Test
@@ -394,7 +402,7 @@ public class VisibilityModifierCheckTest
         final String[] expected = {
             "11:50: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verify(checkConfig, getPath("InputNullModifiers.java"), expected);
+        verify(checkConfig, getPath("InputVisibilityModifiersNullModifiers.java"), expected);
     }
 
     @Test
