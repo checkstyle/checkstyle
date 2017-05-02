@@ -1,4 +1,4 @@
-public class InputClassWithPrivateCtorWithNestedExtendingClassWithoutPackage {
+public class InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage {
     class A {
         private A() {}
         private class ExtendA extends A {}

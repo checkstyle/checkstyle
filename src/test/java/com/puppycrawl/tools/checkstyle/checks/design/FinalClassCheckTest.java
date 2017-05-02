@@ -38,13 +38,17 @@ public class FinalClassCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "finalclass" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "finalclass" + File.separator
+                + filename);
     }
 
     @Test
@@ -74,7 +78,8 @@ public class FinalClassCheckTest
             "15: " + getCheckMessage(MSG_KEY, "C"),
         };
         verify(checkConfig,
-                getNonCompilablePath("InputClassWithPrivateCtorWithNestedExtendingClass.java"),
+                getNonCompilablePath(
+                        "InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"),
                 expected);
     }
 
@@ -88,7 +93,7 @@ public class FinalClassCheckTest
         };
         verify(checkConfig,
                 getNonCompilablePath(
-                        "InputClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"),
+                "InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"),
                 expected);
     }
 
