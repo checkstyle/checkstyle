@@ -1,11 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 import java.io.Serializable;
 
-public class InputHideUtilityClassConstructor3041574_3 implements Serializable {
+public class InputHideUtilityClassConstructorSerializableInnerStatic implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public InputHideUtilityClassConstructor3041574_3(int i) {
+    public InputHideUtilityClassConstructorSerializableInnerStatic(int i) {
         // no code
     }
 
