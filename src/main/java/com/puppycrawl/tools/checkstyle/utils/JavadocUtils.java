@@ -144,7 +144,7 @@ public final class JavadocUtils {
         final boolean getBlockTags = (tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK);
         final boolean getInlineTags = (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE);
 
-        final List<InlineTagUtils.Tag> tags = new ArrayList<>();
+        final List<TagUtils.Tag> tags = new ArrayList<>();
 
         if (getBlockTags) {
             //tags.addAll(InlineTagUtils.ex)
@@ -157,7 +157,7 @@ public final class JavadocUtils {
         final List<JavadocTag> validTags = new ArrayList<>();
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
 
-        for (InlineTagUtils.Tag tag : tags) {
+        for (TagUtils.Tag tag : tags) {
             int col = textBlock.getStartColNo() + tag.position().getColumn();
             int line = textBlock.getStartLineNo() + tag.position().getLine();
             if (JavadocTagInfo.isValidName(tag.name())) {

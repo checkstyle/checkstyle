@@ -20,7 +20,7 @@ public class InlineTagUtilsTest {
                 "   {@link List#add(Object) link text}",
                 " * {@link Class link text}",
                 " */"};
-        ImmutableList<InlineTagUtils.Tag> tags = InlineTagUtils.extractInlineTags(text);
+        ImmutableList<TagUtils.Tag> tags = InlineTagUtils.extractInlineTags(text);
 
         assertEquals(4, tags.size());
 
@@ -38,13 +38,13 @@ public class InlineTagUtilsTest {
                 " *        bar baz}",
                 " */"};
 
-        ImmutableList<InlineTagUtils.Tag> tags = InlineTagUtils.extractInlineTags(text);
+        ImmutableList<TagUtils.Tag> tags = InlineTagUtils.extractInlineTags(text);
 
         assertEquals(1, tags.size());
         assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
     }
 
-    private void assertTag(InlineTagUtils.Tag tag, String name, String value, int line, int col) {
+    private void assertTag(TagUtils.Tag tag, String name, String value, int line, int col) {
         assertEquals(name, tag.name());
         assertEquals(value, tag.value());
         assertEquals(line, tag.position().getLine());
@@ -92,12 +92,12 @@ public class InlineTagUtilsTest {
                 "  {@link foo}"
         };
 
-        ImmutableList<InlineTagUtils.Tag> tags = InlineTagUtils
+        ImmutableList<TagUtils.Tag> tags = InlineTagUtils
                 .extractInlineTags(source);
 
         assertEquals(1, tags.size());
 
-        InlineTagUtils.Tag tag = tags.get(0);
+        TagUtils.Tag tag = tags.get(0);
         assertTag(tag, "link", "foo", 1, 3);
     }
 
