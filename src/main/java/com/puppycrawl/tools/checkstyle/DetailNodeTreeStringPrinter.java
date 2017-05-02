@@ -56,7 +56,14 @@ public final class DetailNodeTreeStringPrinter {
      * @throws IOException if the file could not be read.
      */
     public static String printFileAst(File file) throws IOException {
-        return printTree(parseFile(file), "", "");
+        String tree;
+        try {
+            tree = printTree(parseFile(file), "", "");
+        }
+        catch (IllegalArgumentException exception) {
+            tree = exception.getMessage().replace("[ERROR:0] ", "");
+        }
+        return tree;
     }
 
     /**

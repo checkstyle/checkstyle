@@ -57,17 +57,12 @@ public class DetailNodeTreeStringPrinterTest {
     @Test
     public void testParseFileWithError() throws Exception {
         LocalizedMessage.setLocale(Locale.ROOT);
-        try {
-            DetailNodeTreeStringPrinter.printFileAst(
-                    new File(getPath("InputJavadocWithError.javadoc")));
-            Assert.fail("Javadoc parser didn't failed on missing end tag");
-        }
-        catch (IllegalArgumentException ex) {
-            final String expected = "[ERROR:0] Javadoc comment at column 1 has parse error. "
-                    + "Missed HTML close tag 'qwe'. Sometimes it means that close tag missed "
-                    + "for one of previous tags.";
-            Assert.assertEquals(expected, ex.getMessage());
-        }
+        final String actual = DetailNodeTreeStringPrinter.printFileAst(
+                new File(getPath("InputJavadocWithError.javadoc")));
+        final String expected = "Javadoc comment at column 1 has parse error. "
+                + "Missed HTML close tag 'qwe'. Sometimes it means that close tag missed "
+                + "for one of previous tags.";
+        Assert.assertEquals(expected, actual);
     }
 
 }
