@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 
 /**
  * Contains utility methods for working with Javadoc.
+ *
  * @author Lyle Hanson
  */
 public final class JavadocUtils {
@@ -101,7 +102,7 @@ public final class JavadocUtils {
 
             // Only process public int fields.
             if (!Modifier.isPublic(field.getModifiers())
-                    || field.getType() != Integer.TYPE) {
+                || field.getType() != Integer.TYPE) {
                 continue;
             }
 
@@ -147,7 +148,7 @@ public final class JavadocUtils {
         final List<TagUtils.Tag> tags = new ArrayList<>();
 
         if (getBlockTags) {
-            //tags.addAll(InlineTagUtils.ex)
+            tags.addAll(BlockTagUtils.extractBlockTags(textBlock.getText()));
         }
 
         if (getInlineTags) {
@@ -158,63 +159,22 @@ public final class JavadocUtils {
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
 
         for (TagUtils.Tag tag : tags) {
-            int col = textBlock.getStartColNo() + tag.position().getColumn();
-            int line = textBlock.getStartLineNo() + tag.position().getLine();
+            int col = tag.position().getColumn();
+
+            // Add the starting line of the comment to the line number to get the actual line number
+            // in the source.
+            // Lines are one-indexed, so need a off-by-one correction.
+            int line = textBlock.getStartLineNo() + tag.position().getLine() - 1;
+
             if (JavadocTagInfo.isValidName(tag.name())) {
                 validTags.add(
-                        new JavadocTag(line, col, tag.name(), tag.value()));
+                    new JavadocTag(line, col, tag.name(), tag.value()));
             } else {
                 invalidTags.add(new InvalidJavadocTag(line, col, tag.name()));
             }
         }
 
         return new JavadocTags(validTags, invalidTags);
-    }
-
-    /**
-     * Looks for inline tags in comment and adds them to the proper tags collection.
-     * @param comment comment text block
-     * @param lineNumber line number in the comment
-     * @param validTags collection of valid tags
-     * @param invalidTags collection of invalid tags
-     */
-    private static void lookForInlineTags(TextBlock comment, int lineNumber,
-            final List<JavadocTag> validTags, final List<InvalidJavadocTag> invalidTags) {
-        final String text = comment.getText()[lineNumber];
-        // Match Javadoc text after comment characters
-        final Matcher commentMatcher = COMMENT_PATTERN.matcher(text);
-        final String commentContents;
-
-        // offset including comment characters
-        final int commentOffset;
-
-        if (commentMatcher.find()) {
-            commentContents = commentMatcher.group(1);
-            commentOffset = commentMatcher.start(1) - 1;
-        }
-        else {
-            // No leading asterisks, still valid
-            commentContents = text;
-            commentOffset = 0;
-        }
-        final Matcher tagMatcher = INLINE_TAG_PATTERN.matcher(commentContents);
-        while (tagMatcher.find()) {
-            final String tagName = tagMatcher.group(1);
-            final String tagValue = tagMatcher.group(2).trim();
-            final int line = comment.getStartLineNo() + lineNumber;
-            int col = commentOffset + tagMatcher.start(1) - 1;
-            if (lineNumber == 0) {
-                col += comment.getStartColNo();
-            }
-            if (JavadocTagInfo.isValidName(tagName)) {
-                validTags.add(new JavadocTag(line, col, tagName,
-                        tagValue));
-            }
-            else {
-                invalidTags.add(new InvalidJavadocTag(line, col,
-                        tagName));
-            }
-        }
     }
 
     /**
@@ -271,10 +231,9 @@ public final class JavadocUtils {
 
     /**
      * Returns the first child token that has a specified type.
-     * @param detailNode
-     *        Javadoc AST node
-     * @param type
-     *        the token type to match
+     *
+     * @param detailNode Javadoc AST node
+     * @param type the token type to match
      * @return the matching token, or null if no match
      */
     public static DetailNode findFirstToken(DetailNode detailNode, int type) {
@@ -370,6 +329,7 @@ public final class JavadocUtils {
 
     /**
      * Gets previous sibling of specified node.
+     *
      * @param node DetailNode
      * @return previous sibling
      */
@@ -441,6 +401,7 @@ public final class JavadocUtils {
 
     /**
      * Replace all control chars with escaped symbols.
+     *
      * @param text the String to process.
      * @return the processed String with all control chars escaped.
      */
