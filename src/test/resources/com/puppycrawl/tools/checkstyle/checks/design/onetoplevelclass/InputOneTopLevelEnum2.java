@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
 enum InputOneTopLevelEnum2inner1 {
     VALUE1, VALUE2;

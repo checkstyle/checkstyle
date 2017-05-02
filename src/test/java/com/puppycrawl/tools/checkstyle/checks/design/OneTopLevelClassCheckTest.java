@@ -36,13 +36,17 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "onetoplevelclass" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "onetoplevelclass" + File.separator
+                + filename);
     }
 
     @Test
@@ -129,7 +133,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
             "45: " + getCheckMessage(MSG_KEY, "AnotherClass"),
             "48: " + getCheckMessage(MSG_KEY, "NativeTest"),
         };
-        verify(checkConfig, getPath("InputClone.java"), expected);
+        verify(checkConfig, getPath("InputOneTopLevelClassClone.java"), expected);
     }
 
     @Test
@@ -139,7 +143,7 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "10: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
         };
-        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
+        verify(checkConfig, getPath("InputOneTopLevelClassDeclarationOrder.java"), expected);
     }
 
     @Test
