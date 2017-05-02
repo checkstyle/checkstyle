@@ -140,54 +140,35 @@ public final class JavadocUtils {
      */
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
-        final String[] text = textBlock.getText();
-        final List<JavadocTag> tags = new ArrayList<>();
-        final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
-        for (int i = 0; i < text.length; i++) {
-            final String textValue = text[i];
-            final Matcher blockTagMatcher = getBlockTagPattern(i).matcher(textValue);
-            if ((tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK)
-                    && blockTagMatcher.find()) {
-                final String tagName = blockTagMatcher.group(1);
-                String content = textValue.substring(blockTagMatcher.end(1));
-                if (content.endsWith("*/")) {
-                    content = content.substring(0, content.length() - 2);
-                }
-                final int line = textBlock.getStartLineNo() + i;
-                int col = blockTagMatcher.start(1) - 1;
-                if (i == 0) {
-                    col += textBlock.getStartColNo();
-                }
-                if (JavadocTagInfo.isValidName(tagName)) {
-                    tags.add(
-                            new JavadocTag(line, col, tagName, content.trim()));
-                }
-                else {
-                    invalidTags.add(new InvalidJavadocTag(line, col, tagName));
-                }
-            }
-            // No block tag, so look for inline validTags
-            else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE) {
-                lookForInlineTags(textBlock, i, tags, invalidTags);
-            }
-        }
-        return new JavadocTags(tags, invalidTags);
-    }
 
-    /**
-     * Get a block tag pattern depending on a line number of a javadoc.
-     * @param lineNumber the line number.
-     * @return a block tag pattern.
-     */
-    private static Pattern getBlockTagPattern(int lineNumber) {
-        final Pattern blockTagPattern;
-        if (lineNumber == 0) {
-            blockTagPattern = BLOCK_TAG_PATTERN_FIRST_LINE;
+        final boolean getBlockTags = (tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK);
+        final boolean getInlineTags = (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE);
+
+        final List<JavadocTagUtils.Tag> tags = new ArrayList<>();
+
+        if (getBlockTags) {
+            //tags.addAll(JavadocTagUtils.ex)
         }
-        else {
-            blockTagPattern = BLOCK_TAG_PATTERN;
+
+        if (getInlineTags) {
+            tags.addAll(JavadocTagUtils.extractInlineTags(textBlock.getText()));
         }
-        return blockTagPattern;
+
+        final List<JavadocTag> validTags = new ArrayList<>();
+        final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
+
+        for (JavadocTagUtils.Tag tag : tags) {
+            int col = textBlock.getStartColNo() + tag.position().getColumn();
+            int line = textBlock.getStartLineNo() + tag.position().getLine();
+            if (JavadocTagInfo.isValidName(tag.name())) {
+                validTags.add(
+                        new JavadocTag(line, col, tag.name(), tag.value()));
+            } else {
+                invalidTags.add(new InvalidJavadocTag(line, col, tag.name()));
+            }
+        }
+
+        return new JavadocTags(validTags, invalidTags);
     }
 
     /**

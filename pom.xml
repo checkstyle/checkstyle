@@ -317,6 +317,12 @@
       <scope>test</scope>
       <classifier>runtime</classifier>
     </dependency>
+    <dependency>
+      <groupId>com.google.auto.value</groupId>
+      <artifactId>auto-value</artifactId>
+      <version>1.4</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
