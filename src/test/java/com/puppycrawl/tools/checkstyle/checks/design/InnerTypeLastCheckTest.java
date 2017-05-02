@@ -35,7 +35,9 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "innertypelast" + File.separator
+                + filename);
     }
 
     @Test
@@ -56,7 +58,7 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
             "78:5: " + getCheckMessage(MSG_KEY),
             "95:9: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputInnerClass.java"), expected);
+        verify(checkConfig, getPath("InputInnerTypeLastClass.java"), expected);
     }
 
     @Test
