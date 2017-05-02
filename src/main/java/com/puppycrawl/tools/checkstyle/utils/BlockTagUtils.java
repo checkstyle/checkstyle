@@ -42,6 +42,7 @@ public class BlockTagUtils {
                 String remainder = line.substring(tagMatcher.end(1));
                 String tagValue = remainder.trim();
 
+                // Handle the case where we're on the last line of a Javadoc comment.
                 if (tagValue.endsWith("*/")) {
                     tagValue = tagValue.substring(0, tagValue.length() - "*/".length()).trim();
                 }
