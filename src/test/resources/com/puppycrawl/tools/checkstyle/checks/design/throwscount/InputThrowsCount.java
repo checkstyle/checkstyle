@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.throwscount;
 
 import java.awt.AWTException;
 import java.io.EOFException;

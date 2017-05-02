@@ -39,7 +39,9 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "throwscount" + File.separator
+                + filename);
     }
 
     @Test
