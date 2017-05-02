@@ -25,7 +25,7 @@ public class InlineTagUtils {
 
     private static final Pattern JAVADOC_PREFIX_PATTERN = Pattern.compile("^\\s*\\*", Pattern.MULTILINE);
 
-    static ImmutableList<Tag> extractInlineTags(String[] text) {
+    static ImmutableList<TagUtils.Tag> extractInlineTags(String[] text) {
         for (String line : text) {
             Preconditions.checkState(!line.contains("\n"), "comment lines cannot contain newlines");
         }
@@ -33,7 +33,7 @@ public class InlineTagUtils {
         final String commentText = convertLinesToString(text);
         final Matcher inlineTagMatcher = INLINE_TAG_PATTERN.matcher(commentText);
 
-        ImmutableList.Builder<Tag> tagsBuilder = ImmutableList.builder();
+        ImmutableList.Builder<TagUtils.Tag> tagsBuilder = ImmutableList.builder();
 
         while (inlineTagMatcher.find()) {
             final String tagName = inlineTagMatcher.group(1);
@@ -51,7 +51,7 @@ public class InlineTagUtils {
                 /* correct start index offset */
                     startIndex - 1);
 
-            tagsBuilder.add(Tag.create(tagName, tagValue, position));
+            tagsBuilder.add(TagUtils.Tag.create(tagName, tagValue, position));
         }
 
         return tagsBuilder.build();
@@ -87,18 +87,5 @@ public class InlineTagUtils {
     public static String removeLeadingJavaDoc(String source) {
         Matcher matcher = JAVADOC_PREFIX_PATTERN.matcher(source);
         return matcher.replaceAll("");
-    }
-
-    @AutoValue
-    abstract static class Tag {
-        abstract String name();
-
-        abstract String value();
-
-        abstract LineColumn position();
-
-        static Tag create(String name, String value, LineColumn position) {
-            return new AutoValue_InlineTagUtils_Tag(name, value, position);
-        }
     }
 }
