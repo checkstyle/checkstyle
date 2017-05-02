@@ -144,20 +144,20 @@ public final class JavadocUtils {
         final boolean getBlockTags = (tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK);
         final boolean getInlineTags = (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE);
 
-        final List<JavadocTagUtils.Tag> tags = new ArrayList<>();
+        final List<InlineTagUtils.Tag> tags = new ArrayList<>();
 
         if (getBlockTags) {
-            //tags.addAll(JavadocTagUtils.ex)
+            //tags.addAll(InlineTagUtils.ex)
         }
 
         if (getInlineTags) {
-            tags.addAll(JavadocTagUtils.extractInlineTags(textBlock.getText()));
+            tags.addAll(InlineTagUtils.extractInlineTags(textBlock.getText()));
         }
 
         final List<JavadocTag> validTags = new ArrayList<>();
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
 
-        for (JavadocTagUtils.Tag tag : tags) {
+        for (InlineTagUtils.Tag tag : tags) {
             int col = textBlock.getStartColNo() + tag.position().getColumn();
             int line = textBlock.getStartLineNo() + tag.position().getLine();
             if (JavadocTagInfo.isValidName(tag.name())) {

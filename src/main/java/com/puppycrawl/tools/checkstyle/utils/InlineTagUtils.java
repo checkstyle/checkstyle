@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * Created by nnaze on 4/28/17.
  */
-public class JavadocTagUtils {
+public class InlineTagUtils {
 
     /**
      * Inline tag pattern.
@@ -98,7 +98,7 @@ public class JavadocTagUtils {
         abstract LineColumn position();
 
         static Tag create(String name, String value, LineColumn position) {
-            return new AutoValue_JavadocTagUtils_Tag(name, value, position);
+            return new AutoValue_InlineTagUtils_Tag(name, value, position);
         }
     }
 }

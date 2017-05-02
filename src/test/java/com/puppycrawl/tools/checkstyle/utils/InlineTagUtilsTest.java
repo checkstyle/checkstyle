@@ -10,7 +10,7 @@ import org.junit.Test;
 /**
  * Created by nnaze on 4/28/17.
  */
-public class JavadocTagUtilsTest {
+public class InlineTagUtilsTest {
 
     @Test
     public void testExtractInlineTags() {
@@ -20,7 +20,7 @@ public class JavadocTagUtilsTest {
                 "   {@link List#add(Object) link text}",
                 " * {@link Class link text}",
                 " */"};
-        ImmutableList<JavadocTagUtils.Tag> tags = JavadocTagUtils.extractInlineTags(text);
+        ImmutableList<InlineTagUtils.Tag> tags = InlineTagUtils.extractInlineTags(text);
 
         assertEquals(4, tags.size());
 
@@ -38,13 +38,13 @@ public class JavadocTagUtilsTest {
                 " *        bar baz}",
                 " */"};
 
-        ImmutableList<JavadocTagUtils.Tag> tags = JavadocTagUtils.extractInlineTags(text);
+        ImmutableList<InlineTagUtils.Tag> tags = InlineTagUtils.extractInlineTags(text);
 
         assertEquals(1, tags.size());
         assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
     }
 
-    private void assertTag(JavadocTagUtils.Tag tag, String name, String value, int line, int col) {
+    private void assertTag(InlineTagUtils.Tag tag, String name, String value, int line, int col) {
         assertEquals(name, tag.name());
         assertEquals(value, tag.value());
         assertEquals(line, tag.position().getLine());
@@ -53,24 +53,24 @@ public class JavadocTagUtilsTest {
 
     @Test
     public void testCollapseWhitespace() {
-        assertEquals("a b", JavadocTagUtils.collapseWhitespace("  a  b  "));
-        assertEquals("", JavadocTagUtils.collapseWhitespace("    "));
-        assertEquals("a b c", JavadocTagUtils.collapseWhitespace("a\nb\nc\n"));
+        assertEquals("a b", InlineTagUtils.collapseWhitespace("  a  b  "));
+        assertEquals("", InlineTagUtils.collapseWhitespace("    "));
+        assertEquals("a b c", InlineTagUtils.collapseWhitespace("a\nb\nc\n"));
     }
 
     @Test
     public void testGetLineColumnOfIndex() {
         String source = "abc\n" + "def\n" + "hij\n";
 
-        LineColumn lineColumn = JavadocTagUtils.getLineColumnOfIndex(source, source.indexOf("a"));
+        LineColumn lineColumn = InlineTagUtils.getLineColumnOfIndex(source, source.indexOf("a"));
         assertEquals(1, lineColumn.getLine());
         assertEquals(0, lineColumn.getColumn());
 
-        lineColumn = JavadocTagUtils.getLineColumnOfIndex(source, source.indexOf("e"));
+        lineColumn = InlineTagUtils.getLineColumnOfIndex(source, source.indexOf("e"));
         assertEquals(2, lineColumn.getLine());
         assertEquals(1, lineColumn.getColumn());
 
-        lineColumn = JavadocTagUtils.getLineColumnOfIndex(source, source.indexOf("j"));
+        lineColumn = InlineTagUtils.getLineColumnOfIndex(source, source.indexOf("j"));
         assertEquals(3, lineColumn.getLine());
         assertEquals(2, lineColumn.getColumn());
     }
@@ -83,7 +83,7 @@ public class JavadocTagUtilsTest {
                 "ghi"};
         assertEquals(
                 "abc\ndef\nghi\n",
-                JavadocTagUtils.convertLinesToString(lines));
+                InlineTagUtils.convertLinesToString(lines));
     }
 
     @Test
@@ -92,25 +92,25 @@ public class JavadocTagUtilsTest {
                 "  {@link foo}"
         };
 
-        ImmutableList<JavadocTagUtils.Tag> tags = JavadocTagUtils
+        ImmutableList<InlineTagUtils.Tag> tags = InlineTagUtils
                 .extractInlineTags(source);
 
         assertEquals(1, tags.size());
 
-        JavadocTagUtils.Tag tag = tags.get(0);
+        InlineTagUtils.Tag tag = tags.get(0);
         assertTag(tag, "link", "foo", 1, 3);
     }
 
     @Test
     public void testRemoveLeadingJavaDoc() {
-        assertEquals(" abc", JavadocTagUtils.removeLeadingJavaDoc("  * abc"));
+        assertEquals(" abc", InlineTagUtils.removeLeadingJavaDoc("  * abc"));
 
-        String source = JavadocTagUtils.convertLinesToString(new String[]{
+        String source = InlineTagUtils.convertLinesToString(new String[]{
                 " * {@link foo",
                 " * bar",
                 " * baz}"});
 
         assertEquals(" {@link foo\n" + " bar\n" + " baz}\n",
-                JavadocTagUtils.removeLeadingJavaDoc(source));
+                InlineTagUtils.removeLeadingJavaDoc(source));
     }
 }
