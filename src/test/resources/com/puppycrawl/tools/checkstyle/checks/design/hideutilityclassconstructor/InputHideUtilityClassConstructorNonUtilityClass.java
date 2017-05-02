@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 import java.awt.Dimension;
 import javax.swing.JPanel;
@@ -6,10 +6,10 @@ import javax.swing.JPanel;
 /**
  * Not a util class because it's not directly derived from java.lang.Object.
  */
-public class InputNonUtilityClass extends JPanel
+public class InputHideUtilityClassConstructorNonUtilityClass extends JPanel
 {
     /** HideUtilityClassConstructorCheck should not report this */
-    public InputNonUtilityClass()
+    public InputHideUtilityClassConstructorNonUtilityClass()
     {
 	this.setPreferredSize(new Dimension(100, 100));
     }
