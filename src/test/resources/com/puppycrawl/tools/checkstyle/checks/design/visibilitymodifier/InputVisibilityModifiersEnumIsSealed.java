@@ -1,8 +1,8 @@
 
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 /** Shows that sealed enum is good as final. */
-public enum InputEnumIsSealed {
+public enum InputVisibilityModifiersEnumIsSealed {
     SOME_VALUE;
 
     static class Hole {

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableSet;
 
-public final class InputImmutable
+public final class InputVisibilityModifierImmutable
 {
     public final int someIntValue;
     public final ImmutableSet<String> includes;
@@ -15,8 +15,8 @@ public final class InputImmutable
     public final BigDecimal money;
     public final List list;
 
-    public InputImmutable(Collection<String> includes, Collection<String> excludes,
-             BigDecimal value, String notes, int someValue, List l) {
+    public InputVisibilityModifierImmutable(Collection<String> includes, Collection<String> excludes,
+                                            BigDecimal value, String notes, int someValue, List l) {
         this.includes = ImmutableSet.copyOf(includes);
         this.excludes = ImmutableSet.copyOf(excludes);
         this.money = value;

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
