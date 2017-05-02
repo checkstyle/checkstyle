@@ -38,7 +38,9 @@ public class TypeNameCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "naming" + File.separator + filename);
+                + "naming" + File.separator
+                + "typename" + File.separator
+                + filename);
     }
 
     @Test
