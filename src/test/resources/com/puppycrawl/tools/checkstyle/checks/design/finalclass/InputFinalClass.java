@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public class InputFinalClass 
 {
