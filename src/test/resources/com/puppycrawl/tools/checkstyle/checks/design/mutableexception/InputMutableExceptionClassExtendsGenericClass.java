@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
 import java.util.concurrent.atomic.AtomicReference;
 
