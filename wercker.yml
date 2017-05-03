@@ -45,7 +45,7 @@ build:
           set -e
           CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
           echo CS_version: ${CS_POM_VERSION}
-          git clone https://github.com/pgjdbc/pgjdbc.git
+          for i in 1 2 3 4 5; do git clone https://github.com/pgjdbc/pgjdbc.git && break || sleep 15; done
           cd pgjdbc/pgjdbc
           mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
           cd ../../
@@ -62,12 +62,12 @@ build:
           set -e
           CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
           echo CS_version: ${CS_POM_VERSION}
-          git clone https://github.com/Hipparchus-Math/hipparchus.git
+          for i in 1 2 3 4 5; do git clone https://github.com/Hipparchus-Math/hipparchus.git && break || sleep 15; done
           cd hipparchus
           git checkout 905006092493e350dcd68dd7b2ec1dedaf4983b7
           mvn clean install -DskipTests
           cd ../
-          git clone https://github.com/CS-SI/Orekit.git
+          for i in 1 2 3 4 5; do git clone https://github.com/CS-SI/Orekit.git && break || sleep 15; done
           cd Orekit
           git checkout 651f25088ed50543d32dd54fa10f9a6a070ee5d7
           mvn compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
@@ -85,7 +85,7 @@ build:
           set -e
           CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
           echo CS_version: ${CS_POM_VERSION}
-          git clone https://github.com/xwiki/xwiki-commons/
+          for i in 1 2 3 4 5; do git clone https://github.com/xwiki/xwiki-commons/ && break || sleep 15; done
           cd xwiki-commons/xwiki-commons-core
           git checkout xwiki-commons-8.2-milestone-1
           mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
@@ -103,7 +103,7 @@ build:
           set -e
           CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
           echo CS_version: ${CS_POM_VERSION}
-          git clone https://github.com/apache/incubator-apex-core/
+          for i in 1 2 3 4 5; do git clone https://github.com/apache/incubator-apex-core/ && break || sleep 15; done
           cd incubator-apex-core
           mvn compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
           cd ../
@@ -120,7 +120,7 @@ build:
           set -e
           CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
           echo CS_version: ${CS_POM_VERSION}
-          git clone https://github.com/hibernate/hibernate-search.git
+          for i in 1 2 3 4 5; do git clone https://github.com/hibernate/hibernate-search.git && break || sleep 15; done
           cd hibernate-search
           git checkout 5.8.0.Beta1
           mvn -s settings-example.xml clean install -DskipTests=true -DtestElasticsearchVersion=false
@@ -156,7 +156,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
@@ -173,7 +173,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#checkstyle/checkstyle/' projects-for-wercker.properties
@@ -191,7 +191,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#guava/guava/' projects-for-wercker.properties
@@ -208,7 +208,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#hibernate-orm/hibernate-orm/' projects-for-wercker.properties
@@ -226,7 +226,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#findbugs/findbugs/' projects-for-wercker.properties
@@ -243,7 +243,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#spring-framework/spring-framework/' projects-for-wercker.properties
@@ -260,7 +260,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#Hbase/Hbase/' projects-for-wercker.properties
@@ -277,7 +277,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#pmd/pmd/' projects-for-wercker.properties
@@ -296,7 +296,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#RxJava/RxJava/' projects-for-wercker.properties
