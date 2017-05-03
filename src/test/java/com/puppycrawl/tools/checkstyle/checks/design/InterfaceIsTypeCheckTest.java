@@ -36,7 +36,9 @@ public class InterfaceIsTypeCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "interfaceistype" + File.separator
+                + filename);
     }
 
     @Test
