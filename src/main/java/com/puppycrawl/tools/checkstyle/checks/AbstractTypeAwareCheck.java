@@ -317,8 +317,6 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
                  child != null;
                  child = child.getNextSibling()) {
                 if (child.getType() == TokenTypes.TYPE_PARAMETER) {
-                    final String alias =
-                        child.findFirstToken(TokenTypes.IDENT).getText();
                     final DetailAST bounds =
                         child.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
                     if (bounds != null) {
@@ -326,6 +324,8 @@ public abstract class AbstractTypeAwareCheck extends AbstractCheck {
                             FullIdent.createFullIdentBelow(bounds);
                         final AbstractClassInfo classInfo =
                             createClassInfo(new Token(name), currentClassName);
+                        final String alias =
+                                child.findFirstToken(TokenTypes.IDENT).getText();
                         paramsMap.put(alias, classInfo);
                     }
                 }

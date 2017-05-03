@@ -203,10 +203,10 @@ public class IllegalInstantiationCheck
             // ast != "new Boolean[]"
             final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAst);
             final String typeName = typeIdent.getText();
-            final int lineNo = newTokenAst.getLineNo();
-            final int colNo = newTokenAst.getColumnNo();
             final String fqClassName = getIllegalInstantiation(typeName);
             if (fqClassName != null) {
+                final int lineNo = newTokenAst.getLineNo();
+                final int colNo = newTokenAst.getColumnNo();
                 log(lineNo, colNo, MSG_KEY, fqClassName);
             }
         }

@@ -95,9 +95,9 @@ class MultilineDetector {
             boolean foundMatch = matcher.find();
 
             while (foundMatch) {
-                final LineColumn start = text.lineColumn(matcher.start());
                 currentMatches++;
                 if (currentMatches > options.getMaximum()) {
+                    final LineColumn start = text.lineColumn(matcher.start());
                     if (options.getMessage().isEmpty()) {
                         options.getReporter().log(start.getLine(),
                                 MSG_REGEXP_EXCEEDED, matcher.pattern().toString());

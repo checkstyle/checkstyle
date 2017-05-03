@@ -120,8 +120,8 @@ public abstract class AbstractDeclarationCollector extends AbstractCheck {
                 frameStack.addFirst(new BlockFrame(frame));
                 break;
             case TokenTypes.METHOD_DEF :
-                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
                 if (frame instanceof ClassFrame) {
+                    final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
                     final DetailAST mods =
                             ast.findFirstToken(TokenTypes.MODIFIERS);
                     if (mods.branchContains(TokenTypes.LITERAL_STATIC)) {
