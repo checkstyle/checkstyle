@@ -1,8 +1,8 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 import java.io.Serializable;
 
-public class InputBadOverrideFromOther implements IFoo2
+public class InputMissingOverrideBadOverrideFromOther implements IFoo2
 {
     /**
      * {@inheritDoc}
@@ -26,7 +26,7 @@ interface IBar2 extends IFoo2 {
     public void doFoo();
 }
 
-class MoreJunk2 extends InputBadOverrideFromOther {
+class MoreJunk2 extends InputMissingOverrideBadOverrideFromOther {
 
     /**
      * {@inheritDoc}

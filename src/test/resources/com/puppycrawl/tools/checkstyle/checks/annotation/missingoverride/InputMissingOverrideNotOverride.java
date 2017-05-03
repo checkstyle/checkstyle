@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
-public class InputNotOverride
+public class InputMissingOverrideNotOverride
 {
     /**
      * {@inheritDoc}

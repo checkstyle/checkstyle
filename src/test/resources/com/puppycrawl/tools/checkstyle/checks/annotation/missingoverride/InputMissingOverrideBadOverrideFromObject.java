@@ -1,11 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
-public class InputGoodOverrideFromObject
+public class InputMissingOverrideBadOverrideFromObject
 {
     /**
      * {@inheritDoc}
      */
-    @Override
     public boolean equals(Object obj)
     {
         return false;
@@ -18,7 +17,6 @@ public class InputGoodOverrideFromObject
      *
      * {@inheritDoc
      */
-    @Override
     public int hashCode()
     {
         return 1;
@@ -29,41 +27,26 @@ public class InputGoodOverrideFromObject
         /**
          * {@inheritDoc}
          */
-        @Override
         protected void finalize() throws Throwable
         {
         }
     }
 }
 
-interface HashEq {
+interface HashEq2 {
 
     /**
      * {@inheritDoc}
      */
-    @Override
     public int hashCode();
 }
 
-enum Bleh1 {
+enum Bleh3 {
     B;
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String toString() {
-        return "B";
-    }
-}
-
-enum Bleh22 {
-    B;
-
-    /**
-     * {@inheritDoc}
-     */
-    @java.lang.Override
     public String toString() {
         return "B";
     }

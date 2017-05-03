@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
-public class InputGoodAnnotationOverride
+public class InputMissingOverrideGoodOverride
 {
     Runnable r = new Runnable() {
 
