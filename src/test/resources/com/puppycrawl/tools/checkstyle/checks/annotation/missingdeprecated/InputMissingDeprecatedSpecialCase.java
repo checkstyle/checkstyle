@@ -1,11 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 /**
  * @deprecated bleh
  * @deprecated boo
  */
 @Deprecated
-public class InputSpecialCaseDeprecated
+public class InputMissingDeprecatedSpecialCase
 {
     /**
      * @deprecated bleh

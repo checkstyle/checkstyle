@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 public class InputMissingDeprecatedSkipNoJavadoc {
     @Deprecated

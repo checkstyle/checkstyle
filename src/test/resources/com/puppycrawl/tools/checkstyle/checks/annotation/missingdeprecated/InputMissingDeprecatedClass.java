@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 import java.lang.annotation.Inherited;
 /**
@@ -9,7 +9,7 @@ import java.lang.annotation.Inherited;
  *stuff
  *stuff
  */
-public class InputMissingDeprecated1
+public class InputMissingDeprecatedClass
 {
     
 }
