@@ -85,7 +85,6 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
         if (seenFirstToken) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
@@ -94,6 +93,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
             }
         }
         else {
+            final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();
 
             if (fileName.equals(outerTypeName)) {
                 validFirst = true;

@@ -404,9 +404,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         final int valuePairCount =
             annotation.getChildCount(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
-        final DetailAST valuePair =
-            annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
-
         //in compact style with one value
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
@@ -415,6 +412,8 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         }
         //in expanded style with one value and the correct element name
         else if (valuePairCount == 1) {
+            final DetailAST valuePair =
+                    annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
             final DetailAST nestedArrayInit =
                 valuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
 

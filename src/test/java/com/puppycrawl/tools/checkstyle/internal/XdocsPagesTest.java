@@ -521,8 +521,6 @@ public class XdocsPagesTest {
 
                 final String actualTypeName = columns.get(2).getTextContent().replace("\n", "")
                         .replace("\r", "").replaceAll(" +", " ").trim();
-                final String actualValue = columns.get(3).getTextContent().replace("\n", "")
-                        .replace("\r", "").replaceAll(" +", " ").trim();
 
                 Assert.assertFalse(fileName + " section '" + sectionName
                         + "' should have a type for " + propertyName, actualTypeName.isEmpty());
@@ -532,14 +530,19 @@ public class XdocsPagesTest {
                 final Class<?> clss = descriptor.getPropertyType();
                 final String expectedTypeName =
                         getModulePropertyExpectedTypeName(clss, instance, propertyName);
-                final String expectedValue = getModulePropertyExpectedValue(clss, instance,
-                        propertyName);
 
                 if (expectedTypeName != null) {
+                    final String expectedValue = getModulePropertyExpectedValue(clss, instance,
+                            propertyName);
+
                     Assert.assertEquals(fileName + " section '" + sectionName
                             + "' should have the type for " + propertyName, expectedTypeName,
                             actualTypeName);
+
                     if (expectedValue != null) {
+                        final String actualValue = columns.get(3).getTextContent().replace("\n", "")
+                                .replace("\r", "").replaceAll(" +", " ").trim();
+
                         Assert.assertEquals(fileName + " section '" + sectionName
                                 + "' should have the value for " + propertyName, expectedValue,
                                 actualValue);

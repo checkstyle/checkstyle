@@ -247,12 +247,12 @@ public class RegexpCheck extends AbstractCheck {
         else {
             end = text.lineColumn(matcher.end() - 1);
         }
-        final int startColumn = start.getColumn();
-        final int endLine = end.getLine();
-        final int endColumn = end.getColumn();
         boolean ignore = false;
         if (ignoreComments) {
             final FileContents theFileContents = getFileContents();
+            final int startColumn = start.getColumn();
+            final int endLine = end.getLine();
+            final int endColumn = end.getColumn();
             ignore = theFileContents.hasIntersectionWithComment(startLine,
                 startColumn, endLine, endColumn);
         }

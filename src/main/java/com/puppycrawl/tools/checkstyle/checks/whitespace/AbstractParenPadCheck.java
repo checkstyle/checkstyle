@@ -107,9 +107,9 @@ public abstract class AbstractParenPadCheck
      * @param ast the token representing a right parentheses
      */
     protected void processRight(DetailAST ast) {
-        final String line = getLines()[ast.getLineNo() - 1];
         final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
+            final String line = getLines()[ast.getLineNo() - 1];
             if (option == PadOption.NOSPACE
                 && Character.isWhitespace(line.charAt(before))
                 && !CommonUtils.hasWhitespaceBefore(before, line)) {

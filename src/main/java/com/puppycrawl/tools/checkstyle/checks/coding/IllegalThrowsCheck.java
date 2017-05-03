@@ -109,9 +109,9 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST detailAST) {
         final DetailAST methodDef = detailAST.getParent();
-        DetailAST token = detailAST.getFirstChild();
         // Check if the method with the given name should be ignored.
         if (!isIgnorableMethod(methodDef)) {
+            DetailAST token = detailAST.getFirstChild();
             while (token != null) {
                 if (token.getType() != TokenTypes.COMMA) {
                     final FullIdent ident = FullIdent.createFullIdent(token);

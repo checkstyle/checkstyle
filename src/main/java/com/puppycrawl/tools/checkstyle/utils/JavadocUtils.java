@@ -394,10 +394,10 @@ public final class JavadocUtils {
      */
     public static DetailNode getPreviousSibling(DetailNode node) {
         DetailNode previousSibling = null;
-        final DetailNode parent = node.getParent();
         final int previousSiblingIndex = node.getIndex() - 1;
-        final DetailNode[] children = parent.getChildren();
         if (previousSiblingIndex >= 0) {
+            final DetailNode parent = node.getParent();
+            final DetailNode[] children = parent.getChildren();
             previousSibling = children[previousSiblingIndex];
         }
         return previousSibling;
