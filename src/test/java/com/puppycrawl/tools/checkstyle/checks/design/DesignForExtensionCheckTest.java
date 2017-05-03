@@ -37,7 +37,9 @@ public class DesignForExtensionCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "design" + File.separator + filename);
+                + "design" + File.separator
+                + "designforextension" + File.separator
+                + filename);
     }
 
     @Test
