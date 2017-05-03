@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.design;
+package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public class InputDesignForExtensionIgnoredAnnotations {
 
@@ -120,25 +120,25 @@ public class InputDesignForExtensionIgnoredAnnotations {
     public void foo16() { }
 
     @Deprecated
-    @InputLocalAnnotations.ClassRule
+    @InputDesignForExtensionsLocalAnnotations.ClassRule
     public void foo17() { return; }
 
     @Deprecated
-    @InputLocalAnnotations.ClassRule
+    @InputDesignForExtensionsLocalAnnotations.ClassRule
     /** */
     public void foo18() { return; }
 
     @Deprecated
     /** */
-    @InputLocalAnnotations.ClassRule
+    @InputDesignForExtensionsLocalAnnotations.ClassRule
     public void foo19() { return; }
 
     /** */
     @Deprecated
-    @InputLocalAnnotations.ClassRule
+    @InputDesignForExtensionsLocalAnnotations.ClassRule
     public void foo20() { return; }
 
-    @InputLocalAnnotations.ClassRule // violation
+    @InputDesignForExtensionsLocalAnnotations.ClassRule // violation
     public void foo21() { return; }
 
     private int age;
