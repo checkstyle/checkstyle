@@ -36,13 +36,17 @@ public class PackageAnnotationCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "annotation" + File.separator + filename);
+                + "annotation" + File.separator
+                + "packageannotation" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "annotation" + File.separator + filename);
+                + "annotation" + File.separator
+                + "packageannotation" + File.separator
+                + filename);
     }
 
     /**
