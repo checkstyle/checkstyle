@@ -38,7 +38,9 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "annotation" + File.separator + filename);
+                + "annotation" + File.separator
+                + "missingdeprecated" + File.separator
+                + filename);
     }
 
     @Test
@@ -77,7 +79,7 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
             "56: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputBadDeprecatedAnnotation.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedBadDeprecated.java"), expected);
     }
 
     /**
@@ -100,7 +102,7 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
             "55: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputBadDeprecatedJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedBadJavadoc.java"), expected);
     }
 
     /**
@@ -127,7 +129,7 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
             "51: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
         };
 
-        verify(checkConfig, getPath("InputSpecialCaseDeprecated.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedSpecialCase.java"), expected);
     }
 
     /**
@@ -140,7 +142,7 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputGoodDeprecated.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedGood.java"), expected);
     }
 
     @Test
@@ -154,7 +156,7 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
             "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecated1.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedClass.java"), expected);
     }
 
     @Test
@@ -167,7 +169,7 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
             "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecated2.java"), expected);
+        verify(checkConfig, getPath("InputMissingDeprecatedMethod.java"), expected);
     }
 
     @Test

@@ -1,15 +1,15 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 import java.lang.annotation.Inherited;
 
 @Deprecated
-public class InputBadDeprecatedJavadoc
+public class InputMissingDeprecatedBadJavadoc
 {
     /**
      * @Deprecated this is not the same
      */
     @Deprecated
-    protected InputBadDeprecatedJavadoc() {
+    protected InputMissingDeprecatedBadJavadoc() {
 
     }
 
