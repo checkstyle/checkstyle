@@ -260,7 +260,7 @@ build:
       code: |
         if [[ $SKIP_CI == 'false' ]]; then
           set -e
-          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution
+          for i in 1 2 3 4 5; do git clone https://github.com/checkstyle/contribution  && break || sleep 15; done
           cd contribution/checkstyle-tester
           sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
           sed -i'' 's/#Hbase/Hbase/' projects-for-wercker.properties
