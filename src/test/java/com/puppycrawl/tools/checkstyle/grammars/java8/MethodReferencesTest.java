@@ -101,4 +101,31 @@ public class MethodReferencesTest extends BaseCheckTestSupport {
         verify(checkConfig, getPath("InputMethodReferences7.java"), expected);
 
     }
+
+    @Test
+    public void testArrayAfterGeneric()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences4.java"), expected);
+
+    }
+
+    @Test
+    public void testFromHiernate()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences5.java"), expected);
+
+    }
+
+    @Test
+    public void testFromSpring()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(MemberNameCheck.class);
+        final String[] expected = ArrayUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputMethodReferences6.java"), expected);
+
+    }
 }
