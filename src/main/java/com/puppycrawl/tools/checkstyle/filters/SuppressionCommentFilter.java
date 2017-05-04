@@ -333,6 +333,9 @@ public class SuppressionCommentFilter
                                 filter.messageFormat, text, filter.onCommentFormat);
                         tagMessageRegexp = Pattern.compile(format);
                     }
+                    else {
+                        tagMessageRegexp = null;
+                    }
                 }
                 else {
                     format = CommonUtils.fillTemplateWithStringsByRegexp(
@@ -345,6 +348,9 @@ public class SuppressionCommentFilter
                         format = CommonUtils.fillTemplateWithStringsByRegexp(
                                 filter.messageFormat, text, filter.offCommentFormat);
                         tagMessageRegexp = Pattern.compile(format);
+                    }
+                    else {
+                        tagMessageRegexp = null;
                     }
                 }
             }
