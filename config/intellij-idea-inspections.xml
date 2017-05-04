@@ -969,7 +969,7 @@
         <option name="ignoredTypesString" value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,java.io.StringBufferInputStream,java.io.CharArrayWriter,java.io.CharArrayReader,java.io.StringWriter,java.io.StringReader" />
         <option name="insideTryAllowed" value="false" />
     </inspection_tool>
-    <inspection_tool class="IfCanBeSwitch" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="IfCanBeSwitch" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="minimumBranches" value="3" />
         <option name="suggestIntSwitches" value="false" />
         <option name="suggestEnumSwitches" value="false" />
@@ -1017,7 +1017,7 @@
     <inspection_tool class="IncompatibleMaskJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="InconsistentLanguageLevel" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="InconsistentLineSeparators" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="InconsistentResourceBundle" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="InconsistentResourceBundle" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="IncorrectOnMessageMethodsInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="IncrementDecrementResultUsedJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="IncrementDecrementUsedAsExpression" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2284,7 +2284,7 @@
     <inspection_tool class="UnusedParameters" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Production" level="WARNING" enabled="false" />
     </inspection_tool>
-    <inspection_tool class="UnusedProperty" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="UnusedProperty" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnusedReceiverParameter" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnusedReturnValue" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="UnusedSymbol" enabled="true" level="ERROR" enabled_by_default="true" />
