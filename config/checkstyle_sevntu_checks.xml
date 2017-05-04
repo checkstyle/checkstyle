@@ -184,6 +184,7 @@
                       ### InnerInterface(.*)
                       ### InnerClass(.*)"/>
         </module>
+        <module name="NumericLiteralNeedsUnderscore"/>
         <module name="LogicConditionNeedOptimizationCheck"/>
         <module name="AvoidConditionInversionCheck"/>
         <module name="SingleBreakOrContinueCheck"/>
