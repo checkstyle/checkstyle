@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Unit test for IndentationCheck.
  * @author  jrichard
+ * @noinspection ClassWithTooManyTransitiveDependencies it is ok for test
  */
 public class IndentationCheckTest extends BaseCheckTestSupport {
     private static final Pattern LINE_WITH_COMMENT_REGEX =

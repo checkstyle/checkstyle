@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 /**
  * Unit test for IndentationCheck.
  * @author Ilja Dubinin
+ * @noinspection ClassWithTooManyTransitiveDependencies it is ok for test
  */
 public class NewHandlerTest extends BaseCheckTestSupport {
     @Override
