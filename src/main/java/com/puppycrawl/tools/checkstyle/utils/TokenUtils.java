@@ -45,10 +45,10 @@ public final class TokenUtils {
     private static final int[] TOKEN_IDS;
 
     /** Prefix for exception when getting token by given id. */
-    private static final String TOKEN_ID_EXCEPTION_PREFIX = "given id ";
+    private static final String TOKEN_ID_EXCEPTION_PREFIX = "unknown token id: given id ";
 
     /** Prefix for exception when getting token by given name. */
-    private static final String TOKEN_NAME_EXCEPTION_PREFIX = "given name ";
+    private static final String TOKEN_NAME_EXCEPTION_PREFIX = "unknown token name: given name ";
 
     // initialise the constants
     static {

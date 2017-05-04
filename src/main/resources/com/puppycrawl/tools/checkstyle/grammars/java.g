@@ -109,6 +109,9 @@ tokens {
 
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
+
+    //Support of java 1.9 - module (Jigsaw)
+    LITERAL_module="module";MODULE_DEF;
 }
 
 {
@@ -202,19 +205,25 @@ tokens {
 // Compilation Unit: In Java, this is a single file.  This is the start
 //   rule for this parser
 compilationUnit
-    :    // A compilation unit starts with an optional package definition
-        // semantic check because package definitions can be annotated
-        // which causes possible non-determinism in Antrl
-        (    (annotations "package")=> packageDefinition
-        |    /* nothing */
+    :
+        // Java file
+        (
+	        // A compilation unit starts with an optional package definition
+	        // semantic check because package definitions can be annotated
+	        // which causes possible non-determinism in Antrl
+	        (    (annotations "package")=> packageDefinition
+	        |    /* nothing */
+	        )
+
+	        // Next we have a series of zero or more import statements
+	        ( options{generateAmbigWarnings=false;}:importDefinition )*
+
+	        // Wrapping things up with any number of class or interface
+	        //    definitions
+	        ( typeDefinition )*
         )
-
-        // Next we have a series of zero or more import statements
-        ( options{generateAmbigWarnings=false;}:importDefinition )*
-
-        // Wrapping things up with any number of class or interface
-        //    definitions
-        ( typeDefinition )*
+        // Java module
+        //| moduleDefinition
 
         EOF!
     ;
@@ -1620,6 +1629,19 @@ lambdaBody
     |    statement)
     ;
 
+// Definition of a Module
+//moduleDefinition
+//    :   "module" identifier
+//        moduleBlock
+//        {#moduleDefinition = #([MODULE_DEF, "MODULE_DEF"], #moduleDefinition);}
+//    ;
+
+//moduleBlock
+//    :   LCURLY
+//            ( IDENT | DOT | SEMI )*
+//        RCURLY
+//        {#moduleBlock = #([OBJBLOCK, "OBJBLOCK"], #moduleBlock);}
+//    ;
 
 //----------------------------------------------------------------------------
 // The Java scanner

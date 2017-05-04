@@ -69,7 +69,7 @@ public class TokenUtilsTest {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("given id " + id, expected.getMessage());
+            assertEquals("unknown token id: given id " + id, expected.getMessage());
         }
     }
 
@@ -100,7 +100,7 @@ public class TokenUtilsTest {
             // restoring original value, to let other tests pass
             fieldToken.set(null, originalValue);
 
-            assertEquals("given id " + id, expected.getMessage());
+            assertEquals("unknown token id: given id " + id, expected.getMessage());
 
         }
         catch (IllegalAccessException | NoSuchFieldException ex) {
@@ -116,7 +116,7 @@ public class TokenUtilsTest {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("given name " + id, expected.getMessage());
+            assertEquals("unknown token name: given name " + id, expected.getMessage());
         }
     }
 
@@ -128,7 +128,7 @@ public class TokenUtilsTest {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("given name " + id, expected.getMessage());
+            assertEquals("unknown token name: given name " + id, expected.getMessage());
         }
     }
 
