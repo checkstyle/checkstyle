@@ -282,6 +282,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         assertEquals(numLegalFiles, auditAdapter.getNumFilesFinished());
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void testIgnoredFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
