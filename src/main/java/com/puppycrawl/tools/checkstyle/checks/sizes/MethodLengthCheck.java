@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -53,6 +55,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *    &lt;property name="max" value="60"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * An example of how to configure the check to ignore methods which contain
+ * &quot;Meta&quot; in their name:
+ * </p>
+ * <pre>
+ * &lt;module name="MethodLength"&gt;
+ *    &lt;property name="ignorePattern" value="^.*Meta[^ ]+$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
  * @author Lars Kühne
  */
 public class MethodLengthCheck extends AbstractCheck {
@@ -71,6 +83,16 @@ public class MethodLengthCheck extends AbstractCheck {
 
     /** The maximum number of lines. */
     private int max = DEFAULT_MAX_LINES;
+
+    /** The regexp for methods which are ignored. */
+    private Pattern ignorePattern;
+
+    /**
+     * Creates a new {@code MethodLengthCheck} instance.
+     */
+    public MethodLengthCheck() {
+        setIgnorePattern("^$");
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -91,10 +113,12 @@ public class MethodLengthCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);
         if (openingBrace != null) {
+            final DetailAST method = ast.findFirstToken(TokenTypes.IDENT);
             final DetailAST closingBrace =
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
             final int length = getLengthOfBlock(openingBrace, closingBrace);
-            if (length > max) {
+            if (length > max
+                && !ignorePattern.matcher(method.getText()).find()) {
                 log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY,
                         length, max);
             }
@@ -135,5 +159,13 @@ public class MethodLengthCheck extends AbstractCheck {
      */
     public void setCountEmpty(boolean countEmpty) {
         this.countEmpty = countEmpty;
+    }
+
+    /**
+     * Set the ignore pattern.
+     * @param format a {@code String} value
+     */
+    public final void setIgnorePattern(String format) {
+        ignorePattern = CommonUtils.createPattern(format);
     }
 }

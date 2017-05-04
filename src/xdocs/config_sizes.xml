@@ -560,6 +560,12 @@
             <th>type</th>
             <th>default value</th>
           </tr>
+           <tr>
+            <td>ignorePattern</td>
+            <td>pattern for methods to ignore</td>
+            <td><a href="property_types.html#regexp">regular expression</a></td>
+            <td>^$</td>
+          </tr>
           <tr>
             <td>max</td>
             <td>maximum allowable number of lines</td>
