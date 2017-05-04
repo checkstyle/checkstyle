@@ -230,6 +230,8 @@ public class ImportOrderCheck
     private boolean sortStaticImportsAlphabetically;
     /** Whether to use container ordering (Eclipse IDE term) for static imports or not. */
     private boolean useContainerOrderingForStatic;
+    /** Whether to use Intellij Idea style for order imports */
+    private boolean useIntellijIdeaOrderingImportStyle;
 
     /** The policy to enforce. */
     private ImportOrderOption option = ImportOrderOption.UNDER;
@@ -334,6 +336,14 @@ public class ImportOrderCheck
      */
     public void setUseContainerOrderingForStatic(boolean useContainerOrdering) {
         useContainerOrderingForStatic = useContainerOrdering;
+    }
+
+    /**
+     * Sets whether to use Intellij IDEA order style for imports
+     * @param useIntellijIdeaOrderingImportStyle whether to use Intellij IDEA order style for imports.
+     */
+    public void setUseIntellijIdeaOrderingImportStyle(boolean useIntellijIdeaOrderingImportStyle) {
+        this.useIntellijIdeaOrderingImportStyle = useIntellijIdeaOrderingImportStyle;
     }
 
     @Override
@@ -527,10 +537,51 @@ public class ImportOrderCheck
         final boolean result;
         if (isStatic && useContainerOrderingForStatic) {
             result = compareContainerOrder(lastImport, name, caseSensitive) > 0;
+        } else if (name.lastIndexOf("*") != -1 && useIntellijIdeaOrderingImportStyle) {
+            result = compareIntellijIdeaOrder(lastImport, name, caseSensitive) > 0;
         }
         else {
             // out of lexicographic order
             result = compare(lastImport, name, caseSensitive) > 0;
+        }
+        return result;
+    }
+
+    /**
+     * Compares two import strings.
+     * We first compare the container of the static import, container being the type enclosing
+     * the element being imported. When this returns 0, we compare the qualified
+     * import name considering default IntelliJ Idea settings.
+     * @param importName1 first import name.
+     * @param importName2 second import name.
+     * @param caseSensitive whether the comparison of fully qualified import names is case
+     *                      sensitive.
+     * @return the value {@code 0} if str1 is equal to str2; a value
+     *         less than {@code 0} if str is less than the str2 ;
+     *         and a value greater than {@code 0} if str1 is greater than str2
+     */
+    private int compareIntellijIdeaOrder(String importName1, String importName2, boolean caseSensitive) {
+        final String container1 = getImportContainer(importName1);
+        final String container2 = getImportContainer(importName2);
+        final int compareContainersOrderResult;
+        if (caseSensitive) {
+            compareContainersOrderResult = container1.compareTo(container2);
+        }
+        else {
+            compareContainersOrderResult = container1.compareToIgnoreCase(container2);
+        }
+        final int result;
+        if (compareContainersOrderResult == 0) {
+            String import1 = importName1.substring(importName1.lastIndexOf(".") + 1, importName1.length());
+            String import2 = importName2.substring(importName2.lastIndexOf(".") + 1, importName2.length());
+            if (import1.equals("*")) {
+                result = 0;
+            } else {
+                result = compare(import2, import1, caseSensitive);
+            }
+        }
+        else {
+            result = compareContainersOrderResult;
         }
         return result;
     }
