@@ -267,8 +267,8 @@ public class XMLLoggerTest {
         }
 
         @Override
-        public void printStackTrace(PrintWriter printWriter) {
-            printWriter.print("stackTrace");
+        public void printStackTrace(PrintWriter s) {
+            s.print("stackTrace");
         }
     }
 
