@@ -60,9 +60,8 @@ public final class TokenTypesDoclet {
         final String fileName = getDestFileName(root.options());
         final FileOutputStream fos = new FileOutputStream(fileName);
         final Writer osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
-        final PrintWriter writer = new PrintWriter(osw, false);
 
-        try {
+        try (PrintWriter writer = new PrintWriter(osw, false)) {
             final ClassDoc[] classes = root.classes();
             final FieldDoc[] fields = classes[0].fields();
             for (final FieldDoc field : fields) {
@@ -76,9 +75,6 @@ public final class TokenTypesDoclet {
                             + field.firstSentenceTags()[0].text());
                 }
             }
-        }
-        finally {
-            writer.close();
         }
 
         return true;
