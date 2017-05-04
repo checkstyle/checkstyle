@@ -89,4 +89,17 @@ public class InnerAssignmentCheckTest
         Assert.assertNotNull(check.getDefaultTokens());
         Assert.assertNotNull(check.getRequiredTokens());
     }
+
+    @Test
+    public void testLambdaExpression() throws Exception
+    {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(InnerAssignmentCheck.class);
+        final String[] expected = {
+
+        };
+        verify(checkConfig, new File("src/test/resources-noncompilable/com/puppycrawl/tools/"
+                + "checkstyle/coding/"
+                + "InputInnerAssignmentLambdaExpressions.java").getCanonicalPath(), expected);
+    }
 }
