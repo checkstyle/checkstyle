@@ -86,4 +86,16 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
     }
+    
+    @Test 
+    public void whitespaceAroundField() throws Exception{
+    	final String[] expectedStringArray = CommonUtils.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getCheckConfig("WhitespaceAround");
+        final String filePath = getPath("InputWhitespaceAroundField.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expectedStringArray, warnList);
+    	
+    }
 }
