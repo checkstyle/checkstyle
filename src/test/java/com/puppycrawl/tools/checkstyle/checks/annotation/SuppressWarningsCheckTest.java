@@ -34,7 +34,9 @@ public class SuppressWarningsCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "annotation" + File.separator + filename);
+                + "annotation" + File.separator
+                + "suppresswarnings" + File.separator
+                + filename);
     }
 
     /**
