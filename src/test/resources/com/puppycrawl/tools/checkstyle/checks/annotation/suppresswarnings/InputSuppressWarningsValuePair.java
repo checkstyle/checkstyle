@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.util.ArrayList;
 import java.util.List;
