@@ -42,7 +42,9 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "annotation" + File.separator + filename);
+                + "annotation" + File.separator
+                + "annotationusestyle" + File.separator
+                + filename);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -93,7 +95,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             "23: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
         };
 
-        verify(checkConfig, getPath("InputDifferentUseStyles.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
 
     /**
@@ -111,7 +113,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             "33: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
 
-        verify(checkConfig, getPath("InputDifferentUseStyles.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
 
     @Test
@@ -130,7 +132,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             "58: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
         };
 
-        verify(checkConfig, getPath("InputDifferentUseStyles.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
 
     @Test
@@ -144,7 +146,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             "47: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
         };
 
-        verify(checkConfig, getPath("InputDifferentUseStyles.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
 
     @Test
@@ -161,7 +163,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             "47: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
         };
 
-        verify(checkConfig, getPath("InputDifferentUseStyles.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
 
     @Test
@@ -186,7 +188,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             "32:56: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
-        verify(checkConfig, getPath("InputAnnotationUseNoTrailingComma.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleNoTrailingComma.java"), expected);
     }
 
     @Test
@@ -197,7 +199,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAnnotationUseWithTrailingComma.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleWithTrailingComma.java"), expected);
     }
 
     @Test
@@ -217,7 +219,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             "33:50: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
-        verify(checkConfig, getPath("InputAnnotationUseWithTrailingComma.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleWithTrailingComma.java"), expected);
     }
 
     @Test
@@ -228,7 +230,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("trailingArrayComma", "NEVER");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAnnotationUseNoTrailingComma.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleNoTrailingComma.java"), expected);
     }
 
     @Test
@@ -239,7 +241,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("trailingArrayComma", "ignore");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputDifferentUseStyles.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
 
     @Test
@@ -248,7 +250,7 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("closingParens", "NEVER");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAnnotationsUseStyleParams.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationUseStyleParams.java"), expected);
     }
 
     @Test

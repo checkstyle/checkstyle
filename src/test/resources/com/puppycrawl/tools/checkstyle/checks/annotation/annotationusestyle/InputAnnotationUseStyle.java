@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 
 @interface SomeArrays32 {

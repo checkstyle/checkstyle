@@ -1,7 +1,7 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 // suppress
 @SuppressWarnings({})
-public class InputAnnotationUseNoTrailingComma
+public class InputAnnotationUseStyleNoTrailingComma
 {
   @SuppressWarnings({"common"})
   public void foo() {

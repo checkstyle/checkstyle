@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 @Deprecated
 @SomeArrays(pooches={DOGS.LEO})
 @SuppressWarnings({""})
-public class InputDifferentUseStyles
+public class InputAnnotationUseStyleDifferentStyles
 {
     
 }
@@ -27,7 +27,7 @@ enum SON {
     ETHAN
 }
 
-@MyAnnotation13()
+@InputAnnotationUseStyleCustomAnnotation()
 enum DOGS {
     
     @Deprecated()

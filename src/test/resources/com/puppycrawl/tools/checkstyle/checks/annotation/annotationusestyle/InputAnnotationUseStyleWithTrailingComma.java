@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 //this file compiles in eclipse 3.4 but not with Sun's JDK 1.6.0.11
 
 /**
 
 */
-public class InputAnnotationUseWithTrailingComma
+public class InputAnnotationUseStyleWithTrailingComma
 {
     @SuppressWarnings({"common",})
     public void foo() {
