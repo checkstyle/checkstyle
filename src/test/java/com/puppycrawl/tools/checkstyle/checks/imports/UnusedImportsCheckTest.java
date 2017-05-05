@@ -128,6 +128,13 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testNewlinesInsideTags() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputUnusedImportsWithNewlinesInsideTags.java"), expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final UnusedImportsCheck testCheckObject =
                 new UnusedImportsCheck();
