@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-public class InputAnnotationsUseStyleParams
+public class InputAnnotationUseStyleParams
 {
     @Target({})
     public @interface myAnn {
