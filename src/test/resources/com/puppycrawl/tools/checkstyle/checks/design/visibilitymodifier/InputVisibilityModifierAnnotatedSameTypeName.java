@@ -2,8 +2,8 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import org.junit.rules.TemporaryFolder;
 
-import com.puppycrawl.tools.checkstyle.checks.design.InputLocalAnnotations.Rule;
-import com.puppycrawl.tools.checkstyle.checks.design.InputLocalAnnotations.ClassRule;
+import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.InputVisibilityModifierLocalAnnotations.Rule;
+import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.InputVisibilityModifierLocalAnnotations.ClassRule;
 
 public class InputVisibilityModifierAnnotatedSameTypeName
 {
