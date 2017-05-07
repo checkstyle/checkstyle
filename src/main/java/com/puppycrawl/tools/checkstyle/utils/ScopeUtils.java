@@ -263,6 +263,10 @@ public final class ScopeUtils {
             final DetailAST parent = node.getParent();
             localVariableDef = parent.getType() == TokenTypes.LITERAL_CATCH;
         }
+
+        if (node.getType() == TokenTypes.RESOURCE) {
+            localVariableDef = true;
+        }
         return localVariableDef;
     }
 

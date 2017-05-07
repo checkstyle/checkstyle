@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 /**
  * <p>
  * Checks that local final variable names conform to a format specified
- * by the format property. A catch parameter is considered to be
- * a local variable.The format is a
+ * by the format property. A catch parameter and resources in try statements
+ * are considered to be a local variables.The format is a
  * {@link java.util.regex.Pattern regular expression} and defaults to
  * <strong>^[a-z][a-zA-Z0-9]*$</strong>.
  * </p>
@@ -67,6 +67,7 @@ public class LocalFinalVariableNameCheck
         return new int[] {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
+            TokenTypes.RESOURCE,
         };
     }
 
@@ -79,7 +80,8 @@ public class LocalFinalVariableNameCheck
     protected final boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isFinal = modifiersAST.branchContains(TokenTypes.FINAL);
+        final boolean isFinal = ast.getType() == TokenTypes.RESOURCE
+            || modifiersAST.branchContains(TokenTypes.FINAL);
         return isFinal && ScopeUtils.isLocalVariableDef(ast);
     }
 }
