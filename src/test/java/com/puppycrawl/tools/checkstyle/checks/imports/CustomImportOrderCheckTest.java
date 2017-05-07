@@ -73,7 +73,39 @@ public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
         };
         assertArrayEquals(expected, checkObj.getRequiredTokens());
     }
+    
+    @Test
+    public void testIntelliJ() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("specialImportsRegExp", "^javax\\.");
+        checkConfig.addAttribute("standardPackageRegExp", "^java\\.");
+        checkConfig.addAttribute("customImportOrderRules",
+        		"THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        checkConfig.addAttribute("separateLineBetweenGroups", "false");
+        final String[] expected = {
+        	"8: " + getCheckMessage(MSG_ORDER, STD, SAME, "javax.swing.JComponent"),
+        	"9: " + getCheckMessage(MSG_ORDER, STD, SAME, "javax.swing.JTable"),
+        	"10: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Button"),
+        	"11: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Dialog"),
+        	"12: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Frame"),
+        	"13: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.color.ColorSpace"),
+        	"14: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.event.ActionEvent"),
+        	"15: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.File"),
+        	"16: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.IOException"),
+        	"17: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.InputStream"),
+        	"18: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.Reader"),
+        	"21: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
+        			"java.io.File.createTempFile"),
+        	"22: " + getCheckMessage(MSG_LEX, "java.awt.print.Paper.*",
+        			"java.io.File.createTempFile"),
+        	"23: " + getCheckMessage(MSG_LEX, "javax.swing.WindowConstants.*"),
+        };
 
+        verify(checkConfig, getPath("InputCustomImportOrderIntelliJ.java"), expected);
+    }
+    
     @Test
     public void testCustom() throws Exception {
         final DefaultConfiguration checkConfig =
