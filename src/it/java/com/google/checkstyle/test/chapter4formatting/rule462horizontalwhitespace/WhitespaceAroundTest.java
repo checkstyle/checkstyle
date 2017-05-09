@@ -69,7 +69,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
             "250:17: " + getCheckMessage(checkConfig.getMessages(), msgPreceded, "{"),
         };
 
-        final String filePath = getPath("InputWhitespaceAroundBasic.java");
+        final String filePath = getPath("InputWhitespaceAroundBasicField.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
