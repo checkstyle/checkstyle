@@ -86,13 +86,13 @@ public class ExplicitInitializationCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (!isSkipCase(ast)) {
-            final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
             final DetailAST assign = ast.findFirstToken(TokenTypes.ASSIGN);
             final DetailAST exprStart =
                 assign.getFirstChild().getFirstChild();
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             if (isObjectType(type)
                 && exprStart.getType() == TokenTypes.LITERAL_NULL) {
+                final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
                 log(ident, MSG_KEY, ident.getText(), "null");
             }
             if (!onlyObjectReferences) {

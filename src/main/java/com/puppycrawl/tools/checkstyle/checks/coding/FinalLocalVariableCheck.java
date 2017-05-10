@@ -245,6 +245,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 scope = scopeStack.pop().scope;
                 break;
             case TokenTypes.SLIST:
+                // -@cs[MoveVariableInsideIf] assignment value is modified later so it can't be
+                // moved
                 final Deque<DetailAST> prevScopeUnitializedVariableData =
                     prevScopeUninitializedVariables.peek();
                 boolean containsBreak = false;
@@ -276,6 +278,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * Update assigned variables in a temporary stack.
      */
     private void updateCurrentScopeAssignedVariables() {
+        // -@cs[MoveVariableInsideIf] assignment value is a modification call so it can't be moved
         final Deque<DetailAST> poppedScopeAssignedVariableData =
                 currentScopeAssignedVariables.pop();
         final Deque<DetailAST> currentScopeAssignedVariableData =

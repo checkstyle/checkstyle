@@ -131,10 +131,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @param comment comment to check.
      */
     private void visitComment(DetailAST comment) {
-        final DetailAST prevStmt = getPreviousStatement(comment);
-        final DetailAST nextStmt = getNextStmt(comment);
-
         if (!isTrailingComment(comment)) {
+            final DetailAST prevStmt = getPreviousStatement(comment);
+            final DetailAST nextStmt = getNextStmt(comment);
+
             if (isInEmptyCaseBlock(prevStmt, nextStmt)) {
                 handleCommentInEmptyCaseBlock(prevStmt, comment, nextStmt);
             }
