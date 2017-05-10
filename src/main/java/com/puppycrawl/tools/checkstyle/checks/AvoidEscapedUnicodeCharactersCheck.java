@@ -281,10 +281,10 @@ public class AvoidEscapedUnicodeCharactersCheck
             result = true;
         }
         else {
-            final String line = getLines()[lineNo - 1];
             final List<TextBlock> commentList = blockComments.get(lineNo);
             if (commentList != null) {
                 final TextBlock comment = commentList.get(commentList.size() - 1);
+                final String line = getLines()[lineNo - 1];
                 result = isTrailingBlockComment(comment, line);
             }
         }

@@ -219,13 +219,13 @@ public final class JavadocUtils {
         final Matcher tagMatcher = INLINE_TAG_PATTERN.matcher(commentContents);
         while (tagMatcher.find()) {
             final String tagName = tagMatcher.group(1);
-            final String tagValue = tagMatcher.group(2).trim();
             final int line = comment.getStartLineNo() + lineNumber;
             int col = commentOffset + tagMatcher.start(1) - 1;
             if (lineNumber == 0) {
                 col += comment.getStartColNo();
             }
             if (JavadocTagInfo.isValidName(tagName)) {
+                final String tagValue = tagMatcher.group(2).trim();
                 validTags.add(new JavadocTag(line, col, tagName,
                         tagValue));
             }

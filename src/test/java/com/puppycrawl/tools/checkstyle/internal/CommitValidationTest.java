@@ -139,11 +139,12 @@ public class CommitValidationTest {
     @Test
     public void testCommitMessageHasProperStructure() {
         for (RevCommit commit : filterValidCommits(lastCommits)) {
-            final String commitId = commit.getId().getName();
             final String commitMessage = commit.getFullMessage();
             final int error = validateCommitMessage(commitMessage);
 
             if (error != 0) {
+                final String commitId = commit.getId().getName();
+
                 fail(getInvalidCommitMessageFormattingError(commitId, commitMessage) + error);
             }
         }
