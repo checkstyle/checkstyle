@@ -1,11 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 
 
 
-@MyAnnotation2 @com.puppycrawl.tools.checkstyle.checks.annotation.MyAnnotation1 //warn
+@MyAnnotation2 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnnotation1 //warn
 (value = "")
-class InputIncorrectAnnotationLocation
+class InputAnnotationLocationIncorrect
 {
 
     @MyAnnotation2 @MyAnnotation1(value = "")
@@ -24,7 +24,7 @@ class InputIncorrectAnnotationLocation
     @MyAnnotation2
         @MyAnnotation1 //warn
 (value = "")
-    public InputIncorrectAnnotationLocation() {}
+    public InputAnnotationLocationIncorrect() {}
 
     @MyAnnotation1("foo") @MyAnnotation2 void foo1() {} //warn
 

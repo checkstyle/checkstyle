@@ -37,7 +37,9 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "annotation" + File.separator + filename);
+                + "annotation" + File.separator
+                + "annotationlocation" + File.separator
+                + filename);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCorrectAnnotationLocation.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationCorrect.java"), expected);
     }
 
     @Test
@@ -78,7 +80,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             "88: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 10, 8),
             "98: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 0, 3),
         };
-        verify(checkConfig, getPath("InputIncorrectAnnotationLocation.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationIncorrect.java"), expected);
     }
 
     @Test
@@ -109,7 +111,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
     public void testWithoutAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(AnnotationLocationCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocation1.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationEmpty.java"), expected);
     }
 
     @Test
@@ -133,7 +135,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             "88: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 10, 8),
             "98: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation2", 0, 3),
             };
-        verify(checkConfig, getPath("InputIncorrectAnnotationLocation.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationIncorrect.java"), expected);
     }
 
     @Test
@@ -145,7 +147,8 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation12"),
             "3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation13"),
             };
-        verify(checkConfig, getPath("InputAnnotationLocation2.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationCustomAnnotationsDeclared.java"),
+                expected);
     }
 
     @Test
@@ -156,7 +159,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
                 + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
                 + "ANNOTATION_FIELD_DEF");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocation3.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
     }
 
     @Test
@@ -170,6 +173,6 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
         checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocation4.java"), expected);
+        verify(checkConfig, getPath("InputAnnotationLocationDeprecatedAndCustom.java"), expected);
     }
 }
