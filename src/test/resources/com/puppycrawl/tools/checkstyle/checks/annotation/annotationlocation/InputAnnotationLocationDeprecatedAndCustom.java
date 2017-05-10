@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-public class InputAnnotationLocation4 {
+public class InputAnnotationLocationDeprecatedAndCustom {
     @Deprecated // <--class, separate line
     public class Annotation
     {

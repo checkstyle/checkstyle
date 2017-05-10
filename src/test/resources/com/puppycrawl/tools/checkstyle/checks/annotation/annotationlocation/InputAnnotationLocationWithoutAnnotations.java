@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
-public class InputAnnotationLocation3 {
+public class InputAnnotationLocationWithoutAnnotations {
     public static void main(String[] args) {
         final Foo foo = new Foo();
         foo.bar(new Bar<Foo>() {

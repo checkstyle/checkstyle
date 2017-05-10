@@ -1,11 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation;
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 
 
 
 @MyAnnotation6
 @MyAnnotation5
-class InputCorrectAnnotationLocation
+class InputAnnotationLocationCorrect
 {
     
     @MyAnnotation6
@@ -24,7 +24,7 @@ class InputCorrectAnnotationLocation
     
     @MyAnnotation6
     @MyAnnotation5
-    public InputCorrectAnnotationLocation()
+    public InputAnnotationLocationCorrect()
     {
         //comment
     }
