@@ -23,7 +23,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.common.collect.ImmutableMap;
@@ -62,22 +61,6 @@ public final class JavadocUtils {
     /** Exception message for unknown JavaDoc token id. */
     private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javadoc"
             + " token id. Given id: ";
-
-    /** Comment pattern. */
-    private static final Pattern COMMENT_PATTERN = Pattern.compile(
-        "^\\s*(?:/\\*{2,}|\\*+)\\s*(.*)");
-
-    /** Block tag pattern for a first line. */
-    private static final Pattern BLOCK_TAG_PATTERN_FIRST_LINE = Pattern.compile(
-        "/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
-
-    /** Block tag pattern. */
-    private static final Pattern BLOCK_TAG_PATTERN = Pattern.compile(
-        "^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
-
-    /** Inline tag pattern. */
-    private static final Pattern INLINE_TAG_PATTERN = Pattern.compile(
-        ".*?\\{@(\\p{Alpha}+)\\s+(.*?)}");
 
     /** Newline pattern. */
     private static final Pattern NEWLINE = Pattern.compile("\n");
@@ -140,100 +123,43 @@ public final class JavadocUtils {
      */
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
-        final String[] text = textBlock.getText();
-        final List<JavadocTag> tags = new ArrayList<>();
+
+        final boolean getBlockTags = tagType == JavadocTagType.ALL
+            || tagType == JavadocTagType.BLOCK;
+        final boolean getInlineTags = tagType == JavadocTagType.ALL
+            || tagType == JavadocTagType.INLINE;
+
+        final List<TagInfo> tags = new ArrayList<>();
+
+        if (getBlockTags) {
+            tags.addAll(BlockTagUtils.extractBlockTags(textBlock.getText()));
+        }
+
+        if (getInlineTags) {
+            tags.addAll(InlineTagUtils.extractInlineTags(textBlock.getText()));
+        }
+
+        final List<JavadocTag> validTags = new ArrayList<>();
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
-        for (int i = 0; i < text.length; i++) {
-            final String textValue = text[i];
-            final Matcher blockTagMatcher = getBlockTagPattern(i).matcher(textValue);
-            if ((tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK)
-                    && blockTagMatcher.find()) {
-                final String tagName = blockTagMatcher.group(1);
-                String content = textValue.substring(blockTagMatcher.end(1));
-                if (content.endsWith("*/")) {
-                    content = content.substring(0, content.length() - 2);
-                }
-                final int line = textBlock.getStartLineNo() + i;
-                int col = blockTagMatcher.start(1) - 1;
-                if (i == 0) {
-                    col += textBlock.getStartColNo();
-                }
-                if (JavadocTagInfo.isValidName(tagName)) {
-                    tags.add(
-                            new JavadocTag(line, col, tagName, content.trim()));
-                }
-                else {
-                    invalidTags.add(new InvalidJavadocTag(line, col, tagName));
-                }
-            }
-            // No block tag, so look for inline validTags
-            else if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE) {
-                lookForInlineTags(textBlock, i, tags, invalidTags);
-            }
-        }
-        return new JavadocTags(tags, invalidTags);
-    }
 
-    /**
-     * Get a block tag pattern depending on a line number of a javadoc.
-     * @param lineNumber the line number.
-     * @return a block tag pattern.
-     */
-    private static Pattern getBlockTagPattern(int lineNumber) {
-        final Pattern blockTagPattern;
-        if (lineNumber == 0) {
-            blockTagPattern = BLOCK_TAG_PATTERN_FIRST_LINE;
-        }
-        else {
-            blockTagPattern = BLOCK_TAG_PATTERN;
-        }
-        return blockTagPattern;
-    }
+        for (TagInfo tag : tags) {
+            final int col = tag.getPosition().getColumn();
 
-    /**
-     * Looks for inline tags in comment and adds them to the proper tags collection.
-     * @param comment comment text block
-     * @param lineNumber line number in the comment
-     * @param validTags collection of valid tags
-     * @param invalidTags collection of invalid tags
-     */
-    private static void lookForInlineTags(TextBlock comment, int lineNumber,
-            final List<JavadocTag> validTags, final List<InvalidJavadocTag> invalidTags) {
-        final String text = comment.getText()[lineNumber];
-        // Match Javadoc text after comment characters
-        final Matcher commentMatcher = COMMENT_PATTERN.matcher(text);
-        final String commentContents;
+            // Add the starting line of the comment to the line number to get the actual line number
+            // in the source.
+            // Lines are one-indexed, so need a off-by-one correction.
+            final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
 
-        // offset including comment characters
-        final int commentOffset;
-
-        if (commentMatcher.find()) {
-            commentContents = commentMatcher.group(1);
-            commentOffset = commentMatcher.start(1) - 1;
-        }
-        else {
-            // No leading asterisks, still valid
-            commentContents = text;
-            commentOffset = 0;
-        }
-        final Matcher tagMatcher = INLINE_TAG_PATTERN.matcher(commentContents);
-        while (tagMatcher.find()) {
-            final String tagName = tagMatcher.group(1);
-            final String tagValue = tagMatcher.group(2).trim();
-            final int line = comment.getStartLineNo() + lineNumber;
-            int col = commentOffset + tagMatcher.start(1) - 1;
-            if (lineNumber == 0) {
-                col += comment.getStartColNo();
-            }
-            if (JavadocTagInfo.isValidName(tagName)) {
-                validTags.add(new JavadocTag(line, col, tagName,
-                        tagValue));
+            if (JavadocTagInfo.isValidName(tag.getName())) {
+                validTags.add(
+                    new JavadocTag(line, col, tag.getName(), tag.getValue()));
             }
             else {
-                invalidTags.add(new InvalidJavadocTag(line, col,
-                        tagName));
+                invalidTags.add(new InvalidJavadocTag(line, col, tag.getName()));
             }
         }
+
+        return new JavadocTags(validTags, invalidTags);
     }
 
     /**

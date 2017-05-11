@@ -55,6 +55,18 @@ public class JavadocUtilsTest {
     }
 
     @Test
+    public void testBlockTag() {
+        final String[] text = {
+            "/** @see elsewhere ",
+            " */",
+        };
+        final Comment comment = new Comment(text, 1, 4, text[1].length());
+        final JavadocTags allTags =
+            JavadocUtils.getJavadocTags(comment, JavadocUtils.JavadocTagType.ALL);
+        assertEquals(1, allTags.getValidTags().size());
+    }
+
+    @Test
     public void testTagType() {
         final String[] text = {
             "/** @see block",
@@ -103,19 +115,16 @@ public class JavadocUtilsTest {
             comment, JavadocUtils.JavadocTagType.ALL).getValidTags();
 
         assertEquals(2, tags.size());
-        for (final JavadocTag tag : tags) {
-            if (JavadocTagInfo.SEE.getName().equals(tag.getTagName())) {
-                assertEquals(1, tag.getLineNo());
-                assertEquals(5, tag.getColumnNo());
-            }
-            else if (JavadocTagInfo.LINK.getName().equals(tag.getTagName())) {
-                assertEquals(2, tag.getLineNo());
-                assertEquals(10, tag.getColumnNo());
-            }
-            else {
-                fail("Unexpected tag: " + tag);
-            }
-        }
+
+        final JavadocTag seeTag = tags.get(0);
+        assertEquals(JavadocTagInfo.SEE.getName(), seeTag.getTagName());
+        assertEquals(1, seeTag.getLineNo());
+        assertEquals(4, seeTag.getColumnNo());
+
+        final JavadocTag linkTag = tags.get(1);
+        assertEquals(JavadocTagInfo.LINK.getName(), linkTag.getTagName());
+        assertEquals(2, linkTag.getLineNo());
+        assertEquals(10, linkTag.getColumnNo());
     }
 
     @Test
