@@ -11,6 +11,7 @@ addons:
     packages:
       - xsltproc
       - xmlstarlet
+      - oracle-java8-installer
 
 branches:
   only:
