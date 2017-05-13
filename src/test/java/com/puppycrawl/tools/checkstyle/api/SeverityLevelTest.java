@@ -71,15 +71,15 @@ public class SeverityLevelTest {
 
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
-        final Locale[] differentLocales = {new Locale("TR", "tr") };
-        final Locale defaultLocale = Locale.getDefault();
         try {
+            final Locale[] differentLocales = {new Locale("TR", "tr")};
             for (Locale differentLocale : differentLocales) {
                 Locale.setDefault(differentLocale);
                 testMixedCaseSpaces();
             }
         }
         finally {
+            final Locale defaultLocale = Locale.getDefault();
             Locale.setDefault(defaultLocale);
         }
     }
