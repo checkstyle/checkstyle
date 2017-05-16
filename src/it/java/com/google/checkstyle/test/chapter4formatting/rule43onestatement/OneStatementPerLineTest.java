@@ -90,7 +90,7 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
 
         final Configuration checkConfig = getCheckConfig("OneStatementPerLine");
         final String filePath = new File("src/test/resources-noncompilable/"
-            + "com/puppycrawl/tools/checkstyle/checks/coding/"
+            + "com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/"
             + "InputOneStatementPerLine.java").getCanonicalPath();
 
         final Integer[] warnList = getLinesWithWarn(filePath);
