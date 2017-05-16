@@ -57,7 +57,8 @@ public class PackageDeclarationCheckTest extends BaseCheckTestSupport {
             "4: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputNoPackage.java"), expected);
+        verify(checkConfig,
+                getNonCompilablePath("InputPackageDeclarationNoPackage.java"), expected);
     }
 
     @Test
