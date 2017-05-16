@@ -182,19 +182,19 @@ class TestHashCodeMethod {
         int z=101;
     }
 
-    @InputIntMethodAnnotation(42)
+    @InputMagicNumberIntMethodAnnotation(42)
     public void another() {
     }
 
-    @InputIntMethodAnnotation(value=43)
+    @InputMagicNumberIntMethodAnnotation(value=43)
     public void another2() {
     }
     
-    @InputIntMethodAnnotation(-44)
+    @InputMagicNumberIntMethodAnnotation(-44)
     public void anotherNegative() {
     }
 
-    @InputIntMethodAnnotation(value=-45)
+    @InputMagicNumberIntMethodAnnotation(value=-45)
     public void anotherNegative2() {
     }
 }
