@@ -42,7 +42,9 @@ public class OneStatementPerLineCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "coding" + File.separator + filename);
+                + "coding" + File.separator
+                + "onestatementperline" + File.separator
+                + filename);
     }
 
     @Test

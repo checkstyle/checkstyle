@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.coding;
+package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /**
  * This file contains test inputs for InputOneStatementPerLine
