@@ -524,6 +524,32 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.0.2</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/site/dtds</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/resources/com/puppycrawl/tools/checkstyle</directory>
+                  <includes>
+                    <include>*.dtd</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports</directory>
+                  <includes>
+                    <include>*.dtd</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
