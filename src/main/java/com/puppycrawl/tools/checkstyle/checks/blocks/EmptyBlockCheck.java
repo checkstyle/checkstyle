@@ -194,9 +194,10 @@ public class EmptyBlockCheck
             }
         }
         else {
-            // check only whitespace of first & last lines
-            if (lines[slistLineNo - 1].substring(slistColNo + 1).trim().isEmpty()
-                    && lines[rcurlyLineNo - 1].substring(0, rcurlyColNo).trim().isEmpty()) {
+            final String firstLine = lines[slistLineNo - 1].substring(slistColNo + 1);
+            final String lastLine = lines[rcurlyLineNo - 1].substring(0, rcurlyColNo);
+            if (CommonUtils.isBlank(firstLine)
+                    && CommonUtils.isBlank(lastLine)) {
                 // check if all lines are also only whitespace
                 returnValue = !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
             }
@@ -221,7 +222,7 @@ public class EmptyBlockCheck
     private static boolean checkIsAllLinesAreWhitespace(String[] lines, int lineFrom, int lineTo) {
         boolean result = true;
         for (int i = lineFrom; i < lineTo - 1; i++) {
-            if (!lines[i].trim().isEmpty()) {
+            if (!CommonUtils.isBlank(lines[i])) {
                 result = false;
                 break;
             }

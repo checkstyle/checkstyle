@@ -172,7 +172,8 @@ public class TrailingCommentCheck extends AbstractCheck {
 
                 // do not check comment which doesn't end line
                 if (comment.getText().length == 1
-                        && !line.substring(comment.getEndColNo() + 1).trim().isEmpty()) {
+                        && !CommonUtils.isBlank(line
+                            .substring(comment.getEndColNo() + 1))) {
                     continue;
                 }
             }

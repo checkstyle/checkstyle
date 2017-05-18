@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.grammars.CommentListener;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Represents the contents of a file.
@@ -322,8 +323,7 @@ public final class FileContents implements CommentListener {
      * @return if the specified line consists only of tabs and spaces.
      **/
     public boolean lineIsBlank(int lineNo) {
-        // possible improvement: avoid garbage creation in trim()
-        return line(lineNo).trim().isEmpty();
+        return CommonUtils.isBlank(line(lineNo));
     }
 
     /**

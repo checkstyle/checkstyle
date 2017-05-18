@@ -152,7 +152,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
         if (!isLastEmptyLine(newline) && nearestToken.getType() == JavadocTokenTypes.TEXT
-                && !nearestToken.getText().trim().isEmpty()) {
+                && !CommonUtils.isBlank(nearestToken.getText())) {
             log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
     }
@@ -199,7 +199,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         if (previousSibling != null
                 && previousSibling.getParent().getType() == JavadocTokenTypes.JAVADOC) {
             if (previousSibling.getType() == JavadocTokenTypes.TEXT
-                    && previousSibling.getText().trim().isEmpty()) {
+                    && CommonUtils.isBlank(previousSibling.getText())) {
                 previousSibling = JavadocUtils.getPreviousSibling(previousSibling);
             }
             result = previousSibling != null
@@ -218,7 +218,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode previousNode = JavadocUtils.getPreviousSibling(paragraphTag);
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
-                    && !previousNode.getText().trim().isEmpty()
+                    && !CommonUtils.isBlank(previousNode.getText())
                 || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && previousNode.getType() != JavadocTokenTypes.NEWLINE
                     && previousNode.getType() != JavadocTokenTypes.TEXT) {
@@ -257,7 +257,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode nextNode = JavadocUtils.getNextSibling(newLine);
         while (nextNode != null && nextNode.getType() != JavadocTokenTypes.JAVADOC_TAG) {
             if (nextNode.getType() == JavadocTokenTypes.TEXT
-                    && !nextNode.getText().trim().isEmpty()
+                    && !CommonUtils.isBlank(nextNode.getText())
                     || nextNode.getType() == JavadocTokenTypes.HTML_ELEMENT) {
                 result = false;
                 break;

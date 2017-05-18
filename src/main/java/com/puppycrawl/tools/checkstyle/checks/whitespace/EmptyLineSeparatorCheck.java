@@ -488,7 +488,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLines()[lineNo - number];
-            result = prePreviousLine.trim().isEmpty();
+            result = CommonUtils.isBlank(prePreviousLine);
         }
         return result;
     }
@@ -549,7 +549,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLines()[lineNo - 2];
-            result = lineBefore.trim().isEmpty();
+            result = CommonUtils.isBlank(lineBefore);
         }
         return result;
     }

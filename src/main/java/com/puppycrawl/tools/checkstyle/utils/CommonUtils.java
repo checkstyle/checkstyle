@@ -36,7 +36,6 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.commons.beanutils.ConversionException;
 
-import com.google.common.base.CharMatcher;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
@@ -425,17 +424,6 @@ public final class CommonUtils {
     }
 
     /**
-     * Check if a string is blank.
-     * A string is considered blank if it is null, empty or contains only  whitespace characters,
-     * as determined by {@link CharMatcher#WHITESPACE}.
-     * @param str the string to check
-     * @return true if str is either null, empty or whitespace-only.
-     */
-    public static boolean isBlank(String str) {
-        return str == null || CharMatcher.WHITESPACE.matchesAllOf(str);
-    }
-
-    /**
      * Returns file name without extension.
      * We do not use the method from Guava library to reduce Checkstyle's dependencies
      * on external libraries.
@@ -511,5 +499,24 @@ public final class CommonUtils {
         }
 
         return isName;
+    }
+
+    /**
+     * Checks if the value arg is blank by either being null,
+     * empty, or contains only whitespace characters.
+     * @param value A string to check.
+     * @return true if the arg is blank.
+     */
+    public static boolean isBlank(String value) {
+        boolean result = true;
+        if (value != null && !value.isEmpty()) {
+            for (int i = 0; i < value.length(); i++) {
+                if (!Character.isWhitespace(value.charAt(i))) {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 }
