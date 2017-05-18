@@ -168,7 +168,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         boolean containsInheritDoc = false;
         for (DetailNode child : ast.getChildren()) {
             if (child.getType() == JavadocTokenTypes.TEXT) {
-                if (!child.getText().trim().isEmpty()) {
+                if (!CommonUtils.isBlank(child.getText())) {
                     extraTextFound = true;
                 }
             }

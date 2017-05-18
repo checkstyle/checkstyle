@@ -229,7 +229,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *         text on the {@code line}.
      */
     private static boolean isFirstInLine(String line, int columnNo) {
-        return line.substring(0, columnNo + 1).trim().isEmpty();
+        return CommonUtils.isBlank(line.substring(0, columnNo + 1));
     }
 
     /**

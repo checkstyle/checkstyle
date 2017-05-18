@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -711,7 +712,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
         //  [lineNo - 2] is the number of the previous line
         //  because the numbering starts from zero.
         int lineBeforeIndex = lineNo - 2;
-        while (lineBeforeIndex >= 0 && lines[lineBeforeIndex].trim().isEmpty()) {
+        while (lineBeforeIndex >= 0
+                && CommonUtils.isBlank(lines[lineBeforeIndex])) {
             lineBeforeIndex--;
             result++;
         }

@@ -278,6 +278,46 @@ public class CommonUtilsTest {
     }
 
     @Test
+    public void testIsBlank() throws Exception {
+        assertFalse(CommonUtils.isBlank("string"));
+    }
+
+    @Test
+    public void testIsBlankAheadWhitespace() throws Exception {
+        assertFalse(CommonUtils.isBlank("  string"));
+    }
+
+    @Test
+    public void testIsBlankBehindWhitespace() throws Exception {
+        assertFalse(CommonUtils.isBlank("string    "));
+    }
+
+    @Test
+    public void testIsBlankWithWhitespacesAround() throws Exception {
+        assertFalse(CommonUtils.isBlank("    string    "));
+    }
+
+    @Test
+    public void testIsBlankWhitespaceInside() throws Exception {
+        assertFalse(CommonUtils.isBlank("str    ing"));
+    }
+
+    @Test
+    public void testIsBlankNullString() throws Exception {
+        assertTrue(CommonUtils.isBlank(null));
+    }
+
+    @Test
+    public void testIsBlankWithEmptyString() throws Exception {
+        assertTrue(CommonUtils.isBlank(""));
+    }
+
+    @Test
+    public void testIsBlankWithWhitespacesOnly() throws Exception {
+        assertTrue(CommonUtils.isBlank("   "));
+    }
+
+    @Test
     @PrepareForTest({ CommonUtils.class, CommonUtilsTest.class })
     @SuppressWarnings("unchecked")
     public void testLoadSuppressionsUriSyntaxException() throws Exception {

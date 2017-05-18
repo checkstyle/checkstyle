@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Checks for fall through in switch statements
@@ -353,7 +354,7 @@ public class FallThroughCheck extends AbstractCheck {
             //    }
             final int startLineNo = currentCase.getLineNo();
             for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-                if (!lines[i].trim().isEmpty()) {
+                if (!CommonUtils.isBlank(lines[i])) {
                     allThroughComment = matchesComment(reliefPattern, lines[i], i + 1);
                     break;
                 }

@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * <p>
@@ -299,7 +300,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private static boolean isTrailingBlockComment(TextBlock comment, String line) {
         return comment.getText().length != 1
-            || line.substring(comment.getEndColNo() + 1).trim().isEmpty();
+            || CommonUtils.isBlank(line.substring(comment.getEndColNo() + 1));
     }
 
     /**
