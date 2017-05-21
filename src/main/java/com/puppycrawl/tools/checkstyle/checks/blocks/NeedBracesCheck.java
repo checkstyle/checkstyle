@@ -217,7 +217,7 @@ public class NeedBracesCheck extends AbstractCheck {
     /**
      * Checks if ast is default in annotation
      * @param ast ast to test.
-     * @return true if current ast is default and it is part of annotation.
+     * @return true if current ast is default and it is part of annatation.
      */
     private boolean isDefaultInAnnotation(DetailAST ast) {
         boolean isDefaultInAnnotation = false;
@@ -415,6 +415,15 @@ public class NeedBracesCheck extends AbstractCheck {
         final DetailAST block = lambda.getLastChild();
         if (block.getType() != TokenTypes.SLIST) {
             result = lambda.getLineNo() == block.getLineNo();
+            final DetailAST elist = block.getFirstChild().findFirstToken(TokenTypes.ELIST);
+            if (result && elist != null) {
+                result = block.getLineNo() == elist.getLastChild().getLineNo();
+                final DetailAST expr = elist.findFirstToken(TokenTypes.EXPR);
+                if (result && expr.getLastChild().getChildCount() > 1) {
+                    result = expr.getLastChild().getLastChild().getLineNo()
+                           == expr.getLastChild().getLineNo();
+                }
+            }
         }
         return result;
     }

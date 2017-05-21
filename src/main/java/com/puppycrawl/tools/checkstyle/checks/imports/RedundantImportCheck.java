@@ -124,9 +124,11 @@ public class RedundantImportCheck
             }
             // Check for a duplicate import
             imports.stream().filter(full -> imp.getText().equals(full.getText()))
-                .forEach(full -> log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_DUPLICATE, full.getLineNo(),
-                    imp.getText()));
+                .forEach(full -> {
+                    log(ast.getLineNo(), ast.getColumnNo(),
+                        MSG_DUPLICATE, full.getLineNo(),
+                        imp.getText());
+                });
 
             imports.add(imp);
         }
@@ -136,8 +138,10 @@ public class RedundantImportCheck
                 FullIdent.createFullIdent(
                     ast.getLastChild().getPreviousSibling());
             staticImports.stream().filter(full -> imp.getText().equals(full.getText()))
-                .forEach(full -> log(ast.getLineNo(), ast.getColumnNo(),
-                    MSG_DUPLICATE, full.getLineNo(), imp.getText()));
+                .forEach(full -> {
+                    log(ast.getLineNo(), ast.getColumnNo(),
+                        MSG_DUPLICATE, full.getLineNo(), imp.getText());
+                });
 
             staticImports.add(imp);
         }
