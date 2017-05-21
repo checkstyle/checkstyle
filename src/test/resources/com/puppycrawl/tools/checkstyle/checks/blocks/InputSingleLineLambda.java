@@ -12,6 +12,10 @@ public class InputSingleLineLambda {
     static Runnable r6 = () -> String.CASE_INSENSITIVE_ORDER.equals("Hello " + "world!");
     static Runnable r7 = () -> String.CASE_INSENSITIVE_ORDER.equals("Hello "
             + "world!");
-    static Runnable r8 = () -> String.CASE_INSENSITIVE_ORDER.compare("Hello",
-            "World");
+    static MathOperation addition = (int a, int b) ->
+           a + b;
+    static MathOperation subtraction = (a, b) -> a - b;
+    interface MathOperation {
+        int operation(int a, int b);
+    }
 }

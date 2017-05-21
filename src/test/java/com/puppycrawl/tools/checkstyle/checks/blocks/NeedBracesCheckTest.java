@@ -1,4 +1,3 @@
-
 ////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code for adherence to a set of rules.
 // Copyright (C) 2001-2017 the original author or authors.
