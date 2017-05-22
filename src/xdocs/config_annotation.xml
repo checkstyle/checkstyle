@@ -343,6 +343,95 @@ public void test(&#64;MyAnnotation String s) { // OK
       </subsection>
     </section>
 
+      <section name="AvoidAnnotationCombination">
+          <subsection name="Description">
+              <p> This prevents the usage of a certain annotation in conjunction with a given field modifier.
+              </p>
+          </subsection>
+          <subsection name="Properties">
+              <table>
+                  <tr>
+                      <th>name</th>
+                      <th>description</th>
+                      <th>type</th>
+                      <th>default value</th>
+                  </tr>
+                  <tr>
+                      <td>annotation</td>
+                      <td>
+                          <p>
+                              Defines the annotation name / FQDN.
+                          </p>
+                      </td>
+                      <td>
+                          <a href="property_types.html#string">string</a>
+                      </td>
+                      <td>
+                          <code>never</code>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>modifier</td>
+                      <td>
+                          Modifier not allowed in conjunction with the annotation
+                      </td>
+                      <td>
+                          <a href="property_types.html#access_modifiers">access_modifiers</a>
+                      </td>
+                      <td>
+                          <code>never</code>
+                      </td>
+                  </tr>
+              </table>
+          </subsection>
+          <subsection name="Examples">
+              <p> To configure the check:</p>
+              <source> &lt;module name=&quot;AvoidAnnotationCombination&quot;/&gt;
+              </source>
+
+              <p>
+                  Disable Governator's own Configuration annotation on final fields
+              </p>
+              <source>
+                  &lt;module name=&quot;AvoidAnnotationCombination&quot;&gt;
+                  &lt;property name=&quot;annotation&quot; value=&quot;Configuration&quot;/&gt;
+                  &lt;property name=&quot;modifier&quot; value=&quot;FINAL&quot;/&gt;
+                  &lt;/module&gt;
+              </source>
+          </subsection>
+
+
+          <subsection name="Example of Usage">
+              <ul>
+                  <li>
+                      <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidAnnotationCombination">
+                          Checkstyle Style</a>
+                  </li>
+              </ul>
+          </subsection>
+
+          <subsection name="Error Messages">
+              <ul>
+                  <li>
+                      <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.combination.illegal%22">
+                          annotation.combination.illegal</a>
+                  </li>
+              </ul>
+              <p>
+                  All messages can be customized if the default message doesn't suit you.
+                  Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+              </p>
+          </subsection>
+
+          <subsection name="Package">
+              <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+          </subsection>
+
+          <subsection name="Parent Module">
+              <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+          </subsection>
+      </section>
+
     <section name="MissingDeprecated">
       <subsection name="Description">
         <p> Verifies that both the java.lang.Deprecated annotation is

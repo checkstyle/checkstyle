@@ -151,6 +151,14 @@
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings"/>
     <module name="SuppressWarningsHolder"/>
+    <module name="AvoidAnnotationCombination">
+      <property name="modifier" value="STATIC"/>
+      <property name="modifier" value="PUBLIC"/>
+      <property name="modifier" value="PROTECTED"/>
+      <property name="modifier" value="PRIVATE"/>
+      <property name="modifier" value="FINAL"/>
+      <property name="annotation" value=".*"/>
+    </module>
 
     <!-- Block Checks -->
     <module name="AvoidNestedBlocks">
