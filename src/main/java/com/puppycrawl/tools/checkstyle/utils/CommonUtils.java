@@ -480,17 +480,8 @@ public final class CommonUtils {
         for (int i = 0; isIdentifier && i < str.length(); i++) {
             if (i == 0) {
                 isIdentifier = Character.isJavaIdentifierStart(str.charAt(0));
-<<<<<<< refs/remotes/origin/master
-<<<<<<< refs/remotes/origin/master
             }
             else {
-=======
-            } else {
->>>>>>> Issue #3309: Added excludedPackages to class coupling checks
-=======
-            }
-            else {
->>>>>>> minor: fixed styling issue on brace
                 isIdentifier = Character.isJavaIdentifierPart(str.charAt(i));
             }
         }
