@@ -118,6 +118,9 @@ public final class Main {
     /** Name for the option '--exclude'. */
     private static final String OPTION_EXCLUDE_NAME = "exclude";
 
+    /** Name for the option '--executeIgnoredModules'. */
+    private static final String OPTION_EXECUTE_IGNORED_MODULES_NAME = "executeIgnoredModules";
+
     /** Name for the option 'x'. */
     private static final String OPTION_X_NAME = "x";
 
@@ -378,6 +381,7 @@ public final class Main {
         conf.configLocation = cmdLine.getOptionValue(OPTION_C_NAME);
         conf.propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
         conf.files = filesToProcess;
+        conf.executeIgnoredModules = cmdLine.hasOption(OPTION_EXECUTE_IGNORED_MODULES_NAME);
         return conf;
     }
 
@@ -405,7 +409,8 @@ public final class Main {
 
         // create a configuration
         final Configuration config = ConfigurationLoader.loadConfiguration(
-                cliOptions.configLocation, new PropertiesExpander(props));
+                cliOptions.configLocation, new PropertiesExpander(props),
+                !cliOptions.executeIgnoredModules);
 
         // create a listener for output
         final AuditListener listener = createListener(cliOptions.format, cliOptions.outputLocation);
@@ -627,6 +632,8 @@ public final class Main {
                 "Directory path to exclude from CheckStyle");
         options.addOption(OPTION_X_NAME, OPTION_EXCLUDE_REGEXP_NAME, true,
                 "Regular expression of directory to exclude from CheckStyle");
+        options.addOption(OPTION_EXECUTE_IGNORED_MODULES_NAME, false,
+                "Allows ignored modules to be run.");
         return options;
     }
 
@@ -642,5 +649,7 @@ public final class Main {
         private String outputLocation;
         /** List of file to validate. */
         private List<File> files;
+        /** Switch whether to execute ignored modules or not. */
+        private boolean executeIgnoredModules;
     }
 }

@@ -65,6 +65,7 @@ public class MainTest {
         + " -c <arg>                    Sets the check configuration file to use.%n"
         + " -d,--debug                  Print all debug logging of CheckStyle utility%n"
         + " -e,--exclude <arg>          Directory path to exclude from CheckStyle%n"
+        + " -executeIgnoredModules      Allows ignored modules to be run.%n"
         + " -f <arg>                    Sets the output format. (plain|xml). Defaults to"
         + " plain%n"
         + " -j,--javadocTree            Print Parse tree of the Javadoc comment%n"
@@ -831,6 +832,24 @@ public class MainTest {
             assertFalse(TestRootModuleChecker.isProcessed());
         });
         Main.main("-c", getPath("config-custom-simple-root-module.xml"),
+                getPath("InputMain.java"));
+    }
+
+    @Test
+    public void testExecuteIgnoredModule() throws Exception {
+        exit.expectSystemExitWithStatus(-2);
+        exit.checkAssertionAfterwards(() -> {
+            final String expectedExceptionMessage =
+                    String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n");
+            assertEquals(expectedExceptionMessage, systemOut.getLog());
+
+            final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
+                    + " cannot initialize module TreeWalker - ";
+            assertTrue(systemErr.getLog().startsWith(cause));
+        });
+
+        Main.main("-c", getPath("config-non-existing-classname-ignore.xml"),
+                "-executeIgnoredModules",
                 getPath("InputMain.java"));
     }
 }
