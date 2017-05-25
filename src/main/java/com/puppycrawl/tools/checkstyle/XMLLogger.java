@@ -172,6 +172,11 @@ public class XMLLogger
                 case '&':
                     sb.append(encodeAmpersand(value, i));
                     break;
+                case '\r':
+                    break;
+                case '\n':
+                    sb.append("&#10;");
+                    break;
                 default:
                     sb.append(chr);
                     break;
