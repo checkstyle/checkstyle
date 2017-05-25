@@ -116,6 +116,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <code>-v</code> - print product version and exit. Any other option is ignored.
         </li>
+        <li>
+          <code>-executeIgnoredModules</code> - Allows ignored modules to be run.
+        </li>
       </ul>
 
       <p>

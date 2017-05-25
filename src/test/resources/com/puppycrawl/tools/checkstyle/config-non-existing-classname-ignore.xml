@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+        "http://checkstyle.sourceforge.net/dtds/configuration_1_1.dtd">
+
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="NonExistingClass">
+            <property name="severity" value="ignore"/>
+        </module>
+    </module>
+</module>
