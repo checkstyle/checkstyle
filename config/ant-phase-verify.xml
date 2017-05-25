@@ -23,6 +23,7 @@
     <checkstyle config="${check.config}"
                 failOnViolation="false"
                 failureProperty="checkstyle.failure.property"
+                omitIgnoredModules="false"
                 >
       <fileset dir="src"
                includes="**/*"
@@ -50,7 +51,9 @@
 
     <checkstyle config="config/checkstyle_non_main_files_checks.xml"
                 failOnViolation="true"
-                failureProperty="checkstyle.failure.property">
+                failureProperty="checkstyle.failure.property"
+                omitIgnoredModules="false"
+                >
       <path>
         <fileset dir="${basedir}" includes="**/*">
           <exclude name=".git/**/*"/>
