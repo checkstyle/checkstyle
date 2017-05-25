@@ -24,6 +24,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -624,6 +625,7 @@ public class CheckerTest extends BaseCheckTestSupport {
      * It is OK to have long test method name here as it describes the test purpose.
      * @noinspection InstanceMethodNamingConvention
      */
+    // -@cs[ExecutableStatementCount] This test needs to verify many things.
     @Test
     public void testCacheAndCheckWhichAddsNewResourceLocationButKeepsSameCheckerInstance()
             throws Exception {
@@ -637,6 +639,8 @@ public class CheckerTest extends BaseCheckTestSupport {
         final DynamicalResourceHolderCheck check = new DynamicalResourceHolderCheck();
         final String firstExternalResourceLocation = getPath("checks" + File.separator
             + "imports" + File.separator + "import-control_one.xml");
+        final String firstExternalResourceKey = PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
+                + firstExternalResourceLocation;
         check.setFirstExternalResourceLocation(firstExternalResourceLocation);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("checkstyle_checks");
@@ -662,6 +666,8 @@ public class CheckerTest extends BaseCheckTestSupport {
         // Change a list of external resources which are used by the check
         final String secondExternalResourceLocation = "checks" + File.separator
             + "imports" + File.separator + "import-control_one-re.xml";
+        final String secondExternalResourceKey = PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
+                + secondExternalResourceLocation;
         check.setSecondExternalResourceLocation(secondExternalResourceLocation);
 
         verify(checker, pathToEmptyFile, expected);
@@ -677,12 +683,14 @@ public class CheckerTest extends BaseCheckTestSupport {
             cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY)
         );
         assertEquals(
-            cacheAfterFirstRun.getProperty(firstExternalResourceLocation),
-            cacheAfterSecondRun.getProperty(firstExternalResourceLocation)
+            cacheAfterFirstRun.getProperty(firstExternalResourceKey),
+            cacheAfterSecondRun.getProperty(firstExternalResourceKey)
         );
+        assertNotNull(cacheAfterFirstRun.getProperty(firstExternalResourceKey));
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 4;
         assertEquals(expectedNumberOfObjectsInCacheAfterSecondRun, cacheAfterSecondRun.size());
-        assertNotNull(cacheAfterSecondRun.getProperty(secondExternalResourceLocation));
+        assertNull(cacheAfterFirstRun.getProperty(secondExternalResourceKey));
+        assertNotNull(cacheAfterSecondRun.getProperty(secondExternalResourceKey));
     }
 
     @Test

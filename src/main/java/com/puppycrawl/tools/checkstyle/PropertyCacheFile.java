@@ -70,6 +70,14 @@ final class PropertyCacheFile {
      */
     public static final String CONFIG_HASH_KEY = "configuration*?";
 
+    /**
+     * The property prefix to use for storing the hashcode of an
+     * external resource. To avoid name clashes with the files that are
+     * checked the prefix is chosen in such a way that it cannot be a
+     * valid file name and makes it clear it is a resource.
+     */
+    public static final String EXTERNAL_RESOURCE_KEY_PREFIX = "module-resource*?:";
+
     /** The details on files. **/
     private final Properties details = new Properties();
 
@@ -273,7 +281,8 @@ final class PropertyCacheFile {
                 contentHashSum = getHashCodeBasedOnObjectContent(ex);
             }
             finally {
-                resources.add(new ExternalResource(location, contentHashSum));
+                resources.add(new ExternalResource(EXTERNAL_RESOURCE_KEY_PREFIX + location,
+                        contentHashSum));
             }
         }
         return resources;
