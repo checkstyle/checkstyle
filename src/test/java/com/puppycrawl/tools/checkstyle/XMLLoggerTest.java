@@ -210,11 +210,8 @@ public class XMLLoggerTest {
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
         final String[] expectedLines = {
-            "&lt;exception&gt;",
-            "&lt;![CDATA[",
-            "stackTrace]]&gt;",
-            "&lt;/exception&gt;",
-            "",
+            "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
+                + "&#10;&lt;/exception&gt;&#10;",
         };
         verifyLines(expectedLines);
     }
@@ -268,7 +265,7 @@ public class XMLLoggerTest {
 
         @Override
         public void printStackTrace(PrintWriter printWriter) {
-            printWriter.print("stackTrace");
+            printWriter.print("stackTrace\r\nexample");
         }
     }
 

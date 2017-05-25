@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -327,9 +329,15 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             }
 
             LOG.debug("Exception occurred.", ex);
+
+            final StringWriter sw = new StringWriter();
+            final PrintWriter pw = new PrintWriter(sw, true);
+
+            ex.printStackTrace(pw);
+
             fileMessages.add(new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ex.getClass().getName() + ": " + ex.getMessage()},
+                    new String[] {sw.getBuffer().toString()},
                     null, getClass(), null));
         }
         return fileMessages;
