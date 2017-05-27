@@ -5772,4 +5772,26 @@ final class ParseTreeBuilder {
         return javadocContext0;
     }
 
+    public static ParseTree treeLinkToPackage() {
+        JavadocContext javadocContext0 = new JavadocContext(null, 0);
+        JavadocInlineTagContext javadocInlineTagContext0 = new JavadocInlineTagContext(javadocContext0, 0);
+        CommonToken javadocInlineTagStart0 = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_START, "{");
+        javadocInlineTagContext0.addChild(javadocInlineTagStart0);
+        CommonToken linkLiteral0 = new CommonToken(JavadocTokenTypes.LINK_LITERAL, "@link");
+        javadocInlineTagContext0.addChild(linkLiteral0);
+        CommonToken ws0 = new CommonToken(JavadocTokenTypes.WS, " ");
+        javadocInlineTagContext0.addChild(ws0);
+        ReferenceContext referenceContext0 = new ReferenceContext(javadocInlineTagContext0, 0);
+        CommonToken package0 = new CommonToken(JavadocTokenTypes.PACKAGE, "_com._1organizationname.appname");
+        referenceContext0.addChild(package0);
+        javadocInlineTagContext0.addChild(referenceContext0);
+        CommonToken javadocInlineTagEnd0 = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_END, "}");
+        javadocInlineTagContext0.addChild(javadocInlineTagEnd0);
+        javadocContext0.addChild(javadocInlineTagContext0);
+        CommonToken newline0 = new CommonToken(JavadocTokenTypes.NEWLINE, LINE_SEPARATOR);
+                javadocContext0.addChild(newline0);
+        CommonToken eof0 = new CommonToken(JavadocTokenTypes.EOF, "<EOF>");
+        javadocContext0.addChild(eof0);
+        return javadocContext0;
+    }
 }
