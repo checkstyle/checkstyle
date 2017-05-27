@@ -460,7 +460,7 @@
         <version>${maven.checkstyle.plugin.version}</version>
         <dependencies>
           <dependency>
-            <groupId>com.github.sevntu.checkstyle</groupId>
+            <groupId>com.github.sevntu-checkstyle</groupId>
             <artifactId>sevntu-checkstyle-maven-plugin</artifactId>
             <version>${maven.sevntu.checkstyle.plugin.version}</version>
           </dependency>
