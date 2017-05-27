@@ -224,7 +224,8 @@ LINK_LITERAL : '@link' -> pushMode(seeLink);
 LINKPLAIN_LITERAL : '@linkplain' -> pushMode(seeLink);
 LITERAL_LITERAL : '@literal' {recognizeXmlTags=false;} -> mode(code);
 VALUE_LITERAL : '@value' -> pushMode(value);
-CustomName1: '@' [a-zA-Z0-9:._-]+ -> type(CUSTOM_NAME), mode(DEFAULT_MODE);
+CustomName1: '@' [a-zA-Z0-9:._-]+ {recognizeXmlTags=false;}
+                                      -> type(CUSTOM_NAME), mode(DEFAULT_MODE);
 Char6: . -> type(CHAR), mode(DEFAULT_MODE);
 //////////////////////////////////////////////////////////////////////////////////////
 mode code;
