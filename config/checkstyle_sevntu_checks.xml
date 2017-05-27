@@ -201,5 +201,6 @@
           <property name="ignoredClassNameFormat" value="UnsupportedOperationException"/>
         </module>
         <module name="ReturnCountExtendedCheck" />
+        <module name="MoveVariableInsideIfCheck" />
     </module>
 </module>
