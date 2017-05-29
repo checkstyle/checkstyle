@@ -16,6 +16,133 @@
   <body>
 
     <!-- placeholder for a new section -->
+    <section name="Release 7.8">
+      <p>New:</p>
+        <ul>
+          <li>
+            ImportControl: new strategyOnMismatch property to xml file structure. Author: Tima
+                <a href="https://github.com/checkstyle/checkstyle/issues/4274">#4274</a>
+          </li>
+          <li>
+            NoWhitespaceAfter: add support for method reference operator (new Acceptable token). Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/3950">#3950</a>
+          </li>
+          <li>
+            LocalFinalVariableName: not validating try-with-resource variables (new Acceptable token). Author: vasilyeva
+                <a href="https://github.com/checkstyle/checkstyle/issues/3348">#3348</a>
+          </li>
+          <li>
+            IllegalImport: new property illegalClasses to let blacklist certain classes import. Author: Tima
+                <a href="https://github.com/checkstyle/checkstyle/issues/3449">#3449</a>
+          </li>
+          <li>
+            ExplicitInitialization: new property &#39;onlyObjectReferences&#39;. Author: Subbu Dantu
+                <a href="https://github.com/checkstyle/checkstyle/issues/2399">#2399</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Javadoc parser: Package names should permit digits in their name. Author: Piyush Sharma
+                <a href="https://github.com/checkstyle/checkstyle/issues/4349">#4349</a>
+          </li>
+          <li>
+            Expand exception violation when haltOnException is off. Author: rnveach
+                <a href="https://github.com/checkstyle/checkstyle/issues/4350">#4350</a>
+          </li>
+          <li>
+            CacheFile: violation on external resource will invalidate entire cache even if no changes are made. Author: rnveach
+                <a href="https://github.com/checkstyle/checkstyle/issues/4101">#4101</a>
+          </li>
+          <li>
+            RequireThis: False positive for lambda parameters. Author: Piyush Sharma
+                <a href="https://github.com/checkstyle/checkstyle/issues/4207">#4207</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            bump version for sevnu-checkstyle. Author: Roman Ivanov
+          </li>
+          <li>
+            publish all dtd schemas to sourceforge site automatically. Author: Andrei Selkin, Roman Ivanov
+                <a href="https://github.com/checkstyle/checkstyle/issues/4341">#4341</a>
+          </li>
+          <li>
+            Use reflection to load Checks base on checkstyle_packages.xml. Author: Luolc
+                <a href="https://github.com/checkstyle/checkstyle/issues/3607">#3607</a>
+          </li>
+          <li>
+            upgrade maven-pmd-plugin to version 3.8. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4342">#4342</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in coding package. Author: slava ganyaev, Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4165">#4165</a>
+          </li>
+          <li>
+            ImportControl: blacklist mode. Author: Tima
+                <a href="https://github.com/checkstyle/checkstyle/issues/3451">#3451</a>
+          </li>
+          <li>
+            Localized UTs are not stable on Travis. Author: Roman Ivanov
+                <a href="https://github.com/checkstyle/checkstyle/issues/4316">#4316</a>
+          </li>
+          <li>
+            moved more variables inside if blocks to reduce execution. Author: rnveach
+                <a href="https://github.com/checkstyle/checkstyle/issues/4343">#4343</a>
+          </li>
+          <li>
+            spelling: Improve grammar of usage.distance.extend. Author: Jaron Thatcher
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in annotation package. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4313">#4313</a>
+          </li>
+          <li>
+            Revert &quot;Revert &quot;config: bump maven-surefire-xxxxxx to 2.20&quot; due to unstable locale UTs #4316&quot;. Author: Roman Ivanov
+          </li>
+          <li>
+            moved variables inside if blocks to reduce execution time. Author: rnveach
+                <a href="https://github.com/checkstyle/checkstyle/issues/4328">#4328</a>
+          </li>
+          <li>
+            doc: add link to contributing instructions to CONTRIBUTING.md. Author: Nathan Naze
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in design package. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4314">#4314</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/3891">#3891</a>
+          </li>
+          <li>
+            Wercker CI is unstable while cloning repositories. Author: Roman Ivanov
+                <a href="https://github.com/checkstyle/checkstyle/issues/4329">#4329</a>
+          </li>
+          <li>
+            Revert &quot;config: bump maven-surefire-xxxxxx to 2.20&quot; due to unstable locale UTs #4316. Author: Roman Ivanov
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for PackageName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4172">#4172</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MemberName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4151">#4151</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for MethodName. Author: Dmytro Kytsmen
+                <a href="https://github.com/checkstyle/checkstyle/issues/4158">#4158</a>
+          </li>
+          <li>
+            move all dtd schemas to sourceforge site. Author: Andrei Selkin
+                <a href="https://github.com/checkstyle/checkstyle/issues/1571">#1571</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.7">
       <p>New:</p>
         <ul>
