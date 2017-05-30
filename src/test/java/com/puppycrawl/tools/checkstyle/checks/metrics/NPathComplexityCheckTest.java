@@ -119,6 +119,8 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         final int[] actual = npathComplexityCheckObj.getAcceptableTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -137,7 +139,6 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_RETURN,
             TokenTypes.LITERAL_DEFAULT,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 
@@ -145,6 +146,8 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         final int[] actual = npathComplexityCheckObj.getRequiredTokens();
+        Assert.assertNotNull(actual);
+
         final int[] expected = {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -163,7 +166,6 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
             TokenTypes.LITERAL_RETURN,
             TokenTypes.LITERAL_DEFAULT,
         };
-        Assert.assertNotNull(actual);
         Assert.assertArrayEquals(expected, actual);
     }
 

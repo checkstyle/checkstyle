@@ -59,10 +59,11 @@ public class UpperEllCheckTest
 
     @Test
     public void testAcceptableTokens() {
-        final int[] expected = {TokenTypes.NUM_LONG };
         final UpperEllCheck check = new UpperEllCheck();
         final int[] actual = check.getAcceptableTokens();
         assertEquals(1, actual.length);
+
+        final int[] expected = {TokenTypes.NUM_LONG };
         assertArrayEquals(expected, actual);
     }
 }

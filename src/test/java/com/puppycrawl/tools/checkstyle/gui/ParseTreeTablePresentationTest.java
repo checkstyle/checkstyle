@@ -210,16 +210,20 @@ public class ParseTreeTablePresentationTest {
             TokenTypes.IDENT, node.getType());
 
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
-        final Object treeModel = parseTree.getValueAt(node, 0);
-        final String type = (String) parseTree.getValueAt(node, 1);
-        final int line = (int) parseTree.getValueAt(node, 2);
-        final int column = (int) parseTree.getValueAt(node, 3);
-        final String text = (String) parseTree.getValueAt(node, 4);
 
+        final String type = (String) parseTree.getValueAt(node, 1);
         Assert.assertEquals("Node should be an Identifier", "IDENT", type);
+
+        final int line = (int) parseTree.getValueAt(node, 2);
         Assert.assertEquals("Class identifier should start on line 4", 4, line);
+
+        final int column = (int) parseTree.getValueAt(node, 3);
         Assert.assertEquals("Class name should start from column 6", 6, column);
+
+        final String text = (String) parseTree.getValueAt(node, 4);
         Assert.assertEquals("Wrong class name", "InputJavadocAttributesAndMethods", text);
+
+        final Object treeModel = parseTree.getValueAt(node, 0);
         Assert.assertNull("Root node should have null value", treeModel);
 
         try {
@@ -249,17 +253,20 @@ public class ParseTreeTablePresentationTest {
         Assert.assertTrue(parseTree.isLeaf(tree.getFirstChild()));
 
         final Object treeModel = parseTree.getValueAt(child, 0);
+        Assert.assertNull(treeModel);
+
         final String type = (String) parseTree.getValueAt(child, 1);
+        Assert.assertEquals("JAVADOC", type);
+
         final int line = (int) parseTree.getValueAt(child, 2);
+        Assert.assertEquals(1, line);
+
         final int column = (int) parseTree.getValueAt(child, 3);
+        Assert.assertEquals(3, column);
+
         final String text = (String) parseTree.getValueAt(child, 4);
         final String expectedText = String.join("", System.lineSeparator(),
                 "* class javadoc", System.lineSeparator(), "<EOF>");
-
-        Assert.assertNull(treeModel);
-        Assert.assertEquals("JAVADOC", type);
-        Assert.assertEquals(1, line);
-        Assert.assertEquals(3, column);
         Assert.assertEquals(expectedText, text);
 
         try {
