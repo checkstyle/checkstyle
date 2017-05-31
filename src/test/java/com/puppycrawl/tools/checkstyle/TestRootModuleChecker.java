@@ -32,10 +32,11 @@ import com.puppycrawl.tools.checkstyle.api.RootModule;
 public class TestRootModuleChecker implements RootModule {
     private static boolean processed;
     private static List<File> filesToCheck;
+    private static Configuration config;
 
     @Override
     public void configure(Configuration configuration) throws CheckstyleException {
-        // not used
+        config = configuration;
     }
 
     @Override
@@ -67,9 +68,14 @@ public class TestRootModuleChecker implements RootModule {
     public static void reset() {
         processed = false;
         filesToCheck = null;
+        config = null;
     }
 
     public static List<File> getFilesToCheck() {
         return Collections.unmodifiableList(filesToCheck);
+    }
+
+    public static Configuration getConfig() {
+        return config;
     }
 }

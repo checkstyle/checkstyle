@@ -529,7 +529,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         assertEquals("Cache has unexpected size",
                 expectedNumberOfObjectsInCache, cache.size());
 
-        final String expectedConfigHash = "68EE3C3B4593FD8D86159C670C504542E20C6FA0";
+        final String expectedConfigHash = "B8535A811CA90BE8B7A14D40BCA62B4FC2447B46";
         assertEquals("Cache has unexpected hash",
                 expectedConfigHash, cache.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
 
