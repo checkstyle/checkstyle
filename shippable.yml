@@ -19,6 +19,13 @@ env:
     - PROFILE="-Ppitest-checks-regexp,no-validations"
     - PROFILE="-Ppitest-checks-sizes,no-validations"
     - PROFILE="-Ppitest-checks-whitespace,no-validations"
+    - PROFILE="-Ppitest-checkstyle-common,no-validations"
+    - PROFILE="-Ppitest-checkstyle-main,no-validations"
+    - PROFILE="-Ppitest-checkstyle-tree-walker,no-validations"
+    - PROFILE="-Ppitest-checkstyle-api,no-validations"
+    - PROFILE="-Ppitest-checkstyle-filters,no-validations"
+    - PROFILE="-Ppitest-checkstyle-utils,no-validations"
+    - PROFILE="-Ppitest-checkstyle-gui,no-validations"
 
 build:
   cache: true
