@@ -103,6 +103,9 @@ public final class ConfigurationLoader {
     /** Flags if modules with the severity 'ignore' should be omitted. */
     private final boolean omitIgnoredModules;
 
+    /** The thread mode configuration. */
+    private final ThreadModeSettings threadModeSettings;
+
     /** The Configuration that is being built. */
     private Configuration configuration;
 
@@ -117,9 +120,26 @@ public final class ConfigurationLoader {
     private ConfigurationLoader(final PropertyResolver overrideProps,
                                 final boolean omitIgnoredModules)
             throws ParserConfigurationException, SAXException {
+        this(overrideProps, omitIgnoredModules, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Creates a new {@code ConfigurationLoader} instance.
+     * @param overrideProps resolver for overriding properties
+     * @param omitIgnoredModules {@code true} if ignored modules should be
+     *         omitted
+     * @param threadModeSettings the thread mode configuration
+     * @throws ParserConfigurationException if an error occurs
+     * @throws SAXException if an error occurs
+     */
+    private ConfigurationLoader(final PropertyResolver overrideProps,
+                                final boolean omitIgnoredModules,
+                                final ThreadModeSettings threadModeSettings)
+            throws ParserConfigurationException, SAXException {
         saxHandler = new InternalLoader();
         overridePropsResolver = overrideProps;
         this.omitIgnoredModules = omitIgnoredModules;
+        this.threadModeSettings = threadModeSettings;
     }
 
     /**
@@ -164,6 +184,20 @@ public final class ConfigurationLoader {
 
     /**
      * Returns the module configurations in a specified file.
+     * @param config location of config file, can be either a URL or a filename
+     * @param overridePropsResolver overriding properties
+     * @param threadModeSettings the thread mode configuration
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(String config,
+            PropertyResolver overridePropsResolver, ThreadModeSettings threadModeSettings)
+            throws CheckstyleException {
+        return loadConfiguration(config, overridePropsResolver, false, threadModeSettings);
+    }
+
+    /**
+     * Returns the module configurations in a specified file.
      *
      * @param config location of config file, can be either a URL or a filename
      * @param overridePropsResolver overriding properties
@@ -175,11 +209,30 @@ public final class ConfigurationLoader {
     public static Configuration loadConfiguration(String config,
         PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
             throws CheckstyleException {
+        return loadConfiguration(config, overridePropsResolver, omitIgnoredModules,
+                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Returns the module configurations in a specified file.
+     *
+     * @param config location of config file, can be either a URL or a filename
+     * @param overridePropsResolver overriding properties
+     * @param omitIgnoredModules {@code true} if modules with severity
+     *            'ignore' should be omitted, {@code false} otherwise
+     * @param threadModeSettings the thread mode configuration
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(String config,
+            PropertyResolver overridePropsResolver,
+            boolean omitIgnoredModules, ThreadModeSettings threadModeSettings)
+            throws CheckstyleException {
         // figure out if this is a File or a URL
         final URI uri = CommonUtils.getUriByFilename(config);
         final InputSource source = new InputSource(uri.toString());
         return loadConfiguration(source, overridePropsResolver,
-                omitIgnoredModules);
+                omitIgnoredModules, threadModeSettings);
     }
 
     /**
@@ -222,10 +275,31 @@ public final class ConfigurationLoader {
     public static Configuration loadConfiguration(InputSource configSource,
             PropertyResolver overridePropsResolver, boolean omitIgnoredModules)
             throws CheckstyleException {
+        return loadConfiguration(configSource, overridePropsResolver,
+                omitIgnoredModules, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Returns the module configurations from a specified input source.
+     * Note that if the source does wrap an open byte or character
+     * stream, clients are required to close that stream by themselves
+     *
+     * @param configSource the input stream to the Checkstyle configuration
+     * @param overridePropsResolver overriding properties
+     * @param omitIgnoredModules {@code true} if modules with severity
+     *            'ignore' should be omitted, {@code false} otherwise
+     * @param threadModeSettings the thread mode configuration
+     * @return the check configurations
+     * @throws CheckstyleException if an error occurs
+     */
+    public static Configuration loadConfiguration(InputSource configSource,
+        PropertyResolver overridePropsResolver,
+        boolean omitIgnoredModules, ThreadModeSettings threadModeSettings)
+            throws CheckstyleException {
         try {
             final ConfigurationLoader loader =
                 new ConfigurationLoader(overridePropsResolver,
-                                        omitIgnoredModules);
+                                        omitIgnoredModules, threadModeSettings);
             loader.parseInputSource(configSource);
             return loader.configuration;
         }
@@ -411,9 +485,10 @@ public final class ConfigurationLoader {
                 throws SAXException {
             if (qName.equals(MODULE)) {
                 //create configuration
-                final String name = attributes.getValue(NAME);
+                final String originalName = attributes.getValue(NAME);
+                final String name = threadModeSettings.resolveName(originalName);
                 final DefaultConfiguration conf =
-                    new DefaultConfiguration(name);
+                    new DefaultConfiguration(name, threadModeSettings);
 
                 if (configuration == null) {
                     configuration = conf;

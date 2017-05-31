@@ -127,11 +127,27 @@ public final class Main {
     /** Name for the option '--exclude-regexp'. */
     private static final String OPTION_EXCLUDE_REGEXP_NAME = "exclude-regexp";
 
+    /** Name for the option '-C'. */
+    private static final String OPTION_CAPITAL_C_NAME = "C";
+
+    /** Name for the option '--checker-threads-number'. */
+    private static final String OPTION_CHECKER_THREADS_NUMBER_NAME = "checker-threads-number";
+
+    /** Name for the option '-W'. */
+    private static final String OPTION_CAPITAL_W_NAME = "W";
+
+    /** Name for the option '--tree-walker-threads-number'. */
+    private static final String OPTION_TREE_WALKER_THREADS_NUMBER_NAME =
+        "tree-walker-threads-number";
+
     /** Name for 'xml' format. */
     private static final String XML_FORMAT_NAME = "xml";
 
     /** Name for 'plain' format. */
     private static final String PLAIN_FORMAT_NAME = "plain";
+
+    /** A string value of 1. */
+    private static final String ONE_STRING_VALUE = "1";
 
     /** Don't create instance of this class, use {@link #main(String[])} method instead. */
     private Main() {
@@ -293,12 +309,46 @@ public final class Main {
                     result.add(String.format("Could not find file '%s'.", propertiesLocation));
                 }
             }
+            verifyThreadsNumberParameter(cmdLine, result, OPTION_CAPITAL_C_NAME,
+                "Checker threads number must be greater than zero",
+                "Invalid Checker threads number");
+            verifyThreadsNumberParameter(cmdLine, result, OPTION_CAPITAL_W_NAME,
+                "TreeWalker threads number must be greater than zero",
+                "Invalid TreeWalker threads number");
         }
         else {
             result.add("Must specify a config XML file.");
         }
 
         return result;
+    }
+
+    /**
+     * Verifies threads number CLI parameter value.
+     * @param cmdLine a command line
+     * @param result a resulting list of errors
+     * @param cliParameterName a CLI parameter name
+     * @param mustBeGreaterThanZeroMessage a message which should be reported
+     *                                     if the number of threads is less than or equal to zero
+     * @param invalidNumberMessage a message which should be reported if the passed value
+     *                             is not a valid number
+     */
+    private static void verifyThreadsNumberParameter(CommandLine cmdLine, List<String> result,
+        String cliParameterName, String mustBeGreaterThanZeroMessage,
+        String invalidNumberMessage) {
+        if (cmdLine.hasOption(cliParameterName)) {
+            final String checkerThreadsNumberStr =
+                cmdLine.getOptionValue(cliParameterName);
+            if (CommonUtils.isInt(checkerThreadsNumberStr)) {
+                final int checkerThreadsNumber = Integer.parseInt(checkerThreadsNumberStr);
+                if (checkerThreadsNumber < 1) {
+                    result.add(mustBeGreaterThanZeroMessage);
+                }
+            }
+            else {
+                result.add(invalidNumberMessage);
+            }
+        }
     }
 
     /**
@@ -382,6 +432,12 @@ public final class Main {
         conf.propertiesLocation = cmdLine.getOptionValue(OPTION_P_NAME);
         conf.files = filesToProcess;
         conf.executeIgnoredModules = cmdLine.hasOption(OPTION_EXECUTE_IGNORED_MODULES_NAME);
+        final String checkerThreadsNumber = cmdLine.getOptionValue(
+                OPTION_CAPITAL_C_NAME, ONE_STRING_VALUE);
+        conf.checkerThreadsNumber = Integer.parseInt(checkerThreadsNumber);
+        final String treeWalkerThreadsNumber = cmdLine.getOptionValue(
+                OPTION_CAPITAL_W_NAME, ONE_STRING_VALUE);
+        conf.treeWalkerThreadsNumber = Integer.parseInt(treeWalkerThreadsNumber);
         return conf;
     }
 
@@ -408,9 +464,12 @@ public final class Main {
         }
 
         // create a configuration
+        final ThreadModeSettings multiThreadModeSettings =
+                new ThreadModeSettings(
+                        cliOptions.checkerThreadsNumber, cliOptions.treeWalkerThreadsNumber);
         final Configuration config = ConfigurationLoader.loadConfiguration(
                 cliOptions.configLocation, new PropertiesExpander(props),
-                !cliOptions.executeIgnoredModules);
+                !cliOptions.executeIgnoredModules, multiThreadModeSettings);
 
         // create a listener for output
         final AuditListener listener = createListener(cliOptions.format, cliOptions.outputLocation);
@@ -634,6 +693,10 @@ public final class Main {
                 "Regular expression of directory to exclude from CheckStyle");
         options.addOption(OPTION_EXECUTE_IGNORED_MODULES_NAME, false,
                 "Allows ignored modules to be run.");
+        options.addOption(OPTION_CAPITAL_C_NAME, OPTION_CHECKER_THREADS_NUMBER_NAME, true,
+                "(experimental) The number of Checker threads (must be greater than zero)");
+        options.addOption(OPTION_CAPITAL_W_NAME, OPTION_TREE_WALKER_THREADS_NUMBER_NAME, true,
+                "(experimental) The number of TreeWalker threads (must be greater than zero)");
         return options;
     }
 
@@ -651,5 +714,9 @@ public final class Main {
         private List<File> files;
         /** Switch whether to execute ignored modules or not. */
         private boolean executeIgnoredModules;
+        /** The checker threads number. */
+        private int checkerThreadsNumber;
+        /** The tree walker threads number. */
+        private int treeWalkerThreadsNumber;
     }
 }

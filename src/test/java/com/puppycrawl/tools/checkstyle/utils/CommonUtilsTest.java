@@ -338,6 +338,21 @@ public class CommonUtilsTest {
         }
     }
 
+    @Test
+    public void testIsIntValidString() throws Exception {
+        assertTrue(CommonUtils.isInt("42"));
+    }
+
+    @Test
+    public void testIsIntInvalidString() throws Exception {
+        assertFalse(CommonUtils.isInt("foo"));
+    }
+
+    @Test
+    public void testIsIntNull() throws Exception {
+        assertFalse(CommonUtils.isInt(null));
+    }
+
     private static class TestCloseable implements Closeable {
         private boolean closed;
 

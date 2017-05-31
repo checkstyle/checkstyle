@@ -53,4 +53,22 @@ public class DefaultConfigurationTest {
                     expected.getMessage());
         }
     }
+
+    @Test
+    public void testDefaultMultiThreadConfiguration() throws Exception {
+        final String name = "MyConfig";
+        final DefaultConfiguration config = new DefaultConfiguration(name);
+        final ThreadModeSettings singleThreadMode =
+                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+        assertEquals(singleThreadMode, config.getThreadModeSettings());
+    }
+
+    @Test
+    public void testMultiThreadConfiguration() throws Exception {
+        final String name = "MyConfig";
+        final ThreadModeSettings multiThreadMode =
+                new ThreadModeSettings(4, 2);
+        final DefaultConfiguration config = new DefaultConfiguration(name, multiThreadMode);
+        assertEquals(multiThreadMode, config.getThreadModeSettings());
+    }
 }

@@ -1,0 +1,101 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2017 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
+import java.util.Set;
+
+import org.junit.Test;
+
+import com.puppycrawl.tools.checkstyle.internal.CheckUtil;
+
+public class ThreadModeSettingsTest {
+    @Test
+    public void testProperties() throws Exception {
+        final ThreadModeSettings config = new ThreadModeSettings(1, 2);
+        assertEquals(1, config.getCheckerThreadsNumber());
+        assertEquals(2, config.getTreeWalkerThreadsNumber());
+    }
+
+    @Test
+    public void testResolveCheckerInMultiThreadMode() throws Exception {
+        final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
+
+        try {
+            configuration.resolveName("Checker");
+            fail("An exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Multi thread mode for Checker module is not implemented",
+                    ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testResolveCheckerInSingleThreadMode() throws Exception {
+        final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+
+        assertEquals("Checker", singleThreadMode.resolveName("Checker"));
+    }
+
+    @Test
+    public void testResolveTreeWalker() throws Exception {
+        final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
+
+        try {
+            configuration.resolveName("TreeWalker");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Multi thread mode for TreeWalker module is not implemented",
+                    ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testResolveTreeWalkerInSingleThreadMode() throws Exception {
+        final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+
+        assertThat(singleThreadMode.resolveName("TreeWalker"), is("TreeWalker"));
+    }
+
+    @Test
+    public void testResolveAnyOtherModule() throws Exception {
+        final Set<Class<?>> allModules = CheckUtil.getCheckstyleModules();
+        final ThreadModeSettings multiThreadModeSettings = new ThreadModeSettings(2, 2);
+        final ThreadModeSettings singleThreadModeSettings =
+                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+
+        for (Class<?> module : allModules) {
+            if (Checker.class.isAssignableFrom(module)
+                    || TreeWalker.class.isAssignableFrom(module)) {
+                // they're handled in other tests
+                continue;
+            }
+
+            final String moduleName = module.getSimpleName();
+            assertThat(singleThreadModeSettings.resolveName(moduleName), is(moduleName));
+            assertThat(multiThreadModeSettings.resolveName(moduleName), is(moduleName));
+        }
+    }
+}

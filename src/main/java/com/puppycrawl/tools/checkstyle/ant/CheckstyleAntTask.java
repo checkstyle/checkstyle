@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -391,11 +392,11 @@ public class CheckstyleAntTask extends Task {
         final RootModule rootModule;
         try {
             final Properties props = createOverridingProperties();
-            final Configuration configuration =
-                ConfigurationLoader.loadConfiguration(
-                    config,
-                    new PropertiesExpander(props),
-                    !executeIgnoredModules);
+            final ThreadModeSettings threadModeSettings =
+                    ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+            final Configuration configuration = ConfigurationLoader.loadConfiguration(
+                    config, new PropertiesExpander(props),
+                    !executeIgnoredModules, threadModeSettings);
 
             final ClassLoader moduleClassLoader =
                 Checker.class.getClassLoader();

@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Properties;
@@ -64,8 +65,7 @@ public class ConfigurationLoaderTest {
         String name, Properties props) throws CheckstyleException {
         final String fName = getConfigPath(name);
 
-        return ConfigurationLoader.loadConfiguration(
-                fName, new PropertiesExpander(props));
+        return ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(props));
     }
 
     private static Method getReplacePropertiesMethod() throws Exception {
@@ -98,9 +98,58 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
+    public void testResourceLoadConfigurationWithMultiThreadConfiguration() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final PropertiesExpander propertiesExpander = new PropertiesExpander(props);
+        final String configPath = getConfigPath("checkstyle_checks.xml");
+        final ThreadModeSettings multiThreadModeSettings =
+            new ThreadModeSettings(4, 2);
+
+        try {
+            ConfigurationLoader.loadConfiguration(
+                configPath, propertiesExpander, multiThreadModeSettings);
+            fail("An exception is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Multi thread mode for Checker module is not implemented",
+                ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testResourceLoadConfigurationWithSingleThreadConfiguration() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final PropertiesExpander propertiesExpander = new PropertiesExpander(props);
+        final String configPath = getConfigPath("checkstyle_checks.xml");
+        final ThreadModeSettings singleThreadModeSettings =
+            ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
+
+        final DefaultConfiguration config =
+            (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                configPath, propertiesExpander, singleThreadModeSettings);
+
+        final Properties attributes = new Properties();
+        attributes.setProperty("tabWidth", "4");
+        attributes.setProperty("basedir", "basedir");
+        verifyConfigNode(config, "Checker", 3, attributes);
+    }
+
+    @Test
     public void testEmptyConfiguration() throws Exception {
         final DefaultConfiguration config =
             (DefaultConfiguration) loadConfiguration("empty_configuration.xml");
+        verifyConfigNode(config, "Checker", 0, new Properties());
+    }
+
+    @Test
+    public void testEmptyModuleResolver() throws Exception {
+        final DefaultConfiguration config =
+            (DefaultConfiguration) loadConfiguration(
+                "empty_configuration.xml", new Properties());
         verifyConfigNode(config, "Checker", 0, new Properties());
     }
 
@@ -365,12 +414,9 @@ public class ConfigurationLoaderTest {
     public void testIncorrectTag() throws Exception {
         try {
             final Class<?> aClassParent = ConfigurationLoader.class;
-            Constructor<?> ctorParent = null;
-            final Constructor<?>[] parentConstructors = aClassParent.getDeclaredConstructors();
-            for (Constructor<?> parentConstructor: parentConstructors) {
-                parentConstructor.setAccessible(true);
-                ctorParent = parentConstructor;
-            }
+            final Constructor<?> ctorParent = aClassParent.getDeclaredConstructor(
+                    PropertyResolver.class, boolean.class, ThreadModeSettings.class);
+            ctorParent.setAccessible(true);
             final Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                     + "ConfigurationLoader$InternalLoader");
             Constructor<?> constructor = null;
@@ -380,7 +426,7 @@ public class ConfigurationLoaderTest {
                 constructor = constr;
             }
 
-            final Object objParent = ctorParent.newInstance(null, true);
+            final Object objParent = ctorParent.newInstance(null, true, null);
             final Object obj = constructor.newInstance(objParent);
 
             final Class<?>[] param = new Class<?>[] {String.class, String.class,
@@ -396,6 +442,31 @@ public class ConfigurationLoaderTest {
             assertTrue(ex.getCause() instanceof IllegalStateException);
             assertEquals("Unknown name:" + "hello" + ".", ex.getCause().getMessage());
         }
+    }
+
+    @Test
+    public void testPrivateConstructorWithPropertyResolverAndOmitIgnoreModules() throws Exception {
+        final Class<?> configurationLoaderClass = ConfigurationLoader.class;
+        final Constructor<?> configurationLoaderCtor =
+                configurationLoaderClass.getDeclaredConstructor(
+                        PropertyResolver.class, boolean.class);
+        configurationLoaderCtor.setAccessible(true);
+
+        final Properties properties = new Properties();
+        final PropertyResolver propertyResolver = new PropertiesExpander(properties);
+        final ConfigurationLoader configurationLoader =
+                (ConfigurationLoader) configurationLoaderCtor.newInstance(
+                        propertyResolver, true);
+
+        final Field overridePropsResolverField =
+                configurationLoaderClass.getDeclaredField("overridePropsResolver");
+        overridePropsResolverField.setAccessible(true);
+        assertEquals(propertyResolver, overridePropsResolverField.get(configurationLoader));
+
+        final Field omitIgnoredModulesField =
+                configurationLoaderClass.getDeclaredField("omitIgnoredModules");
+        omitIgnoredModulesField.setAccessible(true);
+        assertEquals(true, omitIgnoredModulesField.get(configurationLoader));
     }
 
     @Test
@@ -525,11 +596,14 @@ public class ConfigurationLoaderTest {
         when(tested.getAttribute("severity")).thenThrow(CheckstyleException.class);
         // to void creation of 2 other mocks for now reason, only one moc is used for all cases
         PowerMockito.whenNew(DefaultConfiguration.class)
-                .withArguments("MemberName").thenReturn(tested);
+                .withArguments("MemberName", ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE)
+                .thenReturn(tested);
         PowerMockito.whenNew(DefaultConfiguration.class)
-                .withArguments("Checker").thenReturn(tested);
+                .withArguments("Checker", ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE)
+                .thenReturn(tested);
         PowerMockito.whenNew(DefaultConfiguration.class)
-                .withArguments("TreeWalker").thenReturn(tested);
+                .withArguments("TreeWalker", ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE)
+                .thenReturn(tested);
 
         try {
             ConfigurationLoader.loadConfiguration(
