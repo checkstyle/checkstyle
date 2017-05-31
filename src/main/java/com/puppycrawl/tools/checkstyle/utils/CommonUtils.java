@@ -521,4 +521,26 @@ public final class CommonUtils {
         }
         return result;
     }
+
+    /**
+     * Checks whether the string contains an integer value.
+     * @param str a string to check
+     * @return true if the given string is an integer, false otherwise.
+     */
+    public static boolean isInt(String str) {
+        boolean isInt;
+        if (str == null) {
+            isInt = false;
+        }
+        else {
+            try {
+                Integer.parseInt(str);
+                isInt = true;
+            }
+            catch (NumberFormatException ignored) {
+                isInt = false;
+            }
+        }
+        return isInt;
+    }
 }

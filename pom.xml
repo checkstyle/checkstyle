@@ -1977,7 +1977,7 @@
             <configuration>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter</param>
-                <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader</param>
+                <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageNamesLoader</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfiguration</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultContext</param>
@@ -1990,6 +1990,7 @@
                 <param>com.puppycrawl.tools.checkstyle.Checker</param>
                 <param>com.puppycrawl.tools.checkstyle.ant.*</param>
                 <param>com.puppycrawl.tools.checkstyle.doclets.*</param>
+                <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatterTest</param>
@@ -2005,6 +2006,7 @@
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ant.*</param>
                 <param>com.puppycrawl.tools.checkstyle.doclets.*</param>
+                <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
               </targetTests>
               <excludedMethods>
                 <!-- till https://github.com/hcoles/pitest/issues/353 -->

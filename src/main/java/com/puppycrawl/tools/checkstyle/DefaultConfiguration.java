@@ -48,12 +48,26 @@ public final class DefaultConfiguration implements Configuration {
     /** The map containing custom messages. */
     private final Map<String, String> messages = new HashMap<>();
 
+    /** The thread mode configuration. */
+    private final ThreadModeSettings threadModeSettings;
+
     /**
      * Instantiates a DefaultConfiguration.
      * @param name the name for this DefaultConfiguration.
      */
     public DefaultConfiguration(String name) {
+        this(name, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+    }
+
+    /**
+     * Instantiates a DefaultConfiguration.
+     * @param name the name for this DefaultConfiguration.
+     * @param threadModeSettings the thread mode configuration.
+     */
+    public DefaultConfiguration(String name,
+        ThreadModeSettings threadModeSettings) {
         this.name = name;
+        this.threadModeSettings = threadModeSettings;
     }
 
     @Override
@@ -130,5 +144,13 @@ public final class DefaultConfiguration implements Configuration {
     @Override
     public ImmutableMap<String, String> getMessages() {
         return ImmutableMap.copyOf(messages);
+    }
+
+    /**
+     * Gets the thread mode configuration.
+     * @return the thread mode configuration.
+     */
+    public ThreadModeSettings getThreadModeSettings() {
+        return threadModeSettings;
     }
 }

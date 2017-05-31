@@ -433,7 +433,7 @@ public class PropertyCacheFileTest {
         final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
         cache.load();
 
-        final String expectedInitialConfigHash = "EEF15651C2D79B29968835FC729E788938CAFE3B";
+        final String expectedInitialConfigHash = "91753B970AFDF9F5F3DFA0D258064841949D3C6B";
         final String actualInitialConfigHash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
         assertEquals(expectedInitialConfigHash, actualInitialConfigHash);
 
@@ -450,7 +450,7 @@ public class PropertyCacheFileTest {
             new PropertyCacheFile(config, cacheFile.getPath());
         cacheAfterChangeInConfig.load();
 
-        final String expectedConfigHashAfterChange = "0FFFF89F6636EE8AEB904681F594B0F05E1FF795";
+        final String expectedConfigHashAfterChange = "4CF5EC78955B81D76153ACC2CA6D60CB77FDCB2A";
         final String actualConfigHashAfterChange =
             cacheAfterChangeInConfig.get(PropertyCacheFile.CONFIG_HASH_KEY);
         assertEquals(expectedConfigHashAfterChange, actualConfigHashAfterChange);
