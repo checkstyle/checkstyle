@@ -22,6 +22,15 @@ package com.puppycrawl.tools.checkstyle;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.spy;
+import static org.powermock.api.mockito.PowerMockito.verifyPrivate;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -38,16 +47,24 @@ import java.util.regex.Pattern;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(TreeWalker.class)
 public class TreeWalkerTest extends BaseCheckTestSupport {
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -251,6 +268,91 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             // unexpected
             fail("CheckstyleException is NOT expected");
         }
+    }
+
+    @Test
+    public void testBehaviourWithZeroChecks() throws Exception {
+        final String errMsg = "No checks -> No parsing";
+        final TreeWalker treeWalkerSpy = spy(new TreeWalker());
+        final Class<?> classAstState =
+                Class.forName("com.puppycrawl.tools.checkstyle.TreeWalker$AstState");
+        mockStatic(TreeWalker.class);
+        when(TreeWalker.parse(any(FileContents.class)))
+                .thenThrow(new IllegalStateException(errMsg));
+        doNothing().when(treeWalkerSpy, "walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+        treeWalkerSpy.processFiltered(temporaryFolder.newFile("file.java"), new ArrayList<>());
+        verifyPrivate(treeWalkerSpy, never()).invoke("walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+    }
+
+    @Test
+    public void testBehaviourWithOnlyOrdinaryChecks() throws Exception {
+        final String errMsg = "No comment processing checks -> "
+                + "No calls to TreeWalker.appendHiddenCommentNodes";
+        final TreeWalker treeWalkerSpy = spy(new TreeWalker());
+        final Class<?> classAstState =
+                Class.forName("com.puppycrawl.tools.checkstyle.TreeWalker$AstState");
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalkerSpy.configure(createCheckConfig(TypeNameCheck.class));
+        treeWalkerSpy.setModuleFactory(factory);
+        treeWalkerSpy.setupChild(createCheckConfig(TypeNameCheck.class));
+        spy(TreeWalker.class);
+        doNothing().when(treeWalkerSpy, "walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+        when(TreeWalker.class, "appendHiddenCommentNodes", any(DetailAST.class))
+                .thenThrow(new IllegalStateException(errMsg));
+        treeWalkerSpy.processFiltered(temporaryFolder.newFile("file.java"), new ArrayList<>());
+        verifyPrivate(treeWalkerSpy, times(1)).invoke("walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+    }
+
+    @Test
+    public void testBehaviourWithOnlyCommentChecks() throws Exception {
+        final TreeWalker treeWalkerSpy = spy(new TreeWalker());
+        final Class<?> classAstState =
+                Class.forName("com.puppycrawl.tools.checkstyle.TreeWalker$AstState");
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalkerSpy.configure(createCheckConfig(CommentsIndentationCheck.class));
+        treeWalkerSpy.setModuleFactory(factory);
+        treeWalkerSpy.setupChild(createCheckConfig(CommentsIndentationCheck.class));
+        spy(TreeWalker.class);
+        doNothing().when(treeWalkerSpy, "walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+        when(TreeWalker.class, "appendHiddenCommentNodes", any(DetailAST.class))
+                .thenReturn(null);
+        treeWalkerSpy.processFiltered(temporaryFolder.newFile("file.java"), new ArrayList<>());
+        verifyPrivate(TreeWalker.class, times(1))
+                .invoke("appendHiddenCommentNodes", any(DetailAST.class));
+        verifyPrivate(treeWalkerSpy, times(1)).invoke("walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+    }
+
+    @Test
+    public void testBehaviourWithOrdinaryAndCommentChecks() throws Exception {
+        final TreeWalker treeWalkerSpy = spy(new TreeWalker());
+        final Class<?> classAstState =
+                Class.forName("com.puppycrawl.tools.checkstyle.TreeWalker$AstState");
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalkerSpy.configure(new DefaultConfiguration("TreeWalkerTest"));
+        treeWalkerSpy.setModuleFactory(factory);
+        treeWalkerSpy.setupChild(createCheckConfig(CommentsIndentationCheck.class));
+        treeWalkerSpy.setupChild(createCheckConfig(TypeNameCheck.class));
+        spy(TreeWalker.class);
+        doNothing().when(treeWalkerSpy, "walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+        when(TreeWalker.class, "appendHiddenCommentNodes", any(DetailAST.class))
+                .thenReturn(null);
+        treeWalkerSpy.processFiltered(temporaryFolder.newFile("file.java"), new ArrayList<>());
+        verifyPrivate(TreeWalker.class, times(1))
+                .invoke("appendHiddenCommentNodes", any(DetailAST.class));
+        verifyPrivate(treeWalkerSpy, times(2)).invoke("walk",
+                any(DetailAST.class), any(FileContents.class), any(classAstState));
+        verifyStatic(times(1));
+        TreeWalker.parse(any(FileContents.class));
     }
 
     private static class BadJavaDocCheck extends AbstractCheck {
