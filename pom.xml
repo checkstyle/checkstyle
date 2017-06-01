@@ -1502,6 +1502,43 @@
     </profile>
 
     <profile>
+      <id>pitest-checks-annotation</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.plugin.version}</version>
+            <configuration>
+              <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</param>
+              </targetClasses>
+              <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheckTest</param>
+              </targetTests>
+              <mutationThreshold>99</mutationThreshold>
+              <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
+              <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
+              <threads>${pitest.plugin.threads}</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>pitest-checks-blocks</id>
       <properties>
         <skipTests>true</skipTests>

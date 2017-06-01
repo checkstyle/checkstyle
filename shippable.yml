@@ -6,6 +6,7 @@ jdk:
 
 env:
   matrix:
+    - PROFILE="-Ppitest-checks-annotation,no-validations"
     - PROFILE="-Ppitest-checks-blocks,no-validations"
     - PROFILE="-Ppitest-checks-coding,no-validations"
     - PROFILE="-Ppitest-checks-design,no-validations"
