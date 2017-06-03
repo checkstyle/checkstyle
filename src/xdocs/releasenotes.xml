@@ -16,6 +16,26 @@
   <body>
 
     <!-- placeholder for a new section -->
+    <section name="Release 7.8.1">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            problem with usage of third-party Check libraries and checkstyle 7.8. Author: rnveach, Roman Ivanov
+                <a href="https://github.com/checkstyle/checkstyle/issues/4387">#4387</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            pitest: increase mutation coverage for pitest-check-annotation profile to 100%. Author: vasilyeva
+                <a href="https://github.com/checkstyle/checkstyle/issues/4402">#4402</a>
+          </li>
+          <li>
+            pitest: create profile for non-checks code . Author: vasilyeva
+                <a href="https://github.com/checkstyle/checkstyle/issues/4367">#4367</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 7.8">
       <p>New:</p>
         <ul>
