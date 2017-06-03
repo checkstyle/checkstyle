@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.CHECK_SUFFIX;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_LOADER_MESSAGE;
@@ -36,10 +37,13 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URLClassLoader;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -147,6 +151,77 @@ public class PackageObjectFactoryTest {
                     new String[] {name, attemptedNames}, null, factory.getClass(), null);
             assertEquals(exceptionMessage.getMessage(), ex.getMessage());
         }
+    }
+
+    @Test
+    public void testCreateObjectFromMap() throws Exception {
+        final Method method = factory.getClass().getDeclaredMethod(
+                "createObjectFromMap", String.class, Map.class);
+        method.setAccessible(true);
+        final String moduleName = "Foo";
+        final String name = moduleName + CHECK_SUFFIX;
+        final String fullName =
+                BASE_PACKAGE + ".packageobjectfactory.bar" + PACKAGE_SEPARATOR + name;
+        final Map<String, Set<String>> map = new HashMap<>(1);
+        map.put(name, Collections.singleton(fullName));
+
+        final Object instance1 = method.invoke(factory, name, map);
+        assertEquals(fullName, instance1.getClass().getCanonicalName());
+        final Object instance2 = method.invoke(factory, moduleName, map);
+        assertEquals(fullName, instance2.getClass().getCanonicalName());
+    }
+
+    @Test
+    public void testCreateObjectFromFullModuleNames() throws Exception {
+        final Method method = factory.getClass().getDeclaredMethod(
+                "createObjectFromFullModuleNames", String.class, Set.class);
+        method.setAccessible(true);
+        final String name = "FooCheck";
+        final String fullName =
+                BASE_PACKAGE + ".packageobjectfactory.bar" + PACKAGE_SEPARATOR + name;
+        final Object instance = method.invoke(factory, name, Collections.singleton(fullName));
+        assertEquals(fullName, instance.getClass().getCanonicalName());
+    }
+
+    @Test
+    public void testCreateObjectFromFullModuleNamesWithException() throws Exception {
+        final Method method = factory.getClass().getDeclaredMethod(
+                "createObjectFromFullModuleNames", String.class, Set.class);
+        method.setAccessible(true);
+        final String name = "FooCheck";
+        final String barFullName =
+                BASE_PACKAGE + ".packageobjectfactory.bar" + PACKAGE_SEPARATOR + name;
+        final String fooFullName =
+                BASE_PACKAGE + ".packageobjectfactory.foo" + PACKAGE_SEPARATOR + name;
+        final Set<String> fullModuleNames = new HashSet<>(Arrays.asList(barFullName, fooFullName));
+        try {
+            method.invoke(factory, name, fullModuleNames);
+            fail("Exception is expected");
+        }
+        catch (InvocationTargetException ex) {
+            final String optionalNames = fullModuleNames.stream()
+                    .reduce((fullNames, fullName) -> fullNames + STRING_SEPARATOR + fullName).get();
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
+                    new String[] {name, optionalNames}, null, getClass(), null);
+            assertEquals(exceptionMessage.getMessage(), ex.getTargetException().getMessage());
+        }
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testGenerateThirdPartyNameToFullModuleName() throws Exception {
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
+        final PackageObjectFactory packageObjectFactory = new PackageObjectFactory(
+                new HashSet<>(Arrays.asList(barPackage, fooPackage)), classLoader);
+        final Method method = packageObjectFactory.getClass().getDeclaredMethod(
+                "generateThirdPartyNameToFullModuleName", ClassLoader.class);
+        method.setAccessible(true);
+        final Map<String, Set<String>> map =
+                (Map<String, Set<String>>) method.invoke(packageObjectFactory, classLoader);
+        map.values().forEach(fullNames -> assertEquals(2, fullNames.size()));
     }
 
     @Test
