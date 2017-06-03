@@ -200,7 +200,8 @@ public class PackageObjectFactory implements ModuleFactory {
         Map<String, String> returnValue;
         try {
             returnValue = ModuleReflectionUtils.getCheckstyleModules(packages, loader).stream()
-                    .collect(Collectors.toMap(Class::getSimpleName, Class::getCanonicalName));
+                .filter(clazz -> !NAME_TO_FULL_MODULE_NAME.keySet().contains(clazz.getSimpleName()))
+                .collect(Collectors.toMap(Class::getSimpleName, Class::getCanonicalName));
         }
         catch (IOException ignore) {
             returnValue = new HashMap<>();

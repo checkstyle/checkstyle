@@ -1450,9 +1450,14 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>91</totalBranchRate>
-                <totalLineRate>98</totalLineRate>
+                <totalBranchRate>92</totalBranchRate>
+                <totalLineRate>99</totalLineRate>
                 <regexes>
+                  <regex>
+                    <pattern>com.puppycrawl.tools.checkstyle.PackageObjectFactory</pattern>
+                    <branchRate>96</branchRate>
+                    <lineRate>100</lineRate>
+                  </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</pattern>
                     <branchRate>72</branchRate>
