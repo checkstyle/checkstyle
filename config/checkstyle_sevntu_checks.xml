@@ -190,7 +190,9 @@
         <module name="NumericLiteralNeedsUnderscoreCheck"/>
         <module name="UniformEnumConstantNameCheck" />
         <module name="ForbidAnnotationElementValueCheck" />
+        <!-- till https://github.com/checkstyle/checkstyle/issues/4387
         <module name="HideUtilityClassConstructorCheck" />
+        -->
         <module name="AvoidModifiersForTypesCheck">
           <property name="forbiddenClassesRegexpProtected" value="Logger"/>
           <property name="forbiddenClassesRegexpPublic" value="Logger"/>
