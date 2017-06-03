@@ -250,10 +250,10 @@
                   <td/>
               </tr>
               <tr>
-                  <td><a href="https://sonarqube.com/about">SonarQube</a></td>
+                  <td><a href="https://www.sonarqube.org/">SonarQube</a></td>
                   <td>Freddy Mallet (initial author)</td>
-                  <td><a href="https://sonarqube.com/about">SonarQube Home Page</a></td>
-                  <td><a href="https://sonarqube.com/projects">Demo site</a></td>
+                  <td><a href="https://github.com/checkstyle/sonar-checkstyle">Checkstyle SonarQube repository</a></td>
+                  <td><a href="https://sonarcloud.io/projects">Demo site of SonarQube</a></td>
               </tr>
               <tr>
                   <td><a href="http://www.jedit.org/">jEdit</a></td>
