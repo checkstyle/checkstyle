@@ -288,4 +288,13 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
 
         verify(checker, getPath("InputHeader.java"), expected);
     }
+
+    @Test
+    public void testIgnoreLinesSorted() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getConfigPath("java.header"));
+        checkConfig.addAttribute("ignoreLines", "4,2,3");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getConfigPath("java3.header"), expected);
+    }
 }
