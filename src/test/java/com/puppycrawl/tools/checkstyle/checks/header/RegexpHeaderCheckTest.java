@@ -23,14 +23,25 @@ import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URI;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -40,6 +51,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Unit test for RegexpHeaderCheck.
  * @author richter
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Closeables.class)
 public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
@@ -76,10 +89,18 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
      */
     @Test
     public void testSetHeaderSimple() {
+        //check if reader finally closed
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(Reader.class));
+
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check valid header passes
         final String header = "abc.*";
         instance.setHeader(header);
+
+        verifyStatic(times(1));
+        Closeables.closeQuietly(any(Reader.class));
     }
 
     /**
@@ -281,5 +302,64 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             "1: " + getCheckMessage(MSG_HEADER_MISSING),
         };
         verify(checkConfig, getPath("InputRegexpHeader5.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreLinesSorted() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header5"));
+        checkConfig.addAttribute("multiLines", "7,5,3");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRegexpHeader8.java"), expected);
+    }
+
+    @Test
+    public void testHeaderWithInvalidRegexp() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.invalid.header"));
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        try {
+            verify(checkConfig, getPath("InputRegexpHeader5.java"), expected);
+            fail("IllegalArgumentException is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("line 1 in header specification is not a regular expression",
+                    ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testNoWarningIfSingleLinedLeft() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header4"));
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRegexpHeader4.java"), expected);
+    }
+
+    @Test
+    public void testNoHeaderMissingErrorInCaseHeaderSizeEqualToFileSize() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header3"));
+        checkConfig.addAttribute("multiLines", "1");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_HEADER_MISMATCH, "^$"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeader5.java"), expected);
+    }
+
+    @Test
+    public void testReaderClosedAfterHeaderRead() throws Exception {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(InputStreamReader.class));
+
+        final DefaultConfiguration checkConfig = createCheckConfig(RegexpHeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("regexp.header"));
+        createChecker(checkConfig);
+
+        //check if reader finally closed
+        verifyStatic(times(1));
+        Closeables.closeQuietly(any(InputStreamReader.class));
     }
 }
