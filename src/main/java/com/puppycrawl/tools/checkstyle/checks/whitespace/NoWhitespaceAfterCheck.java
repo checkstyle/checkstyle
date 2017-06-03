@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
   * <p> By default the check will check the following operators:
  *  {@link TokenTypes#ARRAY_INIT ARRAY_INIT},
+ *  {@link TokenTypes#AT AT},
  *  {@link TokenTypes#BNOT BNOT},
  *  {@link TokenTypes#DEC DEC},
  *  {@link TokenTypes#DOT DOT},
@@ -86,6 +87,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.ARRAY_INIT,
+            TokenTypes.AT,
             TokenTypes.INC,
             TokenTypes.DEC,
             TokenTypes.UNARY_MINUS,
@@ -102,6 +104,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.ARRAY_INIT,
+            TokenTypes.AT,
             TokenTypes.INC,
             TokenTypes.DEC,
             TokenTypes.UNARY_MINUS,

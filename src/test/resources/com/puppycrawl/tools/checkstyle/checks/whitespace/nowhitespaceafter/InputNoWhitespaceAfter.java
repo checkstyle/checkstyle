@@ -286,4 +286,11 @@ class SpecialCasesInForLoop
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
+
+    @      interface WithWhitespace {}
+
+    @  Override
+    public String toString() {
+        return "";
+    }
 }
