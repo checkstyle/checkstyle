@@ -190,7 +190,7 @@
         <module name="NumericLiteralNeedsUnderscoreCheck"/>
         <module name="UniformEnumConstantNameCheck" />
         <module name="ForbidAnnotationElementValueCheck" />
-        <module name="HideUtilityClassConstructorCheck" />
+        <module name="com.github.sevntu.checkstyle.checks.design.HideUtilityClassConstructorCheck" />
         <module name="AvoidModifiersForTypesCheck">
           <property name="forbiddenClassesRegexpProtected" value="Logger"/>
           <property name="forbiddenClassesRegexpPublic" value="Logger"/>
