@@ -258,11 +258,11 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public final void testOmitIgnoredModules() throws IOException {
+    public final void testExecuteIgnoredModules() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setFailOnViolation(false);
-        antTask.setOmitIgnoredModules(false);
+        antTask.setExecuteIgnoredModules(true);
 
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         final File outputFile = new File("target/ant_task_plain_output.txt");

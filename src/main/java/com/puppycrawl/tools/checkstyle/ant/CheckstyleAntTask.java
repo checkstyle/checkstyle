@@ -111,11 +111,11 @@ public class CheckstyleAntTask extends Task {
     private int maxWarnings = Integer.MAX_VALUE;
 
     /**
-     * Whether to omit ignored modules - some modules may log tove
+     * Whether to execute ignored modules - some modules may log above
      * their severity depending on their configuration (e.g. WriteTag) so
      * need to be included
      */
-    private boolean omitIgnoredModules = true;
+    private boolean executeIgnoredModules;
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
@@ -269,11 +269,11 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Sets flag - whether to omit ignored modules.
-     * @param omit whether to omit ignored modules
+     * Sets flag - whether to execute ignored modules.
+     * @param omit whether to execute ignored modules
      */
-    public void setOmitIgnoredModules(boolean omit) {
-        omitIgnoredModules = omit;
+    public void setExecuteIgnoredModules(boolean omit) {
+        executeIgnoredModules = omit;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -425,7 +425,7 @@ public class CheckstyleAntTask extends Task {
                 ConfigurationLoader.loadConfiguration(
                     configLocation,
                     new PropertiesExpander(props),
-                    omitIgnoredModules);
+                    !executeIgnoredModules);
 
             final ClassLoader moduleClassLoader =
                 Checker.class.getClassLoader();
