@@ -294,6 +294,14 @@ public class JavadocParseTreeTest {
         compareTrees(expectedTree, generatedTree);
     }
 
+    @Test
+    public void testLeadingAsterisksExtended() throws IOException {
+        final String filename = getPath("InputLeadingAsterisksExtended.txt");
+        final ParseTree generatedTree = parseJavadoc(getFileContent(new File(filename)));
+        final ParseTree expectedTree = ParseTreeBuilder.treeLeadingAsterisksExtended();
+        compareTrees(expectedTree, generatedTree);
+    }
+
     private void compareTrees(ParseTree first, ParseTree second) {
         Assert.assertEquals(first.toStringTree(parser), second.toStringTree(parser));
     }
