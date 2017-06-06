@@ -293,4 +293,11 @@ class SpecialCasesInForLoop
     public String toString() {
         return "";
     }
+
+    @interface OK{}
+
+    @
+    WithWhitespace
+    @OK
+    public void method(){}
 }
