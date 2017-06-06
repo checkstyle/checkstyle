@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -35,9 +36,12 @@ import java.io.FileInputStream;
 import java.io.IOError;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -49,6 +53,7 @@ import java.util.TreeSet;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.mockito.internal.util.reflection.Whitebox;
 import org.powermock.api.mockito.PowerMockito;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -56,10 +61,12 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
@@ -70,14 +77,6 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
-
-    private static Method getAcceptFileStarted() throws NoSuchMethodException {
-        final Class<Checker> checkerClass = Checker.class;
-        final Method acceptFileStarted = checkerClass.getDeclaredMethod("acceptFileStarted",
-                String.class);
-        acceptFileStarted.setAccessible(true);
-        return acceptFileStarted;
-    }
 
     private static Method getFireAuditFinished() throws NoSuchMethodException {
         final Class<Checker> checkerClass = Checker.class;
@@ -100,16 +99,13 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addListener(auditAdapter);
         final DebugFilter filter = new DebugFilter();
         checker.addFilter(filter);
+        final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
+        checker.addBeforeExecutionFileFilter(fileFilter);
 
         // should remove al listeners and filters
         checker.destroy();
 
-        // Let's try fire some events
-        getFireAuditStartedMethod().invoke(checker);
-        getFireAuditFinished().invoke(checker);
-        checker.fireFileStarted("Some File Name");
-        checker.fireFileFinished("Some File Name");
-
+        checker.process(Collections.singletonList(new File("Some File Name")));
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
@@ -117,6 +113,7 @@ public class CheckerTest extends BaseCheckTestSupport {
 
         assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
         assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
+        assertFalse("Checker.destroy() doesn't remove file filters.", fileFilter.wasCalled());
     }
 
     @Test
@@ -200,7 +197,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.addBeforeExecutionFileFilter(filter);
 
         filter.resetFilter();
-        getAcceptFileStarted().invoke(checker, "Test.java");
+        checker.process(Collections.singletonList(new File("dummy.java")));
         assertTrue("Checker.acceptFileStarted() doesn't call filter", filter.wasCalled());
     }
 
@@ -214,7 +211,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         checker.removeBeforeExecutionFileFilter(filter);
 
         f2.resetFilter();
-        getAcceptFileStarted().invoke(checker, "Test.java");
+        checker.process(Collections.singletonList(new File("dummy.java")));
         assertTrue("Checker.acceptFileStarted() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.acceptFileStarted() does call removed filter", filter.wasCalled());
     }
@@ -362,12 +359,26 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Test
     public void testFinishLocalSetupFullyInitialized() throws Exception {
         final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        checker.setModuleClassLoader(contextClassLoader);
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+            new HashSet<>(), contextClassLoader);
         checker.setModuleFactory(factory);
-
+        checker.setBasedir("testBaseDir");
+        checker.setLocaleLanguage("it");
+        checker.setLocaleCountry("IT");
         checker.finishLocalSetup();
+
+        final Context context = (Context) Whitebox.getInternalState(checker, "childContext");
+        assertEquals(System.getProperty("file.encoding", "UTF-8"), context.get("charset"));
+        assertEquals(contextClassLoader, context.get("classLoader"));
+        assertEquals("error", context.get("severity"));
+        assertEquals("testBaseDir", context.get("basedir"));
+
+        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
+        sLocale.setAccessible(true);
+        final Locale locale = (Locale) sLocale.get(null);
+        assertEquals(Locale.ITALY, locale);
     }
 
     @Test
@@ -543,7 +554,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Test
     public void testClearCacheWhenCacheFileIsNotSet() {
         // The idea of the test is to check that when cache file is not set,
-        // the invokation of clearCache method does not throw an exception.
+        // the invocation of clearCache method does not throw an exception.
         final Checker checker = new Checker();
         checker.clearCache();
     }
@@ -776,6 +787,89 @@ public class CheckerTest extends BaseCheckTestSupport {
         verify(checker, filePath, filePath, expected);
     }
 
+    @Test
+    public void testCheckerProcessCallAllNeededMethodsOfFileSets() throws Exception {
+        final DummyFileSet fileSet = new DummyFileSet();
+        final Checker checker = new Checker();
+        checker.addFileSetCheck(fileSet);
+        checker.process(Collections.singletonList(new File("dummy.java")));
+        final List<String> expected =
+            Arrays.asList("beginProcessing", "finishProcessing", "destroy");
+        assertArrayEquals(expected.toArray(), fileSet.getMethodCalls().toArray());
+    }
+
+    @Test
+    public void testSetFileSetCheckSetsMessageDispatcher() throws Exception {
+        final DummyFileSet fileSet = new DummyFileSet();
+        final Checker checker = new Checker();
+        checker.addFileSetCheck(fileSet);
+        assertEquals(checker, fileSet.getInternalMessageDispatcher());
+    }
+
+    @Test
+    public void testAddAuditListenerAsChild() throws Exception {
+        final Checker checker = new Checker();
+        final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
+            @Override
+            public Object createModule(String name) throws CheckstyleException {
+                Object adapter = auditAdapter;
+                if (!name.equals(DebugAuditAdapter.class.getName())) {
+                    adapter = super.createModule(name);
+                }
+                return adapter;
+            }
+        };
+        checker.setModuleFactory(factory);
+        checker.setupChild(createCheckConfig(DebugAuditAdapter.class));
+        // Let's try fire some events
+        checker.process(Collections.singletonList(new File("dummy.java")));
+        assertTrue("Checker.fireAuditStarted() doesn't call listener", auditAdapter.wasCalled());
+    }
+
+    @Test
+    public void testAddBeforeExecutionFileFilterAsChild() throws Exception {
+        final Checker checker = new Checker();
+        final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
+            @Override
+            public Object createModule(String name) throws CheckstyleException {
+                Object filter = fileFilter;
+                if (!name.equals(TestBeforeExecutionFileFilter.class.getName())) {
+                    filter = super.createModule(name);
+                }
+                return filter;
+            }
+        };
+        checker.setModuleFactory(factory);
+        checker.setupChild(createCheckConfig(TestBeforeExecutionFileFilter.class));
+        checker.process(Collections.singletonList(new File("dummy.java")));
+        assertTrue("Checker.acceptFileStarted() doesn't call listener", fileFilter.wasCalled());
+    }
+
+    @Test
+    public void testFileSetCheckInitWhenAddedAsChild() throws Exception {
+        final Checker checker = new Checker();
+        final DummyFileSet fileSet = new DummyFileSet();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
+            @Override
+            public Object createModule(String name) throws CheckstyleException {
+                Object check = fileSet;
+                if (!name.equals(DummyFileSet.class.getName())) {
+                    check = super.createModule(name);
+                }
+                return check;
+            }
+        };
+        checker.setModuleFactory(factory);
+        checker.finishLocalSetup();
+        checker.setupChild(createCheckConfig(DummyFileSet.class));
+        assertTrue("FileSetCheck.init() wasn't called", fileSet.isInitCalled());
+    }
+
     private static class DummyFilter implements Filter {
 
         @Override
@@ -958,6 +1052,54 @@ public class CheckerTest extends BaseCheckTestSupport {
         @Override
         public void visitToken(DetailAST ast) {
             throw new IndexOutOfBoundsException("test");
+        }
+    }
+
+    private static class DummyFileSet extends AbstractFileSetCheck {
+
+        private final List<String> methodCalls = new ArrayList<>();
+
+        private boolean initCalled;
+
+        @Override
+        public void init() {
+            super.init();
+            initCalled = true;
+        }
+
+        @Override
+        public void beginProcessing(String charset) {
+            methodCalls.add("beginProcessing");
+            super.beginProcessing(charset);
+        }
+
+        @Override
+        public void finishProcessing() {
+            methodCalls.add("finishProcessing");
+            super.finishProcessing();
+        }
+
+        @Override
+        protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+            methodCalls.add("processFiltered");
+        }
+
+        @Override
+        public void destroy() {
+            methodCalls.add("destroy");
+            super.destroy();
+        }
+
+        public List<String> getMethodCalls() {
+            return Collections.unmodifiableList(methodCalls);
+        }
+
+        public boolean isInitCalled() {
+            return initCalled;
+        }
+
+        public MessageDispatcher getInternalMessageDispatcher() {
+            return getMessageDispatcher();
         }
     }
 }
