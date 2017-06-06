@@ -57,7 +57,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "header" + File.separator + filename);
+                + "header" + File.separator + "regexpheader" + File.separator + filename);
     }
 
     /**

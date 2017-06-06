@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.header;
+package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
