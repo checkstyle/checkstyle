@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.modifier;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-public interface InputModifierClassesInsideOfInterfaces {
+public interface InputRedundantModifierClassesInsideOfInterfaces {
 
     // Class inside of interface can be abstract and non abstract, but always public static.
     abstract class A {}

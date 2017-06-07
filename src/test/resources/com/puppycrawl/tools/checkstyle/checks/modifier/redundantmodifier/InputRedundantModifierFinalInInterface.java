@@ -1,7 +1,7 @@
-package com.puppycrawl.tools.checkstyle.checks.modifier;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 
-public interface InputFinalInDefaultMethods {
+public interface InputRedundantModifierFinalInInterface {
 	final int k = 5; // violation
 	
     default int defaultMethod(final int x) {

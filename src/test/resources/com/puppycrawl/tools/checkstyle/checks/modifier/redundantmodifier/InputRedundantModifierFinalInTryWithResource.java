@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.modifier;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-public class InputFinalInTryWithResource {
+public class InputRedundantModifierFinalInTryWithResource {
     public static void test() {
         try {
         }

@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.modifier;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-public enum InputFinalInEnumMethods {
+public enum InputRedundantModifierFinalInEnumMethods {
     E1,
     E2 {
         @Override
@@ -16,7 +16,7 @@ public enum InputFinalInEnumMethods {
     public final void v2() {
     }
 }
-enum InputFinalInEnumMethods2 {
+enum InputRedundantModifierFinalInEnumMethods2 {
     E1 {
         @Override
         public final void v() {
