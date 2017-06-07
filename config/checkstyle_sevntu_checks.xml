@@ -34,7 +34,7 @@
         <module name="PublicReferenceToPrivateTypeCheck"/>
         <module name="NoNullForCollectionReturnCheck"/>
         <module name="NoMainMethodInAbstractClass"/>
-        <module name="InterfaceTypeParameterNameCheck"/>
+        <module name="com.github.sevntu.checkstyle.checks.naming.InterfaceTypeParameterNameCheck"/>
         <module name="ForbidThrowAnonymousExceptionsCheck"/>
         <module name="ForbidReturnInFinallyBlock"/>
         <module name="ForbidInstantiation">
