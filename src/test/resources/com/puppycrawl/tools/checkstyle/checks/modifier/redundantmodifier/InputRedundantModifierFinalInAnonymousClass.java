@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.modifier;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-public class InputFinalInAnonymousClass {
+public class InputRedundantModifierFinalInAnonymousClass {
     public static abstract class Example {
         public abstract void innerTest();
 

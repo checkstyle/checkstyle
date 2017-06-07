@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.modifier;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-public class InputRedundantStaticModifierInNestedEnum {
+public class InputRedundantModifierStaticModifierInNestedEnum {
     static enum NestedEnumWithRedundantStatic {} // violation
 
     enum CorrectNestedEnum {

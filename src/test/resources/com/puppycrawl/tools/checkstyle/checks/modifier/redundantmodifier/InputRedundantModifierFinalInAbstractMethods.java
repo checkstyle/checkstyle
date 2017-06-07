@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.modifier;
+package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-public abstract class InputFinalInAbstractMethods {
+public abstract class InputRedundantModifierFinalInAbstractMethods {
     public abstract void method(final String param); // violation
 
     public abstract void method2(String param);
