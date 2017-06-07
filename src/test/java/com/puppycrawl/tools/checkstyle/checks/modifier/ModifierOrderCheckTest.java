@@ -39,13 +39,13 @@ public class ModifierOrderCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "modifier" + File.separator + filename);
+                + "modifier" + File.separator + "modifierorder" + File.separator + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "modifier" + File.separator + filename);
+                + "modifier" + File.separator + "modifierorder" + File.separator + filename);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class ModifierOrderCheckTest
             "49:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
             "157:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
-        verify(checkConfig, getPath("InputModifier.java"), expected);
+        verify(checkConfig, getPath("InputModifierOrderIt.java"), expected);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ModifierOrderCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputModifier2.java"), expected);
+        verify(checkConfig, getPath("InputModifierOrderDefaultMethods.java"), expected);
     }
 
     @Test
@@ -121,7 +121,8 @@ public class ModifierOrderCheckTest
         final String[] expected = {
             "103:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
-        verify(checkConfig, getNonCompilablePath("InputTypeAnnotations.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputModifierOrderTypeAnnotations.java"),
+            expected);
     }
 
     @Test
