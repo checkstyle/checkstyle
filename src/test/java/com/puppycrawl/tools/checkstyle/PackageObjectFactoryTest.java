@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.CHECK_SUFFIX;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_LOADER_MESSAGE;
@@ -38,9 +39,11 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URLClassLoader;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -145,6 +148,43 @@ public class PackageObjectFactoryTest {
             final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, factory.getClass(), null);
+            assertEquals(exceptionMessage.getMessage(), ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testCreateObjectFromMap() throws Exception {
+        final String moduleName = "Foo";
+        final String name = moduleName + CHECK_SUFFIX;
+        final String packageName = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String fullName = packageName + PACKAGE_SEPARATOR + name;
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final PackageObjectFactory objectFactory =
+                new PackageObjectFactory(packageName, classLoader);
+        final Object instance1 = objectFactory.createModule(name);
+        assertEquals(fullName, instance1.getClass().getCanonicalName());
+        final Object instance2 = objectFactory.createModule(moduleName);
+        assertEquals(fullName, instance2.getClass().getCanonicalName());
+    }
+
+    @Test
+    public void testCreateObjectFromFullModuleNamesWithException() throws Exception {
+        final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(
+                new LinkedHashSet<>(Arrays.asList(barPackage, fooPackage)), classLoader);
+        final String name = "FooCheck";
+        try {
+            objectFactory.createModule(name);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            final String optionalNames = barPackage + PACKAGE_SEPARATOR + name
+                    + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name;
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
+                    new String[] {name, optionalNames}, null, getClass(), null);
             assertEquals(exceptionMessage.getMessage(), ex.getMessage());
         }
     }
