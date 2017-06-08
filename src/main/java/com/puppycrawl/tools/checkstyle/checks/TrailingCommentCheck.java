@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Format property is intended to deal with the "} // while" example.
  * </p>
  *
- * <p>Rationale: Steve McConnel in &quot;Code Complete&quot; suggests that endline
+ * <p>Rationale: Steve McConnell in &quot;Code Complete&quot; suggests that endline
  * comments are a bad practice. An end line comment would
  * be one that is on the same line as actual code. For example:
  * <pre>
