@@ -30,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
 
 /**
@@ -315,12 +314,26 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param ast node to check.
      */
     private void checkClassName(DetailAST ast) {
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final FullIdent ident = CheckUtils.createFullType(type);
+        DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+       
+        // to handle (multi-dimensional) array types
+        String arraySquareBraces = "";
+        while (type.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null) {
+            type = type.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+            arraySquareBraces += "[]";
+        }
+
+        // to handle fully qualified type names, such as java.util.TreeMap
+        final FullIdent ident = FullIdent.createFullIdent(type.getFirstChild());
+
+        // append square braces for array types
+        final String typeName = ident.getText() + arraySquareBraces;
 
         if (isMatchingClassName(ident.getText())) {
-            log(ident.getLineNo(), ident.getColumnNo(),
-                MSG_KEY, ident.getText());
+            log(ident.getLineNo(),
+                ident.getColumnNo(),
+                MSG_KEY,
+                typeName);
         }
     }
 
