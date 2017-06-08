@@ -36,7 +36,7 @@ public class AvoidStarImportCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "imports" + File.separator + filename);
+                + "imports" + File.separator + "avoidstarimport" + File.separator + filename);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class AvoidStarImportCheckTest
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
-        verify(checkConfig, getPath("InputAvoidStarImport.java"),
+        verify(checkConfig, getPath("InputAvoidStarImportDefault.java"),
                 expected);
     }
 
@@ -69,7 +69,7 @@ public class AvoidStarImportCheckTest
             "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
-        verify(checkConfig, getPath("InputAvoidStarImport.java"),
+        verify(checkConfig, getPath("InputAvoidStarImportDefault.java"),
                 expected2);
     }
 
@@ -82,7 +82,7 @@ public class AvoidStarImportCheckTest
             "25: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "26: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "28: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
-        verify(checkConfig, getPath("InputAvoidStarImport.java"), expected2);
+        verify(checkConfig, getPath("InputAvoidStarImportDefault.java"), expected2);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class AvoidStarImportCheckTest
             "9: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "10: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };
-        verify(checkConfig, getPath("InputAvoidStarImport.java"), expected2);
+        verify(checkConfig, getPath("InputAvoidStarImportDefault.java"), expected2);
     }
 
     @Test
