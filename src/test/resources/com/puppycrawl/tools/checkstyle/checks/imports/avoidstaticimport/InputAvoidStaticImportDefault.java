@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*;
 
@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
  * @author Michael Studman
  * @see Calendar Should avoid unused import for Calendar
  **/
-class InputAvoidStaticImport
+class InputAvoidStaticImportDefault
 {
     /** ignore **/
     private Class mUse1 = Connection.class;
