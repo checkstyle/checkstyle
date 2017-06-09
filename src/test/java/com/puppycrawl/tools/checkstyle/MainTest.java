@@ -812,4 +812,25 @@ public class MainTest {
         Main.main("-c", getPath("config-custom-root-module.xml"),
                 getPath("InputMain.java"));
     }
+
+    @Test
+    public void testCustomSimpleRootModule() throws Exception {
+        TestRootModuleChecker.reset();
+        exit.expectSystemExitWithStatus(-2);
+        exit.checkAssertionAfterwards(() -> {
+            final String checkstylePackage = "com.puppycrawl.tools.checkstyle.";
+
+            assertEquals(String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n"),
+                    systemOut.getLog());
+            assertTrue(systemErr.getLog().startsWith(
+                    checkstylePackage + "api.CheckstyleException: Unable to instantiate "
+                            + "'TestRootModuleChecker' class, it is also not possible to "
+                            + "instantiate it as " + checkstylePackage
+                            + "TestRootModuleChecker, TestRootModuleCheckerCheck, "
+                            + checkstylePackage + "TestRootModuleCheckerCheck."));
+            assertFalse(TestRootModuleChecker.isProcessed());
+        });
+        Main.main("-c", getPath("config-custom-simple-root-module.xml"),
+                getPath("InputMain.java"));
+    }
 }
