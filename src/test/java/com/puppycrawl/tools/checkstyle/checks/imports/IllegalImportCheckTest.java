@@ -35,7 +35,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "imports" + File.separator + filename);
+                + "imports" + File.separator + "illegalimport" + File.separator + filename);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "23:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "27:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
         };
-        verify(checkConfig, getPath("InputIllegalImport.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
             "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
         };
-        verify(checkConfig, getPath("InputIllegalImport.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
             "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
         };
-        verify(checkConfig, getPath("InputIllegalImport.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "35:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
             "36:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
-        verify(checkConfig, getPath("InputIllegalImport.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -127,7 +127,7 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "13:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "17:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
         };
-        verify(checkConfig, getPath("InputIllegalImport.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -150,6 +150,6 @@ public class IllegalImportCheckTest extends BaseCheckTestSupport {
             "38:1: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
             "39:1: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
         };
-        verify(checkConfig, getPath("InputIllegalImport.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 }
