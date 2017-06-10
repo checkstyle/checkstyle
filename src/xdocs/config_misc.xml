@@ -1432,7 +1432,7 @@ void foo(String aFooString,
         </p>
 
         <p>
-          Rationale: Steve McConnel in <cite>Code Complete</cite> suggests that
+          Rationale: Steve McConnell in <cite>Code Complete</cite> suggests that
           endline comments are a bad practice. An end line comment would be
           one that is on the same line as actual code. For example:
         </p>
