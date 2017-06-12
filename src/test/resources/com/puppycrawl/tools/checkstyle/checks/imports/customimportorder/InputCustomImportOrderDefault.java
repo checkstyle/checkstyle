@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.createTempFile;
 import static java.awt.Button.ABORT;
@@ -22,5 +22,5 @@ import com.puppycrawl.tools.*;
 import com.google.common.collect.*;
 import org.junit.*;
 
-public class InputCustomImportOrder {
+public class InputCustomImportOrderDefault {
 }

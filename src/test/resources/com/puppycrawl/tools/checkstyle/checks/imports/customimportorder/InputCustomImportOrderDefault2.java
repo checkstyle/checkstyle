@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.createTempFile;
 import static java.awt.Button.ABORT; //warn, LEXIC, should be before java.io.File.createTempFile
@@ -16,7 +16,7 @@ import com.*; //warn, LEXIC, should be before com.puppycrawl.tools.*
 import com.google.common.base.*; //warn, LEXIC, should be before com.puppycrawl.tools.*
 import org.junit.*;
 
-public class InputCustomImportOrder2 {
+public class InputCustomImportOrderDefault2 {
 }
 /*
 test: testOrderRuleWithOneGroup()
