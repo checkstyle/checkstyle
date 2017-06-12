@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 import static java.awt.Button.ABORT;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
