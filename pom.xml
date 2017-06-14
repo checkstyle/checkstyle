@@ -2082,7 +2082,7 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
               </targetTests>
-              <mutationThreshold>49</mutationThreshold>
+              <mutationThreshold>67</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
