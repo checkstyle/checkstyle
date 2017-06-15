@@ -202,6 +202,7 @@
     <maven.findbugs.plugin.version>3.0.4</maven.findbugs.plugin.version>
     <maven.pmd.plugin.version>3.7</maven.pmd.plugin.version>
     <maven.jacoco.plugin.version>0.7.9</maven.jacoco.plugin.version>
+    <saxon.version>9.8.0-1</saxon.version>
     <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.24.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>7.8.2</maven.sevntu-checkstyle-check.checkstyle.version>
@@ -317,6 +318,11 @@
       <version>${maven.jacoco.plugin.version}</version>
       <scope>test</scope>
       <classifier>runtime</classifier>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>Saxon-HE</artifactId>
+      <version>${saxon.version}</version>
     </dependency>
   </dependencies>
 
