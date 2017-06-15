@@ -164,4 +164,10 @@
     <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser" local-only="true"/>
     <allow class="com.google.common.collect.ImmutableList" local-only="true"/>
   </subpackage>
+
+  <subpackage name="xpath">
+    <allow pkg="net.sf.saxon"/>
+    <allow class="java.lang.reflect.Field"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
+  </subpackage>
 </import-control>
