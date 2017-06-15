@@ -28,6 +28,7 @@ env:
     - PROFILE="-Ppitest-checks-whitespace,no-validations"
     - PROFILE="-Ppitest-checks-misc,no-validations"
     - PROFILE="-Ppitest-checkstyle-gui,no-validations"
+    - PROFILE="-Ppitest-checkstyle-xpath,no-validations"
 
 branches:
   only:
