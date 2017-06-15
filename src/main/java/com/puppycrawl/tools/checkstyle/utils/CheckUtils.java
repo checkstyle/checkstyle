@@ -74,18 +74,16 @@ public final class CheckUtils {
      * @param typeAST a type node.
      * @return {@code FullIdent} for given type.
      */
-    public static FullIdent createFullType(DetailAST typeAST) {
-        final DetailAST arrayDeclaratorAST =
-            typeAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
-        final FullIdent fullType;
+    public static FullIdent createFullType(final DetailAST typeAST) {
 
-        if (arrayDeclaratorAST == null) {
-            fullType = createFullTypeNoArrays(typeAST);
+        // ignore (multi-dimensional) array part of type
+        DetailAST ast = typeAST;
+        while (ast.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null) {
+            ast = ast.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
         }
-        else {
-            fullType = createFullTypeNoArrays(arrayDeclaratorAST);
-        }
-        return fullType;
+
+        // extract and return fully qualified type name, such as java.util.TreeMap
+        return FullIdent.createFullIdent(ast.getFirstChild());
     }
 
     /**
@@ -147,15 +145,6 @@ public final class CheckUtils {
         return ast.getType() == TokenTypes.SLIST
             && ast.getChildCount() == 2
             && isElse(ast.getParent());
-    }
-
-    /**
-     * Returns FullIndent for given type.
-     * @param typeAST a type node (no array)
-     * @return {@code FullIdent} for given type.
-     */
-    private static FullIdent createFullTypeNoArrays(DetailAST typeAST) {
-        return FullIdent.createFullIdent(typeAST.getFirstChild());
     }
 
     /**
