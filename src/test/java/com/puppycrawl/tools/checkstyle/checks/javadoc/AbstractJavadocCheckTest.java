@@ -276,7 +276,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
 
         @Override
         public void visitJavadocToken(DetailNode ast) {
-            Assert.assertEquals(ast.toString(), "Javadoc<EOF>", ast.getText());
+            Assert.assertEquals(ast.toString(), "JAVADOC", ast.getText());
             javadocsNumber++;
         }
     }

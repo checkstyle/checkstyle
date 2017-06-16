@@ -253,8 +253,7 @@ public class ParseTreeTablePresentationTest {
         final int line = (int) parseTree.getValueAt(child, 2);
         final int column = (int) parseTree.getValueAt(child, 3);
         final String text = (String) parseTree.getValueAt(child, 4);
-        final String expectedText = String.join("", System.lineSeparator(),
-                "* class javadoc", System.lineSeparator(), "<EOF>");
+        final String expectedText = "JAVADOC";
 
         Assert.assertNull(treeModel);
         Assert.assertEquals("JAVADOC", type);

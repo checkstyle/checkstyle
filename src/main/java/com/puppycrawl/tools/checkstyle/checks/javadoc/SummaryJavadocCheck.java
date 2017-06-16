@@ -199,7 +199,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final StringBuilder result = new StringBuilder();
         final String periodSuffix = PERIOD + ' ';
         for (DetailNode child : ast.getChildren()) {
-            final String text = child.getText();
+            final String text;
+            if (child.getChildren().length == 0) {
+                text = child.getText();
+            }
+            else {
+                text = getFirstSentence(child);
+            }
 
             if (child.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG
                 && text.contains(periodSuffix)) {
