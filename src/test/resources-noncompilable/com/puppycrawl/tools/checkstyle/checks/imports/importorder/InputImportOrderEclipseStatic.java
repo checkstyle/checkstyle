@@ -6,5 +6,5 @@ import static io.netty.handler.codec.http.HttpHeaders.setHeader;
 import static io.netty.handler.codec.http.HttpHeaders.Names.addDate;
 import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
 
-public class InputEclipseStaticImportsOrder {
+public class InputImportOrderEclipseStatic {
 }

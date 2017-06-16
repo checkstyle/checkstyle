@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import static java.lang.Math.*;
 import static org.antlr.v4.runtime.CommonToken.*;

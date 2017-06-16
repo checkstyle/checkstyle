@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import static java.awt.Button.ABORT;
