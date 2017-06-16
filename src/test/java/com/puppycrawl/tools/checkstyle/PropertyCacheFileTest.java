@@ -23,15 +23,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -48,16 +55,20 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.ByteStreams;
+import com.google.common.io.Closeables;
+import com.google.common.io.Flushables;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ PropertyCacheFile.class, ByteStreams.class, CommonUtils.class })
+@PrepareForTest({ PropertyCacheFile.class, ByteStreams.class,
+        CommonUtils.class, Closeables.class, Flushables.class})
 public class PropertyCacheFileTest {
 
     @Rule
@@ -89,6 +100,61 @@ public class PropertyCacheFileTest {
         assertTrue(cache.isInCache("myFile", 1));
         assertFalse(cache.isInCache("myFile", 2));
         assertFalse(cache.isInCache("myFile1", 1));
+    }
+
+    @Test
+    public void testResetIfFileDoesNotExist() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final PropertyCacheFile cache = new PropertyCacheFile(config, "fileDoesNotExist.txt");
+
+        cache.load();
+
+        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+    }
+
+    @Test
+    public void testCloseAndFlushOutputStreamAfterCreatingHashCode() throws IOException {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.close(any(ObjectOutputStream.class), Matchers.eq(false));
+        mockStatic(Flushables.class);
+        doNothing().when(Flushables.class);
+        Flushables.flush(any(ObjectOutputStream.class), Matchers.eq(false));
+
+        final Configuration config = new DefaultConfiguration("myName");
+        final PropertyCacheFile cache = new PropertyCacheFile(config, "fileDoesNotExist.txt");
+        cache.load();
+
+        verifyStatic(times(1));
+
+        Closeables.close(any(ObjectOutputStream.class), Matchers.eq(false));
+        verifyStatic(times(1));
+        Flushables.flush(any(ObjectOutputStream.class), Matchers.eq(false));
+    }
+
+    @Test
+    public void testPopulateDetails() throws IOException {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(FileInputStream.class));
+
+        final Configuration config = new DefaultConfiguration("myName");
+        final PropertyCacheFile cache = new PropertyCacheFile(config,
+                "src/test/resources/com/puppycrawl/tools/checkstyle/cache.tmp");
+        cache.load();
+
+        final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
+        assertNotNull(hash);
+        assertNull(cache.get("key"));
+
+        cache.load();
+
+        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertEquals("value", cache.get("key"));
+        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+
+        verifyStatic(times(2));
+        Closeables.closeQuietly(any(FileInputStream.class));
     }
 
     @Test
@@ -129,6 +195,23 @@ public class PropertyCacheFileTest {
         assertFalse(cache.isInCache("myFile", 1));
     }
 
+    @Test
+    public void testExternalResourseIsSavedInCache() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String filePath = temporaryFolder.newFile().getPath();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+
+        cache.load();
+
+        final Set<String> resources = new HashSet<>();
+        final String pathToResource =
+                "src/test/resources/com/puppycrawl/tools/checkstyle/externalResourse.tmp";
+        resources.add(pathToResource);
+        cache.putExternalResources(resources);
+
+        assertFalse(cache.get("module-resource*?:" + pathToResource).isEmpty());
+    }
+
     /**
      * This SuppressWarning("unchecked") required to suppress
      * "Unchecked generics array creation for varargs parameter" during mock
@@ -162,6 +245,28 @@ public class PropertyCacheFileTest {
 
         assertFalse(cache.isInCache(myFile, 1));
         assertFalse(cache.isInCache(resource, 1));
+    }
+
+    @Test
+    public void testFlushAndCloseCacheFileOutputStream() throws IOException {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.close(any(FileOutputStream.class), Matchers.eq(false));
+        mockStatic(Flushables.class);
+        doNothing().when(Flushables.class);
+        Flushables.flush(any(FileOutputStream.class), Matchers.eq(false));
+
+        final Configuration config = new DefaultConfiguration("myName");
+        final PropertyCacheFile cache = new PropertyCacheFile(config,
+            temporaryFolder.newFile().getPath());
+
+        cache.put("CheckedFileName.java", System.currentTimeMillis());
+        cache.persist();
+
+        verifyStatic(times(1));
+        Closeables.close(any(FileOutputStream.class), Matchers.eq(false));
+        verifyStatic(times(1));
+        Flushables.flush(any(FileOutputStream.class), Matchers.eq(false));
     }
 
     @Test
