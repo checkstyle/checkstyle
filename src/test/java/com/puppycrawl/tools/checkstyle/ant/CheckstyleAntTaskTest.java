@@ -25,11 +25,14 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -41,13 +44,18 @@ import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(CheckstyleAntTask.class)
 public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     private static final String FLAWLESS_INPUT_DIR = "ant/checkstyleanttask/flawless/";
@@ -486,6 +494,44 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         }
     }
 
+    @Test
+    public final void testExecuteLogOutput() throws Exception {
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
+        antTask.setProject(new Project());
+        antTask.setConfigURL(url);
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+
+        mockStatic(System.class);
+        when(System.currentTimeMillis()).thenReturn(1L);
+
+        antTask.execute();
+
+        final List<MessageLevelPair> expectedList = Arrays.asList(
+                new MessageLevelPair("checkstyle version ", Project.MSG_VERBOSE),
+                new MessageLevelPair("compiled on ", Project.MSG_VERBOSE),
+                new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
+                new MessageLevelPair("To locate the files took 0 ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("Running Checkstyle ", Project.MSG_INFO),
+                new MessageLevelPair("Using configuration ", Project.MSG_VERBOSE),
+                new MessageLevelPair("Starting audit", Project.MSG_DEBUG),
+                new MessageLevelPair("Audit done.", Project.MSG_DEBUG),
+                new MessageLevelPair("To process the files took 0 ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("Total execution took 0 ms.", Project.MSG_VERBOSE)
+        );
+
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        assertEquals(expectedList.size(), loggedMessages.size());
+        for (int i = 0; i < expectedList.size(); i++) {
+            final MessageLevelPair expected = expectedList.get(i);
+            final MessageLevelPair actual = loggedMessages.get(i);
+            assertTrue(actual.getMsg().startsWith(expected.getMsg()));
+            assertEquals(expected.getLevel(), actual.getLevel());
+        }
+
+    }
+
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
         @Override
         protected List<File> scanFileSets() {
@@ -498,4 +544,43 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             return list;
         }
     }
+
+    private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
+
+        private final List<MessageLevelPair> loggedMessages = new ArrayList<>();
+
+        @Override
+        public void log(String msg, int msgLevel) {
+            loggedMessages.add(new MessageLevelPair(msg, msgLevel));
+        }
+
+        @Override
+        public void log(String msg, Throwable t, int msgLevel) {
+            loggedMessages.add(new MessageLevelPair(msg, msgLevel));
+
+        }
+
+        public List<MessageLevelPair> getLoggedMessages() {
+            return Collections.unmodifiableList(loggedMessages);
+        }
+    }
+
+    private static final class MessageLevelPair {
+        private final String msg;
+        private final int level;
+
+        private MessageLevelPair(String msg, int level) {
+            this.msg = msg;
+            this.level = level;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+    }
+
 }
