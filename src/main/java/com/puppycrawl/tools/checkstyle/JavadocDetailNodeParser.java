@@ -301,7 +301,13 @@ public class JavadocDetailNodeParser {
      */
     private JavadocNodeImpl createJavadocNode(ParseTree parseTree, DetailNode parent, int index) {
         final JavadocNodeImpl node = new JavadocNodeImpl();
-        node.setText(parseTree.getText());
+        if (parseTree.getChildCount() == 0
+                || "Text".equals(getNodeClassNameWithoutContext(parseTree))) {
+            node.setText(parseTree.getText());
+        }
+        else {
+            node.setText(getFormattedNodeClassNameWithoutContext(parseTree));
+        }
         node.setColumnNumber(getColumn(parseTree));
         node.setLineNumber(getLine(parseTree) + blockCommentLineNumber);
         node.setIndex(index);
@@ -408,6 +414,18 @@ public class JavadocDetailNodeParser {
         }
 
         return tokenType;
+    }
+
+    /**
+     * Gets class name of ParseTree node and removes 'Context' postfix at the
+     * end and formats it.
+     * @param node {@code ParseTree} node whose class name is to be formatted and returned
+     * @return uppercased class name without the word 'Context' and with appropriately
+     *     inserted underscores
+     */
+    private static String getFormattedNodeClassNameWithoutContext(ParseTree node) {
+        final String classNameWithoutContext = getNodeClassNameWithoutContext(node);
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, classNameWithoutContext);
     }
 
     /**

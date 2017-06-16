@@ -70,4 +70,14 @@ public class DetailNodeTreeStringPrinterTest {
         }
     }
 
+    @Test
+    public void testNoUnnecessaryTextinJavadocAst() throws Exception {
+        final String actual = DetailNodeTreeStringPrinter.printFileAst(
+                new File(getPath("InputNoUnnecessaryTextInJavadocAst.javadoc")))
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        final String expected = new String(Files.readAllBytes(Paths.get(
+                getPath("expectedNoUnnecessaryTextInJavadocAst.txt"))), StandardCharsets.UTF_8)
+                .replaceAll("\\\\r\\\\n", "\\\\n");
+        Assert.assertEquals(expected, actual);
+    }
 }

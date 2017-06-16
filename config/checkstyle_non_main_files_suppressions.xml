@@ -19,9 +19,8 @@
     <!-- Javadoc files should not have new line by design (on purpose). -->
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]htmlTags[\\/].*"/>
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]javadocTags[\\/].*"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/]InputJavadocComment\.javadoc"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/]InputJavadocWithError\.javadoc"/>
-    
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/].*\.javadoc"/>
+
     <!--Empty file cannot have any new line at the end. -->
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]InputEmptyFile\.txt"/>
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputRegressionEmptyAst\.txt"/>
