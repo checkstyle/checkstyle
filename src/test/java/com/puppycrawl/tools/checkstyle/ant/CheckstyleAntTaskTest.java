@@ -73,6 +73,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     private static final String WARNING_INPUT =
         "ant/checkstyleanttask/InputCheckstyleAntTaskWarning.java";
     private static final String CONFIG_FILE = "ant/ant_task_test_checks.xml";
+    private static final String CONFIG_RESOURCE = "/com/puppycrawl/tools/checkstyle/" + CONFIG_FILE;
     private static final String CUSTOM_ROOT_CONFIG_FILE = "config-custom-root-module.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
     private static final String FAILURE_PROPERTY_VALUE = "myValue";
@@ -83,7 +84,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     private CheckstyleAntTask getCheckstyleAntTask(String configFile) throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setConfig(new File(getPath(configFile)));
+        antTask.setConfig(getPath(configFile));
         antTask.setProject(new Project());
         return antTask;
     }
@@ -184,7 +185,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     @Test
     public final void testNonExistingConfig() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setConfig(new File(getPath(NOT_EXISTING_FILE)));
+        antTask.setConfig(getPath(NOT_EXISTING_FILE));
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         try {
@@ -193,14 +194,14 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         }
         catch (BuildException ex) {
             assertTrue("Error message is unexpected",
-                    ex.getMessage().startsWith("Unable to create Root Module: configLocation"));
+                    ex.getMessage().startsWith("Unable to create Root Module: config"));
         }
     }
 
     @Test
     public final void testEmptyConfigFile() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setConfig(new File(getPath("ant/empty_config.xml")));
+        antTask.setConfig(getPath("ant/empty_config.xml"));
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         try {
@@ -209,7 +210,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         }
         catch (BuildException ex) {
             assertTrue("Error message is unexpected",
-                    ex.getMessage().startsWith("Unable to create Root Module: configLocation"));
+                    ex.getMessage().startsWith("Unable to create Root Module: config"));
         }
     }
 
@@ -253,7 +254,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     @Test
     public final void testFailureProperty() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setConfig(new File(getPath(CONFIG_FILE)));
+        antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
 
         final Project project = new Project();
@@ -323,32 +324,29 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
         final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
-        antTask.setConfigURL(url);
+        antTask.setConfig(url.toString());
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        antTask.execute();
+    }
+
+    @Test
+    public final void testConfigurationByResource() throws IOException {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(new Project());
+        antTask.setConfig(CONFIG_RESOURCE);
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.execute();
     }
 
     @Test
     public final void testSimultaneousConfiguration() throws IOException {
-        CheckstyleAntTask antTask;
         final File file = new File(getPath(CONFIG_FILE));
         final URL url = file.toURI().toURL();
-        final String expected =
-                "Attributes 'config' and 'configURL' must not be set at the same time";
+        final String expected = "Attribute 'config' has already been set";
         try {
-            antTask = new CheckstyleAntTask();
-            antTask.setConfigUrl(url);
-            antTask.setConfig(file);
-            fail("Exception is expected");
-        }
-        catch (BuildException ex) {
-            assertEquals("Error message is unexpected",
-                    expected, ex.getMessage());
-        }
-        try {
-            antTask = new CheckstyleAntTask();
-            antTask.setConfig(file);
-            antTask.setConfigUrl(url);
+            final CheckstyleAntTask antTask = new CheckstyleAntTask();
+            antTask.setConfig(url.toString());
+            antTask.setConfig(file.toString());
             fail("Exception is expected");
         }
         catch (BuildException ex) {
@@ -515,7 +513,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     @Test
     public void testCheckerException() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTaskStub();
-        antTask.setConfig(new File(getPath(CONFIG_FILE)));
+        antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setProject(new Project());
         antTask.setFile(new File(""));
         try {
@@ -533,7 +531,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
         final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
         antTask.setProject(new Project());
-        antTask.setConfigURL(url);
+        antTask.setConfig(url.toString());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
 
         mockStatic(System.class);
