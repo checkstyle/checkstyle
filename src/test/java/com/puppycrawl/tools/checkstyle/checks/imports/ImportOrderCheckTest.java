@@ -50,13 +50,13 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "imports" + File.separator + filename);
+                + "imports" + File.separator + "importorder" + File.separator + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "imports" + File.separator + filename);
+                + "imports" + File.separator + "importorder" + File.separator + filename);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -517,7 +517,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         checkConfig.addAttribute("useContainerOrderingForStatic", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrderEclipseStatic.java"), expected);
     }
 
     @Test
@@ -534,7 +534,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
             "6: " + getCheckMessage(MSG_ORDERING,
                 "io.netty.handler.codec.http.HttpHeaders.Names.addDate"),
         };
-        verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrderEclipseStatic.java"), expected);
     }
 
     @Test
@@ -550,7 +550,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
             "7: " + getCheckMessage(MSG_ORDERING,
                 "io.netty.handler.codec.http.HttpHeaders.Names.DATE"),
             };
-        verify(checkConfig, getNonCompilablePath("InputEclipseStaticImportsOrder.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputImportOrderEclipseStatic.java"), expected);
     }
 
     @Test

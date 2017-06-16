@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import org.*;
 
