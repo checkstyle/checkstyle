@@ -24,7 +24,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -93,7 +92,7 @@ public class CheckstyleAntTask extends Task {
     private String fileName;
 
     /** Config file containing configuration. */
-    private String configLocation;
+    private String config;
 
     /** Whether to fail build on violations. */
     private boolean failOnViolation = true;
@@ -230,42 +229,13 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets configuration file.
-     * @param file the configuration file to use
+     * @param configuration the configuration file, URL, or resource to use
      */
-    public void setConfig(File file) {
-        setConfigLocation(file.getAbsolutePath());
-    }
-
-    /**
-     * Sets URL to the configuration.
-     * @param url the URL of the configuration to use
-     * @deprecated please use setConfigUrl instead
-     */
-    // -@cs[AbbreviationAsWordInName] Should be removed at 7.0 version,
-    // we keep for some time to avoid braking compatibility.
-    @Deprecated
-    public void setConfigURL(URL url) {
-        setConfigUrl(url);
-    }
-
-    /**
-     * Sets URL to the configuration.
-     * @param url the URL of the configuration to use
-     */
-    public void setConfigUrl(URL url) {
-        setConfigLocation(url.toExternalForm());
-    }
-
-    /**
-     * Sets the location of the configuration.
-     * @param location the location, which is either a
-     */
-    private void setConfigLocation(String location) {
-        if (configLocation != null) {
-            throw new BuildException("Attributes 'config' and 'configURL' "
-                    + "must not be set at the same time");
+    public void setConfig(String configuration) {
+        if (config != null) {
+            throw new BuildException("Attribute 'config' has already been set");
         }
-        configLocation = location;
+        config = configuration;
     }
 
     /**
@@ -316,7 +286,7 @@ public class CheckstyleAntTask extends Task {
                         "Must specify at least one of 'file' or nested 'fileset' or 'path'.",
                         getLocation());
             }
-            if (configLocation == null) {
+            if (config == null) {
                 throw new BuildException("Must specify 'config'.", getLocation());
             }
             realExecute(version);
@@ -381,7 +351,7 @@ public class CheckstyleAntTask extends Task {
 
         log("Running Checkstyle " + checkstyleVersion + " on " + files.size()
                 + " files", Project.MSG_INFO);
-        log("Using configuration " + configLocation, Project.MSG_VERBOSE);
+        log("Using configuration " + config, Project.MSG_VERBOSE);
 
         final int numErrs;
 
@@ -421,9 +391,9 @@ public class CheckstyleAntTask extends Task {
         final RootModule rootModule;
         try {
             final Properties props = createOverridingProperties();
-            final Configuration config =
+            final Configuration configuration =
                 ConfigurationLoader.loadConfiguration(
-                    configLocation,
+                    config,
                     new PropertiesExpander(props),
                     !executeIgnoredModules);
 
@@ -433,7 +403,7 @@ public class CheckstyleAntTask extends Task {
             final ModuleFactory factory = new PackageObjectFactory(
                     Checker.class.getPackage().getName() + ".", moduleClassLoader);
 
-            rootModule = (RootModule) factory.createModule(config.getName());
+            rootModule = (RootModule) factory.createModule(configuration.getName());
             rootModule.setModuleClassLoader(moduleClassLoader);
 
             if (rootModule instanceof Checker) {
@@ -443,11 +413,11 @@ public class CheckstyleAntTask extends Task {
                 ((Checker) rootModule).setClassLoader(loader);
             }
 
-            rootModule.configure(config);
+            rootModule.configure(configuration);
         }
         catch (final CheckstyleException ex) {
             throw new BuildException(String.format(Locale.ROOT, "Unable to create Root Module: "
-                    + "configLocation {%s}, classpath {%s}.", configLocation, classpath), ex);
+                    + "config {%s}, classpath {%s}.", config, classpath), ex);
         }
         return rootModule;
     }

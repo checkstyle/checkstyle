@@ -135,23 +135,13 @@
         <tr>
           <td>config</td>
           <td>
-            Specifies the location of the file that defines the configuration
+            Specifies the location of the file, URL, or Java resource that defines the configuration
             modules.
             <br/>
             <a href="config.html">See here</a> for a description of how to
             define a configuration.
           </td>
-          <td>Exactly one config file</td>
-        </tr>
-
-        <tr>
-          <td>configURL</td>
-          <td>
-            Specifies a URL or name passed to the ClassLoader.getResource() method that defines the configuration modules. <a
-            href="config.html">See here</a> for a description of how to define
-            a configuration.
-          </td>
-          <td>Exactly one of config or configURL</td>
+          <td>Exactly one config location</td>
         </tr>
 
         <tr>
