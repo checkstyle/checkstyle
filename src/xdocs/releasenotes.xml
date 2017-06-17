@@ -16,6 +16,50 @@
   <body>
 
     <!-- placeholder for a new section -->
+    <section name="Release 7.8.2">
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Simple name conflict of Checks from thirdparty checks will cause exception in run time. Author: Luolc, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4414">#4414</a>
+          </li>
+          <li>
+            3rd party root modules not finding by simple name. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4417">#4417</a>
+          </li>
+          <li>
+            ASTs should be appended with comment nodes only when javadoc checks are present. ASTs shouldn&#39;t be walked if there are no corresponding types of checks. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4393">#4393</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            SummaryJavadoc: no violation on javadoc where &#39;.&#39; is used not as end of sentense (fixes in javadoc files only). Author: sagar-shah94 <a href="https://github.com/checkstyle/checkstyle/issues/3907">#3907</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in imports package. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4437">#4437</a>
+          </li>
+          <li>
+            Unstable TreeWalkerTest during coverage execution. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4445">#4445</a>
+          </li>
+          <li>
+            spelling: fix spelling of name McConnell. Author: Ryan P.C. McQuen
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-utils profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4395">#4395</a>
+          </li>
+          <li>
+            Design a new format of suppression dtd schema to support XPath queries. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4364">#4364</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in modifier package. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4431">#4431</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-common profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4400">#4400</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-check-header profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4401">#4401</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 7.8.1">
       <p>Bug fixes:</p>
         <ul>
