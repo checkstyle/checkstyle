@@ -196,4 +196,52 @@ public class JavadocParseTreeTest extends BaseCheckTestSupport {
         verifyJavadocTree(getDocPath("expectedInlineCustomJavadocTagAst.txt"),
                 getDocPath("InputInlineCustomJavadocTag.txt"));
     }
+
+    @Test
+    public void testAttributeValueWithoutQuotes() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedAttributeValueWithoutQuotesAst.txt"),
+                getHtmlPath("InputAttributeValueWithoutQuotes.txt"));
+    }
+
+    @Test
+    public void testClosedOtherTag() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedClosedOtherTagAst.txt"),
+                getHtmlPath("InputClosedOtherTag.txt"));
+    }
+
+    @Test
+    public void testAllStandardJavadocTags() throws Exception {
+        verifyJavadocTree(getDocPath("expectedAllStandardJavadocTagsAst.txt"),
+                getDocPath("InputAllStandardJavadocTags.txt"));
+    }
+
+    @Test
+    public void testAsteriskInJavadocInlineTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedAsteriskInJavadocInlineTagAst.txt"),
+                getDocPath("InputAsteriskInJavadocInlineTag.txt"));
+    }
+
+    @Test
+    public void testAsteriskInLiteral() throws Exception {
+        verifyJavadocTree(getDocPath("expectedAsteriskInLiteralAst.txt"),
+                getDocPath("InputAsteriskInLiteral.txt"));
+    }
+
+    @Test
+    public void testInnerBracesInCodeTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedInnerBracesInCodeTagAst.txt"),
+                getDocPath("InputInnerBracesInCodeTag.txt"));
+    }
+
+    @Test
+    public void testNewlineAndAsteriskInParameters() throws Exception {
+        verifyJavadocTree(getDocPath("expectedNewlineAndAsteriskInParametersAst.txt"),
+                getDocPath("InputNewlineAndAsteriskInParameters.txt"));
+    }
+
+    @Test
+    public void testTwoLinkTagsInRow() throws Exception {
+        verifyJavadocTree(getDocPath("expectedTwoLinkTagsInRowAst.txt"),
+                getDocPath("InputTwoLinkTagsInRow.txt"));
+    }
 }
