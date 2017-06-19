@@ -317,6 +317,10 @@
     </inspection_tool>
     <inspection_tool class="ClassWithOnlyPrivateConstructors" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ClassWithTooManyDependencies" enabled="true" level="ERROR" enabled_by_default="true">
+        <scope name="Tests" level="ERROR" enabled="true">
+            <!-- we have to use it because number of dependencies of CheckerTest exceeds 33. -->
+            <option name="limit" value="40" />
+        </scope>
         <option name="limit" value="33" />
     </inspection_tool>
     <inspection_tool class="ClassWithTooManyDependents" enabled="true" level="ERROR" enabled_by_default="true">
@@ -2014,6 +2018,7 @@
                 <option value="ProhibitedExceptionThrown" />
                 <!-- we have to use it when pass null argument in test purporses -->
                 <option value="NullArgumentToVariableArgMethod" />
+                <option value="ClassWithTooManyDependencies" />
             </list>
         </option>
     </inspection_tool>

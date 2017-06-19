@@ -26,7 +26,6 @@ import static org.hamcrest.CoreMatchers.endsWith;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 
@@ -34,7 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Set;
-import java.util.SortedSet;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,14 +45,14 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.FileProcessingResult;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TranslationCheckTest extends BaseCheckTestSupport {
     @Captor
-    private ArgumentCaptor<SortedSet<LocalizedMessage>> captor;
+    private ArgumentCaptor<FileProcessingResult> captor;
 
     @Override
     protected DefaultConfiguration createCheckerConfig(
@@ -148,8 +146,10 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         final File file = new File("");
         logIoException.invoke(check, new IOException("test exception"), file);
 
-        Mockito.verify(dispatcher, times(1)).fireErrors(any(String.class), captor.capture());
-        assertThat(captor.getValue().first().getMessage(), endsWith("test exception"));
+        Mockito.verify(dispatcher, times(1))
+                .fireErrors(captor.capture());
+        assertThat(captor.getValue().getMessages().first().getMessage(), endsWith("test "
+                + "exception"));
     }
 
     @Test
