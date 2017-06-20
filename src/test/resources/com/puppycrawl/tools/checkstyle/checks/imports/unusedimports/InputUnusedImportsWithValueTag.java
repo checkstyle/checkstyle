@@ -1,8 +1,8 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import java.util.Calendar;
 
-public class InputUnusedImportWithValueTag {
+public class InputUnusedImportsWithValueTag {
 
     /**
      * Method determines current month as for {@value Calendar#MONTH}.
