@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import java.lang.String; // VIOLATION
 import java.lang.Math; // VIOLATION
@@ -18,7 +18,7 @@ import java.lang.reflect.Field; // OK
 
 import java.lang.*; // OK
 
-public class InputUnusedImportFromJavaLang {
+public class InputUnusedImportsFromJavaLang {
     private static final String SOMETHING = "a string";
     private static final double PI =  Math.PI;
 
