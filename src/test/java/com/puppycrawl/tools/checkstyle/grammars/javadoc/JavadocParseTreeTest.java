@@ -44,204 +44,204 @@ public class JavadocParseTreeTest extends BaseCheckTestSupport {
     @Test
     public void oneSimpleHtmlTag() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedOneSimpleHtmlTagAst.txt"),
-                getHtmlPath("InputOneSimpleHtmlTag.txt"));
+                getHtmlPath("InputOneSimpleHtmlTag.javadoc"));
     }
 
     @Test
     public void textBeforeJavadocTags() throws Exception {
         verifyJavadocTree(getDocPath("expectedTextBeforeJavadocTagsAst.txt"),
-                getDocPath("InputTextBeforeJavadocTags.txt"));
+                getDocPath("InputTextBeforeJavadocTags.javadoc"));
     }
 
     @Test
     public void customJavadocTags() throws Exception {
         verifyJavadocTree(getDocPath("expectedCustomJavadocTagsAst.txt"),
-                getDocPath("InputCustomJavadocTags.txt"));
+                getDocPath("InputCustomJavadocTags.javadoc"));
     }
 
     @Test
     public void javadocTagDescriptionWithInlineTags() throws Exception {
         verifyJavadocTree(getDocPath("expectedJavadocTagDescriptionWithInlineTagsAst.txt"),
-                getDocPath("InputJavadocTagDescriptionWithInlineTags.txt"));
+                getDocPath("InputJavadocTagDescriptionWithInlineTags.javadoc"));
     }
 
     @Test
     public void leadingAsterisks() throws Exception {
         verifyJavadocTree(getPath("expectedLeadingAsterisksAst.txt"),
-                getPath("InputLeadingAsterisks.txt"));
+                getPath("InputLeadingAsterisks.javadoc"));
     }
 
     @Test
     public void authorWithMailto() throws Exception {
         verifyJavadocTree(getDocPath("expectedAuthorWithMailtoAst.txt"),
-                getDocPath("InputAuthorWithMailto.txt"));
+                getDocPath("InputAuthorWithMailto.javadoc"));
     }
 
     @Test
     public void htmlTagsInParagraph() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedHtmlTagsInParagraphAst.txt"),
-                getHtmlPath("InputHtmlTagsInParagraph.txt"));
+                getHtmlPath("InputHtmlTagsInParagraph.javadoc"));
     }
 
     @Test
     public void linkInlineTags() throws Exception {
         verifyJavadocTree(getDocPath("expectedLinkInlineTagsAst.txt"),
-                getDocPath("InputLinkInlineTags.txt"));
+                getDocPath("InputLinkInlineTags.javadoc"));
     }
 
     @Test
     public void seeReferenceWithFewNestedClasses() throws Exception {
         verifyJavadocTree(getDocPath("expectedSeeReferenceWithFewNestedClassesAst.txt"),
-                getDocPath("InputSeeReferenceWithFewNestedClasses.txt"));
+                getDocPath("InputSeeReferenceWithFewNestedClasses.javadoc"));
     }
 
     @Test
     public void paramWithGeneric() throws Exception {
         verifyJavadocTree(getDocPath("expectedParamWithGenericAst.txt"),
-                getDocPath("InputParamWithGeneric.txt"));
+                getDocPath("InputParamWithGeneric.javadoc"));
     }
 
     @Test
     public void serial() throws Exception {
         verifyJavadocTree(getDocPath("expectedSerialAst.txt"),
-                getDocPath("InputSerial.txt"));
+                getDocPath("InputSerial.javadoc"));
     }
 
     @Test
     public void since() throws Exception {
         verifyJavadocTree(getDocPath("expectedSinceAst.txt"),
-                getDocPath("InputSince.txt"));
+                getDocPath("InputSince.javadoc"));
     }
 
     @Test
     public void unclosedAndClosedParagraphs() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedUnclosedAndClosedParagraphsAst.txt"),
-                getHtmlPath("InputUnclosedAndClosedParagraphs.txt"));
+                getHtmlPath("InputUnclosedAndClosedParagraphs.javadoc"));
     }
 
     @Test
     public void listWithUnclosedItemInUnclosedParagraph() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedListWithUnclosedItemInUnclosedParagraphAst.txt"),
-                getHtmlPath("InputListWithUnclosedItemInUnclosedParagraph.txt"));
+                getHtmlPath("InputListWithUnclosedItemInUnclosedParagraph.javadoc"));
     }
 
     @Test
     public void unclosedParagraphFollowedByJavadocTag() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedUnclosedParagraphFollowedByJavadocTagAst.txt"),
-                getHtmlPath("InputUnclosedParagraphFollowedByJavadocTag.txt"));
+                getHtmlPath("InputUnclosedParagraphFollowedByJavadocTag.javadoc"));
     }
 
     @Test
     public void allJavadocInlineTags() throws Exception {
         verifyJavadocTree(getDocPath("expectedAllJavadocInlineTagsAst.txt"),
-                getDocPath("InputAllJavadocInlineTags.txt"));
+                getDocPath("InputAllJavadocInlineTags.javadoc"));
     }
 
     @Test
     public void docRootInheritDoc() throws Exception {
         verifyJavadocTree(getDocPath("expectedDocRootInheritDocAst.txt"),
-                getDocPath("InputDocRootInheritDoc.txt"));
+                getDocPath("InputDocRootInheritDoc.javadoc"));
     }
 
     @Test
     public void fewWhiteSpacesAsSeparator() throws Exception {
         verifyJavadocTree(getDocPath("expectedFewWhiteSpacesAsSeparatorAst.txt"),
-                getDocPath("InputFewWhiteSpacesAsSeparator.txt"));
+                getDocPath("InputFewWhiteSpacesAsSeparator.javadoc"));
     }
 
     @Test
     public void mixedCaseOfHtmlTags() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedMixedCaseOfHtmlTagsAst.txt"),
-                getHtmlPath("InputMixedCaseOfHtmlTags.txt"));
+                getHtmlPath("InputMixedCaseOfHtmlTags.javadoc"));
     }
 
     @Test
     public void htmlComments() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedCommentsAst.txt"),
-                getHtmlPath("InputComments.txt"));
+                getHtmlPath("InputComments.javadoc"));
     }
 
     @Test
     public void negativeNumberInAttribute() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedNegativeNumberInAttributeAst.txt"),
-                getHtmlPath("InputNegativeNumberInAttribute.txt"));
+                getHtmlPath("InputNegativeNumberInAttribute.javadoc"));
     }
 
     @Test
     public void dollarInLink() throws Exception {
         verifyJavadocTree(getDocPath("expectedDollarInLinkAst.txt"),
-                getDocPath("InputDollarInLink.txt"));
+                getDocPath("InputDollarInLink.javadoc"));
     }
 
     @Test
     public void dotCharacterInCustomTags() throws Exception {
         verifyJavadocTree(getDocPath("expectedCustomTagWithDotAst.txt"),
-                getDocPath("InputCustomTagWithDot.txt"));
+                getDocPath("InputCustomTagWithDot.javadoc"));
     }
 
     @Test
     public void testLinkToPackage() throws Exception {
         verifyJavadocTree(getDocPath("expectedLinkToPackageAst.txt"),
-                getDocPath("InputLinkToPackage.txt"));
+                getDocPath("InputLinkToPackage.javadoc"));
     }
 
     @Test
     public void testLeadingAsterisksExtended() throws Exception {
         verifyJavadocTree(getPath("expectedLeadingAsterisksExtendedAst.txt"),
-                getPath("InputLeadingAsterisksExtended.txt"));
+                getPath("InputLeadingAsterisksExtended.javadoc"));
     }
 
     @Test
     public void testInlineCustomJavadocTag() throws Exception {
         verifyJavadocTree(getDocPath("expectedInlineCustomJavadocTagAst.txt"),
-                getDocPath("InputInlineCustomJavadocTag.txt"));
+                getDocPath("InputInlineCustomJavadocTag.javadoc"));
     }
 
     @Test
     public void testAttributeValueWithoutQuotes() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedAttributeValueWithoutQuotesAst.txt"),
-                getHtmlPath("InputAttributeValueWithoutQuotes.txt"));
+                getHtmlPath("InputAttributeValueWithoutQuotes.javadoc"));
     }
 
     @Test
     public void testClosedOtherTag() throws Exception {
         verifyJavadocTree(getHtmlPath("expectedClosedOtherTagAst.txt"),
-                getHtmlPath("InputClosedOtherTag.txt"));
+                getHtmlPath("InputClosedOtherTag.javadoc"));
     }
 
     @Test
     public void testAllStandardJavadocTags() throws Exception {
         verifyJavadocTree(getDocPath("expectedAllStandardJavadocTagsAst.txt"),
-                getDocPath("InputAllStandardJavadocTags.txt"));
+                getDocPath("InputAllStandardJavadocTags.javadoc"));
     }
 
     @Test
     public void testAsteriskInJavadocInlineTag() throws Exception {
         verifyJavadocTree(getDocPath("expectedAsteriskInJavadocInlineTagAst.txt"),
-                getDocPath("InputAsteriskInJavadocInlineTag.txt"));
+                getDocPath("InputAsteriskInJavadocInlineTag.javadoc"));
     }
 
     @Test
     public void testAsteriskInLiteral() throws Exception {
         verifyJavadocTree(getDocPath("expectedAsteriskInLiteralAst.txt"),
-                getDocPath("InputAsteriskInLiteral.txt"));
+                getDocPath("InputAsteriskInLiteral.javadoc"));
     }
 
     @Test
     public void testInnerBracesInCodeTag() throws Exception {
         verifyJavadocTree(getDocPath("expectedInnerBracesInCodeTagAst.txt"),
-                getDocPath("InputInnerBracesInCodeTag.txt"));
+                getDocPath("InputInnerBracesInCodeTag.javadoc"));
     }
 
     @Test
     public void testNewlineAndAsteriskInParameters() throws Exception {
         verifyJavadocTree(getDocPath("expectedNewlineAndAsteriskInParametersAst.txt"),
-                getDocPath("InputNewlineAndAsteriskInParameters.txt"));
+                getDocPath("InputNewlineAndAsteriskInParameters.javadoc"));
     }
 
     @Test
     public void testTwoLinkTagsInRow() throws Exception {
         verifyJavadocTree(getDocPath("expectedTwoLinkTagsInRowAst.txt"),
-                getDocPath("InputTwoLinkTagsInRow.txt"));
+                getDocPath("InputTwoLinkTagsInRow.javadoc"));
     }
 }
