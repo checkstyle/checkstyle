@@ -14,7 +14,7 @@
 
     <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputEmbeddedNullChar\.java"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]InputLeadingAsterisks\.txt"/>
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]InputLeadingAsterisks\.javadoc"/>
 
     <!-- Javadoc files should not have new line by design (on purpose). -->
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]htmlTags[\\/].*"/>
