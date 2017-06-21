@@ -31,6 +31,7 @@ import org.junit.Test;
 
 import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 public class AstTreeStringPrinterTest {
 
@@ -66,6 +67,18 @@ public class AstTreeStringPrinterTest {
             new File(getPath("InputAstTreeStringPrinterComments.java")), false);
         final String expected = new String(Files.readAllBytes(Paths.get(
             getPath("expectedInputAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8);
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPrintAst() throws Exception {
+        final FileText text = new FileText(
+                new File(getPath("InputAstTreeStringPrinterComments.java")).getAbsoluteFile(),
+                System.getProperty("file.encoding", "UTF-8"));
+        final String actual = AstTreeStringPrinter.printAst(text, false);
+        final String expected = new String(Files.readAllBytes(Paths.get(
+                getPath("expectedInputAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8);
+
         Assert.assertEquals(expected, actual);
     }
 

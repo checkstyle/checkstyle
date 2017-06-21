@@ -2007,15 +2007,26 @@
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter</param>
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinter</param>
                 <param>com.puppycrawl.tools.checkstyle.TreeWalker</param>
-                <param>com.puppycrawl.tools.checkstyle.Main</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.TreeWalkerTest</param>
-                <param>com.puppycrawl.tools.checkstyle.MainTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.blocks.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.design.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.header.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.imports.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.indentation.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.metrics.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.modifiers.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.naming.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.regexp.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.sizes.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.*</param>
               </targetTests>
-              <mutationThreshold>83</mutationThreshold>
+              <mutationThreshold>89</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
