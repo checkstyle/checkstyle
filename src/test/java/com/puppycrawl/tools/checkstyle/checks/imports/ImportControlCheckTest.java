@@ -316,7 +316,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }
-        catch (final CheckstyleException ex) {
+        catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }
@@ -332,7 +332,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }
-        catch (final CheckstyleException ex) {
+        catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to find: "));
         }
@@ -357,7 +357,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }
-        catch (final CheckstyleException ex) {
+        catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to find: "));
         }
@@ -382,7 +382,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             verify(checkConfig, getPath("InputImportControl.java"), expected);
             fail("Test should fail if exception was not thrown");
         }
-        catch (final CheckstyleException ex) {
+        catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             assertTrue(message.startsWith("Unable to load "));
         }

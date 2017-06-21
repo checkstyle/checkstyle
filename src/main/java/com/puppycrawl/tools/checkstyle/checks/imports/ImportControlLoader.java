@@ -116,10 +116,10 @@ final class ImportControlLoader extends AbstractLoader {
     }
 
     @Override
-    public void startElement(final String namespaceUri,
-                             final String localName,
-                             final String qName,
-                             final Attributes attributes)
+    public void startElement(String namespaceUri,
+                             String localName,
+                             String qName,
+                             Attributes attributes)
             throws SAXException {
         if ("import-control".equals(qName)) {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
@@ -162,13 +162,13 @@ final class ImportControlLoader extends AbstractLoader {
      * @param attributes the attributes.
      * @return if the regex attribute is contained.
      */
-    private static boolean containsRegexAttribute(final Attributes attributes) {
+    private static boolean containsRegexAttribute(Attributes attributes) {
         return attributes.getValue("regex") != null;
     }
 
     @Override
-    public void endElement(final String namespaceUri, final String localName,
-        final String qName) {
+    public void endElement(String namespaceUri, String localName,
+        String qName) {
         if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             stack.pop();
         }
@@ -180,7 +180,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @return the root {@link ImportControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    public static ImportControl load(final URI uri) throws CheckstyleException {
+    public static ImportControl load(URI uri) throws CheckstyleException {
 
         InputStream inputStream = null;
         try {
@@ -188,10 +188,10 @@ final class ImportControlLoader extends AbstractLoader {
             final InputSource source = new InputSource(inputStream);
             return load(source, uri);
         }
-        catch (final MalformedURLException ex) {
+        catch (MalformedURLException ex) {
             throw new CheckstyleException("syntax error in url " + uri, ex);
         }
-        catch (final IOException ex) {
+        catch (IOException ex) {
             throw new CheckstyleException("unable to find " + uri, ex);
         }
         finally {
@@ -206,18 +206,18 @@ final class ImportControlLoader extends AbstractLoader {
      * @return the root {@link ImportControl} object.
      * @throws CheckstyleException if an error occurs.
      */
-    private static ImportControl load(final InputSource source,
-        final URI uri) throws CheckstyleException {
+    private static ImportControl load(InputSource source,
+        URI uri) throws CheckstyleException {
         try {
             final ImportControlLoader loader = new ImportControlLoader();
             loader.parseInputSource(source);
             return loader.getRoot();
         }
-        catch (final ParserConfigurationException | SAXException ex) {
+        catch (ParserConfigurationException | SAXException ex) {
             throw new CheckstyleException("unable to parse " + uri
                     + " - " + ex.getMessage(), ex);
         }
-        catch (final IOException ex) {
+        catch (IOException ex) {
             throw new CheckstyleException("unable to read " + uri, ex);
         }
     }
@@ -252,7 +252,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @param attributes collect to get attribute from.
      * @return the value of the attribute.
      */
-    private static MismatchStrategy getStrategyForImportControl(final Attributes attributes) {
+    private static MismatchStrategy getStrategyForImportControl(Attributes attributes) {
         final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
         MismatchStrategy strategyOnMismatch = MismatchStrategy.DISALLOWED;
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
@@ -266,7 +266,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @param attributes collect to get attribute from.
      * @return the value of the attribute.
      */
-    private static MismatchStrategy getStrategyForSubpackage(final Attributes attributes) {
+    private static MismatchStrategy getStrategyForSubpackage(Attributes attributes) {
         final String returnValue = attributes.getValue(STRATEGY_ON_MISMATCH_ATTRIBUTE_NAME);
         MismatchStrategy strategyOnMismatch = MismatchStrategy.DELEGATE_TO_PARENT;
         if (STRATEGY_ON_MISMATCH_ALLOWED_VALUE.equals(returnValue)) {
@@ -286,7 +286,7 @@ final class ImportControlLoader extends AbstractLoader {
      * @return the value of the attribute.
      * @throws SAXException if the attribute does not exist.
      */
-    private static String safeGet(final Attributes attributes, final String name)
+    private static String safeGet(Attributes attributes, String name)
             throws SAXException {
         final String returnValue = attributes.getValue(name);
         if (returnValue == null) {
