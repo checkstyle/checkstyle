@@ -178,8 +178,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                     final FileContents contents = new FileContents(text);
                     final DetailAST rootAST = parse(contents);
 
-                    getMessageCollector().reset();
-
                     if (!ordinaryChecks.isEmpty()) {
                         walk(rootAST, contents, AstState.ORDINARY);
                     }

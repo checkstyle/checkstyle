@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.any;
@@ -48,11 +49,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
+import org.mockito.internal.util.reflection.Whitebox;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -351,6 +354,31 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         TreeWalker.parse(any(FileContents.class));
     }
 
+    @Test
+    public void testFinishLocalSetupFullyInitialized() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        treeWalker.setClassLoader(contextClassLoader);
+        treeWalker.setSeverity("error");
+        treeWalker.setTabWidth(100);
+        treeWalker.finishLocalSetup();
+
+        final Context context = (Context) Whitebox.getInternalState(treeWalker, "childContext");
+        assertEquals(contextClassLoader, context.get("classLoader"));
+        assertEquals("error", context.get("severity"));
+        assertEquals(String.valueOf(100), context.get("tabWidth"));
+    }
+
+    @Test
+    public void testCheckInitIsCalledInTreeWalker() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VerifyInitCheck.class);
+        final File file = temporaryFolder.newFile("file.pdf");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, file.getPath(), expected);
+        assertTrue(VerifyInitCheck.isInitWasCalled());
+    }
+
     private static class BadJavaDocCheck extends AbstractCheck {
         @Override
         public int[] getDefaultTokens() {
@@ -365,6 +393,25 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         @Override
         public int[] getRequiredTokens() {
             return getAcceptableTokens();
+        }
+    }
+
+    private static class VerifyInitCheck extends AbstractCheck {
+        private static boolean initWasCalled;
+
+        @Override
+        public int[] getDefaultTokens() {
+            return CommonUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public void init() {
+            super.init();
+            initWasCalled = true;
+        }
+
+        public static boolean isInitWasCalled() {
+            return initWasCalled;
         }
     }
 
