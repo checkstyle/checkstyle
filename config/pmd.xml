@@ -150,6 +150,8 @@
     <exclude name="FieldDeclarationsShouldBeAtStartOfClass"/>
     <!-- too much alarms of Checks, we will never move logic out of Check, each Check is independent logic container -->
     <exclude name="GodClass"/>
+    <!-- till #4342 -->
+    <exclude name="AccessorMethodGeneration"/>
   </rule>
 
   <rule ref="rulesets/java/design.xml/ConfusingTernary">
@@ -312,6 +314,9 @@
   </rule>
   <rule ref="rulesets/java/typeresolution.xml"/>
   <rule ref="rulesets/java/unnecessary.xml"/>
-  <rule ref="rulesets/java/unusedcode.xml"/>
+  <rule ref="rulesets/java/unusedcode.xml">
+    <!-- till #4342 -->
+    <exclude name="UnusedPrivateMethod"/>
+  </rule>
 
 </ruleset>
