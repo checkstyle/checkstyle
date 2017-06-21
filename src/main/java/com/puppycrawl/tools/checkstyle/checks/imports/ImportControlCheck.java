@@ -107,13 +107,13 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     }
 
     @Override
-    public void beginTree(final DetailAST rootAST) {
+    public void beginTree(DetailAST rootAST) {
         currentImportControl = null;
         processCurrentFile = path.matcher(getFileContents().getFileName()).find();
     }
 
     @Override
-    public void visitToken(final DetailAST ast) {
+    public void visitToken(DetailAST ast) {
         if (processCurrentFile) {
             if (ast.getType() == TokenTypes.PACKAGE_DEF) {
                 if (root == null) {
@@ -185,7 +185,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
                 root = ImportControlLoader.load(uri);
                 fileLocation = uri.toString();
             }
-            catch (final CheckstyleException ex) {
+            catch (CheckstyleException ex) {
                 throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, ex);
             }
         }
