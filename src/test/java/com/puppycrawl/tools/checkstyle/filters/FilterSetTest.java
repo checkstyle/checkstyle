@@ -85,4 +85,16 @@ public class FilterSetTest {
         filterSet.addFilter(new SeverityMatchFilter());
         assertNotNull("size is the same", filterSet.toString());
     }
+
+    @Test
+    public void testClear() {
+        final FilterSet filterSet = new FilterSet();
+        filterSet.addFilter(new SeverityMatchFilter());
+
+        assertEquals(1, filterSet.getFilters().size());
+
+        filterSet.clear();
+
+        assertEquals(0, filterSet.getFilters().size());
+    }
 }

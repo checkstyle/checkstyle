@@ -67,4 +67,16 @@ public class BeforeExecutionFileFilterSetTest {
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
         assertNotNull("size is the same", filterSet.toString());
     }
+
+    @Test
+    public void testClear() {
+        final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
+        filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
+
+        assertEquals(1, filterSet.getBeforeExecutionFileFilters().size());
+
+        filterSet.clear();
+
+        assertEquals(0, filterSet.getBeforeExecutionFileFilters().size());
+    }
 }

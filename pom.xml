@@ -2039,7 +2039,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-api</id>
+      <id>pitest-checkstyle-api-filters</id>
       <build>
         <plugins>
           <plugin>
@@ -2049,41 +2049,16 @@
             <configuration>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
+                <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
+                <param>com.puppycrawl.tools.checkstyle.filters.*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
-              </targetTests>
-              <excludedClasses>
-                <!-- deprecated class -->
-                <param>com.puppycrawl.tools.checkstyle.api.Check</param>
-              </excludedClasses>
-              <mutationThreshold>45</mutationThreshold>
-              <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
-              <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
-              <threads>${pitest.plugin.threads}</threads>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>pitest-checkstyle-filters</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.pitest</groupId>
-            <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
-            <configuration>
-              <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
-                <param>com.puppycrawl.tools.checkstyle.filters.*</param>
-              </targetClasses>
-              <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.grammars.comments.CommentsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.*</param>
               </targetTests>
-              <mutationThreshold>95</mutationThreshold>
+              <mutationThreshold>84</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>

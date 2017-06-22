@@ -50,4 +50,34 @@ public class CommentsTest extends BaseCheckTestSupport {
         final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
         Assert.assertEquals("Comment[2:1-2:3]", comment.toString());
     }
+
+    @Test
+    public void testGetCommentMeasures() {
+        final String[] commentText = {"/**",
+            "     * Creates new instance.",
+            "     * @param text the lines that make up the comment.",
+            "     * @param firstCol number of the first column of the comment.",
+            "     * @param lastLine number of the last line of the comment.",
+            "     * @param lastCol number of the last column of the comment.",
+            "     */"};
+        final Comment comment = new Comment(commentText, 5, 49, 66);
+
+        Assert.assertEquals(43, comment.getStartLineNo());
+        Assert.assertEquals(5, comment.getStartColNo());
+        Assert.assertEquals(49, comment.getEndLineNo());
+        Assert.assertEquals(66, comment.getEndColNo());
+    }
+
+    @Test
+    public void testIntersects() {
+        final String[] commentText = {"// compute a single number for start and end",
+            "// to simplify conditional logic"};
+        final Comment comment = new Comment(commentText, 9, 89, 53);
+
+        Assert.assertTrue(comment.intersects(89, 9, 89, 41));
+        Assert.assertTrue(comment.intersects(89, 53, 90, 50));
+        Assert.assertTrue(comment.intersects(87, 7, 88, 9));
+        Assert.assertFalse(comment.intersects(90, 7, 91, 20));
+        Assert.assertFalse(comment.intersects(89, 56, 89, 80));
+    }
 }
