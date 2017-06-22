@@ -202,7 +202,7 @@
           </td>
         </tr>
         <tr>
-          <td><code>stmt</code></td>
+          <td><code>statement</code></td>
           <td>
             Require that there is a statement in the block. For example:
             <pre>
