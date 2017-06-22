@@ -829,6 +829,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.20</version>
         <configuration>
+          <!-- Travis build workaround -->
+          <argLine>-Xms1024m -Xmx2048m</argLine>
+
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco/jacoco.exec</jacoco-agent.destfile>
           </systemPropertyVariables>
