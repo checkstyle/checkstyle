@@ -52,4 +52,12 @@ public class LineColumnTest {
     public void testEqualsAndHashCode() {
         EqualsVerifier.forClass(LineColumn.class).usingGetClass().verify();
     }
+
+    @Test
+    public void testGetters() {
+        final LineColumn lineColumn = new LineColumn(2, 3);
+
+        assertEquals(2, lineColumn.getLine());
+        assertEquals(3, lineColumn.getColumn());
+    }
 }

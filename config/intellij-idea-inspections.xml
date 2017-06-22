@@ -2008,6 +2008,8 @@
                 <option value="IfStatementWithTooManyBranches" />
                 <!-- we have to catch Exception in Checker and rethrow it -->
                 <option value="ProhibitedExceptionThrown" />
+                <!-- we have to use it when pass null argument in test purporses -->
+                <option value="NullArgumentToVariableArgMethod" />
             </list>
         </option>
     </inspection_tool>
