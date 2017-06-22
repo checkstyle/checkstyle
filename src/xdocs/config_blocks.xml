@@ -193,7 +193,7 @@ switch (a)
             <td>option</td>
             <td>policy on block contents</td>
             <td><a href="property_types.html#block">block policy</a></td>
-            <td><code>stmt</code></td>
+            <td><code>statement</code></td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -276,8 +276,8 @@ switch (a)
             block.empty</a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.noStmt%22">
-            block.noStmt</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.noStatement%22">
+            block.noStatement</a>
           </li>
         </ul>
         <p>
