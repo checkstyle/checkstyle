@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
 import java.util.stream.Stream;
 import java.util.Date;
