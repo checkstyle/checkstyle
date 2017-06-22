@@ -19,12 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.io.File;
+import java.nio.charset.Charset;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class AbstractCheckTest {
+    private static final String INPUT_FOLDER =
+        "src/test/resources/com/puppycrawl/tools/checkstyle/api/abstractcheck/";
 
     @Test
     public void testGetRequiredTokens() {
@@ -33,7 +38,6 @@ public class AbstractCheckTest {
             public int[] getDefaultTokens() {
                 return CommonUtils.EMPTY_INT_ARRAY;
             }
-
         };
         // Eventually it will become clear abstract method
         Assert.assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
@@ -46,7 +50,6 @@ public class AbstractCheckTest {
             public int[] getDefaultTokens() {
                 return CommonUtils.EMPTY_INT_ARRAY;
             }
-
         };
         // Eventually it will become clear abstract method
         Assert.assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, check.getAcceptableTokens());
@@ -72,5 +75,62 @@ public class AbstractCheckTest {
         };
         // Eventually it will become clear abstract method
         check.visitToken(null);
+    }
+
+    @Test
+    public void testGetLine() throws Exception {
+        final AbstractCheck check = new AbstractCheck() {
+            @Override
+            public int[] getDefaultTokens() {
+                return CommonUtils.EMPTY_INT_ARRAY;
+            }
+        };
+        check.setFileContents(new FileContents(new FileText(
+            new File(INPUT_FOLDER + "InputAbstractCheckTestFileContence.java"),
+            Charset.defaultCharset().name())));
+
+        Assert.assertEquals(" * I'm a javadoc", check.getLine(3));
+    }
+
+    @Test
+    public void testGetTabWidth() throws Exception {
+        final AbstractCheck check = new AbstractCheck() {
+            @Override
+            public int[] getDefaultTokens() {
+                return CommonUtils.EMPTY_INT_ARRAY;
+            }
+        };
+        final int tabWidth = 4;
+        check.setTabWidth(tabWidth);
+
+        Assert.assertEquals(tabWidth, check.getTabWidth());
+    }
+
+    @Test
+    public void testGetClassLoader() throws Exception {
+        final AbstractCheck check = new AbstractCheck() {
+            @Override
+            public int[] getDefaultTokens() {
+                return CommonUtils.EMPTY_INT_ARRAY;
+            }
+        };
+        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        check.setClassLoader(classLoader);
+
+        Assert.assertEquals(classLoader, check.getClassLoader());
+    }
+
+    @Test
+    public void testGetAcceptableTokens() throws Exception {
+        final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        final AbstractCheck check = new AbstractCheck() {
+            @Override
+            public int[] getDefaultTokens() {
+                return defaultTokens;
+            }
+        };
+
+        Assert.assertNotEquals(defaultTokens, check.getAcceptableTokens());
+        Assert.assertArrayEquals(defaultTokens, check.getAcceptableTokens());
     }
 }
