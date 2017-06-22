@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
          http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
   <description>
-    PMD ruleset for Checkstyle
+    PMD common ruleset for Checkstyle main/test sourcesets
   </description>
   <rule ref="rulesets/java/basic.xml"/>
   <rule ref="rulesets/java/braces.xml"/>
@@ -208,7 +208,6 @@
     <!-- too many false-positives -->
     <exclude name="BeanMembersShouldSerialize"/>
   </rule>
-  <rule ref="rulesets/java/junit.xml"/>
   <rule ref="rulesets/java/logging-jakarta-commons.xml"/>
 
   <rule ref="rulesets/java/logging-java.xml"/>

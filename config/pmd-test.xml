@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<ruleset name="PMD ruleset for Checkstyle"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+         http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>
+        PMD ruleset for Checkstyle tests
+    </description>
+    <exclude-pattern>.*/src/main/.*</exclude-pattern>
+    <rule ref="config/pmd.xml">
+        <!--We do throws Exception, as any exception that in not caught in test should fail a test that is expected behavior and we like it as it follow fail-fast and helps to avoid extra catch blocks-->
+        <exclude name="SignatureDeclareThrowsException"/>
+        <!--it madness to move all string values to common variables, it will be hard to read test code-->
+        <exclude name="AvoidDuplicateLiterals"/>
+        <!--we do not need javadoc on test code-->
+        <exclude name="CommentRequired"/>
+        <!--we like static imports in UTs as them minimize the code and we know that most of such methods are from UT+moks frameworks-->
+        <exclude name="TooManyStaticImports"/>
+        <!--we try to keep all testing for class in one place/class/file to ease navigation between target class and it's test-->
+        <exclude name="TooManyMethods"/>
+        <!--we have too much UTs for each main class, it is better to keep all tests in one file to ease navigation and search for tes-->
+        <exclude name="CouplingBetweenObjects"/>
+        <!--we have too much UTs for each main class, it is better to keep all tests in one file to ease navigation and search for test-->
+        <exclude name="ExcessiveImports"/>
+        <!--test should be named as their main class-->
+        <exclude name="AbstractNaming"/>
+        <!--checkstyle do not use IP in configuration, so all values in tests are ok to use, they just another test string data-->
+        <exclude name="AvoidUsingHardCodedIP"/>
+        <!--UTests are required to be public by design-->
+        <exclude name="ExcessivePublicCount"/>
+        <!--we have too much UTs for each main class, it is better to keep all tests in one file to ease navigation and search for test-->
+        <exclude name="ExcessiveClassLength"/>
+        <!--till #4495-->
+        <exclude name="UncommentedEmptyMethodBody"/>
+        <!--till #4492-->
+        <exclude name="CommentDefaultAccessModifier"/>
+        <!--till #4491-->
+        <exclude name="InsufficientStringBufferDeclaration"/>
+        <!--till #4493-->
+        <exclude name="ConfusingTernary"/>
+        <!--till #4494-->
+        <exclude name="AppendCharacterWithChar"/>
+        <!--till #4490-->
+        <exclude name="LoggerIsNotStaticFinal"/>
+        <!--till #4489-->
+        <exclude name="JUnit4TestShouldUseTestAnnotation"/>
+        <!--till #4498-->
+        <exclude name="CheckstyleCustomShortVariable"/>
+        <!--till #4496-->
+        <exclude name="NcssMethodCount"/>
+        <!--till #4488-->
+        <exclude name="UselessOverridingMethod"/>
+        <!--tentative-->
+        <exclude name="JUnitUseExpected"/>
+        <!--tentative-->
+        <exclude name="UncommentedEmptyConstructor"/>
+        <!--tentative-->
+        <exclude name="ShortClassName"/>
+        <!--tentative-->
+        <exclude name="DefaultPackage"/>
+        <!--tentative-->
+        <exclude name="AccessorClassGeneration"/>
+        <!--tentative-->
+        <exclude name="AddEmptyString"/>
+        <!--tentative-->
+        <exclude name="ExcessiveMethodLength"/>
+        <!--tentative-->
+        <exclude name="NPathComplexity"/>
+        <!--tentative-->
+        <exclude name="NcssTypeCount"/>
+        <!--tentative-->
+        <exclude name="JUnit4TestShouldUseBeforeAnnotation"/>
+        <!--tentative-->
+        <exclude name="ShortMethodName"/>
+        <!--tentative-->
+        <exclude name="AvoidCatchingGenericException"/>
+    </rule>
+
+    <rule ref="rulesets/java/junit.xml">
+        <!--tentative-->
+        <exclude name="JUnitTestsShouldIncludeAssert"/>
+        <!--tentative-->
+        <exclude name="JUnitAssertionsShouldIncludeMessage"/>
+    </rule>
+
+    <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">
+        <properties>
+            <property name="maximumAsserts" value="11"/>
+        </properties>
+    </rule>
+</ruleset>
