@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.puppycrawl.tools.checkstyle.internal.TestUtils.assertUtilsClassHasPrivateConstructor;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -91,7 +92,7 @@ public class AnnotationUtilityTest {
         final DetailAST ast3 = new DetailAST();
         ast3.setType(TokenTypes.ANNOTATION);
         ast2.addChild(ast3);
-        Assert.assertTrue(AnnotationUtility.containsAnnotation(ast));
+        assertTrue(AnnotationUtility.containsAnnotation(ast));
     }
 
     @Test
@@ -136,5 +137,38 @@ public class AnnotationUtilityTest {
         catch (IllegalArgumentException ex) {
             assertEquals("the annotation is empty or spaces", ex.getMessage());
         }
+    }
+
+    @Test
+    public void testContainsAnnotationWithNull() {
+        try {
+            AnnotationUtility.getAnnotation(null, "");
+            Assert.fail("IllegalArgumentException is expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("the ast is null", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testContainsAnnotation() {
+        final DetailAST astForTest = new DetailAST();
+        astForTest.setType(TokenTypes.PACKAGE_DEF);
+        final DetailAST child = new DetailAST();
+        final DetailAST annotations = new DetailAST();
+        final DetailAST annotation = new DetailAST();
+        final DetailAST annotationNameHolder = new DetailAST();
+        final DetailAST annotationName = new DetailAST();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        annotation.setType(TokenTypes.ANNOTATION);
+        annotationName.setText("Annotation");
+
+        annotationNameHolder.setNextSibling(annotationName);
+        annotation.setFirstChild(annotationNameHolder);
+        annotations.setFirstChild(annotation);
+        child.setNextSibling(annotations);
+        astForTest.setFirstChild(child);
+
+        assertTrue(AnnotationUtility.containsAnnotation(astForTest, "Annotation"));
     }
 }

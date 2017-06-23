@@ -26,9 +26,12 @@ import static org.junit.Assert.fail;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.Optional;
 
 import org.junit.Test;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TokenUtilsTest {
@@ -62,14 +65,45 @@ public class TokenUtilsTest {
     }
 
     @Test
-    public void testTokenValueIncorrect() {
-        final Integer id = Integer.MAX_VALUE - 1;
+    public void testTokenValueIncorrect() throws IllegalAccessException {
+        int maxId = 0;
+        final Field[] fields = TokenTypes.class.getDeclaredFields();
+        for (final Field field : fields) {
+            // Only process the int declarations.
+            if (field.getType() != Integer.TYPE) {
+                continue;
+            }
+
+            final String name = field.getName();
+            final int id = field.getInt(name);
+            if (id > maxId) {
+                maxId = id;
+            }
+        }
+
+        final int nextAfterMaxId = maxId + 1;
         try {
-            TokenUtils.getTokenName(id);
+            TokenUtils.getTokenName(nextAfterMaxId);
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("given id " + id, expected.getMessage());
+            assertEquals("given id " + nextAfterMaxId, expected.getMessage());
+        }
+    }
+
+    @Test
+    public void testTokenValueCorrect() throws IllegalAccessException {
+        final Field[] fields = TokenTypes.class.getDeclaredFields();
+        for (final Field field : fields) {
+            // Only process the int declarations.
+            if (field.getType() != Integer.TYPE) {
+                continue;
+            }
+
+            final String name = field.getName();
+            final int id = field.getInt(name);
+
+            assertEquals(name, TokenUtils.getTokenName(id));
         }
     }
 
@@ -138,6 +172,66 @@ public class TokenUtilsTest {
         assertTrue(TokenUtils.isCommentType(TokenTypes.BLOCK_COMMENT_BEGIN));
         assertTrue(TokenUtils.isCommentType(TokenTypes.BLOCK_COMMENT_END));
         assertTrue(TokenUtils.isCommentType(TokenTypes.COMMENT_CONTENT));
+        assertTrue(TokenUtils.isCommentType("COMMENT_CONTENT"));
     }
 
+    @Test
+    public void tetsGetTokenTypesTotalNumber() {
+        final int tokenTypesTotalNumber = TokenUtils.getTokenTypesTotalNumber();
+
+        assertEquals(169, tokenTypesTotalNumber);
+    }
+
+    @Test
+    public void testGetAllTokenIds() {
+        final int[] allTokenIds = TokenUtils.getAllTokenIds();
+        final int sum = Arrays.stream(allTokenIds).sum();
+
+        assertEquals(169, allTokenIds.length);
+        assertEquals(15662, sum);
+    }
+
+    @Test
+    public void testGetTokenNameWithGreatestPossibleId() {
+        final Integer id = TokenTypes.COMMENT_CONTENT;
+        final String tokenName = TokenUtils.getTokenName(id);
+
+        assertEquals("COMMENT_CONTENT", tokenName);
+    }
+
+    @Test
+    public void testCorrectBehaviourOfGetTokenId() {
+        final String id = "EOF";
+
+        assertEquals(TokenTypes.EOF, TokenUtils.getTokenId(id));
+
+    }
+
+    @Test
+    public void testCorrectBehaviourOfShortDescription() {
+        final String id = "EOF";
+        final String shortDescription = TokenUtils.getShortDescription(id);
+
+        assertEquals("The end of file token.", shortDescription);
+    }
+
+    @Test
+    public void testFindFirstTokenByPredicate() {
+        final DetailAST astForTest = new DetailAST();
+        final DetailAST child = new DetailAST();
+        final DetailAST firstSibling = new DetailAST();
+        final DetailAST secondSibling = new DetailAST();
+        final DetailAST thirdSibling = new DetailAST();
+        firstSibling.setText("first");
+        secondSibling.setText("second");
+        thirdSibling.setText("third");
+        secondSibling.setNextSibling(thirdSibling);
+        firstSibling.setNextSibling(secondSibling);
+        child.setNextSibling(firstSibling);
+        astForTest.setFirstChild(child);
+        final Optional<DetailAST> result = TokenUtils.findFirstTokenByPredicate(astForTest,
+            ast -> "second".equals(ast.getText()));
+
+        assertEquals(secondSibling, result.get());
+    }
 }
