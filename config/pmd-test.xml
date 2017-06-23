@@ -33,8 +33,6 @@
         <exclude name="ExcessiveClassLength"/>
         <!--till #4495-->
         <exclude name="UncommentedEmptyMethodBody"/>
-        <!--till #4492-->
-        <exclude name="CommentDefaultAccessModifier"/>
         <!--till #4491-->
         <exclude name="InsufficientStringBufferDeclaration"/>
         <!--till #4493-->
