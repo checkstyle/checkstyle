@@ -105,6 +105,7 @@ public class ModuleReflectionUtilsTest {
     private static class Bar extends AbstractInvalidClass {
         @Override
         void method() {
+            //dummy method
         }
     }
 
@@ -122,6 +123,7 @@ public class ModuleReflectionUtilsTest {
     private static class FileSetModuleClass extends AbstractFileSetCheck {
         @Override
         protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+            //dummy method
         }
     }
 
@@ -143,6 +145,7 @@ public class ModuleReflectionUtilsTest {
     private static class RootModuleClass extends AutomaticBean implements RootModule {
         @Override
         public void addListener(AuditListener listener) {
+            //dummy method
         }
 
         @Override
@@ -152,10 +155,12 @@ public class ModuleReflectionUtilsTest {
 
         @Override
         public void destroy() {
+            //dummy method
         }
 
         @Override
         public void setModuleClassLoader(ClassLoader moduleClassLoader) {
+            //dummy method
         }
     }
 

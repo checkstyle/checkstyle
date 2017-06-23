@@ -198,8 +198,5 @@ public class TokenTypesDocletTest {
         public void printError(String message) {
             messages.add(message);
         }
-
-        @Override
-        public void printNotice(String message) { }
     }
 }
