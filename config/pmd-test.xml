@@ -43,8 +43,6 @@
         <exclude name="AppendCharacterWithChar"/>
         <!--till #4490-->
         <exclude name="LoggerIsNotStaticFinal"/>
-        <!--till #4489-->
-        <exclude name="JUnit4TestShouldUseTestAnnotation"/>
         <!--till #4498-->
         <exclude name="CheckstyleCustomShortVariable"/>
         <!--till #4496-->
