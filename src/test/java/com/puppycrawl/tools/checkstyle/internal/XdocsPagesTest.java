@@ -742,7 +742,7 @@ public class XdocsPagesTest {
 
         for (String s : list) {
             expectedText.append(s);
-            expectedText.append("\n");
+            expectedText.append('\n');
         }
 
         if (expectedText.length() > 0) {
