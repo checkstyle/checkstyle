@@ -104,12 +104,12 @@ public class ModuleReflectionUtilsTest {
 
     private static class Bar extends AbstractInvalidClass {
         @Override
-        void method() {
+        public void method() {
         }
     }
 
     private abstract static class AbstractInvalidClass extends AutomaticBean {
-        abstract void method();
+        public abstract void method();
     }
 
     private static class CheckClass extends AbstractCheck {
