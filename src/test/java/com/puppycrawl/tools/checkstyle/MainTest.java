@@ -79,9 +79,9 @@ public class MainTest {
         + " -x,--exclude-regexp <arg>   Regular expression of directory to exclude from"
         + " CheckStyle%n");
 
-    private static Logger logger;
-    private static Handler[] handlers;
-    private static Level originalLogLevel;
+    private static final Logger LOG = Logger.getLogger(MainTest.class.getName()).getParent();
+    private static final Handler[] HANDLERS = LOG.getHandlers();
+    private static final Level ORIGINAL_LOG_LEVEL = LOG.getLevel();
 
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -109,22 +109,18 @@ public class MainTest {
         // Set locale to root to prevent check message fail
         // in other language environment.
         Locale.setDefault(Locale.ROOT);
-
-        logger = Logger.getLogger(MainTest.class.getName()).getParent();
-        handlers = logger.getHandlers();
-        originalLogLevel = logger.getLevel();
     }
 
     @Before
     public void setUp() {
-        // restore original logging level and handlers to prevent bleeding into other tests
+        // restore original logging level and HANDLERS to prevent bleeding into other tests
 
-        logger.setLevel(originalLogLevel);
+        LOG.setLevel(ORIGINAL_LOG_LEVEL);
 
-        for (Handler handler : logger.getHandlers()) {
+        for (Handler handler : LOG.getHandlers()) {
             boolean found = false;
 
-            for (Handler savedHandler : handlers) {
+            for (Handler savedHandler : HANDLERS) {
                 if (handler == savedHandler) {
                     found = true;
                     break;
@@ -132,7 +128,7 @@ public class MainTest {
             }
 
             if (!found) {
-                logger.removeHandler(handler);
+                LOG.removeHandler(handler);
             }
         }
     }
