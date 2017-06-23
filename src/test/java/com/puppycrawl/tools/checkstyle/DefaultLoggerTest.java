@@ -19,8 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
 
@@ -29,12 +32,16 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 public class DefaultLoggerTest {
 
     @Test
-    public void testCtor() {
+    public void testCtor() throws UnsupportedEncodingException {
         final OutputStream infoStream = new ByteArrayOutputStream();
-        final OutputStream errorStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, true, errorStream, true);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
+        final String output = errorStream.toString("UTF-8");
+
+        assertTrue(output.contains("Error auditing myfile"));
+        assertTrue(output.contains("java.lang.IllegalStateException: upsss"));
     }
 
     @Test

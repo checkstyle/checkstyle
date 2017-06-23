@@ -25,7 +25,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -47,7 +46,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class XMLLoggerTest {
-    private final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+    private final CloseAndFlushTestByteArrayOutputStream outStream =
+        new CloseAndFlushTestByteArrayOutputStream();
 
     @Test
     public void testEncode()
@@ -213,7 +213,9 @@ public class XMLLoggerTest {
             "&lt;exception&gt;&#10;&lt;![CDATA[&#10;stackTrace&#10;example]]&gt;"
                 + "&#10;&lt;/exception&gt;&#10;",
         };
+
         verifyLines(expectedLines);
+        assertEquals(1, outStream.getCloseCount());
     }
 
     private String[] getOutStreamLines()

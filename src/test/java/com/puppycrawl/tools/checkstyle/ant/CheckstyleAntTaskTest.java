@@ -24,11 +24,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,13 +53,16 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(CheckstyleAntTask.class)
+@PrepareForTest({CheckstyleAntTask.class, Closeables.class})
 public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     private static final String FLAWLESS_INPUT_DIR = "ant/checkstyleanttask/flawless/";
@@ -530,6 +537,17 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             assertEquals(expected.getLevel(), actual.getLevel());
         }
 
+    }
+
+    @Test
+    public void testPackageNamesLoaderStreamClosed() throws CheckstyleException {
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(InputStream.class));
+
+        PackageNamesLoader.getPackageNames(Thread.currentThread().getContextClassLoader());
+        verifyStatic();
+        Closeables.closeQuietly(any(InputStream.class));
     }
 
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
