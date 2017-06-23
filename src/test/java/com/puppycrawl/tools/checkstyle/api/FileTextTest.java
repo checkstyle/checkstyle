@@ -45,27 +45,27 @@ public class FileTextTest {
     @Test
     public void testSupportedCharset() throws IOException {
         final String charsetName = "ISO-8859-1";
-        final FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
-        assertEquals(charsetName, o.getCharset().name());
+        assertEquals(charsetName, fileText.getCharset().name());
     }
 
     @Test
     public void testLineColumnBeforeCopyConstructor() throws IOException {
         final String charsetName = "ISO-8859-1";
-        final FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
-        final LineColumn lineColumn = o.lineColumn(100);
-        final FileText copy = new FileText(o);
+        final LineColumn lineColumn = fileText.lineColumn(100);
+        final FileText copy = new FileText(fileText);
         assertEquals(lineColumn, copy.lineColumn(100));
     }
 
     @Test
     public void testLineColumnAfterCopyConstructor() throws IOException {
         final String charsetName = "ISO-8859-1";
-        final FileText o = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
-        final FileText copy = new FileText(o);
+        final FileText copy = new FileText(fileText);
         assertEquals(3, copy.lineColumn(100).getLine());
     }
 }

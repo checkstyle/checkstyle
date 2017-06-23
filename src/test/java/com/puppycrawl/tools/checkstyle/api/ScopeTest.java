@@ -47,10 +47,10 @@ public class ScopeTest {
 
     @Test
     public void testMisc() {
-        final Scope o = Scope.getInstance("public");
-        assertNotNull(o);
-        assertEquals("public", o.toString());
-        assertEquals("public", o.getName());
+        final Scope scope = Scope.getInstance("public");
+        assertNotNull(scope);
+        assertEquals("public", scope.toString());
+        assertEquals("public", scope.getName());
 
         try {
             Scope.getInstance("unknown");

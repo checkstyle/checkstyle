@@ -45,8 +45,6 @@
         <exclude name="LoggerIsNotStaticFinal"/>
         <!--till #4489-->
         <exclude name="JUnit4TestShouldUseTestAnnotation"/>
-        <!--till #4498-->
-        <exclude name="CheckstyleCustomShortVariable"/>
         <!--till #4496-->
         <exclude name="NcssMethodCount"/>
         <!--till #4488-->
