@@ -308,16 +308,6 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Getter.
-     * @return the name of the file
-     * @deprecated use {@link #getFileName} instead
-     */
-    @Deprecated
-    public String getFilename() {
-        return fileName;
-    }
-
-    /**
      * Checks if the specified line is blank.
      * @param lineNo the line number to check
      * @return if the specified line consists only of tabs and spaces.
