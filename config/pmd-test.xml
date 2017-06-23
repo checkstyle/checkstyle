@@ -39,8 +39,6 @@
         <exclude name="AppendCharacterWithChar"/>
         <!--till #4490-->
         <exclude name="LoggerIsNotStaticFinal"/>
-        <!--till #4496-->
-        <exclude name="NcssMethodCount"/>
         <!--till #4488-->
         <exclude name="UselessOverridingMethod"/>
         <!--tentative-->
@@ -67,6 +65,13 @@
         <exclude name="ShortMethodName"/>
         <!--tentative-->
         <exclude name="AvoidCatchingGenericException"/>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml/NcssMethodCount">
+        <properties>
+            <!-- 'testTokenNumbering' method is simple but long as it recheck each token one by one -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering'] | //ClassOrInterfaceDeclaration[@Image='ParseTreeBuilder']"/>
+        </properties>
     </rule>
 
     <rule ref="rulesets/java/junit.xml">
