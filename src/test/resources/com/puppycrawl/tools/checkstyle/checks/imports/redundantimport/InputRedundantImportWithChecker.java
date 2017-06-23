@@ -2,10 +2,10 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
-import com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug;
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputImportBug;
 import java.io.*;
 import java.lang.*;
 import java.lang.String;
@@ -56,7 +56,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportChec
  * @author Michael Studman
  * @see Calendar Should avoid unused import for Calendar
  **/
-class InputRedundantImport
+class InputRedundantImportWithChecker
 {
     /** ignore **/
     private Class mUse1 = null;

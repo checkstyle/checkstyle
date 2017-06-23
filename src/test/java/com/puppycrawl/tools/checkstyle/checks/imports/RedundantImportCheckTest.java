@@ -38,13 +38,13 @@ public class RedundantImportCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "imports" + File.separator + filename);
+                + "imports" + File.separator + "redundantimport" + File.separator + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
         return super.getNonCompilablePath("checks" + File.separator
-                + "imports" + File.separator + filename);
+                + "imports" + File.separator + "redundantimport" + File.separator + filename);
     }
 
     @Test
@@ -64,15 +64,16 @@ public class RedundantImportCheckTest
         final DefaultConfiguration checkConfig =
             createCheckConfig(RedundantImportCheck.class);
         final String[] expected = {
-            "7:1: " + getCheckMessage(MSG_SAME, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
+            "7:1: " + getCheckMessage(MSG_SAME,
+                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*"),
             "8:1: " + getCheckMessage(MSG_SAME,
-                "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
+                "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputImportBug"),
             "10:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
             "11:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
             "14:1: " + getCheckMessage(MSG_DUPLICATE, 13, "java.util.List"),
             "26:1: " + getCheckMessage(MSG_DUPLICATE, 25, "javax.swing.WindowConstants.*"),
         };
-        verify(checkConfig, getPath("InputRedundantImport.java"), expected);
+        verify(checkConfig, getPath("InputRedundantImportWithChecker.java"), expected);
     }
 
     @Test
