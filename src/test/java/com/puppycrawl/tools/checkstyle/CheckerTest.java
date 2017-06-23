@@ -870,6 +870,45 @@ public class CheckerTest extends BaseCheckTestSupport {
         assertTrue("FileSetCheck.init() wasn't called", fileSet.isInitCalled());
     }
 
+    @Test
+    public void testDefaultLoggerClosesItStreams() throws Exception {
+        final Checker checker = new Checker();
+        final CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
+            new CloseAndFlushTestByteArrayOutputStream();
+        final CloseAndFlushTestByteArrayOutputStream testErrorOutputStream =
+            new CloseAndFlushTestByteArrayOutputStream();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.addListener(new DefaultLogger(testInfoOutputStream,
+            true, testErrorOutputStream, true));
+
+        final File tmpFile = temporaryFolder.newFile("file.java");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
+
+        assertEquals(1, testInfoOutputStream.getCloseCount());
+        assertEquals(3, testInfoOutputStream.getFlushCount());
+        assertEquals(1, testErrorOutputStream.getCloseCount());
+        assertEquals(1, testErrorOutputStream.getFlushCount());
+    }
+
+    @Test
+    public void testXmlLoggerClosesItStreams() throws Exception {
+        final Checker checker = new Checker();
+        final CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
+            new CloseAndFlushTestByteArrayOutputStream();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.addListener(new XMLLogger(testInfoOutputStream, true));
+
+        final File tmpFile = temporaryFolder.newFile("file.java");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
+
+        assertEquals(1, testInfoOutputStream.getCloseCount());
+        assertEquals(0, testInfoOutputStream.getFlushCount());
+    }
+
     private static class DummyFilter implements Filter {
 
         @Override
