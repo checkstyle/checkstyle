@@ -1963,7 +1963,7 @@
                 <!-- till https://github.com/hcoles/pitest/issues/353 -->
                 <param>fillShortToFullModuleNamesMap</param>
               </excludedMethods>
-              <mutationThreshold>89</mutationThreshold>
+              <mutationThreshold>92</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
