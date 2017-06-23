@@ -66,14 +66,6 @@
       </Or>
     </Match>
     <Match>
-      <!-- till https://github.com/checkstyle/checkstyle/issues/3666 -->
-      <and>
-        <Class name="com.puppycrawl.tools.checkstyle.api.FileContents" />
-        <Method name="~setFile[nN]ame" />
-      </and>
-      <Bug pattern="NM_CONFUSING" />
-    </Match>
-    <Match>
       <!-- false positive, beginTree is a kind of constructor for Checks -->
       <Or>
         <Class name="com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector" />
