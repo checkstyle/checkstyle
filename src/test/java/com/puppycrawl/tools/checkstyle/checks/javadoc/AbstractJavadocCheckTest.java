@@ -255,7 +255,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     private static class JavadocCatchCheck extends AbstractJavadocCheck {
         private static int javadocsNumber;
 
-        static void clearCounter() {
+        public static void clearCounter() {
             javadocsNumber = 0;
         }
 
@@ -329,7 +329,7 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         private static int visitCount;
         private static int leaveCount;
 
-        static void clearCounter() {
+        public static void clearCounter() {
             visitCount = 0;
             leaveCount = 0;
         }
