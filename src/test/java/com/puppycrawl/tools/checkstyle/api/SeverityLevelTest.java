@@ -45,10 +45,10 @@ public class SeverityLevelTest {
 
     @Test
     public void testMisc() {
-        final SeverityLevel o = SeverityLevel.getInstance("info");
-        assertNotNull(o);
-        assertEquals("info", o.toString());
-        assertEquals("info", o.getName());
+        final SeverityLevel severityLevel = SeverityLevel.getInstance("info");
+        assertNotNull(severityLevel);
+        assertEquals("info", severityLevel.toString());
+        assertEquals("info", severityLevel.getName());
 
         try {
             SeverityLevel.getInstance("unknown");
