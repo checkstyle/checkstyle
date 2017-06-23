@@ -517,7 +517,7 @@ public class MainTest {
             @Override
             public void checkAssertion() throws IOException {
                 final String expectedPath = getFilePath("main/") + File.separator;
-                final StringBuilder sb = new StringBuilder();
+                final StringBuilder sb = new StringBuilder(28);
                 sb.append("Starting audit...").append(System.getProperty("line.separator"));
                 final String format = "[WARN] %s.java:%s: %s [FileLength]";
                 for (String[] outputValue : outputValues) {
