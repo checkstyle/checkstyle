@@ -24,7 +24,8 @@ import org.junit.Test;
 
 public class FullIdentTest {
 
-    public static void testToString() {
+    @Test
+    public void testToString() {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.LITERAL_NEW);
         ast.setColumnNo(14);
