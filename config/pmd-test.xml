@@ -37,8 +37,6 @@
         <exclude name="InsufficientStringBufferDeclaration"/>
         <!--till #4494-->
         <exclude name="AppendCharacterWithChar"/>
-        <!--till #4490-->
-        <exclude name="LoggerIsNotStaticFinal"/>
         <!--till #4489-->
         <exclude name="JUnit4TestShouldUseTestAnnotation"/>
         <!--till #4496-->
