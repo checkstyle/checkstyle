@@ -117,6 +117,7 @@ public class FileSetCheckLifecycleTest
 
         @Override
         protected void processFiltered(File file, List<String> lines) {
+            //dummy method
         }
 
         @Override
