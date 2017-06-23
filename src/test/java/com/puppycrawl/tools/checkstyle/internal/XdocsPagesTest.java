@@ -738,7 +738,7 @@ public class XdocsPagesTest {
             list.add(field.get(null).toString());
         }
 
-        final StringBuilder expectedText = new StringBuilder();
+        final StringBuilder expectedText = new StringBuilder(120);
 
         for (String s : list) {
             expectedText.append(s);

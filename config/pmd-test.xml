@@ -31,8 +31,6 @@
         <exclude name="ExcessivePublicCount"/>
         <!--we have too much UTs for each main class, it is better to keep all tests in one file to ease navigation and search for test-->
         <exclude name="ExcessiveClassLength"/>
-        <!--till #4491-->
-        <exclude name="InsufficientStringBufferDeclaration"/>
         <!--till #4494-->
         <exclude name="AppendCharacterWithChar"/>
         <!--till #4488-->
