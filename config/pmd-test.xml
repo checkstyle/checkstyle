@@ -35,8 +35,6 @@
         <exclude name="UncommentedEmptyMethodBody"/>
         <!--till #4491-->
         <exclude name="InsufficientStringBufferDeclaration"/>
-        <!--till #4493-->
-        <exclude name="ConfusingTernary"/>
         <!--till #4494-->
         <exclude name="AppendCharacterWithChar"/>
         <!--till #4490-->
@@ -78,6 +76,13 @@
         <exclude name="JUnitTestsShouldIncludeAssert"/>
         <!--tentative-->
         <exclude name="JUnitAssertionsShouldIncludeMessage"/>
+    </rule>
+
+    <rule ref="config/pmd.xml/ConfusingTernary">
+        <properties>
+            <!--commit validation is a sequence of checks, if we shuffle them it would be broken-->
+            <property name="violationSuppressXPath" value="//MethodDeclaration[@Name='validateCommitMessage' and ../../..[@Image='CommitValidationTest']]"/>
+        </properties>
     </rule>
 
     <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">

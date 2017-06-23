@@ -154,25 +154,25 @@ public class DetailASTTest {
         while (curNode != null) {
             checkNode(curNode, parent, prev, filename, root);
             DetailAST toVisit = curNode.getFirstChild();
-            if (toVisit != null) {
-                parent = curNode;
-                curNode = toVisit;
-                prev = null;
-            }
-            else {
+            if (toVisit == null) {
                 while (curNode != null && toVisit == null) {
                     toVisit = curNode.getNextSibling();
-                    if (toVisit != null) {
-                        prev = curNode;
-                        curNode = toVisit;
-                    }
-                    else {
+                    if (toVisit == null) {
                         curNode = curNode.getParent();
                         if (curNode != null) {
                             parent = curNode.getParent();
                         }
                     }
+                    else {
+                        prev = curNode;
+                        curNode = toVisit;
+                    }
                 }
+            }
+            else {
+                parent = curNode;
+                curNode = toVisit;
+                prev = null;
             }
         }
     }
