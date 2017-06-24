@@ -57,6 +57,10 @@
         <exclude name="ShortMethodName"/>
         <!--tentative-->
         <exclude name="AvoidCatchingGenericException"/>
+        <!--tentative-->
+        <exclude name="NonThreadSafeSingleton"/>
+        <!--tentative-->
+        <exclude name="UseVarargs"/>
     </rule>
 
     <rule ref="rulesets/java/codesize.xml/NcssMethodCount">

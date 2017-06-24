@@ -356,7 +356,7 @@
               <ruleset>config/pmd-test.xml</ruleset>
             </rulesets>
             <excludeRoots>
-              <excludeRoot>src/it</excludeRoot>
+              <excludeRoot>src/it/resources</excludeRoot>
               <excludeRoot>src/test/resources</excludeRoot>
               <excludeRoot>target/generated-sources/antlr</excludeRoot>
               <excludeRoot>target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammars/javadoc</excludeRoot>
