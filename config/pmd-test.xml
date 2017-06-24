@@ -31,8 +31,6 @@
         <exclude name="ExcessivePublicCount"/>
         <!--we have too much UTs for each main class, it is better to keep all tests in one file to ease navigation and search for test-->
         <exclude name="ExcessiveClassLength"/>
-        <!--till #4488-->
-        <exclude name="UselessOverridingMethod"/>
         <!--tentative-->
         <exclude name="JUnitUseExpected"/>
         <!--tentative-->
