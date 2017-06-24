@@ -52,7 +52,8 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
-        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals("Required tokens array is not empty",
+                CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -61,7 +62,8 @@ public class OneTopLevelClassCheckTest extends BaseCheckTestSupport {
         check.getAcceptableTokens();
         // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to
         // Tokens
-        Assert.assertEquals(0, check.getAcceptableTokens().length);
+        Assert.assertEquals("Acceptable tokens array size larger than 0",
+                0, check.getAcceptableTokens().length);
     }
 
     @Test
