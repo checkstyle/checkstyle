@@ -59,8 +59,11 @@ public class SummaryJavadocTest extends BaseCheckTestSupport {
 
         final String[] expected = {
             "14: " + msgFirstSentence,
+            "32: " + msgFirstSentence,
             "37: " + msgFirstSentence,
             "47: " + msgForbiddenFragment,
+            "53: " + msgFirstSentence,
+            "58: " + msgFirstSentence,
             "58: " + msgForbiddenFragment,
             "69: " + msgFirstSentence,
             "83: " + msgForbiddenFragment,

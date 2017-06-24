@@ -16,6 +16,7 @@ class InputCorrectSummaryJavaDoc {
     void foo3() {}
     
     /**
+     * This is first line of javadoc.
      * @throws Exception if an error occurs.
      */
     void foo4() throws Exception {}
@@ -48,7 +49,8 @@ class InputCorrectSummaryJavaDoc {
      */
     void foo10() {}
 
-    /** 
+    /**
+     * This is first line of javadoc.
      * <a href="mailto:vlad@htmlbook.ru"/> 
      */
      class InnerInputCorrectJavaDocParagraphCheck {
@@ -65,11 +67,12 @@ class InputCorrectSummaryJavaDoc {
         public static final byte NUL_2 = 0;
 
         /**
-         * Returns the customer ID. This method returns
+         * Returns the customer ID. This method returns.
          */
         int getId() {return 666;}
         
         /**
+         * This is first line of java doc.
          * <a href="mailto:vlad@htmlbook.ru"/>.
          */
         void foo2() {}
@@ -81,6 +84,7 @@ class InputCorrectSummaryJavaDoc {
         void foo3() {}
         
         /**
+         * This is first line of javadoc.
          * @throws Exception if an error occurs.
          */
         void foo4() throws Exception {}
@@ -93,7 +97,7 @@ class InputCorrectSummaryJavaDoc {
 
         /**
          * An especially short (int... A) bit of Javadoc. This
-         * method returns
+         * method returns.
          */
         void foo6() {}
     }
@@ -124,6 +128,7 @@ class InputCorrectSummaryJavaDoc {
         void foo3() {}
         
         /**
+         * This is first line of java doc.
          * @throws Exception if an error occurs.
          */
         void foo4() throws Exception {}
@@ -147,11 +152,13 @@ class InputCorrectSummaryJavaDoc {
         boolean emulated1() {return false;}
         
         /**
+         * This is first line of javadoc.
          * @return Some Javadoc the customer ID.
          */
         int geId() {return 666;} 
         
         /**
+         * This is first line of javadoc.
          * @return Sentence one. Sentence two.
          */
         String twoSentences() {return "Sentence one. Sentence two.";} 

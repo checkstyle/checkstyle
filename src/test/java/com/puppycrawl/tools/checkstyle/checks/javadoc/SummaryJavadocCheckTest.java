@@ -70,8 +70,11 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "32: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "53: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "47: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "58: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "83: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
@@ -107,7 +110,10 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "32: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "37: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "53: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "58: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "103: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "116: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
@@ -118,5 +124,17 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
 
         createChecker(checkConfig);
         verify(checkConfig, getPath("InputIncorrectSummaryJavaDoc.java"), expected);
+    }
+
+    @Test
+    public void testCustomPeriod() throws Exception {
+        checkConfig.addAttribute("period", "!");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "27: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verify(checkConfig, getPath("InputSummaryJavadocCustomPeriod.java"), expected);
     }
 }

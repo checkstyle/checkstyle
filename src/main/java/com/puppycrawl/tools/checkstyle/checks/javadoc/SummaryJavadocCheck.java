@@ -152,10 +152,31 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         else {
             firstSentence = firstSentence.substring(0, endOfSentence);
+            if (!isPeridAtEndOfSentence(ast)) {
+                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+            }
             if (containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
+    }
+
+    /**
+     * Finds if period is placed at the end of sentence.
+     * @param ast Javadoc root node.
+     * @return true if period is at the end of sentence or false.
+     */
+    private boolean isPeridAtEndOfSentence(DetailNode ast) {
+        final StringBuilder sentence = new StringBuilder();
+        for (DetailNode child : ast.getChildren()) {
+            if(child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
+                    || child.getType() == JavadocTokenTypes.TEXT) {
+                sentence.append(child.getText());
+            }
+        }
+        String sentenceAfterTrim = sentence.toString().trim();
+        return sentenceAfterTrim.lastIndexOf(period) + period.length() == sentenceAfterTrim.length()
+                && !sentenceAfterTrim.isEmpty();
     }
 
     /**

@@ -7,7 +7,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
 class InputIncorrectSummaryJavaDocCheck {
     
     /**
-     * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+     * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
      */
     void foo3() {}
     
@@ -29,7 +29,7 @@ class InputIncorrectSummaryJavaDocCheck {
      */
     public static final byte NUL = 0;
 
-    /** 
+/*warn*//**
      * <a href="mailto:vlad@htmlbook.ru"/> 
      */
      class InnerInputCorrectJavaDocParagraphCheck {
@@ -50,7 +50,7 @@ class InputIncorrectSummaryJavaDocCheck {
          */
         boolean emulated() {return false;}
         
-        /**
+/*warn*//**
          * <a href="mailto:vlad@htmlbook.ru"/>
          */
         void foo2() {}
@@ -62,7 +62,7 @@ class InputIncorrectSummaryJavaDocCheck {
         int geId() {return 666;} 
 
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
         
@@ -96,7 +96,7 @@ class InputIncorrectSummaryJavaDocCheck {
         void emulated(String s) {}
         
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
+         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
         
