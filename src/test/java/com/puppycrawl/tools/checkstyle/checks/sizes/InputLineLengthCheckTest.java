@@ -51,13 +51,17 @@ public class InputLineLengthCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final LineLengthCheck checkObj = new LineLengthCheck();
-        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(
+            "LineLengthCheck#getRequiredTockens should return empty array by default",
+            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final LineLengthCheck checkObj = new LineLengthCheck();
-        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
+        assertArrayEquals(
+            "LineLengthCheck#getAcceptableTockens should return empty array by default",
+            CommonUtils.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
     }
 
     @Test

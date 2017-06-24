@@ -50,7 +50,8 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -64,7 +65,7 @@ public class OuterTypeNumberCheckTest extends BaseCheckTestSupport {
             TokenTypes.ANNOTATION_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

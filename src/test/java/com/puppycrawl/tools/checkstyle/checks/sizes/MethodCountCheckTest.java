@@ -49,7 +49,8 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         final MethodCountCheck checkObj = new MethodCountCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -65,7 +66,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             TokenTypes.METHOD_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test
