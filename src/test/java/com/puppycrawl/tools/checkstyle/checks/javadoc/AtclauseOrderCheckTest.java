@@ -43,14 +43,16 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertArrayEquals(expected, checkObj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, checkObj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test

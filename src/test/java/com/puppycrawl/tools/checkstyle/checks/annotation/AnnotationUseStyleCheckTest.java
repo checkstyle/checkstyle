@@ -55,7 +55,8 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
     public void testElementStyleValueOf() {
         final AnnotationUseStyleCheck.ElementStyle option =
             AnnotationUseStyleCheck.ElementStyle.valueOf("COMPACT");
-        assertEquals(AnnotationUseStyleCheck.ElementStyle.COMPACT, option);
+        assertEquals("Invalid valueOf result",
+            AnnotationUseStyleCheck.ElementStyle.COMPACT, option);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -66,7 +67,8 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
     public void testTrailingArrayCommaValueOf() {
         final AnnotationUseStyleCheck.TrailingArrayComma option =
             AnnotationUseStyleCheck.TrailingArrayComma.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.TrailingArrayComma.ALWAYS, option);
+        assertEquals("Invalid valueOf result",
+            AnnotationUseStyleCheck.TrailingArrayComma.ALWAYS, option);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -77,7 +79,8 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
     public void testClosingParensValueOf() {
         final AnnotationUseStyleCheck.ClosingParens option =
             AnnotationUseStyleCheck.ClosingParens.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.ClosingParens.ALWAYS, option);
+        assertEquals("Invalid valueOf result",
+            AnnotationUseStyleCheck.ClosingParens.ALWAYS, option);
     }
 
     /**
@@ -269,7 +272,10 @@ public class AnnotationUseStyleCheckTest extends BaseCheckTestSupport {
             Assert.fail("ConversionException is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertTrue(ex.getMessage().startsWith("unable to parse"));
+            final String messageStart = "unable to parse";
+
+            assertTrue("Invalid exception message, should start with: " + messageStart,
+                ex.getMessage().startsWith(messageStart));
         }
     }
 

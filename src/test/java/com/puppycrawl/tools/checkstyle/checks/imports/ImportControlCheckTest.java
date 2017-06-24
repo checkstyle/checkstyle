@@ -71,7 +71,8 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -138,7 +139,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to find: "));
+            final String messageStart = "Unable to find: ";
+
+            assertTrue("Invalid message, should start with: " + messageStart,
+                message.startsWith(message));
         }
     }
 
@@ -153,7 +157,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to load "));
+            final String messageStart = "Unable to load ";
+
+            assertTrue("Invalid message, should start with: " + messageStart,
+                message.startsWith(message));
         }
     }
 
@@ -276,7 +283,7 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
             TokenTypes.STATIC_IMPORT,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test
@@ -318,7 +325,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to load "));
+            final String messageStart = "Unable to load ";
+
+            assertTrue("Invalid message, should start with: " + messageStart,
+                message.startsWith(message));
         }
     }
 
@@ -334,7 +344,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to find: "));
+            final String messageStart = "Unable to find: ";
+
+            assertTrue("Invalid message, should start with: " + messageStart,
+                message.startsWith(message));
         }
     }
 
@@ -359,7 +372,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to find: "));
+            final String messageStart = "Unable to find: ";
+
+            assertTrue("Invalid message, should start with: " + messageStart,
+                message.startsWith(message));
         }
     }
 
@@ -384,7 +400,10 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
-            assertTrue(message.startsWith("Unable to load "));
+            final String messageStart = "Unable to load ";
+
+            assertTrue("Invalid message, should start with: " + messageStart,
+                message.startsWith(message));
         }
     }
 

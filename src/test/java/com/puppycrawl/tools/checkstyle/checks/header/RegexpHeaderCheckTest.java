@@ -117,9 +117,8 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
                     IllegalArgumentException.class));
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Unable to parse format: ^/**\\n *"
-                    + " Licensed to the Apache Software Foundation (ASF)",
-                    ex.getMessage());
+            assertEquals("Invalid exception message", "Unable to parse format: ^/**\\n *"
+                + " Licensed to the Apache Software Foundation (ASF)", ex.getMessage());
         }
     }
 
@@ -140,7 +139,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Checker creation should not succeed with invalid headerFile");
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module"
+            assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
                     + " - Cannot set property 'headerFile' to '' in"
                     + " module com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
@@ -192,7 +191,7 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Checker creation should not succeed when regexp spans multiple lines");
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module"
+            assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
                     + " - Cannot set property 'header' to '^(.*\\n.*)' in module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
@@ -324,8 +323,8 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("line 1 in header specification is not a regular expression",
-                    ex.getMessage());
+            assertEquals("Invalid exception message",
+                "line 1 in header specification is not a regular expression", ex.getMessage());
         }
     }
 

@@ -42,14 +42,16 @@ public class SingleLineJavadocCheckTest extends BaseCheckTestSupport {
     public void testAcceptableTokens() {
         final SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertArrayEquals(expected, checkObj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, checkObj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
         final SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test

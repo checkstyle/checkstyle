@@ -243,7 +243,7 @@ public class MissingOverrideCheckTest extends BaseCheckTestSupport {
         final int[] expectedTokens = {TokenTypes.METHOD_DEF };
         final MissingOverrideCheck check = new MissingOverrideCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertEquals(1, actual.length);
-        Assert.assertArrayEquals(expectedTokens, actual);
+        assertEquals("Invalid acceptable token size", 1, actual.length);
+        Assert.assertArrayEquals("Default required tokens are invalid", expectedTokens, actual);
     }
 }

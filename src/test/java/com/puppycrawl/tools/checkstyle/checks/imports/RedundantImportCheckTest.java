@@ -55,7 +55,8 @@ public class RedundantImportCheckTest
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -100,6 +101,6 @@ public class RedundantImportCheckTest
             TokenTypes.PACKAGE_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 }

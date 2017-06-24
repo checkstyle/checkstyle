@@ -52,7 +52,8 @@ public class ModifierOrderCheckTest
     public void testGetRequiredTokens() {
         final ModifierOrderCheck checkObj = new ModifierOrderCheck();
         final int[] expected = {TokenTypes.MODIFIERS};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -89,7 +90,7 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default default tokens are invalid", expected, actual);
         final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
         Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);
@@ -105,7 +106,7 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
         final int[] unexpectedEmptyArray = CommonUtils.EMPTY_INT_ARRAY;
         Assert.assertNotSame(unexpectedEmptyArray, actual);
         Assert.assertNotSame(unexpectedArray, actual);

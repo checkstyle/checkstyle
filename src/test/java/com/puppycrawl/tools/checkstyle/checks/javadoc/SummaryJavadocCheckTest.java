@@ -52,7 +52,8 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         final SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test

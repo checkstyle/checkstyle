@@ -50,7 +50,9 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
-        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens());
+        assertArrayEquals(
+            "JavadocTypeCheck#getRequiredTockens should return empty array by default",
+            CommonUtils.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens());
     }
 
     @Test
@@ -65,7 +67,7 @@ public class JavadocTypeCheckTest extends BaseCheckTestSupport {
             TokenTypes.ANNOTATION_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

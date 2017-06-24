@@ -55,7 +55,8 @@ public class FinalClassCheckTest
     public void testGetRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -116,6 +117,7 @@ public class FinalClassCheckTest
     public void testGetAcceptableTokens() {
         final FinalClassCheck obj = new FinalClassCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 }

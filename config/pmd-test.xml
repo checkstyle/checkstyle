@@ -71,8 +71,6 @@
     <rule ref="rulesets/java/junit.xml">
         <!--tentative-->
         <exclude name="JUnitTestsShouldIncludeAssert"/>
-        <!--tentative-->
-        <exclude name="JUnitAssertionsShouldIncludeMessage"/>
     </rule>
 
     <rule ref="config/pmd.xml/ConfusingTernary">
