@@ -157,7 +157,6 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.setTabWidth(1);
         treeWalker.configure(new DefaultConfiguration("default config"));
-        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
     }
 
     @Test
