@@ -107,12 +107,15 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith(
+            final String messageStart =
                 "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "Cannot set property 'excludedPackages' to "
                     + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.' in module "
                     + "com.puppycrawl.tools.checkstyle.checks.metrics."
-                    + "ClassFanOutComplexityCheck"));
+                    + "ClassFanOutComplexityCheck";
+
+            assertTrue("Invalid exception message, should start with: " + messageStart,
+                ex.getMessage().startsWith(messageStart));
         }
     }
 

@@ -54,7 +54,8 @@ public class JavadocParagraphCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         final JavadocParagraphCheck checkObj = new JavadocParagraphCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test

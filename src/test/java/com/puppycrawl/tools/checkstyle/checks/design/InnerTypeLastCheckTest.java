@@ -44,7 +44,8 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
     public void testGetRequiredTokens() {
         final InnerTypeLastCheck checkObj = new InnerTypeLastCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -65,6 +66,7 @@ public class InnerTypeLastCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         final InnerTypeLastCheck obj = new InnerTypeLastCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 }

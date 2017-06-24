@@ -71,7 +71,7 @@ public class JavadocMethodCheckTest extends BaseCheckTestSupport {
             TokenTypes.ANNOTATION_FIELD_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

@@ -66,7 +66,7 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
     @Test
     public void testImportOrderOptionValueOf() {
         final ImportOrderOption option = ImportOrderOption.valueOf("TOP");
-        assertEquals(ImportOrderOption.TOP, option);
+        assertEquals("Invalid valueOf result", ImportOrderOption.TOP, option);
     }
 
     @Test
@@ -147,9 +147,12 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith(
-                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                            + "Cannot set property 'option' to 'invalid_option' in module"));
+            final String messageStart = "cannot initialize module "
+                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
+                + "'invalid_option' in module";
+
+            assertTrue("Invalid exception message, should start with: " + messageStart,
+                ex.getMessage().startsWith(messageStart));
         }
     }
 
@@ -408,9 +411,12 @@ public class ImportOrderCheckTest extends BaseCheckTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith(
-                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                            + "Cannot set property 'groups' to '/^javax' in module"));
+            final String messageStart = "cannot initialize module "
+                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property"
+                + " 'groups' to '/^javax' in module";
+
+            assertTrue("Invalid exception message, should start with: " + messageStart,
+                ex.getMessage().startsWith(messageStart));
         }
     }
 

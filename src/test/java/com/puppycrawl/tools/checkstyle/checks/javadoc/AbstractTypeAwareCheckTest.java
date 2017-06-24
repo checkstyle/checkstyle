@@ -61,7 +61,8 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         final Method isSubclass = check.getClass().getSuperclass()
                 .getDeclaredMethod("isSubclass", Class.class, Class.class);
         isSubclass.setAccessible(true);
-        assertFalse((boolean) isSubclass.invoke(check, null, null));
+        assertFalse("Should return false if at least one of the params is null",
+            (boolean) isSubclass.invoke(check, null, null));
     }
 
     @Test
@@ -73,7 +74,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
         final Method toString = token.getClass().getDeclaredMethod("toString");
         final String result = (String) toString.invoke(token);
-        assertEquals("Token[blablabla(1x1)]", result);
+        assertEquals("Invalid toString result", "Token[blablabla(1x1)]", result);
     }
 
     @Test
@@ -92,8 +93,10 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
             regularClassConstructor.newInstance(null, "", new JavadocMethodCheck());
         }
         catch (InvocationTargetException ex) {
-            assertTrue(ex.getCause() instanceof IllegalArgumentException);
-            assertEquals("ClassInfo's name should be non-null", ex.getCause().getMessage());
+            assertTrue("Invalid exception class, expected: IllegalArgumentException.class",
+                ex.getCause() instanceof IllegalArgumentException);
+            assertEquals("Invalid exception message",
+                "ClassInfo's name should be non-null", ex.getCause().getMessage());
         }
 
         final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
@@ -106,8 +109,9 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         final Method toString = regularClass.getClass().getDeclaredMethod("toString");
         toString.setAccessible(true);
         final String result = (String) toString.invoke(regularClass);
-        assertEquals("RegularClass[name=Token[blablabla(1x1)], in class=sur, loadable=true,"
-                + " class=null]", result);
+        assertEquals("Invalid toString result",
+            "RegularClass[name=Token[blablabla(1x1)], in class=sur, loadable=true, class=null]",
+            result);
 
         final Method setClazz = regularClass.getClass().getDeclaredMethod("setClazz", Class.class);
         setClazz.setAccessible(true);
@@ -116,7 +120,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
 
         final Method getClazz = regularClass.getClass().getDeclaredMethod("getClazz");
         getClazz.setAccessible(true);
-        assertNull(getClazz.invoke(regularClass));
+        assertNull("Expected null", getClazz.invoke(regularClass));
     }
 
     @Test
@@ -151,7 +155,8 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         final Method toString = classAlias.getClass().getDeclaredMethod("toString");
         toString.setAccessible(true);
         final String result = (String) toString.invoke(classAlias);
-        assertEquals("ClassAlias[alias Token[blablabla(1x1)] for Token[blablabla(1x1)]]", result);
+        assertEquals("Invalid toString result",
+            "ClassAlias[alias Token[blablabla(1x1)] for Token[blablabla(1x1)]]", result);
     }
 
     @Test
@@ -167,8 +172,9 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         }
         catch (CheckstyleException ex) {
             final IllegalStateException cause = (IllegalStateException) ex.getCause();
-            assertEquals(getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
-                    cause.getMessage());
+            assertEquals("Invalid exception message",
+                getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
+                cause.getMessage());
         }
     }
 

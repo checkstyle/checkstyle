@@ -48,7 +48,7 @@ public class JavadocVariableCheckTest
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default required tokens are invalid", expected, actual);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class JavadocVariableCheckTest
             TokenTypes.ENUM_CONSTANT_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

@@ -45,7 +45,9 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
-        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(
+            "AnnotationLocationCheck#getRequiredTockens should return empty array by default",
+            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -104,7 +106,7 @@ public class AnnotationLocationCheckTest extends BaseCheckTestSupport {
             TokenTypes.DOT,
             TokenTypes.ANNOTATION_FIELD_DEF,
             };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

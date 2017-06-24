@@ -46,7 +46,8 @@ public class DesignForExtensionCheckTest
     public void testGetRequiredTokens() {
         final DesignForExtensionCheck checkObj = new DesignForExtensionCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -65,7 +66,8 @@ public class DesignForExtensionCheckTest
     public void testGetAcceptableTokens() {
         final DesignForExtensionCheck obj = new DesignForExtensionCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 
     @Test

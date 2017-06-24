@@ -61,7 +61,8 @@ public class VisibilityModifierCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -327,7 +328,8 @@ public class VisibilityModifierCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
         };
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 
     @Test
@@ -390,7 +392,8 @@ public class VisibilityModifierCheckTest
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Unexpected token type: class", ex.getMessage());
+            assertEquals("Invalid exception message",
+                "Unexpected token type: class", ex.getMessage());
         }
     }
 

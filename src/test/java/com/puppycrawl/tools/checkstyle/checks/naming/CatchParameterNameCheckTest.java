@@ -47,8 +47,10 @@ public class CatchParameterNameCheckTest extends BaseCheckTestSupport {
         final CatchParameterNameCheck catchParameterNameCheck = new CatchParameterNameCheck();
         final int[] expected = {TokenTypes.PARAMETER_DEF};
 
-        assertArrayEquals(expected, catchParameterNameCheck.getRequiredTokens());
-        assertArrayEquals(expected, catchParameterNameCheck.getAcceptableTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, catchParameterNameCheck.getRequiredTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, catchParameterNameCheck.getAcceptableTokens());
     }
 
     @Test

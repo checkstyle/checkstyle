@@ -111,12 +111,15 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith(
+            final String messageStart =
                 "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "Cannot set property 'excludedPackages' to "
                     + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.' in module "
                     + "com.puppycrawl.tools.checkstyle.checks.metrics."
-                    + "ClassDataAbstractionCouplingCheck"));
+                    + "ClassDataAbstractionCouplingCheck";
+
+            assertTrue("Invalid exception message, should start with: " + messageStart,
+                ex.getMessage().startsWith(messageStart));
         }
     }
 
@@ -157,7 +160,8 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Unknown type: ctor[0x-1]", ex.getMessage());
+            assertEquals("Invalid exception message",
+                "Unknown type: ctor[0x-1]", ex.getMessage());
         }
     }
 

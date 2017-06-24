@@ -68,7 +68,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
     @Test
     public void testLineSeparatorOptionValueOf() {
         final LineSeparatorOption option = LineSeparatorOption.valueOf("CR");
-        assertEquals(LineSeparatorOption.CR, option);
+        assertEquals("Invalid valueOf result", LineSeparatorOption.CR, option);
     }
 
     /**
@@ -100,7 +100,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         final int stringNumber =
                 UniquePropertiesCheck.getLineNumber(testStrings,
                         "some key");
-        assertEquals(0, stringNumber);
+        assertEquals("Invalid string number", 0, stringNumber);
     }
 
     /**
@@ -140,10 +140,11 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         final Object result = method.invoke(uniqueProperties, 1, "value");
         final Map<Object, Object> table = new HashMap<>();
         final Object expected = table.put(1, "value");
-        assertEquals(expected, result);
+        assertEquals("Invalid result of put method", expected, result);
+
         final Object result2 = method.invoke(uniqueProperties, 1, "value");
         final Object expected2 = table.put(1, "value");
-        assertEquals(expected2, result2);
+        assertEquals("Value should be substituted", expected2, result2);
     }
 
     /**

@@ -183,7 +183,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(requiredTokens);
-        assertArrayEquals(expected, requiredTokens);
+        assertArrayEquals("Default required tokens are invalid", expected, requiredTokens);
     }
 
     @Test
@@ -194,7 +194,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(acceptableTokens);
-        assertArrayEquals(expected, acceptableTokens);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, acceptableTokens);
     }
 
     @Test
@@ -203,7 +203,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
 
         indentationCheck.setThrowsIndent(1);
 
-        assertEquals(1, indentationCheck.getThrowsIndent());
+        assertEquals("Invalid throws indent", 1, indentationCheck.getThrowsIndent());
     }
 
     @Test

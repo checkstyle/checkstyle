@@ -74,14 +74,16 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final int[] expected = {TokenTypes.LITERAL_THROWS};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final int[] expected = {TokenTypes.LITERAL_THROWS};
-        assertArrayEquals(expected, obj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, obj.getRequiredTokens());
     }
 
     @Test
@@ -94,7 +96,7 @@ public class ThrowsCountCheckTest extends BaseCheckTestSupport {
             fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals(ast.toString(), ex.getMessage());
+            assertEquals("Invalid exception message", ast.toString(), ex.getMessage());
         }
     }
 

@@ -57,7 +57,8 @@ public class MissingDeprecatedCheckTest extends BaseCheckTestSupport {
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     /**
