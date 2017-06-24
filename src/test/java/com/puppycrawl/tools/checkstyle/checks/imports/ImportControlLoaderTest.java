@@ -53,20 +53,23 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 @PrepareForTest({ImportControlLoader.class, URI.class})
 public class ImportControlLoaderTest {
     private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/checks/imports/" + filename;
+        return "src/test/resources/com/puppycrawl/tools/"
+                + "checkstyle/checks/imports/importcontrolloader/" + filename;
     }
 
     @Test
     public void testLoad() throws CheckstyleException {
         final ImportControl root =
-                ImportControlLoader.load(new File(getPath("import-control_complete.xml")).toURI());
+                ImportControlLoader.load(
+                new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
         assertNotNull(root);
     }
 
     @Test
     public void testWrongFormatUri() throws Exception {
         try {
-            ImportControlLoader.load(new URI("aaa://" + getPath("import-control_complete.xml")));
+            ImportControlLoader.load(new URI("aaa://"
+                    + getPath("InputImportControlLoaderComplete.xml")));
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -79,7 +82,7 @@ public class ImportControlLoaderTest {
     public void testExtraElementInConfig() throws Exception {
         final ImportControl root =
                 ImportControlLoader.load(
-                    new File(getPath("import-control_WithNewElement.xml")).toURI());
+                    new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
         assertNotNull(root);
     }
 
@@ -118,7 +121,7 @@ public class ImportControlLoaderTest {
                 URI.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, source,
-                    new File(getPath("import-control_complete.xml")).toURI());
+                    new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
             fail("exception expected");
         }
         catch (InvocationTargetException ex) {
