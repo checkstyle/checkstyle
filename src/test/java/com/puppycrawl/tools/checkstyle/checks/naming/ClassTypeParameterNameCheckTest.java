@@ -46,7 +46,8 @@ public class ClassTypeParameterNameCheckTest
         final ClassTypeParameterNameCheck checkObj =
             new ClassTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -89,6 +90,6 @@ public class ClassTypeParameterNameCheckTest
         final int[] expected = {
             TokenTypes.TYPE_PARAMETER,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 }

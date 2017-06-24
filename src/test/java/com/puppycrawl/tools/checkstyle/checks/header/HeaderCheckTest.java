@@ -112,12 +112,15 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage()
-                    .startsWith("cannot initialize module"
-                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-                            + " - illegal value "));
-            assertTrue(ex.getCause().getCause().getCause().getMessage()
-                    .startsWith("Unable to find: "));
+            final String messageStart = "cannot initialize module"
+                + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
+                + " - illegal value ";
+            final String causeMessageStart = "Unable to find: ";
+
+            assertTrue("Invalid exception message, should start with: " + messageStart,
+                ex.getMessage().startsWith(messageStart));
+            assertTrue("Invalid exception message, should start with: " + causeMessageStart,
+                ex.getCause().getCause().getCause().getMessage().startsWith(causeMessageStart));
         }
     }
 
@@ -131,7 +134,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module"
+            assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
                     + " - Cannot set property 'charset' to 'XSO-8859-1' in module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
@@ -148,7 +151,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Checker creation should not succeed with invalid headerFile");
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module"
+            assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
                     + " - Cannot set property 'headerFile' to '' in module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
@@ -165,7 +168,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Checker creation should not succeed with null headerFile");
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module"
+            assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
                     + " - Cannot set property 'headerFile' to 'null' in module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
@@ -203,7 +206,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("ConversionException is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("header has already been set - "
+            assertEquals("Invalid exception message", "header has already been set - "
                     + "set either header or headerFile, not both", ex.getMessage());
         }
     }
@@ -219,8 +222,8 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertTrue(ex.getCause() instanceof IOException);
-            assertEquals("unable to load header", ex.getMessage());
+            assertTrue("Invalid exception cause", ex.getCause() instanceof IOException);
+            assertEquals("Invalid exception message", "unable to load header", ex.getMessage());
         }
     }
 
@@ -239,8 +242,9 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
             fail("Exception expected");
         }
         catch (InvocationTargetException ex) {
-            assertTrue(ex.getCause() instanceof CheckstyleException);
-            assertTrue(ex.getCause().getMessage().startsWith("unable to load header file "));
+            assertTrue("Invalid exception cause", ex.getCause() instanceof CheckstyleException);
+            assertTrue("Invalid exception cause message",
+                ex.getCause().getMessage().startsWith("unable to load header file "));
         }
     }
 

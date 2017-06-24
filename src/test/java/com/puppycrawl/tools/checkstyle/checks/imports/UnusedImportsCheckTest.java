@@ -147,7 +147,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
             TokenTypes.VARIABLE_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default required tokens are invalid", expected, actual);
     }
 
     @Test
@@ -172,7 +172,7 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
             TokenTypes.VARIABLE_DEF,
         };
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

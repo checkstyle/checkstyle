@@ -90,7 +90,8 @@ public class BooleanExpressionComplexityCheckTest extends BaseCheckTestSupport {
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Unknown type: interface[0x-1]", ex.getMessage());
+            assertEquals("Invalid exception message",
+                "Unknown type: interface[0x-1]", ex.getMessage());
         }
     }
 }

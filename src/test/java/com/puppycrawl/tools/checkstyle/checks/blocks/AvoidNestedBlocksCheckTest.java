@@ -43,7 +43,8 @@ public class AvoidNestedBlocksCheckTest
     public void testGetRequiredTokens() {
         final AvoidNestedBlocksCheck checkObj = new AvoidNestedBlocksCheck();
         final int[] expected = {TokenTypes.SLIST};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -80,6 +81,6 @@ public class AvoidNestedBlocksCheckTest
         final AvoidNestedBlocksCheck constantNameCheckObj = new AvoidNestedBlocksCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.SLIST };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 }

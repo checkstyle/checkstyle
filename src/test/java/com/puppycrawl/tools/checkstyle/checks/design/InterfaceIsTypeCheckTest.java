@@ -69,13 +69,15 @@ public class InterfaceIsTypeCheckTest
     public void testGetAcceptableTokens() {
         final InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         final int[] expected = {TokenTypes.INTERFACE_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
         final InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         final int[] expected = {TokenTypes.INTERFACE_DEF};
-        assertArrayEquals(expected, obj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, obj.getRequiredTokens());
     }
 }

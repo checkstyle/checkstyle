@@ -104,7 +104,7 @@ public class AvoidStarImportCheckTest
                 new AvoidStarImportCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test
@@ -114,6 +114,6 @@ public class AvoidStarImportCheckTest
         final int[] actual = testCheckObject.getRequiredTokens();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default required tokens are invalid", expected, actual);
     }
 }

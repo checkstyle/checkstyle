@@ -56,7 +56,8 @@ public class ConstantNameCheckTest
     public void testGetRequiredTokens() {
         final ConstantNameCheck checkObj = new ConstantNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -70,7 +71,7 @@ public class ConstantNameCheckTest
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module"
+            assertEquals("Invalid exception message", "cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - illegal value"
                     + " '\\' for property 'format' of module"
                     + " com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
@@ -170,7 +171,7 @@ public class ConstantNameCheckTest
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        Assert.assertNotNull(actual);
-        assertArrayEquals(expected, actual);
+        Assert.assertNotNull("Default acceptable should not be null", actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 }

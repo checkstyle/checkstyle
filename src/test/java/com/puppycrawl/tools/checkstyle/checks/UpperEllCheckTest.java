@@ -43,7 +43,8 @@ public class UpperEllCheckTest
     public void testGetRequiredTokens() {
         final UpperEllCheck checkObj = new UpperEllCheck();
         final int[] expected = {TokenTypes.NUM_LONG};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -62,7 +63,7 @@ public class UpperEllCheckTest
         final int[] expected = {TokenTypes.NUM_LONG };
         final UpperEllCheck check = new UpperEllCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertEquals(1, actual.length);
-        assertArrayEquals(expected, actual);
+        assertEquals("Invalid size of tokens", 1, actual.length);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 }

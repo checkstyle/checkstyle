@@ -47,7 +47,8 @@ public class HideUtilityClassConstructorCheckTest
         final HideUtilityClassConstructorCheck checkObj =
             new HideUtilityClassConstructorCheck();
         final int[] expected = {TokenTypes.CLASS_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -147,6 +148,7 @@ public class HideUtilityClassConstructorCheckTest
     public void testGetAcceptableTokens() {
         final HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
         final int[] expected = {TokenTypes.CLASS_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 }

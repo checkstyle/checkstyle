@@ -83,14 +83,16 @@ public class MutableExceptionCheckTest extends BaseCheckTestSupport {
     public void testGetAcceptableTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens());
+        assertArrayEquals("Default acceptable tokens are invalid",
+            expected, obj.getAcceptableTokens());
     }
 
     @Test
     public void testGetRequiredTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals(expected, obj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, obj.getRequiredTokens());
     }
 
     @Test
