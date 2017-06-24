@@ -58,7 +58,8 @@ public class EmptyForInitializerPadCheckTest
     public void testGetRequiredTokens() {
         final EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
         final int[] expected = {TokenTypes.FOR_INIT};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -86,7 +87,7 @@ public class EmptyForInitializerPadCheckTest
         final int[] expected = {
             TokenTypes.FOR_INIT,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -96,7 +97,7 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testPadOptionValueOf() {
         final PadOption option = PadOption.valueOf("NOSPACE");
-        assertEquals(PadOption.NOSPACE, option);
+        assertEquals("Result of valueOf is invalid", PadOption.NOSPACE, option);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -106,7 +107,7 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testWrapOptionValueOf() {
         final WrapOption option = WrapOption.valueOf("EOL");
-        assertEquals(WrapOption.EOL, option);
+        assertEquals("Result of valueOf is invalid", WrapOption.EOL, option);
     }
 
     @Test
@@ -120,9 +121,11 @@ public class EmptyForInitializerPadCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith(
-                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                            + "Cannot set property 'option' to 'invalid_option' in module"));
+            final String messageStart = "cannot initialize module "
+                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
+                + "'invalid_option' in module";
+            assertTrue("Invalid exception message, should start with: ",
+                ex.getMessage().startsWith(messageStart));
         }
     }
 }

@@ -235,8 +235,9 @@ public class RegexpOnFilenameCheckTest extends BaseFileSetCheckTestSupport {
             fail("CheckstyleException expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("unable to create canonical path names for " + file.getAbsolutePath(),
-                    ex.getMessage());
+            assertEquals("Invalid exception message",
+                "unable to create canonical path names for " + file.getAbsolutePath(),
+                ex.getMessage());
         }
     }
 }

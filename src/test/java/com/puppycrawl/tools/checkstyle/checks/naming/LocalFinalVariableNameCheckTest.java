@@ -46,7 +46,9 @@ public class LocalFinalVariableNameCheckTest
     public void testGetRequiredTokens() {
         final LocalFinalVariableNameCheck checkObj =
             new LocalFinalVariableNameCheck();
-        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(
+            "LocalFinalVariableNameCheck#getRequiredTockens should return empty array by default",
+            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -97,7 +99,7 @@ public class LocalFinalVariableNameCheckTest
             TokenTypes.PARAMETER_DEF,
             TokenTypes.RESOURCE,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

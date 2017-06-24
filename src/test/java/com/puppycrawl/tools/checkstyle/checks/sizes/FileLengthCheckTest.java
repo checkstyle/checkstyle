@@ -87,7 +87,7 @@ public class FileLengthCheckTest
         }
         catch (CheckstyleException ex) {
             // Expected Exception because of illegal argument for "max"
-            assertEquals("cannot initialize module"
+            assertEquals("Invalid exception message", "cannot initialize module"
                 + " com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck"
                 + " - illegal value 'abc' for property 'max' of module"
                 + " com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
@@ -119,7 +119,8 @@ public class FileLengthCheckTest
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Extensions array can not be null", ex.getMessage());
+            assertEquals("Invalid exception message",
+                "Extensions array can not be null", ex.getMessage());
         }
     }
 }

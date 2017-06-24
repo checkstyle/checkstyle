@@ -62,7 +62,8 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertEquals(fc2, fc);
+        assertEquals("No suppressions should be loaded, but found: " + fc.getFilters().size(),
+            fc2, fc);
     }
 
     @Test
@@ -85,7 +86,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         // when https://github.com/jayway/powermock/issues/428 will be fixed
         if (actualFilterSet != null) {
             final FilterSet expectedFilterSet = new FilterSet();
-            assertEquals(expectedFilterSet, actualFilterSet);
+            assertEquals("Failed to load from url", expectedFilterSet, actualFilterSet);
         }
     }
 
@@ -96,7 +97,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to find: http", ex.getMessage());
+            assertEquals("Invalid error message", "Unable to find: http", ex.getMessage());
         }
     }
 
@@ -107,7 +108,8 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to find: http://^%$^* %&% %^&", ex.getMessage());
+            assertEquals("Invalid error message",
+                "Unable to find: http://^%$^* %&% %^&", ex.getMessage());
         }
     }
 
@@ -133,7 +135,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         se3.setLines("1,2-3");
         se3.setColumns("1,2-3");
         fc2.addFilter(se3);
-        assertEquals(fc2, fc);
+        assertEquals("Multiple suppressions were loaded incorrectly", fc2, fc);
     }
 
     @Test
@@ -143,9 +145,13 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to parse " + fn));
-            assertTrue(ex.getMessage().contains("\"files\""));
-            assertTrue(ex.getMessage().contains("\"suppress\""));
+            final String messageStart = "Unable to parse " + fn;
+            assertTrue("Exception message should start with: " + messageStart,
+                ex.getMessage().startsWith("Unable to parse " + fn));
+            assertTrue("Exception message should contain \"files\"",
+                ex.getMessage().contains("\"files\""));
+            assertTrue("Exception message should contain \"suppress\"",
+                ex.getMessage().contains("\"suppress\""));
         }
     }
 
@@ -156,9 +162,13 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to parse " + fn));
-            assertTrue(ex.getMessage().contains("\"checks\""));
-            assertTrue(ex.getMessage().contains("\"suppress\""));
+            final String messageStart = "Unable to parse " + fn;
+            assertTrue("Exception message should start with: " + messageStart,
+                ex.getMessage().startsWith(messageStart));
+            assertTrue("Exception message should contain \"checks\"",
+                ex.getMessage().contains("\"checks\""));
+            assertTrue("Exception message should contain \"suppress\"",
+                ex.getMessage().contains("\"suppress\""));
         }
     }
 
@@ -255,7 +265,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
-            assertEquals(
+            assertEquals("Invalid error message",
                 "Unable to parse " + fn + " - missing checks and id attribute",
                 ex.getMessage());
         }
@@ -274,7 +284,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             SuppressionsLoader.loadSuppressions(fn);
         }
         catch (CheckstyleException ex) {
-            assertEquals(
+            assertEquals("Invalid error message",
                 "Unable to parse " + fn + " - invalid files or checks format",
                 ex.getMessage());
         }
@@ -286,6 +296,6 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertEquals(fc2, fc);
+        assertEquals("Suppressions were not loaded", fc2, fc);
     }
 }

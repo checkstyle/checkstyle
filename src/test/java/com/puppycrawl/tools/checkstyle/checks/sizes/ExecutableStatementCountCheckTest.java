@@ -145,7 +145,7 @@ public class ExecutableStatementCountCheckTest
             fail("exception expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("ENUM[0x-1]", ex.getMessage());
+            assertEquals("Invalid exception message", "ENUM[0x-1]", ex.getMessage());
         }
     }
 
@@ -161,7 +161,7 @@ public class ExecutableStatementCountCheckTest
             fail("exception expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("ENUM[0x-1]", ex.getMessage());
+            assertEquals("Invalid exception message", "ENUM[0x-1]", ex.getMessage());
         }
     }
 

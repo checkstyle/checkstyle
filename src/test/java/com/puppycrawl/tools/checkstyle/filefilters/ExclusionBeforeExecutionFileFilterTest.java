@@ -38,7 +38,7 @@ public class ExclusionBeforeExecutionFileFilterTest extends BaseCheckTestSupport
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
 
-        assertTrue(filter.accept("ATest.java"));
+        assertTrue("Should accept if file does not exist", filter.accept("ATest.java"));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class ExclusionBeforeExecutionFileFilterTest extends BaseCheckTestSupport
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
 
-        assertTrue(filter.accept("AnyJava.java"));
+        assertTrue("Should accept if file is null", filter.accept("AnyJava.java"));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ExclusionBeforeExecutionFileFilterTest extends BaseCheckTestSupport
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
 
-        assertFalse(filter.accept("ATest.java"));
+        assertFalse("Should reject file, but did not", filter.accept("ATest.java"));
     }
 
     @Test

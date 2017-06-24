@@ -46,7 +46,8 @@ public class ParameterNameCheckTest
     public void testGetRequiredTokens() {
         final ParameterNameCheck checkObj = new ParameterNameCheck();
         final int[] expected = {TokenTypes.PARAMETER_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -92,7 +93,7 @@ public class ParameterNameCheckTest
         final int[] expected = {
             TokenTypes.PARAMETER_DEF,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test

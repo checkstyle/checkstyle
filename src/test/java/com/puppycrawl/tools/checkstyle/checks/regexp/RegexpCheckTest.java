@@ -43,7 +43,9 @@ public class RegexpCheckTest extends BaseCheckTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final RegexpCheck checkObj = new RegexpCheck();
-        assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(
+            "RegexpCheck#getRequiredTockens should return empty array by default",
+            CommonUtils.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
     }
 
     @Test

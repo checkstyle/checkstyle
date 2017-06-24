@@ -56,7 +56,8 @@ public class EmptyForIteratorPadCheckTest
     public void testGetRequiredTokens() {
         final EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
         final int[] expected = {TokenTypes.FOR_ITERATOR};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Default required tokens are invalid",
+            expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -85,7 +86,7 @@ public class EmptyForIteratorPadCheckTest
         final int[] expected = {
             TokenTypes.FOR_ITERATOR,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
     }
 
     @Test
@@ -99,9 +100,11 @@ public class EmptyForIteratorPadCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith(
-                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
-                            + "Cannot set property 'option' to 'invalid_option' in module"));
+            final String messageStart = "cannot initialize module "
+                + "com.puppycrawl.tools.checkstyle.TreeWalker - Cannot set property 'option' to "
+                + "'invalid_option' in module";
+            assertTrue("Invalid exception message, should start with: ",
+                ex.getMessage().startsWith(messageStart));
         }
     }
 }
