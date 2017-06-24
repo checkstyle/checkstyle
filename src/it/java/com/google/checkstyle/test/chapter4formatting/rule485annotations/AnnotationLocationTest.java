@@ -37,7 +37,7 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void annotationTest() throws Exception {
+    public void testAnnotation() throws Exception {
 
         final Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
         getCheckMessage(clazz, "annotation.location.alone");
@@ -67,7 +67,7 @@ public class AnnotationLocationTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void annotationTestVariables() throws Exception {
+    public void testAnnotationVariables() throws Exception {
 
         final Class<AnnotationLocationCheck> clazz = AnnotationLocationCheck.class;
         getCheckMessage(clazz, "annotation.location.alone");

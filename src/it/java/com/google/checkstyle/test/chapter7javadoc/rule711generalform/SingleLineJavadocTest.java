@@ -37,7 +37,7 @@ public class SingleLineJavadocTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void singleLineJavadocTest() throws Exception {
+    public void testSingleLineJavadoc() throws Exception {
 
         final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 

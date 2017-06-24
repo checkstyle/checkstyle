@@ -39,7 +39,7 @@ public class SeparatorWrapTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void separatorWrapDotTest() throws Exception {
+    public void testSeparatorWrapDot() throws Exception {
 
         final String[] expected = {
             "28:30: " + getCheckMessage(SeparatorWrapCheck.class, "line.new", "."),
@@ -53,7 +53,7 @@ public class SeparatorWrapTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void separatorWrapCommaTest() throws Exception {
+    public void testSeparatorWrapComma() throws Exception {
 
         final String[] expected = {
             "31:17: " + getCheckMessage(SeparatorWrapCheck.class, "line.previous", ","),
@@ -67,7 +67,7 @@ public class SeparatorWrapTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void separatorWrapMethodRefTest() throws Exception {
+    public void testSeparatorWrapMethodRef() throws Exception {
 
         final String[] expected = {
             "17:49: " + getCheckMessage(SeparatorWrapCheck.class, MSG_LINE_NEW, "::"),

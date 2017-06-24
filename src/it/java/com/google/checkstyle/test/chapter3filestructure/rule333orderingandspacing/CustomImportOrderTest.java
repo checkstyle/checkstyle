@@ -48,7 +48,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void customImportTest1() throws Exception {
+    public void testCustomImport1() throws Exception {
 
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
@@ -71,7 +71,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void customImportTest2() throws Exception {
+    public void testCustomImport2() throws Exception {
 
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
@@ -96,7 +96,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void customImportTest3() throws Exception {
+    public void testCustomImport3() throws Exception {
 
         final String[] expected = {
             "4: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR, "java.awt.Dialog"),
@@ -123,7 +123,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void validTest() throws Exception {
+    public void testValid() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -135,7 +135,7 @@ public class CustomImportOrderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void validGoogleStyleOrderOfImportsTest() throws Exception {
+    public void testValidGoogleStyleOrderOfImports() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("CustomImportOrder");

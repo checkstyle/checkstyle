@@ -36,7 +36,7 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void whitespaceAroundGenericsTest() throws Exception {
+    public void testWhitespaceAroundGenerics() throws Exception {
 
         final String msgPreceded = "ws.preceded";
         final String msgFollowed = "ws.followed";
@@ -68,7 +68,7 @@ public class GenericWhitespaceTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void genericWhitespaceTest() throws Exception {
+    public void testGenericWhitespace() throws Exception {
         final String msgPreceded = "ws.preceded";
         final String msgFollowed = "ws.followed";
         final String msgNotPreceded = "ws.notPreceded";

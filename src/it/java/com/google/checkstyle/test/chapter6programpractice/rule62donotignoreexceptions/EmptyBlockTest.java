@@ -37,7 +37,7 @@ public class EmptyBlockTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void emptyBlockTestCatch() throws Exception {
+    public void testEmptyBlockCatch() throws Exception {
 
         final String[] expected = {
             "29:17: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),

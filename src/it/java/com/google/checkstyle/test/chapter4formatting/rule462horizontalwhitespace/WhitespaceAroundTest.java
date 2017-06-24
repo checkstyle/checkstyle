@@ -37,7 +37,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void whitespaceAroundBasicTest() throws Exception {
+    public void testWhitespaceAroundBasic() throws Exception {
 
         final Configuration checkConfig = getCheckConfig("WhitespaceAround");
         final String msgPreceded = "ws.notPreceded";
@@ -76,7 +76,7 @@ public class WhitespaceAroundTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void whitespaceAroundEmptyTypesCyclesTest() throws Exception {
+    public void testWhitespaceAroundEmptyTypesCycles() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

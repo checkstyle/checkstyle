@@ -37,7 +37,7 @@ public class LineLengthTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void lineLengthTest() throws Exception {
+    public void testLineLength() throws Exception {
 
         final String[] expected = {
             "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),

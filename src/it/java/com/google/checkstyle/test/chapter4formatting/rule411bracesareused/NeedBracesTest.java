@@ -37,7 +37,7 @@ public class NeedBracesTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void needBracesTest() throws Exception {
+    public void testNeedBraces() throws Exception {
 
         final Class<NeedBracesCheck> clazz = NeedBracesCheck.class;
         final String messageKey = "needBraces";

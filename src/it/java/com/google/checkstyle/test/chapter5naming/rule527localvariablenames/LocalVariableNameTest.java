@@ -48,7 +48,7 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void localVariableNameTest() throws Exception {
+    public void testLocalVariableName() throws Exception {
 
         final String[] expected = {
             "27:13: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "aA", format),
@@ -70,7 +70,7 @@ public class LocalVariableNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void oneCharTest() throws Exception {
+    public void testOneChar() throws Exception {
 
         final String[] expected = {
             "21:17: " + getCheckMessage(checkConfig.getMessages(), MSG_KEY, "I_ndex", format),

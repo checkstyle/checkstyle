@@ -37,7 +37,7 @@ public class IndentationTest extends BaseIndentationCheckSupport {
     }
 
     @Test
-    public void correctClassTest() throws Exception {
+    public void testCorrectClass() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -49,7 +49,7 @@ public class IndentationTest extends BaseIndentationCheckSupport {
     }
 
     @Test
-    public void correctFieldTest() throws Exception {
+    public void testCorrectField() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -61,7 +61,7 @@ public class IndentationTest extends BaseIndentationCheckSupport {
     }
 
     @Test
-    public void correctForTest() throws Exception {
+    public void testCorrectFor() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -73,7 +73,7 @@ public class IndentationTest extends BaseIndentationCheckSupport {
     }
 
     @Test
-    public void correctIfTest() throws Exception {
+    public void testCorrectIf() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -85,7 +85,7 @@ public class IndentationTest extends BaseIndentationCheckSupport {
     }
 
     @Test
-    public void correctTest() throws Exception {
+    public void testCorrect() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -97,7 +97,7 @@ public class IndentationTest extends BaseIndentationCheckSupport {
     }
 
     @Test
-    public void correctReturnTest() throws Exception {
+    public void testCorrectReturn() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -109,7 +109,7 @@ public class IndentationTest extends BaseIndentationCheckSupport {
     }
 
     @Test
-    public void correctWhileTest() throws Exception {
+    public void testCorrectWhile() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

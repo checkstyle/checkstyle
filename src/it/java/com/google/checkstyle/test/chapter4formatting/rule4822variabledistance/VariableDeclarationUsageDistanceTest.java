@@ -37,7 +37,7 @@ public class VariableDeclarationUsageDistanceTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void arrayTypeStyleTest() throws Exception {
+    public void testArrayTypeStyle() throws Exception {
 
         final String msgExt = "variable.declaration.usage.distance.extend";
         final Class<VariableDeclarationUsageDistanceCheck> clazz =
