@@ -18,12 +18,14 @@
     <section name="Sponsoring">
 
       <p>
-        If want to speed up a fixing and issue and want to encourage somebody in internet to resolve any issue:
+        If you want to speed up fixing of issue and want to encourage somebody in internet to resolve any issue:
       </p>
 
       <p>
+        <!-- "502 Bad Gateway" for more than a day
         <a href="https://freedomsponsors.org/search/?project_name=checkstyle">freedomsponsors - checkstyle</a>
         <br/>
+        -->
         <a href="https://www.bountysource.com/teams/checkstyle/issues">bountysource - checkstyle</a>
         <br/>
         <a href="https://salt.bountysource.com/teams/checkstyle">bountysource (salt) - checkstyle</a>
