@@ -411,8 +411,10 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         }
         catch (IllegalArgumentException ex) {
             final String exceptionMessage = ex.getMessage();
-            assertThat(exceptionMessage, containsString("11"));
-            assertThat(exceptionMessage, endsWith("[TranslationCheck]"));
+            assertThat("Error message is unexpected",
+                    exceptionMessage, containsString("11"));
+            assertThat("Error message is unexpected",
+                    exceptionMessage, endsWith("[TranslationCheck]"));
         }
     }
 }

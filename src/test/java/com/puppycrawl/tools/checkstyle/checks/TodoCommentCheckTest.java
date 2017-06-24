@@ -43,7 +43,8 @@ public class TodoCommentCheckTest
     public void testGetRequiredTokens() {
         final TodoCommentCheck checkObj = new TodoCommentCheck();
         final int[] expected = {TokenTypes.COMMENT_CONTENT};
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Required tokens differs from expected",
+                expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -65,7 +66,9 @@ public class TodoCommentCheckTest
         final int[] expected = {TokenTypes.COMMENT_CONTENT };
         final TodoCommentCheck check = new TodoCommentCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertEquals(1, actual.length);
-        assertArrayEquals(expected, actual);
+        assertEquals("Amount of acceptable tokens differs from expected",
+                1, actual.length);
+        assertArrayEquals("Acceptable tokens differs from expected",
+                expected, actual);
     }
 }

@@ -52,7 +52,8 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens());
+        assertArrayEquals("Required tokens array differs from expected",
+                expected, checkObj.getRequiredTokens());
     }
 
     @Test
@@ -81,7 +82,8 @@ public class OuterTypeFilenameCheckTest extends BaseCheckTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
-        assertArrayEquals(expected, actual);
+        assertArrayEquals("Acceptable tokens array differs from expected",
+                expected, actual);
     }
 
     @Test

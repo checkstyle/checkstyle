@@ -110,7 +110,8 @@ public class UncommentedMainCheckTest
             Assert.fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals(ast.toString(), ex.getMessage());
+            assertEquals("Error message is unexpected",
+                    ast.toString(), ex.getMessage());
         }
 
     }
