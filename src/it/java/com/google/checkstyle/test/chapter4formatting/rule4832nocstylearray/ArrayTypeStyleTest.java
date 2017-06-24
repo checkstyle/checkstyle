@@ -39,7 +39,7 @@ public class ArrayTypeStyleTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void arrayTypeStyleTest() throws Exception {
+    public void testArrayTypeStyle() throws Exception {
 
         final String[] expected = {
             "9:23: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),

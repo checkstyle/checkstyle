@@ -37,7 +37,7 @@ public class MissingSwitchDefaultTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void missingSwitchDefaultTest() throws Exception {
+    public void testMissingSwitchDefault() throws Exception {
 
         final String msg = getCheckMessage(MissingSwitchDefaultCheck.class,
             "missing.switch.default");

@@ -38,7 +38,7 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void badTest() throws Exception {
+    public void testBad() throws Exception {
 
         final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         final String messageKey = "one.top.level.class";
@@ -60,7 +60,7 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void goodTest() throws Exception {
+    public void testGood() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -72,7 +72,7 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void bad1Test() throws Exception {
+    public void testBad1() throws Exception {
 
         final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         final String messageKey = "one.top.level.class";
@@ -89,7 +89,7 @@ public class OneTopLevelClassTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void bad2Test() throws Exception {
+    public void testBad2() throws Exception {
 
         final Class<OneTopLevelClassCheck> clazz = OneTopLevelClassCheck.class;
         final String messageKey = "one.top.level.class";

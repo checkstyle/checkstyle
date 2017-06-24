@@ -39,7 +39,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void badLineWrapTest() throws Exception {
+    public void testBadLineWrap() throws Exception {
 
         final String[] expected = {
             "1: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "package"),
@@ -55,7 +55,7 @@ public class NoLineWrapTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void goodLineWrapTest() throws Exception {
+    public void testGoodLineWrap() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 

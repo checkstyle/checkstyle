@@ -43,7 +43,7 @@ public class RightCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void rightCurlyTestAlone() throws Exception {
+    public void testRightCurlyAlone() throws Exception {
         final String[] expected = {
             "20:17: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 17),
             "32:13: " + getCheckMessage(RightCurlyCheck.class, MSG_KEY_LINE_SAME, "}", 13),
@@ -58,7 +58,7 @@ public class RightCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void rightCurlyTestSame() throws Exception {
+    public void testRightCurlySame() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlySame");
@@ -101,7 +101,7 @@ public class RightCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void rightCurlyAloneTestSame() throws Exception {
+    public void testRightCurlyAloneSame() throws Exception {
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getCheckConfig("RightCurly", "RightCurlyAlone");

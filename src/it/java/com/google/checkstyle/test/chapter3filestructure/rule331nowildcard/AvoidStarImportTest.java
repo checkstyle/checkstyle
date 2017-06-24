@@ -36,7 +36,7 @@ public class AvoidStarImportTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void starImportTest() throws Exception {
+    public void testStarImport() throws Exception {
 
         final String[] expected = {
             "3: Using the '.*' form of import should be avoided - java.io.*.",

@@ -37,7 +37,7 @@ public class ModifierOrderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void modifierOrderTest() throws Exception {
+    public void testModifierOrder() throws Exception {
 
         final Class<ModifierOrderCheck> clazz = ModifierOrderCheck.class;
         final String msgMod = "mod.order";

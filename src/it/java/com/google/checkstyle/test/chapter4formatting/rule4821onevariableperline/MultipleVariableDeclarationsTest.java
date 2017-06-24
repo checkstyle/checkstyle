@@ -37,7 +37,7 @@ public class MultipleVariableDeclarationsTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void multipleVariableDeclarationsTest() throws Exception {
+    public void testMultipleVariableDeclarations() throws Exception {
 
         final String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class,
             "multiple.variable.declarations.comma");

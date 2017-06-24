@@ -54,7 +54,7 @@ public class ParameterNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void generalParameterNameTest() throws Exception {
+    public void testGeneralParameterName() throws Exception {
 
         final String[] expected = {
             "10:21: " + getCheckMessage(config.getMessages(), MSG_KEY, "bB", format),

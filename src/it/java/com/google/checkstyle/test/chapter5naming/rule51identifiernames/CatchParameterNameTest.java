@@ -46,7 +46,7 @@ public class CatchParameterNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void catchParameterNameTest() throws Exception {
+    public void testCatchParameterName() throws Exception {
         final String msgKey = "name.invalidPattern";
 
         final String[] expected = {

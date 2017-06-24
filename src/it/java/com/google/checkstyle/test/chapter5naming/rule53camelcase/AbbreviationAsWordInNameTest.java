@@ -40,7 +40,7 @@ public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void abbreviationAsWordInNameTest() throws Exception {
+    public void testAbbreviationAsWordInName() throws Exception {
 
         final int maxCapitalCount = 2;
 

@@ -46,7 +46,7 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void fileTabTest() throws Exception {
+    public void testFileTab() throws Exception {
 
         final String[] expected = {
             "8:25: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),

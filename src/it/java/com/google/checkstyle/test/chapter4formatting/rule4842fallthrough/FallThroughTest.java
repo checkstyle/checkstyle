@@ -37,7 +37,7 @@ public class FallThroughTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void fallThroughTest() throws Exception {
+    public void testFallThrough() throws Exception {
 
         final String msg = getCheckMessage(FallThroughCheck.class, "fall.through");
 

@@ -38,7 +38,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void javadocParagraphCorrectTest() throws Exception {
+    public void testJavadocParagraphCorrect() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -50,7 +50,7 @@ public class JavadocParagraphTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void javadocParagraphIncorrectTest() throws Exception {
+    public void testJavadocParagraphIncorrect() throws Exception {
 
         final String msgBefore = getCheckMessage(JavadocParagraphCheck.class,
                 "javadoc.paragraph.line.before");

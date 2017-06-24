@@ -39,7 +39,7 @@ public class LeftCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void leftCurlyBracesTest() throws Exception {
+    public void testLeftCurlyBraces() throws Exception {
 
         final String[] expected = {
             "4:1: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 1),
@@ -59,7 +59,7 @@ public class LeftCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void leftCurlyAnnotationsTest() throws Exception {
+    public void testLeftCurlyAnnotations() throws Exception {
 
         final String[] expected = {
             "10:1: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 1),
@@ -77,7 +77,7 @@ public class LeftCurlyTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void leftCurlyMethodsTest() throws Exception {
+    public void testLeftCurlyMethods() throws Exception {
 
         final String[] expected = {
             "4:1: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 1),
