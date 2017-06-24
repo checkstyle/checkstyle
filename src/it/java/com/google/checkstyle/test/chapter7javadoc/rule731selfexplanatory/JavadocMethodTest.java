@@ -37,7 +37,7 @@ public class JavadocMethodTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void javadocMethodTest() throws Exception {
+    public void testJavadocMethod() throws Exception {
 
         final String msg = getCheckMessage(JavadocMethodCheck.class, "javadoc.missing");
 

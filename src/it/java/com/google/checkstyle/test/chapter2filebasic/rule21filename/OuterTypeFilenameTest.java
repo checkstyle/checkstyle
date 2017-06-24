@@ -40,7 +40,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void outerTypeFilenameTest1() throws Exception {
+    public void testOuterTypeFilename1() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -52,7 +52,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void outerTypeFilenameTest2() throws Exception {
+    public void testOuterTypeFilename2() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -64,7 +64,7 @@ public class OuterTypeFilenameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void outerTypeFilenameTest3() throws Exception {
+    public void testOuterTypeFilename3() throws Exception {
 
         final String[] expected = {
             "3: " + getCheckMessage(OuterTypeFilenameCheck.class, MSG_KEY),

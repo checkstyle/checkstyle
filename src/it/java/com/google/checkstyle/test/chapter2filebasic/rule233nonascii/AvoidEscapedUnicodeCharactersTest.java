@@ -39,7 +39,7 @@ public class AvoidEscapedUnicodeCharactersTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void unicodeEscapesTest() throws Exception {
+    public void testUnicodeEscapes() throws Exception {
 
         final String[] expected = {
             "5: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),

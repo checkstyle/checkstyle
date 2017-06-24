@@ -36,7 +36,7 @@ public class IllegalTokenTextTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void illegalTokensTest() throws Exception {
+    public void testIllegalTokens() throws Exception {
         final String message = "Consider using special escape sequence instead of octal value or "
                 + "Unicode escaped value.";
 

@@ -37,7 +37,7 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void noFinalizerBasicTest() throws Exception {
+    public void testNoFinalizerBasic() throws Exception {
 
         final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
@@ -53,7 +53,7 @@ public class NoFinalizerTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void noFinalizerExtendedTest() throws Exception {
+    public void testNoFinalizerExtended() throws Exception {
 
         final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 

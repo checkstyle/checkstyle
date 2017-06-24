@@ -37,7 +37,7 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void oneStatementTest() throws Exception {
+    public void testOneStatement() throws Exception {
 
         final String msg = getCheckMessage(OneStatementPerLineCheck.class,
             "multiple.statements.line");
@@ -74,7 +74,7 @@ public class OneStatementPerLineTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void oneStatementNonCompilableInputTest() throws Exception {
+    public void testOneStatementNonCompilableInput() throws Exception {
 
         final String msg = getCheckMessage(OneStatementPerLineCheck.class,
             "multiple.statements.line");

@@ -37,7 +37,7 @@ public class OverloadMethodsDeclarationOrderTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void overloadMethodsTest() throws Exception {
+    public void testOverloadMethods() throws Exception {
 
         final Class<OverloadMethodsDeclarationOrderCheck> clazz =
             OverloadMethodsDeclarationOrderCheck.class;

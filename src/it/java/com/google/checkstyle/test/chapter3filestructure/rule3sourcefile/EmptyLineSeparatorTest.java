@@ -37,7 +37,7 @@ public class EmptyLineSeparatorTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void emptyLineSeparatorTest() throws Exception {
+    public void testEmptyLineSeparator() throws Exception {
 
         final Class<EmptyLineSeparatorCheck> clazz = EmptyLineSeparatorCheck.class;
         final String messageKey = "empty.line.separator";

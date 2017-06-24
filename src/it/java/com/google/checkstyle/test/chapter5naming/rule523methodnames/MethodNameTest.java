@@ -36,7 +36,7 @@ public class MethodNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void methodNameTest() throws Exception {
+    public void testMethodName() throws Exception {
 
         final Configuration checkConfig = getCheckConfig("MethodName");
         final String msgKey = "name.invalidPattern";

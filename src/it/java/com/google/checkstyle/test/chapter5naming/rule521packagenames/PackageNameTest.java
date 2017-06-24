@@ -48,7 +48,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void goodPackageNameTest() throws Exception {
+    public void testGoodPackageName() throws Exception {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
@@ -59,7 +59,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void badPackageNameTest() throws Exception {
+    public void testBadPackageName() throws Exception {
 
         final String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
@@ -76,7 +76,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void badPackageName2Test() throws Exception {
+    public void testBadPackageName2() throws Exception {
 
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
@@ -92,7 +92,7 @@ public class PackageNameTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void badPackageName3Test() throws Exception {
+    public void testBadPackageName3() throws Exception {
 
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);

@@ -37,7 +37,7 @@ public class ParenPadTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void methodParenTest() throws Exception {
+    public void testMethodParen() throws Exception {
 
         final Class<ParenPadCheck> clazz = ParenPadCheck.class;
         final String messageKeyPreceded = "ws.preceded";

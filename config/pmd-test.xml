@@ -73,8 +73,6 @@
         <exclude name="JUnitTestsShouldIncludeAssert"/>
         <!--tentative-->
         <exclude name="JUnitAssertionsShouldIncludeMessage"/>
-        <!-- tentative -->
-        <exclude name="TestClassWithoutTestCases"/>
     </rule>
 
     <rule ref="config/pmd.xml/ConfusingTernary">
