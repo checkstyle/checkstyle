@@ -14,11 +14,9 @@
 
     <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputEmbeddedNullChar\.java"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]InputLeadingAsterisks\.javadoc"/>
 
     <!-- Javadoc files should not have new line by design (on purpose). -->
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]htmlTags[\\/].*"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/]javadocTags[\\/].*"/>
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/].*\.javadoc"/>
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/].*\.javadoc"/>
 
     <!--Empty file cannot have any new line at the end. -->
