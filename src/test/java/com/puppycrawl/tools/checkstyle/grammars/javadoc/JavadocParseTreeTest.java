@@ -244,4 +244,10 @@ public class JavadocParseTreeTest extends BaseCheckTestSupport {
         verifyJavadocTree(getDocPath("expectedTwoLinkTagsInRowAst.txt"),
                 getDocPath("InputTwoLinkTagsInRow.javadoc"));
     }
+
+    @Test
+    public void testJavadocWithCrAsNewline() throws Exception {
+        verifyJavadocTree(getPath("expectedJavadocWithCrAsNewlineAst.txt"),
+                getPath("InputJavadocWithCrAsNewline.javadoc"));
+    }
 }
