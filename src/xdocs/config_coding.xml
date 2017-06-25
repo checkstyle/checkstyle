@@ -404,18 +404,21 @@ public class A {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>ignoreConstructors</td>
             <td>whether to ignore constructors</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.2</td>
           </tr>
           <tr>
             <td>ignoreModifiers</td>
             <td>whether to ignore modifiers</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.2</td>
           </tr>
         </table>
       </subsection>
@@ -529,12 +532,14 @@ public class A {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>skipIfLastAndSharedWithCase</td>
             <td>whether to allow <code>default</code> along with case if they are not last</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>7.7</td>
           </tr>
         </table>
       </subsection>
@@ -710,12 +715,14 @@ String nullString = null;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>ignoreEqualsIgnoreCase</td>
             <td>whether to ignore <code>String.equalsIgnoreCase()</code> invocations</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>5.4</td>
           </tr>
         </table>
       </subsection>
@@ -868,6 +875,7 @@ String nullString = null;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>onlyObjectReferences</td>
@@ -875,6 +883,7 @@ String nullString = null;
                 null for objects should be checked</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>7.8</td>
           </tr>
         </table>
       </subsection>
@@ -1016,6 +1025,7 @@ case 5:
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>checkLastCaseGroup</td>
@@ -1024,6 +1034,7 @@ case 5:
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>reliefPattern</td>
@@ -1033,6 +1044,7 @@ case 5:
             </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"fallthru|falls? ?through"</code></td>
+            <td>4.0</td>
           </tr>
         </table>
       </subsection>
@@ -1120,6 +1132,7 @@ case 5:
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>validateEnhancedForLoopVariable</td>
@@ -1133,6 +1146,7 @@ case 5:
               false
              </code>
             </td>
+            <td>6.5</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1147,6 +1161,7 @@ case 5:
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
             </td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -1246,12 +1261,14 @@ case 5:
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>ignoreFormat</td>
             <td>pattern for names of variables and parameters to ignore</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
+            <td>3.2</td>
           </tr>
 
           <tr>
@@ -1259,6 +1276,7 @@ case 5:
             <td>Controls whether to ignore constructor parameters.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.2</td>
           </tr>
 
           <tr>
@@ -1274,6 +1292,7 @@ case 5:
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.2</td>
           </tr>
 
           <tr>
@@ -1300,6 +1319,7 @@ case 5:
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>6.3</td>
           </tr>
 
           <tr>
@@ -1307,6 +1327,7 @@ case 5:
             <td>Controls whether to ignore parameters of abstract methods.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.0</td>
           </tr>
 
           <tr>
@@ -1327,6 +1348,7 @@ case 5:
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
               LAMBDA.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1471,6 +1493,7 @@ class SomeClass
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>illegalClassNames</td>
@@ -1478,6 +1501,7 @@ class SomeClass
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>&quot;java.lang.Exception,
             java.lang.Throwable, java.lang.RuntimeException&quot;</code></td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -1568,12 +1592,14 @@ class SomeClass
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>classes</td>
             <td>classes that should not be instantiated</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>{}</td>
+            <td>3.0</td>
           </tr>
 
           <tr>
@@ -1588,6 +1614,7 @@ class SomeClass
             <td>
               CLASS_DEF.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1658,6 +1685,7 @@ class SomeClass
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>illegalClassNames</td>
@@ -1667,12 +1695,14 @@ class SomeClass
               <code>&quot;java.lang.Throwable,
               java.lang.Error, java.lang.RuntimeException&quot;</code>
             </td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>ignoredMethodNames</td>
             <td>names of methods to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>finalize</code></td>
+            <td>5.4</td>
           </tr>
           <tr>
             <td>ignoreOverriddenMethods</td>
@@ -1680,6 +1710,7 @@ class SomeClass
              annotation).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>6.4</td>
           </tr>
         </table>
       </subsection>
@@ -1773,6 +1804,7 @@ class SomeClass
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1784,6 +1816,7 @@ class SomeClass
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">LABELED_STAT</a>.
             </td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -1849,18 +1882,21 @@ class SomeClass
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>format</td>
             <td>illegal pattern</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>&quot;$^&quot; (empty)</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>ignoreCase</td>
             <td>Controls whether to ignore case when matching.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>message</td>
@@ -1868,6 +1904,7 @@ class SomeClass
             if empty then the default message is used.</td>
             <td><a href="property_types.html#string">String</a></td>
             <td><code>&quot;&quot;</code>(empty)</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1883,6 +1920,7 @@ class SomeClass
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">CHAR_LITERAL</a>.
             </td>
             <td>empty</td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -1969,12 +2007,14 @@ class SomeClass
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>validateAbstractClassNames</td>
             <td>Whether to validate abstract class names</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>6.10</td>
           </tr>
           <tr>
             <td>illegalClassNames</td>
@@ -1984,30 +2024,35 @@ class SomeClass
             <td>&quot;java.util.HashSet, java.util.HashMap, java.util.LinkedHashMap,
             java.util.LinkedHashSet, java.util.TreeSet,
             java.util.TreeMap&quot;</td>
+            <td>3.2</td>
           </tr>
           <tr>
           <td>legalAbstractClassNames</td>
           <td>Abstract classes that may be used as types. </td>
           <td><a href="property_types.html#stringSet">String Set</a></td>
           <td/>
+          <td>4.2</td>
         </tr>
         <tr>
             <td>ignoredMethodNames</td>
             <td>Methods that should not be checked.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>&quot;getInitialContext, getEnvironment&quot; </td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>format</td>
             <td>Pattern for illegal class names.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^(.*[.])?Abstract.*$"</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>memberModifiers</td>
             <td>Check methods and fields with only corresponding modifiers.</td>
             <td><a href="property_types.html#stringSet">List of tokens</a></td>
             <td><code>null</code></td>
+            <td>6.3</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -2023,6 +2068,7 @@ class SomeClass
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">PARAMETER_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>.
             </td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -2195,30 +2241,35 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>ignoreNumbers</td>
             <td>non-magic numbers</td>
             <td><a href="property_types.html#intSet">Number Set</a></td>
             <td>-1, 0, 1, 2</td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>ignoreHashCodeMethod</td>
             <td>ignore magic numbers in hashCode methods</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><span class="default">false</span></td>
+            <td>5.3</td>
           </tr>
           <tr>
             <td>ignoreAnnotation</td>
             <td>ignore magic numbers in annotation declarations.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><span class="default">false</span></td>
+            <td>5.4</td>
           </tr>
           <tr>
               <td>ignoreFieldDeclaration</td>
               <td>ignore magic numbers in field declarations.</td>
               <td><a href="property_types.html#boolean">Boolean</a></td>
               <td><span class="default">false</span></td>
+              <td>6.6</td>
           </tr>
           <tr>
               <td>constantWaiverParentToken</td>
@@ -2241,6 +2292,7 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">PLUS</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">MINUS</a>.
               </td>
+              <td>6.11</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -2257,6 +2309,7 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">NUM_INT</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">NUM_LONG</a>.
             </td>
+            <td>3.1</td>
           </tr>
         </table>
       </subsection>
@@ -2530,6 +2583,7 @@ class MyClass {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
 
           <tr>
@@ -2544,6 +2598,7 @@ class MyClass {
               false
              </code>
             </td>
+            <td>6.8</td>
           </tr>
         </table>
       </subsection>
@@ -2638,6 +2693,7 @@ class MyClass {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowedDuplicates</td>
@@ -2647,6 +2703,7 @@ class MyClass {
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>1</td>
+            <td>3.5</td>
           </tr>
           <tr>
             <td>ignoreStringsRegexp</td>
@@ -2655,6 +2712,7 @@ class MyClass {
             </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^""$"</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>ignoreOccurrenceContext</td>
@@ -2671,6 +2729,7 @@ class MyClass {
               <code>ANNOTATION</code>
               (ignore strings inside the context of an annotation)
             </td>
+            <td>4.4</td>
           </tr>
         </table>
       </subsection>
@@ -2831,12 +2890,14 @@ class MyClass {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>allowed nesting depth</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><span class="default">1</span></td>
+            <td>5.3</td>
           </tr>
         </table>
       </subsection>
@@ -2908,12 +2969,14 @@ class MyClass {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>allowed nesting depth</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -2985,12 +3048,14 @@ class MyClass {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>allowed nesting depth</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -3348,12 +3413,14 @@ public void foo(int i, String s) {}
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>matchDirectoryStructure</td>
             <td>Whether to check for directory and package name match.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>7.6.1</td>
           </tr>
         </table>
       </subsection>
@@ -3525,24 +3592,28 @@ public class AnnotationLocationCheck extends AbstractCheck {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>checkFields</td>
             <td>Whether to check references to fields.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>checkMethods</td>
             <td>Whether to check references to methods.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>validateOnlyOverlapping</td>
             <td>Whether to check only overlapping by variables or arguments.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>6.17</td>
           </tr>
         </table>
       </subsection>
@@ -3750,24 +3821,28 @@ class C {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>maximum allowed number of return statements in non-void methods/lambdas</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>2</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>maxForVoid</td>
             <td>maximum allowed number of return statements in void methods/constructors/lambdas</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1</code></td>
+            <td>6.19</td>
           </tr>
           <tr>
             <td>format</td>
             <td>method names to ignore</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^equals$"</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -3783,6 +3858,7 @@ class C {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
             </td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -4219,6 +4295,7 @@ if (&quot;something&quot;.equals(x))
                   <th>description</th>
                   <th>type</th>
                   <th>default value</th>
+                  <th>since</th>
               </tr>
               <tr>
                   <td>tokens</td>
@@ -4272,6 +4349,7 @@ if (&quot;something&quot;.equals(x))
                     <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">SR_ASSIGN</a>,
                     <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">STAR_ASSIGN</a>.
                   </td>
+                  <td>3.4</td>
               </tr>
           </table>
       </subsection>
@@ -4354,6 +4432,7 @@ if (&quot;something&quot;.equals(x))
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
 
           <tr>
@@ -4361,6 +4440,7 @@ if (&quot;something&quot;.equals(x))
             <td>A distance between declaration of variable and its first usage. Values should be greater than 0.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>3</td>
+            <td>5.8</td>
           </tr>
 
           <tr>
@@ -4368,6 +4448,7 @@ if (&quot;something&quot;.equals(x))
             <td>pattern for ignoring the distance calculation</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>""</code></td>
+            <td>5.8</td>
           </tr>
 
           <tr>
@@ -4375,6 +4456,7 @@ if (&quot;something&quot;.equals(x))
             <td>Allows to calculate the distance between declaration of variable and its first usage in the different scopes.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.8</td>
           </tr>
 
           <tr>
@@ -4382,6 +4464,7 @@ if (&quot;something&quot;.equals(x))
             <td>Allows to ignore variables with a 'final' modifier.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>5.8</td>
           </tr>
         </table>
       </subsection>

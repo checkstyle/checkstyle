@@ -95,12 +95,14 @@ switch (a)
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowInSwitchCase</td>
             <td>Allow nested blocks in case statements</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -188,12 +190,14 @@ switch (a)
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on block contents</td>
             <td><a href="property_types.html#block">block policy</a></td>
             <td><code>statement</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -230,6 +234,7 @@ switch (a)
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">LITERAL_SWITCH</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">LITERAL_SYNCHRONIZED</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -310,18 +315,21 @@ switch (a)
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>exceptionVariableName</td>
             <td>The name of variable associated with exception</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>^$</td>
+            <td>6.4</td>
           </tr>
           <tr>
             <td>commentFormat</td>
             <td>The format of the first comment inside empty catch</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>.*</td>
+            <td>6.4</td>
           </tr>
         </table>
       </subsection>
@@ -456,18 +464,21 @@ try {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on placement of a left curly brace (<code>'{'</code>)</td>
             <td><a href="property_types.html#lcurly">left curly brace policy</a></td>
             <td><code>eol</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>ignoreEnums</td>
             <td>If true, Check will ignore enums when left curly brace policy is EOL</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
+            <td>6.9</td>
           </tr>
           <tr>
             <td>maxLineLength</td>
@@ -476,6 +487,7 @@ try {
                 since checkstyle 6.10 release.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>80</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -526,6 +538,7 @@ try {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">OBJBLOCK</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -614,18 +627,21 @@ try {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowSingleLineStatement</td>
             <td>allows single-line statements without braces</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>6.5</td>
           </tr>
           <tr>
             <td>allowEmptyLoopBody</td>
             <td>allows loops with empty bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>6.12.1</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -649,6 +665,7 @@ try {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">LITERAL_WHILE</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -785,12 +802,14 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on placement of a right curly brace (<code>'}'</code>)</td>
             <td><a href="property_types.html#rcurly">right curly brace policy</a></td>
             <td><code>same</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>shouldStartLine</td>
@@ -798,6 +817,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
             starts line.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>4.2</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -842,6 +862,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>,
             <a
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">LITERAL_ELSE</a>.</td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
