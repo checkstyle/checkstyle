@@ -23,6 +23,8 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.api.FileText;
+
 /**
  * Checks the header of the source against a fixed header file.
  * In default configuration,if header is not specified,
@@ -88,7 +90,8 @@ public class HeaderCheck extends AbstractHeaderCheck {
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, FileText fileText) {
+        final List<String> lines = fileText.getLines();
         if (getHeaderLines().size() > lines.size()) {
             log(1, MSG_MISSING);
         }

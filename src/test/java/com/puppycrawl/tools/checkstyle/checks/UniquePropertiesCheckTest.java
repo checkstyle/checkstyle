@@ -42,6 +42,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseFileSetCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 /**
@@ -113,8 +114,9 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         final String fileName =
                 getPath("InputUniquePropertiesCheckNotExisting.properties");
         final File file = new File(fileName);
+        final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<LocalizedMessage> messages =
-                check.process(file, Collections.emptyList());
+                check.process(file, fileText);
         assertEquals("Wrong messages count: " + messages.size(),
                 1, messages.size());
         final LocalizedMessage message = messages.iterator().next();

@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -49,10 +48,10 @@ public abstract class AbstractFileSetCheck
     /**
      * Called to process a file that matches the specified file extensions.
      * @param file the file to be processed
-     * @param lines an immutable list of the contents of the file.
+     * @param fileText the contents of the file.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
-    protected abstract void processFiltered(File file, List<String> lines)
+    protected abstract void processFiltered(File file, FileText fileText)
             throws CheckstyleException;
 
     @Override
@@ -71,12 +70,12 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final SortedSet<LocalizedMessage> process(File file, List<String> lines)
+    public final SortedSet<LocalizedMessage> process(File file, FileText fileText)
             throws CheckstyleException {
         messageCollector.clear();
         // Process only what interested in
         if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
-            processFiltered(file, lines);
+            processFiltered(file, fileText);
         }
         return new TreeSet<>(messageCollector);
     }

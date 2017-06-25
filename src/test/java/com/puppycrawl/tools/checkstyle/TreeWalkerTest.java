@@ -47,6 +47,7 @@ import org.mockito.internal.util.reflection.Whitebox;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
@@ -178,13 +179,13 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.configure(new DefaultConfiguration("default config"));
         final DefaultConfiguration childConfig = createCheckConfig(JavadocParagraphCheck.class);
         treeWalker.setupChild(childConfig);
-
+        final File file = new File("input.java");
         final List<String> lines =
             new ArrayList<>(Arrays.asList("package com.puppycrawl.tools.checkstyle;", "",
                 "error public class InputTreeWalkerFileWithViolation {}"));
-
+        final FileText fileText = new FileText(file, lines);
         try {
-            treeWalker.processFiltered(new File("input.java"), lines);
+            treeWalker.processFiltered(file, fileText);
             fail("Exception expected");
         }
         catch (CheckstyleException ex) {
@@ -192,9 +193,20 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
                 "MismatchedTokenException occurred during the analysis of file input.java.",
                 ex.getMessage());
         }
+    }
 
-        // Should not throw exception as file with txt extension should not be processed at all
-        treeWalker.processFiltered(new File("input.txt"), lines);
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testProcessNonJavaFilesWithoutException() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setTabWidth(1);
+        treeWalker.configure(new DefaultConfiguration("default config"));
+        final File file = new File("src/main/resources/checkstyle_packages.xml");
+        final FileText fileText = new FileText(file, StandardCharsets.ISO_8859_1.name());
+        treeWalker.processFiltered(file, fileText);
+        final Collection<Checks> checks =
+                (Collection<Checks>) Whitebox.getInternalState(treeWalker, "ordinaryChecks");
+        assertTrue("No checks -> No parsing", checks.isEmpty());
     }
 
     @Test
@@ -220,9 +232,9 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final File file = temporaryFolder.newFile("file.java");
         final List<String> lines = new ArrayList<>();
         lines.add(" classD a {} ");
-
+        final FileText fileText = new FileText(file, lines);
         try {
-            treeWalker.processFiltered(file, lines);
+            treeWalker.processFiltered(file, fileText);
         }
         catch (CheckstyleException exception) {
             assertTrue("Error message is unexpected",
@@ -242,9 +254,9 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final File file = temporaryFolder.newFile("file.java");
         final List<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
-
+        final FileText fileText = new FileText(file, lines);
         try {
-            treeWalker.processFiltered(file, lines);
+            treeWalker.processFiltered(file, fileText);
         }
         catch (CheckstyleException exception) {
             assertTrue("Error message is unexpected",
@@ -298,10 +310,11 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         treeWalker.setModuleFactory(factory);
         // create file that should throw exception
         final File file = temporaryFolder.newFile("file.java");
+        final FileText fileText = new FileText(file, new ArrayList<>());
         final List<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
 
-        treeWalker.processFiltered(file, lines);
+        treeWalker.processFiltered(file, fileText);
         final Collection<Checks> checks =
                 (Collection<Checks>) Whitebox.getInternalState(treeWalker, "ordinaryChecks");
         assertTrue("No checks -> No parsing", checks.isEmpty());
@@ -318,9 +331,10 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final File file = temporaryFolder.newFile("file.java");
         final List<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
+        final FileText fileText = new FileText(file, lines);
 
         try {
-            treeWalker.processFiltered(file, lines);
+            treeWalker.processFiltered(file, fileText);
             fail("file is not compilable, exception is expected");
         }
         catch (CheckstyleException exception) {
@@ -342,9 +356,10 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final File file = temporaryFolder.newFile("file.java");
         final List<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
+        final FileText fileText = new FileText(file, lines);
 
         try {
-            treeWalker.processFiltered(file, lines);
+            treeWalker.processFiltered(file, fileText);
             fail("file is not compilable, exception is expected");
         }
         catch (CheckstyleException exception) {
@@ -368,9 +383,10 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final File file = temporaryFolder.newFile("file.java");
         final List<String> lines = new ArrayList<>();
         lines.add(" class a%$# {} ");
+        final FileText fileText = new FileText(file, lines);
 
         try {
-            treeWalker.processFiltered(file, lines);
+            treeWalker.processFiltered(file, fileText);
             fail("file is not compilable, exception is expected");
         }
         catch (CheckstyleException exception) {

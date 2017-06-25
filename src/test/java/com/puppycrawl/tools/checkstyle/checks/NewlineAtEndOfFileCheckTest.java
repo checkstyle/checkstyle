@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -187,7 +188,8 @@ public class NewlineAtEndOfFileCheckTest
         final List<String> lines = new ArrayList<>(1);
         lines.add("txt");
         final File impossibleFile = new File("");
-        final Set<LocalizedMessage> messages = check.process(impossibleFile, lines);
+        final FileText fileText = new FileText(impossibleFile, lines);
+        final Set<LocalizedMessage> messages = check.process(impossibleFile, fileText);
         assertEquals("Ammount of messages is unexpected",
                 1, messages.size());
         final Iterator<LocalizedMessage> iterator = messages.iterator();

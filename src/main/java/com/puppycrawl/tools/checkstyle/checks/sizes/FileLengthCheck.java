@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * <p>
@@ -69,7 +70,8 @@ public class FileLengthCheck extends AbstractFileSetCheck {
     private int max = DEFAULT_MAX_LINES;
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, FileText fileText) {
+        final List<String> lines = fileText.getLines();
         if (lines.size() > max) {
             log(1, MSG_KEY, lines.size(), max);
         }

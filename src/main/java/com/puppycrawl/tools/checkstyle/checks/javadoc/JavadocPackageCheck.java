@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.io.File;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * Checks that all packages have a package documentation. See the documentation
@@ -67,7 +67,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, FileText fileText) {
         // Check if already processed directory
         final File dir = file.getParentFile();
         if (!directoriesChecked.contains(dir)) {

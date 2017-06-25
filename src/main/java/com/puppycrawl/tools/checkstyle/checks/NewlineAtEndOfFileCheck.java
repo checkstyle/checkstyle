@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.List;
 import java.util.Locale;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * <p>
@@ -75,7 +75,7 @@ public class NewlineAtEndOfFileCheck
     private LineSeparatorOption lineSeparator = LineSeparatorOption.SYSTEM;
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, FileText fileText) {
         // Cannot use lines as the line separators have been removed!
         try {
             final RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");

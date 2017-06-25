@@ -65,6 +65,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
@@ -978,7 +979,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         implements ExternalResourceHolder {
 
         @Override
-        protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
             log(0, "test");
         }
 
@@ -1005,7 +1006,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         }
 
         @Override
-        protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
             // there is no need in implementation of the method
         }
 
@@ -1176,7 +1177,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         }
 
         @Override
-        protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
             methodCalls.add("processFiltered");
         }
 

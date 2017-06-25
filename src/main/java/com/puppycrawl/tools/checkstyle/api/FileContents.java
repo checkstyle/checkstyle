@@ -77,7 +77,7 @@ public final class FileContents implements CommentListener {
     @Deprecated
     public FileContents(String filename, String... lines) {
         fileName = filename;
-        text = FileText.fromLines(new File(filename), Arrays.asList(lines));
+        text = new FileText(new File(filename), Arrays.asList(lines));
     }
 
     /**
