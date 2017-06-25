@@ -43,12 +43,14 @@ for (
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on how to pad an empty for iterator</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
             <td><code>nospace</code></td>
+            <td>3.4</td>
           </tr>
         </table>
       </subsection>
@@ -135,12 +137,14 @@ for (Iterator foo = very.long.line.iterator();
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on how to pad an empty for iterator</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
             <td><code>nospace</code></td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -228,24 +232,28 @@ for (Iterator foo = very.long.line.iterator();
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowNoEmptyLineBetweenFields</td>
             <td>Allow no empty line between fields</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>5.8</td>
           </tr>
           <tr>
              <td>allowMultipleEmptyLines</td>
              <td>Allow multiple empty lines between class members</td>
              <td><a href="property_types.html#boolean">Boolean</a></td>
              <td>true</td>
+             <td>6.3</td>
           </tr>
             <tr>
                 <td>allowMultipleEmptyLinesInsideClassMembers</td>
                 <td>Allow multiple empty lines inside class members</td>
                 <td><a href="property_types.html#boolean">Boolean</a></td>
                 <td>true</td>
+                <td>6.18</td>
             </tr>
           <tr>
             <td>tokens</td>
@@ -274,6 +282,7 @@ for (Iterator foo = very.long.line.iterator();
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
             <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
           </td>
+          <td>5.8</td>
           </tr>
         </table>
       </subsection>
@@ -460,18 +469,21 @@ class Foo
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>eachLine</td>
             <td>whether to report on each line containing a tab, or just the first instance</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.0</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
+            <td>5.0</td>
           </tr>
         </table>
       </subsection>
@@ -664,6 +676,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowLineBreaks</td>
@@ -673,6 +686,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>option</td>
@@ -681,6 +695,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
               <a href="property_types.html#parenPad">pad policy</a>
             </td>
             <td><code>nospace</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -715,6 +730,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
                  <a
                   href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
             </td>
+            <td>3.4</td>
           </tr>
         </table>
       </subsection>
@@ -808,6 +824,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>tokens</td>
@@ -836,6 +853,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">IMPORT</a>,
             <a
             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.</td>
+            <td>5.8</td>
           </tr>
         </table>
       </subsection>
@@ -946,6 +964,7 @@ import static java.math.BigInteger.ZERO;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowLineBreaks</td>
@@ -954,6 +973,7 @@ import static java.math.BigInteger.ZERO;
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1010,6 +1030,7 @@ import static java.math.BigInteger.ZERO;
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1090,6 +1111,7 @@ import static java.math.BigInteger.ZERO;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowLineBreaks</td>
@@ -1098,6 +1120,7 @@ import static java.math.BigInteger.ZERO;
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1122,6 +1145,7 @@ import static java.math.BigInteger.ZERO;
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">POST_DEC</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">ELLIPSIS</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1198,6 +1222,7 @@ import static java.math.BigInteger.ZERO;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
@@ -1206,6 +1231,7 @@ import static java.math.BigInteger.ZERO;
               <a href="property_types.html#wrapOp">wrap operator policy</a>
             </td>
             <td><code>nl</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1276,6 +1302,7 @@ import static java.math.BigInteger.ZERO;
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION_AND">TYPE_EXTENSION_AND</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">LITERAL_INSTANCEOF</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1373,12 +1400,14 @@ import static java.math.BigInteger.ZERO;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on how to pad parentheses</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
             <td><code>nospace</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1473,6 +1502,7 @@ import static java.math.BigInteger.ZERO;
               <a
               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">LAMBDA</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1567,6 +1597,7 @@ import static java.math.BigInteger.ZERO;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
@@ -1575,6 +1606,7 @@ import static java.math.BigInteger.ZERO;
               <a href="property_types.html#wrapOp">wrap operator policy</a>
             </td>
             <td><code>eol</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1609,6 +1641,7 @@ import static java.math.BigInteger.ZERO;
               <a
                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">COMMA</a>.
             </td>
+            <td>5.8</td>
           </tr>
         </table>
       </subsection>
@@ -1750,12 +1783,14 @@ public long toMicros(long d) { return d / (C1 / C0); }
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>validateComments</td>
             <td>If set to true, whitespaces surrounding comments will be ignored.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>6.19</td>
           </tr>
         </table>
       </subsection>
@@ -1831,12 +1866,14 @@ public long toMicros(long d) { return d / (C1 / C0); }
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on how to pad parentheses</td>
             <td><a href="property_types.html#parenPad">pad policy</a></td>
             <td><code>nospace</code></td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -1924,6 +1961,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1970,6 +2008,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
                 <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">DO_WHILE</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -2091,48 +2130,56 @@ try {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowEmptyConstructors</td>
             <td>allow empty constructor bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>allowEmptyMethods</td>
             <td>allow empty method bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>allowEmptyTypes</td>
             <td>allow empty class, interface and enum bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>allowEmptyLoops</td>
             <td>allow empty loop bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>allowEmptyLambdas</td>
             <td>allow empty lambda bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>6.14</td>
           </tr>
           <tr>
             <td>allowEmptyCatches</td>
             <td>allow empty catch bodies</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>7.6</td>
           </tr>
           <tr>
             <td>ignoreEnhancedForColon</td>
             <td>ignore whitespace around colon in for-each loops</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>5.5</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -2249,6 +2296,7 @@ try {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ASSERT">LITERAL_ASSERT</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION_AND">TYPE_EXTENSION_AND</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>

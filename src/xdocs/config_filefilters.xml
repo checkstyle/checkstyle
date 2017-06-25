@@ -50,12 +50,14 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>fileNamePattern</td>
             <td>Regular expression to match the file name against.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
+            <td>7.2</td>
           </tr>
         </table>
       </subsection>

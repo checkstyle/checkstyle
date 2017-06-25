@@ -42,6 +42,7 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>excludes</td>
@@ -52,6 +53,7 @@
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty list</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>allowClassImports</td>
@@ -61,6 +63,7 @@
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.3</td>
           </tr>
           <tr>
             <td>allowStaticMemberImports</td>
@@ -70,6 +73,7 @@
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.3</td>
           </tr>
         </table>
       </subsection>
@@ -150,6 +154,7 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>excludes</td>
@@ -169,6 +174,7 @@
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty list</code></td>
+            <td>5.0</td>
           </tr>
         </table>
       </subsection>
@@ -328,36 +334,42 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>customImportOrderRules</td>
             <td>List of order declaration customizing by user.</td>
             <td><a href="property_types.html#string">string</a></td>
             <td><code>null</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>standardPackageRegExp</td>
             <td>RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^(java|javax)\."</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>thirdPartyPackageRegExp</td>
             <td>RegExp for THIRD_PARTY_PACKAGE group imports.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>".*"</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>specialImportsRegExp</td>
             <td>RegExp for SPECIAL_IMPORTS group imports.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^$"</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>separateLineBetweenGroups</td>
             <td>Force empty line separator between import groups.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>sortImportsInGroupAlphabetically</td>
@@ -366,6 +378,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
                    ASCII sort order</a>.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.8</td>
           </tr>
         </table>
       </subsection>
@@ -600,6 +613,7 @@ import android.*;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>illegalPkgs</td>
@@ -607,6 +621,7 @@ import android.*;
                 interpreted as regular expressions. Note, all properties for match will be used.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>sun</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>illegalClasses</td>
@@ -614,12 +629,14 @@ import android.*;
                 interpreted as regular expressions. Note, all properties for match will be used.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
+            <td>7.8</td>
           </tr>
           <tr>
             <td>regexp</td>
             <td>Whether the <b>illegalPkgs</b> and <b>illegalClasses</b> should be interpreted as regular expressions</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>7.8</td>
           </tr>
         </table>
 
@@ -883,6 +900,7 @@ public class InputIllegalImport { }
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>file</td>
@@ -893,6 +911,7 @@ public class InputIllegalImport { }
             </td>
             <td><a href="property_types.html#uri">URI</a></td>
             <td><code>null</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>url</td>
@@ -903,6 +922,7 @@ public class InputIllegalImport { }
             </td>
             <td><a href="property_types.html#uri">URI</a></td>
             <td><code>null</code></td>
+            <td>4.4</td>
           </tr>
           <tr>
             <td>path</td>
@@ -913,6 +933,7 @@ public class InputIllegalImport { }
             </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>".*"</code></td>
+            <td>7.5</td>
           </tr>
         </table>
       </subsection>
@@ -1245,12 +1266,14 @@ import java.util.stream.IntStream;
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>option</td>
             <td>policy on the relative order between regular imports and static imports</td>
             <td><a href="property_types.html#importOrder">import order</a></td>
             <td><code>under</code></td>
+            <td>5.0</td>
           </tr>
           <tr>
             <td>groups</td>
@@ -1261,12 +1284,14 @@ import java.util.stream.IntStream;
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty list</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>ordered</td>
             <td>whether imports within group should be sorted</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>separated</td>
@@ -1276,6 +1301,7 @@ import java.util.stream.IntStream;
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>caseSensitive</td>
@@ -1285,6 +1311,7 @@ import java.util.stream.IntStream;
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>true</td>
+            <td>3.3</td>
           </tr>
           <tr>
             <td>sortStaticImportsAlphabetically</td>
@@ -1292,12 +1319,14 @@ import java.util.stream.IntStream;
             are sorted alphabetically or not</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>6.5</td>
           </tr>
           <tr>
             <td>useContainerOrderingForStatic</td>
             <td>whether to use container ordering (Eclipse IDE term) for static imports or not</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>7.1</td>
           </tr>
 
           <tr>
@@ -1312,6 +1341,7 @@ import java.util.stream.IntStream;
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">STATIC_IMPORT</a>.
             </td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -1666,12 +1696,14 @@ class FooBar {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>processJavadoc</td>
             <td>whether to process Javadoc</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>5.4</td>
           </tr>
         </table>
       </subsection>

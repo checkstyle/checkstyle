@@ -148,6 +148,7 @@ public abstract class Plant {
                     <th>description</th>
                     <th>type</th>
                     <th>default value</th>
+                    <th>since</th>
                 </tr>
                 <tr>
                     <td>ignoredAnnotations</td>
@@ -156,6 +157,7 @@ public abstract class Plant {
                     </td>
                     <td><a href="property_types.html#stringSet">String Set</a></td>
                     <td><code>Test, Before, After, BeforeClass, AfterClass</code></td>
+                    <td>7.2</td>
                 </tr>
             </table>
         </subsection>
@@ -474,6 +476,7 @@ public class StringUtils // not final to allow subclassing
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowMarkerInterfaces</td>
@@ -483,6 +486,7 @@ public class StringUtils // not final to allow subclassing
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.1</td>
           </tr>
         </table>
       </subsection>
@@ -568,18 +572,21 @@ public class StringUtils // not final to allow subclassing
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>format</td>
             <td>pattern for exception class names</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>extendedClassNameFormat</td>
             <td>pattern for extended class names</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
+            <td>6.2</td>
           </tr>
         </table>
       </subsection>
@@ -759,18 +766,21 @@ public class Foo{
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>maximum allowed number of throws statements</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>4</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>ignorePrivateMethods</td>
             <td>whether private methods must be ignored</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>6.7</td>
           </tr>
         </table>
       </subsection>
@@ -906,36 +916,42 @@ public class Foo{
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>packageAllowed</td>
             <td>whether package visible members are allowed</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>protectedAllowed</td>
             <td>whether protected members are allowed</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>publicMemberPattern</td>
             <td>pattern for public members that should be ignored</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^serialVersionUID$"</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>allowPublicFinalFields</td>
             <td>allows public final fields</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>7.0</td>
           </tr>
           <tr>
             <td>allowPublicImmutableFields</td>
             <td>allows immutable fields to be declared as public if defined in final class</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>6.4</td>
           </tr>
           <tr>
             <td>immutableClassCanonicalNames</td>
@@ -946,12 +962,14 @@ public class Foo{
             java.lang.StackTraceElement, java.math.BigInteger, java.math.BigDecimal, java.io.File,
             java.util.Locale, java.util.UUID, java.net.URL, java.net.URI,
             java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress,</td>
+            <td>6.4.1</td>
           </tr>
           <tr>
             <td>ignoreAnnotationCanonicalNames</td>
             <td>ignore annotations canonical names</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>org.junit.Rule, org.junit.ClassRule, com.google.common.annotations.VisibleForTesting</td>
+            <td>6.5</td>
           </tr>
         </table>
       </subsection>

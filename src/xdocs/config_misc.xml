@@ -37,6 +37,7 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>javaStyle</td>
@@ -45,6 +46,7 @@
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.1</td>
           </tr>
         </table>
       </subsection>
@@ -130,30 +132,35 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowEscapesForControlCharacters</td>
             <td>Allow use escapes for non-printable(control) characters.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>allowByTailComment</td>
             <td>Allow use escapes if trail comment is present.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>allowIfAllCharactersEscaped</td>
             <td>Allow if all characters in literal are escaped.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>allowNonPrintableEscapes</td>
             <td>Allow non-printable escapes.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>5.8</td>
           </tr>
         </table>
       </subsection>
@@ -443,6 +450,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
             <tr>
             <td>tokens</td>
@@ -456,6 +464,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">SINGLE_LINE_COMMENT</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">BLOCK_COMMENT_BEGIN</a>.
             </td>
+            <td>6.10</td>
           </tr>
         </table>
       </subsection>
@@ -535,6 +544,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>limitedTokens</td>
@@ -544,30 +554,35 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
             </td>
             <td>empty set</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>minimumDepth</td>
             <td>the minimum depth for descendant counts</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>0</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>maximumDepth</td>
             <td>the maximum depth for descendant counts</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>java.lang.Integer.MAX_VALUE</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>minimumNumber</td>
             <td>a minimum count for descendants</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>0</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>maximumNumber</td>
             <td>a maximum count for descendants</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>java.lang.Integer.MAX_VALUE</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>sumTokenCounts</td>
@@ -577,18 +592,21 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.0</td>
           </tr>
           <tr>
             <td>minimumMessage</td>
             <td>error message when the minimum count is not reached</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>&quot;descendant.token.min&quot;</td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>maximumMessage</td>
             <td>error message when the maximum count is exceeded</td>
             <td><a href="property_types.html#string">String</a></td>
             <td>&quot;descendant.token.max&quot;</td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -888,12 +906,14 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>ignorePrimitiveTypes</td>
             <td>ignore primitive types as parameters</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>6.2</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -909,6 +929,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">METHOD_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1005,42 +1026,49 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>basicOffset</td>
             <td>how far new indentation level should be indented when on the next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>braceAdjustment</td>
             <td>how far a braces should be indented when on the next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>0</td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>caseIndent</td>
             <td>how far a case label should be indented when on next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>throwsIndent</td>
             <td>how far a throws clause should be indented when on next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
+            <td>5.7</td>
           </tr>
           <tr>
             <td>arrayInitIndent</td>
             <td>how far an array initialisation should be indented when on next line</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
+            <td>5.8</td>
           </tr>
           <tr>
             <td>lineWrappingIndentation</td>
             <td>how far continuation line should be indented when line-wrapping is present</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td>4</td>
+            <td>5.9</td>
           </tr>
           <tr>
             <td>forceStrictCondition</td>
@@ -1048,6 +1076,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
                 have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td>false</td>
+            <td>6.3</td>
           </tr>
         </table>
       </subsection>
@@ -1178,6 +1207,7 @@ void foo(String aFooString,
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>lineSeparator</td>
@@ -1188,12 +1218,14 @@ void foo(String aFooString,
               (Mac-style), &quot;lf&quot; (Unix-style) and &quot;lf_cr_crlf&quot; (lf, cr or crlf).
             </td>
             <td>&quot;system&quot;</td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
             <td>file type extension of the files to check.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>all files</td>
+            <td>3.1</td>
           </tr>
 
         </table>
@@ -1344,12 +1376,14 @@ void foo(String aFooString,
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>format</td>
             <td>Pattern to match comments against</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"TODO:"</code></td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1491,12 +1525,14 @@ d = e / f;        // Another comment for this line
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>format</td>
             <td>pattern for strings allowed before the comment</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^[\s});]*$"</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>legalComment</td>
@@ -1505,6 +1541,7 @@ d = e / f;        // Another comment for this line
                 comment will be trimmed before matching.)</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
+            <td>4.2</td>
           </tr>
         </table>
       </subsection>
@@ -1612,6 +1649,7 @@ messages.properties: Key 'ok' missing.
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>fileExtensions</td>
@@ -1623,6 +1661,7 @@ messages.properties: Key 'ok' missing.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>properties</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>baseName</td>
@@ -1631,6 +1670,7 @@ messages.properties: Key 'ok' missing.
               the check to distinguish config and localization resources.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^messages.*$"</code></td>
+            <td>6.17</td>
           </tr>
           <tr>
             <td>requiredTranslations</td>
@@ -1648,6 +1688,7 @@ messages.properties: Key 'ok' missing.
             </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>empty String Set</code></td>
+            <td>6.11</td>
           </tr>
         </table>
       </subsection>
@@ -1778,6 +1819,7 @@ messages_home_fr_CA_UNIX.properties
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>excludedClasses</td>
@@ -1785,6 +1827,7 @@ messages_home_fr_CA_UNIX.properties
             to have a main method.</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^$"</code></td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -1864,12 +1907,14 @@ messages_home_fr_CA_UNIX.properties
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>fileExtensions</td>
             <td>file type extension of the files to check.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>properties</td>
+            <td>5.7</td>
           </tr>
         </table>
       </subsection>

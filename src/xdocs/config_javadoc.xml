@@ -37,6 +37,7 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>target</td>
@@ -52,6 +53,7 @@
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
             </td>
+            <td>6.0</td>
           </tr>
           <tr>
             <td>tagOrder</td>
@@ -60,6 +62,7 @@
             <td><code>&#64;author, &#64;version, &#64;param,
                   &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
                   &#64;serialField, &#64;serialData, &#64;deprecated</code></td>
+            <td>6.0</td>
           </tr>
         </table>
       </subsection>
@@ -207,36 +210,42 @@ public int checkReturnTag(final int aTagIndex,
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>minLineCount</td>
             <td>Minimal amount of lines in method to demand documentation presence.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>-1</code></td>
+            <td>6.0</td>
           </tr>
           <tr>
             <td>allowedAnnotations</td>
             <td>List of annotations that could allow missed documentation.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>Override</code></td>
+            <td>6.0</td>
           </tr>
           <tr>
             <td>validateThrows</td>
             <td>Allows validating throws tags.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>6.0</td>
           </tr>
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>allowUndeclaredRTE</td>
@@ -244,6 +253,7 @@ public int checkReturnTag(final int aTagIndex,
             are not declared if they are a subclass of <code>java.lang.RuntimeException</code></td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>allowThrowsTagsForSubclasses</td>
@@ -251,6 +261,7 @@ public int checkReturnTag(final int aTagIndex,
             are subclass of one of declared exception.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
@@ -258,6 +269,7 @@ public int checkReturnTag(final int aTagIndex,
             but does not have matching param tags in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>allowMissingThrowsTags</td>
@@ -266,6 +278,7 @@ public int checkReturnTag(final int aTagIndex,
             in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>allowMissingReturnTag</td>
@@ -273,12 +286,14 @@ public int checkReturnTag(final int aTagIndex,
             non-void type and does not have a return tag in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.1</td>
           </tr>
           <tr>
             <td>allowMissingJavadoc</td>
             <td>whether to ignore errors when a method javadoc is missed.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>allowMissingPropertyJavadoc</td>
@@ -306,6 +321,7 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>logLoadErrors</td>
@@ -321,6 +337,7 @@ public boolean isSomething()
             (potentially masking a configuration error).</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>4.2</td>
           </tr>
           <tr>
             <td>suppressLoadErrors</td>
@@ -333,12 +350,14 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.2</td>
           </tr>
           <tr>
             <td>ignoreMethodNamesRegex</td>
             <td>ignore method whose names are matching specified regex</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
+            <td>6.3</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -355,6 +374,7 @@ public boolean isSomething()
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">CTOR_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">ANNOTATION_FIELD_DEF</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -504,6 +524,7 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowLegacy</td>
@@ -513,12 +534,14 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.0</td>
           </tr>
           <tr>
             <td>fileExtensions</td>
             <td>file type extension of files to process</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>{}</code></td>
+            <td>5.0</td>
           </tr>
         </table>
       </subsection>
@@ -597,12 +620,14 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>allowNewlineParagraph</td>
             <td>whether the &lt;p&gt; tag should be placed immediately before the first word</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>6.9</td>
           </tr>
         </table>
       </subsection>
@@ -776,18 +801,21 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>checkFirstSentence</td>
@@ -796,6 +824,7 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>endOfSentenceFormat</td>
@@ -804,6 +833,7 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
+            <td>5.0</td>
           </tr>
           <tr>
             <td>checkEmptyJavadoc</td>
@@ -812,12 +842,14 @@ public boolean isSomething()
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>checkHtml</td>
             <td>Whether to check for incomplete HTML tags.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -846,6 +878,7 @@ public boolean isSomething()
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">PACKAGE_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">VARIABLE_DEF</a>.
             </td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -965,12 +998,14 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>offset</td>
             <td>How many spaces to use for new indentation level.</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><span class="default">4</span></td>
+            <td>6.0</td>
           </tr>
         </table>
       </subsection>
@@ -1077,30 +1112,35 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>authorFormat</td>
             <td>pattern for @author tag</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>versionFormat</td>
             <td>pattern for @version tag</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>allowMissingParamTags</td>
@@ -1108,12 +1148,14 @@ public boolean isSomething()
                 but does not have matching param tags in the javadoc.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>4.0</td>
           </tr>
           <tr>
             <td>allowUnknownTags</td>
             <td>whether to ignore errors when a Javadoc tag is not recognised.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>5.1</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1131,6 +1173,7 @@ public boolean isSomething()
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1255,24 +1298,28 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>scope</td>
             <td>visibility scope where Javadoc comments are checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>private</code></td>
+            <td>3.0</td>
           </tr>
           <tr>
             <td>excludeScope</td>
             <td>visibility scope where Javadoc comments are not checked</td>
             <td><a href="property_types.html#scope">Scope</a></td>
             <td><code>null</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
               <td>ignoreNamePattern</td>
               <td>regexp to define variable names to ignore</td>
               <td><a href="property_types.html#regexp">Regular Expression</a></td>
               <td><code>null</code></td>
+              <td>5.8</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1283,6 +1330,7 @@ public boolean isSomething()
             <td>
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
             </td>
+            <td>3.0</td>
           </tr>
         </table>
       </subsection>
@@ -1381,6 +1429,7 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>javadocTokens</td>
@@ -1397,6 +1446,7 @@ public boolean isSomething()
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">THROWS_LITERAL</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">DEPRECATED_LITERAL</a>.
             </td>
+            <td>7.3</td>
           </tr>
         </table>
       </subsection>
@@ -1486,18 +1536,21 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>ignoredTags</td>
             <td>allows to specify at-clauses which are ignored by the check.</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>null</code></td>
+            <td>6.8</td>
           </tr>
           <tr>
             <td>ignoreInlineTags</td>
             <td>whether inline tags must be ignored.</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>6.8</td>
           </tr>
         </table>
       </subsection>
@@ -1595,18 +1648,21 @@ public boolean isSomething()
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>forbiddenSummaryFragments</td>
             <td>forbidden summary fragments</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>"^$"</code></td>
+            <td>6.0</td>
           </tr>
           <tr>
             <td>period</td>
             <td>period symbol at the end of first javadoc sentence</td>
             <td><a href="property_types.html#string">String literal</a></td>
             <td><code>.</code></td>
+            <td>6.2</td>
           </tr>
         </table>
       </subsection>
@@ -1755,24 +1811,28 @@ public class TestClass {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>tag</td>
             <td>Name of tag</td>
             <td><a href="property_types.html#string">String</a></td>
            <td><code>null</code></td>
+           <td>4.2</td>
           </tr>
           <tr>
             <td>tagFormat</td>
             <td>Format of tag</td>
             <td><a href="property_types.html#regexp">Regular Expression</a></td>
             <td><code>null</code></td>
+            <td>4.2</td>
           </tr>
           <tr>
             <td>tagSeverity</td>
             <td>Severity level when tag is found and printed</td>
             <td><a href="property_types.html#severity">Severity</a></td>
             <td><code>info</code></td>
+            <td>4.2</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -1793,6 +1853,7 @@ public class TestClass {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">ENUM_DEF</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">ANNOTATION_DEF</a>.
             </td>
+            <td>4.2</td>
           </tr>
         </table>
       </subsection>

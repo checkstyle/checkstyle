@@ -56,6 +56,7 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
@@ -65,6 +66,7 @@
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>3</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>tokens</td>
@@ -84,6 +86,7 @@
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a>.
             </td>
+            <td>3.4</td>
           </tr>
         </table>
       </subsection>
@@ -211,12 +214,14 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>7</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>excludedClasses</td>
@@ -234,18 +239,21 @@
                 List, ArrayList, Deque, Queue, LinkedList,
                 Set, HashSet, SortedSet, TreeSet,
                 Map, HashMap, SortedMap, TreeMap</td>
+            <td>5.7</td>
           </tr>
           <tr>
             <td>excludeClassesRegexps</td>
             <td>User-configured regular expressions to ignore classes</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>"^$"</code></td>
+            <td>7.7</td>
           </tr>
           <tr>
             <td>excludedPackages</td>
             <td>User-configured packages to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>{}</td>
+            <td>7.7</td>
           </tr>
         </table>
       </subsection>
@@ -518,12 +526,14 @@ public class Foo {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>20</code></td>
+            <td>3.4</td>
           </tr>
           <tr>
             <td>excludedClasses</td>
@@ -541,18 +551,21 @@ public class Foo {
                 List, ArrayList, Deque, Queue, LinkedList,
                 Set, HashSet, SortedSet, TreeSet,
                 Map, HashMap, SortedMap, TreeMap</td>
+            <td>5.7</td>
           </tr>
           <tr>
             <td>excludeClassesRegexps</td>
             <td>User-configured regular expressions to ignore classes</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td><code>"^$"</code></td>
+            <td>7.7</td>
           </tr>
           <tr>
             <td>excludedPackages</td>
             <td>User-configured packages to ignore</td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
             <td>{}</td>
+            <td>7.7</td>
           </tr>
         </table>
       </subsection>
@@ -716,18 +729,21 @@ public class Foo {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>10</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>switchBlockAsSingleDecisionPoint</td>
             <td>whether to treat the whole switch block as a single decision point</td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>false</code></td>
+            <td>6.11</td>
           </tr>
 
           <tr>
@@ -760,6 +776,7 @@ public class Foo {
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>.
             </td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -919,6 +936,7 @@ class SwitchExample {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>methodMaximum</td>
@@ -928,6 +946,7 @@ class SwitchExample {
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>50</code></td>
+            <td>3.5</td>
           </tr>
           <tr>
             <td>classMaximum</td>
@@ -937,6 +956,7 @@ class SwitchExample {
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>1500</code></td>
+            <td>3.5</td>
           </tr>
           <tr>
             <td>fileMaximum</td>
@@ -946,6 +966,7 @@ class SwitchExample {
             </td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>2000</code></td>
+            <td>3.5</td>
           </tr>
         </table>
       </subsection>
@@ -1091,12 +1112,14 @@ class SwitchExample {
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>max</td>
             <td>the maximum threshold allowed</td>
             <td><a href="property_types.html#integer">Integer</a></td>
             <td><code>200</code></td>
+            <td>3.4</td>
           </tr>
         </table>
       </subsection>

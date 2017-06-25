@@ -36,12 +36,14 @@
             <th>description</th>
             <th>type</th>
             <th>default value</th>
+            <th>since</th>
           </tr>
           <tr>
             <td>severity</td>
             <td>the severity level of this filter</td>
             <td><a href="property_types.html#severity">Severity</a></td>
             <td><code>error</code></td>
+            <td>3.2</td>
           </tr>
           <tr>
             <td>acceptOnMatch</td>
@@ -56,6 +58,7 @@
             </td>
             <td><a href="property_types.html#boolean">Boolean</a></td>
             <td><code>true</code></td>
+            <td>3.2</td>
           </tr>
         </table>
       </subsection>
@@ -119,42 +122,49 @@
                   <th>description</th>
                   <th>type</th>
                   <th>default value</th>
+                  <th>since</th>
               </tr>
               <tr>
                   <td>offCommentFormat</td>
                   <td>comment pattern to trigger filter to begin suppression</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>"CHECKSTYLE:OFF"</code></td>
+                  <td>3.5</td>
               </tr>
               <tr>
                   <td>onCommentFormat</td>
                   <td>comment pattern to trigger filter to end suppression</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>"CHECKSTYLE:ON"</code></td>
+                  <td>3.5</td>
               </tr>
               <tr>
                   <td>checkFormat</td>
                   <td>check pattern to suppress</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>".*"</code></td>
+                  <td>3.5</td>
               </tr>
               <tr>
                   <td>messageFormat</td>
                   <td>message pattern to suppress</td>
                   <td><a href="property_types.html#regexp">Regular Expression</a></td>
                   <td><code>null</code></td>
+                  <td>3.5</td>
               </tr>
               <tr>
                   <td>checkCPP</td>
                   <td>whether to check C++ style comments (<code>//</code>)</td>
                   <td><a href="property_types.html#boolean">Boolean</a></td>
                   <td><code>true</code></td>
+                  <td>3.5</td>
               </tr>
               <tr>
                   <td>checkC</td>
                   <td>whether to check C style comments (<code>/* ... */</code>)</td>
                   <td><a href="property_types.html#boolean">Boolean</a></td>
                   <td><code>true</code></td>
+                  <td>3.5</td>
               </tr>
           </table>
           <p>
@@ -419,6 +429,7 @@ public class UserService {
                <th>description</th>
                <th>type</th>
                <th>default value</th>
+               <th>since</th>
              </tr>
              <tr>
                <td>file</td>
@@ -440,6 +451,7 @@ public class UserService {
                </td>
                <td><a href="property_types.html#string">string</a></td>
                <td><code>none</code></td>
+               <td>3.2</td>
              </tr>
              <tr>
                <td>optional</td>
@@ -452,6 +464,7 @@ public class UserService {
                </td>
                <td><a href="property_types.html#boolean">Boolean</a></td>
                <td><code>false</code></td>
+               <td>6.15</td>
              </tr>
           </table>
       </subsection>
@@ -764,24 +777,28 @@ public static void foo() {
                     <th>description</th>
                     <th>type</th>
                     <th>default value</th>
+                    <th>since</th>
                 </tr>
                 <tr>
                     <td>commentFormat</td>
                     <td>comment pattern to trigger filter to begin suppression</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
+                    <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkFormat</td>
                     <td>check pattern to suppress</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>".*"</code></td>
+                    <td>5.0</td>
                 </tr>
                 <tr>
                     <td>messageFormat</td>
                     <td>message pattern to suppress</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>null</code></td>
+                    <td>5.0</td>
                 </tr>
                 <tr>
                     <td>influenceFormat</td>
@@ -789,18 +806,21 @@ public static void foo() {
                         lines preceding/at/following the suppression comment</td>
                     <td><a href="property_types.html#regexp">Regular Expression</a></td>
                     <td><code>"0"</code></td>
+                    <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkCPP</td>
                     <td>whether to check C++ style comments (<code>//</code>)</td>
                     <td><a href="property_types.html#boolean">Boolean</a></td>
                     <td><code>true</code></td>
+                    <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkC</td>
                     <td>whether to check C style comments (<code>/* ... */</code>)</td>
                     <td><a href="property_types.html#boolean">Boolean</a></td>
                     <td><code>true</code></td>
+                    <td>5.0</td>
                 </tr>
             </table>
         </subsection>
