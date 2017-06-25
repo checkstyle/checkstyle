@@ -26,7 +26,6 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -165,7 +164,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+    protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
         // check if already checked and passed the file
         if (CommonUtils.matchesFileExtension(file, getFileExtensions())) {
             final String msg = "%s occurred during the analysis of file %s.";
@@ -173,8 +172,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             try {
                 if (!ordinaryChecks.isEmpty()
                         || !commentChecks.isEmpty()) {
-                    final FileText text = FileText.fromLines(file, lines);
-                    final FileContents contents = new FileContents(text);
+                    final FileContents contents = new FileContents(fileText);
                     final DetailAST rootAST = parse(contents);
 
                     if (!ordinaryChecks.isEmpty()) {

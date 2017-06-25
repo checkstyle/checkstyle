@@ -42,11 +42,13 @@ public class AbstractFileSetCheckTest {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
         check.setFileExtensions("tmp");
-        final List<String> lines = Arrays.asList("key=value", "ext=tmp");
+        final File firstFile = new File("inputAbstractFileSetCheck.tmp");
         final SortedSet<LocalizedMessage> firstFileMessages =
-            check.process(new File("inputAbstractFileSetCheck.tmp"), Collections.emptyList());
+            check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
+        final File secondFile = new File("inputAbstractFileSetCheck.txt");
+        final List<String> lines = Arrays.asList("key=value", "ext=tmp");
         final SortedSet<LocalizedMessage> secondFileMessages =
-            check.process(new File("inputAbstractFileSetCheck.txt"), lines);
+            check.process(secondFile, new FileText(secondFile, lines));
 
         assertEquals("File should not be empty.",
             firstFileMessages.first().getMessage());
@@ -88,7 +90,8 @@ public class AbstractFileSetCheckTest {
         private static final String MSG_KEY = "File should not be empty.";
 
         @Override
-        protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+            final List<String> lines = fileText.getLines();
             if (lines.isEmpty()) {
                 log(1, MSG_KEY);
             }

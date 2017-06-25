@@ -44,7 +44,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,6 +51,7 @@ import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.CheckUtil;
@@ -246,7 +246,7 @@ public class PackageObjectFactoryTest {
         }
 
         @Override
-        protected void processFiltered(File file, List<String> lines) {
+        protected void processFiltered(File file, FileText fileText) {
             // not used
         }
     }

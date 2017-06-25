@@ -24,7 +24,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Locale;
 
 import org.junit.Test;
@@ -36,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -120,7 +120,7 @@ public class FileSetCheckLifecycleTest
         }
 
         @Override
-        protected void processFiltered(File file, List<String> lines) {
+        protected void processFiltered(File file, FileText fileText) {
             //dummy method
         }
 

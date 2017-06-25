@@ -21,11 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -248,7 +248,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) throws CheckstyleException {
+    protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
         final String fileName = getFileName(file);
         final String folderPath = getFolderPath(file);
 

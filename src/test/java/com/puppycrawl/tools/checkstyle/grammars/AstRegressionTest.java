@@ -215,7 +215,7 @@ public class AstRegressionTest extends BaseCheckTestSupport {
         final String expectedContents = new FileText(expectedFile, System.getProperty(
                 "file.encoding", "UTF-8")).getFullText().toString().replace("\r", "");
 
-        final FileText actualFileContents = FileText.fromLines(new File(""),
+        final FileText actualFileContents = new FileText(new File(""),
                 Arrays.asList(actualJava.split("\\n|\\r\\n?")));
         final String actualContents = AstTreeStringPrinter.printAst(actualFileContents,
                 withComments);

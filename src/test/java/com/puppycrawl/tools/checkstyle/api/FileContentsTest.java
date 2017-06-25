@@ -44,7 +44,7 @@ public class FileContentsTest {
     public void testSinglelineCommentNotIntersect() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents(
-                FileText.fromLines(new File("filename"), Collections.singletonList("  //  ")));
+                new FileText(new File("filename"), Collections.singletonList("  //  ")));
         fileContents.reportSingleLineComment(1, 2);
         assertFalse(fileContents.hasIntersectionWithComment(1, 0, 1, 1));
     }
@@ -53,7 +53,7 @@ public class FileContentsTest {
     public void testSinglelineCommentIntersect() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents(
-                FileText.fromLines(new File("filename"), Collections.singletonList("  //   ")));
+                new FileText(new File("filename"), Collections.singletonList("  //   ")));
         fileContents.reportSingleLineComment(1, 2);
         assertTrue(fileContents.hasIntersectionWithComment(1, 5, 1, 6));
 

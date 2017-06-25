@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -77,8 +78,9 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, FileText fileText) {
         final int headerSize = getHeaderLines().size();
+        final List<String> lines = fileText.getLines();
         final int fileSize = lines.size();
 
         if (headerSize - multiLines.length > fileSize) {

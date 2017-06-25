@@ -31,7 +31,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.UnsupportedCharsetException;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,15 +43,12 @@ import com.google.common.io.Closeables;
  * Represents the text contents of a file of arbitrary plain text type.
  * <p>
  * This class will be passed to instances of class FileSetCheck by
- * Checker. It implements a string list to ensure backwards
- * compatibility, but can be extended in the future to allow more
- * flexible, more powerful or more efficient handling of certain
- * situations.
+ * Checker.
  * </p>
  *
  * @author Martin von Gagern
  */
-public final class FileText extends AbstractList<String> {
+public final class FileText {
 
     /**
      * The number of characters to read in one go.
@@ -171,7 +167,7 @@ public final class FileText extends AbstractList<String> {
      * @param lines the lines of the text, without terminators
      * @throws NullPointerException if the lines array is null
      */
-    private FileText(File file, List<String> lines) {
+    public FileText(File file, List<String> lines) {
         final StringBuilder buf = new StringBuilder();
         for (final String line : lines) {
             buf.append(line).append('\n');
@@ -216,30 +212,6 @@ public final class FileText extends AbstractList<String> {
     }
 
     /**
-     * Compatibility conversion.
-     *
-     * <p>This method can be used to convert the arguments passed to
-     * {@link FileSetCheck#process(File,List)} to a FileText
-     * object. If the list of lines already is a FileText, it is
-     * returned as is. Otherwise, a new FileText is constructed by
-     * joining the lines using line feed characters.
-     *
-     * @param file the name of the file
-     * @param lines the lines of the text, without terminators
-     * @return an object representing the denoted text file
-     */
-    public static FileText fromLines(File file, List<String> lines) {
-        final FileText fileText;
-        if (lines instanceof FileText) {
-            fileText = (FileText) lines;
-        }
-        else {
-            fileText = new FileText(file, lines);
-        }
-        return fileText;
-    }
-
-    /**
      * Get the name of the file.
      * @return an object containing the name of the file
      */
@@ -262,6 +234,14 @@ public final class FileText extends AbstractList<String> {
      */
     public CharSequence getFullText() {
         return fullText;
+    }
+
+    /**
+     * Returns a list of lines.
+     * @return a list of all lines of the file
+     */
+    public List<String> getLines() {
+        return new ArrayList<>(Arrays.asList(lines));
     }
 
     /**
@@ -321,7 +301,6 @@ public final class FileText extends AbstractList<String> {
      * @param lineNo the number of the line to get, starting at zero
      * @return the line with the given number
      */
-    @Override
     public String get(final int lineNo) {
         return lines[lineNo];
     }
@@ -330,7 +309,6 @@ public final class FileText extends AbstractList<String> {
      * Counts the lines of the text.
      * @return the number of lines in the text
      */
-    @Override
     public int size() {
         return lines.length;
     }

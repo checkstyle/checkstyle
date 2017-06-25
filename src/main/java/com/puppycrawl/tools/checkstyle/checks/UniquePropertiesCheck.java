@@ -32,6 +32,7 @@ import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * Checks the uniqueness of property keys (left from equal sign) in the
@@ -63,7 +64,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     }
 
     @Override
-    protected void processFiltered(File file, List<String> lines) {
+    protected void processFiltered(File file, FileText fileText) {
         final UniqueProperties properties = new UniqueProperties();
 
         try {
@@ -84,6 +85,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         for (Entry<String> duplication : properties
                 .getDuplicatedKeys().entrySet()) {
             final String keyName = duplication.getElement();
+            final List<String> lines = fileText.getLines();
             final int lineNumber = getLineNumber(lines, keyName);
             // Number of occurrences is number of duplications + 1
             log(lineNumber, MSG_KEY, keyName, duplication.getCount() + 1);
