@@ -198,6 +198,25 @@ public class BaseCheckTestSupport {
                 expectedContents, actualContents);
     }
 
+    /**
+     * Verifies the java and javadoc AST generated for the supplied java file against
+     * the expected AST in supplied text file.
+     * @param expectedTextPrintFilename name of the file having the expected ast.
+     * @param actualJavaFilename name of the java file.
+     * @throws Exception if exception occurs during verification.
+     */
+    protected static void verifyJavaAndJavadocAst(String expectedTextPrintFilename,
+                                                  String actualJavaFilename) throws Exception {
+
+        final String expectedContents = readFile(expectedTextPrintFilename);
+
+        final String actualContents = AstTreeStringPrinter.printJavaAndJavadocTree(
+                new File(actualJavaFilename)).replaceAll(CLRF_REGEX, LF_REGEX);
+
+        assertEquals("Generated AST from the java file should match the pre-defined AST",
+                expectedContents, actualContents);
+    }
+
     /** Reads the contents of a file.
      * @param filename the name of the file whose contents are to be read
      * @return contents of the file with all {@code \r\n} replaced by {@code \n}

@@ -263,7 +263,7 @@ public final class JavadocUtils {
      */
     public static boolean isJavadocComment(DetailAST blockCommentBegin) {
         final String commentContent = getBlockCommentContent(blockCommentBegin);
-        return isJavadocComment(commentContent);
+        return isJavadocComment(commentContent) && isCorrectJavadocPosition(blockCommentBegin);
     }
 
     /**
@@ -467,5 +467,28 @@ public final class JavadocUtils {
         final String textWithoutNewlines = NEWLINE.matcher(text).replaceAll("\\\\n");
         final String textWithoutReturns = RETURN.matcher(textWithoutNewlines).replaceAll("\\\\r");
         return TAB.matcher(textWithoutReturns).replaceAll("\\\\t");
+    }
+
+    /**
+     * Checks Javadoc comment it's in right place.
+     * From Javadoc util documentation:
+     * "Placement of comments - Documentation comments are recognized only when placed
+     * immediately before class, interface, constructor, method, or field
+     * declarations -- see the class example, method example, and field example.
+     * Documentation comments placed in the body of a method are ignored. Only one
+     * documentation comment per declaration statement is recognized by the Javadoc tool."
+     *
+     * @param blockComment Block comment AST
+     * @return true if Javadoc is in right place
+     */
+    public static boolean isCorrectJavadocPosition(DetailAST blockComment) {
+        return BlockCommentPosition.isOnClass(blockComment)
+                || BlockCommentPosition.isOnInterface(blockComment)
+                || BlockCommentPosition.isOnEnum(blockComment)
+                || BlockCommentPosition.isOnMethod(blockComment)
+                || BlockCommentPosition.isOnField(blockComment)
+                || BlockCommentPosition.isOnConstructor(blockComment)
+                || BlockCommentPosition.isOnEnumConstant(blockComment)
+                || BlockCommentPosition.isOnAnnotationDef(blockComment);
     }
 }

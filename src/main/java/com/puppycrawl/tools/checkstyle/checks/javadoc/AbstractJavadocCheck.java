@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
@@ -251,8 +250,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
     @Override
     public final void visitToken(DetailAST blockCommentNode) {
-        if (JavadocUtils.isJavadocComment(blockCommentNode)
-              && isCorrectJavadocPosition(blockCommentNode)) {
+        if (JavadocUtils.isJavadocComment(blockCommentNode)) {
             // store as field, to share with child Checks
             blockCommentAst = blockCommentNode;
 
@@ -288,29 +286,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      */
     protected DetailAST getBlockCommentAst() {
         return blockCommentAst;
-    }
-
-    /**
-     * Checks Javadoc comment it's in right place.
-     * From Javadoc util documentation:
-     * "Placement of comments - Documentation comments are recognized only when placed
-     * immediately before class, interface, constructor, method, or field
-     * declarations -- see the class example, method example, and field example.
-     * Documentation comments placed in the body of a method are ignored. Only one
-     * documentation comment per declaration statement is recognized by the Javadoc tool."
-     *
-     * @param blockComment Block comment AST
-     * @return true if Javadoc is in right place
-     */
-    private static boolean isCorrectJavadocPosition(DetailAST blockComment) {
-        return BlockCommentPosition.isOnClass(blockComment)
-                || BlockCommentPosition.isOnInterface(blockComment)
-                || BlockCommentPosition.isOnEnum(blockComment)
-                || BlockCommentPosition.isOnMethod(blockComment)
-                || BlockCommentPosition.isOnField(blockComment)
-                || BlockCommentPosition.isOnConstructor(blockComment)
-                || BlockCommentPosition.isOnEnumConstant(blockComment)
-                || BlockCommentPosition.isOnAnnotationDef(blockComment);
     }
 
     /**

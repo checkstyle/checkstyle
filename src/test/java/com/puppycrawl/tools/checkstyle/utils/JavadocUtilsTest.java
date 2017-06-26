@@ -182,6 +182,13 @@ public class JavadocUtilsTest {
         commentBegin.setFirstChild(javadocCommentContent);
         javadocCommentContent.setNextSibling(commentEnd);
 
+        final DetailAST commentBeginParent = new DetailAST();
+        commentBeginParent.setType(TokenTypes.MODIFIERS);
+        commentBeginParent.setFirstChild(commentBegin);
+
+        final DetailAST aJavadocPosition = new DetailAST();
+        aJavadocPosition.setType(TokenTypes.METHOD_DEF);
+        aJavadocPosition.setFirstChild(commentBeginParent);
         assertTrue(JavadocUtils.isJavadocComment(commentBegin));
     }
 
