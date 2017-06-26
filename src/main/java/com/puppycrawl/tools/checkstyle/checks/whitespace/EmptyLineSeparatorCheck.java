@@ -563,7 +563,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         boolean result = false;
         final DetailAST previous = token.getPreviousSibling();
         if (previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                && JavadocUtils.isJavadocComment(previous)) {
+                && JavadocUtils.isJavadocComment(previous.getFirstChild().getText())) {
             result = true;
         }
         return result;
