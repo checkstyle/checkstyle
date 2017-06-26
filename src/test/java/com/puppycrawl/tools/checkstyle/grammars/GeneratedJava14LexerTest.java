@@ -66,7 +66,7 @@ public class GeneratedJava14LexerTest
         // input is 'ÃЯ'
         final String[] expected = {
             "7:9: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
-                    "" + (char) 0xC3 + (char) 0x042F, "^[a-z][a-zA-Z0-9]*$"),
+                    new String(new char[] {0xC3, 0x042F}), "^[a-z][a-zA-Z0-9]*$"),
         };
         verify(checkConfig, getPath("InputGrammar.java"), expected);
     }

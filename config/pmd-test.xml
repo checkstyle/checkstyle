@@ -8,6 +8,7 @@
         PMD ruleset for Checkstyle tests
     </description>
     <exclude-pattern>.*/src/main/.*</exclude-pattern>
+
     <rule ref="config/pmd.xml">
         <!--We do throws Exception, as any exception that in not caught in test should fail a test that is expected behavior and we like it as it follow fail-fast and helps to avoid extra catch blocks-->
         <exclude name="SignatureDeclareThrowsException"/>
@@ -31,40 +32,38 @@
         <exclude name="ExcessivePublicCount"/>
         <!--we have too much UTs for each main class, it is better to keep all tests in one file to ease navigation and search for test-->
         <exclude name="ExcessiveClassLength"/>
-        <!--tentative-->
+        <!--we want to keep it all in one place-->
+        <exclude name="NcssTypeCount"/>
+        <!--we want to avoid wide throws signature, it is just test-->
+        <exclude name="AvoidCatchingGenericException"/>
+        <!--we do not want invest extra time to make logic ideal in test method, may be later...-->
+        <exclude name="NPathComplexity"/>
+        <!--conflicts with checkstyle rule-->
         <exclude name="JUnitUseExpected"/>
-        <!--tentative-->
-        <exclude name="UncommentedEmptyConstructor"/>
-        <!--tentative-->
-        <exclude name="ShortClassName"/>
-        <!--tentative-->
-        <exclude name="DefaultPackage"/>
         <!--tentative-->
         <exclude name="AccessorClassGeneration"/>
         <!--tentative-->
-        <exclude name="AddEmptyString"/>
-        <!--tentative-->
-        <exclude name="ExcessiveMethodLength"/>
-        <!--tentative-->
-        <exclude name="NPathComplexity"/>
-        <!--tentative-->
-        <exclude name="NcssTypeCount"/>
-        <!--tentative-->
-        <exclude name="JUnit4TestShouldUseBeforeAnnotation"/>
-        <!--tentative-->
-        <exclude name="ShortMethodName"/>
-        <!--tentative-->
-        <exclude name="AvoidCatchingGenericException"/>
-        <!--tentative-->
         <exclude name="NonThreadSafeSingleton"/>
-        <!--tentative-->
-        <exclude name="UseVarargs"/>
     </rule>
 
     <rule ref="rulesets/java/codesize.xml/NcssMethodCount">
         <properties>
             <!-- 'testTokenNumbering' method is simple but long as it recheck each token one by one -->
-            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering'] | //ClassOrInterfaceDeclaration[@Image='ParseTreeBuilder']"/>
+            <!-- 'testNospaceWithComplexInput' it is intended to keep all in one method. -->
+            <property name="violationSuppressXPath" value="
+            //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering']
+            | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']//MethodDeclarator[@Image='testNospaceWithComplexInput']"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/codesize.xml/ExcessiveMethodLength">
+        <properties>
+            <!-- 'testTokenNumbering' method is simple but long as it recheck each token one by one -->
+            <!-- 'testNospaceWithComplexInput' it is intended to keep all in one method. -->
+            <property name="violationSuppressXPath" value="
+            //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']//MethodDeclarator[@Image='testTokenNumbering']
+            | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']//MethodDeclarator[@Image='testNospaceWithComplexInput']
+            | //ClassOrInterfaceDeclaration[@Image='ParenPadTest']//MethodDeclarator[@Image='testMethodParen'] "/>
         </properties>
     </rule>
 
@@ -80,9 +79,40 @@
         </properties>
     </rule>
 
+    <rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseBeforeAnnotation">
+        <properties>
+            <!-- false positive -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='CommitValidationTest']"/>
+        </properties>
+    </rule>
     <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">
         <properties>
             <property name="maximumAsserts" value="11"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/naming.xml/ShortMethodName">
+        <properties>
+            <!-- this inherited from GeneratedJavaLexer -->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AstRegressionTest']
+            //ClassOrInterfaceDeclaration[@Image='AssertGeneratedJavaLexer']//MethodDeclarator[@Image='LA']"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod">
+        <properties>
+            <!-- generates false-positives on private methods called within a file -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='IndentationCheckTest']//MethodDeclarator[@Image='verifyWarns']"/>
+            <!-- generates false-positives on private methods called within a file -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='SuppressWarningsFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
+            <!-- generates false-positives on private methods called within a file -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
+            <!-- generates false-positives on private methods called within a file -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
         </properties>
     </rule>
 </ruleset>

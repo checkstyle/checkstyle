@@ -10,4 +10,18 @@
     <exclude-pattern>.*/src/it/.*</exclude-pattern>
     <exclude-pattern>.*/src/test/.*</exclude-pattern>
     <rule ref="config/pmd.xml"/>
+
+    <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod">
+        <properties>
+            <!-- generates false-positives on private methods called within a file -->
+            <property name="violationSuppressXPath"
+                      value="//MethodDeclaration[@Name='countTokens' and ../../..[@Image='DescendantTokenCheck']]"/>
+            <!-- generates false-positives on private methods called within a file -->
+            <property name="violationSuppressXPath"
+                      value="//MethodDeclaration[@Name='getHashCodeBasedOnObjectContent' and ../../..[@Image='PropertyCacheFile']]"/>
+            <!-- generates false-positives on private methods called within a file -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='DescendantTokenCheck']//MethodDeclarator[@Image='countTokens']"/>
+        </properties>
+    </rule>
 </ruleset>
