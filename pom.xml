@@ -303,7 +303,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>4.7.1.201706071930-r</version>
+      <version>4.8.0.201706111038-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
