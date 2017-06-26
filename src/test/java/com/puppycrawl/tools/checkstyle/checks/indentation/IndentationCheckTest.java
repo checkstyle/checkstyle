@@ -1797,8 +1797,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         private final IndentComment[] comments;
         private int position;
 
-        private IndentAudit(IndentComment... comments) {
-            this.comments = comments;
+        IndentAudit(IndentComment... comments) {
+            this.comments = Arrays.copyOf(comments, comments.length);
         }
 
         @Override
