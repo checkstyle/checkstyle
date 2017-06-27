@@ -679,8 +679,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         // Cache should not be reused.
 
         final DynamicalResourceHolderCheck check = new DynamicalResourceHolderCheck();
-        final String firstExternalResourceLocation = getPath("checks" + File.separator
-            + "imports" + File.separator + "import-control_one.xml");
+        final String firstExternalResourceLocation = getPath("InputImportControlOne.xml");
         final String firstExternalResourceKey = PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
                 + firstExternalResourceLocation;
         check.setFirstExternalResourceLocation(firstExternalResourceLocation);
@@ -707,8 +706,7 @@ public class CheckerTest extends BaseCheckTestSupport {
                 expectedNumberOfObjectsInCacheAfterFirstRun, cacheAfterFirstRun.size());
 
         // Change a list of external resources which are used by the check
-        final String secondExternalResourceLocation = "checks" + File.separator
-            + "imports" + File.separator + "import-control_one-re.xml";
+        final String secondExternalResourceLocation = "InputImportControlOneRegExp.xml";
         final String secondExternalResourceKey = PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
                 + secondExternalResourceLocation;
         check.setSecondExternalResourceLocation(secondExternalResourceLocation);
