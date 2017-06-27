@@ -63,6 +63,7 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.ANNOTATION_DEF,
             TokenTypes.METHOD_DEF,
         };
 
@@ -130,5 +131,15 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
         };
 
         verify(checkConfig, getPath("InputMethodCount3.java"), expected);
+    }
+
+    @Test
+    public void testOnInterfaceDefinitionWithField() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(MethodCountCheck.class);
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputMethodCount4.java"), expected);
     }
 }
