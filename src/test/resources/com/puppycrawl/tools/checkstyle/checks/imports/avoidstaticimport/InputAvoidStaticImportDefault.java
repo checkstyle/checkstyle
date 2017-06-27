@@ -26,8 +26,8 @@ import static javax.swing.WindowConstants.*;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import static java.io.File.pathSeparator;
-import static com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass;
-import static com.puppycrawl.tools.checkstyle.checks.imports.InputAvoidStaticImportNestedClass.InnerClass.one;
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass;
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one;
 
 import java.awt.Component;
 import java.awt.Graphics2D;

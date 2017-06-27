@@ -5,7 +5,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*;
-                                     import com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug;
+                                     import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsBug;
 import java.io.*;
 import java.lang.*;
 import java.lang.String;
