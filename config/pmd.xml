@@ -181,12 +181,6 @@
     or @Image='AbstractCheck' or @Image='AbstractJavadocCheck']"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/design.xml/AbstractClassWithoutAnyMethod">
-    <properties>
-     <!-- Can not change API -->
-    <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Check']"/>
-    </properties>
-  </rule>
 
   <rule ref="rulesets/java/design.xml/AvoidDeeplyNestedIfStmts">
     <properties>
@@ -257,7 +251,7 @@
   <rule ref="rulesets/java/naming.xml/AbstractNaming">
     <properties>
      <!-- We can not brake compatibility with previous versions -->
-     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Check' or @Image='AbstractClassNameCheck']"/>
+     <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AbstractClassNameCheck']"/>
     </properties>
   </rule>
   <rule ref="rulesets/java/naming.xml/LongVariable">
