@@ -1,5 +1,5 @@
 // comment
-package com.puppycrawl.tools.checkstyle.checks.indentation;
+package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
 import java.util.*;
 

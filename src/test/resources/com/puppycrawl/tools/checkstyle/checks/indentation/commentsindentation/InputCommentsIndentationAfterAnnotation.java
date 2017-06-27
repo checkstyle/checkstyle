@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation;
+package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
 @AfterAnnotationCommentsAnnotation1
 // Comment after annotation

@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation;
+package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
 public class InputCommentsIndentationInMultiblockStructures {
     void foo() {
