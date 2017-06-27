@@ -51,7 +51,8 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("processJavadoc", "false");
         final String[] expected = {
             "8:45: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
+                "com.puppycrawl.tools.checkstyle.checks."
+                + "imports.unusedimports.InputUnusedImportsBug"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "14:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -89,7 +90,8 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "8:45: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.imports.InputImportBug"),
+                "com.puppycrawl.tools.checkstyle.checks."
+                        + "imports.unusedimports.InputUnusedImportsBug"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "14:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
