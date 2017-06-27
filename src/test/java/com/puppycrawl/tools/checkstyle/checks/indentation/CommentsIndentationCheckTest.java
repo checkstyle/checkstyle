@@ -45,7 +45,8 @@ public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "indentation" + File.separator + filename);
+                + "indentation" + File.separator
+                + "commentsindentation" + File.separator + filename);
     }
 
     @Test

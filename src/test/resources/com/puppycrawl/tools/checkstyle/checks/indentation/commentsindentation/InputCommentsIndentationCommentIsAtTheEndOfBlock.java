@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation;
+package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtils;
