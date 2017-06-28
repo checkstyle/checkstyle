@@ -142,4 +142,16 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("InputMethodCount4.java"), expected);
     }
+
+    @Test
+    public void testWithInterfaceDefinitionInClass() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(MethodCountCheck.class);
+        checkConfig.addAttribute("maxTotal", "1");
+
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+        };
+
+        verify(checkConfig, getPath("InputMethodCount5.java"), expected);
+    }
 }
