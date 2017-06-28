@@ -67,10 +67,50 @@
         </properties>
     </rule>
 
-    <rule ref="rulesets/java/junit.xml">
-        <!--tentative-->
-        <exclude name="JUnitTestsShouldIncludeAssert"/>
+    <rule ref="rulesets/java/junit.xml/JUnitTestsShouldIncludeAssert">
+        <!-- pmd cannot find assert if it is located in private method of this class called from the test
+        method or method of another class -->
+        <properties>
+            <!-- in SuppressionCommentFilterTest, SuppressWithNearbyCommentFilterTest, SuppressionFilterTest
+            pmd does not accept nl.jqno.equalsverifier.EqualsVerifier#.verify() as correctness check method -->
+            <!-- in AbstractJavadocCheckTest pmd does not find asserts in another class methods called from the test method -->
+            <!-- in ImportControlCheckTest pmd does not find asserts in private methods of the test class called from the test method -->
+            <!-- in AstRegressionTest pmd does not find asserts in inner classes methods called from the test method -->
+            <!-- in AllChecksTest pmd does not find asserts in lambdas -->
+            <!-- Starting from TreeWalkerTest tests should be rewrited-->
+            <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='SuppressionFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCode']
+            | //ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
+            | //ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
+            | //ClassOrInterfaceDeclaration[@Image='AbstractJavadocCheckTest']//MethodDeclarator[@Image='testBlockCommentPositionHasPrivateConstr']
+            | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInChild']
+            | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInParent']
+            | //ClassOrInterfaceDeclaration[@Image='ImportControlCheckTest']//MethodDeclarator[@Image='testPkgRegExpInBoth']
+            | /ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleExceptions']
+            | //ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleValid']
+            | //ClassOrInterfaceDeclaration[@Image='AllChecksTest']//MethodDeclarator[@Image='testAllModulesAreReferencedInConfigFile']
+            | //ClassOrInterfaceDeclaration[@Image='TreeWalkerTest']//MethodDeclarator[@Image='testProcessNonJavaFiles']
+            | //ClassOrInterfaceDeclaration[@Image='TreeWalkerTest']//MethodDeclarator[@Image='testWithCacheWithNoViolation']
+            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testDefaultFlawless']
+            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testFileSet']
+            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testMaxErrors']
+            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testOverrideProperty']
+            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testConfigurationByUrl']
+            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testConfigurationByResource']
+            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testSetPropertiesFile']
+            | //ClassOrInterfaceDeclaration[@Image='TranslationCheckTest']//MethodDeclarator[@Image='testLogIoException']
+            | //ClassOrInterfaceDeclaration[@Image='DeclarationOrderCheckTest']//MethodDeclarator[@Image='testParents']
+            | //ClassOrInterfaceDeclaration[@Image='DeclarationOrderCheckTest']//MethodDeclarator[@Image='testImproperToken']
+            | //ClassOrInterfaceDeclaration[@Image='IllegalInstantiationCheckTest']//MethodDeclarator[@Image='testNullClassLoader']
+            | //ClassOrInterfaceDeclaration[@Image='RequireThisCheckTest']//MethodDeclarator[@Image='testDefaultSwitch']
+            | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheckTest']//MethodDeclarator[@Image='testDefaultHooks']
+            | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheckTest']//MethodDeclarator[@Image='testVisitTokenBeforeExpressionRange']
+            | //ClassOrInterfaceDeclaration[@Image='SuppressionsLoaderTest']//MethodDeclarator[@Image='testNoCheckYesId']
+            "/>
+        </properties>
     </rule>
+
+    // testDefaultFlawless CheckstyleAntTaskTest
+
 
     <rule ref="config/pmd.xml/ConfusingTernary">
         <properties>
@@ -95,24 +135,18 @@
         <properties>
             <!-- this inherited from GeneratedJavaLexer -->
             <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='AstRegressionTest']
-            //ClassOrInterfaceDeclaration[@Image='AssertGeneratedJavaLexer']//MethodDeclarator[@Image='LA']"/>
+            | //ClassOrInterfaceDeclaration[@Image='AssertGeneratedJavaLexer']//MethodDeclarator[@Image='LA']"/>
         </properties>
     </rule>
 
     <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod">
         <properties>
             <!-- generates false-positives on private methods called within a file -->
-            <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='IndentationCheckTest']//MethodDeclarator[@Image='verifyWarns']"/>
-            <!-- generates false-positives on private methods called within a file -->
-            <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='SuppressWarningsFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
-            <!-- generates false-positives on private methods called within a file -->
-            <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
-            <!-- generates false-positives on private methods called within a file -->
-            <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
+            <property name="violationSuppressXPath" value="
+            //ClassOrInterfaceDeclaration[@Image='IndentationCheckTest']//MethodDeclarator[@Image='verifyWarns']
+            | //ClassOrInterfaceDeclaration[@Image='SuppressWarningsFilterTest']//MethodDeclarator[@Image='verifySuppressed']
+            | //ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']
+            | //ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='verifySuppressed']"/>
         </properties>
     </rule>
 </ruleset>

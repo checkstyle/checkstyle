@@ -24,11 +24,13 @@ import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MI
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -89,6 +91,7 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testLogIoExceptionFileNotFound() throws Exception {
         //I can't put wrong file here. Checkstyle fails before check started.
         //I saw some usage of file or handling of wrong file in Checker, or somewhere
@@ -102,8 +105,8 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         final Method loadKeys =
             check.getClass().getDeclaredMethod("getTranslationKeys", File.class);
         loadKeys.setAccessible(true);
-        loadKeys.invoke(check, new File(""));
-
+        final Set<String> keys = (Set<String>) loadKeys.invoke(check, new File(""));
+        assertTrue("Translation keys should be empty when File is not found", keys.isEmpty());
     }
 
     @Test

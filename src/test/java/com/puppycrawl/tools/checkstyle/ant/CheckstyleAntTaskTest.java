@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.ant;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -49,6 +50,7 @@ import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.util.reflection.Whitebox;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -501,6 +503,9 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.setClasspath(new Path(project, "/"));
         antTask.setClasspath(new Path(project, "/checkstyle"));
         antTask.setClasspathRef(new Reference());
+
+        assertNotNull("Classpath should not be null",
+            Whitebox.getInternalState(antTask, "classpath"));
     }
 
     @Test
@@ -508,6 +513,9 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         // temporary fake test
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setClasspathRef(new Reference());
+
+        assertNotNull("Classpath should not be null",
+            Whitebox.getInternalState(antTask, "classpath"));
     }
 
     @Test
