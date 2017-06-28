@@ -155,9 +155,15 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     @Test
     public void testSettersForParameters() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
+        final DefaultConfiguration config = new DefaultConfiguration("default config");
         treeWalker.setTabWidth(1);
-        treeWalker.configure(new DefaultConfiguration("default config"));
+        treeWalker.configure(config);
         treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
+
+        assertEquals("Invalid setter result", 1,
+            Whitebox.getInternalState(treeWalker, "tabWidth"));
+        assertEquals("Invalid configuration", config,
+            Whitebox.getInternalState(treeWalker, "configuration"));
     }
 
     @Test

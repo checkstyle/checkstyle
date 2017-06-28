@@ -102,6 +102,8 @@ public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
     public void testSetAliasListEmpty() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("");
+        assertEquals("Empty alias list should not be set", "",
+            SuppressWarningsHolder.getAlias(""));
     }
 
     @Test
