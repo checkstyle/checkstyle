@@ -59,6 +59,7 @@ import org.powermock.api.mockito.PowerMockito;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -359,9 +360,15 @@ public class CheckerTest extends BaseCheckTestSupport {
     @Test
     public void testNoModuleFactory() throws Exception {
         final Checker checker = new Checker();
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
+        checker.setModuleClassLoader(classLoader);
         checker.finishLocalSetup();
+        final Context actualCtx = (Context) Whitebox.getInternalState(checker, "childContext");
+
+        assertNotNull("Default module factory should be created when it is not specified",
+            actualCtx.get("moduleFactory"));
+        assertEquals("Invalid classLoader", classLoader, actualCtx.get("classLoader"));
     }
 
     @Test
@@ -412,6 +419,7 @@ public class CheckerTest extends BaseCheckTestSupport {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testSetupChildListener() throws Exception {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
@@ -421,6 +429,12 @@ public class CheckerTest extends BaseCheckTestSupport {
         final Configuration config = new DefaultConfiguration(
             DebugAuditAdapter.class.getCanonicalName());
         checker.setupChild(config);
+
+        final List<AuditListener> listeners =
+            (List<AuditListener>) Whitebox.getInternalState(checker, "listeners");
+        assertTrue("Invalid child listener class",
+            listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter);
+
     }
 
     @Test
@@ -580,6 +594,8 @@ public class CheckerTest extends BaseCheckTestSupport {
         // the invocation of clearCache method does not throw an exception.
         final Checker checker = new Checker();
         checker.clearCache();
+        assertNull("If cache file is not set the cache should default to null",
+            Whitebox.getInternalState(checker, "cache"));
     }
 
     @Test

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -111,7 +112,7 @@ public class AstRegressionTest extends BaseCheckTestSupport {
         final Class<?> clss = GeneratedJavaLexer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(InputStream.class);
 
-        constructor.newInstance((InputStream) null);
+        assertNotNull(constructor.newInstance((InputStream) null));
     }
 
     @Test
@@ -120,7 +121,7 @@ public class AstRegressionTest extends BaseCheckTestSupport {
         final Constructor<?> constructor = clss
                 .getDeclaredConstructor(ParserSharedInputState.class);
 
-        constructor.newInstance((ParserSharedInputState) null);
+        assertNotNull(constructor.newInstance((ParserSharedInputState) null));
     }
 
     @Test
@@ -128,7 +129,7 @@ public class AstRegressionTest extends BaseCheckTestSupport {
         final Class<?> clss = GeneratedJavaRecognizer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(TokenBuffer.class);
 
-        constructor.newInstance((TokenBuffer) null);
+        assertNotNull(constructor.newInstance((TokenBuffer) null));
     }
 
     @Test

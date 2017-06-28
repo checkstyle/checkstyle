@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
@@ -34,10 +35,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URI;
+import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.util.reflection.Whitebox;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -64,24 +68,34 @@ public class RegexpHeaderCheckTest extends BaseFileSetCheckTestSupport {
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testSetHeaderNull() {
         // check null passes
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // recreate for each test because multiple invocations fail
         final String header = null;
         instance.setHeader(header);
+        final List<Pattern> headerRegexps =
+            (List<Pattern>) Whitebox.getInternalState(instance, "headerRegexps");
+
+        assertTrue("When header is null regexps should not be set", headerRegexps.isEmpty());
     }
 
     /**
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testSetHeaderEmpty() {
         // check null passes
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check empty string passes
         final String header = "";
         instance.setHeader(header);
+        final List<Pattern> headerRegexps =
+            (List<Pattern>) Whitebox.getInternalState(instance, "headerRegexps");
+
+        assertTrue("When header is empty regexps should not be set", headerRegexps.isEmpty());
     }
 
     /**
