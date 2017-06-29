@@ -1840,6 +1840,14 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
                 isInOrder);
     }
 
+    @Test
+    public void testEmptyArray() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationEmptyArray.java"), expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
         private final IndentComment[] comments;
         private int position;
