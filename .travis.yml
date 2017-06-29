@@ -51,11 +51,11 @@ matrix:
         - DESC="cobertura and codecov"
         - CMD="./.ci/travis/travis.sh cobertura-check"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
-    # findbugs and pmd (oraclejdk8)
+    # findbugs, spotbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
       env:
-        - DESC="findbugs and pmd"
-        - CMD="mvn clean compile pmd:check findbugs:check"
+        - DESC="findbugs, spotbugs and pmd"
+        - CMD="mvn clean compile pmd:check findbugs:check spotbugs:check"
 
     # Releasenotes generation - validaton
     - jdk: oraclejdk8
