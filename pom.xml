@@ -200,6 +200,7 @@
     <antlr4.version>4.7</antlr4.version>
     <maven.site.plugin.version>3.6</maven.site.plugin.version>
     <maven.findbugs.plugin.version>3.0.4</maven.findbugs.plugin.version>
+    <maven.spotbugs.plugin.version>3.0.5</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.8</maven.pmd.plugin.version>
     <pmd.version>5.7.0</pmd.version>
     <maven.jacoco.plugin.version>0.7.9</maven.jacoco.plugin.version>
@@ -393,6 +394,18 @@
             <effort>Max</effort>
             <threshold>Low</threshold>
             <excludeFilterFile>config/findbugs-exclude.xml</excludeFilterFile>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.github.hazendaz.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${maven.spotbugs.plugin.version}</version>
+          <configuration>
+            <effort>Max</effort>
+            <threshold>Low</threshold>
+            <excludeFilterFile>config/findbugs-exclude.xml</excludeFilterFile>
+            <findbugsXmlOutputDirectory>target/spotbugsreports</findbugsXmlOutputDirectory>
           </configuration>
         </plugin>
 
@@ -967,6 +980,19 @@
       </plugin>
 
       <plugin>
+        <groupId>com.github.hazendaz.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>${maven.spotbugs.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>xml-maven-plugin</artifactId>
         <version>1.0.1</version>
@@ -1204,6 +1230,12 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
         <version>${maven.findbugs.plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.hazendaz.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>${maven.spotbugs.plugin.version}</version>
       </plugin>
 
       <plugin>
