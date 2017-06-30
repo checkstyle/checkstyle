@@ -362,7 +362,21 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
         antTask.setConfig(url.toString());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        final File outputFile = new File("target/ant_task_config_by_url.txt");
+        formatter.setTofile(outputFile);
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("plain");
+        formatter.setType(formatterType);
+        formatter.createListener(null);
+        antTask.addFormatter(formatter);
+
         antTask.execute();
+
+        final List<String> output = FileUtils.readLines(outputFile);
+        final int sizeOfOutputWithNoViolations = 2;
+        assertEquals("No violations expected", sizeOfOutputWithNoViolations, output.size());
     }
 
     @Test
@@ -371,7 +385,21 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.setProject(new Project());
         antTask.setConfig(CONFIG_RESOURCE);
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        final File outputFile = new File("target/ant_task_config_by_url.txt");
+        formatter.setTofile(outputFile);
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("plain");
+        formatter.setType(formatterType);
+        formatter.createListener(null);
+        antTask.addFormatter(formatter);
+
         antTask.execute();
+
+        final List<String> output = FileUtils.readLines(outputFile);
+        final int sizeOfOutputWithNoViolations = 2;
+        assertEquals("No violations expected", sizeOfOutputWithNoViolations, output.size());
     }
 
     @Test
@@ -671,7 +699,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         private final String msg;
         private final int level;
 
-        private MessageLevelPair(String msg, int level) {
+        MessageLevelPair(String msg, int level) {
             this.msg = msg;
             this.level = level;
         }
