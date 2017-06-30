@@ -133,18 +133,6 @@ public abstract class AbstractViolationReporter
     }
 
     /**
-     * Helper method to log a LocalizedMessage.
-     *
-     * @param ast a node to get line id column numbers associated
-     *             with the message
-     * @param key key to locale message format
-     * @param args arguments to format
-     */
-    protected final void log(DetailAST ast, String key, Object... args) {
-        log(ast.getLineNo(), ast.getColumnNo(), key, args);
-    }
-
-    /**
      * Log a message that has no column information.
      *
      * @param line the line number where the error was found

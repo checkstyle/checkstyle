@@ -234,6 +234,18 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         this.tabWidth = tabWidth;
     }
 
+    /**
+     * Helper method to log a LocalizedMessage.
+     *
+     * @param ast a node to get line id column numbers associated
+     *             with the message
+     * @param key key to locale message format
+     * @param args arguments to format
+     */
+    public final void log(DetailAST ast, String key, Object... args) {
+        log(ast.getLineNo(), ast.getColumnNo(), key, args);
+    }
+
     @Override
     public final void log(int line, String key, Object... args) {
         messages.add(
