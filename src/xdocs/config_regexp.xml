@@ -23,6 +23,7 @@
 
     <section name="Regexp">
       <subsection name="Description">
+        <p>Since Checkstyle 4.0</p>
         <p>
           A check that makes sure that a specified pattern exists, exists less
           than a set number of times, or does not exist in the file.
@@ -489,6 +490,7 @@
 
     <section name="RegexpMultiline">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           A check for detecting that matches across multiple lines.
           Works with any file type.
@@ -616,6 +618,7 @@
 
     <section name="RegexpOnFilename">
       <subsection name="Description">
+        <p>Since Checkstyle 6.15</p>
         <p>
           Implementation of a check that looks for a file name and/or path match (or mis-match)
           against specified patterns. It can also be used to verify files match specific naming
@@ -814,6 +817,7 @@
 
     <section name="RegexpSingleline">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           A check for detecting single lines that match a supplied
           regular expression. Works with any file type.
@@ -968,6 +972,7 @@
 
     <section name="RegexpSinglelineJava">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
           This class is variation on <a
           href="#RegexpSingleline">RegexpSingleline</a> for detecting

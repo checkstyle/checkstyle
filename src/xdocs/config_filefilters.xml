@@ -23,6 +23,7 @@
 
     <section name="BeforeExecutionExclusionFileFilter">
       <subsection name="Description">
+        <p>Since Checkstyle 7.2</p>
         <p>
           File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
           excluded from being processed by the utility.

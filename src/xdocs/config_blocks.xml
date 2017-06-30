@@ -23,6 +23,7 @@
 
     <section name="AvoidNestedBlocks">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Finds nested blocks, i.e. blocks that are used freely in the code.
         </p>
@@ -151,6 +152,7 @@ switch (a)
 
     <section name="EmptyBlock">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p> Checks for empty blocks. This check does not validate sequential blocks. </p>
 
         <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
@@ -302,6 +304,7 @@ switch (a)
 
     <section name="EmptyCatchBlock">
       <subsection name="Description">
+        <p>Since Checkstyle 6.4</p>
         <p>
           Checks for empty catch blocks. There are two options to make validation more precise
           (by default Check allows empty catch block with any comment inside):
@@ -448,6 +451,7 @@ try {
 
     <section name="LeftCurly">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for the placement of left curly braces
           (<code>'{'</code>) for code blocks.  The policy to verify is
@@ -617,6 +621,7 @@ try {
 
     <section name="NeedBraces">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p> Checks for braces around code blocks. </p>
       </subsection>
 
@@ -786,6 +791,7 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
 
     <section name="RightCurly">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the placement of right curly braces (<code>'}'</code>)
           for if-else, try-catch-finally blocks, while-loops, for-loops,

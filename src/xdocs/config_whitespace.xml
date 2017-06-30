@@ -23,6 +23,7 @@
 
     <section name="EmptyForInitializerPad">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Checks the padding of an empty for initializer; that is whether
           white space is required at an empty for initializer, or such white
@@ -117,6 +118,7 @@ for (
 
     <section name="EmptyForIteratorPad">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the padding of an empty for iterator; that is whether white
           space is required at an empty for iterator, or such white space is
@@ -215,6 +217,7 @@ for (Iterator foo = very.long.line.iterator();
 
     <section name="EmptyLineSeparator">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Checks for empty line separators after header, package, all import declarations,
           fields, constructors, methods, nested classes,
@@ -440,6 +443,7 @@ class Foo
 
     <section name="FileTabCharacter">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that there are no tab characters (<code>'\t'</code>) in the source code.
         </p>
@@ -555,6 +559,7 @@ class Foo
 
     <section name="GenericWhitespace">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that the whitespace around the Generic tokens (angle brackets)
           "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
@@ -656,6 +661,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
 
     <section name="MethodParamPad">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Checks the padding between the identifier of a method definition,
           constructor definition, method call, or constructor invocation; and
@@ -810,6 +816,7 @@ sort(list, Comparable::&lt;String&gt;compareTo);             // Method reference
 
     <section name="NoLineWrap">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Checks that chosen statements are not line-wrapped. By default this
           Check restricts wrapping import and package statements, but it's possible to check
@@ -938,6 +945,7 @@ import static java.math.BigInteger.ZERO;
 
     <section name="NoWhitespaceAfter">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there is no whitespace after a token. More specifically,
           it checks that it is not followed by whitespace, or (if linebreaks
@@ -1095,6 +1103,7 @@ import static java.math.BigInteger.ZERO;
 
     <section name="NoWhitespaceBefore">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there is no whitespace before a token. More
           specifically, it checks that it is not preceded with whitespace, or
@@ -1210,6 +1219,7 @@ import static java.math.BigInteger.ZERO;
 
     <section name="OperatorWrap">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the policy on how to wrap lines on operators.
         </p>
@@ -1377,6 +1387,7 @@ import static java.math.BigInteger.ZERO;
 
     <section name="ParenPad">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the policy on the padding of parentheses; i.e. whether a
           space is required after a left parenthesis and before a right
@@ -1585,6 +1596,7 @@ import static java.math.BigInteger.ZERO;
 
     <section name="SeparatorWrap">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Checks line wrapping with separators.
         </p>
@@ -1746,6 +1758,7 @@ Arrays.sort(stringArray, String
 
     <section name="SingleSpaceSeparator">
       <subsection name="Description">
+        <p>Since Checkstyle 6.19</p>
         <p>
           Checks that non-whitespace characters are separated by no more than one
           whitespace. Separating characters by tabs or multiple spaces will be
@@ -1852,6 +1865,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
 
     <section name="TypecastParenPad">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks the policy on the padding of parentheses for typecasts. That
           is, whether a space is required after a left parenthesis and before
@@ -1949,6 +1963,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
 
     <section name="WhitespaceAfter">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that a token is followed by whitespace.
         </p>
@@ -2079,6 +2094,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
 
     <section name="WhitespaceAround">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
         Checks that a token is surrounded by whitespace.  Empty constructor,
         method, class, enum, interface, loop bodies (blocks), lambdas of the form

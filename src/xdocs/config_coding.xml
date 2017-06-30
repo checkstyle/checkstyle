@@ -23,6 +23,7 @@
 
     <section name="ArrayTrailingComma">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that array initialization contains a trailing comma.
         </p>
@@ -172,6 +173,7 @@ return new int[] {
 
     <section name="AvoidInlineConditionals">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Detects inline conditionals. Here is one example of an inline conditional:
         </p>
@@ -236,6 +238,7 @@ String b = (a==null || a.length&lt;1) ? null : a.substring(1);
 
     <section name="CovariantEquals">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that classes which define a covariant <code>equals()</code> method
           also override method <code>equals(Object)</code>.<br/>
@@ -355,6 +358,7 @@ class Test {
 
     <section name="DeclarationOrder">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           According to <a
           href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-141855.html#1852">
@@ -514,6 +518,7 @@ public class A {
 
     <section name="DefaultComesLast">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Check that the <code>default</code> is after all the
           <code>case</code>s in a <code>switch</code> statement.
@@ -622,6 +627,7 @@ switch (i) {
 
     <section name="EmptyStatement">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Detects empty statements (standalone ";" semicolon).
         </p>
@@ -677,6 +683,7 @@ switch (i) {
 
     <section name="EqualsAvoidNull">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that any combination of String literals
           is on the left side of an equals() comparison.
@@ -777,6 +784,7 @@ String nullString = null;
 
     <section name="EqualsHashCode">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that classes that either override <code>equals()</code>
           or <code>hashCode()</code> also overrides the other.
@@ -849,6 +857,7 @@ String nullString = null;
 
     <section name="ExplicitInitialization">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks if any class or object member is explicitly initialized to
           default for its type value (<code>null</code> for
@@ -974,6 +983,7 @@ String nullString = null;
 
     <section name="FallThrough">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Checks for fall-through in <code>switch</code>
           statements. Finds locations where a <code>case</code>
@@ -1111,6 +1121,7 @@ case 5:
 
     <section name="FinalLocalVariable">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that local variables that never have their values changed are
           declared final. The check can be configured to also check that
@@ -1248,6 +1259,7 @@ case 5:
 
     <section name="HiddenField">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that a local variable or a parameter does not shadow a field
           that is defined in the same class.
@@ -1472,6 +1484,7 @@ class SomeClass
 
     <section name="IllegalCatch">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
         Checks that certain exception types do not appear in a <code>catch</code> statement.
         </p>
@@ -1552,6 +1565,7 @@ class SomeClass
 
     <section name="IllegalInstantiation">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for illegal instantiations where a factory method is
           preferred.
@@ -1671,6 +1685,7 @@ class SomeClass
 
     <section name="IllegalThrows">
       <subsection name="Description">
+        <p>Since Checkstyle 4.0</p>
         <p>
           This check can be used to ensure that types are not declared
           to be thrown. Declaring that a method throws java.lang.Error or
@@ -1785,6 +1800,7 @@ class SomeClass
 
     <section name="IllegalToken">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks for illegal tokens. By default labels are prohibited.
         </p>
@@ -1869,6 +1885,7 @@ class SomeClass
 
     <section name="IllegalTokenText">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks specified tokens text for matching an illegal pattern from
           <code>format</code> property. By default no tokens are specified.
@@ -1990,6 +2007,7 @@ class SomeClass
 
     <section name="IllegalType">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that particular classes are never used as types in variable
           declarations, return values or parameters.
@@ -2131,6 +2149,7 @@ class SomeClass
 
     <section name="InnerAssignment">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for assignments in subexpressions, such as in <code>String s = Integer.toString(i = 2);</code>.
         </p>
@@ -2215,6 +2234,7 @@ while ((line = bufferedReader.readLine()) != null) {
 
     <section name="MagicNumber">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
           &quot;magic numbers&quot;</a> where a magic
@@ -2433,6 +2453,7 @@ class MyClass {
 
     <section name="MissingCtor">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Checks that classes (except abstract ones) define a constructor and don't
           rely on the default one.
@@ -2485,6 +2506,7 @@ class MyClass {
 
     <section name="MissingSwitchDefault">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Checks that switch statement has a &quot;default&quot; clause.
         </p>
@@ -2553,6 +2575,7 @@ class MyClass {
 
     <section name="ModifiedControlVariable">
       <subsection name="Description">
+        <p>Since Checkstyle 3.5</p>
         <p>
             Check for ensuring that for loop control variables are not modified inside the for block. An example is:
         </p>
@@ -2675,6 +2698,7 @@ class MyClass {
 
     <section name="MultipleStringLiterals">
       <subsection name="Description">
+        <p>Since Checkstyle 3.5</p>
         <p>
           Checks for multiple occurrences of the same string literal within a
           single file.
@@ -2810,6 +2834,7 @@ class MyClass {
 
     <section name="MultipleVariableDeclarations">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Checks that each variable declaration is in its own statement and on
           its own line.
@@ -2877,6 +2902,7 @@ class MyClass {
 
     <section name="NestedForDepth">
       <subsection name="Description">
+        <p>Since Checkstyle 5.3</p>
         <p>
           Restricts nested <code>for</code> blocks to a specified depth
           (default = 1).
@@ -2957,6 +2983,7 @@ class MyClass {
 
     <section name="NestedIfDepth">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts nested if-else blocks to a specified depth (default = 1).
         </p>
@@ -3036,6 +3063,7 @@ class MyClass {
 
     <section name="NestedTryDepth">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts nested try blocks to a specified depth (default = 1).
         </p>
@@ -3115,6 +3143,7 @@ class MyClass {
 
     <section name="NoClone">
       <subsection name="Description">
+       <p>Since Checkstyle 5.0</p>
        <p>
        Checks that the clone method is not overridden from the
        Object class.
@@ -3181,6 +3210,7 @@ class MyClass {
 
     <section name="NoFinalizer">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Verifies there are no <code>finalize()</code> methods
           defined in a class.
@@ -3237,6 +3267,7 @@ class MyClass {
 
     <section name="OneStatementPerLine">
       <subsection name="Description">
+          <p>Since Checkstyle 5.3</p>
           <p>
           Checks that there is only one statement per line.
           </p>
@@ -3326,6 +3357,7 @@ r = 5; int t; //violation here
 
     <section name="OverloadMethodsDeclarationOrder">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Checks that overload methods are grouped together.
         </p>
@@ -3390,6 +3422,7 @@ public void foo(int i, String s) {}
 
     <section name="PackageDeclaration">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Ensures that a class has a package declaration, and (optionally) whether
           the package name matches the directory name for the source file.
@@ -3502,6 +3535,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     <section name="ParameterAssignment">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p> Disallows assignment of parameters.</p>
         <p>
           Rationale: Parameter assignment is often considered poor programming
@@ -3557,6 +3591,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     <section name="RequireThis">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Checks that references to instance variables and methods of the present
           object are explicitly of the form &quot;this.varName&quot; or
@@ -3791,6 +3826,7 @@ class C {
 
     <section name="ReturnCount">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts the number of return statements in methods, constructors and lambda expressions
           (2 by default). Ignores specified methods (<code>equals()</code> by default).
@@ -3966,6 +4002,7 @@ class C {
 
     <section name="SimplifyBooleanExpression">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for over-complicated boolean expressions. Currently finds
           code like <code> if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
@@ -4028,6 +4065,7 @@ class C {
 
     <section name="SimplifyBooleanReturn">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for over-complicated boolean return statements. For example
           the following code
@@ -4102,6 +4140,7 @@ return !valid();
 
     <section name="StringLiteralEquality">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that string literals are not used with <code>==</code> or
           <code>&#33;=</code>.
@@ -4166,6 +4205,7 @@ if (&quot;something&quot;.equals(x))
 
     <section name="SuperClone">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that an overriding <code>clone()</code> method invokes
           <code>super.clone()</code>. Does not check native methods, as
@@ -4224,6 +4264,7 @@ if (&quot;something&quot;.equals(x))
 
     <section name="SuperFinalize">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks that an overriding <code>finalize()</code> method invokes
           <code>super.finalize()</code>. Does not check native methods, as
@@ -4283,6 +4324,7 @@ if (&quot;something&quot;.equals(x))
 
     <section name="UnnecessaryParentheses">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Checks for the use of unnecessary parentheses.
         </p>
@@ -4420,6 +4462,7 @@ if (&quot;something&quot;.equals(x))
 
     <section name="VariableDeclarationUsageDistance">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Checks the distance between declaration of variable and its first usage.
         </p>
