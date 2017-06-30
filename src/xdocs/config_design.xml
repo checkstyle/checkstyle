@@ -23,6 +23,7 @@
 
     <section name="DesignForExtension">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           The check finds classes that are designed for extension (subclass creation).
         </p>
@@ -257,6 +258,7 @@ public class FooTest {
 
     <section name="FinalClass">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Checks that a class which has only private constructors is declared
           as final. Doesn't check for classes nested in interfaces
@@ -314,6 +316,7 @@ public class FooTest {
 
     <section name="HideUtilityClassConstructor">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Makes sure that utility classes (classes that contain only static
           methods or fields in their API) do not have a public constructor.
@@ -397,6 +400,7 @@ public class StringUtils // not final to allow subclassing
 
     <section name="InnerTypeLast">
       <subsection name="Description">
+        <p>Since Checkstyle 5.2</p>
         <p>
           Check nested (inner) classes/interfaces are declared at the
           bottom of the class after all method and field declarations.
@@ -449,6 +453,7 @@ public class StringUtils // not final to allow subclassing
 
     <section name="InterfaceIsType">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
           define types.
@@ -541,6 +546,7 @@ public class StringUtils // not final to allow subclassing
 
     <section name="MutableException">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Ensures that exception classes (classes with names conforming to some regular
           expression and explicitly extending classes with names conforming to other
@@ -637,6 +643,7 @@ public class StringUtils // not final to allow subclassing
 
     <section name="OneTopLevelClass">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Checks that each top-level class, interface or
           enum resides in a source file of its own.
@@ -732,6 +739,7 @@ public class Foo{
 
     <section name="ThrowsCount">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts throws statements to a specified count (4 by default).
           Methods with "Override" or "java.lang.Override" annotation are skipped
@@ -843,6 +851,7 @@ public class Foo{
 
     <section name="VisibilityModifier">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks visibility of class members. Only static final, immutable or annotated
           by specified annotation members may be public; other class members must be private

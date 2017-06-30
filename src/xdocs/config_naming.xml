@@ -33,6 +33,7 @@
 
     <section name="AbbreviationAsWordInName">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
          The Check validate abbreviations(consecutive capital letters)
          length in identifier name, it also allows to enforce camel case naming. Please read more at
@@ -190,6 +191,7 @@
 
     <section name="AbstractClassName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>Validates identifiers for <code>abstract</code> classes.</p>
       </subsection>
 
@@ -284,6 +286,7 @@
 
     <section name="CatchParameterName">
       <subsection name="Description">
+        <p>Since Checkstyle 6.14</p>
         <p>
           Checks that catch parameter names conform to a format specified by the format property.
           Default pattern has the following characteristic:
@@ -383,6 +386,7 @@
 
     <section name="ClassTypeParameterName">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>Validates identifiers for class type parameters.</p>
       </subsection>
 
@@ -451,6 +455,7 @@
 
     <section name="ConstantName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Validates identifiers for constants (<code>static</code>, <code>
           final</code> fields).
@@ -559,6 +564,7 @@
 
     <section name="InterfaceTypeParameterName">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Validates identifiers for interface type parameters.
         </p>
@@ -629,6 +635,7 @@
 
     <section name="LocalFinalVariableName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Validates identifiers for local, <code>final</code> variables, including
           <code>catch</code> parameters and resources in <code>try</code> statements.
@@ -716,6 +723,7 @@
 
     <section name="LocalVariableName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
             Checks that local, non-<code>final</code> variable names conform to a format specified
             by the format property.
@@ -815,6 +823,7 @@ for (int i = 1; i &lt; 10; i++) {}
 
     <section name="MemberName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Validates identifiers for non-<code>static</code> fields.
         </p>
@@ -926,6 +935,7 @@ for (int i = 1; i &lt; 10; i++) {}
 
     <section name="MethodName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Validates identifiers for methods.
         </p>
@@ -1053,6 +1063,7 @@ class MyClass {
 
     <section name="MethodTypeParameterName">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Validates identifiers for method type parameters.
         </p>
@@ -1123,6 +1134,7 @@ class MyClass {
 
     <section name="PackageName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Validates identifiers for packages.
         </p>
@@ -1206,6 +1218,7 @@ class MyClass {
 
     <section name="ParameterName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that method and <code>catch</code> parameter names conform to a format specified
           by the format property. By using <code>accessModifiers</code> property it is possible
@@ -1343,6 +1356,7 @@ public boolean equals(Object o) {
 
     <section name="StaticVariableName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Validates identifiers for <code>static</code>, non-<code>final</code> fields.
         </p>
@@ -1443,6 +1457,7 @@ public boolean equals(Object o) {
 
     <section name="TypeName">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Validates identifiers for classes, interfaces, enums, and annotations.
         </p>

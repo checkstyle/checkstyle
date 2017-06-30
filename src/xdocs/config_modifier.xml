@@ -23,6 +23,7 @@
 
     <section name="ModifierOrder">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that the order of modifiers conforms to the suggestions in
           the <a
@@ -133,6 +134,7 @@
     <section name="RedundantModifier">
 
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for redundant modifiers in:
         </p>

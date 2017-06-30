@@ -23,6 +23,7 @@
 
     <section name="AvoidStarImport">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that there are no import statements that use the * notation.
         </p>
@@ -135,6 +136,7 @@
 
     <section name="AvoidStaticImport">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that there are no static import statements.
         </p>
@@ -228,6 +230,7 @@
 
     <section name="CustomImportOrder">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Checks that the groups of import declarations appear in the order specified
           by the user. If there is an import but its group is not specified in the
@@ -597,6 +600,7 @@ import android.*;
 
     <section name="IllegalImport">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for imports from a set of illegal packages. By default, the
           check rejects all <code>sun.*</code> packages since
@@ -857,6 +861,7 @@ public class InputIllegalImport { }
 
     <section name="ImportControl">
       <subsection name="Description">
+        <p>Since Checkstyle 4.0</p>
         <p>
           Controls what can be imported in each package. Useful for
           ensuring that application layering rules are not violated,
@@ -1235,6 +1240,7 @@ import java.util.stream.IntStream;
 
     <section name="ImportOrder">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>Checks the ordering/grouping of imports. Features are:</p>
         <ul>
           <li>groups imports: ensures that groups of imports come in a
@@ -1555,6 +1561,7 @@ public class InputEclipseStaticImportsOrder { }
 
     <section name="RedundantImport">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for redundant import statements. An import statement is
           considered redundant if:
@@ -1633,6 +1640,7 @@ public class InputEclipseStaticImportsOrder { }
 
     <section name="UnusedImports">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for unused import statements. Checkstyle uses a simple but
           very reliable algorithm to report on unused import statements. An
