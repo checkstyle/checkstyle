@@ -73,6 +73,9 @@ public class XdocsPagesTest {
 
     private static final Pattern VERSION = Pattern.compile("\\d+\\.\\d+(\\.\\d+)?");
 
+    private static final Pattern DESCRIPTION_VERSION = Pattern
+            .compile("^Since Checkstyle \\d+\\.\\d+(\\.\\d+)?");
+
     private static final List<String> XML_FILESET_LIST = Arrays.asList(
             "TreeWalker",
             "name=\"Checker\"",
@@ -348,6 +351,7 @@ public class XdocsPagesTest {
 
             switch (subSectionPos) {
                 case 0:
+                    validateSinceDescriptionSection(fileName, sectionName, subSection);
                     break;
                 case 1:
                     validatePropertySection(fileName, sectionName, subSection, instance);
@@ -372,6 +376,14 @@ public class XdocsPagesTest {
 
             subSectionPos++;
         }
+    }
+
+    private static void validateSinceDescriptionSection(String fileName, String sectionName,
+            Node subSection) {
+        Assert.assertTrue(fileName + " section '" + sectionName
+                + "' should have a valid version at the start of the description like:\n"
+                + DESCRIPTION_VERSION.pattern(),
+                DESCRIPTION_VERSION.matcher(subSection.getTextContent().trim()).find());
     }
 
     private static Object getSubSectionName(int subSectionPos) {
