@@ -1917,7 +1917,7 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
         private final String expectedWarning;
         private final boolean warning;
 
-        private IndentComment(Matcher match, int lineNumber) {
+        IndentComment(Matcher match, int lineNumber) {
             this.lineNumber = lineNumber;
             indent = Integer.parseInt(match.group(1));
             if (match.group(2) == null) {

@@ -93,7 +93,7 @@ public class BlockCommentPositionTest {
         private final Function<DetailAST, Boolean> assertion;
         private final int matchesNum;
 
-        private BlockCommentPositionTestMetadata(String fileName, Function<DetailAST,
+        BlockCommentPositionTestMetadata(String fileName, Function<DetailAST,
                 Boolean> assertion, int matchesNum) {
             this.fileName = fileName;
             this.assertion = assertion;
