@@ -24,16 +24,13 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiation
 import java.io.File;
 import java.io.IOException;
 
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.api.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class IllegalInstantiationCheckTest
@@ -171,8 +168,12 @@ public class IllegalInstantiationCheckTest
         Assert.assertEquals("No exception messages expected", 0, messages.size());
 
         check.finishTree(newAst);
+        final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "instantiation.avoid",
+                new String[] {"java.lang.Boolean"}, null,
+                getClass(), null);
         Assert.assertEquals("Invalid exception message",
-            "Instantiation of java.lang.Boolean should be avoided.",
+                addExceptionMessage.getMessage(),
             messages.getMessages().first().getMessage());
     }
 
