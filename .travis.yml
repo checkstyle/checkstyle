@@ -36,7 +36,7 @@ matrix:
     - jdk: oraclejdk8
       env:
         - DESC="tests and deploy"
-        - CMD="mvn clean integration-test failsafe:verify -Xms1024m -Xmx2048m"
+        - CMD="mvn clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
         - DEPLOY="true"
 
     # checkstyle (oraclejdk8)
