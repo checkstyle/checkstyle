@@ -37,6 +37,7 @@ import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.SortedSet;
 
+import com.puppycrawl.tools.checkstyle.Definitions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -144,8 +145,7 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         logIoException.invoke(check, new IOException("test exception"), file);
 
         Mockito.verify(dispatcher, times(1)).fireErrors(any(String.class), captor.capture());
-        assertEquals("Invalid exception message", "Got an exception - test exception",
-            captor.getValue().first().getMessage());
+        assertThat(captor.getValue().first().getMessage(), endsWith("- test exception"));
     }
 
     @Test
