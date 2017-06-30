@@ -23,6 +23,7 @@
 
     <section name="AtclauseOrder">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
           Checks the order of <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">javadoc block-tags or javadoc tags</a>.
           <br/>
@@ -143,6 +144,7 @@
 
     <section name="JavadocMethod">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the Javadoc of a method or constructor. By default,
           does not check for unused throws. To allow documented
@@ -505,6 +507,7 @@ public boolean isSomething()
 
     <section name="JavadocPackage">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Checks that each Java package has a Javadoc file used for
           commenting.  By default it only allows a <code>package-info.java</code> file, but can be
@@ -600,6 +603,7 @@ public boolean isSomething()
 
     <section name="JavadocParagraph">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
           Checks that:
         </p>
@@ -742,6 +746,7 @@ public boolean isSomething()
 
     <section name="JavadocStyle">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Validates Javadoc comments to help ensure they are well
           formed.  The following checks are performed:
@@ -986,6 +991,7 @@ public boolean isSomething()
 
     <section name="JavadocTagContinuationIndentation">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
           Checks the indentation of the continuation lines in at-clauses.
         </p>
@@ -1082,6 +1088,7 @@ public boolean isSomething()
 
     <section name="JavadocType">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks Javadoc comments for class and interface definitions.
           By default, does not check for author or version tags.  The
@@ -1285,6 +1292,7 @@ public boolean isSomething()
 
     <section name="JavadocVariable">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that variables have Javadoc comments. Ignores <code>serialVersionUID</code>
           fields.
@@ -1417,6 +1425,7 @@ public boolean isSomething()
 
     <section name="NonEmptyAtclauseDescription">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
           Checks that the at-clause tag is followed by description.
         </p>
@@ -1522,6 +1531,7 @@ public boolean isSomething()
 
     <section name="SingleLineJavadoc">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
            Checks that a JavaDoc block can fit in a single line and doesn't
            contain at-clauses. Javadoc comment that contains at least one at-clause
@@ -1634,6 +1644,7 @@ public boolean isSomething()
 
    <section name="SummaryJavadoc">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
           Checks that <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use. Summaries that contain
@@ -1797,6 +1808,7 @@ public class TestClass {
 
     <section name="WriteTag">
       <subsection name="Description">
+        <p>Since Checkstyle 4.2</p>
         <p>
          Requires user defined JavaDoc tag to be present in javadoc comment with defined format. To define the
          format for a tag, set property tagFormat to a regular

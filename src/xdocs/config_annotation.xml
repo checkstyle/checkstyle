@@ -23,6 +23,7 @@
 
     <section name="AnnotationLocation">
       <subsection name="Description">
+        <p>Since Checkstyle 6.0</p>
         <p>
           Check location of annotation on language elements.
           By default, Check enforce to locate annotations immediately
@@ -229,6 +230,7 @@ public void test(&#64;MyAnnotation String s) { // OK
 
     <section name="AnnotationUseStyle">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p> This check controls the style with the usage of annotations.
         </p>
       </subsection>
@@ -354,6 +356,7 @@ public void test(&#64;MyAnnotation String s) { // OK
 
     <section name="MissingDeprecated">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p> Verifies that both the java.lang.Deprecated annotation is
             present and the @deprecated Javadoc tag is present when
             either is present.</p>
@@ -443,6 +446,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
 
     <section name="MissingOverride">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p> Verifies that the java.lang.Override annotation is present
           when the {@inheritDoc} javadoc tag is present.</p>
       </subsection>
@@ -530,6 +534,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
 
     <section name="PackageAnnotation">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>  This check makes sure that all package annotations are in the
              package-info.java file.
         </p>
@@ -588,6 +593,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
 
     <section name="SuppressWarnings">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p> This check allows you to specify what warnings that
         SuppressWarnings is not allowed to suppress.
         You can also specify a list of TokenTypes that
@@ -723,6 +729,7 @@ public static final int COUNTER = 10; // violation as javadoc exists
 
     <section name="SuppressWarningsHolder">
       <subsection name="Description">
+        <p>Since Checkstyle 5.7</p>
         <p>
           Maintains a set of check suppressions from
           <code>@SuppressWarnings</code> annotations. It allows to

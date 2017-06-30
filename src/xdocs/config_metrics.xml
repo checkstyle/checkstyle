@@ -23,6 +23,7 @@
 
     <section name="BooleanExpressionComplexity">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           Restrict the number of number of <code>&#x26;&#x26;</code>, <code>||</code>,
           <code>&#x26;</code>, <code>|</code>
@@ -158,6 +159,7 @@
 
     <section name="ClassDataAbstractionCoupling">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           This metric measures the number of instantiations of other
           classes within the given class. This type of coupling is not
@@ -460,6 +462,7 @@ public class Foo {
 
     <section name="ClassFanOutComplexity">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           The number of other classes a given class relies on. Also the
           square of this has been shown to indicate the amount of
@@ -694,6 +697,7 @@ public class Foo {
 
     <section name="CyclomaticComplexity">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks cyclomatic complexity against a specified limit.
             It is a measure of the minimum number of
@@ -903,6 +907,7 @@ class SwitchExample {
 
     <section name="JavaNCSS">
       <subsection name="Description">
+        <p>Since Checkstyle 3.5</p>
         <p>
           Determines complexity of methods, classes and files by
           counting the Non Commenting Source Statements (NCSS).  This
@@ -1035,6 +1040,7 @@ class SwitchExample {
 
     <section name="NPathComplexity">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           The NPATH metric computes the number of possible execution
           paths through a function(method). It takes into account the nesting of

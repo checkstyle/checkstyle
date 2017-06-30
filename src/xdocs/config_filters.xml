@@ -23,6 +23,7 @@
 
     <section name="SeverityMatchFilter">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Filter <code>SeverityMatchFilter</code> decides
           audit events according to the <a href="config.html#Severity">severity
@@ -94,6 +95,7 @@
 
     <section name="SuppressionCommentFilter">
       <subsection name="Description">
+          <p>Since Checkstyle 3.5</p>
           <p>
             Filter <code>SuppressionCommentFilter</code> uses
             pairs of comments to suppress audit events.
@@ -413,6 +415,7 @@ public class UserService {
 
     <section name="SuppressionFilter">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
           <p>
             Filter <code>SuppressionFilter</code> rejects
             audit events for Check errors according to
@@ -645,6 +648,7 @@ public class UserService {
 
     <section name="SuppressWarningsFilter">
       <subsection name="Description">
+          <p>Since Checkstyle 5.7</p>
           <p>
               Filter <code>SuppressWarningsFilter</code> uses annotations to
               suppress audit events.
@@ -751,6 +755,7 @@ public static void foo() {
 
     <section name="SuppressWithNearbyCommentFilter">
         <subsection name="Description">
+            <p>Since Checkstyle 5.0</p>
             <p>
                 Filter <code>SuppressWithNearbyCommentFilter</code> uses
                 individual comments to suppress audit events.

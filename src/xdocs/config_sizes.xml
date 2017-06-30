@@ -23,6 +23,7 @@
 
     <section name="AnonInnerLength">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks for long anonymous inner classes.
         </p>
@@ -103,6 +104,7 @@
 
     <section name="ExecutableStatementCount">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Restricts the number of executable statements to a specified limit.
         </p>
@@ -202,6 +204,7 @@
 
     <section name="FileLength">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Checks for long source files.
         </p>
@@ -291,6 +294,7 @@
 
     <section name="LineLength">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for long lines.
         </p>
@@ -411,6 +415,7 @@
 
     <section name="MethodCount">
       <subsection name="Description">
+        <p>Since Checkstyle 5.3</p>
         <p>
           Checks the number of methods declared in each type. This
           includes the number of each scope (<code>private</code>,
@@ -561,6 +566,7 @@
 
     <section name="MethodLength">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks for long methods and constructors.
         </p>
@@ -693,6 +699,7 @@
 
     <section name="OuterTypeNumber">
       <subsection name="Description">
+        <p>Since Checkstyle 5.0</p>
         <p>
           Checks for the number of types declared at the <i>outer</i>
           (or <i>root</i>) level in a file.
@@ -779,6 +786,7 @@
 
     <section name="ParameterNumber">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks the number of parameters of a method or constructor.
         </p>

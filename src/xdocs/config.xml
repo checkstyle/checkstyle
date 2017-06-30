@@ -264,6 +264,7 @@
 
     <section name="Checker">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           All configurations have root module <code>Checker</code>.  <code>Checker</code>
           contains:
@@ -438,6 +439,7 @@
 
     <section name="TreeWalker">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           FileSetCheck <code>TreeWalker</code> checks
           individual Java source files and defines properties that are

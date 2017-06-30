@@ -23,6 +23,7 @@
 
     <section name="ArrayTypeStyle">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Checks the style of array type definitions.  Some like Java style:
           <code>public static void main(String[] args)</code> and some like
@@ -114,6 +115,7 @@
 
     <section name="AvoidEscapedUnicodeCharacters">
       <subsection name="Description">
+        <p>Since Checkstyle 5.8</p>
         <p>
           Restrict using <a href = "http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.3">
           Unicode escapes</a> (e.g. \u221e).
@@ -275,6 +277,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
     <section name="CommentsIndentation">
       <subsection name="Description">
+        <p>Since Checkstyle 6.10</p>
         <p>
           Controls the indentation between comments and surrounding code.
           Comments are indented at the same level as the surrounding code.
@@ -523,6 +526,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
     <section name="DescendantToken">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks for restricted tokens beneath other tokens.
         </p>
@@ -843,6 +847,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
     <section name="FileContentsHolder">
       <subsection name="Description">
+        <p>Since Checkstyle 3.5</p>
         <p>
           Holds the current file contents for global access when configured
           as a TreeWalker sub-module. For example,a filter can access
@@ -884,6 +889,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
     <section name="FinalParameters">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Check that parameters for methods, constructors, and catch blocks are
           final. Interface, abstract, and native methods are not checked: the final
@@ -1005,6 +1011,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 
     <section name="Indentation">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Checks correct indentation of Java code.
         </p>
@@ -1176,6 +1183,7 @@ void foo(String aFooString,
 
     <section name="NewlineAtEndOfFile">
       <subsection name="Description">
+        <p>Since Checkstyle 3.1</p>
         <p>
           Checks whether files end with a line separator.
         </p>
@@ -1303,6 +1311,7 @@ void foo(String aFooString,
 
     <section name="OuterTypeFilename">
       <subsection name="Description">
+        <p>Since Checkstyle 5.3</p>
         <p>
           Checks that the outer type name and the file name match. For example,
           the class <code>Foo</code> must be in a file named
@@ -1360,6 +1369,7 @@ void foo(String aFooString,
 
     <section name="TodoComment">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           A check for <code>TODO:</code> comments. Actually
           it is a generic <a
@@ -1456,6 +1466,7 @@ void foo(String aFooString,
 
     <section name="TrailingComment">
       <subsection name="Description">
+        <p>Since Checkstyle 3.4</p>
         <p>
           The check to ensure that requires that comments be the only thing on
           a line.  For the case of <code>//</code> comments that means that the only thing
@@ -1601,6 +1612,7 @@ d = e / f;        // Another comment for this line
 
     <section name="Translation">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           A <a href="config.html#Overview">FileSetCheck</a> that ensures
           the correct translation of code by checking property files for
@@ -1798,6 +1810,7 @@ messages_home_fr_CA_UNIX.properties
 
     <section name="UncommentedMain">
       <subsection name="Description">
+        <p>Since Checkstyle 3.2</p>
         <p>
           Checks for uncommented main() methods.
         </p>
@@ -1888,6 +1901,7 @@ messages_home_fr_CA_UNIX.properties
 
     <section name="UniqueProperties">
       <subsection name="Description">
+        <p>Since Checkstyle 5.7</p>
         <p>
           Checks properties files for duplicated properties.
         </p>
@@ -1971,6 +1985,7 @@ messages_home_fr_CA_UNIX.properties
 
     <section name="UpperEll">
       <subsection name="Description">
+        <p>Since Checkstyle 3.0</p>
         <p>
           Checks that long constants are defined with an upper ell. That
           is <code>' L'</code> and not <code>'l'</code>. This is in accordance with the Java
