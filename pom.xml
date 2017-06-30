@@ -1274,6 +1274,8 @@
             <excludedLink>http://search.maven.org/*</excludedLink>
             <!-- codehaus does not exists anymore -->
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
+            <!-- this plugin does not have site at all -->
+            <excludedLink>http://hazendaz.github.io/findbugs-maven-plugin/</excludedLink>
             <!-- SSLHandshakeException but page is opening -->
             <excludedLink>http://www.sickboy.cz/checkstyle/</excludedLink>
             <!-- Excluded due to Maven Enforcer Plugin's issue #234: https://issues.apache.org/jira/browse/MENFORCER-234-->
