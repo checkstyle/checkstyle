@@ -77,7 +77,7 @@
             <!-- in ImportControlCheckTest pmd does not find asserts in private methods of the test class called from the test method -->
             <!-- in AstRegressionTest pmd does not find asserts in inner classes methods called from the test method -->
             <!-- in AllChecksTest pmd does not find asserts in lambdas -->
-            <!-- Starting from TreeWalkerTest tests should be rewrited-->
+            <!-- Starting from CheckstyleAntTaskTest tests should be rewrited-->
             <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='SuppressionFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCode']
             | //ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
             | //ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
@@ -88,29 +88,12 @@
             | /ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleExceptions']
             | //ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleValid']
             | //ClassOrInterfaceDeclaration[@Image='AllChecksTest']//MethodDeclarator[@Image='testAllModulesAreReferencedInConfigFile']
-            | //ClassOrInterfaceDeclaration[@Image='TreeWalkerTest']//MethodDeclarator[@Image='testProcessNonJavaFiles']
-            | //ClassOrInterfaceDeclaration[@Image='TreeWalkerTest']//MethodDeclarator[@Image='testWithCacheWithNoViolation']
-            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testDefaultFlawless']
-            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testFileSet']
-            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testMaxErrors']
-            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testOverrideProperty']
             | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testConfigurationByUrl']
             | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testConfigurationByResource']
-            | //ClassOrInterfaceDeclaration[@Image='CheckstyleAntTaskTest']//MethodDeclarator[@Image='testSetPropertiesFile']
-            | //ClassOrInterfaceDeclaration[@Image='TranslationCheckTest']//MethodDeclarator[@Image='testLogIoException']
-            | //ClassOrInterfaceDeclaration[@Image='DeclarationOrderCheckTest']//MethodDeclarator[@Image='testParents']
-            | //ClassOrInterfaceDeclaration[@Image='DeclarationOrderCheckTest']//MethodDeclarator[@Image='testImproperToken']
-            | //ClassOrInterfaceDeclaration[@Image='IllegalInstantiationCheckTest']//MethodDeclarator[@Image='testNullClassLoader']
-            | //ClassOrInterfaceDeclaration[@Image='RequireThisCheckTest']//MethodDeclarator[@Image='testDefaultSwitch']
-            | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheckTest']//MethodDeclarator[@Image='testDefaultHooks']
-            | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheckTest']//MethodDeclarator[@Image='testVisitTokenBeforeExpressionRange']
-            | //ClassOrInterfaceDeclaration[@Image='SuppressionsLoaderTest']//MethodDeclarator[@Image='testNoCheckYesId']
+            | //ClassOrInterfaceDeclaration[@Image='TreeWalkerTest']//MethodDeclarator[@Image='testProcessNonJavaFiles']
             "/>
         </properties>
     </rule>
-
-    // testDefaultFlawless CheckstyleAntTaskTest
-
 
     <rule ref="config/pmd.xml/ConfusingTernary">
         <properties>

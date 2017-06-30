@@ -31,6 +31,7 @@ import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -170,10 +171,17 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultHooks() {
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        final LocalizedMessages messages = new LocalizedMessages();
+        npathComplexityCheckObj.setMessages(messages);
+
         final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+
         npathComplexityCheckObj.visitToken(ast);
+        Assert.assertEquals("No exception messages expected", 0, messages.size());
+
         npathComplexityCheckObj.leaveToken(ast);
+        Assert.assertEquals("No exception messages expected", 0, messages.size());
     }
 
     @Test
@@ -193,11 +201,16 @@ public class NPathComplexityCheckTest extends BaseCheckTestSupport {
                 mockAST(TokenTypes.LITERAL_TRUE, "true", "mockfile", 1, 2);
         astTernary.addChild(astTernaryTrue);
 
-        final NPathComplexityCheck mock = new NPathComplexityCheck();
+        final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
+        final LocalizedMessages messages = new LocalizedMessages();
+        npathComplexityCheckObj.setMessages(messages);
+
         // visiting first ast, set expressionSpatialRange to [2,2 - 4,4]
-        mock.visitToken(astIf);
+        npathComplexityCheckObj.visitToken(astIf);
+        Assert.assertEquals("No exception messages expected", 0, messages.size());
         //visiting ternary, it lies before expressionSpatialRange
-        mock.visitToken(astTernary);
+        npathComplexityCheckObj.visitToken(astTernary);
+        Assert.assertEquals("No exception messages expected", 0, messages.size());
     }
 
     /**

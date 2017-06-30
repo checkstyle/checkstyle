@@ -163,11 +163,17 @@ public class IllegalInstantiationCheckTest
         final File inputFile = new File(getNonCompilablePath("InputIllegalInstantiationLang.java"));
         check.setFileContents(new FileContents(new FileText(inputFile, "UTF-8")));
         check.configure(createCheckConfig(IllegalInstantiationCheck.class));
-        check.setMessages(new LocalizedMessages());
-
+        final LocalizedMessages messages = new LocalizedMessages();
+        check.setMessages(messages);
         check.setClasses("java.lang.Boolean");
+
         check.visitToken(newAst);
+        Assert.assertEquals("No exception messages expected", 0, messages.size());
+
         check.finishTree(newAst);
+        Assert.assertEquals("Invalid exception message",
+            "Instantiation of java.lang.Boolean should be avoided.",
+            messages.getMessages().first().getMessage());
     }
 
     @Test

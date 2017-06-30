@@ -192,16 +192,14 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
     @Test
     public void testWithCacheWithNoViolation() throws Exception {
-        final TreeWalker treeWalker = new TreeWalker();
-        treeWalker.configure(createCheckConfig(TypeNameCheck.class));
+        final Checker checker = createChecker(createCheckConfig(HiddenFieldCheck.class));
         final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
-        treeWalker.setModuleFactory(factory);
-        treeWalker.setupChild(createCheckConfig(TypeNameCheck.class));
+        checker.setModuleFactory(factory);
         final File file = temporaryFolder.newFile("file.java");
-        final List<String> lines = new ArrayList<>();
-        lines.add(" class a {} ");
-        treeWalker.processFiltered(file, lines);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checker, file.getPath(), expected);
     }
 
     @Test

@@ -274,7 +274,9 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
     @Test
     public void testNoCheckYesId() throws Exception {
         final String fn = getPath("suppressions_id.xml");
-        SuppressionsLoader.loadSuppressions(fn);
+        final FilterSet set = SuppressionsLoader.loadSuppressions(fn);
+
+        assertEquals("Invalid number of filters", 1, set.getFilters().size());
     }
 
     @Test
