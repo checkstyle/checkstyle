@@ -179,9 +179,15 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 "METHOD_DEF", "CTOR_DEF", "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
-                // state of configuration until
-                // https://github.com/checkstyle/checkstyle/issues/3752
-                "RBRACK", "AT", "ELLIPSIS", "SEMI", "ARRAY_DECLARATOR",
+                // location could be any to allow writing expressions for indexes evaluation
+                // on new line, see https://github.com/checkstyle/checkstyle/issues/3752
+                "RBRACK",
+                // for some targets annotations can be used without wrapping, as described
+                // in https://google.github.io/styleguide/javaguide.html#s4.8.5-annotations
+                "AT",
+                // location could be any to allow using for line separation in enum values,
+                // see https://github.com/checkstyle/checkstyle/issues/3752
+                "SEMI",
                 // needs context to decide what type of parentheses should be separated or not
                 // which this check does not provide
                 "LPAREN", "RPAREN").collect(Collectors.toSet()));
