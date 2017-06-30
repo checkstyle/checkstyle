@@ -215,8 +215,6 @@
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <!-- argLine is required due unstable problem with Travis builds; extraArgLine is used in Travis localized builds -->
-    <argLine>-Xms1024m -Xmx2048m ${extraArgLine}</argLine>
   </properties>
 
   <!-- that repositories are required for testing plugin's snapshot version -->
