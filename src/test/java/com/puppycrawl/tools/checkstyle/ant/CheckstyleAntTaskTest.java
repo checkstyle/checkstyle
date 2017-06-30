@@ -58,10 +58,12 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({CheckstyleAntTask.class, Closeables.class})
@@ -306,9 +308,18 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.addFormatter(formatter);
         antTask.execute();
 
+        final LocalizedMessage auditStartedMessage = new LocalizedMessage(0,
+                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
+                null, null,
+                getClass(), null);
+        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(0,
+                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
+                null, null,
+                getClass(), null);
+
         final List<String> output = FileUtils.readLines(outputFile);
         final String errorMessage = "Content of file with violations differs from expected";
-        assertEquals(errorMessage, "Starting audit...", output.get(0));
+        assertEquals(errorMessage, auditStartedMessage.getMessage(), output.get(0));
         assertTrue(errorMessage, output.get(1).startsWith("[WARN]"));
         assertTrue(errorMessage, output.get(1).endsWith("InputCheckstyleAntTaskError.java:4: "
                 + "@incomplete=Some javadoc [WriteTag]"));
@@ -318,7 +329,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         assertTrue(errorMessage, output.get(3).startsWith("[ERROR]"));
         assertTrue(errorMessage, output.get(3).endsWith("InputCheckstyleAntTaskError.java:9: "
                 + "Line is longer than 70 characters (found 81). [LineLength]"));
-        assertEquals(errorMessage, "Audit done.", output.get(4));
+        assertEquals(errorMessage, auditFinishedMessage.getMessage(), output.get(4));
     }
 
     @Test
@@ -547,6 +558,15 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
         antTask.execute();
 
+        final LocalizedMessage auditStartedMessage = new LocalizedMessage(0,
+                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
+                null, null,
+                getClass(), null);
+        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(0,
+                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
+                null, null,
+                getClass(), null);
+
         final List<MessageLevelPair> expectedList = Arrays.asList(
                 new MessageLevelPair("checkstyle version ", Project.MSG_VERBOSE),
                 new MessageLevelPair("compiled on ", Project.MSG_VERBOSE),
@@ -554,8 +574,8 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
                 new MessageLevelPair("To locate the files took 0 ms.", Project.MSG_VERBOSE),
                 new MessageLevelPair("Running Checkstyle ", Project.MSG_INFO),
                 new MessageLevelPair("Using configuration ", Project.MSG_VERBOSE),
-                new MessageLevelPair("Starting audit", Project.MSG_DEBUG),
-                new MessageLevelPair("Audit done.", Project.MSG_DEBUG),
+                new MessageLevelPair(auditStartedMessage.getMessage(), Project.MSG_DEBUG),
+                new MessageLevelPair(auditFinishedMessage.getMessage(), Project.MSG_DEBUG),
                 new MessageLevelPair("To process the files took 0 ms.", Project.MSG_VERBOSE),
                 new MessageLevelPair("Total execution took 0 ms.", Project.MSG_VERBOSE)
         );
