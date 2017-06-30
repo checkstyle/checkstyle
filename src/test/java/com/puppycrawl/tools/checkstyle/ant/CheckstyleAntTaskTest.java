@@ -93,9 +93,13 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public final void testDefaultFlawless() throws IOException {
-        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        TestRootModuleChecker.reset();
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.execute();
+
+        assertTrue("Checker is not processed",
+            TestRootModuleChecker.isProcessed());
     }
 
     @Test
@@ -162,11 +166,20 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public final void testFileSet() throws IOException {
-        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        TestRootModuleChecker.reset();
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         final FileSet examinationFileSet = new FileSet();
         examinationFileSet.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.addFileset(examinationFileSet);
         antTask.execute();
+
+        assertTrue("Checker is not processed",
+            TestRootModuleChecker.isProcessed());
+        final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
+        assertThat("There more files to check then expected",
+            filesToCheck.size(), is(1));
+        assertThat("The path of file differs from expected",
+            filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
     }
 
     @Test
@@ -247,10 +260,15 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public final void testMaxErrors() throws IOException {
-        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setMaxErrors(2);
         antTask.execute();
+
+        assertTrue("Checker is not processed",
+            TestRootModuleChecker.isProcessed());
     }
 
     @Test
@@ -279,13 +297,18 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public final void testOverrideProperty() throws IOException {
-        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         final CheckstyleAntTask.Property property = new CheckstyleAntTask.Property();
         property.setKey("lineLength.severity");
         property.setValue("ignore");
         antTask.addProperty(property);
         antTask.execute();
+
+        assertTrue("Checker is not processed",
+            TestRootModuleChecker.isProcessed());
     }
 
     @Test
@@ -359,10 +382,15 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public final void testSetPropertiesFile() throws IOException {
-        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setProperties(new File(getPath("ant/checkstyleAntTest.properties")));
         antTask.execute();
+
+        assertTrue("Checker is not processed",
+            TestRootModuleChecker.isProcessed());
     }
 
     @Test

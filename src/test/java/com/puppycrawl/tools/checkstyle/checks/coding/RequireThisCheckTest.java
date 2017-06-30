@@ -32,6 +32,7 @@ import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -152,9 +153,14 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultSwitch() {
         final RequireThisCheck check = new RequireThisCheck();
+        final LocalizedMessages messages = new LocalizedMessages();
+        check.setMessages(messages);
+
         final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+
         check.visitToken(ast);
+        Assert.assertEquals("No exception messages expected", 0, messages.size());
     }
 
     @Test

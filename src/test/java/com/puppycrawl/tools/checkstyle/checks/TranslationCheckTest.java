@@ -23,24 +23,40 @@ import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MISSING_TRANSLATION_FILE;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Set;
+import java.util.SortedSet;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
+@RunWith(MockitoJUnitRunner.class)
 public class TranslationCheckTest extends BaseCheckTestSupport {
+    @Captor
+    private ArgumentCaptor<SortedSet<LocalizedMessage>> captor;
+
     @Override
     protected DefaultConfiguration createCheckerConfig(
         Configuration config) {
@@ -116,14 +132,20 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
         //in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
         final DefaultConfiguration checkConfig = createCheckConfig(TranslationCheck.class);
+        final MessageDispatcher dispatcher = mock(MessageDispatcher.class);
         check.configure(checkConfig);
-        check.setMessageDispatcher(createChecker(checkConfig));
+        check.setMessageDispatcher(dispatcher);
 
         final Method logIoException = check.getClass().getDeclaredMethod("logIoException",
                 IOException.class,
                 File.class);
         logIoException.setAccessible(true);
-        logIoException.invoke(check, new IOException("test exception"), new File(""));
+        final File file = new File("");
+        logIoException.invoke(check, new IOException("test exception"), file);
+
+        Mockito.verify(dispatcher, times(1)).fireErrors(any(String.class), captor.capture());
+        assertEquals("Invalid exception message", "Got an exception - test exception",
+            captor.getValue().first().getMessage());
     }
 
     @Test
