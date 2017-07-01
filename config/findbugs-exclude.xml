@@ -39,12 +39,6 @@
       <Bug pattern="DLS_DEAD_LOCAL_STORE" />
     </Match>
     <Match>
-      <!-- till #922 -->
-      <Class name="com.puppycrawl.tools.checkstyle.Checker" />
-      <Method name="setClassloader" />
-      <Bug pattern="NM_CONFUSING" />
-    </Match>
-    <Match>
       <!-- that CLI class so we need system exit code there, but only in main(...) method -->
       <Class name="com.puppycrawl.tools.checkstyle.Main" />
       <Method name="main" />

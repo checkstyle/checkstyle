@@ -321,7 +321,6 @@ public class CheckerTest extends BaseCheckTestSupport {
         // all  that is set by reflection, so just make code coverage be happy
         final Checker checker = new Checker();
         checker.setClassLoader(getClass().getClassLoader());
-        checker.setClassloader(getClass().getClassLoader());
         checker.setBasedir("some");
         checker.setSeverity("ignore");
 
