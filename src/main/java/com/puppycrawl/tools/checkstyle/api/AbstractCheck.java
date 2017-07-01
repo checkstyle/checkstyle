@@ -63,14 +63,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     public abstract int[] getDefaultTokens();
 
     /**
-     * Whether comment nodes are required or not.
-     * @return false as a default value.
-     */
-    public boolean isCommentNodesRequired() {
-        return false;
-    }
-
-    /**
      * The configurable token set.
      * Used to protect Checks against malicious users who specify an
      * unacceptable token set in the configuration file.
@@ -78,20 +70,21 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @return the token set this check is designed for.
      * @see TokenTypes
      */
-    public int[] getAcceptableTokens() {
-        final int[] defaultTokens = getDefaultTokens();
-        final int[] copy = new int[defaultTokens.length];
-        System.arraycopy(defaultTokens, 0, copy, 0, defaultTokens.length);
-        return copy;
-    }
+    public abstract int[] getAcceptableTokens();
 
     /**
      * The tokens that this check must be registered for.
      * @return the token set this must be registered for.
      * @see TokenTypes
      */
-    public int[] getRequiredTokens() {
-        return CommonUtils.EMPTY_INT_ARRAY;
+    public abstract int[] getRequiredTokens();
+
+    /**
+     * Whether comment nodes are required or not.
+     * @return false as a default value.
+     */
+    public boolean isCommentNodesRequired() {
+        return false;
     }
 
     /**

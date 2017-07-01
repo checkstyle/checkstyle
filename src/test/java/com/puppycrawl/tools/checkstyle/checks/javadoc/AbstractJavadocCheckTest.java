@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -172,6 +171,30 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testTokens() throws Exception {
+        final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC};
+        final AbstractJavadocCheck check = new AbstractJavadocCheck() {
+
+            @Override
+            public void visitJavadocToken(DetailNode ast) {
+                // no code necessary
+            }
+
+            @Override
+            public int[] getDefaultJavadocTokens() {
+                return defaultJavadocTokens;
+            }
+        };
+
+        Assert.assertNotNull(check.getDefaultTokens());
+        Assert.assertArrayEquals(check.getDefaultTokens(), check.getAcceptableTokens());
+        Assert.assertArrayEquals(check.getDefaultTokens(), check.getRequiredTokens());
+        Assert.assertArrayEquals(defaultJavadocTokens, check.getDefaultJavadocTokens());
+        Assert.assertArrayEquals(defaultJavadocTokens, check.getAcceptableJavadocTokens());
+        Assert.assertNotEquals(defaultJavadocTokens, check.getRequiredJavadocTokens());
+    }
+
+    @Test
     public void testAcceptableTokensFail()
             throws Exception {
         final DefaultConfiguration checkConfig =
@@ -237,16 +260,6 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         }
 
         @Override
-        public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
-        }
-
-        @Override
-        public int[] getRequiredTokens() {
-            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
-        }
-
-        @Override
         public void visitJavadocToken(DetailNode ast) {
             // do nothing
         }
@@ -262,16 +275,6 @@ public class AbstractJavadocCheckTest extends BaseCheckTestSupport {
         @Override
         public int[] getDefaultJavadocTokens() {
             return new int[] {JavadocTokenTypes.JAVADOC};
-        }
-
-        @Override
-        public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
-        }
-
-        @Override
-        public int[] getRequiredTokens() {
-            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
         }
 
         @Override
