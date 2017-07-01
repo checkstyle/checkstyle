@@ -183,7 +183,17 @@ no-exception-test-alot-of-project1)
   ;;
 
 cobertura-check)
-  mvn clean compile cobertura:check cobertura:cobertura -DargLine='-Xms1024m -Xmx2048m'
+  set +e
+  mvn clean compile cobertura:cobertura cobertura:check -DargLine='-Xms1024m -Xmx2048m' > mvn-log.log
+  cat mvn-log.log
+  set -e
+  echo "Grep for hidden errors (due to quiet=true mode in pom.xml):"
+  grep -R "<td class=\"nbHitsUncovered\">&nbsp;0</td>" target/site/cobertura/* --exclude=*grammars* | cat > mvn-log-grep.log
+  cat mvn-log-grep.log
+  if [[ $(cat mvn-log-grep.log | wc -l) -gt 0 ]]; then
+    exit 1
+  fi
+  echo "Checking that all classes are covered:"
   xmlstarlet sel -t -m "//class" -v "@name" -n target/site/cobertura/coverage.xml | sed "s/\./\//g" | sed "/^$/d" | sort | uniq > cobertura_classes.log
   find target/classes -type f -name "*.class" | grep -vE ".*\\$.*" | sed "s/target\/classes\///g" | sed "s/.class//g" | sed "/^$/d" | sort | uniq > target_classes.log
   xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 -t -m "//pom:instrumentation/pom:excludes" -v "pom:exclude" -n pom.xml | sed "s/*//g" | sed "s/.class//g" | sed "/^$/d" | sort | uniq > cobertura_excluded_classes.log
