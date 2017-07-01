@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 
@@ -122,16 +121,6 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     @Override
     public int[] getRequiredJavadocTokens() {
         return getAcceptableJavadocTokens();
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
-    }
-
-    @Override
-    public int[] getRequiredTokens() {
-        return getAcceptableTokens();
     }
 
     @Override
