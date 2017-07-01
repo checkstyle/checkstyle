@@ -581,19 +581,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         this.classLoader = classLoader;
     }
 
-    /**
-     * Sets the classloader that is used to contextualize fileset checks.
-     * Some Check implementations will use that classloader to improve the
-     * quality of their reports, e.g. to load a class and then analyze it via
-     * reflection.
-     * @param loader the new classloader
-     * @deprecated use {@link #setClassLoader(ClassLoader loader)} instead.
-     */
-    @Deprecated
-    public final void setClassloader(ClassLoader loader) {
-        classLoader = loader;
-    }
-
     @Override
     public final void setModuleClassLoader(ClassLoader moduleClassLoader) {
         this.moduleClassLoader = moduleClassLoader;
