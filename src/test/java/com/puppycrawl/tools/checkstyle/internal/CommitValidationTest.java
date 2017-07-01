@@ -24,6 +24,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -72,7 +73,7 @@ import org.junit.Test;
 public class CommitValidationTest {
 
     private static final List<String> USERS_EXCLUDED_FROM_VALIDATION =
-            Collections.singletonList("Roman Ivanov");
+            Arrays.asList("Roman Ivanov", "rnveach");
 
     private static final String ISSUE_COMMIT_MESSAGE_REGEX_PATTERN = "^Issue #\\d+: .*$";
     private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d+: .*$";
