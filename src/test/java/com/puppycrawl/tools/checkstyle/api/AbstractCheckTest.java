@@ -38,6 +38,16 @@ public class AbstractCheckTest {
             public int[] getDefaultTokens() {
                 return CommonUtils.EMPTY_INT_ARRAY;
             }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return getDefaultTokens();
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return getDefaultTokens();
+            }
         };
         // Eventually it will become clear abstract method
         Assert.assertArrayEquals(CommonUtils.EMPTY_INT_ARRAY, check.getRequiredTokens());
@@ -49,6 +59,16 @@ public class AbstractCheckTest {
             @Override
             public int[] getDefaultTokens() {
                 return CommonUtils.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return getDefaultTokens();
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return getDefaultTokens();
             }
         };
         // Eventually it will become clear abstract method
@@ -84,6 +104,16 @@ public class AbstractCheckTest {
             public int[] getDefaultTokens() {
                 return CommonUtils.EMPTY_INT_ARRAY;
             }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return getDefaultTokens();
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return getDefaultTokens();
+            }
         };
         check.setFileContents(new FileContents(new FileText(
             new File(INPUT_FOLDER + "InputAbstractCheckTestFileContence.java"),
@@ -99,6 +129,16 @@ public class AbstractCheckTest {
             public int[] getDefaultTokens() {
                 return CommonUtils.EMPTY_INT_ARRAY;
             }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return getDefaultTokens();
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return getDefaultTokens();
+            }
         };
         final int tabWidth = 4;
         check.setTabWidth(tabWidth);
@@ -113,6 +153,16 @@ public class AbstractCheckTest {
             public int[] getDefaultTokens() {
                 return CommonUtils.EMPTY_INT_ARRAY;
             }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return getDefaultTokens();
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return getDefaultTokens();
+            }
         };
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         check.setClassLoader(classLoader);
@@ -123,14 +173,27 @@ public class AbstractCheckTest {
     @Test
     public void testGetAcceptableTokens() throws Exception {
         final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        final int[] acceptableTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        final int[] requiredTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
                 return defaultTokens;
             }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return acceptableTokens;
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return requiredTokens;
+            }
         };
 
-        Assert.assertNotEquals(defaultTokens, check.getAcceptableTokens());
+        Assert.assertArrayEquals(defaultTokens, check.getDefaultTokens());
         Assert.assertArrayEquals(defaultTokens, check.getAcceptableTokens());
+        Assert.assertArrayEquals(requiredTokens, check.getRequiredTokens());
     }
 }

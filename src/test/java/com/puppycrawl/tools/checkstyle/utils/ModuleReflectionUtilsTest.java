@@ -120,6 +120,16 @@ public class ModuleReflectionUtilsTest {
         public int[] getDefaultTokens() {
             return new int[] {0};
         }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return getDefaultTokens();
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return getDefaultTokens();
+        }
     }
 
     private static class FileSetModuleClass extends AbstractFileSetCheck {

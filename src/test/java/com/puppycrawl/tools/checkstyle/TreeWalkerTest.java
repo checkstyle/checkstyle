@@ -417,6 +417,16 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         }
 
         @Override
+        public int[] getAcceptableTokens() {
+            return getDefaultTokens();
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return getDefaultTokens();
+        }
+
+        @Override
         public void init() {
             super.init();
             initWasCalled = true;

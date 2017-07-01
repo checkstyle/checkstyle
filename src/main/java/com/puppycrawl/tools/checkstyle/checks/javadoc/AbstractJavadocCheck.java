@@ -229,6 +229,16 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
     }
 
+    @Override
+    public final int[] getAcceptableTokens() {
+        return getDefaultTokens();
+    }
+
+    @Override
+    public final int[] getRequiredTokens() {
+        return getDefaultTokens();
+    }
+
     /**
      * Defined final because all JavadocChecks require comment nodes.
      * @return true
