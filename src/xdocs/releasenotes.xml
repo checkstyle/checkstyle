@@ -14,8 +14,152 @@
   </head>
 
   <body>
-
     <!-- placeholder for a new section -->
+
+    <section name="Release 8.0">
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            api changes: make getAcceptableTokens/getRequiredTokens/getDefaultTokens methods as abstract in Check.java. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/605">#605</a>
+          </li>
+          <li>
+            deprecate Checker.setClassloader , replace with Checker.setClassLoader. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/922">#922</a>
+          </li>
+          <li>
+            Remove deprecated Check class. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4541">#4541</a>
+          </li>
+          <li>
+            CheckstyleAntTask: substitude setConfig(File) with setConfig(String). Author: Michael Diamond <a href="https://github.com/checkstyle/checkstyle/issues/4449">#4449</a>
+          </li>
+          <li>
+            remove deprecated getFilename menthod from FileContents. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/3666">#3666</a>
+          </li>
+          <li>
+            rename STMT in BlockOption class to STATEMENT. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4035">#4035</a>
+          </li>
+          <li>
+            Remove unnecessary text from Javadoc tokens. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3796">#3796</a>
+          </li>
+          <li>
+            Cache conflict between Maven/Ant and Eclipse/CLI run. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3566">#3566</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            MethodCountCheck: add ANNOTATION_DEF to toknes to avoid NPE. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4534">#4534</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            some messages are still hardcoded in english. Author: Subbu Dantu, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3110">#3110</a>
+          </li>
+          <li>
+            MethodCountCheck: wrong counting with nested interface definition. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4540">#4540</a>
+          </li>
+          <li>
+            Indentation: custom annotation not checked. Author: Vikramaditya Kukreja <a href="https://github.com/checkstyle/checkstyle/issues/3134">#3134</a>
+          </li>
+          <li>
+            Javadoc is not parsed correctly in files with only CR newlines. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/2329">#2329</a>
+          </li>
+          <li>
+            CLI Javadoc tree printing does not check placement of Javadoc. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4405">#4405</a>
+          </li>
+          <li>
+            Javadoc parser: custom tags content should not be parsed as HTML. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4164">#4164</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            pmd: fix all the remained. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4567">#4567</a>
+          </li>
+          <li>
+            Localized UTs are not stable on Travis. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4316">#4316</a>
+          </li>
+          <li>
+            Add since version to Checkstyle documentation. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4475">#4475</a>
+          </li>
+          <li>
+            Fix PMD violations for test code in Checkstyle. Author: vasilyeva, vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/877">#877</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in &#39;indentation&#39; package. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4538">#4538</a>
+          </li>
+          <li>
+            Use Spotbugs tool in our build process. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4373">#4373</a>
+          </li>
+          <li>
+            pmd: enable validation on IT java sources. Author: vasilyeva, vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4500">#4500</a>
+          </li>
+          <li>
+            upgrade maven-pmd-plugin to version 3.8. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4342">#4342</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in imports package. Author: Subbu Dantu <a href="https://github.com/checkstyle/checkstyle/issues/4437">#4437</a>
+          </li>
+          <li>
+            Refactor Javadoc AST Tests. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/4381">#4381</a>
+          </li>
+          <li>
+            pmd: fix JUnitAssertionsShouldIncludeMessage violations in test classes. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4516">#4516</a>
+          </li>
+          <li>
+            pmd: fix TestClassWithoutTestCases violations in test classes. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4518">#4518</a>
+          </li>
+          <li>
+            pmd: fix UselessOverridingMethod violations in test classes . Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4488">#4488</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-utils profile to 100%. Author: vasilyeva, vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4395">#4395</a>
+          </li>
+          <li>
+            refactoring: remove &#39;final&#39; modifier from all arguments of method/c-tor at ImportControlCheck and around. Author: sharang108 <a href="https://github.com/checkstyle/checkstyle/issues/4353">#4353</a>
+          </li>
+          <li>
+            pmd: fix AppendCharacterWithChar violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4494">#4494</a>
+          </li>
+          <li>
+            pmd: fix InsufficientStringBufferDeclaration violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4491">#4491</a>
+          </li>
+          <li>
+            pmd: fix UncommentedEmptyMethodBody violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4495">#4495</a>
+          </li>
+          <li>
+            pmd: fix LoggerIsNotStaticFinal violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4490">#4490</a>
+          </li>
+          <li>
+            pmd: fix NcssMethodCount violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4496">#4496</a>
+          </li>
+          <li>
+            pmd: fix JUnit4TestShouldUseTestAnnotation violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4489">#4489</a>
+          </li>
+          <li>
+            pmd: fix ConfusingTernary violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4493">#4493</a>
+          </li>
+          <li>
+            pmd: fix CommentDefaultAccessModifier violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4492">#4492</a>
+          </li>
+          <li>
+            pmd: fix CheckstyleCustomShortVariable violations in test classes. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4497">#4497</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-common profile to 100%. Author: vasilyeva, vasylieva, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/4400">#4400</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-api profile to 100%. Author: vasylieva <a href="https://github.com/checkstyle/checkstyle/issues/4394">#4394</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-checkstyle-tree-walker profile to 100%. Author: vasilyeva <a href="https://github.com/checkstyle/checkstyle/issues/4398">#4398</a>
+          </li>
+          <li>
+            Split and Organize Checkstyle inputs by Test for checks in header package. Author: sharang108 <a href="https://github.com/checkstyle/checkstyle/issues/4365">#4365</a>
+          </li>
+        </ul>
+    </section>
+
     <section name="Release 7.8.2">
       <p>Bug fixes:</p>
         <ul>
