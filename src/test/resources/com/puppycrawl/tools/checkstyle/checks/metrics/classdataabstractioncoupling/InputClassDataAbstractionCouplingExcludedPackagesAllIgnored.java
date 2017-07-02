@@ -1,11 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.aa.AAClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.ab.ABClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b.BClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c.CClass;
 
-public class InputClassCouplingExcludedPackagesAllIgnored { // total: ok
+public class InputClassDataAbstractionCouplingExcludedPackagesAllIgnored { // total: ok
     public AAClass aa = new AAClass(); // ok
     public ABClass ab = new ABClass(); // ok
 
@@ -15,7 +15,7 @@ public class InputClassCouplingExcludedPackagesAllIgnored { // total: ok
     }
 }
 
-class InputClassCouplingExcludedPackagesAllIgnoredHidden { // total: ok
+class InputClassDataAbstractionCouplingExcludedPackagesAllIgnoredHidden { // total: ok
     public CClass c = new CClass(); // ok
 }
 
