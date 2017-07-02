@@ -202,7 +202,7 @@
     <maven.findbugs.plugin.version>3.0.4</maven.findbugs.plugin.version>
     <maven.spotbugs.plugin.version>3.0.5</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.8</maven.pmd.plugin.version>
-    <pmd.version>5.7.0</pmd.version>
+    <pmd.version>5.8.1</pmd.version>
     <maven.jacoco.plugin.version>0.7.9</maven.jacoco.plugin.version>
     <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.24.0</maven.sevntu.checkstyle.plugin.version>
