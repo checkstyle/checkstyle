@@ -41,7 +41,8 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "metrics" + File.separator + filename);
+                + "metrics" + File.separator + "classdataabstractioncoupling" + File.separator
+                + filename);
     }
 
     @Test
@@ -58,7 +59,7 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 
     @Test
@@ -76,7 +77,8 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
         };
 
         verify(checkConfig,
-            getPath("InputClassCouplingExcludedPackagesDirectPackages.java"), expected);
+            getPath("InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"),
+                expected);
     }
 
     @Test
@@ -94,7 +96,8 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             "18:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CClass]"),
         };
         verify(checkConfig,
-            getPath("InputClassCouplingExcludedPackagesCommonPackage.java"), expected);
+            getPath("InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"),
+                expected);
     }
 
     @Test
@@ -136,7 +139,8 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c");
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassCouplingExcludedPackagesAllIgnored.java"), expected);
+        verify(checkConfig,
+            getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"), expected);
     }
 
     @Test
@@ -146,7 +150,7 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
 
         createChecker(checkConfig);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 
     @Test
@@ -179,7 +183,7 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 
     @Test
@@ -197,6 +201,6 @@ public class ClassDataAbstractionCouplingCheckTest extends BaseCheckTestSupport 
             "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 }
