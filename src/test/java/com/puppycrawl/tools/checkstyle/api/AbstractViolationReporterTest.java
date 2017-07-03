@@ -74,12 +74,10 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         config.addMessage("msgKey", "This is a custom message.");
         emptyCheck.configure(config);
 
-        final LocalizedMessages collector = new LocalizedMessages();
-        emptyCheck.setMessages(collector);
-
         emptyCheck.log(0, "msgKey");
 
-        final SortedSet<LocalizedMessage> messages = collector.getMessages();
+        final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
+
         assertEquals("Amount of messages differs from expected",
                 1, messages.size());
         assertEquals("Message differs from expected",
@@ -93,12 +91,9 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         config.addMessage("msgKey", "This is a custom message with {0}.");
         emptyCheck.configure(config);
 
-        final LocalizedMessages collector = new LocalizedMessages();
-        emptyCheck.setMessages(collector);
-
         emptyCheck.log(0, "msgKey", "TestParam");
+        final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
 
-        final SortedSet<LocalizedMessage> messages = collector.getMessages();
         assertEquals("Amount of messages differs from expected",
                 1, messages.size());
 
@@ -112,9 +107,6 @@ public class AbstractViolationReporterTest extends BaseCheckTestSupport {
         final DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom message {0.");
         emptyCheck.configure(config);
-
-        final LocalizedMessages collector = new LocalizedMessages();
-        emptyCheck.setMessages(collector);
 
         try {
             emptyCheck.log(0, "msgKey", "TestParam");
