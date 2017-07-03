@@ -31,15 +31,16 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.mockito.internal.util.Checks;
 import org.mockito.internal.util.reflection.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -267,6 +268,7 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testBehaviourWithZeroChecks() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
@@ -279,8 +281,9 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         lines.add(" class a%$# {} ");
 
         treeWalker.processFiltered(file, lines);
-        assertTrue("No checks -> No parsing",
-                ((Set) Whitebox.getInternalState(treeWalker, "ordinaryChecks")).isEmpty());
+        final Collection<Checks> checks =
+                (Collection<Checks>) Whitebox.getInternalState(treeWalker, "ordinaryChecks");
+        assertTrue("No checks -> No parsing", checks.isEmpty());
     }
 
     @Test
