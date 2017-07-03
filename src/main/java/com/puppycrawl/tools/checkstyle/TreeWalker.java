@@ -139,7 +139,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     public void finishLocalSetup() {
         final DefaultContext checkContext = new DefaultContext();
         checkContext.add("classLoader", classLoader);
-        checkContext.add("messages", getMessageCollector());
         checkContext.add("severity", getSeverity());
         checkContext.add("tabWidth", String.valueOf(tabWidth));
 
@@ -331,6 +330,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         for (AbstractCheck check : checks) {
             check.setFileContents(contents);
+            check.clearMessages();
             check.beginTree(rootAST);
         }
     }
@@ -352,6 +352,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         for (AbstractCheck check : checks) {
             check.finishTree(rootAST);
+            addMessages(check.getMessages());
         }
     }
 

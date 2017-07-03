@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiation
 
 import java.io.File;
 import java.io.IOException;
+import java.util.SortedSet;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -164,21 +164,23 @@ public class IllegalInstantiationCheckTest
         final File inputFile = new File(getNonCompilablePath("InputIllegalInstantiationLang.java"));
         check.setFileContents(new FileContents(new FileText(inputFile, "UTF-8")));
         check.configure(createCheckConfig(IllegalInstantiationCheck.class));
-        final LocalizedMessages messages = new LocalizedMessages();
-        check.setMessages(messages);
         check.setClasses("java.lang.Boolean");
 
         check.visitToken(newAst);
-        Assert.assertEquals("No exception messages expected", 0, messages.size());
+        final SortedSet<LocalizedMessage> messages1 = check.getMessages();
+
+        Assert.assertEquals("No exception messages expected", 0, messages1.size());
 
         check.finishTree(newAst);
+        final SortedSet<LocalizedMessage> messages2 = check.getMessages();
+
         final LocalizedMessage addExceptionMessage = new LocalizedMessage(0,
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", "instantiation.avoid",
                 new String[] {"java.lang.Boolean"}, null,
                 getClass(), null);
         Assert.assertEquals("Invalid exception message",
                 addExceptionMessage.getMessage(),
-            messages.getMessages().first().getMessage());
+            messages2.first().getMessage());
     }
 
     @Test

@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -39,11 +41,11 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /** The tokens the check is interested in. */
     private final Set<String> tokens = new HashSet<>();
 
+    /** The sorted set for collecting messages. */
+    private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+
     /** The current file contents. */
     private FileContents fileContents;
-
-    /** The object for collecting messages. */
-    private LocalizedMessages messages;
 
     /** The tab width for column reporting. */
     private int tabWidth = DEFAULT_TAB_WIDTH;
@@ -104,11 +106,18 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Set the global object used to collect messages.
-     * @param messages the messages to log with
+     * Returns the sorted set of {@link LocalizedMessage}.
+     * @return the sorted set of {@link LocalizedMessage}.
      */
-    public final void setMessages(LocalizedMessages messages) {
-        this.messages = messages;
+    public SortedSet<LocalizedMessage> getMessages() {
+        return new TreeSet<>(messages);
+    }
+
+    /**
+     * Clears the sorted set of {@link LocalizedMessage} of the check.
+     */
+    public final void clearMessages() {
+        messages.clear();
     }
 
     /**

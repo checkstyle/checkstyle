@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -37,7 +38,7 @@ public abstract class AbstractFileSetCheck
     implements FileSetCheck {
 
     /** Collects the error messages. */
-    private final LocalizedMessages messageCollector = new LocalizedMessages();
+    private final SortedSet<LocalizedMessage> messageCollector = new TreeSet<>();
 
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
@@ -72,12 +73,12 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<LocalizedMessage> process(File file, List<String> lines)
             throws CheckstyleException {
-        messageCollector.reset();
+        messageCollector.clear();
         // Process only what interested in
         if (CommonUtils.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, lines);
         }
-        return messageCollector.getMessages();
+        return new TreeSet<>(messageCollector);
     }
 
     @Override
@@ -134,14 +135,11 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Returns the collector for violation messages.
-     * Subclasses can use the collector to find out the violation
-     * messages to fire via the message dispatcher.
-     *
-     * @return the collector for localized messages.
+     * Adds the sorted set of {@link LocalizedMessage} to the message collector.
+     * @param messages the sorted set of {@link LocalizedMessage}.
      */
-    protected final LocalizedMessages getMessageCollector() {
-        return messageCollector;
+    protected final void addMessages(SortedSet<LocalizedMessage> messages) {
+        messageCollector.addAll(messages);
     }
 
     @Override
@@ -171,9 +169,8 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = messageCollector
-                .getMessages();
-        messageCollector.reset();
+        final SortedSet<LocalizedMessage> errors = new TreeSet<>(messageCollector);
+        messageCollector.clear();
         getMessageDispatcher().fireErrors(fileName, errors);
     }
 }

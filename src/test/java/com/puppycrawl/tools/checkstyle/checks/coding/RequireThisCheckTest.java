@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG
 
 import java.io.File;
 import java.io.IOException;
+import java.util.SortedSet;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,7 +33,7 @@ import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessages;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -153,13 +154,13 @@ public class RequireThisCheckTest extends BaseCheckTestSupport {
     @Test
     public void testDefaultSwitch() {
         final RequireThisCheck check = new RequireThisCheck();
-        final LocalizedMessages messages = new LocalizedMessages();
-        check.setMessages(messages);
 
         final DetailAST ast = new DetailAST();
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
 
         check.visitToken(ast);
+        final SortedSet<LocalizedMessage> messages = check.getMessages();
+
         Assert.assertEquals("No exception messages expected", 0, messages.size());
     }
 
