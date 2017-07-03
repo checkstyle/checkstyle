@@ -243,6 +243,7 @@ public class EmptyBlockCheck
         if ((ast.getType() == TokenTypes.LITERAL_CASE
                 || ast.getType() == TokenTypes.LITERAL_DEFAULT)
                 && ast.getNextSibling() != null
+                && ast.getNextSibling().getFirstChild() != null
                 && ast.getNextSibling().getFirstChild().getType() == TokenTypes.SLIST) {
             leftCurly = ast.getNextSibling().getFirstChild();
         }
