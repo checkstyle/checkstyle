@@ -51,6 +51,13 @@ matrix:
         - DESC="cobertura and codecov"
         - CMD="./.ci/travis/travis.sh cobertura-check"
         - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
+
+    # cobertura in verify mode (oraclejdk8)
+    - jdk: oraclejdk8
+      env:
+        - DESC="cobertura in verify mode"
+        - CMD="mvn verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dpmd.skip=true -Dfindbugs.skip=true -DskipITs -DargLine='-Xms1024m -Xmx2048m'"
+
     # findbugs, spotbugs and pmd (oraclejdk8)
     - jdk: oraclejdk8
       env:
