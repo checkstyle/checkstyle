@@ -20,11 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtils.EMPTY_STRING_ARRAY;
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 import java.io.IOException;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -96,6 +98,15 @@ public class FinalClassCheckTest
                 getNonCompilablePath(
                 "InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"),
                 expected);
+    }
+
+    @Test
+    public void testOverriddenExtendedNestedClass() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createCheckConfig(FinalClassCheck.class);
+        verify(checkConfig,
+            getPath("InputFinalClassExtendedOverriddenNested.java"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test

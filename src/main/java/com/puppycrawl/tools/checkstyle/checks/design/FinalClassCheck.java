@@ -21,8 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -55,13 +57,19 @@ public class FinalClassCheck
     /**
      * Character separate package names in qualified name of java class.
      */
-    public static final String PACKAGE_SEPARATOR = ".";
+    private static final String PACKAGE_SEPARATOR = ".";
 
     /** Keeps ClassDesc objects for stack of declared classes. */
-    private Deque<ClassDesc> classes;
+    private Deque<ClassDesc> classes = new ArrayDeque<>();
 
     /** Full qualified name of the package. */
     private String packageName;
+
+    /** Represents current depth level that appropriates level of nesting level. */
+    private int currentDepthLevel;
+
+    /** Set of class names that contains in extend clauses. */
+    private Set<String> superClasses = new HashSet<>();
 
     @Override
     public int[] getDefaultTokens() {
@@ -80,7 +88,8 @@ public class FinalClassCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        classes = new ArrayDeque<>();
+        classes.clear();
+        superClasses.clear();
         packageName = "";
     }
 
@@ -95,25 +104,13 @@ public class FinalClassCheck
                 break;
 
             case TokenTypes.CLASS_DEF:
-                registerNestedSubclassToOuterSuperClasses(ast);
-
-                final boolean isFinal = modifiers.branchContains(TokenTypes.FINAL);
-                final boolean isAbstract = modifiers.branchContains(TokenTypes.ABSTRACT);
-
-                final String qualifiedClassName = getQualifiedClassName(ast);
-                classes.push(new ClassDesc(qualifiedClassName, isFinal, isAbstract));
+                currentDepthLevel++;
+                final ClassDesc classDesc = registerClassDesc(ast, modifiers);
+                classes.push(classDesc);
                 break;
 
             case TokenTypes.CTOR_DEF:
-                if (!ScopeUtils.isInEnumBlock(ast)) {
-                    final ClassDesc desc = classes.peek();
-                    if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)) {
-                        desc.registerPrivateCtor();
-                    }
-                    else {
-                        desc.registerNonPrivateCtor();
-                    }
-                }
+                registerClassConstructors(ast, modifiers);
                 break;
 
             default:
@@ -124,16 +121,18 @@ public class FinalClassCheck
     @Override
     public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF) {
-            final ClassDesc desc = classes.pop();
-            if (desc.isWithPrivateCtor()
-                && !desc.isDeclaredAsAbstract()
-                && !desc.isDeclaredAsFinal()
-                && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass()
-                && !ScopeUtils.isInInterfaceOrAnnotationBlock(ast)) {
+            currentDepthLevel--;
+        }
+    }
+
+    @Override
+    public void finishTree(DetailAST rootAST) {
+        determineParentClasses();
+        for (ClassDesc desc : classes) {
+            if (shouldBeDeclaredAsFinal(desc)) {
                 final String qualifiedName = desc.getQualifiedName();
                 final String className = getClassNameFromQualifiedName(qualifiedName);
-                log(ast.getLineNo(), MSG_KEY, className);
+                log(desc.astNode.getLineNo(), MSG_KEY, className);
             }
         }
     }
@@ -167,25 +166,6 @@ public class FinalClassCheck
     }
 
     /**
-     * Register to outer super classes of given classAst that
-     * given classAst is extending them.
-     * @param classAst class which outer super classes will be
-     *                 informed about nesting subclass
-     */
-    private void registerNestedSubclassToOuterSuperClasses(DetailAST classAst) {
-        final String currentAstSuperClassName = getSuperClassName(classAst);
-        if (currentAstSuperClassName != null) {
-            for (ClassDesc classDesc : classes) {
-                final String classDescQualifiedName = classDesc.getQualifiedName();
-                if (doesNameInExtendMatchSuperClassName(classDescQualifiedName,
-                        currentAstSuperClassName)) {
-                    classDesc.registerNestedSubclass();
-                }
-            }
-        }
-    }
-
-    /**
      * Get qualified class name from given class Ast.
      * @param classAst class to get qualified class name
      * @return qualified class name of a class
@@ -193,8 +173,11 @@ public class FinalClassCheck
     private String getQualifiedClassName(DetailAST classAst) {
         final String className = classAst.findFirstToken(TokenTypes.IDENT).getText();
         String outerClassQualifiedName = null;
-        if (!classes.isEmpty()) {
-            outerClassQualifiedName = classes.peek().getQualifiedName();
+        for (ClassDesc desc : classes) {
+            if (desc.depthLevel == currentDepthLevel - 1) {
+                outerClassQualifiedName = desc.getQualifiedName();
+                break;
+            }
         }
         return getQualifiedClassName(packageName, outerClassQualifiedName, className);
     }
@@ -265,6 +248,71 @@ public class FinalClassCheck
         return qualifiedName.substring(qualifiedName.lastIndexOf(PACKAGE_SEPARATOR) + 1);
     }
 
+    /**
+     * Registers class description from ast node.
+     * @param ast AST node that link to class declaration token
+     * @param modifiers node that link  to first token of modifiers
+     * @return Class description
+     */
+    private ClassDesc registerClassDesc(DetailAST ast, DetailAST modifiers) {
+        final String superClass = getSuperClassName(ast);
+        if (superClass != null) {
+            superClasses.add(superClass);
+        }
+        final String qualifiedClassName = getQualifiedClassName(ast);
+        final boolean isFinal = modifiers.branchContains(TokenTypes.FINAL);
+        final boolean isAbstract = modifiers.branchContains(TokenTypes.ABSTRACT);
+        final ClassDesc classDesc = new ClassDesc(qualifiedClassName, isFinal, isAbstract);
+        classDesc.astNode = ast;
+        classDesc.depthLevel = currentDepthLevel;
+        return classDesc;
+    }
+
+    /**
+     * Register class constructors.
+     * @param ast AST node that link to class declaration token
+     * @param modifiers node that link  to first token of modifiers
+     */
+    private void registerClassConstructors(DetailAST ast, DetailAST modifiers) {
+        if (!ScopeUtils.isInEnumBlock(ast)) {
+            final ClassDesc desc = classes.peek();
+            if (modifiers.branchContains(TokenTypes.LITERAL_PRIVATE)) {
+                desc.registerPrivateCtor();
+            }
+            else {
+                desc.registerNonPrivateCtor();
+            }
+        }
+    }
+
+    /**
+     * Check that class should be declared as final or not.
+     * @param desc class description
+     * @return true if class should be declared as final
+     */
+    private boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
+        final boolean hasOnlyPrivateCtors = desc.isWithPrivateCtor()
+            && !desc.isWithNonPrivateCtor();
+        final boolean canBeFinal = !desc.isDeclaredAsAbstract()
+            && !desc.isDeclaredAsParent();
+        return hasOnlyPrivateCtors
+            && canBeFinal
+            && !desc.isDeclaredAsFinal()
+            && !ScopeUtils.isInInterfaceOrAnnotationBlock(desc.astNode);
+    }
+
+    /** Determine parent classes from superclasses names set. */
+    private void determineParentClasses() {
+        for (String className : superClasses) {
+            for (ClassDesc desc : classes) {
+                if (desc.qualifiedName.endsWith(PACKAGE_SEPARATOR + className)
+                    || desc.qualifiedName.equals(className)) {
+                    desc.registerAsParentClass();
+                }
+            }
+        }
+    }
+
     /** Maintains information about class' ctors. */
     private static final class ClassDesc {
         /** Qualified class name(with package). */
@@ -282,8 +330,16 @@ public class FinalClassCheck
         /** Does class have private ctors. */
         private boolean withPrivateCtor;
 
-        /** Does class have nested subclass. */
-        private boolean withNestedSubclass;
+        /** Does class have subclasses. */
+        private boolean declaredAsParent;
+
+        /**
+         * Level of nesting of current class.
+         */
+        private int depthLevel;
+
+        /** Node of AST that store the class declaration token. */
+        private DetailAST astNode;
 
         /**
          *  Create a new ClassDesc instance.
@@ -317,11 +373,6 @@ public class FinalClassCheck
             withNonPrivateCtor = true;
         }
 
-        /** Adds nested subclass. */
-        private void registerNestedSubclass() {
-            withNestedSubclass = true;
-        }
-
         /**
          *  Does class have private ctors.
          *  @return true if class has private ctors
@@ -339,14 +390,6 @@ public class FinalClassCheck
         }
 
         /**
-         * Does class have nested subclass.
-         * @return true if class has nested subclass
-         */
-        private boolean isWithNestedSubclass() {
-            return withNestedSubclass;
-        }
-
-        /**
          *  Is class declared as final.
          *  @return true if class is declared as final
          */
@@ -360,6 +403,19 @@ public class FinalClassCheck
          */
         private boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
+        }
+
+        /** Has subclasses. */
+        private void registerAsParentClass() {
+            declaredAsParent = true;
+        }
+
+        /**
+         * Does it have subclasses.
+         * @return true if class has subclasses
+         */
+        private boolean isDeclaredAsParent() {
+            return declaredAsParent;
         }
     }
 }
