@@ -26,6 +26,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.doNothing;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
@@ -42,6 +43,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.tools.ant.AntClassLoader;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.FileSet;
@@ -57,6 +59,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.CheckerStub;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
@@ -120,6 +123,44 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.execute();
 
         // then
+        assertTrue("Checker is not processed",
+                TestRootModuleChecker.isProcessed());
+        final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
+        assertThat("There more files to check then expected",
+                filesToCheck.size(), is(1));
+        assertThat("The path of file differs from expected",
+                filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+    }
+
+    @Test
+    public final void testPathsFileWithLogVerification() throws IOException {
+        // given
+        TestRootModuleChecker.reset();
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+        antTask.setProject(new Project());
+        final FileSet examinationFileSet = new FileSet();
+        examinationFileSet.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final Path sourcePath = new Path(antTask.getProject());
+        sourcePath.addFileset(examinationFileSet);
+        antTask.addPath(sourcePath);
+        antTask.addPath(new Path(new Project()));
+
+        // when
+        antTask.execute();
+
+        // then
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        assertEquals("Scanning path was not logged", 1, loggedMessages.stream().filter(
+            msg -> msg.getMsg().startsWith("1) Scanning path")).count());
+
+        assertEquals("Scanning path was not logged", 1, loggedMessages.stream().filter(
+            msg -> msg.getMsg().startsWith("1) Adding 1 files from path")).count());
+
+        assertEquals("Scanning empty was logged", 0, loggedMessages.stream().filter(
+            msg -> msg.getMsg().startsWith("2) Adding 0 files from path ")).count());
+
         assertTrue("Checker is not processed",
                 TestRootModuleChecker.isProcessed());
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
@@ -421,6 +462,11 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public final void testSetPropertiesFile() throws IOException {
+        //check if input stream finally closed
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(InputStream.class));
+
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -428,8 +474,10 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.setProperties(new File(getPath("ant/checkstyleAntTest.properties")));
         antTask.execute();
 
-        assertTrue("Checker is not processed",
-            TestRootModuleChecker.isProcessed());
+        assertEquals("Property is not set",
+                "ignore", TestRootModuleChecker.getProperty());
+        verifyStatic(times(1));
+        Closeables.closeQuietly(any(InputStream.class));
     }
 
     @Test
@@ -564,11 +612,23 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public void testSetClasspath() {
-        // temporary fake test
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         final Project project = new Project();
-        antTask.setClasspath(new Path(project, "/"));
-        antTask.setClasspath(new Path(project, "/checkstyle"));
+        final String path1 = "firstPath";
+        final String path2 = "secondPath";
+        antTask.setClasspath(new Path(project, path1));
+        antTask.setClasspath(new Path(project, path2));
+
+        assertNotNull("Classpath should not be null",
+                Whitebox.getInternalState(antTask, "classpath"));
+        final Path classpath = (Path) Whitebox.getInternalState(antTask, "classpath");
+        assertTrue("Classpath contain provided path", classpath.toString().contains(path1));
+        assertTrue("Classpath contain provided path", classpath.toString().contains(path2));
+    }
+
+    @Test
+    public void testSetClasspathRef() {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setClasspathRef(new Reference());
 
         assertNotNull("Classpath should not be null",
@@ -576,13 +636,56 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testSetClasspathRef() {
-        // temporary fake test
+    public void testCreateClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setClasspathRef(new Reference());
 
-        assertNotNull("Classpath should not be null",
-            Whitebox.getInternalState(antTask, "classpath"));
+        assertEquals("Invalid classpath", "", antTask.createClasspath().toString());
+
+        antTask.setClasspath(new Path(new Project(), "/path"));
+
+        assertEquals("Invalid classpath", "", antTask.createClasspath().toString());
+    }
+
+    @Test
+    public void testDestroyed() throws IOException {
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+        antTask.setMaxWarnings(0);
+        antTask.execute();
+
+        assertTrue("Checker is not destroyed",
+                TestRootModuleChecker.isDestroyed());
+    }
+
+    @Test
+    public void testMaxWarnings() throws IOException {
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+        antTask.setMaxWarnings(0);
+        antTask.execute();
+
+        assertTrue("Checker is not processed",
+                TestRootModuleChecker.isProcessed());
+    }
+
+    @Test
+    public void testClassloaderInRootModule() throws IOException {
+        TestRootModuleChecker.reset();
+        CheckerStub.reset();
+
+        final CheckstyleAntTask antTask =
+                getCheckstyleAntTask("config-custom-checker-root-module.xml");
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+
+        antTask.execute();
+
+        final ClassLoader classLoader = CheckerStub.getClassLoader();
+        assertTrue("Classloader is not set or has invalid type",
+                classLoader instanceof AntClassLoader);
     }
 
     @Test
