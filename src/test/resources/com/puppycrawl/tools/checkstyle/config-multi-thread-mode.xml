@@ -4,6 +4,7 @@
           "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
 
 <module name="com.puppycrawl.tools.checkstyle.TestRootModuleChecker">
+  <property name="property" value="test" default="test"/>
   <module name="Checker">
     <module name="TreeWalker">
     </module>
