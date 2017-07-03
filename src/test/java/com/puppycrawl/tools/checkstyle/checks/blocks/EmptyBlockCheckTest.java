@@ -229,4 +229,14 @@ public class EmptyBlockCheckTest
         };
         verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
+
+    @Test
+    public void testAnnotationDefaultKeyword() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
+        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputEmptyBlockAnnotationDefaultKeyword.java");
+        verify(checkConfig, path, expected);
+    }
 }
