@@ -188,7 +188,7 @@ cobertura-check)
   cat mvn-log.log
   set -e
   echo "Grep for hidden errors (due to quiet=true mode in pom.xml):"
-  grep -R "<td class=\"nbHitsUncovered\">&nbsp;0</td>" target/site/cobertura/* --exclude=*grammars* | cat > mvn-log-grep.log
+  grep -R "<td class=\"nbHitsUncovered\"" target/site/cobertura/* --exclude=*grammars* | cat > mvn-log-grep.log
   cat mvn-log-grep.log
   if [[ $(cat mvn-log-grep.log | wc -l) -gt 0 ]]; then
     exit 1
