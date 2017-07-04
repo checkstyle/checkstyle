@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.aa.AAClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.ab.ABClass;

@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import javax.naming.*;
 import java.util.*;
 
-public class InputClassCoupling {
+public class InputClassFanOutComplexity {
     private class InnerClass { //singleline comment
         public List _list = new ArrayList();
     }

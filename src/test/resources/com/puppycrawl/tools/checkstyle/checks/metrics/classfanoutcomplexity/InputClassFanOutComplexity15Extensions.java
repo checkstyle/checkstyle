@@ -1,5 +1,5 @@
 // someexamples of 1.5 extensions
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 @interface MyAnnotation1 {
     String name();
@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 }
 
 @MyAnnotation1(name = "ABC", version = 1)
-public class Input15Extensions
+public class InputClassFanOutComplexity15Extensions
 {
 
 }
