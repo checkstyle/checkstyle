@@ -77,23 +77,23 @@ build:
           echo "build is skipped ..."
         fi
 
-#  # NoErrorTest - XWiki (oraclejdk8)
-#  - script:
-#      name: NoErrorTest - XWiki
-#      code: |
-#        if [[ $SKIP_CI == 'false' ]]; then
-#          set -e
-#          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-#          echo CS_version: ${CS_POM_VERSION}
-#          for i in 1 2 3 4 5; do git clone https://github.com/xwiki/xwiki-commons/ && break || sleep 15; done
-#          cd xwiki-commons/xwiki-commons-core
-#          git checkout xwiki-commons-8.2-milestone-1
-#          mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-#          cd ../../
-#          rm -rf xwiki-commons
-#        else
-#          echo "build is skipped ..."
-#        fi
+  # NoErrorTest - XWiki (oraclejdk8)
+  - script:
+      name: NoErrorTest - XWiki
+      code: |
+        if [[ $SKIP_CI == 'false' ]]; then
+          set -e
+          CS_POM_VERSION=$(mvn -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+          echo CS_version: ${CS_POM_VERSION}
+          for i in 1 2 3 4 5; do git clone https://github.com/xwiki/xwiki-commons/ && break || sleep 15; done
+          cd xwiki-commons
+          git checkout 3bdb59d3c7fe776deed44f6818278f70d3030ecb
+          mvn install -DskipTests -Dxwiki.clirr.skip=true checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+          cd ../../
+          rm -rf xwiki-commons
+        else
+          echo "build is skipped ..."
+        fi
 
   # NoErrorTest - Apache Apex (oraclejdk8)
   - script:
