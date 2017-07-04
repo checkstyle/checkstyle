@@ -52,7 +52,8 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator 
+                + "abstracttypeaware" + File.separator + filename);
     }
 
     @Test
@@ -163,7 +164,7 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
             "7:8: " + getCheckMessage(MSG_CLASS_INFO, "@throws", "InvalidExceptionName"),
         };
         try {
-            verify(config, getPath("InputLoadErrors.java"), expected);
+            verify(config, getPath("InputAbstractTypeAwareLoadErrors.java"), expected);
         }
         catch (CheckstyleException ex) {
             final IllegalStateException cause = (IllegalStateException) ex.getCause();
@@ -178,6 +179,6 @@ public class AbstractTypeAwareCheckTest extends BaseCheckTestSupport {
         checkConfig.addAttribute("allowUndeclaredRTE", "true");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputLoadErrors.java"), expected);
+        verify(checkConfig, getPath("InputAbstractTypeAwareLoadErrors.java"), expected);
     }
 }
