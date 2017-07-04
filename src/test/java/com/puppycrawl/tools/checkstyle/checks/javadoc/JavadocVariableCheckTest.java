@@ -38,7 +38,8 @@ public class JavadocVariableCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator 
+                + "javadocvariable" + File.separator + filename);
     }
 
     @Test
@@ -75,7 +76,7 @@ public class JavadocVariableCheckTest
             "311:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "330:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputTags.java"), expected);
+        verify(checkConfig, getPath("InputJavadocVariableTags.java"), expected);
     }
 
     @Test
@@ -88,7 +89,7 @@ public class JavadocVariableCheckTest
             "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "30:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputJavadocVariableInner.java"), expected);
     }
 
     @Test
@@ -98,7 +99,7 @@ public class JavadocVariableCheckTest
             createCheckConfig(JavadocVariableCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputInner.java"), expected);
+        verify(checkConfig, getPath("InputJavadocVariableInner.java"), expected);
     }
 
     @Test
@@ -115,7 +116,7 @@ public class JavadocVariableCheckTest
             "45:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "46:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
+        verify(checkConfig, getPath("InputJavadocVariablePublicOnly.java"), expected);
     }
 
     @Test
@@ -127,7 +128,7 @@ public class JavadocVariableCheckTest
         final String[] expected = {
             "46:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputPublicOnly.java"), expected);
+        verify(checkConfig, getPath("InputJavadocVariablePublicOnly.java"), expected);
     }
 
     @Test
@@ -174,7 +175,7 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("InputNoJavadoc.java"),
+               getPath("InputJavadocVariableNoJavadoc.java"),
                expected);
     }
 
@@ -190,7 +191,7 @@ public class JavadocVariableCheckTest
             "17:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("InputNoJavadoc.java"),
+               getPath("InputJavadocVariableNoJavadoc.java"),
                expected);
     }
 
@@ -236,7 +237,7 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-               getPath("InputNoJavadoc.java"),
+               getPath("InputJavadocVariableNoJavadoc.java"),
                expected);
     }
 
@@ -285,7 +286,7 @@ public class JavadocVariableCheckTest
             "103:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-                getPath("InputNoJavadoc.java"),
+                getPath("InputJavadocVariableNoJavadoc.java"),
                 expected);
     }
 
@@ -335,7 +336,7 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
-                getPath("InputNoJavadoc.java"),
+                getPath("InputJavadocVariableNoJavadoc.java"),
                 expected);
     }
 
@@ -345,6 +346,6 @@ public class JavadocVariableCheckTest
         final String[] expected = {
             "6:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputNoJavadocNeededInLambda.java"), expected);
+        verify(checkConfig, getPath("InputJavadocVariableNoJavadocNeededInLambda.java"), expected);
     }
 }

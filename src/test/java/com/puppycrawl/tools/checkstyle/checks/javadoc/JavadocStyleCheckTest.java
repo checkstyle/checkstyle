@@ -42,7 +42,8 @@ public class JavadocStyleCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator 
+                + "javadocstyle" + File.separator + filename);
     }
 
     @Test
@@ -198,7 +199,7 @@ public class JavadocStyleCheckTest
         final DefaultConfiguration checkConfig = createCheckConfig(JavadocStyleCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputNoJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputJavadocStyleNoJavadoc.java"), expected);
     }
 
     @Test

@@ -36,7 +36,8 @@ public class NonEmptyAtclauseDescriptionCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator 
+                + "nonEmptyatclausedescription" + File.separator + filename);
     }
 
     @Test
