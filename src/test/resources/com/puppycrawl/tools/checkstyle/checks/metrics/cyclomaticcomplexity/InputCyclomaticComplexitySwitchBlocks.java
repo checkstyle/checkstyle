@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
-public class InputComplexitySwitchBlocks {
+public class InputCyclomaticComplexitySwitchBlocks {
     public void foo2() {
         String programmingLanguage = "Java";
         switch (programmingLanguage) {
