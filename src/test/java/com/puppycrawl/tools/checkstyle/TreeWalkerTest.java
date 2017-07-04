@@ -31,6 +31,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -50,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -170,10 +172,29 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
     @Test
     public void testProcessNonJavaFiles() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
-        treeWalker.setTabWidth(1);
+        final PackageObjectFactory factory = new PackageObjectFactory(
+            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
         treeWalker.configure(new DefaultConfiguration("default config"));
-        final File file = new File("src/main/resources/checkstyle_packages.xml");
-        treeWalker.processFiltered(file, new ArrayList<>());
+        final DefaultConfiguration childConfig = createCheckConfig(JavadocParagraphCheck.class);
+        treeWalker.setupChild(childConfig);
+
+        final List<String> lines =
+            new ArrayList<>(Arrays.asList("package com.puppycrawl.tools.checkstyle;", "",
+                "error public class InputTreeWalkerFileWithViolation {}"));
+
+        try {
+            treeWalker.processFiltered(new File("input.java"), lines);
+            fail("Exception expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Invalid exception message",
+                "MismatchedTokenException occurred during the analysis of file input.java.",
+                ex.getMessage());
+        }
+
+        // Should not throw exception as file with txt extension should not be processed at all
+        treeWalker.processFiltered(new File("input.txt"), lines);
     }
 
     @Test
