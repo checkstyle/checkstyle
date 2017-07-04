@@ -75,7 +75,6 @@
             <!-- in ImportControlCheckTest pmd does not find asserts in private methods of the test class called from the test method -->
             <!-- in AstRegressionTest pmd does not find asserts in inner classes methods called from the test method -->
             <!-- in AllChecksTest pmd does not find asserts in lambdas -->
-            <!-- TreeWalkerTest should be rewrited-->
             <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='SuppressionFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCode']
             | //ClassOrInterfaceDeclaration[@Image='SuppressionCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
             | //ClassOrInterfaceDeclaration[@Image='SuppressWithNearbyCommentFilterTest']//MethodDeclarator[@Image='testEqualsAndHashCodeOfTagClass']
@@ -86,7 +85,6 @@
             | /ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleExceptions']
             | //ClassOrInterfaceDeclaration[@Image='AstRegressionTest']//MethodDeclarator[@Image='testImpossibleValid']
             | //ClassOrInterfaceDeclaration[@Image='AllChecksTest']//MethodDeclarator[@Image='testAllModulesAreReferencedInConfigFile']
-            | //ClassOrInterfaceDeclaration[@Image='TreeWalkerTest']//MethodDeclarator[@Image='testProcessNonJavaFiles']
             "/>
         </properties>
     </rule>
