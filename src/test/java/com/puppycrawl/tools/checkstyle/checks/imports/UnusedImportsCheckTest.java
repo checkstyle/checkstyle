@@ -114,6 +114,13 @@ public class UnusedImportsCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public void testProcessJavadocWithBlockTagContainingMethodParameters() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputUnusedImportWithBlockMethodParameters.java"), expected);
+    }
+
+    @Test
     public void testAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
