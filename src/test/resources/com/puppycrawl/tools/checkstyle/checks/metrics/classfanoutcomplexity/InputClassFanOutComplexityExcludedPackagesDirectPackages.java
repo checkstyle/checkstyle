@@ -1,13 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.aa.AAClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.ab.ABClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.b.BClass;
 import com.puppycrawl.tools.checkstyle.checks.metrics.inputs.c.CClass;
 
-public class InputClassFanOutComplexityExcludedPackagesAllIgnored { // total: ok
-    public AAClass aa; // ok
-    public ABClass ab; // ok
+public class InputClassFanOutComplexityExcludedPackagesDirectPackages { // total: 2 violations
+    public AAClass aa; // violation
+    public ABClass ab; // violation
 
     class Inner { // total: ok
         public BClass b; // ok
@@ -15,8 +15,6 @@ public class InputClassFanOutComplexityExcludedPackagesAllIgnored { // total: ok
     }
 }
 
-class InputClassFanOutComplexityExcludedPackagesAllIgnoredHidden { // total: ok
+class InputClassFanOutComplexityExcludedPackagesDirectPackagesHidden { // total: ok
     public CClass c; // ok
 }
-
-

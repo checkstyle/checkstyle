@@ -39,7 +39,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "metrics" + File.separator + filename);
+                + "metrics" + File.separator + "classfanoutcomplexity" + File.separator + filename);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassFanOutComplexity.java"), expected);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("Input15Extensions.java"), expected);
+        verify(checkConfig, getPath("InputClassFanOutComplexity15Extensions.java"), expected);
     }
 
     @Test
@@ -155,7 +155,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassFanOutComplexity.java"), expected);
     }
 
     @Test
@@ -191,7 +191,7 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassFanOutComplexity.java"), expected);
     }
 
     @Test
@@ -207,6 +207,6 @@ public class ClassFanOutComplexityCheckTest extends BaseCheckTestSupport {
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputClassCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassFanOutComplexity.java"), expected);
     }
 }
