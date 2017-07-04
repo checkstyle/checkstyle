@@ -114,16 +114,7 @@ htmlTag: htmlElementStart (htmlElement
                               | NEWLINE
                               | text
                               | javadocInlineTag)* htmlElementEnd
-
-            | htmlElementStart (htmlElement
-                              | ({!isNextJavadocTag()}? LEADING_ASTERISK)
-                              | htmlComment
-                              | CDATA
-                              | NEWLINE
-                              | text
-                              | javadocInlineTag)*
-            {notifyErrorListeners($htmlElementStart.ctx.getToken(HTML_TAG_NAME, 0).getSymbol()
-                                         , "javadoc.missed.html.close", null);}
+                              {isSameTagNames($htmlElementStart.ctx, $htmlElementEnd.ctx)}?
             ;
 
 //////////////////////////////////////////////////////////////////////////////////////
