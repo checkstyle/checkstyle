@@ -409,7 +409,8 @@
       </tr>
       <tr>
         <td><a href="config_sizes.html#MethodCount">MethodCount</a></td>
-        <td>Checks the number of methods declared in each type.</td>
+        <td>Checks the number of methods declared in each type declaration by access modifier
+        or total count.</td>
       </tr>
       <tr>
         <td><a href="config_sizes.html#MethodLength">MethodLength</a></td>

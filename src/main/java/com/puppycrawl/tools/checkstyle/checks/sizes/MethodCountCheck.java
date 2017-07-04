@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
 
 /**
- * Counts the methods of the type-definition and checks whether this
- * count is higher than the configured limit.
+ * Checks the number of methods declared in each type declaration by access
+ * modifier or total count.
  * @author Alexander Jesse
  * @author Oliver Burn
  */
@@ -110,13 +110,12 @@ public final class MethodCountCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
-            if (!counters.isEmpty()) {
+            if (isInLastestScopeDefinition(ast)) {
                 raiseCounter(ast);
             }
         }
         else {
-            final boolean inInterface = ast.getType() == TokenTypes.INTERFACE_DEF;
-            counters.push(new MethodCounter(inInterface));
+            counters.push(new MethodCounter(ast));
         }
     }
 
@@ -124,8 +123,29 @@ public final class MethodCountCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         if (ast.getType() != TokenTypes.METHOD_DEF) {
             final MethodCounter counter = counters.pop();
+
             checkCounters(counter, ast);
         }
+    }
+
+    /**
+     * Checks if there is a scope definition to check and that the method is found inside that scope
+     * (class, enum, etc.).
+     * @param methodDef
+     *        The method to analzye.
+     * @return {@code true} if the method is part of the latest scope definition and should be
+     *         counted.
+     */
+    private boolean isInLastestScopeDefinition(DetailAST methodDef) {
+        boolean result = false;
+
+        if (!counters.isEmpty()) {
+            final DetailAST latestDefinition = counters.peek().getScopeDefinition();
+
+            result = latestDefinition == methodDef.getParent().getParent();
+        }
+
+        return result;
     }
 
     /**
@@ -220,16 +240,23 @@ public final class MethodCountCheck extends AbstractCheck {
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
         /** Indicated is an interface, in which case all methods are public. */
         private final boolean inInterface;
+        /**
+         * The surrounding scope definition (class, enum, etc.) which the method counts are connect
+         * to.
+         */
+        private final DetailAST scopeDefinition;
         /** Tracks the total. */
         private int total;
 
         /**
          * Creates an interface.
-         * @param inInterface indicated if counter for an interface. In which
-         *        case, add all counts as public methods.
+         * @param scopeDefinition
+         *        The surrounding scope definition (class, enum, etc.) which to count all methods
+         *        for.
          */
-        MethodCounter(boolean inInterface) {
-            this.inInterface = inInterface;
+        MethodCounter(DetailAST scopeDefinition) {
+            this.scopeDefinition = scopeDefinition;
+            inInterface = scopeDefinition.getType() == TokenTypes.INTERFACE_DEF;
         }
 
         /**
@@ -257,6 +284,10 @@ public final class MethodCountCheck extends AbstractCheck {
                 value = 0;
             }
             return value;
+        }
+
+        private DetailAST getScopeDefinition() {
+            return scopeDefinition;
         }
 
         /**
