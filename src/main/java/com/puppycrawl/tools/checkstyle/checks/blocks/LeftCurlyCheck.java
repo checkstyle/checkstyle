@@ -120,17 +120,6 @@ public class LeftCurlyCheck
     }
 
     /**
-     * Sets the maximum line length used in calculating the placement of the
-     * left curly brace.
-     * @param maxLineLength the max allowed line length
-     * @deprecated since 6.10 release, option is not required for the Check.
-     */
-    @Deprecated
-    public void setMaxLineLength(int maxLineLength) {
-        // do nothing, option is deprecated
-    }
-
-    /**
      * Sets whether check should ignore enums when left curly brace policy is EOL.
      * @param ignoreEnums check's option for ignoring enums.
      */

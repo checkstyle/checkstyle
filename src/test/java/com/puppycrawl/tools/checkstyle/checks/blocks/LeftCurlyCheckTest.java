@@ -249,7 +249,6 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     @Test
     public void testLineBreakAfter() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
-        checkConfig.addAttribute("maxLineLength", "100");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "12:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -342,7 +341,6 @@ public class LeftCurlyCheckTest extends BaseCheckTestSupport {
     @Test
     public void testFirstLine() throws Exception {
         checkConfig.addAttribute("option", LeftCurlyOption.EOL.toString());
-        checkConfig.addAttribute("maxLineLength", "100");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputLeftCurlyFirstLine.java"), expected);
     }
