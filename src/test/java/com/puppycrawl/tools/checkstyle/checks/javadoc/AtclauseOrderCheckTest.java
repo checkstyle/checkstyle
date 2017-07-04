@@ -36,7 +36,8 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator 
+                + "atclauseorder" + File.separator + filename);
     }
 
     @Test
@@ -58,7 +59,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
         final DefaultConfiguration checkConfig = createCheckConfig(AtclauseOrderCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCorrectAtClauseOrder.java"), expected);
+        verify(checkConfig, getPath("InputAtclauseOrderCorrectAtClauseOrder.java"), expected);
     }
 
     @Test
@@ -108,7 +109,7 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
             "278: " + getCheckMessage(MSG_KEY, tagOrder),
             "288: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputIncorrectAtClauseOrder.java"), expected);
+        verify(checkConfig, getPath("InputAtclauseOrderIncorrectAtClauseOrder.java"), expected);
     }
 
     @Test
@@ -125,6 +126,6 @@ public class AtclauseOrderCheckTest extends BaseCheckTestSupport {
         final String[] expected = {
             "113: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputIncorrectAtClauseOrder.java"), expected);
+        verify(checkConfig, getPath("InputAtclauseOrderIncorrectAtClauseOrder.java"), expected);
     }
 }

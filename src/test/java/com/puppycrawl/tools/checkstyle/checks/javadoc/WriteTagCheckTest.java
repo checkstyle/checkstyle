@@ -58,7 +58,8 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator 
+                + "writetag" + File.separator + filename);
     }
 
     @Test

@@ -45,7 +45,8 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator 
+                + "summaryjavadoc" + File.separator + filename);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCorrectSummaryJavaDoc.java"), expected);
+        verify(checkConfig, getPath("InputSummaryJavaDocCorrect.java"), expected);
     }
 
     @Test
@@ -81,7 +82,7 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
             "126: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "131: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
-        verify(checkConfig, getPath("InputIncorrectSummaryJavaDoc.java"), expected);
+        verify(checkConfig, getPath("InputSummaryJavaDocIncorrect.java"), expected);
     }
 
     @Test
@@ -117,6 +118,6 @@ public class SummaryJavadocCheckTest extends BaseCheckTestSupport {
         };
 
         createChecker(checkConfig);
-        verify(checkConfig, getPath("InputIncorrectSummaryJavaDoc.java"), expected);
+        verify(checkConfig, getPath("InputSummaryJavaDocIncorrect.java"), expected);
     }
 }
