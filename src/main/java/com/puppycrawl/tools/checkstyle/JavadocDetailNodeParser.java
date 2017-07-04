@@ -19,16 +19,24 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
+
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.BaseErrorListener;
+import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.FailedPredicateException;
 import org.antlr.v4.runtime.InputMismatchException;
+import org.antlr.v4.runtime.NoViableAltException;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -120,11 +128,29 @@ public class JavadocDetailNodeParser {
                                 + JAVADOC_START.length());
             result.setTree(tree);
         }
-        catch (ParseCancellationException | IllegalArgumentException ignored) {
-            // If syntax error occurs then message is printed by error listener
-            // and parser throws this runtime exception to stop parsing.
-            // Just stop processing current Javadoc comment.
-            final ParseErrorMessage parseErrorMessage = errorListener.getErrorMessage();
+        catch (ParseCancellationException | IllegalArgumentException ex) {
+            ParseErrorMessage parseErrorMessage = null;
+
+            if (ex.getCause() instanceof FailedPredicateException
+                    || ex.getCause() instanceof NoViableAltException) {
+                final RecognitionException recognitionEx = (RecognitionException) ex.getCause();
+                if (recognitionEx.getCtx() instanceof JavadocParser.HtmlTagContext) {
+                    final Token htmlTagNameStart = getMissedHtmlTag(recognitionEx);
+                    parseErrorMessage = new ParseErrorMessage(
+                            errorListener.offset + htmlTagNameStart.getLine(),
+                            MSG_JAVADOC_MISSED_HTML_CLOSE,
+                            htmlTagNameStart.getCharPositionInLine(),
+                            htmlTagNameStart.getText());
+                }
+            }
+
+            if (parseErrorMessage == null) {
+                // If syntax error occurs then message is printed by error listener
+                // and parser throws this runtime exception to stop parsing.
+                // Just stop processing current Javadoc comment.
+                parseErrorMessage = errorListener.getErrorMessage();
+            }
+
             result.setParseErrorMessage(parseErrorMessage);
         }
 
@@ -433,6 +459,60 @@ public class JavadocDetailNodeParser {
     }
 
     /**
+     * Method to get the missed HTML tag to generate more informative error message for the user.
+     * This method doesn't concern itself with
+     * <a href="https://www.w3.org/TR/html51/syntax.html#void-elements">void elements</a>
+     * since it is forbidden to close them.
+     * Missed HTML tags for the following tags will <i>not</i> generate an error message from ANTLR:
+     * {@code
+     * <p>
+     * <li>
+     * <tr>
+     * <td>
+     * <th>
+     * <body>
+     * <colgroup>
+     * <dd>
+     * <dt>
+     * <head>
+     * <html>
+     * <option>
+     * <tbody>
+     * <thead>
+     * <tfoot>
+     * }
+     * @param exception {@code NoViableAltException} object catched while parsing javadoc
+     * @return returns appropriate {@link Token} if a HTML close tag is missed;
+     *     null otherwise
+     */
+    private static Token getMissedHtmlTag(RecognitionException exception) {
+        Token htmlTagNameStart = null;
+        final Interval sourceInterval = exception.getCtx().getSourceInterval();
+        final List<Token> tokenList = ((BufferedTokenStream) exception.getInputStream())
+                .getTokens(sourceInterval.a, sourceInterval.b);
+        final Deque<Token> stack = new ArrayDeque<>();
+        for (int i = 0; i < tokenList.size(); i++) {
+            final Token token = tokenList.get(i);
+            if (token.getType() == JavadocTokenTypes.HTML_TAG_NAME
+                    && tokenList.get(i - 1).getType() == JavadocTokenTypes.START) {
+                stack.push(token);
+            }
+            else if (token.getType() == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
+                if (stack.peek().getText().equals(token.getText())) {
+                    stack.pop();
+                }
+                else {
+                    htmlTagNameStart = stack.pop();
+                }
+            }
+        }
+        if (htmlTagNameStart == null) {
+            htmlTagNameStart = stack.pop();
+        }
+        return htmlTagNameStart;
+    }
+
+    /**
      * Custom error listener for JavadocParser that prints user readable errors.
      */
     private static class DescriptiveErrorListener extends BaseErrorListener {
@@ -484,17 +564,11 @@ public class JavadocDetailNodeParser {
                 int line, int charPositionInLine,
                 String msg, RecognitionException ex) {
             final int lineNumber = offset + line;
-            final Token token = (Token) offendingSymbol;
 
-            if (MSG_JAVADOC_MISSED_HTML_CLOSE.equals(msg)) {
+            if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
                 errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_MISSED_HTML_CLOSE, charPositionInLine, token.getText());
-
-                throw new IllegalArgumentException(msg);
-            }
-            else if (MSG_JAVADOC_WRONG_SINGLETON_TAG.equals(msg)) {
-                errorMessage = new ParseErrorMessage(lineNumber,
-                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine, token.getText());
+                        MSG_JAVADOC_WRONG_SINGLETON_TAG, charPositionInLine,
+                        ((Token) offendingSymbol).getText());
 
                 throw new IllegalArgumentException(msg);
             }
