@@ -1,5 +1,5 @@
 // should give an ncss of 35
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
