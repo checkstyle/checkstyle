@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
 /**
  * This class has methods that have an NPath complexity larger than MAXINT.
  * Test case for bug 1654769.  
  */
-public class InputComplexityOverflow {
+public class InputNPathComplexityOverflow {
 
     /* NP = (if-range[1]=9) * (if-range[2]=9) * (if-range[3]=9) * (if-range[4]=9)
      *          (if-range[5]=9) * (if-range[6]=9) * (if-range[7]=9) * (if-range[8]=9)

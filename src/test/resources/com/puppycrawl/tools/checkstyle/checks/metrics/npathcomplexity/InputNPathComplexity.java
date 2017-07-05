@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 // Advise: for lack of ambiguity try to make all factors prime numbers
 public class InputNPathComplexity {
     //NP = 5
