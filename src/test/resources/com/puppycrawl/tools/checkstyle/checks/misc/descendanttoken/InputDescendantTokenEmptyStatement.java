@@ -1,8 +1,8 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.descendanttoken;
 
-public class InputEmptyStatement
+public class InputDescendantTokenEmptyStatement
 {
-   public InputEmptyStatement()
+   public InputDescendantTokenEmptyStatement()
    {
       ;
    }

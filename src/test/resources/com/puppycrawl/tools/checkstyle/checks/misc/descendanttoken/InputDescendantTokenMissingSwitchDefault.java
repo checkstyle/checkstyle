@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.descendanttoken;
 
-public class InputMissingSwitchDefault {
+public class InputDescendantTokenMissingSwitchDefault {
     public void foo() {
         int i = 1;
         switch (i) {

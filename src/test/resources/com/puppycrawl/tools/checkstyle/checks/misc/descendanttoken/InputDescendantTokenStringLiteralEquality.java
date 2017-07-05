@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.descendanttoken;
 
-public class InputStringLiteralEquality
+public class InputDescendantTokenStringLiteralEquality
 {
     void foo(String name)
     {
