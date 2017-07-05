@@ -44,7 +44,7 @@ public class JavaNCSSCheckTest extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "metrics" + File.separator + filename);
+                + "metrics" + File.separator + "javancss" + File.separator + filename);
     }
 
     @Test
