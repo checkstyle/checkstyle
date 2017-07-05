@@ -66,12 +66,18 @@ public class TranslationCheckTest extends BaseCheckTestSupport {
 
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "misc" + File.separator
+                + "translation" + File.separator
+                + filename);
     }
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator + filename);
+        return super.getNonCompilablePath("checks" + File.separator
+                + "misc" + File.separator
+                + "translation" + File.separator
+                + filename);
     }
 
     @Test
