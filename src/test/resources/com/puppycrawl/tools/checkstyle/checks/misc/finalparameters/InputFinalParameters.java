@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.finalparameters;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
