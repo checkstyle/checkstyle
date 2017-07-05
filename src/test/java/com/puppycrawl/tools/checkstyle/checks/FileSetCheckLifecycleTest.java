@@ -43,7 +43,10 @@ public class FileSetCheckLifecycleTest
     extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "misc" + File.separator
+                + "fileset" + File.separator
+                + filename);
     }
 
     @Override
@@ -66,7 +69,7 @@ public class FileSetCheckLifecycleTest
         final Configuration checkConfig =
             createCheckConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 
         assertTrue("destroy() not called by Checker", TestFileSetCheck.isDestroyed());
     }
@@ -93,7 +96,7 @@ public class FileSetCheckLifecycleTest
 
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
-        verify(checker, getPath("InputIllegalTokens.java"), expected);
+        verify(checker, getPath("InputFileSetIllegalTokens.java"), expected);
 
         assertTrue("FileContent should be available during finishProcessing() call",
                 TestFileSetCheck.isFileContentAvailable());
