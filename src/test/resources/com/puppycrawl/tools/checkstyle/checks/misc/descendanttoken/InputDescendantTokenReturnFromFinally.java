@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.descendanttoken;
 
-public class InputReturnFromFinally {
+public class InputDescendantTokenReturnFromFinally {
     public void foo() {
         try {
             System.currentTimeMillis();
