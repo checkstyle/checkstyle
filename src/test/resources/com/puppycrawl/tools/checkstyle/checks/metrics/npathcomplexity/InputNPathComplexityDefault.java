@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.metrics;
+package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
-public class InputComplexity {
+public class InputNPathComplexityDefault {
     // NP = 2
     public void foo() {
         //NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
@@ -60,7 +60,7 @@ public class InputComplexity {
     }
 
     // NP = 3
-    public InputComplexity()
+    public InputNPathComplexityDefault()
     {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
@@ -97,7 +97,7 @@ public class InputComplexity {
     
     /** Inner */
     // NP = 0
-    public InputComplexity(int aParam)
+    public InputNPathComplexityDefault(int aParam)
     {
         Runnable runnable = new Runnable() {
             // NP = 2
