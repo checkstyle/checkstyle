@@ -539,14 +539,8 @@ public class CheckerTest extends BaseCheckTestSupport {
 
     @Test
     public void testClearExistingCache() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(HiddenFieldCheck.class);
-
-        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
         checkerConfig.addAttribute("charset", "UTF-8");
-        checkerConfig.addChild(treeWalkerConfig);
         final File cacheFile = temporaryFolder.newFile();
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
@@ -584,6 +578,44 @@ public class CheckerTest extends BaseCheckTestSupport {
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 2;
         assertEquals("Cache has changed number of items",
                 expectedNumberOfObjectsInCacheAfterSecondRun, cacheAfterSecondRun.size());
+    }
+
+    @Test
+    public void testClearCache() throws Exception {
+        final DefaultConfiguration violationCheck =
+                createCheckConfig(DummyFileSetViolationCheck.class);
+        final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
+        checkerConfig.addAttribute("charset", "UTF-8");
+        final File cacheFile = temporaryFolder.newFile();
+        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addChild(violationCheck);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(new BriefUtLogger(stream));
+
+        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.clearCache();
+        // invoke destroy to persist cache
+        final PropertyCacheFile cache =
+                (PropertyCacheFile) Whitebox.getInternalState(checker, "cache");
+        cache.persist();
+
+        final Properties cacheAfterClear = new Properties();
+        cacheAfterClear.load(Files.newBufferedReader(cacheFile.toPath()));
+
+        assertEquals("Cache has unexpected size",
+                1, cacheAfterClear.size());
+    }
+
+    @Test
+    public void setFileExtension() {
+        final Checker checker = new Checker();
+        checker.setFileExtensions(".test1", "test2");
+        final String[] actual =
+                (String[]) Whitebox.getInternalState(checker, "fileExtensions");
+        assertArrayEquals("Extensions are not expected",
+                new String[] {".test1", ".test2"}, actual);
     }
 
     @Test

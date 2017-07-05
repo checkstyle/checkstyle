@@ -34,6 +34,7 @@ import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -42,6 +43,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
@@ -50,6 +52,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -196,7 +200,7 @@ public class PropertyCacheFileTest {
     }
 
     @Test
-    public void testExternalResourseIsSavedInCache() throws IOException {
+    public void testExternalResourseIsSavedInCache() throws Exception {
         final Configuration config = new DefaultConfiguration("myName");
         final String filePath = temporaryFolder.newFile().getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
@@ -209,7 +213,19 @@ public class PropertyCacheFileTest {
         resources.add(pathToResource);
         cache.putExternalResources(resources);
 
-        assertFalse(cache.get("module-resource*?:" + pathToResource).isEmpty());
+        final MessageDigest digest = MessageDigest.getInstance("SHA-1");
+        final URI uri = CommonUtils.getUriByFilename(pathToResource);
+        final byte[] input =
+                ByteStreams.toByteArray(new BufferedInputStream(uri.toURL().openStream()));
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try (ObjectOutputStream oos = new ObjectOutputStream(out)) {
+            oos.writeObject(input);
+        }
+        digest.update(out.toByteArray());
+        final String expected = DatatypeConverter.printHexBinary(digest.digest());
+
+        assertEquals("Hashes are not equal", expected,
+                cache.get("module-resource*?:" + pathToResource));
     }
 
     /**

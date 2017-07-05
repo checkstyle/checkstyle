@@ -22,13 +22,17 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.Method;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 @RunWith(PowerMockRunner.class)
@@ -97,5 +101,20 @@ public class AuditEventDefaultFormatterTest {
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
 
         assertEquals(expected, formatter.format(mock));
+    }
+
+    @Test
+    public void testCalculateBufferLength() throws Exception {
+        final Method calculateBufferLengthMethod =
+                Whitebox.getMethod(AuditEventDefaultFormatter.class,
+                        "calculateBufferLength", AuditEvent.class, int.class);
+        final LocalizedMessage localizedMessage = new LocalizedMessage(1, 1,
+                "messages.properties", "key", null, SeverityLevel.ERROR, null,
+                getClass(), null);
+        final AuditEvent auditEvent = new AuditEvent(new Object(), "fileName", localizedMessage);
+        final int result = (int) calculateBufferLengthMethod.invoke(null,
+                auditEvent, SeverityLevel.ERROR.ordinal());
+
+        assertEquals("Buffer length is not expected", 54, result);
     }
 }
