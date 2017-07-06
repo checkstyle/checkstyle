@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 import antlr.ANTLRException;
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -75,11 +75,11 @@ public class MainFrameModel {
         }
     }
 
-    /** Lines to position map. */
-    private final List<Integer> linesToPosition = new ArrayList<>();
-
     /** Parse tree model. */
     private final ParseTreeTableModel parseTreeTableModel;
+
+    /** Lines to position map. */
+    private ImmutableList<Integer> linesToPosition = ImmutableList.of();
 
     /** Current mode. */
     private ParseMode parseMode = ParseMode.PLAIN_JAVA;
@@ -172,11 +172,14 @@ public class MainFrameModel {
 
     /**
      * Get lines to position map.
+     * It returns unmodifiable collection to
+     * prevent additional overhead of copying
+     * and possible state modifications.
      * @return lines to position map.
+     * @noinspection ReturnOfCollectionOrArrayField
      */
-    public List<Integer> getLinesToPosition() {
-        final List<Integer> copy = new ArrayList<>(linesToPosition);
-        return Collections.unmodifiableList(copy);
+    public ImmutableList<Integer> getLinesToPosition() {
+        return linesToPosition;
     }
 
     /**
@@ -208,17 +211,17 @@ public class MainFrameModel {
                 parseTreeTableModel.setParseMode(parseMode);
                 final String[] sourceLines = getFileText(file).toLinesArray();
 
-                // clear for each new file
-                linesToPosition.clear();
+                final List<Integer> linesToPositionTemp = new ArrayList<>();
                 // starts line counting at 1
-                linesToPosition.add(0);
+                linesToPositionTemp.add(0);
 
                 final StringBuilder sb = new StringBuilder();
                 // insert the contents of the file to the text area
                 for (final String element : sourceLines) {
-                    linesToPosition.add(sb.length());
+                    linesToPositionTemp.add(sb.length());
                     sb.append(element).append(System.lineSeparator());
                 }
+                linesToPosition = ImmutableList.copyOf(linesToPositionTemp);
                 text = sb.toString();
             }
             catch (IOException | ANTLRException ex) {
