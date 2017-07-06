@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.swing.JTextArea;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
@@ -47,10 +48,12 @@ public class CodeSelector {
                         final List<Integer> lines2position) {
         this.editor = editor;
         if (node instanceof DetailAST) {
-            pModel = new CodeSelectorPresentation((DetailAST) node, lines2position);
+            pModel = new CodeSelectorPresentation((DetailAST) node,
+                    ImmutableList.copyOf(lines2position));
         }
         else {
-            pModel = new CodeSelectorPresentation((DetailNode) node, lines2position);
+            pModel = new CodeSelectorPresentation((DetailNode) node,
+                    ImmutableList.copyOf(lines2position));
         }
     }
 
