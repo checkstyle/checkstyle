@@ -960,13 +960,10 @@ description: (
                   | htmlElement
             )+;
 
-reference:
-      (
-            PACKAGE (DOT | CLASS)* HASH? MEMBER? parameters?
-            | (DOT | CLASS)+ HASH? MEMBER? parameters?
-            | HASH? MEMBER parameters?
-      )
-      ;
+reference:  PACKAGE_CLASS (HASH MEMBER parameters?)?
+            | HASH MEMBER parameters?
+    ;
+
 parameters: LEFT_BRACE (ARGUMENT | COMMA | WS | NEWLINE | LEADING_ASTERISK)* RIGHT_BRACE;
 
 javadocTag: AUTHOR_LITERAL (WS | NEWLINE)+ description

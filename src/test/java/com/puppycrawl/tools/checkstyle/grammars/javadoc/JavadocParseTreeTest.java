@@ -311,4 +311,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getDocPath("expectedLeadingAsteriskAfterSeeTagAst.txt"),
                 getDocPath("InputLeadingAsteriskAfterSeeTag.javadoc"));
     }
+
+    @Test
+    public void testUppercaseInPackageName() throws Exception {
+        verifyJavadocTree(getDocPath("expectedUppercaseInPackageNameAst.txt"),
+                getDocPath("InputUppercaseInPackageName.javadoc"));
+    }
 }

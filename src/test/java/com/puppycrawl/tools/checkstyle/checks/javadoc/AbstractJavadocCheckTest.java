@@ -137,8 +137,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testAntlrError() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 49,
-                    "mismatched input 'get' expecting <EOF>", "JAVADOC"),
+            "4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+                    "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocInvalidAtSeeReference.java"), expected);
         assertEquals("Error is unexpected", "", systemErr.getLog());
@@ -153,8 +153,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
         ));
         expectedMessages.put(getPath("InputAbstractJavadocInvalidAtSeeReference.java"),
-            singletonList("4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 49,
-                    "mismatched input 'get' expecting <EOF>", "JAVADOC")
+            singletonList("4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+                    "mismatched input '(' expecting <EOF>", "JAVADOC")
         ));
         verify(createChecker(checkConfig), new File[] {
             new File(getPath("InputAbstractJavadocParsingErrors.java")),
@@ -169,8 +169,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
-            "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 53,
-                    "mismatched input 'get' expecting <EOF>", "JAVADOC"),
+            "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 82,
+                    "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verify(checkConfig,
             getPath("InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference.java"), expected);
