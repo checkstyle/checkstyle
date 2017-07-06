@@ -143,7 +143,6 @@ public class XMLLogger
         throwable.printStackTrace(printer);
         printer.println("]]>");
         printer.println("</exception>");
-        printer.flush();
         writer.println(encode(stringWriter.toString()));
     }
 
@@ -235,7 +234,7 @@ public class XMLLogger
     private static String encodeAmpersand(String value, int ampPosition) {
         final int nextSemi = value.indexOf(';', ampPosition);
         final String result;
-        if (nextSemi < 0
+        if (nextSemi == -1
             || !isReference(value.substring(ampPosition, nextSemi + 1))) {
             result = "&amp;";
         }

@@ -2008,11 +2008,7 @@
                 <param>com.puppycrawl.tools.checkstyle.doclets.*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
               </targetTests>
-              <excludedMethods>
-                <!-- till https://github.com/hcoles/pitest/issues/353 -->
-                <param>fillShortToFullModuleNamesMap</param>
-              </excludedMethods>
-              <mutationThreshold>98</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>

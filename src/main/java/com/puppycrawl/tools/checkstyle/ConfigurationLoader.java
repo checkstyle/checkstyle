@@ -410,7 +410,7 @@ public final class ConfigurationLoader {
             else if (value.charAt(pos + 1) == '{') {
                 //property found, extract its name or bail on a typo
                 final int endName = value.indexOf('}', pos);
-                if (endName < 0) {
+                if (endName == -1) {
                     throw new CheckstyleException("Syntax error in property: "
                                                     + value);
                 }

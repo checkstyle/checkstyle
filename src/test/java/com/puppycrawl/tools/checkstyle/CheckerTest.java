@@ -67,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -277,12 +278,16 @@ public class CheckerTest extends BaseCheckTestSupport {
 
         // comparing to 1 as there is only one legal file in input
         final int numLegalFiles = 1;
+        final PropertyCacheFile cache =
+                (PropertyCacheFile) Whitebox.getInternalState(checker, "cache");
         assertEquals("There were more legal files than expected",
                 numLegalFiles, counter);
         assertEquals("Audit was started on larger amount of files than expected",
                 numLegalFiles, auditAdapter.getNumFilesStarted());
         assertEquals("Audit was finished on larger amount of files than expected",
                 numLegalFiles, auditAdapter.getNumFilesFinished());
+        assertNull("Cache shout not contain any file",
+                cache.get(new File("file.java").getCanonicalPath()));
     }
 
     @Test
@@ -738,6 +743,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.addFileSetCheck(check);
+        checker.addFilter(new DummyFilterSet());
         checker.configure(checkerConfig);
         checker.addListener(new BriefUtLogger(stream));
 
@@ -748,7 +754,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final Properties cacheAfterFirstRun = new Properties();
         cacheAfterFirstRun.load(Files.newBufferedReader(cacheFile.toPath()));
 
-        final int expectedNumberOfObjectsInCacheAfterFirstRun = 3;
+        final int expectedNumberOfObjectsInCacheAfterFirstRun = 4;
         assertEquals("Number of items in cache differs from expected",
                 expectedNumberOfObjectsInCacheAfterFirstRun, cacheAfterFirstRun.size());
 
@@ -1020,6 +1026,16 @@ public class CheckerTest extends BaseCheckTestSupport {
             final Set<String> externalResourceLocation = new HashSet<>(1);
             externalResourceLocation.add("non_existing_external_resource.xml");
             return externalResourceLocation;
+        }
+    }
+
+    private static class DummyFilterSet extends FilterSet implements ExternalResourceHolder {
+
+        @Override
+        public Set<String> getExternalResourceLocations() {
+            final Set<String> strings = new HashSet<>();
+            strings.add("test");
+            return strings;
         }
     }
 
