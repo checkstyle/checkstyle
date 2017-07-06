@@ -36,7 +36,10 @@ public class TodoCommentCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "misc" + File.separator
+                + "todocomment" + File.separator
+                + filename);
     }
 
     @Test
@@ -58,7 +61,7 @@ public class TodoCommentCheckTest
             "163: " + getCheckMessage(MSG_KEY, "FIXME:"),
             "167: " + getCheckMessage(MSG_KEY, "FIXME:"),
         };
-        verify(checkConfig, getPath("InputSimple.java"), expected);
+        verify(checkConfig, getPath("InputTodoCommentSimple.java"), expected);
     }
 
     @Test
