@@ -120,7 +120,8 @@ Newline5: NEWLINE
 Leading_asterisk3: LEADING_ASTERISK -> type(LEADING_ASTERISK);
 XmlTagOpen1: '<' -> type(OPEN), pushMode(xmlTagDefinition);
 STRING: '"' .*? '"' {referenceCatched = false;} -> mode(DEFAULT_MODE);
-PACKAGE: [a-z_$] ([a-z0-9_$] | '.')+ [a-z0-9_$] {referenceCatched = true;};
+PACKAGE: [a-z_$] ([a-z0-9_$] | '.')+ [a-z0-9_$] {_input.LA(1) == '.' || _input.LA(1) == '}'
+                     || Character.isWhitespace(_input.LA(1))}? {referenceCatched = true;};
 DOT: '.';
 HASH: '#' {referenceCatched = true;} -> mode(classMemeber);
 CLASS: [A-Z] [a-zA-Z0-9_$]* {referenceCatched = true;};
