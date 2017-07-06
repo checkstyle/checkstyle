@@ -250,4 +250,11 @@ public class JavadocParseTreeTest extends BaseCheckTestSupport {
         verifyJavadocTree(getPath("expectedJavadocWithCrAsNewlineAst.txt"),
                 getPath("InputJavadocWithCrAsNewline.javadoc"));
     }
+
+    @Test
+    public void testNoDescriptionNodeForCustomTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedNoDescriptionNodeForCustomTagAst.txt"),
+                getDocPath("InputNoDescriptionNodeForCustomTag.javadoc"));
+
+    }
 }

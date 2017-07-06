@@ -893,7 +893,7 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* description?
 
       | VERSION_LITERAL (WS | NEWLINE)* description?
 
-      | CUSTOM_NAME (WS | NEWLINE)* description?
+      | CUSTOM_NAME (text | LEADING_ASTERISK | NEWLINE)*
     ;
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////  JAVADOC INLINE TAGS  /////////////////////////////////////
@@ -908,7 +908,7 @@ javadocInlineTag:
             | LINKPLAIN_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* reference description?
             | LITERAL_LITERAL (WS | NEWLINE | LEADING_ASTERISK | text)*
             | VALUE_LITERAL (WS | NEWLINE | LEADING_ASTERISK)* reference?
-            | CUSTOM_NAME (WS | NEWLINE | LEADING_ASTERISK)* description?
+            | CUSTOM_NAME (text | LEADING_ASTERISK | NEWLINE)*
       )
       JAVADOC_INLINE_TAG_END
       ;

@@ -82,7 +82,7 @@ JAVADOC_INLINE_TAG_END: '}' {insideJavadocInlineTag>0}?
       {insideJavadocInlineTag--; recognizeXmlTags=true;}
       ;
 
-CUSTOM_NAME: '@' [a-zA-Z0-9:._-]+ {isJavadocTagAvailable}?;
+CUSTOM_NAME: '@' [a-zA-Z0-9:._-]+ {isJavadocTagAvailable}? -> pushMode(customBlockTag);
 
 LITERAL_INCLUDE: 'include' {previousToPreviousTokenType==SERIAL_LITERAL}?;
 LITERAL_EXCLUDE: 'exclude' {previousToPreviousTokenType==SERIAL_LITERAL}?;
@@ -225,8 +225,7 @@ LINK_LITERAL : '@link' -> pushMode(seeLink);
 LINKPLAIN_LITERAL : '@linkplain' -> pushMode(seeLink);
 LITERAL_LITERAL : '@literal' {recognizeXmlTags=false;} -> mode(code);
 VALUE_LITERAL : '@value' -> pushMode(value);
-CustomName1: '@' [a-zA-Z0-9:._-]+ {recognizeXmlTags=false;}
-                                      -> type(CUSTOM_NAME), mode(DEFAULT_MODE);
+CustomName1: '@' [a-zA-Z0-9:._-]+ -> type(CUSTOM_NAME), mode(customInlineTag);
 Char6: . -> type(CHAR), mode(DEFAULT_MODE);
 //////////////////////////////////////////////////////////////////////////////////////
 mode code;
@@ -265,6 +264,46 @@ Char10: .
             skipCurrentTokenConsuming();
       } -> skip, mode(DEFAULT_MODE);
 
+//////////////////////////////////////////////////////////////////////////////////////
+mode customBlockTag;
+LEADING_ASTERISK2: LEADING_ASTERISK -> type(LEADING_ASTERISK);
+WS2: WS -> type(WS);
+NEWLINE3: NEWLINE -> type(NEWLINE);
+AUTHOR_LITERAL1 : AUTHOR_LITERAL {isJavadocTagAvailable}?
+    -> type(AUTHOR_LITERAL), mode(DEFAULT_MODE);
+DEPRECATED_LITERAL1 : DEPRECATED_LITERAL {isJavadocTagAvailable}?
+    -> type(DEPRECATED_LITERAL), mode(DEFAULT_MODE);
+EXCEPTION_LITERAL1 : EXCEPTION_LITERAL {isJavadocTagAvailable}?
+    -> type(EXCEPTION_LITERAL), mode(exception);
+PARAM_LITERAL1 : PARAM_LITERAL {isJavadocTagAvailable}?
+    -> type(PARAM_LITERAL), mode(param);
+RETURN_LITERAL1 : RETURN_LITERAL {isJavadocTagAvailable}?
+    -> type(RETURN_LITERAL), mode(DEFAULT_MODE);
+SEE_LITERAL1 : SEE_LITERAL {isJavadocTagAvailable}?
+    -> type(SEE_LITERAL), mode(seeLink);
+SERIAL_LITERAL1 : SERIAL_LITERAL {isJavadocTagAvailable}?
+    -> type(SERIAL_LITERAL), mode(DEFAULT_MODE);
+SERIAL_FIELD_LITERAL1 : SERIAL_FIELD_LITERAL {isJavadocTagAvailable}?
+    -> type(SERIAL_FIELD_LITERAL), mode(serialField);
+SERIAL_DATA_LITERAL1 : SERIAL_DATA_LITERAL {isJavadocTagAvailable}?
+    -> type(SERIAL_DATA_LITERAL), mode(DEFAULT_MODE);
+SINCE_LITERAL1 : SINCE_LITERAL {isJavadocTagAvailable}?
+    -> type(SINCE_LITERAL), mode(DEFAULT_MODE);
+THROWS_LITERAL1 : THROWS_LITERAL {isJavadocTagAvailable}?
+    -> type(THROWS_LITERAL), mode(exception);
+VERSION_LITERAL1 : VERSION_LITERAL {isJavadocTagAvailable}?
+    ->type(VERSION_LITERAL), mode(DEFAULT_MODE);
+CHAR13: CHAR -> type(CHAR);
+//////////////////////////////////////////////////////////////////////////////////////
+mode customInlineTag;
+LEADING_ASTERISK8: LEADING_ASTERISK -> type(LEADING_ASTERISK);
+WS3: WS -> type(WS);
+NEWLINE9: NEWLINE -> type(NEWLINE);
+JAVADOC_INLINE_TAG_END1: '}' {insideJavadocInlineTag>0}?
+      {insideJavadocInlineTag--; recognizeXmlTags=true;}
+      -> type(JAVADOC_INLINE_TAG_END), mode(DEFAULT_MODE)
+      ;
+CHAR14: CHAR -> type(CHAR);
 
 
 //////////////////////////////////////////////////////////////////////////////////////

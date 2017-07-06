@@ -1,0 +1,11 @@
+ * @author author
+ * @customBlock {@customInline not recognized {@nestedCustomInline treated as text}
+ * @param parameters
+ * @customBlock Everything treated as text until a standard tag is encountered
+ * @customSee {@link Standard Inline tag not recgonized either}
+ * Leading asterisks and newlines are recognized though
+ * only the first tag in custom nested Inline tags and custom consecutive block tags is recognized
+ * @param parameter {@link recognized {@customInline recognized {@nestedCustomInline not recognized
+ * @param void ; only (text | LEADING_ASTERISK | NEWLINE) shall be recognized until the
+ * customInline tag is closed}}}
+ * @return description
