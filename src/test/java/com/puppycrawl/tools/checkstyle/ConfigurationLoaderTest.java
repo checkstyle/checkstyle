@@ -31,6 +31,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Test;
@@ -38,6 +40,7 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 
@@ -617,4 +620,15 @@ public class ConfigurationLoaderTest {
         }
     }
 
+    @Test
+    public void testParsePropertyString() throws Exception {
+        final List<String> propertyRefs = new ArrayList<>();
+        final List<String> fragments = new ArrayList<>();
+
+        Whitebox.invokeMethod(ConfigurationLoader.class,
+                "parsePropertyString", "$",
+               fragments, propertyRefs);
+        assertEquals("Fragments list has unexpected amount of items",
+                1, fragments.size());
+    }
 }

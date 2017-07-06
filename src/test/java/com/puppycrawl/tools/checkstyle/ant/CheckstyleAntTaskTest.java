@@ -175,7 +175,10 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         // given
         TestRootModuleChecker.reset();
 
-        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+        antTask.setProject(new Project());
+
         final FileResource fileResource = new FileResource(
             antTask.getProject(), getPath(FLAWLESS_INPUT_DIR));
         final Path sourcePath = new Path(antTask.getProject());
@@ -193,6 +196,8 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
                 filesToCheck.size(), is(1));
         assertThat("The path of file differs from expected",
                 filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+        assertEquals("Amount of logged messages in unxexpected",
+                9, antTask.getLoggedMessages().size());
     }
 
     @Test
@@ -540,6 +545,27 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     }
 
     @Test
+    public final void testCreateListenerExceptionWithXmlLogger() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        final File outputFile = new File("target/");
+        formatter.setTofile(outputFile);
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("xml");
+        formatter.setType(formatterType);
+        antTask.addFormatter(formatter);
+        try {
+            antTask.execute();
+            fail("Exception is expected");
+        }
+        catch (BuildException ex) {
+            assertTrue("Error message is unexpected",
+                    ex.getMessage().startsWith("Unable to create listeners: formatters"));
+        }
+    }
+
+    @Test
     public void testSetInvalidType() {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         try {
@@ -633,6 +659,27 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
         assertNotNull("Classpath should not be null",
             Whitebox.getInternalState(antTask, "classpath"));
+    }
+
+    /** This test is created to satisfy pitest, it is hard to emulate Referece by Id */
+    @Test
+    public void testSetClasspathRef1() {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        final Project project = new Project();
+        antTask.setClasspath(new Path(project, "firstPath"));
+        antTask.setClasspathRef(new Reference(project, "idXX"));
+
+        try {
+            assertNotNull("Classpath should not be null",
+                    Whitebox.getInternalState(antTask, "classpath"));
+            final Path classpath = (Path) Whitebox.getInternalState(antTask, "classpath");
+            classpath.list();
+            fail("Exception is expected");
+        }
+        catch (BuildException ex) {
+            assertEquals("unexpected exception message",
+                    "Reference idXX not found.", ex.getMessage());
+        }
     }
 
     @Test
