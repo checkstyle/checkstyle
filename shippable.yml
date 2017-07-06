@@ -27,6 +27,10 @@ env:
     - PROFILE="-Ppitest-checks-whitespace,no-validations"
     - PROFILE="-Ppitest-checkstyle-gui,no-validations"
 
+branches:
+  only:
+    - master
+
 build:
   cache: true
   cache_dir_list:
