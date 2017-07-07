@@ -46,10 +46,8 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.Assertion;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -91,6 +89,8 @@ public class MainTest {
     private static final Handler[] HANDLERS = LOG.getHandlers();
     private static final Level ORIGINAL_LOG_LEVEL = LOG.getLevel();
 
+    private static final String EOL = System.getProperty("line.separator");
+
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
     @Rule
@@ -99,6 +99,18 @@ public class MainTest {
     public final SystemErrRule systemErr = new SystemErrRule().enableLog().mute();
     @Rule
     public final SystemOutRule systemOut = new SystemOutRule().enableLog().mute();
+
+    private final LocalizedMessage auditStartMessage = new LocalizedMessage(0,
+            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted", null, null,
+            getClass(), null);
+
+    private final LocalizedMessage auditFinishMessage = new LocalizedMessage(0,
+            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
+            getClass(), null);
+
+    private final LocalizedMessage errorCounterOneMessage = new LocalizedMessage(0,
+            Definitions.CHECKSTYLE_BUNDLE, "Main.errorCounter",
+            new String[] {String.valueOf(1)}, null, getClass(), null);
 
     private static String getPath(String filename) {
         return "src/test/resources/com/puppycrawl/tools/checkstyle/" + filename;
@@ -110,13 +122,6 @@ public class MainTest {
 
     private static String getFilePath(String filename) throws IOException {
         return new File(getPath(filename)).getCanonicalPath();
-    }
-
-    @BeforeClass
-    public static void init() {
-        // Set locale to root to prevent check message fail
-        // in other language environment.
-        Locale.setDefault(Locale.ROOT);
     }
 
     @Before
@@ -163,7 +168,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            final String usage = String.format(Locale.ROOT, "Unrecognized option: -w%n")
+            final String usage = "Unrecognized option: -w" + EOL
                     + USAGE;
             assertEquals(usage, systemOut.getLog());
             assertEquals("", systemErr.getLog());
@@ -200,9 +205,8 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            assertEquals(String.format(Locale.ROOT,
-                    "Could not find config XML file "
-                        + "'src/main/resources/non_existing_config.xml'.%n"),
+            assertEquals("Could not find config XML file "
+                        + "'src/main/resources/non_existing_config.xml'." + EOL,
                     systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
@@ -214,8 +218,8 @@ public class MainTest {
     public void testNonExistingOutputFormat() throws Exception {
         exit.expectSystemExitWithStatus(-1);
         exit.checkAssertionAfterwards(() -> {
-            assertEquals(String.format(Locale.ROOT, "Invalid output format. "
-                    + "Found 'xmlp' but expected 'plain' or 'xml'.%n"), systemOut.getLog());
+            assertEquals("Invalid output format. "
+                    + "Found 'xmlp' but expected 'plain' or 'xml'." + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c", "/google_checks.xml", "-f", "xmlp",
@@ -226,8 +230,8 @@ public class MainTest {
     public void testNonExistingClass() throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String expectedExceptionMessage =
-                    String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n");
+            final String expectedExceptionMessage = errorCounterOneMessage.getMessage()
+                    + EOL;
             assertEquals(expectedExceptionMessage, systemOut.getLog());
 
             final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
@@ -243,8 +247,9 @@ public class MainTest {
     public void testExistingTargetFile() throws Exception {
 
         exit.checkAssertionAfterwards(() -> {
-            assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
-                    + "Audit done.%n"), systemOut.getLog());
+            assertEquals(auditStartMessage.getMessage() + EOL
+                    + auditFinishMessage.getMessage() + EOL,
+                    systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c", getPath("config-classname.xml"),
@@ -260,12 +265,11 @@ public class MainTest {
                     ResourceBundle.getBundle("checkstylecompilation", Locale.ROOT);
             final String version = compilationProperties
                 .getString("checkstyle.compile.version");
-            assertEquals(String.format(Locale.ROOT,
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>%n"
-                    + "<checkstyle version=\"%s\">%n"
-                    + "<file name=\"%s\">%n"
-                    + "</file>%n"
-                    + "</checkstyle>%n", version, expectedPath), systemOut.getLog());
+            assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
+                    + "<checkstyle version=\"" + version + "\">" + EOL
+                    + "<file name=\"" + expectedPath + "\">" + EOL
+                    + "</file>" + EOL
+                    + "</checkstyle>" + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c", getPath("config-classname.xml"),
@@ -277,8 +281,8 @@ public class MainTest {
     public void testExistingTargetFilePlainOutput() throws Exception {
 
         exit.checkAssertionAfterwards(() -> {
-            assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
-                    + "Audit done.%n"), systemOut.getLog());
+            assertEquals(auditStartMessage.getMessage() + EOL
+                    + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c", getPath("config-classname.xml"),
@@ -289,16 +293,23 @@ public class MainTest {
     @Test
     public void testExistingTargetFileWithViolations() throws Exception {
         exit.checkAssertionAfterwards(() -> {
+            final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(0,
+                    "com.puppycrawl.tools.checkstyle.checks.naming.messages",
+                    "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
+                    null, getClass(), null);
+            final LocalizedMessage invalidPatternMessageMainInner = new LocalizedMessage(0,
+                    "com.puppycrawl.tools.checkstyle.checks.naming.messages",
+                    "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
+                    null, getClass(), null);
             final String expectedPath = getFilePath("InputMain.java");
-            assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
-                            + "[WARN] %1$s:3:14: "
-                            + "Name 'InputMain' must match pattern"
-                            + " '^[a-z0-9]*$'. [TypeName]%n"
-                            + "[WARN] %1$s:5:7: "
-                            + "Name 'InputMainInner' must match pattern"
-                            + " '^[a-z0-9]*$'. [TypeName]%n"
-                            + "Audit done.%n", expectedPath),
-                    systemOut.getLog());
+            assertEquals(auditStartMessage.getMessage() + EOL
+                            + "[WARN] " + expectedPath + ":3:14: "
+                            + invalidPatternMessageMain.getMessage()
+                            + " [TypeName]" + EOL
+                            + "[WARN] " + expectedPath + ":5:7: "
+                            + invalidPatternMessageMainInner.getMessage()
+                            + " [TypeName]" + EOL
+                            + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c", getPath("config-classname2.xml"),
@@ -310,14 +321,25 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(2);
         exit.checkAssertionAfterwards(() -> {
+            final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, "Main.errorCounter",
+                    new String[] {String.valueOf(2)}, null, getClass(), null);
+            final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(0,
+                    "com.puppycrawl.tools.checkstyle.checks.naming.messages",
+                    "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
+                    null, getClass(), null);
+            final LocalizedMessage invalidPatternMessageMainInner = new LocalizedMessage(0,
+                    "com.puppycrawl.tools.checkstyle.checks.naming.messages",
+                    "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
+                    null, getClass(), null);
             final String expectedPath = getFilePath("InputMain.java");
-            assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
-                    + "[ERROR] %1$s:3:14: "
-                    + "Name 'InputMain' must match pattern '^[a-z0-9]*$'. [TypeName]%n"
-                    + "[ERROR] %1$s:5:7: "
-                    + "Name 'InputMainInner' must match pattern '^[a-z0-9]*$'. [TypeName]%n"
-                    + "Audit done.%n"
-                    + "Checkstyle ends with 2 errors.%n", expectedPath), systemOut.getLog());
+            assertEquals(auditStartMessage.getMessage() + EOL
+                    + "[ERROR] " + expectedPath + ":3:14: "
+                    + invalidPatternMessageMain.getMessage() + " [TypeName]" + EOL
+                    + "[ERROR] " + expectedPath + ":5:7: "
+                    + invalidPatternMessageMainInner.getMessage() + " [TypeName]" + EOL
+                    + auditFinishMessage.getMessage() + EOL
+                    + errorCounterTwoMessage.getMessage() + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c",
@@ -369,8 +391,8 @@ public class MainTest {
             throws Exception {
         //exit.expectSystemExitWithStatus(0);
         exit.checkAssertionAfterwards(() -> {
-            assertEquals(String.format(Locale.ROOT, "Starting audit...%n"
-                    + "Audit done.%n"), systemOut.getLog());
+            assertEquals(auditStartMessage.getMessage() + EOL
+                    + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c", getPath("config-classname-prop.xml"),
@@ -397,8 +419,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String output = String.format(Locale.ROOT,
-                    "Checkstyle ends with 1 errors.%n");
+            final String output = errorCounterOneMessage.getMessage() + EOL;
             assertEquals(output, systemOut.getLog());
             final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: unable to parse configuration stream - ";
@@ -413,8 +434,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String output = String.format(Locale.ROOT,
-                    "Checkstyle ends with 1 errors.%n");
+            final String output = errorCounterOneMessage.getMessage() + EOL;
             assertEquals(output, systemOut.getLog());
             final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: cannot initialize module RegexpSingleline"
@@ -430,8 +450,7 @@ public class MainTest {
             throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String output = String.format(Locale.ROOT,
-                    "Checkstyle ends with 1 errors.%n");
+            final String output = errorCounterOneMessage.getMessage() + EOL;
             assertEquals(output, systemOut.getLog());
             final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: cannot initialize module TreeWalker"
@@ -468,9 +487,7 @@ public class MainTest {
             // We do separate validation for message as in Windows
             // disk drive letter appear in message,
             // so we skip that drive letter for compatibility issues
-            assertTrue(ex.getCause().getMessage()
-                    .startsWith("Unable to load properties from file '"));
-            assertTrue(ex.getCause().getMessage().endsWith(":invalid'."));
+            assertTrue(ex.getCause().getLocalizedMessage().contains(":invalid"));
         }
     }
 
@@ -484,8 +501,11 @@ public class MainTest {
             fail("InvocationTargetException is expected");
         }
         catch (InvocationTargetException ex) {
+            final LocalizedMessage loadPropertiesMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, "Main.createListener",
+                    new String[] {"myformat", "plain", "xml"}, null, getClass(), null);
+            assertEquals(loadPropertiesMessage.getMessage(), ex.getCause().getLocalizedMessage());
             assertTrue(ex.getCause() instanceof IllegalStateException);
-            assertTrue(ex.getCause().getMessage().startsWith("Invalid output format. Found"));
         }
     }
 
@@ -500,8 +520,11 @@ public class MainTest {
             fail("InvocationTargetException  is expected");
         }
         catch (InvocationTargetException ex) {
+            final LocalizedMessage createListenerMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, "Main.createListener",
+                    new String[] {"myformat", "plain", "xml"}, null, getClass(), null);
+            assertEquals(createListenerMessage.getMessage(), ex.getCause().getLocalizedMessage());
             assertTrue(ex.getCause() instanceof IllegalStateException);
-            assertTrue(ex.getCause().getMessage().startsWith("Invalid output format. Found"));
         }
         finally {
             // method creates output folder
@@ -521,25 +544,24 @@ public class MainTest {
         final String msgKey = "maxLen.file";
         final String bundle = "com.puppycrawl.tools.checkstyle.checks.sizes.messages";
 
-        exit.checkAssertionAfterwards(new Assertion() {
-            @Override
-            public void checkAssertion() throws IOException {
-                final String expectedPath = getFilePath("main/") + File.separator;
-                final StringBuilder sb = new StringBuilder(28);
-                sb.append("Starting audit...").append(System.getProperty("line.separator"));
-                final String format = "[WARN] %s.java:%s: %s [FileLength]";
-                for (String[] outputValue : outputValues) {
-                    final String localizedMessage = new LocalizedMessage(0, bundle,
-                            msgKey, new Integer[] {Integer.valueOf(outputValue[2]), allowedLength},
-                            null, getClass(), null).getMessage();
-                    final String line = String.format(Locale.ROOT, format,
-                            expectedPath + outputValue[0], outputValue[1], localizedMessage);
-                    sb.append(line).append(System.getProperty("line.separator"));
-                }
-                sb.append("Audit done.").append(System.getProperty("line.separator"));
-                assertEquals(sb.toString(), systemOut.getLog());
-                assertEquals("", systemErr.getLog());
+        exit.checkAssertionAfterwards(() -> {
+            final String expectedPath = getFilePath("main/") + File.separator;
+            final StringBuilder sb = new StringBuilder(28);
+            sb.append(auditStartMessage.getMessage())
+                    .append(EOL);
+            final String format = "[WARN] " + expectedPath + outputValues[0][0] + ".java:"
+                    + outputValues[0][1] + ": ";
+            for (String[] outputValue : outputValues) {
+                final String localizedMessage = new LocalizedMessage(0, bundle,
+                        msgKey, new Integer[] {Integer.valueOf(outputValue[2]), allowedLength},
+                        null, getClass(), null).getMessage();
+                final String line = format + localizedMessage + " [FileLength]";
+                sb.append(line).append(EOL);
             }
+            sb.append(auditFinishMessage.getMessage())
+                    .append(EOL);
+            assertEquals(sb.toString(), systemOut.getLog());
+            assertEquals("", systemErr.getLog());
         });
 
         Main.main("-c", getPath("config-filelength.xml"),
@@ -581,16 +603,14 @@ public class MainTest {
     public void testFileReferenceDuringException() throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String expectedExceptionMessage =
-                    String.format(Locale.ROOT, "Starting audit...%n"
-                            + "Checkstyle ends with 1 errors.%n");
+            final String expectedExceptionMessage = auditStartMessage.getMessage() + EOL
+                            + errorCounterOneMessage.getMessage() + EOL;
             assertEquals(expectedExceptionMessage, systemOut.getLog());
 
-            final String exceptionFirstLine = String.format(Locale.ROOT,
-                    "com.puppycrawl.tools.checkstyle.api."
+            final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: Exception was thrown while processing "
                     + new File(getNonCompilablePath("InputIncorrectClass.java")).getPath()
-                    + "%n");
+                    + EOL;
             assertTrue(systemErr.getLog().startsWith(exceptionFirstLine));
         });
 
@@ -614,31 +634,31 @@ public class MainTest {
 
     @Test
     public void testPrintTreeOption() throws Exception {
-        final String expected = String.format(Locale.ROOT, "PACKAGE_DEF -> package [1:0]%n"
-            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]%n"
-            + "|--DOT -> . [1:28]%n"
-            + "|   |--DOT -> . [1:22]%n"
-            + "|   |   |--DOT -> . [1:11]%n"
-            + "|   |   |   |--IDENT -> com [1:8]%n"
-            + "|   |   |   `--IDENT -> puppycrawl [1:12]%n"
-            + "|   |   `--IDENT -> tools [1:23]%n"
-            + "|   `--IDENT -> checkstyle [1:29]%n"
-            + "`--SEMI -> ; [1:39]%n"
-            + "CLASS_DEF -> CLASS_DEF [3:0]%n"
-            + "|--MODIFIERS -> MODIFIERS [3:0]%n"
-            + "|   `--LITERAL_PUBLIC -> public [3:0]%n"
-            + "|--LITERAL_CLASS -> class [3:7]%n"
-            + "|--IDENT -> InputMain [3:13]%n"
-            + "`--OBJBLOCK -> OBJBLOCK [3:23]%n"
-            + "    |--LCURLY -> { [3:23]%n"
-            + "    `--RCURLY -> } [4:0]%n"
-            + "CLASS_DEF -> CLASS_DEF [5:0]%n"
-            + "|--MODIFIERS -> MODIFIERS [5:0]%n"
-            + "|--LITERAL_CLASS -> class [5:0]%n"
-            + "|--IDENT -> InputMainInner [5:6]%n"
-            + "`--OBJBLOCK -> OBJBLOCK [5:21]%n"
-            + "    |--LCURLY -> { [5:21]%n"
-            + "    `--RCURLY -> } [6:0]%n");
+        final String expected = "PACKAGE_DEF -> package [1:0]" + EOL
+            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]" + EOL
+            + "|--DOT -> . [1:28]" + EOL
+            + "|   |--DOT -> . [1:22]" + EOL
+            + "|   |   |--DOT -> . [1:11]" + EOL
+            + "|   |   |   |--IDENT -> com [1:8]" + EOL
+            + "|   |   |   `--IDENT -> puppycrawl [1:12]" + EOL
+            + "|   |   `--IDENT -> tools [1:23]" + EOL
+            + "|   `--IDENT -> checkstyle [1:29]" + EOL
+            + "`--SEMI -> ; [1:39]" + EOL
+            + "CLASS_DEF -> CLASS_DEF [3:0]" + EOL
+            + "|--MODIFIERS -> MODIFIERS [3:0]" + EOL
+            + "|   `--LITERAL_PUBLIC -> public [3:0]" + EOL
+            + "|--LITERAL_CLASS -> class [3:7]" + EOL
+            + "|--IDENT -> InputMain [3:13]" + EOL
+            + "`--OBJBLOCK -> OBJBLOCK [3:23]" + EOL
+            + "    |--LCURLY -> { [3:23]" + EOL
+            + "    `--RCURLY -> } [4:0]" + EOL
+            + "CLASS_DEF -> CLASS_DEF [5:0]" + EOL
+            + "|--MODIFIERS -> MODIFIERS [5:0]" + EOL
+            + "|--LITERAL_CLASS -> class [5:0]" + EOL
+            + "|--IDENT -> InputMainInner [5:6]" + EOL
+            + "`--OBJBLOCK -> OBJBLOCK [5:21]" + EOL
+            + "    |--LCURLY -> { [5:21]" + EOL
+            + "    `--RCURLY -> } [6:0]" + EOL;
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals(expected, systemOut.getLog());
@@ -649,34 +669,34 @@ public class MainTest {
 
     @Test
     public void testPrintTreeCommentsOption() throws Exception {
-        final String expected = String.format(Locale.ROOT, "PACKAGE_DEF -> package [1:0]%n"
-            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]%n"
-            + "|--DOT -> . [1:28]%n"
-            + "|   |--DOT -> . [1:22]%n"
-            + "|   |   |--DOT -> . [1:11]%n"
-            + "|   |   |   |--IDENT -> com [1:8]%n"
-            + "|   |   |   `--IDENT -> puppycrawl [1:12]%n"
-            + "|   |   `--IDENT -> tools [1:23]%n"
-            + "|   `--IDENT -> checkstyle [1:29]%n"
-            + "`--SEMI -> ; [1:39]%n"
-            + "CLASS_DEF -> CLASS_DEF [3:0]%n"
-            + "|--MODIFIERS -> MODIFIERS [3:0]%n"
-            + "|   |--BLOCK_COMMENT_BEGIN -> /* [2:0]%n"
-            + "|   |   |--COMMENT_CONTENT -> comment [2:2]%n"
-            + "|   |   `--BLOCK_COMMENT_END -> */ [2:8]%n"
-            + "|   `--LITERAL_PUBLIC -> public [3:0]%n"
-            + "|--LITERAL_CLASS -> class [3:7]%n"
-            + "|--IDENT -> InputMain [3:13]%n"
-            + "`--OBJBLOCK -> OBJBLOCK [3:23]%n"
-            + "    |--LCURLY -> { [3:23]%n"
-            + "    `--RCURLY -> } [4:0]%n"
-            + "CLASS_DEF -> CLASS_DEF [5:0]%n"
-            + "|--MODIFIERS -> MODIFIERS [5:0]%n"
-            + "|--LITERAL_CLASS -> class [5:0]%n"
-            + "|--IDENT -> InputMainInner [5:6]%n"
-            + "`--OBJBLOCK -> OBJBLOCK [5:21]%n"
-            + "    |--LCURLY -> { [5:21]%n"
-            + "    `--RCURLY -> } [6:0]%n");
+        final String expected = "PACKAGE_DEF -> package [1:0]" + EOL
+            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]" + EOL
+            + "|--DOT -> . [1:28]" + EOL
+            + "|   |--DOT -> . [1:22]" + EOL
+            + "|   |   |--DOT -> . [1:11]" + EOL
+            + "|   |   |   |--IDENT -> com [1:8]" + EOL
+            + "|   |   |   `--IDENT -> puppycrawl [1:12]" + EOL
+            + "|   |   `--IDENT -> tools [1:23]" + EOL
+            + "|   `--IDENT -> checkstyle [1:29]" + EOL
+            + "`--SEMI -> ; [1:39]" + EOL
+            + "CLASS_DEF -> CLASS_DEF [3:0]" + EOL
+            + "|--MODIFIERS -> MODIFIERS [3:0]" + EOL
+            + "|   |--BLOCK_COMMENT_BEGIN -> /* [2:0]" + EOL
+            + "|   |   |--COMMENT_CONTENT -> comment [2:2]" + EOL
+            + "|   |   `--BLOCK_COMMENT_END -> */ [2:8]" + EOL
+            + "|   `--LITERAL_PUBLIC -> public [3:0]" + EOL
+            + "|--LITERAL_CLASS -> class [3:7]" + EOL
+            + "|--IDENT -> InputMain [3:13]" + EOL
+            + "`--OBJBLOCK -> OBJBLOCK [3:23]" + EOL
+            + "    |--LCURLY -> { [3:23]" + EOL
+            + "    `--RCURLY -> } [4:0]" + EOL
+            + "CLASS_DEF -> CLASS_DEF [5:0]" + EOL
+            + "|--MODIFIERS -> MODIFIERS [5:0]" + EOL
+            + "|--LITERAL_CLASS -> class [5:0]" + EOL
+            + "|--IDENT -> InputMainInner [5:6]" + EOL
+            + "`--OBJBLOCK -> OBJBLOCK [5:21]" + EOL
+            + "    |--LCURLY -> { [5:21]" + EOL
+            + "    `--RCURLY -> } [6:0]" + EOL;
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals(expected, systemOut.getLog());
@@ -824,15 +844,18 @@ public class MainTest {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
             final String checkstylePackage = "com.puppycrawl.tools.checkstyle.";
-
-            assertEquals(String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n"),
+            final LocalizedMessage unableToInstantiateExceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE,
+                    "PackageObjectFactory.unableToInstantiateExceptionMessage",
+                    new String[] {"TestRootModuleChecker", checkstylePackage
+                            + "TestRootModuleChecker, "
+                            + "TestRootModuleCheckerCheck, " + checkstylePackage
+                            + "TestRootModuleCheckerCheck"},
+                    null, getClass(), null);
+            assertEquals(errorCounterOneMessage.getMessage() + EOL,
                     systemOut.getLog());
-            assertTrue(systemErr.getLog().startsWith(
-                    checkstylePackage + "api.CheckstyleException: Unable to instantiate "
-                            + "'TestRootModuleChecker' class, it is also not possible to "
-                            + "instantiate it as " + checkstylePackage
-                            + "TestRootModuleChecker, TestRootModuleCheckerCheck, "
-                            + checkstylePackage + "TestRootModuleCheckerCheck."));
+            assertTrue(systemErr.getLog().startsWith(checkstylePackage + "api.CheckstyleException: "
+                    + unableToInstantiateExceptionMessage.getMessage()));
             assertFalse(TestRootModuleChecker.isProcessed());
         });
         Main.main("-c", getPath("config-custom-simple-root-module.xml"),
@@ -843,8 +866,7 @@ public class MainTest {
     public void testExecuteIgnoredModule() throws Exception {
         exit.expectSystemExitWithStatus(-2);
         exit.checkAssertionAfterwards(() -> {
-            final String expectedExceptionMessage =
-                    String.format(Locale.ROOT, "Checkstyle ends with 1 errors.%n");
+            final String expectedExceptionMessage = errorCounterOneMessage.getMessage() + EOL;
             assertEquals(expectedExceptionMessage, systemOut.getLog());
 
             final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
