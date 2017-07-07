@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputTestGenerics <E extends java.lang.Exception,
+public class InputJavadocMethodGenerics <E extends java.lang.Exception,
                            RE extends RuntimeException & java.io.Serializable>
 {
     /**

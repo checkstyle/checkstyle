@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputInheritDoc
+public class InputJavadocMethodInheritDoc
 {
     /** {@inheritDoc} */
-    InputInheritDoc()
+    InputJavadocMethodInheritDoc()
     {
     }
 

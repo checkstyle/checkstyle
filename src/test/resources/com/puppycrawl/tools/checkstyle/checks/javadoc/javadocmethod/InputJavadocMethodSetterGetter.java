@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputSetterGetter
+public class InputJavadocMethodSetterGetter
 {
     private int mNumber;
 
@@ -64,9 +64,9 @@ public class InputSetterGetter
         object.notify();
     }
 
-    InputSetterGetter() {}
+    InputJavadocMethodSetterGetter() {}
 
-    public InputSetterGetter(Object object) throws Exception {}
+    public InputJavadocMethodSetterGetter(Object object) throws Exception {}
 
 }
 

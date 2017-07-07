@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -12,7 +12,7 @@ import javax.swing.JButton;
  * Tests for anonymous inner types
  * @author Lars Kühne
  **/
-public class InputScopeAnonInner
+public class InputJavadocMethodScopeAnonInner
 {
     /**
        button.
@@ -32,7 +32,7 @@ public class InputScopeAnonInner
     /**
        anon inner in constructor.
     */
-    InputScopeAnonInner()
+    InputJavadocMethodScopeAnonInner()
     {
         mButton.addMouseListener( new MouseAdapter()
             {

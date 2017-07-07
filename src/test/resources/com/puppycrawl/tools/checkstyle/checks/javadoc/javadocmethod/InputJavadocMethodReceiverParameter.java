@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.nio.ByteBuffer;
 
-public class InputJavadocReceiverParameter {
+public class InputJavadocMethodReceiverParameter {
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ElementType.TYPE_USE, ElementType.TYPE_PARAMETER})
@@ -24,7 +24,7 @@ public class InputJavadocReceiverParameter {
      *
      * @param buffer dummy argument
      */
-    public void foo(@UnknownInitialization(InputJavadocReceiverParameter.class) InputJavadocReceiverParameter this,
+    public void foo(@UnknownInitialization(InputJavadocMethodReceiverParameter.class) InputJavadocMethodReceiverParameter this,
             final ByteBuffer buffer) {
         buffer.putInt(1);
     }

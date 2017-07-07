@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
@@ -35,7 +35,7 @@ import java.util.List;
  * @author Chris Povirk
  */
 @SuppressWarnings(value = "unchecked")
-public abstract class InputExtendAnnotation<E>
+public abstract class InputJavadocMethodExtendAnnotation<E>
   {
 
   private static final String SUPPORTS_ADD = "";

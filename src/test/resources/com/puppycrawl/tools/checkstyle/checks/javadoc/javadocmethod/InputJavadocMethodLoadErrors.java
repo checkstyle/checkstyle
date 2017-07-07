@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputLoadErrors
+public class InputJavadocMethodLoadErrors
 {
     /**
      * aasdf
