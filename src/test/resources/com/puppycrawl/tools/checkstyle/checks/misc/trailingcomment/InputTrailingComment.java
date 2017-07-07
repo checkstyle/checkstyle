@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.trailingcomment;
 
 public class InputTrailingComment {
     int i; // don't use trailing comments :)
