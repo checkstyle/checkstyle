@@ -38,6 +38,8 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+
 /**
  * Represents a message that can be localised. The translations come from
  * message.properties files. The underlying implementation uses
@@ -381,7 +383,15 @@ public final class LocalizedMessage
 
         if (lineNo == other.lineNo) {
             if (columnNo == other.columnNo) {
-                result = getMessage().compareTo(other.getMessage());
+                if (!CommonUtils.isBlank(getModuleId())
+                    && !CommonUtils.isBlank(other.getModuleId())) {
+                    result = getModuleId().compareTo(other.getModuleId());
+                    if (result == 0) {
+                        result = getMessage().compareTo(other.getMessage());
+                    }
+                } else {
+                    result = getMessage().compareTo(other.getMessage());
+                }
             }
             else {
                 result = Integer.compare(columnNo, other.columnNo);

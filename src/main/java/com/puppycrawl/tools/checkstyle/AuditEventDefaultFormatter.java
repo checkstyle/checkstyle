@@ -23,10 +23,13 @@ import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
  * Represents the default formatter for log message.
- * Default log message format is: [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [CheckName]
+ * Default log message format is:
+ * [SEVERITY LEVEL] filePath:lineNo:columnNo: message. [CheckName, ModuleId]
+ * where ", ModuleId" part is used only when a module declares an id.
  * @author Andrei Selkin
  */
 public class AuditEventDefaultFormatter implements AuditEventFormatter {
@@ -64,7 +67,12 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
         }
         sb.append(": ").append(message);
         final String checkShortName = getCheckShortName(event);
-        sb.append(" [").append(checkShortName).append(']');
+        sb.append(" [").append(checkShortName);
+        final String moduleId = event.getModuleId();
+        if (!CommonUtils.isBlank(moduleId)) {
+            sb.append(", ").append(moduleId);
+        }
+        sb.append(']');
 
         return sb.toString();
     }
