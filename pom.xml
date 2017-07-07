@@ -2106,6 +2106,10 @@
                 <param>com.puppycrawl.tools.checkstyle.grammars.comments.CommentsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
               </targetTests>
               <mutationThreshold>84</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
