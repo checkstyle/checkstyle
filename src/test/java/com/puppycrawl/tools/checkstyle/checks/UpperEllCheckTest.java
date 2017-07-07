@@ -36,7 +36,10 @@ public class UpperEllCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "misc" + File.separator
+                + "upperell" + File.separator
+                + filename);
     }
 
     @Test
@@ -55,7 +58,7 @@ public class UpperEllCheckTest
         final String[] expected = {
             "94:43: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputUpperEllSemantic.java"), expected);
     }
 
     @Test
