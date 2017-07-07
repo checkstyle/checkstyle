@@ -465,6 +465,28 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         assertTrue("Init was not called", VerifyInitCheck.isInitWasCalled());
     }
 
+    @Test
+    public void testCheckDestroyIsCalledInTreeWalker() throws Exception {
+        VerifyDestroyCheck.resetDestroyWasCalled();
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VerifyDestroyCheck.class);
+        final File file = temporaryFolder.newFile("file.pdf");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, file.getPath(), expected);
+        assertTrue("Destroy was not called", VerifyDestroyCheck.isDestroyWasCalled());
+    }
+
+    @Test
+    public void testCommentCheckDestroyIsCalledInTreeWalker() throws Exception {
+        VerifyDestroyCheck.resetDestroyWasCalled();
+        final DefaultConfiguration checkConfig =
+                createCheckConfig(VerifyDestroyCommentCheck.class);
+        final File file = temporaryFolder.newFile("file.pdf");
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+        verify(checkConfig, file.getPath(), expected);
+        assertTrue("Destroy was not called", VerifyDestroyCheck.isDestroyWasCalled());
+    }
+
     private static class BadJavaDocCheck extends AbstractCheck {
         @Override
         public int[] getDefaultTokens() {
@@ -508,6 +530,46 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
 
         public static boolean isInitWasCalled() {
             return initWasCalled;
+        }
+    }
+
+    private static class VerifyDestroyCheck extends AbstractCheck {
+        private static boolean destroyWasCalled;
+
+        @Override
+        public int[] getDefaultTokens() {
+            return CommonUtils.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return getDefaultTokens();
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return getDefaultTokens();
+        }
+
+        @Override
+        public void destroy() {
+            super.destroy();
+            destroyWasCalled = true;
+        }
+
+        public static void resetDestroyWasCalled() {
+            destroyWasCalled = false;
+        }
+
+        public static boolean isDestroyWasCalled() {
+            return destroyWasCalled;
+        }
+    }
+
+    private static class VerifyDestroyCommentCheck extends VerifyDestroyCheck {
+        @Override
+        public boolean isCommentNodesRequired() {
+            return true;
         }
     }
 
