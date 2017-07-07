@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.suppresswarnings;
 
 public class InputSuppressWarningsHolder3 {
 
