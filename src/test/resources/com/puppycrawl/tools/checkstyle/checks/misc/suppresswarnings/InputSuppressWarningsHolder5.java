@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.suppresswarnings;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
