@@ -41,7 +41,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SuppressWarningsHolder.class, SuppressWarningsHolderTest.class })
-public class SuppressWarningsHolderTest extends BaseCheckTestSupport {
+public class SuppressWarningsHolderTest extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator

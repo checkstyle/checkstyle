@@ -27,7 +27,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * The unit-test for the {@code NestedForDepthCheck}-checkstyle enhancement.
  * @see NestedForDepthCheck
  */
-public class NestedForDepthCheckTest extends BaseCheckTestSupport {
+public class NestedForDepthCheckTest extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator

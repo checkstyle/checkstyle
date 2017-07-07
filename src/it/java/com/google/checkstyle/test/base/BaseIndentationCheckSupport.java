@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class BaseIndentationCheckSupport extends BaseCheckTestSupport {
+public class BaseIndentationCheckSupport extends BaseTestSupport {
     private static final int TAB_WIDTH = 4;
 
     private static final Pattern NONEMPTY_LINE_REGEX =

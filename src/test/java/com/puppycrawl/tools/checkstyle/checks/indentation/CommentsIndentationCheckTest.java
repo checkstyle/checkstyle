@@ -28,7 +28,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
 *
 */
-public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
+public class CommentsIndentationCheckTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String filename) throws IOException {

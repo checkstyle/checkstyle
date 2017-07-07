@@ -38,7 +38,7 @@ import java.util.stream.Stream;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class AllChecksTest extends BaseCheckTestSupport {
+public class AllChecksTest extends BaseTestSupport {
     private static final Locale[] ALL_LOCALES = {
         Locale.GERMAN,
         new Locale("es"),
@@ -243,7 +243,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
             }
             else {
                 // Checks which have TreeWalker as a parent.
-                BaseCheckTestSupport testSupport = new BaseCheckTestSupport() {
+                BaseTestSupport testSupport = new BaseTestSupport() {
                     @Override
                     protected DefaultConfiguration createCheckerConfig(Configuration config) {
                         final DefaultConfiguration dc = new DefaultConfiguration("root");

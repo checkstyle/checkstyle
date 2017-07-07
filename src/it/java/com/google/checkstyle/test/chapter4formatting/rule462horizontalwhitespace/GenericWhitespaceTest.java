@@ -24,10 +24,10 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class GenericWhitespaceTest extends BaseCheckTestSupport {
+public class GenericWhitespaceTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String fileName) throws IOException {

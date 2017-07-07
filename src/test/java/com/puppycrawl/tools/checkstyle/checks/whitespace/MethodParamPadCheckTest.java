@@ -32,14 +32,14 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class MethodParamPadCheckTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before

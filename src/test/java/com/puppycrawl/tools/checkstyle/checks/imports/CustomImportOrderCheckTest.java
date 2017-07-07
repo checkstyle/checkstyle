@@ -36,14 +36,14 @@ import java.lang.reflect.Method;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class CustomImportOrderCheckTest extends BaseCheckTestSupport {
+public class CustomImportOrderCheckTest extends BaseTestSupport {
     /** Shortcuts to make code more compact. */
     private static final String STATIC = CustomImportOrderCheck.STATIC_RULE_GROUP;
     private static final String SAME = CustomImportOrderCheck.SAME_PACKAGE_RULE_GROUP;

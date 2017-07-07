@@ -37,7 +37,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ImportOrderOption.class)
-public class ImportOrderCheckTest extends BaseCheckTestSupport {
+public class ImportOrderCheckTest extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator

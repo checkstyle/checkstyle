@@ -36,7 +36,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.xml.sax.InputSource;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.FilterSet;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SuppressionsLoader.class, SuppressionsLoaderTest.class })
-public class SuppressionsLoaderTest extends BaseCheckTestSupport {
+public class SuppressionsLoaderTest extends BaseTestSupport {
     @Rule
     public final ExpectedException thrown = ExpectedException.none();
 

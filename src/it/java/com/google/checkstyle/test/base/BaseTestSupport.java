@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class BaseCheckTestSupport {
+public class BaseTestSupport {
     private static final Pattern WARN_PATTERN = CommonUtils
             .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\s?warn\\s?[*]/");
 

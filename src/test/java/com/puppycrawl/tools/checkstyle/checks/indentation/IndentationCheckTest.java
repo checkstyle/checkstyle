@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Unit test for IndentationCheck.
  * @author  jrichard
  */
-public class IndentationCheckTest extends BaseCheckTestSupport {
+public class IndentationCheckTest extends BaseTestSupport {
     private static final Pattern LINE_WITH_COMMENT_REGEX =
                     Pattern.compile(".*?//indent:(\\d+)(?: ioffset:(\\d+))?"
                         + " exp:(>=)?(\\d+(?:,\\d+)*?)( warn)?$");

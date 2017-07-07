@@ -41,7 +41,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -53,7 +53,7 @@ import nl.jqno.equalsverifier.Warning;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({SuppressionFilter.class, CommonUtils.class})
-public class SuppressionFilterTest extends BaseCheckTestSupport {
+public class SuppressionFilterTest extends BaseTestSupport {
 
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();

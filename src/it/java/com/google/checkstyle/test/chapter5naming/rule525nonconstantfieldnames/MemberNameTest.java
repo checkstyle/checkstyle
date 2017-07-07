@@ -25,11 +25,11 @@ import java.io.IOException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class MemberNameTest extends BaseCheckTestSupport {
+public class MemberNameTest extends BaseTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
     private static Configuration checkConfig;

@@ -76,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class CheckerTest extends BaseCheckTestSupport {
+public class CheckerTest extends BaseTestSupport {
 
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();

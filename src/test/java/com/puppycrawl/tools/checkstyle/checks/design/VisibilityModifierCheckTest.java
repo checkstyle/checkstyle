@@ -30,7 +30,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VisibilityModifierCheckTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     private Checker getChecker() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);

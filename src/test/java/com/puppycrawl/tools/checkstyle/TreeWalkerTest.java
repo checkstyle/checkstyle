@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class TreeWalkerTest extends BaseCheckTestSupport {
+public class TreeWalkerTest extends BaseTestSupport {
     @Rule
     public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 

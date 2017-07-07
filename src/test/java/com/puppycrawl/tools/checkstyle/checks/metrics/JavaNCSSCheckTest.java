@@ -29,7 +29,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Lars Ködderitzsch
  */
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
-public class JavaNCSSCheckTest extends BaseCheckTestSupport {
+public class JavaNCSSCheckTest extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator

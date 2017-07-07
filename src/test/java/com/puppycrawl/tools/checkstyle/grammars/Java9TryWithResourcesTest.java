@@ -24,7 +24,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Tests Java 9 try-with-resources can be parsed.
  * @author checkstyle team
  */
-public class Java9TryWithResourcesTest extends BaseCheckTestSupport {
+public class Java9TryWithResourcesTest extends BaseTestSupport {
 
     @Override
     protected String getNonCompilablePath(String filename) throws IOException {

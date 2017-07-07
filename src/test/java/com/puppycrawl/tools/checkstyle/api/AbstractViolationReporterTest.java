@@ -27,7 +27,7 @@ import java.util.SortedSet;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * @author lkuehne
  */
-public class AbstractViolationReporterTest extends BaseCheckTestSupport {
+public class AbstractViolationReporterTest extends BaseTestSupport {
     private final AbstractCheck emptyCheck = new EmptyCheck();
 
     private static Method getGetMessageBundleMethod() throws Exception {
