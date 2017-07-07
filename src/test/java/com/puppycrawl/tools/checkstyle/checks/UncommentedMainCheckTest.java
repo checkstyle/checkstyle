@@ -39,7 +39,10 @@ public class UncommentedMainCheckTest
     extends BaseCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "misc" + File.separator
+                + "uncommentedmain" + File.separator
+                + filename);
     }
 
     @Test
