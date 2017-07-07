@@ -28,7 +28,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.Converter;
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultContext;
@@ -131,6 +134,29 @@ public class AutomaticBeanTest {
         }
         catch (IllegalStateException ex) {
             assertEquals("null,wrongVal,0,someValue", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testRegisterIntegralTypes() throws Exception {
+        final ConvertUtilsBeanStub convertUtilsBean = new ConvertUtilsBeanStub();
+        Whitebox.invokeMethod(AutomaticBean.class, "registerIntegralTypes", convertUtilsBean);
+        assertEquals("Number of converters registered differs from expected",
+                81, convertUtilsBean.getRegisterCount());
+    }
+
+    private static class ConvertUtilsBeanStub extends ConvertUtilsBean {
+
+        private int registerCount;
+
+        @Override
+        public void register(Converter converter, Class<?> clazz) {
+            super.register(converter, clazz);
+            registerCount++;
+        }
+
+        public int getRegisterCount() {
+            return registerCount;
         }
     }
 
