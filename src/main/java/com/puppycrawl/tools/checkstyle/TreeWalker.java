@@ -628,7 +628,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         slComment.setLineNo(token.getLine());
 
         final DetailAST slCommentContent = new DetailAST();
-        slCommentContent.initialize(token);
         slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // column counting begins from 0
@@ -656,7 +655,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         blockComment.setLineNo(token.getLine());
 
         final DetailAST blockCommentContent = new DetailAST();
-        blockCommentContent.initialize(token);
         blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // column counting begins from 0

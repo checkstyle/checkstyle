@@ -35,6 +35,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +48,7 @@ import org.mockito.internal.util.reflection.Whitebox;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
@@ -55,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
+import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class TreeWalkerTest extends BaseCheckTestSupport {
@@ -395,6 +398,43 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains(message));
         }
+    }
+
+    @Test
+    public void testAppendHiddenBlockCommentNodes() throws Exception {
+        final DetailAST root =
+            TestUtils.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
+
+        final Optional<DetailAST> blockComment = TestUtils.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN);
+
+        assertTrue(blockComment.isPresent());
+
+        final DetailAST commentContent = blockComment.get().getFirstChild();
+        final DetailAST commentEnd = blockComment.get().getLastChild();
+
+        assertEquals("Unexpected line number", 3, commentContent.getLineNo());
+        assertEquals("Unexpected column number", 2, commentContent.getColumnNo());
+        assertEquals("Unexpected line number", 9, commentEnd.getLineNo());
+        assertEquals("Unexpected column number", 1, commentEnd.getColumnNo());
+    }
+
+    @Test
+    public void testAppendHiddenSingleLineCommentNodes() throws Exception {
+        final DetailAST root =
+            TestUtils.parseFile(new File(getPath("InputTreeWalkerHiddenComments.java")));
+
+        final Optional<DetailAST> singleLineComment = TestUtils.findTokenInAstByPredicate(root,
+            ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
+        assertTrue(singleLineComment.isPresent());
+
+        final DetailAST commentContent = singleLineComment.get().getFirstChild();
+
+        assertEquals("Unexpected token type", TokenTypes.COMMENT_CONTENT, commentContent.getType());
+        assertEquals("Unexpected line number", 13, commentContent.getLineNo());
+        assertEquals("Unexpected column number", 2, commentContent.getColumnNo());
+        assertTrue("Unexpected comment content",
+            commentContent.getText().startsWith(" inline comment"));
     }
 
     @Test

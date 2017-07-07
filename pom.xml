@@ -2078,7 +2078,13 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.*</param>
               </targetTests>
-              <mutationThreshold>89</mutationThreshold>
+              <excludedMethods>
+                <!-- destroy in TreeWalker was added in case module had to free up resources before ending,
+                but currently it does nothing, so we cannot check it. If we remove this destroy we would have
+                to remove all of them as they are chained together, so we just exclude it from pitest check. -->
+                <param>destroy</param>
+              </excludedMethods>
+              <mutationThreshold>94</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
