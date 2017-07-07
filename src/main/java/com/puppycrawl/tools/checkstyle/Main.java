@@ -49,6 +49,7 @@ import com.google.common.io.Closeables;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -58,6 +59,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  **/
 public final class Main {
+    /**
+     * A key pointing to the error counter
+     * message in the "messages.properties" file.
+     */
+    public static final String ERROR_COUNTER = "Main.errorCounter";
+    /**
+     * A key pointing to the load properties exception
+     * message in the "messages.properties" file.
+     */
+    public static final String LOAD_PROPERTIES_EXCEPTION = "Main.loadProperties";
+    /**
+     * A key pointing to the create listener exception
+     * message in the "messages.properties" file.
+     */
+    public static final String CREATE_LISTENER_EXCEPTION = "Main.createListener";
     /** Logger for Main. */
     private static final Log LOG = LogFactory.getLog(Main.class);
 
@@ -211,7 +227,10 @@ public final class Main {
         finally {
             // return exit code base on validation of Checker
             if (errorCounter != 0 && !cliViolations) {
-                System.out.println(String.format("Checkstyle ends with %d errors.", errorCounter));
+                final LocalizedMessage errorCounterMessage = new LocalizedMessage(0,
+                        Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
+                        new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
+                System.out.println(errorCounterMessage.getMessage());
             }
             if (exitStatus != 0) {
                 System.exit(exitStatus);
@@ -531,8 +550,10 @@ public final class Main {
             properties.load(fis);
         }
         catch (final IOException ex) {
-            throw new CheckstyleException(String.format(
-                    "Unable to load properties from file '%s'.", file.getAbsolutePath()), ex);
+            final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
+                    new String[] {file.getAbsolutePath()}, null, Main.class, null);
+            throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
         }
         finally {
             Closeables.closeQuietly(fis);
@@ -579,9 +600,11 @@ public final class Main {
             if (closeOutputStream) {
                 CommonUtils.close(out);
             }
-            throw new IllegalStateException(String.format(
-                    "Invalid output format. Found '%s' but expected '%s' or '%s'.",
-                    format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME));
+            final LocalizedMessage outputFormatExceptionMessage = new LocalizedMessage(0,
+                    Definitions.CHECKSTYLE_BUNDLE, CREATE_LISTENER_EXCEPTION,
+                    new String[] {format, PLAIN_FORMAT_NAME, XML_FORMAT_NAME}, null,
+                    Main.class, null);
+            throw new IllegalStateException(outputFormatExceptionMessage.getMessage());
         }
 
         return listener;
