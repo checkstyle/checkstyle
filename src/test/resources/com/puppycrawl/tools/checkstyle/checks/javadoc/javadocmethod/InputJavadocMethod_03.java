@@ -1,17 +1,16 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
-
-
-/** Test 1. */
-public class Input_01 {
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
+/** Test 3. */
+public class InputJavadocMethod_03 {
 
     /** Do 1.
      * @throws TestException1 when error occurrs.
+     * @throws TestException2 when error occurrs.
      */
-    public void doStuff1() throws TestException1 {
+    public void doStuff1() throws TestException1, TestException2 {
         try {
             doStuff2();
         } catch (final TestException2 e) { }
-        throw new Input_01().new TestException1("");
+        throw new InputJavadocMethod_03().new TestException1("");
     }
     /** Do 2.
      * @throws TestException2 when error occurrs.

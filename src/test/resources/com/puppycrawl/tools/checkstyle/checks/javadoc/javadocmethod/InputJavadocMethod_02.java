@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 /** Test 2. */
-public class Input_02 {
+public class InputJavadocMethod_02 {
 
     /** Exception 1.
      */
@@ -29,7 +29,7 @@ public class Input_02 {
         try {
             doStuff2();
         } catch (final TestException2 e) { }
-        throw new Input_02().new TestException1("");
+        throw new InputJavadocMethod_02().new TestException1("");
     }
     /** Do 2.
      * @throws TestException2 when error occurrs.
