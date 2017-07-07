@@ -120,6 +120,20 @@ public class JavadocUtilsTest {
     }
 
     @Test
+    public void testInlineTagPositions() {
+        final String[] text = {"/** Also {@link Name value} */"};
+        final Comment comment = new Comment(text, 1, 0, text[0].length());
+
+        final List<JavadocTag> tags = JavadocUtils.getJavadocTags(
+            comment, JavadocUtils.JavadocTagType.INLINE).getValidTags();
+
+        assertEquals(1, tags.size());
+
+        assertEquals("Unexpected line number", 0, tags.get(0).getLineNo());
+        assertEquals("Unexpected column number", 10, tags.get(0).getColumnNo());
+    }
+
+    @Test
     public void testInvalidTags() {
         final String[] text = {
             "/** @fake block",
@@ -290,5 +304,28 @@ public class JavadocUtilsTest {
         final DetailNode result = JavadocUtils.findFirstToken(javadocNode, JavadocTokenTypes.BODY);
 
         assertEquals(body, result);
+    }
+
+    @Test
+    public void testGetPreviousSibling() {
+        final JavadocNodeImpl root = new JavadocNodeImpl();
+
+        final JavadocNodeImpl node = new JavadocNodeImpl();
+        node.setIndex(1);
+        node.setParent(root);
+
+        final JavadocNodeImpl previousNode = new JavadocNodeImpl();
+        previousNode.setIndex(0);
+        node.setParent(root);
+
+        root.setChildren(previousNode, node);
+
+        assertEquals("Unexpected node", previousNode, JavadocUtils.getPreviousSibling(node));
+    }
+
+    @Test
+    public void testGetTokenNames() {
+        assertEquals("Unexpected token name",
+            "HTML_COMMENT", JavadocUtils.getTokenName(20073));
     }
 }

@@ -265,6 +265,21 @@ public class CheckUtilsTest {
     }
 
     @Test
+    public void testGetFirstNode1() throws Exception {
+        final DetailAST child = new DetailAST();
+        child.setLineNo(5);
+        child.setColumnNo(6);
+
+        final DetailAST root = new DetailAST();
+        root.setLineNo(5);
+        root.setColumnNo(6);
+
+        root.addChild(child);
+
+        assertEquals("Unexpected node", root, CheckUtils.getFirstNode(root));
+    }
+
+    @Test
     public void testIsReceiverParameter() throws Exception {
         final DetailAST objBlock = getNodeFromFile(TokenTypes.OBJBLOCK);
         final DetailAST methodWithReceiverParameter = objBlock.getLastChild().getPreviousSibling();
