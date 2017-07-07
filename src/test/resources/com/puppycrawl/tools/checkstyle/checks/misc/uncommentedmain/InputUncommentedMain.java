@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.uncommentedmain;
 
 /**
  * Test case for UncommentedMainCheck
