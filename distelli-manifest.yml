@@ -11,16 +11,4 @@ checkstyle/checkstyle:
         exit 0;
       fi
     - command -v jdk_switcher > /dev/null && jdk_switcher use oraclejdk8
-    - mvn clean install -Pno-validations
-    - git clone https://github.com/checkstyle/contribution && cd contribution/checkstyle-tester
-    - sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
-    - sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
-    - ./launch.sh -Dcheckstyle.config.location=checks-only-javadoc-error.xml
-    - |
-      if grep "Got an exception" target/site/checkstyle.html; then
-        echo "[ERROR] Exceptions detected"
-        exit 1
-      else
-        echo "[INFO] Finished without exceptions"
-        exit 0
-      fi
+    - check-only-javadoc-error.sh
