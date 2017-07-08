@@ -59,7 +59,10 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
 
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "misc" + File.separator
+                + "uniqueproperties" + File.separator
+                + filename);
     }
 
     /* Additional test for jacoco, since valueOf()
