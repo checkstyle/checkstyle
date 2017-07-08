@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 
 
@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  * /^ WARN/   Some Javadoc.<p> //WARN
  *
  */
-class InputIncorrectJavaDocParagraph {
+class InputJavaDocParagraphIncorrect {
 
     /**
      * Some Javadoc.<P>  //WARN
