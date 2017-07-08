@@ -2123,7 +2123,7 @@
       </build>
     </profile>
     <profile>
-      <id>pitest-checkstyle-api-filters</id>
+      <id>pitest-checkstyle-api</id>
       <build>
         <plugins>
           <plugin>
@@ -2133,8 +2133,6 @@
             <configuration>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
-                <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
-                <param>com.puppycrawl.tools.checkstyle.filters.*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
@@ -2146,7 +2144,45 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
               </targetTests>
-              <mutationThreshold>90</mutationThreshold>
+              <mutationThreshold>88</mutationThreshold>
+              <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
+              <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
+              <threads>${pitest.plugin.threads}</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>pitest-checkstyle-filters</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.plugin.version}</version>
+            <configuration>
+              <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
+                <param>com.puppycrawl.tools.checkstyle.filters.*</param>
+              </targetClasses>
+              <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
+                <param>com.puppycrawl.tools.checkstyle.filters.*</param>
+              </targetTests>
+              <excludedMethods>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4396 -->
+                <param>compareTo</param>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4396 -->
+                <param>findNearestMatch</param>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4396 -->
+                <param>tagSuppressions</param>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4396 -->
+                <param>tagSuppressions</param>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4396 -->
+                <param>startElement</param>
+              </excludedMethods>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>

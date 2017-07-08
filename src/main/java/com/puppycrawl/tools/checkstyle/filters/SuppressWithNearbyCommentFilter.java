@@ -333,7 +333,7 @@ public class SuppressWithNearbyCommentFilter
                     throw new IllegalArgumentException("unable to parse influence from '" + text
                             + "' using " + filter.influenceFormat, ex);
                 }
-                if (influence >= 0) {
+                if (influence >= 1) {
                     firstLine = line;
                     lastLine = line + influence;
                 }
