@@ -122,20 +122,6 @@ public class BaseCheckTestSupport {
 
     /**
      * Returns canonical path for the file with the given file name.
-     * The path is formed base on the sources location.
-     * This implementation uses 'src/test/java/com/puppycrawl/tools/checkstyle/'
-     * as a src location.
-     * @param filename file name.
-     * @return canonical path for the file with the given file name.
-     * @throws IOException if I/O exception occurs while forming the path.
-     */
-    protected static String getSrcPath(String filename) throws IOException {
-        return new File("src/test/java/com/puppycrawl/tools/checkstyle/" + filename)
-                .getCanonicalPath();
-    }
-
-    /**
-     * Returns canonical path for the file with the given file name.
      * The path is formed base on the non-compilable resources location.
      * This implementation uses 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/'
      * as a non-compilable resource location.
