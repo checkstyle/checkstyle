@@ -2032,7 +2032,24 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.MainTest</param>
               </targetTests>
-              <mutationThreshold>93</mutationThreshold>
+              <excludedMethods>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4399 -->
+                <param>main</param>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4399 -->
+                <param>createListener</param>
+              </excludedMethods>
+              <avoidCallsTo>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4399 -->
+                <avoidCallsTo>com.google.common.io.Closeables</avoidCallsTo>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4399 -->
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.CommonUtils</avoidCallsTo>
+                <!-- till https://github.com/checkstyle/checkstyle/issues/4399 -->
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.api.RootModule</avoidCallsTo>
+                <!-- add default suppressions -->
+                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+                <avoidCallsTo>java.util.logging</avoidCallsTo>
+              </avoidCallsTo>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2113,7 +2130,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
               </targetTests>
-              <mutationThreshold>84</mutationThreshold>
+              <mutationThreshold>90</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
