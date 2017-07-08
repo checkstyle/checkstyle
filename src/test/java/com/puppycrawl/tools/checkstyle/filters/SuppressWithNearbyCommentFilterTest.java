@@ -259,6 +259,25 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
+    public void testInfluenceFormat() throws Exception {
+        final DefaultConfiguration filterConfig =
+                createFilterConfig(SuppressWithNearbyCommentFilter.class);
+        filterConfig.addAttribute("influenceFormat", "1");
+
+        final String[] suppressed = {
+            "14:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "15:17: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "16:59: Name 'A3' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "18:17: Name 'B1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:17: Name 'B2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "20:59: Name 'B3' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "80:59: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "81:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+        verifySuppressed(filterConfig, suppressed);
+    }
+
+    @Test
     public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createFilterConfig(SuppressWithNearbyCommentFilter.class);
