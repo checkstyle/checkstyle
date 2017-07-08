@@ -2096,8 +2096,24 @@
                 but currently it does nothing, so we cannot check it. If we remove this destroy we would have
                 to remove all of them as they are chained together, so we just exclude it from pitest check. -->
                 <param>destroy</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>parseJavadocAsParseTree</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>createJavadocNode</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>getNextSibling</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>isPositionGreater</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>getExternalResourceLocations</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>countLinesColumns</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>getExternalResourceLocations</param>
+                <!--till https://github.com/checkstyle/checkstyle/issues/4398 -->
+                <param>parse</param>
               </excludedMethods>
-              <mutationThreshold>94</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
