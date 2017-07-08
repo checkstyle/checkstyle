@@ -420,16 +420,13 @@ public class ConfigurationLoaderTest {
             final Constructor<?> ctorParent = aClassParent.getDeclaredConstructor(
                     PropertyResolver.class, boolean.class, ThreadModeSettings.class);
             ctorParent.setAccessible(true);
+            final Object objParent = ctorParent.newInstance(null, true, null);
+
             final Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                     + "ConfigurationLoader$InternalLoader");
-            Constructor<?> constructor = null;
-            final Constructor<?>[] constructors = aClass.getDeclaredConstructors();
-            for (Constructor<?> constr: constructors) {
-                constr.setAccessible(true);
-                constructor = constr;
-            }
+            final Constructor<?> constructor = aClass.getConstructor(objParent.getClass());
+            constructor.setAccessible(true);
 
-            final Object objParent = ctorParent.newInstance(null, true, null);
             final Object obj = constructor.newInstance(objParent);
 
             final Class<?>[] param = new Class<?>[] {String.class, String.class,
