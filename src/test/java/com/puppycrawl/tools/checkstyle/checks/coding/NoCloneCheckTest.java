@@ -27,14 +27,14 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
  * NoCloneCheck test.
  */
 public class NoCloneCheckTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator

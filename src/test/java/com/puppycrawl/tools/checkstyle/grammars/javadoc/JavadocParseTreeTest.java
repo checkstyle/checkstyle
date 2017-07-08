@@ -24,9 +24,9 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 
-public class JavadocParseTreeTest extends BaseCheckTestSupport {
+public class JavadocParseTreeTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String filename) throws IOException {

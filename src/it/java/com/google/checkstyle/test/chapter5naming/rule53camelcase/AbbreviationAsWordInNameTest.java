@@ -24,11 +24,11 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck;
 
-public class AbbreviationAsWordInNameTest extends BaseCheckTestSupport {
+public class AbbreviationAsWordInNameTest extends BaseTestSupport {
 
     private static final String MSG_KEY = "abbreviation.as.word";
     private final Class<AbbreviationAsWordInNameCheck> clazz = AbbreviationAsWordInNameCheck.class;

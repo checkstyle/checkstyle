@@ -39,10 +39,10 @@ import antlr.ParserSharedInputState;
 import antlr.SemanticException;
 import antlr.TokenBuffer;
 import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
-public class AstRegressionTest extends BaseCheckTestSupport {
+public class AstRegressionTest extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("grammars" + File.separator + filename);

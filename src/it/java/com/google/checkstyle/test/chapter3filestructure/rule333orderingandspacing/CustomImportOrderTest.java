@@ -24,12 +24,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class CustomImportOrderTest extends BaseCheckTestSupport {
+public class CustomImportOrderTest extends BaseTestSupport {
 
     /** Shortcuts to make code more compact. */
     private static final String MSG_LINE_SEPARATOR = CustomImportOrderCheck.MSG_LINE_SEPARATOR;

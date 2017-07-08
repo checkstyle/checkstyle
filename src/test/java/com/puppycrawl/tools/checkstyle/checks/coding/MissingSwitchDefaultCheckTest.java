@@ -28,11 +28,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MissingSwitchDefaultCheckTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before

@@ -27,11 +27,11 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NoWhitespaceBeforeCheckTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before

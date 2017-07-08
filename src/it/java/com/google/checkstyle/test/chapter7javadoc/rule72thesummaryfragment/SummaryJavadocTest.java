@@ -24,12 +24,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class SummaryJavadocTest extends BaseCheckTestSupport {
+public class SummaryJavadocTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String fileName) throws IOException {

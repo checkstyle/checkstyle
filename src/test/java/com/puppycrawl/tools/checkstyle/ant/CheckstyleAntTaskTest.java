@@ -58,7 +58,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.CheckerStub;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
@@ -70,7 +70,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({CheckstyleAntTask.class, Closeables.class})
-public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
+public class CheckstyleAntTaskTest extends BaseTestSupport {
 
     private static final String FLAWLESS_INPUT_DIR = "ant/checkstyleanttask/flawless/";
     private static final String FLAWLESS_INPUT =

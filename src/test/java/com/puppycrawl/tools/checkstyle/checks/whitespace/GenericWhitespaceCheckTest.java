@@ -36,14 +36,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class GenericWhitespaceCheckTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before

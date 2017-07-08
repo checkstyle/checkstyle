@@ -35,13 +35,13 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class JavadocMethodCheckTest extends BaseCheckTestSupport {
+public class JavadocMethodCheckTest extends BaseTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before

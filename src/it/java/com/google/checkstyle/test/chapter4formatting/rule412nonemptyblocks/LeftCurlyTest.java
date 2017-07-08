@@ -26,11 +26,11 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 
-public class LeftCurlyTest extends BaseCheckTestSupport {
+public class LeftCurlyTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String fileName) throws IOException {

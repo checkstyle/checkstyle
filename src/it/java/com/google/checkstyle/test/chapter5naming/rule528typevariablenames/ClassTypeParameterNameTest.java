@@ -24,10 +24,10 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class ClassTypeParameterNameTest extends BaseCheckTestSupport {
+public class ClassTypeParameterNameTest extends BaseTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
 

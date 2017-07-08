@@ -24,11 +24,11 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 
-public class CommentsIndentationTest extends BaseCheckTestSupport {
+public class CommentsIndentationTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String fileName) throws IOException {

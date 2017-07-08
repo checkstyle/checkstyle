@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 public class SuppressWithNearbyCommentFilterTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     private static final String[] ALL_MESSAGES = {
         "14:17: Name 'A1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         "15:17: Name 'A2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",

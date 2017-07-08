@@ -26,12 +26,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class OuterTypeFilenameTest extends BaseCheckTestSupport {
+public class OuterTypeFilenameTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String fileName) throws IOException {

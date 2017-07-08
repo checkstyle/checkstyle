@@ -26,11 +26,11 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class AbbreviationAsWordInNameCheckTest extends BaseCheckTestSupport {
+public class AbbreviationAsWordInNameCheckTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String filename) throws IOException {

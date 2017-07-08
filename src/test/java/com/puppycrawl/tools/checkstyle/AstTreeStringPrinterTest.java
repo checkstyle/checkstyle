@@ -34,7 +34,7 @@ import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
-public class AstTreeStringPrinterTest extends BaseCheckTestSupport {
+public class AstTreeStringPrinterTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String filename) throws IOException {

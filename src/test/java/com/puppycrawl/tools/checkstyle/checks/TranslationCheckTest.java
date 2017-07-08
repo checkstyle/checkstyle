@@ -43,7 +43,7 @@ import org.mockito.Captor;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TranslationCheckTest extends BaseCheckTestSupport {
+public class TranslationCheckTest extends BaseTestSupport {
     @Captor
     private ArgumentCaptor<SortedSet<LocalizedMessage>> captor;
 

@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class SuppressWarningsFilterTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
     private static final String[] ALL_MESSAGES = {
         "16: Missing a Javadoc comment.",
         "17: Missing a Javadoc comment.",

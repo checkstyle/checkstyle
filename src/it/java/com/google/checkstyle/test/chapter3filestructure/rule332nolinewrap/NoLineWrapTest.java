@@ -24,13 +24,13 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.google.checkstyle.test.base.BaseCheckTestSupport;
+import com.google.checkstyle.test.base.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class NoLineWrapTest extends BaseCheckTestSupport {
+public class NoLineWrapTest extends BaseTestSupport {
 
     @Override
     protected String getPath(String fileName) throws IOException {

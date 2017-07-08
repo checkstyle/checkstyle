@@ -38,7 +38,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Unit test for WriteTagCheck.
  * @author Daniel Grenner
  */
-public class WriteTagCheckTest extends BaseCheckTestSupport {
+public class WriteTagCheckTest extends BaseTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before

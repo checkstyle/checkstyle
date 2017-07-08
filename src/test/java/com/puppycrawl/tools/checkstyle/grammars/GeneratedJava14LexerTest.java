@@ -27,7 +27,7 @@ import java.io.IOException;
 import org.junit.Assume;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Rick Giles
  */
 public class GeneratedJava14LexerTest
-    extends BaseCheckTestSupport {
+    extends BaseTestSupport {
 
     /**
      * <p>Is {@code true} if this is Windows.</p>

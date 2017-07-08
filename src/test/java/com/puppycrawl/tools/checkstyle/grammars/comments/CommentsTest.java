@@ -25,10 +25,10 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Comment;
 
-public class CommentsTest extends BaseCheckTestSupport {
+public class CommentsTest extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("grammars" + File.separator

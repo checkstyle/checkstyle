@@ -28,11 +28,11 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
-public class DefaultComesLastCheckTest extends BaseCheckTestSupport {
+public class DefaultComesLastCheckTest extends BaseTestSupport {
 
     private DefaultConfiguration checkConfig;
 

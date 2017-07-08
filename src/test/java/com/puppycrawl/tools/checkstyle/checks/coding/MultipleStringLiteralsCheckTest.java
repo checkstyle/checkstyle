@@ -27,10 +27,10 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.BaseTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public class MultipleStringLiteralsCheckTest extends BaseCheckTestSupport {
+public class MultipleStringLiteralsCheckTest extends BaseTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
