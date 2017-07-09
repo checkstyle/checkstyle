@@ -151,8 +151,8 @@ public class AstRegressionTest extends BaseCheckTestSupport {
 
     @Test
     public void testNewlineCr() throws Exception {
-        verifyAst(super.getPath("/checks/InputNewlineCrAtEndOfFileAst.txt"),
-                super.getPath("/checks/InputAstRegressionNewlineCrAtEndOfFile.java"), true);
+        verifyAst(getPath("InputNewlineCrAtEndOfFileAst.txt"),
+                getPath("InputAstRegressionNewlineCrAtEndOfFile.java"), true);
     }
 
     @Test
