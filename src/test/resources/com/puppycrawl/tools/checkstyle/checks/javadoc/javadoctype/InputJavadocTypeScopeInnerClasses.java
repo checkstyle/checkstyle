@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**
    Checks javadoc scoping for inner classes.
@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
    @author lkuehne
  */
-public class InputScopeInnerClasses
+public class InputJavadocTypeScopeInnerClasses
 {
     public class InnerPublic
     {

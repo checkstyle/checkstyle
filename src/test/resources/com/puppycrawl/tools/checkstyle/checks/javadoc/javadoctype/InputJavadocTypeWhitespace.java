@@ -4,13 +4,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com . puppycrawl
     .tools.
-    checkstyle.checks.javadoc;
+    checkstyle.checks.javadoc.javadoctype;
 
 /**
  * Class for testing javadoc issues.
  * error missing author tag
  **/
-class InputWhitespace
+class InputJavadocTypeWhitespace
 {
     /** another check */
     void donBradman(Runnable aRun)
@@ -29,7 +29,7 @@ class InputWhitespace
     /** bug 806243 (NoWhitespaceBeforeCheck error for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputWhitespace() {
+        Object o = new InputJavadocTypeWhitespace() {
             private int j ;
         };
     }
