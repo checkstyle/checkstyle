@@ -37,7 +37,8 @@ public class JavadocTagContinuationIndentationCheckTest
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator + filename);
+                + "javadoc" + File.separator
+                + "javadoctagcontinuationindentation" + File.separator + filename);
     }
 
     @Test
@@ -54,7 +55,9 @@ public class JavadocTagContinuationIndentationCheckTest
         final DefaultConfiguration checkConfig =
                 createCheckConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputGuavaFalsePositive.java"), expected);
+        verify(checkConfig,
+               getPath("InputJavadocTagContinuationIndentationGuavaFalsePositive.java"),
+               expected);
     }
 
     @Test
@@ -76,7 +79,7 @@ public class JavadocTagContinuationIndentationCheckTest
             "322: " + getCheckMessage(MSG_KEY, 4),
             "324: " + getCheckMessage(MSG_KEY, 4),
         };
-        verify(checkConfig, getPath("InputJavaDocTagContinuationIndentation.java"),
+        verify(checkConfig, getPath("InputJavadocTagContinuationIndentation.java"),
                 expected);
     }
 
@@ -89,7 +92,7 @@ public class JavadocTagContinuationIndentationCheckTest
             "7: " + getCheckMessage(MSG_KEY, 3),
             "19: " + getCheckMessage(MSG_KEY, 3),
         };
-        verify(checkConfig, getPath("InputJavaDocTagContinuationIndentationOffset3.java"),
+        verify(checkConfig, getPath("InputJavadocTagContinuationIndentationOffset3.java"),
                 expected);
     }
 }
