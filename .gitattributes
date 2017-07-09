@@ -1,3 +1,4 @@
-/src/test/resources/com/puppycrawl/tools/checkstyle/checks/InputNewlineLfAtEndOfFile.java eol=lf
-/src/test/resources/com/puppycrawl/tools/checkstyle/checks/InputNewlineCrlfAtEndOfFile.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/misc/newlineatendoffile/InputNewlineLfAtEndOfFile.java eol=lf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/misc/newlineatendoffile/InputNewlineCrlfAtEndOfFile.java eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/InputNewlineCrAtEndOfFile.java -text
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/misc/newlineatendoffile/InputNewlineCrAtEndOfFile.java -text

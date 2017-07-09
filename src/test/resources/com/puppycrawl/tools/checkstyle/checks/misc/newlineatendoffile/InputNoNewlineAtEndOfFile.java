@@ -2,7 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks;
+package com.puppycrawl.tools.checkstyle.checks.misc.newlineatendoffile;
 
 /**
  * Test case for detection of missing newlines at EOF, using the
