@@ -919,17 +919,6 @@ public class InputIllegalImport { }
             <td>4.0</td>
           </tr>
           <tr>
-            <td>url</td>
-            <td>
-              URL of the file containing the import control configuration.
-              This property is deprecated. Please use the file property to load configurations
-              from URLs.
-            </td>
-            <td><a href="property_types.html#uri">URI</a></td>
-            <td><code>null</code></td>
-            <td>4.4</td>
-          </tr>
-          <tr>
             <td>path</td>
             <td>
               Regular expression of file paths to which this check should apply. Files that
