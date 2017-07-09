@@ -26,6 +26,7 @@ env:
     - PROFILE="-Ppitest-checks-regexp,no-validations"
     - PROFILE="-Ppitest-checks-sizes,no-validations"
     - PROFILE="-Ppitest-checks-whitespace,no-validations"
+    - PROFILE="-Ppitest-checks-misc,no-validations"
     - PROFILE="-Ppitest-checkstyle-gui,no-validations"
 
 branches:
