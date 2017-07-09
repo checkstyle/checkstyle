@@ -60,7 +60,10 @@ public class NewlineAtEndOfFileCheckTest
 
     @Override
     protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator + filename);
+        return super.getPath("checks" + File.separator
+                + "misc" + File.separator
+                + "newlineatendoffile" + File.separator
+                + filename);
     }
 
     @Test

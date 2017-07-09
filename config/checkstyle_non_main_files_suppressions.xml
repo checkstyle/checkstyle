@@ -20,6 +20,6 @@
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/].*\.javadoc"/>
 
     <!--Empty file cannot have any new line at the end. -->
-    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]InputEmptyFile\.txt"/>
+    <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]misc[\\/]newlineatendoffile[\\/]InputEmptyFile\.txt"/>
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputRegressionEmptyAst\.txt"/>
 </suppressions>
