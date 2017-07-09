@@ -62,7 +62,6 @@
     <Match>
       <!-- false positive, beginTree is a kind of constructor for Checks -->
       <Or>
-        <Class name="com.puppycrawl.tools.checkstyle.checks.AbstractDeclarationCollector" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck" />
