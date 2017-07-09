@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import java.util.Arrays;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -78,7 +76,7 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
             .ignoreCase(ignoreCase)
             .build();
         final SinglelineDetector detector = new SinglelineDetector(options);
-        detector.processLines(Arrays.asList(getLines()));
+        detector.processLines(getFileContents().getText());
     }
 
     /**

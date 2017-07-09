@@ -237,14 +237,6 @@ public final class FileText {
     }
 
     /**
-     * Returns a list of lines.
-     * @return a list of all lines of the file
-     */
-    public List<String> getLines() {
-        return new ArrayList<>(Arrays.asList(lines));
-    }
-
-    /**
      * Returns an array of all lines.
      * {@code text.toLinesArray()} is equivalent to
      * {@code text.toArray(new String[text.size()])}.

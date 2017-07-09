@@ -19,8 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import java.util.List;
 import java.util.regex.Matcher;
+
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * A detector that matches individual lines.
@@ -54,12 +55,13 @@ class SinglelineDetector {
 
     /**
      * Processes a set of lines looking for matches.
-     * @param lines the lines to process.
+     * @param fileText {@link FileText} object contains the lines to process.
      */
-    public void processLines(List<String> lines) {
+    public void processLines(FileText fileText) {
         resetState();
         int lineNo = 0;
-        for (String line : lines) {
+        for (int index = 0; index < fileText.size(); index++) {
+            final String line = fileText.get(index);
             lineNo++;
             checkLine(lineNo, line, options.getPattern().matcher(line), 0);
         }

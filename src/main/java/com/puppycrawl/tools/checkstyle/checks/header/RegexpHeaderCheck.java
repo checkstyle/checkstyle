@@ -80,8 +80,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     @Override
     protected void processFiltered(File file, FileText fileText) {
         final int headerSize = getHeaderLines().size();
-        final List<String> lines = fileText.getLines();
-        final int fileSize = lines.size();
+        final int fileSize = fileText.size();
 
         if (headerSize - multiLines.length > fileSize) {
             log(1, MSG_HEADER_MISSING);
@@ -90,7 +89,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
             int headerLineNo = 0;
             int index;
             for (index = 0; headerLineNo < headerSize && index < fileSize; index++) {
-                final String line = lines.get(index);
+                final String line = fileText.get(index);
                 boolean isMatch = isMatch(line, headerLineNo);
                 while (!isMatch && isMultiLine(headerLineNo)) {
                     headerLineNo++;
