@@ -236,9 +236,6 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     private static final String ANNOTATION_ELEMENT_SINGLE_NAME =
             "value";
 
-    //not extending AbstractOptionCheck because check
-    //has more than one option type.
-
     /**
      * ElementStyle option.
      * @see #setElementStyle(String)
