@@ -1564,6 +1564,61 @@
     </profile>
 
     <profile>
+      <id>pitest-checks-misc</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.plugin.version}</version>
+            <configuration>
+              <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FileContentsHolder</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FileSetCheckLifecycle</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck</param>
+              </targetClasses>
+              <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FileContentsHolderTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FileSetCheckLifecycleTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolderTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
+              </targetTests>
+              <mutationThreshold>90</mutationThreshold>
+              <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
+              <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
+              <threads>${pitest.plugin.threads}</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>pitest-checks-annotation</id>
       <properties>
         <skipTests>true</skipTests>
