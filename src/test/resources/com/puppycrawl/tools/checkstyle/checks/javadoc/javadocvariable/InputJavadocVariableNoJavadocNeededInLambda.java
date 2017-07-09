@@ -1,8 +1,8 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 import java.util.function.Function;
 
-public class InputNoJavadocNeededInLambda {
+public class InputJavadocVariableNoJavadocNeededInLambda {
     private static final Function<String, String> FUNCTION1 = (String it) -> {
         String stuff = it;
         return stuff + it;
