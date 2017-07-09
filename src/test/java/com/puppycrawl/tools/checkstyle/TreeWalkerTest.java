@@ -150,7 +150,6 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         final DefaultConfiguration config = new DefaultConfiguration("default config");
         treeWalker.setTabWidth(1);
         treeWalker.configure(config);
-        treeWalker.setCacheFile(temporaryFolder.newFile().getPath());
 
         assertEquals("Invalid setter result", 1,
             Whitebox.getInternalState(treeWalker, "tabWidth"));
