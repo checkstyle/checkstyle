@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author max
  *     Some javadoc.
  */
-class InputJavaDocTagContinuationIndentation implements Serializable
+class InputJavadocTagContinuationIndentation implements Serializable
 {
 	/**
      * The client's first name.
