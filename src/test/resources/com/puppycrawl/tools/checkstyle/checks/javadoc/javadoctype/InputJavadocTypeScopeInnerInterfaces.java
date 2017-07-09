@@ -2,9 +2,9 @@
 // Test case file for checkstyle.
 // Created: 2001
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-public class InputScopeInnerInterfaces
+public class InputJavadocTypeScopeInnerInterfaces
 {
     // inner interfaces with different scopes
 
