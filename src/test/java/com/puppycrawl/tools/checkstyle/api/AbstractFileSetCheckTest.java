@@ -91,8 +91,7 @@ public class AbstractFileSetCheckTest {
 
         @Override
         protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
-            final List<String> lines = fileText.getLines();
-            if (lines.isEmpty()) {
+            if (fileText.size() == 0) {
                 log(1, MSG_KEY);
             }
         }

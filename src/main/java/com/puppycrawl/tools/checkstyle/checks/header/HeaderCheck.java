@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
@@ -91,13 +90,12 @@ public class HeaderCheck extends AbstractHeaderCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        final List<String> lines = fileText.getLines();
-        if (getHeaderLines().size() > lines.size()) {
+        if (getHeaderLines().size() > fileText.size()) {
             log(1, MSG_MISSING);
         }
         else {
             for (int i = 0; i < getHeaderLines().size(); i++) {
-                if (!isMatch(i, lines.get(i))) {
+                if (!isMatch(i, fileText.get(i))) {
                     log(i + 1, MSG_MISMATCH, getHeaderLines().get(i));
                     break;
                 }

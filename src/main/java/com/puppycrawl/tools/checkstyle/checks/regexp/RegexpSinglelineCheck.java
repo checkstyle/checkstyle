@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.io.File;
-import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -62,8 +61,7 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        final List<String> lines = fileText.getLines();
-        detector.processLines(lines);
+        detector.processLines(fileText);
     }
 
     /**

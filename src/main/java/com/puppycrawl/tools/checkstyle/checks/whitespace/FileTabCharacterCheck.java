@@ -48,7 +48,8 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
     @Override
     protected void processFiltered(File file, FileText fileText) {
         int lineNum = 0;
-        for (final String line : fileText.getLines()) {
+        for (int index = 0; index < fileText.size(); index++) {
+            final String line = fileText.get(index);
             lineNum++;
             final int tabPosition = line.indexOf('\t');
             if (tabPosition != -1) {

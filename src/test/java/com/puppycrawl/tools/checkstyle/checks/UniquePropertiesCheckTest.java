@@ -92,7 +92,7 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
     }
 
     /**
-     * Tests the {@link UniquePropertiesCheck#getLineNumber(List, String)}
+     * Tests the {@link UniquePropertiesCheck#getLineNumber(FileText, String)}
      * method return value.
      */
     @Test
@@ -101,10 +101,11 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
         testStrings.add("");
         testStrings.add("0 = 0");
         testStrings.add("445");
-        final int stringNumber =
-                UniquePropertiesCheck.getLineNumber(testStrings,
+        final FileText fileText = new FileText(new File("some.properties"), testStrings);
+        final int lineNumber =
+                UniquePropertiesCheck.getLineNumber(fileText,
                         "some key");
-        assertEquals("Invalid string number", 0, stringNumber);
+        assertEquals("Invalid line number", 0, lineNumber);
     }
 
     /**
