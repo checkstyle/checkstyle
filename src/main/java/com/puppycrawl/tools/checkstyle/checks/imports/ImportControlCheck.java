@@ -24,8 +24,6 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.apache.commons.beanutils.ConversionException;
-
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -197,17 +195,5 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      */
     public void setPath(Pattern pattern) {
         path = pattern;
-    }
-
-    /**
-     * Set the parameter for the url containing the import control
-     * configuration. It will cause the url to be loaded.
-     * @param uri the uri of the file to load.
-     * @throws ConversionException on error loading the file.
-     * @deprecated use {@link #setFile(URI uri)} to load URLs instead
-     */
-    @Deprecated
-    public void setUrl(URI uri) {
-        setFile(uri);
     }
 }

@@ -287,71 +287,6 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
     }
 
     @Test
-    public void testUrl() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("url", getUriString("InputImportControlOne.xml"));
-        final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
-
-        verify(checkConfig, getPath("InputImportControl.java"), expected);
-    }
-
-    @Test
-    public void testUrlBlank() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("url", "");
-        final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
-
-        verify(checkConfig, getPath("InputImportControl.java"), expected);
-    }
-
-    @Test
-    public void testUrlNull() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("url", null);
-        final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
-
-        verify(checkConfig, getPath("InputImportControl.java"), expected);
-    }
-
-    @Test
-    public void testUrlUnableToLoad() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("url", "https://UnableToLoadThisURL");
-
-        try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputImportControl.java"), expected);
-            fail("Test should fail if exception was not thrown");
-        }
-        catch (CheckstyleException ex) {
-            final String message = getCheckstyleExceptionMessage(ex);
-            final String messageStart = "Unable to load ";
-
-            assertTrue("Invalid message, should start with: " + messageStart,
-                message.startsWith(message));
-        }
-    }
-
-    @Test
-    public void testUrlIncorrectUrl() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("url", "https://{WrongCharsInURL}");
-
-        try {
-            final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputImportControl.java"), expected);
-            fail("Test should fail if exception was not thrown");
-        }
-        catch (CheckstyleException ex) {
-            final String message = getCheckstyleExceptionMessage(ex);
-            final String messageStart = "Unable to find: ";
-
-            assertTrue("Invalid message, should start with: " + messageStart,
-                message.startsWith(message));
-        }
-    }
-
-    @Test
     public void testResource() throws Exception {
         final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
         checkConfig.addAttribute("file", getResourcePath("InputImportControlOne.xml"));
@@ -420,21 +355,6 @@ public class ImportControlCheckTest extends BaseCheckTestSupport {
         verify(checker, filePath, filePath, expected);
         // One more time to use cache.
         verify(checker, filePath, filePath, expected);
-    }
-
-    @Test
-    public void testCacheWhenUrlExternalResourceContentDoesNotChange() throws Exception {
-        final DefaultConfiguration checkConfig = createCheckConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("url", getUriString("InputImportControlOne.xml"));
-
-        final Checker checker = createMockCheckerWithCache(checkConfig);
-
-        final String pathToEmptyFile = temporaryFolder.newFile("TestFile.java").getPath();
-        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
-        // One more time to use cache.
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
     }
 
     @Test
