@@ -3,7 +3,7 @@
 // Created: 2003
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 /**
  * Test input for the JavadocStyleCheck.  This check is used to perform 
