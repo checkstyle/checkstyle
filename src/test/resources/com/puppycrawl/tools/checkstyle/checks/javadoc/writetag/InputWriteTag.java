@@ -3,7 +3,7 @@
 // Created: 2004
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
  * Testing tag writing
