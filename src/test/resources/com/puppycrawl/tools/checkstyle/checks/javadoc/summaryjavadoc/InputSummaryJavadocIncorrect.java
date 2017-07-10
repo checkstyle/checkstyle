@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 /**
  * A {@code Foo. Foo}
  * is a simple Javadoc. Some javadoc.
  */
-class InputIncorrectSummaryJavaDoc {
+class InputSummaryJavadocIncorrect {
     
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
