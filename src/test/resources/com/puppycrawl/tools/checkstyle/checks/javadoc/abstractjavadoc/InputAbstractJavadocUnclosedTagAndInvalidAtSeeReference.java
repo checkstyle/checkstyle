@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * <unclosedTag>
  */
-class InputTestUnclosedTagAndInvalidAtSeeReference {
+class InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference {
     /**
      * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent()
      */
