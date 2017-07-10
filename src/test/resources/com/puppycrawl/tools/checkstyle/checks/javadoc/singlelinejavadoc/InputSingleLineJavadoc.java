@@ -1,5 +1,5 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
-class Foo{
+package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
+class InputSingleLineJavadoc {
 
 	/** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */
     void foo() {}
