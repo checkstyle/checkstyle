@@ -56,7 +56,9 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "header" + File.separator + filename);
+                + "header" + File.separator
+                + "header" + File.separator
+                + filename);
     }
 
     private String getConfigPath(String filename) throws IOException {
@@ -80,7 +82,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         try {
             createChecker(checkConfig);
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
+            verify(checkConfig, getPath("InputRegexpHeader.java"), expected);
         }
         catch (CheckstyleException ex) {
             // Exception is not expected
@@ -95,7 +97,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         try {
             createChecker(checkConfig);
             final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputRegexpHeader1.java"), expected);
+            verify(checkConfig, getPath("InputRegexpHeader.java"), expected);
         }
         catch (CheckstyleException ex) {
             // Exception is not expected
@@ -233,7 +235,7 @@ public class HeaderCheckTest extends BaseFileSetCheckTestSupport {
         PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
                 anyObject());
 
-        check.setHeaderFile(CommonUtils.getUriByFilename(getPath("InputRegexpHeader1.java")));
+        check.setHeaderFile(CommonUtils.getUriByFilename(getPath("InputRegexpHeader.java")));
 
         final Method loadHeaderFile = AbstractHeaderCheck.class.getDeclaredMethod("loadHeaderFile");
         loadHeaderFile.setAccessible(true);
