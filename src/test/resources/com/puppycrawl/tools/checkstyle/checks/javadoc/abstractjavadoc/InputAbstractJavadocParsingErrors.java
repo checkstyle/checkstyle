@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * <unclosedTag>
  */
-class InputParsingErrors {
+class InputAbstractJavadocParsingErrors {
     /**
      * <img src="singletonTag"/></img>
      */
