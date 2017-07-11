@@ -547,7 +547,7 @@ public class ConfigurationLoaderTest {
             final Configuration[] children = config.getChildren();
             assertEquals(0, children[0].getChildren().length);
         }
-        catch (CheckstyleException | FileNotFoundException ex) {
+        catch (CheckstyleException | FileNotFoundException ignored) {
             fail("unexpected exception");
         }
     }
@@ -575,7 +575,7 @@ public class ConfigurationLoaderTest {
             final Configuration[] children = config.getChildren();
             assertEquals(0, children[0].getChildren().length);
         }
-        catch (CheckstyleException ex) {
+        catch (CheckstyleException ignored) {
             fail("unexpected exception");
         }
     }

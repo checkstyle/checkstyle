@@ -763,7 +763,7 @@ public class XdocsPagesTest {
                 result = clss.getDeclaredField(propertyName);
                 result.setAccessible(true);
             }
-            catch (NoSuchFieldException ex) {
+            catch (NoSuchFieldException ignored) {
                 result = getField(clss.getSuperclass(), propertyName);
             }
         }

@@ -137,7 +137,7 @@ public class TokenUtilsTest {
             assertEquals("given id " + id, expected.getMessage());
 
         }
-        catch (IllegalAccessException | NoSuchFieldException ex) {
+        catch (IllegalAccessException | NoSuchFieldException ignored) {
             fail("Exception is expected");
         }
     }

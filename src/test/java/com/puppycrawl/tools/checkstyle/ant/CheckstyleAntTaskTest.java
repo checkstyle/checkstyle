@@ -337,7 +337,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
             antTask.execute();
             fail("Exception is expected");
         }
-        catch (BuildException ex) {
+        catch (BuildException ignored) {
             final Map<String, Object> hashtable = project.getProperties();
             final Object propertyValue = hashtable.get(failurePropertyName);
             assertEquals("Number of errors is unexpected",

@@ -238,7 +238,7 @@ public final class CheckUtil {
             final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey), locale);
             checkMessage = formatter.format(arguments);
         }
-        catch (IOException ex) {
+        catch (IOException ignored) {
             checkMessage = null;
         }
         return checkMessage;
