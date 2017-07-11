@@ -236,7 +236,7 @@ public class CommitValidationTest {
                     new RevCommitsPair(new OmitMergeCommitsIterator(first),
                             new OmitMergeCommitsIterator(second));
         }
-        catch (GitAPIException | IOException ex) {
+        catch (GitAPIException | IOException ignored) {
             revCommitIteratorPair = new RevCommitsPair();
         }
 

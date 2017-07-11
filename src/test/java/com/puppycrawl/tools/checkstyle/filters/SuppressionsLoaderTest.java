@@ -220,7 +220,7 @@ public class SuppressionsLoaderTest extends BaseCheckTestSupport {
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
-        catch (IOException ex) {
+        catch (IOException ignored) {
             result = false;
         }
         return result;
