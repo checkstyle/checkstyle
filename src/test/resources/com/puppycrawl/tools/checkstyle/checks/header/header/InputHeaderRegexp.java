@@ -6,6 +6,6 @@ import java.awt.*;
  * Some doc.
  */
 
-public class InputRegexpHeader
+public class InputHeaderRegexp
 {
 }
