@@ -536,20 +536,15 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfigurationDeprecated() {
-        try {
-            @SuppressWarnings("deprecation")
-            final DefaultConfiguration config =
-                    (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                            new FileInputStream(getConfigPath("config_with_ignore.xml")),
-                            new PropertiesExpander(new Properties()), true);
+    public void testLoadConfigurationDeprecated() throws Exception {
+        @SuppressWarnings("deprecation")
+        final DefaultConfiguration config =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                        new FileInputStream(getConfigPath("config_with_ignore.xml")),
+                        new PropertiesExpander(new Properties()), true);
 
-            final Configuration[] children = config.getChildren();
-            assertEquals(0, children[0].getChildren().length);
-        }
-        catch (CheckstyleException | FileNotFoundException ignored) {
-            fail("unexpected exception");
-        }
+        final Configuration[] children = config.getChildren();
+        assertEquals(0, children[0].getChildren().length);
     }
 
     @Test
@@ -564,20 +559,15 @@ public class ConfigurationLoaderTest {
     }
 
     @Test
-    public void testLoadConfigurationFromClassPath() {
-        try {
-            final DefaultConfiguration config =
-                    (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
-                            "/com/puppycrawl/tools/checkstyle/configs/"
-                                    + "config_with_ignore.xml",
-                            new PropertiesExpander(new Properties()), true);
+    public void testLoadConfigurationFromClassPath() throws Exception {
+        final DefaultConfiguration config =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                        "/com/puppycrawl/tools/checkstyle/configs/"
+                                + "config_with_ignore.xml",
+                        new PropertiesExpander(new Properties()), true);
 
-            final Configuration[] children = config.getChildren();
-            assertEquals(0, children[0].getChildren().length);
-        }
-        catch (CheckstyleException ignored) {
-            fail("unexpected exception");
-        }
+        final Configuration[] children = config.getChildren();
+        assertEquals(0, children[0].getChildren().length);
     }
 
     /**
