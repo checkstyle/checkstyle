@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.ant.checkstyleanttask.flawless;
+package com.puppycrawl.tools.checkstyle.ant.checkstyleanttask;
 
 public final class InputCheckstyleAntTaskFlawless {
     private String foo = "A short line";
