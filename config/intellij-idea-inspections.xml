@@ -511,7 +511,9 @@
     <inspection_tool class="DeserializableClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DesignForExtension" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DialogTitleCapitalization" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="DisjointPackage" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DisjointPackage" enabled="false" level="ERROR" enabled_by_default="false">
+      <scope name="Checkstyle Inspection Scope" level="ERROR" enabled="false" />
+    </inspection_tool>
     <inspection_tool class="DivideByZero" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DivideByZeroJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DocumentWriteJS" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1566,20 +1568,21 @@
     <inspection_tool class="PackageDotHtmlMayBePackageInfo" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PackageInMultipleModules" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PackageInfoWithoutPackage" enabled="true" level="ERROR" enabled_by_default="true" />
-    <!-- Disabled till issue with rendering exact list of violation is resolved on TC service -->
-    <inspection_tool class="PackageNamingConvention" enabled="false" level="WARNING" enabled_by_default="false">
-        <option name="m_regex" value="[a-z0-9]*" />
+    <inspection_tool class="PackageNamingConvention" enabled="true" level="WARNING" enabled_by_default="false">
+        <option name="m_regex" value="[a-z0-9\.]*" />
         <option name="m_minLength" value="3" />
-        <option name="m_maxLength" value="32" />
+        <option name="m_maxLength" value="100" />
     </inspection_tool>
     <inspection_tool class="PackageVisibleField" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="PackageVisibleInnerClass" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignoreEnums" value="false" />
         <option name="ignoreInterfaces" value="false" />
     </inspection_tool>
+    <!-- suppressed as packges are not easily to change in library project that breaks compatibility -->
     <inspection_tool class="PackageWithTooFewClasses" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="limit" value="3" />
     </inspection_tool>
+    <!-- suppressed as packges are not easily to change in library project that breaks compatibility -->
     <inspection_tool class="PackageWithTooManyClasses" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="limit" value="10" />
     </inspection_tool>
@@ -1970,6 +1973,7 @@
     </inspection_tool>
     <inspection_tool class="StringConcatenationInMessageFormatCall" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="StringConcatenationInsideStringBufferAppend" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we are not fragile by this, it is mostly for SQL focused apps -->
     <inspection_tool class="StringConcatenationMissingWhitespace" enabled="false" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false" />
     </inspection_tool>
@@ -2129,6 +2133,7 @@
         <option name="m_allowConstructorAsInitializer" value="false" />
         <option name="m_onlyLookAtBlocks" value="false" />
     </inspection_tool>
+    <!-- it is ok in test to throw all to be printed on console -->
     <inspection_tool class="TooBroadThrows" enabled="false" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false" />
     </inspection_tool>
@@ -2269,8 +2274,9 @@
         <option name="REPORT_REDUNDANT_INITIALIZER" value="true" />
     </inspection_tool>
     <inspection_tool class="UnusedCatchParameter" enabled="true" level="WARNING" enabled_by_default="true">
-        <scope name="Tests" level="WARNING" enabled="false">
-            <option name="m_ignoreCatchBlocksWithComments" value="false" />
+        <scope name="Tests" level="WARNING" enabled="true">
+            <!-- comments explain why catch swallow is ok , wide used in tests -->
+            <option name="m_ignoreCatchBlocksWithComments" value="true" />
             <option name="m_ignoreTestCases" value="false" />
         </scope>
         <option name="m_ignoreCatchBlocksWithComments" value="false" />
@@ -2328,7 +2334,7 @@
     <inspection_tool class="VtlReferencesInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="W3CssValidation" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="myCssVersion" value="css3" />
-        <option name="myIgnoreVendorSpecificProperties" value="false" />
+        <option name="myIgnoreVendorSpecificProperties" value="true" />
     </inspection_tool>
     <inspection_tool class="WSReferenceInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="WaitCalledOnCondition" enabled="true" level="WARNING" enabled_by_default="true" />
