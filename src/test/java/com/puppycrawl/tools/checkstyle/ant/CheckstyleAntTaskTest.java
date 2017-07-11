@@ -72,9 +72,8 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 @PrepareForTest({CheckstyleAntTask.class, Closeables.class})
 public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
-    private static final String FLAWLESS_INPUT_DIR = "ant/checkstyleanttask/flawless/";
     private static final String FLAWLESS_INPUT =
-        FLAWLESS_INPUT_DIR + "InputCheckstyleAntTaskFlawless.java";
+            "/ant/checkstyleanttask/InputCheckstyleAntTaskFlawless.java";
     private static final String VIOLATED_INPUT =
         "ant/checkstyleanttask/InputCheckstyleAntTaskError.java";
     private static final String WARNING_INPUT =
@@ -182,7 +181,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.setProject(new Project());
 
         final FileResource fileResource = new FileResource(
-            antTask.getProject(), getPath(FLAWLESS_INPUT_DIR));
+            antTask.getProject(), getPath("ant/checkstyleanttask/"));
         final Path sourcePath = new Path(antTask.getProject());
         sourcePath.add(fileResource);
         antTask.addPath(sourcePath);
@@ -195,9 +194,9 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
                 TestRootModuleChecker.isProcessed());
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertThat("There more files to check then expected",
-                filesToCheck.size(), is(1));
+                filesToCheck.size(), is(9));
         assertThat("The path of file differs from expected",
-                filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+                filesToCheck.get(5).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
         assertEquals("Amount of logged messages in unxexpected",
                 9, antTask.getLoggedMessages().size());
     }
