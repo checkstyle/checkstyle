@@ -16,9 +16,7 @@
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]InputEmbeddedNullChar\.java"/>
 
     <!-- Javadoc files should not have new line by design (on purpose). -->
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]grammars[\\/]javadoc[\\/].*\.javadoc"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]astprinter[\\/].*\.javadoc"/>
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]main[\\/].*\.javadoc"/>
+     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*\.javadoc"/>
 
     <!--Empty file cannot have any new line at the end. -->
     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*[\\/]checks[\\/]misc[\\/]newlineatendoffile[\\/]InputEmptyFile\.txt"/>
