@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -96,15 +97,19 @@ public class UniquePropertiesCheckTest extends BaseFileSetCheckTestSupport {
      * method return value.
      */
     @Test
-    public void testNotFoundKey() {
+    public void testNotFoundKey() throws Exception {
         final List<String> testStrings = new ArrayList<>(3);
+        final Method getLineNumber = UniquePropertiesCheck.class.getDeclaredMethod(
+            "getLineNumber", FileText.class, String.class);
+        Assert.assertNotNull(getLineNumber);
+        getLineNumber.setAccessible(true);
         testStrings.add("");
         testStrings.add("0 = 0");
         testStrings.add("445");
         final FileText fileText = new FileText(new File("some.properties"), testStrings);
-        final int lineNumber =
-                UniquePropertiesCheck.getLineNumber(fileText,
-                        "some key");
+        final Object lineNumber = getLineNumber.invoke(UniquePropertiesCheck.class,
+                fileText, "some key");
+        Assert.assertNotNull(lineNumber);
         assertEquals("Invalid line number", 0, lineNumber);
     }
 

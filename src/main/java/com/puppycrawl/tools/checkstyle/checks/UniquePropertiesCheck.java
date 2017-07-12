@@ -101,7 +101,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * @return line number of first occurrence. If no key found in properties
      *         file, 0 is returned
      */
-    protected static int getLineNumber(FileText fileText, String keyName) {
+    private static int getLineNumber(FileText fileText, String keyName) {
         final Pattern keyPattern = getKeyPattern(keyName);
         int lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");
