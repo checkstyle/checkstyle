@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.main;
 
-public class InputComplexitySwitchBlocks {
+public class InputMainComplexitySwitchBlocks {
     public void foo2() {
         String programmingLanguage = "Java";
         switch (programmingLanguage) {
