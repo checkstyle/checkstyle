@@ -113,11 +113,11 @@ public class MainTest {
             new String[] {String.valueOf(1)}, null, getClass(), null);
 
     private static String getPath(String filename) {
-        return "src/test/resources/com/puppycrawl/tools/checkstyle/" + filename;
+        return "src/test/resources/com/puppycrawl/tools/checkstyle/main/" + filename;
     }
 
     private static String getNonCompilablePath(String filename) {
-        return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/" + filename;
+        return "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/main/" + filename;
     }
 
     private static String getFilePath(String filename) throws IOException {
@@ -239,7 +239,7 @@ public class MainTest {
             assertTrue(systemErr.getLog().startsWith(cause));
         });
 
-        Main.main("-c", getPath("config-non-existing-classname.xml"),
+        Main.main("-c", getPath("InputMainConfig-non-existing-classname.xml"),
             getPath("InputMain.java"));
     }
 
@@ -252,7 +252,7 @@ public class MainTest {
                     systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
                 getPath("InputMain.java"));
     }
 
@@ -272,7 +272,7 @@ public class MainTest {
                     + "</checkstyle>" + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
                 "-f", "xml",
                 getPath("InputMain.java"));
     }
@@ -285,7 +285,7 @@ public class MainTest {
                     + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
                 "-f", "plain",
                 getPath("InputMain.java"));
     }
@@ -312,7 +312,7 @@ public class MainTest {
                             + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname2.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname2.xml"),
                 getPath("InputMain.java"));
     }
 
@@ -343,7 +343,7 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
         });
         Main.main("-c",
-                getPath("config-classname2-error.xml"),
+                getPath("InputMainConfig-classname2-error.xml"),
                 getPath("InputMain.java"));
     }
 
@@ -355,7 +355,7 @@ public class MainTest {
             assertEquals("", systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
                 "-f", "plain",
                 "-o", temporaryFolder.getRoot() + "/output.txt",
                 getPath("InputMain.java"));
@@ -369,7 +369,7 @@ public class MainTest {
             assertEquals("", systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
                 "-f", "plain",
                 "-o", file.getCanonicalPath(),
                 getPath("InputMain.java"));
@@ -379,7 +379,7 @@ public class MainTest {
     public void testCreateNonExistingOutputFile() throws Exception {
         final String outputFile = temporaryFolder.getRoot().getCanonicalPath() + "nonexisting.out";
         assertFalse(new File(outputFile).exists());
-        Main.main("-c", getPath("config-classname.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
                 "-f", "plain",
                 "-o", outputFile,
                 getPath("InputMain.java"));
@@ -395,8 +395,8 @@ public class MainTest {
                     + auditFinishMessage.getMessage() + EOL, systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname-prop.xml"),
-                "-p", getPath("mycheckstyle.properties"),
+        Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
+                "-p", getPath("InputMainMycheckstyle.properties"),
                 getPath("InputMain.java"));
     }
 
@@ -409,7 +409,7 @@ public class MainTest {
                     + System.lineSeparator(), systemOut.getLog());
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-c", getPath("config-classname-prop.xml"),
+        Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
                 "-p", "nonexisting.properties",
                 getPath("InputMain.java"));
     }
@@ -425,7 +425,7 @@ public class MainTest {
                 + "CheckstyleException: unable to parse configuration stream - ";
             assertTrue(systemErr.getLog().startsWith(errorOutput));
         });
-        Main.main("-c", getPath("config-Incorrect.xml"),
+        Main.main("-c", getPath("InputMainConfig-Incorrect.xml"),
             getPath("InputMain.java"));
     }
 
@@ -441,7 +441,7 @@ public class MainTest {
                     + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
             assertTrue(systemErr.getLog().startsWith(errorOutput));
         });
-        Main.main("-c", getPath("config-incorrectChildren.xml"),
+        Main.main("-c", getPath("InputMainConfig-incorrectChildren.xml"),
             getPath("InputMain.java"));
     }
 
@@ -457,7 +457,7 @@ public class MainTest {
                     + " - JavadocVariable is not allowed as a child in JavadocMethod";
             assertTrue(systemErr.getLog().startsWith(errorOutput));
         });
-        Main.main("-c", getPath("config-incorrectChildren2.xml"),
+        Main.main("-c", getPath("InputMainConfig-incorrectChildren2.xml"),
             getPath("InputMain.java"));
     }
 
@@ -537,7 +537,7 @@ public class MainTest {
 
         // we just reference there all violations
         final String[][] outputValues = {
-                {"InputComplexityOverflow", "1", "172"},
+                {"InputMainComplexityOverflow", "1", "172"},
         };
 
         final int allowedLength = 170;
@@ -545,7 +545,7 @@ public class MainTest {
         final String bundle = "com.puppycrawl.tools.checkstyle.checks.sizes.messages";
 
         exit.checkAssertionAfterwards(() -> {
-            final String expectedPath = getFilePath("main/") + File.separator;
+            final String expectedPath = getFilePath("") + File.separator;
             final StringBuilder sb = new StringBuilder(28);
             sb.append(auditStartMessage.getMessage())
                     .append(EOL);
@@ -564,8 +564,8 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
         });
 
-        Main.main("-c", getPath("config-filelength.xml"),
-                getPath("main/"));
+        Main.main("-c", getPath("InputMainConfig-filelength.xml"),
+                getPath(""));
     }
 
     @Test
@@ -609,14 +609,14 @@ public class MainTest {
 
             final String exceptionFirstLine = "com.puppycrawl.tools.checkstyle.api."
                     + "CheckstyleException: Exception was thrown while processing "
-                    + new File(getNonCompilablePath("InputIncorrectClass.java")).getPath()
+                    + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath()
                     + EOL;
             assertTrue(systemErr.getLog().startsWith(exceptionFirstLine));
         });
 
         // We put xml as source to cause parse excepion
-        Main.main("-c", getPath("config-classname.xml"),
-                getNonCompilablePath("InputIncorrectClass.java"));
+        Main.main("-c", getPath("InputMainConfig-classname.xml"),
+                getNonCompilablePath("InputMainIncorrectClass.java"));
     }
 
     @Test
@@ -629,21 +629,23 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
         });
 
-        Main.main("-t", getPath("checks/metrics"));
+        Main.main("-t", getPath(""));
     }
 
     @Test
     public void testPrintTreeOption() throws Exception {
         final String expected = "PACKAGE_DEF -> package [1:0]" + EOL
-            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]" + EOL
-            + "|--DOT -> . [1:28]" + EOL
-            + "|   |--DOT -> . [1:22]" + EOL
-            + "|   |   |--DOT -> . [1:11]" + EOL
-            + "|   |   |   |--IDENT -> com [1:8]" + EOL
-            + "|   |   |   `--IDENT -> puppycrawl [1:12]" + EOL
-            + "|   |   `--IDENT -> tools [1:23]" + EOL
-            + "|   `--IDENT -> checkstyle [1:29]" + EOL
-            + "`--SEMI -> ; [1:39]" + EOL
+            + "|--ANNOTATIONS -> ANNOTATIONS [1:39]" + EOL
+            + "|--DOT -> . [1:39]" + EOL
+            + "|   |--DOT -> . [1:28]" + EOL
+            + "|   |   |--DOT -> . [1:22]" + EOL
+            + "|   |   |   |--DOT -> . [1:11]" + EOL
+            + "|   |   |   |   |--IDENT -> com [1:8]" + EOL
+            + "|   |   |   |   `--IDENT -> puppycrawl [1:12]" + EOL
+            + "|   |   |   `--IDENT -> tools [1:23]" + EOL
+            + "|   |   `--IDENT -> checkstyle [1:29]" + EOL
+            + "|   `--IDENT -> main [1:40]" + EOL
+            + "`--SEMI -> ; [1:44]" + EOL
             + "CLASS_DEF -> CLASS_DEF [3:0]" + EOL
             + "|--MODIFIERS -> MODIFIERS [3:0]" + EOL
             + "|   `--LITERAL_PUBLIC -> public [3:0]" + EOL
@@ -670,15 +672,17 @@ public class MainTest {
     @Test
     public void testPrintTreeCommentsOption() throws Exception {
         final String expected = "PACKAGE_DEF -> package [1:0]" + EOL
-            + "|--ANNOTATIONS -> ANNOTATIONS [1:28]" + EOL
-            + "|--DOT -> . [1:28]" + EOL
-            + "|   |--DOT -> . [1:22]" + EOL
-            + "|   |   |--DOT -> . [1:11]" + EOL
-            + "|   |   |   |--IDENT -> com [1:8]" + EOL
-            + "|   |   |   `--IDENT -> puppycrawl [1:12]" + EOL
-            + "|   |   `--IDENT -> tools [1:23]" + EOL
-            + "|   `--IDENT -> checkstyle [1:29]" + EOL
-            + "`--SEMI -> ; [1:39]" + EOL
+            + "|--ANNOTATIONS -> ANNOTATIONS [1:39]" + EOL
+            + "|--DOT -> . [1:39]" + EOL
+            + "|   |--DOT -> . [1:28]" + EOL
+            + "|   |   |--DOT -> . [1:22]" + EOL
+            + "|   |   |   |--DOT -> . [1:11]" + EOL
+            + "|   |   |   |   |--IDENT -> com [1:8]" + EOL
+            + "|   |   |   |   `--IDENT -> puppycrawl [1:12]" + EOL
+            + "|   |   |   `--IDENT -> tools [1:23]" + EOL
+            + "|   |   `--IDENT -> checkstyle [1:29]" + EOL
+            + "|   `--IDENT -> main [1:40]" + EOL
+            + "`--SEMI -> ; [1:44]" + EOL
             + "CLASS_DEF -> CLASS_DEF [3:0]" + EOL
             + "|--MODIFIERS -> MODIFIERS [3:0]" + EOL
             + "|   |--BLOCK_COMMENT_BEGIN -> /* [2:0]" + EOL
@@ -708,27 +712,27 @@ public class MainTest {
     @Test
     public void testPrintTreeJavadocOption() throws Exception {
         final String expected = new String(Files.readAllBytes(Paths.get(
-            getPath("astprinter/expectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
+            getPath("InputMainExpectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
             .replaceAll("\\\\r\\\\n", "\\\\n");
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals(expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-j", getPath("astprinter/InputJavadocComment.javadoc"));
+        Main.main("-j", getPath("InputMainJavadocComment.javadoc"));
     }
 
     @Test
     public void testPrintFullTreeOption() throws Exception {
         final String expected = new String(Files.readAllBytes(Paths.get(
-            getPath("astprinter/expectedInputAstTreeStringPrinterJavadoc.txt"))),
+            getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt"))),
             StandardCharsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n");
 
         exit.checkAssertionAfterwards(() -> {
             assertEquals(expected, systemOut.getLog().replaceAll("\\\\r\\\\n", "\\\\n"));
             assertEquals("", systemErr.getLog());
         });
-        Main.main("-J", getPath("astprinter/InputAstTreeStringPrinterJavadoc.java"));
+        Main.main("-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
     }
 
     @Test
@@ -741,7 +745,7 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
         });
 
-        Main.main("-c", "/google_checks.xml", "-t", getPath("checks/metrics"));
+        Main.main("-c", "/google_checks.xml", "-t", getPath(""));
     }
 
     @Test
@@ -754,7 +758,7 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
         });
 
-        Main.main("-p", getPath("mycheckstyle.properties"), "-t", getPath("checks/metrics"));
+        Main.main("-p", getPath("InputMainMycheckstyle.properties"), "-t", getPath(""));
     }
 
     @Test
@@ -767,7 +771,7 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
         });
 
-        Main.main("-f", "plain", "-t", getPath("checks/metrics"));
+        Main.main("-f", "plain", "-t", getPath(""));
     }
 
     @Test
@@ -781,7 +785,7 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
         });
 
-        Main.main("-o", file.getCanonicalPath(), "-t", getPath("checks/metrics"));
+        Main.main("-o", file.getCanonicalPath(), "-t", getPath(""));
     }
 
     @Test
@@ -834,7 +838,7 @@ public class MainTest {
             assertEquals("", systemErr.getLog());
             assertTrue(TestRootModuleChecker.isProcessed());
         });
-        Main.main("-c", getPath("config-custom-root-module.xml"),
+        Main.main("-c", getPath("InputMainConfig-custom-root-module.xml"),
                 getPath("InputMain.java"));
     }
 
@@ -858,7 +862,7 @@ public class MainTest {
                     + unableToInstantiateExceptionMessage.getMessage()));
             assertFalse(TestRootModuleChecker.isProcessed());
         });
-        Main.main("-c", getPath("config-custom-simple-root-module.xml"),
+        Main.main("-c", getPath("InputMainConfig-custom-simple-root-module.xml"),
                 getPath("InputMain.java"));
     }
 
@@ -874,7 +878,7 @@ public class MainTest {
             assertTrue(systemErr.getLog().startsWith(cause));
         });
 
-        Main.main("-c", getPath("config-non-existing-classname-ignore.xml"),
+        Main.main("-c", getPath("InputMainConfig-non-existing-classname-ignore.xml"),
                 "-executeIgnoredModules",
                 getPath("InputMain.java"));
     }
@@ -937,7 +941,7 @@ public class MainTest {
             assertEquals(4, multiThreadModeSettings.getCheckerThreadsNumber());
             assertEquals(1, multiThreadModeSettings.getTreeWalkerThreadsNumber());
         });
-        Main.main("-C", "4", "-c", getPath("config-custom-root-module.xml"),
+        Main.main("-C", "4", "-c", getPath("InputMainConfig-custom-root-module.xml"),
             getPath("InputMain.java"));
     }
 
@@ -955,7 +959,7 @@ public class MainTest {
             assertEquals(1, multiThreadModeSettings.getCheckerThreadsNumber());
             assertEquals(4, multiThreadModeSettings.getTreeWalkerThreadsNumber());
         });
-        Main.main("-W", "4", "-c", getPath("config-custom-root-module.xml"),
+        Main.main("-W", "4", "-c", getPath("InputMainConfig-custom-root-module.xml"),
             getPath("InputMain.java"));
     }
 
@@ -979,7 +983,7 @@ public class MainTest {
             final Configuration treeWalkerConfig = checkerConfiguration.getChildren()[0];
             assertEquals("TreeWalker", treeWalkerConfig.getName());
         });
-        Main.main("-C", "1", "-W", "1", "-c", getPath("config-multi-thread-mode.xml"),
+        Main.main("-C", "1", "-W", "1", "-c", getPath("InputMainConfig-multi-thread-mode.xml"),
             getPath("InputMain.java"));
     }
 
@@ -988,7 +992,7 @@ public class MainTest {
         TestRootModuleChecker.reset();
 
         try {
-            Main.main("-C", "4", "-W", "4", "-c", getPath("config-multi-thread-mode.xml"),
+            Main.main("-C", "4", "-W", "4", "-c", getPath("InputMainConfig-multi-thread-mode.xml"),
                 getPath("InputMain.java"));
             fail("An exception is expected");
         }
