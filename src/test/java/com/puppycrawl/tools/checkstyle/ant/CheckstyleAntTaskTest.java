@@ -58,7 +58,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.io.Closeables;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.CheckerStub;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
@@ -70,21 +70,25 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({CheckstyleAntTask.class, Closeables.class})
-public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
+public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
     private static final String FLAWLESS_INPUT =
-            "/ant/checkstyleanttask/InputCheckstyleAntTaskFlawless.java";
+            "InputCheckstyleAntTaskFlawless.java";
     private static final String VIOLATED_INPUT =
-        "ant/checkstyleanttask/InputCheckstyleAntTaskError.java";
+            "InputCheckstyleAntTaskError.java";
     private static final String WARNING_INPUT =
-        "ant/checkstyleanttask/InputCheckstyleAntTaskWarning.java";
+            "InputCheckstyleAntTaskWarning.java";
     private static final String CONFIG_FILE =
-            "ant/checkstyleanttask/InputCheckstyleAntTaskTestChecks.xml";
-    private static final String CONFIG_RESOURCE = "/com/puppycrawl/tools/checkstyle/" + CONFIG_FILE;
+            "InputCheckstyleAntTaskTestChecks.xml";
     private static final String CUSTOM_ROOT_CONFIG_FILE =
-        "ant/checkstyleanttask/InputCheckstyleAntTaskConfigCustomRootModule.xml";
+            "InputCheckstyleAntTaskConfigCustomRootModule.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
     private static final String FAILURE_PROPERTY_VALUE = "myValue";
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/ant/checkstyleanttask/";
+    }
 
     private CheckstyleAntTask getCheckstyleAntTask() throws IOException {
         return getCheckstyleAntTask(CONFIG_FILE);
@@ -181,7 +185,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.setProject(new Project());
 
         final FileResource fileResource = new FileResource(
-            antTask.getProject(), getPath("ant/checkstyleanttask/"));
+            antTask.getProject(), getPath(""));
         final Path sourcePath = new Path(antTask.getProject());
         sourcePath.add(fileResource);
         antTask.addPath(sourcePath);
@@ -265,7 +269,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     @Test
     public final void testEmptyConfigFile() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setConfig(getPath("ant/InputCheckstyleAntTaskEmptyConfig.xml"));
+        antTask.setConfig(getPath("InputCheckstyleAntTaskEmptyConfig.xml"));
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         try {
@@ -430,7 +434,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
     public final void testConfigurationByResource() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
-        antTask.setConfig(CONFIG_RESOURCE);
+        antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
 
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -477,8 +481,8 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
-        antTask.setProperties(new File(getPath("ant/checkstyleanttask/"
-                + "InputCheckstyleAntTaskCheckstyleAntTest.properties")));
+        antTask.setProperties(new File(getPath(
+                "InputCheckstyleAntTaskCheckstyleAntTest.properties")));
         antTask.execute();
 
         assertEquals("Property is not set",
@@ -517,7 +521,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         antTask.execute();
 
         final List<String> expected = FileUtils.readLines(
-                new File(getPath("ant/checkstyleanttask/InputCheckstyleAntTaskXmlOutput.xml")));
+                new File(getPath("InputCheckstyleAntTaskXmlOutput.xml")));
         final List<String> actual = FileUtils.readLines(outputFile);
         for (int i = 0; i < expected.size(); i++) {
             final String line = expected.get(i);
@@ -591,7 +595,7 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
 
     @Test
     public void testSetFileValueByFile() throws IOException {
-        final String filename = getPath("ant/InputCheckstyleAntTaskCheckstyleAntTest.properties");
+        final String filename = getPath("InputCheckstyleAntTaskCheckstyleAntTest.properties");
         final CheckstyleAntTask.Property property = new CheckstyleAntTask.Property();
         property.setFile(new File(filename));
         assertEquals("File path is unexpected",
@@ -727,8 +731,8 @@ public class CheckstyleAntTaskTest extends BaseCheckTestSupport {
         CheckerStub.reset();
 
         final CheckstyleAntTask antTask =
-                getCheckstyleAntTask("ant/checkstyleanttask/"
-                        + "InputCheckstyleAntTaskConfigCustomCheckerRootModule.xml");
+                getCheckstyleAntTask(
+                        "InputCheckstyleAntTaskConfigCustomCheckerRootModule.xml");
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
 
         antTask.execute();
