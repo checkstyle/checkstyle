@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -230,9 +232,14 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 "LAMBDA").collect(Collectors.toSet()));
     }
 
+    @Override
+    protected String getPath(String filename) throws IOException {
+        return super.getPath("internal" + File.separator + filename);
+    }
+
     @Test
     public void testAllChecksWithDefaultConfiguration() throws Exception {
-        final String inputFilePath = getPath("InputDefaultConfig.java");
+        final String inputFilePath = getPath("InputAllChecksDefaultConfig.java");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
 
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
@@ -243,7 +250,8 @@ public class AllChecksTest extends BaseCheckTestSupport {
                 if (check.equals(ImportControlCheck.class)) {
                     // ImportControlCheck must have the import control configuration file to avoid
                     // violation.
-                    checkConfig.addAttribute("file", getPath("import-control_complete.xml"));
+                    checkConfig.addAttribute("file", getPath(
+                            "InputAllChecksImport-control_complete.xml"));
                 }
                 checker = createChecker(checkConfig);
             }
