@@ -27,6 +27,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.FailedPredicateException;
 import org.antlr.v4.runtime.InputMismatchException;
@@ -82,6 +83,11 @@ public class JavadocDetailNodeParser {
      */
     public static final String MSG_KEY_PARSE_ERROR = "javadoc.parse.error";
 
+    /**
+     * Message property key for the Unclosed HTML message.
+     */
+    public static final String MSG_UNCLOSED_HTML_TAG = "javadoc.unclosedHtml";
+
     /** Symbols with which javadoc starts. */
     private static final String JAVADOC_START = "/**";
 
@@ -119,14 +125,17 @@ public class JavadocDetailNodeParser {
         final ParseStatus result = new ParseStatus();
 
         try {
-            final ParseTree parseTree = parseJavadocAsParseTree(javadocComment);
+            final JavadocParser javadocParser = createJavadocParser(javadocComment);
 
-            final DetailNode tree = convertParseTreeToDetailNode(parseTree);
+            final ParseTree javadocParseTree = javadocParser.javadoc();
+
+            final DetailNode tree = convertParseTreeToDetailNode(javadocParseTree);
             // adjust first line to indent of /**
             adjustFirstLineToJavadocIndent(tree,
                         javadocCommentAst.getColumnNo()
                                 + JAVADOC_START.length());
             result.setTree(tree);
+            result.firstNonTightHtmlTag = getFirstNonTightHtmlTag(javadocParser);
         }
         catch (ParseCancellationException | IllegalArgumentException ex) {
             ParseErrorMessage parseErrorMessage = null;
@@ -164,7 +173,7 @@ public class JavadocDetailNodeParser {
      * @return parse tree
      * @noinspection deprecation
      */
-    private ParseTree parseJavadocAsParseTree(String blockComment) {
+    private JavadocParser createJavadocParser(String blockComment) {
         final ANTLRInputStream input = new ANTLRInputStream(blockComment);
 
         final JavadocLexer lexer = new JavadocLexer(input);
@@ -179,11 +188,11 @@ public class JavadocDetailNodeParser {
         // add custom error listener that logs syntax errors
         parser.addErrorListener(errorListener);
 
-        // This strategy stops parsing when parser error occurs.
-        // By default it uses Error Recover Strategy which is slow and useless.
+        // JavadocParserErrorStrategy stops parsing on first parse error encountered unlike the
+        // DefaultErrorStrategy used by ANTLR which rather attempts error recovery.
         parser.setErrorHandler(new JavadocParserErrorStrategy());
 
-        return parser.javadoc();
+        return parser;
     }
 
     /**
@@ -503,6 +512,31 @@ public class JavadocDetailNodeParser {
     }
 
     /**
+     * This method is used to get the first non-tight HTML tag encountered while parsing javadoc.
+     * This shall eventually be reflected by the {@link ParseStatus} object returned by
+     * {@link #parseJavadocAsDetailNode(DetailAST)} method via the instance member
+     * {@link ParseStatus#firstNonTightHtmlTag}, and checks not supposed to process non-tight HTML
+     * or the ones which are supposed to log violation for non-tight javadocs can utilize that.
+     *
+     * @param javadocParser The ANTLR recognizer instance which has been used to parse the javadoc
+     * @return First non-tight HTML tag if one exists; null otherwise
+     */
+    private Token getFirstNonTightHtmlTag(JavadocParser javadocParser) {
+        final CommonToken offendingToken;
+        final ParserRuleContext nonTightTagStartContext = javadocParser.nonTightTagStartContext;
+        if (nonTightTagStartContext == null) {
+            offendingToken = null;
+        }
+        else {
+            final Token token = ((TerminalNode) nonTightTagStartContext.getChild(1))
+                    .getSymbol();
+            offendingToken = new CommonToken(token);
+            offendingToken.setLine(offendingToken.getLine() + errorListener.offset);
+        }
+        return offendingToken;
+    }
+
+    /**
      * Custom error listener for JavadocParser that prints user readable errors.
      */
     private static class DescriptiveErrorListener extends BaseErrorListener {
@@ -590,6 +624,15 @@ public class JavadocDetailNodeParser {
         private ParseErrorMessage parseErrorMessage;
 
         /**
+         * Stores the first non-tight HTML tag encountered while parsing javadoc.
+         *
+         * @see <a
+         *     href="http://checkstyle.sourceforge.net/writingjavadocchecks.html#Tight-HTML_rules">
+         *     Tight HTML rules</a>
+         */
+        private Token firstNonTightHtmlTag;
+
+        /**
          * Getter for DetailNode tree.
          * @return DetailNode tree if parsing was successful, null otherwise.
          */
@@ -619,6 +662,28 @@ public class JavadocDetailNodeParser {
          */
         public void setParseErrorMessage(ParseErrorMessage parseErrorMessage) {
             this.parseErrorMessage = parseErrorMessage;
+        }
+
+        /**
+         * This method is used to check if the javadoc parsed has non-tight HTML tags.
+         *
+         * @return returns true if the javadoc has at least one non-tight HTML tag; false otherwise
+         * @see <a
+         *     href="http://checkstyle.sourceforge.net/writingjavadocchecks.html#Tight-HTML_rules">
+         *     Tight HTML rules</a>
+         */
+        public boolean isNonTight() {
+            return firstNonTightHtmlTag != null;
+        }
+
+        /**
+         * Getter for {@link #firstNonTightHtmlTag}.
+         *
+         * @return the first non-tight HTML tag that is encountered while parsing Javadoc,
+         *     if one exists
+         */
+        public Token getFirstNonTightHtmlTag() {
+            return firstNonTightHtmlTag;
         }
 
     }
@@ -681,6 +746,10 @@ public class JavadocDetailNodeParser {
     }
 
     /**
+     * The DefaultErrorStrategy used by ANTLR attempts to recover from parse errors
+     * which might result in a performance overhead. Also, a parse error indicate
+     * that javadoc doesn't follow checkstyle Javadoc grammar and the user should be made aware
+     * of it.
      * <a href="http://www.antlr.org/api/Java/org/antlr/v4/runtime/BailErrorStrategy.html">
      * BailErrorStrategy</a> is used to make ANTLR generated parser bail out on the first error
      * in parser and not attempt any recovery methods but it doesn't report error to the

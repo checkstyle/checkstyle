@@ -1577,13 +1577,13 @@
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</pattern>
-                    <branchRate>37</branchRate>
-                    <lineRate>48</lineRate>
+                    <branchRate>42</branchRate>
+                    <lineRate>53</lineRate>
                   </regex>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</pattern>
-                    <branchRate>63</branchRate>
-                    <lineRate>83</lineRate>
+                    <branchRate>64</branchRate>
+                    <lineRate>84</lineRate>
                   </regex>
                 </regexes>
               </check>
