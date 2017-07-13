@@ -239,9 +239,7 @@ public final class LocalizedMessage
 
     /** Clears the cache. */
     public static void clearCache() {
-        synchronized (BUNDLE_CACHE) {
-            BUNDLE_CACHE.clear();
-        }
+        BUNDLE_CACHE.clear();
     }
 
     /**
@@ -295,16 +293,8 @@ public final class LocalizedMessage
      * @return a ResourceBundle
      */
     private ResourceBundle getBundle(String bundleName) {
-        synchronized (BUNDLE_CACHE) {
-            ResourceBundle resourceBundle = BUNDLE_CACHE
-                    .get(bundleName);
-            if (resourceBundle == null) {
-                resourceBundle = ResourceBundle.getBundle(bundleName, sLocale,
-                        sourceClass.getClassLoader(), new Utf8Control());
-                BUNDLE_CACHE.put(bundleName, resourceBundle);
-            }
-            return resourceBundle;
-        }
+        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> ResourceBundle.getBundle(
+                name, sLocale, sourceClass.getClassLoader(), new Utf8Control()));
     }
 
     /**
