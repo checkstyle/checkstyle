@@ -88,6 +88,19 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     private final Set<Integer> javadocTokens = new HashSet<>();
 
     /**
+     * This property determines if a check should log a violation upon encountering javadoc with
+     * non-tight html. The default return value for this method is set to false since checks
+     * generally tend to be fine with non tight html. It can be set through config file if a check
+     * is to log violation upon encountering non-tight HTML in javadoc.
+     *
+     * @see ParseStatus#firstNonTightHtmlTag
+     * @see ParseStatus#isNonTight()
+     * @see <a href="http://checkstyle.sourceforge.net/writingjavadocchecks.html#Tight-HTML_rules">
+     *     Tight HTML rules</a>
+     */
+    private boolean violateExecutionOnNonTightHtml;
+
+    /**
      * Returns the default javadoc token types a check is interested in.
      * @return the default javadoc token types
      * @see JavadocTokenTypes
@@ -123,6 +136,31 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      */
     public int[] getRequiredJavadocTokens() {
         return CommonUtils.EMPTY_INT_ARRAY;
+    }
+
+    /**
+     * This method determines if a check should process javadoc containing non-tight html tags.
+     * This method must be overridden in checks extending {@code AbstractJavadocCheck} which
+     * are not supposed to process javadoc containing non-tight html tags.
+     *
+     * @return true if the check should or can process javadoc containing non-tight html tags;
+     *     false otherwise
+     * @see ParseStatus#isNonTight()
+     * @see <a href="http://checkstyle.sourceforge.net/writingjavadocchecks.html#Tight-HTML_rules">
+     *     Tight HTML rules</a>
+     */
+    public boolean acceptJavadocWithNonTightHtml() {
+        return true;
+    }
+
+    /**
+     * Setter for {@link #violateExecutionOnNonTightHtml}.
+     * @param shouldReportViolation value to which the field shall be set to
+     * @see <a href="http://checkstyle.sourceforge.net/writingjavadocchecks.html#Tight-HTML_rules">
+     *     Tight HTML rules</a>
+     */
+    public final void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
+        violateExecutionOnNonTightHtml = shouldReportViolation;
     }
 
     /**
@@ -261,12 +299,21 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                 result = TREE_CACHE.get().get(treeCacheKey);
             }
             else {
-                result = context.get().parser.parseJavadocAsDetailNode(blockCommentNode);
+                result = context.get().parser
+                        .parseJavadocAsDetailNode(blockCommentNode);
                 TREE_CACHE.get().put(treeCacheKey, result);
             }
 
             if (result.getParseErrorMessage() == null) {
-                processTree(result.getTree());
+                if (acceptJavadocWithNonTightHtml() || !result.isNonTight()) {
+                    processTree(result.getTree());
+                }
+
+                if (violateExecutionOnNonTightHtml && result.isNonTight()) {
+                    log(result.getFirstNonTightHtmlTag().getLine(),
+                            JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG,
+                            result.getFirstNonTightHtmlTag().getText());
+                }
             }
             else {
                 final ParseErrorMessage parseErrorMessage = result.getParseErrorMessage();
