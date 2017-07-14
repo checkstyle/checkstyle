@@ -65,6 +65,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
+import com.puppycrawl.tools.checkstyle.api.FileProcessingResult;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
@@ -76,6 +77,7 @@ import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
+@SuppressWarnings("ClassWithTooManyDependencies")
 public class CheckerTest extends BaseCheckTestSupport {
 
     @Rule
@@ -112,7 +114,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors(new FileProcessingResult("Some File Name", null, messages));
 
         assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
         assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
@@ -145,7 +147,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors(new FileProcessingResult("Some File Name", null, messages));
         assertTrue("Checker.fireErrors() doesn't call listener", auditAdapter.wasCalled());
     }
 
@@ -186,7 +188,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors(new FileProcessingResult("Some File Name", null, messages));
         assertTrue("Checker.fireErrors() doesn't call listener", aa2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed listener", auditAdapter.wasCalled());
 
@@ -230,7 +232,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors(new FileProcessingResult("Some File Name", null, messages));
         assertTrue("Checker.fireErrors() doesn't call filter", filter.wasCalled());
     }
 
@@ -247,7 +249,7 @@ public class CheckerTest extends BaseCheckTestSupport {
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(0, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors(new FileProcessingResult("Some File Name", null, messages));
         assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
         assertFalse("Checker.fireErrors() does call removed filter", filter.wasCalled());
 

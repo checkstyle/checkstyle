@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
+import com.puppycrawl.tools.checkstyle.api.FileProcessingResult;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -63,6 +64,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author lkuehne
  * @author Andrei Selkin
  */
+// -@cs[ClassFanOutComplexity] Added to suppress error, now number of classes exceeds 25.
+// See https://github.com/checkstyle/checkstyle/issues/4478
 public class Checker extends AutomaticBean implements MessageDispatcher, RootModule {
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
@@ -283,8 +286,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                     cache.put(fileName, timestamp);
                 }
                 fireFileStarted(fileName);
-                final SortedSet<LocalizedMessage> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
+                final FileProcessingResult fileProcessingResult = processFile(file);
+                fireErrors(fileProcessingResult);
                 fireFileFinished(fileName);
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
@@ -304,16 +307,18 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /**
      * Processes a file with all FileSetChecks.
      * @param file a file to process.
-     * @return a sorted set of messages to be logged.
+     * @return file processing results object.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
      */
-    private SortedSet<LocalizedMessage> processFile(File file) throws CheckstyleException {
+    private FileProcessingResult processFile(File file) throws CheckstyleException {
         final SortedSet<LocalizedMessage> fileMessages = new TreeSet<>();
+        FileText fileText = null;
+
         try {
-            final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+            fileText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
-                fileMessages.addAll(fsc.process(file, theText));
+                fileMessages.addAll(fsc.process(file, fileText));
             }
         }
         catch (final IOException ioe) {
@@ -340,7 +345,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                     new String[] {sw.getBuffer().toString()},
                     null, getClass(), null));
         }
-        return fileMessages;
+        return new FileProcessingResult(file.getAbsolutePath(), fileText, fileMessages);
     }
 
     /**
@@ -373,15 +378,16 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /**
      * Notify all listeners about the errors in a file.
      *
-     * @param fileName the audited file
-     * @param errors the audit errors from the file
+     * @param fileProcessingResult file processing results object
      */
     @Override
-    public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
+    public void fireErrors(FileProcessingResult fileProcessingResult) {
+        final String fileName = fileProcessingResult.getFilePath();
         final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
         boolean hasNonFilteredViolations = false;
-        for (final LocalizedMessage element : errors) {
-            final AuditEvent event = new AuditEvent(this, stripped, element);
+        final SortedSet<LocalizedMessage> errorMessages = fileProcessingResult.getMessages();
+        for (LocalizedMessage errorMessage : errorMessages) {
+            final AuditEvent event = new AuditEvent(this, stripped, errorMessage);
             if (filters.accept(event)) {
                 hasNonFilteredViolations = true;
                 for (final AuditListener listener : listeners) {
