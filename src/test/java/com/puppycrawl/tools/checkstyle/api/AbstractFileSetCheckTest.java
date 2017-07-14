@@ -64,8 +64,12 @@ public class AbstractFileSetCheckTest {
         Assert.assertArrayEquals(expectedExtentions, check.getFileExtensions());
     }
 
+    /**
+     * This javadoc exists only to suppress Intellij Idea inspection
+     * @throws Exception it happens
+     * @noinspection NullArgumentToVariableArgMethod
+     */
     @Test
-    @SuppressWarnings("NullArgumentToVariableArgMethod")
     public void testSetExtentionThrowsExceptionWhenTheyAreNull() throws Exception {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         try {
