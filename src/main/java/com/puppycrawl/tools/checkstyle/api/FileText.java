@@ -199,7 +199,7 @@ public final class FileText {
             final char[] chars = new char[READ_BUFFER_SIZE];
             while (true) {
                 final int len = reader.read(chars);
-                if (len < 0) {
+                if (len == -1) {
                     break;
                 }
                 buf.append(chars, 0, len);

@@ -20,14 +20,21 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.function.Consumer;
 
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 
@@ -117,8 +124,93 @@ public class DetailASTTest {
     }
 
     @Test
+    public void testClearBranchTokenTypes() throws Exception {
+        final DetailAST parent = new DetailAST();
+        final DetailAST child = new DetailAST();
+        parent.setFirstChild(child);
+
+        final List<Consumer<DetailAST>> clearBranchTokenTypesMethods = Arrays.asList(
+            ast -> child.setFirstChild(ast),
+            ast -> child.setNextSibling(ast),
+            ast -> child.addPreviousSibling(ast),
+            ast -> child.addNextSibling(ast),
+            ast -> child.addChild(ast),
+            ast -> {
+                try {
+                    Whitebox.invokeMethod(child, "setParent", ast);
+                }
+                // -@cs[IllegalCatch] Cannot avoid catching it.
+                catch (Exception exception) {
+                    throw new IllegalStateException(exception);
+                }
+            }
+        );
+
+        for (Consumer<DetailAST> method : clearBranchTokenTypesMethods) {
+            final BitSet branchTokenTypes = Whitebox.invokeMethod(parent, "getBranchTokenTypes");
+            method.accept(null);
+            final BitSet branchTokenTypes2 = Whitebox.invokeMethod(parent, "getBranchTokenTypes");
+            assertEquals(branchTokenTypes, branchTokenTypes2);
+            assertNotSame(branchTokenTypes, branchTokenTypes2);
+        }
+    }
+
+    @Test
+    public void testClearChildCountCache() throws Exception {
+        final DetailAST parent = new DetailAST();
+        final DetailAST child = new DetailAST();
+        parent.setFirstChild(child);
+
+        final List<Consumer<DetailAST>> clearChildCountCacheMethods = Arrays.asList(
+            ast -> child.setNextSibling(ast),
+            ast -> child.addPreviousSibling(ast),
+            ast -> child.addNextSibling(ast)
+        );
+
+        for (Consumer<DetailAST> method : clearChildCountCacheMethods) {
+            final int startCount = parent.getChildCount();
+            method.accept(null);
+            final int intermediateCount = Whitebox.getInternalState(parent, "childCount");
+            final int finishCount = parent.getChildCount();
+            assertEquals(startCount, finishCount);
+            assertEquals(Integer.MIN_VALUE, intermediateCount);
+        }
+
+        final int startCount = child.getChildCount();
+        child.addChild(null);
+        final int intermediateCount = Whitebox.getInternalState(child, "childCount");
+        final int finishCount = child.getChildCount();
+        assertEquals(startCount, finishCount);
+        assertEquals(Integer.MIN_VALUE, intermediateCount);
+    }
+
+    @Test
+    public void testAddNextSibling() {
+        final DetailAST parent = new DetailAST();
+        final DetailAST child = new DetailAST();
+        final DetailAST sibling = new DetailAST();
+        final DetailAST newSibling = new DetailAST();
+        parent.setFirstChild(child);
+        child.setNextSibling(sibling);
+
+        child.addNextSibling(newSibling);
+        assertTrue(newSibling.getParent().equals(parent));
+        assertTrue(newSibling.getNextSibling().equals(sibling));
+        assertTrue(child.getNextSibling().equals(newSibling));
+    }
+
+    @Test
     public void testTreeStructure() throws Exception {
         checkDir(new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
+    }
+
+    @Test
+    public void testToString() {
+        final DetailAST ast = new DetailAST();
+        ast.setText("text");
+        ast.setColumnNo(0);
+        ast.setLineNo(0);
+        assertEquals("text[0x0]", ast.toString());
     }
 
     private static void checkDir(File dir) throws Exception {

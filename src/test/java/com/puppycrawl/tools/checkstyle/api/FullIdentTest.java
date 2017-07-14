@@ -37,7 +37,18 @@ public class FullIdentTest {
     }
 
     @Test
-    public void testNonValidCoordinates() {
+    public void testNonValidCoordinatesWithNegative() {
+        final FullIdent fullIdent = prepareFullIdentWithCoordinates(14, 15);
+        Assert.assertEquals("MyTest.MyTestik[15x14]", fullIdent.toString());
+    }
+
+    @Test
+    public void testNonValidCoordinatesWithZero() {
+        final FullIdent fullIdent = prepareFullIdentWithCoordinates(0, 0);
+        Assert.assertEquals("MyTest.MyTestik[15x14]", fullIdent.toString());
+    }
+
+    private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {
         final DetailAST ast = new DetailAST();
         ast.setType(TokenTypes.DOT);
         ast.setColumnNo(1);
@@ -46,8 +57,8 @@ public class FullIdentTest {
 
         final DetailAST ast2 = new DetailAST();
         ast2.setType(TokenTypes.LE);
-        ast2.setColumnNo(-14);
-        ast2.setLineNo(-15);
+        ast2.setColumnNo(columnNo);
+        ast2.setLineNo(lineNo);
         ast2.setText("MyTestik");
 
         final DetailAST ast1 = new DetailAST();
@@ -59,7 +70,6 @@ public class FullIdentTest {
         ast.addChild(ast1);
         ast.addChild(ast2);
 
-        final FullIdent indent = FullIdent.createFullIdent(ast);
-        Assert.assertEquals("MyTest.MyTestik[15x14]", indent.toString());
+        return FullIdent.createFullIdent(ast);
     }
 }
