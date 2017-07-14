@@ -151,7 +151,7 @@
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
         <property name="format" value="^((?!unchecked|deprecation|rawtypes).)*$"/>
-        <message key="suppressed.warning.not.allowe"
+        <message key="suppressed.warning.not.allowed"
              value="The warning ''{0}'' cannot be suppressed at this location. If you try to suppress IntelliJ IDEA inspection, please use javadoc block tag @noinspection"
              />
     </module>
