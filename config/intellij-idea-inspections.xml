@@ -223,6 +223,9 @@
     <inspection_tool class="CastThatLosesPrecision" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreIntegerCharCasts" value="false" />
     </inspection_tool>
+    <!-- this is valid but there are many false-positvies as we use reflection to load modules after recheck
+     by instanceof and we restricted in by existing api types, but some cases are valid, inspection lack of
+     properties to make it less demanding -->
     <inspection_tool class="CastToConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="CastToIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CaughtExceptionImmediatelyRethrown" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1055,14 +1058,17 @@
         <option name="m_minLength" value="2" />
         <option name="m_maxLength" value="64" />
     </inspection_tool>
+    <!-- this is valid but there are many false-positvies as we use reflection to load modules after recheck by instanceof -->
     <inspection_tool class="InstanceVariableOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="InstanceVariableUninitializedUse" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignorePrimitives" value="false" />
         <option name="annotationNamesString" value="" />
     </inspection_tool>
     <inspection_tool class="InstanceofCatchParameter" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="InstanceofChain" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreInstanceofOnLibraryClasses" value="false" />
+    <!-- we do reflection for testing -->
+    <inspection_tool class="InstanceofChain" enabled="true" level="ERROR" enabled_by_default="true">
+        <scope name="Tests" level="ERROR" enabled="false" />
+        <option name="ignoreInstanceofOnLibraryClasses" value="true" />
     </inspection_tool>
     <inspection_tool class="InstanceofIncompatibleInterface" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="InstanceofInterfaces" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -1281,6 +1287,7 @@
         <option name="m_minLength" value="1" />
         <option name="m_maxLength" value="32" />
     </inspection_tool>
+    <!-- we like concrete types in concrete logic, inspection is not practical and lack more options to skip cases -->
     <inspection_tool class="LocalVariableOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="LogStatementGuardedByLogCondition" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LoggerInitializedWithForeignClass" enabled="true" level="ERROR" enabled_by_default="true">
@@ -1300,7 +1307,9 @@
     <inspection_tool class="MVCPathVariableInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MagicCharacter" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MagicConstant" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="MagicNumber" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="MagicNumber" enabled="true" level="ERROR" enabled_by_default="true" >
+        <scope name="Tests" level="ERROR" enabled="false" />
+    </inspection_tool>
     <inspection_tool class="MagicNumberJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MalformedFormatString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MalformedRegex" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1348,6 +1357,8 @@
     <inspection_tool class="MethodOverridesPackageLocalMethod" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="MethodOverridesPrivateMethod" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="MethodOverridesStaticMethod" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- it is too demanding, event violated private methods. Nothing is bad to be exact inside custom logic,
+     might be good for api classes validation, but setup of this is too heavy for us -->
     <inspection_tool class="MethodReturnOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MethodWithMultipleLoops" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MimeType" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -1929,6 +1940,7 @@
         <option name="m_minLength" value="4" />
         <option name="m_maxLength" value="64" />
     </inspection_tool>
+    <!-- we are a library, not used by us heavily does not mean that is not required -->
     <inspection_tool class="StaticMethodOnlyUsedInOneClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="StaticNonFinalField" enabled="false" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false" />
@@ -1944,6 +1956,7 @@
         <option name="m_minLength" value="5" />
         <option name="m_maxLength" value="32" />
     </inspection_tool>
+    <!-- it lacks option to skip inner field of the same size that we use give convenient ready to use instances -->
     <inspection_tool class="StaticVariableOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="StaticVariableUninitializedUse" enabled="false" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false">
@@ -2014,6 +2027,8 @@
                 <option value="ProhibitedExceptionThrown" />
                 <!-- we have to use it when pass null argument in test purporses -->
                 <option value="NullArgumentToVariableArgMethod" />
+                <option value="ChainOfInstanceofChecks"/>
+                <option value="MagicNumber"/>
             </list>
         </option>
     </inspection_tool>

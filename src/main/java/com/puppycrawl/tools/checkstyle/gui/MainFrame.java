@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  *
  * @author Lars Kühne
  * @author Vladislav Lisetskiy
+ * @noinspection MagicNumber
  */
 public class MainFrame extends JFrame {
 
