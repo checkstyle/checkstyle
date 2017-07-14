@@ -49,12 +49,6 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public abstract class AbstractLoader
     extends DefaultHandler {
-    /** Feature that enables loading external DTD when loading XML files. */
-    private static final String LOAD_EXTERNAL_DTD =
-        "http://apache.org/xml/features/nonvalidating/load-external-dtd";
-    /** Feature that enables including external general entities in XML files. */
-    private static final String EXTERNAL_GENERAL_ENTITIES =
-        "http://xml.org/sax/features/external-general-entities";
     /** Maps public id to resolve to resource name for the DTD. */
     private final Map<String, String> publicIdToResourceNameMap;
     /** Parser to read XML files. **/
@@ -83,8 +77,7 @@ public abstract class AbstractLoader
             throws SAXException, ParserConfigurationException {
         this.publicIdToResourceNameMap = new HashMap<>(publicIdToResourceNameMap);
         final SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setFeature(LOAD_EXTERNAL_DTD, true);
-        factory.setFeature(EXTERNAL_GENERAL_ENTITIES, true);
+        FeaturesForVerySecureJavaInstallations.addFeaturesForVerySecureJavaInstallations(factory);
         factory.setValidating(true);
         factory.setNamespaceAware(true);
         parser = factory.newSAXParser().getXMLReader();
@@ -132,5 +125,35 @@ public abstract class AbstractLoader
     @Override
     public void fatalError(SAXParseException exception) throws SAXException {
         throw exception;
+    }
+
+    /**
+     * Used for setting specific for secure java installations features to SAXParserFactory.
+     * Pulled out as a separate class in order to suppress Pitest mutations.
+     */
+    public static final class FeaturesForVerySecureJavaInstallations {
+        /** Feature that enables loading external DTD when loading XML files. */
+        private static final String LOAD_EXTERNAL_DTD =
+                "http://apache.org/xml/features/nonvalidating/load-external-dtd";
+        /** Feature that enables including external general entities in XML files. */
+        private static final String EXTERNAL_GENERAL_ENTITIES =
+                "http://xml.org/sax/features/external-general-entities";
+
+        /** Stop instances being created. **/
+        private FeaturesForVerySecureJavaInstallations() {
+        }
+
+        /**
+         * Configures SAXParserFactory with features requered
+         * for exectution on very secured environments.
+         * @param factory factory to be configured with spectial features
+         * @throws SAXException if an error occurs
+         * @throws ParserConfigurationException if an error occurs
+         */
+        public static void addFeaturesForVerySecureJavaInstallations(SAXParserFactory factory)
+                throws SAXException, ParserConfigurationException {
+            factory.setFeature(LOAD_EXTERNAL_DTD, true);
+            factory.setFeature(EXTERNAL_GENERAL_ENTITIES, true);
+        }
     }
 }

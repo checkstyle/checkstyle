@@ -21,9 +21,14 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.internal.util.reflection.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -195,5 +200,44 @@ public class AbstractCheckTest {
         Assert.assertArrayEquals(defaultTokens, check.getDefaultTokens());
         Assert.assertArrayEquals(defaultTokens, check.getAcceptableTokens());
         Assert.assertArrayEquals(requiredTokens, check.getRequiredTokens());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testClearMessages() {
+        final AbstractCheck check = new DummyAbstractCheck();
+
+        check.log(0, "key", "args");
+        final Collection<LocalizedMessage> messages =
+                (Collection<LocalizedMessage>) Whitebox.getInternalState(check, "messages");
+        Assert.assertEquals(1, messages.size());
+        check.clearMessages();
+        Assert.assertEquals(0, messages.size());
+    }
+
+    private static final class DummyAbstractCheck extends AbstractCheck {
+        private static final int[] DUMMY_ARRAY = {6};
+
+        @Override
+        public int[] getDefaultTokens() {
+            return Arrays.copyOf(DUMMY_ARRAY, 1);
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return Arrays.copyOf(DUMMY_ARRAY, 1);
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return Arrays.copyOf(DUMMY_ARRAY, 1);
+        }
+
+        @Override
+        protected Map<String, String> getCustomMessages() {
+            final Map<String, String> messages = new HashMap<>();
+            messages.put("key", "value");
+            return messages;
+        }
     }
 }

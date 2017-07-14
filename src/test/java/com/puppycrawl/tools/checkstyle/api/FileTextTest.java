@@ -21,12 +21,26 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.doNothing;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
+import java.util.Locale;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.google.common.io.Closeables;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Closeables.class)
 public class FileTextTest {
     @Test
     public void testUnsupportedCharset() throws IOException {
@@ -44,10 +58,18 @@ public class FileTextTest {
 
     @Test
     public void testSupportedCharset() throws IOException {
+        //check if reader finally closed
+        mockStatic(Closeables.class);
+        doNothing().when(Closeables.class);
+        Closeables.closeQuietly(any(Reader.class));
+
         final String charsetName = "ISO-8859-1";
         final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
         assertEquals(charsetName, fileText.getCharset().name());
+
+        verifyStatic(times(1));
+        Closeables.closeQuietly(any(Reader.class));
     }
 
     @Test
@@ -66,6 +88,24 @@ public class FileTextTest {
         final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
                  + "checkstyle/api/import-control_complete.xml"), charsetName);
         final FileText copy = new FileText(fileText);
-        assertEquals(3, copy.lineColumn(100).getLine());
+        final LineColumn lineColumn = copy.lineColumn(100);
+        assertEquals(3, lineColumn.getLine());
+        if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+            assertEquals(44, lineColumn.getColumn());
+        }
+        else {
+            assertEquals(46, lineColumn.getColumn());
+        }
+    }
+
+    @Test
+    public void testLineColumnAtTheStartOfFile() throws IOException {
+        final String charsetName = "ISO-8859-1";
+        final FileText fileText = new FileText(new File("src/test/resources/com/puppycrawl/tools/"
+                + "checkstyle/api/import-control_complete.xml"), charsetName);
+        final FileText copy = new FileText(fileText);
+        final LineColumn lineColumn = copy.lineColumn(0);
+        assertEquals(1, lineColumn.getLine());
+        assertEquals(0, lineColumn.getColumn());
     }
 }

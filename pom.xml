@@ -2195,8 +2195,18 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
               </targetTests>
-              <mutationThreshold>88</mutationThreshold>
+              <excludedMethods>
+                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
+                <param>addFeaturesForVerySecureJavaInstallations</param>
+              </excludedMethods>
+              <avoidCallsTo>
+                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.api.AbstractLoader$FeaturesForVerySecureJavaInstallations</avoidCallsTo>
+              </avoidCallsTo>
+              <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>

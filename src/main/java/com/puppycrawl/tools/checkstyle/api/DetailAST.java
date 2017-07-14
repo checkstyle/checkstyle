@@ -110,7 +110,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         clearBranchTokenTypes();
         clearChildCountCache(parent);
         if (ast != null) {
-            ast.setParent(parent);
+            //parent is set in setNextSibling or parent.setFirstChild
             final DetailAST previousSiblingNode = previousSibling;
 
             if (previousSiblingNode != null) {
@@ -135,7 +135,7 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
         clearBranchTokenTypes();
         clearChildCountCache(parent);
         if (ast != null) {
-            ast.setParent(parent);
+            //parent is set in setNextSibling
             final DetailAST nextSibling = getNextSibling();
 
             if (nextSibling != null) {
@@ -227,11 +227,11 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             // with initialize(String text)
             resultNo = findLineNo(getFirstChild());
 
-            if (resultNo < 0) {
+            if (resultNo == -1) {
                 resultNo = findLineNo(getNextSibling());
             }
         }
-        if (resultNo < 0) {
+        if (resultNo == -1) {
             resultNo = lineNo;
         }
         return resultNo;
@@ -258,11 +258,11 @@ public final class DetailAST extends CommonASTWithHiddenTokens {
             // with initialize(String text)
             resultNo = findColumnNo(getFirstChild());
 
-            if (resultNo < 0) {
+            if (resultNo == -1) {
                 resultNo = findColumnNo(getNextSibling());
             }
         }
-        if (resultNo < 0) {
+        if (resultNo == -1) {
             resultNo = columnNo;
         }
         return resultNo;

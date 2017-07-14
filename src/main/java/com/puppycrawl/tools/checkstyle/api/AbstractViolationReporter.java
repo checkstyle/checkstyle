@@ -122,7 +122,7 @@ public abstract class AbstractViolationReporter
         final String messageBundle;
         final int endIndex = className.lastIndexOf('.');
         final String messages = "messages";
-        if (endIndex < 0) {
+        if (endIndex == -1) {
             messageBundle = messages;
         }
         else {
