@@ -2122,7 +2122,7 @@
     <inspection_tool class="ThrowCaughtLocally" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignoreRethrownExceptions" value="false" />
     </inspection_tool>
-    <!-- disabled till https://github.com/checkstyle/checkstyle/issues/3301 -->
+    <!-- disabled till we switch to jacoco that support try-with-resources -->
     <inspection_tool class="ThrowFromFinallyBlock" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ThrowFromFinallyBlockJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ThrowableInstanceNeverThrown" enabled="true" level="ERROR" enabled_by_default="true" />
