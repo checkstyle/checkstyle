@@ -257,7 +257,7 @@ public class AllChecksTest extends BaseCheckTestSupport {
             }
             else {
                 // Checks which have TreeWalker as a parent.
-                BaseCheckTestSupport testSupport = new BaseCheckTestSupport() {
+                final BaseCheckTestSupport testSupport = new BaseCheckTestSupport() {
                     @Override
                     protected DefaultConfiguration createCheckerConfig(Configuration config) {
                         final DefaultConfiguration dc = new DefaultConfiguration("root");

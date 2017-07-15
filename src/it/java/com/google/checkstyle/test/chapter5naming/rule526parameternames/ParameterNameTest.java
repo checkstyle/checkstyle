@@ -47,7 +47,7 @@ public class ParameterNameTest extends BaseCheckTestSupport {
     public static void setConfigurationBuilder() throws CheckstyleException {
         final List<Configuration> configs = getCheckConfigs("ParameterName");
 
-        Assert.assertEquals(configs.size(), 1);
+        Assert.assertEquals(1, configs.size());
 
         config = configs.get(0);
         format = config.getAttribute("format");

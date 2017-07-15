@@ -38,10 +38,9 @@ public class FileTabCharacterTest extends BaseCheckTestSupport {
     }
 
     @Override
-    protected DefaultConfiguration createCheckerConfig(
-        Configuration aConfig) {
+    protected DefaultConfiguration createCheckerConfig(Configuration config) {
         final DefaultConfiguration dc = new DefaultConfiguration("root");
-        dc.addChild(aConfig);
+        dc.addChild(config);
         return dc;
     }
 
