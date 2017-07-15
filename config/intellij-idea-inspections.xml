@@ -250,10 +250,8 @@
     <inspection_tool class="ChainedEquality" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ChainedEqualityJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ChainedFunctionCallJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ChainedMethodCall" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_ignoreFieldInitializations" value="true" />
-        <option name="m_ignoreThisSuperCalls" value="true" />
-    </inspection_tool>
+    <!-- it is too demanding, with no choice limits of chain size etc -->
+    <inspection_tool class="ChainedMethodCall" enabled="false" level="ERROR" enabled_by_default="false"/>
     <inspection_tool class="ChannelResource" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="insideTryAllowed" value="false" />
     </inspection_tool>
@@ -411,6 +409,7 @@
     </inspection_tool>
     <inspection_tool class="ConstantOnLHSOfComparison" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConstantOnLHSOfComparisonJS" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we do like constants on the right side, it is more readable, placing constant on the left does not give benefit -->
     <inspection_tool class="ConstantOnRHSOfComparison" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ConstantOnRHSOfComparisonJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConstantStringIntern" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1003,9 +1002,8 @@
     <inspection_tool class="IgnoreUnusedEntry" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="IgnoredJUnitTest" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ImplicitArrayToString" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ImplicitCallToSuper" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_ignoreForObjectSubclasses" value="false" />
-    </inspection_tool>
+    <!-- we do not like this style, but we could change our mind in future -->
+    <inspection_tool class="ImplicitCallToSuper" enabled="false" level="ERROR" enabled_by_default="false"/>
     <inspection_tool class="ImplicitDefaultCharsetUsage" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ImplicitNumericConversion" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignoreWideningConversions" value="false" />
@@ -1267,10 +1265,8 @@
     </inspection_tool>
     <inspection_tool class="LiteralAsArgToStringEquals" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LoadLibraryWithNonConstantString" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="LocalCanBeFinal" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="REPORT_VARIABLES" value="true" />
-        <option name="REPORT_PARAMETERS" value="true" />
-    </inspection_tool>
+    <!-- finds false positives and we already have our own FinalLocalVariableCheck for this purpose -->
+    <inspection_tool class="LocalCanBeFinal" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="LocalVariableHidingMemberVariable" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInvisibleFields" value="true" />
         <option name="m_ignoreStaticMethods" value="true" />
@@ -1451,9 +1447,8 @@
     <inspection_tool class="NestedFunctionJS" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_includeAnonymousFunctions" value="false" />
     </inspection_tool>
-    <inspection_tool class="NestedMethodCall" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_ignoreFieldInitializations" value="true" />
-    </inspection_tool>
+    <!-- we like nested method calls -->
+    <inspection_tool class="NestedMethodCall" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="NestedSwitchStatement" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="NestedSwitchStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NestedSynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -1774,6 +1769,7 @@
     <inspection_tool class="ReturnOfInnerClass" enabled="true" level="WARNING" enabled_by_default="true" >
         <option name="ignoreNonPublic" value="true" />
     </inspection_tool>
+    <!-- all cases are false positives -->
     <inspection_tool class="ReturnThis" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ReuseOfLocalVariable" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReuseOfLocalVariableJS" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2265,16 +2261,15 @@
         <option name="ignoreReferences" value="true" />
         <option name="ignoreComplexLiterals" value="false" />
     </inspection_tool>
+    <!-- we have our own understanding what we think code should be, it is checked by RequireThisCheck -->
     <inspection_tool class="UnqualifiedFieldAccess" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="UnqualifiedInnerClassAccess" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreReferencesToLocalInnerClasses" value="false" />
-    </inspection_tool>
+    <!-- it is ok to skip name of outter class for inner class in filed/variable declaration to keep type short -->
+    <inspection_tool class="UnqualifiedInnerClassAccess" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we have our own understanding what we think code should be, it is checked by RequireThisCheck -->
     <inspection_tool class="UnqualifiedMethodAccess" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="UnqualifiedStaticUsage" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_ignoreStaticFieldAccesses" value="false" />
-        <option name="m_ignoreStaticMethodCalls" value="false" />
-        <option name="m_ignoreStaticAccessFromStaticContext" value="false" />
-    </inspection_tool>
+    <!--inspection does not have option to skip cases of usage static field/method that is declared
+    in the same class, as result there are a lot of want-fix cases.-->
+    <inspection_tool class="UnqualifiedStaticUsage" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="UnreachableCodeJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnresolvedMessageChannel" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UnresolvedPropertyKey" enabled="true" level="WARNING" enabled_by_default="true" />
