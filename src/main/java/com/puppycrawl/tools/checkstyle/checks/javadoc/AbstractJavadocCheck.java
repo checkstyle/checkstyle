@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtils;
 /**
  * Base class for Checks that process Javadoc comments.
  * @author Baratali Izmailov
+ * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**

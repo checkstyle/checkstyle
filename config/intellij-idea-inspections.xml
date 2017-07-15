@@ -38,22 +38,20 @@
     <inspection_tool class="AnonymousClassComplexity" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="3" />
     </inspection_tool>
-    <inspection_tool class="AnonymousClassMethodCount" enabled="true" level="WARNING" enabled_by_default="false">
-        <scope name="Production" level="ERROR" enabled="true">
-            <option name="m_limit" value="1" />
-        </scope>
-        <option name="m_limit" value="1" />
-    </inspection_tool>
+    <!-- false-positives on test code even with an option method count set to 3 -->
+    <inspection_tool class="AnonymousClassMethodCount" enabled="false" level="WARNING" enabled_by_default="false"/>
     <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AnonymousFunctionJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- suppressed till GSoC project completion .... -->
     <inspection_tool class="AnonymousHasLambdaAlternative" enabled="false" level="WARNING" enabled_by_default="false" />
+    <!-- we are ok with anonymous classes -->
     <inspection_tool class="AnonymousInnerClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AnonymousInnerClassMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false" />
     </inspection_tool>
     <inspection_tool class="AntDuplicateTargetsInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AntMissingPropertiesFileInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- maven and ant are used in the same build, no options in inspection to adjust -->
     <inspection_tool class="AntResolveInspection" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ArgNamesErrorsInspection" enabled="true" level="TYPO" enabled_by_default="true" />
     <inspection_tool class="ArgNamesWarningsInspection" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -96,8 +94,12 @@
     <inspection_tool class="AssignmentToMethodParameter" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreTransformationOfOriginalParameter" value="false" />
     </inspection_tool>
+    <!-- we are legacy library with log history, to much items to fix, usage of Option
+    does not do the code any better in some cases. May be fixed some day in future -->
     <inspection_tool class="AssignmentToNull" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="AssignmentToStaticFieldFromInstanceMethod" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AssignmentToStaticFieldFromInstanceMethod" enabled="true" level="ERROR" enabled_by_default="true">
+        <scope name="Tests" level="ERROR" enabled="false" />
+    </inspection_tool>
     <inspection_tool class="AssignmentToSuperclassField" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AutoBoxing" enabled="false" level="ERROR" enabled_by_default="false">
@@ -276,6 +278,7 @@
     <inspection_tool class="ClassComplexity" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_limit" value="80" />
     </inspection_tool>
+    <!-- we control this by checkstyle/pmd that have better suppression options -->
     <inspection_tool class="ClassCoupling" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_includeJavaClasses" value="false" />
         <option name="m_includeLibraryClasses" value="false" />
@@ -292,8 +295,8 @@
         <option name="excludeInnerClasses" value="false" />
     </inspection_tool>
     <inspection_tool class="ClassIndependentOfModule" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="ClassInheritanceDepth" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_limit" value="2" />
+    <inspection_tool class="ClassInheritanceDepth" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="m_limit" value="6" />
     </inspection_tool>
     <inspection_tool class="ClassInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ClassInitializerMayBeStatic" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -347,8 +350,8 @@
     <inspection_tool class="CloneInNonCloneableClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CloneReturnsClassType" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CloneableClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="CloneableImplementsClone" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_ignoreCloneableDueToInheritance" value="false" />
+    <inspection_tool class="CloneableImplementsClone" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="m_ignoreCloneableDueToInheritance" value="true" />
     </inspection_tool>
     <inspection_tool class="CodeBlock2Expr" enabled="false" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CoffeeScriptArgumentsOutsideFunction" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -397,6 +400,7 @@
         <option name="SUGGEST_NULLABLE_ANNOTATIONS" value="false" />
         <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="false" />
     </inspection_tool>
+    <!-- we are ok with constants in classes and do not like constants in interfaces -->
     <inspection_tool class="ConstantDeclaredInAbstractClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ConstantDeclaredInInterface" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConstantIfStatement" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -508,9 +512,17 @@
     <inspection_tool class="DelegatesTo" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="Dependency" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DeprecatedCallableAddReplaceWith" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="DeprecatedClassUsageInspection" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="DeprecatedIsStillUsed" enabled="true" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="Deprecation" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DeprecatedClassUsageInspection" enabled="true" level="WARNING" enabled_by_default="false">
+        <scope name="Production" level="WARNING" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="DeprecatedIsStillUsed" enabled="true" level="WARNING" enabled_by_default="false">
+        <scope name="Production" level="WARNING" enabled="true" />
+    </inspection_tool>
+    <inspection_tool class="Deprecation" enabled="true" level="ERROR" enabled_by_default="false">
+        <scope name="Production" level="ERROR" enabled="true">
+            <option name="IGNORE_INSIDE_DEPRECATED" value="true" />
+        </scope>
+    </inspection_tool>
     <inspection_tool class="DeserializableClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DesignForExtension" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DialogTitleCapitalization" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -661,6 +673,7 @@
         <option name="countGettersAndSetters" value="false" />
     </inspection_tool>
     <inspection_tool class="FieldCanBeLocal" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- it is hard to follow this rule as most cases are configuration related fields of Checks -->
     <inspection_tool class="FieldCount" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_countConstantFields" value="false" />
         <option name="m_considerStaticFinalFieldsConstant" value="false" />
@@ -677,7 +690,9 @@
     <inspection_tool class="FieldRepeatedlyAccessed" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_ignoreFinalFields" value="false" />
     </inspection_tool>
+    <!-- we are library - we do this on purpose as clear signal to users -->
     <inspection_tool class="FinalClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we are library - we do this on purpose as clear signal to users -->
     <inspection_tool class="FinalMethod" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="FinalMethodInFinalClass" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="FinalPrivateMethod" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1326,6 +1341,8 @@
     <inspection_tool class="MavenRedundantGroupId" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MethodCallInLoopCondition" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MethodCanBeVariableArityMethod" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- it it hard to follow this rule as it is better to keep whole logic in one Check class,
+    we do follow cyclomatic complexity for methods -->
     <inspection_tool class="MethodCount" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_limit" value="20" />
         <option name="ignoreGettersAndSetters" value="false" />
@@ -1511,7 +1528,7 @@
     <inspection_tool class="NonStaticInnerClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="NonSynchronizedMethodOverridesSynchronizedMethod" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="NonThreadSafeLazyInitialization" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="NoopMethodInAbstractClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NoopMethodInAbstractClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NotifyCalledOnCondition" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NotifyNotInSynchronizedContext" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NotifyWithoutCorrespondingWait" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -1672,6 +1689,7 @@
         <option name="ignoreInterfaces" value="false" />
     </inspection_tool>
     <inspection_tool class="ProtectedMemberInFinalClass" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- we do not need to force all to have static factory methods -->
     <inspection_tool class="PublicConstructor" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="PublicConstructorInNonPublicClass" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="PublicField" enabled="true" level="WARNING" enabled_by_default="true">
@@ -2029,6 +2047,14 @@
                 <option value="NullArgumentToVariableArgMethod" />
                 <option value="ChainOfInstanceofChecks"/>
                 <option value="MagicNumber"/>
+                <!-- it is used for test purposes -->
+                <option value="AssignmentToStaticFieldFromInstanceMethod" />
+                <!-- we still have classes derived from deprecated ones -->
+                <option value="DeprecatedIsStillUsed" />
+                <!-- these are base classes for checks and not all their methods may need to be overwritten -->
+                <option value="NoopMethodInAbstractClass" />
+                <!-- Main class is a wrapper command line program for the Checker -->
+                <option value="UseOfSystemOutOrSystemErr" />
             </list>
         </option>
     </inspection_tool>
@@ -2082,7 +2108,7 @@
     <inspection_tool class="SystemExit" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="SystemGC" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SystemGetenv" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="SystemOutErr" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SystemOutErr" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SystemProperties" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="SystemRunFinalizersOnExit" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SystemSetSecurityManager" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2325,11 +2351,13 @@
     <inspection_tool class="UseOfPropertiesAsHashtable" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="UseOfSunClasses" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="UtilSchemaInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- we are not pure object-oriented library, we like reasonable mix of styles, especially state-less and context-less -->
     <inspection_tool class="UtilityClass" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignorableAnnotations">
             <value />
         </option>
     </inspection_tool>
+    <!-- we do not like this style -->
     <inspection_tool class="UtilityClassCanBeEnum" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="UtilityClassWithPublicConstructor" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UtilityClassWithoutPrivateConstructor" enabled="true" level="WARNING" enabled_by_default="true">

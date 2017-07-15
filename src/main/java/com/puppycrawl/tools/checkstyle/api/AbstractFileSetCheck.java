@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * @author lkuehne
  * @author oliver
+ * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter

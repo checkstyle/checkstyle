@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 public class MethodTypeParameterNameTest extends BaseCheckTestSupport {
 
     private static final String MSG_KEY = "name.invalidPattern";
-    private static Configuration configuration;
     private static String format;
 
     @Override
@@ -43,8 +42,7 @@ public class MethodTypeParameterNameTest extends BaseCheckTestSupport {
 
     @BeforeClass
     public static void setConfigurationBuilder() throws CheckstyleException {
-        configuration = getCheckConfig("ClassTypeParameterName");
-        format = configuration.getAttribute("format");
+        format = getCheckConfig("ClassTypeParameterName").getAttribute("format");
     }
 
     @Test

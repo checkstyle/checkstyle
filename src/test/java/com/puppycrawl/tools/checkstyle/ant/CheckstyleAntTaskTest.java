@@ -36,6 +36,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -391,7 +392,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 null, null,
                 getClass(), null);
 
-        final List<String> output = FileUtils.readLines(outputFile);
+        final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final String errorMessage = "Content of file with violations differs from expected";
         assertEquals(errorMessage, auditStartedMessage.getMessage(), output.get(0));
         assertTrue(errorMessage, output.get(1).startsWith("[WARN]"));
@@ -425,7 +426,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         antTask.execute();
 
-        final List<String> output = FileUtils.readLines(outputFile);
+        final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final int sizeOfOutputWithNoViolations = 2;
         assertEquals("No violations expected", sizeOfOutputWithNoViolations, output.size());
     }
@@ -448,7 +449,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         antTask.execute();
 
-        final List<String> output = FileUtils.readLines(outputFile);
+        final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final int sizeOfOutputWithNoViolations = 2;
         assertEquals("No violations expected", sizeOfOutputWithNoViolations, output.size());
     }
@@ -521,8 +522,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         final List<String> expected = FileUtils.readLines(
-                new File(getPath("InputCheckstyleAntTaskXmlOutput.xml")));
-        final List<String> actual = FileUtils.readLines(outputFile);
+                new File(getPath("InputCheckstyleAntTaskXmlOutput.xml")), StandardCharsets.UTF_8);
+        final List<String> actual = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         for (int i = 0; i < expected.size(); i++) {
             final String line = expected.get(i);
             if (!line.startsWith("<checkstyle version") && !line.startsWith("<file")) {
@@ -661,7 +662,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public void testSetClasspathRef() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        antTask.setClasspathRef(new Reference());
+        antTask.setClasspathRef(new Reference(new Project(), "id"));
 
         assertNotNull("Classpath should not be null",
             Whitebox.getInternalState(antTask, "classpath"));
