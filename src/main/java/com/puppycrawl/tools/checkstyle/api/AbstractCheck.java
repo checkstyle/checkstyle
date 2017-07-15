@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * @author Oliver Burn
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
+ * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractCheck extends AbstractViolationReporter {
     /** Default tab width for column reporting. */

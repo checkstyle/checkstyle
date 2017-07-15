@@ -216,7 +216,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private boolean containsForbiddenFragment(String firstSentence) {
         String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
                 .matcher(firstSentence).replaceAll(" ");
-        javadocText = CharMatcher.WHITESPACE.trimAndCollapseFrom(javadocText, ' ');
+        javadocText = CharMatcher.whitespace().trimAndCollapseFrom(javadocText, ' ');
         return forbiddenSummaryFragments.matcher(javadocText).find();
     }
 }

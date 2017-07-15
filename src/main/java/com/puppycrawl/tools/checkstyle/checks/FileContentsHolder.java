@@ -68,6 +68,10 @@ public class FileContentsHolder extends AbstractCheck {
         return getAcceptableTokens();
     }
 
+    /**
+     * {@inheritDoc} Initializes file contents.
+     * @noinspection AssignmentToStaticFieldFromInstanceMethod
+     */
     @Override
     public void beginTree(DetailAST rootAST) {
         currentFileContents = getFileContents();

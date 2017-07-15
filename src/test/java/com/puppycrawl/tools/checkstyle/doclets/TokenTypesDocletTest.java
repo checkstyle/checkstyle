@@ -27,6 +27,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,7 +148,8 @@ public class TokenTypesDocletTest {
 
         assertTrue(TokenTypesDoclet.start(rootDoc));
         final String fileContent =
-                FileUtils.readFileToString(new File("target/tokentypes.properties"));
+                FileUtils.readFileToString(new File("target/tokentypes.properties"),
+                        StandardCharsets.UTF_8);
         assertTrue("File content is not expected",
                 fileContent.startsWith("EOF=The end of file token."));
 
