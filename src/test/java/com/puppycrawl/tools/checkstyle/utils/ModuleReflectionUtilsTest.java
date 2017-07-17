@@ -105,6 +105,7 @@ public class ModuleReflectionUtilsTest {
         }
     }
 
+    /** @noinspection AbstractClassWithOnlyOneDirectInheritor */
     private abstract static class AbstractInvalidClass extends AutomaticBean {
         public abstract void method();
     }
