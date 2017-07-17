@@ -107,6 +107,7 @@
     <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- we are ok to use auto-boxing as we use modern java -->
     <inspection_tool class="AutoBoxing" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we can not use try-with-resource till we switch to jacoco for code coverage -->
     <inspection_tool class="AutoCloseableResource" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- we are ok to use auto-unboxing as we use modern java -->
     <inspection_tool class="AutoUnboxing" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -289,6 +290,7 @@
         <option name="m_limit" value="15" />
     </inspection_tool>
     <inspection_tool class="ClassEscapesItsScope" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- we do not need that -->
     <inspection_tool class="ClassHasNoToStringMethod" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="excludeClassNames" value="" />
         <option name="excludeException" value="true" />
@@ -355,6 +357,7 @@
     <inspection_tool class="CloneDeclaresCloneNotSupported" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CloneInNonCloneableClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CloneReturnsClassType" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- this inspection is not for us -->
     <inspection_tool class="CloneableClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="CloneableImplementsClone" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignoreCloneableDueToInheritance" value="true" />
@@ -537,7 +540,10 @@
             <option name="IGNORE_INSIDE_DEPRECATED" value="true" />
         </scope>
     </inspection_tool>
+    <!-- this inspection is not for us -->
     <inspection_tool class="DeserializableClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we have the same Check , and it is disabled too, as amount of old code and old design is too big
+     to do any breaking compatibility fixes in favor to avoid violations from this inspection -->
     <inspection_tool class="DesignForExtension" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DialogTitleCapitalization" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DisjointPackage" enabled="false" level="ERROR" enabled_by_default="false">
@@ -1197,6 +1203,7 @@
         <option name="m_minLength" value="8" />
         <option name="m_maxLength" value="64" />
     </inspection_tool>
+    <!-- we need to stay on junit -->
     <inspection_tool class="JUnitTestNG" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- Disabled till GSoC completion -->
     <inspection_tool class="Java8MapApi" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -1322,6 +1329,7 @@
         <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
     </inspection_tool>
     <inspection_tool class="LoggingConditionDisagreesWithLogStatement" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- no ability to skip import/package lines, wrapping them is not what we want -->
     <inspection_tool class="LongLine" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="LongLiteralsEndingWithLowercaseL" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LoopConditionNotUpdatedInsideLoop" enabled="true" level="ERROR" enabled_by_default="true">
@@ -1540,6 +1548,7 @@
     <inspection_tool class="NonStaticFinalLogger" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="loggerClassName" value="" />
     </inspection_tool>
+    <!-- this inspection is not for us -->
     <inspection_tool class="NonStaticInnerClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="NonSynchronizedMethodOverridesSynchronizedMethod" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="NonThreadSafeLazyInitialization" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1628,11 +1637,11 @@
         <option name="limit" value="10" />
     </inspection_tool>
     <inspection_tool class="ParameterCanBeLocal" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ParameterHidingMemberVariable" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="ParameterHidingMemberVariable" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignoreInvisibleFields" value="true" />
-        <option name="m_ignoreStaticMethodParametersHidingInstanceFields" value="false" />
-        <option name="m_ignoreForConstructors" value="false" />
-        <option name="m_ignoreForPropertySetters" value="false" />
+        <option name="m_ignoreStaticMethodParametersHidingInstanceFields" value="true" />
+        <option name="m_ignoreForConstructors" value="true" />
+        <option name="m_ignoreForPropertySetters" value="true" />
         <option name="m_ignoreForAbstractMethods" value="false" />
     </inspection_tool>
     <inspection_tool class="ParameterNameDiffersFromOverriddenParameter" enabled="true" level="WARNING" enabled_by_default="true">
@@ -1817,6 +1826,7 @@
     <inspection_tool class="SelfIncludingJspFiles" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SerialPersistentFieldsWithWrongSignature" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SerialVersionUIDNotStaticFinal" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- this inspection is not for us -->
     <inspection_tool class="SerializableClassInSecureContext" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="SerializableHasSerialVersionUIDField" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreAnonymousInnerClasses" value="false" />
@@ -1869,6 +1879,8 @@
     <inspection_tool class="SocketResource" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="insideTryAllowed" value="false" />
     </inspection_tool>
+    <!-- even we limit validation comments only, there are still a lot of violations on javadoc
+     parameters naming , it also violates names of inspections in noinspection tags etc. -->
     <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
         <option name="processCode" value="true" />
         <option name="processLiterals" value="true" />
