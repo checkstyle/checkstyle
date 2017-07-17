@@ -3,6 +3,7 @@
     <option name="myName" value="Checkstyle" />
     <inspection_tool class="AbsoluteAlignmentInUserInterface" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractBeanReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- till https://github.com/checkstyle/checkstyle/issues/4716 -->
     <inspection_tool class="AbstractClassExtendsConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AbstractClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_regex" value="[A-Z][A-Za-z\d]*|Check" />
@@ -180,6 +181,7 @@
     <inspection_tool class="BlockMarkerComments" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="BlockStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="BooleanConstructor" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- even it is always negated, it is better than possible negation/inversion of negated term -->
     <inspection_tool class="BooleanMethodIsAlwaysInverted" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="BooleanMethodNameMustStartWithQuestion" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Production" level="WARNING" enabled="false">
@@ -194,8 +196,10 @@
         <option name="questionString" value="is,can,has,should,could,will,shall,check,contains,equals,add,put,remove,starts,ends,are,was,matches,start,must,accept" />
     </inspection_tool>
     <inspection_tool class="BooleanParameter" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- even it is always negated, it is better than possible negation/inversion of negated term -->
     <inspection_tool class="BooleanVariableAlwaysNegated" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="BoxingBoxedValue" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we like breaks to be in code -->
     <inspection_tool class="BreakStatement" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="BreakStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="BreakStatementWithLabel" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -433,6 +437,7 @@
     <inspection_tool class="ContextJavaBeanUnresolvedMethodsInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ContinueOrBreakFromFinallyBlock" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ContinueOrBreakFromFinallyBlockJS" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we like continue statements to be in code -->
     <inspection_tool class="ContinueStatement" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ContinueStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ContinueStatementWithLabel" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -490,7 +495,11 @@
     <inspection_tool class="CucumberUndefinedStep" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CustomClassloader" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CustomSecurityManager" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we can not afford this now, api cleanup is in progress and it is hard and takes time for
+     deprecation process -->
     <inspection_tool class="CyclicClassDependency" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we can not afford this now, api cleanup is in progress and it hard and takes time for
+     deprecation process -->
     <inspection_tool class="CyclicPackageDependency" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="CyclomaticComplexity" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_limit" value="10" />
@@ -561,10 +570,9 @@
         <option name="CHECK_DUPLICATE_KEYS" value="true" />
         <option name="CHECK_DUPLICATE_KEYS_WITH_DIFFERENT_VALUES" value="true" />
     </inspection_tool>
-    <inspection_tool class="DuplicateStringLiteralInspection" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="MIN_STRING_LENGTH" value="5" />
-        <option name="IGNORE_PROPERTY_KEYS" value="false" />
-    </inspection_tool>
+    <!-- it will result in too much dependencies between classes, some case are only have the
+    same value by chance, too much wont-fixes -->
+    <inspection_tool class="DuplicateStringLiteralInspection" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DuplicateThrows" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DuplicatedBeanNamesInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DuplicatedDataProviderNames" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -613,7 +621,9 @@
     <inspection_tool class="EmptyFinallyBlock" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EmptyFinallyBlockJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EmptyInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="EmptyMethod" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="EmptyMethod" enabled="true" level="WARNING" enabled_by_default="true">
+        <option name="commentsAreContent" value="true" />
+    </inspection_tool>
     <inspection_tool class="EmptyStatementBody" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_reportEmptyBlocks" value="true" />
     </inspection_tool>
@@ -650,6 +660,8 @@
     <inspection_tool class="EqualsUsesNonFinalVariable" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="EqualsWhichDoesntCheckParameterClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EqualsWithItself" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- there is false-positive, and rest cases are result of our loading modules by reflection
+    that throws Error. Error is not always jvm problem, bunch of libraries throw Error instead of Exception -->
     <inspection_tool class="ErrorRethrown" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="Eslint" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ExceptionCaughtLocallyJS" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -933,18 +945,8 @@
     </inspection_tool>
     <inspection_tool class="Guava" enabled="true" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="GuavaFluentIterable" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="HardCodedStringLiteral" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreForAssertStatements" value="true" />
-        <option name="ignoreForExceptionConstructors" value="true" />
-        <option name="ignoreForSpecifiedExceptionConstructors" value="" />
-        <option name="ignoreForJUnitAsserts" value="true" />
-        <option name="ignoreForClassReferences" value="true" />
-        <option name="ignoreForPropertyKeyReferences" value="true" />
-        <option name="ignoreForNonAlpha" value="true" />
-        <option name="ignoreAssignedToConstants" value="false" />
-        <option name="ignoreToString" value="false" />
-        <option name="nonNlsCommentPattern" value="NON-NLS" />
-    </inspection_tool>
+    <!-- we like it, it is not performance issue for us -->
+    <inspection_tool class="HardCodedStringLiteral" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- there are too much false positives in RegExps and javadoc start/end symbols in paths from classpath etc. -->
     <inspection_tool class="HardcodedFileSeparators" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- there are too much false positives in RegExps and javadoc start/end symbols in paths from classpath etc. -->
@@ -1000,6 +1002,7 @@
     </inspection_tool>
     <!-- till we switch to jacoco we cannot use this as it conflicts with policy of 100% coverage -->
     <inspection_tool class="IfCanBeSwitch" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we do not conditional expressions, we like more verbose code -->
     <inspection_tool class="IfMayBeConditional" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="IfNullToElvis" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="IfStatementWithIdenticalBranches" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1070,6 +1073,8 @@
         <option name="m_minLength" value="3" />
         <option name="m_maxLength" value="64" />
     </inspection_tool>
+    <!-- we use methods like notifyBegin to (re)initialize, so c-tor or field declaration initialization
+    is not good place for us. -->
     <inspection_tool class="InstanceVariableInitialization" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_ignorePrimitives" value="false" />
     </inspection_tool>
@@ -1273,9 +1278,9 @@
     <inspection_tool class="LanguageMismatch" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="CHECK_NON_ANNOTATED_REFERENCES" value="true" />
     </inspection_tool>
-    <inspection_tool class="LawOfDemeter" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreLibraryCalls" value="true" />
-    </inspection_tool>
+    <!-- it is impossible to follow this Law for us as most violation are caused by fact that we do logic
+    not only on token that come to visitToken, but by extra traversing over subtree -->
+    <inspection_tool class="LawOfDemeter" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="LengthOneStringInIndexOf" enabled="true" level="WARNING" enabled_by_default="true" />
     <!-- it is not critical parts of our application and benefit is minimal and only for special applications
     that use such concatenations alot -
@@ -1327,6 +1332,8 @@
     <inspection_tool class="LoopWithImplicitTerminationCondition" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LossyEncoding" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MVCPathVariableInspection" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we do a lot of String processing : we have lexer and parser, we do not have java class that contains
+     all lexer tokens with their text values(RPAREN vs ')') -->
     <inspection_tool class="MagicCharacter" enabled="false" level="ERROR" enabled_by_default="false" />
     <!-- false positive is reported, we have enough of MagicNumber validations -->
     <inspection_tool class="MagicConstant" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -1709,14 +1716,9 @@
         </option>
     </inspection_tool>
     <inspection_tool class="PublicFieldAccessedInSynchronizedContext" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="PublicInnerClass" enabled="true" level="WARNING" enabled_by_default="true">
-        <scope name="Production" level="WARNING" enabled="false">
-            <option name="ignoreEnums" value="false" />
-            <option name="ignoreInterfaces" value="false" />
-        </scope>
-        <option name="ignoreEnums" value="false" />
-        <option name="ignoreInterfaces" value="false" />
-    </inspection_tool>
+    <!-- we like to use them as we not always ready to make class top level, for Checks
+     it is better to keep all in one class. -->
+    <inspection_tool class="PublicInnerClass" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="PublicMethodNotExposedInInterface" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignorableAnnotations">
             <value />
@@ -1805,10 +1807,12 @@
     <inspection_tool class="SafeLock" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SafeVarargsDetector" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SamePackageImport" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- to much false positives as it does not consider fact that public method is called from outside of the
+    class, some values come from config files, also it highlights most of the static methods that are candidates
+    for utils package but we have not decided yet. -->
     <inspection_tool class="SameParameterValue" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="SameReturnValue" enabled="true" level="WARNING" enabled_by_default="true">
-        <scope name="Production" level="WARNING" enabled="false" />
-    </inspection_tool>
+    <!-- it is ok as some methods are in role of configuration 'isEditable{ return false;} -->
+    <inspection_tool class="SameReturnValue" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SecondUnsafeCall" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SelfIncludingJspFiles" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SerialPersistentFieldsWithWrongSignature" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1856,6 +1860,7 @@
     <!-- suppressed till GSoC project completion .... -->
     <inspection_tool class="SingleCharAlternation" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SingleCharacterStartsWith" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we like single import for single class -->
     <inspection_tool class="SingleClassImport" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="Singleton" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SingletonInjectsScoped" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1992,15 +1997,8 @@
     <inspection_tool class="StringBufferReplaceableByStringBuilder" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringBufferToStringInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="StringCompareTo" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="StringConcatenation" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreAsserts" value="false" />
-        <option name="ignoreSystemOuts" value="false" />
-        <option name="ignoreSystemErrs" value="false" />
-        <option name="ignoreThrowableArguments" value="false" />
-        <option name="ignoreConstantInitializers" value="false" />
-        <option name="ignoreInTestCode" value="false" />
-        <option name="ignoreInToString" value="false" />
-    </inspection_tool>
+    <!-- we like it, it is not performance issue for us -->
+    <inspection_tool class="StringConcatenation" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="StringConcatenationArgumentToLogCall" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StringConcatenationInFormatCall" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="StringConcatenationInLoops" enabled="true" level="WARNING" enabled_by_default="true">
