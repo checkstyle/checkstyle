@@ -9,7 +9,7 @@
         <option name="m_minLength" value="5" />
     </inspection_tool>
     <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractClassWithoutAbstractMethods" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractMethodCallInConstructor" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AbstractMethodOverridesAbstractMethod" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -26,6 +26,7 @@
     <inspection_tool class="AlphaUnsortedPropertiesFile" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AmbiguousFieldAccess" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AmbiguousMethodCall" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- this rule is inspection is only for old java, we are ok to use annotations -->
     <inspection_tool class="Annotation" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AnnotationClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AnnotationNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
@@ -64,6 +65,7 @@
     <inspection_tool class="ArrayEquality" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ArrayEquals" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ArrayHashCode" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we see no harm for us for such usages -->
     <inspection_tool class="ArrayLengthInLoopCondition" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ArrayObjectsEquals" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ArraysAsListWithZeroOrOneArgument" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -102,10 +104,10 @@
     </inspection_tool>
     <inspection_tool class="AssignmentToSuperclassField" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="AutoBoxing" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreAddedToCollection" value="false" />
-    </inspection_tool>
+    <!-- we are ok to use auto-boxing as we use modern java -->
+    <inspection_tool class="AutoBoxing" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AutoCloseableResource" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- we are ok to use auto-unboxing as we use modern java -->
     <inspection_tool class="AutoUnboxing" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="AutowiredDependenciesInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="AwaitNotInLoop" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -261,8 +263,8 @@
     <inspection_tool class="CharacterComparison" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CheckDtdRefs" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CheckEmptyScriptTag" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="CheckForOutOfMemoryOnLargeArrayAllocation" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_limit" value="64" />
+    <inspection_tool class="CheckForOutOfMemoryOnLargeArrayAllocation" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="m_limit" value="1024" />
     </inspection_tool>
     <inspection_tool class="CheckImageSize" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CheckNodeTest" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -334,11 +336,13 @@
     <inspection_tool class="ClassWithTooManyTransitiveDependents" enabled="true" level="ERROR" enabled_by_default="false">
         <option name="limit" value="500" />
     </inspection_tool>
+    <!-- we do not like suggested style -->
     <inspection_tool class="ClassWithoutConstructor" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ClassWithoutLogger" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="loggerNamesString" value="java.util.logging.Logger,org.slf4j.Logger,org.apache.commons.logging.Log,org.apache.log4j.Logger" />
         <option name="ignoreSuperLoggers" value="false" />
     </inspection_tool>
+    <!-- we do not like suggested style -->
     <inspection_tool class="ClassWithoutNoArgConstructor" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="m_ignoreClassesWithNoConstructors" value="true" />
     </inspection_tool>
@@ -351,7 +355,9 @@
     <inspection_tool class="CloneableImplementsClone" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_ignoreCloneableDueToInheritance" value="true" />
     </inspection_tool>
-    <inspection_tool class="CodeBlock2Expr" enabled="false" level="ERROR" enabled_by_default="true" />
+    <!-- decision to suppress was only a matter of habit to see code in more old style with extra curly braces,
+     we might change our mind in future. -->
+    <inspection_tool class="CodeBlock2Expr" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="CoffeeScriptArgumentsOutsideFunction" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CoffeeScriptFunctionSignatures" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CoffeeScriptInfiniteLoop" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -619,6 +625,7 @@
     <inspection_tool class="EmptyTryBlockJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EmptyWebServiceClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EnumAsName" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we are ok to use enumeration as we use modern java -->
     <inspection_tool class="EnumClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="EnumSwitchStatementWhichMissesCases" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreSwitchStatementsWithDefault" value="false" />
@@ -680,6 +687,7 @@
         <option name="myCountEnumConstants" value="false" />
         <option name="m_limit" value="10" />
     </inspection_tool>
+    <!-- we do not like suggested style -->
     <inspection_tool class="FieldHasSetterButNoGetter" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="FieldHidesSuperclassField" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="m_ignoreInvisibleFields" value="true" />
@@ -723,6 +731,7 @@
     <inspection_tool class="ForLoopWithMissingComponent" enabled="false" level="ERROR" enabled_by_default="false">
         <option name="ignoreCollectionLoops" value="false" />
     </inspection_tool>
+    <!-- we are ok to use for-each as we use modern java -->
     <inspection_tool class="ForeachStatement" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="FtlCallsInspection" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="FtlDeprecatedBuiltInsInspection" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -989,11 +998,8 @@
         <option name="ignoredTypesString" value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,java.io.StringBufferInputStream,java.io.CharArrayWriter,java.io.CharArrayReader,java.io.StringWriter,java.io.StringReader" />
         <option name="insideTryAllowed" value="false" />
     </inspection_tool>
-    <inspection_tool class="IfCanBeSwitch" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="minimumBranches" value="3" />
-        <option name="suggestIntSwitches" value="false" />
-        <option name="suggestEnumSwitches" value="false" />
-    </inspection_tool>
+    <!-- till we switch to jacoco we cannot use this as it conflicts with policy of 100% coverage -->
+    <inspection_tool class="IfCanBeSwitch" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="IfMayBeConditional" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="IfNullToElvis" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="IfStatementWithIdenticalBranches" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1104,6 +1110,7 @@
     <inspection_tool class="InterfaceNeverImplemented" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreInterfacesThatOnlyDeclareConstants" value="false" />
     </inspection_tool>
+    <!-- we are a library, we do not know all third-party implementations -->
     <inspection_tool class="InterfaceWithOnlyOneDirectInheritor" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="IntroduceWhenSubject" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="InvalidImplementedBy" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1340,6 +1347,7 @@
     <inspection_tool class="MavenDuplicatePluginInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MavenModelInspection" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MavenRedundantGroupId" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- this rule is too severe, it requires some options to skip well known simple methods like string.length() etc. -->
     <inspection_tool class="MethodCallInLoopCondition" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="MethodCanBeVariableArityMethod" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- it it hard to follow this rule as it is better to keep whole logic in one Check class,
@@ -1677,6 +1685,7 @@
     <inspection_tool class="PointlessIndexOfComparison" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PointlessNullCheck" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PrimitiveArrayArgumentToVariableArgMethod" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- we do not like suggested style, but we could change out mind in future -->
     <inspection_tool class="PrivateMemberAccessBetweenOuterAndInnerClass" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ProblematicVarargsMethodOverride" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ProblematicWhitespace" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -2051,6 +2060,7 @@
                 <!-- Main class is a wrapper command line program for the Checker -->
                 <option value="UseOfSystemOutOrSystemErr" />
                 <option value="SuspiciousArrayCast" />
+                <option value="AbstractClassWithOnlyOneDirectInheritor" />
             </list>
         </option>
     </inspection_tool>
