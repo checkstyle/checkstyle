@@ -172,7 +172,6 @@ public final class FileText {
         for (final String line : lines) {
             buf.append(line).append('\n');
         }
-        buf.trimToSize();
 
         this.file = file;
         charset = null;
