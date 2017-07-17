@@ -254,4 +254,13 @@ public class FinalLocalVariableCheckTest
         };
         verify(checkConfig, getPath("InputFinalLocalVariableBreak.java"), expected);
     }
+
+    @Test
+    public void testAnonymousClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "5:16: " + getCheckMessage(MSG_KEY, "testSupport"),
+        };
+        verify(checkConfig, getPath("InputFinalLocalVariableAnonymousClass.java"), expected);
+    }
 }

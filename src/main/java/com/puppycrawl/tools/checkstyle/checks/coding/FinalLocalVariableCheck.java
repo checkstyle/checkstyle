@@ -210,7 +210,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
-                        && !ast.branchContains(TokenTypes.FINAL)
+                        && ast.findFirstToken(TokenTypes.MODIFIERS)
+                            .findFirstToken(TokenTypes.FINAL) == null
                         && !isVariableInForInit(ast)
                         && shouldCheckEnhancedForLoopVariable(ast)) {
                     insertVariable(ast);
