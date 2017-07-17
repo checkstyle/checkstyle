@@ -41,6 +41,11 @@ public class AstTreeStringPrinterTest extends BaseCheckTestSupport {
         return super.getPath("astprinter" + File.separator + filename);
     }
 
+    @Override
+    protected String getNonCompilablePath(String filename) throws IOException {
+        return super.getNonCompilablePath("astprinter" + File.separator + filename);
+    }
+
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class);
