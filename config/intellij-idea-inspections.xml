@@ -364,9 +364,8 @@
     <inspection_tool class="CollectionAddedToSelf" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CollectionContainsUrl" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CollectionsFieldAccessReplaceableByMethodCall" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="CollectionsMustHaveInitialCapacity" enabled="false" level="WARNING" enabled_by_default="true">
-        <scope name="Tests" level="WARNING" enabled="false" />
-    </inspection_tool>
+    <!-- we do not know initial size in most cases, it could make uncovered mutation problems for pitest that value more -->
+    <inspection_tool class="CollectionsMustHaveInitialCapacity" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="CommaExpressionJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ComparableImplementedButEqualsNotOverridden" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ComparatorMethodParameterNotUsed" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -394,7 +393,8 @@
     <inspection_tool class="ConstantAssertCondition" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConstantConditionalExpression" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ConstantConditionalExpressionJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ConstantConditions" enabled="false" level="WARNING" enabled_by_default="false">
+    <inspection_tool class="ConstantConditions" enabled="true" level="WARNING" enabled_by_default="true">
+        <scope name="Tests" enabled="false" />
         <option name="SUGGEST_NULLABLE_ANNOTATIONS" value="false" />
         <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="false" />
     </inspection_tool>
@@ -547,10 +547,11 @@
         <option name="ignoreMethodCalls" value="false" />
     </inspection_tool>
     <inspection_tool class="DuplicateConditionJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="DuplicatePropertyInspection" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="DuplicatePropertyInspection" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="CURRENT_FILE" value="true" />
         <option name="MODULE_WITH_DEPENDENCIES" value="false" />
-        <option name="CHECK_DUPLICATE_VALUES" value="true" />
+        <!-- Different properties could have the same value, but could change at any time. -->
+        <option name="CHECK_DUPLICATE_VALUES" value="false" />
         <option name="CHECK_DUPLICATE_KEYS" value="true" />
         <option name="CHECK_DUPLICATE_KEYS_WITH_DIFFERENT_VALUES" value="true" />
     </inspection_tool>
@@ -935,9 +936,9 @@
         <option name="ignoreToString" value="false" />
         <option name="nonNlsCommentPattern" value="NON-NLS" />
     </inspection_tool>
-    <inspection_tool class="HardcodedFileSeparators" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_recognizeExampleMediaType" value="false" />
-    </inspection_tool>
+    <!-- there are too much false positives in RegExps and javadoc start/end symbols in paths from classpath etc. -->
+    <inspection_tool class="HardcodedFileSeparators" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- there are too much false positives in RegExps and javadoc start/end symbols in paths from classpath etc. -->
     <inspection_tool class="HardcodedLineSeparators" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="HardwiredNamespacePrefix" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="HashCodeUsesNonFinalVariable" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -1269,6 +1270,9 @@
         <option name="ignoreLibraryCalls" value="true" />
     </inspection_tool>
     <inspection_tool class="LengthOneStringInIndexOf" enabled="true" level="WARNING" enabled_by_default="true" />
+    <!-- it is not critical parts of our application and benefit is minimal and only for special applications
+    that use such concatenations alot -
+    https://stackoverflow.com/questions/24859500/concatenate-char-literal-x-vs-single-char-string-literal-x -->
     <inspection_tool class="LengthOneStringsInConcatenation" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="LessResolvedByNameOnly" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="LessUnresolvedMixin" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1317,6 +1321,7 @@
     <inspection_tool class="LossyEncoding" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MVCPathVariableInspection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="MagicCharacter" enabled="false" level="ERROR" enabled_by_default="false" />
+    <!-- false positive is reported, we have enough of MagicNumber validations -->
     <inspection_tool class="MagicConstant" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="MagicNumber" enabled="true" level="ERROR" enabled_by_default="true" >
         <scope name="Tests" level="ERROR" enabled="false" />
@@ -1543,12 +1548,10 @@
     <inspection_tool class="NumericOverflow" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NumericToString" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ObjectAllocationIgnoredJS" enabled="true" level="ERROR" enabled_by_default="true" />
+    <!-- no options in inspection, there are number of wontfix cases: creation of wrappers etc. -->
     <inspection_tool class="ObjectAllocationInLoop" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="ObjectEquality" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_ignoreEnums" value="true" />
-        <option name="m_ignoreClassObjects" value="false" />
-        <option name="m_ignorePrivateConstructors" value="false" />
-    </inspection_tool>
+    <!-- we like comparison of DetailAst by ==, probably one day we will be punished for this -->
+    <inspection_tool class="ObjectEquality" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ObjectEqualsNull" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ObjectNotify" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ObjectToString" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -1774,12 +1777,8 @@
     <inspection_tool class="ResultSetIndexZero" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ReturnFromFinallyBlock" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ReturnFromFinallyBlockJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ReturnNull" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="m_reportObjectMethods" value="true" />
-        <option name="m_reportArrayMethods" value="true" />
-        <option name="m_reportCollectionMethods" value="true" />
-        <option name="m_ignorePrivateMethods" value="false" />
-    </inspection_tool>
+    <!-- we are not ready to migrate to java.util.Optional for now -->
+    <inspection_tool class="ReturnNull" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="ReturnOfCollectionField" enabled="true" level="WARNING" enabled_by_default="true">
         <option name="ignorePrivateMethods" value="true" />
     </inspection_tool>
@@ -2051,11 +2050,12 @@
                 <option value="NoopMethodInAbstractClass" />
                 <!-- Main class is a wrapper command line program for the Checker -->
                 <option value="UseOfSystemOutOrSystemErr" />
+                <option value="SuspiciousArrayCast" />
             </list>
         </option>
     </inspection_tool>
     <inspection_tool class="SuspiciousArrayCast" enabled="true" level="WARNING" enabled_by_default="true">
-        <scope name="Production" level="WARNING" enabled="false" />
+        <scope name="Production" level="WARNING" enabled="true" />
     </inspection_tool>
     <inspection_tool class="SuspiciousGetterSetter" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="onlyWarnWhenFieldPresent" value="true" />
