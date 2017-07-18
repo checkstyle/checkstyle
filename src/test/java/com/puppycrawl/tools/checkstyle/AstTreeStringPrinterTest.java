@@ -37,7 +37,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/astprinter/";
+        return "com/puppycrawl/tools/checkstyle/astprinter";
     }
 
     @Test

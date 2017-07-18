@@ -38,7 +38,7 @@ public abstract class AbstractPathTestSupport {
      * @return canonical path for the file name.
      * @throws IOException if I/O exception occurs while forming the path.
      */
-    protected String getPath(String filename) throws IOException {
+    protected final String getPath(String filename) throws IOException {
         return new File("src/test/resources/" + getPackageLocation() + "/" + filename)
                 .getCanonicalPath();
     }
