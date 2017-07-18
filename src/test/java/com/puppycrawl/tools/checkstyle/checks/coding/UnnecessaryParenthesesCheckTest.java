@@ -26,13 +26,10 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthes
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_RETURN;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_STRING;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -41,13 +38,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  *
  * @author  Eric K. Roe
  */
-public class UnnecessaryParenthesesCheckTest extends BaseCheckTestSupport {
+public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "unnecessaryparentheses" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses";
     }
 
     @Test
