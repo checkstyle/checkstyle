@@ -251,4 +251,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("expectedJavadocWithCrAsNewlineAst.txt"),
                 getPath("InputJavadocWithCrAsNewline.javadoc"));
     }
+
+    @Test
+    public void testStringWithoutQuotesInSeeTag() throws Exception {
+        verifyJavadocTree(getDocPath("expectedStringWithoutQuotesInSeeTagAst.txt"),
+                getDocPath("InputStringWithoutQuotesInSeeTag.javadoc"));
+    }
 }

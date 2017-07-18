@@ -876,7 +876,8 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* description?
 
       | RETURN_LITERAL (WS | NEWLINE)* description?
 
-      | SEE_LITERAL (WS | NEWLINE)* reference? (STRING | htmlElement)* (WS | NEWLINE)* description?
+      | SEE_LITERAL (WS | NEWLINE)* reference? ((WS | NEWLINE)+ STRING | htmlElement)*
+      (WS | NEWLINE)* ((WS | NEWLINE)+ description)?
 
       | SERIAL_LITERAL (WS | NEWLINE)* (LITERAL_INCLUDE | LITERAL_EXCLUDE)? description?
 
