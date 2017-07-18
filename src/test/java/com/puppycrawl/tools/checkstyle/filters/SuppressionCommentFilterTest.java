@@ -20,16 +20,19 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.BriefUtLogger;
@@ -39,6 +42,8 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -319,5 +324,45 @@ public class SuppressionCommentFilterTest
         verify(createChecker(filterConfig),
             getPath("InputSuppressByIdWithCommentFilter.java"),
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
+    }
+
+    @Test
+    public void testFindNearestMatchDontAllowSameColumn() {
+        final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
+        final AuditEvent dummyEvent = new AuditEvent(new Object(), "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+
+        final FileContentsHolder fileContentsHolder = new FileContentsHolder();
+        final FileContents contents =
+                new FileContents("filename", "//CHECKSTYLE:OFF: ConstantNameCheck", "line2");
+        contents.reportSingleLineComment(1, 0);
+        fileContentsHolder.setFileContents(contents);
+        fileContentsHolder.beginTree(null);
+        final boolean result = suppressionCommentFilter.accept(dummyEvent);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testTagsAreClearedEachRun() {
+        final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
+        final AuditEvent dummyEvent = new AuditEvent(new Object(), "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+
+        final FileContentsHolder fileContentsHolder = new FileContentsHolder();
+        final FileContents contents =
+                new FileContents("filename", "//CHECKSTYLE:OFF", "line2");
+        contents.reportSingleLineComment(1, 0);
+        fileContentsHolder.setFileContents(contents);
+        fileContentsHolder.beginTree(null);
+        suppressionCommentFilter.accept(dummyEvent);
+        final FileContents contents2 =
+                new FileContents("filename2", "some line", "//CHECKSTYLE:OFF");
+        contents2.reportSingleLineComment(2, 0);
+        fileContentsHolder.setFileContents(contents2);
+        fileContentsHolder.beginTree(null);
+        suppressionCommentFilter.accept(dummyEvent);
+        final List<SuppressionCommentFilter.Tag> tags =
+                Whitebox.getInternalState(suppressionCommentFilter, "tags");
+        assertEquals(1, tags.size());
     }
 }
