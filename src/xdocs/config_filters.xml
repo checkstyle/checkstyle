@@ -110,11 +110,8 @@
             file is edited.
           </p>
           <p>
-            Usage: This filter only works in conjunction with a <code>FileContentsHolder</code>, since that check makes
-            the suppression comments in the Java files available. A configuration that includes this filter must
-            configure <code>FileContentsHolder</code> as a
-            child module of <code>TreeWalker</code>. Note that the suppression comment should be put
-            before the violation. You can use more than one suppression comment each on separate line.
+            Note that the suppression comment should be put before the violation. You can use more
+            than one suppression comment each on separate line.
           </p>
       </subsection>
       <subsection name="Properties">
@@ -176,22 +173,12 @@
       </subsection>
       <subsection name="Examples">
           <p>
-              Make sure that comments are available to the filter by enabling FileContentsHolder:
-          </p>
-          <source>
-&lt;module name=&quot;TreeWalker&quot;&gt;
-              ...
-  &lt;module name=&quot;FileContentsHolder&quot;/&gt;
-              ...
-&lt;/module&gt;
-          </source>
-          <p>
               To configure a filter to suppress audit events between a comment
               containing <code>CHECKSTYLE:OFF</code> and a comment containing
               <code>CHECKSTYLE:ON</code>:
           </p>
           <source>
-&lt;module name=&quot;Checker&quot;&gt;
+&lt;module name=&quot;TreeWalker&quot;&gt;
               ...
   &lt;module name=&quot;SuppressionCommentFilter&quot;/&gt;
               ...
@@ -409,7 +396,7 @@ public class UserService {
       </subsection>
 
       <subsection name="Parent Module">
-        <p> <a href="config.html#Checker">Checker</a> </p>
+        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
       </subsection>
     </section>
 
@@ -768,12 +755,6 @@ public static void foo() {
                 single comments.  This requires fewer lines to mark a region, and
                 may be aesthetically preferable in some contexts.
             </p>
-            <p>
-                Usage: This filter only works in conjunction with a <code>FileContentsHolder</code>, since that check makes
-                the suppression comments in the Java files available. A configuration that includes this filter must
-                configure <code>FileContentsHolder</code> as a
-                child module of <code>TreeWalker</code>.
-            </p>
         </subsection>
         <subsection name="Properties">
             <table>
@@ -830,16 +811,6 @@ public static void foo() {
             </table>
         </subsection>
         <subsection name="Examples">
-            <p>
-                To configure the check that makes comments available to the filter:
-            </p>
-            <source>
-&lt;module name=&quot;TreeWalker&quot;&gt;
-                ...
-  &lt;module name=&quot;FileContentsHolder&quot;/&gt;
-                ...
-&lt;/module&gt;
-            </source>
             <p>
                 To configure a filter to suppress audit events for <i>check</i>
                 on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
@@ -1012,7 +983,7 @@ public class UserService {
         </subsection>
 
         <subsection name="Parent Module">
-          <p> <a href="config.html#Checker">Checker</a> </p>
+          <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
         </subsection>
       </section>
   </body>

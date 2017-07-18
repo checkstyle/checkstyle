@@ -28,12 +28,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
-import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 /**
@@ -72,7 +71,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  */
 public class SuppressWithNearbyCommentFilter
     extends AutomaticBean
-    implements Filter {
+    implements TreeWalkerFilter {
 
     /** Format to turns checkstyle reporting off. */
     private static final String DEFAULT_COMMENT_FORMAT =
@@ -183,13 +182,13 @@ public class SuppressWithNearbyCommentFilter
     }
 
     @Override
-    public boolean accept(AuditEvent event) {
+    public boolean accept(TreeWalkerAuditEvent event) {
         boolean accepted = true;
 
         if (event.getLocalizedMessage() != null) {
             // Lazy update. If the first event for the current file, update file
             // contents and tag suppressions
-            final FileContents currentContents = FileContentsHolder.getCurrentFileContents();
+            final FileContents currentContents = event.getFileContents();
 
             if (getFileContents() != currentContents) {
                 setFileContents(currentContents);
@@ -204,10 +203,10 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Whether current event matches any tag from {@link #tags}.
-     * @param event AuditEvent to test match on {@link #tags}.
+     * @param event TreeWalkerAuditEvent to test match on {@link #tags}.
      * @return true if event matches any tag from {@link #tags}, false otherwise.
      */
-    private boolean matchesTag(AuditEvent event) {
+    private boolean matchesTag(TreeWalkerAuditEvent event) {
         boolean result = false;
         for (final Tag tag : tags) {
             if (tag.isMatch(event)) {
@@ -383,10 +382,10 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Determines whether the source of an audit event
          * matches the text of this tag.
-         * @param event the {@code AuditEvent} to check.
+         * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
-        public boolean isMatch(AuditEvent event) {
+        public boolean isMatch(TreeWalkerAuditEvent event) {
             final int line = event.getLine();
             boolean match = false;
 

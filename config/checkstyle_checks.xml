@@ -31,24 +31,10 @@
     <property name="severity" value="ignore"/>
     <property name="acceptOnMatch" value="false"/>
   </module>
-  <module name="SuppressionCommentFilter">
-    <!--
-      Use suppressions.xml for suppressions, this is only example.
-      checkFormat will prevent suppression comments from being valid.
-    -->
-    <property name="checkFormat" value="IGNORETHIS"/>
-    <property name="offCommentFormat" value="CSOFF\: .*"/>
-    <property name="onCommentFormat" value="CSON\: .*"/>
-  </module>
   <module name="SuppressionFilter">
     <property name="file" value="${checkstyle.suppressions.file}"/>
   </module>
   <module name="SuppressWarningsFilter"/>
-  <module name="SuppressWithNearbyCommentFilter">
-    <property name="commentFormat" value="-@cs\[(\w{8,}(\|\w{8,})*)\] \w[\(\)\-\.\'\`\,\:\;\w ]{10,}"/>
-    <property name="checkFormat" value="$1"/>
-    <property name="influenceFormat" value="3"/>
-  </module>
 
   <!-- Headers -->
   <module name="Header">
@@ -297,6 +283,22 @@
     <module name="SuperFinalize"/>
     <module name="UnnecessaryParentheses"/>
     <module name="VariableDeclarationUsageDistance"/>
+
+    <!-- Filters-->
+    <module name="SuppressionCommentFilter">
+      <!--
+        Use suppressions.xml for suppressions, this is only example.
+        checkFormat will prevent suppression comments from being valid.
+      -->
+      <property name="checkFormat" value="IGNORETHIS"/>
+      <property name="offCommentFormat" value="CSOFF\: .*"/>
+      <property name="onCommentFormat" value="CSON\: .*"/>
+    </module>
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="-@cs\[(\w{8,}(\|\w{8,})*)\] \w[\(\)\-\.\'\`\,\:\;\w ]{10,}"/>
+      <property name="checkFormat" value="$1"/>
+      <property name="influenceFormat" value="3"/>
+    </module>
 
     <!-- Imports -->
     <module name="AvoidStarImport"/>

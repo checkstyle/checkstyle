@@ -83,8 +83,6 @@ public class XdocsPagesTest {
             "name=\"Translation\"",
             "name=\"SeverityMatchFilter\"",
             "name=\"SuppressionFilter\"",
-            "name=\"SuppressionCommentFilter\"",
-            "name=\"SuppressWithNearbyCommentFilter\"",
             "name=\"SuppressWarningsFilter\"",
             "name=\"BeforeExecutionExclusionFileFilter\"",
             "name=\"RegexpHeader\"",

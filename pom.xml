@@ -517,6 +517,9 @@
             <id>sevntu-checkstyle-check</id>
             <phase>verify</phase>
             <configuration>
+              <!-- skipped until sevntu-checks to 8.1 upgrade
+              see https://github.com/checkstyle/checkstyle/pull/4755 -->
+              <skip>true</skip>
               <configLocation>${project.basedir}/config/checkstyle_sevntu_checks.xml</configLocation>
               <failOnViolation>true</failOnViolation>
               <includeResources>false</includeResources>
