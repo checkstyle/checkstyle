@@ -93,9 +93,7 @@ public final class SuppressionsLoader
             try {
                 final String files = attributes.getValue("files");
                 suppress = new SuppressElement(files);
-                if (modId != null) {
-                    suppress.setModuleId(modId);
-                }
+                suppress.setModuleId(modId);
                 if (checks != null) {
                     suppress.setChecks(checks);
                 }

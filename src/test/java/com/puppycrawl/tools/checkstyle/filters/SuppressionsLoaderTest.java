@@ -34,6 +34,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
@@ -296,5 +297,15 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             SuppressionsLoader.loadSuppressions(getPath("suppressions_none.xml"));
         final FilterSet fc2 = new FilterSet();
         assertEquals("Suppressions were not loaded", fc2, fc);
+    }
+
+    @Test
+    public void testSettingModuleId() throws Exception {
+        final FilterSet fc =
+                SuppressionsLoader.loadSuppressions(getPath("suppressions_with_id.xml"));
+        final SuppressElement suppressElement = (SuppressElement) fc.getFilters().toArray()[0];
+
+        final String id = Whitebox.getInternalState(suppressElement, "moduleId");
+        assertEquals("Id has to be defined", "someId", id);
     }
 }

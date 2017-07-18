@@ -9,4 +9,6 @@ public class InputSuppressByIdWithNearbyCommentFilter {
     int line_length = 100; // Suppression @cs-: ignore (reason)
 
     private long ID = 1; // Suppression @cs-:
+    /*
+        Suppression @cs-: ignore (reason)*/private long ID3 = 1;
 }

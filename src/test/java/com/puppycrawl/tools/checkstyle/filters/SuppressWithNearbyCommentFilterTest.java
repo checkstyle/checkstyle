@@ -20,16 +20,18 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import org.junit.Assert;
 import org.junit.Test;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
 import com.puppycrawl.tools.checkstyle.BriefUtLogger;
@@ -39,6 +41,8 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.checks.FileContentsHolder;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -298,7 +302,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
-        Assert.assertTrue(filter.accept(auditEvent));
+        assertTrue(filter.accept(auditEvent));
     }
 
     @Test
@@ -342,5 +346,30 @@ public class SuppressWithNearbyCommentFilterTest
         verify(createChecker(filterConfig),
             getPath("InputSuppressByIdWithNearbyCommentFilter.java"),
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages));
+    }
+
+    @Test
+    public void testTagsAreClearedEachRun() {
+        final SuppressWithNearbyCommentFilter suppressionCommentFilter =
+                new SuppressWithNearbyCommentFilter();
+        final AuditEvent dummyEvent = new AuditEvent(new Object(), "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+
+        final FileContentsHolder fileContentsHolder = new FileContentsHolder();
+        final FileContents contents =
+                new FileContents("filename", "//SUPPRESS CHECKSTYLE ignore", "line2");
+        contents.reportSingleLineComment(1, 0);
+        fileContentsHolder.setFileContents(contents);
+        fileContentsHolder.beginTree(null);
+        suppressionCommentFilter.accept(dummyEvent);
+        final FileContents contents2 =
+                new FileContents("filename2", "some line", "//SUPPRESS CHECKSTYLE ignore");
+        contents2.reportSingleLineComment(2, 0);
+        fileContentsHolder.setFileContents(contents2);
+        fileContentsHolder.beginTree(null);
+        suppressionCommentFilter.accept(dummyEvent);
+        final List<SuppressionCommentFilter.Tag> tags =
+                Whitebox.getInternalState(suppressionCommentFilter, "tags");
+        assertEquals(1, tags.size());
     }
 }

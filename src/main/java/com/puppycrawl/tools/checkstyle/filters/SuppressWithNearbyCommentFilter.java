@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -234,7 +233,6 @@ public class SuppressWithNearbyCommentFilter
                 contents.getBlockComments().values();
             cComments.forEach(this::tagSuppressions);
         }
-        Collections.sort(tags);
     }
 
     /**
@@ -279,7 +277,7 @@ public class SuppressWithNearbyCommentFilter
     /**
      * A Tag holds a suppression comment and its location.
      */
-    public static class Tag implements Comparable<Tag> {
+    public static class Tag {
         /** The text of the tag. */
         private final String text;
 
@@ -346,26 +344,6 @@ public class SuppressWithNearbyCommentFilter
                 throw new IllegalArgumentException(
                     "unable to parse expanded comment " + format, ex);
             }
-        }
-
-        /**
-         * Compares the position of this tag in the file
-         * with the position of another tag.
-         * @param other the tag to compare with this one.
-         * @return a negative number if this tag is before the other tag,
-         *     0 if they are at the same position, and a positive number if this
-         *     tag is after the other tag.
-         */
-        @Override
-        public int compareTo(Tag other) {
-            final int result;
-            if (firstLine == other.firstLine) {
-                result = Integer.compare(lastLine, other.lastLine);
-            }
-            else {
-                result = Integer.compare(firstLine, other.firstLine);
-            }
-            return result;
         }
 
         @Override

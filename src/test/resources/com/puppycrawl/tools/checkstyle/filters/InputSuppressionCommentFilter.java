@@ -22,9 +22,9 @@ class InputSuppressionCommentFilter
     private int L;
     private static final int m = 0;
     /*
-     * CSON: MemberNameCheck
+     * CSON: MemberNameCheck|ConstantNameCheck
      */
-    private int M2;
+    private int M2;//CSOFF: ConstantNameCheck
     private static final int n = 0;
     //CSON: ConstantNameCheck
     
