@@ -21,13 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck.MSG_KEY;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -35,13 +32,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * The unit-test for the {@code NestedForDepthCheck}-checkstyle enhancement.
  * @see NestedForDepthCheck
  */
-public class NestedForDepthCheckTest extends BaseCheckTestSupport {
+public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "coding" + File.separator
-                + "nestedfordepth" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/coding/nestedfordepth";
     }
 
     /**
