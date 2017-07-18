@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -224,7 +224,7 @@ public class SuppressWithNearbyCommentFilterTest
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
         if (checkConfig != null) {
-            checkerConfig.addChild(checkConfig);
+            checksConfig.addChild(checkConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
@@ -298,7 +298,7 @@ public class SuppressWithNearbyCommentFilterTest
     @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
-        final AuditEvent auditEvent = new AuditEvent(this);
+        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null);
         assertTrue(filter.accept(auditEvent));
     }
 
@@ -350,22 +350,23 @@ public class SuppressWithNearbyCommentFilterTest
     public void testTagsAreClearedEachRun() {
         final SuppressWithNearbyCommentFilter suppressionCommentFilter =
                 new SuppressWithNearbyCommentFilter();
-        final AuditEvent dummyEvent = new AuditEvent(new Object(), "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
-
         final FileContentsHolder fileContentsHolder = new FileContentsHolder();
         final FileContents contents =
                 new FileContents("filename", "//SUPPRESS CHECKSTYLE ignore", "line2");
         contents.reportSingleLineComment(1, 0);
         fileContentsHolder.setFileContents(contents);
         fileContentsHolder.beginTree(null);
+        final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
         suppressionCommentFilter.accept(dummyEvent);
         final FileContents contents2 =
                 new FileContents("filename2", "some line", "//SUPPRESS CHECKSTYLE ignore");
         contents2.reportSingleLineComment(2, 0);
         fileContentsHolder.setFileContents(contents2);
         fileContentsHolder.beginTree(null);
-        suppressionCommentFilter.accept(dummyEvent);
+        final TreeWalkerAuditEvent dummyEvent2 = new TreeWalkerAuditEvent(contents2, "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+        suppressionCommentFilter.accept(dummyEvent2);
         final List<SuppressionCommentFilter.Tag> tags =
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");
         assertEquals(1, tags.size());

@@ -47,6 +47,7 @@ import org.mockito.internal.util.reflection.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -56,7 +57,9 @@ import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationChe
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
+import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
 import com.puppycrawl.tools.checkstyle.internal.TestUtils;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
@@ -141,6 +144,26 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
         catch (CheckstyleException exception) {
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains("TreeWalker is not allowed as a parent of"));
+        }
+    }
+
+    @Test
+    public void testSetupChildExceptions() {
+        final TreeWalker treeWalker = new TreeWalker();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+
+        final Configuration config = new DefaultConfiguration("java.lang.String");
+        try {
+            treeWalker.setupChild(config);
+            fail("Exception is expected");
+        }
+        catch (CheckstyleException ex) {
+            assertEquals("Error message is not expected",
+                    "TreeWalker is not allowed as a parent of java.lang.String Please review "
+                            + "'Parent Module' section for this Check in web documentation if "
+                            + "Check is standard.", ex.getMessage());
         }
     }
 
@@ -396,6 +419,36 @@ public class TreeWalkerTest extends BaseCheckTestSupport {
             assertTrue("Error message is unexpected",
                     exception.getMessage().contains(message));
         }
+    }
+
+    @Test
+    public void testBehaviourWithChecksAndFilters() throws Exception {
+        final DefaultConfiguration checkerConfig =
+                new DefaultConfiguration("configuration");
+        final DefaultConfiguration treeWalkerConfig = createCheckConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(createCheckConfig(MemberNameCheck.class));
+        final DefaultConfiguration filterConfig =
+                createCheckConfig(SuppressionCommentFilter.class);
+        filterConfig.addAttribute("checkCPP", "false");
+        treeWalkerConfig.addChild(filterConfig);
+        checkerConfig.addChild(treeWalkerConfig);
+        final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(checkerConfig);
+        checker.addListener(getBriefUtLogger());
+
+        final File file = new File(getPath("InputTreeWalkerSuppressionCommentFilter.java"));
+
+        final String[] expected = {
+            "9:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
+                    "^[a-z][a-zA-Z0-9]*$"),
+            "4:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
+                    "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verify(checker,
+                file.getPath(),
+                expected);
     }
 
     @Test

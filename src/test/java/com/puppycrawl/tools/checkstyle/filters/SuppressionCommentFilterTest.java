@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -225,7 +225,7 @@ public class SuppressionCommentFilterTest
         checksConfig.addChild(createCheckConfig(IllegalCatchCheck.class));
         checkerConfig.addChild(checksConfig);
         if (checkConfig != null) {
-            checkerConfig.addChild(checkConfig);
+            checksConfig.addChild(checkConfig);
         }
         final Checker checker = new Checker();
         final Locale locale = Locale.ROOT;
@@ -297,8 +297,9 @@ public class SuppressionCommentFilterTest
     @Test
     public void testAcceptNullLocalizedMessage() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
-        final AuditEvent auditEvent = new AuditEvent(this);
+        final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(null, null, null);
         Assert.assertTrue(filter.accept(auditEvent));
+        Assert.assertNull(auditEvent.getFileName());
     }
 
     @Test
@@ -327,15 +328,14 @@ public class SuppressionCommentFilterTest
     @Test
     public void testFindNearestMatchDontAllowSameColumn() {
         final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
-        final AuditEvent dummyEvent = new AuditEvent(new Object(), "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
-
         final FileContentsHolder fileContentsHolder = new FileContentsHolder();
         final FileContents contents =
                 new FileContents("filename", "//CHECKSTYLE:OFF: ConstantNameCheck", "line2");
         contents.reportSingleLineComment(1, 0);
         fileContentsHolder.setFileContents(contents);
         fileContentsHolder.beginTree(null);
+        final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
         final boolean result = suppressionCommentFilter.accept(dummyEvent);
         assertFalse(result);
     }
@@ -343,22 +343,23 @@ public class SuppressionCommentFilterTest
     @Test
     public void testTagsAreClearedEachRun() {
         final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
-        final AuditEvent dummyEvent = new AuditEvent(new Object(), "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null));
-
         final FileContentsHolder fileContentsHolder = new FileContentsHolder();
         final FileContents contents =
                 new FileContents("filename", "//CHECKSTYLE:OFF", "line2");
         contents.reportSingleLineComment(1, 0);
         fileContentsHolder.setFileContents(contents);
         fileContentsHolder.beginTree(null);
+        final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
         suppressionCommentFilter.accept(dummyEvent);
         final FileContents contents2 =
                 new FileContents("filename2", "some line", "//CHECKSTYLE:OFF");
         contents2.reportSingleLineComment(2, 0);
         fileContentsHolder.setFileContents(contents2);
         fileContentsHolder.beginTree(null);
-        suppressionCommentFilter.accept(dummyEvent);
+        final TreeWalkerAuditEvent dummyEvent2 = new TreeWalkerAuditEvent(contents2, "filename",
+                new LocalizedMessage(1, null, null, null, null, Object.class, null));
+        suppressionCommentFilter.accept(dummyEvent2);
         final List<SuppressionCommentFilter.Tag> tags =
                 Whitebox.getInternalState(suppressionCommentFilter, "tags");
         assertEquals(1, tags.size());

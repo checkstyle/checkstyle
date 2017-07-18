@@ -142,6 +142,8 @@
 
   <subpackage name="filters">
     <allow class="java.lang.ref.WeakReference" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
   </subpackage>

@@ -858,10 +858,8 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       <subsection name="Examples">
         <p>
           This check should not be used by itself, as it does no reporting.
-          It is to be used in conjunction with other checks like
-          <a href="config_filters.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
-          and
-          <a href="config_filters.html#SuppressWithNearbyCommentFilter">SuppressWithNearbyCommentFilter</a>.
+          It is to be used in conjunction with other checks.
+          No checks use <code>FileContentsHolder</code> currently.
         </p>
       </subsection>
 
