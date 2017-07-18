@@ -24,13 +24,13 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
-public class JavadocParseTreeTest extends BaseCheckTestSupport {
+public class JavadocParseTreeTest extends AbstractTreeTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("grammars" + File.separator + "javadoc" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/grammars/javadoc/";
     }
 
     private String getHtmlPath(String filename) throws IOException {
