@@ -1111,16 +1111,16 @@ public final class JavadocTokenTypes {
      *            |--TEXT[1x20] : [if ]
      *            |--HTML_ELEMENT[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
      *                |--HTML_TAG[1x23] : [&lt;b&gt;connection&lt;/b&gt;]
-     *                    |--HTML_ELEMENT_OPEN[1x23] : [&lt;b&gt;]
-     *                        |--OPEN[1x23] : [&lt;]
+     *                    |--HTML_ELEMENT_START[1x23] : [&lt;b&gt;]
+     *                        |--START[1x23] : [&lt;]
      *                        |--HTML_TAG_NAME[1x24] : [b]
-     *                        |--CLOSE[1x25] : [&gt;]
+     *                        |--END[1x25] : [&gt;]
      *                    |--TEXT[1x26] : [connection]
-     *                    |--HTML_ELEMENT_CLOSE[1x36] : [&lt;/b&gt;]
-     *                        |--OPEN[1x36] : [&lt;]
+     *                    |--HTML_ELEMENT_END[1x36] : [&lt;/b&gt;]
+     *                        |--START[1x36] : [&lt;]
      *                        |--SLASH[1x37] : [/]
      *                        |--HTML_TAG_NAME[1x38] : [b]
-     *                        |--CLOSE[1x39] : [&gt;]
+     *                        |--END[1x39] : [&gt;]
      *            |--TEXT[1x40] : [ problems occur]
      * }
      * </pre>
@@ -1287,16 +1287,16 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Open html tag: &lt;XXX&gt;.
+     * Start html tag: &lt;XXX&gt;.
      */
-    public static final int HTML_ELEMENT_OPEN = JavadocParser.RULE_htmlElementOpen
+    public static final int HTML_ELEMENT_START = JavadocParser.RULE_htmlElementStart
             + RULE_TYPES_OFFSET
             + RULE_TYPES_OFFSET;
 
     /**
-     * Close html tag: &lt;XXX&gt;.
+     * End html tag: &lt;XXX&gt;.
      */
-    public static final int HTML_ELEMENT_CLOSE = JavadocParser.RULE_htmlElementClose
+    public static final int HTML_ELEMENT_END = JavadocParser.RULE_htmlElementEnd
             + RULE_TYPES_OFFSET;
 
     /**
@@ -1319,9 +1319,9 @@ public final class JavadocTokenTypes {
     // HTML tag components
 
     /**
-     * Open html tag component: {@code '<'}.
+     * Start html tag component: {@code '<'}.
      */
-    public static final int OPEN = JavadocParser.OPEN;
+    public static final int START = JavadocParser.START;
 
     /**
      * Slash html tag component: {@code '/'}.
@@ -1329,14 +1329,14 @@ public final class JavadocTokenTypes {
     public static final int SLASH = JavadocParser.SLASH;
 
     /**
-     * Close html tag component: {@code '>'}.
+     * End html tag component: {@code '>'}.
      */
-    public static final int CLOSE = JavadocParser.CLOSE;
+    public static final int END = JavadocParser.END;
 
     /**
      * Slash close html tag component: {@code '/>'}.
      */
-    public static final int SLASH_CLOSE = JavadocParser.SLASH_CLOSE;
+    public static final int SLASH_END = JavadocParser.SLASH_END;
 
     /**
      * Equals html tag component: {@code '='}.
@@ -1348,142 +1348,142 @@ public final class JavadocTokenTypes {
      */
     public static final int ATTR_VALUE = JavadocParser.ATTR_VALUE;
 
-    /////////////////////// HTML TAGS WITH OPTIONAL CLOSE TAG /////////////////////////////////////
+    /////////////////////// HTML TAGS WITH OPTIONAL END TAG /////////////////////////////////////
     /** Paragraph html tag: {@code <p></p>}. */
     public static final int PARAGRAPH = JavadocParser.RULE_paragraph + RULE_TYPES_OFFSET;
-    /** Open paragraph tag. */
-    public static final int P_TAG_OPEN = JavadocParser.RULE_pTagOpen + RULE_TYPES_OFFSET;
-    /** Close paragraph tag. */
-    public static final int P_TAG_CLOSE = JavadocParser.RULE_pTagClose + RULE_TYPES_OFFSET;
+    /** Start paragraph tag. */
+    public static final int P_TAG_START = JavadocParser.RULE_pTagStart + RULE_TYPES_OFFSET;
+    /** End paragraph tag. */
+    public static final int P_TAG_END = JavadocParser.RULE_pTagEnd + RULE_TYPES_OFFSET;
     /** Paragraph tag name. */
     public static final int P_HTML_TAG_NAME = JavadocParser.P_HTML_TAG_NAME;
 
     /** List item html tag: {@code <li></li>}. */
     public static final int LI = JavadocParser.RULE_li + RULE_TYPES_OFFSET;
-    /** Open list item tag. */
-    public static final int LI_TAG_OPEN = JavadocParser.RULE_liTagOpen + RULE_TYPES_OFFSET;
-    /** Close list item tag. */
-    public static final int LI_TAG_CLOSE = JavadocParser.RULE_liTagClose + RULE_TYPES_OFFSET;
+    /** Start list item tag. */
+    public static final int LI_TAG_START = JavadocParser.RULE_liTagStart + RULE_TYPES_OFFSET;
+    /** End list item tag. */
+    public static final int LI_TAG_END = JavadocParser.RULE_liTagEnd + RULE_TYPES_OFFSET;
     /** List item tag name. */
     public static final int LI_HTML_TAG_NAME = JavadocParser.LI_HTML_TAG_NAME;
 
     /** Table row html tag: {@code <tr></tr>}. */
     public static final int TR = JavadocParser.RULE_tr + RULE_TYPES_OFFSET;
-    /** Open table row tag. */
-    public static final int TR_TAG_OPEN = JavadocParser.RULE_trTagOpen + RULE_TYPES_OFFSET;
-    /** Close table row tag. */
-    public static final int TR_TAG_CLOSE = JavadocParser.RULE_trTagClose + RULE_TYPES_OFFSET;
+    /** Start table row tag. */
+    public static final int TR_TAG_START = JavadocParser.RULE_trTagStart + RULE_TYPES_OFFSET;
+    /** End table row tag. */
+    public static final int TR_TAG_END = JavadocParser.RULE_trTagEnd + RULE_TYPES_OFFSET;
     /** Table row tag name. */
     public static final int TR_HTML_TAG_NAME = JavadocParser.TR_HTML_TAG_NAME;
 
     /** Table cell html tag: {@code <td></td>}. */
     public static final int TD = JavadocParser.RULE_td + RULE_TYPES_OFFSET;
-    /** Open table cell tag. */
-    public static final int TD_TAG_OPEN = JavadocParser.RULE_tdTagOpen + RULE_TYPES_OFFSET;
-    /** Close table cell tag. */
-    public static final int TD_TAG_CLOSE = JavadocParser.RULE_tdTagClose + RULE_TYPES_OFFSET;
+    /** Start table cell tag. */
+    public static final int TD_TAG_START = JavadocParser.RULE_tdTagStart + RULE_TYPES_OFFSET;
+    /** End table cell tag. */
+    public static final int TD_TAG_END = JavadocParser.RULE_tdTagEnd + RULE_TYPES_OFFSET;
     /** Table cell tag name. */
     public static final int TD_HTML_TAG_NAME = JavadocParser.TD_HTML_TAG_NAME;
 
     /** Table header cell html tag: {@code <th></th>}. */
     public static final int TH = JavadocParser.RULE_th + RULE_TYPES_OFFSET;
-    /** Open table header cell tag. */
-    public static final int TH_TAG_OPEN = JavadocParser.RULE_thTagOpen + RULE_TYPES_OFFSET;
-    /** Close table header cell tag. */
-    public static final int TH_TAG_CLOSE = JavadocParser.RULE_thTagClose + RULE_TYPES_OFFSET;
+    /** Start table header cell tag. */
+    public static final int TH_TAG_START = JavadocParser.RULE_thTagStart + RULE_TYPES_OFFSET;
+    /** End table header cell tag. */
+    public static final int TH_TAG_END = JavadocParser.RULE_thTagEnd + RULE_TYPES_OFFSET;
     /** Table header cell tag name. */
     public static final int TH_HTML_TAG_NAME = JavadocParser.TH_HTML_TAG_NAME;
 
     /** Body html tag. */
     public static final int BODY = JavadocParser.RULE_body + RULE_TYPES_OFFSET;
-    /** Open body tag. */
-    public static final int BODY_TAG_OPEN = JavadocParser.RULE_bodyTagOpen + RULE_TYPES_OFFSET;
-    /** Close body tag. */
-    public static final int BODY_TAG_CLOSE = JavadocParser.RULE_bodyTagClose + RULE_TYPES_OFFSET;
+    /** Start body tag. */
+    public static final int BODY_TAG_START = JavadocParser.RULE_bodyTagStart + RULE_TYPES_OFFSET;
+    /** End body tag. */
+    public static final int BODY_TAG_END = JavadocParser.RULE_bodyTagEnd + RULE_TYPES_OFFSET;
     /** Body tag name. */
     public static final int BODY_HTML_TAG_NAME = JavadocParser.BODY_HTML_TAG_NAME;
 
     /** Colgroup html tag. */
     public static final int COLGROUP = JavadocParser.RULE_colgroup + RULE_TYPES_OFFSET;
-    /** Open colgroup tag. */
-    public static final int COLGROUP_TAG_OPEN = JavadocParser.RULE_colgroupTagOpen
+    /** Start colgroup tag. */
+    public static final int COLGROUP_TAG_START = JavadocParser.RULE_colgroupTagStart
             + RULE_TYPES_OFFSET;
-    /** Close colgroup tag. */
-    public static final int COLGROUP_TAG_CLOSE = JavadocParser.RULE_colgroupTagClose
+    /** End colgroup tag. */
+    public static final int COLGROUP_TAG_END = JavadocParser.RULE_colgroupTagEnd
             + RULE_TYPES_OFFSET;
     /** Colgroup tag name. */
     public static final int COLGROUP_HTML_TAG_NAME = JavadocParser.COLGROUP_HTML_TAG_NAME;
 
     /** Description of a term html tag: {@code <dd></dd>}. */
     public static final int DD = JavadocParser.RULE_dd + RULE_TYPES_OFFSET;
-    /** Open description of a term tag. */
-    public static final int DD_TAG_OPEN = JavadocParser.RULE_ddTagOpen + RULE_TYPES_OFFSET;
-    /** Close description of a term tag. */
-    public static final int DD_TAG_CLOSE = JavadocParser.RULE_ddTagClose + RULE_TYPES_OFFSET;
+    /** Start description of a term tag. */
+    public static final int DD_TAG_START = JavadocParser.RULE_ddTagStart + RULE_TYPES_OFFSET;
+    /** End description of a term tag. */
+    public static final int DD_TAG_END = JavadocParser.RULE_ddTagEnd + RULE_TYPES_OFFSET;
     /** Description of a term tag name. */
     public static final int DD_HTML_TAG_NAME = JavadocParser.DD_HTML_TAG_NAME;
 
     /** Description term html tag: {@code <dt></dt>}. */
     public static final int DT = JavadocParser.RULE_dt + RULE_TYPES_OFFSET;
-    /** Open description term tag. */
-    public static final int DT_TAG_OPEN = JavadocParser.RULE_dtTagOpen + RULE_TYPES_OFFSET;
-    /** Close description term tag. */
-    public static final int DT_TAG_CLOSE = JavadocParser.RULE_dtTagClose + RULE_TYPES_OFFSET;
+    /** Start description term tag. */
+    public static final int DT_TAG_START = JavadocParser.RULE_dtTagStart + RULE_TYPES_OFFSET;
+    /** End description term tag. */
+    public static final int DT_TAG_END = JavadocParser.RULE_dtTagEnd + RULE_TYPES_OFFSET;
     /** Description term tag name. */
     public static final int DT_HTML_TAG_NAME = JavadocParser.DT_HTML_TAG_NAME;
 
     /** Head html tag. */
     public static final int HEAD = JavadocParser.RULE_head + RULE_TYPES_OFFSET;
-    /** Open head tag. */
-    public static final int HEAD_TAG_OPEN = JavadocParser.RULE_headTagOpen + RULE_TYPES_OFFSET;
-    /** Close head tag. */
-    public static final int HEAD_TAG_CLOSE = JavadocParser.RULE_headTagClose + RULE_TYPES_OFFSET;
+    /** Start head tag. */
+    public static final int HEAD_TAG_START = JavadocParser.RULE_headTagStart + RULE_TYPES_OFFSET;
+    /** End head tag. */
+    public static final int HEAD_TAG_END = JavadocParser.RULE_headTagEnd + RULE_TYPES_OFFSET;
     /** Head tag name. */
     public static final int HEAD_HTML_TAG_NAME = JavadocParser.HEAD_HTML_TAG_NAME;
 
     /** Html html tag. */
     public static final int HTML = JavadocParser.RULE_html + RULE_TYPES_OFFSET;
-    /** Open html tag. */
-    public static final int HTML_TAG_OPEN = JavadocParser.RULE_htmlTagOpen + RULE_TYPES_OFFSET;
-    /** Close html tag. */
-    public static final int HTML_TAG_CLOSE = JavadocParser.RULE_htmlTagClose + RULE_TYPES_OFFSET;
+    /** Start html tag. */
+    public static final int HTML_TAG_START = JavadocParser.RULE_htmlTagStart + RULE_TYPES_OFFSET;
+    /** End html tag. */
+    public static final int HTML_TAG_END = JavadocParser.RULE_htmlTagEnd + RULE_TYPES_OFFSET;
     /** Html tag name. */
     public static final int HTML_HTML_TAG_NAME = JavadocParser.HTML_HTML_TAG_NAME;
 
     /** Option html tag. */
     public static final int OPTION = JavadocParser.RULE_option + RULE_TYPES_OFFSET;
-    /** Open option tag. */
-    public static final int OPTION_TAG_OPEN = JavadocParser.RULE_optionTagOpen + RULE_TYPES_OFFSET;
-    /** Close option tag. */
-    public static final int OPTION_TAG_CLOSE = JavadocParser.RULE_optionTagClose
+    /** Start option tag. */
+    public static final int OPTION_TAG_START = JavadocParser.RULE_optionTagStart + RULE_TYPES_OFFSET;
+    /** End option tag. */
+    public static final int OPTION_TAG_END = JavadocParser.RULE_optionTagEnd
             + RULE_TYPES_OFFSET;
     /** Option tag name. */
     public static final int OPTION_HTML_TAG_NAME = JavadocParser.OPTION_HTML_TAG_NAME;
 
     /** Table body html tag. */
     public static final int TBODY = JavadocParser.RULE_tbody + RULE_TYPES_OFFSET;
-    /** Open table body tag. */
-    public static final int TBODY_TAG_OPEN = JavadocParser.RULE_tbodyTagOpen + RULE_TYPES_OFFSET;
-    /** Close table body tag. */
-    public static final int TBODY_TAG_CLOSE = JavadocParser.RULE_tbodyTagClose + RULE_TYPES_OFFSET;
+    /** Start table body tag. */
+    public static final int TBODY_TAG_START = JavadocParser.RULE_tbodyTagStart + RULE_TYPES_OFFSET;
+    /** End table body tag. */
+    public static final int TBODY_TAG_END = JavadocParser.RULE_tbodyTagEnd + RULE_TYPES_OFFSET;
     /** Table body tag name. */
     public static final int TBODY_HTML_TAG_NAME = JavadocParser.TBODY_HTML_TAG_NAME;
 
     /** Table foot html tag. */
     public static final int TFOOT = JavadocParser.RULE_tfoot + RULE_TYPES_OFFSET;
-    /** Open table foot tag. */
-    public static final int TFOOT_TAG_OPEN = JavadocParser.RULE_tfootTagOpen + RULE_TYPES_OFFSET;
-    /** Close table foot tag. */
-    public static final int TFOOT_TAG_CLOSE = JavadocParser.RULE_tfootTagClose + RULE_TYPES_OFFSET;
+    /** Start table foot tag. */
+    public static final int TFOOT_TAG_START = JavadocParser.RULE_tfootTagStart + RULE_TYPES_OFFSET;
+    /** End table foot tag. */
+    public static final int TFOOT_TAG_END = JavadocParser.RULE_tfootTagEnd + RULE_TYPES_OFFSET;
     /** Table foot tag name. */
     public static final int TFOOT_HTML_TAG_NAME = JavadocParser.TFOOT_HTML_TAG_NAME;
 
     /** Table head html tag. */
     public static final int THEAD = JavadocParser.RULE_thead + RULE_TYPES_OFFSET;
-    /** Open table head tag. */
-    public static final int THEAD_TAG_OPEN = JavadocParser.RULE_theadTagOpen + RULE_TYPES_OFFSET;
-    /** Close table head tag. */
-    public static final int THEAD_TAG_CLOSE = JavadocParser.RULE_theadTagClose + RULE_TYPES_OFFSET;
+    /** Start table head tag. */
+    public static final int THEAD_TAG_START = JavadocParser.RULE_theadTagStart + RULE_TYPES_OFFSET;
+    /** End table head tag. */
+    public static final int THEAD_TAG_END = JavadocParser.RULE_theadTagEnd + RULE_TYPES_OFFSET;
     /** Table head tag name. */
     public static final int THEAD_HTML_TAG_NAME = JavadocParser.THEAD_HTML_TAG_NAME;
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1496,9 +1496,9 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Non-special singleton html tag.
+     * Non-special empty html tag.
      */
-    public static final int SINGLETON_TAG = JavadocParser.RULE_singletonTag
+    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
             + RULE_TYPES_OFFSET;
 
     /** Area html tag. */

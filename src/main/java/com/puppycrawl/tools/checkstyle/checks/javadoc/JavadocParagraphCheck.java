@@ -129,7 +129,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             checkEmptyLine(ast);
         }
         else if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && JavadocUtils.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_OPEN) {
+                && JavadocUtils.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START) {
             checkParagraphTag(ast);
         }
     }
