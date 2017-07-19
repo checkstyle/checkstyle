@@ -110,7 +110,9 @@ public final class MethodCountCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_DEF) {
-            raiseCounter(ast);
+            if (!counters.isEmpty()) {
+                raiseCounter(ast);
+            }
         }
         else {
             final boolean inInterface = ast.getType() == TokenTypes.INTERFACE_DEF;

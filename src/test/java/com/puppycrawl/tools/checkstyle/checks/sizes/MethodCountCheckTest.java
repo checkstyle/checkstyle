@@ -154,4 +154,15 @@ public class MethodCountCheckTest extends BaseCheckTestSupport {
 
         verify(checkConfig, getPath("InputMethodCount5.java"), expected);
     }
+
+    @Test
+    public void testPartialTokens() throws Exception {
+        final DefaultConfiguration checkConfig = createCheckConfig(MethodCountCheck.class);
+        checkConfig.addAttribute("maxTotal", "1");
+        checkConfig.addAttribute("tokens", "ENUM_DEF");
+
+        final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputMethodCount6.java"), expected);
+    }
 }
