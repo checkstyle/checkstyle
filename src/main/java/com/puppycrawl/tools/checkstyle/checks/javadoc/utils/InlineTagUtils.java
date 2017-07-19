@@ -99,6 +99,7 @@ public final class InlineTagUtils {
     }
 
     /**
+     * Convert array of string to single String.
      * @param lines A number of lines, in order.
      * @return The lines, joined together with newlines, as a single string.
      */
@@ -112,6 +113,7 @@ public final class InlineTagUtils {
     }
 
     /**
+     * Get LineColumn from string till index.
      * @param source Source string.
      * @param index An index into the string.
      * @return A position in the source representing what line and column that index appears on.
@@ -124,6 +126,7 @@ public final class InlineTagUtils {
     }
 
     /**
+     * Collapse whitespaces.
      * @param str Source string.
      * @return The given string with all whitespace collapsed.
      */
@@ -133,6 +136,7 @@ public final class InlineTagUtils {
     }
 
     /**
+     * Remove leading JavaDoc.
      * @param source A string to remove leading Javadoc from.
      * @return The given string with leading Javadoc "*" characters from each line removed.
      */
