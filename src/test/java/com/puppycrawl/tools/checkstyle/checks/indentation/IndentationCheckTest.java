@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
 
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Unit test for IndentationCheck.
  * @author  jrichard
  */
-public class IndentationCheckTest extends BaseCheckTestSupport {
+public class IndentationCheckTest extends AbstractModuleTestSupport {
     private static final Pattern LINE_WITH_COMMENT_REGEX =
                     Pattern.compile(".*?//indent:(\\d+)(?: ioffset:(\\d+))?"
                         + " exp:(>=)?(\\d+(?:,\\d+)*?)( warn)?$");
@@ -164,15 +164,8 @@ public class IndentationCheckTest extends BaseCheckTestSupport {
     }
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "indentation" + File.separator + "indentation" + File.separator + filename);
-    }
-
-    @Override
-    protected String getNonCompilablePath(String filename) throws IOException {
-        return super.getNonCompilablePath("checks" + File.separator
-                + "indentation" + File.separator + "indentation" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
     }
 
     @Test

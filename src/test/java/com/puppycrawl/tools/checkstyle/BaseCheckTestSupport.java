@@ -113,8 +113,11 @@ public class BaseCheckTestSupport {
      * This implementation uses 'src/test/resources/com/puppycrawl/tools/checkstyle/'
      * as a root location.
      * @param filename file name.
+     * @deprecated This method is now used in AbstractModuleTestSupport.
      * @return URI-representation of the path for the file with the given file name.
+     * @noinspection MethodMayBeStatic
      */
+    @Deprecated
     protected String getUriString(String filename) {
         return new File("src/test/resources/com/puppycrawl/tools/checkstyle/" + filename).toURI()
                 .toString();

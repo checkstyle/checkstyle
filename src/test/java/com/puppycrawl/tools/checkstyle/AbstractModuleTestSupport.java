@@ -102,6 +102,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Returns URI-representation of the path for the given file name.
+     * The path is formed base on the root location.
+     * This implementation uses 'src/test/resources/com/puppycrawl/tools/checkstyle/'
+     * as a root location.
+     * @param filename file name.
+     * @return URI-representation of the path for the file with the given file name.
+     */
+    protected String getUriString(String filename) {
+        return new File("src/test/resources/" + getPackageLocation() + "/" + filename).toURI()
+                .toString();
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
@@ -284,6 +297,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected String getCheckMessage(String messageKey, Object... arguments) {
         return internalGetCheckMessage(getMessageBundle(), messageKey, arguments);
+    }
+
+    /**
+     * Gets the check message 'as is' from appropriate 'messages.properties'
+     * file.
+     *
+     * @param clazz the related check class.
+     * @param messageKey the key of message in 'messages.properties' file.
+     * @param arguments the arguments of message in 'messages.properties' file.
+     */
+    protected static String getCheckMessage(
+            Class<?> clazz, String messageKey, Object... arguments) {
+        return internalGetCheckMessage(getMessageBundle(clazz.getName()), messageKey, arguments);
     }
 
     /**
