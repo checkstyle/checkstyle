@@ -306,16 +306,8 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
             result = true;
         }
         else {
-            final boolean useMatch;
-
             // null pattern means 'match' applies to the folderPattern matching
-            if (fileNamePattern == null) {
-                useMatch = match;
-            }
-            else {
-                useMatch = true;
-            }
-
+            final boolean useMatch = fileNamePattern != null || match;
             result = folderPattern.matcher(folderPath).find() == useMatch;
         }
 
@@ -330,17 +322,8 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
      * @return true if they do match.
      */
     private boolean isMatchFile(String fileName) {
-        final boolean result;
-
         // null pattern always matches, regardless of value of 'match'
-        if (fileNamePattern == null) {
-            result = true;
-        }
-        else {
-            result = fileNamePattern.matcher(fileName).find() == match;
-        }
-
-        return result;
+        return fileNamePattern == null || fileNamePattern.matcher(fileName).find() == match;
     }
 
     /** Logs the errors for the check. */
