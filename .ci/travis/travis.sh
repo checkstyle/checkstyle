@@ -196,9 +196,9 @@ cobertura-check)
   xmlstarlet sel -t -m "//class" -v "@name" -n target/site/cobertura/coverage.xml | sed "s/\./\//g" | sed "/^$/d" | sort | uniq > cobertura_classes.log
   find target/classes -type f -name "*.class" | grep -vE ".*\\$.*" | sed "s/target\/classes\///g" | sed "s/.class//g" | sed "/^$/d" | sort | uniq > target_classes.log
   xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 -t -m "//pom:instrumentation/pom:excludes" -v "pom:exclude" -n pom.xml | sed "s/*//g" | sed "s/.class//g" | sed "/^$/d" | sort | uniq > cobertura_excluded_classes.log
-  # xmlstarlet has an issue. It concatenates these two lines and removes new line character,
+  # xmlstarlet has an issue. It concatenates this line with the previous one and removes new line character,
   # so we need to split them apart. We use the command till update of xmlstarlet to higher version.
-  sed -i'' "s/com\/puppycrawl\/tools\/checkstyle\/grammars\/javadoc\/com\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/com\/puppycrawl\/tools\/checkstyle\/grammars\/javadoc\/\ncom\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/" cobertura_excluded_classes.log
+  sed -i'' "s/com\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/\ncom\/puppycrawl\/tools\/checkstyle\/gui\/BaseCellEditor/" cobertura_excluded_classes.log
   grep -Fxvf cobertura_classes.log target_classes.log > missed_classes_with_excludes.log
   grep -Fvf cobertura_excluded_classes.log missed_classes_with_excludes.log > missed_classes_without_excludes.log | cat > output.log
   echo "output.log"

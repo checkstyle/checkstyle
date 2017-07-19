@@ -1512,8 +1512,8 @@
                 <haltOnFailure>true</haltOnFailure>
                 <branchRate>100</branchRate>
                 <lineRate>100</lineRate>
-                <totalBranchRate>92</totalBranchRate>
-                <totalLineRate>99</totalLineRate>
+                <totalBranchRate>81</totalBranchRate>
+                <totalLineRate>84</totalLineRate>
                 <regexes>
                   <regex>
                     <pattern>com.puppycrawl.tools.checkstyle.grammars.GeneratedJavaRecognizer</pattern>
@@ -1525,11 +1525,28 @@
                     <branchRate>79</branchRate>
                     <lineRate>97</lineRate>
                   </regex>
+                  <regex>
+                    <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocParser</pattern>
+                    <branchRate>23</branchRate>
+                    <lineRate>27</lineRate>
+                  </regex>
+                  <regex>
+                    <pattern>com.puppycrawl.tools.checkstyle.grammars.javadoc.JavadocLexer</pattern>
+                    <branchRate>41</branchRate>
+                    <lineRate>55</lineRate>
+                  </regex>
                 </regexes>
               </check>
               <instrumentation>
                 <excludes>
-                  <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/*.class</exclude>
+                  <!-- Terence Parr, The Definitive ANTLR 4 Reference, 2.4 Building Language Applications Using Parse Trees:
+                       "To better support access to the elements within specific nodes, ANTLR generates
+                       a RuleNode subclass for each rule. ... Given this description of the concrete types, we could write
+                       code by hand to perform a depth-first walk of the tree. We could perform whatever actions we
+                       wanted as we discovered and finished nodes. Typical operations are things such as
+                       computing results, updating data structures, or generating output."
+                       We don't need these classes as we use only ParseTree methods for walking. -->
+                  <exclude>com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser$*.class</exclude>
                   <!-- Swing related classes -->
                   <exclude>com/puppycrawl/tools/checkstyle/gui/BaseCellEditor*.class</exclude>
                   <exclude>com/puppycrawl/tools/checkstyle/gui/CodeSelector.class</exclude>
