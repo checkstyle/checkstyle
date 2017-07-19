@@ -1432,9 +1432,8 @@
         <option name="ignoreObjectMethods" value="true" />
         <option name="ignoreAnonymousClassMethods" value="false" />
     </inspection_tool>
-    <inspection_tool class="MissingPackageInfo" enabled="false" level="WARNING" enabled_by_default="true">
-        <scope name="Tests" level="WARNING" enabled="false" />
-    </inspection_tool>
+    <!-- behavior is non stable between TC and local IDEA, disablement in test scope does not work -->
+    <inspection_tool class="MissingPackageInfo" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="MissortedModifiers" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_requireAnnotationsFirst" value="true" />
     </inspection_tool>
@@ -1862,7 +1861,7 @@
     <inspection_tool class="SimplifiableAnnotation" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifiableConditionalExpression" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifiableEqualsExpression" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="SimplifiableIfStatement" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SimplifiableIfStatement" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifiableJUnitAssertion" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="SimplifyNegatedBinaryExpression" enabled="true" level="ERROR" enabled_by_default="true" />
     <!-- suppressed till GSoC project completion .... -->
@@ -2071,6 +2070,8 @@
                 <option value="UseOfSystemOutOrSystemErr" />
                 <option value="SuspiciousArrayCast" />
                 <option value="AbstractClassWithOnlyOneDirectInheritor" />
+                <!-- in some cases it makes the logic even more complicated -->
+                <option value="SimplifiableIfStatement" />
             </list>
         </option>
     </inspection_tool>

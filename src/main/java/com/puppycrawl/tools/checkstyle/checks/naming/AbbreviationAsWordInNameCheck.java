@@ -230,6 +230,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @param ast input DetailAST node.
      * @return true if it is an ignore situation found for given input DetailAST
      *         node.
+     * @noinspection SimplifiableIfStatement
      */
     private boolean isIgnoreSituation(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
@@ -249,8 +250,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             }
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
-            result = ignoreOverriddenMethods
-                    && hasOverrideAnnotation(modifiers);
+            result = ignoreOverriddenMethods && hasOverrideAnnotation(modifiers);
         }
         else {
             result = CheckUtils.isReceiverParameter(ast);
