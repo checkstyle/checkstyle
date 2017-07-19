@@ -57,6 +57,7 @@ public final class TagInfo {
     }
 
     /**
+     * Return name of tag.
      * @return Name of the tag.
      */
     public String getName() {
@@ -64,6 +65,7 @@ public final class TagInfo {
     }
 
     /**
+     * Return value of tag.
      * @return Value of the tag.
      */
     public String getValue() {
@@ -71,6 +73,7 @@ public final class TagInfo {
     }
 
     /**
+     * Return position of tag.
      * @return Value of the tag.
      */
     public LineColumn getPosition() {
