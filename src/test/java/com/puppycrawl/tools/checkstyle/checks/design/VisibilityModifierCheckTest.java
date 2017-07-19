@@ -24,13 +24,10 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Test;
 
 import antlr.CommonHiddenStreamToken;
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -38,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 
 public class VisibilityModifierCheckTest
-    extends BaseCheckTestSupport {
+    extends AbstractModuleTestSupport {
     private Checker getChecker() throws Exception {
         final DefaultConfiguration checkConfig =
             createCheckConfig(VisibilityModifierCheck.class);
@@ -47,11 +44,8 @@ public class VisibilityModifierCheckTest
     }
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "design" + File.separator
-                + "visibilitymodifier" + File.separator
-                + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier";
     }
 
     @Test

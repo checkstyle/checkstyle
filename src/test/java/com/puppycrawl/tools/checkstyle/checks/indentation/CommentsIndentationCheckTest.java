@@ -22,13 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_BLOCK;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -40,13 +37,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
 * @author <a href="mailto:andreyselkin@gmail.com">Andrei Selkin</a>
 *
 */
-public class CommentsIndentationCheckTest extends BaseCheckTestSupport {
+public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "indentation" + File.separator
-                + "commentsindentation" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation";
     }
 
     @Test

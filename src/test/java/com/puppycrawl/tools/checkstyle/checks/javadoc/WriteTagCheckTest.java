@@ -27,7 +27,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
@@ -38,7 +37,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.puppycrawl.tools.checkstyle.BaseCheckTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
@@ -47,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * Unit test for WriteTagCheck.
  * @author Daniel Grenner
  */
-public class WriteTagCheckTest extends BaseCheckTestSupport {
+public class WriteTagCheckTest extends AbstractModuleTestSupport {
     private DefaultConfiguration checkConfig;
 
     @Before
@@ -56,10 +55,8 @@ public class WriteTagCheckTest extends BaseCheckTestSupport {
     }
 
     @Override
-    protected String getPath(String filename) throws IOException {
-        return super.getPath("checks" + File.separator
-                + "javadoc" + File.separator
-                + "writetag" + File.separator + filename);
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/javadoc/writetag";
     }
 
     @Test
