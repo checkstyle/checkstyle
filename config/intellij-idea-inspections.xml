@@ -88,7 +88,7 @@
     <inspection_tool class="AssignmentToDateFieldFromParameter" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignorePrivateMethods" value="true" />
     </inspection_tool>
-    <inspection_tool class="AssignmentToForLoopParameter" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="AssignmentToForLoopParameter" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_checkForeachParameters" value="true" />
     </inspection_tool>
     <inspection_tool class="AssignmentToForLoopParameterJS" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -277,7 +277,7 @@
     <inspection_tool class="CheckTagEmptyBody" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CheckValidXmlInScriptTagBody" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CheckXmlFileWithXercesValidator" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="CheckedExceptionClass" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="CheckedExceptionClass" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClashingGetters" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClashingTraitMethods" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClassComplexity" enabled="false" level="ERROR" enabled_by_default="false">
@@ -686,7 +686,7 @@
     <inspection_tool class="ExpectedExceptionNeverThrownTestNG" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExplicitGet" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExtendsAnnotation" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ExtendsConcreteCollection" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ExtendsConcreteCollection" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExtendsObject" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ExtendsThread" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ExtendsThrowable" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -752,8 +752,8 @@
     </inspection_tool>
     <inspection_tool class="ForLoopThatDoesntUseLoopVariable" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ForLoopThatDoesntUseLoopVariableJS" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ForLoopWithMissingComponent" enabled="false" level="ERROR" enabled_by_default="false">
-        <option name="ignoreCollectionLoops" value="false" />
+    <inspection_tool class="ForLoopWithMissingComponent" enabled="true" level="ERROR" enabled_by_default="true">
+        <option name="ignoreCollectionLoops" value="true" />
     </inspection_tool>
     <!-- we are ok to use for-each as we use modern java -->
     <inspection_tool class="ForeachStatement" enabled="false" level="ERROR" enabled_by_default="false" />
@@ -1507,7 +1507,9 @@
     <inspection_tool class="NestedSwitchStatement" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="NestedSwitchStatementJS" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="NestedSynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="NestedTryStatement" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NestedTryStatement" enabled="true" level="ERROR" enabled_by_default="true" >
+        <scope name="Tests" level="ERROR" enabled="false" />
+    </inspection_tool>
     <inspection_tool class="NestingDepth" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="m_limit" value="5" />
     </inspection_tool>
@@ -1720,8 +1722,8 @@
     <inspection_tool class="ProblematicVarargsMethodOverride" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ProblematicWhitespace" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="PropertyValueSetToItself" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="ProtectedField" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="ProtectedInnerClass" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="ProtectedField" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ProtectedInnerClass" enabled="true" level="ERROR" enabled_by_default="true">
         <option name="ignoreEnums" value="false" />
         <option name="ignoreInterfaces" value="false" />
     </inspection_tool>
@@ -2001,7 +2003,10 @@
     </inspection_tool>
     <inspection_tool class="StaticPseudoFunctionalStyleMethod" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="StaticSuite" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="StaticVariableInitialization" enabled="false" level="ERROR" enabled_by_default="false">
+    <inspection_tool class="StaticVariableInitialization" enabled="true" level="ERROR" enabled_by_default="true">
+        <scope name="Tests" level="ERROR" enabled="false" >
+            <option name="m_ignorePrimitives" value="false" />
+        </scope>
         <option name="m_ignorePrimitives" value="false" />
     </inspection_tool>
     <inspection_tool class="StaticVariableNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
@@ -2012,7 +2017,7 @@
     </inspection_tool>
     <!-- it lacks option to skip inner field of the same size that we use give convenient ready to use instances -->
     <inspection_tool class="StaticVariableOfConcreteClass" enabled="false" level="ERROR" enabled_by_default="false" />
-    <inspection_tool class="StaticVariableUninitializedUse" enabled="false" level="WARNING" enabled_by_default="true">
+    <inspection_tool class="StaticVariableUninitializedUse" enabled="true" level="WARNING" enabled_by_default="true">
         <scope name="Tests" level="WARNING" enabled="false">
             <option name="m_ignorePrimitives" value="false" />
         </scope>
@@ -2093,6 +2098,10 @@
                 <option value="ClassIndependentOfModule" />
                 <!-- it is hard to change api classes constructors -->
                 <option value="ConstructorWithTooManyParameters" />
+                <option value="ProtectedInnerClass" />
+                <option value="CheckedExceptionClass" />
+                <option value="StaticVariableMayNotBeInitialized" />
+                <option value="StaticVariableUsedBeforeInitialization" />
             </list>
         </option>
     </inspection_tool>

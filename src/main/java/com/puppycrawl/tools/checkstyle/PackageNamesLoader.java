@@ -141,24 +141,10 @@ public final class PackageNamesLoader
             final Enumeration<URL> packageFiles = classLoader.getResources(CHECKSTYLE_PACKAGES);
 
             while (packageFiles.hasMoreElements()) {
-                final URL packageFile = packageFiles.nextElement();
-                InputStream stream = null;
-
-                try {
-                    stream = new BufferedInputStream(packageFile.openStream());
-                    final InputSource source = new InputSource(stream);
-                    namesLoader.parseInputSource(source);
-                }
-                catch (IOException ex) {
-                    throw new CheckstyleException("unable to open " + packageFile, ex);
-                }
-                finally {
-                    Closeables.closeQuietly(stream);
-                }
+                processFile(packageFiles.nextElement(), namesLoader);
             }
 
             result = namesLoader.packageNames;
-
         }
         catch (IOException ex) {
             throw new CheckstyleException("unable to get package file resources", ex);
@@ -168,5 +154,28 @@ public final class PackageNamesLoader
         }
 
         return result;
+    }
+
+    /**
+     * Reads the file provided and parses it with package names loader.
+     * @param packageFile file from package
+     * @param namesLoader package names loader
+     * @throws SAXException if an error while parsing occurs
+     * @throws CheckstyleException if unable to open file
+     */
+    private static void processFile(URL packageFile, PackageNamesLoader namesLoader)
+            throws SAXException, CheckstyleException {
+        InputStream stream = null;
+        try {
+            stream = new BufferedInputStream(packageFile.openStream());
+            final InputSource source = new InputSource(stream);
+            namesLoader.parseInputSource(source);
+        }
+        catch (IOException ex) {
+            throw new CheckstyleException("unable to open " + packageFile, ex);
+        }
+        finally {
+            Closeables.closeQuietly(stream);
+        }
     }
 }

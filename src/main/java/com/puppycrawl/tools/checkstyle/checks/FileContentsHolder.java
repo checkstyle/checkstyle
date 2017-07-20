@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
  * a filter can access the current file contents through this module.
  * @author Mike McMahon
  * @author Rick Giles
+ * @noinspection StaticVariableMayNotBeInitialized, StaticVariableUsedBeforeInitialization
  */
 public class FileContentsHolder extends AbstractCheck {
     /** The current file contents. */

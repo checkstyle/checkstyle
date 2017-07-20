@@ -205,14 +205,14 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
                           String messageFileName,
                           String... expected)
             throws Exception {
-        stream.flush();
+        getStream().flush();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
         final int errs = checker.process(theFiles);
 
         // process each of the lines
         final ByteArrayInputStream localStream =
-            new ByteArrayInputStream(stream.toByteArray());
+            new ByteArrayInputStream(getStream().toByteArray());
         try (LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
 

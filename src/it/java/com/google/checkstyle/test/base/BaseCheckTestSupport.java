@@ -59,7 +59,15 @@ public class BaseCheckTestSupport {
 
     private static Configuration configuration;
 
-    protected final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+    /**
+     * Returns test logger.
+     * @return logger test logger
+     */
+    public BriefUtLogger getBriefUtLogger() {
+        return new BriefUtLogger(stream);
+    }
 
     /**
      * Returns {@link Configuration} based on Google's checks xml-configuration (google_checks.xml).
@@ -103,7 +111,7 @@ public class BaseCheckTestSupport {
         checker.setLocaleLanguage(locale.getLanguage());
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(dc);
-        checker.addListener(new BriefUtLogger(stream));
+        checker.addListener(getBriefUtLogger());
         return checker;
     }
 

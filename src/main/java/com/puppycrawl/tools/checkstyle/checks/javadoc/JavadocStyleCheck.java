@@ -288,20 +288,21 @@ public class JavadocStyleCheck
      */
     private static int findTextStart(String line) {
         int textStart = -1;
-        for (int i = 0; i < line.length();) {
-            if (!Character.isWhitespace(line.charAt(i))) {
-                if (line.regionMatches(i, "/**", 0, "/**".length())) {
-                    i += 2;
+        int index = 0;
+        while (index < line.length()) {
+            if (!Character.isWhitespace(line.charAt(index))) {
+                if (line.regionMatches(index, "/**", 0, "/**".length())) {
+                    index += 2;
                 }
-                else if (line.regionMatches(i, "*/", 0, 2)) {
-                    i++;
+                else if (line.regionMatches(index, "*/", 0, 2)) {
+                    index++;
                 }
-                else if (line.charAt(i) != '*') {
-                    textStart = i;
+                else if (line.charAt(index) != '*') {
+                    textStart = index;
                     break;
                 }
             }
-            i++;
+            index++;
         }
         return textStart;
     }
