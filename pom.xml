@@ -757,7 +757,8 @@
         <artifactId>antlr4-maven-plugin</artifactId>
         <version>${antlr4.version}</version>
         <configuration>
-          <visitor>true</visitor>
+          <visitor>false</visitor>
+          <listener>false</listener>
           <sourceDirectory>${basedir}/src/main/resources/</sourceDirectory>
           <outputDirectory>${project.build.directory}/generated-sources/antlr/</outputDirectory>
           <includes>
