@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
 import org.junit.Assert;
 import org.junit.Test;
 
+/** @noinspection ClassIndependentOfModule */
 public class GeneratedJavaTokenTypesTest {
     /**
      * <p>

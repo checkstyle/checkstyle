@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @deprecated Checkstyle will not support abstract checks anymore. Use
  *             {@link AbstractCheck} instead.
  * @author <a href="mailto:simon@redhillconsulting.com.au">Simon Harris</a>
- * @noinspection AbstractClassNeverImplemented
+ * @noinspection AbstractClassNeverImplemented, ClassOnlyUsedInOnePackage
  */
 @Deprecated
 public abstract class AbstractNestedDepthCheck extends AbstractCheck {

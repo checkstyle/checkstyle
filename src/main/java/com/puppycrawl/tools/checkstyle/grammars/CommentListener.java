@@ -24,6 +24,7 @@ package com.puppycrawl.tools.checkstyle.grammars;
  * in the parsed code.
  *
  * @author o_sukhodolsky
+ * @noinspection ClassOnlyUsedInOnePackage
  */
 public interface CommentListener {
     /**

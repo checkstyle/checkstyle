@@ -45,6 +45,7 @@ import java.util.ResourceBundle.Control;
  *
  * @author Oliver Burn
  * @author lkuehne
+ * @noinspection ConstructorWithTooManyParameters
  */
 public final class LocalizedMessage
     implements Comparable<LocalizedMessage>, Serializable {
