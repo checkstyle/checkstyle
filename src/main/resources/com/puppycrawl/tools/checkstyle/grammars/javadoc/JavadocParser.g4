@@ -124,7 +124,7 @@ pTagStart: START P_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)* 
 pTagEnd: START SLASH P_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 paragraph: pTagStart
             (htmlTag
-            | emptyTag
+            | singletonElement
             | li
             | tr
             | td
@@ -166,7 +166,7 @@ liTagStart: START LI_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)
 liTagEnd: START SLASH LI_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 li: liTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | tr
         | td
@@ -208,7 +208,7 @@ trTagStart: START TR_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)
 trTagEnd: START SLASH TR_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 tr: trTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | td
@@ -250,7 +250,7 @@ tdTagStart: START TD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)
 tdTagEnd: START SLASH TD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 td: tdTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -292,7 +292,7 @@ thTagStart: START TH_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)
 thTagEnd: START SLASH TH_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 th: thTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -334,7 +334,7 @@ bodyTagStart: START BODY_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK |
 bodyTagEnd: START SLASH BODY_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 body: bodyTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -376,7 +376,7 @@ colgroupTagStart: START COLGROUP_HTML_TAG_NAME (attribute | NEWLINE | LEADING_AS
 colgroupTagEnd: START SLASH COLGROUP_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 colgroup: colgroupTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -418,7 +418,7 @@ ddTagStart: START DD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)
 ddTagEnd: START SLASH DD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 dd: ddTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -460,7 +460,7 @@ dtTagStart: START DT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK | WS)
 dtTagEnd: START SLASH DT_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 dt: dtTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -502,7 +502,7 @@ headTagStart: START HEAD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK |
 headTagEnd: START SLASH HEAD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 head: headTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -544,7 +544,7 @@ htmlTagStart: START HTML_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK |
 htmlTagEnd: START SLASH HTML_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 html: htmlTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -586,7 +586,7 @@ optionTagStart: START OPTION_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERI
 optionTagEnd: START SLASH OPTION_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 option: optionTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -628,7 +628,7 @@ tbodyTagStart: START TBODY_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK
 tbodyTagEnd: START SLASH TBODY_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 tbody: tbodyTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -670,7 +670,7 @@ tfootTagStart: START TFOOT_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK
 tfootTagEnd: START SLASH TFOOT_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 tfoot: tfootTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
@@ -712,7 +712,7 @@ theadTagStart: START THEAD_HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK
 theadTagEnd: START SLASH THEAD_HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 thead: theadTagStart
     (htmlTag
-        | emptyTag
+        | singletonElement
         | paragraph
         | li
         | tr
