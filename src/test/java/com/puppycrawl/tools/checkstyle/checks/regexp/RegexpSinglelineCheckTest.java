@@ -43,7 +43,9 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
     @Override
     protected String getPath(String filename) throws IOException {
         return super.getPath("checks" + File.separator
-                + "regexp" + File.separator + filename);
+                + "regexp" + File.separator
+                + "regexpsingleline" + File.separator
+                + filename);
     }
 
     @Test
@@ -53,7 +55,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = {
             "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
 
     @Test
@@ -66,7 +68,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = {
             "69: " + message,
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
 
     @Test
@@ -79,7 +81,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         final String[] expected = {
             "69: " + getCheckMessage(MSG_REGEXP_EXCEEDED, illegal),
         };
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
 
     @Test
@@ -88,7 +90,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
         checkConfig.addAttribute("format", illegal);
         checkConfig.addAttribute("ignoreCase", "false");
         final String[] expected = CommonUtils.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
 
     @Test
@@ -100,7 +102,7 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
             "0: " + getCheckMessage(MSG_REGEXP_MINIMUM, "500", illegal),
         };
 
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
 
     @Test
@@ -113,6 +115,6 @@ public class RegexpSinglelineCheckTest extends BaseFileSetCheckTestSupport {
             "0: someMessage",
         };
 
-        verify(checkConfig, getPath("InputSemantic.java"), expected);
+        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
 }
